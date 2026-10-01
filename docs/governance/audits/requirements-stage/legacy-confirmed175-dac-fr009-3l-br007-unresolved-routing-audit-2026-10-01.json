@@ -1,0 +1,240 @@
+{
+  "schema_version": "confirmed175-dac-fr009-3l-br007-routing-audit.v1",
+  "audit_id": "legacy-confirmed175-dac-fr009-3l-br007-unresolved-routing-audit-2026-10-01",
+  "audit_mode": "read_only_static_source_pair_decision_comparison",
+  "authority_effect": "none",
+  "created_against_revision": "ea9e5cd0e8712036068c358fa2fe90faef063439",
+  "latest_main_revision_observed": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "fixed_f6_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "confirmed175_state": {
+    "source_holding_registration": "MPR-SH-CONFIRMED-003",
+    "registration_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "registration_line": 16,
+    "registration_line_sha256": "3f1ce3bf82e84237e4c3da167274208bd5380de6144dcf705211da5e7637a071",
+    "holding_state": "registered_source_holding",
+    "authority_effect": "none",
+    "total_source_atoms": 175,
+    "two_identities_remain_preserved_pending_rehome": true,
+    "successor_requirement_ids": []
+  },
+  "comparison_basis": {
+    "fixed_f6_audit": {
+      "revision": "ea9e5cd0e8712036068c358fa2fe90faef063439",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-last8-fixed-f6-condition-audit-2026-10-01.json",
+      "file_sha256": "9e289b576e8309a24f38f6fa96f10c9d24a70491a9c7a3e180b174c0f8bc4409",
+      "records": ["DAC-FR-009", "3L-BR-007"]
+    },
+    "prior_three_lane_audit": {
+      "revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+      "file_sha256": "22ce41ef506e65bbfa841448c71fdebbef506bc120e069d5e4d585453e568483",
+      "use_limit": "context for historical route options and neighbor decisions; not evidence of a BR-007 successor or closure"
+    },
+    "static_only": true,
+    "old_runtime_cli_test_ci_executed": false
+  },
+  "source_pins": [
+    {
+      "identity": "DAC-FR-009",
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-009",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "line": 56,
+      "file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "line_sha256": "881e9a2aa919c8bb082c075f7ab2648bc78c7a185e6689af6042ca8dbe16a004",
+      "exact_text": "| `DAC-FR-009` | #825の要求materialization監査、#1370のstartup projection、#206の旧surface是正と責務を重複させずAND条件で接続する。 |",
+      "asset": {
+        "id": "LEGACY-ASSET-D201753B1A0CC6EA3980",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "ledger_line": 421,
+        "ledger_line_sha256": "eeace2db2a8183a6563428d4c486dedeb7a0ba0286703b195948c5cd4e749f56",
+        "disposition": "source_snapshot_preservation"
+      },
+      "carry_forward": {
+        "path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+        "line": 117,
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": []
+      },
+      "meaning": "Three receipts remain distinct: #825 materialization audit, #1370 startup projection, and Document Authority Census. Aggregate green requires all three explicitly green. #206 is responsibility context, not a fourth receipt."
+    },
+    {
+      "identity": "3L-BR-007",
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-007",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "line": 63,
+      "file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "line_sha256": "170537a10b1df263fd6af5265bc2ee88ae2a618f35203f768695ff828d37dba9",
+      "exact_text": "### 3L-BR-007 GitHub監査をHELIX capabilityとして所有する",
+      "semantic_body_line": 65,
+      "semantic_body_line_sha256": "d14d8aaa32559355be9a237e2c25538716b86f7696fb0144cb6709ff00a41699",
+      "semantic_body_text": "決定的規則はNode gateが強制し、semantic findingだけを評価済みモデルへ委譲する。GitHub監査を第四provider laneや別Control Planeにしない。",
+      "asset": {
+        "id": "LEGACY-ASSET-A6926200F28B26300432",
+        "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+        "ledger_line": 428,
+        "ledger_line_sha256": "a6d679f8cb49bb5f6923993396909ef0f05d9e468cfdb4b43e72bc6963963a3f",
+        "disposition": "source_snapshot_preservation"
+      },
+      "carry_forward": {
+        "path": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+        "line": 173,
+        "status": "preserved_pending_rehome",
+        "successor_requirement_ids": []
+      }
+    }
+  ],
+  "dac_fr_009": {
+    "fixed_f6_result": "no_exact_fixed_pair",
+    "fixed_f6_comparison_record": {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-last8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_result": "no_exact_fixed_pair",
+      "strict_threshold_qualifies": false,
+      "target_ids": [],
+      "pair_file_pins": [],
+      "candidate_neighbor_absent_from_fixed_f6": {
+        "id": "HELIXOS-L2-111",
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "target_id_present_in_both": false,
+        "note": "Reference files were pinned; the later L2-111 candidate is absent at fixed F6, so these are not a qualifying pair for DAC-FR-009."
+      }
+    },
+    "later_current_candidate": {
+      "identity": "HELIXOS-L2-111",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "registration_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "registration_line": 636,
+      "registration_row_sha256": "8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "l2_file": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+      "l11_file": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
+      "scope": "abstract three-receipt AND rule only; does not map current receipt identities, owners, status authority, revisions/scopes, nor establish an operational green result"
+    },
+    "decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "row": 64,
+      "decision": "approved within the 22 ordinary adoptions, limited to abstract AND: aggregate green only if all three distinct evidence inputs explicitly pass",
+      "l2_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+      "l11_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14",
+      "explicit_non_decisions": ["receipt IDs", "issuers/owners", "target-version mapping", "operational usability", "actual receipt issuance or green state"]
+    },
+    "discrepancy": {
+      "locations": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 1380,
+          "text": "HELIXOS-L2-111 ...（未採択）"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line": 1382,
+          "text": "HELIX-OSの未採択候補"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 982,
+          "text": "HELIXOS-L11-111 ...（未実行）"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line": 984,
+          "text": "未採択HELIXOS-L2-111"
+        }
+      ],
+      "conflicts_with": "2026-09-30 decision row 64 adopts the abstract AND meaning; the L11 execution status itself remains unexecuted",
+      "meaning_preserved": "acceptance remains unexecuted; operational receipt mapping remains unknown",
+      "correction_suggestion_only": "Do not edit these requirements in this audit. In a separately reviewed revision, describe L2-111 as abstract AND meaning adopted with operational mapping unresolved, and L11-111 as acceptance not executed. Since these words alter the exact sections pinned by the PO decision, preserve the decision's historical digest and obtain an explicit disposition against the corrected section digests rather than silently changing the pinned bytes."
+    },
+    "residual": [
+      "No exact fixed-F6 target pair for the three-receipt condition.",
+      "Current #825/#1370/Census receipt identities, issuers/owners, status authority, target revision/scope mappings, and actual results remain unverified.",
+      "DAC-R-011 line 66 and DAC-AC-017 line 42 are related context/oracle only, not additional confirmed175 atoms or candidate input; #206 is not a fourth receipt.",
+      "MPR-SH-CONFIRMED-003 remains live; no formal successor, source-owner transfer, implementation, execution, acceptance, or source closure is claimed."
+    ],
+    "authority_decision": "The abstract AND meaning already has the exact 2026-09-30 PO decision; no new decision is needed merely to record this audit or preserve that narrow meaning. Any operational mapping, owner assignment, scope expansion, implementation/use as a gate, or source retirement requires its own applicable decision/evidence and must not be inferred from this audit."
+  },
+  "three_lane_br_007": {
+    "fixed_f6_result": "unconfirmed_missing_fixed_pair_file_sha",
+    "fixed_f6_comparison_record": {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-last8-fixed-f6-condition-audit-2026-10-01.json",
+      "strict_threshold_qualifies": false,
+      "target_ids": [],
+      "intelligence_l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "intelligence_l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "historically_named_ids_absent_from_both_fixed_files": ["HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074"]
+    },
+    "latest_main_neighbor_pins": [
+      {
+        "ids": ["HELIXINTELLIGENCE-L2-008", "HELIXINTELLIGENCE-L2-009", "HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074"],
+        "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "l2_file_sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+        "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "l11_file_sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+        "mps": {
+          "HELIXINTELLIGENCE-L2-072": "MPR-RC-HELIXINTELLIGENCE-L2-072-004; section sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4; 2026-09-30 live26 audit records conditional adoption (B placement; 1.0 candidate generation and shadow evaluation only)",
+          "HELIXINTELLIGENCE-L2-073": "MPR-RC-HELIXINTELLIGENCE-L2-073-002; section sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5; latest pair is a proposal and does not itself establish BR-007 ownership",
+          "HELIXINTELLIGENCE-L2-074": "MPR-RC-HELIXINTELLIGENCE-L2-074-002; section sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c; source atom set explicitly empty, so not coverage of BR-007"
+        },
+        "relationship_limit": "These neighboring candidates concern judgment-pack/shadow evaluation, free-text projection boundaries, and feedback-informed placement; none is an exact BR-007 three-lane capability successor."
+      },
+      {
+        "id": "HELIXLABO-L2-071",
+        "l2_path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "l2_file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "l2_section_digest": "sha256:3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f",
+        "l11_path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "l11_file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "l11_section_digest": "sha256:029c6bcea5a206a15c8bbe9706ff25917fbf9a6496b3891288fc2660634f7bc0",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "decision_row": 50,
+        "decision_scope": "adopted qualification boundary sourced from 3L-BR-008 lines 67/69; not 3L-BR-007",
+        "relationship_limit": "Do not transfer HELIXLABO-L2-071 adoption or qualification scope to BR-007."
+      },
+      {
+        "id": "HELIXOS-L2-018",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "relationship_limit": "worker assignment, execution control, and independent review are adjacent control responsibilities, not the whole GitHub audit capability"
+      },
+      {
+        "id": "HARNESS-L2-022",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+        "relationship_limit": "verification/acceptance contract is an adjacent oracle, not a BR-007 ownership mapping"
+      }
+    ],
+    "historical_route_context": {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-residual-disposition-2026-09-28.md",
+      "revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "file_sha256": "2a97bc3ae719ed68b7cffb2486ceeec8972ae4dc78654920a35d8f2ced932d82",
+      "summary": "Historical A/B framing considered retaining GitHub audit task-class qualification with explicit major-miss/model-revision invalidation across existing roles, or retiring GitHub-specific qualification in favor of general task-class evaluation, current permissions, and ordinary independent review. It is context, not a decision."
+    },
+    "candidate_routing_hypothesis": {
+      "proposal_only": true,
+      "possible_cross_mechanism_landing": "A bounded candidate could separate deterministic rule enforcement/coordination (OS/HARNESS adjacent contracts), semantic finding and review handling (INTELLIGENCE review/audit neighbors), and task-class qualification/effect measurement (LABO only within its adopted 3L-BR-008-derived scope). No single current pair is an exact destination for all of BR-007.",
+      "candidate_neighbors": ["HELIXOS-L2-018", "HARNESS-L2-022", "HELIXINTELLIGENCE-L2-008", "HELIXINTELLIGENCE-L2-009", "HELIXINTELLIGENCE-L2-072", "HELIXINTELLIGENCE-L2-073", "HELIXINTELLIGENCE-L2-074", "HELIXLABO-L2-071"],
+      "not_asserted": ["formal successor", "current owner", "selected primary mechanism", "adopted scope", "implementation", "operation", "acceptance", "source closure"]
+    },
+    "residual": [
+      "No exact fixed-F6 pair for BR-007; historical target IDs 072/073/074 are absent from both fixed F6 Intelligence pair files.",
+      "Current neighbors are split across mechanisms and have their own independent sources, status, and scope; the LABO-071 decision is specifically tied to BR-008.",
+      "No exact current identity-to-owner/scope mapping or successor decision for BR-007 was located in the pinned evidence; preserve its source holding and do not assign or close it."
+    ],
+    "authority_decision": "Recording the read-only evidence and candidate destinations has no authority effect. Choosing a primary owner, assigning a successor, changing BR-007 meaning/scope, or retiring the source requires the applicable human PO decision because it changes upstream responsibility or source meaning. No such decision is claimed by this audit."
+  },
+  "scope_limits": [
+    "No live GitHub issue state or runtime receipt was queried.",
+    "No archive runtime, CLI, test, hook, adapter, or CI was executed.",
+    "This audit does not claim pair completeness, strict-threshold qualification, successor assignment, acceptance completion, authority transfer, or confirmed175 closure."
+  ]
+}
