@@ -1392,7 +1392,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 ### HELIXOS-L2-113 GitHub監査の決定的規則・semantic finding境界候補（connection候補、未採択）
 
 - **authority／状態**：HELIX-OSを提案targetとする未採択candidate。仮登録は`registered_proposal`／`authority_effect: none`。本候補、register、receipt、静的acceptance案は要求採択、source ownerの移管、実装・実行許可、GitHub操作または受入を生成しない。現行ownerは未決のまま保持する。
-- **親L1・提案責務**：採択済み`HELIXOS-L1-001`／`HELIXOS-L1-008`に接続する、既存HELIX機構をまたぐ決定的監査とsemantic findingの責務境界候補。OSは三つの境界を接続する要求候補の提案targetであり、GitHub監査の全能力、各gate、model評価、laneまたはproviderの現在ownerを主張しない。
+- **親L1・提案責務**：POが対象revisionを確定・採択した`HELIXOS-L1-001`／`HELIXOS-L1-008`に接続する、既存HELIX機構をまたぐ決定的監査とsemantic findingの責務境界候補。現行system-intent.mdの`authority_status: draft_candidate` metadataは本文revision採否の正本ではなく、2026-09-28 PO decisionが固定SHA `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`を確定・採択している。OSは三つの境界を接続する要求候補の提案targetであり、GitHub監査の全能力、各gate、model評価、laneまたはproviderの現在ownerを主張しない。
 - **対象と入力**：明示されたGitHub audit scope、対象revision、適用可能な決定的規則の正本revisionとそのNode gateによる判定、semantic findingを生成するmodel revisionと当該評価根拠のidentity・revision・scopeを対応させる。対象・規則・評価の対応が未提示ならunknownとして保持し、別taskやrevisionの記録から補完しない。
 - **要求保証**：決定的規則の判定はNode gateが行い、semantic modelの結果で変更・置換しない。semantic findingだけを、対象scope/model revisionに対応する評価根拠が明示されたmodelへ委譲する。評価根拠が一致しない、未評価、staleまたはunknownの場合は委譲を成立済みにせず、未解決を返す。この監査capabilityは既存HELIXの責務境界で扱い、第四provider laneまたは独立Control Planeを新設しない。
 - **権限・責務境界**：本候補はNode gateの規則集合や実行契約、semantic modelの評価方法・threshold、finding分類・severity・route、lane/provider数、issue/PR/CI/merge操作、現在ownerを新設しない。既存の各正本とownerが持つ意味・権限を接続し、別ownerへ移さない。候補はGitHubやIssue状態から要求authorityを生成しない。
