@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - 監査基点は`176b6ec7f3a3087369300f29aa6fc70e998c80b1`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255行を除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 421–460は40行。ranks 381–420の隣接記録はローカルcommit `bf097d383d21559dcc84e946a9470106791bb85`で参照可能だが`origin/main`の祖先ではないため、本監査では末尾境界IDのみpinし、先行監査の検証を継承したとは主張しない。
+- marker pool 255行を除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 421–460は40行。ranks 381–420の隣接記録はmainにmergeされたexact HEAD `da56de951f92b27b1f060ba8f46dc3b10d8527ab`のpaired JSONにpinした。境界はrank420=`LEGACY-CAND-LINE-000685`、rank421=`LEGACY-CAND-LINE-000688`、重複0件。先行40行の意味監査を本監査の成果に再計上しない。
 - 各行のarchive source/context、source/line/asset ledger entry SHA、現行比較・F6/decision pinsはpaired JSONに記録した。
 
 ## 行別意味監査

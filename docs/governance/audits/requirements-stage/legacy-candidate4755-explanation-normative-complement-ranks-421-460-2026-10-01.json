@@ -73,18 +73,24 @@
     "independently_reconstructed": true,
     "prior_slice_boundary": {
       "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01",
-      "local_commit": "bf0979d383d21559dcc84e946a9470106791bb85",
       "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01.json",
-      "json_sha256": "f4589138c46aed356e2ca6cae3bfafcac4dd059ddc47556df5a83349198f4a55",
-      "origin_main_ancestor": false,
+      "json_sha256": "f74c4b9f63b4ce61e22c67473a1185f408c41b6b487b0095ae02cc6155879591",
+      "origin_main_ancestor": true,
       "boundary_last_rank": 420,
       "boundary_last_id": "LEGACY-CAND-LINE-000685",
       "this_first_rank": 421,
       "this_first_id": "LEGACY-CAND-LINE-000688",
-      "claim_prior_semantic_verification": false
+      "claim_prior_semantic_verification": false,
+      "commit": "da56de951f92b27b1f060ba8f46dc3b10d8527ab"
     }
   },
   "pinned_reconstruction_inputs": [
+    {
+      "role": "preceding_complement_ranks_381_420_for_rank_boundary",
+      "commit": "da56de951f92b27b1f060ba8f46dc3b10d8527ab",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-381-420-2026-10-01.json",
+      "sha256": "f74c4b9f63b4ce61e22c67473a1185f408c41b6b487b0095ae02cc6155879591"
+    },
     {
       "role": "full_row_records_baseline",
       "commit": "97672630b7de70fd4433827730c390cbabd90a99",
