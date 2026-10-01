@@ -1257,7 +1257,7 @@
     "scope_note": "The 2026-09-28 decision fixes the specified L1 revision and paired L2/L11 bytes, and adopts the exact 26 current L2 candidate identities with their version_target and conditions. It does not adopt the archived NIO candidate-set documents or this audit’s physical source rows; old-source holding and unresolved atoms remain."
   },
   "direct_binding_search": {
-    "search_scope": "Fixed F6 and latest origin/main HARNESS/OS/LABO/INFRASTRUCTURE L2/L11 pair documents; four current mechanism PO decisions; both receipt JSON corpora; and current Infrastructure L1/L2/L11, PO packet, internal audit/resolution, and 2026-09-26 PO context documents.",
+    "search_scope": "Fixed F6 and latest origin/main HARNESS/OS/LABO/INFRASTRUCTURE L2/L11 pair documents; four current mechanism PO decisions; both receipt JSON corpora; and current Infrastructure L1/L2/L11, PO packet, internal audit/resolution, and 2026-09-26 PO context documents. Supplementary fixed F6/current-base BRAIN L2 and HARNESS/BRAIN candidates directories: four specific citations verified from exact file bytes.",
     "receipt_corpora": [
       {
         "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -1331,7 +1331,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-02 | knowledge・rule・skillへの根拠供給 | #1035 / #1594 / #1595 |",
-      "semantic_reading": "一覧行はNIO-CAND-02を「knowledge・rule・skillへの根拠供給」と名付け、関連Issueを列挙する。",
+      "semantic_reading": "NIO-CAND-02は「knowledge・rule・skillへの根拠供給」の候補で、主な既存ownerのIssueは#1035 / #1594 / #1595である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-01 | 用語・状態・責務境界 | #1160 / #1033 |",
         "next_physical_line": "| NIO-CAND-03 | 要求形成時の運用品質導出 | #282 / #186 / #1318 |"
@@ -1417,7 +1417,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-03 | 要求形成時の運用品質導出 | #282 / #186 / #1318 |",
-      "semantic_reading": "NIO-CAND-03を要求形成時の運用品質導出とし、対応Issue番号を挙げる。",
+      "semantic_reading": "NIO-CAND-03は「要求形成時の運用品質導出」の候補で、主な既存ownerのIssueは#282 / #186 / #1318である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-02 | knowledge・rule・skillへの根拠供給 | #1035 / #1594 / #1595 |",
         "next_physical_line": "| NIO-CAND-04 | L4/L5の運用設計義務 | #290 / #1033 |"
@@ -1503,7 +1503,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-04 | L4/L5の運用設計義務 | #290 / #1033 |",
-      "semantic_reading": "NIO-CAND-04をL4/L5の運用設計義務として示す。",
+      "semantic_reading": "NIO-CAND-04は「L4/L5の運用設計義務」の候補で、主な既存ownerのIssueは#290 / #1033である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-03 | 要求形成時の運用品質導出 | #282 / #186 / #1318 |",
         "next_physical_line": "| NIO-CAND-05 | measurement・observability・logging | #219 / #220 / #221 / #222 |"
@@ -1589,7 +1589,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-05 | measurement・observability・logging | #219 / #220 / #221 / #222 |",
-      "semantic_reading": "NIO-CAND-05の対象をmeasurement・observability・loggingとし、既存Issueを参照する。",
+      "semantic_reading": "NIO-CAND-05は「measurement・observability・logging」の候補で、主な既存ownerのIssueは#219 / #220 / #221 / #222である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-04 | L4/L5の運用設計義務 | #290 / #1033 |",
         "next_physical_line": "| NIO-CAND-06 | alert・incident・recovery・maintenance | #223 / #1160 |"
@@ -1675,7 +1675,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-06 | alert・incident・recovery・maintenance | #223 / #1160 |",
-      "semantic_reading": "NIO-CAND-06の対象をalert・incident・recovery・maintenanceとする。",
+      "semantic_reading": "NIO-CAND-06は「alert・incident・recovery・maintenance」の候補で、主な既存ownerのIssueは#223 / #1160である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-05 | measurement・observability・logging | #219 / #220 / #221 / #222 |",
         "next_physical_line": "| NIO-CAND-07 | fault injection・restore・rollback検証 | #221 / #1160 |"
@@ -1761,7 +1761,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-07 | fault injection・restore・rollback検証 | #221 / #1160 |",
-      "semantic_reading": "NIO-CAND-07の対象をfault injection・restore・rollback検証とする。",
+      "semantic_reading": "NIO-CAND-07は「fault injection・restore・rollback検証」の候補で、主な既存ownerのIssueは#221 / #1160である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-06 | alert・incident・recovery・maintenance | #223 / #1160 |",
         "next_physical_line": "| NIO-CAND-08 | 双方向trace・Requirement Re-entry | #1169 / #1033 |"
@@ -1847,7 +1847,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-08 | 双方向trace・Requirement Re-entry | #1169 / #1033 |",
-      "semantic_reading": "NIO-CAND-08を双方向traceとRequirement Re-entryとして列挙する。",
+      "semantic_reading": "NIO-CAND-08は「双方向trace・Requirement Re-entry」の候補で、主な既存ownerのIssueは#1169 / #1033である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-07 | fault injection・restore・rollback検証 | #221 / #1160 |",
         "next_physical_line": "| NIO-CAND-09 | designed/implemented/verified/observed/operatedの分離 | #1160 / #1033 |"
@@ -1933,7 +1933,7 @@
         "text": "## 9要求群"
       },
       "exact_source_line_text": "| NIO-CAND-09 | designed/implemented/verified/observed/operatedの分離 | #1160 / #1033 |",
-      "semantic_reading": "NIO-CAND-09で設計・実装・検証・観測・運用の状態分離を名付ける。",
+      "semantic_reading": "NIO-CAND-09は「designed/implemented/verified/observed/operatedの分離」の候補で、主な既存ownerのIssueは#1160 / #1033である。",
       "physical_context": {
         "previous_physical_line": "| NIO-CAND-08 | 双方向trace・Requirement Re-entry | #1169 / #1033 |",
         "next_physical_line": ""
@@ -2722,7 +2722,7 @@
         "text": "# インフラ・運用品質 L1要求候補"
       },
       "exact_source_line_text": "| NIO-L1-04 | HELIXは既存の計測・event・logging・incident・lifecycle機構を統合利用し、同じ責務の第二正本や第二engineを作らない。 |",
-      "semantic_reading": "NIO-L1-04は、既存機構を統合利用し、同じ責務の第二正本やengineを作らない候補。",
+      "semantic_reading": "NIO-L1-04の候補条件は「HELIXは既存の計測・event・logging・incident・lifecycle機構を統合利用し、同じ責務の第二正本や第二engineを作らない。」。当時の候補記述であり、現行採択・検証結果を生成しない。",
       "physical_context": {
         "previous_physical_line": "| NIO-L1-03 | HELIXは「設計済み」「実装済み」「検証済み」「観測済み」「運用成立」を別状態として提示し、下位状態を上位状態へ読み替えない。 |",
         "next_physical_line": "| NIO-L1-05 | HELIXは承認済みscope内を自走し、範囲外の意味・権限・金銭・公開・法的不可逆差分だけを人間へ戻す。 |"
@@ -3161,7 +3161,7 @@
         "text": "# インフラ・運用品質 L10受入候補"
       },
       "exact_source_line_text": "| NIO-L10-01 | 根拠のないSLO数値・閾値・保持期間を生成した場合はRED。unknownを明示すれば通過候補。 |",
-      "semantic_reading": "NIO-L10-01は根拠のないSLO等の生成をREDとし、unknownの明示を通過候補とする。",
+      "semantic_reading": "NIO-L10-01の候補条件は「根拠のないSLO数値・閾値・保持期間を生成した場合はRED。unknownを明示すれば通過候補。」。当時の候補記述であり、現行採択・検証結果を生成しない。",
       "physical_context": {
         "previous_physical_line": "|---|---|",
         "next_physical_line": "| NIO-L10-02 | collector停止、欠測、stale evidenceをhealthyへ写像した場合はRED。typed degraded/unknown/failureへ分離する。 |"
@@ -3247,7 +3247,7 @@
         "text": "# インフラ・運用品質 L10受入候補"
       },
       "exact_source_line_text": "| NIO-L10-05 | rollback成功だけで恒久修復・再発防止完了を主張した場合はRED。原因・修復・再検証を別状態にする。 |",
-      "semantic_reading": "NIO-L10-05はrollback成功だけで恒久修復等を主張することをREDとし、原因・修復・再検証を分ける候補。",
+      "semantic_reading": "NIO-L10-05の候補条件は「rollback成功だけで恒久修復・再発防止完了を主張した場合はRED。原因・修復・再検証を別状態にする。」。当時の候補記述であり、現行採択・検証結果を生成しない。",
       "physical_context": {
         "previous_physical_line": "| NIO-L10-04 | backup名・snapshot存在だけでrestore成功を主張した場合はRED。隔離restoreとintegrity検証を要求する。 |",
         "next_physical_line": "| NIO-L10-06 | secret/PIIをlog、example、evidenceへ平文出力した場合はRED。redactionとnegative scanを要求する。 |"
@@ -3700,6 +3700,78 @@
             "locator": "7-15",
             "selected_physical_line_number": 8,
             "excerpt": "を意味比較に保持した。旧schema/planner/runtimeや全操作へのbackup手続きは移植していない。\n- `LEGACY-ASSET-5D41345F55800F23AC38` — `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6`: provenance、restore/ro"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 8,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/candidates/infrastructure-domain-requirements.md",
+            "sha256": "86e58575e79058f989ad30aa2423ef4974deb0ba657d816f1f3e4a59b0459b25",
+            "artifact_path": "docs/helix-brain/candidates/infrastructure-domain-requirements.md",
+            "citation_line": 71,
+            "citation_text": "| INFRA-003、004、BRAIN → HARNESS | 旧NIO-L3-01、02（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-8`）。現行ではHARNESSの要求案の「運用品質を落とさない工程条件」が再採否待ちとして持つ | 要求の形成で、対象、環境、workload、failure mode、dataの重要度、RTO／RPOの候補、観測、運用のownerをtyped inputとして集め、配備・容量・telemetry・backup・restore・rollback等を設計義務にする | 工程の条件はHARNESSに残し、BRAINはそれに使う再利用のPatternと、Patternが求めるinputを持つ |",
+            "citation_line_sha256": "ed857d6dcb55f7f9e980e2af2262765d2f376e14b43938736616a2a80a1ae47d",
+            "cited_line_ranges": [
+              [
+                7,
+                8
+              ]
+            ],
+            "selected_physical_line_number": 8,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 8,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/candidates/infrastructure-domain-requirements.md",
+            "sha256": "86e58575e79058f989ad30aa2423ef4974deb0ba657d816f1f3e4a59b0459b25",
+            "artifact_path": "docs/helix-brain/candidates/infrastructure-domain-requirements.md",
+            "citation_line": 71,
+            "citation_text": "| INFRA-003、004、BRAIN → HARNESS | 旧NIO-L3-01、02（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-8`）。現行ではHARNESSの要求案の「運用品質を落とさない工程条件」が再採否待ちとして持つ | 要求の形成で、対象、環境、workload、failure mode、dataの重要度、RTO／RPOの候補、観測、運用のownerをtyped inputとして集め、配備・容量・telemetry・backup・restore・rollback等を設計義務にする | 工程の条件はHARNESSに残し、BRAINはそれに使う再利用のPatternと、Patternが求めるinputを持つ |",
+            "citation_line_sha256": "ed857d6dcb55f7f9e980e2af2262765d2f376e14b43938736616a2a80a1ae47d",
+            "cited_line_ranges": [
+              [
+                7,
+                8
+              ]
+            ],
+            "selected_physical_line_number": 8,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
           }
         ],
         "archive_path_line_or_covering_span_artifact_hits": [
@@ -3707,7 +3779,9 @@
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27.json",
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
-          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md"
+          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+          "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "docs/helix-brain/candidates/infrastructure-domain-requirements.md"
         ],
         "archive_path_broad_span_hits": [
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r2.json",
@@ -3813,11 +3887,48 @@
             "locator": "7-15",
             "selected_physical_line_number": 11,
             "excerpt": "を意味比較に保持した。旧schema/planner/runtimeや全操作へのbackup手続きは移植していない。\n- `LEGACY-ASSET-5D41345F55800F23AC38` — `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6`: provenance、restore/ro"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 11,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 11,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
           }
         ],
         "archive_path_line_or_covering_span_artifact_hits": [
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
-          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md"
+          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+          "docs/helix-brain/L2-requirements/brain-requirements.md"
         ],
         "archive_path_broad_span_hits": [
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r2.json",
@@ -3923,11 +4034,48 @@
             "locator": "7-15",
             "selected_physical_line_number": 13,
             "excerpt": "を意味比較に保持した。旧schema/planner/runtimeや全操作へのbackup手続きは移植していない。\n- `LEGACY-ASSET-5D41345F55800F23AC38` — `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6`: provenance、restore/ro"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 13,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 13,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
           }
         ],
         "archive_path_line_or_covering_span_artifact_hits": [
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
-          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md"
+          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+          "docs/helix-brain/L2-requirements/brain-requirements.md"
         ],
         "archive_path_broad_span_hits": [
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r2.json",
@@ -4033,11 +4181,48 @@
             "locator": "7-15",
             "selected_physical_line_number": 14,
             "excerpt": "を意味比較に保持した。旧schema/planner/runtimeや全操作へのbackup手続きは移植していない。\n- `LEGACY-ASSET-5D41345F55800F23AC38` — `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6`: provenance、restore/ro"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 14,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 14,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
           }
         ],
         "archive_path_line_or_covering_span_artifact_hits": [
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
-          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md"
+          "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
+          "docs/helix-brain/L2-requirements/brain-requirements.md"
         ],
         "archive_path_broad_span_hits": [
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r2.json",
@@ -4068,7 +4253,7 @@
         "text": "# インフラ・運用品質 L3要求候補"
       },
       "exact_source_line_text": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
-      "semantic_reading": "NIO-L3-09は状態遷移にevidenceを要求し、collector停止・欠測・staleをhealthyへ変換しない候補。",
+      "semantic_reading": "NIO-L3-09の候補条件は「designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。」。当時の候補記述であり、現行採択・検証結果を生成しない。",
       "physical_context": {
         "previous_physical_line": "| NIO-L3-08 | 自動修復は対象契約、actor、tool、target、params、budget、blast radius、rollback、独立検証、consumer evidenceが成立した範囲だけruntime admissionする。 |",
         "next_physical_line": ""
@@ -4149,12 +4334,147 @@
             "locator": "7-15",
             "selected_physical_line_number": 15,
             "excerpt": "を意味比較に保持した。旧schema/planner/runtimeや全操作へのbackup手続きは移植していない。\n- `LEGACY-ASSET-5D41345F55800F23AC38` — `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-15`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6`: provenance、restore/ro"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+            "artifact_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "citation_line": 417,
+            "citation_text": "| `LEGACY-ASSET-5D41345F55800F23AC38` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | L9のNIO-L3-03、L12の06、L15の09は観測のsource・時刻・新しさ・収集証拠、実行して確かめるrestore/rollback、stale/unknownをhealthyとしない条件。未承認L3候補であり、L1との対応確認だけに用いる。1.0の承認や数値oracleにしない。 |",
+            "citation_line_sha256": "31d022ef6b9562555fbec9ebcccebc3b4b97fd3f27988628ccb118428d2bbb52",
+            "cited_line_ranges": [
+              [
+                9,
+                9
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                15,
+                15
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "fixed_F6",
+            "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "path": "docs/helix-harness/candidates/infrastructure-requirements.md",
+            "sha256": "f31cc927c24239dd0099899bfd0cb5aa75cf0f112083233e269e3377af5a8a25",
+            "artifact_path": "docs/helix-harness/candidates/infrastructure-requirements.md",
+            "citation_line": 65,
+            "citation_text": "| 001、002、019 | 旧NIO-L3-01、09（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7,15`）、現行HARNESS L2の「運用品質を落とさない工程条件」 | 適用・非適用・unknown・決定ownerの確認、typed inputの収集、designed・implemented・verified・observed・operatedの分離 | 適用の区分をrequired・conditional・N/A・unresolvedにし、Deployedの段を加える |",
+            "citation_line_sha256": "373b918c863301da1b352a8fdad5830f927d011471a260d328583e42d8b0288a",
+            "cited_line_ranges": [
+              [
+                7,
+                7
+              ],
+              [
+                15,
+                15
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+            "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+            "citation_line": 547,
+            "citation_text": "| 旧NIO Infrastructure requirements | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7-47`, `LEGACY-ASSET-5D41345F55800F23AC38`, SHA-256 `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | Failure/recovery, observability, backup/restore, rollback, typed inputの要求を対応行で再導出 | 工程と実行義務はHARNESS/Runtime、BRAINは再利用設計知識とrequired inputを持つ |",
+            "citation_line_sha256": "4f687323e7b16c0f4e8c1f9dce622b2bce8038ce7cc726821da70427e0a1e17e",
+            "cited_line_ranges": [
+              [
+                7,
+                47
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+            "artifact_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+            "citation_line": 417,
+            "citation_text": "| `LEGACY-ASSET-5D41345F55800F23AC38` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | L9のNIO-L3-03、L12の06、L15の09は観測のsource・時刻・新しさ・収集証拠、実行して確かめるrestore/rollback、stale/unknownをhealthyとしない条件。未承認L3候補であり、L1との対応確認だけに用いる。1.0の承認や数値oracleにしない。 |",
+            "citation_line_sha256": "31d022ef6b9562555fbec9ebcccebc3b4b97fd3f27988628ccb118428d2bbb52",
+            "cited_line_ranges": [
+              [
+                9,
+                9
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                15,
+                15
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
+          },
+          {
+            "role": "current_base",
+            "commit": "ebcbd4bcdfa8928b30e9c7962705d1fd2b07c321",
+            "path": "docs/helix-harness/candidates/infrastructure-requirements.md",
+            "sha256": "f31cc927c24239dd0099899bfd0cb5aa75cf0f112083233e269e3377af5a8a25",
+            "artifact_path": "docs/helix-harness/candidates/infrastructure-requirements.md",
+            "citation_line": 65,
+            "citation_text": "| 001、002、019 | 旧NIO-L3-01、09（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7,15`）、現行HARNESS L2の「運用品質を落とさない工程条件」 | 適用・非適用・unknown・決定ownerの確認、typed inputの収集、designed・implemented・verified・observed・operatedの分離 | 適用の区分をrequired・conditional・N/A・unresolvedにし、Deployedの段を加える |",
+            "citation_line_sha256": "373b918c863301da1b352a8fdad5830f927d011471a260d328583e42d8b0288a",
+            "cited_line_ranges": [
+              [
+                7,
+                7
+              ],
+              [
+                15,
+                15
+              ]
+            ],
+            "selected_physical_line_number": 15,
+            "relation": "旧候補を比較・再導出の入力として読む引用。行の個別採択・receipt atom被覆ではない。"
           }
         ],
         "archive_path_line_or_covering_span_artifact_hits": [
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-audit-2026-09-27.md",
           "docs/governance/audits/requirements-stage/helix-infrastructure-internal-resolution-2026-09-27.md",
-          "docs/helix-infrastructure/L1-planning/infrastructure-intent.md"
+          "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+          "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "docs/helix-harness/candidates/infrastructure-requirements.md"
         ],
         "archive_path_broad_span_hits": [
           "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r2.json",
