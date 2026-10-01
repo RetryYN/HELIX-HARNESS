@@ -1,0 +1,2635 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-501-540-2026-10-01",
+  "created_against_commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 501–540 in the independently reconstructed 2,710-row effective-explanation marker-negative complement.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending over the fully reconstructed explanation rows after removing all 255 prior marker-positive IDs",
+    "selected_ranks": [
+      501,
+      540
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000816",
+      "LEGACY-CAND-LINE-000817",
+      "LEGACY-CAND-LINE-000818",
+      "LEGACY-CAND-LINE-000820",
+      "LEGACY-CAND-LINE-000821",
+      "LEGACY-CAND-LINE-000823",
+      "LEGACY-CAND-LINE-000824",
+      "LEGACY-CAND-LINE-000825",
+      "LEGACY-CAND-LINE-000826",
+      "LEGACY-CAND-LINE-000827",
+      "LEGACY-CAND-LINE-000828",
+      "LEGACY-CAND-LINE-000830",
+      "LEGACY-CAND-LINE-000831",
+      "LEGACY-CAND-LINE-000832",
+      "LEGACY-CAND-LINE-000834",
+      "LEGACY-CAND-LINE-000835",
+      "LEGACY-CAND-LINE-000842",
+      "LEGACY-CAND-LINE-000843",
+      "LEGACY-CAND-LINE-000845",
+      "LEGACY-CAND-LINE-000846",
+      "LEGACY-CAND-LINE-000849",
+      "LEGACY-CAND-LINE-000861",
+      "LEGACY-CAND-LINE-000869",
+      "LEGACY-CAND-LINE-000871",
+      "LEGACY-CAND-LINE-000872",
+      "LEGACY-CAND-LINE-000883",
+      "LEGACY-CAND-LINE-000884",
+      "LEGACY-CAND-LINE-000885",
+      "LEGACY-CAND-LINE-000888",
+      "LEGACY-CAND-LINE-000889",
+      "LEGACY-CAND-LINE-000895",
+      "LEGACY-CAND-LINE-000904",
+      "LEGACY-CAND-LINE-000906",
+      "LEGACY-CAND-LINE-000907",
+      "LEGACY-CAND-LINE-000909",
+      "LEGACY-CAND-LINE-000910",
+      "LEGACY-CAND-LINE-000921",
+      "LEGACY-CAND-LINE-000923",
+      "LEGACY-CAND-LINE-000925",
+      "LEGACY-CAND-LINE-000926"
+    ],
+    "selected_ids_sha256": "16eaa7b8e141ba07ef5f23e6bb32b6fb93e4fb57805e69a3a83ca00980c1c74a",
+    "full_pool_reconstruction_verified": true,
+    "effective_classification_counts": {
+      "structure": 926,
+      "explanation": 2965,
+      "condition": 864
+    },
+    "classification_overlay_delta_note": "Applied exact proposed classification rows in overlay order; #2369 is applied from its official delta as +2 condition / -2 explanation for 000841 and 000857. This reconciles 2965/864/926.",
+    "adjacent_complement_slice_used_for_rank_derivation": false,
+    "prior_complement_slices_are_not_adjacency_pins": true
+  },
+  "pinned_inputs": [
+    {
+      "role": "#2353 baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2381 overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "official_effective_classification_recount_after_2381",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    {
+      "role": "source_line_ledger_at_audit_base",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "asset_disposition_ledger_at_audit_base",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "prior_marker_semantic_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+    }
+  ],
+  "source_ledgers": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "row_count": 4755
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pairs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "comparison_pairs_at_audit_head": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "decision_records": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    }
+  ],
+  "current_relation_files": [
+    {
+      "role": "bounded_current_F6_pair_comparison",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "role": "bounded_current_F6_pair_comparison",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "role": "bounded_current_F6_pair_comparison",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "role": "bounded_current_F6_pair_comparison",
+      "commit": "c47f460e5a79fef79d72242e070872862acbaecb",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "rows": [
+    {
+      "rank": 501,
+      "source_id": "LEGACY-CAND-LINE-000816",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 44,
+      "semantic_category": "cross-cutting acceptance scope",
+      "semantic_reading": "AC10 binds Full project E2E and Lite-candidate closure verification to separate receipts.",
+      "current_relation_and_limit": "This row points to a historical cleanup verification record. Fixed F6 pair documents and PO decision records do not turn the historical pointer into current adoption, deletion authorization, or a requirement successor.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "78400898e02071bb13567643365005144ed2b0ce6e8c2f7de38a07f0e72d4f2d",
+      "physical_line_bytes_sha256": "6d44843dd034abd0535a2d070c866a8fd61ce65b746f799a8b2f507e27ae8cd5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 816,
+        "entry_sha256": "d05db5288165ee64ee311597d48f4c4cb033367bd525c9c188314fd549868ae6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 43,
+          "text": ""
+        },
+        {
+          "line": 44,
+          "text": "AC10はFull実project E2EとLite候補のclosure検証を別receiptへ束縛する横断受入である。"
+        },
+        {
+          "line": 45,
+          "text": "全項目は受入仕様であり未実行。評価時刻・policy・入力revisionを固定した機械評価を再現し、AI再生成文面の完全一致は要求しない。"
+        }
+      ],
+      "source_excerpt": "AC10はFull実project E2EとLite候補のclosure検証を別receiptへ束縛する横断受入である。"
+    },
+    {
+      "rank": 502,
+      "source_id": "LEGACY-CAND-LINE-000817",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 45,
+      "semantic_category": "acceptance evaluation boundary",
+      "semantic_reading": "The candidate acceptance specifications are unexecuted; the evaluation time, policy, and input revision are fixed for reproducible machine evaluation, while exact AI-regenerated wording is not required.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "4dc866b53c2fab3c31d6817ac6a1d99e9ccc11bf47c0e420d8b35037de3afa24",
+      "physical_line_bytes_sha256": "45c3d02f8f5088edbaa4cc20820b9614e621e5ed29e10a6b140d7e23b04bf67f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 817,
+        "entry_sha256": "65414c27c7829ec19b363d0860945c1099a7d3ef06f621ad785f2ed30bdec7e3"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 44,
+          "text": "AC10はFull実project E2EとLite候補のclosure検証を別receiptへ束縛する横断受入である。"
+        },
+        {
+          "line": 45,
+          "text": "全項目は受入仕様であり未実行。評価時刻・policy・入力revisionを固定した機械評価を再現し、AI再生成文面の完全一致は要求しない。"
+        },
+        {
+          "line": 46,
+          "text": "L12では意図不一致、再生成、受容軸退行、割込み、検収時間・費用をrisk別baselineと比較し、単なるiteration減少を成功としない。"
+        }
+      ],
+      "source_excerpt": "全項目は受入仕様であり未実行。評価時刻・policy・入力revisionを固定した機械評価を再現し、AI再生成文面の完全一致は要求しない。"
+    },
+    {
+      "rank": 503,
+      "source_id": "LEGACY-CAND-LINE-000818",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 46,
+      "semantic_category": "quality/cost evaluation oracle",
+      "semantic_reading": "L12 compares intent mismatch, regeneration, accepted-axis regression, interruption, inspection time and cost against risk-specific baselines; fewer iterations alone do not establish success.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "2a5e590ed7dfa22dcfcaadd29ec17c3eb87d27d6a195ad619c617f5a4b6f8a14",
+      "physical_line_bytes_sha256": "69f15be8427672a714251a8fbdc8285c2db51e2ca679a81aadb3b4cfadc7b143",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 818,
+        "entry_sha256": "c3fa44c1d9f28a88fa9b5fd4755ea52e285c6e75287272e341367eef40693a01"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 45,
+          "text": "全項目は受入仕様であり未実行。評価時刻・policy・入力revisionを固定した機械評価を再現し、AI再生成文面の完全一致は要求しない。"
+        },
+        {
+          "line": 46,
+          "text": "L12では意図不一致、再生成、受容軸退行、割込み、検収時間・費用をrisk別baselineと比較し、単なるiteration減少を成功としない。"
+        }
+      ],
+      "source_excerpt": "L12では意図不一致、再生成、受容軸退行、割込み、検収時間・費用をrisk別baselineと比較し、単なるiteration減少を成功としない。"
+    },
+    {
+      "rank": 504,
+      "source_id": "LEGACY-CAND-LINE-000820",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 3,
+      "semantic_category": "candidate ledger provenance",
+      "semantic_reading": "Identifies Issue #1558 as an intake ledger and points readers to the corresponding requirements and plan for approval/canonicalization state.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "4de36174f4a69dd856428f2e10e0cd1ebd3224858d5b851d4717ac92f9234216",
+      "physical_line_bytes_sha256": "0b17661612b291e5e283c0477880d359e68906489b2cec788ff780acc7db72c4",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 820,
+        "entry_sha256": "78087bac1405c02e547d3f7e3aa6f85e9f1117a4f9d45c6a4cc6ec9ba7070636"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": ""
+        },
+        {
+          "line": 3,
+          "text": "Issue #1558。要求候補の取込台帳。承認・正本化の状態は同名requirementsとPLAN-L3-91へ照合する。"
+        },
+        {
+          "line": 4,
+          "text": "本台帳の保存をruntime完成の証拠にはしない。"
+        }
+      ],
+      "source_excerpt": "Issue #1558。要求候補の取込台帳。承認・正本化の状態は同名requirementsとPLAN-L3-91へ照合する。"
+    },
+    {
+      "rank": 505,
+      "source_id": "LEGACY-CAND-LINE-000821",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 4,
+      "semantic_category": "completion boundary",
+      "semantic_reading": "Saving the intake ledger is not evidence that runtime is complete.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "5969b20536d6423555aafc6ac03b188dd06f244f4a928c93c477c723a2874cdf",
+      "physical_line_bytes_sha256": "aa672f9321b2a2a630d542db581d6347886467dc226fbe1ffdee0b50c480e28e",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 821,
+        "entry_sha256": "9a141dcbde6533347658a09fa205f5ce151383f41250a3b8585487f37e97a862"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "Issue #1558。要求候補の取込台帳。承認・正本化の状態は同名requirementsとPLAN-L3-91へ照合する。"
+        },
+        {
+          "line": 4,
+          "text": "本台帳の保存をruntime完成の証拠にはしない。"
+        },
+        {
+          "line": 5,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "本台帳の保存をruntime完成の証拠にはしない。"
+    },
+    {
+      "rank": 506,
+      "source_id": "LEGACY-CAND-LINE-000823",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 8,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps original sections 0/1 to purpose and existing-implementation research. This is a trace pointer, not a standalone requirement condition.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "a2a6fdadea71e413419330c708bba8d0a976d450db0f59b292fc162df4c92a48",
+      "physical_line_bytes_sha256": "d900a6d18b9895e5d7d3cbd9604aa619705f8485518010dc672cd4e9b08867bd",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 823,
+        "entry_sha256": "ab992665549b45cc630fe9ff5ad7ea4573da62127fbbaec43b3fa4691d0fae30"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 7,
+          "text": ""
+        },
+        {
+          "line": 8,
+          "text": "原稿§0/1→requestsとrequirementsの目的/既存実装調査。"
+        },
+        {
+          "line": 9,
+          "text": "§2 DG-R-01..04→requirements同ID群、AC1/2/8。"
+        }
+      ],
+      "source_excerpt": "原稿§0/1→requestsとrequirementsの目的/既存実装調査。"
+    },
+    {
+      "rank": 507,
+      "source_id": "LEGACY-CAND-LINE-000824",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 9,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps Design Grounding requirements DG-R-01..04 to the candidate requirements and acceptance cases.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "398c1d6eaecfc631844985be15bad347183e816f945dd79d20d49882d9ae5d83",
+      "physical_line_bytes_sha256": "b803433b1b2444674f194bc0e191f4d16ceaaf3647e77fddcad76df0cd4286dc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 824,
+        "entry_sha256": "7b357a37813b8d38666e1a047a11cdd752c98885c5d0e07f8124a2e7664ca0f3"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 8,
+          "text": "原稿§0/1→requestsとrequirementsの目的/既存実装調査。"
+        },
+        {
+          "line": 9,
+          "text": "§2 DG-R-01..04→requirements同ID群、AC1/2/8。"
+        },
+        {
+          "line": 10,
+          "text": "§3 HR-R-01..04→requirements同ID群、AC3/4/6/7。"
+        }
+      ],
+      "source_excerpt": "§2 DG-R-01..04→requirements同ID群、AC1/2/8。"
+    },
+    {
+      "rank": 508,
+      "source_id": "LEGACY-CAND-LINE-000825",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 10,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps Human Reaction requirements HR-R-01..04 to the candidate requirements and acceptance cases.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "0d1d2f33e196faedc0198c9a1d8071b76a3bdc0561542be9228e3affb7949291",
+      "physical_line_bytes_sha256": "56032bec9aba41a38fd8a9719923ec17b075ac19d3544ce5d9c3ae7fa39e84d1",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 825,
+        "entry_sha256": "bcc5e5a683798eb9c74babc9086c775a8979cf0d9cc01029c4a02db598eca715"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 9,
+          "text": "§2 DG-R-01..04→requirements同ID群、AC1/2/8。"
+        },
+        {
+          "line": 10,
+          "text": "§3 HR-R-01..04→requirements同ID群、AC3/4/6/7。"
+        },
+        {
+          "line": 11,
+          "text": "§4 DC-R-01..04→requirements同ID群、AC5/9。"
+        }
+      ],
+      "source_excerpt": "§3 HR-R-01..04→requirements同ID群、AC3/4/6/7。"
+    },
+    {
+      "rank": 509,
+      "source_id": "LEGACY-CAND-LINE-000826",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 11,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps Design Convergence requirements DC-R-01..04 to candidate requirements and acceptance cases.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "b6af22f82d425ea8690c6b5049460b2fa16a94c2e6144eb5ff54036f96c817ff",
+      "physical_line_bytes_sha256": "11bad6e2cd59ccc61f892b1bf81802704009a3c54ff08f03058fa2bbc40418bd",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 826,
+        "entry_sha256": "34a53ed68945d055a55b60bfc61c423c20ddb0212c1e12f29c2c31cfe162f428"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 10,
+          "text": "§3 HR-R-01..04→requirements同ID群、AC3/4/6/7。"
+        },
+        {
+          "line": 11,
+          "text": "§4 DC-R-01..04→requirements同ID群、AC5/9。"
+        },
+        {
+          "line": 12,
+          "text": "§5→客観/人間意味境界。§6→#1556形成と限定探索。§7→Issue階層/trace/局所保留。"
+        }
+      ],
+      "source_excerpt": "§4 DC-R-01..04→requirements同ID群、AC5/9。"
+    },
+    {
+      "rank": 510,
+      "source_id": "LEGACY-CAND-LINE-000827",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 12,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps objective/human meaning, requirement formation, Issue hierarchy, and local holdback sections to their candidate references.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "b1a37060e1420abee1d1e9653e77fb0f9a52b15b00e4474819b24c4e58c98365",
+      "physical_line_bytes_sha256": "ed80b0efeb281cf19415ecac8bf9b935e35b1602b7be4df057cc7869bcd45518",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 827,
+        "entry_sha256": "4c1e971487a7c92ae50bf5c337c742fac61933fd9c33a3bbf91e8beb7736f564"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": "§4 DC-R-01..04→requirements同ID群、AC5/9。"
+        },
+        {
+          "line": 12,
+          "text": "§5→客観/人間意味境界。§6→#1556形成と限定探索。§7→Issue階層/trace/局所保留。"
+        },
+        {
+          "line": 13,
+          "text": "§8の10条件→acceptanceの1..10。§9→authority-firstへ順序是正、実装→dogfoodは承認後。"
+        }
+      ],
+      "source_excerpt": "§5→客観/人間意味境界。§6→#1556形成と限定探索。§7→Issue階層/trace/局所保留。"
+    },
+    {
+      "rank": 511,
+      "source_id": "LEGACY-CAND-LINE-000828",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 13,
+      "semantic_category": "source-to-target trace",
+      "semantic_reading": "Maps the ten acceptance conditions and authority-first implementation order to the acceptance document and post-approval dogfood.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "7f2cb1e8c4b6d2b5e19329e74ea566a17b7304b3dff009c7770fd8b3e5913116",
+      "physical_line_bytes_sha256": "bb1b5f14dc85621a6fa88518133e12e331c54021337a00f71fd0b9195d94f7b5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 828,
+        "entry_sha256": "3ed5e4e98aa3a047ca3246eb6bd69508cc74d4c41dbefe0658a8582edc009214"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 12,
+          "text": "§5→客観/人間意味境界。§6→#1556形成と限定探索。§7→Issue階層/trace/局所保留。"
+        },
+        {
+          "line": 13,
+          "text": "§8の10条件→acceptanceの1..10。§9→authority-firstへ順序是正、実装→dogfoodは承認後。"
+        },
+        {
+          "line": 14,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "§8の10条件→acceptanceの1..10。§9→authority-firstへ順序是正、実装→dogfoodは承認後。"
+    },
+    {
+      "rank": 512,
+      "source_id": "LEGACY-CAND-LINE-000830",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 17,
+      "semantic_category": "implementation claim boundary",
+      "semantic_reading": "Rejects treating old implementation-complete claims as whole-system completion evidence; it reports a bounded static check of a referenced source.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "adc94aaadc10af7fbae1a87fc30fa510ad9bf65d0d06999b1e169f2ae91390a7",
+      "physical_line_bytes_sha256": "0daaf8e2da7486a751bab4d0f48bdeab02ae6b7db83d7c4f6ce454fd5bf0fd33",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 830,
+        "entry_sha256": "a59b10451ed6d81fa83ec952afd621a9f4d4286bf5bbc5897a3a36188e4bf717"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 16,
+          "text": ""
+        },
+        {
+          "line": 17,
+          "text": "原文の実装済み主張を全体完成の証拠とは扱わず、4667d601の対象sourceを静的確認した。"
+        },
+        {
+          "line": 18,
+          "text": "前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。"
+        }
+      ],
+      "source_excerpt": "原文の実装済み主張を全体完成の証拠とは扱わず、4667d601の対象sourceを静的確認した。"
+    },
+    {
+      "rank": 513,
+      "source_id": "LEGACY-CAND-LINE-000831",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 18,
+      "semantic_category": "human evidence and storage boundary",
+      "semantic_reading": "Keeps premise class, human reaction, and design-axis state as distinct dimensions; human source text is project-owned evidence rather than memory or an individual profile.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "6df980b98fc223dd0eb020735d4903fcf92d056a66dd6f5fe42dba3134e57ad8",
+      "physical_line_bytes_sha256": "7d88ac71d15ceea98b68976faadf9f75e2501e76f3413f31772b1ca9cdf931d5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 831,
+        "entry_sha256": "715f84059ca48dc5e4fe7f8254693490d7bba88d7a18f0456cc4f2be356ec0bc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 17,
+          "text": "原文の実装済み主張を全体完成の証拠とは扱わず、4667d601の対象sourceを静的確認した。"
+        },
+        {
+          "line": 18,
+          "text": "前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。"
+        },
+        {
+          "line": 19,
+          "text": "原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。"
+        }
+      ],
+      "source_excerpt": "前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。"
+    },
+    {
+      "rank": 514,
+      "source_id": "LEGACY-CAND-LINE-000832",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 19,
+      "semantic_category": "source preservation provenance",
+      "semantic_reading": "Records the remote commit containing an exact-source copy and explains trailing-whitespace normalization in the displayed archival rendering.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "00749ff2873fad897796bab82279c75098b895682c353ba250eaeb3b5cc878e6",
+      "physical_line_bytes_sha256": "834a0ba72303fa50844739390cbe24d6aac36d0be3c9138b8b4c5f30b15fbc4c",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 832,
+        "entry_sha256": "9f7386f0948bf7fc5ccc4dfea49479b731d3ae9db93fcab54452a8a1544e4385"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 18,
+          "text": "前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。"
+        },
+        {
+          "line": 19,
+          "text": "原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。"
+        },
+        {
+          "line": 20,
+          "text": "過去の削除試行はforeign-edit guardが拒否した。"
+        }
+      ],
+      "source_excerpt": "原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。"
+    },
+    {
+      "rank": 515,
+      "source_id": "LEGACY-CAND-LINE-000834",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 21,
+      "semantic_category": "historical deletion provenance",
+      "semantic_reading": "Records that a prior deletion attempt was rejected by a foreign-edit guard. It does not assign current deletion permission.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "c3f9d4d7bde96570a83dfd3df98d1b2742248c06560976102aa621e8d1ce0ea8",
+      "physical_line_bytes_sha256": "874bd8ff42d21b114cee6f1341d8e0c252ea167815fc9abd8109731399bf6248",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 834,
+        "entry_sha256": "515b11259485ee984b563a93e7ebf77138d5211d74d813599caad3b5f24be827"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 20,
+          "text": "過去の削除試行はforeign-edit guardが拒否した。"
+        },
+        {
+          "line": 21,
+          "text": "2026-09-06、main保全本文との全文一致と要件/受入対応を再確認し、明示依頼の原稿を削除した。"
+        },
+        {
+          "line": 22,
+          "text": "対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。"
+        }
+      ],
+      "source_excerpt": "2026-09-06、main保全本文との全文一致と要件/受入対応を再確認し、明示依頼の原稿を削除した。"
+    },
+    {
+      "rank": 516,
+      "source_id": "LEGACY-CAND-LINE-000835",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 22,
+      "semantic_category": "source cleanup verification pointer",
+      "semantic_reading": "Records a dated recheck and points to the cleanup verification note for the deleted original, hashes, and comparison scope. It is provenance, not a new deletion instruction.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "c539efe44a893c897f0cee83273e2b595c06ce294e0b502acac0fe5f4e20a7d4",
+      "physical_line_bytes_sha256": "4e801c45a1c67c127669b137045a10f2e3da382524d13e177b83d86e2786c883",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 835,
+        "entry_sha256": "c67fee6cc19fc9fa40b3c48ce5bc423dbde80ae58e5bf1f5864e8fb5f97bdc9a"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 21,
+          "text": "2026-09-06、main保全本文との全文一致と要件/受入対応を再確認し、明示依頼の原稿を削除した。"
+        },
+        {
+          "line": 22,
+          "text": "対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。"
+        },
+        {
+          "line": 23,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。"
+    },
+    {
+      "rank": 517,
+      "source_id": "LEGACY-CAND-LINE-000842",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2367",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 34,
+      "semantic_category": "capability scope",
+      "semantic_reading": "Names Design Grounding as preparing premise/external knowledge for design decisions.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "141bc9ddc731990a62afb6b6a3f65fa11664168c4ca17489db30ea2477576340",
+      "physical_line_bytes_sha256": "ea2cbdd45cf56e7cbd395d371ca8da56099d9e4df299af7efc28d58175873545",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 842,
+        "entry_sha256": "432e6f73ad361ce4f1101bc58bc108e148efc2740dc0dc3131f1055cbf90507a"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 33,
+          "text": ""
+        },
+        {
+          "line": 34,
+          "text": "1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える"
+        },
+        {
+          "line": 35,
+          "text": "2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する"
+        }
+      ],
+      "source_excerpt": "1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える"
+    },
+    {
+      "rank": 518,
+      "source_id": "LEGACY-CAND-LINE-000843",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2367",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 35,
+      "semantic_category": "capability scope",
+      "semantic_reading": "Names Human Reaction Semantics as classifying human design reactions.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "baa6f9db0b8279c4d75b1d495837511d75beba7bf7d592960118c81c2659455e",
+      "physical_line_bytes_sha256": "d3c7664193732827e5c8318d78925e3db321f22f86898886e9f1919f632b62c3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 843,
+        "entry_sha256": "f87ffd0413a1c42090e6fc1b950e5217835776f148caba4b6df067d86538d252"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 34,
+          "text": "1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える"
+        },
+        {
+          "line": 35,
+          "text": "2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する"
+        },
+        {
+          "line": 36,
+          "text": "3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する"
+        }
+      ],
+      "source_excerpt": "2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する"
+    },
+    {
+      "rank": 519,
+      "source_id": "LEGACY-CAND-LINE-000845",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 38,
+      "semantic_category": "candidate purpose",
+      "semantic_reading": "Defines the goal as observing external examples and selectively incorporating human preference/meaning while keeping objective and subjective quality distinct.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "ddf26c0197840550f69a750fa400510917cdfee687454aa8c2643d4e09873243",
+      "physical_line_bytes_sha256": "5e1d991ae7bbc52a0a29d1daef568f8dd5334e1b4e5e6e56887bf14be3e22b3f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 845,
+        "entry_sha256": "12aae32ea8be39fd60d671aa80901d50dc5644f733d08ba5e76b1be952447efd"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 37,
+          "text": ""
+        },
+        {
+          "line": 38,
+          "text": "最終目的は「AIに良いデザインを一発生成させる」ことではない。"
+        },
+        {
+          "line": 39,
+          "text": "**外界の良い実例を観測し、人間の趣向・意味判断を必要な箇所だけ取り込み、客観品質と主観品質を分離したままデザインを効率良く収束させること**である。"
+        }
+      ],
+      "source_excerpt": "最終目的は「AIに良いデザインを一発生成させる」ことではない。"
+    },
+    {
+      "rank": 520,
+      "source_id": "LEGACY-CAND-LINE-000846",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 39,
+      "semantic_category": "candidate purpose continuation",
+      "semantic_reading": "Completes the stated goal of efficient design convergence without treating one-shot AI generation as the objective.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "ef9b2fb290e8b50a927adcb0b9c9b088645bfa726ade31b2259226591144f223",
+      "physical_line_bytes_sha256": "605acc2cf4b717c11feb538a1ab3734183727fada7e48c2d2d4bb0371d33979b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 846,
+        "entry_sha256": "3afd7007bb72f96ce479d4293103ced9e3e31a064c08a5243b8a59b34e9c3379"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 38,
+          "text": "最終目的は「AIに良いデザインを一発生成させる」ことではない。"
+        },
+        {
+          "line": 39,
+          "text": "**外界の良い実例を観測し、人間の趣向・意味判断を必要な箇所だけ取り込み、客観品質と主観品質を分離したままデザインを効率良く収束させること**である。"
+        },
+        {
+          "line": 40,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "**外界の良い実例を観測し、人間の趣向・意味判断を必要な箇所だけ取り込み、客観品質と主観品質を分離したままデザインを効率良く収束させること**である。"
+    },
+    {
+      "rank": 521,
+      "source_id": "LEGACY-CAND-LINE-000849",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 45,
+      "semantic_category": "implementation truth boundary",
+      "semantic_reading": "Requires an implementation census before work and bars Issue text or old design documents from serving as implementation truth.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "57e94a57dec3b7cfe9e30637add788e8b638d39949d4a8d56da23e865aee035d",
+      "physical_line_bytes_sha256": "7dadedc96b5821f3f3982925fb75ee2ccee3821afa66c009503465e310a72f8d",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 849,
+        "entry_sha256": "983efc2649e6b0ed3df2c642dce4cd7d43e47f09072abf0014a3eb8fcb216788"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 44,
+          "text": ""
+        },
+        {
+          "line": 45,
+          "text": "着手前に main の implementation census を行い、Issue本文や旧設計書を実装真実として扱わないこと。"
+        },
+        {
+          "line": 46,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "着手前に main の implementation census を行い、Issue本文や旧設計書を実装真実として扱わないこと。"
+    },
+    {
+      "rank": 522,
+      "source_id": "LEGACY-CAND-LINE-000861",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 63,
+      "semantic_category": "premise assessment",
+      "semantic_reading": "Before Prototype or Design candidate generation, structure the premises needed for the decision.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "cf4da967a44abdeaca6500d0a2b70b14767cdd583e97af2dabea8041b282a7ad",
+      "physical_line_bytes_sha256": "472aa3f29cef923d3127ca471665b2cf4831a992336f79a552cdbca84db8b9c9",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 861,
+        "entry_sha256": "fa665d9af52d04b237c8eb292a661f31c26c996a97efe6f530e7d9b938a1fac3"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 62,
+          "text": "### DG-R-01 Premise Assessment"
+        },
+        {
+          "line": 63,
+          "text": "PrototypeまたはDesign candidate生成前に、その判断に必要な前提を構造化する。"
+        },
+        {
+          "line": 64,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "PrototypeまたはDesign candidate生成前に、その判断に必要な前提を構造化する。"
+    },
+    {
+      "rank": 523,
+      "source_id": "LEGACY-CAND-LINE-000869",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 74,
+      "semantic_category": "premise scope",
+      "semantic_reading": "Includes existing requirements/design, target screen, technical and brand/expression constraints, user context, implementation, and external prior art.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "ebaa3e2ec3e6bea258cced6d24df306b17c3a5ab89ee756458c4b49dfd2aaeb2",
+      "physical_line_bytes_sha256": "648a83a3b0dde7219c648be2e6d27bb6683183efe4df79f13dfcc4ce46eca0bc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 869,
+        "entry_sha256": "c746d98b95a55b0f09624395986f790d33856a077d684cda091c76cbaa93c87b"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 73,
+          "text": ""
+        },
+        {
+          "line": 74,
+          "text": "対象には、既存Requirement、既存Design、対象画面、技術制約、ブランド/表現制約、ユーザー文脈、既存実装、外部先行事例を含める。"
+        },
+        {
+          "line": 75,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "対象には、既存Requirement、既存Design、対象画面、技術制約、ブランド/表現制約、ユーザー文脈、既存実装、外部先行事例を含める。"
+    },
+    {
+      "rank": 524,
+      "source_id": "LEGACY-CAND-LINE-000871",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 77,
+      "semantic_category": "research obligation",
+      "semantic_reading": "Derive research duties from missing premises and choose research types for the design problem rather than by a fixed item count.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "38b8beb7efd7879ff901bb70d50d5ae6f1a0947214e21c4530e1d760d7930d59",
+      "physical_line_bytes_sha256": "012aa87a6f743a5fbf9ac7a03e744cb0809257bda9ae64a4dc4fc011b91594d4",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 871,
+        "entry_sha256": "40d3fd3919b75d99ff566277357be59828e0cb49895134df4b195975fc27282e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 76,
+          "text": "### DG-R-02 Research Obligation"
+        },
+        {
+          "line": 77,
+          "text": "不足前提から調査義務を派生する。調査種別は固定の件数条件ではなく、Design Problemに応じて選択する。"
+        },
+        {
+          "line": 78,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "不足前提から調査義務を派生する。調査種別は固定の件数条件ではなく、Design Problemに応じて選択する。"
+    },
+    {
+      "rank": 525,
+      "source_id": "LEGACY-CAND-LINE-000872",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 79,
+      "semantic_category": "research examples heading",
+      "semantic_reading": "Introduces examples of research sources; the heading itself adds no independent acceptance condition.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "fd89ad58cc426eb02934d153bdedfdfcd732a24076784c78b35434033b5e0ae7",
+      "physical_line_bytes_sha256": "5f4f85108cf46558564ede10d3cb9a0810c8f74f53a90425ed3d4f35b5fb0174",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 872,
+        "entry_sha256": "fd107c0579c2ac2f2758d5473c5f35fcd80cbc80dc77206be805d582b386b20a"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 78,
+          "text": ""
+        },
+        {
+          "line": 79,
+          "text": "例:"
+        },
+        {
+          "line": 80,
+          "text": "- 公式Guideline / Standard"
+        }
+      ],
+      "source_excerpt": "例:"
+    },
+    {
+      "rank": 526,
+      "source_id": "LEGACY-CAND-LINE-000883",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 92,
+      "semantic_category": "research adequacy evidence chain",
+      "semantic_reading": "Lists the minimum links from question to evidence, design implication, adoption/rejection reason, and unresolved point.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "bfc62bf4f60658169aca1cd6863d55ed69afd1b83b2796c8e75a3b37ef2063fb",
+      "physical_line_bytes_sha256": "2c65e0227d7566b3e6bcf1e84a5fd294e2552785da13ab6690695b7c9216847f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 883,
+        "entry_sha256": "8fe6d7473bb2f838f2ec0df56ae2d51c2c799362a5105452069d7fda6aa8d3c2"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 91,
+          "text": ""
+        },
+        {
+          "line": 92,
+          "text": "調査結果が最低限、"
+        },
+        {
+          "line": 93,
+          "text": "`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`"
+        }
+      ],
+      "source_excerpt": "調査結果が最低限、"
+    },
+    {
+      "rank": 527,
+      "source_id": "LEGACY-CAND-LINE-000884",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 93,
+      "semantic_category": "design readiness condition",
+      "semantic_reading": "Makes the evidence chain a prerequisite for becoming a Design Ready candidate.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "3304415da7e24e328cf226231a54cbf63b0c35fd0847e1092f6d775f56f0df02",
+      "physical_line_bytes_sha256": "105d1f4750a578bf3e194de3c21f5fbe0c4c673e80387a34d27e011191108aa9",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 884,
+        "entry_sha256": "22df1d7c7c2f45ce8ff232550f844e7eeb4e33a5309d59640f404495eedd7e08"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 92,
+          "text": "調査結果が最低限、"
+        },
+        {
+          "line": 93,
+          "text": "`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`"
+        },
+        {
+          "line": 94,
+          "text": "へ接続されて初めてDesign Ready候補とする。"
+        }
+      ],
+      "source_excerpt": "`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`"
+    },
+    {
+      "rank": 528,
+      "source_id": "LEGACY-CAND-LINE-000885",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 94,
+      "semantic_category": "design readiness condition continuation",
+      "semantic_reading": "Completes the chain-to-readiness rule; the line is a continuation of the same source condition.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "5ec84b8592853f4f931afc06b839b15ccbb7590f405b1e06a8a64e89fd3f5904",
+      "physical_line_bytes_sha256": "8cedcc48f18cb7bfac0bed05e38a0988002cc740d900571b7122b64884a5677e",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 885,
+        "entry_sha256": "dd6b076bc209f5538b1e537924f2e65776b3405c46e3baf201862db02209e141"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 93,
+          "text": "`論点 → Evidence → 設計への含意 → 採用/非採用理由 → 未解決点`"
+        },
+        {
+          "line": 94,
+          "text": "へ接続されて初めてDesign Ready候補とする。"
+        },
+        {
+          "line": 95,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "へ接続されて初めてDesign Ready候補とする。"
+    },
+    {
+      "rank": 529,
+      "source_id": "LEGACY-CAND-LINE-000888",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 99,
+      "semantic_category": "common premise contract reuse",
+      "semantic_reading": "If common Premise Adequacy is introduced, do not fork design-specific logic.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "17e9bcbadacc6cafa5adfe324a2ea23cd098603047d6e672ad4c97d35ffed3d7",
+      "physical_line_bytes_sha256": "4beb832e26ea9171a18931647c6a0672d76a8a4dea1286fdbb7d9c7baaf66b9a",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 888,
+        "entry_sha256": "f0d2448226167758a7ce8b65c9002f0e4c601a90356fefec65d96631ccaadbe9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 98,
+          "text": "### DG-R-04 General Premise Alignmentとの共通化"
+        },
+        {
+          "line": 99,
+          "text": "今後HELIX全体に Premise Adequacy が入る場合、Design専用ロジックをforkしない。"
+        },
+        {
+          "line": 100,
+          "text": "Design Groundingは共通Premise契約のprojection/adaptorとして接続可能な形にする。"
+        }
+      ],
+      "source_excerpt": "今後HELIX全体に Premise Adequacy が入る場合、Design専用ロジックをforkしない。"
+    },
+    {
+      "rank": 530,
+      "source_id": "LEGACY-CAND-LINE-000889",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 100,
+      "semantic_category": "common premise projection",
+      "semantic_reading": "Keep Design Grounding connectable as a projection/adapter over the common Premise contract.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "84b170c8cb151f3c2042800f1e852e1b1e3f1399ac84d12ac4443927688bd852",
+      "physical_line_bytes_sha256": "ddb16bc33c74576e8df3b2364ab8b67f5591fbd627fa59ba006a05a985ccdf9c",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 889,
+        "entry_sha256": "b05c4f9e9530359b3288bff1aa55abfc79c3e86c2ece7ba6d3d997cd78cfce00"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 99,
+          "text": "今後HELIX全体に Premise Adequacy が入る場合、Design専用ロジックをforkしない。"
+        },
+        {
+          "line": 100,
+          "text": "Design Groundingは共通Premise契約のprojection/adaptorとして接続可能な形にする。"
+        },
+        {
+          "line": 101,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "Design Groundingは共通Premise契約のprojection/adaptorとして接続可能な形にする。"
+    },
+    {
+      "rank": 531,
+      "source_id": "LEGACY-CAND-LINE-000895",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 110,
+      "semantic_category": "reaction classification",
+      "semantic_reading": "Requires Walkthrough reactions to be classifiable using the listed candidate categories.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "d6e34469977041ab3b8f1fa26fd23b20ba8bd0dfba53d1eb6a4ccc4f44341b3c",
+      "physical_line_bytes_sha256": "d0fc4a988eef94299c338190b1267a936e3967d61561d4b2d96dceca1f0cf801",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 895,
+        "entry_sha256": "bf3187668860e47ac98ff6ccbac307a6da3d1eb56b90e267a04e6a99482c4332"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 109,
+          "text": "### HR-R-02 Reaction Classification"
+        },
+        {
+          "line": 110,
+          "text": "Walkthrough等の反応を少なくとも以下へ分類可能にする。"
+        },
+        {
+          "line": 111,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "Walkthrough等の反応を少なくとも以下へ分類可能にする。"
+    },
+    {
+      "rank": 532,
+      "source_id": "LEGACY-CAND-LINE-000904",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 121,
+      "semantic_category": "multiple reaction labels",
+      "semantic_reading": "Allows multiple classifications for one reaction.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "d822138d046c86fbf9298aac298a6c400d4f7fdaaa5022bff2d2c363ac4e8711",
+      "physical_line_bytes_sha256": "6036a863576d3a7c76b72481771fae7e00280441a9456eb35ece217dcf6bc5c6",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 904,
+        "entry_sha256": "03825a35f9d77d16f0efba874c1dbdf524fc5fe4e04e6276aa6ebcebf4b6eb51"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 120,
+          "text": ""
+        },
+        {
+          "line": 121,
+          "text": "複数分類を許可する。"
+        },
+        {
+          "line": 122,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "複数分類を許可する。"
+    },
+    {
+      "rank": 533,
+      "source_id": "LEGACY-CAND-LINE-000906",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 124,
+      "semantic_category": "AI/human authority boundary",
+      "semantic_reading": "AI classifications and cause hypotheses remain proposals and cannot rewrite human source text or existing requirements.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "f09fa882531d4c33eec889309fe85f57af196fbe37b7c280a4b9f73f89ed8dae",
+      "physical_line_bytes_sha256": "a65ee3e504b570f6cba25825e8ef94d45384d666831e9d7af4220fefb7530d5b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 906,
+        "entry_sha256": "3315bd09c5102008cfaf60aeeffb625645c2f2caaf7ce46e0bf10136d94dfc59"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 123,
+          "text": "### HR-R-03 Authority分離"
+        },
+        {
+          "line": 124,
+          "text": "AI分類・原因仮説はproposalであり、人間の原文や既存Requirementを書き換えるauthorityを持たない。"
+        },
+        {
+          "line": 125,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "AI分類・原因仮説はproposalであり、人間の原文や既存Requirementを書き換えるauthorityを持たない。"
+    },
+    {
+      "rank": 534,
+      "source_id": "LEGACY-CAND-LINE-000907",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 126,
+      "semantic_category": "objective and human authority split",
+      "semantic_reading": "Objective defects use evidence; visual preference, brand character, and language nuance retain human authority.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "40c3f09a14e5458efe7d11d38a90d1c45d81d54cb9dd1cd561d303a4206b9162",
+      "physical_line_bytes_sha256": "8e442a24d415ba6e761addd049d74eab2270f41975cbc4ef9e8ae9560508c8f0",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 907,
+        "entry_sha256": "2746b36957eed5348bd4dee3e9bf8ebf1d4483afb5b7f6e5c7a2e10979d82546"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 125,
+          "text": ""
+        },
+        {
+          "line": 126,
+          "text": "`OBJECTIVE_DEFECT`等は客観Evidenceで検証し、`VISUAL_PREFERENCE`やブランド感・言葉のニュアンス等は人間authorityを保持する。"
+        },
+        {
+          "line": 127,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "`OBJECTIVE_DEFECT`等は客観Evidenceで検証し、`VISUAL_PREFERENCE`やブランド感・言葉のニュアンス等は人間authorityを保持する。"
+    },
+    {
+      "rank": 535,
+      "source_id": "LEGACY-CAND-LINE-000909",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 129,
+      "semantic_category": "recovery routing",
+      "semantic_reading": "Distinguishes rework type based on reaction classification.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "66fadf0d1d20cc0dea866bfe98ddc654107a1dac35f6755ba79f81b78bfc0555",
+      "physical_line_bytes_sha256": "59b5f58f2c94dc57d55f871fb025edd65cf79b9433bfd54f5a5f84154cdc7c43",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 909,
+        "entry_sha256": "46bcc582c06c5b80a3702304855d4b739b17b06bc164cc7a827b2cdd0b16d235"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 128,
+          "text": "### HR-R-04 Recovery Routing"
+        },
+        {
+          "line": 129,
+          "text": "分類結果から再作業の種類を区別する。"
+        },
+        {
+          "line": 130,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "分類結果から再作業の種類を区別する。"
+    },
+    {
+      "rank": 536,
+      "source_id": "LEGACY-CAND-LINE-000910",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 131,
+      "semantic_category": "recovery examples heading",
+      "semantic_reading": "Introduces examples of recovery routes; no independent route oracle appears on this line.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "fd89ad58cc426eb02934d153bdedfdfcd732a24076784c78b35434033b5e0ae7",
+      "physical_line_bytes_sha256": "5f4f85108cf46558564ede10d3cb9a0810c8f74f53a90425ed3d4f35b5fb0174",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 910,
+        "entry_sha256": "28aaaef356ac56a120b9dd86e68807b41f202e9b3d23197cb00bcbac48d4d0ef"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 130,
+          "text": ""
+        },
+        {
+          "line": 131,
+          "text": "例:"
+        },
+        {
+          "line": 132,
+          "text": "- research不足 → Design Researchへ戻す"
+        }
+      ],
+      "source_excerpt": "例:"
+    },
+    {
+      "rank": 537,
+      "source_id": "LEGACY-CAND-LINE-000921",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 147,
+      "semantic_category": "design axis identity",
+      "semantic_reading": "Design axes need stable IDs and are not constrained to a fixed enum; the source lists typography, density, layout, navigation, motion, and card structure as examples.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "cf4c1f45b24839b37d790d91d59274b18fd9cd7b49f5a16be8ea84582a9e570a",
+      "physical_line_bytes_sha256": "dfcc438d095b717d29a13ccf841589fc5292fc85873ef7a19bf4b2fae9261cbb",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 921,
+        "entry_sha256": "0cecc4911400a39bb36e402dd2cdb12046f8386ac64261ee0b8be258224a340e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 146,
+          "text": ""
+        },
+        {
+          "line": 147,
+          "text": "設計軸は固定enumだけにせず、Typography、Density、Layout、Navigation、Motion、Card structure等を安定ID付きで扱えること。"
+        },
+        {
+          "line": 148,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "設計軸は固定enumだけにせず、Typography、Density、Layout、Navigation、Motion、Card structure等を安定ID付きで扱えること。"
+    },
+    {
+      "rank": 538,
+      "source_id": "LEGACY-CAND-LINE-000923",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 150,
+      "semantic_category": "accepted-axis regression",
+      "semantic_reading": "Detects a regression when a previously accepted axis is broken in a later revision without a new requirement or evidence.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "da628fbd8421a0756de27784041b9203ed25527f6c24b45220be3dd857abb099",
+      "physical_line_bytes_sha256": "1b284c7b831709ef6d91cb02f3d8141d9432cd1ca582d1ef287431560f64f816",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 923,
+        "entry_sha256": "14f0fcd104bf8a5797916352db5aa1d0dbc960b39bd0ef0797f1a8f9899e4cf5"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 149,
+          "text": "### DC-R-02 Accepted Regression"
+        },
+        {
+          "line": 150,
+          "text": "一度受容された設計軸を、別要求・新Evidenceなしに後続revisionで破壊した場合はDesign Regressionとして検出する。"
+        },
+        {
+          "line": 151,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "一度受容された設計軸を、別要求・新Evidenceなしに後続revisionで破壊した場合はDesign Regressionとして検出する。"
+    },
+    {
+      "rank": 539,
+      "source_id": "LEGACY-CAND-LINE-000925",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 153,
+      "semantic_category": "finding lineage",
+      "semantic_reading": "Introduces the finding history states from occurrence through hypothesis and correction to the next revision and its outcome.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "f977a0d7938cb520adcc0b99ba54650d9bca57dde7612f0103842d8ea0775cda",
+      "physical_line_bytes_sha256": "f8e02d247e01de534b273dadf7814077c36c1dfc3cbfb60b8f04395e18b75637",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 925,
+        "entry_sha256": "0a0c7c452fe680d071b4a36602508c05be4ffbe4d643fef7c7d13b47fb54f309"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 152,
+          "text": "### DC-R-03 Finding Lineage"
+        },
+        {
+          "line": 153,
+          "text": "Findingについて"
+        },
+        {
+          "line": 154,
+          "text": "`発生 → 仮説 → 修正 → 次revision → 解消/再発/別原因`"
+        }
+      ],
+      "source_excerpt": "Findingについて"
+    },
+    {
+      "rank": 540,
+      "source_id": "LEGACY-CAND-LINE-000926",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "source_line": 154,
+      "semantic_category": "finding lineage continuation",
+      "semantic_reading": "Requires that finding lineage to be traceable through resolved, recurring, or different-cause outcomes.",
+      "current_relation_and_limit": "The fixed F6 HARNESS L2/L11 contain related requirement-formation, design-composition, and convergence contracts (including adopted HARNESS-L2-024/026); fixed OS L2/L11 contain process/authority/continuity context. The old intake line is not an exact row-level crosswalk to those fixed pairs, and their explicit PO candidate sets do not adopt this old source row as a separate successor. No successor or acceptance execution is assigned.",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "aa619184fd121fdcc401c4fc3a66bf078383d1d5d2d5e1f1e92987d7ab96a467",
+      "physical_line_bytes_sha256": "09a1f1bcf6e1b1d4fdb7fa0a8975b559cc638e880a965f4d0c3d3abef14c01a8",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 926,
+        "entry_sha256": "7756abb868cdc78aa32c0b8038f47cc3fe33695d8a063322b8e509359d207e10"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 806,
+          "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 153,
+          "text": "Findingについて"
+        },
+        {
+          "line": 154,
+          "text": "`発生 → 仮説 → 修正 → 次revision → 解消/再発/別原因`"
+        },
+        {
+          "line": 155,
+          "text": "を追跡できること。"
+        }
+      ],
+      "source_excerpt": "`発生 → 仮説 → 修正 → 次revision → 解消/再発/別原因`"
+    }
+  ],
+  "summary": {
+    "selected_rows": 40,
+    "marker_negative_normative_or_authority_condition_rows": 26,
+    "metadata_provenance_pointer_or_structure_rows": 14,
+    "source_line_ledger_joined_rows": 40,
+    "asset_ledger_joined_rows": 40,
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "atomization_status": "preserved_pending_atomization",
+    "meaning_change_applied": false,
+    "successor_requirement_assignments": 0,
+    "row_specific_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "acceptance_execution_or_source_closure_established": false
+  },
+  "limitations": [
+    "Semantic readings are bounded to the exact selected archive lines and their local source context. They do not adopt the candidate, assign successors, or establish acceptance execution or source closure.",
+    "Ranks were re-derived from all 4,755 #2353 rows, the ordered exact-ID classification overlays including the #2369 nonreplacement delta, and the 255 previously reviewed marker-positive IDs. No adjacent complement slice was used to establish these ranks.",
+    "Fixed F6 HARNESS/OS pairs and 2026-09-28 PO decisions supply comparison context and current authority state; a thematic relation is not an exact row-to-current-pair crosswalk or a successor assignment."
+  ],
+  "static_validation": {
+    "source_row_population": 4755,
+    "effective_explanation_rows": 2965,
+    "prior_marker_positive_unique_ids": 255,
+    "marker_negative_complement_rows": 2710,
+    "selected_rank_start": 501,
+    "selected_rank_end": 540,
+    "selected_count": 40,
+    "selected_ids_unique": true,
+    "numeric_suffix_strictly_ascending": true,
+    "first_selected_id": "LEGACY-CAND-LINE-000816",
+    "last_selected_id": "LEGACY-CAND-LINE-000926",
+    "source_line_ledger_exact_join_count": 40,
+    "asset_ledger_source_path_join_count": 40,
+    "archive_file_hash_verified_count": 40,
+    "source_line_hash_verified_count": 40,
+    "physical_line_bytes_hash_verified_count": 40,
+    "source_authority_preserved_count": 40,
+    "meaning_change_false_count": 40,
+    "successor_assignment_count": 0,
+    "old_runtime_cli_hook_test_ci_executed": false
+  }
+}
