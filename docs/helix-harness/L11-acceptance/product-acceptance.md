@@ -961,3 +961,14 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **Negative — template gapの早期active化**：041のgapが未解消、独立review対象revisionが異なる、reviewerが作成者と同一、finding/dispositionが欠落、またはレビュー前にactive扱いした入力を与える。gapは未解消として残り、候補状態やOSのticket/PR/project表示からactiveを推定しない。
 - **Unknown — 未選択または未観測source**：対象外template、oracle、依存機構の記録がない場合、N/A・pass・failureへ推測変換せず`unknown`とする。入力選択を変えた場合はそのscopeの契約を新たに確認する。
 - **境界**：HARNESS-L2-009のtemplate選択・適用、041の抽出とgap列挙、040のcatalog/pair/edge契約、035の上流根拠と受入寄与の各oracleを再実装しない。OS state/ticket/保存の実行成功、L3承認、要求合意、実装完了、全HR-FR-HIL-17のno-lossを判定しない。
+
+### HARNESS-L2-065 選択adapter operationの取消・lock failure結果受入候補（未実行）
+
+- **適用scope・入力**：上流で選択されたadapter operation、対象要求/pair revision、operationの子process ownershipまたはstate transaction、failure trigger、scope、実行環境、before state、oracle、run/evidence identityを与える。profile・製品・repository・storage実装・retry値は固定しない。
+- **Positive — 正常終了**：processを持つ選択operationが正常終了したとき、そのoperation/run identityに結び付いた結果を返す。state transactionを持つoperationはcontractどおりの全体更新を一つの結果として照合する。個別成功やprofile結果から別scopeを推定しない。
+- **Negative — cancel後に子processが残存**：選択operationが所有する子processを稼働中にしてcancelし、少なくとも一つが生きている、終了確認がない、またはprocessとrunの帰属が不明な入力を与える。`cancelled` terminal successを拒否し、`interrupted`／`unknown`と未完義務を保つ。別run、別assignment、親processだけの停止receiptを代用しない。
+- **Negative — lock/timeout後の部分state**：sourceのall-or-none meaningを選択したoperationで、lock contentionまたはそのcontractに適用されるtimeout failureを与える。failure oracleの期待はpartial transaction 0である。partial transactionが一つでも観測される、stateを照合できない、またはreceiptがstale/欠落する場合、065のstrict failure-atomicity oracleは不成立であり、operationをAccepted/完了としない。OS/Infrastructureは現行契約に従って失敗・実状態・未完recovery義務を記録する。旧SQLite以外の選択storageにも同じ意味oracleを適用するが、どのstorageにも新規採用を要求しない。operation contractがpartial side effect後の記録/復旧を認める場合、それは現行のfailure/recovery経路に対応しても、このstrict oracleを満たしたとは扱わず、意味差をPO判断材料へ戻す。
+- **Negative — 結果の誤結合**：対象revision/scope/operation/runが異なるresult、stale receipt、未実行profileのpass、親のsuccessだけのcancel証拠を与える。対象結果へ流用せず、影響する義務を未完とする。
+- **適用外・unknown**：子processまたは複数step transactionを持たないoperationは、適用外理由を対象contractで特定できる場合だけN/Aとする。適用性、操作owner、run/process/state相関、before/after観測がmissing／unknown／stale／conflictならpassにせずunknownを返す。fixture未実行は要求stageの起草・合意を止める新gateにしない。
+- **戻し先と責務**：HARNESSは選択operationの意味、期待結果、oracle、証拠の妥当性を受け入れる。実行中processの制御、storage transactionの強制、rollback/resourceは既存Worker・SECURITY・operation/state ownerが担う。実runと再開の記録はHELIXOS-L2-020が担う。oracle不足はHARNESS-L2-005/022へ、実行制約やprocess cleanupはWorker/SECURITY ownerへ、state semantics/recoveryは対象operationのdesign ownerへ、receipt/runの不足はOS ownerへ戻す。いずれも下流で未完義務を保持する。
+- **境界**：本受入は旧HST-CASE-014-06/07に対応する二つの失敗結果だけを候補化し、HAC-HIL-14b全体やHAT-HIL-14の実行を表さない。HST-014-05のroot外symlink write=0は既存SECURITY-L2-007のwrite path/diff/rollback oracleへ対応し、再計上しない。HST-014-04、case/space/Unicode/permission/executable discoveryの各fixture、064の同一profile fixture/domain fork=0、support-tier/3 OS scopeは本候補のsuccessor範囲に含めない。旧fixture/old runtime/test/CIは起動しない。受入oracle自体は未実行である。
