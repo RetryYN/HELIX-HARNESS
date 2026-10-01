@@ -3,7 +3,8 @@
 - 基準: 72d08ebc1b45c8cf85c0e89359c48f78eb779fee（2026-10-02）
 - 旧IR: archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json SHA-256 80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688
 - 旧raw L1: archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md、asset LEGACY-ASSET-719D5EC9C06FC4AAD0FF、SHA-256 db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb
-- 現行OS L2/L11 file SHA: bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf / cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112
+- 現行OS L2/L11 file SHA（候補115の差分記録追記後）: 4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec / 0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968
+- 72d08eb構築時のOS L2/L11 file SHA: bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf / cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112（履歴snapshot）
 - 現行HARNESS L2/L11 file SHA: 78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6 / a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e
 - 現行BRAIN L2/L11 file SHA: 421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa / 833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5
 - legacy runtime/test/CIは実行していない。
@@ -28,11 +29,11 @@
 
 ## FR27候補115のPO判断点
 
-原source atomは「失効runのlate resultをcommitしない」である。候補HELIXOS-L2/L11-115は既存assignment内の同一attemptに限定し、timeout、cancel、lease/deadline expiry、process exit後、および既存OS contractが終端と定義するその他のresultが終端状態・accepted/current結果を変えないことに加え、duplicate/mismatched resultを拒否またはunknown/staleで保持する。したがって候補は原文atomを、既存contractで既に定義されるterminal原因へ一般化し、duplicate/mismatch処置を追加している。これは採択済みOS-018/019/020/043から採否を推定できない差分であり、FR-27全体へのformal successor割当でもない。
+原source atomの必須意味は「失効runのlate resultをcommitしない」であり、候補115はこのexpiry条件を保持する。候補差分として、既存OS contractがすでに終端と定義する場合に限りtimeout/cancel/process exit等へ拒否oracleを広げ、同一attemptのduplicate/mismatched resultをaccepted/currentへ進めない条件を追加する。理由は既存の終端状態、assignment/attempt、source/revisionの対応を結び、遅着・重複・取り違えが確定済み結果を変えない境界を明示するためである。この一般化・追加条件は原文と同義と断定しない。採択済みOS-018/019/020/043から採否を推定できず、FR-27全体へのformal successor割当でもない。
 
 receipt [`helixos-l2-115-late-result-coverage-receipt-2026-10-02.json`](../requirement-registration/helixos-l2-115-late-result-coverage-receipt-2026-10-02.json) は、候補L2/L11のfull-file SHA、section境界・digest、固定OS L1親と2026-09-28 PO decisionをそれぞれ固定する。候補採否は未決。
 
-POには次の具体選択肢がある。**A（推奨）**は対象revision付きで候補pairを採択し、timeout/cancel/lease・deadline expiry/process exitと、既存OS contractが既に終端と定義する原因へ限定した一般化として選ぶ。同一attemptのduplicate/mismatchも候補記載の範囲で扱い、この判断だけで新terminal原因は追加しない。これはOS-004/018のassignment/attempt終端、OS-019のsource/revision/evidence、採択OS-043のcall/result相関、およびL11-115のlate-result拒否oracleに影響する。**B**は原文のexpired-run late-result no-commit範囲に候補を狭め、HACのcancel/timeoutは補助oracleとして保持しつつ、process exit、既存contract上も未確定の端点、duplicate/mismatchを独立条件にしない。影響は同じ4契約のうちexpiryと未決端点の適用境界に限られる。**C**は対象run/attemptとterminal適用範囲の選択まで候補を未採択で保留し、source atomとholdingを維持する。OS-004/018での適用run集合、OS-019でのsource/revision/evidence scope、OS-043でのcall/result種別、L11-115での適用oracle範囲が未確定のまま残る。いずれもMPR、receipt、監査から採択・実装・運転許可を生成しない。
+PO判断は次の原文との差分に対する選択肢である。**A（推奨）**は対象revision付きで候補pairを採択し、timeout/cancel/lease・deadline expiry/process exitと、既存OS contractが既に終端と定義する原因へ限定した一般化として選ぶ。同一attemptのduplicate/mismatchも候補記載の範囲で扱い、この判断だけで新terminal原因は追加しない。これはOS-004/018のassignment/attempt終端、OS-019のsource/revision/evidence、採択OS-043のcall/result相関、およびL11-115のlate-result拒否oracleに影響する。**B**は原文のexpired-run late-result no-commit範囲に候補を狭め、HACのcancel/timeoutは補助oracleとして保持しつつ、process exit、既存contract上も未確定の端点、duplicate/mismatchを独立条件にしない。影響は同じ4契約のうちexpiryと未決端点の適用境界に限られる。**C**は対象run/attemptとterminal適用範囲の選択まで候補を未採択で保留し、source atomとholdingを維持する。OS-004/018での適用run集合、OS-019でのsource/revision/evidence scope、OS-043でのcall/result種別、L11-115での適用oracle範囲が未確定のまま残る。いずれもMPR、receipt、監査から採択・実装・運転許可を生成しない。
 
 ## FR30の未決意味差
 
@@ -52,4 +53,4 @@ carry-forward ledgerではIRの7 identityがpreserved_pending_rehome、successor
 
 機械可読のsource row/text/hash/statusは同名JSON、候補対象atomはregistration ledgerとcoverage receiptにある。
 
-現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。既存OS本文と646行台帳prefixを保持し、115のみ末尾追補した。構築時72d08ebの履歴source/readingsはその時点の証拠として区別し、current_file_sha256とcandidate pinは統合後bytesへ追随する。
+現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。既存OS本文と646行台帳prefixを保持し、115のみ末尾追補した。構築時72d08ebの履歴source/readingsはその時点の証拠として区別し、current_file_sha256とcandidate pinは統合後bytesへ追随する。候補115の原文保持点・提案差分・差分理由およびA/B/C参照をL2本文、L11 oracle、receipt、監査に同期した。PHCAP-14/16のcurrent OS L2参照pinもこの最終OS L2 file SHAへ更新し、HIL-FR-27の選択source atom本文・digestは不変である。

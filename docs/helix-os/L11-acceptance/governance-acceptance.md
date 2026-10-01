@@ -1027,6 +1027,6 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 **状態・範囲**：L2-115と対になる未採択・未実行候補。旧HIL-FR-27の「失効runのlate resultをcommitしない」atomだけを扱う。旧Supervisor、IPC、Node/Python、JSON Lines、固定schema／digest／receipt／fenceの実装や実行を要求しない。
 
 - **正常例**：同じassignment／attemptに対し、既存契約に従って実行中resultと終端理由の記録を与える。終端前に返り、現在のassignment・source/revisionと対応し、既存authorityおよび選択済みHARNESS oracleを満たすresultだけが既存契約で評価可能であることを確認する。L2-115自体はresultの正しさや受理を判定しない。
-- **終端後の遅着例**：同じrunがtimeout、cancel、lease／期限失効またはprocess終了で終端した後、成功を示す遅着resultを与える。既存の終端状態とcanonicalなaccepted stateが変わらず、resultがそのattemptの未受理／stale証拠として保持されることを確認する。遅着resultだけで成功、完了、現在のassignmentへの適用が成立する構成を不成立とする。
+- **終端後の遅着例**：原文由来の必須条件は失効run後のlate result拒否であり、timeout、cancel、process終了およびその他の既存契約上の終端後も同様に扱う部分は本候補が提案する限定一般化として照合する。該当する同じrunが既存契約で終端した後、成功を示す遅着resultを与える。既存の終端状態とcanonicalなaccepted stateが変わらず、resultがそのattemptの未受理／stale証拠として保持されることを確認する。遅着resultだけで成功、完了、現在のassignmentへの適用が成立する構成を不成立とする。
 - **重複・取り違え例**：終端後のduplicate result、別assignment／attempt／source／revisionのresult、または終端理由との関係が不明なresultを与える。結果の到着順、worker自己申告、digest一致だけで現在の成果へ採用した場合は不成立とする。識別できない場合はunknown／未完を保つ。
 - **差戻しと境界**：不一致resultは該当OS assignment／発生元へ戻し、元の停止理由と未完義務を残す。HARNESS oracle、SECURITY authority、event schema、transport、追加承認、無関係なassignment停止を新設しない。文書上のoracleは設計受入条件であり、runtime実装または実行結果を意味しない。

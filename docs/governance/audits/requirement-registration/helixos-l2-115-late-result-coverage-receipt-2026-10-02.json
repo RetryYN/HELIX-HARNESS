@@ -35,20 +35,20 @@
   "candidate_pair_pins": {
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:140c4e9fd62df3fb050126ddf95b08c3d8dbbc712e98ac3c51bbaf3cf72191ee",
+      "full_file_sha256": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec",
       "heading": "HELIXOS-L2-115",
       "line_start": 1434,
       "line_end": 1442,
-      "section_sha256": "sha256:1d5068ae7c57c77fd740c0ef633d95ace4631cad80c00b7441bfa7de127b1fed",
+      "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:7c8d12036285e8791cc00d6973ee570941ef997bee4a54455d826138c9fcea3f",
+      "full_file_sha256": "sha256:0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968",
       "heading": "HELIXOS-L2-115",
       "line_start": 1025,
       "line_end": 1032,
-      "section_sha256": "sha256:3e93fe97802898a4ef1b2f12824437036231ecb190201db87c1dd4be354033d8",
+      "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     }
   },
@@ -66,10 +66,12 @@
     ]
   },
   "source_vs_candidate_scope_delta": {
-    "source_atom_exact_meaning": "Do not commit a late result from an expired run.",
-    "candidate_scope": "For one existing assignment/attempt, a late or duplicate result after timeout, cancel, deadline/lease expiry, process exit, or another terminal result already defined by existing OS contracts does not alter the finalized terminal state or become an accepted/current result; mismatched attempt/source/revision results stay rejected or unknown/stale.",
-    "generalization": "Candidate extends the literal expired-run source condition to terminal causes already recognized by existing contracts and adds duplicate/mismatch handling. It creates no terminal kind, supervisor, transport, message protocol, or runtime behavior.",
-    "source_oracle_context": "HR-FR-HIL-12 and HAC-HIL-12a/b/c include late-after-cancel/timeout oracle context, but those are historical supporting materials and not a PO disposition of the candidate generalization."
+    "source_atom_exact_meaning": "旧HIL-FR-27の原条件は「失効runのlate resultをcommitしない」。候補で保持する必須意味はこのexpired-run拒否である。",
+    "candidate_scope": "既存assignmentの同一attemptに限る。候補は既存contractが既に終端と定義する場合に限りtimeout/cancel/deadline・lease expiry/process exit等にも拒否oracleを適用し、duplicate/mismatchをaccepted/currentへ進めない条件を追加する。",
+    "generalization": "上記terminal原因の一般化とduplicate/mismatch条件は原文そのものではなく未採択候補の差分。新しいterminal種類、supervisor、transport、protocol、runtimeは作らない。",
+    "change_reason": "expiry後の拒否意味を保持しつつ、既存のassignment/attempt終端事実とsource/revision対応を結び、late/duplicate/mismatched resultで確定済み状態が変わらない保証を明確にするため。",
+    "decision_reference": "docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md#fr27候補115のpo判断点; choose A (recommended limited generalization), B (limit to expired-run source condition), or C (defer until applicable run/terminal scope is selected).",
+    "source_oracle_context": "HR-FR-HIL-12/HAC-HIL-12a/b/cはcancel/timeout等の歴史的oracle文脈。これらを候補差分のPO判断や採択根拠にはしない."
   },
   "human_decision_options": [
     {
