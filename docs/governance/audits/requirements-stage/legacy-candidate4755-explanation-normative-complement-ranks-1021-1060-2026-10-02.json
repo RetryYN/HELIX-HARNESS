@@ -470,12 +470,6 @@
         "commit": "f89f71e0371440e9e10636499192c2311872b024",
         "commit_object_available": true,
         "ancestor_of_baseline": true
-      },
-      {
-        "commit": "0ac85d4ade2d8f933e6b381a3a2004ee7b21b447",
-        "commit_object_available": true,
-        "ancestor_of_baseline": false,
-        "role": "local predecessor audit pin; artifact content/hash independently verified"
       }
     ]
   },
@@ -534,7 +528,7 @@
         "archive_file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
       "marker_negative_normative_concern": "「候補・未実装」は旧trace候補の状態metadataであり、IDが参照する別ファイルの要件本文、現行採択、successor、実装、受入実行を意味しない。",
-      "current_relation_and_residual": "HARNESS L11 `product-acceptance.md:52` は同じID名を兄弟ファイル `execution-ticket-requirements.md:319` の本文参照として引用する。このtrace行はrequirementsへのlinkとcandidate statusだけを持つため、ID名一致は行bindingを作らない。OS L2/LABO L2の兄弟requirements file参照も同様にfamily-level。",
+      "current_relation_and_residual": "HARNESS L11 `product-acceptance.md:52` は同じID名を兄弟ファイル `execution-ticket-requirements.md:319` の本文参照として引用する。このtrace行はrequirementsへのlinkとcandidate statusだけを持つため、ID名一致は行bindingを作らない。OS L2/LABO L2の兄弟requirements file参照も同様にfamily-level。 固定F6 OS L2 `governance-requirements.md:117` もHXB-FR-007を同じ旧requirements.md:319とともに名指す。同一ID/兄弟本文引用であり、旧trace配置行へのpath:line bindingではない。",
       "semantic_routing_record": {
         "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
@@ -1702,7 +1696,7 @@
         "archive_file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
       },
       "marker_negative_normative_concern": "「候補・未実装」は旧trace候補の状態metadataであり、IDが参照する別ファイルの要件本文、現行採択、successor、実装、受入実行を意味しない。",
-      "current_relation_and_residual": "HARNESS/OS/LABO固定pairはこのtrace行を直接引用しない。OS L2 `governance-requirements.md:781,795` とLABO L2 `labo-requirements.md:363` は兄弟requirements fileと広域範囲を示すfamily-level source relationであり、このID配置行へのindividual bindingではない。",
+      "current_relation_and_residual": "HARNESS/OS/LABO固定pairはこのtrace行を直接引用しない。OS L2 `governance-requirements.md:781,795` とLABO L2 `labo-requirements.md:363` は兄弟requirements fileと広域範囲を示すfamily-level source relationであり、このID配置行へのindividual bindingではない。 同一ID HXB-FR-015は固定F6 OS L2 `governance-requirements.md:539`、LABO L2 `labo-requirements.md:363`、INTELLIGENCE L2 `intelligence-requirements.md:442`にも旧requirements.md:349–351の引用として現れる。これは旧trace配置行ではなく兄弟要求本文の出典関係であり、旧trace行の採択やsuccessorを示さない。",
       "semantic_routing_record": {
         "commit": "9b945fb48272fc6b13c3eb08070ff6e2fdeec9ba",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",

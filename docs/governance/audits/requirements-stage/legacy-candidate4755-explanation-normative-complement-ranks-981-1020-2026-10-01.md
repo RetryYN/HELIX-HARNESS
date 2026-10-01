@@ -10,7 +10,7 @@
 
 ## 固定F6の参照種別
 
-- 選択した旧`execution-ticket-trace.md`の物理行を直接path:line引用するF6 L2/L11は見つからなかった。rank 983–989のHXT-RQ-01..07は固定F6 OS L2:554,558–564とL11:261–267に同一IDで現れる（同一ID対応、旧trace物理行の直接引用ではない）。rank 1003のHXT-FR-014はOS L2:1131にも現れるが、同所の旧archive引用先は別path `execution-ticket-requirements.md:240–242`。
+- 選択した旧`execution-ticket-trace.md`の物理行を直接path:line引用するF6 L2/L11は見つからなかった。rank 983–989のHXT-RQ-01..07は固定F6 OS L2:554,558–564とL11:261–267に同一IDで現れる（同一ID対応、旧trace物理行の直接引用ではない）。rank 1003のHXT-FR-014は固定F6 OS L2には現れない。現行main `7255446ec987ab3735d6246417eed195fde91d39` のOS L2:1131には現れるが、同所の旧archive引用先は別path `execution-ticket-requirements.md:240–242`。
 - OS L2:536の`execution-ticket-requests.md`参照、OS L2:781の別`execution-ticket-requirements.md`広域span、HARNESS/OS/LABOのrequirements引用はtrace物理行への直接citationではなく、別path/family relationとして扱う。HARNESS/OS HXB-FR-007やOS/LABO HXB-FR-015は選択行のHXB-FR-001..006とは異なるID。
 
 ## 行別意味監査

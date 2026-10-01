@@ -827,7 +827,7 @@
     "direct_archive_trace_path_line_citations": 0,
     "authority_effect": "none",
     "source_atom_coverage_complete": false,
-    "fixed_F6_decision": "HARNESS 24候補、HELIX-OS 16候補、HELIX-LABO 53候補の各PO decisionと固定F6 L2/L11を個別にpin。OS L2/L11に同一HXT-RQ IDが現れることと旧trace行の移管・採択を区別する。OS L2:1131のHXT-FR-014は別requirements source lineへの参照。同一ID・広域source family参照をtraceの行別successorや閉包へ拡張しない。"
+    "fixed_F6_decision": "HARNESS 24候補、HELIX-OS 16候補、HELIX-LABO 53候補の各PO decisionと固定F6 L2/L11を個別にpin。OS L2/L11に同一HXT-RQ IDが現れることと旧trace行の移管・採択を区別する。固定F6 OS L2にはHXT-FR-014の同一ID引用がない。現行main `7255446ec987ab3735d6246417eed195fde91d39` のOS L2:1131は別requirements source lineへの参照であり、固定F6と区別する。同一ID・広域source family参照をtraceの行別successorや閉包へ拡張しない。"
   },
   "limitations": [
     "marker-negativeは語彙screenの結果であり、今回選択行はID移管表の列・各物理行に限って読んだ。",
