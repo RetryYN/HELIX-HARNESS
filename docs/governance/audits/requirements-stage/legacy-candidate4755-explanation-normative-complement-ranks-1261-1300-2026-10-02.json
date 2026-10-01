@@ -89,8 +89,9 @@
     "prior_rank": 1260,
     "prior_id": "LEGACY-CAND-LINE-002088",
     "paired_audit_available_at_base": false,
-    "claim_prior_semantic_verification": false,
-    "note": "直前slice paired auditは本baseに存在しないため、同一母集団全量再構成からrank1260 IDのみを境界確認。"
+    "claim_prior_semantic_verification": true,
+    "note": "同PRの先行commit:pathで1221–1260 paired auditのMD/JSON SHAとrank1260 IDを照合した。base自体には未収載。",
+    "paired_audit_available_in_pr_head": true
   },
   "pinned_reconstruction_inputs": [
     {
@@ -7758,5 +7759,18 @@
         "ledger_source_line_sha256": "sha256:86045d2ba6240bed3d6c167138fb1cc85dec937677b4ce704b80073bd5e5e58e"
       }
     }
-  ]
+  ],
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1221,
+      1260
+    ],
+    "commit": "0b6013c359982c4460c32e4d5bc0e3ce61ce1ff8",
+    "last_id": "LEGACY-CAND-LINE-002088",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1221-1260-2026-10-02.md",
+    "md_sha256": "1068de4d2c22839af387caa8bd1f72d18cab6cd69b81fff460230e80cefd881a",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1221-1260-2026-10-02.json",
+    "json_sha256": "571f389cde0a941a3231ff0728510765497dcca803da1461fbb626b14b474a61",
+    "local_predecessor_pin": true
+  }
 }

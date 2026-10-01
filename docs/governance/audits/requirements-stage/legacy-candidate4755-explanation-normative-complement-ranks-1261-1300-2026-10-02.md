@@ -6,7 +6,7 @@
 ## 母集団・境界
 
 - #2353の4,755行へ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順序適用し、説明分類2,965行を再構成。#2369 source_evidenceの000841/000857はcondition。marker screen queue/review unionは255行、補集合は2,710行。
-- rank1260=`LEGACY-CAND-LINE-002088`、rank1261=`LEGACY-CAND-LINE-002089`、rank1300=`LEGACY-CAND-LINE-002150`。直前slice artifactはこのbaseにないため、全母集団再構成からrank1260の境界IDのみ確認し、直前の意味監査済みとは主張しない。
+- rank1260=`LEGACY-CAND-LINE-002088`、rank1261=`LEGACY-CAND-LINE-002089`、rank1300=`LEGACY-CAND-LINE-002150`。直前ranks 1221–1260のpaired auditは同PRのlocal commit `0b6013c359982c4460c32e4d5bc0e3ce61ce1ff8`にあり、MD/JSON SHAとrank1260境界IDを照合した。base自体には未収載。
 - 選択sourceはfunctional-release-slice-acceptance (2 rows)、requests (34 rows)、requirements (4 rows)の3 asset。全40行のexact physical source/contextとline/asset/routing raw records/hashはJSONに保持。
 
 ## 現行F6 / PO / receiptとの直接関係
