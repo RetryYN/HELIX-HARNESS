@@ -6,11 +6,11 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:d3e8e1d8ea481707047c0bd6b4b822c49dc9f11be714d991ad7bcf3105c0bba7",
   "candidate_digest_rule": "L2の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:7fbda1fe4c804ab0cf78bc9df428500b4312d5b1ea6f710b57fe29848f543999",
+  "candidate_l2_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
   "paired_acceptance_identity": "HARNESS-L2-078",
   "paired_acceptance_digest": "sha256:3d79f0881620e36ea1325d8deb5f6f9f129732d6cbcd6a4cd786cb10fabab195",
   "l11_digest_rule": "L11の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:148c03b9525b4b9d0e254c699f51e8a463839a72c32e6fdd4385a7f6525d230d",
+  "l11_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr42-fr45-candidate-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:80d2b3d9706b181442af18ed01522729f5578c93597c305edb35f3439d595669",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + source_line_sha256のsha256:接頭辞を除いた64桁hex + LF として連結しUTF-8 SHA-256を計算する。",
@@ -131,7 +131,7 @@
   },
   "review_pins": {
     "base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
-    "latest_main_comparison": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+    "latest_main_comparison": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
     "source_ledger": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886",
     "source_line_archive": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:135",
     "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
@@ -162,11 +162,12 @@
   "registered_at": "2026-10-02T07:14:53+09:00",
   "source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
   "current_bytes_read_after": {
-    "comparison_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
-    "l2_full_file_sha256": "sha256:7fbda1fe4c804ab0cf78bc9df428500b4312d5b1ea6f710b57fe29848f543999",
-    "l11_full_file_sha256": "sha256:148c03b9525b4b9d0e254c699f51e8a463839a72c32e6fdd4385a7f6525d230d",
+    "comparison_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+    "l2_full_file_sha256": "sha256:1404696f021cace28adbfc6d1edf090cba788eed5baa1f5fa474f333eb45f732",
+    "l11_full_file_sha256": "sha256:bcea73950c5ec4c0ed0992de983048367c908222801df5b12d7a77247d48b867",
     "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "parent_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "l1_decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
-  }
+  },
+  "root_integration_note": "Historical fixed before-append pins retain original f38 comparison. Latest main a93 is preserved as full prefix; only candidates077/078 appended. Shared current full-file pins refreshed; semantic sections unchanged."
 }
