@@ -49,9 +49,13 @@
 
 従って、旧decisionの固定digestを保ったまま本文だけを変更して合格させる具体反例は成立しない。改訂本文に新しい対象revision/digestと必要な既存human decisionが付く場合は新revisionとして処理され、旧revisionの誤った再利用ではない。digest項目の名称やreceiptの単一schemaが追加されていないことだけをL2不足としない。このため、同一revision mutation専用のHARNESS-L2-071候補は起こさない。
 
-## FR41 template migration候補との境界
+## FR41 template supersessionとの境界・作成側検収訂正
 
-別WorkerのHARNESS-L2-070候補は、FR41のtemplate revision間で旧→後継のapplicability/schema/必須obligation差分と旧義務の後継割当・未対応義務を意味対応として扱う。FR45の一般的なimmutable revision、typed edge、source atom disposition、change/stale receiptはこの意味対応表そのものを保証しない。逆に、070で旧template要素と新template要素の対応が示されても、HARNESS-040/063/OS-038が求めるrequirement row revision、authority、before/after evidence、stale/quarantine運転の代わりにはならない。二候補はそれぞれ「template obligationの意味移行」と「requirement ledger上のrevision/operation/authority/stale境界」に限って区別する。070のsource applicability差が未選択なら、旧sourceの3 OS条件を選択profileだけの条件へ縮めず未決のまま残す。
+旧FR41の物理131行はversioned template schema、必須設計論点、関係edge、適用条件の保持とsupersession receipt出力を記す。旧→後継の各義務を対応表へ移す条件は、この行に明示されていない。FR42/45・HR/HACの合成でも、その追加条件を旧sourceの必須条件として断定しない。
+
+当初の070予約は個別義務移行を旧欠落と数えていたが、原文再読でこの解釈を訂正した。receiptという出力名だけから内容を推測して新しい要求を発行しない。HARNESS-L2-070のL2/L11とMPR登録は作らず、既存041/053/063/OS038による条件の保持と、旧receipt内容が未定義である事実を監査に残す。予約番号は採択・実装許可・要求発行ではない。
+
+本監査はfcfの固定本文を証拠基準にする。統合先6265のOS115末尾追加は、本監査が使う採択sectionを変更しない。固定時点の全file SHAを現在file SHAへ読み替えない。
 
 ## 検証と結論
 
@@ -60,4 +64,4 @@
 - 判断exact digestはdecision行のregistration revisionとcurrent本文節digestを照合した。decisionの列挙は候補表記より優先し、未採択候補の採択済みrevisionと、未選択scope/未実行を分けた。
 - 旧runtime/test/CLI/CIは未実行。静的な契約判定であり実装・受入実績を示さない。
 
-結論: FR-42/45の上記条件は、限定採択scopeにおいて040/041-003/053/063とOS-038の固定digest・authority・stale・gap契約を合成して保持する。同一revision labelの異内容を旧authorityで通す偽pass根拠は確認できず、071は起草しない。FR-41 template移行の意味対応は別残差として070側の判断材料に残す。両旧identityは`preserved_pending_rehome`のままで、正式successorは0件。
+結論: FR-42/45の上記条件は、限定採択scopeにおいて040/041-003/053/063とOS-038の固定digest・authority・stale・gap契約を合成して保持する。同一revision labelの異内容を旧authorityで通す偽pass根拠は確認できず、071は起草しない。FR-41の未明示の個別義務移行を追加要求にせず、070は発行しない。両旧identityは`preserved_pending_rehome`のままで、正式successorは0件。

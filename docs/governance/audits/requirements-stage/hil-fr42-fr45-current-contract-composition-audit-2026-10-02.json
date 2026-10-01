@@ -201,10 +201,11 @@
     "reason": "No concrete input satisfying all adopted authority, semantic digest, exact revision, stale and writer contracts can be shown to pass with altered content. A new correctly reviewed target revision is a different operation and is not a stale-revision false pass."
   },
   "boundary_with_harness_l2_070": {
-    "other_scope": "FR41 template-revision migration meaning: old-to-successor applicability/schema/required-obligation delta, successor assignment for each old obligation, and explicit unhandled obligations.",
-    "fr42_fr45_scope": "Requirement ledger identity/revision, typed edges, authority, change receipt, source-atom disposition, downstream stale and snapshot/quarantine boundary.",
-    "non_overlap_rule": "Generic before/after digest and stale closure do not themselves establish semantic old-template-to-new-template obligation correspondence; template mapping likewise does not replace requirement revision/authority/writer contracts.",
-    "scope_change_claim": false
+    "candidate_created": false,
+    "reservation_only": "HARNESS-L2-070",
+    "source_fact": "FR41 line131 requires versioned template schema, required design topics, relation edges and applicability; supersession receipt is an output whose individual obligation-migration content is not specified.",
+    "root_review_correction": "Do not derive mandatory old-to-successor individual obligation mapping from the receipt name alone. Existing 041/053/063/OS038 composition and source limitations remain; no new L2/L11/MPR-070 is issued.",
+    "meaning_change_applied": false
   },
   "pinned_files": [
     {
@@ -258,5 +259,11 @@
     "current_full_file_hashes_recorded": true,
     "same_revision_false_pass_attempted_as_contract_composition": true,
     "runtime_test_cli_ci_not_run": true
+  },
+  "root_review": {
+    "integration_base": "6265c512bae65789b177e38404c8266726799f46",
+    "evidence_base_remains": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
+    "source_lines_and_11_file_pins_recomputed": true,
+    "note": "Evidence records the original exact fcf comparison; later OS115 append does not amend the adopted sections used here."
   }
 }
