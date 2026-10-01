@@ -17,7 +17,7 @@
     "continuity_checked": true,
     "boundary_reconstructed_from_full_pool": true
   },
-  "fixed_F6_execution_ticket_family_relation": "固定F6 HARNESS L2 `product-requirements.md:314` / L11 `product-acceptance.md:197` は、コア提供からOS ticket発行・検収への接続を明記する。OS L2 `governance-requirements.md:536–539, 554–568` は旧 `execution-ticket-requests.md` の7要求を対象別に接続し、候補が `proposed_pending_l3_confirmation` で既存対文書を移動・再承認しないこと、HXT-RQ-01/04/07→OS-L2-004、02→007、03/05→005、06→009の対応を記す。OS L2 `:781` は今回のsource file `execution-ticket-requirements.md` を範囲 `[18–185, 186–289, 376–508]` とともに名指す。今回のうちrank 901–915と930–940の物理行は範囲内、rank 916–929（物理行290–375）は列挙範囲外である。範囲内の行についても文書/範囲レベルの出典関係であり、各物理行をL2 requirementへ個別採択・結合する証拠ではない。OS L11 `governance-acceptance.md:256–269` は別source `execution-ticket-validation.md` を名指し、HXT-RQ受入を全件未実行と明記する。今回のsource line別successorやclosureは生じない。LABO L2 `labo-requirements.md:342–368` の既存source crosswalkは同じ旧assetのHXB-FR-015 `execution-ticket-requirements.md:349–351` を `HELIXLABO-L2-055` 系へ関係づけるが、今回の選択source行は物理行178、183、185、190等であり349–351の行そのものではない。LABO L2 `:152` はBench水準を配置案の材料とし権限・割当を変えない。LABO L11 `labo-acceptance.md:191–196` は分母、欠測、失敗/unknown、scorer revisionと反例を扱う未実行例である。これはfamily-level semantic comparisonに留まり、今回40行のrow adoption/acceptanceではない。",
+  "fixed_F6_execution_ticket_family_relation": "固定F6 HARNESS L2 `product-requirements.md:314` / L11 `product-acceptance.md:197` は、コア提供からOS ticket発行・検収への接続を明記する。OS L2 `governance-requirements.md:536–539, 554–568` は旧 `execution-ticket-requests.md` の7要求を対象別に接続し、候補が `proposed_pending_l3_confirmation` で既存対文書を移動・再承認しないこと、HXT-RQ-01/04/07→OS-L2-004、02→007、03/05→005、06→009の対応を記す。OS L2 `:781` は今回のsource file `execution-ticket-requirements.md` を範囲 `[18–185, 186–289, 376–508]` とともに名指す。今回のうちrank 901–915と930–940の物理行は範囲内、rank 916–929（物理行290–375）は列挙範囲外である。範囲内の行についても文書/範囲レベルの出典関係であり、各物理行をL2 requirementへ個別採択・結合する証拠ではない。OS L11 `governance-acceptance.md:256–269` は別source `execution-ticket-validation.md` を名指し、HXT-RQ受入を全件未実行と明記する。今回のsource line別successorやclosureは生じない。LABO L2 `labo-requirements.md:342–368` の既存source crosswalkは同じ旧assetのHXB-FR-015 `execution-ticket-requirements.md:349–351` を `HELIXLABO-L2-055` 系へ関係づけるが、今回の選択source行は物理行178、183、185、190等であり349–351の行そのものではない。LABO L2 `:152` はBench水準を配置案の材料とし権限・割当を変えない。LABO L11 `labo-acceptance.md:191–196` は分母、欠測、失敗/unknown、scorer revisionと反例を扱う未実行例である。rank 921以外はfamily-level semantic comparisonに留まる。ただしrank 921（旧execution-ticket-requirements.md:319、行SHA-256 fe6e99e3…54557）は例外である。固定F6 HARNESS L11 product-acceptance.md:52（HARNESS-L2-005）とOS L2 governance-requirements.md:117（HELIXOS-L2-005）に直接の旧行引用がある。さらにops-o1-o2-coverage-receipt-2026-09-29.json の O2-POSTCLOSE-ASSESSMENT は同じpath:lineと全文SHAでHELIXOS-L2-048、HELIXLABO-L2-069へ原文atomを結び、po-decision-2026-09-29-57candidates.md:71,84で両候補の採択が記録されている。これは既存の行単位bindingであり、この監査から新たなsuccessor、受入実行、source closureを生成しない。semantic-routing ledgerの adoption_boundary:not_requirement_atom は当時の記録として保持し、後続receipt/判断との差を明示する。",
   "purpose": "Semantic audit of numeric-ID ranks 901–940 in effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance, source closure, or authority is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353",
@@ -458,17 +458,21 @@
     "historical_candidate_to_draft_candidate": 40,
     "meaning_change": 0,
     "successor_requirement_ids": 0,
-    "source_row_adopted_pair_binding_found": 0,
+    "source_row_adopted_pair_binding_found": 1,
     "authority_effect": "none",
     "family_level_current_pair_comparisons": 9,
-    "individual_current_pair_bindings_established": 0,
-    "semantic_routing_adopted_id_metadata_rows": 15
+    "individual_current_pair_bindings_established": 1,
+    "semantic_routing_adopted_id_metadata_rows": 15,
+    "existing_binding_requirement_ids": [
+      "HELIXOS-L2-048",
+      "HELIXLABO-L2-069"
+    ]
   },
   "limitations": [
     "OS L2 :781 names this entire source asset and broad source ranges; that document-level relation does not prove individual selected source-row adoption.",
     "OS L11 names execution-ticket-validation.md, a different archived candidate file; all HXT-RQ acceptance is explicitly unexecuted.",
     "LABO crosswalk names same asset only at source lines 349–351, outside selected physical lines; LABO L11 examples are candidate acceptance text, not execution evidence.",
-    "Some individual semantic-routing records may preserve current/adopted IDs or an adoption_boundary value; those metadata are copied without turning them into selected-row adoption, successor, or closure.",
+    "Semantic-routing metadata remain historical. Rank 921 has independently verified later receipt and PO adoption for OS-048/LABO-069; this audit itself creates no successor or closure.",
     "No old runtime, CLI, hook, test, or CI was run."
   ],
   "rows": [
@@ -3486,7 +3490,7 @@
         "archive_file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
       },
       "marker_negative_normative_concern": "時刻近接/path一致だけで原因を決めず、元closure保持と新assessment。窓未満・未追跡・打切りをdefect 0扱いせず、一般closeを長期窓待ちにしない。",
-      "current_relation_and_residual": "固定F6 HARNESS L2 `product-requirements.md:314` / L11 `product-acceptance.md:197` は、コア提供からOS ticket発行・検収への接続を明記する。OS L2 `governance-requirements.md:536–539, 554–568` は旧 `execution-ticket-requests.md` の7要求を対象別に接続し、候補が `proposed_pending_l3_confirmation` で既存対文書を移動・再承認しないこと、HXT-RQ-01/04/07→OS-L2-004、02→007、03/05→005、06→009の対応を記す。OS L2 `:781` は今回のsource file `execution-ticket-requirements.md` を範囲 `[18–185, 186–289, 376–508]` とともに名指す。今回のうちrank 901–915と930–940の物理行は範囲内、rank 916–929（物理行290–375）は列挙範囲外である。範囲内の行についても文書/範囲レベルの出典関係であり、各物理行をL2 requirementへ個別採択・結合する証拠ではない。OS L11 `governance-acceptance.md:256–269` は別source `execution-ticket-validation.md` を名指し、HXT-RQ受入を全件未実行と明記する。今回のsource line別successorやclosureは生じない。LABO L2 `labo-requirements.md:342–368` の既存source crosswalkは同じ旧assetのHXB-FR-015 `execution-ticket-requirements.md:349–351` を `HELIXLABO-L2-055` 系へ関係づけるが、今回の選択source行は物理行178、183、185、190等であり349–351の行そのものではない。LABO L2 `:152` はBench水準を配置案の材料とし権限・割当を変えない。LABO L11 `labo-acceptance.md:191–196` は分母、欠測、失敗/unknown、scorer revisionと反例を扱う未実行例である。これはfamily-level semantic comparisonに留まり、今回40行のrow adoption/acceptanceではない。 行固有の関係はsemantic-routing記録を参照し、文書範囲のsource referenceと個別requirement bindingを区別する。",
+      "current_relation_and_residual": "固定F6 HARNESS L2 `product-requirements.md:314` / L11 `product-acceptance.md:197` は、コア提供からOS ticket発行・検収への接続を明記する。OS L2 `governance-requirements.md:536–539, 554–568` は旧 `execution-ticket-requests.md` の7要求を対象別に接続し、候補が `proposed_pending_l3_confirmation` で既存対文書を移動・再承認しないこと、HXT-RQ-01/04/07→OS-L2-004、02→007、03/05→005、06→009の対応を記す。OS L2 `:781` は今回のsource file `execution-ticket-requirements.md` を範囲 `[18–185, 186–289, 376–508]` とともに名指す。今回のうちrank 901–915と930–940の物理行は範囲内、rank 916–929（物理行290–375）は列挙範囲外である。範囲内の行についても文書/範囲レベルの出典関係であり、各物理行をL2 requirementへ個別採択・結合する証拠ではない。OS L11 `governance-acceptance.md:256–269` は別source `execution-ticket-validation.md` を名指し、HXT-RQ受入を全件未実行と明記する。今回のsource line別successorやclosureは生じない。LABO L2 `labo-requirements.md:342–368` の既存source crosswalkは同じ旧assetのHXB-FR-015 `execution-ticket-requirements.md:349–351` を `HELIXLABO-L2-055` 系へ関係づけるが、今回の選択source行は物理行178、183、185、190等であり349–351の行そのものではない。LABO L2 `:152` はBench水準を配置案の材料とし権限・割当を変えない。LABO L11 `labo-acceptance.md:191–196` は分母、欠測、失敗/unknown、scorer revisionと反例を扱う未実行例である。rank 921の直接対応は次のとおり。ただしrank 921（旧execution-ticket-requirements.md:319、行SHA-256 fe6e99e3…54557）は例外である。固定F6 HARNESS L11 product-acceptance.md:52（HARNESS-L2-005）とOS L2 governance-requirements.md:117（HELIXOS-L2-005）に直接の旧行引用がある。さらにops-o1-o2-coverage-receipt-2026-09-29.json の O2-POSTCLOSE-ASSESSMENT は同じpath:lineと全文SHAでHELIXOS-L2-048、HELIXLABO-L2-069へ原文atomを結び、po-decision-2026-09-29-57candidates.md:71,84で両候補の採択が記録されている。これは既存の行単位bindingであり、この監査から新たなsuccessor、受入実行、source closureを生成しない。semantic-routing ledgerの adoption_boundary:not_requirement_atom は当時の記録として保持し、後続receipt/判断との差を明示する。 行固有の関係はsemantic-routing記録を参照し、文書範囲のsource referenceと個別requirement bindingを区別する。",
       "semantic_routing_record": {
         "commit": "44afc7c17054395f359a4f65da06b739a150697d",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
@@ -3600,6 +3604,27 @@
         "ledger_source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
         "ledger_physical_line_bytes_sha256": null,
         "baseline_2353_physical_line_bytes_sha256": "69d2c0a4cb59e7b85d25745a78823d614869d15923aa0d5793a3f50263d2e476"
+      },
+      "existing_source_row_binding": {
+        "status": "existing_adopted_requirement_source_atom_binding",
+        "source_atom_id": "O2-POSTCLOSE-ASSESSMENT",
+        "source_line_sha256": "sha256:fe6e99e332d445699fd06fc251f9696e8bc16921a84397f74d8df9c3f6b54557",
+        "direct_fixed_F6_refs": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md:52 (HARNESS-L2-005)",
+          "docs/helix-os/L2-requirements/governance-requirements.md:117 (HELIXOS-L2-005)"
+        ],
+        "receipt_path": "docs/governance/audits/requirement-registration/ops-o1-o2-coverage-receipt-2026-09-29.json",
+        "adopted_requirement_ids": [
+          "HELIXOS-L2-048",
+          "HELIXLABO-L2-069"
+        ],
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_lines": [
+          71,
+          84
+        ],
+        "historical_routing_boundary_retained": "not_requirement_atom",
+        "audit_creates_successor_or_closure": false
       }
     },
     {
