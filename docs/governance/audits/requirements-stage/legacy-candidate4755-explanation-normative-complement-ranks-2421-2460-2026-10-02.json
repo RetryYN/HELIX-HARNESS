@@ -9971,7 +9971,7 @@
       "exact_source_line_text": "2026-09-06受領原稿のSHA-256: `d742a1df564d8645ff2bfa2da9b3668c7e59e2aacfdb85e91be3412bdfa69fe7`。",
       "semantic_family": "Rule Derivation候補",
       "semantic_function": "企画metadata・責務・authority境界",
-      "semantic_reading": "2026-09-06受領原稿のSHA-256を記録する。選択行の役割は出典digestの記録。",
+      "semantic_reading": "2026-09-06受領原稿のSHA-256 d742a1df564d8645ff2bfa2da9b3668c7e59e2aacfdb85e91be3412bdfa69fe7を記録する。選択行の役割は出典digestの記録。",
       "legacy_context": {
         "section_heading": {
           "line": 26,
@@ -13243,7 +13243,7 @@
       "exact_source_line_text": "実装根拠: 前回確認main `2b7452c467cfd5682f21666550c3461e80089eca`。今回は指示書の再編であり、最新mainの再監査ではない。",
       "semantic_family": "Rule Derivation候補",
       "semantic_function": "要件metadata・契約・強制条件",
-      "semantic_reading": "前回確認main commitを実装根拠として示し、今回を指示書再編で最新mainの再監査ではないと限定する。",
+      "semantic_reading": "前回確認main 2b7452c467cfd5682f21666550c3461e80089ecaを実装根拠として示し、今回を指示書の再編で最新mainの再監査ではないと限定する。",
       "legacy_context": {
         "section_heading": {
           "line": 13,
@@ -13960,7 +13960,7 @@
       "exact_source_line_text": "要求の意味は既存Requirement/Policy owner、実強制は既存Guard/操作入口、起動投影は#1370/#1377、文書の移行追跡は#1372へ接続する。#1382はsurface分類・移管の連携先であり、②全体を①の配下に置かない。②の横断ownerは既存Issueを重複調査して特定し、未所有の差分だけ独立要求へ束ねる。既存#397のIR admissionを用い、第二のPolicy正本・DB・Control Planeを増設しない。",
       "semantic_family": "Rule Derivation候補",
       "semantic_function": "要件metadata・契約・強制条件",
-      "semantic_reading": "意味ownerは既存Requirement/Policy、強制はGuard/操作入口、startup projectionは#1370/#1377、文書移行追跡は#1372へ接続。#1382のsurface連携と①の範囲、②の横断owner・未所有差分、既存#397 IR admissionを定め、第二Policy正本/DB/Control Planeを増やさない。",
+      "semantic_reading": "要求の意味ownerは既存Requirement/Policy、実強制は既存Guard/操作入口、起動投影は#1370/#1377、文書移行追跡は#1372へ接続する。#1382はsurface分類・移管の連携先であり、②全体を①の配下に置かない。②の横断ownerは既存Issueを重複調査して特定し、未所有の差分だけ独立要求へ束ねる。既存#397のIR admissionを使い、第二Policy正本/DB/Control Planeを増設しない。",
       "legacy_context": {
         "section_heading": {
           "line": 19,
