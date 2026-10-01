@@ -153,3 +153,8 @@ rank68–90監査を取り込んだ直後のbundle HEAD `4a50e2d3f2272a36bae89ea
 303/255/124/131の算術、tuple一致、旧40件のID一意性、first20、source-qualified current positions21–40のIDとpin、旧raw119基準監査の歴史的ID、rank41 carryover `00171`を確認し、prior revision 81/50・87/44・110/21の各履歴membership、current reviewed 131件・未crosswalk 0件の補集合、rank46–49/52・56/68–90/111–131 audit SHA pin、および順位境界（00089=23、00170=40、00171=41）を再計算してassertした。旧e748等の誤順位artifact pinsと旧comparison内容は比較史として保持する。JSON syntaxとdiff checkを確認し、archive runtime/CLI/test/CIは実行していない。
 
 この記録は正式successor、source-condition closure、採択binding、承認、retire、authorityを作らない。既存監査の部分的所見や残差を完了扱いに変換しない。
+
+
+## 後発PO判断とcoverage receiptを反映した有効current view
+
+後発採択source citationと登録coverage receiptのexact source-line SHA joinを131行全体で照合した有効viewは[2026-10-01 correction overlay](v13-effective-post-f6-adopted-relations-correction-2026-10-01.md)および[完全な131-row JSON](v13-effective-post-f6-adopted-relations-correction-2026-10-01.json)を正とする。historical fixed-F6 comparisonは当時の記録として保持し、overlayは現時点の採択relation/限定残余の表示のみを更新する。formal successor、closure、holding retirement、authority、実装または受入実行を生成しない。
