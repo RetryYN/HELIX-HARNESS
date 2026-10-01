@@ -256,15 +256,15 @@
     "canonical_promotion_count": 0,
     "historical_old_candidate_approval_scope": "RAMG L3-PO-1364-001 and RCLS L3-PO-1384-001 are separate plan-specific candidate approvals only",
     "fixed_current_PO_adopted_candidate_count": 250,
-    "direct_source_row_binding_count": 4,
+    "direct_source_row_binding_count": 0,
     "source_file_level_receipt_reference_count": 1,
     "closure_count": 0,
     "current_OS_L2_L11_046_revision_001_adopted": true,
     "current_OS046_selected_slice_row_adoption_count": 0,
     "selected_exact_id_hit_count": 0,
-    "selected_exact_path_line_citation_count": 4,
-    "selected_exact_path_line_row_count": 1,
-    "direct_selected_path_line_citation_count": 4,
+    "selected_exact_path_line_citation_count": 0,
+    "selected_exact_path_line_row_count": 0,
+    "direct_selected_path_line_citation_count": 0,
     "selected_ID_plus_path_line_binding_count": 0,
     "selected_old_row_adoption_count": 0
   },
@@ -272,7 +272,7 @@
     "Marker-negativeは選択旧source行がmarker-positive集合外という分類だけを示し、旧行に規範的意味がないことを示さない。",
     "RAMGのL3-PO-1364-001とRCLSのL3-PO-1384-001は各PLAN固有の候補承認であり、現行採択・canonical promotion・IR admission・runtime/DB適用・運用検収と別である。",
     "現行OS-046 revision -001は2026-09-29 PO decisionで採択済み。2026-09-28 receiptの当時のdraft表示を現行OS-046状態へ流用しない。同採択はselected RAMG/RCLS row adoptionやreceipt execution/closureを作らない。",
-    "RCLS current BRAIN L1/L2は選択されたrequests physical line 3をarchive path:lineで直接引用するが、candidate line IDを明記せず、row adoption decisionでもない。他のRCLS family/file/hash referencesはphysical row bindingと区別する。",
+    "RCLS current BRAIN L1/L2はrequests 37–39/45–47/37–47を引用するが、本sliceのrequests 2–11行は引用範囲外。file/family参照と選択物理行の数値範囲一致を区別する。",
     "source-file parent field、family term、全ファイルhashはfile-level provenance only。個別selected ID/path:physical-line binding・採択・successor・closureを成立させない。",
     "全40 semantic_readingは原文物理行内の意味に限定し、隣接行の述語や条件を先取りしない。",
     "Archiveはread-only参照。旧runtime、CLI、hook、test、CIは実行していない."
@@ -6240,7 +6240,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -6735,7 +6735,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -7230,7 +7230,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -7725,7 +7725,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -8220,7 +8220,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -8715,7 +8715,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -9210,7 +9210,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -9705,7 +9705,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -10200,7 +10200,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -10695,7 +10695,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -11190,7 +11190,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -11685,7 +11685,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -12180,7 +12180,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -12675,7 +12675,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -13170,7 +13170,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -13665,7 +13665,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -14160,7 +14160,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -14655,7 +14655,7 @@
         "archive_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -15146,7 +15146,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -15641,70 +15641,9 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
-      "fixed_F6_direct_source_relations": [
-        {
-          "artifact_path": "docs/helix-brain/L1-planning/brain-intent.md",
-          "role": "fixed_F6",
-          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-          "artifact_sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
-          "citations": [
-            {
-              "candidate_source_line_id": "LEGACY-CAND-LINE-004057",
-              "rank": 2372,
-              "archive_path_line": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:3",
-              "kind": "exact selected physical path:line citation; atom ID may or may not be present",
-              "atom_id_explicit": false
-            }
-          ]
-        },
-        {
-          "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-          "role": "fixed_F6",
-          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-          "artifact_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
-          "citations": [
-            {
-              "candidate_source_line_id": "LEGACY-CAND-LINE-004057",
-              "rank": 2372,
-              "archive_path_line": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:3",
-              "kind": "exact selected physical path:line citation; atom ID may or may not be present",
-              "atom_id_explicit": false
-            }
-          ]
-        },
-        {
-          "artifact_path": "docs/helix-brain/L1-planning/brain-intent.md",
-          "role": "current_main",
-          "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
-          "artifact_sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
-          "citations": [
-            {
-              "candidate_source_line_id": "LEGACY-CAND-LINE-004057",
-              "rank": 2372,
-              "archive_path_line": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:3",
-              "kind": "exact selected physical path:line citation; atom ID may or may not be present",
-              "atom_id_explicit": false
-            }
-          ]
-        },
-        {
-          "artifact_path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-          "role": "current_main",
-          "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
-          "artifact_sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
-          "citations": [
-            {
-              "candidate_source_line_id": "LEGACY-CAND-LINE-004057",
-              "rank": 2372,
-              "archive_path_line": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:3",
-              "kind": "exact selected physical path:line citation; atom ID may or may not be present",
-              "atom_id_explicit": false
-            }
-          ]
-        }
-      ],
+      "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
         {
           "artifact_path": "docs/helix-brain/L1-planning/brain-intent.md",
@@ -16197,7 +16136,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -16692,7 +16631,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -17187,7 +17126,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -17682,7 +17621,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -18177,7 +18116,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -18672,7 +18611,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -19167,7 +19106,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -19662,7 +19601,7 @@
         "archive_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
       },
       "marker_negative_normative_boundary": "本行の旧候補説明・受入oracle・台帳記録の意味に限定する。隣接行の述語やauthority条件を補わず、過去の候補承認・追跡・PLAN statusから現行採択、successor、検収、完了、source closureを生成しない。",
-      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。rank 2372 requests line 3にはBRAIN L1/L2からpath:line直接引用があるが、atom IDを伴わず、行採択のdecisionでもない。",
+      "current_relation_and_residual": "この旧RCLS物理行はcarry-forward / semantic-routing上、historical_candidate→draft_candidate、preserved_pending_atomizationで保持され、current/adopted requirement ID、successor、meaning change、decision recordを持たない。current OS/LABO/BRAIN/INTELLIGENCE文書はRCLSの責務・requests/requirements/acceptance familyを対応づけるが、selected rowへの明示bindingと旧source row採択は別。BRAIN L1/L2の引用範囲はrequests 37–39/45–47/37–47であり、選択requests 2–11行は範囲に入らない。:3と:37の文字prefix一致を引用bindingとして扱わない。",
       "fixed_F6_relation_classification": "現行8機構のfixed L1/L2/L11・product-boundary・PO・receipt corpusを別々に照合。source-familyまたは同一文言の比較は個別row採択を意味しない。",
       "fixed_F6_direct_source_relations": [],
       "fixed_F6_family_comparison_relations": [
@@ -43752,7 +43691,7 @@
         }
       ],
       "interpretation": "OS historical RCLS family mapping; requirements path and BR/FR identifiers, not selected acceptance/request row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43777,7 +43716,7 @@
         }
       ],
       "interpretation": "OS historical RCLS family mapping; requirements path and BR/FR identifiers, not selected acceptance/request row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43792,7 +43731,7 @@
         }
       ],
       "interpretation": "OS-to-LABO RCLS acceptance-family transfer by 2026-09-25; family-level, not a selected legacy physical-row binding.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43807,7 +43746,7 @@
         }
       ],
       "interpretation": "OS-to-LABO RCLS acceptance-family transfer by 2026-09-25; family-level, not a selected legacy physical-row binding.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43822,7 +43761,7 @@
         }
       ],
       "interpretation": "BRAIN L1 quotes RCLS-BR-004/006 from old requests lines 37–39 and 45–47; separate family rows, selected frontmatter line is elsewhere.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43837,7 +43776,7 @@
         }
       ],
       "interpretation": "BRAIN L1 quotes RCLS-BR-004/006 from old requests lines 37–39 and 45–47; separate family rows, selected frontmatter line is elsewhere.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43852,7 +43791,7 @@
         }
       ],
       "interpretation": "BRAIN L2 cites requests lines 37–47, asset ID and full source-file hash; source-family/other physical rows, not selected frontmatter line adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43867,7 +43806,7 @@
         }
       ],
       "interpretation": "BRAIN L2 cites requests lines 37–47, asset ID and full source-file hash; source-family/other physical rows, not selected frontmatter line adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43897,7 +43836,7 @@
         }
       ],
       "interpretation": "LABO L1 family references for RCLS responsibilities.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43927,7 +43866,7 @@
         }
       ],
       "interpretation": "LABO L1 family references for RCLS responsibilities.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43952,7 +43891,7 @@
         }
       ],
       "interpretation": "LABO L2 maps RCLS-BR family to current candidate condition IDs, cites requests family and says it remains unapproved candidate; current IDs are not old row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -43977,7 +43916,7 @@
         }
       ],
       "interpretation": "LABO L2 maps RCLS-BR family to current candidate condition IDs, cites requests family and says it remains unapproved candidate; current IDs are not old row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -43992,7 +43931,7 @@
         }
       ],
       "interpretation": "LABO L11 acceptance-family conditions remain candidate checks.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44007,7 +43946,7 @@
         }
       ],
       "interpretation": "LABO L11 acceptance-family conditions remain candidate checks.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44022,7 +43961,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L1 uses LABO RCLS candidate as family context.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44037,7 +43976,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L1 uses LABO RCLS candidate as family context.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44052,7 +43991,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L2 cites requests family/asset/hash and avoids duplicate implementation; no selected row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44067,7 +44006,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L2 cites requests family/asset/hash and avoids duplicate implementation; no selected row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44082,7 +44021,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L11 leaves RCLS-BR family in LABO responsibility.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44097,7 +44036,7 @@
         }
       ],
       "interpretation": "INTELLIGENCE L11 leaves RCLS-BR family in LABO responsibility.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44117,7 +44056,7 @@
         }
       ],
       "interpretation": "Historical PO moved RCLS learning and acceptance from OS to LABO; responsibility transfer, not row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44137,7 +44076,7 @@
         }
       ],
       "interpretation": "Historical PO moved RCLS learning and acceptance from OS to LABO; responsibility transfer, not row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44152,7 +44091,7 @@
         }
       ],
       "interpretation": "Preserves RCLS staged learning / authority boundaries; not a selected legacy-row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44167,7 +44106,7 @@
         }
       ],
       "interpretation": "Preserves RCLS staged learning / authority boundaries; not a selected legacy-row adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44222,7 +44161,7 @@
         }
       ],
       "interpretation": "Current LABO RCLS candidate family and source lineage. Candidate status is not legacy row-level binding.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44277,7 +44216,7 @@
         }
       ],
       "interpretation": "Current LABO RCLS candidate family and source lineage. Candidate status is not legacy row-level binding.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "fixed_F6",
@@ -44292,7 +44231,7 @@
         }
       ],
       "interpretation": "RAMG name-level L2D-S1-04 family pointer only; no selected source path, line ID, or adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44307,7 +44246,7 @@
         }
       ],
       "interpretation": "RAMG name-level L2D-S1-04 family pointer only; no selected source path, line ID, or adoption.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     },
     {
       "role": "current_main",
@@ -44322,7 +44261,7 @@
         }
       ],
       "interpretation": "OS-046 exact accepted revision decision; unrelated to selected old rows.",
-      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (none here except direct requests line 3 below)"
+      "relation_type": "mechanism/family/decision comparison; selected-row adoption only when exact source ID/path:line tuple is stated (no selected row is within a cited numeric line range here)"
     }
   ],
   "current_OS046_adoption_correction": "HELIXOS-L2-046 / paired HELIXOS-L11-046 revision -001 is adopted per docs/governance/decisions/po-decision-2026-09-29-57candidates.md:69. The receipt remains separately scoped and does not directly bind any selected RAMG/RCLS rows.",

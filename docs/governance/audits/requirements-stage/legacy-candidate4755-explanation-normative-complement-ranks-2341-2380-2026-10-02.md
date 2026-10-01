@@ -13,7 +13,7 @@
 - RCLS `L3-PO-1384-001`はPLAN-L3-80の承認時点3候補本文とBR 6/FR 6/AC 20の候補承認。canonical promotion、IR admission、runtime/DB/generated current docs反映は別工程。
 - 現行HELIXOS-L2/L11-046 revision -001は2026-09-29 PO decision `po-decision-2026-09-29-57candidates.md:69`で採択済み。以前のdraft metadataや2026-09-28 receiptはその過去scopeの証拠。OS-046採択は本sliceのRAMG/RCLS old row採択・binding・successorを作らない。
 - RCLS current refs: OS L2/L11はL2-004/005とLABOへの責務移動、BRAIN L1/L2はrequests BR-004/006及びline 37–47を引用、LABO L2/L11はcandidate family条件、INTELLIGENCEはLABO candidate非重複として記載。これらのfamily refsは行採択ではない。
-- selected RCLS requests line 3（rank 2372）はBRAIN L1 `brain-intent.md:87`とBRAIN L2 `brain-requirements.md:545`からarchive path:lineで直接引用される。候補source IDは引用されず、これは引用bindingであってadoption decisionではない。
+- RCLS requestsの引用は37–39・45–47・37–47行であり、本sliceのrequests 2–11行は範囲外。rank 2372の3行を37行のprefixから引用bindingとしない。
 - LABO functional-unit receipt embeds the old RCLS requests file path under parent source conditions and lists BR family source material. This is a file/family citation with no selected source physical line/ID hit. Its JSON pointers and artifact hash are pinned separately. The 182-file corpus scan is scoped to requirement-registration and does not claim all receipts.
 - Current 8-mechanism PO decisions採用250 current candidate IDs; old RAMG/RCLS line identities are not thereby adopted. Receipt source-file references and atom rows are separately pinned in JSON.
 
@@ -65,7 +65,7 @@
 ## relation/search境界
 
 - Fixed F6とcurrent mainで8機構のL1/L2/L11各24文書、product-boundary、8 PO decisions、全current candidate directoriesをpin。Current receipt corpusはrequirement-registration配下の182 JSON群を走査し、source fieldまたはfamily patternを含む157件を該当として別記録した。この範囲をreceipt総数とは呼ばない。
-- exact selected physical path:line citation 4件、selected candidate ID token hit 0件。RCLS requests line 3への直接path:line引用はBRAIN L1/L2でF6/currentの各2 role、row ID明記は0。ファイルpath・family・全file hashは別集計。
+- exact selected physical path:line citation 0件、selected candidate ID token hit 0件。BRAIN L1/L2のfile/family引用は保持するが、本sliceの選択行への直接引用ではない。
 - RAMG current pointer `docs/governance/candidates/scaffold-binding-requirements.md:111`はL2D-S1-04の名称・目的のfamily pointer。選択RAMGのsource path/row ID/path:lineは引用しない。
 
 ## authority境界
