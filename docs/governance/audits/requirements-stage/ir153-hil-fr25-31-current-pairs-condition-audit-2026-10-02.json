@@ -18,8 +18,8 @@
     }
   },
   "current_file_sha256": {
-    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a",
     "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf",
     "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd",
     "docs/helix-brain/L2-requirements/brain-requirements.md": "sha256:421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
@@ -292,22 +292,22 @@
     "l11_section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
     "mpr_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
     "source_ledger_sha256": "sha256:b51f7051a5e21e6976639ea5e9d7ed6d426a84bd75c59f6015a976aa7efefd32",
-    "coverage_receipt_sha256": "sha256:71f809b29c330fd5b5bdb5e98b092a6f0e8dcf04d20905595c895032b022989e",
+    "coverage_receipt_sha256": "sha256:10de8377579084321604e474596e625a14fbd71637ad0d4444dbbce22fbf3b3a",
     "candidate_l2_pin": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec",
+      "full_file_sha256": "sha256:48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1434,
-      "line_end": 1442,
+      "line_start": 1445,
+      "line_end": 1453,
       "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "candidate_l11_pin": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968",
+      "full_file_sha256": "sha256:3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1025,
-      "line_end": 1032,
+      "line_start": 1034,
+      "line_end": 1041,
       "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
@@ -885,7 +885,7 @@
     "current_os_l11_file_sha256": "sha256:0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968",
     "phcap_14_16_current_os_l2_pin": "docs/governance/phase-capability-inventory.json#PHCAP-14,PHCAP-16"
   },
-  "current_comparison_base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+  "current_comparison_base_commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
   "reviewed_base_file_sha256": {
     "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:140c4e9fd62df3fb050126ddf95b08c3d8dbbc712e98ac3c51bbaf3cf72191ee",
     "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:7c8d12036285e8791cc00d6973ee570941ef997bee4a54455d826138c9fcea3f"

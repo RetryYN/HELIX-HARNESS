@@ -53,4 +53,6 @@ carry-forward ledgerではIRの7 identityがpreserved_pending_rehome、successor
 
 機械可読のsource row/text/hash/statusは同名JSON、候補対象atomはregistration ledgerとcoverage receiptにある。
 
-現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。既存OS本文と646行台帳prefixを保持し、115のみ末尾追補した。構築時72d08ebの履歴source/readingsはその時点の証拠として区別し、current_file_sha256とcandidate pinは統合後bytesへ追随する。候補115の原文保持点・提案差分・差分理由およびA/B/C参照をL2本文、L11 oracle、receipt、監査に同期した。PHCAP-14/16のcurrent OS L2参照pinもこの最終OS L2 file SHAへ更新し、HIL-FR-27の選択source atom本文・digestは不変である。
+現行PR比較baseは `fcf944f839a6269fec63f8823d98f51f1d6ec84b`。既存OS本文と647行台帳prefixを保持し、115のみ末尾追補した。構築時72d08ebの履歴source/readingsはその時点の証拠として区別し、current_file_sha256とcandidate pinは統合後bytesへ追随する。候補115の原文保持点・提案差分・差分理由およびA/B/C参照をL2本文、L11 oracle、receipt、監査に同期した。PHCAP-14/16のcurrent OS L2参照pinもこの最終OS L2 file SHAへ更新し、HIL-FR-27の選択source atom本文・digestは不変である。
+
+#2493の117候補を含むmain全文を保持した。115のpaired section digest・原文atom・PO選択肢はreview02から不変である。

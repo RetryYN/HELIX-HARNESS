@@ -35,19 +35,19 @@
   "candidate_pair_pins": {
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:4aeb34a4c87f206fefc3e997f51aff6aa81f967d3bc1a2063380a906fef6c0ec",
+      "full_file_sha256": "sha256:48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1434,
-      "line_end": 1442,
+      "line_start": 1445,
+      "line_end": 1453,
       "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:0cd9270056423df00edcabc3383f5c3ec91529eccf3b865d5c00913d1232a968",
+      "full_file_sha256": "sha256:3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1025,
-      "line_end": 1032,
+      "line_start": 1034,
+      "line_end": 1041,
       "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     }
@@ -111,5 +111,6 @@
       ]
     }
   ],
-  "adoption_boundary": "These are PO choice materials only. MPR, audit, receipt, and candidate metadata do not adopt HELIXOS-L2-115 or assign a formal successor to all of HIL-FR-27."
+  "adoption_boundary": "These are PO choice materials only. MPR, audit, receipt, and candidate metadata do not adopt HELIXOS-L2-115 or assign a formal successor to all of HIL-FR-27.",
+  "current_comparison_base_commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b"
 }
