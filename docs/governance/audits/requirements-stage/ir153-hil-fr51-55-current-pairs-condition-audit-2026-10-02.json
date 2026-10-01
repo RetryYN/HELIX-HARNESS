@@ -55,12 +55,12 @@
       "conditions": [
         {
           "source_clause": "Proposal意味差分・authority・revisionの検査",
-          "destination": "採択済みHELIXOS-L2-001/007（OS決定f6dad2a…本文）とHARNESS-L2-008/016の意味形成・差分。OSの要求正本表は変更対象・前revision・policy/evidenceを同一因果で追える。",
+          "destination": "9/28 OS decisionがtarget revisionとして固定したL2/L11全file bytes内のHELIXOS-L2-001（対象・正本・合意revision）と007（記録・stale）各本文、およびHARNESS-L2-008/016の意味形成・差分。HELIXOS-L2-001〜029の全個別candidate採択を意味しない（decisionが明示採用した候補は014〜029の16件）。",
           "status": "現行要求で意味対応"
         },
         {
           "source_clause": "trace・pair・impact・安全境界",
-          "destination": "HARNESS-L2-001/003/004/022のV-pair・trace・impact/oracle意味、OS-L2-002/007の関係・結果記録、既存SECURITY operation authority。",
+          "destination": "HARNESS-L2-001/003/004/022のV-pair・trace・impact/oracle意味、固定target revision内のHELIXOS-L2-002（project群trace/欠落/競合）・007（記録/stale）各本文、既存SECURITY operation authority。",
           "status": "責務分割で意味対応"
         },
         {
@@ -70,7 +70,7 @@
         },
         {
           "source_clause": "auto_admit",
-          "destination": "OS-L2-001/002/007/009表「適用判断」の自動適用、policy/evidence/scope付き。",
+          "destination": "固定target revision内のHELIXOS-L2-001/002/007/009各本文と対L11、および「要求正本を更新する管理条件」表の適用判断（自動適用、policy/evidence/scope付き）。このtarget designationはfile revisionの固定であり、001〜029全candidateの採択を意味しない。",
           "status": "現行要求で意味対応"
         },
         {
@@ -85,12 +85,12 @@
         },
         {
           "source_clause": "outputs: admission decision / findings / authority-impact-rollback receipt",
-          "destination": "OS-L2-001/002/007/009: 適用decision、変更対象・影響・revision、原証拠、未完/rollback/recovery route。HARNESS側の意味/oracle findingは004/022へ戻る。",
+          "destination": "固定target revision内のHELIXOS-L2-001/002/007/009各本文と「要求正本を更新する管理条件」表（適用decision、変更対象・影響・revision、原証拠、未完/rollback/recovery route）。",
           "status": "現行要求で意味対応"
         }
       ],
       "counterexample": "同一Proposalを自動適用するが影響する下流relationを古いまま放置する場合、sourceのstale-propagation分岐が必要。現行対応は自動適用decisionと別のimpact/stale recordを同時に確かめること。",
-      "adoption": "HELIXOS-L2-001〜029 + paired L11 exact file bytes agreed in helix-os-requirements-po-decision-2026-09-28; HARNESS-L2/L11 fixed set agreed in helix-harness-requirements-po-decision-2026-09-28."
+      "adoption": "9/28 OS decisionは対象revisionとしてHELIX-OS L2/L11 full file bytes（fixed commit f6dad2a33e24f000b87d7f09b8d40288257e74cc、L2 SHA c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf、L11 SHA 925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680）を特定し、明示candidate 014〜029の16件を採用した。001/002/007/009はその固定本文中の crosswalk 対象で、個別candidate採択とは主張しない。HARNESS fixed setは対応するHELIX-HARNESS decisionで読む。"
     },
     {
       "id": "HIL-FR-52",
