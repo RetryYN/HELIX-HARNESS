@@ -1,0 +1,253 @@
+{
+  "audit_id": "IR153-HIL-FR61-65-CURRENT-PAIRS-CONDITION-AUDIT-2026-10-02",
+  "base_commit": "432ca78c4465bee9d1463ff995e299f80ea1fff1",
+  "scope": {
+    "source_identity": "HIL-FR-61..65",
+    "source_kind": "legacy IR153 source statements",
+    "physical_lines": [151, 155],
+    "nonclaims": [
+      "legacy source-wide no-loss or formal successor assignment",
+      "implementation, runtime, CI, old test, or acceptance execution closure",
+      "candidate metadata or historical receipt alone creates adoption"
+    ],
+    "execution_boundary": "Read-only inspection of archive source, IR, requirements, consumer contracts and oracle designs. No legacy runtime, test, CI, CLI, hook, or adapter was run."
+  },
+  "source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "asset_disposition_ledger": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "asset_revision": 3,
+      "source_authority_state": "draft",
+      "target_authority_state": "draft_candidate",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "disposition": "source_snapshot_preservation"
+    },
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "statements": [
+      {
+        "id": "HIL-FR-61",
+        "line": 151,
+        "line_sha256_utf8_without_lf": "6a253f524c4ab31471c2288d9bda61ffc8134ce8e26092b34078e88ddc2d26cf",
+        "statement_semantic_digest": "a1efb53682d608e59e22ad36cb1de6e1b8555afabed752e2648c98a6b82b1f8f",
+        "ir_record_semantic_digest": "e9faf8f3c022bf7561b8b171944f7674a5cf59764bee18de99ea6b6ce373c592",
+        "old_primary_consumer": "HR-FR-HIL-22",
+        "old_acceptance_ids": ["HAC-HIL-22a", "HAC-HIL-22b", "HAC-HIL-22c"],
+        "old_system_test_id": "HAT-HIL-22",
+        "old_operational_test": "HOT-HIL-54",
+        "text": "Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 | bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision"
+      },
+      {
+        "id": "HIL-FR-62",
+        "line": 152,
+        "line_sha256_utf8_without_lf": "d49d0dace5f0bcae2eaf3f4325ac09e71daee1aa1b7d2a7a032a699ecbe1cb70",
+        "statement_semantic_digest": "9d4ccd014d684c5b92b402ce2372f4ff1679be84d48d76b07dccb8fd92e0cb20",
+        "ir_record_semantic_digest": "596a3e30d3eb77319f181b7d0731e2f615c1547559b2ecf7668bc42aa838cda9",
+        "old_primary_consumer": "HR-FR-HIL-22",
+        "old_acceptance_ids": ["HAC-HIL-22a", "HAC-HIL-22b", "HAC-HIL-22c"],
+        "old_system_test_id": "HAT-HIL-22",
+        "old_operational_test": "HOT-HIL-54",
+        "text": "Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 | real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding"
+      },
+      {
+        "id": "HIL-FR-63",
+        "line": 153,
+        "line_sha256_utf8_without_lf": "e45658a5729cb4d07aaa569f84571ffe55281644411476097c59f3abf9bce0c2",
+        "statement_semantic_digest": "868712720ee331daaafb3a3103e052e82e89ded6270aa48838349c38ea53b0e3",
+        "ir_record_semantic_digest": "734c9ca4bb51ec9de2d5d428e9db24410e8b1e68c6f6711d67f42eb04c7f668b",
+        "old_primary_consumer": "HR-FR-HIL-22",
+        "old_acceptance_ids": ["HAC-HIL-22a", "HAC-HIL-22b", "HAC-HIL-22c"],
+        "old_system_test_id": "HAT-HIL-22",
+        "old_operational_test": "HOT-HIL-55",
+        "text": "Effort Routerはupper-tier modelをlow/medium effort既定、lightweight modelをhigh effort既定としてtask riskとbench/scorecardにより選択する。upper-tierの品質不足ではeffort引上げを先に固定せず、model/runtime escalationとの比較証拠を残して最小の有効構成を選ぶ。 | model/effort decision、比較receipt、retry/escalation lineage、policy exception"
+      },
+      {
+        "id": "HIL-FR-64",
+        "line": 154,
+        "line_sha256_utf8_without_lf": "05c5381f7e2f71f30ed4b9390fef1e60deed7fdc9e1a2503efb9e09f6c6da581",
+        "statement_semantic_digest": "d5f9b065edf670c29df4eab795c26f69f71c34640c8a42cba9d397528deb7043",
+        "ir_record_semantic_digest": "0ef226f2b96f4a1fa8838a69ee0f23f9364933ffafd465935dcf718d30373538",
+        "old_primary_consumer": "HR-FR-HIL-23",
+        "old_acceptance_ids": ["HAC-HIL-23a", "HAC-HIL-23b", "HAC-HIL-23c"],
+        "old_system_test_id": "HAT-HIL-23",
+        "old_operational_test": "HOT-HIL-56",
+        "text": "Worker Sandbox Contractはversioned templateで第三者CLI workerの実行環境を定義し、書込可能領域を払い出しworktree/scratchへ限定、networkを推論API endpointのみのhost+path allowlistへ制限、credential・`.helix/`・harness DBを非bind、第三者CLI設定変更をbackup付きmerge/appendのみとし、template逸脱とegress実測乖離をfail-close/quarantineする。 | sandbox template digest、egress計測、逸脱finding、quarantine receipt"
+      },
+      {
+        "id": "HIL-FR-65",
+        "line": 155,
+        "line_sha256_utf8_without_lf": "68c2645c82ef96c89ecba543283817f65c8094fc3bea4112535c3872be52d414",
+        "statement_semantic_digest": "156f71a03fcc363a091532c75996110e6d1b1df07b0cf8ad78118ab878208231",
+        "ir_record_semantic_digest": "1b25f2293a93a9a64b271cf033cdafd0cac97ff7210f538acf6593a9279733a2",
+        "old_primary_consumer": "HR-FR-HIL-23",
+        "old_acceptance_ids": ["HAC-HIL-23a", "HAC-HIL-23b", "HAC-HIL-23c"],
+        "old_system_test_id": "HAT-HIL-23",
+        "old_operational_test": "HOT-HIL-56",
+        "text": "Delegation Environment Hygieneは入れ子CLI起動時の環境変数をallow-list方式で最小化し、promptをstdin渡し、stdin消費CLIの明示close、wall-clock timeoutを必須とする。timeoutなし委譲をlint/doctorで検出する。 | 浄化済みenv manifest、timeout設定、lint/doctor finding"
+      }
+    ],
+    "consumer_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+        "lines": [56, 57, 85, 86]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+        "lines": [54, 55]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "file_sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "lines": [81, 82, 83]
+      }
+    ]
+  },
+  "current_evidence": {
+    "labo_candidate": {
+      "l2": {
+        "identity": "HELIXLABO-L2-065",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "line": 503,
+        "whole_file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "section_sha256": "6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
+      },
+      "l11": {
+        "identity": "HELIXLABO-L2-065",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "line": 241,
+        "whole_file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "section_sha256": "c70905fd036f0c6e6bfdce0368e462cd85acd467354bcad599d1112634d9b1b6"
+      },
+      "source_receipt": {
+        "path": "docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-coverage-receipt-2026-09-28.json",
+        "sha256": "6b5a0386bedc0c1816a4a123701fe9494c8e68e500007f9253941365759d2680",
+        "selected_source_rows": "docs/governance/audits/requirement-registration/labo-bench-qualification-scorecard-source-lines-2026-09-28.jsonl",
+        "selected_source_rows_sha256": "4b0accd1aee128a81ba3f9465240592fd6e16420de794b2be890080dfc222f2b",
+        "source_atom_count": 2,
+        "source_scope": "HIL-FR-61 and HIL-FR-62 lines only; receipt explicitly disclaims whole-source/IR/other bench/implementation closure."
+      },
+      "adoption": {
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_row": 80,
+        "exact_registration": "MPR-RC-HELIXLABO-L2-065-001",
+        "decision": "conditional adoption D1: coexists with 067 as a distinct measure; 065 is the first Attempt result",
+        "scope_boundary": "The decision fixes these exact L2/L11 section digests. It does not mean all original FR61/62 consumers, every Worker task, actual runtime execution, assignment, or admission was completed."
+      }
+    },
+    "other_current_sections": [
+      {"identity":"HELIXLABO-L2-059","path":"docs/helix-labo/L2-requirements/labo-requirements.md","line":416,"whole_file_sha256":"cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6","role":"adopted same-condition comparison, quality gate and total-cost boundary; exact decision MPR-RC-HELIXLABO-L2-059-002 in helix-labo-requirements-po-decision-2026-09-28.md line 99"},
+      {"identity":"HELIXINTELLIGENCE-L2-010","path":"docs/helix-intelligence/L2-requirements/intelligence-requirements.md","line":102,"section_sha256":"29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1","role":"task attributes and observed performance to placement proposal; OS retains assignment"},
+      {"identity":"HELIXINTELLIGENCE-L2-011","path":"docs/helix-intelligence/L2-requirements/intelligence-requirements.md","line":108,"section_sha256":"03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c","role":"same-corpus/responsibility model-provider comparison; no automatic replacement"},
+      {"identity":"HELIXSECURITY-L2-003","path":"docs/helix-security/L2-requirements/security-requirements.md","line":90,"section_sha256":"dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132","role":"project/environment/worktree isolation and no implicit fallback"},
+      {"identity":"HELIXSECURITY-L2-005","path":"docs/helix-security/L2-requirements/security-requirements.md","line":110,"section_sha256":"8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784","role":"raw credential exclusion from Worker/context/log/artifact"},
+      {"identity":"HELIXSECURITY-L2-006","path":"docs/helix-security/L2-requirements/security-requirements.md","line":120,"section_sha256":"8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3","role":"default deny and destination/protocol/endpoint/path/class/purpose/authority/expiry check"},
+      {"identity":"HELIXSECURITY-L2-007","path":"docs/helix-security/L2-requirements/security-requirements.md","line":130,"section_sha256":"1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504","role":"write/network/credential/environment/timeout/resource/diff/rollback application evidence in Worker environment"},
+      {"identity":"HELIXSECURITY-L2-009","path":"docs/helix-security/L2-requirements/security-requirements.md","line":140,"role":"revoke/quarantine propagation for runtime deviation and anomalous communication"},
+      {"identity":"HELIXSECURITY-L11-003/005/006/007/009","path":"docs/helix-security/L11-acceptance/security-acceptance.md","lines":[27,29,30,31,33],"role":"isolation, credential, egress, constraint-application, and quarantine failure oracles"},
+      {"identity":"HELIXINTELLIGENCE-L2-010 L11 strengthening","path":"docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md","line":197,"role":"quality-gated placement proposal with reasons/uncertainty and OS handoff"},
+      {"identity":"HARNESS specialist contract","path":"docs/helix-harness/L2-requirements/product-requirements.md","line":1045,"role":"runtime-neutral contract may carry model/effort class; this does not specify routing defaults"},
+      {"identity":"HARNESS specialist contract L11","path":"docs/helix-harness/L11-acceptance/product-acceptance.md","line":782,"role":"checks runtime-neutral worker contract fields; no FR63 default routing rule"}
+    ],
+    "exact_current_quotes": [
+      {"path":"docs/helix-labo/L2-requirements/labo-requirements.md","line":425,"identity":"HELIXLABO-L2-059","quote":"同じtask class、snapshot、scope、quality oracle、run protocol下のeffort別実績を比較材料として返す。INTELLIGENCE-L2-010が…候補Worker/model classとeffortの根拠をまとめて提案できる。LABOはeffortやWorkerを選ばず…assignment/進行/許可はOSの既存責務。"},
+      {"path":"docs/helix-intelligence/L2-requirements/intelligence-requirements.md","line":104,"identity":"HELIXINTELLIGENCE-L2-010","quote":"task type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。"},
+      {"path":"docs/helix-intelligence/L2-requirements/intelligence-requirements.md","line":110,"identity":"HELIXINTELLIGENCE-L2-011","quote":"同一corpus・同一responsibility scopeのmodel/provider結果…domain/capability別findings、false positives、misses、reproducibility、latency、costの比較。更新だけで上位とせず、同条件がそろわない比較は不確実として返す。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":94,"identity":"HELIXSECURITY-L2-003","quote":"project AのAgent、Hook、memory、credential、設定、Workerが明示接続なしにproject Bへ作用しない。primary treeや別projectへの暗黙fallbackを行わない。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":114,"identity":"HELIXSECURITY-L2-005","quote":"raw secretをAI contextへ渡さない。credential storeをWorkerに直接見せない。repository混入と外部送信を検査し、revokeを伝播する。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":124,"identity":"HELIXSECURITY-L2-006","quote":"必要な宛先のみ明示許可し、vendorのprivacy設定だけをHELIX側の保証にしない。許可範囲・目的・期限が一致しない送信を拒否する。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":126,"identity":"HELIXSECURITY-L2-006","quote":"外部通信の宛先・protocol・path・data classification・量・目的・authorityの対応。…asset-specific egress blockingはL2-019 (1.x)へ分ける。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":134,"identity":"HELIXSECURITY-L2-007","quote":"write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":137,"identity":"HELIXSECURITY-L2-007","quote":"未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。"},
+      {"path":"docs/helix-security/L2-requirements/security-requirements.md","line":154,"identity":"HELIXSECURITY-L2-009","quote":"Worker実行環境は実行停止と途中成果物の隔離を行い、CONNECTは通信を停止し、credential使用とartifact accessを停止する。不明な状態をsuccessとして継続しない。"},
+      {"path":"docs/helix-security/L11-acceptance/security-acceptance.md","line":31,"identity":"HELIXSECURITY-L2-007 acceptance row","quote":"各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行…したら不合格。"},
+      {"path":"docs/helix-security/L11-acceptance/security-acceptance.md","line":30,"identity":"HELIXSECURITY-L2-006 acceptance row","quote":"送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。"},
+      {"path":"docs/helix-labo/L11-acceptance/labo-acceptance.md","line":247,"identity":"HELIXLABO-L2-065 acceptance row","quote":"machine smokeとblind full-benchは別結果として記録する。…8軸すべてについて同じfixture集合・版とrubric revisionに基づく判定結果がある。…bench manifest…machine scoreとblind-judge scoreが別出力でfixture/rubric digestへ結びつく。"},
+      {"path":"docs/helix-labo/L11-acceptance/labo-acceptance.md","line":249,"identity":"HELIXLABO-L2-065 task scorecard acceptance row","quote":"first_passを初回attemptの受入oracle結果として、retry_countを初回後の再試行数として区別する。…diff-sizeとlint count…測定定義・単位・tool/profile版・観測receipt…quality-judge結果とeffective costはL2-059既定義の品質gate…を使う。"},
+      {"path":"docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md","line":197,"identity":"HELIXINTELLIGENCE-L2-010 acceptance row","quote":"Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。"}
+    ],
+    "adoption_caution": "Security L2/L11 frontmatter identifies these as draft candidates. Their text is meaningful requirement material but cannot be reported as adopted solely from the text; exact security adoption decision was not asserted in this audit."
+  },
+  "condition_findings": [
+    {
+      "source_id":"HIL-FR-61",
+      "status":"adopted_bounded_current_condition; no legacy formal successor claimed",
+      "conditions":[
+        {"condition":"candidate-runtime scope only; short machine smoke and blind full-bench are separate","current":"LABO-L2/L11-065 input/output; separate smoke and blind outputs","result":"retained in selected qualification scope"},
+        {"condition":"eight dimensions on same fixture set and versioned rubric","current":"LABO-L2-065 full-bench clause lists all eight and requires same fixture-set/version and rubric revision","result":"retained"},
+        {"condition":"manifest, machine score, blind-judge score, fixture/rubric digest","current":"LABO-L2-065 output and LABO-L11-065 oracle explicitly bind these","result":"retained"},
+        {"condition":"admission decision output","current":"candidate directs decision to existing owner identity/revision/status or unresolved; LABO cannot decide admission","result":"handoff retained; admission execution/decision is not created"}
+      ],
+      "adoption_record":"2026-09-29 57-candidate decision row 80, exact L2/L11 hashes in current_evidence.labo_candidate.adoption"
+    },
+    {
+      "source_id":"HIL-FR-62",
+      "status":"adopted_bounded_current_condition; no legacy formal successor claimed",
+      "conditions":[
+        {"condition":"per HELIX task: first_pass, retry_count, proposal_diff_size, lint_violation_count, quality judge, effective cost","current":"LABO-L2/L11-065 task scorecard output; measurement definition/version/receipt where applicable; unknown rather than invented zero","result":"retained within candidate scope"},
+        {"condition":"effective cost includes API-equivalent unit price and retry; use-specific decisions","current":"LABO-L2-059 total-cost/quality boundary reused; LABO-065 carries source/currency/effective-time and owner decision identity/status or pending state","result":"retained by composition; owner makes actual disposition"},
+        {"condition":"trend/failure finding and effective-cost breakdown","current":"LABO-L2/L11-065 requires breakdown and trends only for same class/scope/definition/revision","result":"retained within comparable scope"}
+      ],
+      "adoption_record":"same exact conditional adoption row and pair as FR61; distinction from 067 repair metric and 068 total Attempt count is explicit"
+    },
+    {
+      "source_id":"HIL-FR-63",
+      "status":"current_partial_conditions; old specific route policy remains unretained",
+      "conditions":[
+        {"condition":"upper-tier defaults to low/medium effort; lightweight defaults to high effort","result":"not stated in checked current L2/L11 clauses; not inferred from the generic model/effort field"},
+        {"condition":"selection uses task risk and bench/scorecard","current":"LABO-059 compares same task-class/snapshot/scope/oracle/protocol effort evidence; INTELLIGENCE-010 uses task attributes and evidence for a proposal","result":"general evidence-driven proposal retained, but exact default routing rule absent"},
+        {"condition":"quality insufficiency does not preselect more effort; compare model/runtime escalation and choose minimum effective configuration","current":"INTELLIGENCE-010/011 proposal and comparison responsibilities; owner/OS boundary preserved","result":"specific ordering/minimum-effective-configuration oracle absent"},
+        {"condition":"decision/comparison/retry-escalation/policy-exception outputs","result":"some placement/comparison proposal exists; no exact FR63 policy exception and retry/escalation lineage contract identified"}
+      ],
+      "negative_oracle":"For the same risk and scorecard evidence, hard-coding upper-tier high or lightweight low, or responding to quality loss only by raising effort without comparing model/runtime alternatives, would pass the current generic placement proposal wording; therefore FR63's specific route policy is not proven retained.",
+      "action":"Keep original rule as unresolved source condition for root candidate-scope decision. This audit does not choose provider classes, fixed routing defaults, or implementation."
+    },
+    {
+      "source_id":"HIL-FR-64",
+      "status":"general security meaning partially represented; selected concrete sandbox conditions remain unproven",
+      "conditions":[
+        {"condition":"versioned template defines third-party CLI environment; template digest output","current":"SECURITY-004 integrity/revision/digest applies to configurations generally; SECURITY-007 requires constraints reach Worker environment","result":"configuration integrity and applied constraints retained generally; a third-party worker template digest and manifest are not explicit"},
+        {"condition":"write limited to issued worktree/scratch","current":"SECURITY-003 worktree/environment isolation and SECURITY-007 write-path limitation","result":"scope/write boundary retained; exact issued worktree-or-scratch only rule not found"},
+        {"condition":"network restricted to inference API endpoint host+path allowlist; measured egress deviation","current":"SECURITY-006 endpoint/path allow decisions; SECURITY-007 applies network restrictions; SECURITY-009 propagates anomalous communication/runtime deviation","result":"allow/deny/network failure outcome retained generally; measured egress-versus-template comparison evidence is not explicit"},
+        {"condition":"credential, .helix/, harness DB not bind-mounted","current":"SECURITY-005 raw credential/store exclusion; SECURITY-003 project/environment isolation","result":"credential is covered; explicit .helix and harness DB non-bind guarantee not found"},
+        {"condition":"third-party CLI settings change by backup plus merge/append only","result":"no corresponding current L2/L11 guarantee found; exact vendor-settings mutation policy remains unresolved"},
+        {"condition":"template drift/egress measured deviation fail-close and quarantine; finding/quarantine receipt","current":"SECURITY-007 stops for unapplied/unknown controls; SECURITY-009 routes runtime deviation/anomalous communication quarantine","result":"fail-closed/stop and quarantine meaning is generally present; exact template/egress mismatch finding/receipt join is absent"}
+      ],
+      "negative_oracle":"A worker can be isolated by project/worktree and allowed endpoints yet receive a bind-mounted .helix or harness DB, or alter CLI settings without backup/merge-only handling; the cited generic current conditions do not expressly reject those cases. A template/effective-egress mismatch also lacks an explicit measurement relation in the cited requirement text.",
+      "action":"Retain the concrete residual; do not infer that old Sandbox actor, physical template format, or vendor-specific implementation is selected."
+    },
+    {
+      "source_id":"HIL-FR-65",
+      "status":"environment minimization and timeout represented generally; transport/close/lint conditions remain unproven",
+      "conditions":[
+        {"condition":"nested CLI environment variables minimized by allow-list","current":"SECURITY-007 environment-variable minimization and application evidence","result":"general environment guarantee retained; allow-list mechanism is not named"},
+        {"condition":"prompt passed via stdin","result":"no current L2/L11 clause found requiring stdin transport or excluding prompt in argv/environment"},
+        {"condition":"explicitly close stdin-consuming CLI input","result":"no current L2/L11 clause found"},
+        {"condition":"wall-clock timeout required","current":"SECURITY-007 requires timeout controls and applicable L11 confirms constraint application","result":"timeout requirement represented generally; old specific delegation contract is not separately adopted"},
+        {"condition":"lint/doctor detects delegation without timeout","result":"no current L2/L11 lint/doctor condition found"},
+        {"condition":"sanitized env manifest, timeout setting, lint/doctor finding outputs","result":"environment and timeout application evidence is expected; the exact combined output is absent"}
+      ],
+      "negative_oracle":"A nested CLI can receive a prompt through a process-visible argv value, leave stdin open, or have no timeout while a generic execution contract only says that environment and timeout controls are considered; the specific FR65 transport, close, and lint finding cannot be concluded from that general clause.",
+      "action":"Retain those conditions for root to decide candidate scope. No nested CLI/provider or transport implementation is selected by this audit."
+    }
+  ],
+  "authority_and_successor": {
+    "FR61_FR62": "Exact LABO-L2/L11-065 revision has conditional adoption by the 2026-09-29 decision. This bounded adoption is distinct from complete old source/consumer closure and from implementation/execution.",
+    "FR63_FR65": "No current formal successor assignment was established by this audit. Related requirements are recorded as exact partial condition destinations, not successor IDs.",
+    "historical_oracles": "HR/HAC/HAT/HOT references specify old design/oracle context only and do not establish current adoption or executed test status."
+  },
+  "validation": {
+    "method": "Read old source/IR and scoped consumers; inspect exact current L2/L11 sections and decision row; compare individual clauses and negative cases; hash source and current sections.",
+    "json_md_pair": "This JSON is paired with ir153-hil-fr61-65-current-pairs-condition-audit-2026-10-02.md.",
+    "root_shared_gate_or_137": "not run; assigned to root"
+  }
+}
