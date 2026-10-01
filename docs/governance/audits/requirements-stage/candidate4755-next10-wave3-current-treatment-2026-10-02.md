@@ -109,3 +109,7 @@ line 46はduplicate finding/deltaによる無限の別episode生成を拒否す�
 ## 静的検証
 
 paired JSONは10 source linesと隣接physical context、tracked ledger record SHA、source file SHA、主要本文・decision・receipt・registerのfull SHA、および採択/候補section digestを記録する。JSONのID一覧からtracked source ledgerのIDを照合できる。旧archive runtime/CLI/test/CIを実行していない。候補の採択・実動作・closureを主張しない。
+
+## 起草基準後のread-after（#2503、2026-10-02）
+
+上記10行の比較・pinはmain64a9時点の履歴である。最新main `360eec2d11dd2b838206b6096c7226aaefb8252c` では、#2503の`MPR-RC-HELIXINTELLIGENCE-L2-075-002`が000051の原文を追加し、6項目それぞれの失敗項目と欠落／不一致に対応する個別reasonをL2とL11へ保持している。選択9atomのr2 receiptをpaired JSONのcurrent_follow_upへ固定した。したがって000051の『個別reason出力が候補にない』という残差は起草時の記録であり、現時点の候補本文には保持されている。候補は未採択で、formal successor・runtime受入・全source closureは成立しない。残る9行の未証明条件を075追補から充足扱いしない。

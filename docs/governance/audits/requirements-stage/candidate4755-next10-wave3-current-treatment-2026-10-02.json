@@ -154,7 +154,7 @@
     "HELIXINTELLIGENCE-L2-009": "sha256:8f865ccfcf8a61614e2e5f71e3902886d2f9e778a8be3dc836cba73f3de5a8d4",
     "HELIXINTELLIGENCE-L2-011": "sha256:03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
     "HELIXINTELLIGENCE-L2-012": "sha256:f13b596f6fbffb042b689eadb9ea843053ad3cf25f371fb9148bbdaf3ac68964",
-    "HELIXINTELLIGENCE-L2-073": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17462a2eb5",
+    "HELIXINTELLIGENCE-L2-073": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
     "HELIXINTELLIGENCE-L11-073": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
     "HELIXINTELLIGENCE-L2-075 candidate": "sha256:3fd41ea6aac29e7f819398a4e7d6128ebfdf1053019c69811ac4eaf1f59f2f0d",
     "HELIXINTELLIGENCE-L11-075 candidate": "sha256:9ccec35ca87d035abff2e2a4f6505719af18f2b07daab3d0d1d7533e93add7ce",
@@ -316,7 +316,7 @@
       "current_refs": [
         "HELIXINTELLIGENCE-L2-012 lines 114–118; digest sha256:f13b596f6fbffb042b689eadb9ea843053ad3cf25f371fb9148bbdaf3ac68964; adopted at decision row 59.",
         "HARNESS-L2-004 line 117 (partial general unknown rule).",
-        "HELIXINTELLIGENCE-L2/L11-073 digests sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17462a2eb5 / sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1; adopted at 2026-09-29 decision row 86; limited source scope excludes this AAFD-R08 delta condition."
+        "HELIXINTELLIGENCE-L2/L11-073 digests sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5 / sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1; adopted at 2026-09-29 decision row 86; limited source scope excludes this AAFD-R08 delta condition."
       ],
       "closure_proven": false,
       "formal_successor_proven": false,
@@ -708,5 +708,20 @@
     "old_runtime_ci_test_cli_executed": 0,
     "specific_residual": "000051: candidate 075 states per-field incomplete/rejected outcomes but omits an individual reason for each mutation rejection, required by AAFD-AC-002. This needs a limited amendment to candidate 075 if root accepts this source-level finding; no new identity proposed.",
     "adopted_exact_condition_destinations_found": 0
+  },
+  "current_follow_up": {
+    "main_commit": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+    "construction_base_commit": "64a9fdd2757197f84172d7eda8b9ccb7f92db86a",
+    "source_item_id": "LEGACY-CAND-LINE-000051",
+    "candidate_identity": "HELIXINTELLIGENCE-L2-075",
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-075-002",
+    "merged_pr": 2503,
+    "state": "unadopted candidate; authority_effect none",
+    "result": "The original per-field reason residual is now retained in the candidate L2/L11 for the six identity/evidence mutations. Original construction-time assessments/pins remain historical; no PO adoption, formal successor or runtime acceptance is inferred.",
+    "l2_section_sha256": "sha256:c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6",
+    "l11_section_sha256": "sha256:b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
+    "receipt_ref": "docs/governance/audits/requirement-registration/aafd-proposal-lifecycle-coverage-receipt-2026-10-02-r2.json",
+    "receipt_sha256": "4252548ec3b3769a54ac02d40e928c84e128eb26c7d2019309637cb061ba40c8",
+    "other_nine_rows": "Their source-specific unverified conditions remain pending; no closure is inferred from the 075 revision."
   }
 }
