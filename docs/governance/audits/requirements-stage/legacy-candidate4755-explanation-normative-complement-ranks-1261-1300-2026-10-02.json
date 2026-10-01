@@ -630,7 +630,7 @@
     "All selected source rows are effective classification explanation; lexical marker-negative does not mean the Japanese clauses lack normative force.",
     "A routing entry may list current/adopted requirement IDs, but it is not itself the PO decision; selected same-ID receipts further qualify carried versus preserved_pending semantics.",
     "HARN L2:278 labels FRS source-derived meaning candidates awaiting re-adoption. Fixed HDEC adopted HARNESS-L2-010 and HELIXOS-L2-014 identity/pair bytes; this does not automatically admit all exact old names, full condition details, or old approval.",
-    "F6 OS L2:822/L782 cite the selected request asset with broad L21-67 range; only coverage receipt atom_id entries are direct source-line-ID matches. This range is not a substitute for exact L2/L11 acceptance evidence.",
+    "F6 OS L2:782 cites the selected request asset with broad L21-67 range; :822 cites L23-67; only coverage receipt atom_id entries are direct source-line-ID matches. This range is not a substitute for exact L2/L11 acceptance evidence.",
     "Old archive/runtime/CLI/hook/test/CI were not executed."
   ],
   "rows": [
@@ -2807,7 +2807,7 @@
       "physical_line_number": 25,
       "exact_source_line_text": "利用者は、単一または密結合したbehavior contractを `Functional Release Slice` として識別し、source authority、",
       "semantic_family": "br001-functional-unit",
-      "semantic_reading": "単一/密結合behavior contractをFunctional Release Sliceと識別し、source authority等の証拠を独立確認後Module一部へ昇格可能とするFRS-BR-001の開始行（末尾は次行へ続く）。",
+      "semantic_reading": "単一または密結合したbehavior contractをFunctional Release Sliceとして識別する条件の開始行。source authorityの列挙で切れ、必要証拠や昇格条件は次の物理行へ続くため、この行だけで結論づけない。",
       "legacy_context": {
         "section_heading": "### FRS-BR-001 機能単位の独立昇格",
         "nearby_physical_lines": [
@@ -2835,7 +2835,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "直接route/receiptがHARNESS-L2-010に結ぶsource atom。receiptはcarried、ただしF6 HARN L2:278はFRS由来の意味を再採否待ちcandidateとしており、この行全体を現行authorityへ昇格しない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -3031,7 +3031,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "同じ旧atom_idへのHARNESS-L2-010 carried receiptがある。候補範囲、現行pack境界、receiptの処置を区別し、旧Slice/Module名を現行identityにしない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -3199,7 +3199,7 @@
       "physical_line_number": 30,
       "exact_source_line_text": "利用者は、Bundleへ収載するSliceと除外するSliceをexact setで確認できなければならない。未指定のSlice、未適格なSlice、",
       "semantic_family": "br002-explicit-membership",
-      "semantic_reading": "Bundleに含める/除外するSliceをexact setで確認し、未指定・未適格を暗黙収載しないというFRS-BR-002文の前半。",
+      "semantic_reading": "Bundleへ収載するSliceと除外するSliceをexact setで確認する条件。未指定・未適格なSliceの列挙で切れ、扱いの述語は次の物理行へ続くため、この行だけで禁止条件を完結させない。",
       "legacy_context": {
         "section_heading": "### FRS-BR-002 明示的な収載と除外",
         "nearby_physical_lines": [
@@ -3227,7 +3227,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "source IDごとにH-L2-010へのdocumented_relationとcarried receiptがある。現行のHARNESS-L2-010内容に合う範囲のtraceで、旧Bundle identityの採択ではない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -3423,7 +3423,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "receiptのcarriedは同じsource IDに対するcoverage記録であり、stable Bundleや旧channelを現行へ承認しない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -3619,7 +3619,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "route/current receiptはH-L2-010にsource atomを明示してcarried。旧channel enumはHARN L2:283で未採択とされる。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -3815,7 +3815,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "同じsource-ID→H-L2-010 receipt carried relation。これは個別Slice/Module実体の現行採択や昇格記録ではない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -4002,7 +4002,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "effective explanation/routingに同一IDのcurrent/adopted requirement bindingは記録されない。機能類似だけで採択を足さない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -4159,7 +4159,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "同一ID receipt bindingなし。現行pairのFRS-BR-004 family statementとの類似は比較に留める。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -4333,7 +4333,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "routingはH-L2-010とH-L2-017の関連を記録するがadopted IDは010だけ。receiptはatom carried。L2-017はcurrent related IDとしてもsource atomの直接adopted mapではない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -4562,7 +4562,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "receipt same-ID carriedはH-L2-010範囲の記録。HARNESS-L2-017の製品Release Port条件へこの旧Slice-specific rollback全体を割り当てない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID is an `atom_id` in the HARNESS L2-010 coverage receipt with `carried`; PO adopted HARNESS-L2-010 identity. That receipt has authority_effect=none and does not override the separate re-adoption boundary or promote the whole legacy source.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -4774,7 +4774,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "route current/adopted IDsなし。後続行の要求全件根拠をこの列挙へ遡及して付加しない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -4931,7 +4931,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "現行F6ではBR-006 family相当はOS側にあり、旧source atomの個別current bindingやPO adoptionはroute/receiptにない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -5088,7 +5088,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "同一ID mappingなし。shadowの旧語を現行の候補state machineへ機械転写しない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -5245,7 +5245,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "route current/adopted IDsなし。現行OS/HARNESSのcoverage類似条件とのsource-row mappingは未記録。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -5402,7 +5402,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "同一ID receipt bindingなし。source semanticsを現行のwave数や管理分母にしない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822"
@@ -5576,7 +5576,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "routeはOS-L2-014へ関連・adopted relationを示す。OS receiptは同一atomを部分carried:既存CI改善/待ち時間測定ではなく検証済みpackの段階releaseへ意味を変更し、wait/retry measurementを後続候補へ残す。現行OS L2 BR-008は既存CI先行使用を不採用。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID appears in OS L2-014 receipt as partially carried into stage-release semantics; current OS FRS-BR-008 rejects existing-CI-first use.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID appears in OS L2-014 receipt as partially carried into stage-release semantics; current OS FRS-BR-008 rejects existing-CI-first use.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -5809,7 +5809,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "routeのadopted_current_requirement_ids=OS-L2-014とsource atom receiptが食い違う: OS L2-014 receiptはpreserved_pending、Cursor条件を本候補で扱わずWorker要求源へ送る。採択済みとは扱わない。",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID appears in OS L2-014 receipt as `preserved_pending`; OS L11 routes Cursor-specific condition to Worker requirements, not stage-release acceptance.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Exact same ID appears in OS L2-014 receipt as `preserved_pending`; OS L11 routes Cursor-specific condition to Worker requirements, not stage-release acceptance.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -6049,7 +6049,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "same-ID receipts diverge by target: OS-L2-014 says carried in stage-release meaning; HARNESS-L2-010 receipt says preserved_pending. Route ledger lists both as adopted relation. Keep this difference visible; do not flatten it into one adopted atom. Current OS L2:624/633 supports pack safety gate, but HARNESS source-derived scope remains pending. ",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Same ID has split receipt dispositions: OS L2-014 carries pack safety closure; HARNESS L2-010 marks source atom `preserved_pending`. Do not treat as one cross-mechanism adoption.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Same ID has split receipt dispositions: OS L2-014 carries pack safety closure; HARNESS L2-010 marks source atom `preserved_pending`. Do not treat as one cross-mechanism adoption.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
@@ -6355,7 +6355,7 @@
         "asset_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20"
       },
       "marker_negative_normative_boundary": "multiple same-ID receipts record partial carried semantics: HARN L2-010 shared with 021/022 retains composite verification, disallows Lite/Full names; OS L2-014 carries stage composition and replaces names with v0.x/v1.0. Route maps 010/022/OS014 as adopted, while HARN-L2-021 is relation-only. Current candidate IDs do not adopt old exact names/workflow wholesale.",
-      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:822 (L21–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Same ID is partially carried in HARNESS/OS receipts: composite verification is retained, but Lite/Full names are not; HARNESS receipt lists shared uses while route-adopted IDs exclude HARNESS-L2-021.",
+      "fixed_F6_relation": "Same old requests asset and this physical line are within the broad source span cited at OS L2:782 (L21–67) / :822 (L23–67). This is direct source-range grounding, not a mapping for every row. HARNESS L2:276 points to the old file; L2:278 explicitly keeps derived FRS meaning awaiting re-adoption. Same ID is partially carried in HARNESS/OS receipts: composite verification is retained, but Lite/Full names are not; HARNESS receipt lists shared uses while route-adopted IDs exclude HARNESS-L2-021.",
       "fixed_F6_locators": [
         "HARNESS L2:276,278",
         "OS L2:782,822",
