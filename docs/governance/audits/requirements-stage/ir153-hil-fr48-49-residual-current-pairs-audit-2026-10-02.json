@@ -1,0 +1,232 @@
+{
+  "audit_id": "IR153-HIL-FR48-49-residual-current-pair-recheck-2026-10-02",
+  "baseline": {
+    "commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+    "worktree": "/home/tenni/.helix-worktrees/hil-fr48-49-residual-audit",
+    "branch": "codex/hil-fr48-49-residual-audit"
+  },
+  "scope": "latest adopted L2/L11, associated candidate text and exact PO decisions checked for residual old HIL-FR-48 stale-revision and HIL-FR-49 different-snapshot conditions. No L2/L11/candidate body changed.",
+  "source_pins": {
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "legacy_l1": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "lines": [
+        {
+          "id": "HIL-FR-48",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 138,
+          "line_sha256_no_newline": "e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+          "text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |"
+        },
+        {
+          "id": "HIL-FR-49",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 139,
+          "line_sha256_no_newline": "58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+          "text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |"
+        },
+        {
+          "id": "HIL-NFR-29",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "line": 209,
+          "line_sha256_no_newline": "f30d5a844de9d622f8754b5b9ace72e74dc44886635095de76183d544678c9a3",
+          "text": "| **HIL-NFR-29** | Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。 |"
+        }
+      ]
+    },
+    "legacy_ir_requirements": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "FR48_object_digest": "sha256:af4b0590c4f8545fe3525ac2e320d77157b6204507e8021e162148bd911b392d",
+      "FR49_object_digest": "sha256:4e55211b184f49ef6a3380c6b6de4bfd2e323952128e58122b45230b7d27ef7d"
+    },
+    "legacy_assertion_cases": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "file_sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "refs": [
+        {
+          "case_id": "HST-CASE-031-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 304,
+          "line_sha256_no_newline": "f72396e38c30d681c7f2134d44eed56497fd4e141680ce522db99013b24d87a4",
+          "text": "| HST-CASE-031-04 | HST-HIL-031 | HIL-NFR-29 | derived_from target digestが旧版 | vertical pairを評価する | ledger_ready | stale | pair receipt stale | HIL_LAYER_VERTICAL_EDGE_STALE | FX-HST-031-04 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-07",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 307,
+          "line_sha256_no_newline": "585ffba4ac01ea449971044a2e70834584cc0a06aad71bcfbd0127658f0401d5",
+          "text": "| HST-CASE-031-07 | HST-HIL-031 | HIL-NFR-29 | pairのsemantic revisionが不一致 | vertical pairを評価する | ledger_ready | stale | pair receipt 0件 | HIL_LAYER_VERTICAL_REVISION_MISMATCH | FX-HST-031-07 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-08",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 308,
+          "line_sha256_no_newline": "4be55c6100b2542c84642e10939af71773fece233736c7525f4f81b520e3d469",
+          "text": "| HST-CASE-031-08 | HST-HIL-031 | HIL-NFR-29 | pairのsource snapshotが不一致 | vertical pairを評価する | ledger_ready | stale | pair receipt 0件 | HIL_LAYER_VERTICAL_SNAPSHOT_MISMATCH | FX-HST-031-08 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-032-12",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 320,
+          "line_sha256_no_newline": "ac2dfc4afd1d9698c2a99a52d9be21c5489b53f97a22dc33aef79c92a591cab7",
+          "text": "| HST-CASE-032-12 | HST-HIL-032 | HIL-NFR-29 | designとverification snapshotが不一致 | horizontal pairを評価する | ledger_ready | stale | pair receipt 0件 | HIL_LAYER_VPAIR_SNAPSHOT_MISMATCH | FX-HST-032-12 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-09",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 399,
+          "line_sha256_no_newline": "84ce6f3e0fc79bf682d4a8efaafe84042d3aa8875358c58949b108c71ed8477a",
+          "text": "| HST-CASE-031-09 | HST-HIL-031 | HIL-FR-48 | 隣接layerのdownstream/backprop edgeとrevision不整合fixtureがある | Vertical Ledger Pair Gateを実行する | assertion_input_ready | assertion_pass | 双方向かつ同一意味revisionのpairだけを受理する | HIL_LAYER_VERTICAL_PAIR_INCOMPLETE | FX-HST-031-09 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-032-14",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 400,
+          "line_sha256_no_newline": "ff6f45121dde209de5c9d8357e7cba1fe9d44de164ac134bef61658aafcfb7f5",
+          "text": "| HST-CASE-032-14 | HST-HIL-032 | HIL-FR-49 | 正規V-pairのdesign、verification、oracle、snapshot欠落fixtureがある | Horizontal V-Pair Gateを実行する | assertion_input_ready | assertion_pass | 左右双方向・同一oracle/snapshot・実行済みのpairだけをgreenにする | HIL_LAYER_VPAIR_INCOMPLETE | FX-HST-032-14 | design-defined | not-implemented |",
+          "execution_state": "design-defined / not-implemented"
+        }
+      ]
+    },
+    "source_asset_read_only": true
+  },
+  "current_file_pins": {
+    "harness_l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "file_sha256": "e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4"
+    },
+    "harness_l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "file_sha256": "2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82"
+    },
+    "os_l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "48c35d7ef629d99305aac79e548e638057e3ffe728976bff82e3ed1008e093fe"
+    },
+    "os_l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "3faf77574ffc6d33720e2d882cd3c7d30268b9103fb76054d1837f81467a413a"
+    }
+  },
+  "paired_requirements": [
+    {
+      "identity": "HARNESS-L2/L11-040-002",
+      "authority": "adopted",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md row45",
+      "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "destination": "catalog, layer/pair/row fields, layer snapshot/coverage contract; no standalone stale-revision pair rejection oracle."
+    },
+    {
+      "identity": "HARNESS-L2/L11-055-001",
+      "authority": "adopted",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md row40",
+      "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "l2_section_sha256": "9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+      "l11_section_sha256": "f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a",
+      "destination": "selected HIL-FR-48 vertical gate atoms only: bidirectional edges, descent/backprop findings, granularity/aggregate. Stale/semantic-revision/snapshot mismatch explicitly excluded."
+    },
+    {
+      "identity": "HARNESS-L2/L11-056-001",
+      "authority": "adopted",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md row41",
+      "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "l2_section_sha256": "993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0",
+      "l11_section_sha256": "9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047",
+      "destination": "selected HIL-FR-49 canonical V-pair atoms only: six pairs, feedback, missing side, oracle identity/execution. Different-snapshot/stale cross-condition explicitly excluded."
+    },
+    {
+      "identity": "HARNESS-L2/L11-063-001",
+      "authority": "adopted",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md row48; row72 limits this to three selected conditions and keeps version unspecified",
+      "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "l2_section_sha256": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "l11_section_sha256": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+      "destination": "separate freeze-eligibility closure: selected scope source snapshot/authority revisions; all required typed edges and L11 oracles bind to same scope and target revision; missing/stale/change mismatch, incomplete closure or old receipt after dependency change cannot return eligible. This is a distinct downstream freeze guard, not a revision of 055/056 or formal rehome of FR48/49."
+    },
+    {
+      "identity": "HELIXOS-L2/L11-033-001",
+      "authority": "adopted",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md row33",
+      "l2_section_sha256": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "l11_section_sha256": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+      "destination": "same-snapshot replay of selected engine/detector runs, not design/verification V-pair snapshot equivalence; not mapped to FR48/49."
+    }
+  ],
+  "residual_findings": [
+    {
+      "source": "HIL-FR-48 line 138: stale revision rejection",
+      "direct_gate_result": "055 selected source does not include it; 040 is catalog only.",
+      "other_current_guarantee": "063-001 adopted L2/L11 prevents freeze eligible when a selected freeze closure has stale/mismatched required source/edge/oracle revision or carries an old receipt across dependency revision change.",
+      "result": "No current freeze-eligibility gap evidenced for an in-scope closure. The stale vertical-pair output is protected at the separate freeze boundary, but old FR48 source atom remains held and is not formally rehomed. Do not claim 055 directly emits stale rejection or whole FR48 successor closure."
+    },
+    {
+      "source": "HIL-FR-49 line 139: different snapshot rejection",
+      "direct_gate_result": "056 selected source excludes it; HST-CASE-032-12 is only old design-defined oracle.",
+      "other_current_guarantee": "063-001 adopted freeze contract binds selected atoms to a fixed source snapshot/authority revision and requires typed edge/oracle closure at same scope/target revision; changed source digest/old receipt cannot yield eligible.",
+      "result": "No current freeze-eligibility gap evidenced when the pair is part of a selected freeze closure and snapshots are represented in that fixed source/digest binding. The old distinct-snapshot source atom remains held; 063 is not a direct 056 pair-specific snapshot comparator and is not a formal FR49 successor. Avoid claiming standalone 056 rejects every same-label/different-content snapshot case."
+    }
+  ],
+  "negative_oracle_crosswalk": [
+    {
+      "case": "HST-CASE-031-04",
+      "source_line": 304,
+      "condition": "derived_from target digest is old",
+      "current_destination": "063 stale source/edge/oracle dependency closure; no separate 055 adoption."
+    },
+    {
+      "case": "HST-CASE-031-07",
+      "source_line": 307,
+      "condition": "pair semantic revision mismatch",
+      "current_destination": "063 same-scope/target-revision edge/oracle closure; 055 source atom remains excluded."
+    },
+    {
+      "case": "HST-CASE-031-08",
+      "source_line": 308,
+      "condition": "pair source snapshot mismatch",
+      "current_destination": "063 selected fixed source snapshot/digest plus same-scope target-revision closure; 055 source atom remains excluded."
+    },
+    {
+      "case": "HST-CASE-032-12",
+      "source_line": 320,
+      "condition": "design and verification snapshots differ",
+      "current_destination": "063 freeze closure only when this V-pair and both artifacts are within the selected frozen scope; 056 source atom remains excluded."
+    },
+    {
+      "case": "HST-CASE-031-09 / 032-14",
+      "source_lines": [
+        399,
+        400
+      ],
+      "condition": "old summary cases require pair same revision / same snapshot; design-defined and not implemented",
+      "current_destination": "reference only; not additional source atoms nor executed results."
+    }
+  ],
+  "source_holding_and_authority": {
+    "fr48_49_selected_atom_partition_receipt": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-outcome-coverage-receipt-2026-09-29.json sha256 c17aaaa42e516c153f8a06c11907c9d7c6b34fb92a2a6d6cd7ab39f139c4f3a7; source JSONL sha256 5cc3d417beefbd224391c73da09527f0e73ba6f8f43ef31b7512fd75de17910f; 8 selected atoms; stale/different snapshot held outside atom set.",
+    "ir_holding": "MPR-SH-IR-003 still holds HIL-FR-48/49 rows preserved_pending_rehome with successor_requirement_ids empty; 063 adoption does not rewrite this status or formally assign successor.",
+    "063_receipt_history": "hr17-residual-coverage-receipt-2026-09-29.json sha256 a4e0e656275cf5d942741af6fdca6dfcfb1b0ffcd6c395ad6abb6d44a45d8b1f says pre-decision authority_effect none/unadopted; later live26 decision row48 adopted exact pair digests. Interpret as historical receipt metadata, not current adoption status.",
+    "po_scope": "live26 decision row72 adopts 063 only for selected three source conditions; not a wholesale HIL-17 or IR closure."
+  },
+  "decision": {
+    "new_candidate_needed_for_current_freeze_eligibility": "no, adopted 063-001 has explicit same-scope/revision closure and stale dependency rejection for selected freeze operations.",
+    "formal_legacy_rehome": "not claimed; FR48/49 residual source atoms remain held.",
+    "further_scope_if_requested": "A standalone pair-gate status/result for all HIL-FR48 stale and FR49 snapshot mismatch combinations is not directly specified by 055/056; adding it would extend their adopted scope and needs a reserved candidate ID/human meaning disposition before drafting. No candidate ID reserved or invented here."
+  },
+  "verification": {
+    "JSON source line hashes checked": true,
+    "legacy runtime/test/CI run": false,
+    "new generation runtime/test run": false,
+    "common 8 gates run by worker": false,
+    "137 run by worker": false,
+    "tracked requirements/decisions edited": false
+  }
+}
