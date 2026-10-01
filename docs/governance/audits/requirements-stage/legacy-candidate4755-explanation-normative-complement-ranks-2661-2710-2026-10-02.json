@@ -2150,7 +2150,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::HELIX_World_Governance_v0_1",
-      "semantic_reading": "確認日を記録。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：確認日：2026-09-06。 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4644,
@@ -5270,7 +5270,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：status: draft_candidate 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4690,
@@ -5390,7 +5390,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：authority_status: proposed_pending_l3_confirmation 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4691,
@@ -5510,7 +5510,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：canonical_layer: L1 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4692,
@@ -5630,7 +5630,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：canonical_pair: L12 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4693,
@@ -5750,7 +5750,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::PLAN-L3-92",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：plan: PLAN-L3-92-world-governance 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4694,
@@ -6110,7 +6110,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：status: draft_candidate 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4704,
@@ -6230,7 +6230,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：authority_status: proposed_pending_l3_confirmation 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4705,
@@ -6350,7 +6350,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：canonical_layer: L3 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4706,
@@ -6470,7 +6470,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::document_start",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：canonical_pair: L10 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4707,
@@ -6590,7 +6590,7 @@
       "effective_classification": "explanation",
       "semantic_family": "world_governance",
       "semantic_function": "world_governance::PLAN-L3-92",
-      "semantic_reading": "旧候補のfrontmatter metadata。現行採択を示すものではない。",
+      "semantic_reading": "旧候補・確認記録の値を保持する：plan: PLAN-L3-92-world-governance 現行採択の根拠にはしない。",
       "source_line_ledger": {
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
         "line": 4708,
