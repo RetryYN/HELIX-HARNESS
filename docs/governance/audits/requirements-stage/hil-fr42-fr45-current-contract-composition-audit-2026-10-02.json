@@ -1,0 +1,262 @@
+{
+  "schema_version": "hil-fr42-fr45-current-contract-composition-audit.v1",
+  "audit_id": "hil-fr42-fr45-current-contract-composition-audit-2026-10-02",
+  "audit_mode": "read_only_static_old_source_to_adopted_contract_composition",
+  "created_against_revision": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
+  "origin_main_revision": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
+  "authority_effect": "none",
+  "formal_successor_assignments": 0,
+  "closure_claim": false,
+  "implementation_or_execution_claim": false,
+  "legacy_runtime_test_cli_ci_executed": false,
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "atoms": [
+      {
+        "identity": "HIL-FR-42",
+        "physical_line": 132,
+        "line_sha256": "346e683c5f9c58018a57c29e652b84b79612466a24a3df6124d271ac0ddeddb8",
+        "carry_forward_id": "REQSRC-LINE-01883",
+        "carry_forward_state": "explicit_identity_preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "meaning_clauses": [
+          "bidirectional source/directive -> requirement atom -> capability/service -> domain object -> API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gate edges",
+          "generate required obligations",
+          "pair-freeze rejects any unclosed, orphan, placeholder, unsupported N/A, or aggregate-only discharge",
+          "obligation graph, discharge receipt, coverage receipt, unresolved finding"
+        ]
+      },
+      {
+        "identity": "HIL-FR-45",
+        "physical_line": 135,
+        "line_sha256": "618f08eec7918d50938b2b09914da9be34524d5f9662b5bdfd1dfa43aed4b871",
+        "carry_forward_id": "REQSRC-LINE-01886",
+        "carry_forward_state": "explicit_identity_preserved_pending_rehome",
+        "successor_requirement_ids": [],
+        "meaning_clauses": [
+          "stable requirement ID and immutable revision",
+          "typed edges across source atom, canonical statement, requirement type, modality, priority, scope/non-goal, authority/rationale, acceptance oracle, owner, risk, capability/service, template applicability, design obligation",
+          "split/merge/rename/supersede/reject/N/A only with before/after semantic digest, all source atom dispositions, downstream stale, and review authority in a receipt"
+        ]
+      }
+    ],
+    "related_source_contract": {
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-17",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "46638389e09a375aa1059fb3b6d3321703bfb2763c3777b2c321e06d25bc1fa7",
+      "selected_meaning_slices": [
+        "BEHAVIOR",
+        "TRANSITION",
+        "FAILURE-EVIDENCE"
+      ],
+      "selected_by": "HARNESS-L2-063 adoption; not full HR-FR-HIL-17 or all listed requirement IDs"
+    }
+  },
+  "adopted_contract_revisions": [
+    {
+      "identity": "HARNESS-L2-040",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:45",
+      "registration": "MPR-RC-HARNESS-L2-040-002",
+      "adoption": "adopted",
+      "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "meaning_used": [
+        "layer/pair/row catalog",
+        "stable subject ID, row revision, source span, semantic digest, status, owner and typed upstream/downstream edges",
+        "same-revision coverage and incomplete/stale reporting"
+      ]
+    },
+    {
+      "identity": "HARNESS-L2-041",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:46; docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27",
+      "registration": "MPR-RC-HARNESS-L2-041-003",
+      "adoption": "adopted_exact_revision",
+      "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+      "meaning_used": [
+        "active template source span/revision/applicability extracted as individual atom or reasoned gap",
+        "fixed same bytes/revision/scope/applicability/extractor with different semantic digests is nondeterministic and unresolved"
+      ],
+      "status_note": "Decision line 27 adopts -003; stale L11 heading text saying unadopted is not authority."
+    },
+    {
+      "identity": "HARNESS-L2-053",
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:33",
+      "registration": "MPR-RC-HARNESS-L2-053-001",
+      "adoption": "adopted",
+      "l2_section_sha256": "ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587",
+      "l11_section_sha256": "c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f",
+      "meaning_used": [
+        "immutable asset ID and revision history",
+        "rename/move location history",
+        "split/merge/supersede before/after identities, relationship, history, authority, oracle, typed edge; missing or unclear correspondence stays unknown"
+      ],
+      "status_note": "Decision adoption takes precedence over stale candidate status phrasing in the section heading."
+    },
+    {
+      "identity": "HARNESS-L2-063",
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md:48",
+      "registration": "MPR-RC-HARNESS-L2-063-001",
+      "adoption": "adopted_for_selected_three_slices_only",
+      "l2_section_sha256": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "l11_section_sha256": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+      "meaning_used": [
+        "source/authority atom and challenge/disposition binding",
+        "all typed edge and L11 oracle closure for same target scope/revision",
+        "change receipt with before/after revisions, source/template/ledger identity, impacted edges/oracles and stale range",
+        "old receipt invalid after required input revision changes",
+        "unresolved gap/challenge/orphan/unsupported N/A/aggregate-only mapping/required oracle missing or unexecuted cannot become eligible"
+      ],
+      "scope_limit": "Selected BEHAVIOR, TRANSITION and FAILURE-EVIDENCE slices only; no full HR-FR-HIL-17 successor or all-ID closure."
+    },
+    {
+      "identity": "HELIXOS-L2-038",
+      "decisions": [
+        "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:61",
+        "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:35,38"
+      ],
+      "registrations": [
+        "MPR-RC-HELIXOS-L2-038-001",
+        "MPR-RC-HELIXOS-L2-038-002"
+      ],
+      "adoption": "-001 adopted; -002 and additional negative oracle adopted conditional on HARNESS-L2-041-003",
+      "l2_section_sha256": {
+        "001": "603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c",
+        "002": "c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013"
+      },
+      "l11_section_sha256": {
+        "001": "eabb68eaafc76f0080fbe9cb9c6904005c88b72e7cee9563f2515b4488de2e5d",
+        "additional_negative_oracle": "86287e73d09522940b2a07bf8f304135ff3d495904df055088f07fff077766ed"
+      },
+      "meaning_used": [
+        "snapshot/proposal bound to source/template/ledger revisions and digests, source atom set, authority ref, base digest and scope",
+        "stale or base/source digest/revision mismatch does not yield successful snapshot/append",
+        "non-atomic or nondeterministic finding is quarantined and preceding snapshot preserved"
+      ]
+    }
+  ],
+  "condition_mapping": [
+    {
+      "legacy_identity": "HIL-FR-42",
+      "condition": "source/directive, requirement atom, capability/service and typed bidirectional domain/design/oracle/gate relations",
+      "current_targets": [
+        "HARNESS-L2-040 adopted row/catalog/typed-edge contract",
+        "HARNESS-L2-041-003 adopted source-span/template-atom/gap/extractor contract",
+        "HARNESS-L2-063 adopted selected-slice source/authority and edge/oracle closure",
+        "HARNESS-L2-038 adopted selected-reverse capability-to-requirement/design/test disposition"
+      ],
+      "residual": "Scope remains selected and bounded; no formal successor or full HR-FR-HIL-17 closure."
+    },
+    {
+      "legacy_identity": "HIL-FR-42",
+      "condition": "required obligations and freeze fail-close for unresolved/orphan/placeholder/unsupported N/A/aggregate-only mapping",
+      "current_targets": [
+        "HARNESS-L2-041-003 individual atom or reasoned gap; empty/TBD/unextractable/duplicate are unresolved",
+        "HARNESS-L2-063 eligibility blocked by unresolved challenge, orphan/typed-edge mismatch, missing or unexecuted oracle, unsupported N/A, aggregate-only mapping, stale-range omission",
+        "HARNESS-L2-040 same-revision catalog and coverage"
+      ],
+      "residual": "Only adopted target revision/scope and the selected three HR slices are claimed."
+    },
+    {
+      "legacy_identity": "HIL-FR-45",
+      "condition": "stable requirement identity/revision and typed semantic fields/edges",
+      "current_targets": [
+        "HARNESS-L2-040 row identity/revision/source span/semantic digest/owner/upstream/downstream edges",
+        "HARNESS-L2-041 atom/gap with template revision/applicability and semantic digest",
+        "HARNESS-L2-053 immutable asset identity/revision lineage",
+        "HARNESS-L2-063 exact authority/source/revision/scope/edge/oracle freeze closure",
+        "HARNESS-L2-035 adopted source authority/rationale and acceptance contribution derivation"
+      ],
+      "residual": "Meaning mapping only; formal successor assignment remains zero."
+    },
+    {
+      "legacy_identity": "HIL-FR-45",
+      "condition": "change operation binds before/after digest, all atom disposition, downstream stale and review authority",
+      "current_targets": [
+        "HARNESS-L2-053 split/merge/supersede lineage and missing correspondence as unknown",
+        "HARNESS-L2-063 before/after revisions, source/template/ledger identity, impacted edge/oracle and stale range; atom disposition/challenge",
+        "HELIXOS-L2-038 exact revision/digest/base/source atom set/authority binding and mismatch/stale/quarantine handling",
+        "HELIXOS-L2-007/019 provenance, revision, correction history, stale and continuity separation",
+        "docs/governance/authority-state-model.md exact target-revision decision and digest fail-close"
+      ],
+      "review_authority_note": "FR-45 change authority maps to the exact target-revision/digest human decision and OS-038 authority reference. HARNESS-L2-063 independent review is template-gap-specific and is not used as a substitute for change authority.",
+      "residual": "No contract requires a particular field label or single JSON schema; a false acceptance must be demonstrated before adding a duplicate L2 requirement."
+    }
+  ],
+  "same_revision_mutation_counterexample": {
+    "scenario": "Keep the requirement ID and revision label but change canonical statement or source-backed requirement bytes.",
+    "expected_current_result": "Reject as stale/digest-mismatched or unresolved; preserve prior authority/current snapshot; do not mark current revision eligible/successful.",
+    "blocking_contracts": [
+      "HARNESS-L2-040 row semantic digest",
+      "HARNESS-L2-063 exact source authority/atom/target revision binding and old receipt invalidation after required input revision change",
+      "HELIXOS-L2-038 source/template/ledger/base digest and revision matching; -002 quarantine for non-atomic or nondeterministic finding",
+      "HARNESS-L2-041-003 fixed-input re-extraction digest comparison",
+      "docs/governance/authority-state-model.md fail-close: unknown human decision, revision mismatch or digest mismatch preserves original state and stops"
+    ],
+    "false_pass_demonstrated": false,
+    "candidate_071_created": false,
+    "reason": "No concrete input satisfying all adopted authority, semantic digest, exact revision, stale and writer contracts can be shown to pass with altered content. A new correctly reviewed target revision is a different operation and is not a stale-revision false pass."
+  },
+  "boundary_with_harness_l2_070": {
+    "other_scope": "FR41 template-revision migration meaning: old-to-successor applicability/schema/required-obligation delta, successor assignment for each old obligation, and explicit unhandled obligations.",
+    "fr42_fr45_scope": "Requirement ledger identity/revision, typed edges, authority, change receipt, source-atom disposition, downstream stale and snapshot/quarantine boundary.",
+    "non_overlap_rule": "Generic before/after digest and stale closure do not themselves establish semantic old-template-to-new-template obligation correspondence; template mapping likewise does not replace requirement revision/authority/writer contracts.",
+    "scope_change_claim": false
+  },
+  "pinned_files": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "9c1105d098f7be6771cdb675d28ef14631d026b6a606805e0235c10f62b5950e"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "0a3f324cbc1e94361219152eacd3b77831242e213bcfd7ab564e3cc4f4492663"
+    },
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+      "sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    }
+  ],
+  "validation": {
+    "old_physical_line_hashes_recomputed": true,
+    "decision_exact_revision_and_section_digest_checked": true,
+    "current_full_file_hashes_recorded": true,
+    "same_revision_false_pass_attempted_as_contract_composition": true,
+    "runtime_test_cli_ci_not_run": true
+  }
+}
