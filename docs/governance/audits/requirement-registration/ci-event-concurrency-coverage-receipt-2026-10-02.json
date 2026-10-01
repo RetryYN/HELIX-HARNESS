@@ -6,15 +6,15 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:3f9a18340eebe4dbbdbd7c172c5f54f4289071271c927b7ca5edd28225ae7d4a",
   "candidate_digest_rule": "L2の「### HELIXOS-L2-118 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:c76c1442479125f54b31503785555f221abeb4ea4357ee2b4efad2769e893f3e",
-  "candidate_l2_line_start": 1434,
-  "candidate_l2_line_end": 1444,
+  "candidate_l2_file_sha256": "sha256:62a05c7d743050f6cf97458e501140ad0275d6847630cd3a59d1bf39144b51e3",
+  "candidate_l2_line_start": 1455,
+  "candidate_l2_line_end": 1465,
   "paired_acceptance_identity": "HELIXOS-L11-118",
   "paired_acceptance_digest": "sha256:720f1dcca06883dac492836cbdb36804c34a8df25546a4840a162c80fa15babe",
   "l11_digest_rule": "L11の「### HELIXOS-L11-118 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:4d737885db63352e88afd3508bac0dba68b64bd7c1a19f6fc4b6cef2472cd076",
-  "l11_line_start": 1025,
-  "l11_line_end": 1034,
+  "l11_file_sha256": "sha256:b6738a6d2c37c02ff0d6795fc71007835d560a91a595705a0850bafa7fbbbb1a",
+  "l11_line_start": 1043,
+  "l11_line_end": 1052,
   "source_lines_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを `atom_id SP source_line_sha256`（sha256:接頭辞を含む）で表し、LFで区切って連結する。末尾LFなし。",
@@ -345,5 +345,7 @@
       "final_register_record": "MPR-RC-HELIXOS-L2-118-001",
       "event": "Corrected final source-condition reading and candidate pair; registration digest and source atom hashes remain the corrected values. Single final MPR record retained as 118-001."
     }
-  ]
+  ],
+  "current_comparison_base_commit": "6265c512bae65789b177e38404c8266726799f46",
+  "integration_note": "Latest main prefix retained; historical comparison and draft correction history remain historical. 115/117 are now merged candidates, not adopted."
 }

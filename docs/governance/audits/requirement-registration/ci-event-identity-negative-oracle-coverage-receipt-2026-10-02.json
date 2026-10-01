@@ -1,0 +1,114 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-117-CIG-AC-001-2026-10-02",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-117",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:a0f7524b0f89e47d22933eb592bac2945a66cce96d289162aea966b0f7998d26",
+  "candidate_digest_rule": "L2の「### HELIXOS-L2-117 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "candidate_l2_file_sha256": "sha256:9c1105d098f7be6771cdb675d28ef14631d026b6a606805e0235c10f62b5950e",
+  "paired_acceptance_identity": "HELIXOS-L11-117",
+  "paired_acceptance_digest": "sha256:9ecfe84e612c3e66a9377ac64ca275e423c3f0f2a9a468e1c127e6dddb15c186",
+  "l11_digest_rule": "L11の「### HELIXOS-L11-117 」見出しから次の同階層「###」見出し、またはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "l11_file_sha256": "sha256:0a3f324cbc1e94361219152eacd3b77831242e213bcfd7ab564e3cc4f4492663",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ci-event-identity-negative-oracle-source-lines-2026-10-02.jsonl",
+  "source_atom_set_digest": "sha256:1b64d547280bfa6c840eb0748169fa4a41fb5e9f3a48c03d733805351e09eeab",
+  "source_atom_set_digest_rule": "atom_id昇順。各行をatom_id、半角空白、sha256:を含むsource_line_sha256で構成し、LFで連結する。末尾LFを付けずUTF-8 SHA-256とする。",
+  "source_collection_scope": "MPR-SH-CANDIDATE-003が保持する旧candidate 4,755非空行atomからLEGACY-CAND-LINE-000468一行だけを選択。旧CIG-AC-001の各identity facet欠落/改変拒否と決定的な正常対照条件のみ。隣接CIG-AC行、CIG-R要件行、旧runtime/test/CI/provider実装は含めない。選択source lineのidentity正本はsource-lines JSONLおよびlegacy source-line carry-forward ledgerであり、local auditのrowをsource pinとして使わない。",
+  "source_collection_atom_count": 1,
+  "candidate_input_atom_refs": [
+    "LEGACY-CAND-LINE-000468"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:1b64d547280bfa6c840eb0748169fa4a41fb5e9f3a48c03d733805351e09eeab",
+  "candidate_input_accounting_status": "1 selected source atom is mapped to the HELIXOS-L2/L11-117 unadopted candidate pair. no_loss is limited to this candidate scope mapping; source holding remains live and no formal successor, owner/applicability assignment, adoption, execution, or condition closure is claimed.",
+  "source_line_coverage_result": "candidate_input_scoped; formal_successor_owner_applicability_adoption_and_execution_unconfirmed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CANDIDATE-003 remains live; legacy candidate source holding, other CIG rows, formal successor, source owner, event applicability, adoption and source-condition closure remain unconfirmed."
+  ],
+  "preserved_pending_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "LEGACY-CAND-LINE-000468",
+      "source_holding_registration_id": "MPR-SH-CANDIDATE-003",
+      "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_file_sha256": "sha256:7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line": 14,
+      "source_line_sha256": "sha256:77c358b5bc3253bac4d39a55685fae93570d3e4288ca161de1a195b676eea412",
+      "source_text": "| `CIG-AC-001` | `CIG-R-01` | event class、PR ID、HEAD、run ID、attemptを一件ずつ欠落・改変する | generation identityが決定的に一致し、不正入力を個別拒否する |",
+      "source_identity": "ci-event-concurrency-generation-acceptance.md::CIG-AC-001",
+      "condition_atoms": [
+        "event class",
+        "PR ID",
+        "HEAD",
+        "run ID",
+        "attempt"
+      ],
+      "condition_relation": "For each listed field, test missing and altered input individually; reject invalid generation identity. Pair with valid identity control.",
+      "classification_history": "historical_candidate / draft_candidate / preserved_pending_atomization; meaning_change_applied=false; successor_requirement_ids=[]; decision_record=null",
+      "candidate_input": true,
+      "disposition": "candidate_scope_only; source holding remains live",
+      "relation": "HELIXOS-L2/L11-117 unadopted candidate input; no formal successor, owner transfer, applicability, adoption, execution, or closure is claimed.",
+      "atomization_rationale": "One exact selected AC row. The five listed identity facets and the individual reject outcome are retained together; adjacent CIG acceptance rows and CIG-R-01 requirement text are context only and are not additional candidate atoms.",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md#L14",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#LEGACY-CAND-LINE-000468"
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-004"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "6f859fc03c9add36d84eb153cb1832b26768d6d1",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "HELIX-OS 2026-09-28 PO decision fixed/adopted L1 target; parent adoption does not adopt L2-117/L11-117."
+  },
+  "parent_concept": {
+    "path": "docs/concept/helix-concept.md",
+    "source_commit": "6f859fc03c9add36d84eb153cb1832b26768d6d1",
+    "source_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "authority": "current concept bytes pinned as read; this does not claim a new PO decision for L2-117."
+  },
+  "accepted_pair_comparison": {
+    "accepted_requirements": [
+      "HELIXOS-L2-008",
+      "HELIXOS-L2-020"
+    ],
+    "accepted_l11": [
+      "HELIXOS-L11-008",
+      "HELIXOS-L2-020 acceptance section"
+    ],
+    "findings": "Accepted requirements bind CI to HARNESS obligations and exact HEAD/oracle/environment/run identity but do not require per-facet missing/altered negative oracles for event class, PR identity, HEAD, run ID, attempt, nor deterministic reproduction of the same generation identity from the same applicable facet set and values. NCI-OS-003/004 plus candidate L11 address generic pipeline/run binding, different HEAD, missing oracle and status distinctions; they do not enumerate CIG-AC-001 facet-by-facet missing/altered cases and repeated-input normal control. These are unadopted candidate conditions, not adopted evidence."
+  },
+  "po_decision_material": {
+    "source_semantics": "CIG-AC-001 individually removes or alters event class, PR ID, HEAD, run ID, attempt and rejects each invalid generation identity; a valid control must reproduce the same generation identity on every evaluation from the same selected scope and applicable facet set/values.",
+    "options": {
+      "A": "Treat all five literal fields as mandatory for every selected event scope, preserving the old row literally.",
+      "B": "For the selected event scope, applicability of the listed facets is explicit; require PR ID only where the selected event class applies it, and individually reject missing/altered applicable facets."
+    },
+    "recommendation": "B; preserves each listed facet and each negative oracle while avoiding an unsupported requirement for PR ID in non-PR event classes. Applicability is an explicit scope input; this candidate assigns no source owner.",
+    "impacted_requirements": [
+      "HELIXOS-L2-008/L11-008",
+      "HELIXOS-L2-020/L11-020",
+      "HELIXOS-L1-004",
+      "NCI-OS-003/004 candidate"
+    ]
+  },
+  "review_pins": {
+    "base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "po_decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "crosswalk": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md:24",
+    "nci_candidate": "docs/helix-os/candidates/next-generation-ci-requirements.md#NCI-OS-003",
+    "source_ledger": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#LEGACY-CAND-LINE-000468",
+    "latest_main_comparison": "7b9d1938fc7699404f68c2b87829df56dc6f690d",
+    "latest_main_concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "latest_main_os_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+  },
+  "registered_at": "2026-10-02T06:17:08+09:00",
+  "source_atom_file_sha256": "sha256:fd3eb6bcb2b8f412ec2608469a7e68ad0eb1e5c39b97bcd801d66301a5eb852d"
+}
