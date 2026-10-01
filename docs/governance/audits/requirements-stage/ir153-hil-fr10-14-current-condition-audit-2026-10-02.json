@@ -1,0 +1,432 @@
+{
+  "audit_id": "IR153-HIL-FR10-14-current-condition-audit-2026-10-02",
+  "base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+  "audit_mode": "static current-condition audit",
+  "scope": "FR10–14 only; not all FR01–60 and not IR153 closure. No old runtime/CLI/test/CI executed.",
+  "digest_methods": {
+    "physical_line": "SHA-256 exact line bytes with CR/LF removed",
+    "section": "heading through before next same-or-higher heading, trailing blank lines removed, one terminal LF",
+    "full_file": "SHA-256 exact file bytes"
+  },
+  "legacy_pins": {
+    "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "l1_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+    "ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "system_contracts_path": "docs/governance/requirements-source/requirements-ir/system_contracts.json",
+    "system_contracts_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+    "acceptance_cases_path": "docs/governance/requirements-source/requirements-ir/acceptance_cases.json",
+    "acceptance_cases_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+    "related_legacy_designs": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/specialist-agent-registry.md",
+        "sha256": "ed0fe0cb0ca669cb0555805f253f98ee291d301e52e72b49ad05bffc5b934a29",
+        "use": "registry version/digest, runtime allowlist, eligibility, drift/stale semantics; read-only"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/harness-agent-lifecycle.md",
+        "sha256": "894500dee389a2fab00961697bae4baa71427c5ffe1431bbc77592497b2b3fd7",
+        "use": "canonical contract vs projection, two-stage muster, lifecycle; read-only"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+        "sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+        "use": "§4–6 pipeline/effect/rollback semantics; read-only"
+      }
+    ]
+  },
+  "current_read_after": {
+    "commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+    "files_and_pins": {
+      "os_l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_file_sha256": "7e42c0da98306d7979c0c22ef7ba0e2f4c7344678ac972f5f9e99eccddaf7b1e",
+        "OS-017": {
+          "start_line": 662,
+          "end_line": 671,
+          "sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+        },
+        "OS-018": {
+          "start_line": 672,
+          "end_line": 681,
+          "sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+        },
+        "OS-019": {
+          "start_line": 682,
+          "end_line": 691,
+          "sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+        },
+        "OS-022": {
+          "start_line": 712,
+          "end_line": 721,
+          "sha256": "0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea"
+        },
+        "OS-023": {
+          "start_line": 722,
+          "end_line": 731,
+          "sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"
+        }
+      },
+      "os_l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_file_sha256": "9dd801826760a8be8a211901fe60cf738a2b3beabae350c1308b4814c5ffbfe1",
+        "OS-017": {
+          "start_line": 338,
+          "end_line": 344,
+          "sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+        },
+        "OS-018": {
+          "start_line": 345,
+          "end_line": 351,
+          "sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+        },
+        "OS-019": {
+          "start_line": 352,
+          "end_line": 358,
+          "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        },
+        "OS-022": {
+          "start_line": 373,
+          "end_line": 379,
+          "sha256": "844a21ece8560bc7fd0cad5b1982d96027847ac07a44518a85e5eab29539c7a8"
+        },
+        "OS-023": {
+          "start_line": 380,
+          "end_line": 386,
+          "sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+        }
+      },
+      "h_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_file_sha256": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
+        "047": {
+          "start_line": 1039,
+          "end_line": 1054,
+          "sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        },
+        "054": {
+          "start_line": 1154,
+          "end_line": 1163,
+          "sha256": "b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193"
+        },
+        "057": {
+          "start_line": 1180,
+          "end_line": 1189,
+          "sha256": "2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac"
+        }
+      },
+      "h_l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_file_sha256": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
+        "047": {
+          "start_line": 778,
+          "end_line": 792,
+          "sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2"
+        },
+        "057": {
+          "start_line": 896,
+          "end_line": 905,
+          "sha256": "8cc4692c5b2eb356809f30b47a3addb9206c0c4e0f4c11d9f505426cf7fe83e1"
+        }
+      },
+      "b_l2": {
+        "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+        "full_file_sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+        "007": {
+          "start_line": 150,
+          "end_line": 160,
+          "sha256": "9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee"
+        },
+        "008": {
+          "start_line": 161,
+          "end_line": 171,
+          "sha256": "90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e"
+        },
+        "009": {
+          "start_line": 172,
+          "end_line": 182,
+          "sha256": "2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01"
+        },
+        "020": {
+          "start_line": 414,
+          "end_line": 423,
+          "sha256": "2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d"
+        },
+        "025": {
+          "start_line": 464,
+          "end_line": 473,
+          "sha256": "dad26c150491fb7b31b6297acffd119b6390a675d79d2feedcc61fc0d857db12"
+        }
+      },
+      "b_l11": {
+        "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "full_file_sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+        "007": {
+          "line": 35,
+          "sha256": "0a8db31cc72480979870362aaaa1f112dc0297b4cc68b67af4300bee37794e11"
+        },
+        "008": {
+          "line": 36,
+          "sha256": "d66c4d7dfe60105c3af8abaaf579a189c480ff0833130afd0b4a67ccb6a6a70a"
+        },
+        "009": {
+          "line": 37,
+          "sha256": "a7a6aa6f3e8faaa86c12b49e7dadf447d3c2a9144824e4c47b4b68cc819ec409"
+        },
+        "020": {
+          "line": 60,
+          "sha256": "6c26fa91ddabab6ab95bd4b540cbbd2dff10e2594465170254d9016085d8306a"
+        },
+        "025": {
+          "line": 65,
+          "sha256": "c0584c0915475ea1e0fa06fa7e8a50267e47b5d322cbf495b90dbf1a8066641d"
+        }
+      },
+      "l_l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "full_file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "007": {
+          "start_line": 117,
+          "end_line": 124,
+          "sha256": "acf5320cccc03496897ab3f6bee06adc9195436cc8673fc0d360a751e2194fb9"
+        }
+      },
+      "l_l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "full_file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "007": {
+          "line": 51,
+          "sha256": "4a07ccb40c0ca6c2d63c8ee1b888127499365f44613be44b7a8bab9193f31bdb"
+        }
+      },
+      "i_l2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "full_file_sha256": "64b41a363f357c273f3cb68fb2be1221d42066b056655aab7922d569e65b3486"
+      },
+      "57candidate": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "osdecision": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "braindecision": {
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+      },
+      "labodecision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      "conceptdecision": {
+        "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+      },
+      "handoffdecision": {
+        "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+      }
+    },
+    "decision_interpretation": [
+      "HARNESS-047 PO decision row52 is conditional adoption of placement A; current L2 and L11 section digests equal decision row digests. The candidate metadata header is historical and is not authority.",
+      "OS decision fixed at f6dad2a adopts L2-014..029 including 017/018/019/022/023; current section digests equal fixed decision values.",
+      "BRAIN decision fixed at f6dad2a names adopted baseline and additional 020/025; LABO decision fixed at f6dad2a names 007. These are current adoptions, but they do not assign old HIL-FR atoms as successors.",
+      "Decision row/status authority is kept separate from source-atom assignment and implementation/runtime completion."
+    ]
+  },
+  "rows": [
+    {
+      "requirement_id": "HIL-FR-10",
+      "legacy_source": {
+        "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "l1_line": 100,
+        "l1_line_sha256": "98607f726a0fd0a7af99ad4e1be260795fa5b87ea62b7944c1dab8560b247fdb",
+        "raw_line": "| **HIL-FR-10** | Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt |",
+        "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+        "json_pointer": "#/HIL-FR-10",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": "Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt",
+        "statement_semantic_digest": "sha256:1fbb80b64b2182063ff3a301d80e56bace634c8b9e362d61d860c6cbc54bcd65",
+        "record_semantic_digest": "sha256:743b700701a2522c7be6c4146f187c8c64b62d191df0b7949c091a71215e0dad",
+        "assertion_id": "HIA-FR-010",
+        "system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-10",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "assessment": "not_held_as_current_adopted_pair",
+      "meaning_comparison": "Distinct Issue-admission summary vs completion-knowledge event types, promote/supersede/no-promotion receipt, and no-progress/raw-log-copy are not specified by the adopted current pairs read. OS-019 is event/evidence continuity, not memory compaction. BRAIN-007/008/025 governs provenance/version/adoption but not event separation or compaction outputs. HARNESS-057 explicitly holds old HIL-FR-10 outside its unadopted closure candidate. The 2026-09-24 decision limits HIL-FR-10 memory to Codex-Claude collaboration; this is a scope boundary, not proof of an adopted replacement.",
+      "next_action": "Keep source atom held. No formal successor or closure; resolve applicable product/authority scope before any new candidate."
+    },
+    {
+      "requirement_id": "HIL-FR-11",
+      "legacy_source": {
+        "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "l1_line": 101,
+        "l1_line_sha256": "68e73c87adccdc2274f983e0e292a9fb4a4f9a2c92145c629c8fd309832fa4d6",
+        "raw_line": "| **HIL-FR-11** | Agent Registryはlayer、drive、task-kind、context pack、skills、blind、generates、forbidden paths、verification patternsをHARNESS正本として持つ。 | runtime中立agent contract |",
+        "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+        "json_pointer": "#/HIL-FR-11",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": "Agent Registryはlayer、drive、task-kind、context pack、skills、blind、generates、forbidden paths、verification patternsをHARNESS正本として持つ。 | runtime中立agent contract",
+        "statement_semantic_digest": "sha256:2e149ad2069ec8f3a8e5c8138b31bf34bbd5ad2c6830dd4c35c4d19536b9ead6",
+        "record_semantic_digest": "sha256:3ff4ac106567ef0d5942270549593d2234882a074269fd605e85397624be1ae3",
+        "assertion_id": "HIA-FR-011",
+        "system_contract_id": "HR-FR-HIL-08",
+        "acceptance_ids": [
+          "HAC-HIL-08a",
+          "HAC-HIL-08b",
+          "HAC-HIL-08c"
+        ],
+        "system_test_id": "HAT-HIL-08",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-11",
+          "owner_id": "HR-FR-HIL-08",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "assessment": "partial_overlap_no_formal_successor",
+      "meaning_comparison": "PO row 52 conditionally adopts HARNESS-L2-047 placement A and its specialist-contract fields/generation guard within the selected scope. It is not a formal transfer of FR11. FR11 correction ledger proposes HARNESS semantic contract plus OS registry/version/holding split, pending PO. H047 does not preserve every old registry axis (notably layer×drive mapping, skills/blind/generates semantics) as a general registry. Unadopted H054 explicitly leaves axis/mapping and TeamDefinition unsettled.",
+      "next_action": "Hold source atom disposition pending PO target/scope and full registry field semantics; H047 adoption is subset-scoped."
+    },
+    {
+      "requirement_id": "HIL-FR-12",
+      "legacy_source": {
+        "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "l1_line": 102,
+        "l1_line_sha256": "5e72384301df109e94478b0756651095f33f60c5efd994563cf1fb02837e33e7",
+        "raw_line": "| **HIL-FR-12** | Agent Sync/GuardはClaude/Codex定義を生成し、手編集drift、未登録agent、model/effort override、blind context漏洩、forbidden pathをfail-closeする。 | generated adapter、drift/guard receipt |",
+        "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+        "json_pointer": "#/HIL-FR-12",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": "Agent Sync/GuardはClaude/Codex定義を生成し、手編集drift、未登録agent、model/effort override、blind context漏洩、forbidden pathをfail-closeする。 | generated adapter、drift/guard receipt",
+        "statement_semantic_digest": "sha256:1062a9d636d153e32adcf815decbdc36a3d954c566f41fdeeaddd2266604c136",
+        "record_semantic_digest": "sha256:92c3b279728e4b8bba97a544d617340c39f9494b88bc9e5d77706f55a232e644",
+        "assertion_id": "HIA-FR-012",
+        "system_contract_id": "HR-FR-HIL-08",
+        "acceptance_ids": [
+          "HAC-HIL-08a",
+          "HAC-HIL-08b",
+          "HAC-HIL-08c"
+        ],
+        "system_test_id": "HAT-HIL-08",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-12",
+          "owner_id": "HR-FR-HIL-08",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "assessment": "partial_overlap_legacy_adapter_guard_not_adopted",
+      "meaning_comparison": "H047 covers runtime-neutral contract and digest/rationale/guard, model/effort class, path candidate constraints; OS-018 and SECURITY govern applied assignment/operation constraints. The adopted L2/L11 set does not explicitly generate Claude/Codex adapters or test fail-close for manual adapter drift, unknown registry agent, model/effort override, blind-context leak, and forbidden-path bypass as a single sync/guard contract. Do not infer old provider-specific adapter implementation as a new current L2 requirement.",
+      "next_action": "Keep source conditions pending a specific proof of current sync/guard guarantee and scope; provider-specific implementation need remains distinct."
+    },
+    {
+      "requirement_id": "HIL-FR-13",
+      "legacy_source": {
+        "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "l1_line": 103,
+        "l1_line_sha256": "1260dfa3a16888f7d24b4bb434e1cdf6a6eac45a08b46abf2a860c24947d7e8e",
+        "raw_line": "| **HIL-FR-13** | Musterはtask-kind→verification patterns→eligible agentsの2段引きでW-agent teamを決定論的に生成する。 | TeamDefinition、worker/verifier分離証拠 |",
+        "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+        "json_pointer": "#/HIL-FR-13",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": "Musterはtask-kind→verification patterns→eligible agentsの2段引きでW-agent teamを決定論的に生成する。 | TeamDefinition、worker/verifier分離証拠",
+        "statement_semantic_digest": "sha256:8472fdc576a52718f2d43f49e410565600d8fc3c0b374110dfad8886e37ccb50",
+        "record_semantic_digest": "sha256:ff76385127541b5e6bee0f3c7c7bde822d0c6ef131b69b58314476223d7cb1f3",
+        "assertion_id": "HIA-FR-013",
+        "system_contract_id": "HR-FR-HIL-08",
+        "acceptance_ids": [
+          "HAC-HIL-08a",
+          "HAC-HIL-08b",
+          "HAC-HIL-08c"
+        ],
+        "system_test_id": "HAT-HIL-08",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-13",
+          "owner_id": "HR-FR-HIL-08",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "assessment": "worker_verifier_separation_held_algorithm_not_adopted",
+      "meaning_comparison": "H047 L11 checks worker/verifier identity/context/authority separation; adopted OS-018 rejects self-approval and provider-only independence decisions. The exact task-kind→verification patterns→eligible agents two-stage deterministic selector and TeamDefinition output are not in adopted scope. H054 remains unadopted and leaves layer×drive/TeamDefinition mapping unresolved. Keep substantive separation distinct from legacy team shape.",
+      "next_action": "Keep algorithm and exact TeamDefinition unadopted; do not duplicate adopted worker/verifier independence requirement."
+    },
+    {
+      "requirement_id": "HIL-FR-14",
+      "legacy_source": {
+        "l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "l1_line": 104,
+        "l1_line_sha256": "84222a38061f9be7ff35db586da40e1530cfc2d01dc977b0d1700ce9467d2496",
+        "raw_line": "| **HIL-FR-14** | Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target |",
+        "ir_path": "docs/governance/requirements-source/requirements-ir/requirements.json",
+        "json_pointer": "#/HIL-FR-14",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": "Learning Promotionはraw event→pattern→recipe→shadow→skill/detector/gateの昇格状態を管理する。 | promotion ledger、効果測定、rollback target",
+        "statement_semantic_digest": "sha256:32c9cca689abf14f1a6dba50ff9144ff11791ba29f625b5eb1e4d41abeffff35",
+        "record_semantic_digest": "sha256:5283dc4aee1464c449fc50abff5c7bf0449a9abc48b5b24f5c2d15552a47925f",
+        "assertion_id": "HIA-FR-014",
+        "system_contract_id": "HR-FR-HIL-07",
+        "acceptance_ids": [
+          "HAC-HIL-07a",
+          "HAC-HIL-07b",
+          "HAC-HIL-07c"
+        ],
+        "system_test_id": "HAT-HIL-07",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-FR-14",
+          "owner_id": "HR-FR-HIL-07",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        }
+      },
+      "assessment": "partial_knowledge_state_pipeline_not_held",
+      "meaning_comparison": "Adopted BRAIN-007/008/009/020/025, LABO-007, OS-022 provide candidate/evaluation/registration/independent-verification/adoption boundaries, evidence/scope/revision and knowledge-state identity. They do not specify the old raw-event→pattern→recipe→shadow→skill/detector/gate transition ledger, full effect-measurement contract, or promotion rollback target/receipt. OS-019 continuity is not this ledger. Separate learning/shadow candidates are not adopted transfer of FR14.",
+      "next_action": "Keep source atom held. Do not create a candidate until owner/scope and required promotion guarantee are resolved."
+    }
+  ],
+  "routing_state": {
+    "fr11_correction_path": "docs/governance/requirements-source/legacy-ir-product-routing-corrections.jsonl",
+    "fr11_correction": "proposed_pending_po_review; proposed HARNESS semantics + OS registry/version/holding split; not an adopted transfer",
+    "bootstrap_paths": [
+      "docs/governance/requirements-source/legacy-ir-product-routing-bootstrap.jsonl",
+      "docs/governance/requirements-source/legacy-target-routing/legacy-ir-target-routing-queue.jsonl",
+      "docs/governance/requirements-source/legacy-target-routing/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+    ],
+    "interpretation": "bootstrap candidate labels and unassigned successor fields are not authority/adoption; formal successors remain unassigned."
+  },
+  "scope_limits": [
+    "No formal successor or retirement is assigned to FR10–14.",
+    "A semantically related adopted pair is not an exact old source-atom transfer without an explicit source binding.",
+    "HARNESS-054/057 and INTELLIGENCE learning/shadow candidates are candidates only.",
+    "No legacy adapter, TeamDefinition, memory JSONL/DB, promotion ledger schema or old runtime is proposed as current implementation."
+  ],
+  "static_review_result": {
+    "source_line_sha256_checked": 5,
+    "ir_record_identity_checked": 5,
+    "current_l2_sections_read": true,
+    "current_l11_sections_or_rows_read": true,
+    "po_decision_revisions_read": true,
+    "json_parse": "passed",
+    "md_json_consistency": "passed_for_fr10_14_rows_and_fr05_08_scope_note",
+    "tracked_product_requirement_files_modified": false,
+    "legacy_execution": "none"
+  }
+}
