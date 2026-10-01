@@ -71,3 +71,7 @@
 - Archiveはread-only参照。旧runtime、CLI、hook、test、CIは実行していない。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-2101-2140-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-2101-2140-2026-10-02.json)
+
+## 統合時の先行slice確認
+
+先行PR #2477のmerge `e7dd2eb65bfde91b55ebaa8b786fbe384a24ca69` に含まれる2061–2100行のJSON本文をpinする。境界rank2100は`LEGACY-CAND-LINE-003582`。
