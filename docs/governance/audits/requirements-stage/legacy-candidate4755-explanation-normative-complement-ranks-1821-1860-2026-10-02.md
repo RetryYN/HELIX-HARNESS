@@ -68,3 +68,7 @@
 - 40行のarchive bytes/source hash、#2353 baseline row hash、routing/line-ledger/asset entryとreceipt source_file/atom pinsはpaired JSONにある。
 
 詳細pin・source context/hash: paired JSON [`legacy-candidate4755-explanation-normative-complement-ranks-1821-1860-2026-10-02.json`](legacy-candidate4755-explanation-normative-complement-ranks-1821-1860-2026-10-02.json)
+
+## 同PR内の先行slice照合
+
+1781–1820はorigin/main未収載だが本PRに含む。commit `73cd1685998e752f40cc2d78f5f4e40d64d76650` のJSONをSHAで固定し、rank1820から1821の連続性を照合した。採択・closureを生成しない。
