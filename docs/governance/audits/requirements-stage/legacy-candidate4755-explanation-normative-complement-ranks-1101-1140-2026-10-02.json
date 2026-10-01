@@ -1075,7 +1075,7 @@
   "limitations": [
     "marker-negativeはscreen分類であり、今回のsource rowsは旧trace表のID/移管先/候補状態と一つのNFR束縛行を物理行ごとに読む。",
     "1101–1138はHXB-AC-003..040の各個別status行、1139はNFR束縛表header、1140はHXT-NFR-001の一行だけ。隣接行のAC/NFR意味を混入しない。",
-    "rank 1100境界IDのみ記録し、1061–1100の意味監査は主張しない。",
+    "rank 1100境界IDと同PRの1061–1100 paired audit MD/JSON SHAを照合した。",
     "fixed F6 direct ID/path:line, OS L2 broad span, mechanism family comparisonを分ける。列挙状態から採択/successor/closureを生成しない。",
     "archiveはread-only。旧runtime/test/CIは実行していない。"
   ],
@@ -6080,5 +6080,18 @@
         "baseline_2353_physical_line_bytes_sha256": "3f17478aa2c6ad1edcccdd3eeb7cbb24fe31cc5a395aeb3eae17111b2167443e"
       }
     }
-  ]
+  ],
+  "prior_completed_complement_slice": {
+    "ranks": [
+      1061,
+      1100
+    ],
+    "commit": "36fe7d1940b4571e63885e19d3bab1346ef17729",
+    "last_id": "LEGACY-CAND-LINE-001870",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1061-1100-2026-10-01.md",
+    "md_sha256": "973facbfa5ffbae8a75f0e4a6eae06fe5ea19835572654a6be8838d2477ac613",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1061-1100-2026-10-01.json",
+    "json_sha256": "119e3ad9db694b792a35540f882cbdf0294226b5e60e3bf28b9ed9da713473bb",
+    "local_predecessor_pin": true
+  }
 }
