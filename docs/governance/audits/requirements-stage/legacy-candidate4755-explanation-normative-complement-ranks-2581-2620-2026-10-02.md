@@ -62,6 +62,12 @@
 |2619|`LEGACY-CAND-LINE-004555`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md:23`|World Governance intake|指示書§4の導入・例外を要件§4と受入の段階出口へ対応づける。<br>原文: `\| 指示書§4 導入・例外 \| 要件§4、受入の段階出口 \|`|
 |2620|`LEGACY-CAND-LINE-004556`<br>`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-intake.md:24`|World Governance intake|指示書§5の反例1〜10を順序を保ってAC01〜10へ対応づける。<br>原文: `\| 指示書§5 反例1〜10 \| AC01〜10（順序保持） \|`|
 
+## 現行の整数行範囲引用（F6にはなし）
+
+- rank2581 / LEGACY-CAND-LINE-004475（requests.md:21）はOS L2:1211の`three-lane-capacity-profile-requests.md:17-21`に含まれる。
+- rank2593 / LEGACY-CAND-LINE-004499（requirements.md:35）とrank2594 / LEGACY-CAND-LINE-004501（requirements.md:39）はOS L2:1219の`three-lane-capacity-profile-requirements.md:35,37-39`に含まれる。
+- 3選択行へのpath＋整数範囲引用であり、source-line ID tokenによる参照ではない。selected-span atom bindingは従来どおり2行・3atom、全行closureは0。引用とbindingを別集計し、F6引用は0のまま保持する。
+
 ## authority・旧資産状態
 
 - 40件の旧source/asset ledger原値は変更せず、auditはmeaning change 0、formal successor 0、line decision record 0。選択source line 004499/004501の一部分には上記3 atom mapping、行内remainderはpending。asset dispositionの元値も保持。

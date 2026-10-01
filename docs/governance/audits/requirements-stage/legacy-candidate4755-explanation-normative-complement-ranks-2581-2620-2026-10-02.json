@@ -3337,7 +3337,47 @@
         ]
       }
     ],
-    "exact_source_path_integer_range_refs": []
+    "exact_source_path_integer_range_refs": [
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "physical_line": 1211,
+        "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-11E8FE0479751F02A4A3`の3L-BR-010（`three-lane-capacity-profile-requests.md:17-21`、file SHA-256 `a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba`）からcapacity種別とpool上限／active WIPの分離を保つ。旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:31`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から下流能力に応じたbackpressureを保つ。旧`LEGACY-ASSET-23D3D9769B093AFDCC25`（`management-integration-cell-requirements.md:58-60,104-106`、file SHA-256 `f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6`）の競合しないREADY task、順序、空いた枠への次taskを意味再導出する。旧数値（各社の3/2、burst 5、8-slot）、DB、CI、merge queue実装は持ち込まない。低干渉の選定条件をOS単独で判定する細目は旧記述に根拠がないため新規案としてPO選択肢に示す。",
+        "citation": "three-lane-capacity-profile-requests.md:17-21",
+        "source_item_id": "LEGACY-CAND-LINE-004475",
+        "source_path": "docs/governance/candidates/three-lane-capacity-profile-requests.md",
+        "source_physical_line": 21,
+        "target_requirement_id": "HELIXOS-L2-049",
+        "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "physical_line": 1219,
+        "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:35,37-39`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から、review負荷が閾値を超えた場合だけcapacityを増やすこと、review leaseの一意性と差戻しlineageを保つ。旧`LEGACY-ASSET-B143CAC2AFF236C80280`（`three-lane-capacity-profile-acceptance.md:17-24`、file SHA-256 `14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047`）から、capacity区分、backpressure、未測定増員と二重reviewの拒否をoracleとして再導出する。固定の第3reviewer/providerおよび旧CI/Merge Train/PR/DB fixtureは採用しない。具体的閾値、縮退手順、独立reviewer sessionを追加する操作境界は現行の固定要求にないため新規案として提示する。",
+        "citation": "three-lane-capacity-profile-requirements.md:35,37-39",
+        "source_item_id": "LEGACY-CAND-LINE-004499",
+        "source_path": "docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+        "source_physical_line": 35,
+        "target_requirement_id": "HELIXOS-L2-050",
+        "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+      },
+      {
+        "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "physical_line": 1219,
+        "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:35,37-39`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から、review負荷が閾値を超えた場合だけcapacityを増やすこと、review leaseの一意性と差戻しlineageを保つ。旧`LEGACY-ASSET-B143CAC2AFF236C80280`（`three-lane-capacity-profile-acceptance.md:17-24`、file SHA-256 `14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047`）から、capacity区分、backpressure、未測定増員と二重reviewの拒否をoracleとして再導出する。固定の第3reviewer/providerおよび旧CI/Merge Train/PR/DB fixtureは採用しない。具体的閾値、縮退手順、独立reviewer sessionを追加する操作境界は現行の固定要求にないため新規案として提示する。",
+        "citation": "three-lane-capacity-profile-requirements.md:35,37-39",
+        "source_item_id": "LEGACY-CAND-LINE-004501",
+        "source_path": "docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+        "source_physical_line": 39,
+        "target_requirement_id": "HELIXOS-L2-050",
+        "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+      }
+    ]
   },
   "current_candidate_documents": {
     "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
@@ -6680,7 +6720,10 @@
     "line_decision_record_count": 0,
     "selected_line_direct_binding_to_current_requirement_count": 2,
     "authority_effect": "none",
-    "boundary_note": "Family/path/asset/atom name references alone do not establish adoption or binding. Exact receipt source path/file/line/hash establishes only the three selected-span atom mappings for two lines listed above; line remainders stay pending. Formal successor, whole-line closure, or execution permission is not inferred."
+    "boundary_note": "Family/path/asset/atom name references alone do not establish adoption or binding. Exact receipt source path/file/line/hash establishes only the three selected-span atom mappings for two lines listed above; line remainders stay pending. Formal successor, whole-line closure, or execution permission is not inferred.",
+    "selected_line_path_integer_range_citation_count": 3,
+    "selected_line_direct_relation_union_count": 3,
+    "count_definitions": "3 unique selected lines have exact path/integer-range citations; 2 lines have 3 receipt selected-span atom bindings. These relation types are counted separately; citations do not create binding/adoption/closure."
   },
   "limitations": [
     "This is only ranks 2581–2620 of the 2,710-row complement.",
@@ -6813,7 +6856,22 @@
         "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
         "matching_entry": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba  docs/governance/candidates/three-lane-capacity-profile-requests.md"
       },
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "current_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "physical_line": 1211,
+          "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-11E8FE0479751F02A4A3`の3L-BR-010（`three-lane-capacity-profile-requests.md:17-21`、file SHA-256 `a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba`）からcapacity種別とpool上限／active WIPの分離を保つ。旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:31`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から下流能力に応じたbackpressureを保つ。旧`LEGACY-ASSET-23D3D9769B093AFDCC25`（`management-integration-cell-requirements.md:58-60,104-106`、file SHA-256 `f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6`）の競合しないREADY task、順序、空いた枠への次taskを意味再導出する。旧数値（各社の3/2、burst 5、8-slot）、DB、CI、merge queue実装は持ち込まない。低干渉の選定条件をOS単独で判定する細目は旧記述に根拠がないため新規案としてPO選択肢に示す。",
+          "citation": "three-lane-capacity-profile-requests.md:17-21",
+          "source_item_id": "LEGACY-CAND-LINE-004475",
+          "source_path": "docs/governance/candidates/three-lane-capacity-profile-requests.md",
+          "source_physical_line": 21,
+          "target_requirement_id": "HELIXOS-L2-049",
+          "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+        }
+      ]
     },
     {
       "rank": 2582,
@@ -8409,7 +8467,22 @@
         "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
         "matching_entry": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e  docs/governance/candidates/three-lane-capacity-profile-requirements.md"
       },
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "current_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "physical_line": 1219,
+          "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:35,37-39`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から、review負荷が閾値を超えた場合だけcapacityを増やすこと、review leaseの一意性と差戻しlineageを保つ。旧`LEGACY-ASSET-B143CAC2AFF236C80280`（`three-lane-capacity-profile-acceptance.md:17-24`、file SHA-256 `14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047`）から、capacity区分、backpressure、未測定増員と二重reviewの拒否をoracleとして再導出する。固定の第3reviewer/providerおよび旧CI/Merge Train/PR/DB fixtureは採用しない。具体的閾値、縮退手順、独立reviewer sessionを追加する操作境界は現行の固定要求にないため新規案として提示する。",
+          "citation": "three-lane-capacity-profile-requirements.md:35,37-39",
+          "source_item_id": "LEGACY-CAND-LINE-004499",
+          "source_path": "docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+          "source_physical_line": 35,
+          "target_requirement_id": "HELIXOS-L2-050",
+          "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+        }
+      ]
     },
     {
       "rank": 2594,
@@ -8542,7 +8615,22 @@
         "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
         "matching_entry": "d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e  docs/governance/candidates/three-lane-capacity-profile-requirements.md"
       },
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "current_source_path_integer_range_refs": [
+        {
+          "commit": "47006ff86dc0bbee8d3ae9a51cfcff4267cc8e60",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "physical_line": 1219,
+          "line_text": "- **旧sourceから保つ意味と差分**：旧`LEGACY-ASSET-F172CBC75CAA4FCFC2EB`（`three-lane-capacity-profile-requirements.md:35,37-39`、file SHA-256 `d2df9851fcd3db79ffaed03116f85118da43fe26f943412045215a58cfa3804e`）から、review負荷が閾値を超えた場合だけcapacityを増やすこと、review leaseの一意性と差戻しlineageを保つ。旧`LEGACY-ASSET-B143CAC2AFF236C80280`（`three-lane-capacity-profile-acceptance.md:17-24`、file SHA-256 `14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047`）から、capacity区分、backpressure、未測定増員と二重reviewの拒否をoracleとして再導出する。固定の第3reviewer/providerおよび旧CI/Merge Train/PR/DB fixtureは採用しない。具体的閾値、縮退手順、独立reviewer sessionを追加する操作境界は現行の固定要求にないため新規案として提示する。",
+          "citation": "three-lane-capacity-profile-requirements.md:35,37-39",
+          "source_item_id": "LEGACY-CAND-LINE-004501",
+          "source_path": "docs/governance/candidates/three-lane-capacity-profile-requirements.md",
+          "source_physical_line": 39,
+          "target_requirement_id": "HELIXOS-L2-050",
+          "relation": "source path plus integer line/range citation; no source-line ID token; not whole-line binding or closure"
+        }
+      ]
     },
     {
       "rank": 2595,

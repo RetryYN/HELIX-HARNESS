@@ -314,19 +314,17 @@
   ],
   "cross_worker_full_pool_checks": [
     {
-      "worktree": "step5-candidate4755-complement-2461-2500",
-      "commit": "cef462eb71dbc0c92fd1f0f90a26a4ad55c52ae1",
+      "commit": "fb0597f12783edce2edc829ef8e681ab61f9824a",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2461-2500-2026-10-02.json",
-      "artifact_sha256": "d0a3b3922cdab479d428e7b3fe6af499453604e0072e2d47f6ea6d66de0aca70",
+      "artifact_sha256": "e4c80a9736b909cc7fb76321e17f3ba37b1830f908c351e222a70e7b9170c450",
       "all_2710_id_count": 2710,
       "all_2710_ids_sha256": "730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97",
       "matches_reconstructed_pool": true
     },
     {
-      "worktree": "step5-candidate4755-complement-2421-2460",
-      "commit": "84af041b83d7ae18ced0875b5019ae3f1b75b59f",
+      "commit": "fb0597f12783edce2edc829ef8e681ab61f9824a",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2421-2460-2026-10-02.json",
-      "artifact_sha256": "251ed153afa06d64e52b9eff99d320b16885aab83348ac3bcf4939c96382e88d",
+      "artifact_sha256": "b8f45b219354d32e750fb03409406925459c25d338e8d124dbc2d6a4fd2e016a",
       "all_2710_id_count": 2710,
       "all_2710_ids_sha256": "730348e71ad009a78a21ed6a57c54142ccc02423f73467a3b28dff35dbd7df97",
       "matches_reconstructed_pool": true
