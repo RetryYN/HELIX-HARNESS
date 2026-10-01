@@ -1,0 +1,2858 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01",
+  "created_against_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+  "authority_effect": "none",
+  "purpose": "Source/asset/ledger-pinned static semantic audit of marker-ranked source rows 181–200. Authority effect none; this audit does not adopt requirements or establish source closure.",
+  "scope": {
+    "screen_commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+    "screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+    "fixed_marker_pool_size_as_recorded": 255,
+    "screen_effective_explanation_rows": 2965,
+    "reviewed_rank_start": 181,
+    "reviewed_rank_end": 200,
+    "semantic_rows_reviewed": 20,
+    "prior_ranks_1_160_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+    "archive_runtime_cli_hook_test_ci_executed": false,
+    "not_full_source_closure": true,
+    "screen_pool_size": 255,
+    "independently_reconstructed_screen_pool_size": 255,
+    "reconstructed_effective_explanations": 2965,
+    "rank_slice_181_200_exact_source_reconstruction": true,
+    "prior_ranks_1_180_exact_audit_join": true,
+    "source_atom_closure": false,
+    "closure_unresolved": true,
+    "independently_reconstructed_regex_hit_rows_before_markdown_exclusion": 258,
+    "markdown_table_header_hit_rows_excluded": 3,
+    "independently_reconstructed_regex_hits_before_markdown_exclusion": 258,
+    "markdown_header_hit_rows_excluded": 3,
+    "screen_pool_discrepancy": false
+  },
+  "ranking_reconstruction": {
+    "prior_ranks_1_160_exact_prior_audit_join": true,
+    "prior_rank_count": 180,
+    "prior_ids_unique": true,
+    "current_rank_slice_contiguous_unique": true,
+    "current_rows_disjoint_from_prior_1_160": true,
+    "rank_rule": "Published prohibition > mandatory > conditional regex tiers; same tier by regex hit count descending, then numeric source ID ascending; replayed #2353 plus the eight fixed ordered classification overlays including #2369 scope.source_rows; Markdown headings, table headers/separators excluded.",
+    "independent_full_marker_reconstruction_count": 255,
+    "recorded_screen_pool_count": 255,
+    "reconstruction_count_matches_recorded_screen_pool": true,
+    "reconstructed_ranks_161_180_match_current_slice": true,
+    "prior_ranks_1_180_exact_prior_audit_join": true,
+    "current_rows_disjoint_from_prior_1_180": true,
+    "source_ids_181_200": [
+      "LEGACY-CAND-LINE-004052",
+      "LEGACY-CAND-LINE-004080",
+      "LEGACY-CAND-LINE-004164",
+      "LEGACY-CAND-LINE-004166",
+      "LEGACY-CAND-LINE-004176",
+      "LEGACY-CAND-LINE-004178",
+      "LEGACY-CAND-LINE-004248",
+      "LEGACY-CAND-LINE-004251",
+      "LEGACY-CAND-LINE-004299",
+      "LEGACY-CAND-LINE-004321",
+      "LEGACY-CAND-LINE-004392",
+      "LEGACY-CAND-LINE-004435",
+      "LEGACY-CAND-LINE-004436",
+      "LEGACY-CAND-LINE-004437",
+      "LEGACY-CAND-LINE-004440",
+      "LEGACY-CAND-LINE-004518",
+      "LEGACY-CAND-LINE-004519",
+      "LEGACY-CAND-LINE-004520",
+      "LEGACY-CAND-LINE-004521",
+      "LEGACY-CAND-LINE-004522"
+    ],
+    "reconstructed_ranks_181_200_match_current_slice": true,
+    "independent_regex_hit_rows_before_markdown_exclusion": 258,
+    "excluded_markdown_table_header_source_ids": [
+      "LEGACY-CAND-LINE-001500",
+      "LEGACY-CAND-LINE-001514",
+      "LEGACY-CAND-LINE-001910"
+    ],
+    "ranked_marker_queue_count_after_exclusions": 255,
+    "reconstructed_ranks_251_255": [
+      {
+        "rank": 251,
+        "id": "LEGACY-CAND-LINE-004615",
+        "tier": "mandatory",
+        "markers": [
+          "必要条件"
+        ]
+      },
+      {
+        "rank": 252,
+        "id": "LEGACY-CAND-LINE-004740",
+        "tier": "mandatory",
+        "markers": [
+          "必要条件"
+        ]
+      },
+      {
+        "rank": 253,
+        "id": "LEGACY-CAND-LINE-001672",
+        "tier": "conditional",
+        "markers": [
+          "場合のみ"
+        ]
+      },
+      {
+        "rank": 254,
+        "id": "LEGACY-CAND-LINE-001678",
+        "tier": "conditional",
+        "markers": [
+          "場合のみ"
+        ]
+      },
+      {
+        "rank": 255,
+        "id": "LEGACY-CAND-LINE-001685",
+        "tier": "conditional",
+        "markers": [
+          "場合のみ"
+        ]
+      }
+    ],
+    "reconstructed_ranks_256_258": []
+  },
+  "pinned_prior_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+      "recorded_screen_pool_size": 255,
+      "independent_pool_size": 258
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "f2e9077287ade80747eeecf373b1e08d53e3d6c8622c2aecc1cb08d881aecaaa",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "9de0775e94628a068d6ec45de824f85a37193334e67291a7c3b90d93d6319c0d",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "id_count": 20
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "commit": "e69c2b93771997b79221495a06f6a92d5ef47770",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+      "id_count": 20,
+      "status": "corrected_screen_pool_and_header_exclusion_reconciliation"
+    }
+  ],
+  "pinned_source_ledgers": [
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pair_file_pins": [
+    {
+      "mechanism": "HELIX-OS",
+      "layer": "L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-OS",
+      "layer": "L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-HARNESS",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-HARNESS",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-LABO",
+      "layer": "L2",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-LABO",
+      "layer": "L11",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-BRAIN",
+      "layer": "L2",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+      "current_bytes_extend_fixed_F6_prefix": true
+    },
+    {
+      "mechanism": "HELIX-BRAIN",
+      "layer": "L11",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_F6_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "current_comparison_commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "current_comparison_sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "current_bytes_extend_fixed_F6_prefix": true
+    }
+  ],
+  "current_relation_source_pins": [
+    {
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "commit": "10a84beadf17fd729c23c6b67354c9d301931752",
+      "file_sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb",
+      "lines": [
+        {
+          "line": 40,
+          "text": "- 監査・学習・成果の出所の節は、監査（AAFD）をIntelligence、学習（RCLS）をLABOへ移し、成果の出所（PPS）はOSに残す。",
+          "sha256": "4764d9b4ebab1e25617b0d4fd533796c5d11120f25fd31b8ea82aa385f4ee023"
+        },
+        {
+          "line": 65,
+          "text": "| 監査・学習・成果の出所の節のうち学習（RCLS）と、その受入条件 | 同上 | — |",
+          "sha256": "479cc704f9f4022b36881654a5747a349d0a03c5d3da264c7a8903a9c6fa416e"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/candidates/improvement-research-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "b0c1a193a61b5c64f8fef7307f17370aa1eb2a79a3fbdc425f88ff6c87a4cb9e",
+      "lines": [
+        {
+          "line": 20,
+          "text": "HELIX-OSの要求案にあった項目のうち、担当がHELIX-LABO（全体の改善研究機構）である項目を、2026-09-25のPO判断によりここへ移した。",
+          "sha256": "dbb8de698895c80808f3544ba6c96697c4f0d61abaa1f9ef74513d99187fda8b"
+        },
+        {
+          "line": 36,
+          "text": "## 学習に関する候補条件（RCLS）",
+          "sha256": "5b662289fcee91a45cb71e453710e92f96519529a23820933cce901cd9d2e926"
+        },
+        {
+          "line": 38,
+          "text": "出典は[RCLS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md)である。",
+          "sha256": "529a6fff8bbe9a5b93f88d6b533583e73966d4c404412f089ffafc529cf58461"
+        },
+        {
+          "line": 43,
+          "text": "| RCLS-BR-001 | 知識・経験の所有を安定したresponsibility_idで追跡し、フォルダやSkill名の変更で失わない |",
+          "sha256": "5a9b6e322a8b85f96de0ce16b6cf14204c2186f5d361ab1d75ff40ed62639d5e"
+        },
+        {
+          "line": 46,
+          "text": "| RCLS-BR-004 | project内、独立検証、横断検証、shadow、Mechanismへの段階を区別し、機構化した規則のSkill本文との二重管理を解消する |",
+          "sha256": "07ca6980a9f065a76ff6e50577747dc67920119efc137eee32db120ed5ac0e56"
+        },
+        {
+          "line": 48,
+          "text": "| RCLS-BR-006 | 学習結果は提案・証拠・検索入力として扱い、要求・設計・merge・Release authorityを直接書き換えない。既存の要求形成・改善機構を重複実装しない |",
+          "sha256": "915f48a24e64fb2d81ed5de6b14043a08a429100154c9bd1abc993c3e0538183"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "lines": [
+        {
+          "line": 362,
+          "text": "| LEGACY-ASSET-F2C2755C8809C2C0DEAD `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:各RCLS-BR-001..006` | `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | responsibility ID、証拠種別、最小context、段階、失効、authority非変更 | RCLSは未承認candidateとして同候補文書に保持し、L2の新規採択に変換しない |",
+          "sha256": "7e45a8533188333e6dab66e9815710a4f8022f69e7f3ad253a5b7779d710085c"
+        },
+        {
+          "line": 375,
+          "text": "4. RCLS-BR-001..006とHELIXOS-L2-012/013の既存候補状態・親付け替えを更新すること。本文記載のみでstatusを変更しない。",
+          "sha256": "a43a9bc695be11d061b4a7bcf0de45aedf3ab80335826d6e8e89511178d1799f"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "lines": [
+        {
+          "line": 129,
+          "text": "これらは対象revisionの採用後に別途評価する候補条件であり、本書の記載で採用状態を変えない。",
+          "sha256": "436f92b27298a71dc3aa6513ce315e595a305fd8e8aa57232696d5ec10424827"
+        },
+        {
+          "line": 131,
+          "text": "- RCLS-BR-001..006：責務ownership、CASE/SCENE/PATTERN/LOG/VERIFY分離、最小packet、project-local→independent verify→cross-project→shadow→mechanismの段階、反例/authority revision/provider/model/expiry/security/licenseによるstale/revoke/revalidation、要求/design/merge/release authorityを直接変更しないことを確認する。",
+          "sha256": "b9b21650df3f9db1530f619eff2b7d4f91dd862115eb3fee6d460cf895a1c390"
+        },
+        {
+          "line": 136,
+          "text": "人判断が必要な内容はL2候補の保留欄を参照する。候補文書・PR・本受入案からL1確認、要求採択、設計承認、実行許可を生成しない。",
+          "sha256": "b15c4fb0bd04e651997ac804b34569c71e94f1fc2da53e7ff5eae81ea42d4d99"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 504,
+          "text": "| RCLS | [RCLS要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md)：RCLS-FR-001..006 | HELIXOS-L2-004／005 |",
+          "sha256": "000cb9e09f08bdd5f3605c315ae6017ab27c760e94b5d2c803fec97ed00f0365"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "lines": [
+        {
+          "line": 182,
+          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。",
+          "sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "lines": [
+        {
+          "line": 545,
+          "text": "| 旧RCLS-BR-004/006 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-47`, asset ledger `LEGACY-ASSET-F2C2755C8809C2C0DEAD`, SHA-256 `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | 独立検証を経ること、提案だけでauthorityを変更しない | 登録と振分けをOS、効果評価をLABO、汎用knowledge revisionをBRAINへ分離 |",
+          "sha256": "9fb14b41016807baffc92fe0ac684365e975c07c87329e1df18bc12a3d0b613d"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "lines": [
+        {
+          "line": 837,
+          "text": "- **旧source・受入限界**：旧3L-R-29/30、3L-AC-028/030/031/032およびMIC-R-06のbackpressure、review lease、一意性、原因別増枠を限定oracleとして再導出する。固定第3reviewer、旧provider、旧CI/Merge Train/PR/DB fixture、実測・運転済み状態は本候補から生成しない。閾値とsession操作は新規案のためPO判断へ残す。",
+          "sha256": "d8b4b90763e93f6dabee5e16f4cf31d3738bc48dd84bb5b23f60a00e834ffc11"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "lines": [
+        {
+          "line": 86,
+          "text": "| HELIXSECURITY-L1-008、009 | 旧SEA候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md`）。現行ではHELIX-OSの要求案の「Security engagementの統制条件」とHARNESSの要求案の「Security要求に適用する工程条件」が再採否待ちとして持つ | target、operation、environment、network／dataの範囲、期限へ操作のauthorityを結びつけ、authorizationの不在、範囲の逸脱、失効、古い状態、unknownで操作を止める | 対象を、security engagementから、HELIXのすべての操作へ広げる。方針とauthorityはSECURITY、停止の適用はOS・Workerの実行・CONNECTへ分ける |",
+          "sha256": "1c6751d04589c92b7e0264d54aa49cbc905f594852f382b297dab23037edb148"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/README.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "b8506c9ea8015e99e4f424d2bd9c7050bfe24eaac69376328e5dcc0dee72a46b",
+      "lines": [
+        {
+          "line": 11,
+          "text": "現行のHELIX-OSとHELIX-HARNESSの要求案にある旧SEA（Security engagement）の条件は、それぞれの文書で再採否待ちである。L1企画案のrevisionをPOが確認した後に、SECURITYの要求（L2）として採否する。",
+          "sha256": "974f2521cce7261f3c2d22982929f214adf1cd66f0e5466e61ccc29db69cf04b"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+      "lines": [
+        {
+          "line": 98,
+          "text": "- **束ねる既存条件**：L1-003、Conceptの隔離の単位、旧SEAのtarget/environment scoping。",
+          "sha256": "81c247fdfb8e6ae8d686c9f51d88a3840b59b9a24652afe22c060dcea089ec1b"
+        },
+        {
+          "line": 148,
+          "text": "- **束ねる既存条件**：L1-008、PO §9、旧SEAのaction-specific authorityとtarget/environment/scope/expiry拘束。",
+          "sha256": "c4103e0a50c4a23257efc1cc0253f3b9c13a8ecbf62aca6d54f109089b496f63"
+        },
+        {
+          "line": 158,
+          "text": "- **束ねる既存条件**：L1-009、PO §10、旧SEAのrevoke/scope-drift停止条件。",
+          "sha256": "541aa91d4e9c448cabed996ea8ea553bfe461d0076b1e80cab9739b83b7cb0dd"
+        },
+        {
+          "line": 290,
+          "text": "- **束ねる既存条件**：PO §23 second flow、Concept lines 223/230/234、旧SEA authority tuple（security engagement限定を全操作へ黙って昇格させない）。",
+          "sha256": "789b003a79ac8e705a6c83787a311e0b75959db09b59d0b0f50b0cf7cbdc30d3"
+        },
+        {
+          "line": 394,
+          "text": "旧candidate source atomsは`MPR-SH-CANDIDATE-003`の入力集合にある。対象の旧SEA requests/requirements/acceptance line atomsはそれぞれ `LEGACY-CAND-LINE-004341..004373`（33行、source lines 1–44）、`004374..004419`（46行、source lines 1–57）、`004308..004340`（33行、source lines 1–38）である。file SHAは前表のrequests `c6d76c…f447`、requirements `38a68e…b16`、acceptance `c8d332…ffc`。この行数は登録済み候補sourceの集合であり、意味を全件移管したという主張ではない。L2候補のreceiptで各atomを保持、別の生存中登録へ保留、または人間decisionのいずれかへ割り当てる。",
+          "sha256": "64a4d58128a57ff05e0e36df30c7b1aec68ad328df111e054174a0fb11b950e5"
+        },
+        {
+          "line": 399,
+          "text": "2. **旧SEAの全操作authorityへの適用幅** — 根拠: 旧SEAは認可済みsecurity engagementのみ、現行L1-008/009はHELIX全操作へ広げる。選択肢: L1記載どおり全操作へ適用／security engagementに限定。推奨: L1を変えないならL2-008/009/022のscopeを全操作とし、旧SEA固有のsecurity engagement admissionは別扱いで残置する。影響: 操作authority、失効、OS/Worker/CONNECTへの停止伝播。全操作への一般化を人が確認していない場合、L1-008/009 revision確認は要求採択前に必要。",
+          "sha256": "18a256bdff89ee0928ff9d497bbdf1121b9b8699595d59b7af5dbbeb01a451e2"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "lines": [
+        {
+          "line": 351,
+          "text": "| RCLS-BR-001..006 | 001,002,006,007,009,010,052 | responsibility ownership、CASE/SCENE/PATTERN/LOG/VERIFY区分、最小packet、project→independent→cross-project→shadow→mechanism段階、stale/revoked/revalidation、authority非変更を候補条件として保持。新しい学習機構を重複定義しない |",
+          "sha256": "5286004838b60e0ccf063b27e07d847ab2d7f8f47e581887af65088198775a22"
+        },
+        {
+          "line": 362,
+          "text": "| LEGACY-ASSET-F2C2755C8809C2C0DEAD `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:各RCLS-BR-001..006` | `c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c` | responsibility ID、証拠種別、最小context、段階、失効、authority非変更 | RCLSは未承認candidateとして同候補文書に保持し、L2の新規採択に変換しない |",
+          "sha256": "7e45a8533188333e6dab66e9815710a4f8022f69e7f3ad253a5b7779d710085c"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "commit": "8f4b935e7b33630b8df10a1818249838f7d3285e",
+      "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "lines": [
+        {
+          "line": 131,
+          "text": "- RCLS-BR-001..006：責務ownership、CASE/SCENE/PATTERN/LOG/VERIFY分離、最小packet、project-local→independent verify→cross-project→shadow→mechanismの段階、反例/authority revision/provider/model/expiry/security/licenseによるstale/revoke/revalidation、要求/design/merge/release authorityを直接変更しないことを確認する。",
+          "sha256": "b9b21650df3f9db1530f619eff2b7d4f91dd862115eb3fee6d460cf895a1c390"
+        }
+      ]
+    }
+  ],
+  "later_decision_record_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "commit": "08652ec0fca77957deb66106926e3c5bafc14fff",
+      "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "lines": [
+        {
+          "line": 19,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 20,
+          "text": "> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。",
+          "sha256": "667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971"
+        },
+        {
+          "line": 44,
+          "text": "POは、確認packetに明示された全53件をL2本文と同identityのL11受入条件を一式として採用した。下表は採用identityと最新registration ID、候補表に載るkind／version_target／適用条件の対応であり、明示集合すべてを列挙する。採用状態は本記録と各最新registration IDの対応から読む。register行そのものは変更しない。",
+          "sha256": "3348f590ca23b402679e1711ae69208e583c83a5adaf9a14396e30d4522b7a67"
+        },
+        {
+          "line": 102,
+          "text": "件数照合は53件。全件の同full identityがL11にも存在する。採用集合一覧:",
+          "sha256": "19842e9c233a545a0a0ed263cdd517ad00f119f18a032238bbb40f945de37d59"
+        },
+        {
+          "line": 120,
+          "text": "全候補は固定候補本文・候補表どおりのkind、version_target、scope、依存区分、適用条件、L11 oracleで採用する。後続版を1.0へ前倒しせず、条件付き経路は記載条件が満たされる場合だけ適用する。草案metadataはPOのL1確定・候補採用を覆さないが、採用からruntime成立・実装済み・受入合格を推定しない。",
+          "sha256": "d671274428e29161a8cafac9833e970e93008d272d9274acbc5036001a5d1be0"
+        },
+        {
+          "line": 127,
+          "text": "旧HELIX sourceの意味・機能・受入・運用上の保証は、confirmation packetで示す対応と未完状態を保持する。全source atomの再配置・被覆・廃止・後続版移管が完了したとは推定せず、未完引継ぎは未完のまま残す。旧HELIXからのデグレ検証は必須で、後続の総合整理で旧assetごとに現行IDへの保持／意味の再導出／置換／後続版の版印／記録付き廃止を対応付け、未対応旧機能0件および弱まった受入・消えたnegative oracle・failure記録の有無を確かめる。本記録はデグレ検証完了を主張しない。旧workflow・CLI・hook・runtime・test・CIは実行しない。",
+          "sha256": "951f2630c85a91230431ecb57c7a119fec6bb6fc2373d8412af1b4c4ef1bbd7c"
+        }
+      ],
+      "mechanism": "HELIX-LABO",
+      "record_commit_date": "2026-09-28T01:59:19+09:00"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "lines": [
+        {
+          "line": 24,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 46,
+          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。",
+          "sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4"
+        },
+        {
+          "line": 56,
+          "text": "- 旧sourceの未完引継ぎ、既存holding、および旧要求に関する未解決atomは維持する。今回の採用から旧sourceの被覆完了、retire、holding解除、またはcoverage範囲拡張を導かない。",
+          "sha256": "e73c9811034ab3807b38780586a03c4b939799d4b2c94c8016e9372914f13c55"
+        }
+      ],
+      "mechanism": "HELIX-OS",
+      "record_commit_date": "2026-09-28T01:55:47+09:00"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "commit": "58b3e912bd4e84a695e01f7096622a4199b41202",
+      "file_sha256": "5b15f6858c9448abea9cd625a6d27619bebddf4b94d3245c5fad5b35a2afb4c2",
+      "lines": [
+        {
+          "line": 24,
+          "text": "[確認資料（判断前の固定版）](https://github.com/RetryYN/HELIX-HARNESS/blob/01810e9bb7078a287e928e5e87e9e073653d8688/docs/governance/audits/requirements-stage/helix-harness-po-confirmation-2026-09-27.md)が固定した本文を対象とする。L1対象revisionを確定し、L2と対になるL11の要求一式に合意する。明示候補24件は全件採用。下表のSHA-256は実ファイルbytesであり、本文を将来変更した場合へ無条件継承しない。",
+          "sha256": "f8810036d8e8411a068b523786196884971fc9cafef3fd0978930ae3daeccdb6"
+        },
+        {
+          "line": 67,
+          "text": "承認対象の本文bytesは変更しない。本文の「候補」「未採択」「人の判断が残る点」は判断前の記述として保存し、本記録が指定したrevisionと候補集合の採否・所属／scope判断には本記録を適用する。本文内容は選択された案と一致しているため、条件の追加・削除やL11の改変を行わない。registerの管理状態 `registered_proposal` と `authority_effect: none` は登録の性質を表すため書き換えず、採択は本記録と上表のidentity・最新登録IDの対応から読む。候補本文・source atomが不変のため、訂正register、receipt、研究pinの付け直しは不要である。",
+          "sha256": "a3f8d308e416ac9f892135df2895daa3243d464a44da37e50b0b9481b7567ebc"
+        },
+        {
+          "line": 72,
+          "text": "- 旧sourceの保持点・意味再導出・変更理由は固定確認資料の旧source対応と機構内監査へ結び付ける。既存の未完source holding・未割当atomを保持し、候補の採用から旧sourceのretireや全被覆完了を生成しない。",
+          "sha256": "346b7622a38a6426496e546042b0df0a47d0742730316dfbf26678ce7509c1cb"
+        },
+        {
+          "line": 73,
+          "text": "- POが求めた旧HELIXからのデグレ検証を最終横断整理の必須作業にする。旧機能・要求・受入・運用保証と採用本文を照合し、失われた機能、弱まった受入、反例・失敗時義務の欠落を調べる。本記録はその検証完了を主張しない。",
+          "sha256": "1a9698c7d52869fdfed11ff1c0ec78b60d8ce77d94fe4ab2fc5bf586da55d436"
+        }
+      ],
+      "mechanism": "HELIX-HARNESS",
+      "record_commit_date": "2026-09-28T01:46:25+09:00"
+    }
+  ],
+  "temporal_authority_evidence": {
+    "fixed_F6_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_F6_commit_date": "2026-09-27T22:28:58+09:00",
+    "decision_records_absent_at_F6": [
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+    ],
+    "absence_checked_by_git_tree_lookup": true,
+    "post_F6_decision_records": [
+      {
+        "mechanism": "HELIX-LABO",
+        "commit": "08652ec0fca77957deb66106926e3c5bafc14fff",
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "record_commit_date": "2026-09-28T01:59:19+09:00"
+      },
+      {
+        "mechanism": "HELIX-OS",
+        "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "record_commit_date": "2026-09-28T01:55:47+09:00"
+      },
+      {
+        "mechanism": "HELIX-HARNESS",
+        "commit": "58b3e912bd4e84a695e01f7096622a4199b41202",
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "5b15f6858c9448abea9cd625a6d27619bebddf4b94d3245c5fad5b35a2afb4c2",
+        "record_commit_date": "2026-09-28T01:46:25+09:00"
+      }
+    ],
+    "effect_boundary": "later records decide only the exact L1/L2/L11 revisions and explicit candidate identities each names; they do not adopt, source-bind, close, retire, or release any selected legacy RAMG/RCLS acceptance row."
+  },
+  "source_family_relation_boundary": {
+    "RCLS_family_relation_rows": [
+      181,
+      182
+    ],
+    "RCLS_acceptance_rows_181_only": true,
+    "RCLS_request_row_182_relation": "RCLS-BR-003（最小packet）のfamily-level relation。source row自体の採択・exact pair binding・受入実施ではない。",
+    "3L_rows_192_194_limited_reference": true,
+    "SEA_rows_190_191_source_family_reference_only": true,
+    "unrelated_rows_without_exact_current_relation": [
+      "LEGACY-CAND-LINE-004164",
+      "LEGACY-CAND-LINE-004166",
+      "LEGACY-CAND-LINE-004176",
+      "LEGACY-CAND-LINE-004178",
+      "LEGACY-CAND-LINE-004248",
+      "LEGACY-CAND-LINE-004251",
+      "LEGACY-CAND-LINE-004299",
+      "LEGACY-CAND-LINE-004440",
+      "LEGACY-CAND-LINE-004518",
+      "LEGACY-CAND-LINE-004519",
+      "LEGACY-CAND-LINE-004520",
+      "LEGACY-CAND-LINE-004521",
+      "LEGACY-CAND-LINE-004522"
+    ],
+    "row_specific_old_acceptance_crosswalk": false,
+    "selected_source_row_crosswalk": false,
+    "adopted_pair_binding": false,
+    "source_condition_closure": false,
+    "authority_effect": "none",
+    "meaning": "Family lineage/current nearby condition references do not mean selected source row adoption, individual pair binding, implemented oracle, source coverage, or closure."
+  },
+  "summary": {
+    "reviewed_rows": 20,
+    "exclusive_semantic_group_counts": {
+      "受入oracle": 17,
+      "要求条件": 3
+    },
+    "normative_context_role_counts": {
+      "acceptance_expected_or_negative_behavior": 17,
+      "direct_requirement_condition": 3
+    },
+    "lexical_only_false_positive_rows": 0,
+    "standalone_requirement_conditions": 20,
+    "candidate_pointer_rows": 4,
+    "source_family_relation_rows": 5,
+    "selected_source_row_crosswalk_rows": 0,
+    "source_range_crosswalk_rows": 0,
+    "adopted_pair_binding_rows": 0,
+    "source_condition_closed_rows": 0,
+    "adopted_retired_closed_count": 0,
+    "authority_effect": "none",
+    "closure": "unresolved"
+  },
+  "limitations": [
+    "Regex marker hits are screening evidence only; a hit does not establish semantic normativity or requirement adoption.",
+    "The 258 raw matches include three Markdown table header rows excluded by the published screen rules, leaving 255 eligible rows exactly; the fixed screen stays unchanged.",
+    "Prior audit rank identities 1–180 were joined exactly. Family relation does not establish selected-source-row binding, adoption, acceptance execution, source coverage, retirement, or source holding release.",
+    "No archive runtime, CLI, hook, adapter, test, CI, workflow, or executable was run.",
+    "Authority effect is none; closure remains unresolved."
+  ],
+  "queue": [
+    {
+      "rank": 181,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004052",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+        "physical_line": 39,
+        "exact_source_line_text": "| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |",
+        "source_file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+        "source_line_sha256": "be93f3834b60e61db8a78906ee0c55a25aa23a68ff7a15b6d91d92a81b4b2534",
+        "physical_line_bytes_sha256_including_terminator": "674dfd8e0cac2f25a1d2e971d1871b55393e6659d5b8f52cb25d4de992d9e221",
+        "context_lines": [
+          {
+            "line": 37,
+            "text": "| `RCLS-AC-017` | RCLS-R-18 | project-local→cross-projectにsource/license/redaction/human approvalがある | 一案件知識の自動横展開を拒否 |",
+            "line_sha256": "9d977342e6dcf33530806d5d545151b64dd082a61ffaa5431d4d1e720d344d98"
+          },
+          {
+            "line": 38,
+            "text": "| `RCLS-AC-018` | RCLS-R-19 | Learning System出力がproposal/evidenceに限定される | Requirement/Design/merge/release直接変更を拒否 |",
+            "line_sha256": "5da9411bb4b67b03a24ded5c77a563f7b3d0a2274a191a9173b902bc10dd111d"
+          },
+          {
+            "line": 39,
+            "text": "| `RCLS-AC-019` | RCLS-R-21..23 | selection／approval／disposition／runtime_judgment／ADR decisionが別identityで、decision・approvalはtyped authorityへ解決する | 相談、叱責、作業依頼、memory prose、学習結果をhuman decision／approvalへ昇格する入力を拒否 |",
+            "line_sha256": "be93f3834b60e61db8a78906ee0c55a25aa23a68ff7a15b6d91d92a81b4b2534"
+          },
+          {
+            "line": 40,
+            "text": "| `RCLS-AC-020` | 全件 | targeted/full、mutation、doctor、DB、consumer smoke、Claude exact-HEAD、main read-afterがgreen | 局所greenで終端しない |",
+            "line_sha256": "6a1e8887df0fec247b347085998b3320bb1b77687c71658d460c1a33a3545aa8"
+          },
+          {
+            "line": 41,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4052,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "d24f3d792aa33da4f8580d40e9efbea0fe067c75a66d606fd642ff43587a9a95",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 859,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "24e10bca79d7ec3fc3ed361b79a6febc283c0d8c5efa10eb65079a349e5f099f",
+        "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "RCLS-AC-019はselection／approval／disposition／runtime_judgment／ADR decisionを別identityとし、相談・作業依頼・memory・学習結果をdecision／approvalへ昇格させない。LABOにはRCLS-BR-001..006の候補群というfamily relationがあるが、このAC行の採択・個別binding・oracle実施ではない。",
+        "residual": "typed decision identity/source/revisionのschema、および入力ごとの拒否と正規decision入力の許可を示すfixtureが、このsource rowへ結び付いていない。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 182,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004080",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "fail"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/responsibility-centric-learning-requests.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+        "physical_line": 35,
+        "exact_source_line_text": "Assignmentごとに責務、案件、scene、risk、provider、task class、context budgetへ適合する最小packetを決定的にcompileする。全Skill、全memory、全failure logを一括注入しない。",
+        "source_file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+        "source_line_sha256": "c364dbcf9d142f403e48c8e6f48d76a824dae897f333b548c51b2dca1cc3ebd9",
+        "physical_line_bytes_sha256_including_terminator": "387b3b3a968d4bde031414155604b58012e9694419bb4cb9bd2b3dd3237531bb",
+        "context_lines": [
+          {
+            "line": 33,
+            "text": "### RCLS-BR-003 必要最小限の知識だけを供給する",
+            "line_sha256": "4acc5aa9b5a03f18655d7de10e4de72802982f40e5d9bfcb0a3334aaaa015169"
+          },
+          {
+            "line": 34,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 35,
+            "text": "Assignmentごとに責務、案件、scene、risk、provider、task class、context budgetへ適合する最小packetを決定的にcompileする。全Skill、全memory、全failure logを一括注入しない。",
+            "line_sha256": "c364dbcf9d142f403e48c8e6f48d76a824dae897f333b548c51b2dca1cc3ebd9"
+          },
+          {
+            "line": 36,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 37,
+            "text": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する",
+            "line_sha256": "2520ef89ed69304f2bc413eb46e9057e09d9ecb65a1d57383b87a7ee0a8bbf9b"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4080,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "51ff0f954719d83a971070ea377d3621db1cf807e677f0ebc692284e3fa04053",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 860,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "33a667d29af24dee1a39e1275e654ba7e4e30d38f05efe9b0ae7d7fa42f2b29b",
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "要求条件",
+        "normative_context_role": "direct_requirement_condition",
+        "standalone_requirement_condition": true,
+        "relation": "責務、案件、scene、risk、provider、task class、context budgetに応じた最小packetを決定的に構成し、全Skill／memory／failure logの一括注入を防ぐ。現行RCLS-BR-003に最小packetのfamily relationがあるが、この要求行の個別採択や実測bindingではない。",
+        "residual": "packet fieldのschema、決定性、除外／過剰包含の境界、対象別fixture、consumer ownerが未結合。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 183,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004164",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "block"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-acceptance.md",
+        "physical_line": 19,
+        "exact_source_line_text": "承認済み不変条件だけをHard対象にする。助言・文章量・設計選好で合法操作をblockしない。意図と実強制能力を分離し、未解決では既存保護を維持する。",
+        "source_file_sha256": "1335dd255e9a3945c165b9a4efcc6bad1ab4b5cff6c9023cd71f1dfdb2057e03",
+        "source_line_sha256": "e035eb4ab233ba8e6e2484a2f79c1eba7b4af599d011013b20cfd5da2d8288ac",
+        "physical_line_bytes_sha256_including_terminator": "bbdb8d7fcb05dae2c8e1033d0d03aa82f7b3bda66e4e24fae304147cc0f1ab15",
+        "context_lines": [
+          {
+            "line": 17,
+            "text": "## G-AC01 ↔ G-R01",
+            "line_sha256": "1bfe14d30b064e2f97268b70228bf59bf90e14153a3a144b26c5365bbd79e6db"
+          },
+          {
+            "line": 18,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 19,
+            "text": "承認済み不変条件だけをHard対象にする。助言・文章量・設計選好で合法操作をblockしない。意図と実強制能力を分離し、未解決では既存保護を維持する。",
+            "line_sha256": "e035eb4ab233ba8e6e2484a2f79c1eba7b4af599d011013b20cfd5da2d8288ac"
+          },
+          {
+            "line": 20,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 21,
+            "text": "## G-AC02 ↔ G-R02",
+            "line_sha256": "043e6f75606403ebd099b6280cc7e6ab4e0f5ae8f150a13727290e97e7380010"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4164,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "0d806f694b89d4a9bd719448de64c610997bc66174ed675206bc271018e28d61",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 862,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f897ceaf29c4f2f52480e331751edb0e42af7f3a0c5b3be728dd3ab48f1c5172",
+        "asset_id": "LEGACY-ASSET-31D783C8B6F04534C494",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "承認済み不変条件だけをhard対象とし、助言や設計選好によって合法操作をblockしないRule Derivation受入行。現行L2／L11に対象familyの行別参照は確認できない。",
+        "residual": "不変条件の適格性、助言と強制の区別、合法操作の誤拒否oracle、正確なsource-row後継が未特定。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 184,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004166",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-acceptance.md",
+        "physical_line": 23,
+        "exact_source_line_text": "同じversion・digestの入力から同じ検証器接続と説明を導出する。未登録検証器・自由文コード・説明の評価式実行を拒否し、第二Policy正本を作らない。",
+        "source_file_sha256": "1335dd255e9a3945c165b9a4efcc6bad1ab4b5cff6c9023cd71f1dfdb2057e03",
+        "source_line_sha256": "768c95a9cd5461f61110adbcc5bbadfa32b246289f41d41220a834068380e673",
+        "physical_line_bytes_sha256_including_terminator": "5b982808f8eedf22d24b52cff7634f50104aca14d1d27a92ddb4b8a6aa0ea0e7",
+        "context_lines": [
+          {
+            "line": 21,
+            "text": "## G-AC02 ↔ G-R02",
+            "line_sha256": "043e6f75606403ebd099b6280cc7e6ab4e0f5ae8f150a13727290e97e7380010"
+          },
+          {
+            "line": 22,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 23,
+            "text": "同じversion・digestの入力から同じ検証器接続と説明を導出する。未登録検証器・自由文コード・説明の評価式実行を拒否し、第二Policy正本を作らない。",
+            "line_sha256": "768c95a9cd5461f61110adbcc5bbadfa32b246289f41d41220a834068380e673"
+          },
+          {
+            "line": 24,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 25,
+            "text": "## G-AC03 ↔ G-R03",
+            "line_sha256": "53b8b0b25b93697b88713560f782159f609ca5bcddbf68c57347273f632a3527"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4166,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "a6efebe15b23fabaf6dd62cbcf2927d3ae595b3c637ad7602d83e7c5d8b6e5e4",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 862,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f897ceaf29c4f2f52480e331751edb0e42af7f3a0c5b3be728dd3ab48f1c5172",
+        "asset_id": "LEGACY-ASSET-31D783C8B6F04534C494",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "固定version／digestから同じvalidator bindingと説明を導き、未登録validator、自由文code、説明内の式実行を拒否して、Policy正本を二重化しない。現行pairへの行別bindingは見つからない。",
+        "residual": "validator registry／version／digestのschema、決定性、未登録inputのnegative oracle、単一Policy authorityのconsumer証拠が未対応。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 185,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004176",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "block"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-acceptance.md",
+        "physical_line": 43,
+        "exact_source_line_text": "SkillゼロでもGuardとHelpが成立する。Skill集合を変えても同一操作・状態・Policyの許可判定は不変。①との依存は対象/digest限定で全体blockしない。",
+        "source_file_sha256": "1335dd255e9a3945c165b9a4efcc6bad1ab4b5cff6c9023cd71f1dfdb2057e03",
+        "source_line_sha256": "38692c2e481c59a34166fda2ee49ae773fd6704e6f10fd95b3d9ea04f2c4d176",
+        "physical_line_bytes_sha256_including_terminator": "233ed9d262e5378aede16de95883dd733c62e72cad6d88997acd22a060bb8cf9",
+        "context_lines": [
+          {
+            "line": 41,
+            "text": "## G-AC07 ↔ G-R07",
+            "line_sha256": "d8e03cefaea6cf151f7b135135b1aa6024eff3c9b9efee22a44344c7a5246313"
+          },
+          {
+            "line": 42,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 43,
+            "text": "SkillゼロでもGuardとHelpが成立する。Skill集合を変えても同一操作・状態・Policyの許可判定は不変。①との依存は対象/digest限定で全体blockしない。",
+            "line_sha256": "38692c2e481c59a34166fda2ee49ae773fd6704e6f10fd95b3d9ea04f2c4d176"
+          },
+          {
+            "line": 44,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 45,
+            "text": "## G-AC08 ↔ G-R08",
+            "line_sha256": "38da7c115ac14d308c40d1c10f8cd1c11031d2e9b02439849281d3a25c1e00ba"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4176,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "3e2013550fa74023e60309c0d65d06c17a8906489467fe8cd589f9c5e2d11fc6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 862,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f897ceaf29c4f2f52480e331751edb0e42af7f3a0c5b3be728dd3ab48f1c5172",
+        "asset_id": "LEGACY-ASSET-31D783C8B6F04534C494",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "SkillがなくてもGuard／Helpを成立させ、Skill集合を変えても同じoperation／state／Policyのallow判定を不変に保ち、依存を対象／digest範囲に限定するRule Derivation条件。現行pairとの個別relationはない。",
+        "residual": "Skillなしのfixture、Skill変更時のmetamorphic oracle、依存scopeとpartial failureのoracleが未定義。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 186,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004178",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-acceptance.md",
+        "physical_line": 47,
+        "exact_source_line_text": "一系統から導入し、生成テスト以外の反例・誤拒否・mutation・consumer E2Eで検証する。保護維持とrollback成立後に対象consumerだけ切り替える。",
+        "source_file_sha256": "1335dd255e9a3945c165b9a4efcc6bad1ab4b5cff6c9023cd71f1dfdb2057e03",
+        "source_line_sha256": "0718124fae5465368006af1c72ea9b9780c4a008eae0793957b5dae21371f25e",
+        "physical_line_bytes_sha256_including_terminator": "cfe45af401b13f99bc1aa5acd878bf2be354998ac14f84db0659835666af649a",
+        "context_lines": [
+          {
+            "line": 45,
+            "text": "## G-AC08 ↔ G-R08",
+            "line_sha256": "38da7c115ac14d308c40d1c10f8cd1c11031d2e9b02439849281d3a25c1e00ba"
+          },
+          {
+            "line": 46,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 47,
+            "text": "一系統から導入し、生成テスト以外の反例・誤拒否・mutation・consumer E2Eで検証する。保護維持とrollback成立後に対象consumerだけ切り替える。",
+            "line_sha256": "0718124fae5465368006af1c72ea9b9780c4a008eae0793957b5dae21371f25e"
+          },
+          {
+            "line": 48,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 49,
+            "text": "## 証拠契約",
+            "line_sha256": "178692469f0c4b3ba27baf1826bbe2858871dc3c26817457f3da199c415f62ec"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4178,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "4652ffd983718f2763d128417ac0ef2f870c3dca7dd87a6a6d4967f8a48cb036",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 862,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f897ceaf29c4f2f52480e331751edb0e42af7f3a0c5b3be728dd3ab48f1c5172",
+        "asset_id": "LEGACY-ASSET-31D783C8B6F04534C494",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "一系統から導入し、生成テスト以外の反例・誤拒否・mutation・consumer E2Eを残す。保護維持とrollbackの成立後、対象consumerだけ切り替える。現行pairとの個別relationはない。",
+        "residual": "oracleの独立性、誤拒否coverage、mutation検出力、実consumer identity、保護とrollbackの証拠が未結合。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 187,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004248",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-requirements.md",
+        "physical_line": 73,
+        "exact_source_line_text": "生成テストだけでは合格させない。独立した反例、誤拒否テスト、mutation、実consumer E2Eを残す。合法な複数設計を許し、危険操作は副作用前に止めることを別々に証明する。現保護を弱めず、残存consumerとrollbackを確認した範囲だけ切り替える。",
+        "source_file_sha256": "809474c7b0ef3facd35be5bd1d69460249196bec2a44515e06445458341263b9",
+        "source_line_sha256": "b1e9dbfa891d6118a39d758cf839ac4016a9f74f302a90b7a40f88aced056b3a",
+        "physical_line_bytes_sha256_including_terminator": "7da048097ce02be477347226f1ed610c3d95c01865237fcc39a046b2b1aff104",
+        "context_lines": [
+          {
+            "line": 71,
+            "text": "ルール責務棚卸し→既存Policy/Guardへの導出契約接続→一系統の診断/Help→操作入口とstartupへ反映→consumer移行→旧本文退役の順で進める。巨大な汎用Compilerの完成を待たず、既存検証器のadapter接続から始める。",
+            "line_sha256": "ab72c4a5ca10467a463bdfc1323904056915e4329a07dc3d7625ce960e77974c"
+          },
+          {
+            "line": 72,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 73,
+            "text": "生成テストだけでは合格させない。独立した反例、誤拒否テスト、mutation、実consumer E2Eを残す。合法な複数設計を許し、危険操作は副作用前に止めることを別々に証明する。現保護を弱めず、残存consumerとrollbackを確認した範囲だけ切り替える。",
+            "line_sha256": "b1e9dbfa891d6118a39d758cf839ac4016a9f74f302a90b7a40f88aced056b3a"
+          },
+          {
+            "line": 74,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 75,
+            "text": "## 受入と提出物",
+            "line_sha256": "2f36c2a2f52a792103863024cf49187e46b6260478edb5741346f20252fd3a66"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4248,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "d3c0a6d1d335ac4374b67c652cd3764909a077ef8439d5a448120dcd2f141efa",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 864,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "c978946d05f1967731133f5fa1ac7265fc6f745a2d51490d289e577075f5afe3",
+        "asset_id": "LEGACY-ASSET-43BDCF59263A325425A2",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "生成テストだけで合格にせず、独立反例・誤拒否・mutation・consumer E2Eを分けるRule Derivation要求。現行pairへの個別参照はない。",
+        "residual": "4種の証拠それぞれの対象母集団、owner、期待結果、相互代替不可のoracleが未結合。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 188,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004251",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/rule-derivation-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/rule-derivation-requirements.md",
+        "physical_line": 79,
+        "exact_source_line_text": "提出: ②専用の要件・PLAN・受入、rule→Policy/検証器対応表、適用/非適用/強制不能の境界、診断/Help例、操作入口別の実証、誤拒否/総tokens/遅延、consumer移行とrollback。①のJSON移行を②の完了根拠にしない。",
+        "source_file_sha256": "809474c7b0ef3facd35be5bd1d69460249196bec2a44515e06445458341263b9",
+        "source_line_sha256": "5dc028c71a0a010db3b8eb1e2449be0ff9a7f940ac21592a1d1e252b4cec572a",
+        "physical_line_bytes_sha256_including_terminator": "150a2847134ba5af056d5dab066c3812be83811e74891ee8ab7bc50f7df5c563",
+        "context_lines": [
+          {
+            "line": 77,
+            "text": "受入: 絶対条件のみHard化、助言非block、副作用前拒否、状態変化時の再照合、診断→Help→修正→通過、契約変更へのHelp追従、Skillゼロ時の成立、独立oracle、旧ルール再注入防止をG-ACで検証する。",
+            "line_sha256": "ad37b846a36db0035c768bf520928f972f5a69da5663ca98b68763070e4ed58a"
+          },
+          {
+            "line": 78,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 79,
+            "text": "提出: ②専用の要件・PLAN・受入、rule→Policy/検証器対応表、適用/非適用/強制不能の境界、診断/Help例、操作入口別の実証、誤拒否/総tokens/遅延、consumer移行とrollback。①のJSON移行を②の完了根拠にしない。",
+            "line_sha256": "5dc028c71a0a010db3b8eb1e2449be0ff9a7f940ac21592a1d1e252b4cec572a"
+          },
+          {
+            "line": 80,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 81,
+            "text": "非対象: 新スキル機構の再定義、全ルールの無差別Hard化、自由文からの無審査実行コード生成、設計や思考手順の固定、別途の自動修復・作業環境再構築。",
+            "line_sha256": "0c621b0d2db25d0118238c0214ba570e9ea1fbb07fb515187facc26de65f8dff"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4251,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "830e0082cca338a113cae4f20b9ca24c4e06396d3eff717b55801fbe60cacf53",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 864,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "c978946d05f1967731133f5fa1ac7265fc6f745a2d51490d289e577075f5afe3",
+        "asset_id": "LEGACY-ASSET-43BDCF59263A325425A2",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "Rule Derivation専用の要求／PLAN／受入、ruleとPolicy／validatorの対応、operation境界、diagnostics／Help、証拠と指標、consumer移行／rollbackを要求し、①のJSON移行を②の完了根拠にしない。現行pairへの個別relationはない。",
+        "residual": "②のscope identity、閾値／期待値、L2／L11 binding、移行gate、rollback proofが未定。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 189,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004299",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "block"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/scrum-operation-typed-projection-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/scrum-operation-typed-projection-requirements.md",
+        "physical_line": 24,
+        "exact_source_line_text": "| SCRUM-OPS-R-04 | `scrum:daily-record` | L7 | 進行・blocker・次行動をevent/receiptへ投影する |",
+        "source_file_sha256": "c7a998aa686db588ea324ecf0d9a08007cd7656d03ceef50a6591766991a826f",
+        "source_line_sha256": "9999cc7f95a6452156a9687778fa8a4c934e43d72ae289fdd427da5e60a44f7f",
+        "physical_line_bytes_sha256_including_terminator": "0e64bf6139842cc2cf2c76d76957da648ccd8ab955a4612f518b3176ba11759c",
+        "context_lines": [
+          {
+            "line": 22,
+            "text": "| SCRUM-OPS-R-02 | `scrum:estimation-velocity` | L3 | 見積りと実測velocityを分離して計測する |",
+            "line_sha256": "839dd3313958e919bf4202787a428a1ad1f7dc3ea3082cc262432957f0138b88"
+          },
+          {
+            "line": 23,
+            "text": "| SCRUM-OPS-R-03 | `scrum:dor-dod` | L3 | 着手条件と完成条件をtyped gateへ束縛する |",
+            "line_sha256": "4c284e5290cc056a5609878aa45e3436f111ff6b1f898cf507e8ec164768c255"
+          },
+          {
+            "line": 24,
+            "text": "| SCRUM-OPS-R-04 | `scrum:daily-record` | L7 | 進行・blocker・次行動をevent/receiptへ投影する |",
+            "line_sha256": "9999cc7f95a6452156a9687778fa8a4c934e43d72ae289fdd427da5e60a44f7f"
+          },
+          {
+            "line": 25,
+            "text": "| SCRUM-OPS-R-05 | `scrum:sprint-review` | L11 | incrementを受入条件と照合してfeedbackを生成する |",
+            "line_sha256": "99fb9d1743aba45fec0dd6d344a4daa62396008b896c151ea1e76294a9c6bc08"
+          },
+          {
+            "line": 26,
+            "text": "| SCRUM-OPS-R-06 | `scrum:retrospective` | L12 | 再発所見をRecovery/Reverseへ還流する |",
+            "line_sha256": "b2fecd4c908b192a3dfd4ba12790b3cfcdd3eecffd3995543dd75cb9d43d67e6"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4299,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "6540b23a682225c21e6b0e7de07dab3cc05fccc8405c2736976a5b1e127eb5b8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 866,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "5c4a68468af2ceb284a57bfcd57c362bb249e64e5ff8c484137c38c347e84d98",
+        "asset_id": "LEGACY-ASSET-C4BDEC295C37DE2CED56",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "要求条件",
+        "normative_context_role": "direct_requirement_condition",
+        "standalone_requirement_condition": true,
+        "relation": "SCRUM operation projection行。進行・blocker・次行動をevent／receiptへ投影する。現行OSが進行と作業projectionを担う点は意味上近いが、旧ID／receipt契約への正確なpair bindingはない。",
+        "residual": "進行・blocker・次行動のevent／receipt schema、正本owner、更新順序・冪等性、consumer受入がsource row単位で未結合。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 190,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004321",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "fail-close"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "physical_line": 16,
+        "exact_source_line_text": "| `SEA-AC-003` | `SEA-FR-004` | unknown profile、自由式condition、raw shell、未登録command、近似bindingを個別reasonでfail-closeする。 |",
+        "source_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+        "source_line_sha256": "2f541fb23eedef5ad9ce7ab1718e9dfee6064a5980d60d3210fd9bcb79521094",
+        "physical_line_bytes_sha256_including_terminator": "00df10ac7e91e7b5432f019d0dd669f18ee7896c80ca7c06c0c5b9ab85c2fe80",
+        "context_lines": [
+          {
+            "line": 14,
+            "text": "| `SEA-AC-001` | `SEA-FR-001..002` | authorization不在、期限切れ、wrong target／scope／environment／provider class／digest、第三者targetでmodel・tool・network invocationが0件になる。 |",
+            "line_sha256": "cf580b0a6fbdc7db647f91c4b756facfe0334e4c09110d6f727dd52282c53010"
+          },
+          {
+            "line": 15,
+            "text": "| `SEA-AC-002` | `SEA-FR-003` | 通常customer／tenant taskから特権credential、queue、lease、evidenceを選択できず、fallbackでも境界を越えない。 |",
+            "line_sha256": "fb3a5d19fd4c2f71780fca5e83777614dce24312db282f5884f826e7f85b6c31"
+          },
+          {
+            "line": 16,
+            "text": "| `SEA-AC-003` | `SEA-FR-004` | unknown profile、自由式condition、raw shell、未登録command、近似bindingを個別reasonでfail-closeする。 |",
+            "line_sha256": "2f541fb23eedef5ad9ce7ab1718e9dfee6064a5980d60d3210fd9bcb79521094"
+          },
+          {
+            "line": 17,
+            "text": "| `SEA-AC-004` | `SEA-FR-005` | action-specific authorityのtarget、operation、HEAD、policy digest、expiryの各欠落・driftでhigh-impact操作を拒否する。 |",
+            "line_sha256": "0412725d122801a5b0e3697894b1d3feaffc93f6cbfaa976bfb0b5996b5de864"
+          },
+          {
+            "line": 18,
+            "text": "| `SEA-AC-005` | `SEA-FR-006` | authorizationからremediationまで同一episodeをreplayでき、raw secret、PII、個人absolute pathをreceiptへ出さない。 |",
+            "line_sha256": "34a2e2e9ede93f1dcfe0fae66be4dd35f26b55eb7a3eb5acb678881c1208c966"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4321,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "4dc81b13bca3672d7decf100ea917ca6ea59a73637987c5805a485cdef83670d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 867,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "41c511cc1e935f0e828723dd66cb75c15883916c26ad29f8e0644226513c040f",
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "unknown profile、自由式condition、raw shell、未登録command、近似bindingを個別reasonでfail-closeするSEA-AC-003。SECURITY L2は旧SEAのscope／authorityを参照するが、対象L1の確認と再採否は未了であり、このAC行の採択・実行を示さない。",
+        "residual": "SecurityAuthorization／profile field、拒否reasonの区別、scope／unknown状態のnegative fixture、対象authority revisionが未解決。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 191,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004392",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "forbidden"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/security-engagement-authority-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "physical_line": 24,
+        "exact_source_line_text": "| `SEA-FR-001` | `SecurityAuthorization`はauthorization ID、asset owner、source、authorized target exact set、allowed／forbidden action、environment、network／data scope、issued／expiry、human authority、provider access class、digestを別fieldで保持する。 |",
+        "source_file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "source_line_sha256": "010fef51a0fa8a24e13e035d6433813576a54d5dcf2e54f36551d103bdb98433",
+        "physical_line_bytes_sha256_including_terminator": "be2239c0a3ee1339159b94a88c547911b9d2c86aef9c68b68e08a772bb433a96",
+        "context_lines": [
+          {
+            "line": 22,
+            "text": "| ID | 要件候補 |",
+            "line_sha256": "8cd52f315e83ef8cca364dc2043297a507c48dd7d43a011c1c5fbe23955c64b7"
+          },
+          {
+            "line": 23,
+            "text": "|---|---|",
+            "line_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+          },
+          {
+            "line": 24,
+            "text": "| `SEA-FR-001` | `SecurityAuthorization`はauthorization ID、asset owner、source、authorized target exact set、allowed／forbidden action、environment、network／data scope、issued／expiry、human authority、provider access class、digestを別fieldで保持する。 |",
+            "line_sha256": "010fef51a0fa8a24e13e035d6433813576a54d5dcf2e54f36551d103bdb98433"
+          },
+          {
+            "line": 25,
+            "text": "| `SEA-FR-002` | authorization不在、期限切れ、target／scope／environment／provider class／digest不一致ではmodel、tool、network invocationを0件にする。 |",
+            "line_sha256": "64f31a3d9465b3cebc8c4e0ed96d7c880a5426d1720816b2fe214dd7f2e532c6"
+          },
+          {
+            "line": 26,
+            "text": "| `SEA-FR-003` | `NORMAL`と`PRIVILEGED_INTERNAL_SECURITY`のcredential、queue、lease、evidence、fallbackを分離し、通常taskから特権classへ到達不能にする。 |",
+            "line_sha256": "b94dc4d70454b847726d828da3f3c0058d8efb8aa18013dfb519d2311b5fa320"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4392,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "e64a4c243d9b75406d6356c4ca98bef4d067fd1a3c4fb7e876c0c64e9db451ea",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 869,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "ac20798a298ff29aa1d8ad3073d34ef032b71c36da69e16f4bfb4e6501447a7f",
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "要求条件",
+        "normative_context_role": "direct_requirement_condition",
+        "standalone_requirement_condition": true,
+        "relation": "SecurityAuthorizationのauthority tuple fieldを定義するSEA-FR-001。SECURITY L2に旧SEA tupleのfamily lineageはあるが、旧SEAのsecurity engagement限定scopeをこの行から拡張しない。SECURITY L1 authority確認とL2採択は未了。",
+        "residual": "fieldの意味とcardinality、信頼できるissuer、正確なtarget／action／environment／network／data束縛、expiry／revocation oracle、対象revision decisionが残る。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 192,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004435",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "physical_line": 18,
+        "exact_source_line_text": "| `3L-AC-029` | 3L-R-27 | Codex／Cursor定常3・burst 5、Claude定常2のprofileとCodex control reserveを保持する | control reserve枯渇、同一PRへの既定二重review、provider間のcapacity代用を拒否 |",
+        "source_file_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "source_line_sha256": "b2e8111630c8d87163d7c37aee66d9770fa716c538fce3f49e970530d5d64f04",
+        "physical_line_bytes_sha256_including_terminator": "76a78e8018a841bf8a09d2458be41496f86639ec53077a3579f74e4057d28023",
+        "context_lines": [
+          {
+            "line": 16,
+            "text": "|---|---|---|---|",
+            "line_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+          },
+          {
+            "line": 17,
+            "text": "| `3L-AC-028` | 3L-R-26 | pool登録上限、active WIP、review在庫、merge在庫、8-slot能力上限を別fieldで再生できる | 合算lane数、登録数による稼働claim、8-slot常時起動を拒否 |",
+            "line_sha256": "0ff83c60dea264576e98c9b02d5a96f31373ae5d9d6689e358f0b6de247a17dd"
+          },
+          {
+            "line": 18,
+            "text": "| `3L-AC-029` | 3L-R-27 | Codex／Cursor定常3・burst 5、Claude定常2のprofileとCodex control reserveを保持する | control reserve枯渇、同一PRへの既定二重review、provider間のcapacity代用を拒否 |",
+            "line_sha256": "b2e8111630c8d87163d7c37aee66d9770fa716c538fce3f49e970530d5d64f04"
+          },
+          {
+            "line": 19,
+            "text": "| `3L-AC-030` | 3L-R-28 | downstream capacityからactive WIPとbackpressure理由を決定的に導出する | queue過多、CI／merge詰まり、budget不足時の上限までの盲目的dispatchを拒否 |",
+            "line_sha256": "1237c30bb55ac52c706b5518071ae634d33ef9866f481d62bb5cc835d7b6442f"
+          },
+          {
+            "line": 20,
+            "text": "| `3L-AC-031` | 3L-R-29 | Cursor 1→2→3とburst 4→5の各遷移に実案件・費用・品質・回復証拠があり、Claude第3枠はtyped threshold時だけ起動する | 一件成功から5へ飛ぶ、未測定burst、review以外がボトルネックの第3reviewer起動を拒否 |",
+            "line_sha256": "84e873dde59b2eb681b684820927c3f40aa6b4018452c3b8504d0bc096aff8c3"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4435,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "877c17b45d7a77c6b87ea153055b1b3e8070d1ddfc6cf67f3ab5313c87c851fa",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 870,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "20fee66b81c8333f9e3f5a1a82dfa5db3fcbf65e902b14b9585af5e61a5878cb",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "3L-AC-029はprovider lane数とcapacity reserveを記す。現行OS／HARNESS decisionは固定provider数を採用していない。関連する3L要求とのfamily relationはあるが、この行の採択ではない。",
+        "residual": "動的capacity model、各countの意味、control reserve消費、deny oracleが未結合。歴史的数値を現行上限へ変換しない。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 193,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004436",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "physical_line": 19,
+        "exact_source_line_text": "| `3L-AC-030` | 3L-R-28 | downstream capacityからactive WIPとbackpressure理由を決定的に導出する | queue過多、CI／merge詰まり、budget不足時の上限までの盲目的dispatchを拒否 |",
+        "source_file_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "source_line_sha256": "1237c30bb55ac52c706b5518071ae634d33ef9866f481d62bb5cc835d7b6442f",
+        "physical_line_bytes_sha256_including_terminator": "f06c5db46494df728e1c162c929d401ea1fc75b6e5fd3eb815ee27e46ed66c90",
+        "context_lines": [
+          {
+            "line": 17,
+            "text": "| `3L-AC-028` | 3L-R-26 | pool登録上限、active WIP、review在庫、merge在庫、8-slot能力上限を別fieldで再生できる | 合算lane数、登録数による稼働claim、8-slot常時起動を拒否 |",
+            "line_sha256": "0ff83c60dea264576e98c9b02d5a96f31373ae5d9d6689e358f0b6de247a17dd"
+          },
+          {
+            "line": 18,
+            "text": "| `3L-AC-029` | 3L-R-27 | Codex／Cursor定常3・burst 5、Claude定常2のprofileとCodex control reserveを保持する | control reserve枯渇、同一PRへの既定二重review、provider間のcapacity代用を拒否 |",
+            "line_sha256": "b2e8111630c8d87163d7c37aee66d9770fa716c538fce3f49e970530d5d64f04"
+          },
+          {
+            "line": 19,
+            "text": "| `3L-AC-030` | 3L-R-28 | downstream capacityからactive WIPとbackpressure理由を決定的に導出する | queue過多、CI／merge詰まり、budget不足時の上限までの盲目的dispatchを拒否 |",
+            "line_sha256": "1237c30bb55ac52c706b5518071ae634d33ef9866f481d62bb5cc835d7b6442f"
+          },
+          {
+            "line": 20,
+            "text": "| `3L-AC-031` | 3L-R-29 | Cursor 1→2→3とburst 4→5の各遷移に実案件・費用・品質・回復証拠があり、Claude第3枠はtyped threshold時だけ起動する | 一件成功から5へ飛ぶ、未測定burst、review以外がボトルネックの第3reviewer起動を拒否 |",
+            "line_sha256": "84e873dde59b2eb681b684820927c3f40aa6b4018452c3b8504d0bc096aff8c3"
+          },
+          {
+            "line": 21,
+            "text": "| `3L-AC-032` | 3L-R-30 | generationごとにreview leaseが1件だけ成立し、差戻し後もassignment lineageを追跡できる | 同一generation二重lease、差戻し時の別assignment化、owner不明reworkを拒否 |",
+            "line_sha256": "b7aa2022ea294ded50f9a71c3d9e661ec51a029ad2080bad3208bce945dbd5e9"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4436,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "fca89d78277f5ae24d314d280957a60c5ec106588f32e0d29f2aeae81849d92a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 870,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "20fee66b81c8333f9e3f5a1a82dfa5db3fcbf65e902b14b9585af5e61a5878cb",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "3L-AC-030は下流capacityからactive WIP／backpressureを導出し、queue／CI／merge／budget圧迫時の盲目的dispatchを拒否する。現行OS L11には3L-R-28／backpressureの限定参照があるが、この行の個別bindingではない。",
+        "residual": "capacity入力、WIP式、圧迫原因／閾値、回復／再開oracleが未定。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 194,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004437",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "physical_line": 20,
+        "exact_source_line_text": "| `3L-AC-031` | 3L-R-29 | Cursor 1→2→3とburst 4→5の各遷移に実案件・費用・品質・回復証拠があり、Claude第3枠はtyped threshold時だけ起動する | 一件成功から5へ飛ぶ、未測定burst、review以外がボトルネックの第3reviewer起動を拒否 |",
+        "source_file_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "source_line_sha256": "84e873dde59b2eb681b684820927c3f40aa6b4018452c3b8504d0bc096aff8c3",
+        "physical_line_bytes_sha256_including_terminator": "3ac34b9b84e8159eae04b25855e18fc384a482e0ad6d2f0046daf5cd40c14720",
+        "context_lines": [
+          {
+            "line": 18,
+            "text": "| `3L-AC-029` | 3L-R-27 | Codex／Cursor定常3・burst 5、Claude定常2のprofileとCodex control reserveを保持する | control reserve枯渇、同一PRへの既定二重review、provider間のcapacity代用を拒否 |",
+            "line_sha256": "b2e8111630c8d87163d7c37aee66d9770fa716c538fce3f49e970530d5d64f04"
+          },
+          {
+            "line": 19,
+            "text": "| `3L-AC-030` | 3L-R-28 | downstream capacityからactive WIPとbackpressure理由を決定的に導出する | queue過多、CI／merge詰まり、budget不足時の上限までの盲目的dispatchを拒否 |",
+            "line_sha256": "1237c30bb55ac52c706b5518071ae634d33ef9866f481d62bb5cc835d7b6442f"
+          },
+          {
+            "line": 20,
+            "text": "| `3L-AC-031` | 3L-R-29 | Cursor 1→2→3とburst 4→5の各遷移に実案件・費用・品質・回復証拠があり、Claude第3枠はtyped threshold時だけ起動する | 一件成功から5へ飛ぶ、未測定burst、review以外がボトルネックの第3reviewer起動を拒否 |",
+            "line_sha256": "84e873dde59b2eb681b684820927c3f40aa6b4018452c3b8504d0bc096aff8c3"
+          },
+          {
+            "line": 21,
+            "text": "| `3L-AC-032` | 3L-R-30 | generationごとにreview leaseが1件だけ成立し、差戻し後もassignment lineageを追跡できる | 同一generation二重lease、差戻し時の別assignment化、owner不明reworkを拒否 |",
+            "line_sha256": "b7aa2022ea294ded50f9a71c3d9e661ec51a029ad2080bad3208bce945dbd5e9"
+          },
+          {
+            "line": 22,
+            "text": "| `3L-AC-033` | 3L-R-31 | JIT同期後の変更HEADを再reviewし、競合解消のownerと結果を追跡できる | stale receipt、reviewerによるworker branch修正、同値性未証明carry-forwardを拒否 |",
+            "line_sha256": "eb8e5ff72a00a9b7dee720099b1596083430d83124b7964ea59cce4656665a6f"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4437,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "a5c253420332e9f551cb3265518e02121d64b315c65a9a66712588f2d6d8e792",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 870,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "20fee66b81c8333f9e3f5a1a82dfa5db3fcbf65e902b14b9585af5e61a5878cb",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "3L-AC-031は拡張段階ごとの実案件・費用・品質・回復証拠を要求し、第3reviewerはtyped threshold時だけ起動する。現行OS L11は旧3Lの一部を限定的に再導出し、固定数を持ち込まず閾値／session操作をPO判断に残す。この旧行の採択ではない。",
+        "residual": "sample size／window、品質・費用の閾値、回復証拠、閾値authority、許可される拡張判断が未解決。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": true,
+        "candidate_or_source_range_reference_found": true,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 195,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004440",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "fail"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-acceptance.md",
+        "physical_line": 24,
+        "exact_source_line_text": "6 oracleは別failure classとして保持し、単一happy pathや総throughputで相殺しない。",
+        "source_file_sha256": "14075ae16016c3585947f88d5bc633f1e2022a29fbe7a602d4403dd87c14e047",
+        "source_line_sha256": "08d8877a674cd3dddbf9861276024e2c38028b703aa3272a007af6ba21980680",
+        "physical_line_bytes_sha256_including_terminator": "2195d1aeafd6079ae0056056bae2f5733dc54d2441699883f9e534c7149534f2",
+        "context_lines": [
+          {
+            "line": 22,
+            "text": "| `3L-AC-033` | 3L-R-31 | JIT同期後の変更HEADを再reviewし、競合解消のownerと結果を追跡できる | stale receipt、reviewerによるworker branch修正、同値性未証明carry-forwardを拒否 |",
+            "line_sha256": "eb8e5ff72a00a9b7dee720099b1596083430d83124b7964ea59cce4656665a6f"
+          },
+          {
+            "line": 23,
+            "text": "",
+            "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "line": 24,
+            "text": "6 oracleは別failure classとして保持し、単一happy pathや総throughputで相殺しない。",
+            "line_sha256": "08d8877a674cd3dddbf9861276024e2c38028b703aa3272a007af6ba21980680"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4440,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "6fa1113eb98c58da9762b231d6cc461163596b32019220a7715172eef0cd9e10",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 870,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "20fee66b81c8333f9e3f5a1a82dfa5db3fcbf65e902b14b9585af5e61a5878cb",
+        "asset_id": "LEGACY-ASSET-B143CAC2AFF236C80280",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "6つのoracleを別failure classとして維持し、単一happy pathや集約throughputで相殺しない。現行pairへの個別bindingは見つからない。",
+        "residual": "6 oracleのidentity、各期待fail結果、集約を禁じる判定、独立評価証拠が未特定。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 196,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004518",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/world-governance-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+        "physical_line": 16,
+        "exact_source_line_text": "| HWG-AC-02 / U-HWG-002 | R01,R03,R08 | 双方向censusで要求欠落・実装orphan・二重primary owner・無根拠edgeを個別検出。未読／部分取得を欠陥なしへ変換するmutationを拒否。 |",
+        "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+        "source_line_sha256": "b8716e957f9c34184d10004219d2cc018047939d29b163b88757f559e450ab16",
+        "physical_line_bytes_sha256_including_terminator": "146d3895d0b18acd930a3c7fd5b03a36f4769d1e05abb4e5f003f53629af9c34",
+        "context_lines": [
+          {
+            "line": 14,
+            "text": "|---|---|---|",
+            "line_sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+          },
+          {
+            "line": 15,
+            "text": "| HWG-AC-01 / U-HWG-001 | R01,R02 | 要求のみ・main実装のみ・入口未接続・運用済み・公開済みを別軸で返す。候補branch、Issue close、binding testだけで昇格しない。 |",
+            "line_sha256": "0996f1e5c5d7d429a3ce008b6f0d18db37ff75d0a6a2bff6f2c44aae6b2fdac5"
+          },
+          {
+            "line": 16,
+            "text": "| HWG-AC-02 / U-HWG-002 | R01,R03,R08 | 双方向censusで要求欠落・実装orphan・二重primary owner・無根拠edgeを個別検出。未読／部分取得を欠陥なしへ変換するmutationを拒否。 |",
+            "line_sha256": "b8716e957f9c34184d10004219d2cc018047939d29b163b88757f559e450ab16"
+          },
+          {
+            "line": 17,
+            "text": "| HWG-AC-03 / U-HWG-003 | R03,R04 | 根拠付き多対多の再利用を通す。共通path／類似名／AIスコアだけの自動統合を拒否。 |",
+            "line_sha256": "dcf19a67f721932f0fae4ac5d2e17a0a44c83ef6f067a4cbead525568881aa8e"
+          },
+          {
+            "line": 18,
+            "text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+            "line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4518,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "ec7584913350b16c5f5cf7b40357345e21c08873d9f85bbfec8192f494e2b726",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 874,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8f9409abd3b8e9cc554a2434504a7b6dede4ff15a39ddbbf48c376f5566eb9f2",
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "HWG-AC-02は双方向censusで要求欠落・実装orphan・複数primary owner・根拠のないedgeを個別検出し、未読／部分取得を欠陥なしへ変換しない。現行採択pairとのbindingはない。",
+        "residual": "populationの閉包、読込完全性、owner cardinality、edge根拠、partial-input mutation oracleが未解決。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 197,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004519",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/world-governance-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+        "physical_line": 17,
+        "exact_source_line_text": "| HWG-AC-03 / U-HWG-003 | R03,R04 | 根拠付き多対多の再利用を通す。共通path／類似名／AIスコアだけの自動統合を拒否。 |",
+        "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+        "source_line_sha256": "dcf19a67f721932f0fae4ac5d2e17a0a44c83ef6f067a4cbead525568881aa8e",
+        "physical_line_bytes_sha256_including_terminator": "001f2860721312cb9121b90b696c270cf9b84b5d45e5d5cf63277b9636b98c5c",
+        "context_lines": [
+          {
+            "line": 15,
+            "text": "| HWG-AC-01 / U-HWG-001 | R01,R02 | 要求のみ・main実装のみ・入口未接続・運用済み・公開済みを別軸で返す。候補branch、Issue close、binding testだけで昇格しない。 |",
+            "line_sha256": "0996f1e5c5d7d429a3ce008b6f0d18db37ff75d0a6a2bff6f2c44aae6b2fdac5"
+          },
+          {
+            "line": 16,
+            "text": "| HWG-AC-02 / U-HWG-002 | R01,R03,R08 | 双方向censusで要求欠落・実装orphan・二重primary owner・無根拠edgeを個別検出。未読／部分取得を欠陥なしへ変換するmutationを拒否。 |",
+            "line_sha256": "b8716e957f9c34184d10004219d2cc018047939d29b163b88757f559e450ab16"
+          },
+          {
+            "line": 17,
+            "text": "| HWG-AC-03 / U-HWG-003 | R03,R04 | 根拠付き多対多の再利用を通す。共通path／類似名／AIスコアだけの自動統合を拒否。 |",
+            "line_sha256": "dcf19a67f721932f0fae4ac5d2e17a0a44c83ef6f067a4cbead525568881aa8e"
+          },
+          {
+            "line": 18,
+            "text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+            "line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8"
+          },
+          {
+            "line": 19,
+            "text": "| HWG-AC-05 / U-HWG-005 | R05,R08 | 同一入力は同じ判定。snapshot／revision／policy変更、競合、再送、取得不能を区別し、dispatch／merge時のstale receipt流用を拒否。DB replayで一致する。 |",
+            "line_sha256": "c1e942e9f71298ac691f122b375ef14ded048d90695fcf2eebb04072c8a5f56d"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4519,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "7ec74ae6edeae8e33d4951419cdfab548a38b38a097b99f7b0b3b83887d16474",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 874,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8f9409abd3b8e9cc554a2434504a7b6dede4ff15a39ddbbf48c376f5566eb9f2",
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "HWG-AC-03は根拠のある多対多再利用を許し、path／名称類似／AI scoreだけの自動統合を拒否する。現行pairとの個別bindingはない。",
+        "residual": "edge根拠schema、許容する多対多例、自動統合拒否oracle、consumer ownerが未対応。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 198,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004520",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/world-governance-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+        "physical_line": 18,
+        "exact_source_line_text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+        "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+        "source_line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8",
+        "physical_line_bytes_sha256_including_terminator": "6301f672cc87704274b477d8ed6e7f12fbecb89f3565203615e752e7f484f0e0",
+        "context_lines": [
+          {
+            "line": 16,
+            "text": "| HWG-AC-02 / U-HWG-002 | R01,R03,R08 | 双方向censusで要求欠落・実装orphan・二重primary owner・無根拠edgeを個別検出。未読／部分取得を欠陥なしへ変換するmutationを拒否。 |",
+            "line_sha256": "b8716e957f9c34184d10004219d2cc018047939d29b163b88757f559e450ab16"
+          },
+          {
+            "line": 17,
+            "text": "| HWG-AC-03 / U-HWG-003 | R03,R04 | 根拠付き多対多の再利用を通す。共通path／類似名／AIスコアだけの自動統合を拒否。 |",
+            "line_sha256": "dcf19a67f721932f0fae4ac5d2e17a0a44c83ef6f067a4cbead525568881aa8e"
+          },
+          {
+            "line": 18,
+            "text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+            "line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8"
+          },
+          {
+            "line": 19,
+            "text": "| HWG-AC-05 / U-HWG-005 | R05,R08 | 同一入力は同じ判定。snapshot／revision／policy変更、競合、再送、取得不能を区別し、dispatch／merge時のstale receipt流用を拒否。DB replayで一致する。 |",
+            "line_sha256": "c1e942e9f71298ac691f122b375ef14ded048d90695fcf2eebb04072c8a5f56d"
+          },
+          {
+            "line": 20,
+            "text": "| HWG-AC-06 / U-HWG-006 | R07 | 人間待ちの影響閉包だけを停止し、独立が証明されたCI改善等は継続。影響不明の独立扱いと旧承認流用は拒否。 |",
+            "line_sha256": "a80ab789d5803969cacd0378c33481333274a158c35c8ebfeaf815f41d7f30c8"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4520,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "e16441a6e539bf9e80bf9eb332817ffe8c009e2c2c4009c14d2e320efd188f5d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 874,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8f9409abd3b8e9cc554a2434504a7b6dede4ff15a39ddbbf48c376f5566eb9f2",
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "HWG-AC-04は相談とID／scope／budget TTL付きの限定探索を許し、未承認の本実装・公開と各入口の迂回を拒否する。現行pairとの個別bindingはない。",
+        "residual": "仮登録state schema、TTL／expiry、認可境界、許可する探索操作、公開作用、CLI／GitHub／Worker迂回fixtureが未特定。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 199,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004521",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/world-governance-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+        "physical_line": 19,
+        "exact_source_line_text": "| HWG-AC-05 / U-HWG-005 | R05,R08 | 同一入力は同じ判定。snapshot／revision／policy変更、競合、再送、取得不能を区別し、dispatch／merge時のstale receipt流用を拒否。DB replayで一致する。 |",
+        "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+        "source_line_sha256": "c1e942e9f71298ac691f122b375ef14ded048d90695fcf2eebb04072c8a5f56d",
+        "physical_line_bytes_sha256_including_terminator": "7f3c1d649c4610a85248f4ce3a26035216ceef5b6636d5a95e38b576027a86e0",
+        "context_lines": [
+          {
+            "line": 17,
+            "text": "| HWG-AC-03 / U-HWG-003 | R03,R04 | 根拠付き多対多の再利用を通す。共通path／類似名／AIスコアだけの自動統合を拒否。 |",
+            "line_sha256": "dcf19a67f721932f0fae4ac5d2e17a0a44c83ef6f067a4cbead525568881aa8e"
+          },
+          {
+            "line": 18,
+            "text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+            "line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8"
+          },
+          {
+            "line": 19,
+            "text": "| HWG-AC-05 / U-HWG-005 | R05,R08 | 同一入力は同じ判定。snapshot／revision／policy変更、競合、再送、取得不能を区別し、dispatch／merge時のstale receipt流用を拒否。DB replayで一致する。 |",
+            "line_sha256": "c1e942e9f71298ac691f122b375ef14ded048d90695fcf2eebb04072c8a5f56d"
+          },
+          {
+            "line": 20,
+            "text": "| HWG-AC-06 / U-HWG-006 | R07 | 人間待ちの影響閉包だけを停止し、独立が証明されたCI改善等は継続。影響不明の独立扱いと旧承認流用は拒否。 |",
+            "line_sha256": "a80ab789d5803969cacd0378c33481333274a158c35c8ebfeaf815f41d7f30c8"
+          },
+          {
+            "line": 21,
+            "text": "| HWG-AC-07 / U-HWG-007 | R02,R06 | 内部利用はowner・理由・再評価条件付きで未公開表示。未検証Sliceのstable混入を拒否し、独立Sliceを全体完成待ちにしない。 |",
+            "line_sha256": "601d693a1b277ca8f62ef729d36dcbed98d1122cbfafb298646843db178e5355"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4521,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "6baca0975a94cd3a52e050862c75521d0eeb0a931a8ffed018056f0214bbb670",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 874,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8f9409abd3b8e9cc554a2434504a7b6dede4ff15a39ddbbf48c376f5566eb9f2",
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "HWG-AC-05は同じ入力への決定性を要求し、snapshot／revision／policy変更、conflict、retry、unavailableを区別する。dispatch／mergeでstale receiptを拒否し、DB replay一致を要求する。現行pairとの個別bindingはない。",
+        "residual": "decision key、snapshot schema、replay model、stale receipt oracle、conflict／error分類、正本sourceが未解決。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    },
+    {
+      "rank": 200,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-004522",
+      "screen_identity": {
+        "effective_classification": "explanation",
+        "priority_tier": 0,
+        "priority_tier_label": "prohibition-marker",
+        "matched_marker_count": 1,
+        "matched_markers": [
+          {
+            "category": "prohibition",
+            "text": "拒否"
+          }
+        ],
+        "tie_break": "numeric source ID ascending after equal tier and hit count"
+      },
+      "source": {
+        "path": "docs/governance/candidates/world-governance-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/world-governance-acceptance.md",
+        "physical_line": 20,
+        "exact_source_line_text": "| HWG-AC-06 / U-HWG-006 | R07 | 人間待ちの影響閉包だけを停止し、独立が証明されたCI改善等は継続。影響不明の独立扱いと旧承認流用は拒否。 |",
+        "source_file_sha256": "e023e956ba29ce79d742ed37a632994a4c9c308b3caa4cac2e9f8a6b28da9c8b",
+        "source_line_sha256": "a80ab789d5803969cacd0378c33481333274a158c35c8ebfeaf815f41d7f30c8",
+        "physical_line_bytes_sha256_including_terminator": "4dad1b7e93a5d27054fa9ac8439f197c703e7fed53e5a7537b4608a31cfb7283",
+        "context_lines": [
+          {
+            "line": 18,
+            "text": "| HWG-AC-04 / U-HWG-004 | R04,R05 | 相談を受理し、暫定ID・scope・予算TTL付き探索を許す。同一候補の未許可本実装・公開は拒否。CLI/GitHub/worker各入口の迂回も反例に含める。 |",
+            "line_sha256": "4dc25688f09b9f8ac9f50d0efc94ef582cdfe26284671ddd959e663dff7b8ae8"
+          },
+          {
+            "line": 19,
+            "text": "| HWG-AC-05 / U-HWG-005 | R05,R08 | 同一入力は同じ判定。snapshot／revision／policy変更、競合、再送、取得不能を区別し、dispatch／merge時のstale receipt流用を拒否。DB replayで一致する。 |",
+            "line_sha256": "c1e942e9f71298ac691f122b375ef14ded048d90695fcf2eebb04072c8a5f56d"
+          },
+          {
+            "line": 20,
+            "text": "| HWG-AC-06 / U-HWG-006 | R07 | 人間待ちの影響閉包だけを停止し、独立が証明されたCI改善等は継続。影響不明の独立扱いと旧承認流用は拒否。 |",
+            "line_sha256": "a80ab789d5803969cacd0378c33481333274a158c35c8ebfeaf815f41d7f30c8"
+          },
+          {
+            "line": 21,
+            "text": "| HWG-AC-07 / U-HWG-007 | R02,R06 | 内部利用はowner・理由・再評価条件付きで未公開表示。未検証Sliceのstable混入を拒否し、独立Sliceを全体完成待ちにしない。 |",
+            "line_sha256": "601d693a1b277ca8f62ef729d36dcbed98d1122cbfafb298646843db178e5355"
+          },
+          {
+            "line": 22,
+            "text": "| HWG-AC-08 / U-HWG-008 | R01,R03,R04,R06 | 新要求から機能・責務・検証・提供先へ往復追跡。split/merge/transfer/retire後も旧revisionと後継・移行証拠を辿れる。 |",
+            "line_sha256": "f87977f6c4e79929e2377fa5212d55d8c012419f1413435faa72333d3c42b5b5"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 4522,
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_sha256": "65391c118084f70795c3130ff442f8fe5a8732a2537f9dd9b3eff7101dac08e2",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+        "line": 874,
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8f9409abd3b8e9cc554a2434504a7b6dede4ff15a39ddbbf48c376f5566eb9f2",
+        "asset_id": "LEGACY-ASSET-6E496F15A88DE2181CF8",
+        "revision": 1,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "product_target": "unresolved",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "normative_context_role": "acceptance_expected_or_negative_behavior",
+        "standalone_requirement_condition": true,
+        "relation": "HWG-AC-06は人間待ちの影響閉包だけを停止し、独立性を証明したCI改善の継続を許す。独立性不明や旧承認の流用を拒否する。これはCI状態から許可を作るものではなく、現行workflowとの個別bindingもない。",
+        "residual": "impact graph、独立性proof、停止／継続scope、旧承認freshness、scope別negative fixtureが未結合。",
+        "counterexample": "語彙hitまたはsource-family/candidate参照だけから要求採択、exact source-row binding、oracle実施、coverage closureを導く。",
+        "source_family_relation_found": false,
+        "candidate_or_source_range_reference_found": false,
+        "selected_source_row_crosswalk_found": false,
+        "source_range_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "source_condition_closed": false,
+        "decision_status": {
+          "adopted": false,
+          "retired": false,
+          "closed": false,
+          "authority_effect": "none"
+        }
+      }
+    }
+  ],
+  "pinned_inputs": [
+    {
+      "role": "screen",
+      "commit": "e070ce2fe7453768d174a0594975dc26b0b25f07",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+      "recorded_pool_size": 255
+    },
+    {
+      "role": "#2353 baseline plus ordered overlays",
+      "baseline_commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "baseline_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "baseline_sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "ordered_overlays": [
+        {
+          "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+          "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+        },
+        {
+          "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+          "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+        },
+        {
+          "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+          "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+        },
+        {
+          "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+          "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+        },
+        {
+          "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+          "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+        },
+        {
+          "commit": "f89f71e0371440e9e10636499192c2311872b024",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+          "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+        },
+        {
+          "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+          "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+        },
+        {
+          "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+          "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+          "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+        }
+      ]
+    },
+    {
+      "role": "source_line_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "asset_ledger",
+      "commit": "37abbc2bb745849e5d4c7058b0fafeee8897eeeb",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "screen_pool_reconciliation": {
+    "recorded_screen_pool_size": 255,
+    "independently_reconstructed_regex_hits_before_markdown_exclusion": 258,
+    "excluded_markdown_table_header_count": 3,
+    "excluded_markdown_table_header_source_ids": [
+      "LEGACY-CAND-LINE-001500",
+      "LEGACY-CAND-LINE-001514",
+      "LEGACY-CAND-LINE-001910"
+    ],
+    "reconstructed_screen_eligible_pool_size": 255,
+    "screen_count_matches_after_exclusions": true,
+    "header_exclusion_basis": "Each is a Markdown table header immediately followed by a Markdown separator row in the pinned archive source.",
+    "conditional_tail_ids_at_ranks_253_255": [
+      "LEGACY-CAND-LINE-001672",
+      "LEGACY-CAND-LINE-001678",
+      "LEGACY-CAND-LINE-001685"
+    ],
+    "screen_artifact_modified": false,
+    "semantic_disposition_of_tail_rows": "unreviewed in this audit; source states preserved and closure unresolved"
+  },
+  "current_relation_search_result": {
+    "searched_current_paths": [
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "docs/helix-harness/L2-requirements/product-requirements.md",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "docs/helix-security/L1-planning/security-intent.md",
+      "docs/helix-security/L2-requirements/security-requirements.md",
+      "docs/helix-security/README.md"
+    ],
+    "found_family_level_or_limited_references": [
+      "RCLS source moved to LABO candidate; RCLS-BR-001..006 remain candidate conditions.",
+      "SEA L1/L2 mention old source as a condition input and preserve wider SECURITY scope; this is not selected SEA row adoption.",
+      "OS L11 derives only limited legacy 3L backpressure/capacity oracles and explicitly leaves fixed provider counts/thresholds out."
+    ],
+    "no_exact_current_relation_found_for": [
+      "Rule Derivation selected rows",
+      "SCRUM-OPS selected row",
+      "World Governance selected rows"
+    ]
+  },
+  "prior_audit_history": [
+    {
+      "role": "superseded_prior_audit_version",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "commit": "32c6308668b47887a17f6600a564c2351ea355e7",
+      "sha256": "43f61af38799dc0210ec5af01df4c21e6fac82a2b2f377f9aa743716dc7e7cdb",
+      "not_used_for_current_rank_order": true,
+      "superseded_by": {
+        "commit": "e69c2b93771997b79221495a06f6a92d5ef47770",
+        "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+      },
+      "reason": "旧版はtable-header hit 3行をscreen eligible poolに含めた誤った差分記録を持つ。順位181–200のslice内容は維持し、screen poolの結論だけ訂正された。"
+    }
+  ]
+}
