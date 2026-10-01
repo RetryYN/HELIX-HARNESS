@@ -8875,7 +8875,7 @@
       "exact_source_line_text": "AIが「できました」と答えただけでは完了になりません。HELIXは同じcommitに対するテスト、CI、",
       "semantic_family": "v4.0 README説明候補の完了に関する説明",
       "semantic_function": "AI自己申告を完了としない・同一commitのtest／CI照合",
-      "semantic_reading": "LEGACY-CAND-LINE-002659 — AIが「できました」と言うだけでは完了とせず、同じcommitに対するtestとCIを照合するという文の前半。照合対象は次物理行へ続く。",
+      "semantic_reading": "この行はAIが「できました」と答えただけでは完了としない。続いて同じcommitに対するテストとCIを照合対象として列挙し始め、文は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 14,
@@ -9077,7 +9077,7 @@
       "exact_source_line_text": "独立レビュー、変更履歴、状態の再構築結果を照合します。検査されていないもの、古いレビュー、",
       "semantic_family": "v4.0 README説明候補の完了に関する説明",
       "semantic_function": "同一commit証拠の照合と未検査・古いreviewの列挙開始",
-      "semantic_reading": "LEGACY-CAND-LINE-002660 — 同じcommitの独立review、変更履歴、状態再構築結果を照合するとし、続けて未検査のものと古いreviewを挙げる。証拠の対象違いは次物理行。",
+      "semantic_reading": "この行は前行から続く照合対象に独立レビュー、変更履歴、状態の再構築結果を加え、照合すると述べる。続けて未検査のものと古いレビューを列挙し、扱いの述語は次の物理行へ続く。",
       "legacy_context": {
         "section_heading": {
           "line": 14,
