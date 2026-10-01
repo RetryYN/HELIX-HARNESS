@@ -512,8 +512,10 @@
         "HARNESS-L2-048",
         "HARNESS-L2-053"
       ],
-      "candidate": "HARNESS-L2-068 unadopted; semantic scope/owner choice remains",
-      "candidate_pair_update_requirement": "Before existing Refactor connection, every impacted design pair must actually be updated for the target revision and aligned with its paired oracle in scope, revision and expected meaning; a planned update or stale marker does not pass."
+      "candidate": "HARNESS-L2-068 unadopted; full source atom retained; no source-scope narrowing",
+      "candidate_pair_update_requirement": "Before existing Refactor connection, every impacted design pair must actually be updated for the target revision and aligned with its paired oracle in scope, revision and expected meaning; a planned update or stale marker does not pass.",
+      "source_condition_detail": "HIL-FR-39 line129 full selected atom: compare duplicate contract/policy/schema; plan externalize/commonize/objectize/semantic-rename independently; base rename on I/O, side effects, failure, state transition, call graph and consumer contract; unify same-meaning synonyms and separate homonyms; require behavior preservation, all-consumer compatibility, same-scope authority, actual design-pair update with aligned oracle, and rollback basis before Refactor; reroute observable behavior/public surface/DB semantics/requirement differences to Redesign/Retrofit.",
+      "pre_refactor_gate": "Every impacted pair and paired oracle must be actually updated/aligned at the target revision; update plans or stale markers do not pass. Scope Authority and applicable rollback basis are bound to same scope/revision."
     },
     {
       "id": "HIL-FR-40",
@@ -575,24 +577,25 @@
     "HARNESS-L2-068": {
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "full_file_sha256": "b5118424b1c1bee68a23ca5ee801144081fe2e6ae88d4746934caf27dd460710",
+        "full_file_sha256": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
           1290,
           1304
         ],
-        "section_sha256": "288281a277ede7ff7f5d5f98ef3a01eab8f43e6f8c9c7ff6843dfa573b47d0e4"
+        "section_sha256": "06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "full_file_sha256": "a03e91220ab11dc5cc54c62915cb79165bd5fa9456dc0b8b7aa124ba9148d483",
+        "full_file_sha256": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
         "section_heading": "HARNESS-L2-068",
         "section_lines": [
           1002,
-          1011
+          1014
         ],
-        "section_sha256": "f90c216e31a431350115fbf154fc0b9687fe790752e48b509893510e184100df"
-      }
+        "section_sha256": "2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8"
+      },
+      "correction": "#2497 REVIEW01 MinorF1; full HIL-FR-39 source atom retained; current pins point to corrected candidate."
     }
   },
   "no_claims": [
@@ -654,5 +657,14 @@
       }
     }
   },
-  "root_scope_authority_repair": "068 explicitly binds existing Scope Authority to target revision/scope, with missing/stale/out-of-scope negative fixtures; no new approval procedure."
+  "root_scope_authority_repair": "068 explicitly binds existing Scope Authority to target revision/scope, with missing/stale/out-of-scope negative fixtures; no new approval procedure.",
+  "f1_correction_history": [
+    {
+      "finding": "#2497 REVIEW01 MinorF1",
+      "source_atom": "HIL-FR-39 line129, one complete old requirement atom; source scope unchanged",
+      "correction": "Added explicit duplicate contract/policy/schema comparison; semantic-signature rename positive and homonym separation; public surface/DB semantics reroute in L2; concrete L11 positive/negative rename fixtures. Existing pair/oracle, Scope Authority, rollback conditions remain.",
+      "historical_local_pins_retained": true,
+      "candidate_adoption_or_formal_successor_claimed": false
+    }
+  ]
 }

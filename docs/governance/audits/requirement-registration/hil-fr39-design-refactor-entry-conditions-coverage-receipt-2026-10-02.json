@@ -24,27 +24,27 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "b5118424b1c1bee68a23ca5ee801144081fe2e6ae88d4746934caf27dd460710",
+      "full_file_sha256": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
         1290,
         1304
       ],
-      "section_sha256": "288281a277ede7ff7f5d5f98ef3a01eab8f43e6f8c9c7ff6843dfa573b47d0e4"
+      "section_sha256": "06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "a03e91220ab11dc5cc54c62915cb79165bd5fa9456dc0b8b7aa124ba9148d483",
+      "full_file_sha256": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
       "section_heading": "HARNESS-L2-068",
       "section_lines": [
         1002,
-        1011
+        1014
       ],
-      "section_sha256": "f90c216e31a431350115fbf154fc0b9687fe790752e48b509893510e184100df"
+      "section_sha256": "2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8"
     },
     "source_condition_boundary": {
       "HARNESS-L2-053": "adopted generic identity/lineage/oracle/typed-edge relation after split/merge/supersede; not a design refactor entry gate",
-      "HARNESS-L2-068": "proposed independent design transformation unit + paired design/oracle update and applicable rollback/recovery basis before existing Refactor connection",
+      "HARNESS-L2-068": "Full selected HIL-FR-39 line 129 atom retained: design graph plus duplicate contract/policy/schema comparison, four independent transform kinds, semantic-signature rename positive and homonym split, all consumers/oracles, behavior preservation, Scope Authority, actual pair/oracle update, rollback basis before Refactor, and observable/public-surface/DB-semantics/requirement reroute. No source-scope narrowing.",
       "HARNESS-L2-016/042/048": "behavior preservation/backflow; similarity/consumer/oracle/dependency graph and separate episode; bounded safe rename. Their scopes do not add universal preconnection recovery basis."
     }
   },
@@ -155,6 +155,25 @@
     "value": null,
     "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
   },
-  "pair_connection_condition": "For every impacted design pair, target-revision design update and corresponding oracle scope/revision/expected-meaning alignment must actually be present before existing Refactor connection. A planned update or marking the pair stale alone cannot pass.",
-  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+  "pair_connection_condition": "Before existing Refactor connection, every impacted design pair must actually be updated for target revision and aligned with its paired oracle in scope, revision and expected meaning; a planned update or stale marker alone does not pass. The applicable Scope Authority and rollback/recovery basis must also be bound to the same target/scope. Observable behavior, public surface, DB semantics or requirement differences route to existing Redesign/Retrofit.",
+  "current_comparison_base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+  "correction_history": [
+    {
+      "finding": "#2497 REVIEW01 MinorF1",
+      "reason": "Restore explicit old HIL-FR-39 guarantees for duplicate contract/policy/schema comparison; semantic rename positive and homonym separation; public surface/DB semantics reroute in L2 and concrete L11 oracles. Source atom and selected source scope unchanged.",
+      "prior_unmerged_local_candidate_pins": {
+        "l2_full_file_sha256": "b5118424b1c1bee68a23ca5ee801144081fe2e6ae88d4746934caf27dd460710",
+        "l2_section_sha256": "288281a277ede7ff7f5d5f98ef3a01eab8f43e6f8c9c7ff6843dfa573b47d0e4",
+        "l11_full_file_sha256": "a03e91220ab11dc5cc54c62915cb79165bd5fa9456dc0b8b7aa124ba9148d483",
+        "l11_section_sha256": "f90c216e31a431350115fbf154fc0b9687fe790752e48b509893510e184100df"
+      },
+      "corrected_candidate_pins": {
+        "l2_full_file_sha256": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
+        "l2_section_sha256": "06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d",
+        "l11_full_file_sha256": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
+        "l11_section_sha256": "2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8"
+      },
+      "memento": "One final local MPR registration 001 is retained; no intermediate registration revision is introduced."
+    }
+  ]
 }

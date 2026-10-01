@@ -1003,8 +1003,11 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 **状態**：HARNESS-L2-068に対応する未採択・未実行の静的内容oracle案。実変換・rollback実行・CI実施を表さない。
 
-- **正常例**：一つの選択scopeで二つの独立した変換が提案されたfixtureを与える。各変換について変更前後のsemantic signature、対象invariant、全影響consumer、影響を受ける各設計pairの対象revision向け更新内容と対oracleのscope/revision/期待意味の整合を確認できる。必要pairが現行revisionへ実際に更新済みで、対oracleがその設計を照合している変換だけを既存Refactorへ接続可能とする。scopeへ適用できるrollback/recovery basisも個別に確認する。同じ対象revision/scopeの既存Scope Authorityが当該変換を許可する根拠も確認する。候補計画や更新予定だけでは接続可能にしない。
-- **拒否例**：名称類似だけの判断、consumer欠落、必要pairが未更新/stale/欠落、対oracleが更新後設計とrevisionまたは意味上不整合、pairの更新予定を示すだけ、pairをstaleと印すだけ、またはrollback根拠を示せない変換を既存Refactorへ接続可能とする場合は不成立またはunknownにする。observable behavior/public surface/DB semantics/要求に意味差があるfixtureは、HARNESS-L2-002/003/004の既存Redesign/Retrofit routeへ返し、右側だけで修正を完結させない。
+- **正常例 — 重複contract/policy/schema**：同じ選択scope内の二つのdesign nodeが重複候補として与えられる。両方の定義、責務、state invariant、全consumer、before/after oracleを比較して、重複の意味と独立変換単位を個別に記録する。単に関連nodeとして列挙するだけでは比較済みにしない。意味同等で統合可能な候補は独立した共通化等の変換計画へ結べるが、実際の統合や特定storage/layoutは実行しない。
+- **正常例 — semantic rename**：名称が異なる二つのsymbolのsemantic signature（入力、出力、副作用、failure、state transition、call graph、consumer contract）が同一であるfixtureでは、意味同等を根拠に同義名の統一候補を示す。変換単位、全consumer、pair/oracle、対象Scope Authority、rollback/recovery basisが揃い、必要pairとoracleが対象revisionへ実際に更新済みの場合だけRefactorへ接続可能とする。
+- **拒否例 — lexical-only rename**：名称の類似はあるがsemantic signatureの入力/出力、副作用、failure、state transition、call graphまたはconsumer contractのいずれかが異なるfixtureで、名称類似だけを理由に統一する判断は拒否する。
+- **拒否例 — 同名異義**：同じ名称でもsemantic signatureまたは責務が異なる二つのsymbolを一つへ統合する判断は拒否し、別概念として分離候補にする。
+- **拒否例 — 接続前条件と意味差分**：consumer欠落、必要pair未更新/stale/欠落、対oracleが更新後設計とrevisionまたは意味上不整合、更新予定の列挙だけ、pairをstaleと印すだけ、または適用可能なrollback根拠を示せない変換を既存Refactorへ接続可能とする場合は不成立またはunknownにする。observable behavior、public surface、DB semanticsまたは要求に意味差があるfixtureはHARNESS-L2-002/003/004の既存Redesign/Retrofit routeへ返し、Refactor内だけで修正を完結させない。
 - **authority反例**：pair更新・oracle・rollback根拠が揃っていても、authority根拠が欠ける、別revisionへsupersedeされstaleである、または変換が許可scope外である各fixtureは、それぞれ既存Refactorへ接続しない。既存authority ownerへ不足を返し、新しい人手承認を一律に追加しない。
 - **未見例**：依存関係が未選択sourceまたは未読artifactに及ぶ場合、そのconsumer/rollback適用性をunknownとして保持する。未読であることを影響なし・rollback可へ置き換えない。確認済み変換単位の個別結果は未見部分から分離する。
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
