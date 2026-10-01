@@ -472,5 +472,6 @@
     "137_worker_run": false,
     "common_8_gate_worker_run": false,
     "tracked_l2_l11_or_decision_changed": false
-  }
+  },
+  "root_authority_recheck": "実PO decision対象revision節は固定f6dad2a上のHELIXOS-L2-001〜029と対L11要求本文一式への合意を明記する。明示candidate採用は014〜029の16件と区別する。001/002/007/009は個別candidate採用ではないが固定既存本文への合意範囲に含まれる。単なるfile pinから合意を推定せず、この明示文を根拠とする。rootの初回過大表記という返却理由は不正確だったため訂正。"
 }

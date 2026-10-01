@@ -33,3 +33,7 @@
 ## 検証範囲
 
 旧source物理行と全file pin、候補/受入pair section digests、adoption decision rows、旧HAC/HAT linksを照合した。JSON parseと`git diff --check`を行った。旧archive runtime/CLI/test/CI、新generation runtime test、共通8 gate、137比較は実行していない。要求本文・decision・receiptは変更せず、paired auditのみ作成した。
+
+## root採択範囲の再検収
+
+9/28 OS decisionの対象revision節は、固定f6dad2a上のL2-001〜029と対L11本文一式への合意を明記する。014〜029の16件は新たな明示candidate採用の集合であり、既存001/002/007/009も固定本文への合意範囲に含まれる。file pinだけから採否を推定しないことと、decisionの明示した本文合意範囲を狭めないことを両立する。rootが初回に全001〜029合意を過大とした返却理由は不正確だったため訂正する。
