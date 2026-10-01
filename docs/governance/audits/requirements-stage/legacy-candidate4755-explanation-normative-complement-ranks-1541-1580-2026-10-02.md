@@ -5,7 +5,7 @@
 ## 母集団・範囲
 
 - #2353の4,755 source rowへ#2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381を順に適用し、effective explanation 2,965件からmarker union 255件を除外。補集合2,710件をID数値suffix順に順位化した。選択40 IDのSHA-256: `d41278b1741e0a2c9bf5a1a947c7b6b5416e92fe418495b8c093bbe4f7fd67f1`.
-- rank1540境界ID: `LEGACY-CAND-LINE-002597`。隣接sliceのpaired auditは基点に存在せず、ID境界だけを記録する。先行行の意味検証は主張しない。
+- rank1540境界ID: `LEGACY-CAND-LINE-002597`。隣接sliceのpaired auditは#2469でmainへ統合済み。merge commit `59d661a7840c0ee556a8694fc2d1b1adb8cdda17` のJSON／MD bytesをpaired JSONでpinした。rank境界はfull-poolからも再構成した。
 - 対象はv4.0 Conceptの受入候補、能力差分根拠、README向け説明候補。物理行が表のID行・文章継続・見出し・code fenceのどれかをcontextで見分け、意味を行別に限定した。archive/file・source/asset/routing ledger、marker/reconstruction inputsのhashはpaired JSONに記録。
 
 ## 固定F6・現行Concept・PO・receipt

@@ -76,9 +76,21 @@
     "prior_id": "LEGACY-CAND-LINE-002597",
     "this_first_rank": 1541,
     "this_first_id": "LEGACY-CAND-LINE-002598",
-    "paired_audit_available_at_base": false,
-    "prior_semantic_verification_claimed": false,
-    "note": "隣接するrank 1501–1540のpaired auditは選択基点に存在しない。rank1540の境界IDだけを記録し、先行意味検証は主張しない。"
+    "paired_audit_available_at_base": true,
+    "prior_semantic_verification_claimed": true,
+    "paired_audit_pins": [
+      {
+        "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1501-1540-2026-10-02.json",
+        "sha256": "4cce386b8a1570972c9902ec0175523b820baba0148d72d5d62bcfe649f19b73"
+      },
+      {
+        "commit": "59d661a7840c0ee556a8694fc2d1b1adb8cdda17",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1501-1540-2026-10-02.md",
+        "sha256": "28e4de8658f1ea4eeafa380d32beec60771bd8a1c79acf74d93881c1aa363544"
+      }
+    ],
+    "note": "隣接するrank 1501–1540のpaired auditは#2469でmainへ統合済み。merge commitとJSON／MD bytesをpinした。rank境界はfull-poolからも再構成した。"
   },
   "reconstruction_inputs": [
     {
