@@ -1,0 +1,144 @@
+{
+  "requirement_identity": "HARNESS-L2-067",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-067-001",
+  "candidate_status": "unadopted_proposal",
+  "product_target": "HELIX-HARNESS",
+  "base_commit": "58cbdb8e799a18b6cfb2e3e9188fa3b694898474",
+  "source_atom": {
+    "source_holding": "MPR-SH-IR-001",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 127,
+    "source_line_sha256_without_lf": "0128e17db0a2bb5c024a1b2b812c23301e11228b2b11020387f9e98dee3954a5",
+    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-067",
+    "legacy_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "statement_semantic_digest": "34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
+    "record_semantic_digest": "4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
+    "carry_forward_path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "carry_forward_line": 70,
+    "carry_status": "preserved_pending_rehome",
+    "source_owner_assessment": "crosswalk/current PO packet disagree: OS vs HARNESS",
+    "successor_requirement_ids": []
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "9822d73f726fd429b0a9cc2bcb4b81f5ae4482546edb8eee1ae9f0b07558ade6",
+      "section_heading": "HARNESS-L2-067",
+      "section_lines": [
+        1250,
+        1263
+      ],
+      "section_sha256": "f333f952b994a31e6e4f1191fe8749dc7137a19c9f6edb7f3f0a638818b19735"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "32a410679ec5068d0f6f5a95996035cd4b1b9a53a50c0b91ceb6d44d07535933",
+      "section_heading": "HARNESS-L2-067",
+      "section_lines": [
+        965,
+        973
+      ],
+      "section_sha256": "1a8f72b416159151ca7ea724311b84d6ec5bc550590507dc8b6333fcc557cebc"
+    }
+  },
+  "parent_l1": {
+    "path": "docs/helix-harness/L1-planning/product-intent.md",
+    "fixed_file_sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    "selected_parent_ids": [
+      "HARNESS-L1-001",
+      "HARNESS-L1-003",
+      "HARNESS-L1-004",
+      "HARNESS-L1-008",
+      "HARNESS-L1-009"
+    ]
+  },
+  "decision_pins": {
+    "po57": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    "po11": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "full_file_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    "live26": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    "parent_l1": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "full_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    }
+  },
+  "supporting_pairs": {
+    "HARNESS-L2-016": {
+      "l2_section_sha256": "3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+      "l11_section_sha256": "af638df15c01789c0b130047655bed93f24efa9f9913581870990e7fde7388e7",
+      "authority": "2026-09-28 fixed baseline"
+    },
+    "HARNESS-L2-027": {
+      "l2_section_sha256": "fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+      "l11_section_sha256": "a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd",
+      "authority": "2026-09-28 fixed baseline PO decision; adopted exact selected revision (candidate metadata is historical)"
+    },
+    "HARNESS-L2-035-002": {
+      "l2_section_sha256": "4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "l11_section_sha256": "65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-038-001": {
+      "l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "l11_section_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-040-002": {
+      "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-041-003": {
+      "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+      "authority": "PO11 adopted"
+    },
+    "HARNESS-L2-042-001": {
+      "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-048-001": {
+      "l2_section_sha256": "9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "l11_section_sha256": "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+      "authority": "PO11 adopted"
+    },
+    "HARNESS-L2-063-001": {
+      "l2_section_sha256": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "l11_section_sha256": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+      "authority": "live26 adopted for three selected atoms"
+    }
+  },
+  "source_collection_scope": "Only HIL-FR-37 line 127 is input. HR-FR-HIL-09, NFR-08/12/22 and HAC/HAT provide context, not additional atoms. OS source custody remains distinct. Owner/placement: A preserve OS custody and place semantic atomization in HARNESS (recommended); B assign both to OS. PO choice affects target of this atom, candidate adoption and HARNESS 027/038/041 versus OS 015/016/019 boundary.",
+  "coverage_result": "no_loss_limited_to_one_selected_source_atom",
+  "unaccounted_atom_refs": [],
+  "human_decision_disposition_refs": [],
+  "authority_effect": "none",
+  "no_claims": [
+    "formal successor assignment",
+    "source closure",
+    "candidate adoption",
+    "implementation",
+    "runtime/test/CI execution",
+    "acceptance"
+  ],
+  "read_after_comparison": {
+    "commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
+    "note": "Current adopted pair/decision read-after; candidate remains an unadopted proposal."
+  }
+}
