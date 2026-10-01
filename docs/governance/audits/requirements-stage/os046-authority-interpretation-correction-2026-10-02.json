@@ -729,6 +729,170 @@
         {
           "json_pointer": "/RFA_current_candidate_receipt_relations/3/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
+        },
+        {
+          "json_pointer": "/rows/0/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/1/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/2/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/3/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/4/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/5/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/6/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/7/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/8/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/9/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/10/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/11/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/12/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/13/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/14/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/15/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/16/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/17/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/18/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/19/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/20/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/21/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/22/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/23/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/24/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/25/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/26/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/27/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/28/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/29/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/30/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/31/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/32/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/33/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/34/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/35/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/36/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/37/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/38/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/rows/39/fixed_F6_family_comparison_relations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
+        },
+        {
+          "json_pointer": "/RFA_current_candidate_receipt_relations/2/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
         }
       ]
     },
@@ -763,6 +927,10 @@
         {
           "json_pointer": "/RFA_shared_family_companion_evidence/citations/10/interpretation",
           "historical_interpretation": "Draft unadopted local receipt maps only LEGACY-CAND-LINE-003612 / RFA-AC-16 / old acceptance physical line 37; its coverage is partial, PO pending, source closure not asserted."
+        },
+        {
+          "json_pointer": "/RFA_shared_family_companion_evidence/citations/9/interpretation",
+          "historical_interpretation": "PO fixed OS L2-001..029 and adopted explicit candidate IDs L2-014..029; L2-046 is outside that adopted set."
         }
       ]
     },
@@ -788,6 +956,6 @@
     "line_sha256": "bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c",
     "text": "| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |"
   },
-  "affected_interpretation_count": 170,
-  "inclusion_rule": "OS046をdraft／未採択／PO pendingとして説明した現行監査の解釈とreceiptの採否解釈を列挙する。JSONは解釈・finding・PO_relation・limitations等を含み、text/source_text/exact_source_line_textの引用原文は除く。Markdownは該当解釈を含む行全体を列挙する。歴史引用のdraft値自体は変更せず、後日の採択を加味しない現行解釈を訂正する。"
+  "affected_interpretation_count": 212,
+  "inclusion_rule": "OS046をdraft／未採択／PO pendingとして説明した現行監査の解釈とreceiptの採否解釈を列挙する。JSONは解釈・finding・PO_relation・limitations等を含み、text/source_text/exact_source_line_textの引用原文は除く。Markdownは該当解釈を含む行全体を列挙する。歴史引用のdraft値自体は変更せず、後日の採択を加味しない現行解釈を訂正する。旧PO判断の限定集合を現在の全採択集合として説明しOS046をoutside that adopted setとした解釈も含む。"
 }
