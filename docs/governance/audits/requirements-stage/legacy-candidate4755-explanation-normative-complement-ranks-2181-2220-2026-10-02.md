@@ -79,11 +79,11 @@
 
 ## 2026-10-02 現行採択の訂正
 
-上記のSept28 receiptは、`draft_unadopted_candidate_scope_recorded`状態と、非選択の`LEGACY-CAND-LINE-003612` / `RFA-AC-16` / acceptance line 37という1 atomのscopeを持つ歴史的証拠として保持する。現在の採択状態は[Sept29 PO decision記録](../../decisions/po-decision-2026-09-29-57candidates.md#L69)69行から読む。同記録は、以下にpinした正確なrevisionの`HELIXOS-L2-046`と対になるL11 sectionを採択する。この採択はreceiptを拡張せず、本監査の選択したrecognition/requests行へのbindingやrow-level successorを作らず、旧RFA source全体のclosure、実装、実行、受入を証明しない。
+上記のSept28 receiptは、`draft_unadopted_candidate_scope_recorded`状態と、非選択の`LEGACY-CAND-LINE-003612` / `RFA-AC-16` / acceptance line 37という1 atomのscopeを持つ歴史的証拠として保持する。現在の採択状態は[Sept29 PO decision記録](../../decisions/po-decision-2026-09-29-57candidates.md)69行から読む。同記録は、以下にpinした正確なrevisionの`HELIXOS-L2-046`と対になるL11 sectionを採択する。この採択はreceiptを拡張せず、本監査の選択したintake/recognition行へのbindingやrow-level successorを作らず、旧RFA source全体のclosure、実装、実行、受入を証明しない。
 
 | artifact | source commit | 全文SHA-256 | section SHA-256 | 現行section照合 |
 |---|---|---|---|---|
 | `docs/helix-os/L2-requirements/governance-requirements.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | 一致 |
 | `docs/helix-os/L11-acceptance/governance-acceptance.md` · `HELIXOS-L2-046` | `318ec4a04abb3c1cc17111b3d939f913facd5fd3` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | 一致 |
 
-section digestはdecision記録の定義に従い、identityの`###`見出しから次の同階層以上の見出し直前までを切り出し、末尾空行を除き、UTF-8/LFで符号化して末尾をLF一つにする。decision記録全文SHA-256は`c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、69行SHA-256は`23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c`。
+section digestはdecision記録の定義に従い、identityの`###`見出しから次の同階層以上の見出し直前までを切り出し、末尾空行を除き、UTF-8/LFで符号化して末尾をLF一つにする。decision記録全文SHA-256は`c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`、69行SHA-256は`30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a`。

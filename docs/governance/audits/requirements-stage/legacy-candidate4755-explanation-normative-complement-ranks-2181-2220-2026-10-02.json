@@ -14818,8 +14818,11 @@
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "line": 69,
       "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-      "line_sha256": "23be4662d87c825df19a1fa91ee2c0f0e851c83799d20923738936a30646302c",
-      "exact_line": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |"
+      "line_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+      "exact_line": "| `HELIXOS-L2-046` | 採択 | `MPR-RC-HELIXOS-L2-046-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d` | `HELIXOS-L2-046` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json` |",
+      "commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "line_sha256_rule": "UTF-8 exact physical line, excluding terminal LF"
     },
     "current_adoption": {
       "identity": "HELIXOS-L2-046 / HELIXOS-L2-046 paired L11 section",
@@ -14832,7 +14835,10 @@
           "full_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
           "section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
           "section_rule": "identityの###見出しから、次の同階層以上の見出しの直前まで。末尾空行を除き、UTF-8/LFで符号化し、末尾はLF一つ。",
-          "current_worktree_section_matches": "一致"
+          "current_worktree_section_matches": "一致",
+          "compared_current_commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+          "compared_current_file_sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+          "compared_current_section_sha256": "c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d"
         },
         {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -14841,7 +14847,10 @@
           "full_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
           "section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
           "section_rule": "identityの###見出しから、次の同階層以上の見出しの直前まで。末尾空行を除き、UTF-8/LFで符号化し、末尾はLF一つ。",
-          "current_worktree_section_matches": "一致"
+          "current_worktree_section_matches": "一致",
+          "compared_current_commit": "148307bbb0f1f7b82fc48ecff5a382621c1850cd",
+          "compared_current_file_sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+          "compared_current_section_sha256": "3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0"
         }
       ]
     },
