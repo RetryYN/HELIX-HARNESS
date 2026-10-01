@@ -75,7 +75,7 @@
 
 ## 統合時の先行slice確認
 
-同一PRの2181–2220行をcommit `1a2090854d694953c00e1c247d58247ad7b3d337` のJSON本文pinで参照する。rank2220は`LEGACY-CAND-LINE-003795`。
+同一PRの2181–2220行をcommit `56379e724b0a2eacf4ceb14ebe0135099426d8fa` のJSON本文pinで参照する。rank2220は`LEGACY-CAND-LINE-003795`。
 
 ## 2026-10-02 現行採択の訂正
 
