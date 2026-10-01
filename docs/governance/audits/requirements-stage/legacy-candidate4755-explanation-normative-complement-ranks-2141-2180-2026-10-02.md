@@ -67,3 +67,7 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なcontext、source/asset/routing hash、current/F6各24本文、現行candidate群、全PO／receipt検索pin、旧判断履歴はpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-2141-2180-2026-10-02.json` に記録。
+
+## 統合時の先行slice確認
+
+同一PRの2101–2140行をcommit `a9f42f980cdfe45ae908dab28797572a942a628a` のJSON本文pinで参照する。rank2140 `LEGACY-CAND-LINE-003648` → rank2141 `LEGACY-CAND-LINE-003650`。
