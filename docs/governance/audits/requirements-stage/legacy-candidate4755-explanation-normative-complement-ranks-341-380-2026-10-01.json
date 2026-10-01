@@ -333,7 +333,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。PKG-D01..13は利用者向け選択viewの再採否候補として保持するが、名前・個数を固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -410,7 +410,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。旧Moduleのprimary owner候補を参照できるが、旧Module名やPackageへの所有権移管を正式identityにしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -487,7 +487,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。機能単位の安全依存・検証・更新・復旧は候補条件として保持し、旧Slice名や文書IDを正式Slice IDにしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -564,7 +564,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。選択構成のexact lockと証拠追跡は候補条件だが、旧Bundle/Profile名や公開版との同一視を採らない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -641,7 +641,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。公開版からartifact・source・構成・検収証拠へ辿る候補条件を保持し、旧Artifact行だけで公開版やbyte上書き許可を決めない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -718,7 +718,7 @@
       "semantic_function": "candidate taxonomy row",
       "semantic_reading": "Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Package/Module/Slice/Bundle/Artifact/Deployment terms define a proposed boundary vocabulary and candidate mappings; the table is not a current identity or acceptance contract.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。配布操作と対象製品の提供契約をOS/HARNESSに分け、旧Deployment行から公開版や固定配布構成を決めない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -795,7 +795,7 @@
       "semantic_function": "candidate versioning rule",
       "semantic_reading": "Says one published object should not get duplicate Package/Bundle version ledgers and that the published version stays unresolved until the object is settled. Normative implication exists only within this candidate.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Says one published object should not get duplicate Package/Bundle version ledgers and that the published version stays unresolved until the object is settled. Normative implication exists only within this candidate.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -949,7 +949,7 @@
       "semantic_function": "candidate crosswalk row",
       "semantic_reading": "A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -1026,7 +1026,7 @@
       "semantic_function": "candidate crosswalk row",
       "semantic_reading": "A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -1103,7 +1103,7 @@
       "semantic_function": "candidate crosswalk row",
       "semantic_reading": "A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -1180,7 +1180,7 @@
       "semantic_function": "candidate crosswalk row",
       "semantic_reading": "A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A candidate relationship to Issue/World Governance/legacy learning vocabulary. It records a projection, unresolved comparison, or no-new-writer boundary; the referenced item is not an approval or adopted mapping.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -1257,7 +1257,7 @@
       "semantic_function": "candidate scope statement",
       "semantic_reading": "Composite scope statement: include target-product development and required foundations, exclude implicit HELIX governance/learning/publication factory, retain safety/quality/evidence, and separately verify consumer-change parity, dependency closure, update/rollback. Normative concern, but no row-specific adopted pair.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Composite scope statement: include target-product development and required foundations, exclude implicit HELIX governance/learning/publication factory, retain safety/quality/evidence, and separately verify consumer-change parity, dependency closure, update/rollback. Normative concern, but no row-specific adopted pair.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236は関連する旧release-crosswalkを名指しし、この取込行とsource-familyで接続する。growth-offでも通常開発を成立させ、安全・品質・証拠を削らない候補条件を保持し、自己統治・内部学習・公開工場の一括同梱を固定提供範囲にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 31,
@@ -1484,7 +1484,7 @@
       "semantic_function": "candidate document metadata",
       "semantic_reading": "Version/status and explicit nonclaims; metadata does not approve requirements or implementation.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Version/status and explicit nonclaims; metadata does not approve requirements or implementation.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 1,
@@ -1946,7 +1946,7 @@
       "semantic_function": "future vision row",
       "semantic_reading": "A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。将来Visionの目標は候補として保全し、未採択Visionを現在の提供構成や通常開発の必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2023,7 +2023,7 @@
       "semantic_function": "future vision row",
       "semantic_reading": "A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。将来Visionの目標は候補として保全し、未採択Visionを現在の提供構成や通常開発の必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2100,7 +2100,7 @@
       "semantic_function": "future vision row",
       "semantic_reading": "A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。将来Visionの目標は候補として保全し、未採択Visionを現在の提供構成や通常開発の必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2177,7 +2177,7 @@
       "semantic_function": "future vision row",
       "semantic_reading": "A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。A Vision 2.0–5.0 capability and its unresolved source/rights/consent/evaluation/delivery preconditions. Future aspiration does not create current scope, data-use permission, or acceptance.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。将来Visionの目標は候補として保全し、未採択Visionを現在の提供構成や通常開発の必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2254,7 +2254,7 @@
       "semantic_function": "candidate product-scope boundary",
       "semantic_reading": "Sentence begins a future-scope rule separating Web and related work from HARNESS V1, and continues on the next physical line. Treat as one context-dependent candidate sentence, not a standalone line atom.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Sentence begins a future-scope rule separating Web and related work from HARNESS V1, and continues on the next physical line. Treat as one context-dependent candidate sentence, not a standalone line atom.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。Web等との接続は別の適用範囲とし、旧候補からHARNESS 1.0の固定提供分母へ編入しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2331,7 +2331,7 @@
       "semantic_function": "candidate compatibility boundary",
       "semantic_reading": "Core/service compatibility by capability and contract rather than same-date publication/version. Normative implication, but no exact current-row binding.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Core/service compatibility by capability and contract rather than same-date publication/version. Normative implication, but no exact current-row binding.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。本体とサービスの互換契約を比べる候補条件は保持し、同日公開や同一版番号を要求しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 16,
@@ -2408,7 +2408,7 @@
       "semantic_function": "candidate identity/mapping limitation",
       "semantic_reading": "PKG IDs preserve input catalog labels; Module names are name-level comparisons, with path ownership/consumer eligibility expressly unverified.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。PKG IDs preserve input catalog labels; Module names are name-level comparisons, with path ownership/consumer eligibility expressly unverified.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。PKG-IDは旧カタログの文書IDとして保全し、正式Slice ID、runtime enum、公開製品名にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2485,7 +2485,7 @@
       "semantic_function": "candidate identity/mapping limitation",
       "semantic_reading": "PKG IDs preserve input catalog labels; Module names are name-level comparisons, with path ownership/consumer eligibility expressly unverified.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。PKG IDs preserve input catalog labels; Module names are name-level comparisons, with path ownership/consumer eligibility expressly unverified.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧Module名との対応候補を保全するが、path所有・consumer適格性や現行Module identityの確定に使わない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2562,7 +2562,7 @@
       "semantic_function": "table header",
       "semantic_reading": "Column labels only; no independent requirement atom.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Column labels only; no independent requirement atom.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。この行はPKG候補表の列見出しで独立条件ではない。後続PKG行の利用目的・旧Module対応は選択view候補として保持し、表見出しから正式identityや固定分母を作らない。行固有の採択・successor・closure・受入実施はない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2639,7 +2639,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2716,7 +2716,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2793,7 +2793,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2870,7 +2870,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -2947,7 +2947,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3024,7 +3024,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3101,7 +3101,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。PKG-D07の安全責務候補はSECURITY等の現行ownerで照合し、旧表の空欄を便宜的なcore所有や固定PKG分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3178,7 +3178,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3255,7 +3255,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。PKG-D09の対象製品ReleaseとHELIX自己Releaseの権限分離候補を保持し、旧表から汎用公開工場や固定PKG分母を生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3332,7 +3332,7 @@
       "semantic_function": "legacy responsibility-map row",
       "semantic_reading": "Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
       "marker_negative_normative_concern": "候補内規範の含意はある場合がある。screen markerがないことは要求性や採択を判定しない。",
-      "current_relation_and_residual": "固定F6 L2/L11 pairおよび現行PO決定にこのsource rowの個別binding/adoptionは確認できない。family/語彙の近似は採択・successor・受入を意味しない。Candidate PKG-D function mapped to old Module names (or explicitly unresolved). Crosswalk metadata only: no current mechanism ownership, pair adoption, execution or release authority.",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "legacy_context": {
         "section_heading": {
           "line": 30,
@@ -3411,5 +3411,14 @@
     "This review preserves the effective explanation classification and does not reclassify rows.",
     "Archive files were read only; no archive workflow, source code, CLI, hook, adapter, runtime, test, CI, or DB rebuild was executed.",
     "Old package vocabulary, PKG-D mapping, and future Vision rows do not establish current owner, L2/L11 coverage, adoption, implementation, acceptance or release/deployment authority."
-  ]
+  ],
+  "fixed_F6_source_family_relation": {
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_family": "fixed F6 explicitly names concept-vision-release-crosswalk.md; related concept-vision-package-intake.md rows are family context, not individually named or adopted",
+    "HARNESS_L2": "docs/helix-harness/L2-requirements/product-requirements.md:288-296",
+    "HARNESS_L11": "docs/helix-harness/L11-acceptance/product-acceptance.md:188",
+    "OS_L2": "docs/helix-os/L2-requirements/governance-requirements.md:478-483",
+    "OS_L11": "docs/helix-os/L11-acceptance/governance-acceptance.md:236",
+    "boundary": "These fixed pair texts retain candidate conditions and reject old names/counts as fixed denominators. No selected legacy row is individually adopted, given a successor, closed, or accepted by this family relation."
+  }
 }

@@ -422,7 +422,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -499,7 +499,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -576,7 +576,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。このPKG-D行の利用目的と旧Module対応を選択view候補として保全し、番号・名前・個数・旧Module対応を正式identityや固定提供分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -653,7 +653,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。複数選択viewで共有する機能単位のowner重複を避ける候補条件を保全し、旧Module/Packageのowner identityを採択しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -730,7 +730,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。Lite/Fullは選択構成の旧候補として保全し、固定提供分母や全repo・内部学習・自己公開工場の無条件同梱にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -884,7 +884,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧8+1 Bundle数と順序は候補の歴史的分母として保全し、現在の提供構成・OS管理分母・公開済み数にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1038,7 +1038,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1115,7 +1115,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1192,7 +1192,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧対応表は候補の比較根拠として保全し、Issue表示・Package/Module語彙から現行ownerや正式提供identityを生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1269,7 +1269,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。growth-offで通常開発が成立する候補条件と自己改善/統治の分離を保持し、内部学習・公開工場を必須依存にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1346,7 +1346,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。対象製品ReleaseとHELIX自己Releaseの権限・receipt分離候補を保持し、旧adapter実装済みや固定公開版を主張しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1423,7 +1423,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧8+1 Bundle数と順序は候補の歴史的分母として保全し、現在の提供構成・OS管理分母・公開済み数にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1500,7 +1500,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補文書内の規範的または分類上の含意はありうる。markerがないことは現行要求性・採択を示さない。",
-      "current_relation_and_residual": "HELIX-HARNESS/OSの固定F6 L2/L11と2026-09-28 PO判断の明示採択集合へ、この選択source rowの個別bindingは確認できない。現行Concept・責務境界と語彙や責務が近くても、同一identity、successor、採択または受入を意味しない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。旧CI/Cursor先行投入は固定F6で採用しない一方、将来Vision全体を現在の一律待機依存にもせず、要求差分へ戻す。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1654,7 +1654,7 @@
         ]
       },
       "marker_negative_normative_concern": "明確な候補内の非昇格／責務境界含意。ただし現在のauthorityを単独で設定しない。",
-      "current_relation_and_residual": "近接する現行authority規則が同種の境界を定めていても、本source rowが個別に採択された記録はない。旧候補制約を独立した現行contractにせず、候補metadata／提案として保つ。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1731,7 +1731,7 @@
         ]
       },
       "marker_negative_normative_concern": "明確な候補内の非昇格／責務境界含意。ただし現在のauthorityを単独で設定しない。",
-      "current_relation_and_residual": "近接する現行authority規則が同種の境界を定めていても、本source rowが個別に採択された記録はない。旧候補制約を独立した現行contractにせず、候補metadata／提案として保つ。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1808,7 +1808,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
-      "current_relation_and_residual": "候補文書内のnormativeなversioning境界である。固定F6 L2/L11 pair・PO採択集合にこのsource rowの個別bindingはない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -1885,7 +1885,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
-      "current_relation_and_residual": "公開版管理の候補内条件。現在のRelease契約・個別Module owner・採択済みpairへのsource-row対応を証明しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。文書版・Visionの節目・公開SemVerを別軸に保ち、旧Package/Bundle版台帳を正式公開版として自動生成しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -2039,7 +2039,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
-      "current_relation_and_residual": "現行の正本や台帳への移管証拠はsource rowから確認できない。二重台帳を避ける意図自体を新しい採択契約にしない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。要求差分を上流の対象revisionへ返す候補境界を保ち、この旧整理版から公開manifest・runtime・正式要求identityへ直接昇格しない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -2193,7 +2193,7 @@
         ]
       },
       "marker_negative_normative_concern": "候補内のversioning/gating/authority/evidence境界を含む行では候補文書に規範的含意がある。source navigation行はprovenanceのみ。lexical marker absence does not establish current authority.",
-      "current_relation_and_residual": "候補文書内のscope/進行規則である。個別Slice、現行product scope、受入実施、固定F6 pairとの対応は本行から成立しない。 行固有のsuccessor/adopted pair binding/受入は確認できない。",
+      "current_relation_and_residual": "固定F6のHARNESS L2:288–296／L11:188とOS L2:478–483／L11:236はこの旧release-crosswalkを名指しする。全13候補の一括完成をgateにせず、選択した機能単位の安全依存・検証閉包を候補条件として保持し、旧PKG個数を固定分母にしない。これはsource-familyの比較であり、この旧行の個別採択・successor・source closure・受入実施ではない。",
       "source_line_ledger": {
         "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
         "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
@@ -3436,5 +3436,14 @@
     "Historical candidate status/version/Issue/plan metadata and historical source-validation prose do not establish current status, successful execution, or closure.",
     "Archive was read only. No archive runtime, source, workflow, CLI, hook, test, or CI was executed.",
     "The exact F6 pair bytes are pinned by the 2026-09-28 PO decision record and commit f6dad2a33e24f000b87d7f09b8d40288257e74cc; later main revisions are labeled comparison context and do not replace those target bytes."
-  ]
+  ],
+  "fixed_F6_source_family_relation": {
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_family": "fixed F6 explicitly names concept-vision-release-crosswalk.md; related concept-vision-package-intake.md rows are family context, not individually named or adopted",
+    "HARNESS_L2": "docs/helix-harness/L2-requirements/product-requirements.md:288-296",
+    "HARNESS_L11": "docs/helix-harness/L11-acceptance/product-acceptance.md:188",
+    "OS_L2": "docs/helix-os/L2-requirements/governance-requirements.md:478-483",
+    "OS_L11": "docs/helix-os/L11-acceptance/governance-acceptance.md:236",
+    "boundary": "These fixed pair texts retain candidate conditions and reject old names/counts as fixed denominators. No selected legacy row is individually adopted, given a successor, closed, or accepted by this family relation."
+  }
 }
