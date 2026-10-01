@@ -278,6 +278,12 @@
   ],
   "current_relation_source_pins": [
     {
+      "role": "OS-049/050 selected source span evidence for ranks 193/194",
+      "path": "docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "79796291b8bc1a06f8b8f61b6c5aed6ba396d3fb0850abc27a86d9e204fe9abd"
+    },
+    {
       "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
       "commit": "10a84beadf17fd729c23c6b67354c9d301931752",
       "file_sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb",
@@ -689,11 +695,11 @@
       "LEGACY-CAND-LINE-004522"
     ],
     "row_specific_old_acceptance_crosswalk": false,
-    "selected_source_row_crosswalk": false,
-    "adopted_pair_binding": false,
+    "selected_source_row_crosswalk": true,
+    "adopted_pair_binding": true,
     "source_condition_closure": false,
     "authority_effect": "none",
-    "meaning": "Family lineage/current nearby condition references do not mean selected source row adoption, individual pair binding, implemented oracle, source coverage, or closure."
+    "meaning": "Only ranks 193/194 selected OSCAP-050 spans have adopted-pair binding. Family lineage/current nearby condition references alone do not mean selected source row adoption, implemented oracle, source coverage, or closure."
   },
   "summary": {
     "reviewed_rows": 20,

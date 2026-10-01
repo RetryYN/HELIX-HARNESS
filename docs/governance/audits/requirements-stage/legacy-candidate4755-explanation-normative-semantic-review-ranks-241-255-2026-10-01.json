@@ -124,8 +124,8 @@
   "interpretation_boundary": {
     "screen_classification": "全15行はscreen上effective explanation。marker hitは意味上の規範性・採択を確定しない。",
     "legacy_asset_state": "All rows are historical_candidate/draft_candidate/preserved_pending_atomization; all assets are historical/unresolved with product_target unresolved, upstream_ids and pair_ids empty.",
-    "fixed_F6_authority": "F6 pair files are content comparison only. Current main inventory/crosswalk confirms family-level relations for these source families, while later 2026-09-28 PO decisions adopt only explicit candidate sets. Neither relation nor those decisions establish selected legacy source-row adoption, acceptance execution, full source coverage, retirement, or holding release.",
-    "nonclaims": "No adoption, retirement, closure, formal successor, implementation, acceptance execution, authority effect, full source atom coverage, or requirement-stage completion is claimed. Every selected_source_row_crosswalk/adopted_pair_binding/full_source_atom_coverage flag is false."
+    "fixed_F6_authority": "F6 pair files are content comparison only. Current main inventory/crosswalk confirms family-level relations for these source families. Later decisions adopt only explicit candidate sets; D57 :72 also adopts rank249's selected OSCAP-049-002-S2 span. Neither relation nor selected-span adoption establishes acceptance execution, full source coverage, retirement, or holding release.",
+    "nonclaims": "Only rank249's selected OSCAP-049-002-S2 span has source-row crosswalk and adopted-pair binding. No adoption of the remainder, retirement, closure, formal successor, implementation, acceptance execution, audit authority effect, full source atom coverage, or requirement-stage completion is claimed. All full_source_atom_coverage flags are false."
   },
   "summary": {
     "exclusive_semantic_group_counts": {
@@ -299,6 +299,12 @@
     }
   ],
   "current_relation_source_pins": [
+    {
+      "role": "OS-049 selected source span evidence for rank 249",
+      "path": "docs/governance/audits/requirement-registration/helixos-o3-o5-capacity-source-lines-2026-09-29-r2.jsonl",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "file_sha256": "79796291b8bc1a06f8b8f61b6c5aed6ba396d3fb0850abc27a86d9e204fe9abd"
+    },
     {
       "path": "docs/governance/audits/source-rebaseline/candidate-source-target-inventory.md",
       "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
