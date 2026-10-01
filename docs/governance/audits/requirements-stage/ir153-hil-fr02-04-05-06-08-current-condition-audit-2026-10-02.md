@@ -13,8 +13,22 @@
 | HIL-FR-02 | OS-035の現行L2/L11は2026-09-29 PO decision row 58で採択。選択PR-event scopeでrepo/PR/head/eventを結び、重複deliveryから監査job要求を一つだけ作る。全base branch・stacked PR・新headの分離をL11で確認する。 | OS-035の原source atomはHIL-BR-02でありFR-02ではない。監査jobの実行・所見処理は対象外。FR-02はformal successor未指定、pair descent pending。 |
 | HIL-FR-04 | HARNESS-038の現行L2/L11はdecision row 43で採択。選択scope内の能力一覧、各件の根拠・適用範囲・処置・要求/design/test/gate関係・unknown・未完義務を個別に閉じ、双方向照合と具体的な内容oracleを要求する。 | 全Issueへ旧R0–R4を一律適用する意味は現行条件ではない。2026-09-24/26のPO判断がReverse対象をscopeで選ぶ。038の採択source atomsはFR-22/35。FR-04のformal successorは未指定。 |
 | HIL-FR-05 | HARNESS-003/004のfreeze・Backflow・影響pair/再検証、L11のscope付きimpact・unknown保持・層別route、OS-017/023のticket依存とrevision/scope/未完義務付きhandoffに条件対応する。OS-017/023は固定PO revisionの本文と現在本文のsection bytes一致を確認。 | 旧L1→L12、L2→L11とscreen/prototype/skip receiptの具体的stale matrix、およびpair再freeze完了までForward不可という単一oracleは、今回読んだ採択本文では直接位置を確定できなかった。現行contractの合成で閉じるかを追加照合する。候補は起こしていない。 |
-| HIL-FR-06 | HARNESS-035はdecision row 40で採択。上流source/revision/authorityからの導出、自己・同時候補だけによる正当化の拒否、scope/non-goal、必要性・代替・budget根拠を照合する。HARNESS-004/005とOS-017/018/023は変更範囲・ticket/assignment/handoffのscopeとauthorityを扱う。 | HARNESS-035のsource atomはFR-38/NFR-23で、FR-06のformal successorではない。条件対応は確認できたが、atom移管・retireは確認していない。 |
+| HIL-FR-06 | HARNESS-035はdecision row 40で採択。親authorityまでの導出、自己/peer-only根拠拒否、受入寄与・必要性/代替/budget rationaleを明示する。HARNESS-004/005・OS-017/018/023はimpact、ticket/assignment/handoffのscope/authorityを部分的に保持する。 | 過去監査の「独立gap未立証」は条件別exact対応の根拠が不十分として訂正する。source条件、採択節、実証範囲と未確認項目は後段のFR06 read-after訂正に記録。HARNESS-035のsource atomはFR38/NFR23でFR06 successorではない。 |
 | HIL-FR-08 | OS-017/018/023は採択済み。ready ticket、lease/scope/authority/head不一致時の停止理由、期限切れ後の義務維持、handoffの受信未完義務を扱う。HARNESS-003/038は選択Reverseとpair-freeze内容を扱う。 | OS側のworker claim/tool startを、対象のReverse/Redesign/pair-freeze完了receiptに結び付ける横断oracleを今回の採択本文から特定できていない。FR-08 atomのformal successorも未指定。 |
+
+## FR06 条件別 read-after 訂正（2026-10-02）
+
+前回の「独立保証gapは立証されない」は、列挙された旧条件を現行正本のexact節へ割り当てないままの結論でした。元の基準commit、当時の`current_file_sha256`、各旧source line、decision snapshot pinは変更せず保持し、現行main `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20` の別read-afterを対応JSON `/rows[requirement_id=HIL-FR-06]/current_recheck_after_snapshot` に追加しました。
+
+| FR06 source condition | current exact clause | 判定 |
+|---|---|---|
+| allowed changes / non-goalsと実diffの照合 | 採択HARNESS-035 L2 `product-requirements.md:719-729`（decision row40、L2 MPR semantic digest `4e37d81e…a29c2`、現raw section SHA `7eabe1b8…d61896`）、L11 `product-acceptance.md:485-492`（`65328061…100670`）はscope/non-goal、不要拡張、根拠不足を扱う。HARNESS-005 L2 `product-requirements.md:56,119` とL11 `product-acceptance.md:48-51` はticket外変更を拒否する。 | 部分保持。各allowed-change/non-goalを変更ファイル・symbolへ結ぶdiff oracleはこの条項で確認できない。 |
+| PO-bound budgetとrequirement→symbol→test traceを実diffへ照合 | HARNESS-035はbudget rationale/unknownと必要性・代替を持つ。HARNESS-004/005 L2 `product-requirements.md:54-56,117-121`、L11 `product-acceptance.md:44-51` はrequirement→design/test impact・affected pair/oracleとticket別validationを持つ。採択HARNESS-040 L2 `product-requirements.md:946-955`（`c349606d…0757df`）、L11 `product-acceptance.md:689-698`（`366518f8…6fc212`）はstable ledger row、source/digest/owner、typed relation edgeを扱う。 | 部分保持／未立証。actual budget consumption対diff、および各要求から実装symbol・test oracleへの具体edgeをdiffへ照合するoracleは確認できない。generic ledger edgeは具体edge保証の代替にならない。 |
+| derived HIL IDは自己正当化せず上流rootへ届き、minimum necessityを示す | 採択HARNESS-035 L2 `product-requirements.md:719-729`、L11 `product-acceptance.md:485-492`。 | この意味条件は保持。035のsource bindingがFR38/NFR23であることはformal FR06移管を意味しない。 |
+| child Issueは同じscope authorityを継承 | 採択OS-017/018/023 L2 `governance-requirements.md:662-681,722-731`、L11 `governance-acceptance.md:338-351,380-386` はticket/assignment/handoffのscope/authority不一致を拒否する。 | 未確認。parent authorityをchildがそのまま継承する規則も、child scope拡張/authority resetのnegative oracleもこのexact節にない。 |
+| scope violationとunjustified capabilityを返す | HARNESS-035は不足根拠・scope拡張を要求形成へ戻し、HARNESS-004/005とOS-017/018は影響/検証不足・範囲不一致を未完/拒否へ返す。 | 部分対応。全scope violation/unjustified capabilityを一覧化する必須output契約は確認できない。 |
+
+この訂正は「全現行文書に保証がない」とは結論しません。確認したexact節では導出/最小性を立証でき、scope/change/refusalには部分証拠があり、budget-to-diffと具体symbol/test traceの十分性は未立証、child authority inheritanceは未確認です。FR06 atom successor/retirementは割り当てず、候補も起草していません。
 
 ## 読み取り上の注意
 

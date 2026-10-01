@@ -29,22 +29,35 @@
     {
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-      "rows": ["40: HARNESS-L2-035 adopted", "43: HARNESS-L2-038 adopted", "58: HELIXOS-L2-035 adopted"]
+      "rows": [
+        "40: HARNESS-L2-035 adopted",
+        "43: HARNESS-L2-038 adopted",
+        "58: HELIXOS-L2-035 adopted"
+      ]
     },
     {
       "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
       "sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
-      "rows": ["fixed L1/L2/L11 revision and full-file pins: lines 29-40", "explicit OS-L2-014..029 adopted as a set: lines 44-52"]
+      "rows": [
+        "fixed L1/L2/L11 revision and full-file pins: lines 29-40",
+        "explicit OS-L2-014..029 adopted as a set: lines 44-52"
+      ]
     },
     {
       "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
       "sha256": "sha256:a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
-      "rows": ["PO-selected dynamic CI scope and changed conditions: lines 78-83", "HARNESS-L2-003/004 handling: lines 106-107"]
+      "rows": [
+        "PO-selected dynamic CI scope and changed conditions: lines 78-83",
+        "HARNESS-L2-003/004 handling: lines 106-107"
+      ]
     },
     {
       "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
       "sha256": "sha256:650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea",
-      "rows": ["selected scope and conditions: lines 48-67", "existing HARNESS-L2-003/004/005/008/009 strengthened, no new universal fixed-stage sequence: lines 67 and 99"]
+      "rows": [
+        "selected scope and conditions: lines 48-67",
+        "existing HARNESS-L2-003/004/005/008/009 strengthened, no new universal fixed-stage sequence: lines 67 and 99"
+      ]
     }
   ],
   "digest_method_notes": "Physical section SHA means exact ### heading through the line before the next same-level or higher-level heading, trailing blank lines removed, UTF-8 ending in one LF. HARNESS-L2-035 L2's PO table value is the MPR candidate_semantic_digest (the decision explains this at its line 22); it is not represented here as a physical section-byte hash. Its currently extracted raw section SHA is separately recorded as 7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896. For OS-017/018/019/023, exact current physical section digests match the corresponding sections at the PO-fixed f6dad2a bytes.",
@@ -55,7 +68,13 @@
       "source_l1_line_sha256": "sha256:0d71c0f0601c2dfff7920a3adbc101bd6bdf7c46c5ff753766fd75fdd0032ad6",
       "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-02",
       "source_ir_statement_digest": "sha256:022383e2542716540cf4fc42ef8d52b58606a03fdf50eb77de378a5d374236b7",
-      "legacy_contracts": ["HR-FR-HIL-01", "HAC-HIL-01a", "HAC-HIL-01b", "HAC-HIL-01c", "HAT-HIL-01"],
+      "legacy_contracts": [
+        "HR-FR-HIL-01",
+        "HAC-HIL-01a",
+        "HAC-HIL-01b",
+        "HAC-HIL-01c",
+        "HAT-HIL-01"
+      ],
       "source_conditions": [
         "normalize repository, PR, head SHA, and event delivery identity",
         "admit the same delivery to the audit queue once only",
@@ -74,7 +93,10 @@
       ],
       "assessment": "Current adopted OS-035 semantically covers the three FR-02 conditions within its explicitly selected PR-event scope. Its original source atom is HIL-BR-02, not HIL-FR-02, and its job is a request rather than audit execution. FR-02 IR downstream obligation remains pending_pair_descent; no formal successor or wider all-provider coverage is claimed.",
       "formal_successor_ids": [],
-      "remaining": ["formal source-atom disposition/pair descent is not evidenced by this current pair", "connection to downstream audit execution/findings is outside OS-035 and remains a separate obligation"]
+      "remaining": [
+        "formal source-atom disposition/pair descent is not evidenced by this current pair",
+        "connection to downstream audit execution/findings is outside OS-035 and remains a separate obligation"
+      ]
     },
     {
       "requirement_id": "HIL-FR-04",
@@ -82,7 +104,15 @@
       "source_l1_line_sha256": "sha256:3bb5eaea2b84d638344a4a9808ec82cb1bcff9491d8077618817c557b04fa937",
       "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-04",
       "source_ir_statement_digest": "sha256:4d8c9fcc0db7c1e522c6e8b42f49521348381d44a6b9a53b01fb47c9f7e5d97b",
-      "legacy_contracts": ["HR-FR-HIL-04", "HAC-HIL-04a", "HAC-HIL-04b", "HAC-HIL-04c", "HAT-HIL-04", "HST-HIL-002", "HST-HIL-018"],
+      "legacy_contracts": [
+        "HR-FR-HIL-04",
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c",
+        "HAT-HIL-04",
+        "HST-HIL-002",
+        "HST-HIL-018"
+      ],
       "source_conditions": [
         "for every Issue, run old R0-R4 in order with per-phase obligation set, input/output digest, schema, source coverage, routing, and bidirectional references",
         "reject any skipped phase, including R1",
@@ -107,7 +137,10 @@
       ],
       "assessment": "The old universal fixed R0-R4 requirement is not the current scope: the 2026-09-24/26 PO decisions and current HARNESS-003/004 select scoped Reverse, with Full Reverse reserved for unknown origin/legacy/missing trace conditions. Adopted 038 preserves the substantive content gate and negative oracle for a selected scope without reinstating old phase labels. 038's adopted source set is FR-22/35, not FR-04, so semantic condition correspondence is evidenced but FR-04 formal successor is not. This audit does not assert all-Issue unconditional R0-R4 adoption.",
       "formal_successor_ids": [],
-      "remaining": ["formal FR-04 source-atom disposition is not evidenced", "old fixed phase labels and unconditional all-Issue scope are intentionally not carried forward per PO decisions"]
+      "remaining": [
+        "formal FR-04 source-atom disposition is not evidenced",
+        "old fixed phase labels and unconditional all-Issue scope are intentionally not carried forward per PO decisions"
+      ]
     },
     {
       "requirement_id": "HIL-FR-05",
@@ -115,7 +148,14 @@
       "source_l1_line_sha256": "sha256:5a378bd42c2a71b5b76200e381914ff770ce1ced30643603dd0a8645a21d7524",
       "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-05",
       "source_ir_statement_digest": "sha256:e547dbc9b001e344da3953e672675621d353d69137f1e69c2b548c8c232a163d",
-      "legacy_contracts": ["HR-FR-HIL-04", "HAC-HIL-04a", "HAC-HIL-04b", "HAC-HIL-04c", "HAT-HIL-04", "HST-HIL-002"],
+      "legacy_contracts": [
+        "HR-FR-HIL-04",
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c",
+        "HAT-HIL-04",
+        "HST-HIL-002"
+      ],
       "source_conditions": [
         "route a design defect to its affected canonical layer",
         "a planning/requirement change invalidates its corresponding operations/acceptance pair and applicable screen/prototype or skip evidence",
@@ -124,28 +164,53 @@
       ],
       "current_pairs": [
         {
-          "identities": ["HARNESS-L2-003", "HARNESS-L2-004"],
+          "identities": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-004"
+          ],
           "l2": "docs/helix-harness/L2-requirements/product-requirements.md:table rows HARNESS-L2-003/004",
           "l11": "docs/helix-harness/L11-acceptance/product-acceptance.md:23-24,44-55",
           "conditions_held": "Current conditions distinguish freeze/return/restart; route meaning-preserving mismatch through Refactor and meaning change through Backflow; derive affected design/V-pair and verification scope; preserve unknown rather than unaffected; known trace scopes the check, missing trace can select Full Reverse; 038 prevents selected-scope pair-freeze/full-Reverse claim while applicable content/edges remain open. Current layer destinations use current L1-L5 semantics, not old L1-L6 numbering."
         },
         {
-          "identities": ["HELIXOS-L2-017", "HELIXOS-L2-023"],
+          "identities": [
+            "HELIXOS-L2-017",
+            "HELIXOS-L2-023"
+          ],
           "decision": "adopted at exact PO-fixed f6dad2a revision by 2026-09-28 OS decision lines 29-52; current extracted L2/L11 section digests match those fixed bytes",
           "l2_sections": [
-            {"identity":"HELIXOS-L2-017","path":"docs/helix-os/L2-requirements/governance-requirements.md:662-671","sha256":"sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"},
-            {"identity":"HELIXOS-L2-023","path":"docs/helix-os/L2-requirements/governance-requirements.md:722-731","sha256":"sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"}
+            {
+              "identity": "HELIXOS-L2-017",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md:662-671",
+              "sha256": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+            },
+            {
+              "identity": "HELIXOS-L2-023",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md:722-731",
+              "sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"
+            }
           ],
           "l11_sections": [
-            {"identity":"HELIXOS-L2-017","path":"docs/helix-os/L11-acceptance/governance-acceptance.md:338-344","sha256":"sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"},
-            {"identity":"HELIXOS-L2-023","path":"docs/helix-os/L11-acceptance/governance-acceptance.md:380-386","sha256":"sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"}
+            {
+              "identity": "HELIXOS-L2-017",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-344",
+              "sha256": "sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+            },
+            {
+              "identity": "HELIXOS-L2-023",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md:380-386",
+              "sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+            }
           ],
           "conditions_held": "Ticket workflow rejects unresolved input/dependencies; handoff binds source revision/digest, causality, scope, unfinished obligations and evidence, and does not infer handoff/next-stage success from unit success."
         }
       ],
       "assessment": "Impact propagation, Backflow, affected verification and handoff state have concrete current whereabouts. The exact legacy pair invalidation matrix (old L1->L12 and L2->L11 plus Screen Applicability/prototype-or-skip receipt) and a single explicit 're-freeze before Forward' oracle were not located in the adopted text inspected here; generic impact/handoff clauses are not treated as proof of that exact condition. This is a bounded unresolved correspondence, not yet a claim that a new requirement is needed. The old canonical layer names and L0 escalation path require meaning-level mapping under current authority and are not inferred from numeric layer labels.",
       "formal_successor_ids": [],
-      "remaining": ["confirm whether existing scoped stale/reverification/freeze gates compose to block Forward until the changed pair is current", "formal FR-05 source-atom disposition is not evidenced"]
+      "remaining": [
+        "confirm whether existing scoped stale/reverification/freeze gates compose to block Forward until the changed pair is current",
+        "formal FR-05 source-atom disposition is not evidenced"
+      ]
     },
     {
       "requirement_id": "HIL-FR-06",
@@ -153,7 +218,13 @@
       "source_l1_line_sha256": "sha256:6d3d44d4c2e5b24b0960d8908f10c239ab21a919c1d01c75cff8112f724a286e",
       "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-06",
       "source_ir_statement_digest": "sha256:c0b849865dfce9615109e0be6c056ba548bcd5bc33c229abb50b8a7e669c300b",
-      "legacy_contracts": ["HR-FR-HIL-05", "HAC-HIL-05a", "HAC-HIL-05b", "HAC-HIL-05c", "HAT-HIL-05"],
+      "legacy_contracts": [
+        "HR-FR-HIL-05",
+        "HAC-HIL-05a",
+        "HAC-HIL-05b",
+        "HAC-HIL-05c",
+        "HAT-HIL-05"
+      ],
       "source_conditions": [
         "compare allowed changes, non-goals, PO-bound capability budget and requirement->symbol->test trace against actual diff",
         "derived HIL ID cannot justify itself; derivation must reach chat/L0/PO-approved parent oracle and show minimum necessity",
@@ -172,14 +243,114 @@
           "conditions_held": "Upper source/revision/authority path to each candidate; no self/peer-only justification; receiving scope/non-goal, acceptance contribution, alternatives, minimum-need and budget rationale; unknown authority/budget remains unknown."
         },
         {
-          "identities": ["HARNESS-L2-004", "HARNESS-L2-005", "HELIXOS-L2-017", "HELIXOS-L2-018", "HELIXOS-L2-023"],
-          "l2_l11_locations": ["docs/helix-harness/L2-requirements/product-requirements.md:table row HARNESS-L2-004/005", "docs/helix-harness/L11-acceptance/product-acceptance.md:44-45 and ticket-scope/refusal clauses for HARNESS-L2-005", "docs/helix-os/L2-requirements/governance-requirements.md:662-681", "docs/helix-os/L11-acceptance/governance-acceptance.md:338-351,380-386"],
-          "conditions_held": "Requirement-to-design/test impact is derived; an out-of-ticket change is refused; ticket/assignment/handoff carries scope and relevant authority/evidence. These are condition-level correspondences, not formal FR-06 transfer."
+          "identities": [
+            "HARNESS-L2-004",
+            "HARNESS-L2-005",
+            "HELIXOS-L2-017",
+            "HELIXOS-L2-018",
+            "HELIXOS-L2-023"
+          ],
+          "l2_l11_locations": [
+            "docs/helix-harness/L2-requirements/product-requirements.md:table row HARNESS-L2-004/005",
+            "docs/helix-harness/L11-acceptance/product-acceptance.md:44-45 and ticket-scope/refusal clauses for HARNESS-L2-005",
+            "docs/helix-os/L2-requirements/governance-requirements.md:662-681",
+            "docs/helix-os/L11-acceptance/governance-acceptance.md:338-351,380-386"
+          ],
+          "conditions_held": "HARNESS-004/005 and OS-017/018/023 contain partial clauses: requirement/design/test impact; ticket/change/risk verification and out-of-ticket diff refusal; ticket/assignment/handoff scope and authority. These clauses do not prove budget-consumption-to-diff, concrete requirement→symbol→test-to-diff, child-Issue authority inheritance, or a single complete violations report."
         }
       ],
-      "assessment": "The source guarantees map across adopted HARNESS-035 derivation/minimality, HARNESS-004/005 change and verification scope, and OS-017/018/023 ticket/assignment/handoff authority. HARNESS-035 itself traces HIL-FR-38/NFR-23 rather than assigning the FR-06 atom; therefore no formal FR-06 successor is asserted. No independent guarantee gap was proven in this bounded review.",
+      "assessment": "The previous condition-level conclusion was too strong for the recorded evidence. A current-read-after at a93 confirms adopted HARNESS-035 holds parent-authority derivation/minimum-necessity semantics; HARNESS-004/005 and OS-017/018/023 hold overlapping change-scope, verification, ticket/assignment/handoff constraints. The reviewed exact clauses only partially establish comparison of source scope fields to the actual diff; budget consumption and requirement→symbol→test-to-diff linkage are not demonstrated; child authority inheritance is unverified. This says what the reviewed evidence proves and does not prove, not that the full repository lacks those guarantees. Formal FR-06 successor is not asserted.",
       "formal_successor_ids": [],
-      "remaining": ["formal FR-06 source-atom disposition/pair descent is not evidenced", "do not infer that a source atom transfer occurred merely because adopted conditions semantically correspond"]
+      "remaining": [
+        "formal FR-06 source-atom disposition/pair descent is not evidenced",
+        "allowed changes/non-goals to actual-diff binding is only partially evidenced by HARNESS-035 scope/non-goal and HARNESS-005 out-of-ticket refusal",
+        "PO-bound budget rationale is held, but actual budget consumption versus each capability in the diff is not evidenced in reviewed clauses",
+        "requirement→design/test impact is held, but concrete requirement→implementation-symbol→test-oracle linkage to the actual diff is not evidenced by reviewed clauses",
+        "OS ticket/assignment/handoff authority and scope are held, but child-Issue inheritance of the same authority and a widened-child negative oracle are unverified",
+        "do not infer repository-wide absence from these bounded reads or source-atom transfer from semantic correspondence alone"
+      ],
+      "current_recheck_after_snapshot": {
+        "read_after_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+        "snapshot_note": "Existing current_file_sha256 and old extracted section pins are the original audit snapshot and remain preserved. This is a separate read-after at a93.",
+        "current_full_file_sha256": {
+          "docs/helix-harness/L2-requirements/product-requirements.md": "5b31dd26c7170a6cb4e7b2e11083a89443ec73d294f17cad09b52657749aec8a",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md": "ec09886ff8a7eeb3503a3b826baf1f38aa6d17d57c8d24129c471c0aca28926a",
+          "docs/helix-os/L2-requirements/governance-requirements.md": "7e42c0da98306d7979c0c22ef7ba0e2f4c7344678ac972f5f9e99eccddaf7b1e",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md": "9dd801826760a8be8a211901fe60cf738a2b3beabae350c1308b4814c5ffbfe1"
+        },
+        "decision_pins": {
+          "po_decision_2026_09_29_57_candidates": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "os_requirements_decision": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+        },
+        "condition_map": [
+          {
+            "source_condition": "allowed changes, non-goals and actual diff",
+            "current_clauses": [
+              {
+                "pair": "HARNESS-L2-035 adopted, decision row40; L2 `docs/helix-harness/L2-requirements/product-requirements.md:719-729`, decision MPR semantic digest `sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2`, current raw section SHA `sha256:7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896`; L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:485-492`, section SHA `sha256:65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670`",
+                "meaning": "source, scope/non-goal, authority path and unwanted expansion are compared, with individual derivation negatives."
+              },
+              {
+                "pair": "HARNESS-L2-005 current table `product-requirements.md:56,119`; L11 `product-acceptance.md:48-51`",
+                "meaning": "verification scope follows ticket/change/risk; out-of-ticket actual change is refused."
+              }
+            ],
+            "result": "PARTIAL: both source scope fields and a ticket-outside-diff negative exist, but the reviewed clauses do not bind every allowed-change/non-goal item to its actual changed files/symbols."
+          },
+          {
+            "source_condition": "PO-bound capability budget and requirement→symbol→test trace compared to actual diff",
+            "current_clauses": [
+              {
+                "pair": "HARNESS-035 as above",
+                "meaning": "necessity, alternatives, acceptance contribution and budget rationale; unknown budget remains unknown."
+              },
+              {
+                "pair": "HARNESS-L2-004/005, current `product-requirements.md:54-56,117-121`; L11 `product-acceptance.md:44-51`",
+                "meaning": "requirement-to-design/test impact, affected pair/oracle and ticket/change/risk verification scope; out-of-ticket diff refusal."
+              },
+              {
+                "pair": "HARNESS-L2-040 adopted, decision row45; L2 `product-requirements.md:946-955`, section digest `sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df`; L11 `product-acceptance.md:689-698`, section digest `sha256:366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212`",
+                "meaning": "stable ledger row/source/digest/owner and typed upstream/downstream edge coverage; it does not itself identify code-symbol/test-oracle edges for each changed capability."
+              }
+            ],
+            "result": "PARTIAL/UNVERIFIED: budget rationale and requirement/design/test impact exist. Actual consumed budget versus changed capability and concrete requirement→symbol→test-to-diff oracle were not demonstrated in these sections. Do not treat a generic ledger edge as that concrete trace."
+          },
+          {
+            "source_condition": "derived HIL ID must reach authoritative parent oracle; cannot self-justify; minimum necessity",
+            "current_clauses": [
+              {
+                "pair": "Adopted HARNESS-L2-035 decision row40; L2 `product-requirements.md:719-729`, L11 `product-acceptance.md:485-492`",
+                "meaning": "source/upstream revision and authority path; rejects candidate/self/peer-only basis; requires contribution, necessity, alternatives and budget rationale; includes individual negative cases."
+              }
+            ],
+            "result": "HELD for this semantic condition. The adopted source binding is FR38/NFR23, not formal FR06 atom assignment."
+          },
+          {
+            "source_condition": "child Issues inherit same scope authority",
+            "current_clauses": [
+              {
+                "pair": "Adopted HELIXOS-L2-017/018/023: `governance-requirements.md:662-681,722-731`; L11 `governance-acceptance.md:338-351,380-386`",
+                "meaning": "parent revision/scope on ticket graph; assignment binds ticket/authority/scope and refuses mismatch; handoff carries scope, authority and unfinished obligations."
+              }
+            ],
+            "result": "UNVERIFIED: exact clauses do not state child Issue inherits parent scope authority unchanged and do not give a widened-child/authority-reset negative fixture."
+          },
+          {
+            "source_condition": "return scope violations and unjustified capabilities",
+            "current_clauses": [
+              {
+                "pair": "HARNESS-035 L2 `product-requirements.md:719-729`",
+                "meaning": "returns missing/contradictory derivation, scope expansion, alternatives and budget evidence to requirement formation."
+              },
+              {
+                "pair": "HARNESS-004/005 L11 `product-acceptance.md:44-51`; OS-017/018 L2 `governance-requirements.md:662-681`",
+                "meaning": "identifies affected pair/required verification and refuses out-of-ticket change, unknown or mismatched execution scope."
+              }
+            ],
+            "result": "PARTIAL semantic correspondence. A single mandatory output enumerating every scope violation and unjustified capability is not established by the cited clauses."
+          }
+        ]
+      }
     },
     {
       "requirement_id": "HIL-FR-08",
@@ -187,7 +358,14 @@
       "source_l1_line_sha256": "sha256:711b4e50db2f661c13dfbde5784e28a23bafbda6e4438a952ea3464effce5d40",
       "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-08",
       "source_ir_statement_digest": "sha256:e0118fde6e7618d078d4eeb752a429a1618da24859d31be1b4b930ae168ccf05",
-      "legacy_contracts": ["HR-FR-HIL-04", "HAC-HIL-04a", "HAC-HIL-04b", "HAC-HIL-04c", "HAT-HIL-04", "HST-HIL-002"],
+      "legacy_contracts": [
+        "HR-FR-HIL-04",
+        "HAC-HIL-04a",
+        "HAC-HIL-04b",
+        "HAC-HIL-04c",
+        "HAT-HIL-04",
+        "HST-HIL-002"
+      ],
       "source_conditions": [
         "claim only a ready Issue",
         "do not start implementation tools before Reverse/Redesign/pair-freeze is complete",
@@ -195,17 +373,45 @@
       ],
       "current_pairs": [
         {
-          "identities": ["HELIXOS-L2-017", "HELIXOS-L2-018", "HELIXOS-L2-023"],
+          "identities": [
+            "HELIXOS-L2-017",
+            "HELIXOS-L2-018",
+            "HELIXOS-L2-023"
+          ],
           "decision": "adopted at exact PO-fixed f6dad2a revision by 2026-09-28 OS decision lines 29-52; current extracted sections match fixed bytes",
           "l2_sections": [
-            {"identity":"HELIXOS-L2-017","path":"docs/helix-os/L2-requirements/governance-requirements.md:662-671","sha256":"sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"},
-            {"identity":"HELIXOS-L2-018","path":"docs/helix-os/L2-requirements/governance-requirements.md:672-681","sha256":"sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"},
-            {"identity":"HELIXOS-L2-023","path":"docs/helix-os/L2-requirements/governance-requirements.md:722-731","sha256":"sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"}
+            {
+              "identity": "HELIXOS-L2-017",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md:662-671",
+              "sha256": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+            },
+            {
+              "identity": "HELIXOS-L2-018",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md:672-681",
+              "sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+            },
+            {
+              "identity": "HELIXOS-L2-023",
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md:722-731",
+              "sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"
+            }
           ],
           "l11_sections": [
-            {"identity":"HELIXOS-L2-017","path":"docs/helix-os/L11-acceptance/governance-acceptance.md:338-344","sha256":"sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"},
-            {"identity":"HELIXOS-L2-018","path":"docs/helix-os/L11-acceptance/governance-acceptance.md:345-351","sha256":"sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"},
-            {"identity":"HELIXOS-L2-023","path":"docs/helix-os/L11-acceptance/governance-acceptance.md:380-386","sha256":"sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"}
+            {
+              "identity": "HELIXOS-L2-017",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md:338-344",
+              "sha256": "sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+            },
+            {
+              "identity": "HELIXOS-L2-018",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md:345-351",
+              "sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+            },
+            {
+              "identity": "HELIXOS-L2-023",
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md:380-386",
+              "sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+            }
           ],
           "conditions_held": "Ticket workflow with unresolved dependencies is not ready; worker assignment/attempt requires lease/scope/authority/head correctness and stops with reason; expiry preserves constraints and obligations; handoff does not infer next-stage completion from unit success."
         },
@@ -218,7 +424,10 @@
       ],
       "assessment": "Ready-ticket gating, lease/blocked-reason handling, and handoff obligations have adopted current locations. The specific cross-boundary oracle that ties OS worker claim/tool start to completion of the selected HARNESS Reverse/Redesign/pair-freeze conditions was not located in the adopted OS-017/018/023 text read here. HARNESS-038 covers selected-scope pair-freeze content, but does not itself define OS claim admission. This is a bounded unresolved connection; no implementation/runtime test was performed and no new candidate is proposed by this audit.",
       "formal_successor_ids": [],
-      "remaining": ["confirm whether current ready-ticket dependency construction composes with HARNESS selected Reverse/pair-freeze to block worker claim until complete", "formal FR-08 source-atom disposition is not evidenced"]
+      "remaining": [
+        "confirm whether current ready-ticket dependency construction composes with HARNESS selected Reverse/pair-freeze to block worker claim until complete",
+        "formal FR-08 source-atom disposition is not evidenced"
+      ]
     }
   ],
   "static_review_result": {
@@ -227,6 +436,10 @@
     "tracked_requirement_or_source_files_changed": false,
     "successor_or_retirement_claims": 0,
     "global_closure_claim": false,
-    "bounded_open_correspondence": ["HIL-FR-05 exact pair stale/refreeze ordering", "HIL-FR-08 OS claim admission tied to selected HARNESS gate completion"]
+    "bounded_open_correspondence": [
+      "HIL-FR-05 exact pair stale/refreeze ordering",
+      "HIL-FR-08 OS claim admission tied to selected HARNESS gate completion"
+    ],
+    "fr06_recheck": "current a93 exact-clause mapping appended; historical snapshot pins preserved; no global absence or successor claim"
   }
 }
