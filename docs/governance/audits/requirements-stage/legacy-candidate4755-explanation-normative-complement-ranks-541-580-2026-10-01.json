@@ -82,8 +82,8 @@
       "audit_commit_object_verified": true,
       "claim_prior_semantic_verification": false,
       "note": "同一PRにrank501–540のpaired auditを統合し、rank540=000926→rank541=000928と選択ID重複0を静的照合した。独立review結果はこの記録から生成しない。",
-      "adjacent_audit_sha256": "31fa9212c40a9921d826c417c330fcd704dc8c17accb90c2cf23e7f027a96b8b",
-      "adjacent_audit_commit": "31ddb18a16b6abd1c1775c95540ef6beea1bfab9"
+      "adjacent_audit_sha256": "053d099d16909024ac6e5da622cc44e5b27d2e12e89634425982e5b18f2f2fb0",
+      "adjacent_audit_commit": "acb7684792665a31eca683fefa3d50db0feb38ef"
     }
   },
   "pinned_reconstruction_inputs": [

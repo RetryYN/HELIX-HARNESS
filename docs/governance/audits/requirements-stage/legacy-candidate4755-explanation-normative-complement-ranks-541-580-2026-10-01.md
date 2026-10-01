@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - 監査基点は`c47f460e5a79fef79d72242e070872862acbaecb`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255行を除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 541–580は40行。rank 540の境界IDは`LEGACY-CAND-LINE-000926`。隣接rank 501–540のpaired auditを本PRに統合し、rank540=`LEGACY-CAND-LINE-000926`→rank541=`LEGACY-CAND-LINE-000928`、選択ID重複0を静的照合した。隣接JSONのSHA-256は`31fa9212c40a9921d826c417c330fcd704dc8c17accb90c2cf23e7f027a96b8b`。これは独立reviewや採択の代用ではない。
+- marker pool 255行を除き、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。ranks 541–580は40行。rank 540の境界IDは`LEGACY-CAND-LINE-000926`。隣接rank 501–540のpaired auditを本PRに統合し、rank540=`LEGACY-CAND-LINE-000926`→rank541=`LEGACY-CAND-LINE-000928`、選択ID重複0を静的照合した。隣接JSONのSHA-256は`053d099d16909024ac6e5da622cc44e5b27d2e12e89634425982e5b18f2f2fb0`。これは独立reviewや採択の代用ではない。
 - 各行のarchive context、source/line/asset ledger hashes、fixed F6 pair/decisionとcurrent family-level relation pinsはpaired JSONに記録した。
 
 ## 行別意味監査
