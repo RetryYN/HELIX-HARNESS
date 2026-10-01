@@ -3,8 +3,16 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-741-780-2026-10-01",
   "created_against_commit": "3a3f16ec85482f2938939b16ab718b0c04f9c3b1",
   "authority_effect": "none",
-  "prior_completed_complement_slice": {"ranks": "701-740", "merge_commit": "67c46c299d32723d2ea9ad1b4c7a88e4a1e471e8", "last_id": "LEGACY-CAND-LINE-001281", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-701-740-2026-10-01.json", "json_sha256": "4d56fc4936a306c4e195d4f0c6c14a40f8d5022851bc92f7d5d9560c3f883d0f", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-701-740-2026-10-01.md", "md_sha256": "cba89d4473e21b5afafad7dffa23d778f5b8ef8406d43cfc26dac0f2a56bde0c"},
-  "fixed_F6_execution_ticket_family_relation": "741–779位の旧`execution-ticket-intake.md`はExecution Ticket familyの別候補であり、固定F6のOS L2 `governance-requirements.md:536–561`が直接名指しするのは旧`execution-ticket-requests.md`（HXT-RQ-01〜07→HELIXOS-L2-004/005/007/009）。固定F6のOS L11 `governance-acceptance.md:256–267`が直接名指しする旧`execution-ticket-validation.md`は、780位の旧文書titleが属する文書で、HXT-RQ-01〜07の受入は全件未実行。family関係や文書単位の名指しから、選択した各行の個別binding、successor、closureは生成しない。",
+  "prior_completed_complement_slice": {
+    "ranks": "701-740",
+    "merge_commit": "67c46c299d32723d2ea9ad1b4c7a88e4a1e471e8",
+    "last_id": "LEGACY-CAND-LINE-001281",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-701-740-2026-10-01.json",
+    "json_sha256": "4d56fc4936a306c4e195d4f0c6c14a40f8d5022851bc92f7d5d9560c3f883d0f",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-701-740-2026-10-01.md",
+    "md_sha256": "cba89d4473e21b5afafad7dffa23d778f5b8ef8406d43cfc26dac0f2a56bde0c"
+  },
+  "fixed_F6_execution_ticket_family_relation": "741–779位の旧`execution-ticket-intake.md`はExecution Ticket familyの別候補であり、固定F6のOS L2 `governance-requirements.md:536–561`が直接名指しするのは旧`execution-ticket-requests.md`（HXT-RQ-01〜07→HELIXOS-L2-004/005/007/009）。固定F6のOS L11 `governance-acceptance.md:256–267`が直接名指しする旧`execution-ticket-validation.md`はこのsliceに含まれず、HXT-RQ-01〜07の受入は全件未実行である。780位の旧文書titleは`execution-ticket-recognition.md`に属する。family関係や文書単位の名指しから、選択した各行の個別binding、successor、closureは生成しない。",
   "purpose": "Semantic audit of numeric-ID ranks 741–780 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
@@ -2672,7 +2680,7 @@
         "archive_file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c"
       },
       "marker_negative_normative_concern": "この定義上の境界だけを記録し、学習処理や改善測定が行われたとはしない。",
-      "current_relation_and_residual": "固定F6 HARNESS L2/L11およびPO判断は固定revisionと明示された候補集合を対象とする。このsliceの選択行を個別のsource-row successor/adoption/coverageとして結ぶ記述は確認されない。semantic-routing台帳は行別状態を記録するため、その分類・ID有無・adoption_boundaryを原文どおり保存し、unknownは非採用や閉包へ読み替えない。候補記述と現行実装・承認・実行は別である。",
+      "current_relation_and_residual": "固定F6のOS L2 `governance-requirements.md:155`は旧`execution-ticket-intake.md:164`のこの行を行番号つきで直接引用し、モデルweightsのfine-tuningや自己学習を旧候補が要求していなかった根拠として使う。Training ticketは新しい案として3.0の印を付ける。固定F6のOS L2 `governance-requirements.md:537`は旧候補を`proposed_pending_l3_confirmation`とし、既存の対文書を移動・再承認したことにはしない。OS L11 `governance-acceptance.md:256–267`のHXT-RQ受入は全件未実行。旧行のsuccessor割当・closureは生成しない。",
       "semantic_routing_record": {
         "commit": "3a3f16ec85482f2938939b16ab718b0c04f9c3b1",
         "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-semantic-routing-2026-09-28.jsonl",
