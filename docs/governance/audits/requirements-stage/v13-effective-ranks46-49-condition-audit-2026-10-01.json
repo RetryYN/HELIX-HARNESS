@@ -10,7 +10,8 @@
     "candidate4755_excluded": true,
     "rank_basis": "crosswalkが固定するsource-qualified 131-row identity-filter pool。全意味未レビュー数・closure残量を示さない。",
     "current_pair_presence_is_not_legacy_identity_binding": true,
-    "later_or_unadopted_candidates_not_counted_as_fixed_evidence": true
+    "later_or_unadopted_candidates_not_counted_as_fixed_evidence": true,
+    "later_adopted_candidate_revisions_are_context_only_not_fixed_f6_evidence": true
   },
   "input_pins": {
     "audit_base_commit": "0b23c76bdb7b1d1d478e5699b50e7b2392a95d79",
@@ -391,7 +392,7 @@
         "queue_state": "unresolved_for_closure_work",
         "baseline_condition_status": "unresolved",
         "baseline_comparison_status": "unresolved",
-        "baseline_unresolved_residual": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_unresolved_residual": "REG-03の過去の未解消観測: measurement contractの各条件をsource rowごとに閉じるL2/L11根拠が必要である。元の観測文はHARNESS-L2-034/035とHELIXOS-L2-031を「未採択候補」と記録していたが、その採択状態記述は2026-09-29 PO判断の固定対象revisionでは更新されている（decision rows 39/40/54を参照）。このsource condition自体の閉鎖状態は、本監査の固定F6比較では引き続き未判定／未解消として保持する。",
         "current_destination_refs": [
           "HARNESS-L2-034/L11-034 (6 source atoms対象)、OS-L2-020/031・L11-031、INFRASTRUCTURE-L2-003/018/019"
         ],
@@ -402,6 +403,13 @@
             "match_kind": "literal_source_identity_mention",
             "artifact_role": "candidate_decision_packet_reference"
           }
+        ],
+        "baseline_unresolved_residual_as_recorded": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_candidate_adoption_reconciled_by_later_decision": true,
+        "baseline_candidate_adoption_decision_lines": [
+          39,
+          40,
+          54
         ]
       },
       "comparison": {
@@ -489,11 +497,30 @@
             "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39"
           }
         ],
-        "legacy_source_to_current_requirement_binding": "not established; fixed pair presence is related current evidence only",
+        "legacy_source_to_current_requirement_binding": "The fixed F6 comparison does not establish a row-level binding. Later PO-adopted exact candidate revisions are separately pinned in later_po_adoption_context; this audit does not decide whether those revisions close this source row.",
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。"
+        "residual": "The fixed F6 L2-022/L11-022 comparison predates and does not include the later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. The later adoption context is recorded separately; this audit therefore does not conclude that those later revisions lack the 14-domain metric requirements. For this fixed-revision comparison, the old source row remains unresolved because no row-level closure determination is made here."
+      },
+      "later_po_adoption_context": {
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "decision_lines": [
+          39,
+          40,
+          54
+        ],
+        "adopted_candidate_ids": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HELIXOS-L2-031"
+        ],
+        "relation_to_source_row": "related adopted candidate scope; not an assertion of formal source-row binding or closure",
+        "included_in_fixed_f6_pair_evidence": false,
+        "source_condition_closed_by_this_audit": false,
+        "authority_effect_of_this_audit": "none"
       }
     },
     {
@@ -532,7 +559,7 @@
         "queue_state": "unresolved_for_closure_work",
         "baseline_condition_status": "unresolved",
         "baseline_comparison_status": "unresolved",
-        "baseline_unresolved_residual": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_unresolved_residual": "REG-03の過去の未解消観測: measurement contractの各条件をsource rowごとに閉じるL2/L11根拠が必要である。元の観測文はHARNESS-L2-034/035とHELIXOS-L2-031を「未採択候補」と記録していたが、その採択状態記述は2026-09-29 PO判断の固定対象revisionでは更新されている（decision rows 39/40/54を参照）。このsource condition自体の閉鎖状態は、本監査の固定F6比較では引き続き未判定／未解消として保持する。",
         "current_destination_refs": [
           "HARNESS-L2-034/L11-034 (6 source atoms対象)、OS-L2-020/031・L11-031、INFRASTRUCTURE-L2-003/018/019"
         ],
@@ -543,6 +570,13 @@
             "match_kind": "literal_source_identity_mention",
             "artifact_role": "candidate_decision_packet_reference"
           }
+        ],
+        "baseline_unresolved_residual_as_recorded": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_candidate_adoption_reconciled_by_later_decision": true,
+        "baseline_candidate_adoption_decision_lines": [
+          39,
+          40,
+          54
         ]
       },
       "comparison": {
@@ -598,11 +632,30 @@
             "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39"
           }
         ],
-        "legacy_source_to_current_requirement_binding": "not established; fixed pair presence is related current evidence only",
+        "legacy_source_to_current_requirement_binding": "The fixed F6 comparison does not establish a row-level binding. Later PO-adopted exact candidate revisions are separately pinned in later_po_adoption_context; this audit does not decide whether those revisions close this source row.",
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。"
+        "residual": "The fixed F6 L2-022/L11-022 comparison predates and does not include later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. This audit does not claim those exact adopted candidate revisions lack the enumerated measurement fields/failure conditions; it keeps the old source row unresolved because it does not adjudicate source-row closure or execution evidence beyond the fixed F6 comparison."
+      },
+      "later_po_adoption_context": {
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "decision_lines": [
+          39,
+          40,
+          54
+        ],
+        "adopted_candidate_ids": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HELIXOS-L2-031"
+        ],
+        "relation_to_source_row": "related adopted candidate scope; not an assertion of formal source-row binding or closure",
+        "included_in_fixed_f6_pair_evidence": false,
+        "source_condition_closed_by_this_audit": false,
+        "authority_effect_of_this_audit": "none"
       }
     },
     {
@@ -641,7 +694,7 @@
         "queue_state": "unresolved_for_closure_work",
         "baseline_condition_status": "unresolved",
         "baseline_comparison_status": "unresolved",
-        "baseline_unresolved_residual": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_unresolved_residual": "REG-03の過去の未解消観測: measurement contractの各条件をsource rowごとに閉じるL2/L11根拠が必要である。元の観測文はHARNESS-L2-034/035とHELIXOS-L2-031を「未採択候補」と記録していたが、その採択状態記述は2026-09-29 PO判断の固定対象revisionでは更新されている（decision rows 39/40/54を参照）。このsource condition自体の閉鎖状態は、本監査の固定F6比較では引き続き未判定／未解消として保持する。",
         "current_destination_refs": [
           "HARNESS-L2-034/L11-034 (6 source atoms対象)、OS-L2-020/031・L11-031、INFRASTRUCTURE-L2-003/018/019"
         ],
@@ -652,6 +705,13 @@
             "match_kind": "literal_source_identity_mention",
             "artifact_role": "candidate_decision_packet_reference"
           }
+        ],
+        "baseline_unresolved_residual_as_recorded": "REG-03: measurement contract全fieldと未測定・stale・非代表環境・target未達時のcompletion拒否の対象別L2/L11対が未特定。HARNESS-034/035・OS-031は未採択候補である。",
+        "baseline_candidate_adoption_reconciled_by_later_decision": true,
+        "baseline_candidate_adoption_decision_lines": [
+          39,
+          40,
+          54
         ]
       },
       "comparison": {
@@ -715,11 +775,30 @@
             "line_sha256": "8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39"
           }
         ],
-        "legacy_source_to_current_requirement_binding": "not established; fixed pair presence is related current evidence only",
+        "legacy_source_to_current_requirement_binding": "The fixed F6 comparison does not establish a row-level binding. Later PO-adopted exact candidate revisions are separately pinned in later_po_adoption_context; this audit does not decide whether those revisions close this source row.",
         "formal_successor_assigned": false,
         "source_condition_closed": false,
         "authority_effect": "none",
-        "residual": "測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。"
+        "residual": "The fixed F6 L2/L11 comparison predates and does not include later PO-adopted L2/L11-034/035 and OS-L2/L11-031 revisions. The later adoption context is recorded separately; this audit does not conclude that those later revisions lack the measurement-process, privacy, overhead, or reproducibility conditions. The old source row remains unresolved within this fixed-revision audit because no row-level closure determination is made here."
+      },
+      "later_po_adoption_context": {
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "decision_lines": [
+          39,
+          40,
+          54
+        ],
+        "adopted_candidate_ids": [
+          "HARNESS-L2-034",
+          "HARNESS-L2-035",
+          "HELIXOS-L2-031"
+        ],
+        "relation_to_source_row": "related adopted candidate scope; not an assertion of formal source-row binding or closure",
+        "included_in_fixed_f6_pair_evidence": false,
+        "source_condition_closed_by_this_audit": false,
+        "authority_effect_of_this_audit": "none"
       }
     },
     {
@@ -865,9 +944,10 @@
   },
   "non_claims": [
     "近接する固定L2/L11行やPO decisionは旧REQSRC lineの採択・source-ID bindingを意味しない。",
-    "未採択のHARNESS/OS候補、OS-L2-031等を固定F6のcurrent pair evidenceとして数えない。",
+    "後続PO採択で固定されたHARNESS-L2-034/035、HELIXOS-L2-031の候補revisionを固定F6 comparison evidenceへ混ぜない。",
     "partial/gap判定からformal successor、source-condition closure、L3承認、実装許可、受入実行を生成しない。",
-    "crosswalk順位はbounded identity-filter pool上の位置であり、意味上の未レビュー総数・closure countではない。"
+    "crosswalk順位はbounded identity-filter pool上の位置であり、意味上の未レビュー総数・closure countではない。",
+    "PO adoption state for rows 39/40/54 does not itself declare REQSRC-SUP-00192/00193/00194 closed; the exact old source conditions remain unresolved in this audit."
   ],
   "static_validation": {
     "queue_sha_and_pool_parent_pin_recomputed": true,
@@ -879,6 +959,66 @@
     "fixed_decision_record_pin_recomputed": true,
     "no_overlap_with_current_reviewed81": true,
     "records_4_unique": true,
-    "archive_runtime_cli_test_ci_executed": false
+    "archive_runtime_cli_test_ci_executed": false,
+    "later_po_decision_file_sha_and_rows_39_40_54_line_sha_recomputed": true,
+    "prior_reg03_unadopted_phrase_preserved_as_historical_only": true,
+    "fixed_f6_revision_and_pair_pins_unchanged": true,
+    "later_candidate_adoption_not_inferred_as_source_closure": true,
+    "markdown_later_po_decision_pins_match_json": true,
+    "baseline_residual_reconciled_without_deleting_historical_reg03_wording": true,
+    "fixed_f6_scope_and_unclosed_source_residual_preserved": true
+  },
+  "later_po_adoption_context": {
+    "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+    "decision_status": "recorded",
+    "decided_at": "2026-09-29",
+    "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_record_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "decision_record_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+    "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68",
+    "decision_authority_effect_as_recorded": "effective_when_this_record_is_admitted_to_main_for_only_explicitly_fixed_revisions",
+    "explicitly_adopted_rows": [
+      {
+        "line": 39,
+        "line_sha256": "c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1",
+        "candidate_id": "HARNESS-L2-034",
+        "po_disposition": "採択",
+        "line_text": "| `HARNESS-L2-034` | 採択 | `MPR-RC-HARNESS-L2-034-003` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156` | `HARNESS-L2-034` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf` | `docs/governance/audits/requirement-registration/harness-measurement-contract-coverage-receipt-2026-09-28-r3.json` |"
+      },
+      {
+        "line": 40,
+        "line_sha256": "db95fb03a091cd2d74a7bef953d37aacc6308de5363e157e760a07d1715c2e77",
+        "candidate_id": "HARNESS-L2-035",
+        "po_disposition": "採択",
+        "line_text": "| `HARNESS-L2-035` | 採択 | `MPR-RC-HARNESS-L2-035-002` | `docs/helix-harness/L2-requirements/product-requirements.md` | `111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09` | `sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2` | `HARNESS-L2-035` | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5` | `sha256:65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670` | `docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28-r2.json` |"
+      },
+      {
+        "line": 54,
+        "line_sha256": "534f6f3a0179d8c4b8d6fe2f301c55bd9f8468c341c1fb0ab38410cda2b35b9d",
+        "candidate_id": "HELIXOS-L2-031",
+        "po_disposition": "採択",
+        "line_text": "| `HELIXOS-L2-031` | 採択 | `MPR-RC-HELIXOS-L2-031-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462` | `HELIXOS-L2-031` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb` | `docs/governance/audits/requirement-registration/os-ci-performance-coverage-receipt-2026-09-28.json` |"
+      }
+    ],
+    "temporal_reconciliation": "The earlier REG-03 queue residual text described HARNESS-L2-034/035 and HELIXOS-L2-031 as unadopted. This is preserved as recorded historical wording only. The pinned 2026-09-29 PO record adopts the exact candidate revisions fixed in rows 39, 40, and 54. Candidate adoption corrects their adoption-state description; it does not by itself establish closure of each old REQSRC source condition. This audit keeps its fixed F6 comparison at the earlier revision and does not substitute later candidate bytes for fixed F6 evidence.",
+    "audit_effect": "adoption_status_context_only; this audit assigns no formal successor and declares no legacy source-condition closure",
+    "candidate_scope_notes": [
+      {
+        "candidate_id": "HARNESS-L2-034",
+        "scope": "adopted exact L2/L11 revisions for requirement-specific measurement contracts; related to the fields, quality domains, rejection conditions, process, and safety/overhead topics in REQSRC-SUP-00192–00194. This relation is contextual only and does not alter this audit fixed F6 comparison."
+      },
+      {
+        "candidate_id": "HARNESS-L2-035",
+        "scope": "adopted exact L2/L11 revisions for source/derivation basis and acceptance contribution; this is not treated here as a standalone closure of the measurement source rows."
+      },
+      {
+        "candidate_id": "HELIXOS-L2-031",
+        "scope": "adopted exact L2/L11 revisions for CI performance measurement/recovery; narrower than the full old measurement-contract conditions and not treated here as source-row closure."
+      }
+    ],
+    "source_condition_closure_asserted": false,
+    "formal_successor_assigned_by_this_audit": false,
+    "authority_effect_of_this_audit": "none"
   }
 }

@@ -11,13 +11,27 @@
 - 固定F6 revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 `docs/helix-harness/L2-requirements/product-requirements.md` SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md` SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`。PO判断record `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md` は監査baseでSHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`。
 旧misrank artifactで記録された40 ID、およびfirst20/current positions21–40を含むcurrent reviewed 81 IDとの重複は0件。今回の4件はparent crosswalkのcurrent unreviewed 50件に記録されたrank46–49に一致する。固定L2/L11の存在は旧source rowの個別採択・identity bindingではない。
 
+## 後続PO採択の時点整合（固定F6比較とは分離）
+
+旧queue/REG-03の記録文はHARNESS-L2-034/035とHELIXOS-L2-031を「未採択候補」としていた。この語句は元の観測記録としてJSON `baseline_unresolved_residual_as_recorded` に保存し、現在の採択状態を表す文言には使わない。2026-09-29のPO判断は、次の行に記載された候補identityとその行が固定するL2/L11 file SHA・section digestについて採択を記録している。判断recordはsource revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`、basis revision `c18969c73306f6ed4cc4b93249583cd7e5d9ff68`を示し、一般的な後続file revisionへ採択を自動拡張しない。
+
+Decision record: `docs/governance/decisions/po-decision-2026-09-29-57candidates.md` @ `50686b6762788574cb471967e8c24846d3dd56ae`; whole-file SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`.
+
+|line|candidate|PO処置|decision row SHA-256|固定対象（L2 section / L11 section）|
+|---:|---|---|---|---|
+|39|`HARNESS-L2-034`|採択|`c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1`|`dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156` / `391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf`|
+|40|`HARNESS-L2-035`|採択|`db95fb03a091cd2d74a7bef953d37aacc6308de5363e157e760a07d1715c2e77`|`4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2` / `65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670`|
+|54|`HELIXOS-L2-031`|採択|`534f6f3a0179d8c4b8d6fe2f301c55bd9f8468c341c1fb0ab38410cda2b35b9d`|`a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462` / `9e0caa1d717cf3f71a74ee1d829ed9625406fe9fd3f85a917ae6945e7918abcb`|
+
+このPO決定は候補の採択状態を訂正する。rank46–49監査の固定F6比較revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` は変更せず、後続採択revisionを固定F6 evidenceへ混ぜない。HARNESS-L2-034/035とHELIXOS-L2-031の採択だけから、旧source row単位のsuccessor、全条件の閉鎖、実行済み受入は導かない。したがってREQSRC-SUP-00192/00193/00194のcondition statusはこの監査では未解消のまま保持する。
+
 ## source rowと比較結果
 
 |rank|Source ID / source line|Baseline|Finding|固定F6の限定的関係|残差|
 |---:|---|---|---|---|---|
-|46|`REQSRC-SUP-00192` / L247|unresolved|partial|HARNESS-L2-022 / L11-022: stageごとの検証・受入境界。14品質領域からmetric contractを生成するfield規則までは示さない。|14品質領域ごとに各requirement/NFRからmetric/evidence contractを生成する規則、適用対象とsource identityのline-level対応、領域別の受入範囲・例外が固定採択pairから特定できない。|
-|47|`REQSRC-SUP-00193` / L249|unresolved|partial|HARNESS-L2-022 / L11-022: stage proofとsystem固有義務差分。全measurement fieldとstale/nonrepresentative/target未達の規則までは示さない。|metric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、tolerance、sampling/window、tool/probe、evidence schema、oracle、owner、実行layer、再測定triggerを持つfield contractと、未測定・stale・非代表環境・閾値未達のcompletion拒否を旧行単位に結ぶadopted pair bindingがない。|
-|48|`REQSRC-SUP-00194` / L251|unresolved|partial|HARNESS-L2-001 / 022とL11-001 / 022: layer/pairと受入段階。L5→L7→L8–10→L11→L12の計測運用・安全な測定条件までは示さない。|測定stageとsource atomの対応、L7 probe/fixtureの受入、利用実態と時系列SLO評価のmetric/oracle、production secret/PIIを露出しない測定data handling、measurement overhead・再現性の記録をこのsource rowへ結ぶ固定L2/L11 pairは確認できない。|
+|46|`REQSRC-SUP-00192` / L247|unresolved|partial|HARNESS-L2-022 / L11-022: stageごとの検証・受入境界。14品質領域からmetric contractを生成するfield規則までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。これらの採択対象を後続文脈としてpinしたが、本監査は固定F6を維持し、旧source row単位の閉鎖判定を行わない。|
+|47|`REQSRC-SUP-00193` / L249|unresolved|partial|HARNESS-L2-022 / L11-022: stage proofとsystem固有義務差分。全measurement fieldとstale/nonrepresentative/target未達の規則までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。後続採択revisionに同じfieldが存在しないとは主張せず、この監査は旧source row単位の閉鎖や実行証拠を判定しない。|
+|48|`REQSRC-SUP-00194` / L251|unresolved|partial|HARNESS-L2-001 / 022とL11-001 / 022: layer/pairと受入段階。L5→L7→L8–10→L11→L12の計測運用・安全な測定条件までは示さない。|固定F6比較は後続PO採択のHARNESS-L2-034/035・HELIXOS-L2-031 revisionを含まない。後続採択revisionの工程・安全条件について不足を主張せず、この監査では旧source row単位の閉鎖を判定しない。|
 |49|`REQSRC-SUP-00198` / L259|partial|partial|HARNESS-L2-002 / 003とL11-002 / 003:方式、工程、SR4前release-ready禁止の一部。Full V全体と列挙されたworkflow全状態・例外の閉包までは示さない。|Full Vのsystem-wide L1–L5 workflow modelの段階freezeと右腕による全transition/loop/terminal/exception/permission/timeout/notification/audit/data/switching/routing/resource allocation検証、Production Scrumのslice deltaとsprint review/release前backfillの全要素を旧line identityごとに結ぶ固定L2/L11 pairはない。|
 
 ### source identityと旧原文
@@ -29,9 +43,9 @@
 
 ### 固定F6の直接参照行pin
 
-各行のsource path、file SHA、physical line SHA、textはJSON `fixed_f6_revision.pair_evidence_line_pins` と各recordの `fixed_f6_pair_line_pins` に収録。固定L2-022/L11-022はverification/acceptance stage contractに関する現在の対であり、旧REQSRC単位の採択bindingではない。固定L2-002/003とL11-002/003は開発方式／stage／Scrum Reverseに限った関連証拠。OS-L2-031および後続未採択候補は固定F6証拠へ含めない。
+各行のsource path、file SHA、physical line SHA、textはJSON `fixed_f6_revision.pair_evidence_line_pins` と各recordの `fixed_f6_pair_line_pins` に収録。固定L2-022/L11-022はverification/acceptance stage contractに関する現在の対であり、旧REQSRC単位の採択bindingではない。固定L2-002/003とL11-002/003は開発方式／stage／Scrum Reverseに限った関連証拠。後続PO採択のHARNESS-L2-034/035およびHELIXOS-L2-031の固定対象revisionは別contextとして記録し、固定F6比較証拠へ含めない。
 
 ## 非主張と検証
 
-各4条件は旧source statusに照らして `partial` とした。比較記録には各条件の残差を残し、formal successor assigned=false、source condition closed=false、authority_effect=noneを維持する。L11記載は受入契約の固定文書証拠であり、受入を実行した主張ではない。
+各4条件は固定F6 revisionに対する比較結果として `partial` とした。REG-03に残る未解消source conditionと後続candidate採択stateは別時点の証拠として併記し、後続採択は固定F6比較に混ぜない。比較記録には旧source rowごとの未解消残差を残し、formal successor assigned=false、source condition closed=false、authority_effect=noneを維持する。L11記載は受入契約の固定文書証拠であり、受入を実行した主張ではない。
 Queue/proof/current crosswalkのpin、131順位、source/ledger/F6 line SHA、reviewed 81件との非重複をassertした。JSON/MD syntax・ID一致・`git diff --check`を確認し、旧runtime/CLI/test/CIは実行しない。
