@@ -3,6 +3,8 @@
   "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-661-700-2026-10-01",
   "created_against_commit": "420164de98585fa495e7f4eaacd016981a2df26b",
   "authority_effect": "none",
+  "prior_completed_complement_slice": {"ranks": "621-660", "merge_commit": "85638d7aed054c5b9c3bda5128a9f4208453a1c9", "last_id": "LEGACY-CAND-LINE-001178", "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-621-660-2026-10-01.json", "json_sha256": "0088903962b94f68b825a4be61f597862916e0d5b00dd77be53a8b7275cebcf6", "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-621-660-2026-10-01.md", "md_sha256": "f4417f1ef7daa279438e879a75b29d1cc32878b7e523362fcd25c17d18a27b20"},
+  "fixed_F6_execution_ticket_family_relation": "661–669位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しする旧sourceは`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行。固定F6は旧`execution-ticket-acceptance.md`を直接名指ししない。このfamily関係は、選択したHXB-ACやE2E scenario行の個別binding、successor、closureを生まない。",
   "purpose": "Semantic audit of numeric-ID ranks 661–700 in the effective-explanation marker-negative complement; no adoption, successor, implementation, acceptance or source closure is generated.",
   "pool_derivation": {
     "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",

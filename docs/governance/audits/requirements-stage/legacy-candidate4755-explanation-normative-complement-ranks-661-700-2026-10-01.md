@@ -5,8 +5,12 @@
 ## 対象と再構成
 
 - 監査基点は`420164de98585fa495e7f4eaacd016981a2df26b`。#2353の4,755 `row_records`へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381をexact source IDで順に適用し、effective explanation 2,965行を再構成した。#2369の000841/000857はconditionへ移るため説明行から除外。
-- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。ranks 661–700は40行。rank 660の境界IDは`LEGACY-CAND-LINE-001178`。rank 621–660のpaired auditはこの`origin/main`に存在しないため、隣接sliceの事前監査を主張しない。
+- marker pool 255件を除き、`2,965 - 255 = 2,710`件をsource ID数値順にrank付けした。ranks 661–700は40行。rank 660の境界IDは`LEGACY-CAND-LINE-001178`。直前のranks 621–660は#2458のmerge commit `85638d7aed054c5b9c3bda5128a9f4208453a1c9`でmainへ統合済み。境界ID・paired MD/JSONのSHAを照合した。順位自体は全母集団から独立に再構成した。
 - 661–670位はExecution Ticket/HELIX-Benchの候補L10受入oracleとE2E scenario、671–700位は旧intakeのmetadata・照合表・candidate header文である。旧文書は90件の受入oracleを未実行と明記する。個々の正確なsource text/context、ledger entry hashes、source/asset pinsとF6/decision relationはpaired JSONに記録した。
+
+### 固定F6とのfamily関係
+
+661–669位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しする旧sourceは`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行。固定F6は旧`execution-ticket-acceptance.md`を直接名指ししない。このfamily関係は、選択したHXB-ACやE2E scenario行の個別binding、successor、closureを生まない。
 
 ## 行別意味監査
 
