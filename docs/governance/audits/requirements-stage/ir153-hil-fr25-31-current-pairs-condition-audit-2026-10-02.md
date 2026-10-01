@@ -51,3 +51,5 @@ carry-forward ledgerではIRの7 identityがpreserved_pending_rehome、successor
 4. FR30の旧physical output identityを含むsource全体のclosure。現在のticket route意味は保持しているが旧出力同一性は主張しない。
 
 機械可読のsource row/text/hash/statusは同名JSON、候補対象atomはregistration ledgerとcoverage receiptにある。
+
+現行PR比較baseは `7b9d1938fc7699404f68c2b87829df56dc6f690d`。既存OS本文と646行台帳prefixを保持し、115のみ末尾追補した。構築時72d08ebの履歴source/readingsはその時点の証拠として区別し、current_file_sha256とcandidate pinは統合後bytesへ追随する。

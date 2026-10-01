@@ -18,10 +18,10 @@
     }
   },
   "current_file_sha256": {
-    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:f3b0bcab93fa7b28bb38dc4afc6136ca8ea7bc834d2719152ba81c97538a6257",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:4287217844e09e274c1411d733e60386a393c8594ca4291c9d68a2000b8b4ee6",
-    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
-    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:140c4e9fd62df3fb050126ddf95b08c3d8dbbc712e98ac3c51bbaf3cf72191ee",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:7c8d12036285e8791cc00d6973ee570941ef997bee4a54455d826138c9fcea3f",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:94e476d2792da0200b2a334e591b02e08401b845a84794b6990e039775968bcf",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:0f682b3fdbb7bf43baa33af68a215bf369d56a562d12a496b8c88cac9563dffd",
     "docs/helix-brain/L2-requirements/brain-requirements.md": "sha256:421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
     "docs/helix-brain/L11-acceptance/brain-acceptance.md": "sha256:833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
     "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
@@ -292,22 +292,22 @@
     "l11_section_sha256": "sha256:3e93fe97802898a4ef1b2f12824437036231ecb190201db87c1dd4be354033d8",
     "mpr_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
     "source_ledger_sha256": "sha256:b51f7051a5e21e6976639ea5e9d7ed6d426a84bd75c59f6015a976aa7efefd32",
-    "coverage_receipt_sha256": "sha256:71cda38990bb94e4d1c0a95f390fa0fce9a24f3ec71d231722f3ceae256cc8e4",
+    "coverage_receipt_sha256": "sha256:41acfb693a8eff8f5c7bd4a8b57656751763684f94d141d2316c04ec2469e9f3",
     "candidate_l2_pin": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:f3b0bcab93fa7b28bb38dc4afc6136ca8ea7bc834d2719152ba81c97538a6257",
+      "full_file_sha256": "sha256:140c4e9fd62df3fb050126ddf95b08c3d8dbbc712e98ac3c51bbaf3cf72191ee",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1391,
-      "line_end": 1399,
+      "line_start": 1434,
+      "line_end": 1442,
       "section_sha256": "sha256:1d5068ae7c57c77fd740c0ef633d95ace4631cad80c00b7441bfa7de127b1fed",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "candidate_l11_pin": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:4287217844e09e274c1411d733e60386a393c8594ca4291c9d68a2000b8b4ee6",
+      "full_file_sha256": "sha256:7c8d12036285e8791cc00d6973ee570941ef997bee4a54455d826138c9fcea3f",
       "heading": "HELIXOS-L2-115",
-      "line_start": 992,
-      "line_end": 999,
+      "line_start": 1025,
+      "line_end": 1032,
       "section_sha256": "sha256:3e93fe97802898a4ef1b2f12824437036231ecb190201db87c1dd4be354033d8",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
@@ -872,5 +872,6 @@
     "reviewed_at_base": "72d08ebc1b45c8cf85c0e89359c48f78eb779fee",
     "decision_required": "A/B/C listed in receipt; recommended A",
     "base_historical_record_preserved": true
-  }
+  },
+  "current_comparison_base_commit": "7b9d1938fc7699404f68c2b87829df56dc6f690d"
 }

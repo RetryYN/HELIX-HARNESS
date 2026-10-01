@@ -35,19 +35,19 @@
   "candidate_pair_pins": {
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:f3b0bcab93fa7b28bb38dc4afc6136ca8ea7bc834d2719152ba81c97538a6257",
+      "full_file_sha256": "sha256:140c4e9fd62df3fb050126ddf95b08c3d8dbbc712e98ac3c51bbaf3cf72191ee",
       "heading": "HELIXOS-L2-115",
-      "line_start": 1391,
-      "line_end": 1399,
+      "line_start": 1434,
+      "line_end": 1442,
       "section_sha256": "sha256:1d5068ae7c57c77fd740c0ef633d95ace4631cad80c00b7441bfa7de127b1fed",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:4287217844e09e274c1411d733e60386a393c8594ca4291c9d68a2000b8b4ee6",
+      "full_file_sha256": "sha256:7c8d12036285e8791cc00d6973ee570941ef997bee4a54455d826138c9fcea3f",
       "heading": "HELIXOS-L2-115",
-      "line_start": 992,
-      "line_end": 999,
+      "line_start": 1025,
+      "line_end": 1032,
       "section_sha256": "sha256:3e93fe97802898a4ef1b2f12824437036231ecb190201db87c1dd4be354033d8",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     }
