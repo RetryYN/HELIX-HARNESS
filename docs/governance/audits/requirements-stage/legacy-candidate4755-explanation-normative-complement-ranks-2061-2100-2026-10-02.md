@@ -4,7 +4,7 @@
 
 ## 母集団・範囲
 
-- #2353の4,755行へ#2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381を順に適用し、effective explanation 2,965件からmarker 255件を除外した補集合2,710件をID数値順に順位化。40 ID列SHA-256: `a221d544c2231015f470bea3a165d5afa71f37ba8c15f6197097c09bc1bcd8ac`. 
+- #2353の4,755行へ#2356→#2360→#2363→#2366→#2367→#2368→#2369→#2381を順に適用し、effective explanation 2,965件からmarker 255件を除外した補集合2,710件をID数値順に順位化。40 ID列SHA-256: `a221d544c2231015f470bea3a165d5afa71f37ba8c15f6197097c09bc1bcd8ac`.
 - rank2060境界ID: `LEGACY-CAND-LINE-003478`。隣接rank 2021–2060のpaired auditは基点にないため境界IDだけを記録し、先行意味確認は主張しない。
 - 要件候補と対の受入候補について、frontmatter、表見出し、引用段落を区別した。意味文は選択物理行の項目・限定だけを記録し、隣接する非選択行の独立条件を移していない。source／asset／routing ledgerとarchive manifest/hashはJSONに記録。
 
