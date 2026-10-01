@@ -67,3 +67,7 @@
 - 旧archiveはread-only。旧runtime・test・CIは実行していない。
 
 詳細なcontext、source/asset/routing hash、current/F6各24本文、現行candidate群、全PO／receipt検索pin、旧判断履歴はpaired JSON `legacy-candidate4755-explanation-normative-complement-ranks-1941-1980-2026-10-02.json` に記録。
+
+## 統合時の先行slice確認
+
+PR #2475のmerge `3198fd9991b766ed9ae0d0f08abfa5ab85e31d7c` に含まれる1901–1940行のJSON本文をpinした。全量欠落なし・採択・authority移管は主張しない。

@@ -76,9 +76,14 @@
     "prior_id": "LEGACY-CAND-LINE-003266",
     "this_first_rank": 1941,
     "this_first_id": "LEGACY-CAND-LINE-003268",
-    "paired_audit_available_at_base": false,
+    "paired_audit_available_at_base": true,
     "prior_semantic_verification_claimed": false,
-    "note": "隣接rank 1901–1940のpaired auditは基点にないためrank1940 IDだけ記録し、先行意味確認は主張しない。"
+    "note": "先行PR #2475のmerge済みpaired auditを本文pinで参照する。全量欠落なしやauthority移管は主張しない。",
+    "prior_audit_pin": {
+      "commit": "3198fd9991b766ed9ae0d0f08abfa5ab85e31d7c",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-1901-1940-2026-10-02.json",
+      "sha256": "1f81167cd7fa115b8115cdbbc0defc4a5b47298c4d86a6b2bded42fcf0f51995"
+    }
   },
   "reconstruction_inputs": [
     {
