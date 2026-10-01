@@ -5,6 +5,7 @@
 - 対象母集団は#2353の4,755 source rowsへ#2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381を順に適用したeffective explanation 2,965行。semantic reviewで意味確認したmarker-positive 255 IDを除き、数値suffix昇順のcomplement 2,710行からranks 621–660を選んだ。
 - 255 positive IDsはaggregate semantic review ranks 1–20と、semantic review slices ranks 21–255の12件から再構成した。first ID: `LEGACY-CAND-LINE-001129`、last ID: `LEGACY-CAND-LINE-001178`。selected ID SHA-256: `3b91c64670082640d2d55355151602a1e8e5064a7878ea0154889ea7ad6805a5`。
 - #2369の差分は000841/000857をconditionへ移す+2/-2の変更として反映。近接する別sliceをrank境界の根拠にしていない。
+- 直前の補集合 ranks 581–620 は同じPR内の commit `e08923d87fd52b64aa9c3fc0064032007df0f216` に固定する。終端は `LEGACY-CAND-LINE-001128`、本sliceの先頭は `LEGACY-CAND-LINE-001129`。順位は上記の全母集団から独立再計算した。
 
 ## 行別の意味と現行pairとの関係
 
