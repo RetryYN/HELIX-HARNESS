@@ -254,7 +254,7 @@
     },
     {
       "role": "prior_ranks21_40_audit",
-      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "commit": "8ab72549970c56a0f210667c6431be733bb8f944",
       "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
       "sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b"
     }
