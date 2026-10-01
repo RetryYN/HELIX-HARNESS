@@ -1,0 +1,1062 @@
+{
+  "audit_id": "LEGACY-CANDIDATE864-CIG-CURRENT-TREATMENT-2026-10-02-R2",
+  "audit_state": "source_condition_comparison_for_unadopted_candidate",
+  "authority_effect": "none",
+  "comparison_base_commit": "2a6b1fdd49ffa74eb2075fd98f67daca316408f2",
+  "source_audit_ref": "scaffold/review-handoff/local/candidate4755-condition864-current-treatment-2026-10-02/candidate4755-condition864-current-treatment-2026-10-02.json",
+  "source_audit_ref_role": "selection index only; not source authority or gap proof",
+  "paired_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02-r2.md",
+  "candidate_receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02-r2.json",
+  "fixed_decision": {
+    "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "adopted_scope": "HELIXOS-L2-001..029 exact fixed revisions; 118 excluded"
+  },
+  "candidate_sections": [
+    {
+      "identity": "HELIXOS-L2-118",
+      "status": "unadopted_candidate",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "line_start": 1455,
+      "line_end": 1465,
+      "section_sha256": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c"
+    },
+    {
+      "identity": "HELIXOS-L11-118",
+      "status": "unadopted_candidate",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "line_start": 1043,
+      "line_end": 1052,
+      "section_sha256": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29"
+    }
+  ],
+  "review_scope": {
+    "selected_physical_rows": 15,
+    "requirement_atoms": 14,
+    "excluded_process_row": "LEGACY-CAND-LINE-000478: separate post-promotion PLAN, not an L2 atom",
+    "selected_atom_ids": [
+      "LEGACY-CAND-LINE-000470",
+      "LEGACY-CAND-LINE-000472",
+      "LEGACY-CAND-LINE-000474",
+      "LEGACY-CAND-LINE-000491",
+      "LEGACY-CAND-LINE-000492",
+      "LEGACY-CAND-LINE-000496",
+      "LEGACY-CAND-LINE-000497",
+      "LEGACY-CAND-LINE-000499",
+      "LEGACY-CAND-LINE-000500",
+      "LEGACY-CAND-LINE-000501",
+      "LEGACY-CAND-LINE-000502",
+      "LEGACY-CAND-LINE-000527",
+      "LEGACY-CAND-LINE-000528",
+      "LEGACY-CAND-LINE-000529"
+    ],
+    "candidate_input_atom_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
+    "source_lines_jsonl_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02-r2.jsonl",
+    "source_lines_jsonl_sha256": "sha256:409d0f0501b8b2b7b09560d7ed635d52b1bae5eaef5ee0c3ca3b36f21bcb5629"
+  },
+  "rows": [
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000470",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 16,
+      "source_file_sha256": "sha256:7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:fb2423c3a926b76c2a65cd69371c3956fa9c08cc2043435ed4048d3adfa46948",
+      "source_line_bytes_sha256": "sha256:312eee698e48fd7a608b69d96c7905b39116a8806c864b75cde733177f4789e0",
+      "source_text": "| `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |",
+      "selected_condition_reading": "CIG-AC-003の選択物理行は、scheduleを連続起動してqueue上限とTTLを超える入力、older scheduleだけの置換、無制限並走とsilent dropの拒否を同じ行で指定する。これは未完義務を無言で失わせず、consumerから確認できる非success/unfinished結果として残す要求条件に対応する。数値上限、TTL値、状態enumは原文にない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-470:LEGACY-CAND-LINE-000470",
+      "source_ledger_record_sha256": "sha256:1927e99a8c44e3e7eb9f02c00f2dc0b69f728fa23f0817f909dda62e78d80187",
+      "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-003",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live. These selected lines are mapped to the unadopted L2/L11-118 candidate only; formal successor/owner/scope/adoption/runtime execution/condition closure remain unconfirmed.",
+      "current_evidence": [
+        {
+          "label": "adopted OS-008/-009/-020 general obligations",
+          "status": "adopted_general_partial",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md and docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "digest": "fixed 2026-09-28 OS PO decision exact target; no explicit queue/TTL overrun no-drop result"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29"
+        }
+      ],
+      "assessment": "Genuine remaining requirement condition is added to unadopted L2/L11-118: when queue capacity or TTL is exceeded, only an older schedule may be replaced; silent drop is rejected and unfinished required verification stays visible/non-success. No numeric threshold, TTL value, or state enum is fixed.",
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 condition destination only; no adopted fulfillment, execution, formal successor, or closure",
+      "current_revision_registration": "MPR-RC-HELIXOS-L2-118-002"
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000472",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 18,
+      "source_file_sha256": "sha256:7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:9ac1a187a2ea4dcbe41985270a5b6a174271f6b800d463e244ffae336107c35f",
+      "source_line_bytes_sha256": "sha256:f1b603679ec74c3ce0433cb8c6d440c52e426c06abae97fdf6ef589b08f003d6",
+      "source_text": "| `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |",
+      "selected_condition_reading": "CIG-AC-005の選択物理行は、cancelled runをpost-main、review、deferred successへ個別に注入し、全consumerが採用を拒否する受入条件。既存の未採択L11-118に同じconsumer別拒否oracleがあるため、source atomと条件の行き先だけを追加し、意味を重ねて起こさない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-472:LEGACY-CAND-LINE-000472",
+      "source_ledger_record_sha256": "sha256:aaf492c4869c334e110a5537671383cd5a2bc41f042b5873287b12c1ab63e522",
+      "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-005",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live. These selected lines are mapped to the unadopted L2/L11-118 candidate only; formal successor/owner/scope/adoption/runtime execution/condition closure remain unconfirmed.",
+      "current_evidence": [
+        {
+          "label": "candidate L11-118 cancelled-consumer rejection oracle",
+          "status": "unadopted_candidate_condition_destination",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:c7ae67a09e632336a6e6a5fd858457722a9063d32d890f46459a5d877c5a9934",
+          "specific_condition": "cancelled run rejected at post-main, review, and deferred-success consumers"
+        }
+      ],
+      "assessment": "Existing unadopted L11-118 already rejects a cancelled run when independently injected into post-main, review, and deferred-success consumers. This row adds source provenance and destination mapping only; it does not add or claim adopted fulfillment.",
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 condition destination only; no adopted fulfillment, execution, formal successor, or closure",
+      "current_revision_registration": "MPR-RC-HELIXOS-L2-118-002"
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000474",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 20,
+      "source_file_sha256": "sha256:7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "sha256:e7b182f7fac60e7b7cc039bf14435a71b8f47cc40a4ac45392fac4e0dd7c30bb",
+      "source_line_bytes_sha256": "sha256:3cf674bea99ecc0a18df1c3d73509ad5ad9519eacff86349be251ada4ff0fe67",
+      "source_text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |",
+      "selected_condition_reading": "CIG-AC-007の選択物理行は、run ID付きread-afterでcurrent main pushとscheduleが独立したterminalとなること、cancel/handoff receiptを再構築できることを指定する。既存L2/L11-118のcurrent-main/schedule別terminal確認と理由・対象再構築が条件の行き先。旧sourceのbounded GitHub rehearsalまたは自然schedule実行は実runtime/実行gateとして移さず、旧CI/runtimeも実行しない。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-474:LEGACY-CAND-LINE-000474",
+      "source_ledger_record_sha256": "sha256:8c44189db6d37f13a0ea5a86add4d3bcc2b7d94144ce6f8948f7a59636506fc4",
+      "legacy_asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-AC-007",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live. These selected lines are mapped to the unadopted L2/L11-118 candidate only; formal successor/owner/scope/adoption/runtime execution/condition closure remain unconfirmed.",
+      "current_evidence": [
+        {
+          "label": "candidate L2/L11-118 separate terminal and reconstruction oracle",
+          "status": "unadopted_candidate_condition_destination",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md and docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "l2_digest": "sha256:52d95403c0e92761eb31a2516507cbf62a030194047e8a03659a2d78324cda2f",
+          "l11_digest": "sha256:c7ae67a09e632336a6e6a5fd858457722a9063d32d890f46459a5d877c5a9934",
+          "specific_condition": "current main and schedule terminal evidence are checked separately; cancel/handoff reason and target are reconstructible; no live rehearsal promoted to a gate"
+        }
+      ],
+      "assessment": "Existing unadopted L2/L11-118 already requires separate current-main/schedule terminal evidence and reconstructible cancel/handoff reason and target. This row adds source provenance and destination mapping only. Runtime rehearsal remains out of this candidate-stage oracle.",
+      "candidate_relation": "unadopted HELIXOS-L2/L11-118 condition destination only; no adopted fulfillment, execution, formal successor, or closure",
+      "current_revision_registration": "MPR-RC-HELIXOS-L2-118-002"
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000491",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 17,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:d6306c202a8228b8bfa541ca02afcf978f39fe1380586ffe7abcd810b918ece3",
+      "source_text": "特に、current main HEADのpost-main検収をscheduleまたはmanual safety-netがcancelしてはならない。",
+      "selected_condition_reading": "現行main HEADのpost-main検収をschedule/manual safety-netがcancelしない。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 61,
+          "line_end": 61,
+          "digest": "sha256:33cf7f1f3526c80cb47660b55f15a6f5f1fc934696dddf7ca5eff923f7ff5e0b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 28,
+          "line_end": 28,
+          "digest": "sha256:4c4f5724cc7f6e47fa28521308443a724459fd0b372d4815d230bd81b87c8532",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-008のexact HEAD/run identityとoracle削除禁止は保持済みだが、schedule/manual別runがcurrent-main post-main検収をcancel・代替しない保証はない。118のL2/L11候補へ限定して提案。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000492",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 18,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:59574435a104ef3b087ee55aae7d0b6b5dd67fa50bc9710085d420b37cfc2526",
+      "source_text": "一方で、単に全runを並走させてqueue、費用、古い証拠を無制限化してはならない。",
+      "selected_condition_reading": "全runを並走させ、queue・費用・古い証拠を無制限にしない。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 61,
+          "line_end": 61,
+          "digest": "sha256:33cf7f1f3526c80cb47660b55f15a6f5f1fc934696dddf7ca5eff923f7ff5e0b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "NCI-OS-005",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "line_start": 48,
+          "line_end": 48,
+          "digest": "sha256:26661dbbbbb72ce64586da6f30f79d0724278e513baf960f99cedee9d2ab6876",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "NCI-OS-005候補はqueue/parallelism/budget最適化とoracle維持を記すが、無制限累積を拒否する条件はない。118候補は数値やTTLを固定せずbounded controlを提案。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000496",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 23,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:54da727c33e1c968dde952d86d8c87554125586c0933489b3f6fdbafd3979f8a",
+      "source_text": "| `CIG-BR-02` | current mainの検収を失わず、stale世代だけを有界に置換できる | `CIG-R-02`, `CIG-R-03` |",
+      "selected_condition_reading": "current main検収を保持し、stale generationだけを有界に置換する（CIG-BR-02 mapping row）。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-02",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 61,
+          "line_end": 61,
+          "digest": "sha256:33cf7f1f3526c80cb47660b55f15a6f5f1fc934696dddf7ca5eff923f7ff5e0b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 28,
+          "line_end": 28,
+          "digest": "sha256:4c4f5724cc7f6e47fa28521308443a724459fd0b372d4815d230bd81b87c8532",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 359,
+          "line_end": 365,
+          "digest": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "NCI-OS-003",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "line_start": 46,
+          "line_end": 46,
+          "digest": "sha256:ef914170bac8d197e2df0da24a543da286a152377f0e83bca98a35a37ed30c14",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "NCI-OS-005",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "line_start": 48,
+          "line_end": 48,
+          "digest": "sha256:26661dbbbbb72ce64586da6f30f79d0724278e513baf960f99cedee9d2ab6876",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-020のsame-HEAD/required-oracle条件は保持済み。current-main検収維持とstale generationだけのbounded replacementは明記されず、NCI-OS-003/005も候補段階の一般binding/最適化まで。118候補へ提案。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000497",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 24,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:42f14d5e3d614691ce97ac6ad86307e00cde4e2638c74d13b512a9b1576cb621",
+      "source_text": "| `CIG-BR-03` | cancel・handoff・terminal結果を証拠から再構築できる | `CIG-R-03`, `CIG-R-04` |",
+      "selected_condition_reading": "cancel・handoff・terminal結果を証拠から再構築する（CIG-BR-03 mapping row）。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-BR-03",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 60,
+          "line_end": 60,
+          "digest": "sha256:1602afca850c3c4cd95ac67a449cdca06a0e4c471871af4e709e95bf5052adfd",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-019",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 682,
+          "line_end": 691,
+          "digest": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 27,
+          "line_end": 27,
+          "digest": "sha256:3366189fcd575c5660ba2e704481c636137003e397509f67c72da4a946db2f9b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-019",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 352,
+          "line_end": 358,
+          "digest": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-007/019はprovenance、event/未完義務の再構築を保持済みだが、複数CI run間のcancel/supersede/handoff reason・target・terminal関係は具体化されない。118候補に限定。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000499",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 28,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:ec626939ed95bf2fe355d787c4e39f80f6ab28d73d1b0645631297a6df02c9e0",
+      "source_text": "- current canonical HEADのterminal証拠を安定して取得できる。",
+      "selected_condition_reading": "current canonical HEADのterminal evidenceを安定して取得する。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 359,
+          "line_end": 365,
+          "digest": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-020は実行state分離とrun identityを保持済みだが、current canonical HEADのterminal read-afterを明示しない。118 L2/L11候補に提案。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000500",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 29,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:71b9164791062edec41697b3ed306f6f6bcb46b56fa608261765691a4e42e4a4",
+      "source_text": "- stale PR HEADと重複scheduleは、別event classへ影響せずboundedに置換できる。",
+      "selected_condition_reading": "stale PR HEAD・重複scheduleを、別event classに影響させず有界に置換する。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 60,
+          "line_end": 60,
+          "digest": "sha256:1602afca850c3c4cd95ac67a449cdca06a0e4c471871af4e709e95bf5052adfd",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 27,
+          "line_end": 27,
+          "digest": "sha256:3366189fcd575c5660ba2e704481c636137003e397509f67c72da4a946db2f9b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 359,
+          "line_end": 365,
+          "digest": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "NCI-OS-003",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "line_start": 46,
+          "line_end": 46,
+          "digest": "sha256:ef914170bac8d197e2df0da24a543da286a152377f0e83bca98a35a37ed30c14",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "NCI-OS-005",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "line_start": 48,
+          "line_end": 48,
+          "digest": "sha256:26661dbbbbb72ce64586da6f30f79d0724278e513baf960f99cedee9d2ab6876",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-007/020はprovenance・same-HEAD・oracle保証を持つが、stale PR HEAD/scheduleの置換が別義務へcancel波及しない条件はない。NCI-OS-003/005はunadopted候補であり、118が不足条件を対にして提案。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000501",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 30,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:8bca62507e48cc19085a00746131d39a653aaa28866431c81b5bbf527b3566da",
+      "source_text": "- cancel、supersede、handoffの理由と対象を後から再構築できる。",
+      "selected_condition_reading": "cancel・supersede・handoffの理由と対象を後から再構築する。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 60,
+          "line_end": 60,
+          "digest": "sha256:1602afca850c3c4cd95ac67a449cdca06a0e4c471871af4e709e95bf5052adfd",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-019",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 682,
+          "line_end": 691,
+          "digest": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-007",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 27,
+          "line_end": 27,
+          "digest": "sha256:3366189fcd575c5660ba2e704481c636137003e397509f67c72da4a946db2f9b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-019",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 352,
+          "line_end": 358,
+          "digest": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-007/019の一般provenanceだけでは置換runの理由と対象義務/generationを再構築できる受入条件にならない。118候補に追跡関係を提案し、旧receipt schemaは移さない。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000502",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 31,
+      "source_file_sha256": "sha256:7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "sha256:92d0a3258e8a2db7342d86a0706f7850c8a141c0a64af3c116f7ffcc8f86514e",
+      "source_text": "- required verificationの削減、cancelled runの成功扱い、別event classの結果流用を高速化として認めない。",
+      "selected_condition_reading": "required verification削減、cancelled run成功扱い、別event class結果流用を高速化として認めない。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 61,
+          "line_end": 61,
+          "digest": "sha256:33cf7f1f3526c80cb47660b55f15a6f5f1fc934696dddf7ca5eff923f7ff5e0b",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-008",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 28,
+          "line_end": 28,
+          "digest": "sha256:4c4f5724cc7f6e47fa28521308443a724459fd0b372d4815d230bd81b87c8532",
+          "digest_scope": "physical line including LF"
+        },
+        {
+          "label": "accepted L11-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 359,
+          "line_end": 365,
+          "digest": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Accepted sections retain adjacent general evidence/CI/continuity guarantees but not source-specific current-main protection, cross-obligation cancel non-interference, stale-only bounded replacement, or cancellation terminal reconstruction. Candidate 118 proposes these conditions for PO review.",
+      "condition_level_current_treatment": "採択L2/L11-008/020はoracle削減、旧CI/別HEAD green代用を拒否済み。一方cancelled runをpost-main/terminal/recovery/review successへ使わないことと、same-HEADでも別義務結果を流用しないことは118候補に追加。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; does not prove adoption or closure."
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000527",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 30,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:3869e4a2fb0b8c47faa444c56f3c400d2e24e824d90bc8acdbec090074303c77",
+      "source_line_bytes_sha256": "sha256:a2e3dedba31688bcdbd4a0cf90ce5b133093df3e83bfdf017dfeccaa1a56edc4",
+      "source_text": "`main_push`、`schedule`、`workflow_dispatch`、別PRは相互にcancelしない。同一PRのnewer HEADはそのPRのstale",
+      "selected_condition_reading": "main_push/schedule/workflow_dispatch/別PRは相互cancelしない。同一PR newer HEADはそのPRのstale HEADだけを置換する（述語は次のselected atom 000528と結合）。",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-527:LEGACY-CAND-LINE-000527",
+      "source_ledger_record_sha256": "sha256:7734a48e5e90f8162ec9232d30a765f8dc7ef1976557c9c5332f93b5ead83657",
+      "legacy_asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "explanation",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-R-02",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate only; no source closure or formal successor.",
+      "current_evidence": [
+        {
+          "label": "adopted OS-008/-020",
+          "status": "adopted_general_partial",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md and docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "digest": "fixed 2026-09-28 OS PO decision exact target; general CI/run state only"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29"
+        }
+      ],
+      "assessment": "Historical routing marked explanation, but source grammar states an independent CIG-R-02 condition. Adopted OS-008/020 do not state event-class non-cancel and same-PR stale-only replacement. Candidate 118 source-faithful normal oracle is its condition destination; no adoption/formal successor/closure.",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; no adopted fulfillment, formal successor, or closure"
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000528",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 31,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:77f4af292cd562b2686f881a43a3044af2e3f3fa0230b687acaac5407e3f418c",
+      "source_text": "HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。`cancel-in-progress:false`だけによる",
+      "selected_condition_reading": "同一PR newer HEADは同PRのstale HEADだけを置換でき、newer scheduleはolder scheduleだけを置換できる。物理行31は物理行30の同一PR条件を続け、cancel-in-progress:false句は物理行32の無制限並走禁止へ続く。物理行30/32も独立条件としてselected atoms 000527/000529に算入。",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "requirement_atom",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-R-02",
+        "routing_status": "unknown",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "unknown_after_semantic_check",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate input only; no successor or condition closure is claimed.",
+      "current_evidence": [
+        {
+          "label": "accepted L2-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 692,
+          "line_end": 701,
+          "digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "accepted L11-020",
+          "status": "adopted",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 359,
+          "line_end": 365,
+          "digest": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c",
+          "digest_scope": "heading section through next ###, terminal LF"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29",
+          "digest_scope": "heading section through next ###, terminal LF"
+        }
+      ],
+      "assessment": "Selected physical line 31 states same-PR stale-only replacement and older-schedule-only replacement. Lines 30 and 32 are now separately selected requirement atoms 000527/000529, not context-only. The bounded-concurrency source conditions remain candidate-only, with no adoption/formal successor/closure.",
+      "condition_level_current_treatment": "選択atomは物理行31のみ。同一PRのnewer HEADはそのPRのstale HEADだけ、newer scheduleはolder scheduleだけ置換する。行31の末尾は行32「無制限並走を代替実装にしない」まで続く。採択L2/L11-020に同一PR/stale限定、schedule限定の受入はない。Aはsource strict保証、Bは同義務の別class結果流用を許し得る意味変更。",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; physical lines 30 and 32 are also selected as independent atoms 000527/000529.",
+      "context_only_source_lines": [],
+      "treatment": "selected atom line 31; lines 30 and 32 are now selected requirement atoms 000527 and 000529, not context-only"
+    },
+    {
+      "source_atom_id": "LEGACY-CAND-LINE-000529",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "source_line": 32,
+      "source_file_sha256": "sha256:11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "sha256:309c491a6d25b513f5543e36f3a0a7af2c83231486e8b4916a83c27fcf50f0cb",
+      "source_line_bytes_sha256": "sha256:b85014139198ed2598ad41ab5de9c7691cb73c751403142aad4442095915ecb3",
+      "source_text": "無制限並走を代替実装にしない。",
+      "selected_condition_reading": "cancel-in-progress:false alone does not bound work; unlimited parallelism is not an acceptable substitute. This completes the negative clause begun in selected atom 000528.",
+      "source_ledger_ref": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl#line-529:LEGACY-CAND-LINE-000529",
+      "source_ledger_record_sha256": "sha256:8d48ce511bf7e4a0ba20d9c1a3a76787df7e4058962fe95bc2649f80dd6ad2c4",
+      "legacy_asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+      "historical_source_authority": "historical_candidate",
+      "historical_target_authority": "draft_candidate",
+      "historical_routing": {
+        "classification": "explanation",
+        "semantic_cluster_id": "ci_event_concurrency_generation::CIG-R-02",
+        "routing_status": "non_requirement_source_structure_or_explanation",
+        "adopted_current_requirement_ids": [],
+        "review_outcome": "non_requirement_source_structure_or_explanation",
+        "candidate_identity": null
+      },
+      "meaning_change_applied": false,
+      "holding_disposition": "MPR-SH-CANDIDATE-003 remains live; 118 is an unadopted candidate only; no source closure or formal successor.",
+      "current_evidence": [
+        {
+          "label": "adopted OS-008/-020",
+          "status": "adopted_general_partial",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md and docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "digest": "fixed 2026-09-28 OS PO decision exact target; general CI/run state only"
+        },
+        {
+          "label": "candidate L2-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "line_start": 1455,
+          "line_end": 1465,
+          "digest": "sha256:a2117b7bf6770ed9190605176009a86adfa65c9c16fedde6ace9e544c23dec5c"
+        },
+        {
+          "label": "candidate L11-118",
+          "status": "unadopted_candidate",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "line_start": 1043,
+          "line_end": 1052,
+          "digest": "sha256:f006948a5c91606bd696c96d57af8b3acf3310f4eb31f1b0a849408bb7c84b29"
+        }
+      ],
+      "assessment": "Historical routing marked explanation, but source line is an independent boundedness negative condition. Adopted OS-020 does not expressly prohibit unbounded parallelism; candidate 118 has a negative oracle. Candidate only, no adoption/execution/successor/closure.",
+      "candidate_relation": "HELIXOS-L2/L11-118 unadopted candidate only; no adopted fulfillment, formal successor, or closure"
+    }
+  ],
+  "po_meaning_choices": {
+    "A_recommended_source_faithful": "Keep cross-event-class non-cancellation; a newer PR HEAD replaces only that PR’s stale HEAD; newer schedule replaces only older schedule; another event class result cannot be reused for speedup, even if obligations otherwise match. Preserve these source guarantees without fixing provider API/schema. Also preserve the queue/TTL overrun no-silent-drop result and observable unfinished obligation without fixing a numeric or enum contract.",
+    "B_meaning_change": "Generalize named events into obligation/generation identity and allow cross-event-class result reuse when the obligation/generation is the same. This can weaken the source strict rule; require explicit PO decision and impact scope before adoption.",
+    "decision_effect": "Neither alternative is adopted by this candidate; absent PO decision, strict A is the source-faithful candidate oracle. AC-003 no-silent-drop outcome has no proposed relaxation option; only event-class generalization remains a PO meaning choice."
+  },
+  "closure": "not_asserted",
+  "limitations": [
+    "No old runtime, CI, test, CLI, or live rehearsal was run.",
+    "Historical routing metadata is not evidence of current satisfaction or deficiency.",
+    "Candidate-only conditions remain unadopted; no implementation or execution evidence claimed."
+  ],
+  "mpr_registration_history": [
+    {
+      "prior_local_draft": "MPR-RC-HELIXOS-L2-118-001 (before consolidation)",
+      "digest": "sha256:28bcb26170b839eaada879461ff3bf42b7dde0f53e062a335a0290a37c83e59d",
+      "event": "Initial local draft used atom concatenation without LF separators; it did not match the stated digest rule and is retained here as audit history only."
+    },
+    {
+      "prior_local_draft": "MPR-RC-HELIXOS-L2-118-002 (before consolidation)",
+      "digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
+      "event": "Corrected atom digest to atom-id-sorted LF-separated tuples with no trailing LF; content and source atom hashes unchanged."
+    },
+    {
+      "final_register_record": "MPR-RC-HELIXOS-L2-118-001",
+      "event": "Corrected final source-condition reading and candidate pair; registration digest and source atom hashes remain the corrected values. Single final MPR record retained as 118-001."
+    },
+    {
+      "event": "#2496 independent review F1 correction: source lines 30 and 32 (LEGACY-CAND-LINE-000527 and 000529) were previously recorded as context-only though they state independent event non-interference and no-unbounded-parallelism conditions. Both are now selected atoms; 000528 context links are revised. Final MPR remains one MPR-RC-HELIXOS-L2-118-001 row; no -002 record is created.",
+      "registration_id": "MPR-RC-HELIXOS-L2-118-001",
+      "prior_source_atom_count": 9,
+      "corrected_source_atom_count": 11,
+      "prior_digest": "sha256:6811dfa6e752c8468483477670df7d3ab6561cdf2d89b2f0a571f639eae1a55b",
+      "corrected_digest": "sha256:c30189321ceb43db600de12633d554526d3ca519367ee0d807f1205bfb21e868"
+    },
+    {
+      "event": "Review correction added previously context-only physical lines 30 and 32 as independent requirement atoms LEGACY-CAND-LINE-000527 and 000529; retained line 31 as selected atom 000528. Corrected candidate remains a single final MPR-RC-HELIXOS-L2-118-001 record; no -002 row created.",
+      "final_registration_id": "MPR-RC-HELIXOS-L2-118-001",
+      "prior_atom_count": 9,
+      "corrected_atom_count": 11,
+      "corrected_atom_set_digest": "sha256:c30189321ceb43db600de12633d554526d3ca519367ee0d807f1205bfb21e868"
+    },
+    {
+      "event": "After 11-atom F1 correction, source AC-003/005/007 lines 16/18/20 (000470/472/474) were read in full and mapped. 000470 required only the queue/TTL-overrun no-silent-drop and visible unfinished-outcome addition; 000472/474 already had L11/L2 candidate destinations and were source/receipt additions without duplicated semantics.",
+      "final_registration_id": "MPR-RC-HELIXOS-L2-118-001",
+      "prior_atom_count": 11,
+      "corrected_atom_count": 14,
+      "corrected_atom_set_digest": "sha256:17329e40351f30f0fb8c5e4dba7e214a840fb3118a3d07d654b2ae6f55c6dfba",
+      "recorded_at": "2026-10-02T07:24:02+09:00"
+    },
+    {
+      "event": "Main registration 001 is retained as immutable 11-atom history. New revision 002 appends three selected acceptance atoms; only 000470 changes candidate text, while 000472/474 are source mappings to existing candidate oracles. No PO adoption or source closure is implied.",
+      "previous_registration_id": "MPR-RC-HELIXOS-L2-118-001",
+      "current_registration_id": "MPR-RC-HELIXOS-L2-118-002",
+      "previous_atom_count": 11,
+      "current_atom_count": 14,
+      "previous_receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json",
+      "current_receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02-r2.json",
+      "recorded_at": "2026-10-02T07:30:54+09:00"
+    }
+  ],
+  "audit_revision_recorded_at": "2026-10-02T07:30:54+09:00",
+  "revision_predecessor": {
+    "audit_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.json",
+    "audit_sha256": "sha256:8eae153b2f6f30b6ab3fe03edf566aafd3438f3d6200df020174276f7e9214a7",
+    "receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02.json",
+    "receipt_sha256": "sha256:24142c763ba84fb22eddbd731182a4c5acf31d6cc19564db18cdefcf1d12dda0",
+    "source_snapshot_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-source-lines-2026-10-02.jsonl",
+    "source_snapshot_sha256": "sha256:fc9016a83df48f784420a3c916887f2645ffeb039f1fbeb158b66a53e72dd4e7",
+    "prior_registration_id": "MPR-RC-HELIXOS-L2-118-001",
+    "current_registration_id": "MPR-RC-HELIXOS-L2-118-002",
+    "prior_files_are_immutable": true,
+    "previous_markdown_ref": "docs/governance/audits/requirements-stage/legacy-candidate864-ci-event-concurrency-rows-current-treatment-2026-10-02.md",
+    "previous_markdown_sha256": "sha256:a1ed4283bea0cf9688d59dbca679e608fb35166dd1fd54ff65563bfe4537e6e3",
+    "previous_registration_id": "MPR-RC-HELIXOS-L2-118-001",
+    "old_revision_files_unchanged": true
+  }
+}
