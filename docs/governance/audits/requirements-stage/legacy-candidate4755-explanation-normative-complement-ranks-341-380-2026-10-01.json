@@ -72,9 +72,15 @@
       "LEGACY-CAND-LINE-000629"
     ],
     "selected_ids_sha256": "505e9668d3ca135557f593bd34984153698b92124c8b8b989971f3b7570f99e5",
-    "prior_slice_crosscheck": "Ranks 221–260 match the existing paired slice in 40/40 IDs."
+    "prior_slice_crosscheck": "Preceding ranks 301–340 paired slice is pinned; rank340=LEGACY-CAND-LINE-000563, rank341=LEGACY-CAND-LINE-000564, overlap=0."
   },
   "pinned_inputs": [
+    {
+      "role": "preceding_complement_ranks_301_340_for_rank_boundary",
+      "commit": "c535b643004da82139a7ec5621fcf592f2978c5e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-301-340-2026-10-01.json",
+      "sha256": "206de846099042a8714f90b71e6733147b87866f2fb255eafd501f0b4c1423d5"
+    },
     {
       "role": "#2353 baseline",
       "commit": "97672630b7de70fd4433827730c390cbabd90a99",

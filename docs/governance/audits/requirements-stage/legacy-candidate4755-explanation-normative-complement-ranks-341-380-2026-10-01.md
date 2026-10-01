@@ -5,7 +5,7 @@
 ## 対象と再構成
 
 - 対象commit `927ada15cf90abc2d21cfd1fb3e45fed764ec780`。#2353の4,755行へ#2356、#2360、#2363、#2366、#2367、#2368、#2369、#2381のexact-ID overlayを適用し、effective `explanation=2,965`を再構成した。
-- marker screen 20行と意味review済みmarker slice 235行を合わせた255 IDを除外し、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。選定はranks 341–380。ranks 221–260の既存paired sliceと40/40一致。
+- marker screen 20行と意味review済みmarker slice 235行を合わせた255 IDを除外し、`2,965 - 255 = 2,710`行をsource ID数値順にrank付けした。選定はranks 341–380。直前ranks 301–340の既存paired sliceをpinし、境界はrank340=`LEGACY-CAND-LINE-000563`、rank341=`LEGACY-CAND-LINE-000564`、重複0件。
 - 全source text、隣接context、physical source/ledger hashes、現行比較pinはpaired JSONにある。ローカル絶対pathを含む歴史行は表示文だけ`<home>/`に置換し、元行bytesはarchive SHAで検証可能。
 
 ## 行別意味監査
