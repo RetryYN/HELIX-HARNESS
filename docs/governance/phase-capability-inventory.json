@@ -1367,4 +1367,239 @@
     },
     "meaning": "current.refsの存在とbytesを固定する。各refのauthority状態は各文書とdecision recordに従い、このsnapshot自体は承認を生成しない。"
   }
+,
+  "current_projection": {
+    "schema": "phase-capability-current-decision-projection/v1",
+    "as_of_revision": "86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c",
+    "authority_effect": "none",
+    "meaning": "後続PO判断と現在のL2/L11 bytesを初期inventoryへ投影する。各採択pairの範囲だけを示し、phase全体のsource closure、意味同等性、実装回復、受入実行、縮退受容、successor、new_build許可を生成しない。",
+    "historical_snapshot": {
+      "revision": "e784fa68702af4b7c57911b866b48fe7df094f88",
+      "preserved": true,
+      "fields_preserved": [
+        "records[*].current",
+        "records[*].transition_assessment",
+        "records[*].legacy",
+        "records[*].gaps",
+        "records[*].new_build_allowed",
+        "current_evidence_snapshot"
+      ],
+      "interpretation": "初期分類値およびe784fa snapshotはその時点の履歴。後続PO authorityはこの追補projectionで別に参照する。"
+    },
+    "comparison_history": {
+      "historical_main": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+      "prior_subsequent_main": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+      "current_subsequent_main": "86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c",
+      "proof_ref": "docs/governance/audits/requirements-stage/phcap-capability-current-recheck-byte-proof-2026-10-03.json",
+      "proof_current_comparison": "subsequent_main_comparison",
+      "proof_rule": "既存145 locatorのpath+1起点lineのraw bytes（LF含む）を比較。trim・改行正規化・ID検索なし。"
+    },
+    "current_pair_full_file_sha256": {
+      "HARNESS-L2": "e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
+      "HARNESS-L11": "b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba",
+      "HELIXOS-L2": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
+      "HELIXOS-L11": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
+      "LABO-L2": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+      "LABO-L11": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+      "INTELLIGENCE-L2": "1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39",
+      "INTELLIGENCE-L11": "28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749"
+    },
+    "decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "scope": "HELIXOS-L2-014..029と対のL11条件を採択。version_targetと適用条件を保持。OS-L2/L11-017..021は採択済み。"
+      },
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "scope": "固定対象のHARNESS L2/L11採択状態。"
+      },
+      {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "scope": "固定対象のLABO L2/L11採択状態。"
+      },
+      {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "scope": "固定対象のINTELLIGENCE L2/L11採択状態。"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "scope": "HARNESS-L2/L11-051を指定された範囲で採択。"
+      },
+      {
+        "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+        "scope": "長期学習・知識評価をLABOへ置く責務移管。OS memory/continuityと分離。"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "scope": "HELIXLABO-L2/L11-063修復再発評価の限定採択（PHCAP-19全体closureではない）。"
+      }
+    ],
+    "phase_records": [
+      {
+        "task_id": "PHCAP-07",
+        "existing_assessment": "not_reimplemented_formally",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-020"
+        ],
+        "limit": "検証義務の採択はL10 formal implementation、oracle registry、実行receiptではない。"
+      },
+      {
+        "task_id": "PHCAP-08",
+        "existing_assessment": "semantic_equivalence_unresolved",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-017",
+          "HARNESS-L2/L11-051"
+        ],
+        "limit": "HARNESS-051は選択scopeのstage-exit evidence mappingのみ。旧25 source atomsはholdingに残し、旧WBS/PLAN/roadmap/current-location/state機能との意味同等性はunknown。phase closureやsuccessorなし。"
+      },
+      {
+        "task_id": "PHCAP-09",
+        "existing_assessment": "degraded_to_rederived_candidate",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-017"
+        ],
+        "limit": "候補revision・適用条件を保持する要求意味。旧ticket compiler/runtime・全旧acceptance closureではない。"
+      },
+      {
+        "task_id": "PHCAP-10",
+        "existing_assessment": "degraded_to_requirement_and_limited_bootstrap",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-018",
+          "HELIXOS-L2/L11-019"
+        ],
+        "limit": "assignment/attempt・停止・回収・handoff等の要求境界。worker runtimeの回復や正常実行receiptを示さない。"
+      },
+      {
+        "task_id": "PHCAP-11",
+        "existing_assessment": "degraded_to_candidate",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-020"
+        ],
+        "limit": "検証義務の要求意味。新世代CI、runner/profile、oracle、phase実行receiptを示さない。"
+      },
+      {
+        "task_id": "PHCAP-14",
+        "existing_assessment": "degraded_to_candidate",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-021"
+        ],
+        "limit": "project delivery/update/rollbackの適用境界。製品別release実装やWeb/Web-OS採択を示さない。"
+      },
+      {
+        "task_id": "PHCAP-18",
+        "existing_assessment": "degraded_to_candidate",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-017"
+        ],
+        "limit": "refactor適用条件を持つ要求。旧shadow trigger threshold/grouping、transaction、Web/Web-OS backflowのclosureではない。"
+      },
+      {
+        "task_id": "PHCAP-19",
+        "existing_assessment": "degraded_to_draft",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-005",
+          "HELIXOS-L2/L11-022",
+          "HELIXLABO-L2/L11-050",
+          "HELIXINTELLIGENCE-L2/L11-063",
+          "HELIXLABO-L2/L11-063"
+        ],
+        "additional_existing_pair_refs": [
+          "HELIXLABO-L2/L11-001",
+          "HELIXLABO-L2/L11-002",
+          "HELIXLABO-L2/L11-006",
+          "HELIXLABO-L2/L11-008",
+          "HELIXLABO-L2/L11-010",
+          "HELIXLABO-L2/L11-019"
+        ],
+        "audit_ref": "docs/governance/audits/requirements-stage/phcap19-semantic-recovery-audit-2026-09-28.md",
+        "audit_sha256": "9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8",
+        "limit": "LABO-L2/L11-063は後発decisionで修復再発評価の限定範囲が採択済み。source receiptの6行scopeを越える旧Pillar/PHCAP-19全条件closureではない。UIL-R-01..15の他詳細、runtime、feedback receipt、L3/L10、L11実行は未回復。LABO-L2-033/051の2.0、INTELLIGENCEの3.0 version_targetを1.0へ前倒ししない。",
+        "current_meaning": "既採択の高位改善循環意味に加え、HELIXLABO-L2/L11-063の修復再発評価・予防候補還流が後発decisionで限定採択済み。",
+        "implementation_recovered": false,
+        "historical_audit_state": "2026-09-28 PHCAP-19 audit/crosswalkではLABO-L2-063を未採択candidateと記録。この記載は当時のauthority状態として保持し、後発decisionは別に投影する。",
+        "repair_recurrence_adoption": {
+          "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+          "decision_date": "2026-09-29",
+          "row_locator": "line 78",
+          "decision": "採択",
+          "requirement_id": "HELIXLABO-L2-063",
+          "mpr_id": "MPR-RC-HELIXLABO-L2-063-001",
+          "fixed_pair_section_sha256": {
+            "L2": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+            "L11": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+          },
+          "fixed_pair_file_sha256": {
+            "L2": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+            "L11": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0"
+          },
+          "current_section_ref": "current pair section digests match exact decision pins; section locators and full-file SHAs are in the proof JSON post_86_latest_main_comparison",
+          "source_receipt_path": "docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json",
+          "source_receipt_sha256": "7e01979487f4afba59c8c2cca709e4207183d9cf0def2d99f007285f652ce66e",
+          "source_atom_count": 6,
+          "scope": "成功したrepair recipeのLABO knowledge保持とOS backlog接続、原因/手順/適用条件/版/episodeを揃えた再発集計、根拠付き閾値を入力とするgate/detector予防候補と未処理頻出問題の警告、失敗時のLABO/OSへの戻し。反復数/母集団/閾値は新設せず、不明を維持。評価だけの操作に修復実行を強制せず、LABOがgateを直接強制しない。",
+          "source_atoms": "PREISO-REV-000013 baseline/pre-isolationのHR-FR-P4-02/HAC-P4-02a/b計6行。receipt scopeに限定。",
+          "does_not_establish": "旧Pillar/PHCAP-19全条件のsource closure、UIL-R-01..15全詳細のclosure、全phaseの縮退受容、implementation recovery、runtime、L11実行。"
+        }
+      },
+      {
+        "task_id": "PHCAP-20",
+        "existing_assessment": "degraded_to_draft",
+        "adopted_requirement_refs": [
+          "HELIXOS-L2/L11-019",
+          "HELIXLABO-L2/L11-006",
+          "HELIXLABO-L2/L11-008",
+          "HELIXLABO-L2/L11-010"
+        ],
+        "limit": "OSのmemory/continuityとLABOのlearning/knowledge evaluationを分離。旧resume/stop 4 predicate、retention/purge、takeover、consumer closureは未証明。"
+      }
+    ],
+    "global_limits": [
+      "初期inventoryのstatus、gaps、transition_assessmentを後続PO adoptionに合わせて書き換えない。",
+      "代表assetまたは隣接pairの存在から旧source全条件closureを推定しない。",
+      "旧実装・runtime未回復を今回要求stage開始の新gateにしない。既存Concept/L1/L2/L11 authorityとdecisionに従う。",
+      "phase-wide degradation acceptance、old source closure、semantic equivalence、implementation recovery、acceptance executionを記録しない。new_build_allowed=falseを維持する。"
+    ],
+    "condition_assessment_sources": [
+      {
+        "path": "docs/governance/audits/requirements-stage/phase-capability-treatment-evidence-audit-2026-10-02.json",
+        "sha256": "6d5be6607ee22625438d378ceafb92cdac8f2e39cb49b884cb0d7d340ce1cdad",
+        "scope": "PHCAP-02..20のphase別現行assessment、旧条件の残差、source closure/縮退受容なし。"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18/20のbounded condition assessment。"
+      },
+      {
+        "path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+        "sha256": "2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+        "scope": "PHCAP-08のsource preservation範囲。semantic successorなし。"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/phcap19-semantic-recovery-audit-2026-09-28.md",
+        "sha256": "9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8",
+        "scope": "PHCAP-19 high-level requirement meaning adopted、implementation未回復。"
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/phcap19-condition-crosswalk-2026-09-28.md",
+        "sha256": "99b88815908f3779d3f35a49fca9944b97840be9f61180c9a583ff95ea4ab4ff",
+        "scope": "PHCAP-19旧UIL-R条件別の既存pair対応と未解決詳細。"
+      }
+    ],
+    "subsequent_main_comparison": {
+      "revision": "125908004787d949a60c5eb373c93819b0a1ceea",
+      "prior_projection_revision": "86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c",
+      "comparison_summary": "LABO-L2/L11-063対象pairは86から125908へsection digestとwhole-file bytesが不変。固定decision pinとも一致。decision/receipt bytesも不変。",
+      "proof_ref": "docs/governance/audits/requirements-stage/phcap-capability-current-recheck-byte-proof-2026-10-03.json#post_86_latest_main_comparison"
+    }
+  }
 }
