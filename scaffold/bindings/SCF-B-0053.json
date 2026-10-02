@@ -20,7 +20,7 @@
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/validate.py",
-      "sha256": "0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693",
+      "sha256": "3493466a670490a7ab40165244a1f258d5aacc4adb347700bf82961d9fc8c481",
       "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap15-17-membership-edges/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348; 現receipt=0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693; このBindingの採否・authorityは変更しない。]"
     },
     {

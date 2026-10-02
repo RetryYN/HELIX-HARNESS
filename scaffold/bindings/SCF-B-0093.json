@@ -75,7 +75,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave48/validate.py",
-      "sha256": "1653f2c1e2601045485d7346c7addebbd684d6d9e201ad27d98afcf32a255cab",
+      "sha256": "30fa68515948aa95cdb7474e9194c0984056189efa92d2ac10977af41c40ba01",
       "note": "fail-closed validator with rebaseline gate [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave48/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=839084d97b07ff6df2f6fc787296ad119342f7aac0a48a5d7de8a882e3b279b0; 現receipt=1653f2c1e2601045485d7346c7addebbd684d6d9e201ad27d98afcf32a255cab; このBindingの採否・authorityは変更しない。]"
     },
     {

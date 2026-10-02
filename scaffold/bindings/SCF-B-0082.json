@@ -105,7 +105,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/validate.py",
-      "sha256": "26b25757a340878b585ffa838e812f448dd77ee71aeb612687bb046dddfbfb3d",
+      "sha256": "5dfed64aa84fcae774a9d3fe78d78bb24dcebe98e47c78c47db85effcc1b6fe0",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave44/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=fc66fae001464d253fe260c1e84ffc757e56a12f2e73473c2135b1f2f1290703; 現receipt=26b25757a340878b585ffa838e812f448dd77ee71aeb612687bb046dddfbfb3d; このBindingの採否・authorityは変更しない。]"
     },
     {
@@ -145,7 +145,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/validate.py",
-      "sha256": "17c036143b01ae731ec046e390cd1a4889e83f83075b02cc0c4c458389e87957",
+      "sha256": "9034144af475049bde4d387edd39b6ac28a9498d742b7d409359a9fcbc2aa9c4",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave45/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=1a1be5e9c237fbbed14a18617a8ba371a2c3fc3658f00c9649e2c37bf37606b4; 現receipt=17c036143b01ae731ec046e390cd1a4889e83f83075b02cc0c4c458389e87957; このBindingの採否・authorityは変更しない。]"
     },
     {

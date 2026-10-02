@@ -65,7 +65,7 @@
     },
     {
       "path": "scaffold/phcap16-operations-monitoring/validate.py",
-      "sha256": "2395a63bcaec10aa46a750824dc41434f3aeefb008cf4be3a2225cd0d3002da8",
+      "sha256": "576a17228c0964bfc5181322d2e44518e1b17e40236010db65ded339bb888562",
       "note": "static ledger/source/product-unit validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap16-operations-monitoring/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=842e1d83f204fe22a206b8f1ce611c800346fc09421bca0b31aae2aca5e465cf; 現receipt=2395a63bcaec10aa46a750824dc41434f3aeefb008cf4be3a2225cd0d3002da8; このBindingの採否・authorityは変更しない。]"
     },
     {
