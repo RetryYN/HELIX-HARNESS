@@ -1,0 +1,233 @@
+{
+  "schema_version": "helix.requirement_candidate_coverage_receipt.v1",
+  "requirement_identity": "HARNESS-L2-083",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-083-001",
+  "candidate_status": "unadopted_proposal",
+  "product_target": "HELIX-HARNESS",
+  "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+  "source_atom_set": {
+    "path": "docs/governance/audits/requirement-registration/hil-nfr25-domain-object-source-lines-2026-10-03.jsonl",
+    "file_sha256": "sha256:f578482a38e91a19c376910eef6acb5fc320503ea4423bee2928ebd9a29d055c",
+    "digest": "sha256:66c12559d70f1ef3496af912922aa025e030fb06a175566a76f3fa874faf550f",
+    "count": 1,
+    "digest_rule": "SHA-256 of UTF-8 \"HIL-NFR-25 \" + statement semantic digest without sha256: prefix + LF. One IR identity atom only.",
+    "selected_atoms": [
+      "HIL-NFR-25"
+    ]
+  },
+  "source_scope": {
+    "atom_id": "HIL-NFR-25",
+    "source_holding_registration_id": "MPR-SH-IR-003",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-25",
+    "legacy_ir_revision": 1,
+    "legacy_kind": "non_functional",
+    "source_statement": "Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。",
+    "source_statement_semantic_digest": "sha256:a8e7e11e262e12aa53009f37e6c288213c1175b2853491cb0f998ac122c09b8d",
+    "source_record_semantic_digest": "sha256:0c6baa7a54925a515eb67011558cd0f41c8a386d3e5f38341dbb8e92da4ac2a1",
+    "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-NFR-25",
+    "carry_forward_line": 127,
+    "carry_status": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "decision_record": null,
+    "l1_corroboration": {
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 205,
+      "line_text": "| **HIL-NFR-25** | Domain Objectはclass化自体を目的にせず、identity/invariant/lifecycle/authorityがないpayloadをEntity/Aggregateへ昇格しない。Value Objectはimmutable、Aggregate更新はroot境界内transaction、Queryはside-effectなし、Domain Eventは完了事実の過去形、domainはPortを介してAdapterへ依存する。`Manager/Helper/Util/Data`等の責務不明名を根拠なしで許さず、testはprivate実装名でなくdomain object＋operation＋oracle IDへbindする。 |",
+      "line_sha256_including_lf": "sha256:68b75825816c471c5ec8d08073934b224613a52f81867d2c412507cdac65fba6",
+      "relation": "Same HIL-NFR-25 wording corroboration, not an additional atom."
+    },
+    "consumer_context": [
+      {
+        "identity": "HR-FR-HIL-16",
+        "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-16",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "context_only": true
+      },
+      {
+        "identity": "HAC-HIL-16a/b/c",
+        "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-16a,b,c",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "context_only": true
+      },
+      {
+        "identity": "HAT-HIL-16",
+        "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-16",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "context_only": true,
+        "execution_performed": false
+      }
+    ],
+    "source_conditions": [
+      {
+        "condition_id": "HIL-NFR-25-C1",
+        "text": "Do not promote a payload to Entity/Aggregate without identity, invariant, lifecycle, and authority grounds; class creation is not an end."
+      },
+      {
+        "condition_id": "HIL-NFR-25-C2",
+        "text": "Value Object is immutable."
+      },
+      {
+        "condition_id": "HIL-NFR-25-C3",
+        "text": "Aggregate updates occur within the Aggregate root transaction boundary."
+      },
+      {
+        "condition_id": "HIL-NFR-25-C4",
+        "text": "Query has no side effects."
+      },
+      {
+        "condition_id": "HIL-NFR-25-C5",
+        "text": "Domain Event expresses a completed fact in past tense."
+      },
+      {
+        "condition_id": "HIL-NFR-25-C6",
+        "text": "Domain depends on Adapter through a Port."
+      }
+    ],
+    "excluded_conditions_handled_by_048": [
+      {
+        "text": "Reject unsupported responsibility-ambiguous names such as Manager/Helper/Util/Data.",
+        "handled_by": "HARNESS-L2/L11-048 candidate; not duplicated in 083."
+      },
+      {
+        "text": "Bind tests to domain object + operation + oracle ID rather than private implementation names.",
+        "handled_by": "HARNESS-L2/L11-048 candidate; not duplicated in 083."
+      }
+    ]
+  },
+  "candidate_pair": {
+    "digest_rule": "Each section begins at its ### heading and ends before the next ### heading or EOF; trim trailing blank lines and include one UTF-8 LF.",
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "sha256:a992547aaf54ddc6cd77b662dc22dd9a156ef88ad7435b8dff49b963de7aeec6",
+      "section_heading": "### HARNESS-L2-083 Domain Objectの不変条件と依存方向候補（単体、未採択）",
+      "start_line": 1384,
+      "end_line": 1393,
+      "section_sha256": "sha256:985798398d6955c8a5be1759eb3b97ad9ec0e629b43bc44d2c6b55ba4f6f9d0a"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "sha256:4950c032ddc824a3ae3dc809203e0111a92390b5e0e54688a0d0885de7a76f81",
+      "section_heading": "### HARNESS-L11-083 Domain Objectの不変条件と依存方向受入候補",
+      "start_line": 1123,
+      "end_line": 1135,
+      "section_sha256": "sha256:df12324a49d7386d638856ef37adaa746f37ab70fd8887590235bc6200fddd02"
+    }
+  },
+  "parent_l1_fixed_pin": {
+    "identity": "HARNESS-L1-004",
+    "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "decision_record_first_introduced_commit": "58b3e912b",
+    "decision_record_current_clarification_commit": "03b1969b2",
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_file_path": "docs/helix-harness/L1-planning/product-intent.md",
+    "fixed_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "fixed_item_line": 34,
+    "fixed_item_text": "| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |",
+    "fixed_item_line_sha256_including_lf": "sha256:b6a740abb4c29de3c5db32bbc5f96fcf13eaf1080afe7994d1ca8e04e1e0b533",
+    "scope_note": "親L1の対象revisionは固定済み。本候補の採択は継承しない。"
+  },
+  "existing_contracts_reviewed": [
+    {
+      "identity": "HARNESS-L2/L11-023",
+      "authority": "adopted by explicit 2026-09-28 PO decision row 52",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "fixed_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+    },
+    {
+      "identity": "HARNESS-L2/L11-010",
+      "authority": "adopted by explicit 2026-09-28 PO decision row 39",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+      "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+    },
+    {
+      "identity": "HARNESS-L2/L11-011",
+      "authority": "adopted by explicit 2026-09-28 PO decision row 40",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+      "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+    },
+    {
+      "identity": "HARNESS-L2/L11-048",
+      "authority": "adopted for the exact revisions below by explicit PO decision row 28; the earlier 2026-09-29 57-candidate decision excluded it at that time, and is superseded for this identity by the later 11-candidate decision",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_row": 28,
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "recorded_main_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "registration_id": "MPR-RC-HARNESS-L2-048-001",
+      "fixed_l2_section_sha256": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "fixed_l11_section_sha256": "sha256:4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+      "fixed_l2_file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+      "fixed_l11_file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+      "scope": "The adopted 048 revision covers the two HIL-NFR-25 clauses for responsibility-ambiguous naming and test binding only. The six Domain Object conditions mapped by 083 remain separate and are not adopted by the 048 decision."
+    }
+  ],
+  "condition_mapping": [
+    {
+      "source_condition": "Do not promote a payload to Entity/Aggregate without identity, invariant, lifecycle, and authority grounds; class creation is not an end.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C1",
+      "status": "faithful_candidate_condition_unadopted"
+    },
+    {
+      "source_condition": "Value Object is immutable.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C2",
+      "status": "faithful_candidate_condition_unadopted"
+    },
+    {
+      "source_condition": "Aggregate updates occur within the Aggregate root transaction boundary.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C3",
+      "status": "faithful_candidate_condition_unadopted"
+    },
+    {
+      "source_condition": "Query has no side effects.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C4",
+      "status": "faithful_candidate_condition_unadopted"
+    },
+    {
+      "source_condition": "Domain Event expresses a completed fact in past tense.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C5",
+      "status": "faithful_candidate_condition_unadopted"
+    },
+    {
+      "source_condition": "Domain depends on Adapter through a Port.",
+      "destination": "HARNESS-L2/L11-083 condition HIL-NFR-25-C6",
+      "status": "faithful_candidate_condition_unadopted"
+    }
+  ],
+  "responsibility_and_semantic_delta": {
+    "preserved": "Six HIL-NFR-25 Domain Object conditions are stated individually and retained without weakening.",
+    "existing_048_boundary": "The source clauses for responsibility-ambiguous names and domain object + operation + oracle ID test binding remain mapped to HARNESS-L2/L11-048 and are not duplicated in 083.",
+    "new_or_changed": "No source meaning change asserted. The detailed fixtures and six-way independent oracle are a candidate derivation.",
+    "po_choice": {
+      "A": "Adopt the six conditions as HARNESS-L1-004 verification obligations; keep the two 048 conditions separate.",
+      "B": "Leave candidate unadopted and source holding unchanged.",
+      "C": "Selectively change or remove named conditions with an explicit target-revision decision."
+    },
+    "recommendation": "A preserves all six conditions while respecting the existing 048 split."
+  },
+  "authority_effect": "none",
+  "source_holding_unchanged": true,
+  "successor_requirement_ids": [],
+  "verification_status": "Static source identity, fixed parent revision, paired L2/L11 conditions and adopted 023/010/011 contract pins recorded. Legacy runtime/test/CI not executed; candidate oracle not executed.",
+  "non_claims": [
+    "No source holding change or formal successor assignment.",
+    "No candidate adoption or L3 approval.",
+    "No runtime, implementation, test, or CI result.",
+    "No condition outside the selected HIL-NFR-25 atom is closed."
+  ],
+  "latest_main_comparison": {
+    "commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+    "mpr_main_prefix_lines": 681,
+    "candidate_append_line": 682,
+    "mpr_main_file_sha256": "sha256:27f101d2dd6fe23a93cc6cddf57db75d153e647b17e54f9d5914bfd0085619e8",
+    "meaning": "最新mainの681行byte prefixを保持し083候補1行だけ追加。既存base_commitは起草時の履歴として保持。HARNESS既存両本文は最新mainから不変prefixで候補のみ追記。採択・移管は生成しない。"
+  }
+}
