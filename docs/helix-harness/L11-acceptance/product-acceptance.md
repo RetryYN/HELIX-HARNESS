@@ -1220,3 +1220,23 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：作成側に伏せたactive template revisionまたはapplicability branchに、既存義務と同じ意味を持つ別contract/exampleをportfolio内の別変更面へ追加する。pack/call operationは選択しない。この場合も変更後scope/revisionに対応する041/043/044 evidenceと023分類を更新すれば、新しい重複findingの対象として検出する。操作の選択時のみ010/011の個別適合を追加照合する。source、coverage、oracleのいずれかが欠ける場合は未評価にし、既存receiptを流用して重複なしとしない。
 
 **受入限界**：このcandidateは既採択041/043/044のcoverage条件を再判定・縮小せず、portfolio全体で重複を評価する。選択operationのpack/call compatibilityは関係する場合だけ適用する。数値context budgetやdrift probability、固定threshold、物理schema、例数制限、削除・統合の義務を追加しない。pack/call適合、要求採否、formal successor、L3承認、実装・実行、利用者受入は別のauthority/契約に従う。
+
+
+### HARNESS-L2-087 ZIP docgen metadata変換の受入候補（未実行）
+
+このL11 partは未採択のHARNESS-L2-087候補に対応する。以下は静的fixture設計であり、ZIP取込、旧runtime実行、要求採択またはsource closureではない。
+
+- **常時必須**：選択target identity/revision、scope、選択ZIP source identity/revision/digest、変換contract/extractor identity・revision、対になるL2/L11 identityを固定する。field source locatorとmapping resultを同一scopeに結ぶ。旧IRはnormative source、旧L1 line 105は同文corroborationであり、いずれも実行dependencyの`reference_only`へ降格しない。
+- **特定操作時のみ**：docgen metadataをHELIX contract候補へ変換する操作を選んだときに限り、入力fieldごとのmapping/evidenceと未分類・conflict・staleを確認する。OSでadoption/authority relationを記録する操作は対のOS-130 L11で別に確認する。
+- **選択した入力元に応じて必須**：選択ZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果それぞれの存在・field locator・値またはunknownを示す。未選択entry/sourceは未観測として扱う。source ownerや互換範囲の値をfixtureのために実在値と偽装しない。
+- **参照資料のみ**：旧CLI、旧schema、旧Python/DB実装、旧test/runtime/CIは履歴資料に限り、現行実行dependencyやpass根拠にしない。HR-FR-HIL-09/HAC/HATはconsumer/oracle contextであり、HR09のGit全ref/2 repository条件をこのfixtureへ持ち込まない。
+
+| fixture | 六欄のsource/contract tuple（すべてsynthetic） | 条件と期待結果 |
+|---|---|---|
+| 正常 | `source_identity=fixture:docgen-zip-A@r1`; `owner_or_authority=fixture:source-owner-A`; `contract_revision=fixture:docgen-contract@r1`; `declared_compatibility_range=fixture:docgen-contract [r1,r1]`; `compatibility_evidence=fixture:compat-proof-A`; `applicability=selected ZIP entry set for target fixture:project-A@r4` | 八つのFR15 fieldすべてにsource locatorと変換結果があり、source digest/contract revisionに束縛された候補とfield mapping evidenceを返す。adoption/approvalは生成しない。 |
+| 独立欠落負例 | 正常tupleを固定し、`detector結果`だけをZIP entry/locatorから除く。他の七fieldとscopeは同一 | detector fieldの欠落をunknown/unmappedとして明示し、全field変換成功やcontract completeにしない。default値、source不在の推測、他fieldからの推定をしない。 |
+| 未見・互換unknown | `source_identity=fixture:docgen-zip-U@r9`; `owner_or_authority=unknown`; `contract_revision=fixture:unrecognized-docgen-contract@r9`; `declared_compatibility_range=unknown`; `compatibility_evidence=missing`; `applicability=scope declared, mapping applicability unknown` | 互換性、適用性、変換成功を推定しない。unknownと未完義務を保持し、確認先を返す。 |
+
+**023依存区分・適用例**：上表のsource identity、scope、対象revisionおよび本候補pairは常時必須。docgen変換operationを選択した場合だけ八fieldの変換確認が必須。019 Full Reverseからこのsource typeを選択して087を呼ぶ場合は、019の既存input/result/unknown境界も適用するが、019完了は087の単独変換依存にしない。010/011のpack/call契約は087をpackとして選んだ操作だけに適用する。fieldごとのentry/locator/evidenceは選択ZIP inputに応じて必須。旧schema、runtime、testとconsumer contextは参照資料のみであり、規範sourceの代替ではない。HARNESS-L2-023の4区分はdependency分類であり、未選択sourceの非存在から成功/非該当を導かない。
+
+**戻し先**：source・scope・契約revision・field mappingが欠ける場合は変換候補をunknown/未完で返し、選択sourceまたはHARNESS contract ownerへ戻す。adoption decisionとcanonical relationはOS-130候補の適用範囲で別に扱う。候補・fixtureからsource変更、apply、adoption、下流完了を生成しない。

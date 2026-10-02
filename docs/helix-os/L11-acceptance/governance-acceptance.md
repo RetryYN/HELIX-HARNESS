@@ -1294,3 +1294,23 @@ HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実�
 - **受入状態**：すべてfixtureは静的な候補oracleで、実行済みtestではない。候補revisionの採択、source formal successor、OS実行成功、quality acceptance、PR/merge許可は生成しない。
 
 **旧source/consumer対応**：規範sourceは`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-36`全体。旧L1 `infinity-loop-platform-requirements.md:216`は同文のcorroboration。`HR-FR-HIL-22`は再現bench・実task scorecard・品質/安全/retry込みcostの用途別比較、`HAC-HIL-22a/b/c`はpositive/negative/品質低下時比較のboundary、`HAT-HIL-22`はfixture/rubric/blind score/effective cost/route receiptの設計済みtest条件を示す。これらを消さず、HATを実行したとはしない。
+
+
+### HELIXOS-L2-130 docgen source・採否・trace projectionの受入候補（未実行）
+
+このL11 partは未採択のOS-130候補に対応する。HARNESS-087との分割は提案であり、現行OSのadoption決定やsource全体の完了を示さない。
+
+- **常時必須**：source identity/revision/digest、scope、変換contract identity/revision、変換出力digest、対象要求/design/test identity/revision、adoption decision参照（状態を含む）、本L2/L11 pairを別々に特定する。各relation endpointのauthorityと適用scopeを結ぶ。IRはnormative source、旧L1は同文corroborationであり、実行dependencyの`reference_only`へ降格しない。
+- **特定操作時のみ**：OS管理projectionへadoption/trace relationを登録または更新する操作を選んだ場合、その操作に適用される既存decision sourceを照合する。OSはdecisionを作らず、decision authorityの既存recordを参照する。
+- **選択した入力元に応じて必須**：HARNESS-087変換候補を選択したsource scopeに限り、入力ZIP digest、変換contract revision、各FR15 field mapping/unknownおよび出力 digestを結ぶ。採否decisionと要求/design/test consumer relationは入力で特定された対象だけを結び、未選択consumerを適用済みとしない。
+- **参照資料のみ**：旧DB/table/schema、旧workflow/runtime/test/CI、旧Issue/PR、routing bootstrap/correctionは実行・decision sourceにしない。HR/HAC/HATは旧consumer/oracle contextであり、他Requirementや全repo censusをOS-130のoracle範囲へ拡張しない。
+
+| fixture | 六欄のsource/contract tuple（すべてsynthetic） | 条件と期待結果 |
+|---|---|---|
+| 正常 | `source_identity=fixture:docgen-zip-A@r1`; `owner_or_authority=fixture:source-owner-A`; `contract_revision=fixture:docgen-contract@r1`; `declared_compatibility_range=fixture:docgen-contract [r1,r1]`; `compatibility_evidence=fixture:compat-proof-A`; `applicability=selected transform relation to fixture:project-A@r4` | source digest、HARNESS-087出力identity/revision/digest、既存authority ownerが与える`fixture:adoption-decision@r2`（explicit adopted state）、対象requirement/design/test revisionとのtyped relationを記録する。decision内容はOSが生成・変更しない。 |
+| 独立欠落負例 | 正常tuple・transform出力・targetは固定し、`adoption decision reference`だけを欠落させる | sourceと変換が一致してもadoptionはunknown/pending。active/adopted relation、要求採択、完了を表示せず、decision authorityへ戻す。 |
+| 未見・stale | `source_identity=fixture:docgen-zip-U@r9`; `owner_or_authority=unknown`; `contract_revision=fixture:docgen-contract@r8`; `declared_compatibility_range=unknown`; `compatibility_evidence=stale`; `applicability=target scope declared, target mapping unknown` | revision/digest/owner/scopeの不整合をstale/unknownで保持する。015/016の一般記録だけでFR15 mappingを充足扱いしない。 |
+
+**023依存区分・適用例**：OS対象identity/revision、明示source scope、authority decision source、選択pairは常時必須。OSへadoption/trace projectionを登録する特定operationのときdecisionと対象relation確認が必須。HARNESS-087 outputはそのsourceを選択したときだけ必須。旧runtime/schema/testとrouting資料は参照資料のみであり、旧規範sourceは入力から外さない。
+
+**戻し先**：source digest/transform revisionはHARNESS変換owner、採否recordは既存decision authority、target relationは要求/design/testの既存ownerへ戻す。unknown/conflict/staleと未完edgeを保持し、source不在やdecision欠落をN/Aにしない。物理DB・schema・transaction・新approval手続きを定めず、候補・fixtureから操作許可やsource closureを生成しない。
