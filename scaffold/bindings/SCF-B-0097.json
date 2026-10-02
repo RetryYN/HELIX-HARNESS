@@ -55,7 +55,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave49/validate.py",
-      "sha256": "86cfc151de26ebc134e159133befc2f81c08f3ba4a3265592d2dcd697f210786",
+      "sha256": "6db80d5cc410d8df69b824802a4a49ca01ab757353bb591562c5c0cfd68a9360",
       "note": "prior Wave49 reciprocal shared-source validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave49/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=9b7725a366a31062dc988c04f614519cbb621ac7b822928e14aa519b92358f8c; 現receipt=86cfc151de26ebc134e159133befc2f81c08f3ba4a3265592d2dcd697f210786; このBindingの採否・authorityは変更しない。]"
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave50/validate.py",
-      "sha256": "a30dcab6b3e29926553b8809b62b237cb79a14b4bac87b75edd1f462cb7bb77e",
+      "sha256": "4ba680c3e0410a6a0f2c2a6676c21b0541e168baa3627894e04bb7ff85556af9",
       "note": "Wave50 fail-closed validator with latest-main rebaseline gate [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave50/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=e4b2c1786896a84d3ba200438e73176b125797089ebd7feed2d2c1b94cd357d2; 現receipt=a30dcab6b3e29926553b8809b62b237cb79a14b4bac87b75edd1f462cb7bb77e; このBindingの採否・authorityは変更しない。]"
     },
     {
