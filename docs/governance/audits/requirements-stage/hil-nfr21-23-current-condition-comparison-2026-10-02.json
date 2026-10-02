@@ -170,12 +170,12 @@
           "l2_sha256": "492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b",
           "l11_sha256": "f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c",
           "l2_section_lines": [
-            1360,
-            1370
+            1372,
+            1382
           ],
           "l11_section_lines": [
-            1081,
-            1103
+            1099,
+            1121
           ],
           "coverage_receipt_sha256": "sha256:82f32a20f4182cd2ebc816e2c274bd9f69386a75e7c5939c39d9154c54d1f161"
         }
@@ -292,5 +292,16 @@
   "candidate_pair_full_file_sha256": {
     "l2": "49eef3cdb4dcfa68bc6e62afb46ccf994dafe41306b176788853c1973c8fcf6a",
     "l11": "9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794"
+  },
+  "latest_main_read_after": {
+    "commit": "00cfdad179a15e59c0b27d8e78421f5083a8ea6d",
+    "main_mpr_lines": 676,
+    "prefix_sha256": "sha256:fa37d3bf91d2ebc4a041ce685b06c760210c4da60d59a63541fecd2c152b08ea",
+    "candidate_line": 677,
+    "candidate_section_digests_unchanged": true
+  },
+  "candidate_branch_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "573890dd2d1efc305c6df43022fbb9168878fc0b2472167ab0d700812df17d76",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "7a332aeaf61f873180a83b6bca41b2784a3bb2b12b11881865ad5f8da9427932"
   }
 }

@@ -20,7 +20,7 @@ IR `#/HIL-NFR-21`と旧L1 line 201の四条件（append-only原記録、AIによ
 
 IR asset `LEGACY-ASSET-A60CF91DD2AF6693E6F9`の`#/HIL-NFR-22`が選択identityであり、旧L1 asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` line 202は同文のcorroborationで別atomではない。両sourceはatomic behavior分母とaggregate parent・directory/file count・representative fixtureの除外に加えて、extractor変更またはsource差分時に「全child receipt」をstale化する。
 
-採択HARNESS-038はcapability manifest/closureのscopeを扱う。HARNESS-067-001は未採択で、FR-37 line 127一atomの候補であり、stale条件はaffected atoms/child closureを対象にする。選択scopeの全prior child receiptを一律stale化するexact oracleは確認できなかった。残差をHARNESS-082の未採択候補に記録した。candidate pair section pinsはL2 `sha256:492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b`、L11 `sha256:f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c`（receipt `82f32a20f4182cd2ebc816e2c274bd9f69386a75e7c5939c39d9154c54d1f161`）である。082はsource holdingを閉じず、NFR-22全体のsuccessor/adoptionを主張しない。
+採択HARNESS-038はcapability manifest/closureのscopeを扱う。HARNESS-067-001は未採択で、FR-37 line 127一atomの候補であり、stale条件はaffected atoms/child closureを対象にする。選択scopeの全prior child receiptを一律stale化するexact oracleは確認できなかった。残差をHARNESS-082の未採択候補に記録した。candidate pair section pinsはL2 `sha256:492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b`、L11 `sha256:f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c`（receipt `e8ff8e002400f3e2ddcb55f873e38e7d84d102643577cfe4c9a2c96468beebe4`）である。082はsource holdingを閉じず、NFR-22全体のsuccessor/adoptionを主張しない。
 
 ## HIL-NFR-23
 
@@ -29,3 +29,5 @@ IR `#/HIL-NFR-23`と旧L1 line 203の条件は、採択HARNESS-035-002に対応�
 ## authority境界
 
 MPRの`registered_proposal`や`authority_effect: none`、固定時本文の候補metadataではなくdecision行と対象revisionを採否根拠に使った。NFR-21/23は採択済みpairへの意味対応、NFR-22は残差候補への対応であり、いずれもsource holding全体の完了を主張しない。
+
+最新main `00cfdad179a15e59c0b27d8e78421f5083a8ea6d`を取り込み、676行のMPR prefixを保持して082を677行へ追記した。候補両節digestは不変。比較snapshot91dbの証拠と現候補branchの全文pinsはJSONで区別する。
