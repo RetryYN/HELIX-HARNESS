@@ -6,7 +6,7 @@
   "candidate_revision": "MPR-RC-HELIXOS-L2-001-001",
   "supersedes_registration_id": null,
   "correction_scope": "Whole IR HIL-NFR-32 remains one normative source atom. The candidate is reattributed from the incorrect OS-L2-019 Evidence/continuity destination to existing OS-L2-001 requirement-source/revision management. L2 selected parts are the existing HELIXOS-L2-001 table row and the shared requirement-update management section. L11 selected parts are the existing HELIXOS-L2-001 table row, the existing requirement-update acceptance section, and one appended EOF fixture supplement. No adopted requirement bytes are changed and no new guard or source closure is claimed.",
-  "candidate_digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through EOF. Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
+  "candidate_digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through the next equal-or-higher heading (currently EOF). Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
   "fixed_adopted_revision": {
     "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "meaning": "The selected OS-L2-001 matrix rows and shared requirement-update L2/L11 sections are byte-identical at the fixed comparison revision and in the latest main base. The existing OS-L2-019 adoption and registration MPR-RC-HELIXOS-L2-019-001 are unrelated and unchanged; this candidate does not supersede or revoke them.",
@@ -57,8 +57,12 @@
       "parts": [
         {
           "order": 1,
-          "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001",
-          "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78"
+          "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001:line-54",
+          "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+          "lines": [
+            54,
+            54
+          ]
         },
         {
           "order": 2,
@@ -78,8 +82,12 @@
       "parts": [
         {
           "order": 1,
-          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001",
-          "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364"
+          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001:line-21",
+          "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+          "lines": [
+            21,
+            21
+          ]
         },
         {
           "order": 2,
@@ -92,12 +100,12 @@
         },
         {
           "order": 3,
-          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#EOF:要求正本更新の受入：HIL-NFR-32の六条件候補",
+          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#heading:要求正本更新の受入：HIL-NFR-32の六条件候補",
           "lines": [
             1250,
             1276
           ],
-          "boundary": "through EOF; normalized after trimming trailing blank lines; no EOF-wide fixed-source claim",
+          "boundary": "through the next equal-or-higher heading (currently EOF); normalized after trimming trailing blank lines; no EOF-wide fixed-source claim",
           "sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6"
         }
       ],
@@ -715,13 +723,17 @@
   "candidate_l2_composite_digest": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b",
   "candidate_l11_composite_digest": "sha256:9e60291b227320cee9647f5c22c0ee8dec0d728aba1dca63decd3c18864f7aaf",
   "candidate_pair_parts": {
-    "digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through EOF. Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
+    "digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through the next equal-or-higher heading (currently EOF). Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
     "l2": [
       {
         "order": 1,
         "name": "HELIXOS-L2-001 matrix row",
-        "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001",
-        "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78"
+        "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001:line-54",
+        "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+        "lines": [
+          54,
+          54
+        ]
       },
       {
         "order": 2,
@@ -734,8 +746,12 @@
       {
         "order": 1,
         "name": "HELIXOS-L2-001 acceptance row",
-        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001",
-        "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364"
+        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001:line-21",
+        "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+        "lines": [
+          21,
+          21
+        ]
       },
       {
         "order": 2,
@@ -746,7 +762,7 @@
       {
         "order": 3,
         "name": "末尾候補part",
-        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#EOF:要求正本更新の受入：HIL-NFR-32の六条件候補",
+        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#heading:要求正本更新の受入：HIL-NFR-32の六条件候補",
         "sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6"
       }
     ]
