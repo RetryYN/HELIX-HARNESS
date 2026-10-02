@@ -23,7 +23,7 @@
     },
     "source_lines": {
       "path": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r3.jsonl",
-      "sha256": "sha256:d55e0d3127b10e1c3b02dd3d9a67b6f72351b8dcb16874292b31c4739d1893b2",
+      "sha256": "sha256:0e18c2e199a125e4d49a56d4e406870f4dc0cfe0d7e5b2a52b96935aa83706e2",
       "count": 3,
       "supersedes_snapshot": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r2.jsonl (immutable revision 002 bytes; corrected source citation is r3)"
     },
@@ -270,7 +270,7 @@
     },
     {
       "atom_id": "HIL-NFR-29-IR-A60CF91DD2AF6693E6F9",
-      "source_identity": "HIL-NFR-29, whole IR identity at archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-29; statement text/hash and full record pin in r2 source snapshot.",
+      "source_identity": "HIL-NFR-29, whole IR identity at archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-29; statement text/hash and full record pin in r3 source snapshot.",
       "source_clauses": [
         {
           "clause": "template/file/chapter/aggregate-parent existence is not pair coverage; denominator is atomic obligation and its oracle",
@@ -369,8 +369,8 @@
   },
   "root_integration_note": "Latest main263eca0 contains OS127 and681 historical registration rows; preserve all those bytes plus reviewed072002. Corrective072003/r3 records bounded clause mappings; historical r1/r2 preserved. No source closure/adoption generated.",
   "source_atom_count": 3,
-  "source_atom_set_file_sha256": "sha256:d55e0d3127b10e1c3b02dd3d9a67b6f72351b8dcb16874292b31c4739d1893b2",
-  "source_line_coverage_result": "r2 preserves 3 selected inputs; clause-level destinations distinguish exact 055/056 selected meanings, 072 selected stale/snapshot/deferred clauses, and unresolved holdings for denominator population, vertical snapshot equality, horizontal revision equality, semantic granularity, wider one-sided/unexecuted scope, source binding, and whole-source closure.",
+  "source_atom_set_file_sha256": "sha256:0e18c2e199a125e4d49a56d4e406870f4dc0cfe0d7e5b2a52b96935aa83706e2",
+  "source_line_coverage_result": "r3 preserves 3 selected inputs; clause-level destinations distinguish exact 055/056 selected meanings, 072 selected stale/snapshot/deferred clauses, and unresolved holdings for denominator population, vertical snapshot equality, horizontal revision equality, semantic granularity, wider one-sided/unexecuted scope, source binding, and whole-source closure.",
   "source_semantic_digest_definition": "For the whole NFR-29 input use requirements.json identity.statement.semantic_digest. For line-slice atoms use the same IR statement semantic digest as r1; exact physical source text, file/line or JSON pointer, statement digest, and full record digest are separately pinned.",
   "current_adopted_pair_comparisons": [
     {
@@ -404,7 +404,7 @@
   "registration_append_integrity": {
     "new_registration_id": "MPR-RC-HARNESS-L2-072-003",
     "supersedes": "MPR-RC-HARNESS-L2-072-002",
-    "new_row_sha256_including_lf": "sha256:52a10861075102f9d4b2f7b0d867965a7432f2011ffdf1b23a8ddd7253760e63",
+    "new_row_sha256_including_lf": "sha256:b35688c4998c204a9ff66dd2bec345e98b7b32c6efe7db79dc673fde01e5ef5c",
     "prefix_line_count": 682,
     "prefix_sha256": "sha256:7bcdf1125ce6a7e6317e657b1be340f969ac65a76a256664252db29600f21ff4",
     "append_is_final_register_row": true,
