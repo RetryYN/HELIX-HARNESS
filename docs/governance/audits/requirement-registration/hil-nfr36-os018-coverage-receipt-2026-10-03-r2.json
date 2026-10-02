@@ -1,0 +1,439 @@
+{
+  "receipt_id": "HELIXOS-L2-018-HIL-NFR-36-RESIDUAL-COVERAGE-2026-10-03-r2",
+  "registration_id": "MPR-RC-HELIXOS-L2-018-002",
+  "base_commit": "125908004787d949a60c5eb373c93819b0a1ceea",
+  "scope": "HIL-NFR-36 whole normative IR atom only; this receipt maps source clauses to fixed adopted pairs and an unadopted same-identity OS-018 candidate revision. It does not claim full consumer closure, formal successor assignment, adoption, implementation, or execution.",
+  "coverage_result": "no_loss_limited_to_one_HIL-NFR-36_IR_identity_atom_accounting_only",
+  "coverage_result_limit": "The complete normative IR identity atom remains fully accounted for by its preserved source holding and this candidate mapping. This is not proof of full source meaning coverage, implementation, or consumer closure. LABO-055/056/059/064 evidence is limited to the exact adopted scoped conditions below; NFR-36 candidate -002 proposes only the two independently identified OS-018 factual receipt residuals.",
+  "authority_effect": "none",
+  "source_atom_set": {
+    "ref": "docs/governance/audits/requirement-registration/hil-nfr36-os018-source-atoms-2026-10-03.jsonl#HIL-NFR-36",
+    "file_sha256": "sha256:b9ad0284a7a86f97741fe130f73c628aa97e5359ba1418e3cc917bf6491bfbde",
+    "atom_count": 1,
+    "digest_rule": "atom_idを昇順に並べ、各atomの `atom_id SP statement_semantic_digest（sha256:を除く） LF` をUTF-8で連結してSHA-256。",
+    "digest": "sha256:402ed3657393d0928df5b5229bfcaa87d3269a32ce7c5dfc31396c8316fd55d3",
+    "source_locator_note": "source_line is exact statement.text JSON physical line; identity line separately pins requirement_id. Hash fields explicitly label LF inclusion/exclusion; whole IR record digest and canonical record rule pin the entire record."
+  },
+  "source_identity": {
+    "holding": "MPR-SH-IR-003#HIL-NFR-36",
+    "holding_digest": "sha256:51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "ir_line": 5937,
+    "statement_semantic_digest": "sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3",
+    "record_semantic_digest": "sha256:1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065",
+    "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#line-138:HIL-NFR-36",
+    "carry_forward_file_sha256": "sha256:51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+    "carry_forward_line": 138,
+    "carry_forward_line_sha256": "sha256:43a472ec2f3064604507205af08a4b188e73d3feecee483676fa68f6184c5108",
+    "formal_successor_ids": [],
+    "ir_statement_line": 5937,
+    "ir_statement_line_sha256_including_lf": "sha256:f1a8a857e4f554085df325e94a9a019abab5d1d5e5c2a2d95c57ec861563e789",
+    "ir_statement_line_sha256_excluding_lf": "sha256:2e126cb822836d98e900a81a6e18dfe2a2e667976f730b26c3a02d1a9d16c651",
+    "ir_identity_line": 5930,
+    "ir_identity_line_sha256_including_lf": "sha256:cfd7bffaffd6d53bae22c0c46d05d9f23472c52cc5c43c8f3c43c1ae2c6123c3",
+    "ir_identity_line_sha256_excluding_lf": "sha256:a5a00eb2bff8073520dc76673503a8a062bfaeef5cbaa7a8efb4f6ef9a4e1eb3",
+    "ir_record_canonicalization_rule": "Parse pinned requirements.json, select #/HIL-NFR-36, remove only semantic_digest, serialize UTF-8 ensure_ascii=False with recursively sorted keys, separators comma/colon, no terminal LF, then SHA-256; compare to ir_record_semantic_digest.",
+    "carry_forward_line_sha256_including_lf": "sha256:43a472ec2f3064604507205af08a4b188e73d3feecee483676fa68f6184c5108",
+    "carry_forward_line_sha256_excluding_lf": "sha256:6bd64338797220dd3169906d7ab6815dcf815bd56e8f3b571703bbd8e07cf86d",
+    "carry_forward_hash_rule": "including_lf includes JSONL record LF; excluding_lf removes only terminal CR/LF bytes."
+  },
+  "corroboration_and_consumers": [
+    {
+      "kind": "corroboration_not_atom",
+      "ref": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line_sha256_with_lf": "sha256:99dfaf8334d200092982581c6960cac0ac36b9cc1dd116208638d3a522f53767",
+      "line_sha256_without_lf": "sha256:b15aad6eeff64e21d844f136a4c65cfe26b0a77cefb8524aecdfa59ff3efd16f",
+      "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes."
+    },
+    {
+      "kind": "consumer_not_atom",
+      "id": "HR-FR-HIL-22",
+      "semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f",
+      "scope": "benchmark, real-task scorecard, quality/safety/retry-inclusive cost and use-specific admit/retire evidence"
+    },
+    {
+      "kind": "acceptance_context_not_atom",
+      "ids": [
+        "HAC-HIL-22a",
+        "HAC-HIL-22b",
+        "HAC-HIL-22c"
+      ],
+      "semantic_digests": [
+        "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80",
+        "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763",
+        "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5"
+      ],
+      "scope": "positive blind bench/real task, major failure and scope isolation, quality downturn comparison/reroute"
+    },
+    {
+      "kind": "test_context_not_atom",
+      "id": "HAT-HIL-22",
+      "semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8",
+      "state": "designed_not_implemented",
+      "scope": "fixture/rubric/blind score/effective cost/route receipt; not executed"
+    }
+  ],
+  "candidate_pair": {
+    "identity": "HELIXOS-L2/L11-018",
+    "candidate_revision": "same-identity unadopted candidate -002",
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "identity_section_heading": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+      "identity_section_lines_1based_inclusive": [
+        672,
+        680
+      ],
+      "identity_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+      "supplement_selector": "### HELIXOS-L2-018 Worker割当・実行統制（HIL-NFR-36残差候補revision -002・未採択）",
+      "supplement_lines_1based_inclusive": [
+        1608,
+        1623
+      ],
+      "supplement_sha256": "sha256:047f83db18b5339467aaeede668cd080988691ca597c6b53366c07081e2fbc51",
+      "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
+      "candidate_semantic_digest": "sha256:32e0baf98aa80268ceabd7912b6eaa7453d246b9ec837be26942884c05c5338a",
+      "current_full_file_sha256": "sha256:bb66bdd516c1515db53ea421ab29cd069128bc6ec594ff79f950b3b6335cf50e"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "identity_section_heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+      "identity_section_lines_1based_inclusive": [
+        345,
+        350
+      ],
+      "identity_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+      "supplement_selector": "### HELIXOS-L2-018 Worker割当・実行統制の受入（HIL-NFR-36残差候補revision -002・未採択）",
+      "supplement_lines_1based_inclusive": [
+        1250,
+        1267
+      ],
+      "supplement_sha256": "sha256:ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c",
+      "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
+      "paired_acceptance_digest": "sha256:e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
+      "current_full_file_sha256": "sha256:22cb093022414d66aa22a85deec0baea831c1c4193f04903d990f87a14e90b9f"
+    },
+    "fixed_adopted_pair_preserved": {
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_line": 48,
+      "decision_row_sha256": "sha256:9d167c5db90b6b27d94af25a3d219f2c36ccf3b120635ab564447ca61f95b27a",
+      "adopted_pair_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+      "fixed_l11_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+      "meaning": "2026-09-28 adopted assignment/attempt, scope/budget/deadline/result/evidence and stop/handoff contract remains adopted and unchanged.",
+      "identity_section_l2_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+      "identity_section_l11_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+      "fixed_l2_full_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_l11_full_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "adopted_identity_section_digest_rule": "section selector from each exact HELIXOS-L2-018 heading through next equal-or-higher heading; trim trailing blank lines; one LF. The digest is verified against f6 and remains byte-identical in current main."
+    }
+  },
+  "clause_mapping": [
+    {
+      "source_clause": "task/risk/runtime/model/effort/retry/quality/cost traceability",
+      "existing_mapping": "adopted HELIXOS-L2/L11-018 assignment and attempt tracking; INTELLIGENCE-010/067 proposal and LABO comparisons remain separate evidence inputs, not OS execution receipts",
+      "candidate_addition": "candidate links selected run fields to existing assignment/attempt and actual event/results; does not create proposal or evaluation responsibility"
+    },
+    {
+      "source_clause": "deviation from applicable default must be receipted",
+      "existing_mapping": "adopted OS-018 records assignment/attempt but does not require the actual applicable default source/scope, actual-vs-default comparison, and deviation reason evidence together",
+      "candidate_addition": "candidate references existing default source/revision/scope and actual selected configuration; deviations link existing factual reason/evidence receipt; unknown default stays unknown and goes to existing meaning owner"
+    },
+    {
+      "source_clause": "quality issue escalation order must be receipted",
+      "existing_mapping": "HARNESS owns quality oracle; INTELLIGENCE proposal is not proof of executed order; OS-018 has run/attempt tracking but lacks a join of the applicable order source, actual ordered steps, and each step result/event receipt",
+      "candidate_addition": "candidate references applicable existing order source and actual step/result receipt in observed order, joined to same assignment/attempt and HARNESS oracle event"
+    },
+    {
+      "source_clause": "do not claim optimality from unit price alone or one success",
+      "existing_mapping": "Partial adopted scoped support only: LABO-056 refuses evaluated status from a single success alone; LABO-059 applies quality-first scoped comparison including total cost/time/intervention and rejects price-only success claims in that comparison scope. HR/HAC/HAT are separately pinned consumer context. LABO-064 applies only when blind comparison is selected. None closes every HIL-NFR-36 source clause or all consumers.",
+      "candidate_addition": "No general benchmark or optimization requirement is added. Candidate -002 addresses only the two identified OS-018 receipt residuals; source holding and any unproven source/consumer relation remain open."
+    }
+  ],
+  "related_pair_boundaries": [
+    {
+      "identity": "HELIXOS-L2/L11-019",
+      "relation": "reuse its continuity, source/revision/event/actor/evidence/checkpoint and incomplete-obligation lineage; this candidate only joins factual deviation/escalation receipts to the existing run."
+    },
+    {
+      "identity": "HELIXOS-L2/L11-028 and -029",
+      "relation": "use their existing consult handoff and support composite receipt only when those operations are actually selected; do not require or invent them otherwise."
+    },
+    {
+      "identity": "HIL-NFR-32 / OS-019 candidate",
+      "relation": "the separate candidate concerns six conditions for canonicalizing semantic changes; this candidate concerns OS assignment/attempt and observed runtime/event receipt linkage, not canonicalization."
+    }
+  ],
+  "fixtures_and_dependency_classes": {
+    "normal": "L2/L11 candidate sections define matched-default and evidenced-deviation runs, with same-attempt quality event and actual ordered step/result receipts.",
+    "independent_negatives": [
+      "applicable default differs but only deviation reason/source receipt is missing or wrong revision",
+      "one actual escalation step result/event receipt alone is missing or order-inconsistent"
+    ],
+    "unknown": "applicable default/order/scope/revision/owner missing, stale or conflicting remains unknown and returns to existing meaning owner; no legacy FR-63 or proposal fallback.",
+    "harness_023_classes": {
+      "always_required": "selected scope/revision, OS assignment/attempt, actual run event, applicable HARNESS oracle/result identity",
+      "only_when_operation_selected": "comparison, escalation, consult or support operation and its actual existing receipt",
+      "selected_input_source": "chosen default/order source revision/scope and any actually selected proposal/LABO evidence; no implicit fallback",
+      "reference_material_only": "legacy runtime/schema/implementation history only; IR remains normative; L1 corroborates; HR/HAC/HAT remain consumers, not reference-only"
+    }
+  },
+  "limitations": [
+    "not adopted; authority_effect none",
+    "no new runtime/schema/threshold/timeout/default/order/approval gate",
+    "no implementation, runtime execution, HAT execution, or formal source closure claimed",
+    "old source holdings and all consumer obligations remain open unless separately dispositioned"
+  ],
+  "latest_integrated_main": {
+    "commit": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
+    "comparison": "NFR32–40 audit additions only; adopted OS-018 L2/L11 identity sections remain exact f6-adopted bytes, and the new EOF parts remain unadopted."
+  },
+  "consumer_record_pins": [
+    {
+      "kind": "consumer",
+      "identity": "HR-FR-HIL-22",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "source_pointer": "#/HR-FR-HIL-22",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "canonical_record_rule": "Parse source JSON and select this top-level identity object; remove only semantic_digest; serialize UTF-8 with ensure_ascii=False, recursively sorted keys, separators comma/colon, no terminal LF; SHA-256.",
+      "canonical_record_sha256": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f",
+      "stored_semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f"
+    },
+    {
+      "kind": "acceptance_consumer",
+      "identity": "HAC-HIL-22a",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "source_pointer": "#/HAC-HIL-22a",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "canonical_record_rule": "Parse source JSON and select this top-level identity object; remove only semantic_digest; serialize UTF-8 with ensure_ascii=False, recursively sorted keys, separators comma/colon, no terminal LF; SHA-256.",
+      "canonical_record_sha256": "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80",
+      "stored_semantic_digest": "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80"
+    },
+    {
+      "kind": "acceptance_consumer",
+      "identity": "HAC-HIL-22b",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "source_pointer": "#/HAC-HIL-22b",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "canonical_record_rule": "Parse source JSON and select this top-level identity object; remove only semantic_digest; serialize UTF-8 with ensure_ascii=False, recursively sorted keys, separators comma/colon, no terminal LF; SHA-256.",
+      "canonical_record_sha256": "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763",
+      "stored_semantic_digest": "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763"
+    },
+    {
+      "kind": "acceptance_consumer",
+      "identity": "HAC-HIL-22c",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "source_pointer": "#/HAC-HIL-22c",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "canonical_record_rule": "Parse source JSON and select this top-level identity object; remove only semantic_digest; serialize UTF-8 with ensure_ascii=False, recursively sorted keys, separators comma/colon, no terminal LF; SHA-256.",
+      "canonical_record_sha256": "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5",
+      "stored_semantic_digest": "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5"
+    },
+    {
+      "kind": "test_consumer",
+      "identity": "HAT-HIL-22",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "source_pointer": "#/HAT-HIL-22",
+      "source_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "canonical_record_rule": "Parse source JSON and select this top-level identity object; remove only semantic_digest; serialize UTF-8 with ensure_ascii=False, recursively sorted keys, separators comma/colon, no terminal LF; SHA-256.",
+      "canonical_record_sha256": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8",
+      "stored_semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8"
+    }
+  ],
+  "adopted_neighbor_evidence": [
+    {
+      "identity": "HELIXLABO-L2-055",
+      "registration_id": "MPR-RC-HELIXLABO-L2-055-002",
+      "adopted_scope": "Bench work/model-class evidence generation; context for existing scoped evidence, not a standalone proof of NFR36 closure.",
+      "decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "sha256:b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "line": 58,
+        "line_sha256_including_lf": "sha256:5fc505f345350912bb6f58846c10603d5a87441b4619b18861e2d7bbd6679dae",
+        "line_sha256_excluding_lf": "sha256:60a8e9741804c9adc5bd02bac5e6baa6695de445431b1bff73ee2a3b1ca2d84f",
+        "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes.",
+        "target_revision_text": "| `HELIXLABO-L2-055` | `MPR-RC-HELIXLABO-L2-055-002` | unit / 1.0 |"
+      },
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_sha256": "sha256:cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "heading": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）",
+        "lines_1based_inclusive": [
+          150,
+          154
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "heading": "### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠",
+        "lines_1based_inclusive": [
+          191,
+          196
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:f4ef263d8a969705e15987b60365228be56875b88794a76d5609a799ff7e0779"
+      },
+      "adopted_pair_file_pins": {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_full_file_sha256": "sha256:f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "l11_full_file_sha256": "sha256:bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-056",
+      "registration_id": "MPR-RC-HELIXLABO-L2-056-003",
+      "adopted_scope": "A single successful result remains observed/unassessed; missing scope, comparison basis, verification/receipt or counterexample does not produce evaluated status. Supports the NFR36 ending constraint only within its task/model-class evaluation scope.",
+      "decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "sha256:b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "line": 96,
+        "line_sha256_including_lf": "sha256:29910d5b5f032fe4b19633ae4292c3f5f8e599d9cba751e9db14e11aeaa568d1",
+        "line_sha256_excluding_lf": "sha256:3445cb26126e64f29fb6b224174d3b787a81181ca0f6539f5c14d82f303e7a21",
+        "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes.",
+        "target_revision_text": "| `HELIXLABO-L2-056` | `MPR-RC-HELIXLABO-L2-056-003` | unit / 1.0 |"
+      },
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_sha256": "sha256:cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "heading": "### HELIXLABO-L2-056 — 初回Worker結果のBench観測取込（単体候補、1.0）",
+        "lines_1based_inclusive": [
+          379,
+          389
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:5965a1449b772ba7b53b1e47325a0f0ce77cbde29eb4f6d80c68c9911db48019"
+      },
+      "l11_identity": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "heading": "### HELIXLABO-L2-056 初回Worker結果のBench観測取込",
+        "lines_1based_inclusive": [
+          138,
+          146
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:ae11e3cf000627e987e779ac0843184c9d6f39fb86ecbe63a49af81af384325a"
+      },
+      "l11_exact_condition": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "line": 143,
+        "line_sha256_including_lf": "sha256:008b30d3fe1a781615d0fe79cd0cea90be6e0cd82fd75f227986527554889e07",
+        "line_sha256_excluding_lf": "sha256:dcabc339d2726c223b722609bbec379a7e6e1236af36e6df47c4d01eb95d6e13",
+        "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes."
+      },
+      "adopted_pair_file_pins": {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_full_file_sha256": "sha256:f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "l11_full_file_sha256": "sha256:bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-059",
+      "registration_id": "MPR-RC-HELIXLABO-L2-059-002",
+      "adopted_scope": "Quality gate precedes scoped priority/tolerance and comparison of total cost/time/intervention including retry/rescue/rework; supports rejection of price-only success claim in this comparison scope. It does not set task default or escalation order.",
+      "decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "file_sha256": "sha256:b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "line": 99,
+        "line_sha256_including_lf": "sha256:c6c3522b1bd6b4c1e39396ee9b2831223017d73cb544b3decafda2e7d455b509",
+        "line_sha256_excluding_lf": "sha256:b066ac5c34866f17b8acb48e5a1e86ec47936d99843aafa07db367fa1f506fd9",
+        "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes.",
+        "target_revision_text": "| `HELIXLABO-L2-059` | `MPR-RC-HELIXLABO-L2-059-002` | unit / 1.0 |"
+      },
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_sha256": "sha256:cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "heading": "### HELIXLABO-L2-059 効果優先関係付き比較評価",
+        "lines_1based_inclusive": [
+          416,
+          439
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c"
+      },
+      "l11_exact_conditions": [
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "line": 170,
+          "line_sha256_including_lf": "sha256:9e5a9113e596edec50d6a068d769a2d3d3ff9b08938e9dbf6db6cb09e789a433",
+          "line_sha256_excluding_lf": "sha256:3f3e322be9dde6177addd41e84a45e9949953d718f74ab35cb18d84fd2651a62",
+          "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes."
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "line": 173,
+          "line_sha256_including_lf": "sha256:695e35f2a5dc1b212c4953d0fd11dbf79cd6eaeaaeae8eaedf6cb030bcecfb66",
+          "line_sha256_excluding_lf": "sha256:49f8e7c0de99f7b57cd0564b7e8d2f22d788146b7930a217ae41b957dc44fa75",
+          "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes."
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+          "line": 174,
+          "line_sha256_including_lf": "sha256:08791beabbbcd54d52b2447b9459c44b8cea04945b31032d646f4d8b0236ce66",
+          "line_sha256_excluding_lf": "sha256:0e385924f9ab1fc6fb0fae85f5b1f464f983023a756c3b37b1006f9ac0e795ba",
+          "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes."
+        }
+      ],
+      "adopted_pair_file_pins": {
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "l2_full_file_sha256": "sha256:f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+        "l11_full_file_sha256": "sha256:bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+      }
+    },
+    {
+      "identity": "HELIXLABO-L2-064",
+      "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+      "adopted_scope": "Candidate-name-blind benchmark only when that operation is selected; not a general default, price-only, single-success, or escalation-order contract.",
+      "decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "line": 79,
+        "line_sha256_including_lf": "sha256:21e65876f5d6e336541578f29a1450435782bf248b060a4a8e4d3cc1cd65255d",
+        "line_sha256_excluding_lf": "sha256:2b967f2151eabd4f2cf80d4689fc9f33fcf84ad9a879bf1cbac8d4eb2a97051a",
+        "line_hash_rule": "including_lf includes physical line LF; excluding_lf removes only terminal CR/LF bytes.",
+        "target_revision_text": "| `HELIXLABO-L2-064` | 採択 | `MPR-RC-HELIXLABO-L2-064-002` | `docs/helix-labo/L2-requirements/labo-requirements.md` | `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9` | `sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8` | `HELIXLABO-L2-064` | `docs/helix-labo/L11-acceptance/labo-acceptance.md` | `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0` | `sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3` | `docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28-r2.json` |"
+      },
+      "l2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "file_sha256": "sha256:cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "heading": "### HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件（単体候補、1.0）",
+        "lines_1based_inclusive": [
+          491,
+          501
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+      },
+      "l11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "file_sha256": "sha256:39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "heading": "### HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件",
+        "lines_1based_inclusive": [
+          233,
+          239
+        ],
+        "canonicalization": "heading to next equal-or-higher-level heading; trim trailing blank lines; append one LF",
+        "section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+      },
+      "decision_selected_full_file_pins": {
+        "l2_commit": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "l2_section_sha256": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+        "l11_commit": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "l11_section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+      }
+    }
+  ],
+  "receipt_scope_boundary": "原文の「receipt化」は実際の逸脱と実際のescalation順序・結果を既存recordへ結ぶ観測事実として扱う。事前gate、全run停止、source未確定時の全操作禁止を追加せず、適用sourceまたはownerが不明なfacetはunknownとして既存ownerへ返す。",
+  "candidate_digest_rule": "L2/L11それぞれについて、f6採択identity sectionと未採択EOF supplementを個別正規化する（選択見出しから次の同階層以上headingまたはEOFまで。末尾空行を除き、part末尾にUTF-8 LFを一つ付加）。multipart digestはidentity section bytes + separator LF一つ + supplement bytes。L2 digestをcandidate_semantic_digest、L11 digestをpaired_acceptance_digestとする。固定採択pair pinは別に保持し変更しない。",
+  "adopted_neighbor_evidence_scope": "These are exact selected sections/rows at current main bdf1532 and are cross-checked against the cited target commit/decision. They preserve only their stated LABO scopes; their existence is not evidence that all HIL-NFR-36 conditions or consumers are closed."
+}
