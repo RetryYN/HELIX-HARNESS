@@ -1,0 +1,378 @@
+{
+  "receipt_id": "HELIXOS-L2-122-HIL-NFR-01-COVERAGE-2026-10-02-r2",
+  "authority_effect": "none",
+  "registration_id": "MPR-RC-HELIXOS-L2-122-002",
+  "candidate_ids": [
+    "HELIXOS-L2-122",
+    "HELIXOS-L11-122"
+  ],
+  "candidate_status": "registered proposal; unadopted; no L3 approval, runtime execution, external side effect, or formal legacy successor asserted",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr-01-side-effect-idempotency-source-lines-2026-10-02.jsonl#HIL-NFR-01",
+  "source_atom_set_digest": "sha256:efe5487f9f9276e454643a1facfe00129d993a3184538ae5eb5e0538ee663bbf",
+  "source_collection_scope": "One selected IR identity statement HIL-NFR-01 only. L1 line 181 corroborates the same statement, not a second atom. HR-FR-HIL-01/HAC-HIL-01a/b/c/HAT-HIL-01 are consumer and oracle context, not extra atoms. Adjacent NFR rows excluded.",
+  "source_atoms": [
+    {
+      "atom_id": "HIL-NFR-01",
+      "source_holding_registration_id": "MPR-SH-IR-003",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_identity": "HIL-NFR-01",
+      "source_kind": "legacy_ir_requirement_identity",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-01",
+      "source_file": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "legacy_revision": 1,
+      "statement_semantic_digest": "sha256:852893034ac1b3204a050db9be3cc506104f2a155ea9570f0ab09f26466fa041",
+      "record_semantic_digest": "sha256:1e205775f5fe4771212d132a7eaaa619a9c3ff6b5d5301c84733b84883375121",
+      "source_text": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
+      "source_asset_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_asset_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_asset_physical_line": 4423,
+      "source_asset_line_text": "  \"HIL-NFR-01\": {",
+      "source_asset_line_sha256_including_lf": "sha256:d40f35300febb37115293aec85ac06a2e19f07fa085cd3d1817d4f51bd6ceb45",
+      "source_asset_line_sha256_without_lf": "sha256:17f671731993a67714c4229194aac727a2fec2bfaecc912f2924fde6ab4ce90a",
+      "source_asset_line_text_excludes_lf": true,
+      "corroborating_source_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "corroborating_source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "corroborating_source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "corroborating_source_physical_line": 181,
+      "corroborating_source_line_text": "| **HIL-NFR-01** | 同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。 |",
+      "corroborating_source_line_sha256_including_lf": "sha256:ea623b4460dac1aa9e232dd5e537e5eb4a06488d6ddfeea5cafb76f1822e33fc",
+      "corroborating_source_line_sha256_without_lf": "sha256:b340b7b956786bfd3e8fa1ab845b69f29df0d6207eb9501feaa08ae9f61dab28",
+      "corroborating_source_relation": "Direct wording source for the same IR statement; corroborating context, not an additional atom.",
+      "source_line_sha256_rule": "For the direct L1 physical row, SHA-256 includes the LF byte; source_line_text excludes LF. The IR physical identity anchor is separately pinned.",
+      "consumer_context_ids": [
+        "HR-FR-HIL-01",
+        "HAC-HIL-01a",
+        "HAC-HIL-01b",
+        "HAC-HIL-01c",
+        "HAT-HIL-01"
+      ],
+      "atom_count": 1,
+      "atom_note": "Only the selected HIL-NFR-01 IR statement is counted. L1 line 181 is the same statement wording, while contract/acceptance/test records are consumer context."
+    }
+  ],
+  "consumer_context": [
+    {
+      "identity": "HR-FR-HIL-01",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "sha256:696de9979c134c3b1aecc0db8881a40f80d094e85f1526a887e740f3ec06430c",
+      "status": "specified",
+      "polarity": null,
+      "behavior_or_statement_or_scenario": "user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない",
+      "transition_contract": "source識別可能・current schemaあり → durable intake、contract revision、routeが一意",
+      "failure_and_evidence": "field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt",
+      "required_evidence": null,
+      "negative_boundary": null,
+      "execution_status": "consumer_context_only"
+    },
+    {
+      "identity": "HAC-HIL-01a",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "semantic_digest": "sha256:aa927582ef5baf68d6bfe5fdc175a379a90dd26cbacb27484065afabd4c27710",
+      "status": "specified",
+      "polarity": "positive",
+      "behavior_or_statement_or_scenario": "全source入力が同一contract形へ収束",
+      "transition_contract": null,
+      "failure_and_evidence": null,
+      "required_evidence": null,
+      "negative_boundary": null,
+      "execution_status": "consumer_context_only"
+    },
+    {
+      "identity": "HAC-HIL-01b",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "semantic_digest": "sha256:cc216a790b806649976acb1c7fd630865adb61122dbc6dc5414e033e4a8e26d8",
+      "status": "specified",
+      "polarity": "negative",
+      "behavior_or_statement_or_scenario": "duplicateは副作用0、異payloadはconflict",
+      "transition_contract": null,
+      "failure_and_evidence": null,
+      "required_evidence": null,
+      "negative_boundary": null,
+      "execution_status": "consumer_context_only"
+    },
+    {
+      "identity": "HAC-HIL-01c",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "semantic_digest": "sha256:48ef719a2a8b88c61738357d3d5f66e7360438e22cad13e9aae662d54cf4adc7",
+      "status": "specified",
+      "polarity": "boundary",
+      "behavior_or_statement_or_scenario": "injection本文を隔離しdispatch 0",
+      "transition_contract": null,
+      "failure_and_evidence": null,
+      "required_evidence": null,
+      "negative_boundary": null,
+      "execution_status": "consumer_context_only"
+    },
+    {
+      "identity": "HAT-HIL-01",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "semantic_digest": "sha256:9a7a56f7466cbb4dc9e61d1c4b72dca6279f03a47f033847e80a5ee6c2c08a76",
+      "status": "designed_not_implemented",
+      "polarity": null,
+      "behavior_or_statement_or_scenario": "各source入力をIssue契約へ取り込む",
+      "transition_contract": null,
+      "failure_and_evidence": null,
+      "required_evidence": "intake/contract revision/idempotency/trust receipt",
+      "negative_boundary": "duplicate、異payload、injection",
+      "execution_status": "not_run; HAT is designed_not_implemented"
+    }
+  ],
+  "legacy_source_scope_and_meaning": {
+    "direct_requirement": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
+    "identity_list": "GitHub delivery, Issue contract, job, PR head are separately named operation/source identities; candidate does not invent a fixed compound key or assume identical text/label means same payload.",
+    "direct_L1_source": {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "physical_line": 181,
+      "text": "| **HIL-NFR-01** | 同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。 |",
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line_sha256_including_lf": "sha256:ea623b4460dac1aa9e232dd5e537e5eb4a06488d6ddfeea5cafb76f1822e33fc",
+      "relation": "same requirement wording, corroborating only; not additional atom"
+    },
+    "consumer_relations": "HR-FR-HIL-01 consumes NFR-01 among multiple requirements and specifies exactly-once Issue contract normalization, same-operation/different-payload conflict, and trusted dispatch boundary. HAC positive/negative/boundary oracle rows are context. HAT is designed_not_implemented; not run."
+  },
+  "historical_audit_context": {
+    "path": "docs/governance/audits/requirements-stage/legacy-ir-quality-source-recheck-2026-09-28.md",
+    "historical_base_commit": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
+    "interpretation": "Recorded OS projection/idempotency and LABO/BRAIN owner boundary; did not establish four-identity effect-level dedup closure. Historical audit is diagnostic evidence, not current PO decision or current adopted guarantee."
+  },
+  "adoption_basis": {
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "decision_text": "Decision explicitly fixes and agrees HELIXOS-L2-001..029 and paired L11 bytes; explicitly adopts candidates 014..029. Candidate 122 is outside that fixed/adopted revision. Adoption read from the decision and exact target bytes, not registration frontmatter.",
+    "neighboring_adoption_correction": "035 is adopted at row 58 of the 2026-09-29 57-candidate decision. HARNESS-059 and HELIXOS-102 are jointly adopted at live26 rows 44/55/70. Their fixed and current section bytes match; their limited guarantees do not close the full four-identity, three-effect scope proposed by unadopted 122."
+  },
+  "current_contract_crosswalk": [
+    {
+      "requirement": "HELIXOS-L2-007",
+      "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
+      "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007",
+      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
+      "coverage": "provenance/source/cause and evidence references; does not state effect-level dedup across all four source identities"
+    },
+    {
+      "requirement": "HELIXOS-L2-009",
+      "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
+      "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-009; docs/helix-os/L11-acceptance/governance-acceptance.md:29,55",
+      "coverage": "durable event/idempotent projection, checkpoint, interrupted event-save/projection recovery; only same event/projection guarantee, not Issue+implementation+memory effects across owners",
+      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
+      "current_L11_file_sha256": "b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+    },
+    {
+      "requirement": "HELIXOS-L2-019",
+      "adoption_basis": "OS 2026-09-28 decision explicit candidate 019 adopted at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+      "fixed_L11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+      "coverage": "episode provenance, duplicate/stale/denied/unexecuted distinction, continuity and no duplicate side-effect from duplicate events; not all four identity/effect-owner closure",
+      "current_L2_file_sha256": "sha256:39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
+      "current_L11_file_sha256": "sha256:b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+    },
+    {
+      "requirement": "HELIXOS-L2-035",
+      "adoption": "adopted; 2026-09-29 57-candidate decision row 58",
+      "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035; docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-035",
+      "coverage": "選択PR lifecycle eventから同じ論理監査jobを一度だけ生成する保証。122のdelivery/event→jobと重なるが、Issue作成・実装・選択memory効果や4 identity全体のowner間closureは規定しない。",
+      "adoption_basis": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md row 58; exact fixed/current L2 and L11 section digests recorded in adopted_pair_crosswalk",
+      "current_file_sha256": "sha256:39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
+      "current_L11_file_sha256": "sha256:b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+    },
+    {
+      "requirement": "HELIXOS-L2-102",
+      "adoption": "adopted; 2026-09-30 live26 decision row 55, jointly with HARNESS-L2-059 at row 70",
+      "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-102; docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-102",
+      "coverage": "同一revision/digestのdurable intake/projection/handoff。HARNESS-L2-059と一組で採択されたが、4 identityにまたがるIssue・実装・memory効果の重複防止までは閉じない。",
+      "adoption_basis": "docs/governance/decisions/po-decision-2026-09-30-live26.md rows 55 and 70; exact fixed/current L2 and L11 section digests recorded in adopted_pair_crosswalk",
+      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b"
+    },
+    {
+      "requirement": "HARNESS-L2-059",
+      "adoption": "adopted; 2026-09-30 live26 decision row 44, jointly with HELIXOS-L2-102 at row 70",
+      "current_locator": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-059",
+      "coverage": "11 fieldのIssue contract意味・必須存在。HELIXOS-L2-102と一組で採択されたが、4 identityにまたがるIssue・実装・memory効果の重複防止までは閉じない。",
+      "adoption_basis": "docs/governance/decisions/po-decision-2026-09-30-live26.md rows 44 and 70; exact fixed/current L2 and L11 section digests recorded in adopted_pair_crosswalk",
+      "current_file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+      "current_L11_file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
+    }
+  ],
+  "dependency_contract": {
+    "identity": "HARNESS-L2-023; MPR-RC-HARNESS-L2-023-002 adopted by HARNESS 2026-09-28 decision row 52; fixed section pins at f6dad2a33e24f000b87d7f09b8d40288257e74cc.",
+    "L2_locator": "docs/helix-harness/L2-requirements/product-requirements.md:463-498",
+    "L2_section_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+    "L2_file_sha256_at_fixed_commit": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+    "L11_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:219-234",
+    "L11_section_sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+    "L11_file_sha256_at_fixed_commit": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+    "four_categories": [
+      "always required",
+      "operation condition",
+      "selected input source",
+      "reference only"
+    ],
+    "oracle": "dependency identity/owner/contract version-range/applicability evidence; same input closes to same effective dependencies; unknown remains unknown, never false or reference-only; selected source read/qualification failure does not silently fallback to another source."
+  },
+  "responsibility_boundary": {
+    "memory_decision_path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:68",
+    "decision_record_id": "HMC-BR-003",
+    "text": "1.0〜2.xではLABOが知識を評価して保持し、3.0からIntelligenceが改善に使う。",
+    "current_BRAIN_locator": "docs/helix-brain/L2-requirements/brain-requirements.md#BRAIN-L2-007",
+    "rule": "source/provenance/adoption reason/scope/counterexample/limitation are retained; LABO evaluation, OS registration, BRAIN independent verification and adoption remain distinct. OS-122 does not choose memory promotion eligibility or perform knowledge promotion."
+  },
+  "current_candidate_sections": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "### HELIXOS-L2-122 HIL-NFR-01 owner間副作用の冪等な引継ぎ（接続候補、未採択）",
+      "line_start": 1510,
+      "line_end": 1524,
+      "section_sha256": "f92eaa3f148b0b63d14c3f7cd8a93d1f13a360d916cab93011aba8e872e0fc21",
+      "file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "### HELIXOS-L11-122 HIL-NFR-01 owner間副作用の冪等な引継ぎ候補（未採択・未実行）",
+      "line_start": 1106,
+      "line_end": 1118,
+      "section_sha256": "09e77bca9eb7d4f8e907a85dfde4d407e3ef04454646a2384c3ac185de194d2f",
+      "file_sha256": "b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+    }
+  },
+  "candidate_semantic_digest": "sha256:f92eaa3f148b0b63d14c3f7cd8a93d1f13a360d916cab93011aba8e872e0fc21",
+  "normal_oracles": [
+    "Same operation identity and same payload redelivery/restart after the owner already returned an effect receipt reuses that logical Issue/implementation/selected memory result; no duplicate effect.",
+    "After an early owner effect is confirmed but a later owner fails, preserve its result/receipt and unfinished obligation; resume does not repeat confirmed effect; only a known-not-performed later effect can be attempted.",
+    "Same operation with a new PR head remains a distinct revision and is not deduped as the old head."
+  ],
+  "negative_oracles": [
+    "Same operation identity with a different payload is conflict; earlier effect/receipt is not overwritten and no second effect is accepted as success.",
+    "Unknown/stale/missing owner receipt or payload comparison cannot be treated as success or not-executed; no blind retry or silent fallback to another identity/source; return unresolved effect to existing owner.",
+    "Duplicate event is not treated as cross-owner proof that Issue, implementation, or memory effects are also deduplicated.",
+    "Memory selection/eligibility/promotion follows LABO/INTELLIGENCE/BRAIN owner decision; OS receipt or registration alone does not create promotion."
+  ],
+  "limitations_and_unresolved": [
+    "Does not assert global exactly-once transport, fixed compound identity/key, one transaction across owners, retry number, physical storage schema, runtime/provider, or execution success.",
+    "Old formal successor and pending source-holding status remain unresolved; candidate does not retire or close the old holding.",
+    "HAT-HIL-01 designed_not_implemented; no old tests/runtime/CI were run.",
+    "No admission from candidate metadata, merge, registration, or static oracle."
+  ],
+  "coverage_result": "no_loss_limited_to_one_HIL-NFR-01_IR_requirement_atom",
+  "carried_atom_refs": [
+    "HIL-NFR-01"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-NFR-01 remains preserved_pending_rehome; successor_requirement_ids empty; HR/HAC/HAT consumer set is not closed by this candidate."
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "method_note": "Meaning comparison is old source/consumers against adopted exact current pair and current candidates. Candidate maps the one selected statement only; adoption, any semantic change, and formal successor stay with their existing authority.",
+  "source_atom_set_file_sha256": "sha256:4281215c34701db0025f7f4cf74faeb800ca8cc4c86592167ce64f4f9da1cfb5",
+  "source_atom_set_encoding": "UTF-8 JSONL, one line per selected identity atom; source_line_text excludes LF while line SHA fields state whether LF is included.",
+  "read_after_base_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
+  "current_candidate_sections_read_after_commit": "Read at base 46be4fa55d384b8a8eb95f464f78c8a11e95542c; current L2/L11 bytes include this correction and section/full-file hashes bind the working revision.",
+  "human_decision_options": {
+    "source_text": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
+    "options": [
+      {
+        "option": "A",
+        "label": "列挙全体を適用",
+        "choice": "既存owner contractが同一operationとして識別するscope全体に、delivery／Issue contract／job／PR headの各identityとIssue作成／実装効果／選択されたmemory効果の冪等保証を適用する。",
+        "meaning": "旧原文のidentity/effect列挙と重複禁止をすべて保持する。識別方法は既存owner contractに従い、固定複合key、全owner一括transaction、memory選択権限は追加しない。",
+        "recommendation": "推奨。旧原文の全列挙を残し、方式や責務を新設しない。"
+      },
+      {
+        "option": "B",
+        "label": "未採択のまま保持",
+        "choice": "L2/L11-122を採択せず、source holdingと候補を未解決のまま維持する。",
+        "meaning": "新たな現行受入保証を採択しない。旧原文の全条件はholdingに残り、現在の候補はauthority effectを持たない。"
+      },
+      {
+        "option": "C",
+        "label": "明示subsetへ限定",
+        "choice": "POが対象identity/effect operationとscopeを明示列挙したsubsetだけに適用する。",
+        "meaning": "Aより狭い意味変更。subset外のdelivery／Issue contract／job／PR headまたはIssue／implementation／選択memory effect条件は未充足・未採択のままsource holdingに保持し、全原文を履行済みとはしない。"
+      }
+    ],
+    "A_vs_C": "Aは既存contractが識別するすべての該当operationへ原文のidentity/effect列挙を適用する。CはPOが明示したsubsetだけを対象にし、除外条件を未完holdingへ残す。",
+    "impact": "A/B/Cが変えるのはHELIXOS-L2-122とpaired HELIXOS-L11-122の採否・scope・対応oracleだけ。採択済みOS 007/009/019、OS 2026-09-28固定001-029 revision、既存LABO／INTELLIGENCE／BRAIN責務とHARNESS 023の意味は変更しない。A/B/Cの選択は忠実な候補起草・独立reviewの前提ではない。採択または意味変更のauthority判断だけを既存経路に残す。",
+    "version_target": "旧HIL-NFR-01にversion_target指定なし。候補でも指定しない。"
+  },
+  "version_target_source_status": "Old IR HIL-NFR-01 does not define version_target; candidate intentionally leaves it unspecified.",
+  "supersedes_receipt_id": "HELIXOS-L2-122-HIL-NFR-01-COVERAGE-2026-10-02",
+  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-122-001",
+  "correction_reason": "訂正追補。source atom、L2/L11-122の意味・scope、coverage結果は不変。2026-09-29 decision row 58でHELIXOS-L2-035が採択済み、2026-09-30 live26 rows 44/55/70でHARNESS-L2-059とHELIXOS-L2-102が一組として採択済みであることを、固定decision revisionと一致するsection digestから反映した。旧候補metadataの表示を採否根拠にしていた誤記のみを訂正し、既存候補の狭い重複範囲と122の残余scopeを区別した。",
+  "adopted_pair_crosswalk": [
+    {
+      "requirement": "HELIXOS-L2-035",
+      "paired_acceptance": "HELIXOS-L2-035 (L11 section)",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_row": 58,
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "adoption": "adopted",
+      "fixed_section_sha256": {
+        "L2": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+        "L11": "sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742"
+      },
+      "current_section_sha256": {
+        "L2": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+        "L11": "sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742"
+      },
+      "scope": "PR lifecycle eventから同じ論理監査jobを一度だけ生成。122のdelivery/event→jobと部分重複。4 identity全体のowner間効果closureは含まない。",
+      "decision_row_sha256_including_lf": "sha256:f4a5dec58d237ed7836aac99488ea08fde6bb48cfad1155fea4442ce8a1fce2c",
+      "decision_row_text_excludes_lf": true,
+      "decision_row_sha256_without_lf": "sha256:86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+    },
+    {
+      "requirement": "HARNESS-L2-059",
+      "paired_acceptance": "HARNESS-L11-059",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_row": 44,
+      "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "adoption": "adopted; jointly with HELIXOS-L2-102 at row 70",
+      "fixed_section_sha256": {
+        "L2": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+        "L11": "sha256:830646bc2f5bafcce50d20c88fb3d657ad7f5e2353dcf148628151a7c0992198"
+      },
+      "current_section_sha256": {
+        "L2": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+        "L11": "sha256:830646bc2f5bafcce50d20c88fb3d657ad7f5e2353dcf148628151a7c0992198"
+      },
+      "scope": "11 fieldのIssue contract意味・必須存在。102と一組採択だが、ownerをまたぐ全効果の重複閉包ではない。",
+      "decision_row_sha256_including_lf": "sha256:384b3f05efe5d64594822167415bbc4b6cbf1ac9b1cd69ae0aecbb70394360ed",
+      "decision_row_text_excludes_lf": true,
+      "decision_row_sha256_without_lf": "sha256:0bfd9f58757e294ed8dde1e772c5da3c07e91bb7d1956ee4a9a53c84f51e9159"
+    },
+    {
+      "requirement": "HELIXOS-L2-102",
+      "paired_acceptance": "HELIXOS-L11-102",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_row": 55,
+      "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "adoption": "adopted; jointly with HARNESS-L2-059 at row 70",
+      "fixed_section_sha256": {
+        "L2": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+        "L11": "sha256:0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459"
+      },
+      "current_section_sha256": {
+        "L2": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+        "L11": "sha256:0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459"
+      },
+      "scope": "同一revision/digestのdurable intake/projection/handoff。059と一組採択だが、ownerをまたぐ全効果の重複閉包ではない。",
+      "decision_row_sha256_including_lf": "sha256:1c8544ba7c62568860a57793e76c060e21d45ed51f7f76cd54ba46779a03b1e8",
+      "decision_row_text_excludes_lf": true,
+      "decision_row_sha256_without_lf": "sha256:7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d"
+    }
+  ],
+  "correction_history": [
+    {
+      "superseded_receipt_id": "HELIXOS-L2-122-HIL-NFR-01-COVERAGE-2026-10-02",
+      "superseded_registration_id": "MPR-RC-HELIXOS-L2-122-001",
+      "reason": "035/059/102の採否を古いcandidate metadataで読み違えた記述を、decision rowとexact fixed/current section digestへ訂正。source atom、候補意味、scopeは不変。"
+    }
+  ]
+}
