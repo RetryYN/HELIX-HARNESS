@@ -1064,7 +1064,7 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **既存oracleとの関係**：HAC-HIL-07aのknowledge/continuation分離、07bの禁止内容/self-promotion拒否、07cのshadow改善・退行rollback、およびHAT-HIL-07のinput/output digest・shadow metric・review/rollbackは旧設計済みoracleとして意味対応を示す。旧HATは`designed_not_implemented`であり実行済み証拠ではない。本候補はpromotion/shadow/rollback全体を受入範囲へ取り込まず、BR-03の圧縮coverageと三種別分離に限定する。
 - **未決の意味差**：旧DB continuationや旧actor語を現行のepisode/checkpointとCodex・Claude協働へ置換する対応はPO判断材料に残す。明示されたPO 9/24のmemory境界は既存判断として適用し、同じ意味の再承認を求めない。旧source全体closure、formal successor、実行・実装は本候補の合格条件にしない。
 
-### HELIXOS-L2-120 Agent instance lifecycle outcome and terminal separation 受入候補（未採択・未実行）
+### HELIXOS-L11-120 Agent instance lifecycle outcome and terminal separation 受入候補（未採択・未実行）
 
 - **権限と入力**：未採択の `HELIXOS-L2-120` に対する静的な受入oracle候補。採択済みの2026-09-28 L2/L11集合を変更せず、runtime・test・CI・Issue・mergeを実行しない。明示的に選ばれたWorker operationとその契約revision、対象ticket/要求revisionとscope、assignment/attempt identity、authority/capability/lease evidence、checkpoint、result、独立検証記録を与える。operationにlifecycle契約がない、または対応関係が不明なら、該当状態をunknownのままにし、provider名やagent名から適用性を推定しない。
 - **正常系：稼働からresultまで**：契約に合うinstance進行として、登録済みidentity/根拠、eligible、muster/assignment、current lease、running、checkpoint、completed/failed/cancelledのいずれか、独立verification、releaseを順に示す。各遷移と証拠は同じcurrent target revisionおよびassignment/attemptを指す。failedまたはcancelledのresultはその結果として独立検証できるが、成功作業として表示しない。生成Workerとは別のverifierがrelease前にresultを確認する。
