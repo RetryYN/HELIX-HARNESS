@@ -260,8 +260,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
-          "current_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "fixed_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "current_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
           "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
         },
@@ -276,8 +276,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
-          "current_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "fixed_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "current_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
           "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
         },
@@ -292,8 +292,8 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
-          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
           "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
         }
@@ -516,8 +516,8 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
-          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
           "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
         }
@@ -1084,8 +1084,8 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
-          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
           "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
         }
@@ -1244,8 +1244,8 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
-          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
           "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
         },
@@ -2245,8 +2245,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
-          "current_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "fixed_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "current_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
           "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
         },
@@ -2261,8 +2261,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
-          "current_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "fixed_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "current_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
           "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
         },
@@ -2293,8 +2293,8 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
-          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
           "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
         }
@@ -2346,5 +2346,7 @@
       "sha256": "286352584c5ef17195b71c57be165eaf2b1d2da1a2877b53258b65e6ec58f4e6",
       "use": "machine-readable REG06 population and unproven flags"
     }
-  ]
+  ],
+  "section_sha256_extraction_rule": "For each L2 requirement section, start at its exact `### <requirement_id>` heading and stop immediately before the next `### ` heading; decode/encode UTF-8, remove all trailing LF characters (trailing blank lines), append exactly one LF, then SHA-256 those bytes.",
+  "section_sha256_interpretation": "Section hashes identify fixed/current document bytes only. Matching fixed/current hashes do not establish adoption; adoption is determined only by the referenced PO decision record exact revision and its explicit candidate row."
 }
