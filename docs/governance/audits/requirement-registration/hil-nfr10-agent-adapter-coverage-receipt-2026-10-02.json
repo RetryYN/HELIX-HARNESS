@@ -1,20 +1,20 @@
 {
   "receipt_id": "HIL-NFR-10-AGENT-ADAPTER-REGEN-COVERAGE-2026-10-02",
-  "comparison_base": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
+  "comparison_base": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
   "authority_effect": "none",
   "candidate_status": "unadopted_requirement_candidate",
   "candidate_identity": "HARNESS-L2-080",
   "candidate_revision": "MPR-RC-HARNESS-L2-080-001",
   "candidate_section_digests": {
-    "l2": "sha256:47131f0e84bc830ff9751df8736518630a4987968b6b98c7ef0dbe7f000441ab",
-    "l11": "sha256:256db11da475ab02db9fbac867509ef03b3418da6ca579e91048d48e189d32e4"
+    "l2": "sha256:87e1a6adc17f235fbd09de9c60821aa3f09a85b72565419f3f9ae205e33dbdf0",
+    "l11": "sha256:ca0a0dda9119715837d1c6e24d7acb54a5fbe9d12d17e27245643ee0680e3aff"
   },
-  "candidate_digest_rule": "From exact ### HARNESS-L2-080 / ### HARNESS-L11-080 heading through next same-level ### heading; trim trailing blank lines; UTF-8 with one LF.",
+  "candidate_digest_rule": "Exact heading through next same-or-higher heading; trim trailing blank lines; UTF-8 with one LF.",
   "current_file_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_file_sha256": "sha256:f10372de4ee35a9bcbb554a17780bc4bda92abf3148ae9416d2b1ef107a53d2d",
+    "l2_file_sha256": "sha256:10ef4462cf45162166642b04b598f197500531cee29a2cde581aaf1884dea6fa",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_file_sha256": "sha256:3b60046a238734de34b411e10db3074d4e26827a1bcd8d5230a259a0bd38c308"
+    "l11_file_sha256": "sha256:29031b26c367a1aa708438eaa84d7e5a0019663849bd06bf5da0205ac4c03d4c"
   },
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-nfr10-agent-adapter-source-lines-2026-10-02.jsonl",
@@ -24,7 +24,7 @@
     "atom_ids": [
       "HIL-NFR-10"
     ],
-    "source_lines_file_sha256": "sha256:13f2fe96e1702dcbe622fcd13c12ec6bb0092b05ab6d84dd143793a07cf6b9be",
+    "source_lines_file_sha256": "sha256:b4db190aa4a0a3e365a87f1555a814c1d7ec9a3b333253357524e1bd1518e5c0",
     "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "source_asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
     "source_asset_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
@@ -115,6 +115,14 @@
       "id": "HAT-HIL-08",
       "full_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
       "status": "designed_not_implemented; not run"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3CDF4110625C2E6BA1CC",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-harness-agent-lifecycle-integration-test-design.md",
+      "line": 36,
+      "full_file_sha256": "sha256:8b821ca4d5774f9e510a5ceb7b8c338735a1ba79c693c79478b4c62cf73dccce",
+      "line_sha256_including_lf": "sha256:4fb18c925fa141068c3338ceb7d1f6d10803271329cbc0cd04acec4a9b42f06c",
+      "role": "IT-AGLC-002 same-input mutation negative; context only, not selected atom or executed test"
     }
   ],
   "current_adopted_comparisons": [
@@ -263,13 +271,13 @@
   },
   "MPR_prefix_invariant": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "prefix_line_count": 670,
-    "prefix_sha256": "sha256:9d03b5d08d5c731863e73d62c2a544ce3d318023c9fd7abccfb67d0c240bdb78",
-    "main_prefix_at_base": "The full 670-line MPR prefix from exact base 903c9b12 was preserved byte-for-byte; one 080 registration follows it.",
+    "prefix_line_count": 671,
+    "prefix_sha256": "sha256:2b25fb298f5c690b8dd9eedb408e000ff12b793c03ae3a684ce724fdd9ece78b",
+    "main_prefix_at_base": "The full 671-line MPR prefix from exact base d1fd70d4338717301b05f87da1806d2f81ec5b34 is preserved byte-for-byte; one 080 registration follows it.",
     "appended_registration_id": "MPR-RC-HARNESS-L2-080-001",
     "append_count": 1
   },
-  "latest_main_merge_head": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
+  "latest_main_merge_head": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
   "source_collection_scope": "Exactly one selected atom is the HIL-NFR-10 IR statement. The direct L1 row 190 corroborates wording but is not a second atom. HR-FR-HIL-08, HAC-HIL-08a/b/c, HAT-HIL-08 and L5 are context only.",
   "current_l1_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
   "current_upstream_mapping": {
