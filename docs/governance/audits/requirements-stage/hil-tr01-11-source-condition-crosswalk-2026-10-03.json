@@ -263,7 +263,63 @@
           "fixed_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "current_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
-          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-010 パックの境界",
+            "heading_line": 340,
+            "start_line": 340,
+            "end_line": 351,
+            "next_heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-010 パックの境界",
+            "heading_line": 340,
+            "start_line": 340,
+            "end_line": 351,
+            "next_heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 205,
+            "end_line": 205,
+            "row_text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 205,
+            "end_line": 205,
+            "row_text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HARNESS-L2-011",
@@ -279,7 +335,63 @@
           "fixed_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "current_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
-          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 362,
+            "next_heading": "### HARNESS-L2-012 ① 画面プロト／PoC（単体）",
+            "next_heading_line": 363,
+            "end_line_inclusive": 362,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 362,
+            "next_heading": "### HARNESS-L2-012 ① 画面プロト／PoC（単体）",
+            "next_heading_line": 363,
+            "end_line_inclusive": 362,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 206,
+            "end_line": 206,
+            "row_text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 206,
+            "end_line": 206,
+            "row_text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -295,7 +407,55 @@
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
-          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -455,7 +615,63 @@
           "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
-          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXCONNECT-L2-001",
@@ -471,7 +687,55 @@
           "fixed_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
           "current_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
           "fixed_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
-          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
+          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-001 接続登録と端点契約の識別（unit）",
+            "heading_line": 56,
+            "start_line": 56,
+            "end_line": 66,
+            "next_heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "next_heading_line": 67,
+            "end_line_inclusive": 66,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-001 接続登録と端点契約の識別（unit）",
+            "heading_line": 56,
+            "start_line": 56,
+            "end_line": 66,
+            "next_heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "next_heading_line": 67,
+            "end_line_inclusive": 66,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-001 接続登録",
+            "heading_line": 42,
+            "start_line": 42,
+            "end_line": 45,
+            "next_heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "next_heading_line": 46,
+            "end_line_inclusive": 45,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-001 接続登録",
+            "heading_line": 42,
+            "start_line": 42,
+            "end_line": 45,
+            "next_heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "next_heading_line": 46,
+            "end_line_inclusive": 45,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXCONNECT-L2-002",
@@ -487,7 +751,55 @@
           "fixed_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
           "current_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
           "fixed_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
-          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
+          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "heading_line": 67,
+            "start_line": 67,
+            "end_line": 79,
+            "next_heading": "### HELIXCONNECT-L2-003 契約に束縛した通信（unit）",
+            "next_heading_line": 80,
+            "end_line_inclusive": 79,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "heading_line": 67,
+            "start_line": 67,
+            "end_line": 79,
+            "next_heading": "### HELIXCONNECT-L2-003 契約に束縛した通信（unit）",
+            "next_heading_line": 80,
+            "end_line_inclusive": 79,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "heading_line": 46,
+            "start_line": 46,
+            "end_line": 53,
+            "next_heading": "### HELIXCONNECT-L11-003 契約に束縛した通信",
+            "next_heading_line": 54,
+            "end_line_inclusive": 53,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "heading_line": 46,
+            "start_line": 46,
+            "end_line": 53,
+            "next_heading": "### HELIXCONNECT-L11-003 契約に束縛した通信",
+            "next_heading_line": 54,
+            "end_line_inclusive": 53,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -503,7 +815,55 @@
           "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
-          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -519,7 +879,55 @@
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
-          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -683,7 +1091,63 @@
           "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
-          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-015",
@@ -699,7 +1163,55 @@
           "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
-          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -715,7 +1227,55 @@
           "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
-          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -879,7 +1439,55 @@
           "fixed_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
           "current_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
           "fixed_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
-          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742"
+          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 32,
+            "start_line": 32,
+            "end_line": 41,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 42,
+            "end_line_inclusive": 41,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 32,
+            "start_line": 32,
+            "end_line": 41,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 42,
+            "end_line_inclusive": 41,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 34,
+            "start_line": 34,
+            "end_line": 43,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 44,
+            "end_line_inclusive": 43,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 34,
+            "start_line": 34,
+            "end_line": 43,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 44,
+            "end_line_inclusive": 43,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXINFRASTRUCTURE-L2-011",
@@ -892,10 +1500,58 @@
           "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
           "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
           "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
-          "fixed_L2_section_sha256": "5edc42940e8ce68a4f2754304c526344c809afef0a52d4010a4d63d4d694cc21",
-          "current_L2_section_sha256": "5edc42940e8ce68a4f2754304c526344c809afef0a52d4010a4d63d4d694cc21",
-          "fixed_L11_acceptance_section_sha256": "bc5f5fed1e9f4c19ec9224a895948c135505b336367791c664a1dafaf0ae17a3",
-          "current_L11_acceptance_section_sha256": "bc5f5fed1e9f4c19ec9224a895948c135505b336367791c664a1dafaf0ae17a3"
+          "fixed_L2_section_sha256": "6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+          "current_L2_section_sha256": "6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+          "fixed_L11_acceptance_section_sha256": "08f92ca108c502d3e63f530e3e4c05078e1e6b293619fcfe24ae8519b53e9581",
+          "current_L11_acceptance_section_sha256": "08f92ca108c502d3e63f530e3e4c05078e1e6b293619fcfe24ae8519b53e9581",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+            "heading_line": 138,
+            "start_line": 138,
+            "end_line": 147,
+            "next_heading": "## 後続版機能単位候補（すべてversion_target: 1.0より後、版は未定）",
+            "next_heading_line": 148,
+            "end_line_inclusive": 147,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+            "heading_line": 138,
+            "start_line": 138,
+            "end_line": 147,
+            "next_heading": "## 後続版機能単位候補（すべてversion_target: 1.0より後、版は未定）",
+            "next_heading_line": 148,
+            "end_line_inclusive": 147,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+            "heading_line": 140,
+            "start_line": 140,
+            "end_line": 151,
+            "next_heading": "## 後続版境界の受入確認",
+            "next_heading_line": 152,
+            "end_line_inclusive": 151,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+            "heading_line": 140,
+            "start_line": 140,
+            "end_line": 151,
+            "next_heading": "## 後続版境界の受入確認",
+            "next_heading_line": 152,
+            "end_line_inclusive": 151,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -1055,7 +1711,55 @@
           "fixed_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
           "current_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
           "fixed_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
-          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742"
+          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 32,
+            "start_line": 32,
+            "end_line": 41,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 42,
+            "end_line_inclusive": 41,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 32,
+            "start_line": 32,
+            "end_line": 41,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 42,
+            "end_line_inclusive": 41,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 34,
+            "start_line": 34,
+            "end_line": 43,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 44,
+            "end_line_inclusive": 43,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+            "heading_line": 34,
+            "start_line": 34,
+            "end_line": 43,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift",
+            "next_heading_line": 44,
+            "end_line_inclusive": 43,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXINFRASTRUCTURE-L2-003",
@@ -1071,7 +1775,55 @@
           "fixed_L2_section_sha256": "dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
           "current_L2_section_sha256": "dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
           "fixed_L11_acceptance_section_sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe",
-          "current_L11_acceptance_section_sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe"
+          "current_L11_acceptance_section_sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量",
+            "heading_line": 52,
+            "start_line": 52,
+            "end_line": 61,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State",
+            "next_heading_line": 62,
+            "end_line_inclusive": 61,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量",
+            "heading_line": 52,
+            "start_line": 52,
+            "end_line": 61,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State",
+            "next_heading_line": 62,
+            "end_line_inclusive": 61,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量",
+            "heading_line": 54,
+            "start_line": 54,
+            "end_line": 63,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State",
+            "next_heading_line": 64,
+            "end_line_inclusive": 63,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量",
+            "heading_line": 54,
+            "start_line": 54,
+            "end_line": 63,
+            "next_heading": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State",
+            "next_heading_line": 64,
+            "end_line_inclusive": 63,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -1087,7 +1839,55 @@
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
-          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -1247,7 +2047,55 @@
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
-          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXSECURITY-L2-003",
@@ -1263,7 +2111,63 @@
           "fixed_L2_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
           "current_L2_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
           "fixed_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
-          "current_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0"
+          "current_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離",
+            "heading_line": 90,
+            "start_line": 90,
+            "end_line": 99,
+            "next_heading": "### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity",
+            "next_heading_line": 100,
+            "end_line_inclusive": 99,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離",
+            "heading_line": 90,
+            "start_line": 90,
+            "end_line": 99,
+            "next_heading": "### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity",
+            "next_heading_line": 100,
+            "end_line_inclusive": 99,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 87,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 27,
+            "end_line": 27,
+            "row_text": "| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。tenantを含むfixtureは合成scope identityの境界確認であり、顧客tenant runtimeの構築を1.0の前提にしない。tenant dimensionが対象にない環境で存在を捏造せず、当該操作に適用されるtenant identityがある場合は照合を省略しない。 |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 151,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 27,
+            "end_line": 27,
+            "row_text": "| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environment、worktreeのstate、Agent、Hook、credential、memory、artifactの参照を提示し、明示接続のある作用だけが対象内に限定される。primary tree/他projectへのfallbackが発生、またはscope不明を許可にしたら不合格。tenantを含むfixtureは合成scope identityの境界確認であり、顧客tenant runtimeの構築を1.0の前提にしない。tenant dimensionが対象にない環境で存在を捏造せず、当該操作に適用されるtenant identityがある場合は照合を省略しない。 |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXSECURITY-L2-005",
@@ -1279,7 +2183,63 @@
           "fixed_L2_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
           "current_L2_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
           "fixed_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
-          "current_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107"
+          "current_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-005 Credential / Secret境界",
+            "heading_line": 110,
+            "start_line": 110,
+            "end_line": 119,
+            "next_heading": "### HELIXSECURITY-L2-006 Network / Egress境界",
+            "next_heading_line": 120,
+            "end_line_inclusive": 119,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-005 Credential / Secret境界",
+            "heading_line": 110,
+            "start_line": 110,
+            "end_line": 119,
+            "next_heading": "### HELIXSECURITY-L2-006 Network / Egress境界",
+            "next_heading_line": 120,
+            "end_line_inclusive": 119,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 87,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 29,
+            "end_line": 29,
+            "row_text": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 151,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 29,
+            "end_line": 29,
+            "row_text": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。 |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXSECURITY-L2-008",
@@ -1295,7 +2255,63 @@
           "fixed_L2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
           "current_L2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
           "fixed_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
-          "current_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25"
+          "current_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-008 操作ごとのauthority",
+            "heading_line": 140,
+            "start_line": 140,
+            "end_line": 149,
+            "next_heading": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）",
+            "next_heading_line": 150,
+            "end_line_inclusive": 149,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-008 操作ごとのauthority",
+            "heading_line": 140,
+            "start_line": 140,
+            "end_line": 149,
+            "next_heading": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）",
+            "next_heading_line": 150,
+            "end_line_inclusive": 149,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 87,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 32,
+            "end_line": 32,
+            "row_text": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 151,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 32,
+            "end_line": 32,
+            "row_text": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network/install/delete/merge/release/deploy/credential-use/security-change操作で別authorityを要求し、actor/target/operation/revision/environment/scope/expiryが完全一致したときだけ影響の大きいoperationを許可する。Agent利用権から包括write/deployが生じる、または欠落・期限切れ・driftを通すと不合格。 |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXSECURITY-L2-012",
@@ -1311,7 +2327,63 @@
           "fixed_L2_section_sha256": "a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a",
           "current_L2_section_sha256": "a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a",
           "fixed_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
-          "current_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114"
+          "current_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-012 Supply Chain provenance",
+            "heading_line": 180,
+            "start_line": 180,
+            "end_line": 189,
+            "next_heading": "### HELIXSECURITY-L2-013 Artifact integrity",
+            "next_heading_line": 190,
+            "end_line_inclusive": 189,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-012 Supply Chain provenance",
+            "heading_line": 180,
+            "start_line": 180,
+            "end_line": 189,
+            "next_heading": "### HELIXSECURITY-L2-013 Artifact integrity",
+            "next_heading_line": 190,
+            "end_line_inclusive": 189,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 87,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 36,
+            "end_line": 36,
+            "row_text": "| HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。 |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 151,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 36,
+            "end_line": 36,
+            "row_text": "| HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。 |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -1475,7 +2547,55 @@
           "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
-          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -1491,7 +2611,55 @@
           "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
-          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -1651,7 +2819,55 @@
           "fixed_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
           "current_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
           "fixed_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
-          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
+          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-001 接続登録と端点契約の識別（unit）",
+            "heading_line": 56,
+            "start_line": 56,
+            "end_line": 66,
+            "next_heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "next_heading_line": 67,
+            "end_line_inclusive": 66,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-001 接続登録と端点契約の識別（unit）",
+            "heading_line": 56,
+            "start_line": 56,
+            "end_line": 66,
+            "next_heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "next_heading_line": 67,
+            "end_line_inclusive": 66,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-001 接続登録",
+            "heading_line": 42,
+            "start_line": 42,
+            "end_line": 45,
+            "next_heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "next_heading_line": 46,
+            "end_line_inclusive": 45,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-001 接続登録",
+            "heading_line": 42,
+            "start_line": 42,
+            "end_line": 45,
+            "next_heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "next_heading_line": 46,
+            "end_line_inclusive": 45,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXCONNECT-L2-002",
@@ -1667,7 +2883,55 @@
           "fixed_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
           "current_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
           "fixed_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
-          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
+          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "heading_line": 67,
+            "start_line": 67,
+            "end_line": 79,
+            "next_heading": "### HELIXCONNECT-L2-003 契約に束縛した通信（unit）",
+            "next_heading_line": 80,
+            "end_line_inclusive": 79,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L2-002 契約互換性照合とstale再検証（unit）",
+            "heading_line": 67,
+            "start_line": 67,
+            "end_line": 79,
+            "next_heading": "### HELIXCONNECT-L2-003 契約に束縛した通信（unit）",
+            "next_heading_line": 80,
+            "end_line_inclusive": 79,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L2-requirements/connect-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "heading_line": 46,
+            "start_line": 46,
+            "end_line": 53,
+            "next_heading": "### HELIXCONNECT-L11-003 契約に束縛した通信",
+            "next_heading_line": 54,
+            "end_line_inclusive": 53,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXCONNECT-L11-002 契約版照合とstale再検証",
+            "heading_line": 46,
+            "start_line": 46,
+            "end_line": 53,
+            "next_heading": "### HELIXCONNECT-L11-003 契約に束縛した通信",
+            "next_heading_line": 54,
+            "end_line_inclusive": 53,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-018",
@@ -1683,7 +2947,55 @@
           "fixed_L2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
           "current_L2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
           "fixed_L11_acceptance_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
-          "current_L11_acceptance_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+          "current_L11_acceptance_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+            "heading_line": 672,
+            "start_line": 672,
+            "end_line": 681,
+            "next_heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "next_heading_line": 682,
+            "end_line_inclusive": 681,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+            "heading_line": 672,
+            "start_line": 672,
+            "end_line": 681,
+            "next_heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "next_heading_line": 682,
+            "end_line_inclusive": 681,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+            "heading_line": 345,
+            "start_line": 345,
+            "end_line": 351,
+            "next_heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+            "heading_line": 345,
+            "start_line": 345,
+            "end_line": 351,
+            "next_heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-023",
@@ -1699,7 +3011,55 @@
           "fixed_L2_section_sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
           "current_L2_section_sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
           "fixed_L11_acceptance_section_sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
-          "current_L11_acceptance_section_sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+          "current_L11_acceptance_section_sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）",
+            "heading_line": 722,
+            "start_line": 722,
+            "end_line": 731,
+            "next_heading": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）",
+            "next_heading_line": 732,
+            "end_line_inclusive": 731,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）",
+            "heading_line": 722,
+            "start_line": 722,
+            "end_line": 731,
+            "next_heading": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）",
+            "next_heading_line": 732,
+            "end_line_inclusive": 731,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入",
+            "heading_line": 380,
+            "start_line": 380,
+            "end_line": 386,
+            "next_heading": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡しの受入",
+            "next_heading_line": 387,
+            "end_line_inclusive": 386,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入",
+            "heading_line": 380,
+            "start_line": 380,
+            "end_line": 386,
+            "next_heading": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡しの受入",
+            "next_heading_line": 387,
+            "end_line_inclusive": 386,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -1863,7 +3223,55 @@
           "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
-          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -1879,7 +3287,55 @@
           "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
-          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXSECURITY-L2-015",
@@ -1895,7 +3351,63 @@
           "fixed_L2_section_sha256": "6307d5833296e0c438401e8a4a11221a601da0c1389bd813cfb4641fee114a6a",
           "current_L2_section_sha256": "6307d5833296e0c438401e8a4a11221a601da0c1389bd813cfb4641fee114a6a",
           "fixed_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
-          "current_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4"
+          "current_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-015 HELIX Asset identity基盤",
+            "heading_line": 210,
+            "start_line": 210,
+            "end_line": 219,
+            "next_heading": "### HELIXSECURITY-L2-016 Asset exposure classification基盤",
+            "next_heading_line": 220,
+            "end_line_inclusive": 219,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXSECURITY-L2-015 HELIX Asset identity基盤",
+            "heading_line": 210,
+            "start_line": 210,
+            "end_line": 219,
+            "next_heading": "### HELIXSECURITY-L2-016 Asset exposure classification基盤",
+            "next_heading_line": 220,
+            "end_line_inclusive": 219,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 87,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 39,
+            "end_line": 39,
+            "row_text": "| HELIXSECURITY-L2-015 | 1.0基盤、保護運用1.x | §16列挙の HELIX-HARNESS-CORE（HELIX-JSON、Python meaning core、Requirement Engine、internal verification logic）、HELIX-BRAIN（Patterns、Units、Parts、accumulated design knowledge）、HELIX-INTELLIGENCE（internal prompts、judgment configuration、specialist models、routing / diagnostic logic）、HELIX-LABO（episodes、evaluation corpus、training material）、HELIX-OS（authority/state、topology、operation records）、HELIX-SECURITY（policies、credentials）をowner、identity、source、revision/digestで識別できる。列挙外資産も分類対象となり得る。内容をdumpせず識別不能をpublicと扱ったら不合格。受入は1.0 identity baseだけでWeb保護完了を宣言しない。 |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "# HELIX-SECURITY受入候補",
+              "heading_line": 17,
+              "start_line": 17,
+              "end_line": 151,
+              "next_heading": "EOF",
+              "next_heading_line": null
+            },
+            "start_line": 39,
+            "end_line": 39,
+            "row_text": "| HELIXSECURITY-L2-015 | 1.0基盤、保護運用1.x | §16列挙の HELIX-HARNESS-CORE（HELIX-JSON、Python meaning core、Requirement Engine、internal verification logic）、HELIX-BRAIN（Patterns、Units、Parts、accumulated design knowledge）、HELIX-INTELLIGENCE（internal prompts、judgment configuration、specialist models、routing / diagnostic logic）、HELIX-LABO（episodes、evaluation corpus、training material）、HELIX-OS（authority/state、topology、operation records）、HELIX-SECURITY（policies、credentials）をowner、identity、source、revision/digestで識別できる。列挙外資産も分類対象となり得る。内容をdumpせず識別不能をpublicと扱ったら不合格。受入は1.0 identity baseだけでWeb保護完了を宣言しない。 |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -2055,7 +3567,55 @@
           "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
           "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
-          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+            "heading_line": 642,
+            "start_line": 642,
+            "end_line": 651,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "next_heading_line": 652,
+            "end_line_inclusive": 651,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-015 管理・authority記録の受入",
+            "heading_line": 324,
+            "start_line": 324,
+            "end_line": 330,
+            "next_heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "next_heading_line": 331,
+            "end_line_inclusive": 330,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-016",
@@ -2071,7 +3631,55 @@
           "fixed_L2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
           "current_L2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
           "fixed_L11_acceptance_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
-          "current_L11_acceptance_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+          "current_L11_acceptance_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "heading_line": 652,
+            "start_line": 652,
+            "end_line": 661,
+            "next_heading": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）",
+            "next_heading_line": 662,
+            "end_line_inclusive": 661,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+            "heading_line": 652,
+            "start_line": 652,
+            "end_line": 661,
+            "next_heading": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）",
+            "next_heading_line": 662,
+            "end_line_inclusive": 661,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "heading_line": 331,
+            "start_line": 331,
+            "end_line": 337,
+            "next_heading": "### HELIXOS-L2-017 推進・ticket/workflowの受入",
+            "next_heading_line": 338,
+            "end_line_inclusive": 337,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+            "heading_line": 331,
+            "start_line": 331,
+            "end_line": 337,
+            "next_heading": "### HELIXOS-L2-017 推進・ticket/workflowの受入",
+            "next_heading_line": 338,
+            "end_line_inclusive": 337,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -2087,7 +3695,55 @@
           "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
-          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+            "heading_line": 682,
+            "start_line": 682,
+            "end_line": 691,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "next_heading_line": 692,
+            "end_line_inclusive": 691,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 358,
+            "next_heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "next_heading_line": 359,
+            "end_line_inclusive": 358,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -2248,7 +3904,63 @@
           "fixed_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "current_L2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
-          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-010 パックの境界",
+            "heading_line": 340,
+            "start_line": 340,
+            "end_line": 351,
+            "next_heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-010 パックの境界",
+            "heading_line": 340,
+            "start_line": 340,
+            "end_line": 351,
+            "next_heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "next_heading_line": 352,
+            "end_line_inclusive": 351,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 205,
+            "end_line": 205,
+            "row_text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 205,
+            "end_line": 205,
+            "row_text": "| HARNESS-L2-010 | 各パックの入力・出力・必要な依存・検証範囲・版と所有先を確認でき、リリース単位へ収めたパックと収めないパックを明示の一覧で確かめられる。パックを一つ差し替えても、他のパックの版と証拠が保たれる。同じ入力と版から同じ成果物を再現し、失敗時に直前の適格な版へ戻せる | 宣言のない依存を実行時に使う／一つのパックを二つのリリース単位が所有する／未検証のパックを暗黙に収める／パックの昇格だけでリリース単位や製品を昇格させる／関数やフォルダの一覧をパックの一覧とする／全体を一つのパックにまとめて交換・更新できない |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HARNESS-L2-011",
@@ -2264,7 +3976,63 @@
           "fixed_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "current_L2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
-          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 362,
+            "next_heading": "### HARNESS-L2-012 ① 画面プロト／PoC（単体）",
+            "next_heading_line": 363,
+            "end_line_inclusive": 362,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "heading_line": 352,
+            "start_line": 352,
+            "end_line": 362,
+            "next_heading": "### HARNESS-L2-012 ① 画面プロト／PoC（単体）",
+            "next_heading_line": 363,
+            "end_line_inclusive": 362,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 206,
+            "end_line": 206,
+            "row_text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 206,
+            "end_line": 206,
+            "row_text": "| HARNESS-L2-011 | 画面を持たない呼出しで各パックを使い、能力名・契約の版・依存の版を照合し、渡した権限と隔離の単位の中で動き、相関ID付きの進行・結果・証拠を受け取り、途中で止めて同じ冪等キーで再開できる | 特定の画面・GUI・ローカルpath・provider・CI製品がないと呼べない／未対応の版を黙って読み替える／渡していない権限や別のtenantの資源を使う／呼出し元へHELIX本体の稼働DB・鍵・内部統制を渡す／期限切れや中断を成功として返す／Webの要求や設計を本要求から導く |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HARNESS-L2-022",
@@ -2280,7 +4048,63 @@
           "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
-          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "heading_line": 447,
+            "start_line": 447,
+            "end_line": 462,
+            "next_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+            "next_heading_line": 463,
+            "end_line_inclusive": 462,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "table_row",
+            "table_section": {
+              "heading": "## リリース単位の要求とパック境界の受入",
+              "heading_line": 199,
+              "start_line": 199,
+              "end_line": 261,
+              "next_heading": "## 成果の内容品質に関する受入追補候補（G12）",
+              "next_heading_line": 262
+            },
+            "start_line": 217,
+            "end_line": 217,
+            "row_text": "| HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |",
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -2296,7 +4120,55 @@
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
-          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "fixed_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "current_L2_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+            "heading_line": 692,
+            "start_line": 692,
+            "end_line": 701,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+            "next_heading_line": 702,
+            "end_line_inclusive": 701,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          "fixed_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          },
+          "current_L11_locator": {
+            "kind": "section",
+            "heading": "### HELIXOS-L2-020 検収・CI運転の受入",
+            "heading_line": 359,
+            "start_line": 359,
+            "end_line": 365,
+            "next_heading": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+            "next_heading_line": 366,
+            "end_line_inclusive": 365,
+            "revision": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+            "document_path": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
         }
       ],
       "condition_assessment": [
@@ -2347,6 +4219,6 @@
       "use": "machine-readable REG06 population and unproven flags"
     }
   ],
-  "section_sha256_extraction_rule": "For every pinned L2 or L11 section, select the exact `### <requirement_id>` heading (HELIXCONNECT acceptance uses its corresponding `HELIXCONNECT-L11-<nnn>` heading), stop before the next `### ` heading, preserve source UTF-8 bytes, trim trailing LF bytes only, append exactly one LF, then SHA-256 those bytes. For an L11 acceptance-row pin, hash the exact UTF-8 table row including its terminating LF; do not parse/reserialize or normalize the row.",
-  "section_sha256_interpretation": "Fixed/current section or row hashes identify the exact bytes at the two recorded revisions. Matching hashes mean bytes match only; adoption is established solely by the referenced exact PO decision revision and its explicit adopted row."
+  "section_sha256_extraction_rule": "For each L2/L11 section pin, select the exact depth-3 heading `### <requirement_id>` (for HELIXCONNECT L11, map HELIXCONNECT-L2-NNN to the corresponding HELIXCONNECT-L11-NNN heading). End immediately before the next Markdown heading at the same or higher level (depth <= 3), or EOF. Preserve UTF-8 source bytes, trim trailing LF bytes only, append one LF, then SHA-256. The JSON records each fixed/current exact heading and inclusive source line range plus the next-heading boundary. For an L11 acceptance-row pin, hash the exact table row including terminating LF; the JSON records its line, text, and containing heading range.",
+  "section_sha256_interpretation": "Fixed/current section or row hashes identify exact bytes at the two recorded revisions. Matching hashes mean bytes match only; adoption is established solely by the referenced exact PO decision revision and explicit adopted row."
 }
