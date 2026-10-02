@@ -222,5 +222,12 @@
     "No candidate adoption or L3 approval.",
     "No runtime, implementation, test, or CI result.",
     "No condition outside the selected HIL-NFR-25 atom is closed."
-  ]
+  ],
+  "latest_main_comparison": {
+    "commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+    "mpr_main_prefix_lines": 681,
+    "candidate_append_line": 682,
+    "mpr_main_file_sha256": "sha256:27f101d2dd6fe23a93cc6cddf57db75d153e647b17e54f9d5914bfd0085619e8",
+    "meaning": "最新mainの681行byte prefixを保持し083候補1行だけ追加。既存base_commitは起草時の履歴として保持。HARNESS既存両本文は最新mainから不変prefixで候補のみ追記。採択・移管は生成しない。"
+  }
 }
