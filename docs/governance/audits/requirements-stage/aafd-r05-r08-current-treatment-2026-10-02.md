@@ -23,5 +23,5 @@ L2/L11-077は、qualified internal/UILまたはexternal/TER source receiptをdel
 
 これは9 selected source atomの意味対応に限る。R-06/07/09–12のFuture Synthesis処理、R-13–15、AAFD全体のformal successor、runtime/実行、採択は主張しない。positive/negative/unseenは要求oracleの提案であり、実行結果ではない。旧runtime/CLI/CI/testは実行していない。
 
-Receipt: `docs/governance/audits/requirement-registration/aafd-r05-r08-coverage-receipt-2026-10-02.json`  
+Receipt: `docs/governance/audits/requirement-registration/aafd-r05-r08-coverage-receipt-2026-10-02.json`
 Source atoms: `docs/governance/audits/requirement-registration/aafd-r05-r08-source-lines-2026-10-02.jsonl`
