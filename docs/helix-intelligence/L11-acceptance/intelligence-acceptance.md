@@ -393,3 +393,20 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **判定・限界**：独立VERIFY、counterexample、expiry、human gate、4対象の不変更、source経路bypass拒否を個別に確認する。候補本文や本oracleからPO採択、昇格権限、現行formal owner/route、旧runtimeの成功を生成しない。human gateはsource指定のpromotion判断条件であり、各通常評価への追加承認ではない。固定閾値・新schema・人の追加承認手続きは作らない。
 - **依存closureの正常fixture（HARNESS-L2/L11-023）**：HARNESS-L2/L11-023（contract owner: HELIX-HARNESS、version_target 1.0、対象sectionは固定f6dad2a本文と同じ）を依存分類契約として宣言し、fixture上のcontract-version rangeを`1.0..1.0`、actual contract versionを`1.0`、適用理由を「同一入力にR-15昇格評価operationが明示され、000074ではUIL source receiptが選択された」と記録する。R-15 facetの常時必須closureには親L1-021〜026/current revisionと採択済みL2/L11-065を含め、昇格評価時だけVERIFY/counterexample/expiry/human-gate根拠を加える。000074 facetは選択sourceのUIL receipt identity、fixtureで明示されたsource owner identity、revision、qualification evidenceを加え、TER sourceは未選択・未観測とする。依存identity/contract owner/version-range/class/condition/operation/source choiceと適用理由を入力へ結び、同じ入力・revisionを2回照合したとき同じclosure memberと理由になることを確認する。`1.0..1.0`等はfixture値であり、既存契約の互換range仕様を追加しない。
 - **依存欄の個別反例**：同一fixtureからdependency identityを除く、ownerを除くまたは誤る、契約version/rangeを除くまたはactual versionをrange外にする、4区分を欠く/誤分類する、適用conditionを欠く/unknownにする、operation/source selectionを欠く/誤る、対象revision/authority/evidenceを欠く各例を別々に与える。該当closureをunknown/incompleteまたは保留とし、条件unknownをfalse・非適用・参照のみと読み替えず、選択source失敗から別receiptへfallbackしない。同一入力・revisionでclosure memberまたは理由が異なる再評価も不合格とする。
+
+
+### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）
+
+- **前提と限界**：以下は静的な期待結果であり、未実行である。candidate/shadow上の入力状態を照合する。INTELLIGENCE candidateから実runtime gate、tool dispatch、worker assignment、OS/SECURITYの権限変更を生成しない。既存採択004の候補生成・shadow scopeと非強制条件は保持する。
+- **正常：同じsnapshotの選択依存**：説明用fixture `pack-P@r1`、`scope-S@r4`、snapshot `snap-A`/digest `d-A`、および選択されたdependency tuple（種別、source identity、revision、digest、applicability、owner参照）を与える。selected tupleがsnapshot時点と一致し、適用根拠がありunknown/conflict/staleがないとき、同じrevisionのcandidate/shadow入力を`current-for-this-candidate`として返す。結果は依然candidate/shadowであり、gate/dispatch許可にはならない。識別子はfixture値でありschemaやversion形式を規定しない。
+- **独立負例：scope revision変更**：他の入力を保持し、選択された対象scope/revisionだけを`r4`から`r5`へ変える。旧candidate facetをcurrentとして選ばずstale/再評価要として示し、scope ownerへ戻す。
+- **独立負例：requirement revision変更**：他の入力・選択状態を保持し、selected requirement sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、該当requirement ownerへ戻す。
+- **独立負例：template revision変更**：他の入力を保持し、selected template sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、template ownerへ戻す。
+- **独立負例：skill revision変更**：他の入力を保持し、selected skill sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、skill ownerへ戻す。
+- **独立負例：model catalog revision変更**：他の入力を保持し、selected model-catalog sourceだけのrevisionまたはdigestを変更する。特定provider/modelを固定せず、旧適用根拠をcurrentとして再利用せずstale/再評価要とし、catalog ownerへ戻す。
+- **独立負例：allowlist revision変更**：他の入力を保持し、selected allowlist sourceだけのrevisionまたはdigestを変更する。candidate/shadowのsource facetをstaleとして扱い、該当allowlist ownerへ戻す。これだけで本候補は実tool操作の許可/拒否を実行しない。
+- **再評価後の正常**：上記各負例の一つについて、source ownerから得た新revision/digest、対象scopeへのapplicability、更新snapshotを結び、新しいcandidate revisionを作る。対応するshadow評価が実施されていない場合は未完義務として表示し、更新しただけでreview済み、active、gate強制とはしない。
+- **非選択sourceの境界**：選択tupleとapplicability証拠が明示され、変更されたsourceが当該packの非選択sourceだと確認できる例では、その変更だけで当該candidateをstale化しない。非選択の他sourceがcurrent/成功したとは表示しない。選択/非選択または適用根拠がunknownなら、非該当と推測せずunknown/保留にする。
+- **未監査/不一致/unknown**：selected source identity、revision、digest、applicability、ownerのいずれかが欠落・不一致・unknownの場合は、旧値を最新とみなしたり、未選択/非適用へ読み替えたりせず、該当candidate facetをunknown/stale/incompleteとして保留し、特定できるsource ownerへ戻す。formal ownerが不明なら所有者を捏造しない。
+- **残る旧条件**：未監査packのauthority化、未許可tool、self-verification、無上限subagent生成、工程外completion authority、専門agentの全muster/lifecycleは本fixtureの合格対象でない。既存採択pairや別候補が個別に扱う条件を参照しても、NFR-34全体またはHR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21のclosureに数えない。
+- **人の判断が残る点**：六種変更の適用scopeはL2末尾のA/B選択肢をfixture化したものである。A（いずれかのcatalog変更で全pack stale）とB（選択済み依存だけ該当pack stale、推奨）を比較し、Aは不要な広域再評価を発生させ、Bは明示されたdependency/applicabilityに沿う。選択結果は本候補の範囲と後続pairへ影響し、candidate text自体は採択を生成しない。

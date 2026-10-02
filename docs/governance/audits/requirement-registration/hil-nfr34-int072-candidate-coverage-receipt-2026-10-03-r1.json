@@ -1,0 +1,346 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXINTELLIGENCE-L2-072-2026-10-03-005",
+  "supersedes_receipt_id": "MPR-RCPT-INTELLIGENCE-JUDGMENT-PACK-2026-09-28-R4",
+  "authority_effect": "none",
+  "status": "unadopted source-facet candidate revision; existing 004 adoption and exact parts remain fixed; no source closure, runtime gate, or dispatch authority",
+  "requirement_identity": "HELIXINTELLIGENCE-L2-072",
+  "candidate_revision": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+  "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+  "correction_scope": "既採択004の意味・4 existing selected partsは不変。旧HIL-NFR-34 whole IR identityをsource atomとして追加し、そのうち六種のselected dependency changeによる候補/shadow facetのstale、旧facetの再評価前再利用禁止、該当source ownerへの返却だけを072へ候補追補する。INTELLIGENCE候補からruntime gate/OS dispatch/SECURITY authorityを生成しない。残りのNFR-34義務とHR/HAC/HAT全体はsource holdingへ残し、全source closureを主張しない。",
+  "candidate_digest_rule": "r4と同じ既存4 partにL2/L11 EOF追加partを順に加える。各partは選択headingから規定境界までをUTF-8 physical linesで取り、末尾空行を除去しLF1つで正規化する。part順はcandidate_digest_partsに示す。正規化part bytesを区切りなしで連結しSHA-256。EOF追加partの境界は次の同位以上のheading直前まで（現状EOF）。この境界は後続の無関係追記を候補digestへ混入させない。",
+  "candidate_digest_parts": [
+    {
+      "part": "L2-072-original",
+      "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+      "line_start": 561,
+      "line_end": 589,
+      "boundary": "through immediately nested supplement boundary for original part",
+      "sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+    },
+    {
+      "part": "L2-072-supplement",
+      "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "heading": "#### 旧HIL-FR-57/58のpack構成・昇格保護と版境界（未採択候補の追補）",
+      "line_start": 592,
+      "line_end": 598,
+      "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+      "sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b"
+    },
+    {
+      "part": "L11-072-original",
+      "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+      "line_start": 289,
+      "line_end": 303,
+      "boundary": "through immediately nested supplement boundary for original part",
+      "sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+    },
+    {
+      "part": "L11-072-supplement",
+      "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "heading": "#### HIL-FR-57/58追補fixture（未採択候補、FR58の版境界付き）",
+      "line_start": 306,
+      "line_end": 314,
+      "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+      "sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+    },
+    {
+      "part": "L2-072-NFR34-supplement",
+      "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source変更時のstale候補（未採択revision 005）",
+      "line_start": 673,
+      "line_end": 682,
+      "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
+      "sha256": "sha256:c2b9b1f2fc95fe8aed83950aa51098a3766c7962e48c99eecb18e868f00331fc"
+    },
+    {
+      "part": "L11-072-NFR34-supplement",
+      "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）",
+      "line_start": 398,
+      "line_end": 412,
+      "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
+      "sha256": "sha256:a130349c4afe0a3a49afea7ee43ff7c0f68fc274b69c6d4ae5b6fd5cc52830c7"
+    }
+  ],
+  "candidate_semantic_digest": "sha256:6b5c8578d2bc9a0ac3c3c62e87049b467c6f0dcfa9ae682042df884794b004cc",
+  "candidate_semantic_digest_scope": "既採択/固定revision 004のL2/L11 original + FR57/58 supplementの4 partsを同一bytesで保持し、NFR34限定scopeの新規L2/L11 supplement各1 partを追加した合成候補。005全体は未採択。004 adoptionはdecision pinによって存続し、本receiptは取り消し・拡張・修正しない。",
+  "source_atom_set": {
+    "source_holding": "MPR-SH-IR-003#HIL-NFR-34",
+    "ref": "docs/governance/audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl",
+    "file_sha256": "sha256:1df49cc4f48505f654565edeec7acbef28b155adc1d149dd7e73f5c7c6840fd9",
+    "atom_count": 4,
+    "atom_ids": [
+      "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+      "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081",
+      "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147",
+      "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148"
+    ],
+    "digest_rule": "sort atom_id; canonicalize each locator digest as sha256:<64 lowercase hex>; concatenate UTF-8 atom_id + ASCII space + canonical digest, LF between records, no terminal LF. For the three unchanged R4 source atoms use their exact physical source-line SHA; for the whole HIL-NFR-34 IR atom use the source-declared statement.semantic_digest.",
+    "digest": "sha256:b29e02104b53c9288185f1e433d5c6367f3c1de29e5b12fb96beb4a8508fb5b3",
+    "source_scope": "R4のBR29/FR57/FR58各source atomを不変保持し、whole IR HIL-NFR-34 revision 1 atomを追加。NFR34についてはsource文の選択dependency変更/stale facetだけをcandidate mappingし、残りをMPR-SH-IR-003へ保留。旧L1 line 214は同じstatementのcorroboration。HR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21は共有consumer/oracle contextで別atomではない。",
+    "atoms": [
+      {
+        "atom_id": "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+        "source_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47"
+      },
+      {
+        "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081",
+        "source_digest": "sha256:7b052ddde5f76436cd96990bbf6eb99a0c7d51c9f168b99d67a5badadb1dd94b"
+      },
+      {
+        "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147",
+        "source_digest": "sha256:bf400678929dd5a360b3b3a355c96fab10830facda5f7d8111df82dc5fe59f4f"
+      },
+      {
+        "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148",
+        "source_digest": "sha256:b096435ba2e897bccd82ae2e590475a580a170f614cf3caf7ce6c151a8e1a833"
+      }
+    ],
+    "source_closure": "not claimed"
+  },
+  "candidate_source_accounting": {
+    "coverage_result": "no_loss_with_pending_source_facets",
+    "selected_nfr34_facet": "六種sourceのうち候補packが選択したdependency revision/digestの変更→該当candidate facet stale→旧facetを同じcandidate/shadow入力へ再使用せずsource ownerへ返却",
+    "preserved_pending_registration_refs": [
+      "MPR-SH-IR-003#HIL-NFR-34",
+      "MPR-SH-JUDGMENT-PACK-002"
+    ],
+    "unaccounted_atom_refs": [],
+    "coverage_limit": "no_lossは四atomをcandidate facetまたは生存source holdingへ全件accountしたことだけを示す。NFR34 whole identityの全条件、HR/HAC/HAT全体、正式successor/owner、runtime/implementation、採択、dispatch gateの成立を意味しない。"
+  },
+  "fixed_adopted_revision": {
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+    "candidate_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+    "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_line": 85,
+    "decision_line_sha256_including_lf": "sha256:33cc4e2f0ba66e376d7638c3212b12842672ae42bcdbd2a2c396506f12df39c3",
+    "decision_line_sha256_without_lf": "sha256:62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+    "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "decision_text": "| `HELIXINTELLIGENCE-L2-072` | 条件付き採択：B配置、1.0は候補生成とshadow評価まで。 | `MPR-RC-HELIXINTELLIGENCE-L2-072-004` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d` | `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4` | `HELIXINTELLIGENCE-L2-072` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d` | `sha256:381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a` | `docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json` |",
+    "adopted_scope": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。適用対象はdecisionが固定した004 revision/digestのみ。005は対象revision外の未採択候補であり、004採択を取り消さず、範囲を広げない。",
+    "selected_existing_pair_parts": [
+      {
+        "part": "L2-072-original",
+        "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+        "line_start": 561,
+        "line_end": 589,
+        "boundary": "through immediately nested supplement boundary for original part",
+        "sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+      },
+      {
+        "part": "L2-072-supplement",
+        "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "heading": "#### 旧HIL-FR-57/58のpack構成・昇格保護と版境界（未採択候補の追補）",
+        "line_start": 592,
+        "line_end": 598,
+        "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+        "sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b"
+      },
+      {
+        "part": "L11-072-original",
+        "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+        "line_start": 289,
+        "line_end": 303,
+        "boundary": "through immediately nested supplement boundary for original part",
+        "sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+      },
+      {
+        "part": "L11-072-supplement",
+        "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "heading": "#### HIL-FR-57/58追補fixture（未採択候補、FR58の版境界付き）",
+        "line_start": 306,
+        "line_end": 314,
+        "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+        "sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+      }
+    ]
+  },
+  "candidate_current_pin": {
+    "comparison_base": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "l2": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "full_file_sha256": "sha256:483637a5482dd43f5b7c94cb87fd7566de97288854ea5c289544a4fd070a105c",
+      "parts": [
+        {
+          "part": "L2-072-original",
+          "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+          "line_start": 561,
+          "line_end": 589,
+          "boundary": "through immediately nested supplement boundary for original part",
+          "sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+        },
+        {
+          "part": "L2-072-supplement",
+          "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "heading": "#### 旧HIL-FR-57/58のpack構成・昇格保護と版境界（未採択候補の追補）",
+          "line_start": 592,
+          "line_end": 598,
+          "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+          "sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b"
+        },
+        {
+          "part": "L2-072-NFR34-supplement",
+          "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source変更時のstale候補（未採択revision 005）",
+          "line_start": 673,
+          "line_end": 682,
+          "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
+          "sha256": "sha256:c2b9b1f2fc95fe8aed83950aa51098a3766c7962e48c99eecb18e868f00331fc"
+        }
+      ],
+      "composite_digest": "sha256:a674bb59c20f61e32f9a5de4e80e9ada2fc61e74939916f9892f9f5d7ad0e537"
+    },
+    "l11": {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "full_file_sha256": "sha256:3d0dc073d55802302b079acf68a9afc2708e6d5ca6c8031da7207d920a29a6e4",
+      "parts": [
+        {
+          "part": "L11-072-original",
+          "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+          "line_start": 289,
+          "line_end": 303,
+          "boundary": "through immediately nested supplement boundary for original part",
+          "sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+        },
+        {
+          "part": "L11-072-supplement",
+          "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "heading": "#### HIL-FR-57/58追補fixture（未採択候補、FR58の版境界付き）",
+          "line_start": 306,
+          "line_end": 314,
+          "boundary": "through next equal-or-higher heading; trailing blank lines removed",
+          "sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+        },
+        {
+          "part": "L11-072-NFR34-supplement",
+          "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）",
+          "line_start": 398,
+          "line_end": 412,
+          "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
+          "sha256": "sha256:a130349c4afe0a3a49afea7ee43ff7c0f68fc274b69c6d4ae5b6fd5cc52830c7"
+        }
+      ],
+      "composite_digest": "sha256:aaf23588ee405b6f95b6e9ddf68910d093f50f8c6422e4dd2544766188cbf5cf"
+    },
+    "relation": "Four 004 parts byte-identical to their r4 pins; each new source-facet supplement is a separate unadopted EOF part."
+  },
+  "source_to_current_mapping": {
+    "old_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "locator": "#/HIL-NFR-34",
+      "whole_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "statement_semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+      "quote": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+      "atom_id": "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_holding": "MPR-SH-IR-003#HIL-NFR-34"
+    },
+    "l1_corroboration": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 214,
+      "whole_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line_sha256_including_lf": "sha256:a0b6648cea61b4249fa2735e6f3c33d8bbba14ef7258ed45988599f285d6d6a0",
+      "not_additional_atom": true,
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+    },
+    "candidate_facet_map": [
+      {
+        "source_phrase": "scope/requirement/template/skill/model catalog/allowlistの変更でstale化する",
+        "candidate_destination": "INTELLIGENCE-L2-072-005 selected dependency stale candidate facet",
+        "owner_return": "当該source/dependencyのowner。owner不明ならunknownとして保持",
+        "uncovered_remainder": "未監査/未許可tool/自己検証/無上限subagent/工程外completion authority、専門agent全体の実行・muster、その他の旧条件はIR holdingへ残る"
+      },
+      {
+        "source_phrase": "生成元snapshotとdigestへbindする",
+        "candidate_destination": "004既存candidateのsource/applicability traceに沿う。ただしNFR34の全scope bindingを新たに閉じない",
+        "uncovered_remainder": "source全体・専門agent実装・formal successorのclosureなし"
+      },
+      {
+        "source_phrase": "提案時点で権威を持たない",
+        "candidate_destination": "004 adopted candidate/shadow-only limitを参照",
+        "uncovered_remainder": "候補追加で既存authorityを生成/変更しない"
+      }
+    ],
+    "legacy_shared_consumer_context": {
+      "system_contract": "HR-FR-HIL-21: whole contract combines BR29/30, FR57-60 and NFR34; generation/muster/runtime guard/lifecycle receipt. Not closed by this candidate.",
+      "acceptance_cases": {
+        "HAC-HIL-21a": "positive: determine/generate applicable pack and necessary minimum team",
+        "HAC-HIL-21b": "negative: reject self-promotion/unauthorized/self-verification",
+        "HAC-HIL-21c": "boundary: catalog change stale then regenerate/retire"
+      },
+      "system_test": "HAT-HIL-21 designed_not_implemented; no test/runtime execution. Shared consumer/oracle context, not additional source atom or execution dependency."
+    },
+    "legacy_routing_state": "Historical crosswalk/bootstrap/decomposition route OS as candidate placement only. authority_effect none; successor_assignment unassigned; meaning_change_applied false. This candidate does not settle placement or transfer source-owner semantics.",
+    "current_owner_boundary": "INTELLIGENCE owns only candidate representation/applicability evidence in this unadopted supplement; HARNESS retains pack contract/gate semantics, OS retains actual assignment/dispatch under existing adopted pair, SECURITY retains per-operation tool authority, and selected source owners resolve their own revision/applicability. This mapping does not create new dispatch duty."
+  },
+  "dependency_023": {
+    "classification_contract": "Adopted HARNESS-L2/L11-023 four classes are reused: always required, required for selected operation, required by selected input source, reference material only.",
+    "candidate_classification": "This candidate's six source kinds are required only when actually selected by the candidate pack; target scope/revision is part of the candidate input. Shadow case/oracle is required only when that evaluation operation is selected. Unselected sources are unobserved, not successful. Unknown applicability remains unknown; reference material never substitutes for source or authority.",
+    "runtime_dependency_claim": false
+  },
+  "fixture_coverage": {
+    "normal": "Same target scope/revision, snapshot/digest and selected source tuples match; candidate/shadow remains non-gating.",
+    "independent_negatives": [
+      "selected scope revision changed only",
+      "selected requirement revision/digest changed only",
+      "selected template revision/digest changed only",
+      "selected skill revision/digest changed only",
+      "selected model-catalog revision/digest changed only",
+      "selected allowlist revision/digest changed only"
+    ],
+    "unseen": "unknown applicability/owner/source tuple stays unknown and stale/incomplete; no fallback",
+    "reenactment": "after updated source owner receipt and new snapshot/candidate revision, same candidate remains candidate and shadow/review obligations remain explicit",
+    "not_covered": "runtime dispatch denial, agent muster, tool operation, full HR/HAC/HAT closure, other HIL-NFR-34 conditions"
+  },
+  "human_decision_material": {
+    "source_quote": "scope/requirement/template/skill/model catalog/allowlistの変更でstale化し",
+    "option_A": "六種のいずれかに変更があれば、対象scope/実選択にかかわらずすべてのpackをstale化する。",
+    "option_B_recommended": "該当packが選択・使用したsourceまたは対象scope/revisionの変更だけをその候補facetのstale化へ結ぶ。非選択sourceは未観測を維持し、選択/適用性不明はunknownとする。",
+    "recommendation_basis": "L1-001/002のdomain/capability scope選択、L1-012/013のunknown/provenance、adopted HARNESS-010/011/023の明示依存・適用closureに整合し、無関係packへの広域invalidatingを導入しない。",
+    "impact": "INT072 candidate/shadow stale scopeとdependency closureの範囲。いずれもINT candidateからruntime gate/OS dispatch/SECURITY authorityや追加承認を生成しない。A/B決定はこの候補の採否・後続pair時に必要な意味選択であり、この作成タスクは承認を仮定しない。"
+  },
+  "parent_pins": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "fixed_commit": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca",
+      "sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+    },
+    "intelligence_l1": {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "fixed_commit": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca",
+      "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_ids": [
+        "HELIXINTELLIGENCE-L1-001",
+        "HELIXINTELLIGENCE-L1-002",
+        "HELIXINTELLIGENCE-L1-008",
+        "HELIXINTELLIGENCE-L1-012",
+        "HELIXINTELLIGENCE-L1-013",
+        "HELIXINTELLIGENCE-L1-020"
+      ]
+    },
+    "po_scope_decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 85,
+      "sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "selected_fixed_registration": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+      "adopted_limit": "B placement; 1.0 candidate generation + shadow evaluation only"
+    }
+  },
+  "authority_boundary": {
+    "adopted_004_preserved": true,
+    "005_adopted": false,
+    "new_runtime_gate": false,
+    "new_OS_dispatch_obligation": false,
+    "new_SECURITY_authority": false,
+    "source_closure": false,
+    "formal_successor_assigned": false,
+    "legacy_runtime_executed": false
+  }
+}
