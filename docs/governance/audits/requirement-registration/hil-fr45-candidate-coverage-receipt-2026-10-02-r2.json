@@ -211,15 +211,15 @@
     "source_semantics": {
       "HIL-NFR-28": "For each active requirement in the specified target scope, bind six stated conditions individually and keep unresolved ambiguity/orphan/stale not green. Service/capability may have a reasoned non-applicability.",
       "HIL-FR-45": "Preserve thirteen semantic fields with typed edges; split/merge/rename/supersede/reject/N/A each require complete before/after digest, all source atom dispositions, downstream stale/result, and review-authority receipt.",
-      "difference": "The sources are compatible when NFR-28 justified service/capability non-applicability is preserved as a supported value within the required field, not as field omission or a requirement-change operation. The independent PO choice is whether to retain that source-faithful candidate interpretation (A), defer the NFR-28 clause as unrepresented under strict 078-001 reading (B), or request an explicit meaning decision (C). FR-45 itself does not prohibit field-value N/A in the abstract; it explicitly gates N/A when used as a listed requirement-change operation."
+      "difference": "The sources are compatible when NFR-28 justified service/capability non-applicability is preserved as a supported value within the required field, not as field omission or a requirement-change operation. The selected source pair does not establish general field-value non-applicability for the other twelve fields; retain their required meaning and values. Any separately evidenced field-specific non-applicability must be documented with its own source, scope, revision, authority/applicability basis and cannot waive owner/source/oracle or other relation fields. The independent PO choice is whether to retain this source-faithful candidate interpretation for service/capability (A), defer the NFR-28 clause as unrepresented under strict 078-001 reading (B), or request an explicit meaning decision (C). FR-45 itself does not prohibit field-value N/A in the abstract; it explicitly gates N/A when used as a listed requirement-change operation."
     },
     "options": {
-      "A": "Recommended: retain capability/service as a required field and permit NFR-28’s explicit reasoned non-applicability value when its scope, revision, authority/applicability basis and typed relation are present; omission/unknown remains incomplete, and FR-45 requirement-change N/A keeps its full separate receipt.",
+      "A": "Recommended: retain capability/service as a required field and permit only NFR-28’s explicit reasoned non-applicability value for that field when scope, revision, authority/applicability basis and typed relation are present; other twelve fields retain required meaning/values unless a separate field-specific source explicitly supports an exception; omission/unknown remains incomplete, and FR-45 requirement-change N/A keeps its full separate receipt.",
       "B": "Keep 078-001’s strict interpretation; preserve NFR-28 in source holding and leave its service/capability non-applicability clause unresolved rather than claiming candidate coverage.",
       "C": "If the PO considers these requirements semantically incompatible, defer adoption and return an explicit meaning-change decision for the two exact source revisions; do not silently drop either clause."
     },
-    "recommendation": "A, because NFR-28 expressly allows a reasoned non-applicability, while FR-45 requires semantic fields/typed relations and separately receipt-gates listed change operations. Preserve the field with an evidence-bound value; do not infer field deletion or operation N/A.",
-    "impact": "A represents both source clauses in one candidate while preserving all 13 fields and change-operation controls. B leaves an explicit NFR-28 condition without a candidate destination. C postpones the semantic choice. This packet records choices; it does not create adoption, owner transfer, or new approval procedure.",
+    "recommendation": "A, because NFR-28 expressly allows a reasoned non-applicability for service/capability, while FR-45 requires semantic fields/typed relations and separately receipt-gates listed change operations. Preserve that field with an evidence-bound value; do not infer field deletion, generalize the exception to the other twelve fields, or infer operation N/A.",
+    "impact": "A represents both source clauses while preserving all 13 fields and change-operation controls; its non-applicability value exception is limited to NFR-28’s service/capability field. B leaves an explicit NFR-28 condition without a candidate destination. C postpones the semantic choice. This packet records choices; it does not create adoption, owner transfer, or new approval procedure.",
     "affected_requirements": [
       "HIL-NFR-28",
       "HIL-FR-45",
@@ -260,18 +260,18 @@
   "registered_at": "2026-10-02T12:42:30+09:00",
   "source_atom_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
   "current_bytes_read_after": {
-    "candidate_l2_section_sha256": "sha256:5059c70d0779f935ffe43e3b1b37400735f4eeee1ba31ff5e48559fb9a875c60",
-    "candidate_l2_full_file_sha256": "sha256:1294584edc0dfa833c7c93cf1e605945b10be07c768f3c992861aeec46237e96",
-    "candidate_l11_section_sha256": "sha256:6a2ea79f5da15083c5cbcc51c2133d0ef412569f5fa6daff3f3002bbe156bfb4",
-    "candidate_l11_full_file_sha256": "sha256:67ee9f817c640e54ab997a3eb00b7d13147c4483101f4d9ab982840b62b87149",
+    "candidate_l2_section_sha256": "sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc",
+    "candidate_l2_full_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
+    "candidate_l11_section_sha256": "sha256:8634acd14543ae65ece594885a867cd8edfe5c9ddd7cd5e811d3a8cf41c6736e",
+    "candidate_l11_full_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
     "candidate_identity": "HARNESS-L2-078",
     "registration_id": "MPR-RC-HARNESS-L2-078-002",
     "authority_effect": "none"
   },
   "root_integration_note": "Historical fixed-before pins remain unchanged. Latest main64a9 is preserved as a full prefix; only077/078 candidates and their registration rows are added. Shared current full-file pins refreshed after078 correction;077 section unchanged. No adoption or source closure is claimed.",
   "review_correction": {
-    "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception.",
-    "response": "Correction: 13 field meanings and typed relations remain present; FR-45 line 135 does not itself prohibit a justified non-applicability value in a field. NFR-28 explicitly allows such a value for service/capability. Keep that field and bind the value to reason, target scope/revision, authority/applicability basis. Missing/unknown/stale/implicit omission remains incomplete. A requirement-change operation N/A is distinct and still needs its full FR-45 receipt.",
+    "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception. Old HIL-NFR-28 explicitly permits reasoned non-applicability only for its service/capability binding; this permission does not generalize to other fields.",
+    "response": "Correction: 13 field meanings and typed relations remain present; FR-45 line 135 does not itself prohibit a justified non-applicability value. NFR-28 explicitly permits that value for service/capability, so keep this field and bind its value to reason, target scope/revision, authority/applicability basis. The two selected sources do not authorize generalizing non-applicability to the other twelve fields; preserve their required meaning and values unless separate explicit field-specific source evidence applies. No non-applicability value waives owner/source/oracle or related fields. Missing/unknown/stale/implicit omission remains incomplete. A requirement-change operation N/A is distinct and still needs its full FR-45 receipt.",
     "comparison_base_commit": "f8be390d15c8709da82af38d0d7679dffe1f5312",
     "authority_effect": "none"
   },
@@ -284,21 +284,21 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:1294584edc0dfa833c7c93cf1e605945b10be07c768f3c992861aeec46237e96",
+      "full_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
       "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの条件候補（HARNESS-CORE単体、未採択）",
       "start_line": 1316,
       "end_before_line": 1326,
-      "sha256": "sha256:5059c70d0779f935ffe43e3b1b37400735f4eeee1ba31ff5e48559fb9a875c60",
-      "byte_length": 5938
+      "sha256": "sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc",
+      "byte_length": 6304
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:67ee9f817c640e54ab997a3eb00b7d13147c4483101f4d9ab982840b62b87149",
+      "full_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
       "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの受入候補（未採択・未実行）",
       "start_line": 1026,
-      "end_before_line": 1050,
-      "sha256": "sha256:6a2ea79f5da15083c5cbcc51c2133d0ef412569f5fa6daff3f3002bbe156bfb4",
-      "byte_length": 6453
+      "end_before_line": 1051,
+      "sha256": "sha256:8634acd14543ae65ece594885a867cd8edfe5c9ddd7cd5e811d3a8cf41c6736e",
+      "byte_length": 7214
     },
     "candidate_digest_rule": "From the HARNESS-L2-078 heading through the next same-level ### heading, remove trailing blank lines, UTF-8 encode with one final LF, then SHA-256. L11 section is independently pinned by same boundary rule."
   },
@@ -383,5 +383,7 @@
       "status": "designed_not_implemented; read-only design evidence, not execution."
     }
   },
-  "source_limits": "NFR-28 IR source is the one source atom; its direct old L1 line and HR/HAC/HAT are corroboration/consumer context, not additional atoms. HIL-NFR-28 target assessment remains HARNESS/OS and no product owner/successor is assigned. Its target-scope active requirement denominator is independent of the two selected candidate source atoms. Whole old source remains preserved_pending_rehome."
+  "source_limits": "NFR-28 IR source is the one source atom; its direct old L1 line and HR/HAC/HAT are corroboration/consumer context, not additional atoms. HIL-NFR-28 target assessment remains HARNESS/OS and no product owner/successor is assigned. Its target-scope active requirement denominator is independent of the two selected candidate source atoms. Whole old source remains preserved_pending_rehome.",
+  "candidate_l11_line_start": 1026,
+  "candidate_l11_line_end": 1050
 }
