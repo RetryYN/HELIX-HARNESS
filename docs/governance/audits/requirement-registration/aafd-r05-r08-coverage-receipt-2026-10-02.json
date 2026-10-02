@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.0",
+  "receipt_id": "aafd-r05-r08-coverage-receipt-2026-10-02",
+  "created_against_commit": "064eb83cdf78dad0bad6f5f256ff7048b25203bd",
+  "authority_effect": "none",
+  "requirement_identity": "HELIXINTELLIGENCE-L2-077",
+  "requirement_status": "unadopted candidate only",
+  "selected_source_scope": {
+    "source_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "selected_lines": [
+          52,
+          53,
+          71
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "file_sha256": "sha256:09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "selected_lines": [
+          19,
+          22,
+          39,
+          40,
+          42,
+          44
+        ]
+      }
+    ],
+    "atom_count": 9,
+    "atom_refs": [
+      "LEGACY-CAND-LINE-000054",
+      "LEGACY-CAND-LINE-000057",
+      "LEGACY-CAND-LINE-000072",
+      "LEGACY-CAND-LINE-000073",
+      "LEGACY-CAND-LINE-000075",
+      "LEGACY-CAND-LINE-000077",
+      "LEGACY-CAND-LINE-000146",
+      "LEGACY-CAND-LINE-000147",
+      "LEGACY-CAND-LINE-000158"
+    ],
+    "atom_set_digest": "sha256:325e43897c520c690741d6efcbfe4f82a4ec0404faf1a5dfa40accfa43ab0f06",
+    "source_jsonl": "docs/governance/audits/requirement-registration/aafd-r05-r08-source-lines-2026-10-02.jsonl",
+    "source_jsonl_sha256": "sha256:71bbe0b1dea2b7f557e63f19c400dc616158e83ac71f1388e91c1097851b4a06",
+    "scope": "旧AAFD-R-05/R-08のsource-origin/owner区別とunknown/non-write boundary、およびAC-005/AC-008と指定された外部release、owner swap、unknown補完、direct-write negative oracle。R-06/07/09-15やAAFD full lifecycleを閉じない。"
+  },
+  "candidate_pair": {
+    "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+    "l2_section_sha256": "sha256:885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e",
+    "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+    "l11_section_sha256": "sha256:6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711",
+    "source_lineage": "meaning rederived from historical candidate; no runtime/API/schema or owner route copied"
+  },
+  "parent_and_authority": {
+    "concept_path": "docs/concept/helix-concept.md",
+    "concept_current_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "planning_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+    "planning_current_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+    "parent_requirement": "HELIXINTELLIGENCE-L1-009",
+    "parent_decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+    "parent_scope": "audit proposal traceability and no free-text authority; owner for formal future-delta consumer is not inferred",
+    "adoption_decision": "No PO decision covers L2-077; management register state/authority_effect metadata do not determine adoption.",
+    "version_target_basis": {
+      "target": "1.0",
+      "source_of_target": "current parent only; the selected old AAFD-R-05/R-08 source atoms do not specify version_target",
+      "parent_requirement": "HELIXINTELLIGENCE-L1-009",
+      "parent_table_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "parent_table_line": 51,
+      "parent_file_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_row_version": "1.0",
+      "interpretation": "077 carries the current parent L1-009 version_target; this does not create a version or alter the parent meaning."
+    }
+  },
+  "existing_candidate_and_adopted_pair_comparison": [
+    {
+      "identity": "HELIXINTELLIGENCE-L2-073",
+      "status": "Adopted by 2026-09-29 57-candidate decision row 86; exact selected pair digest is separately pinned. It was not in the original 2026-09-28 54-candidate set.",
+      "scope": "AAFD-R-04 detector priority/free-text direct projection only; does not carry R05/R08 source receipt owner or delta non-write target cases",
+      "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md; docs/governance/decisions/po-decision-2026-09-29-57candidates.md:86",
+      "adopted_pair_section_digests": {
+        "l2": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+        "l11": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1"
+      }
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-075",
+      "status": "registered unadopted proposal",
+      "scope": "R01-03 proposal identity and qualification; not R05/R08"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-076",
+      "status": "registered unadopted proposal",
+      "scope": "R13-14 comparison; not R05/R08"
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-009/012/013",
+      "status": "adopted current trace/unknown requirements",
+      "scope": "general audit trace and unknown preservation; no exact selected AAFD R05/08 source/owner mapping nor all named no-write target oracles"
+    },
+    {
+      "identity": "HARNESS-L2/L11-023",
+      "status": "Adopted exact fixed pair; 2026-09-28 decision includes MPR-RC-HARNESS-L2-023-002 among all 24 adopted candidates. Fixed pair at f6dad2a and current pair are byte-identical for section 023.",
+      "l2_current_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+      "l11_current_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3",
+      "exact_scope": "four classes: always required; operation-specific required; selected-input-source required; reference-only. Applied here as a dependency classification distinction only, not as AAFD owner assignment or delta processing authority.",
+      "adopted_pair_section_digests": {
+        "l2": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+        "l11": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+      },
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:52",
+      "four_adopted_classes": [
+        "常時必須",
+        "特定操作時のみ必須",
+        "選択した入力元に応じて必須",
+        "参照資料のみ"
+      ]
+    }
+  ],
+  "coverage_rows": [
+    {
+      "atom_id": "LEGACY-CAND-LINE-000054",
+      "source_line": 19,
+      "source_line_sha256": "sha256:036c027a10d1ed6f071b19a01026db2c5a15c94974749593ff5561510557ac71",
+      "source_text": "| AAFD-AC-005 | AAFD-R-05 | internal/UILとexternal/TERを正しく分離し、owner swap mutationを拒否する |",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Reject internal/external source owner swap mutation."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000057",
+      "source_line": 22,
+      "source_line_sha256": "sha256:1fbbf05f1c152a77fd8b56e2bd67b0ea7935393571959bbebb77bda7d07a0305",
+      "source_text": "| AAFD-AC-008 | AAFD-R-08 | unknown→0/unchanged/observed mutationとdeltaからのRequirement direct writeを拒否する |",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Reject unknown completion as 0, unchanged, or observed mutation and reject direct Requirement write. R-08 line 71 separately preserves neutral and all five non-write targets."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000072",
+      "source_line": 39,
+      "source_line_sha256": "sha256:eac5fa0aa74c754967ceb8e2d8fe94ccec7358f0824274f3550c2bf7156863d3",
+      "source_text": "- external release検出だけでHELIX defectと確定する。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "External release detection alone does not establish HELIX defect."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000073",
+      "source_line": 40,
+      "source_line_sha256": "sha256:52bf73f110d7e553eef81e041d9a0f07b009985ff98136dc10c503ecf5d32c2c",
+      "source_text": "- internal driftをTER、external driftをUILだけで閉じる。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Reject internal drift classified as TER or external drift closed only by UIL."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000075",
+      "source_line": 42,
+      "source_line_sha256": "sha256:7d50011aa393e8ec509658d7bf71faaf25c81e3379b2650b309ae04ce2f53697",
+      "source_text": "- unknownを0、neutral、unchanged、observedへ変換する。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Reject unknown completion as 0, neutral, unchanged, or observed."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000077",
+      "source_line": 44,
+      "source_line_sha256": "sha256:5e9af37e29ad6d515d1e4f98a6ad9cd257e293f552021145269acffb69582535",
+      "source_text": "- deltaからRequirement、Design、Release、Assignmentを直接変更する。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Reject direct Requirement/Design/Release/Assignment change from delta."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000146",
+      "source_line": 52,
+      "source_line_sha256": "sha256:d3fdfc30f645aa217100f69f2dd2882ae4439d8fa175087d958ff59eda1fc0af",
+      "source_text": "`FutureStateDeltaV1`は`internal/UIL`または`external/TER`のqualified source receiptからだけ生成する。origin typeとownerを",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "qualified internal/UIL or external/TER source receipt is the only delta-candidate origin; separate origin type and owner fields."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000147",
+      "source_line": 53,
+      "source_line_sha256": "sha256:2df5960f40a365ff786edec039ef0ebf9e4f3dfa2705bcd289ec04881c2ef022",
+      "source_text": "別fieldで保持し、内部と外部を同じenum identityへ潰さない。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Keep internal and external origins distinct; do not collapse them to one enum identity."
+    },
+    {
+      "atom_id": "LEGACY-CAND-LINE-000158",
+      "source_line": 71,
+      "source_line_sha256": "sha256:aa90f17df7d6e3da02b83521285c9a87554366b34081829d2bbb82b4c6d1350d",
+      "source_text": "unknownを0、neutral、unchanged、observedへ補完しない。deltaはRequirement、Design、Release、Assignment、mergeを直接変更しない。",
+      "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
+      "disposition": "carried_to_unadopted_candidate_limited_scope",
+      "semantic_limit": "Do not fill unknown as 0, neutral, unchanged, or observed; delta does not directly change Requirement, Design, Release, Assignment, or merge."
+    }
+  ],
+  "positive_negative_unseen": {
+    "positive": "Two distinct illustrative tuples: (receipt r-int-7, revision rev-3, origin_type internal, fixture-provided existing owner identity owner-int-existing) and (receipt r-ext-4, revision rev-2, origin_type external, fixture-provided existing owner identity owner-ext-existing). Compare identity/revision/origin/owner separately; the external tuple includes a provider release observation and does not establish a HELIX defect without internal HELIX evidence. Keep unobserved delta dimensions unknown; direct writes to Requirement/Design/Release/Assignment/merge are 0. Fixture values are examples, not runtime results, an owner registry, or a new schema.",
+    "negative": [
+      "external release alone => defect",
+      "internal->TER / external->UIL owner/source swap",
+      "unknown->0",
+      "unknown->neutral",
+      "unknown->unchanged",
+      "unknown->observed",
+      "delta direct write to Requirement",
+      "Design",
+      "Release",
+      "Assignment",
+      "merge",
+      "selected receipt cannot be read => unknown/incomplete; return to selected source owner; never silently use another available receipt",
+      "selected receipt revision/qualification check fails => unknown/incomplete; no fallback to a different receipt, unselected source, or reference-only material",
+      "selected receipt owner identity is missing or contradicts the existing source owner => unknown/incomplete; distinguish from fixture case with matching existing owner identity"
+    ],
+    "unseen": "A held-out selected receipt with missing/mismatched owner, origin type, revision or qualification evidence, unreadable selected receipt, or failed qualification lookup remains unknown/incomplete and returns to that selected source owner. Do not silently substitute another receipt, unselected source, or reference-only material. Keep owner-known fixture and owner-unknown/mismatch cases distinct.",
+    "runtime_status": "not run; old runtime, CLI, CI and tests prohibited"
+  },
+  "owner_and_meaning_decision_material": {
+    "options": {
+      "A": "Keep L1-009 audit proposal scope; do not assign a formal delta consumer/owner and preserve unresolved binding as unknown (recommended).",
+      "B": "If INTELLIGENCE should own delta consumer/projection, PO explicitly changes L1-009 responsibility/output meaning before a separate L2/L11 detailed contract.",
+      "C": "If another existing mechanism owns it, identify that mechanism’s adopted L1 and L2/L11 source/consumer pair before placement; do not create old UIL/TER routes."
+    },
+    "recommendation": "A pending verified current owner/consumer contract; the candidate can preserve source-origin and non-write semantics without deciding ownership.",
+    "impacted_requirements": [
+      "HELIXINTELLIGENCE-L1/L2/L11-009",
+      "HELIXOS-L2/L11 ticket/assignment boundary",
+      "HELIXLABO-L2/L11 evaluation boundary",
+      "existing source owner and future-delta consumer requirements, once identified"
+    ]
+  },
+  "pins": {
+    "base_commit": "064eb83cdf78dad0bad6f5f256ff7048b25203bd",
+    "l2_file_sha256": "sha256:0678d961b85f383e9a2d49dc0fd56395c28eafeed23285e999615f30a7207895",
+    "l11_file_sha256": "sha256:065e6f5c8f43f501b53146dc2481f31648ce8d1e8abb6cb60e5d91dea8d45bc6",
+    "l2_section_sha256": "sha256:885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e",
+    "l11_section_sha256": "sha256:6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711",
+    "source_jsonl_sha256": "sha256:71bbe0b1dea2b7f557e63f19c400dc616158e83ac71f1388e91c1097851b4a06",
+    "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
+    "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "planning_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+    "legacy_requirement_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+    "legacy_acceptance_sha256": "sha256:09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a"
+  },
+  "validation_boundary": "Static source file/line/atom/hash, candidate paired section, parent/decision, MPR append-only and four dependency-class distinction, concrete receipt-read/qualification failure no-fallback oracle, and current-parent version_target evidence. No old runtime, test, CI or CLI; no authority adoption or execution claim.",
+  "management_registration": {
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
+    "register_line": 661,
+    "pre_append_register_sha256": "sha256:aea487bfa071a12a7e5b2031b8c614817f7ccc57e9833d829d70368f57b3ba19",
+    "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
+    "append_only_prefix_verified": true,
+    "status": "registered_proposal; authority_effect none; no adoption inferred"
+  },
+  "review_corrections": [
+    {
+      "review": "root follow-up after local candidate review",
+      "changes": [
+        "Make selected receipt read/qualification failure return unknown/incomplete to its source owner with explicit no-fallback oracle.",
+        "Add concrete internal and external receipt tuples with separate origin type/owner, provider release observation, unknown preservation, and zero direct writes; distinguish owner-known fixture from owner unknown/mismatch.",
+        "Record that version_target 1.0 is inherited from current parent HELIXINTELLIGENCE-L1-009, not inferred from legacy AAFD source."
+      ],
+      "scope_limit": "No source atom, owner route, schema, authority, adoption, runtime, or new mechanism added."
+    },
+    {
+      "review": "root follow-up source interpretation correction",
+      "changes": [
+        "Correct AC-008 selected source summary to include observed alongside 0/unchanged.",
+        "Keep the broader R-08 line 71 requirement as four unknown substitutions including neutral and five non-write targets."
+      ],
+      "scope_limit": "Selected source JSONL/raw source lines and hashes remain unchanged."
+    }
+  ],
+  "historical_management_registration": {
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
+    "register_line": 658,
+    "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
+    "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
+    "append_only_prefix_verified": true,
+    "status": "registered_proposal; authority_effect none; no adoption inferred"
+  },
+  "integration_read_after": {
+    "base_commit": "926658d9fc7316a7ce92e09443cf7a91daf383fa",
+    "main_prefix_rows": 660,
+    "local_append_rows": 1,
+    "current_pair_full_file_pins_unchanged": true,
+    "source_raw_lines_unchanged": true
+  },
+  "integration_history": [
+    {
+      "base_commit": "c7e9d7f558bfde4b24bb94c9eb1d47b3424c3caf",
+      "main_prefix_rows": 659,
+      "local_append_rows": 1,
+      "current_pair_full_file_pins_unchanged": true,
+      "source_raw_lines_unchanged": true
+    }
+  ]
+}
