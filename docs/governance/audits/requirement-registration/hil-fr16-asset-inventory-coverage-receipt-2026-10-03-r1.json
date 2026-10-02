@@ -297,7 +297,7 @@
     ],
     "candidate_l2_composite_sha256": "sha256:dbfe0e4390a399583e2a7a01d944f2ca7f5d5184facf1a5053dabcdfb300ad10",
     "candidate_l11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
-    "candidate_pair_composite_sha256": "sha256:2cd32cbc818c402dd934bb68d81b7f4fc18555ff12ea61b9518f2467007289dc",
+    "candidate_pair_composite_sha256": "sha256:60b5b2e83dba5e2af70261e2a50bb1d8c59240ea151dad57b9365be3c5a819ad",
     "candidate_l2_full_file_sha256": "sha256:8aa2cb4d0db102f3341dccf0dc82ebd7a31ee0f7ce738c8e5ab4457184fe32a8",
     "candidate_l11_full_file_sha256": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
     "candidate_l2_section_lines_label": "L2既存候補節から末尾追補までの連続範囲。個別part境界はcandidate_pair_partsに記録。",
@@ -325,7 +325,7 @@
     "recommendation": "Bを候補解釈として推奨する。HIL-FR-16が明示する全sourceを保持しつつ、根拠のない全案件共通のexact-2条件を避けるためである。これはPO判断ではない。",
     "decision_boundary": "候補本文、fixture、receipt、MPRはA/Bを選択しない。原文source scope、source atom、FR16の全条件は保持する。採択、formal successor、source取得、実行許可を生成しない。"
   },
-  "candidate_digest_rule": "各sideについて、選択partの末尾空行を除き、UTF-8・LF改行・末尾LF一つへ正規化する。記載順に正規化partを追加のLF一つで区切って連結する。L2とL11は個別にpinし、pair digestはL2 composite bytes、NUL byte、L11 composite bytesの順のSHA-256とする。既存候補節bytesは不変で、各scope追補を文書末尾へ独立見出しで追加する。",
+  "candidate_digest_rule": "各sideのcomposite bytesは、順序付きpartを各々末尾空行を除いてUTF-8/LF/末尾LF一つへ正規化し、part間をLF一つで連結した実本文bytesである。pair digestはSHA-256(L2 composite本文bytes + NUL byte + L11 composite本文bytes)。side SHA値のバイナリ表現を連結する計算ではない。",
   "candidate_semantic_digest": "sha256:dbfe0e4390a399583e2a7a01d944f2ca7f5d5184facf1a5053dabcdfb300ad10",
   "candidate_pair_parts": {
     "rule": "各sideは既存HARNESS-L2/L11-088候補節と文末scope解釈追補で構成する。各partの末尾空行を除き、LF改行と末尾LF一つへ正規化して、part間を追加LF一つで区切る。既存本文と既存行位置は不変。",
@@ -372,7 +372,7 @@
     "L2_composite_sha256": "sha256:dbfe0e4390a399583e2a7a01d944f2ca7f5d5184facf1a5053dabcdfb300ad10",
     "L11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f"
   },
-  "candidate_pair_composite_sha256": "sha256:2cd32cbc818c402dd934bb68d81b7f4fc18555ff12ea61b9518f2467007289dc",
+  "candidate_pair_composite_sha256": "sha256:60b5b2e83dba5e2af70261e2a50bb1d8c59240ea151dad57b9365be3c5a819ad",
   "candidate_pair_full_file_sha256": {
     "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:085bf6cfbf6800aca38abb888c6ba73aa339d1fdfd3c9c6f79932751f9e9a4d2",
     "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984"
