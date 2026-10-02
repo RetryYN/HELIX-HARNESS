@@ -115,7 +115,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave39/validate.py",
-      "sha256": "7778b99047f9f023e9a3822f3782a5af69a0e26697e3bbb54aa6052de9980e77",
+      "sha256": "a7e9efbfb0aa698a5d7a9714be4f4806d61996d4132fc775a633c8dfa8a28676",
       "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave39/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=5fc1d561c373f02ac4e70856e491d4b1e2d9c89628712065c854f74ff176b601; 現receipt=7778b99047f9f023e9a3822f3782a5af69a0e26697e3bbb54aa6052de9980e77; このBindingの採否・authorityは変更しない。]"
     }
   ],

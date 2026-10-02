@@ -13,6 +13,41 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
 ORIGIN = "fbeee47920ed8b2992ae123b00c224ff88987c50"
+
+
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# Commit 554aff integrates the recorded living-inventory input. BASE/ORIGIN remains capture lineage.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    if not isinstance(source, dict) or not isinstance(current, dict):
+        return False
+    source_keys = set(source)
+    current_keys = set(current)
+    return (
+        source_keys <= current_keys
+        and current_keys - source_keys <= {"current_projection"}
+        and {key: current[key] for key in source_keys} == source
+    )
 HISTORICAL_REF_COMMIT = "11a22679dc2bfce57d3294759531282445625001"
 CURRENT_CONCEPT = "docs/concept/helix-concept.md"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
@@ -231,7 +266,15 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
             fail(errors, (entry.get("path"), entry.get("sha256"), entry.get("records")) == (path, sha, records), "E_PROVENANCE_META_" + key)
             p = ROOT / path
             fail(errors, p.is_file(), "E_MISSING_" + key)
-            if p.is_file():
+            if key == "phase_inventory":
+                source_bytes = fixed_phase_inventory_bytes()
+                fail(errors, source_bytes is not None, "E_HISTORICAL_BLOB_phase_inventory")
+                if source_bytes is not None:
+                    fail(errors, digest(source_bytes) == sha == PHASE_INVENTORY_SOURCE_SHA256, "E_DIGEST_phase_inventory")
+                    observed_records = len(json.loads(source_bytes.decode("utf-8")).get("records", []))
+                    fail(errors, observed_records == records, "E_RECORDS_phase_inventory")
+                    fail(errors, current_phase_inventory_preserves_source(source_bytes), "E_CURRENT_PROJECTION_phase_inventory")
+            elif p.is_file():
                 fail(errors, file_digest(p) == sha, "E_DIGEST_" + key)
                 observed_records = len(json.loads(p.read_text(encoding="utf-8")).get("records", [])) if p.suffix == ".json" else sum(1 for line in p.read_text(encoding="utf-8").splitlines() if line.strip())
                 fail(errors, observed_records == records, "E_RECORDS_" + key)
