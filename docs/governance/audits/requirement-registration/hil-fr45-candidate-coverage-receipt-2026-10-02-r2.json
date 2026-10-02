@@ -4,16 +4,16 @@
   "authority_effect": "none",
   "candidate_identity": "HARNESS-L2-078",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:5059c70d0779f935ffe43e3b1b37400735f4eeee1ba31ff5e48559fb9a875c60",
+  "candidate_semantic_digest": "sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc",
   "candidate_digest_rule": "L2の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:1294584edc0dfa833c7c93cf1e605945b10be07c768f3c992861aeec46237e96",
+  "candidate_l2_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
   "paired_acceptance_identity": "HARNESS-L2-078-002",
-  "paired_acceptance_digest": "sha256:6a2ea79f5da15083c5cbcc51c2133d0ef412569f5fa6daff3f3002bbe156bfb4",
+  "paired_acceptance_digest": "sha256:8634acd14543ae65ece594885a867cd8edfe5c9ddd7cd5e811d3a8cf41c6736e",
   "l11_digest_rule": "L11の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:67ee9f817c640e54ab997a3eb00b7d13147c4483101f4d9ab982840b62b87149",
+  "l11_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl",
-  "source_atom_set_digest": "sha256:80d2b3d9706b181442af18ed01522729f5578c93597c305edb35f3439d595669",
-  "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + source_line_sha256のsha256:接頭辞を除いた64桁hex + LF として連結しUTF-8 SHA-256を計算する。",
+  "source_atom_set_digest": "sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + atom_digest + LF として連結しUTF-8 SHA-256を計算する。HIL-FR-45行atomのatom_digestはsource_line_sha256のprefixなし値、whole HIL-NFR-28 IR identity atomのatom_digestはidentity.statement.semantic_digestのprefixなし値を使う。NFR-28のcorroborating L1行は含めない。",
   "source_collection_scope": "Two selected source identities: HIL-FR-45 line 135 (one selected old source line atom) and the whole HIL-NFR-28 Requirement IR identity at #/HIL-NFR-28 (one IR atom). NFR-28 old L1 line 208 is corroborating wording, not an additional atom. The selected source atom count (2) is not the target active-requirement denominator: for the explicitly authority-scoped target, enumerate every active requirement revision from its membership source and bind all six NFR-28 conditions per requirement. NFR-28 contributes its scope-bounded active-requirement population, six individual binding conditions, and ambiguity/orphan/stale not-green conditions. No universal all-4,020 or all-mechanism population is added.",
   "source_collection_atom_count": 2,
   "candidate_input_atom_refs": [
@@ -245,7 +245,7 @@
       "docs/governance/decisions/po-decision-2026-09-30-live26.md": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
     },
     "source_line_sha256_lf_excluded": "sha256:bf881d1f482f751657f80cf4f0de4b57403eec6c2effb82a4ed9a853444243e1",
-    "source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+    "source_atom_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
     "fixed_l2_l11_before_append_sha256": {
       "l2": "sha256:e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4",
       "l11": "sha256:2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82"
@@ -268,7 +268,7 @@
     "registration_id": "MPR-RC-HARNESS-L2-078-002",
     "authority_effect": "none"
   },
-  "root_integration_note": "Historical fixed-before pins remain unchanged. Latest main64a9 is preserved as a full prefix; only077/078 candidates and their registration rows are added. Shared current full-file pins refreshed after078 correction;077 section unchanged. No adoption or source closure is claimed.",
+  "root_integration_note": "This r2 receipt records HARNESS-L2-078-002 against candidate base a7f85b4c2fd88510c32de4a1ade4c95662bd98c1 only. It does not claim a latest-main64a9 prefix or include a 077 change. Historical fixed-before pins remain unchanged; current 078 L2/L11 section and full-file pins are synchronized to the candidate bytes and the existing -002 registration. No adoption or source closure is claimed.",
   "review_correction": {
     "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception. Old HIL-NFR-28 explicitly permits reasoned non-applicability only for its service/capability binding; this permission does not generalize to other fields.",
     "response": "Correction: 13 field meanings and typed relations remain present; FR-45 line 135 does not itself prohibit a justified non-applicability value. NFR-28 explicitly permits that value for service/capability, so keep this field and bind its value to reason, target scope/revision, authority/applicability basis. The two selected sources do not authorize generalizing non-applicability to the other twelve fields; preserve their required meaning and values unless separate explicit field-specific source evidence applies. No non-applicability value waives owner/source/oracle or related fields. Missing/unknown/stale/implicit omission remains incomplete. A requirement-change operation N/A is distinct and still needs its full FR-45 receipt.",
@@ -342,6 +342,16 @@
     "full_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
     "atom_count": 2,
     "r1_source_file_unchanged": true
+  },
+  "historical_snapshot": {
+    "status": "superseded_pre_correction_pins; not current authority or current-byte evidence",
+    "pre_correction_candidate_semantic_digest": "sha256:5059c70d0779f935ffe43e3b1b37400735f4eeee1ba31ff5e48559fb9a875c60",
+    "pre_correction_candidate_l2_file_sha256": "sha256:1294584edc0dfa833c7c93cf1e605945b10be07c768f3c992861aeec46237e96",
+    "pre_correction_paired_acceptance_digest": "sha256:6a2ea79f5da15083c5cbcc51c2133d0ef412569f5fa6daff3f3002bbe156bfb4",
+    "pre_correction_l11_file_sha256": "sha256:67ee9f817c640e54ab997a3eb00b7d13147c4483101f4d9ab982840b62b87149",
+    "pre_correction_source_atom_set_digest": "sha256:80d2b3d9706b181442af18ed01522729f5578c93597c305edb35f3439d595669",
+    "pre_correction_source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+    "note": "These are retained only to make the corrected r2 receipt's prior metadata discrepancy explicit; active fields above and the existing MPR-RC-HARNESS-L2-078-002 record carry the verified current values. HARNESS-L2-078-001/r1 is a separate immutable historical receipt."
   },
   "source_identity_pins": {
     "legacy_ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
