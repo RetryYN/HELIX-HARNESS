@@ -25,6 +25,10 @@ PLAN = HERE / "plan.json"
 INVENTORY = HERE / "inventory.json"
 BATCH = "LEGACY-SEMANTIC-WAVE46-2026-09-22"
 BASE = "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c"
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# 554aff integrated the living inventory input SHA 16deda; BASE remains the review-lineage pin.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_DIGEST = "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
 MAIN_MERGE_PARENTS = [
     "c5ed4587d8563bd473368f5eb0f3c311fefb44a6",
     "6e30c10ec34606ef04873d5d33f5d87dea946921",
@@ -136,6 +140,37 @@ def digest(data: bytes) -> str:
 
 def file_digest(path: Path) -> str:
     return digest(path.read_bytes())
+
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    if not isinstance(source, dict) or not isinstance(current, dict):
+        return False
+    source_keys = set(source)
+    current_keys = set(current)
+    return (
+        source_keys <= current_keys
+        and current_keys - source_keys <= {"current_projection"}
+        and {key: current[key] for key in source_keys} == source
+    )
 
 
 def canonical(value: object) -> str:
@@ -378,8 +413,16 @@ def verify() -> None:
         prior_unit = source_keys.setdefault(key, row["unit_candidate_id"])
         require(prior_unit == row["unit_candidate_id"], f"source span reused without typed relation {row['review_id']}")
 
-    # Every declared input is digest-bound, including current four-product boundary docs.
+    # Declared inputs remain bound to current files, except the integrated phase source:
+    # its 554aff blob is the exact recorded input; current_projection may be appended only.
     for path, value in meta["inputs"].items():
+        if path == PHASE_INVENTORY_PATH:
+            source_bytes = fixed_phase_inventory_bytes()
+            require(source_bytes is not None, f"input historical blob missing {path}")
+            if source_bytes is not None:
+                require(digest(source_bytes) == value == PHASE_INVENTORY_SOURCE_DIGEST, f"input historical digest {path}")
+                require(current_phase_inventory_preserves_source(source_bytes), f"input current projection changed historical fields {path}")
+            continue
         target = ROOT / path
         require(target.is_file() and file_digest(target) == value, f"input digest {path}")
     prior_batches = []
