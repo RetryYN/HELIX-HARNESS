@@ -680,7 +680,7 @@
   "ir_requirement_atom_count": 1,
   "supplementary_contract_record_count": 1,
   "latest_main_comparison": {
-    "commit": "898e9d1b6277861b2ee9ec1a42083fabb401529c",
+    "commit": "62d9eedca25a927916594a0a96690b2441437712",
     "register_prefix_line_count": 707,
     "register_prefix_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
     "registration_line": 708,
