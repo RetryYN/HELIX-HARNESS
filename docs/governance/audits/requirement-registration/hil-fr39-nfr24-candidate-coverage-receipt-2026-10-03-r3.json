@@ -6,17 +6,17 @@
   "candidate_registration_id": "MPR-RC-HARNESS-L2-068-003",
   "supersedes_registration_id": "MPR-RC-HARNESS-L2-068-002",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:201de64d0c77f619c32e8328b2703827a451d350a501523767a77095ce7b7f35",
-  "candidate_digest_rule": "Multipart SHA-256 of canonical text shown in candidate_digest_composition; each ordered part is canonicalized by removing trailing blank lines and appending one LF.",
-  "candidate_l2_file_sha256": "sha256:fe8f85804b5eb70ca68d652376abcf6c3fa3fe3a9f937e8bb9982446509a126c",
+  "candidate_semantic_digest": "sha256:7b470c562c6a04b5034bbda4d0302d1c70fcf4f67948e8a584bea0e21744f647",
+  "candidate_digest_rule": "Multipart candidate digest: SHA-256 UTF-8 of canonical text shown in candidate_digest_composition; each part removes trailing blank lines and appends exactly one LF.",
+  "candidate_l2_file_sha256": "sha256:c75bea6bfa77b743f25bdecdb541df688dea84d002e6efed9cf1e1a3675dbfdb",
   "candidate_l2_section_lines": [
     1290,
     1304
   ],
   "paired_acceptance_identity": "HARNESS-L2-068",
-  "paired_acceptance_digest": "sha256:3b7d9ddd6076fc88d750c22b76204061877fb445436fdb0a6f072c195882f3aa",
-  "l11_digest_rule": "Multipart SHA-256 of canonical text shown in paired_acceptance_digest_composition; each ordered part is canonicalized by removing trailing blank lines and appending one LF.",
-  "candidate_l11_file_sha256": "sha256:561a6ec812320d35d5dec691276a60adf37086b82850f46d8b254b20408e2031",
+  "paired_acceptance_digest": "sha256:6e9ceba6c8c9278dd0d38610dec3e337020e13a326e9a33387c6638f400d340c",
+  "l11_digest_rule": "Multipart paired acceptance digest: SHA-256 UTF-8 of canonical text shown in paired_acceptance_digest_composition; each part removes trailing blank lines and appends exactly one LF.",
+  "candidate_l11_file_sha256": "sha256:2169650caf9e6764fe5723f696b9e4182d0b8602bdc230d170ebbc0928674b13",
   "candidate_l11_section_lines": [
     1002,
     1014
@@ -317,7 +317,7 @@
       "missing_selected_atom": "unknown/unaccounted; not absent, N/A or covered"
     },
     "reference_only": {
-      "identity": "16 + HAC-HIL-16a/b/c + HAT-HIL-16",
+      "identity": "HR-FR-HIL-16 + HAC-HIL-16a/b/c + HAT-HIL-16",
       "owner": "fixture:historical-consumer-context",
       "contract_range": "pinned legacy consumer/oracle record identities",
       "class": "reference_only",
@@ -384,7 +384,7 @@
     "basis": "Source and fixed parent do not choose product version; do not infer 1.0."
   },
   "review_pins": {
-    "base_commit": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+    "base_commit": "212cefee88df4b0914c6253aa109fe9d884eae51",
     "source_ir_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "source_l1_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
     "source_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF / LEGACY-ASSET-A60CF91DD2AF6693E6F9",
@@ -433,7 +433,7 @@
       "path": "docs/governance/audits/requirement-registration/hil-nfr24-27-source-condition-current-audit-2026-10-02.json",
       "sha256": "b2903a20373fbcda44dea29bc39725ababc2d300b7b45f13b894bb98eca2354a",
       "historical_base_commit": "6bdda5b7aa8bab784210e9ac0eaa3c94f69372cc",
-      "role": "immutable 2026-10-02 source audit context; current r3 pins and candidate section hashes are synchronized to a5c83e1991973c03dc0fd3497509b0b9b2aec96c. Do not treat historical audit as current candidate pin."
+      "role": "immutable 2026-10-02 source audit context; current r3 pins and candidate part digests are synchronized to 212cefee88df4b0914c6253aa109fe9d884eae51. Do not treat historical audit as current candidate pin."
     }
   },
   "no_claims": [
@@ -459,9 +459,9 @@
       "reason": "Revision 003 preserves the literal normative source and 002/r2 history; clarifies that NFR24 evidence-ground applicability is unresolved and must be PO-derived per transform (no universal unrelated grounds and no arbitrary OR); keeps NFR26 range shorthand allowed except one unexpanded aggregate discharge; adds fixed adopted 010/011 tuples with two independent compatibility negatives; records IR normative classification; synchronizes only the current candidate registration and exact pins. Exact tuple uses fixed f6dad pair and distinct L11 table-row hashes; normative FR/NFR atoms stay selected sources, while HR/HAC/HAT alone are reference context."
     }
   ],
-  "current_main_at_registration": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+  "current_main_at_registration": "212cefee88df4b0914c6253aa109fe9d884eae51",
   "candidate_digest_composition": {
-    "algorithm": "HARNESS-L2-068\nbase:06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d\ncorrection-003:3ac4bbd8a472ba15a004274d84df5da8e976359bf4acf390733e3b63b5f31a97\n",
+    "algorithm": "HARNESS-L2-068\nbase:06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d\ncorrection-003:c7f1c02c5c23faa7d132c8649225dfd6d7374faa780071b082952582c847e669\n",
     "ordered_parts": [
       {
         "part": "base",
@@ -476,17 +476,17 @@
       {
         "part": "correction-003",
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "heading": "## HARNESS-L2-068 correction 003",
+        "heading": "## HARNESS-L2-068 訂正003",
         "line_range": [
-          1396,
-          1408
+          1398,
+          1410
         ],
-        "canonical_sha256": "sha256:3ac4bbd8a472ba15a004274d84df5da8e976359bf4acf390733e3b63b5f31a97"
+        "canonical_sha256": "sha256:c7f1c02c5c23faa7d132c8649225dfd6d7374faa780071b082952582c847e669"
       }
     ]
   },
   "paired_acceptance_digest_composition": {
-    "algorithm": "HARNESS-L11-068\nbase:2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8\ncorrection-003:de85e7bd97ae98c7f4b98e3c87da1b9d8f09b2f592d3264eb423b8b31c16c350\n",
+    "algorithm": "HARNESS-L11-068\nbase:2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8\ncorrection-003:95152751f426a89026d36a58f9e13205e143d7e0763a758f52624165e657b300\n",
     "ordered_parts": [
       {
         "part": "base",
@@ -501,12 +501,12 @@
       {
         "part": "correction-003",
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-        "heading": "## HARNESS-L2-068 correction 003",
+        "heading": "## HARNESS-L2-068 訂正003",
         "line_range": [
-          1140,
-          1150
+          1157,
+          1169
         ],
-        "canonical_sha256": "sha256:de85e7bd97ae98c7f4b98e3c87da1b9d8f09b2f592d3264eb423b8b31c16c350"
+        "canonical_sha256": "sha256:95152751f426a89026d36a58f9e13205e143d7e0763a758f52624165e657b300"
       }
     ]
   }
