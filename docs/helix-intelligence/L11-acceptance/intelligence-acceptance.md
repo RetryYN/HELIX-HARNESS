@@ -393,3 +393,42 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **判定・限界**：独立VERIFY、counterexample、expiry、human gate、4対象の不変更、source経路bypass拒否を個別に確認する。候補本文や本oracleからPO採択、昇格権限、現行formal owner/route、旧runtimeの成功を生成しない。human gateはsource指定のpromotion判断条件であり、各通常評価への追加承認ではない。固定閾値・新schema・人の追加承認手続きは作らない。
 - **依存closureの正常fixture（HARNESS-L2/L11-023）**：HARNESS-L2/L11-023（contract owner: HELIX-HARNESS、version_target 1.0、対象sectionは固定f6dad2a本文と同じ）を依存分類契約として宣言し、fixture上のcontract-version rangeを`1.0..1.0`、actual contract versionを`1.0`、適用理由を「同一入力にR-15昇格評価operationが明示され、000074ではUIL source receiptが選択された」と記録する。R-15 facetの常時必須closureには親L1-021〜026/current revisionと採択済みL2/L11-065を含め、昇格評価時だけVERIFY/counterexample/expiry/human-gate根拠を加える。000074 facetは選択sourceのUIL receipt identity、fixtureで明示されたsource owner identity、revision、qualification evidenceを加え、TER sourceは未選択・未観測とする。依存identity/contract owner/version-range/class/condition/operation/source choiceと適用理由を入力へ結び、同じ入力・revisionを2回照合したとき同じclosure memberと理由になることを確認する。`1.0..1.0`等はfixture値であり、既存契約の互換range仕様を追加しない。
 - **依存欄の個別反例**：同一fixtureからdependency identityを除く、ownerを除くまたは誤る、契約version/rangeを除くまたはactual versionをrange外にする、4区分を欠く/誤分類する、適用conditionを欠く/unknownにする、operation/source selectionを欠く/誤る、対象revision/authority/evidenceを欠く各例を別々に与える。該当closureをunknown/incompleteまたは保留とし、条件unknownをfalse・非適用・参照のみと読み替えず、選択source失敗から別receiptへfallbackしない。同一入力・revisionでclosure memberまたは理由が異なる再評価も不合格とする。
+
+
+### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）
+
+- **前提と限界**：以下は静的な期待結果であり、未実行である。candidate/shadow上の入力状態を照合する。INTELLIGENCE candidateから実runtime gate、tool dispatch、worker assignment、OS/SECURITYの権限変更を生成しない。既存採択004の候補生成・shadow scopeと非強制条件は保持する。
+- **正常：同じsnapshotの選択依存**：一つの正常candidate/shadow callとして、説明用fixture `pack-P@r1`、`scope-S@r4`、snapshot `snap-A`/digest `d-A`、HELIXINTELLIGENCE-L2/L11-072-004の固定採択pair revision、およびそのcallで選択したsource tupleを与える。各source tupleはidentity、owner参照、exact source revision/digest、契約version range、互換性根拠、applicabilityを別欄で持つ。選択tupleがsnapshot時点と一致し、適用根拠がありunknown/conflict/staleがないとき、同じrevisionのcandidate/shadow入力を`current-for-this-candidate`として返す。結果は依然candidate/shadowであり、gate/dispatch許可にはならない。以下の値は合成fixture値であり、実装schemaやversion形式を規定しない。
+- **HARNESS-L2-023四区分の合成tuple**：四区分の例を同じcandidate/shadow callに固定する。契約revisionは条件付き採択済み004のpair digest `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`、その適用version範囲はPO判断row 85が固定する`1.0候補生成・shadow評価のみ`である。sourceの個別revision/digestと適用性はこの契約rangeと別欄にする。
+
+| 023区分 | identity | owner | contract revision・選択source revision/digest | declared contract version range | compatibility evidence | applicability |
+| --- | --- | --- | --- | --- | --- | --- |
+| 常時必須 | candidate `HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005`; target `scope-S@r4` | candidate表現はINTELLIGENCE。HARNESSの意味・gate責務とOS/SECURITYの実dispatch責務は移さず、実行ownerはunknown | 条件付き採択済み004 pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4` | `1.0`: 候補生成とshadow評価のみ | PO判断`po-decision-2026-09-29-57candidates.md` row 85、004 exact pair digest、およびfixtureのtarget/snapshot pins | このcandidate/shadow callの対象scopeとrevisionに限る。実dispatch・promotionには適用しない |
+| 特定操作時のみ | operation `candidate_generation_and_shadow_evaluation`; candidate `pack-P@r1` | 候補/shadow表現はINTELLIGENCE。実行ownerはunknown | 004 exact adopted pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`; operationの選択は`pack-P@r1` | `1.0`: 候補生成とshadow評価のみ | decision row 85の固定scopeと同一callのsnapshot `snap-A`/digest `d-A` | このoperationを選んだcallのみ。評価を選ばない利用へshadow義務を広げない |
+| 選択した入力元に応じて必須 | このcallが選択する六sourceは次表の個別tupleで表す | 各tupleに合成owner参照を付す。実source ownerはreceiptで解決するまでunknown | 各tupleにsource revision/digestを個別記録し、candidate contractは004 exact adopted pair `sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4`に固定 | `1.0`: 候補生成とshadow評価のみ。各sourceのより広い互換version rangeは宣言しない | 各合成receiptがsource identity/revision/digestとapplicabilityを個別に束縛する。実receiptやregistryの存在は主張しない | 六sourceをこのcallが選択した場合だけ個別tupleを照合する。applicabilityはversion rangeと別に判定する |
+| 参照資料のみ | `historical-runtime-cli-test-context`（未選択の背景資料） | N/A（現行dependency ownerではない） | contract revisionはN/A。source/consumerの規範条件はこのtupleに含めない | N/A（実行互換version rangeを持たない） | 004採択decision row 85の候補/shadow境界と、fixtureで選択されていないこと | 背景参照だけ。normative source atom・HR/HAC/HAT consumer duty・選択入力の代用にせず、runtime dependencyにも数えない |
+
+| 選択source種別 | identity | owner参照 | source revision / digest | declared contract version range | compatibility evidence | applicability |
+| --- | --- | --- | --- | --- | --- | --- |
+| scope | `scope-S` | `owner-ref-scope`（合成。実owner unknown） | `r4` / `d-scope-r4` | `1.0` 候補生成とshadow評価のみ。source側の広い範囲は未宣言 | `receipt-scope-r4`がidentity/revision/digestを対象scopeへ束縛（合成値） | `scope-S@r4`がこのcallの対象scopeとして選択 |
+| requirement | `req-R` | `owner-ref-requirement`（合成。実owner unknown） | `r8` / `d-req-r8` | 同上 | `receipt-req-r8`がidentity/revision/digestを対象scopeへ束縛（合成値） | `req-R@r8`をこのcallのcandidate sourceとして選択 |
+| template | `template-T` | `owner-ref-template`（合成。実owner unknown） | `r2` / `d-template-r2` | 同上 | `receipt-template-r2`がidentity/revision/digestと適用根拠を束縛（合成値） | `template-T@r2`をこのcallが実際に選択した場合に限り適用 |
+| skill | `skill-K` | `owner-ref-skill`（合成。実owner unknown） | `r3` / `d-skill-r3` | 同上 | `receipt-skill-r3`がidentity/revision/digestと適用根拠を束縛（合成値） | `skill-K@r3`をこのcallが実際に選択した場合に限り適用 |
+| model catalog | `catalog-M` | `owner-ref-model`（合成。実owner unknown） | `r5` / `d-catalog-r5` | 同上 | `receipt-catalog-r5`がidentity/revision/digestと適用根拠を束縛（合成値） | `catalog-M@r5`をこのcallが実際に選択した場合に限り適用 |
+| allowlist | `allowlist-A` | `owner-ref-allowlist`（合成。実owner unknown） | `r6` / `d-allowlist-r6` | 同上 | `receipt-allowlist-r6`がidentity/revision/digestと適用根拠を束縛（合成値） | `allowlist-A@r6`をこのcallが実際に選択した場合に限り適用 |
+- **独立負例：scope revision変更**：他の入力を保持し、選択された対象scope/revisionだけを`r4`から`r5`へ変える。旧candidate facetをcurrentとして選ばずstale/再評価要として示し、scope ownerへ戻す。
+- **独立負例：requirement revision変更**：他の入力・選択状態を保持し、selected requirement sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、該当requirement ownerへ戻す。
+- **独立負例：template revision変更**：他の入力を保持し、selected template sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、template ownerへ戻す。
+- **独立負例：skill revision変更**：他の入力を保持し、selected skill sourceだけのrevisionまたはdigestを変更する。旧facetをcurrent入力として再利用せずstale/再評価要とし、skill ownerへ戻す。
+- **独立負例：model catalog revision変更**：他の入力を保持し、selected model-catalog sourceだけのrevisionまたはdigestを変更する。特定provider/modelを固定せず、旧適用根拠をcurrentとして再利用せずstale/再評価要とし、catalog ownerへ戻す。
+- **独立負例：allowlist revision変更**：他の入力を保持し、selected allowlist sourceだけのrevisionまたはdigestを変更する。candidate/shadowのsource facetをstaleとして扱い、該当allowlist ownerへ戻す。これだけで本候補は実tool操作の許可/拒否を実行しない。
+- **再評価後の正常**：上記各負例の一つについて、source ownerから得た新revision/digest、対象scopeへのapplicability、更新snapshotを結び、新しいcandidate revisionを作る。対応するshadow評価が実施されていない場合は未完義務として表示し、更新しただけでreview済み、active、gate強制とはしない。
+- **非選択sourceの境界**：選択tupleとapplicability証拠が明示され、変更されたsourceが当該packの非選択sourceだと確認できる例では、その変更だけで当該candidateをstale化しない。非選択の他sourceがcurrent/成功したとは表示しない。選択/非選択または適用根拠がunknownなら、非該当と推測せずunknown/保留にする。
+- **未監査/不一致/unknown**：selected source identity、revision、digest、applicability、ownerのいずれかが欠落・不一致・unknownの場合は、旧値を最新とみなしたり、未選択/非適用へ読み替えたりせず、該当candidate facetをunknown/stale/incompleteとして保留し、特定できるsource ownerへ戻す。formal ownerが不明なら所有者を捏造しない。
+- **残る旧条件**：未監査packのauthority化、未許可tool、self-verification、無上限subagent生成、工程外completion authority、専門agentの全muster/lifecycleは本fixtureの合格対象でない。既存採択pairや別候補が個別に扱う条件を参照しても、NFR-34全体またはHR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21のclosureに数えない。
+- **人の判断が残る点**：六種変更の適用scopeはL2末尾のA/B選択肢をfixture化したものである。A（いずれかのcatalog変更で全pack stale）とB（選択済み依存だけ該当pack stale、推奨）を比較し、Aは不要な広域再評価を発生させ、Bは明示されたdependency/applicabilityに沿う。選択結果は本候補の範囲と後続pairへ影響し、candidate text自体は採択を生成しない。
+
+#### 配置根拠と隣接候補の分離（未採択revision 005）
+
+- **配置境界の正常例**：crosswalk 43行とrouting `PRC-HIL-NFR-34-001`がNFR-34全体をOS配置候補としていること、decision 57 row 85が固定した条件付き採択004（B配置、候補生成・shadow評価のみ）を別々に提示する。005は004の配置に沿うINTELLIGENCE内candidate/shadow表現として評価する。row 85から005の採択を推定せず、実行時stale guard・dispatchがこのfixtureの判定対象またはINTELLIGENCEの責務になったとも扱わない。実行時の責務は既存OS契約に残る。
+- **独立境界例**：provider/model/runtime/versionのTER変更だけがあり、当該packでmodel-catalog sourceが選択されていないfixtureでは、005は選択依存のstaleを主張しない。model資格の再検証proposalは未採択L2/L11-076の範囲である。逆に、選択済みmodel-catalogのrevision/digestだけが変わった場合、005はcandidate facetをstaleとしてsource ownerへ戻すが、qualification結果を作らず、076の採択・再検証完了を推定しない。
