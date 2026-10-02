@@ -76,12 +76,13 @@
   },
   "candidate_pair": {
     "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
-    "l2_full_file_sha256": "sha256:70d54181a6a30a2ffe5e92b306f2b83f6ed5b2a66fc7c0398a253aeb8148e4c9",
-    "l2_section_sha256": "sha256:22b1c66cd07b679a2c36a6de6f2162c1a74fc24f15657bd7536aee2a731a7a0d",
+    "l2_full_file_sha256": "sha256:7954535bb01ad540f32cf67452d6cd9be38e1806e3f34500f7514fc22c2c13be",
+    "l2_section_sha256": "sha256:855512dea63dfe30bdd768d8c59f75f278a3b8c2cceccc0177be6c81020dc292",
     "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
-    "l11_full_file_sha256": "sha256:6a773cf22c884e26e56354ebf9f875b1b11dbfb0dc5c468cb56ad226173b9d9c",
-    "l11_section_sha256": "sha256:c4fae84c8b7820893cddce42016c014ecbbf5dfbd07e3117479ccb5bda1e9d6b",
-    "source_lineage": "Meaning rederived from two historical candidate assets; no legacy runtime/API/schema/digest implementation or owner route copied."
+    "l11_full_file_sha256": "sha256:fcbb5ea4d7cddd05f3c53cf67f06f0cc1de46de996aabe7954cd89d4fca50a68",
+    "l11_section_sha256": "sha256:25ddd37dca1f19ec9582273f3981ebdb180bc9a5d5aa71936b21066766830e77",
+    "source_lineage": "Meaning rederived from two historical candidate assets; no legacy runtime/API/schema/digest implementation or owner route copied.",
+    "l11_requirement_identity": "HELIXINTELLIGENCE-L11-078"
   },
   "parent_and_authority": {
     "concept_path": "docs/concept/helix-concept.md",
@@ -146,7 +147,25 @@
         "特定操作時のみ必須",
         "選択した入力元に応じて必須",
         "参照資料のみ"
-      ]
+      ],
+      "current_pair_section_digests": {
+        "l2": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+        "l11": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+      },
+      "fixed_current_parity": "Current L2/L11-023 section bytes equal the exact sections at f6dad2a33e24f000b87d7f09b8d40288257e74cc; the 2026-09-28 decision adopts the listed 023 candidate. The registration metadata alone is not adoption evidence.",
+      "contract_inputs_used_by_078": [
+        "pack identity and pack contract revision/version_target",
+        "HARNESS-L2-010/011 contract revisions",
+        "dependency identity",
+        "dependency owner",
+        "dependency contract version/range",
+        "one of the four adopted applicability classes",
+        "applicability condition",
+        "operation and selected-source inputs",
+        "scope",
+        "authority/evidence needed to decide applicability"
+      ],
+      "adopted_closure_guarantee_used_by_078": "For the same complete pack/revision/contract/operation/scope/source/authority/evidence input, only always-required, satisfied operation-specific, and selected-source dependencies form effective closure; non-applicable, unselected/unobserved, reference-only, unknown, and stale remain distinct, with closure and reasons reproducible. This is separate from AAFD R-07 delta exact-set/digest reproducibility."
     },
     {
       "identity": "HELIXINTELLIGENCE-L2-075/076",
@@ -516,6 +535,16 @@
     "source_jsonl_atom_set_digest": "sha256:468493409d710ca0b6f7ce0f6d034c68ceaf0e50745bc7aa07dc1e72d9fb0a8e",
     "source_rows": "All 22 rows preserve exact source text, source path/file SHA, physical line and line SHA. This receipt maps each atom individually to the paired candidate.",
     "archive_access": "read-only; no legacy execution",
-    "candidate_status": "unadopted only; no authority effect"
+    "candidate_status": "unadopted only; no authority effect",
+    "dependency_contract_static_comparison": {
+      "identity": "HARNESS-L2/L11-023",
+      "status": "adopted exact fixed pair",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_bytes_match_fixed": true,
+      "dependency_closure_and_delta_digest_are_separate_oracles": true
+    }
   }
 }
