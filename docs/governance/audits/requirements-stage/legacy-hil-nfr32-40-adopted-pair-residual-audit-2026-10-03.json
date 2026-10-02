@@ -34,7 +34,35 @@
         "decision_row": 79,
         "receipt": "docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28-r2.json",
         "l2_sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
-        "l11_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+        "l11_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3",
+        "exact_selection": {
+          "decision_revision": "selected revision fixed by decision row 79 and receipt",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 491,
+            "line_end_inclusive": 501,
+            "anchor": "line beginning \"### HELIXLABO-L2-064 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+          },
+          "l11": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 233,
+            "line_end_inclusive": 239,
+            "anchor": "line beginning \"### HELIXLABO-L2-064 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+          },
+          "selected_bytes_match_receipt_pins": true,
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51"
+        }
       },
       "HELIXINTELLIGENCE-L2-072-004": {
         "decision_row": 85,
@@ -48,7 +76,64 @@
           "l11_original": "b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
           "l11_supplement": "8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
         },
-        "pin_result": "all four parts match; concatenated semantic digest matches"
+        "pin_result": "all four parts match; concatenated semantic digest matches",
+        "exact_selection": {
+          "decision_revision": "decision row 85; four component hashes from exact receipt",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "parts": [
+            {
+              "part": "L2-072-original",
+              "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+              "line_start": 561,
+              "line_end_inclusive": 589,
+              "boundary": "before next heading levels 1–4; original/supplement are separate parts",
+              "normalization": "UTF-8; trailing blank lines removed; append one LF",
+              "sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+              "expected_sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+            },
+            {
+              "part": "L2-072-supplement",
+              "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "heading": "#### 旧HIL-FR-57/58のpack構成・昇格保護と版境界（未採択候補の追補）",
+              "line_start": 592,
+              "line_end_inclusive": 598,
+              "boundary": "before next heading levels 1–4; original/supplement are separate parts",
+              "normalization": "UTF-8; trailing blank lines removed; append one LF",
+              "sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b",
+              "expected_sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b"
+            },
+            {
+              "part": "L11-072-original",
+              "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+              "line_start": 289,
+              "line_end_inclusive": 303,
+              "boundary": "before next heading levels 1–4; original/supplement are separate parts",
+              "normalization": "UTF-8; trailing blank lines removed; append one LF",
+              "sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
+              "expected_sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+            },
+            {
+              "part": "L11-072-supplement",
+              "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "heading": "#### HIL-FR-57/58追補fixture（未採択候補、FR58の版境界付き）",
+              "line_start": 306,
+              "line_end_inclusive": 314,
+              "boundary": "before next heading levels 1–4; original/supplement are separate parts",
+              "normalization": "UTF-8; trailing blank lines removed; append one LF",
+              "sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8",
+              "expected_sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+            }
+          ],
+          "all_part_pins_match_receipt": true,
+          "aggregate_candidate_semantic_digest": "02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51"
+        }
       },
       "HELIXSECURITY-L2-029-002": {
         "decision_row": 88,
@@ -70,64 +155,688 @@
         "l2_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
         "l11_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
       }
+    },
+    "fixed_decision_adopted_pairs": {
+      "HELIXINTELLIGENCE-L2-067": {
+        "pair": "HELIXINTELLIGENCE-L2-067",
+        "decision": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md: explicit candidate adoption table / adopted set",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-001",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+        "fixed_l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+        "l2": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "heading": "### HELIXINTELLIGENCE-L2-067 — 既存Worker配置proposalの入力契約補強（単体候補、1.0）",
+          "line_start": 466,
+          "line_end_inclusive": 489,
+          "boundary": "before next level 1/2/3 heading; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF after trimming",
+          "sha256": "sha256:d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739"
+        },
+        "l11": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "exact table row",
+          "selector": "| `HELIXINTELLIGENCE-L2-067` L11受入補強",
+          "line_start": 199,
+          "line_end_inclusive": 199,
+          "normalization": "UTF-8 exact row bytes including LF",
+          "sha256": "sha256:e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd"
+        },
+        "current_main_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "current_selected_bytes_match_fixed": true,
+        "metadata_note": "Current candidate-state labels draft_candidate/not_adopted are historical candidate metadata and do not override the fixed PO decision."
+      }
     }
   },
   "exact_pair_section_comparison": {
     "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-    "normalization": "UTF-8; selected primary identity row or L2/L11 identity section; trailing blank lines removed; one LF terminator",
-    "current_vs_base": "All listed selected sections match their corresponding fixed/adopted pins in the recorded comparison, including SECURITY-029-002 at decision 57:88; its authority scope remains bounded by 57:112.",
+    "normalization": "UTF-8; L2 identity section selected from anchored heading through the next same-or-higher heading, trailing blank lines removed, one LF terminator; L11 identity rows are exact table-row bytes including LF; decision receipts are not treated as implicit row pins.",
+    "current_vs_base": "The specifically selected L2 sections and L11 identity rows in this comparison match the original fixed source bytes where checked. SECURITY-006/007/008 L11 values are computed fixed/current row digests, not separately adopted row pins; their exact file revision and selection boundaries are recorded per pair. SECURITY-029-002 section pins match decision 57:88, bounded by 57:112.",
     "pairs": {
       "HARNESS-L2-004": {
         "l2_primary_row_sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
-        "l11_primary_row_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632"
+        "l11_primary_row_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 55,
+            "line_end_inclusive": 55,
+            "anchor": "exact identity row beginning \"| HARNESS-L2-004 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 24,
+            "line_end_inclusive": 24,
+            "anchor": "exact identity row beginning \"| HARNESS-L2-004 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HARNESS-L2-004 |\" with recorded digest",
+            "line_start": 55,
+            "line_end_inclusive": 55,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HARNESS-L2-004 |\" with recorded digest",
+            "line_start": 24,
+            "line_end_inclusive": 24,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632"
+          }
+        }
       },
       "HARNESS-L2-005": {
         "l2_primary_row_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f",
-        "l11_primary_row_sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb"
+        "l11_primary_row_sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 56,
+            "line_end_inclusive": 56,
+            "anchor": "exact identity row beginning \"| HARNESS-L2-005 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 25,
+            "line_end_inclusive": 25,
+            "anchor": "exact identity row beginning \"| HARNESS-L2-005 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HARNESS-L2-005 |\" with recorded digest",
+            "line_start": 56,
+            "line_end_inclusive": 56,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HARNESS-L2-005 |\" with recorded digest",
+            "line_start": 25,
+            "line_end_inclusive": 25,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb"
+          }
+        }
       },
       "HELIXOS-L2-004": {
         "l2_primary_row_sha256": "84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5",
-        "l11_primary_row_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1"
+        "l11_primary_row_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 293,
+            "line_end_inclusive": 293,
+            "anchor": "exact identity row beginning \"| HELIXOS-L2-004 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 24,
+            "line_end_inclusive": 24,
+            "anchor": "exact identity row beginning \"| HELIXOS-L2-004 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HELIXOS-L2-004 |\" with recorded digest",
+            "line_start": 293,
+            "line_end_inclusive": 293,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HELIXOS-L2-004 |\" with recorded digest",
+            "line_start": 24,
+            "line_end_inclusive": 24,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1"
+          }
+        }
       },
       "HELIXOS-L2-009": {
         "l2_primary_row_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
-        "l11_primary_row_sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8"
+        "l11_primary_row_sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 297,
+            "line_end_inclusive": 297,
+            "anchor": "exact identity row beginning \"| HELIXOS-L2-009 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "exact_table_row",
+            "line_start": 29,
+            "line_end_inclusive": 29,
+            "anchor": "exact identity row beginning \"| HELIXOS-L2-009 |\"; digest-selected among repeated crosswalk rows",
+            "normalization": "UTF-8 row bytes including one LF",
+            "sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HELIXOS-L2-009 |\" with recorded digest",
+            "line_start": 297,
+            "line_end_inclusive": 297,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "exact table row",
+            "selector": "line beginning \"| HELIXOS-L2-009 |\" with recorded digest",
+            "line_start": 29,
+            "line_end_inclusive": 29,
+            "normalization": "UTF-8 row bytes including LF",
+            "sha256": "sha256:276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8"
+          }
+        }
       },
       "HELIXOS-L2-015": {
         "l2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
-        "l11_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+        "l11_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 642,
+            "line_end_inclusive": 650,
+            "anchor": "line beginning \"### HELIXOS-L2-015 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 324,
+            "line_end_inclusive": 329,
+            "anchor": "line beginning \"### HELIXOS-L2-015 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-015 \"",
+            "line_start": 642,
+            "line_end_inclusive": 650,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-015 \"",
+            "line_start": 324,
+            "line_end_inclusive": 329,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+          }
+        }
       },
       "HELIXOS-L2-016": {
         "l2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
-        "l11_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+        "l11_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 652,
+            "line_end_inclusive": 660,
+            "anchor": "line beginning \"### HELIXOS-L2-016 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 331,
+            "line_end_inclusive": 336,
+            "anchor": "line beginning \"### HELIXOS-L2-016 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-016 \"",
+            "line_start": 652,
+            "line_end_inclusive": 660,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-016 \"",
+            "line_start": 331,
+            "line_end_inclusive": 336,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+          }
+        }
       },
       "HELIXOS-L2-017": {
         "l2_section_sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
-        "l11_section_sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+        "l11_section_sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 662,
+            "line_end_inclusive": 670,
+            "anchor": "line beginning \"### HELIXOS-L2-017 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 338,
+            "line_end_inclusive": 343,
+            "anchor": "line beginning \"### HELIXOS-L2-017 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-017 \"",
+            "line_start": 662,
+            "line_end_inclusive": 670,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-017 \"",
+            "line_start": 338,
+            "line_end_inclusive": 343,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+          }
+        }
       },
       "HELIXOS-L2-018": {
         "l2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
-        "l11_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+        "l11_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 672,
+            "line_end_inclusive": 680,
+            "anchor": "line beginning \"### HELIXOS-L2-018 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 345,
+            "line_end_inclusive": 350,
+            "anchor": "line beginning \"### HELIXOS-L2-018 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-018 \"",
+            "line_start": 672,
+            "line_end_inclusive": 680,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-018 \"",
+            "line_start": 345,
+            "line_end_inclusive": 350,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+          }
+        }
       },
       "HELIXOS-L2-019": {
         "l2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
-        "l11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        "l11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 682,
+            "line_end_inclusive": 690,
+            "anchor": "line beginning \"### HELIXOS-L2-019 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 352,
+            "line_end_inclusive": 357,
+            "anchor": "line beginning \"### HELIXOS-L2-019 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "fixed_decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_revision_l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-019 \"",
+            "line_start": 682,
+            "line_end_inclusive": 690,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+          },
+          "fixed_revision_l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "unit": "anchored heading section",
+            "selector": "line beginning \"### HELIXOS-L2-019 \"",
+            "line_start": 352,
+            "line_end_inclusive": 357,
+            "boundary": "before next level 1/2/3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+          }
+        }
       },
       "HELIXSECURITY-L2-006": {
-        "l2_section_sha256": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
-        "l11_section_sha256": "0a48798ef2b523f862862cd929582d6efcb114c5e9baa7a7cab11d3ba2ed4f1d"
+        "l2_selection": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "line_start": 120,
+          "line_end_inclusive": 128,
+          "selection": "identity heading section to before next same-or-higher heading; trim trailing blank line(s), append one LF",
+          "l2_section_sha256": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "line beginning \"### HELIXSECURITY-L2-006 \"",
+          "boundary": "before next level 1/2/3 heading",
+          "selected_line_end_inclusive": 128,
+          "pretrim_boundary_line": 130,
+          "trimmed_trailing_blank_lines": [
+            129
+          ]
+        },
+        "l11_selection": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "row_number": 30,
+          "line_sha256_including_lf": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+          "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "current_row_number": 30,
+          "current_line_sha256_including_lf": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+          "selection": "exact identity table row bytes including LF; no per-row SHA is quoted by the PO decision",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "exact table row",
+          "line_start": 30,
+          "line_end_inclusive": 30,
+          "normalization": "UTF-8 row bytes including LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "row number 30 selected by exact identity"
+        },
+        "decision": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md:30-31,44-46",
+        "fixed_l2_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "fixed_l11_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "same_selected_bytes_in": [
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "94e7132ecec04043ae18c4a93c2ca35426001199",
+          "212cefee88df4b0914c6253aa109fe9d884eae51"
+        ]
       },
       "HELIXSECURITY-L2-007": {
-        "l2_section_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
-        "l11_section_sha256": "982d0033e8483b228cd8b3f645bea65ae979c07cc64f5c02986971092ac9b089"
+        "l2_selection": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "line_start": 130,
+          "line_end_inclusive": 138,
+          "selection": "identity heading section to before next same-or-higher heading; trim trailing blank line(s), append one LF",
+          "l2_section_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "line beginning \"### HELIXSECURITY-L2-007 \"",
+          "boundary": "before next level 1/2/3 heading",
+          "selected_line_end_inclusive": 138,
+          "pretrim_boundary_line": 140,
+          "trimmed_trailing_blank_lines": [
+            139
+          ]
+        },
+        "l11_selection": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "row_number": 31,
+          "line_sha256_including_lf": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+          "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "current_row_number": 31,
+          "current_line_sha256_including_lf": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+          "selection": "exact identity table row bytes including LF; no per-row SHA is quoted by the PO decision",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "exact table row",
+          "line_start": 31,
+          "line_end_inclusive": 31,
+          "normalization": "UTF-8 row bytes including LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "row number 31 selected by exact identity"
+        },
+        "decision": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md:30-31,44-46",
+        "fixed_l2_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "fixed_l11_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "same_selected_bytes_in": [
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "94e7132ecec04043ae18c4a93c2ca35426001199",
+          "212cefee88df4b0914c6253aa109fe9d884eae51"
+        ]
       },
       "HELIXSECURITY-L2-008": {
-        "l2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
-        "l11_section_sha256": "42b074eeb934dee84394e5602761373c484b493d58c29c2868c704d58b77a33b"
+        "l2_selection": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "line_start": 140,
+          "line_end_inclusive": 148,
+          "selection": "identity heading section to before next same-or-higher heading; trim trailing blank line(s), append one LF",
+          "l2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "line beginning \"### HELIXSECURITY-L2-008 \"",
+          "boundary": "before next level 1/2/3 heading",
+          "selected_line_end_inclusive": 148,
+          "pretrim_boundary_line": 150,
+          "trimmed_trailing_blank_lines": [
+            149
+          ]
+        },
+        "l11_selection": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "row_number": 32,
+          "line_sha256_including_lf": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+          "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "current_row_number": 32,
+          "current_line_sha256_including_lf": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+          "selection": "exact identity table row bytes including LF; no per-row SHA is quoted by the PO decision",
+          "selection_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "exact table row",
+          "line_start": 32,
+          "line_end_inclusive": 32,
+          "normalization": "UTF-8 row bytes including LF",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "comparison_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "selector": "row number 32 selected by exact identity"
+        },
+        "decision": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md:30-31,44-46",
+        "fixed_l2_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "fixed_l11_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "same_selected_bytes_in": [
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "94e7132ecec04043ae18c4a93c2ca35426001199",
+          "212cefee88df4b0914c6253aa109fe9d884eae51"
+        ]
       },
       "HELIXSECURITY-L2-032": {
         "l2_section_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
-        "l11_section_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+        "l11_section_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 447,
+            "line_end_inclusive": 453,
+            "anchor": "line beginning \"### HELIXSECURITY-L2-032 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+          },
+          "l11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 116,
+            "line_end_inclusive": 122,
+            "anchor": "line beginning \"### HELIXSECURITY-L2-032 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "selected_section_pin_source": "PO decision row + coverage receipt; selected and current main 212 anchored section digest is recorded above; no whole-file digest is used as a substitute for section selection."
+        }
       },
       "HELIXSECURITY-L2-029-002": {
         "l2_section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
@@ -136,10 +845,43 @@
         "l11_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
         "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:88",
         "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-        "decision_row_112_scope": "added third-party runtime only; primary Worker excluded"
+        "decision_row_112_scope": "added third-party runtime only; primary Worker excluded",
+        "exact_selection": {
+          "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "l2": {
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 405,
+            "line_end_inclusive": 415,
+            "anchor": "line beginning \"### HELIXSECURITY-L2-029 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745"
+          },
+          "l11": {
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "unit": "anchored_heading_section",
+            "line_start": 89,
+            "line_end_inclusive": 95,
+            "anchor": "line beginning \"### HELIXSECURITY-L2-029 \"",
+            "boundary": "before next level 1, 2, or 3 heading",
+            "normalization": "UTF-8; trailing blank lines removed; append one LF",
+            "sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0"
+          },
+          "selected_bytes_match_recorded_pins": true,
+          "selected_section_pin_source": "PO decision row + coverage receipt; selected and current main 212 anchored section digest is recorded above; no whole-file digest is used as a substitute for section selection."
+        }
       }
     },
-    "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+    "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51",
+    "withdrawn_wrong_l11_section_hashes": {
+      "0a48798ef2b523f862862cd929582d6efcb114c5e9baa7a7cab11d3ba2ed4f1d": "withdrawn: this value was presented as an L11 section hash even though no HELIXSECURITY-L2-006 heading exists in the L11 file; selected table row 30 is the correct unit.",
+      "982d0033e8483b228cd8b3f645bea65ae979c07cc64f5c02986971092ac9b089": "withdrawn: this value was presented as an L11 section hash even though no HELIXSECURITY-L2-007 heading exists in the L11 file; selected table row 31 is the correct unit.",
+      "42b074eeb934dee84394e5602761373c484b493d58c29c2868c704d58b77a33b": "withdrawn: this value was presented as an L11 section hash even though no HELIXSECURITY-L2-008 heading exists in the L11 file; selected table row 32 is the correct unit."
+    },
+    "all_selected_pin_methods": "Every selected pair pin records source path, source revision, identity heading or exact row, 1-based line bounds, and normalization. Fixed-base pairs were rehashed at f6 and current main 212; selected later-adoption receipt components were rehashed at current main 212 and matched individually."
   },
   "requirements": [
     {
@@ -228,16 +970,48 @@
         "HELIXOS-L2-018/-028/-029"
       ],
       "residual": true,
-      "finding": "撤回「残差なし」。HELIXINTELLIGENCE-L2-067 は draft_candidate / authority_status: not_adopted のため採択根拠ではない。採択済み010/011、LABO-055/059、OS-018/028/029に関連条件は分担されるが、既定値逸脱を記録するreceiptと品質問題のescalation順序を記録するreceiptは条件別の採択根拠が示されていない。少なくともこの二receipt条件を未証明として保持する。単価のみ/単発成功のみで最適性を主張しない条件もsourceに保持する。",
+      "finding": "HELIXINTELLIGENCE-L2-067は2026-09-28固定PO decisionの全54候補採択に含まれ、候補revisionは採択pair根拠として扱う。L2-067はscope/revision有効なquality gate、priority/tolerance等の入力契約を既存配置proposalへ渡すが、旧NFR-36が明示する既定値逸脱receiptと品質問題escalation順序receiptを、それぞれ必須証拠として採択本文が要求しているかは確認できない。この二receipt条件を未証明で保持する。L2/L11に残るdraft_candidate/not_adopted表記は固定decisionによる採択を覆さない。単価のみ/単発成功のみで最適性を主張しない条件もsourceに保持する。",
       "status": "closure_unproven",
       "unproven_source_conditions": [
         "receipt default-value deviation",
         "receipt quality-problem escalation order"
       ],
-      "excluded_unadopted_evidence": {
+      "adopted_pair_evidence": {
         "pair": "HELIXINTELLIGENCE-L2-067",
-        "current_status": "draft_candidate; authority_status: not_adopted",
-        "use_as_closure_evidence": false
+        "decision": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md: explicit candidate adoption table / adopted set",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-001",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l2_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+        "fixed_l11_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+        "l2": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "heading": "### HELIXINTELLIGENCE-L2-067 — 既存Worker配置proposalの入力契約補強（単体候補、1.0）",
+          "line_start": 466,
+          "line_end_inclusive": 489,
+          "boundary": "before next level 1/2/3 heading; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF after trimming",
+          "sha256": "sha256:d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739"
+        },
+        "l11": {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "exact table row",
+          "selector": "| `HELIXINTELLIGENCE-L2-067` L11受入補強",
+          "line_start": 199,
+          "line_end_inclusive": 199,
+          "normalization": "UTF-8 exact row bytes including LF",
+          "sha256": "sha256:e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd"
+        },
+        "current_main_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "current_selected_bytes_match_fixed": true,
+        "metadata_note": "Current candidate-state labels draft_candidate/not_adopted are historical candidate metadata and do not override the fixed PO decision."
+      },
+      "status_label_conflict": {
+        "fixed_decision": "adopted among all 54 explicit HELIX-INTELLIGENCE candidates",
+        "current_body_metadata": "draft_candidate; authority_status: not_adopted",
+        "interpretation": "decision record governs exact f6 target revision; stale candidate metadata is not evidence of non-adoption"
       }
     },
     {
@@ -497,7 +1271,10 @@
     "accepted_pair_sections_compared_to_exact_pins": true,
     "security_029_002_decision_and_pins_recorded": true,
     "nfr33_whole_ir_condition_closure_proven": false,
-    "legacy_runtime_test_ci_executed": false
+    "legacy_runtime_test_ci_executed": false,
+    "security_006_008_l11_selected_rows_recomputed_from_f6_94e_212": true,
+    "security_006_008_prior_wrong_l11_section_hashes_withdrawn": true,
+    "intelligence_067_adoption_checked_against_fixed_2026_09_28_decision": true
   },
   "independent_review_correction_basis": {
     "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.md": {
@@ -512,10 +1289,177 @@
   "corrected_from_audit_commit": "a265cde478c93dfd248375122950df1551a57f0a",
   "correction_base_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
   "correction_summary": {
-    "NFR36": "residual=false withdrawn; two receipt conditions retained as unproven; 067 excluded as not adopted.",
+    "NFR36": "residual=false withdrawn; two receipt conditions retained as unproven; HELIXINTELLIGENCE-L2-067 confirmed adopted by fixed 2026-09-28 PO decision, but its selected conditions do not prove those receipts.",
     "NFR37": "additional-runtime clause mapping retained; decision 57:112 primary Worker exclusion recorded as scope hold; stale unadopted labels recorded.",
     "NFR39": "per-evidence-type L11 fixture mapping remains unproven; primary Worker exclusion and stale labels recorded; no closure inferred.",
     "NFR33": "prior missing separate-file dependency removed by integrating the adopted-pair comparison and residual into this audit.",
     "NFR-33": "a visible context-cost/drift-risk residual is recorded; exhaustive whole-IR/consumer-condition closure and sole-residual status are unproven; comparison integrated in this audit."
+  },
+  "nfr33_adopted_pair_exact_selections": {
+    "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+    "section_rule": "Select anchored ### identity heading through before the next level 1/2/3 heading; trim trailing blank lines and append one LF; SHA-256 UTF-8.",
+    "row_rule": "Select exact identity table row bytes including LF.",
+    "pairs": {
+      "HARNESS-L2-041": {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27",
+        "selected_registration": "MPR-RC-HARNESS-L2-041-003",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-041 active templateのobligation抽出とgap提示（HARNESS-CORE unit候補、version_target: 1.0）",
+          "line_start": 957,
+          "line_end_inclusive": 968,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-041 active templateのobligation抽出とgap提示",
+          "line_start": 699,
+          "line_end_inclusive": 714,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+        },
+        "pins_match": true
+      },
+      "HARNESS-L2-043": {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:48",
+        "selected_registration": "MPR-RC-HARNESS-L2-043-002",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-043 active templateのrule／branch別例coverage（HARNESS-CORE unit候補、version_target: 1.0）",
+          "line_start": 986,
+          "line_end_inclusive": 1000,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-043 active templateのrule／branch別例coverage",
+          "line_start": 728,
+          "line_end_inclusive": 738,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4"
+        },
+        "pins_match": true
+      },
+      "HARNESS-L2-044": {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49",
+        "selected_registration": "MPR-RC-HARNESS-L2-044-002",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-044 design obligation portfolioの契約coverage候補（HELIX-HARNESS内の部品候補）",
+          "line_start": 1002,
+          "line_end_inclusive": 1011,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-044 design obligation portfolioの契約coverage（HELIX-HARNESS内の部品候補）",
+          "line_start": 740,
+          "line_end_inclusive": 750,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8"
+        },
+        "pins_match": true
+      },
+      "HARNESS-L2-010": {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "selected_registration": "fixed adopted pair",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-010 パックの境界",
+          "line_start": 340,
+          "line_end_inclusive": 350,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "exact identity table row",
+          "identity": "HARNESS-L2-010",
+          "line_start": 205,
+          "line_end_inclusive": 205,
+          "normalization": "UTF-8 exact row bytes including LF",
+          "sha256": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+        },
+        "pins_match": true
+      },
+      "HARNESS-L2-011": {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "selected_registration": "fixed adopted pair",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+          "line_start": 352,
+          "line_end_inclusive": 361,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "exact identity table row",
+          "identity": "HARNESS-L2-011",
+          "line_start": 206,
+          "line_end_inclusive": 206,
+          "normalization": "UTF-8 exact row bytes including LF",
+          "sha256": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+        },
+        "pins_match": true
+      },
+      "HARNESS-L2-023": {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "selected_registration": "fixed adopted pair",
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+          "line_start": 463,
+          "line_end_inclusive": 497,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "unit": "anchored heading section",
+          "identity_heading": "### HARNESS-L2-023 利用条件別の依存宣言の受入",
+          "line_start": 219,
+          "line_end_inclusive": 233,
+          "boundary": "before next level 1/2/3 heading",
+          "normalization": "UTF-8; trailing blank lines removed; append one LF",
+          "sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+        },
+        "pins_match": true
+      }
+    }
   }
 }
