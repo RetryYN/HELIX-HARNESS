@@ -1,0 +1,354 @@
+{
+  "audit_id": "HIL-NFR-13-15-SOURCE-CONDITION-CURRENT-RECHECK-2026-10-02",
+  "review_base_commit": "0c9baec55a85e98ce624f68957ba989ee169406c",
+  "scope": "旧HIL-NFR-13/14/15の3 identityとそのHR/HAC/HAT consumer条件だけ。requirements-stage全閉包やruntime実装は判定しない。",
+  "source_files": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "lines": [
+        {
+          "line": 193,
+          "sha256_no_lf": "sha256:1f84aee677313b58c14a7ccc7013cd510d6fdce7ea2856d50f8ca7009f6b37f0"
+        },
+        {
+          "line": 194,
+          "sha256_no_lf": "sha256:c46da658f329d70708ef64b39c6d1450144a3dd97b27cb8d53aada775e09c9f2"
+        },
+        {
+          "line": 195,
+          "sha256_no_lf": "sha256:d2c27e021fbda895baa49f8079146139dd69073799bcbda5e64f1dc570f2fa85"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "identity_pointers": [
+        "#/HIL-NFR-13",
+        "#/HIL-NFR-14",
+        "#/HIL-NFR-15"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "consumer_pointers": [
+        "#/HR-FR-HIL-10",
+        "#/HR-FR-HIL-12",
+        "#/HR-FR-HIL-06"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "consumer_pointers": [
+        "#/HAC-HIL-10a/b/c",
+        "#/HAC-HIL-12a/b/c",
+        "#/HAC-HIL-06a/b/c"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "consumer_pointers": [
+        "#/HAT-HIL-10",
+        "#/HAT-HIL-12",
+        "#/HAT-HIL-06"
+      ],
+      "status": "designed_not_implemented; read only, not executed"
+    }
+  ],
+  "current_full_file_sha256": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:23cd1bc48cd8cbd92a70196b37a5c8ee297562ffefece517c592366b3c58c393",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:8dfbc0abb2dd59836014d861c8978bdd4fe5e9840ebdf1c11f602083f5267357",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "docs/governance/audits/requirements-stage/hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md": "sha256:1f030d6aac8c14ea52186dcf5b656ce1c1d5d5533991d770bf5064f034df1374",
+    "docs/governance/audits/requirements-stage/hil12-auxiliary-worker-ipc-condition-audit-2026-10-01.md": "sha256:5c279afe14870f12c955bc96917237f2d198e055c4a76361aae8c0ec3fd0387f",
+    "docs/governance/management-provisional-requirement-register.jsonl": "sha256:9d03b5d08d5c731863e73d62c2a544ce3d318023c9fd7abccfb67d0c240bdb78"
+  },
+  "current_historical_carry_forward": {
+    "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "sha256": "sha256:51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+    "rows": {
+      "HIL-NFR-13": 115,
+      "HIL-NFR-14": 116,
+      "HIL-NFR-15": 117
+    },
+    "status": "all preserved_pending_rehome with no successor_requirement_ids; this is source-migration state, separate from semantic contract contents."
+  },
+  "requirements": [
+    {
+      "id": "HIL-NFR-13",
+      "source_conditions": [
+        "same source snapshot",
+        "same engine/detector version",
+        "same config digest",
+        "artifact/finding deterministic",
+        "difference becomes nondeterminism finding"
+      ],
+      "consumer_conditions": [
+        "HR-FR-HIL-10: versioned registry, deterministic same snapshot; rerun same digest/fingerprint; unknown version, nondeterminism, provenance missing, partial run/commit fail",
+        "HAC-HIL-10a positive reproducibility; 10b unknown/evidence/partial rejection; 10c rerun difference quarantine",
+        "HAT-HIL-10/HST-008/009 scenario designed_not_implemented, not executed"
+      ],
+      "current_destination": {
+        "identity": "HELIXOS-L2/L11-033",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:56; MPR-RC-HELIXOS-L2-033-001 adopted",
+        "fixed_l2_section_sha256": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+        "fixed_l11_section_sha256": "sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+        "source_scope": "7 MPR atoms are HIL-FR-25/26 and HR/HAC/HAT-HIL-10; HIL-NFR-13 is excluded. Current sections still match fixed digests."
+      },
+      "finding": "Semantic requirement retained in adopted pair; no duplicate candidate. Formal successor/source binding and source holding release remain unrecorded and must not be inferred from semantic overlap.",
+      "latest_main_recheck_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
+      "current_pair_bytes_match_decision_pins": true
+    },
+    {
+      "id": "HIL-NFR-14",
+      "source_conditions": [
+        "invalid JSON/encoding fail-close",
+        "schema mismatch fail-close",
+        "oversize fail-close",
+        "required sequence omission fail-close",
+        "worker crash fail-close",
+        "timeout fail-close",
+        "cancel fail-close",
+        "backpressure fail-close",
+        "parent process loss fail-close",
+        "partial result never promoted to canonical source of truth"
+      ],
+      "consumer_conditions": [
+        "HR-FR-HIL-12: Node/Python JSON Lines old transport; only validated result committed under Node authority; protocol/JSON/size/timeout/crash/backpressure/late/direct write failures",
+        "HAC-HIL-12a normal once-only commit; 12b anomaly terminal + partial zero; 12c cancel/timeout late and direct write rejection",
+        "HAT-HIL-12/HST-007 designed_not_implemented, not executed"
+      ],
+      "current_destination": {
+        "adopted_pairs": [
+          "HELIXOS-L2/L11-018",
+          "HELIXOS-L2/L11-019",
+          "HELIXOS-L2/L11-020"
+        ],
+        "exact_sections": [
+          "docs/helix-os/L2-requirements/governance-requirements.md:672-701",
+          "docs/helix-os/L11-acceptance/governance-acceptance.md:345-375"
+        ],
+        "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md: explicit adoption of all OS-L2-014–029; fixed base f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "limits": "018 general assignment and mismatch stop; 019 evidence/continuity, no successful checkpoint on persistence/projection failure; 020 execution result-state distinctions; paired tests do not individually exercise the NFR14 failure list. HELIXOS-L2-041 adopted later by 57 decision is scoped to old IPC-R07 lines 3082/3083, not NFR14. OS-L2-033/032 adoption similarly does not select NFR14."
+      },
+      "finding": "採択済みOS018/019/020は一般的assignment/evidence/CI契約だがNFR14の各failure classを閉じるpaired oracleがない。OS125/L11-125は一つのIR identityへ意味を変えず対応する未採択候補。",
+      "source_condition_map": [
+        {
+          "class": "不正JSON",
+          "raw_locator": "旧L1 NFR line 194; IR requirements.json#/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 failure_and_evidence protocol/JSON; HAC-HIL-12b; HAT-HIL-12 -> HST-HIL-007 invalid JSON",
+          "candidate_negative": "HELIXOS-L11-125 case 1"
+        },
+        {
+          "class": "schema不一致",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 protocol/schema; HAC-HIL-12b; HST-HIL-007 invalid schema",
+          "candidate_negative": "case 2"
+        },
+        {
+          "class": "oversize",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 size; HAC-HIL-12b; HST-HIL-007 oversize",
+          "candidate_negative": "case 3; input-declared bound only"
+        },
+        {
+          "class": "sequence欠落",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 protocol; HAT/HST-007 sequence failure",
+          "candidate_negative": "case 4"
+        },
+        {
+          "class": "worker crash",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 crash; HAC-HIL-12b; HST-HIL-007 crash",
+          "candidate_negative": "case 5"
+        },
+        {
+          "class": "timeout",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 timeout; HAC-HIL-12c; HST-HIL-007 timeout",
+          "candidate_negative": "case 6"
+        },
+        {
+          "class": "cancel",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 cancellation; HAC-HIL-12c; HST-HIL-007 cancel/late result",
+          "candidate_negative": "case 7"
+        },
+        {
+          "class": "backpressure",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 backpressure; HAC-HIL-12b; HST-HIL-007 backpressure",
+          "candidate_negative": "case 8; reject while backpressure is active, whether or not a dropped fragment is separately observable"
+        },
+        {
+          "class": "親process消失",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 process failure; HAC-HIL-12b; HST-HIL-007 parent/worker loss",
+          "candidate_negative": "case 9"
+        },
+        {
+          "class": "partial result非昇格",
+          "raw_locator": "旧L1 line 194; IR #/HIL-NFR-14",
+          "consumer_locator": "HR-FR-HIL-12 only validated result enters canonical transaction; HAC-HIL-12b partial zero; HAT/HST-007 transaction/result authority",
+          "candidate_negative": "case 10"
+        }
+      ],
+      "human_decision_options": {
+        "question": "HIL-NFR-14の列挙異常とpartial-result非昇格を、現行のHARNESS契約とOS結果回収のどの責務境界へ結び付けるか。候補の忠実起草とレビューは判断前も継続でき、この選択は採否・責務意味の確定に限る。",
+        "A": {
+          "choice": "未採択HELIXOS-L2/L11-125を、HARNESS oracle所有を維持したOS result-boundary候補として採択する。formal successor/retirementは別途source bindingへ記録する。",
+          "impact": "OS-L2-018/019/020のWorker実行・回収に失敗分類oracleを加え、HARNESS-L2-005/022の検証/受入意味は変えない。",
+          "recommendation": "推奨。9 failure classesとpartial非昇格を保持し、旧transport/schema/provider/thresholdを持ち込まない。"
+        },
+        "B": {
+          "choice": "HELIXOS-L2/L11-125を採択せず、HIL-NFR-14をpreserved_pending_rehomeのまま維持する。",
+          "impact": "一般的worker state/evidenceは採択済みpairに残る一方、列挙negativeとpartial非昇格の明示pair保証は未記録のままになる。"
+        },
+        "C": {
+          "choice": "結果のvalid/invalid/partialというverification意味をHARNESS要求へ移し、OSは選択済みHARNESS oracle結果をfail-closeして保持する責務に限定する。",
+          "difference_from_A": "AはNFR14全failure classesをOS result boundaryの一つのpairへ持つ。CはHARNESSにinvalid/partial判定基準を要求し、OSにその判定結果への運転応答だけを持たせるため、HARNESS-L2-005/022へ条件を追加・分割する意味差がある。",
+          "impact": "HARNESS-L2-005/022とOS-L2-018/019/020間の要求relation・oracle/evidence境界を改めて明示する必要がある。"
+        }
+      },
+      "candidate_pair_section_sha256": {
+        "L2": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+        "L11": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3"
+      },
+      "candidate_pair_file_sha256": {
+        "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:23cd1bc48cd8cbd92a70196b37a5c8ee297562ffefece517c592366b3c58c393",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:8dfbc0abb2dd59836014d861c8978bdd4fe5e9840ebdf1c11f602083f5267357",
+        "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-02.jsonl": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113"
+      },
+      "latest_main_recheck_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
+      "current_adopted_018_019_020_bytes_match_fixed_section_pins": true,
+      "coverage_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+      "source_lines_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+      "candidate_l2_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+      "candidate_l11_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+      "candidate_l2_full_file_sha256": "sha256:23cd1bc48cd8cbd92a70196b37a5c8ee297562ffefece517c592366b3c58c393",
+      "candidate_l11_full_file_sha256": "sha256:8dfbc0abb2dd59836014d861c8978bdd4fe5e9840ebdf1c11f602083f5267357"
+    },
+    {
+      "id": "HIL-NFR-15",
+      "source_conditions": [
+        "each CI stage receipt bound to its own commit/tree digest",
+        "each stage receipt bound to immediately prior-stage receipt",
+        "do not reuse unrelated-SHA green without lineage",
+        "quarantine result excluded from green counts"
+      ],
+      "consumer_conditions": [
+        "HR-FR-HIL-06: prejoin/postjoin/external CI same SHA/tree lineage; known failure only limited quarantine",
+        "HAC-HIL-06a same lineage 3 green; 06b bypass/different SHA rejected; 06c exact-known-only temporary quarantine",
+        "HAT-HIL-06/HST-003/022 designed_not_implemented, not executed"
+      ],
+      "current_destination": {
+        "adopted_pairs": [
+          "HARNESS-L2/L11-005",
+          "HARNESS-L2/L11-022",
+          "HELIXOS-L2/L11-032"
+        ],
+        "decisions": [
+          "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:108 (005 changed to derived/dynamic CI; language/tool independence preserved)",
+          "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md:31 (dynamic CI direction)",
+          "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md (baseline L2/L11 requirements 001–009 retained; 022 is MPR-RC-HARNESS-L2-022-004 adopted)",
+          "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:55 (OS032 adopted)"
+        ],
+        "limits": "The old fixed 3-stage shape is intentionally replaced by ticket/change/risk-derived duties; cannot reintroduce a fixed three-stage requirement. HARNESS-005 ties evidence/oracle to target revision and explicitly rejects fixed stages; 022 distinguishes and evidence-binds stages. OS032 keeps eligible quarantine separate from test/profile green. Exact immediate-prior-receipt chain as a general per-stage binding is not stated as a distinct oracle in these pairs.",
+        "exact_fixed_text_pins": [
+          {
+            "identity": "HARNESS-L2-005",
+            "fixed_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "fixed_line": 56,
+            "fixed_line_sha256_no_lf": "sha256:7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4",
+            "current_main_line": 56,
+            "current_line_sha256_no_lf": "sha256:7840e6369db64bfe553628e2cb0c5cafcd8537266b2637e64e5c9789778f81e4"
+          },
+          {
+            "identity": "HARNESS-L11-005",
+            "fixed_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "fixed_line": 25,
+            "fixed_line_sha256_no_lf": "sha256:edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371",
+            "current_main_line": 25,
+            "current_line_sha256_no_lf": "sha256:edeceea2b54fe31fe92460f610e19a49e32fde6a2d7a57c51d98c9b9afcbe371"
+          },
+          {
+            "identity": "HARNESS-L2-022",
+            "fixed_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "fixed_line": 336,
+            "fixed_line_sha256_no_lf": "sha256:c6d8386194dd7c98383b968e3de2100f6f5aef34b70cb46c9dcdb6ab4a26fa89",
+            "current_main_line": 336,
+            "current_line_sha256_no_lf": "sha256:c6d8386194dd7c98383b968e3de2100f6f5aef34b70cb46c9dcdb6ab4a26fa89"
+          },
+          {
+            "identity": "HARNESS-L11-022",
+            "fixed_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "fixed_line": 217,
+            "fixed_line_sha256_no_lf": "sha256:8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39",
+            "current_main_line": 217,
+            "current_line_sha256_no_lf": "sha256:8785945eba964d8bb02199958f883f0e1812ac96e10215cc745a6fc971462c39"
+          }
+        ],
+        "decision_exact_locators": [
+          {
+            "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+            "sha256": "sha256:a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+            "locator": "line 108; derive/dynamic CI; preserve language/tool-independent condition."
+          },
+          {
+            "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+            "sha256": "sha256:650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea",
+            "locator": "line 31; dynamic CI aligns with current HARNESS-L2-005."
+          },
+          {
+            "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+            "sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+            "locator": "L2/L11 fixed f6 pair; all baseline requirements retained; explicit HARNESS-022 MPR row 51."
+          }
+        ],
+        "exact_prior_receipt_lineage_observation": "HARNESS-005 decision changes fixed 3-stage schedule to ticket/change/risk-derived CI. HARNESS-022 pair requires per-stage proof/state/evidence. Neither fixed condition is cited as an explicit general rule that every selected dynamic stage receipt points to the immediate predecessor receipt. This remains a source-to-pair detail, not an adopted fixed 3-stage runtime requirement."
+      },
+      "finding": "Semantic portions are preserved under an adopted dynamic model, but exact prior-receipt lineage is not independently explicit. This audit does not create a fixed-stage candidate or assert a formal successor/source retirement; remaining lineage interpretation is recorded for parent review. Exact line bytes for HARNESS-L2/L11-005 and 022 were compared between f6dad2a and bca7592; their pinned lines are unchanged.",
+      "latest_main_recheck_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c"
+    }
+  ],
+  "candidate_125": {
+    "registration_id": "MPR-RC-HELIXOS-L2-125-001",
+    "coverage_receipt": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-02.json",
+    "source_lines": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-02.jsonl",
+    "authority_effect": "none",
+    "candidate_l2_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+    "candidate_l11_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+    "is_adopted": false,
+    "coverage_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+    "source_lines_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+    "candidate_l2_full_file_sha256": "sha256:23cd1bc48cd8cbd92a70196b37a5c8ee297562ffefece517c592366b3c58c393",
+    "candidate_l11_full_file_sha256": "sha256:8dfbc0abb2dd59836014d861c8978bdd4fe5e9840ebdf1c11f602083f5267357"
+  },
+  "static_validation": {
+    "source_file_sha_rechecked": true,
+    "legacy_line_sha_no_LF_checked": true,
+    "fixed_pair_section_sha_checked": true,
+    "current_candidate_section_sha_checked": true,
+    "mismatch_count": 0,
+    "runtime_executed": false,
+    "old_tests_executed": false,
+    "old_ci_executed": false,
+    "formal_successor_asserted": false
+  },
+  "latest_main_read_after_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
+  "candidate_draft_base_commit": "bca7592cf444b07292a1366e3b28e7de4d9f88cb"
+}
