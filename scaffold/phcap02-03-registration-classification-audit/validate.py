@@ -23,6 +23,36 @@ DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 OUTSIDE_67 = ROOT / "scaffold/pre-isolation-outside-holding-67/report.json"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 ORIGIN = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
+
+
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# Commit 554aff integrates the recorded living-inventory input. BASE/ORIGIN remains capture lineage.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    return (
+        set(current) == set(source) | {"current_projection"}
+        and {key: value for key, value in current.items() if key != "current_projection"} == source
+    )
 BRANCH = "research/phcap02-03-audit"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 PHASE_IDS = ["PHCAP-02", "PHCAP-03"]
@@ -116,7 +146,13 @@ def validate(inv: dict) -> list[str]:
     }
     for name, path in source_files.items():
         fail(errors, path.is_file(), f"E_SOURCE_MISSING:{name}")
-        if path.is_file():
+        if name == "phase":
+            source_bytes = fixed_phase_inventory_bytes()
+            fail(errors, source_bytes is not None, "E_SOURCE_HISTORICAL_BLOB:phase")
+            if source_bytes is not None:
+                fail(errors, sha(source_bytes) == EXPECTED_DIGESTS[name] == PHASE_INVENTORY_SOURCE_SHA256, "E_SOURCE_DIGEST:phase")
+                fail(errors, current_phase_inventory_preserves_source(source_bytes), "E_SOURCE_CURRENT_PROJECTION:phase")
+        elif path.is_file():
             fail(errors, sha(path.read_bytes()) == EXPECTED_DIGESTS[name], f"E_SOURCE_DIGEST:{name}")
 
     phase_doc = json.loads(PHASE.read_text(encoding="utf-8"))

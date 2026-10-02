@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,6 +20,10 @@ RELATION_PATH = ROOT / "docs/governance/legacy-migration/ir/legacy-ir-document-s
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 BATCH = "LEGACY-SEMANTIC-WAVE37-2026-09-22"
 BASE = "562e176c36844474b63424ec06beefe2f7722d18"
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# 554aff integrated the living inventory input SHA 16deda; BASE remains the review-lineage pin.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_DIGEST = "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
 MAIN_MERGE_PARENTS = [
     "083133e17019fafb8be7182975cb913f8b43f21e",
     "929da891382b153049da23bcecaf84b6b198092c",
@@ -86,6 +91,33 @@ def digest(data: bytes) -> str:
 
 def file_digest(path: Path) -> str:
     return digest(path.read_bytes())
+
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    # Only the living current_projection may be added; all source fields and records stay exact.
+    return (
+        set(current) == set(source) | {"current_projection"}
+        and {key: value for key, value in current.items() if key != "current_projection"} == source
+    )
 
 
 def canonical(value: object) -> str:
@@ -203,8 +235,16 @@ def verify() -> None:
     for row in rows:
         require(set(row) == ROW_FIELDS, f"row schema {row['review_id']}")
 
-    # Every declared input is digest-bound, including current four-product boundary docs.
+    # Declared inputs remain bound to current files, except the integrated phase source:
+    # its 554aff blob is the exact recorded input; current_projection may be appended only.
     for path, value in meta["inputs"].items():
+        if path == PHASE_INVENTORY_PATH:
+            source_bytes = fixed_phase_inventory_bytes()
+            require(source_bytes is not None, f"input historical blob missing {path}")
+            if source_bytes is not None:
+                require(digest(source_bytes) == value == PHASE_INVENTORY_SOURCE_DIGEST, f"input historical digest {path}")
+                require(current_phase_inventory_preserves_source(source_bytes), f"input current projection changed historical fields {path}")
+            continue
         target = ROOT / path
         require(target.is_file() and file_digest(target) == value, f"input digest {path}")
     prior_batches = []

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +12,36 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
 ORIGIN = "1310ada35dd8848a8b49b34caf373fc51398cb80"
+
+
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# Commit 554aff integrates the recorded living-inventory input. BASE/ORIGIN remains capture lineage.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    return (
+        set(current) == set(source) | {"current_projection"}
+        and {key: value for key, value in current.items() if key != "current_projection"} == source
+    )
 ASSET_IDS = [
     "LEGACY-ASSET-189702B332643A3BFDAF",
     "LEGACY-ASSET-4618C7243C283228809A",
@@ -126,7 +157,13 @@ def validate(data: dict[str, Any], check_files: bool = True) -> list[str]:
     for name, ref in prov.items():
         path = ROOT / ref.get("path", "")
         req(path.is_file(), "E_PROVENANCE_MISSING:" + name)
-        if path.is_file() and check_files:
+        if name == "phase_inventory" and check_files:
+            source_bytes = fixed_phase_inventory_bytes()
+            req(source_bytes is not None, "E_PROVENANCE_HISTORICAL_BLOB:phase_inventory")
+            if source_bytes is not None:
+                req(sha_bytes(source_bytes) == ref.get("sha256") == PHASE_INVENTORY_SOURCE_SHA256, "E_PROVENANCE_SHA:phase_inventory")
+                req(current_phase_inventory_preserves_source(source_bytes), "E_PROVENANCE_CURRENT_PROJECTION:phase_inventory")
+        elif path.is_file() and check_files:
             req(file_sha(path) == ref.get("sha256"), "E_PROVENANCE_SHA:" + name)
 
     scope = data.get("scope", {})

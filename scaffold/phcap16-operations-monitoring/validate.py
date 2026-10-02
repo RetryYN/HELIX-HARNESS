@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -11,6 +12,36 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
 ORIGIN = "569d7373c32287bbafadeec6043472563937c5c7"
+
+
+PHASE_INVENTORY_PATH = "docs/governance/phase-capability-inventory.json"
+# Commit 554aff integrates the recorded living-inventory input. BASE/ORIGIN remains capture lineage.
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
+
+def fixed_phase_inventory_bytes() -> bytes | None:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
+    current_path = ROOT / PHASE_INVENTORY_PATH
+    if not current_path.is_file():
+        return False
+    try:
+        source = json.loads(source_bytes)
+        current = json.loads(current_path.read_bytes())
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        return False
+    return (
+        set(current) == set(source) | {"current_projection"}
+        and {key: value for key, value in current.items() if key != "current_projection"} == source
+    )
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 ASSET_IDS = [
     "LEGACY-ASSET-17C4BF78919578FEBB18",
@@ -74,9 +105,14 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(task.get("task_id") == "PHCAP-16", "E_TASK_ID")
     req(task.get("phase") == "operations_monitoring", "E_TASK_PHASE")
     inv = ROOT / task.get("inventory_path", "")
+    req(task.get("inventory_path") == PHASE_INVENTORY_PATH, "E_PHASE_INVENTORY_PATH")
     req(inv.is_file(), "E_PHASE_INVENTORY_MISSING")
+    source_bytes = fixed_phase_inventory_bytes()
+    req(source_bytes is not None, "E_PHASE_INVENTORY_HISTORICAL_BLOB")
+    if source_bytes is not None:
+        req(sha(source_bytes) == task.get("inventory_sha256") == PHASE_INVENTORY_SOURCE_SHA256, "E_PHASE_INVENTORY_SHA")
+        req(current_phase_inventory_preserves_source(source_bytes), "E_PHASE_INVENTORY_CURRENT_PROJECTION")
     if inv.is_file():
-        req(file_sha(inv) == task.get("inventory_sha256"), "E_PHASE_INVENTORY_SHA")
         phase = json.loads(inv.read_text(encoding="utf-8"))
         rec = next((x for x in phase.get("records", []) if x.get("task_id") == "PHCAP-16"), None)
         req(rec == task.get("phase_record_snapshot"), "E_PHASE_SNAPSHOT")
