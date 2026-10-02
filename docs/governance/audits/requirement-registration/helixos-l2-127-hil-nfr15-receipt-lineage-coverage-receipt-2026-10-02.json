@@ -19,20 +19,25 @@
     "l2_identity": "HELIXOS-L2-127",
     "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
     "l2_line": 1575,
-    "l2_section_sha256": "sha256:5df9897ff40363a3db6b00fa1171f2560767fabc19bda136faff884bb6e6be62",
+    "l2_section_sha256": "sha256:69a106e99a486ceb0a8f21785ae82da1c8ad13d687e1dec93f45b2e699ccacab",
     "l11_identity": "HELIXOS-L11-127",
     "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
     "l11_line": 1208,
-    "l11_section_sha256": "sha256:5bc6c27f56df1d14fdf0246381cb088e189c82f8d7cc5663d095757082d93541",
+    "l11_section_sha256": "sha256:e0b40016327433405d35fede5a267b70d27575517a212e8043765d83e2be8018",
     "section_digest_rule": "UTF-8 exact bytes from candidate heading through before next same-or-higher heading; remove trailing blank lines and end with one LF.",
-    "l2_full_file_sha256": "sha256:17054400db59fddc0c3353c3247d2a770ca44236b65fc3cb6ba078a55a8f4e9a",
-    "l11_full_file_sha256": "sha256:7d2ac67050d41af665e70b023cde316ba5f9a5309fa43df91ee32c3c983f7baa",
+    "l2_full_file_sha256": "sha256:10ce99f8aa2b7bee5e3c080bc147f449c06405471c00638c3c322607be4a2f17",
+    "l11_full_file_sha256": "sha256:3f438f48890db46773df4451e30bc48297a9ca85eacb7eb446b91f34c6c28d4c",
     "source_lines_file": "docs/governance/audits/requirement-registration/hil-nfr15-ci-receipt-lineage-source-lines-2026-10-02.jsonl",
     "source_lines_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
     "source_atom_set_digest_rule": "SHA-256 of UTF-8 `HIL-NFR-15 ` + statement semantic digest without `sha256:` + LF. Exactly the IR identity is selected; L1 corroborates the same wording; HR/HAC/HAT/HST are consumer context.",
     "source_atom_set_digest": "sha256:65125cfa1dfec63bee1c0ed26faf32d5b3c5ab3ef06c52234ec9bd3b27d65628",
     "raw_l1_line_hash_method": "L1 source line without-LF removes exactly one trailing LF (and CR only if CRLF); separate with-LF hash is retained.",
-    "source_atom_set_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427"
+    "source_atom_set_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
+    "l2_section_end_line_exclusive": 1587,
+    "l2_heading": "### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）",
+    "l11_section_end_line_exclusive": 1228,
+    "l11_heading": "### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage",
+    "latest_main_comparison_commit": "0e160e146874f039155f9e406e7ae650a01f43ee"
   },
   "existing_adopted_contracts_reviewed": [
     {
@@ -102,6 +107,26 @@
       "current_l11_section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460",
       "adoption": "Adopted by explicit decision row 55; do not infer from MPR registered_proposal metadata.",
       "scope": "quarantine eligibility does not produce green."
+    },
+    {
+      "identity": "HARNESS-L2/L11-023",
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_locator": "row 52; explicit PO adoption of L2/L11-023 pair; MPR registered_proposal metadata is not the adoption authority",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "fixed_l2_full_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "fixed_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "fixed_l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_l11_full_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "fixed_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_read_after_commit": "0e160e146874f039155f9e406e7ae650a01f43ee",
+      "current_l2_file_sha256": "sha256:5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+      "current_l11_file_sha256": "sha256:15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+      "current_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "current_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "scope": "The adopted taxonomy separates always-required, operation-specific, selected-source and reference-only dependencies. This classification does not impose fixed CI stages; it preserves input-conditioned dependency closure and deterministic reasons.",
+      "adoption": "adopted by explicit 2026-09-28 PO decision row 52; the MPR registered_proposal display is metadata and not the adoption authority"
     }
   ],
   "source_atom_count": 1,
@@ -156,19 +181,24 @@
     "reason": "PO decisions rederive CI from ticket/change/risk and explicitly avoid fixed stages; current adopted pairs align with that model."
   },
   "human_decision_options": {
-    "question": "HELIXOS-L2/L11-127の限定候補を採択し、選択済みdynamic planで宣言された依存段間の直前receipt参照を明示するか。忠実候補の起草・独立reviewはこの判断前も継続できる。source holdingや他pairのauthorityは本候補から変更しない。",
+    "question": "HELIXOS-L2/L11-127の限定候補を採択し、選択済みdynamic planで宣言された各依存edgeについてのみ、後段receiptのdirect predecessor参照を明示するか。忠実候補の起草・独立reviewはこの判断前も継続できる。source holdingや他pairのauthorityは本候補から変更しない。",
     "A": {
-      "choice": "OS-127候補を採択し、planに依存関係がある場合だけ後段receiptが直前依存receiptを直接参照する。HARNESS義務/oracleとOS-032のquarantine境界は各既存pairに維持する。",
-      "recommendation": "推奨。旧lineage条件を保ち、旧固定3段・順序を復活させない。",
-      "impact": "HELIXOS-L2/L11-008/020の動的CI run/receiptに限定関係を明示し、HARNESS-L2/L11-005/022の義務・oracle意味、OS-L2/L11-032のquarantineを変更しない。"
+      "choice": "OS-127候補を採択し、planに依存edgeが宣言された場合だけ後段receiptが当該plan上の直前依存receiptを直接参照する。HARNESS義務/oracleとOS-032のquarantine境界は各既存pairに維持する。",
+      "recommendation": "推奨。旧lineage条件を保ち、旧固定3段・順序を復活させず、選択plan内の独立checkは独立のまま扱う。",
+      "impact": "HELIXOS-L2/L11-008/020の選択済みdynamic plan/receiptに限定関係を明示し、HARNESS-L2/L11-005/022/023の義務・oracle・dependency taxonomy意味、OS-L2/L11-032のquarantine、旧source holdingは変更しない。"
     },
     "B": {
       "choice": "候補を採択せず、HIL-NFR-15をpreserved_pending_rehomeのまま保持する。",
-      "impact": "既存revision/run bindingとquarantine条件は残るが、plan上の直前receipt edgeは明示保証・source successorなしのまま。"
+      "impact": "既存revision/run bindingとquarantine条件は残るが、plan上の直前receipt edgeは明示保証・正式source successorなしのまま。"
+    },
+    "C": {
+      "choice": "意味・scope変更案。POが選択するplan dependency edge subsetだけへOS-127を適用し、subset外の旧lineage条件は未充足のsource holdingへ残す。",
+      "recommendation": "推奨しない。選択planが宣言するedgeのうち一部だけをreceipt lineage確認の対象とするため、Aより被覆範囲が狭くなる。",
+      "impact": "OS-127 candidate scopeだけを限定する。選択外edgeはformal successor/被覆完了とはせず、HARNESS oracle、OS-008/020/032、source holding自体は変更しない。"
     }
   },
   "candidate_draft_base_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
-  "verification_status": "Source IR, L1 corroboration, HR/HAC/HAT/HST context, adopted decision locators and current pair bytes were read. Current/fixed exact pair digests and physical line hashes recorded; static only. No legacy/current runtime, test, or CI execution.",
+  "verification_status": "Source IR, L1 corroboration, HR/HAC/HAT/HST context, adopted decision locators and current pair bytes were read. HARNESS-L2/L11-023 adoption was verified from explicit decision row 52 and exact fixed/current pair bytes; not inferred from MPR metadata. Current candidate pair digest and full-file SHA are refreshed. Static only; no legacy/current runtime, test, or CI execution.",
   "legacy_product_routing_context": {
     "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
     "line": 117,
@@ -183,5 +213,62 @@
     "successor_assignment_status": "unassigned",
     "successor_requirement_ids": [],
     "interpretation": "The HELIX-OS candidate placement is a proposed target for the receipt-edge residual only. It does not decide the pending HARNESS/OS split, transfer HARNESS green/oracle responsibility, assign a formal successor, or change source holding."
+  },
+  "dependency_taxonomy": {
+    "authority": "HARNESS-L2/L11-023 explicitly adopted by 2026-09-28 decision row 52; fixed revision and current bytes pinned in existing_adopted_contracts_reviewed entry.",
+    "applied_classes": [
+      {
+        "class": "always_required",
+        "meaning": "selected plan/target/check/receipt contract inputs required for every selected check; identity, owner, contract revision, range, compatibility evidence, applicability are distinct fields."
+      },
+      {
+        "class": "operation_specific",
+        "meaning": "direct predecessor receipt edge is required only when the selected plan declares that check dependency; independent checks have no such edge."
+      },
+      {
+        "class": "selected_source",
+        "meaning": "the explicitly selected receipt source/revision/scope is required for the selected operation; unselected source remains unobserved and no fallback occurs."
+      },
+      {
+        "class": "reference_only",
+        "meaning": "legacy three-stage source/context remains historical reference; metadata-only gaps are reference-state unknown and do not stop execution closure when this class is explicit."
+      }
+    ],
+    "candidate_fixture": "fixture:OS127-plan-P7@r1; source=fixture:receipt-source-A@r1; operation=fixture:check-B-with-predecessor@r1; selected plan P7@r3; target C7/T7; edge check-A@r2→check-B@r4; R-B directly references R-A.",
+    "negative_oracles": "Each execution-row identity, owner, revision, range, compatibility evidence, class, applicability missing/wrong/stale/unknown independently leaves the applicable closure unknown/pending; edge/receipt plan/check/commit/tree mismatches are separate failures; selected source failure does not fallback; no-edge check-C is not forced into the chain. Reference-only descriptive metadata gaps alone do not stop closure.",
+    "normal_independent_check": "check-C has no selected plan dependency edge; bind its own plan/check/target only, with no R-A predecessor requirement.",
+    "non_claims": "No fixed three-stage order/count; no HARNESS oracle ownership transfer; no actual owner/source chosen; candidate remains unadopted; old source holding remains unchanged."
+  },
+  "parent_l1_fixed_pin": {
+    "identity": "HELIXOS-L1-004",
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "decision_locator": "fixed L1 target table line 31; HELIXOS-L1-004 row line 33 connects to OS-L2-007/008",
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_file_path": "docs/helix-os/L1-planning/system-intent.md",
+    "fixed_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "fixed_item_line": 33,
+    "fixed_item_text": "| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |",
+    "scope_note": "親targetは固定済み。新候補HELIXOS-L2/L11-127の採択は継承しない。",
+    "fixed_item_line_sha256_including_lf": "sha256:41b5415206bd86c472fc3de61c815cba5eee17a4233e9c9ae41ba4161dd3eee7",
+    "decision_record_source_commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+    "decision_record_physical_line": 31,
+    "decision_record_line_text": "| L1 | [docs/helix-os/L1-planning/system-intent.md](../../helix-os/L1-planning/system-intent.md) | 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e |",
+    "decision_record_line_sha256_including_lf": "sha256:c0299a341fd033785f147dc4a084b22e5dfbe7180a440ff41823a6eb24b2e875",
+    "record_vs_target_note": "The 2026-09-28 decision record was added at 51e170f8a1e412f201173e8e7116a82538d451e0; f6dad2a... is the L1 target bytes revision cited by that later record, not the commit where the decision record first existed."
+  },
+  "latest_main_comparison": {
+    "commit": "0e160e146874f039155f9e406e7ae650a01f43ee",
+    "read_after": "Exact git tree bytes at 0e160e146874f039155f9e406e7ae650a01f43ee; no merge into this local candidate branch.",
+    "l2_file_sha256": "sha256:5e8a521274d6f21deb6b10a42625e39d9e82550856efb59adccc40679f8fa9a5",
+    "l11_file_sha256": "sha256:f1e3de3192aecb32b7a60352714d95ccace8ad28608dec2174a5de14da6654ec",
+    "mpr_file_sha256": "sha256:cf18c5f0041dff9170613ded4c1fc2cdef4fe6d6b5eafe7fe0c93d0d1539a300",
+    "candidate_presence": {
+      "l2_127_heading": false,
+      "l11_127_heading": false,
+      "mpr_001": false,
+      "receipt": false
+    },
+    "scope_note": "The candidate was first added by local commit 88336e8886a62e579049b9705c9381d2024309da, whose parent/review base is 91db17752d29c8bb8dd30a4b4bf693136bcd858f. Its absence at 91db/0e160 is ordinary unpublished-candidate state, not a deletion or authority decision. Source holding and successor status are unchanged."
   }
 }
