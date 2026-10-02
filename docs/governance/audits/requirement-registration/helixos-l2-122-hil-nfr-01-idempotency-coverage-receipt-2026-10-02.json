@@ -154,7 +154,7 @@
       "requirement": "HELIXOS-L2-007",
       "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007",
-      "current_file_sha256": "24d904839b522d256d305d09e0dd9d654a94a8239dd0fae6cc125631232e9fc1",
+      "current_file_sha256": "37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
       "coverage": "provenance/source/cause and evidence references; does not state effect-level dedup across all four source identities"
     },
     {
@@ -162,7 +162,7 @@
       "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-009; docs/helix-os/L11-acceptance/governance-acceptance.md:29,55",
       "coverage": "durable event/idempotent projection, checkpoint, interrupted event-save/projection recovery; only same event/projection guarantee, not Issue+implementation+memory effects across owners",
-      "current_file_sha256": "24d904839b522d256d305d09e0dd9d654a94a8239dd0fae6cc125631232e9fc1",
+      "current_file_sha256": "37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
       "current_L11_file_sha256": "adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4"
     },
     {
@@ -171,7 +171,7 @@
       "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
       "fixed_L11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
       "coverage": "episode provenance, duplicate/stale/denied/unexecuted distinction, continuity and no duplicate side-effect from duplicate events; not all four identity/effect-owner closure",
-      "current_L2_file_sha256": "24d904839b522d256d305d09e0dd9d654a94a8239dd0fae6cc125631232e9fc1",
+      "current_L2_file_sha256": "37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
       "current_L11_file_sha256": "adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4"
     },
     {
@@ -222,8 +222,8 @@
       "heading": "### HELIXOS-L2-122 HIL-NFR-01 owner間副作用の冪等な引継ぎ（接続候補、未採択）",
       "line_start": 1509,
       "line_end": 1522,
-      "section_sha256": "5a38ad68fb75ebec6c4e99797511f46c9bce460b2ef3a6ae2b3f9ae0f8197806",
-      "file_sha256": "24d904839b522d256d305d09e0dd9d654a94a8239dd0fae6cc125631232e9fc1"
+      "section_sha256": "986b3fa5d5f89a378db616306d5af1a2e34434f657f078a97368475e72baf7a5",
+      "file_sha256": "37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05"
     },
     "L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -234,7 +234,7 @@
       "file_sha256": "adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4"
     }
   },
-  "candidate_semantic_digest": "sha256:5a38ad68fb75ebec6c4e99797511f46c9bce460b2ef3a6ae2b3f9ae0f8197806",
+  "candidate_semantic_digest": "sha256:986b3fa5d5f89a378db616306d5af1a2e34434f657f078a97368475e72baf7a5",
   "normal_oracles": [
     "Same operation identity and same payload redelivery/restart after the owner already returned an effect receipt reuses that logical Issue/implementation/selected memory result; no duplicate effect.",
     "After an early owner effect is confirmed but a later owner fails, preserve its result/receipt and unfinished obligation; resume does not repeat confirmed effect; only a known-not-performed later effect can be attempted.",
@@ -290,7 +290,7 @@
       }
     ],
     "A_vs_C": "Aは既存contractが識別するすべての該当operationへ原文のidentity/effect列挙を適用する。CはPOが明示したsubsetだけを対象にし、除外条件を未完holdingへ残す。",
-    "impact": "A/B/Cが変えるのはHELIXOS-L2-122とpaired HELIXOS-L11-122の採否・scope・対応oracleだけ。採択済みOS 007/009/019、OS 2026-09-28固定001-029 revision、既存LABO／INTELLIGENCE／BRAIN責務とHARNESS 023の意味は変更しない。候補の忠実な起草・独立reviewを止めず、採択または意味変更のauthority判断は既存経路に残す.",
+    "impact": "A/B/Cが変えるのはHELIXOS-L2-122とpaired HELIXOS-L11-122の採否・scope・対応oracleだけ。採択済みOS 007/009/019、OS 2026-09-28固定001-029 revision、既存LABO／INTELLIGENCE／BRAIN責務とHARNESS 023の意味は変更しない。A/B/Cの選択は忠実な候補起草・独立reviewの前提ではない。採択または意味変更のauthority判断だけを既存経路に残す.",
     "version_target": "旧HIL-NFR-01にversion_target指定なし。候補でも指定しない。"
   },
   "version_target_source_status": "Old IR HIL-NFR-01 does not define version_target; candidate intentionally leaves it unspecified."
