@@ -45,16 +45,19 @@
       {
         "identity": "HR-FR-HIL-16",
         "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-16",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
         "context_only": true
       },
       {
         "identity": "HAC-HIL-16a/b/c",
         "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-16a,b,c",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
         "context_only": true
       },
       {
         "identity": "HAT-HIL-16",
         "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-16",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
         "context_only": true,
         "execution_performed": false
       }
@@ -100,19 +103,19 @@
     "digest_rule": "Each section begins at its ### heading and ends before the next ### heading or EOF; trim trailing blank lines and include one UTF-8 LF.",
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:9968d4d762e0310fd396ee841b3cba8e470f3ce0126b9f38b82e8a5b20d119f4",
+      "full_file_sha256": "sha256:a992547aaf54ddc6cd77b662dc22dd9a156ef88ad7435b8dff49b963de7aeec6",
       "section_heading": "### HARNESS-L2-083 Domain Objectの不変条件と依存方向候補（単体、未採択）",
       "start_line": 1384,
       "end_line": 1393,
-      "section_sha256": "sha256:a28099c81197528e5fd82415ed770c7be894b1c40e72185f9690d2fe69002e91"
+      "section_sha256": "sha256:985798398d6955c8a5be1759eb3b97ad9ec0e629b43bc44d2c6b55ba4f6f9d0a"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:2c0027d0248499afc7e7cc275c54951bb2315814a9310d29154e9285f6c3f0c2",
+      "full_file_sha256": "sha256:4950c032ddc824a3ae3dc809203e0111a92390b5e0e54688a0d0885de7a76f81",
       "section_heading": "### HARNESS-L11-083 Domain Objectの不変条件と依存方向受入候補",
       "start_line": 1123,
-      "end_line": 1134,
-      "section_sha256": "sha256:e8457ec0581fdf387fc6e4de544f7412f119dded2690e8a55ef80e3789ba9728"
+      "end_line": 1135,
+      "section_sha256": "sha256:df12324a49d7386d638856ef37adaa746f37ab70fd8887590235bc6200fddd02"
     }
   },
   "parent_l1_fixed_pin": {
@@ -153,9 +156,18 @@
     },
     {
       "identity": "HARNESS-L2/L11-048",
-      "authority": "candidate only; not adopted; contains the two HIL-NFR-25 conditions for ambiguous naming and test binding",
-      "l2_section_sha256": "current candidate referenced by MPR-RC-HARNESS-L2-048-001",
-      "scope": "O9 source spans S01/S02. 083 covers the complementary six Domain Object conditions; neither candidate adopts the other."
+      "authority": "adopted for the exact revisions below by explicit PO decision row 28; the earlier 2026-09-29 57-candidate decision excluded it at that time, and is superseded for this identity by the later 11-candidate decision",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "decision_record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "decision_row": 28,
+      "decision_basis_revision": "909c8015326f35f8d42ce12e3c388923de411d1f",
+      "recorded_main_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+      "registration_id": "MPR-RC-HARNESS-L2-048-001",
+      "fixed_l2_section_sha256": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "fixed_l11_section_sha256": "sha256:4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+      "fixed_l2_file_sha256": "sha256:45955ffba1293b603f3c513ec1e9e328dd7bcf24b038463eb20dd480d1dc2108",
+      "fixed_l11_file_sha256": "sha256:216a8dccfff723408fd4b54701933a8e257f29e5c775aaef2a4458d1f36d3cc7",
+      "scope": "The adopted 048 revision covers the two HIL-NFR-25 clauses for responsibility-ambiguous naming and test binding only. The six Domain Object conditions mapped by 083 remain separate and are not adopted by the 048 decision."
     }
   ],
   "condition_mapping": [
