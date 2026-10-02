@@ -479,19 +479,19 @@
       "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）",
       "start_line": 1660,
       "end_line_exclusive": 1680,
-      "section_sha256": "sha256:178f05b71c5037878e68cbb8c7e08e9dd6e4a19fda52667aa6ccb3f574b6b906"
+      "section_sha256": "sha256:f372055757706c19e41e62282e5a7677b609a66ed50398a260c1331cd0876144"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
       "start_line": 1363,
       "end_line_exclusive": 1385,
-      "section_sha256": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
+      "section_sha256": "sha256:b9ef25fb50af3014cbcd4c7431f739f6018abdebd036b62b73a8479b63e7d320"
     },
     "pair_rule": "Exact selected heading to next same-or-higher heading or EOF; trailing blank lines trimmed; exactly one UTF-8 LF appended. Section boundaries and raw full-file digests are independently pinned.",
     "full_file_sha256": {
-      "l2": "sha256:061056e154830000aa6fac1d683bd2c37e752f9e95733fa1db342c849b2350b2",
-      "l11": "sha256:4e42ebb11bc3312d21af20c7dd98d3e256db9a1f712faa291a641a71e2491424"
+      "l2": "sha256:67b9319b9ad0ddf9d7800d55411045d10292c7345253f642edc3d3b68dd24e66",
+      "l11": "sha256:f717262bd482d534db8a99da745395aa063288f6734a91b94d6a2d70250e5aa4"
     }
   },
   "human_decision_material": {
@@ -499,9 +499,11 @@
     "source_wording": "scope/requirement/template/skill/model catalog/allowlist changes stale the generated artifact.",
     "option_a": "all changes to the six listed source categories stale every applicable pack/agent artifact in the affected task scope; broader invalidation, closer to unqualified literal reading.",
     "option_b": "only a source actually selected by that pack/agent operation (plus its exact scope/requirement bind) stales the affected facet; narrower and requires explicit selected-dependency applicability.",
-    "current_state": "unadopted A/B choice already recorded by HELIXINTELLIGENCE-L2-072-005; this candidate does not convert either into an adopted rule.",
-    "recommendation": "Retain the existing 072-005 recommendation B for selected dependency facets, but treat it as proposal-only until the relevant exact revision is adopted. For an operation with unclear selection/applicability, return unknown/hold rather than assume non-applicability.",
-    "impact": "Choice changes which unrelated pack/agent facets must be re-evaluated after a catalog change. Neither choice creates tool authority, agent authority, OS dispatch permission, additional human approval, or whole-source closure."
+    "current_state": "072-005 choice B adopted for candidate/shadow stale facets by po-decision-2026-10-03-additions10.md; OS131 operation guard remains an unadopted proposal.",
+    "recommendation": "Preserve adopted selected-dependency B at candidate/shadow boundary. Proposed operation applicability remains subject to OS131 adoption; unknown selection holds only affected operation.",
+    "impact": "Choice changes which unrelated pack/agent facets must be re-evaluated after a catalog change. Neither choice creates tool authority, agent authority, OS dispatch permission, additional human approval, or whole-source closure.",
+    "decision_ref": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+    "decision_file_sha256": "sha256:a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad"
   },
   "acceptance_scope": {
     "normal": "one existing authorized operation; unchanged bound sources; versioned pack and necessary minimum finite team contract; same-revision shadow review and runtime guard before use; independent verify; nonauthority maintained",
@@ -528,7 +530,7 @@
       "formal successor/holding release",
       "HARNESS-L2-047 adoption",
       "security authority changes",
-      "full generic pack-source scope decision beyond unadopted 072-005 choice",
+      "OS131 operation-guard adoption beyond adopted 072-005 candidate/shadow choice B",
       "HR-FR-HIL-21 generation method, pack/team generation, full muster/lifecycle and receipts, and HAC-HIL-21c rebuild/retire lifecycle"
     ],
     "preserved_pending_registration_refs": [
@@ -536,7 +538,7 @@
       "HR-FR-HIL-21 generation/muster/lifecycle/rebuild-retire residuals remain pending under the source record",
       "HAC-HIL-21a/b/c and HAT-HIL-21 do not represent full closure or execution",
       "HIL-BR-29/30 and HIL-FR-57/58/59/60 remain distinct source obligations not imported by HR selection",
-      "MPR-RC-HELIXINTELLIGENCE-L2-072-005 remains unadopted; its A/B stale-scope choice remains unresolved"
+      "MPR-RC-HELIXINTELLIGENCE-L2-072-005 choice B is adopted only for candidate/shadow; OS131 remains unadopted"
     ],
     "source_atom_count_note": "One normative IR atom (HIL-NFR-34). HR-FR-HIL-21 is an additional selected source record for explicitly enumerated guard conditions, not counted as an IR atom.",
     "source_unit_partition": "Two selected source units: one whole IR HIL-NFR-34 atom and one whole HR-FR-HIL-21 record. All HR behavior/transition/failure conditions are partitioned: in-scope guard conditions into L2/L11, adjacent adopted pairs only as exact contextual boundaries (none closes an entire HR condition), and generation/muster/rebuild-retire residuals held. No HR whole-record closure is claimed."
@@ -641,12 +643,12 @@
     }
   },
   "candidate_pair_section_sha256": {
-    "HELIXOS-L2-131": "sha256:178f05b71c5037878e68cbb8c7e08e9dd6e4a19fda52667aa6ccb3f574b6b906",
-    "HELIXOS-L11-131": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
+    "HELIXOS-L2-131": "sha256:f372055757706c19e41e62282e5a7677b609a66ed50398a260c1331cd0876144",
+    "HELIXOS-L11-131": "sha256:b9ef25fb50af3014cbcd4c7431f739f6018abdebd036b62b73a8479b63e7d320"
   },
   "candidate_pair_full_file_sha256": {
-    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:061056e154830000aa6fac1d683bd2c37e752f9e95733fa1db342c849b2350b2",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:4e42ebb11bc3312d21af20c7dd98d3e256db9a1f712faa291a641a71e2491424"
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:67b9319b9ad0ddf9d7800d55411045d10292c7345253f642edc3d3b68dd24e66",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:f717262bd482d534db8a99da745395aa063288f6734a91b94d6a2d70250e5aa4"
   },
   "selected_source_units": [
     {
