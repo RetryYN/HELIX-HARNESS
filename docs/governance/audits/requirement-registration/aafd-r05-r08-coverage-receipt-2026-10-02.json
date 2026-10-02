@@ -104,8 +104,8 @@
     {
       "identity": "HARNESS-L2/L11-023",
       "status": "Adopted exact fixed pair; 2026-09-28 decision includes MPR-RC-HARNESS-L2-023-002 among all 24 adopted candidates. Fixed pair at f6dad2a and current pair are byte-identical for section 023.",
-      "l2_current_sha256": "sha256:96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
-      "l11_current_sha256": "sha256:a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3",
+      "l2_current_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+      "l11_current_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3",
       "exact_scope": "four classes: always required; operation-specific required; selected-input-source required; reference-only. Applied here as a dependency classification distinction only, not as AAFD owner assignment or delta processing authority.",
       "adopted_pair_section_digests": {
         "l2": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
@@ -255,8 +255,8 @@
   "validation_boundary": "Static source file/line/atom/hash, candidate paired section, parent/decision, MPR append-only and four dependency-class distinction, concrete receipt-read/qualification failure no-fallback oracle, and current-parent version_target evidence. No old runtime, test, CI or CLI; no authority adoption or execution claim.",
   "management_registration": {
     "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
-    "register_line": 660,
-    "pre_append_register_sha256": "sha256:e748ed4446ffb16aaedb59bc11c7c3142766694b761e15e31f2fa538f9af24ee",
+    "register_line": 661,
+    "pre_append_register_sha256": "sha256:aea487bfa071a12a7e5b2031b8c614817f7ccc57e9833d829d70368f57b3ba19",
     "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
     "append_only_prefix_verified": true,
     "status": "registered_proposal; authority_effect none; no adoption inferred"
@@ -289,10 +289,19 @@
     "status": "registered_proposal; authority_effect none; no adoption inferred"
   },
   "integration_read_after": {
-    "base_commit": "c7e9d7f558bfde4b24bb94c9eb1d47b3424c3caf",
-    "main_prefix_rows": 659,
+    "base_commit": "926658d9fc7316a7ce92e09443cf7a91daf383fa",
+    "main_prefix_rows": 660,
     "local_append_rows": 1,
     "current_pair_full_file_pins_unchanged": true,
     "source_raw_lines_unchanged": true
-  }
+  },
+  "integration_history": [
+    {
+      "base_commit": "c7e9d7f558bfde4b24bb94c9eb1d47b3424c3caf",
+      "main_prefix_rows": 659,
+      "local_append_rows": 1,
+      "current_pair_full_file_pins_unchanged": true,
+      "source_raw_lines_unchanged": true
+    }
+  ]
 }
