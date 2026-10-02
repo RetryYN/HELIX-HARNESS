@@ -1,0 +1,2350 @@
+{
+  "record_id": "HIL-TR-01-11-SOURCE-CONDITION-CROSSWALK-2026-10-03",
+  "audit_type": "condition-level source to current adopted L2/L11 crosswalk",
+  "basis_main_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+  "fixed_requirement_revision_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "legacy_execution": "not performed; archive workflows/runtimes/tests/CI are read-only sources",
+  "legacy_sources": {
+    "L1": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "lines": "165-175"
+    },
+    "IR": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "record_revisions": "HIL-TR-01..11 rev1, kind technical, status specified, definition_status frozen"
+    },
+    "consumer_files": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+        "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+        "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+        "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+      }
+    ]
+  },
+  "decision_basis": {
+    "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "PO_decisions": {
+      "HARNESS": {
+        "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "current_audit_main": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+        "L2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "current_file_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36"
+        },
+        "L11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "current_file_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729"
+        }
+      },
+      "HELIXOS": {
+        "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "current_audit_main": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+        "L2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "current_file_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97"
+        },
+        "L11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "current_file_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8"
+        }
+      },
+      "HELIXCONNECT": {
+        "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+        "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "current_audit_main": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+        "L2": {
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "fixed_file_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "current_file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+        },
+        "L11": {
+          "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "fixed_file_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "current_file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+        }
+      },
+      "HELIXINFRASTRUCTURE": {
+        "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+        "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "current_audit_main": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+        "L2": {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "fixed_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "current_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+        },
+        "L11": {
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "fixed_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "current_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+        }
+      },
+      "HELIXSECURITY": {
+        "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+        "fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "current_audit_main": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+        "L2": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "fixed_file_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "current_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5"
+        },
+        "L11": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "fixed_file_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "current_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556"
+        }
+      }
+    },
+    "interpretation": "decision record exact adopted candidate set and fixed L1/L2/L11 bytes control adoption; candidate registry state authority_effect=none does not negate explicit PO decision; only listed adopted IDs are used. Older decision snapshots are historical and do not supersede later explicit PO decision."
+  },
+  "no_loss_scope": "every old statement clause, attached contract behavior/transition/failure+evidence, all three acceptance polarities, and HAT scenario/evidence/negative boundary are represented below. Semantic purpose, old implementation choice, unresolved scope, and evidence status are distinct.",
+  "rows": [
+    {
+      "id": "HIL-TR-01",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 165,
+        "line_text": "| **HIL-TR-01** | HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。 |",
+        "line_sha256": "04461c622892d646d0a611c9a6d16d4749291388cc7673cab0978f0db733c5c0",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-01",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。",
+          "semantic_digest": "sha256:20132aa5c7cc5ca9107e826e3ee2be6b3eb959414424594fb8dfbf317b1c5afc"
+        },
+        "assertion_id": "HIA-TR-001",
+        "semantic_digest": "sha256:fd60c7cadc6a45d0fa577870b810e165892a36dcaa93bfe3ca16f15aed5338a1",
+        "primary_system_contract_id": "HR-FR-HIL-13",
+        "acceptance_ids": [
+          "HAC-HIL-13a",
+          "HAC-HIL-13b",
+          "HAC-HIL-13c"
+        ],
+        "system_test_id": "HAT-HIL-13",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-01",
+          "owner_id": "HR-FR-HIL-13",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-13",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-BR-19",
+            "HIL-FR-33",
+            "HIL-TR-01",
+            "HIL-TR-11"
+          ],
+          "behavior": "active install/build/CLI/hooks/tests/package/distributionをNode.js LTSへ移しBun dependencyを0にする",
+          "transition_contract": "Bun-less Linux、Node lock、surface inventory → 全surface green、active finding 0",
+          "failure_and_evidence": "Bun API/command/lock/CI/distribution残存、部分互換の完了claim / inventory、workflow logs、lock、package smoke",
+          "acceptance_ids": [
+            "HAC-HIL-13a",
+            "HAC-HIL-13b",
+            "HAC-HIL-13c"
+          ],
+          "system_test_id": "HAT-HIL-13",
+          "semantic_digest": "sha256:3206e47b94bbc19635e0f0fb44796caf1c0e7d8935cc68dc266e57dccf0773e7"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-13a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "Bun-less Linuxでend-to-end green",
+            "semantic_digest": "sha256:3358feb7d61c0012ca559aaf016827bc17f54433b7aed3455707cb50df1c5ebd"
+          },
+          {
+            "id": "HAC-HIL-13b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "全active残存形を検出",
+            "semantic_digest": "sha256:7083d54876e80684a44336b77f2e8cfa4d08b1b9e632d43db5e6066c7e306068"
+          },
+          {
+            "id": "HAC-HIL-13c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "historical allowlistをactiveと分離",
+            "semantic_digest": "sha256:e3d8fd17230c7252757e67bdfe57b5ed9b8f38162b46b0c4b0c42687cfdbab9a"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-13",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-13",
+          "acceptance_ids": [
+            "HAC-HIL-13a",
+            "HAC-HIL-13b",
+            "HAC-HIL-13c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-013"
+          ],
+          "scenario": "Bun-less Linuxでinstallからdistributionまで完走",
+          "required_evidence": "environment、Node lock、CLI/build/test/package、zero finding",
+          "negative_boundary": "Bun API/command/lock/CI残存、部分claim",
+          "semantic_digest": "sha256:43de34e55f7eb0a4b9bc7aa0ebb61ef6e923ebbbd16b0d8293230d795112f4f9"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HARNESS-L2-010",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "current_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+        },
+        {
+          "requirement_id": "HARNESS-L2-011",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "current_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-020",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "唯一正規runtime=TypeScript strict＋Node.js",
+          "condition_level_finding": "方式選択。採択済L2からは確認できず。"
+        },
+        {
+          "source_clause": "Bun API/command/lockfile/CI/distributionをactive surfaceから除去",
+          "condition_level_finding": "機能条件であり、source全表面列挙と残存0のoracleが現在のペア上でTR01そのものとしては未確認。"
+        },
+        {
+          "source_clause": "負例: Bun依存/API/command/lock/CI/distribution残存を検出、部分移行を完了扱いしない",
+          "condition_level_finding": "現行HARNESS pack/callの版・compatibility evidenceでは実行結果の適合は扱うが、Bun残存0の個別oracleではない。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-02",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 166,
+        "line_text": "| **HIL-TR-02** | Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。 |",
+        "line_sha256": "398c954fe379b991a5d67df87e6524b07489241198cdaa3465b5c9b103327f0b",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-02",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。",
+          "semantic_digest": "sha256:290f35ed940fc065d587c05153f38deaae14d1757c950f442cb30ef1a1e297ec"
+        },
+        "assertion_id": "HIA-TR-002",
+        "semantic_digest": "sha256:fa3943834b7f977ec95242148616a231dac080e8791d261aa81b67f39d9125e9",
+        "primary_system_contract_id": "HR-FR-HIL-12",
+        "acceptance_ids": [
+          "HAC-HIL-12a",
+          "HAC-HIL-12b",
+          "HAC-HIL-12c"
+        ],
+        "system_test_id": "HAT-HIL-12",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-02",
+          "owner_id": "HR-FR-HIL-12",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-12",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-27",
+            "HIL-TR-02",
+            "HIL-TR-07",
+            "HIL-TR-08",
+            "HIL-TR-09",
+            "HIL-TR-10",
+            "HIL-NFR-14"
+          ],
+          "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+          "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+          "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "system_test_id": "HAT-HIL-12",
+          "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-12a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "正常resultを一回commit",
+            "semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc"
+          },
+          {
+            "id": "HAC-HIL-12b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "IPC異常をterminal化しpartial 0",
+            "semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f"
+          },
+          {
+            "id": "HAC-HIL-12c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "cancel/timeout後late/direct write拒否",
+            "semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-12",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-12",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-007"
+          ],
+          "scenario": "NodeからPython workerを実行",
+          "required_evidence": "protocol/version/sequence/terminal/transaction",
+          "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+          "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HARNESS-L2-022",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+        },
+        {
+          "requirement_id": "HELIXCONNECT-L2-001",
+          "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "L2_fixed_document_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "L2_current_a7_document_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+          "fixed_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
+          "current_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
+          "fixed_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e",
+          "current_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+        },
+        {
+          "requirement_id": "HELIXCONNECT-L2-002",
+          "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "L2_fixed_document_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "L2_current_a7_document_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+          "fixed_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
+          "current_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
+          "fixed_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6",
+          "current_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-019",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-020",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "Pythonをproduct-data/document-engine/detector/analysis workerのdata/detection planeとして第一級化",
+          "condition_level_finding": "Python固有役割・全列挙の機能配置は未確認。"
+        },
+        {
+          "source_clause": "Node control planeとのversioned schema/event/CLI contract",
+          "condition_level_finding": "相互運用上のversion/scope/contract identity/receiptはCONNECT-001/002へ意味再導出。schema/event/CLI方式は未固定。"
+        },
+        {
+          "source_clause": "受入: normal / invalid IPC terminal+partial 0 / late or direct-write reject",
+          "condition_level_finding": "CONNECT/OS/SECURITYの一般境界に関係するが、この旧3ケースと一致するnormal/negative/boundary fixturesは現行ペアに明示確認できず。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-03",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 167,
+        "line_text": "| **HIL-TR-03** | ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。 |",
+        "line_sha256": "402bedf607bd03a88435f30d45358ea773cc1c6db77e1ebcdc27d295d53e4503",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-03",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。",
+          "semantic_digest": "sha256:8e14a234b93d4d5c78924b8ec9bd1fb6b926d7559504cde2371581f875ad8d92"
+        },
+        "assertion_id": "HIA-TR-003",
+        "semantic_digest": "sha256:538699dff2d2dbe769a01cd3d2abac4af0e762f035869892ad0d2a8fe5a7ddea",
+        "primary_system_contract_id": "HR-FR-HIL-09",
+        "acceptance_ids": [
+          "HAC-HIL-09a",
+          "HAC-HIL-09b",
+          "HAC-HIL-09c"
+        ],
+        "system_test_id": "HAT-HIL-09",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-03",
+          "owner_id": "HR-FR-HIL-09",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-09",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-BR-14",
+            "HIL-FR-15",
+            "HIL-FR-16",
+            "HIL-FR-21",
+            "HIL-FR-22",
+            "HIL-FR-37",
+            "HIL-TR-03",
+            "HIL-NFR-08",
+            "HIL-NFR-12",
+            "HIL-NFR-22"
+          ],
+          "behavior": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する",
+          "transition_contract": "source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0",
+          "failure_and_evidence": "aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt",
+          "acceptance_ids": [
+            "HAC-HIL-09a",
+            "HAC-HIL-09b",
+            "HAC-HIL-09c"
+          ],
+          "system_test_id": "HAT-HIL-09",
+          "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-09a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成",
+            "semantic_digest": "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7"
+          },
+          {
+            "id": "HAC-HIL-09b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否",
+            "semantic_digest": "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83"
+          },
+          {
+            "id": "HAC-HIL-09c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale",
+            "semantic_digest": "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-09",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-09",
+          "acceptance_ids": [
+            "HAC-HIL-09a",
+            "HAC-HIL-09b",
+            "HAC-HIL-09c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-011",
+            "HST-HIL-020"
+          ],
+          "scenario": "三sourceをsnapshot/atom/coverageへ処理",
+          "required_evidence": "manifests、atom spans、decision/edge/stale receipt",
+          "negative_boundary": "branch/child欠落、aggregate-only、pending",
+          "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HARNESS-L2-022",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-015",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
+          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-019",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "ZIP Python実装は採用候補",
+          "condition_level_finding": "未採択方式候補。これを要件化しない。"
+        },
+        {
+          "source_clause": "HELIX state/gateを迂回して正本へ直接writeしない",
+          "condition_level_finding": "authority/scope境界はOS-015/019、SECURITY-022/024に関連するが、ZIP workerからの迂回拒否をこのペア条件として閉じていない。"
+        },
+        {
+          "source_clause": "input digest/output schema/provenance/detector resultをDBへ投影",
+          "condition_level_finding": "integrity/provenance一般はSECURITY-012等と関連。個別入力digest/schema/projectionの保存証拠は未証明。"
+        },
+        {
+          "source_clause": "負例: bypass/direct canonical write、invalid schema/provenance/result",
+          "condition_level_finding": "旧HAT09 negative oracle相当が現行ペアに個別fixtureとしてない。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-04",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 168,
+        "line_text": "| **HIL-TR-04** | OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする。WSL/Git Bash/PowerShellをcore前提にしない。 |",
+        "line_sha256": "83bd39698247d03a8eeeb6b6bbc2d34a3d123603e15431c37946110adbd1033d",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-04",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする。WSL/Git Bash/PowerShellをcore前提にしない。",
+          "semantic_digest": "sha256:cdfeddca01d916f1241f11f4c74fe2dcf85e1b95ea8723633e912c1e6a09420b"
+        },
+        "assertion_id": "HIA-TR-004",
+        "semantic_digest": "sha256:4e8f17a3b603e59dbcf3c6c23b90f8c856d6012fcff79432a532a84d13c3ca73",
+        "primary_system_contract_id": "HR-FR-HIL-14",
+        "acceptance_ids": [
+          "HAC-HIL-14a",
+          "HAC-HIL-14b",
+          "HAC-HIL-14c"
+        ],
+        "system_test_id": "HAT-HIL-14",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-04",
+          "owner_id": "HR-FR-HIL-14",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "scope_decision"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-14",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-34",
+            "HIL-TR-04",
+            "HIL-TR-05",
+            "HIL-TR-06",
+            "HIL-NFR-09",
+            "HIL-NFR-19"
+          ],
+          "behavior": "OS差分をadapterへ隔離しLinux full、macOS portable、Windows compatibilityを同一contractで検証、lock/SBOM/policyを再現する",
+          "transition_contract": "clean 3 OS、canonical locks/policy → scope別green、domain fork 0、SBOM/policy receipt",
+          "failure_and_evidence": "adapter leak、process/lock異常、unlock、secret、license / OS matrix、difference、offline digest、SBOM reports",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "system_test_id": "HAT-HIL-14",
+          "semantic_digest": "sha256:d771b46b60a9f269213b4f08a3aca8823450f4dc38ddca9895228c8dfbdd5f99"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-14a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "3 OSが定義scopeをgreen",
+            "semantic_digest": "sha256:54d144fd7096197c42358ee06f4f19f4a34e05864123650ea165895f00c75cda"
+          },
+          {
+            "id": "HAC-HIL-14b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "adapter leak/path/process/lock異常拒否",
+            "semantic_digest": "sha256:b1c43b94fd86e71efce9eb71a0e1ea8b4cd2b7e5350646b29ecc04c3ca9e8509"
+          },
+          {
+            "id": "HAC-HIL-14c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "online/offline同一lock/SBOM/policy",
+            "semantic_digest": "sha256:e1e76253b2538bf9c9f7e246aa14fcfafb483efad8a58e2f66f5d010090bf3d0"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-14",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-14",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-014",
+            "HST-HIL-017"
+          ],
+          "scenario": "3 OS contractとsupply chainを検証",
+          "required_evidence": "OS matrix、offline digest、SBOM/secret/license",
+          "negative_boundary": "adapter leak、process/lock、unlock/policy違反",
+          "semantic_digest": "sha256:465cd7dd4729b9a5911ab74f77dc20a9faa95a54d20db1170cd80e856f3017eb"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXINFRASTRUCTURE-L2-001",
+          "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "L2_fixed_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L2_current_a7_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "fixed_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+          "current_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+          "fixed_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
+          "current_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe"
+        },
+        {
+          "requirement_id": "HELIXINFRASTRUCTURE-L2-011",
+          "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "L2_fixed_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L2_current_a7_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "fixed_L2_section_sha256": "efaf3121ce5486df3de26142af8ecc24f1661627df5bc61fb93ddb3fd5c3da0e",
+          "current_L2_section_sha256": "efaf3121ce5486df3de26142af8ecc24f1661627df5bc61fb93ddb3fd5c3da0e",
+          "fixed_L11_acceptance_section_sha256": "57e1fa14e76cb45ac193f2b1991a222977d8c4136799912bd2dbee185a82d336",
+          "current_L11_acceptance_section_sha256": "57e1fa14e76cb45ac193f2b1991a222977d8c4136799912bd2dbee185a82d336"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "Linux primary / macOS first-class portable / Windows compatibility profile",
+          "condition_level_finding": "製品support tierという上流scope。INFRASTRUCTURE-001/011本文からは導けず、A/B未決を維持。"
+        },
+        {
+          "source_clause": "WSL/Git Bash/PowerShellをcore前提にしない",
+          "condition_level_finding": "TR04同じsupport-scope atom。受入環境の除外条件が採択ペアにない。"
+        },
+        {
+          "source_clause": "負例: matrixより狭いsupportを同一契約と主張しない",
+          "condition_level_finding": "3 OS scope fixtureが現行L11でTR04として固定された証拠なし。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-05",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 169,
+        "line_text": "| **HIL-TR-05** | path、process、signal、file lock、SQLite、executable discoveryをOS adapterへ隔離し、Linux CIを基準、macOS/Windows smokeを互換性証拠とする。 |",
+        "line_sha256": "0e311e5e2930b4ea28a4f36159a3dd74485e0b63be0d0eb5dd3e3cc0f1d99885",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-05",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "path、process、signal、file lock、SQLite、executable discoveryをOS adapterへ隔離し、Linux CIを基準、macOS/Windows smokeを互換性証拠とする。",
+          "semantic_digest": "sha256:472de11079841e874b39bc1170b95a07805818e7c31178541f8929560e2f6567"
+        },
+        "assertion_id": "HIA-TR-005",
+        "semantic_digest": "sha256:e39dbad373b30ef497bd9fd4d22202c4a8b111172677b190cc24ea178eaadd20",
+        "primary_system_contract_id": "HR-FR-HIL-14",
+        "acceptance_ids": [
+          "HAC-HIL-14a",
+          "HAC-HIL-14b",
+          "HAC-HIL-14c"
+        ],
+        "system_test_id": "HAT-HIL-14",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-05",
+          "owner_id": "HR-FR-HIL-14",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-14",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-34",
+            "HIL-TR-04",
+            "HIL-TR-05",
+            "HIL-TR-06",
+            "HIL-NFR-09",
+            "HIL-NFR-19"
+          ],
+          "behavior": "OS差分をadapterへ隔離しLinux full、macOS portable、Windows compatibilityを同一contractで検証、lock/SBOM/policyを再現する",
+          "transition_contract": "clean 3 OS、canonical locks/policy → scope別green、domain fork 0、SBOM/policy receipt",
+          "failure_and_evidence": "adapter leak、process/lock異常、unlock、secret、license / OS matrix、difference、offline digest、SBOM reports",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "system_test_id": "HAT-HIL-14",
+          "semantic_digest": "sha256:d771b46b60a9f269213b4f08a3aca8823450f4dc38ddca9895228c8dfbdd5f99"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-14a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "3 OSが定義scopeをgreen",
+            "semantic_digest": "sha256:54d144fd7096197c42358ee06f4f19f4a34e05864123650ea165895f00c75cda"
+          },
+          {
+            "id": "HAC-HIL-14b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "adapter leak/path/process/lock異常拒否",
+            "semantic_digest": "sha256:b1c43b94fd86e71efce9eb71a0e1ea8b4cd2b7e5350646b29ecc04c3ca9e8509"
+          },
+          {
+            "id": "HAC-HIL-14c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "online/offline同一lock/SBOM/policy",
+            "semantic_digest": "sha256:e1e76253b2538bf9c9f7e246aa14fcfafb483efad8a58e2f66f5d010090bf3d0"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-14",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-14",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-014",
+            "HST-HIL-017"
+          ],
+          "scenario": "3 OS contractとsupply chainを検証",
+          "required_evidence": "OS matrix、offline digest、SBOM/secret/license",
+          "negative_boundary": "adapter leak、process/lock、unlock/policy違反",
+          "semantic_digest": "sha256:465cd7dd4729b9a5911ab74f77dc20a9faa95a54d20db1170cd80e856f3017eb"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXINFRASTRUCTURE-L2-001",
+          "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "L2_fixed_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L2_current_a7_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "fixed_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+          "current_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+          "fixed_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
+          "current_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe"
+        },
+        {
+          "requirement_id": "HELIXINFRASTRUCTURE-L2-003",
+          "decision_path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "L2_fixed_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L2_current_a7_document_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "fixed_L2_section_sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
+          "current_L2_section_sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
+          "fixed_L11_acceptance_section_sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db",
+          "current_L11_acceptance_section_sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-020",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "path/process/signal/file lock/SQLite/executable discoveryをOS adapterへ隔離",
+          "condition_level_finding": "platform-neutral behavior目的はINFRASTRUCTURE/OSに関係するが、列挙adapter境界と漏出拒否は未証明。"
+        },
+        {
+          "source_clause": "Linux CI基準、macOS/Windows smoke互換性証拠",
+          "condition_level_finding": "TR04 scope decision未決を解決せず、この検証方式は固定しない。現行pairにこのOS別実行evidenceはない。"
+        },
+        {
+          "source_clause": "negative: adapter leak/path/process/lock anomaly fail",
+          "condition_level_finding": "L11-14bの旧fixtureを現行具体pairで再現する受入なし。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-06",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 170,
+        "line_text": "| **HIL-TR-06** | Node/Python双方のdependency lock、runtime version、offline/clean install、SBOM/secret/license検査を再現可能にする。 |",
+        "line_sha256": "79e8af744e7986bcf0d5bfb1682e10d4494a383637ddb22151a6abbc1a327f19",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-06",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "Node/Python双方のdependency lock、runtime version、offline/clean install、SBOM/secret/license検査を再現可能にする。",
+          "semantic_digest": "sha256:0948d379b01567c2405bb4c61992b5a48423872c629c05d734e9aae523269e94"
+        },
+        "assertion_id": "HIA-TR-006",
+        "semantic_digest": "sha256:f85a9894599bb8460dbc08068dbeb57916be0477ffad34bf0efc76269f22fc58",
+        "primary_system_contract_id": "HR-FR-HIL-14",
+        "acceptance_ids": [
+          "HAC-HIL-14a",
+          "HAC-HIL-14b",
+          "HAC-HIL-14c"
+        ],
+        "system_test_id": "HAT-HIL-14",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-06",
+          "owner_id": "HR-FR-HIL-14",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-14",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-34",
+            "HIL-TR-04",
+            "HIL-TR-05",
+            "HIL-TR-06",
+            "HIL-NFR-09",
+            "HIL-NFR-19"
+          ],
+          "behavior": "OS差分をadapterへ隔離しLinux full、macOS portable、Windows compatibilityを同一contractで検証、lock/SBOM/policyを再現する",
+          "transition_contract": "clean 3 OS、canonical locks/policy → scope別green、domain fork 0、SBOM/policy receipt",
+          "failure_and_evidence": "adapter leak、process/lock異常、unlock、secret、license / OS matrix、difference、offline digest、SBOM reports",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "system_test_id": "HAT-HIL-14",
+          "semantic_digest": "sha256:d771b46b60a9f269213b4f08a3aca8823450f4dc38ddca9895228c8dfbdd5f99"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-14a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "3 OSが定義scopeをgreen",
+            "semantic_digest": "sha256:54d144fd7096197c42358ee06f4f19f4a34e05864123650ea165895f00c75cda"
+          },
+          {
+            "id": "HAC-HIL-14b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "adapter leak/path/process/lock異常拒否",
+            "semantic_digest": "sha256:b1c43b94fd86e71efce9eb71a0e1ea8b4cd2b7e5350646b29ecc04c3ca9e8509"
+          },
+          {
+            "id": "HAC-HIL-14c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "online/offline同一lock/SBOM/policy",
+            "semantic_digest": "sha256:e1e76253b2538bf9c9f7e246aa14fcfafb483efad8a58e2f66f5d010090bf3d0"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-14",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-14",
+          "acceptance_ids": [
+            "HAC-HIL-14a",
+            "HAC-HIL-14b",
+            "HAC-HIL-14c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-014",
+            "HST-HIL-017"
+          ],
+          "scenario": "3 OS contractとsupply chainを検証",
+          "required_evidence": "OS matrix、offline digest、SBOM/secret/license",
+          "negative_boundary": "adapter leak、process/lock、unlock/policy違反",
+          "semantic_digest": "sha256:465cd7dd4729b9a5911ab74f77dc20a9faa95a54d20db1170cd80e856f3017eb"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXOS-L2-020",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        },
+        {
+          "requirement_id": "HELIXSECURITY-L2-003",
+          "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "L2_fixed_document_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "L2_current_a7_document_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "fixed_L2_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
+          "current_L2_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
+          "fixed_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
+          "current_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0"
+        },
+        {
+          "requirement_id": "HELIXSECURITY-L2-005",
+          "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "L2_fixed_document_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "L2_current_a7_document_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "fixed_L2_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+          "current_L2_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+          "fixed_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+          "current_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107"
+        },
+        {
+          "requirement_id": "HELIXSECURITY-L2-008",
+          "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "L2_fixed_document_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "L2_current_a7_document_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "fixed_L2_section_sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
+          "current_L2_section_sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
+          "fixed_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+          "current_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25"
+        },
+        {
+          "requirement_id": "HELIXSECURITY-L2-012",
+          "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "L2_fixed_document_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "L2_current_a7_document_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "fixed_L2_section_sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
+          "current_L2_section_sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
+          "fixed_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
+          "current_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "Node/Python両方のdependency lockとruntime version",
+          "condition_level_finding": "特定2 runtime/lock体系は未固定。"
+        },
+        {
+          "source_clause": "offline/clean installを再現可能にする",
+          "condition_level_finding": "INFRASTRUCTURE-007 Runtime Rebuildabilityは関連意味。offline+cleanを両runtimeで成立させる旧条件のoracleは未確認。"
+        },
+        {
+          "source_clause": "SBOM/secret/license検査",
+          "condition_level_finding": "SECURITY-012 provenance, -005 secrets境界に関連。SBOM+secret+licenseを同一再現可能build gateで検査する条件とnegative未確認。"
+        },
+        {
+          "source_clause": "negative/boundary: unlock/drift/secret/license/policy violation拒否",
+          "condition_level_finding": "現行pairへの個別fixture/receipt oracleがない。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-07",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 171,
+        "line_text": "| **HIL-TR-07** | SQLite/harness.dbはcontrol planeのevent/projection backboneを維持し、Python分析用read modelとNode write authorityを分離する。write authority変更はL4で決定する。 |",
+        "line_sha256": "909543892476ba1cf5f75440ac49fb2d9a4cfeb28dad74430c8e4afdadee2432",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-07",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "SQLite/harness.dbはcontrol planeのevent/projection backboneを維持し、Python分析用read modelとNode write authorityを分離する。write authority変更はL4で決定する。",
+          "semantic_digest": "sha256:f30a529a80f752c4df4a05d93d25e0f28fd7a71659d9bcc2469f4d193832a113"
+        },
+        "assertion_id": "HIA-TR-007",
+        "semantic_digest": "sha256:bd2fb155edda8083988c575b2d9104db807c313ca08b75525e06b6f5b792c669",
+        "primary_system_contract_id": "HR-FR-HIL-12",
+        "acceptance_ids": [
+          "HAC-HIL-12a",
+          "HAC-HIL-12b",
+          "HAC-HIL-12c"
+        ],
+        "system_test_id": "HAT-HIL-12",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-07",
+          "owner_id": "HR-FR-HIL-12",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-12",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-27",
+            "HIL-TR-02",
+            "HIL-TR-07",
+            "HIL-TR-08",
+            "HIL-TR-09",
+            "HIL-TR-10",
+            "HIL-NFR-14"
+          ],
+          "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+          "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+          "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "system_test_id": "HAT-HIL-12",
+          "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-12a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "正常resultを一回commit",
+            "semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc"
+          },
+          {
+            "id": "HAC-HIL-12b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "IPC異常をterminal化しpartial 0",
+            "semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f"
+          },
+          {
+            "id": "HAC-HIL-12c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "cancel/timeout後late/direct write拒否",
+            "semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-12",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-12",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-007"
+          ],
+          "scenario": "NodeからPython workerを実行",
+          "required_evidence": "protocol/version/sequence/terminal/transaction",
+          "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+          "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXOS-L2-015",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
+          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-019",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "SQLite/harness.dbをevent/projection backboneとして維持",
+          "condition_level_finding": "DB技術・名称を要求に継承しない。event/source/evidence continuityはOS/機構境界に関係。"
+        },
+        {
+          "source_clause": "Python analysis read modelとNode write authority分離",
+          "condition_level_finding": "security/OS authority境界は関連するが、read-only snapshot / single Node writerとしての明示条件・normal/negative fixtureは未確認。"
+        },
+        {
+          "source_clause": "write authority変更はL4決定",
+          "condition_level_finding": "現行層番号へ旧L4を移さない。authority変更の上流判断要否は現行authority modelに照らす。旧記録から変更済/廃止を推定しない。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-08",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 172,
+        "line_text": "| **HIL-TR-08** | Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。 |",
+        "line_sha256": "6b4edb6a06e80046b947a43b1e3b7878645bbb20e8342c7e03c2413fd8aaf792",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-08",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
+          "semantic_digest": "sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95"
+        },
+        "assertion_id": "HIA-TR-008",
+        "semantic_digest": "sha256:3c5617261c77cd41e716131856774cfec37f5803d6ea7db9908962bc52ff648a",
+        "primary_system_contract_id": "HR-FR-HIL-12",
+        "acceptance_ids": [
+          "HAC-HIL-12a",
+          "HAC-HIL-12b",
+          "HAC-HIL-12c"
+        ],
+        "system_test_id": "HAT-HIL-12",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-08",
+          "owner_id": "HR-FR-HIL-12",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-12",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-27",
+            "HIL-TR-02",
+            "HIL-TR-07",
+            "HIL-TR-08",
+            "HIL-TR-09",
+            "HIL-TR-10",
+            "HIL-NFR-14"
+          ],
+          "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+          "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+          "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "system_test_id": "HAT-HIL-12",
+          "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-12a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "正常resultを一回commit",
+            "semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc"
+          },
+          {
+            "id": "HAC-HIL-12b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "IPC異常をterminal化しpartial 0",
+            "semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f"
+          },
+          {
+            "id": "HAC-HIL-12c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "cancel/timeout後late/direct write拒否",
+            "semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-12",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-12",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-007"
+          ],
+          "scenario": "NodeからPython workerを実行",
+          "required_evidence": "protocol/version/sequence/terminal/transaction",
+          "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+          "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXCONNECT-L2-001",
+          "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "L2_fixed_document_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "L2_current_a7_document_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+          "fixed_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
+          "current_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
+          "fixed_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e",
+          "current_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+        },
+        {
+          "requirement_id": "HELIXCONNECT-L2-002",
+          "decision_path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "L2_fixed_document_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "L2_current_a7_document_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+          "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+          "fixed_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
+          "current_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
+          "fixed_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6",
+          "current_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-018",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+          "current_L2_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+          "fixed_L11_acceptance_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+          "current_L11_acceptance_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-023",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+          "current_L2_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+          "fixed_L11_acceptance_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+          "current_L11_acceptance_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "child process＋versioned JSON Lines over stdioを初期正規IPC",
+          "condition_level_finding": "方式選択。CONNECT-001/002は接続契約意味であり、このtransportを強制しない。"
+        },
+        {
+          "source_clause": "stdout=protocol / stderr=diagnostic only",
+          "condition_level_finding": "channel separationの受入条件は未確認。"
+        },
+        {
+          "source_clause": "envelope: schema/run/request/type/sequence/deadline/payload digest",
+          "condition_level_finding": "CONNECT-001/002は接続identity/version/scope等の一部意味。全fieldとsequence/deadline/payload digest相当をcondition-level証明できず。"
+        },
+        {
+          "source_clause": "negative: invalid/oversize/timeout/crash/late/direct write",
+          "condition_level_finding": "OS-023 worker lifecycle/delegationは関係するが全failure modeのterminal/partial-zero oracleは未確認。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-09",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 173,
+        "line_text": "| **HIL-TR-09** | Python workerはharness.dbへ直接writeせず、Nodeがschema検証済みresult/findingをtransactionalにcommitする。Pythonへは必要最小限のread snapshotだけを渡す。 |",
+        "line_sha256": "cd97bee6bd8482ada1107a9d38e6f78557a61d0d91dc803d39147c46413cc050",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-09",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "Python workerはharness.dbへ直接writeせず、Nodeがschema検証済みresult/findingをtransactionalにcommitする。Pythonへは必要最小限のread snapshotだけを渡す。",
+          "semantic_digest": "sha256:f00f879f39a72198d3f245da1391c7da88d661b9a9659a52925091169bdc65e6"
+        },
+        "assertion_id": "HIA-TR-009",
+        "semantic_digest": "sha256:e4f770e4ee3e9d22f1f841d53828b0ba31679dfe6ca00a97e26db7ad7c346d07",
+        "primary_system_contract_id": "HR-FR-HIL-12",
+        "acceptance_ids": [
+          "HAC-HIL-12a",
+          "HAC-HIL-12b",
+          "HAC-HIL-12c"
+        ],
+        "system_test_id": "HAT-HIL-12",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-09",
+          "owner_id": "HR-FR-HIL-12",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-12",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-27",
+            "HIL-TR-02",
+            "HIL-TR-07",
+            "HIL-TR-08",
+            "HIL-TR-09",
+            "HIL-TR-10",
+            "HIL-NFR-14"
+          ],
+          "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+          "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+          "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "system_test_id": "HAT-HIL-12",
+          "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-12a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "正常resultを一回commit",
+            "semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc"
+          },
+          {
+            "id": "HAC-HIL-12b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "IPC異常をterminal化しpartial 0",
+            "semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f"
+          },
+          {
+            "id": "HAC-HIL-12c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "cancel/timeout後late/direct write拒否",
+            "semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-12",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-12",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-007"
+          ],
+          "scenario": "NodeからPython workerを実行",
+          "required_evidence": "protocol/version/sequence/terminal/transaction",
+          "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+          "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXOS-L2-015",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
+          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-019",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        },
+        {
+          "requirement_id": "HELIXSECURITY-L2-015",
+          "decision_path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "L2_fixed_document_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "L2_current_a7_document_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "fixed_L2_section_sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
+          "current_L2_section_sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
+          "fixed_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
+          "current_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "Python workerはcanonical DBへ直接writeしない",
+          "condition_level_finding": "role/authority split意味はOS/SECURITY責務に再導出し得るが、具体worker拒否境界とoracleは未証明。"
+        },
+        {
+          "source_clause": "Nodeがschema-validated result/findingをtransactional commit",
+          "condition_level_finding": "Node固定・transaction・atomic result+finding commitは未確認。"
+        },
+        {
+          "source_clause": "Pythonへ最小read snapshotのみを渡す",
+          "condition_level_finding": "data minimization/read snapshot envelope/negative unauthorized readsを現行pairで確認できない。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-10",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 174,
+        "line_text": "| **HIL-TR-10** | harness.dbはproduct source/snapshot/mapping、engine registry/run/artifact、detector registry/run/finding、IPC run、CI stage/quarantine、agent instance/lifecycleを論理的に分離する。 |",
+        "line_sha256": "3b5c0041f969f4b120a88747391b21e884f61bb3ca170d99e8678d93dcf45119",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-10",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "harness.dbはproduct source/snapshot/mapping、engine registry/run/artifact、detector registry/run/finding、IPC run、CI stage/quarantine、agent instance/lifecycleを論理的に分離する。",
+          "semantic_digest": "sha256:f4aae528a618810c40344831e9fbf3290e29ff1786f7d07eae7a9ac73e175df7"
+        },
+        "assertion_id": "HIA-TR-010",
+        "semantic_digest": "sha256:eee46375c1ef80097474331fec627b95722ae016bcbed83a7e889908f260dee9",
+        "primary_system_contract_id": "HR-FR-HIL-12",
+        "acceptance_ids": [
+          "HAC-HIL-12a",
+          "HAC-HIL-12b",
+          "HAC-HIL-12c"
+        ],
+        "system_test_id": "HAT-HIL-12",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-10",
+          "owner_id": "HR-FR-HIL-12",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-12",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-FR-27",
+            "HIL-TR-02",
+            "HIL-TR-07",
+            "HIL-TR-08",
+            "HIL-TR-09",
+            "HIL-TR-10",
+            "HIL-NFR-14"
+          ],
+          "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+          "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+          "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "system_test_id": "HAT-HIL-12",
+          "semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-12a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "正常resultを一回commit",
+            "semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc"
+          },
+          {
+            "id": "HAC-HIL-12b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "IPC異常をterminal化しpartial 0",
+            "semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f"
+          },
+          {
+            "id": "HAC-HIL-12c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "cancel/timeout後late/direct write拒否",
+            "semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-12",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-12",
+          "acceptance_ids": [
+            "HAC-HIL-12a",
+            "HAC-HIL-12b",
+            "HAC-HIL-12c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-007"
+          ],
+          "scenario": "NodeからPython workerを実行",
+          "required_evidence": "protocol/version/sequence/terminal/transaction",
+          "negative_boundary": "invalid/oversize/timeout/crash/late/direct write",
+          "semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HELIXOS-L2-015",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
+          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-016",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+          "current_L2_section_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+          "fixed_L11_acceptance_section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
+          "current_L11_acceptance_section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-019",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "storage domainを論理分離: product source/snapshot/mapping",
+          "condition_level_finding": "責務のowner separationは再導出できてもstorage schema conditionは未採択。"
+        },
+        {
+          "source_clause": "engine registry/run/artifact; detector registry/run/finding; IPC run",
+          "condition_level_finding": "各artifact lifecycle/identity pairへのcondition mappingなし。"
+        },
+        {
+          "source_clause": "CI stage/quarantine; agent instance/lifecycle",
+          "condition_level_finding": "OS lifecycle/security/control-plane要求に部分的に関係。listed entitiesの分離/foreign cross-write拒否は未確認。"
+        },
+        {
+          "source_clause": "負例: cross-domain collision/misassociation/unauthorized writes",
+          "condition_level_finding": "旧IR/HAT relationからは抽出できるが現行具体受入caseへの対応なし。"
+        }
+      ]
+    },
+    {
+      "id": "HIL-TR-11",
+      "L1_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "line": 175,
+        "line_text": "| **HIL-TR-11** | Bun cutover完了時はNode clean install/build/test/CLI/hooks/package/distributionをBun binary/loader/API/lockfileなしで実行可能にする。 |",
+        "line_sha256": "0357f4fadff0d8791fe111864cefa590b0be7d9aa90fca4d1cbc39a17ad6397a",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "IR_record": {
+        "requirement_id": "HIL-TR-11",
+        "revision": 1,
+        "kind": "technical",
+        "status": "specified",
+        "definition_status": "frozen",
+        "statement": {
+          "text": "Bun cutover完了時はNode clean install/build/test/CLI/hooks/package/distributionをBun binary/loader/API/lockfileなしで実行可能にする。",
+          "semantic_digest": "sha256:a60d775089a0729e6c2b8f17c106df23d54fa922f79adb0301520cc665775696"
+        },
+        "assertion_id": "HIA-TR-011",
+        "semantic_digest": "sha256:2f392adee6f55e1c1d7249285c272701d5712135730c9cb807d6d92cea704f80",
+        "primary_system_contract_id": "HR-FR-HIL-13",
+        "acceptance_ids": [
+          "HAC-HIL-13a",
+          "HAC-HIL-13b",
+          "HAC-HIL-13c"
+        ],
+        "system_test_id": "HAT-HIL-13",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-TR-11",
+          "owner_id": "HR-FR-HIL-13",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ]
+      },
+      "source_classification": {
+        "kind": "technical",
+        "status": "specified",
+        "downstream_status": "pending_pair_descent",
+        "formal_successor": "unassigned; preserve pending rehome",
+        "old_disposition": [
+          "implementation_only"
+        ],
+        "audit_conclusion": "分類名だけでL1/IRの義務とAC/HAT oracleを落としてはならない"
+      },
+      "consumer": {
+        "contract": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-13",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-BR-19",
+            "HIL-FR-33",
+            "HIL-TR-01",
+            "HIL-TR-11"
+          ],
+          "behavior": "active install/build/CLI/hooks/tests/package/distributionをNode.js LTSへ移しBun dependencyを0にする",
+          "transition_contract": "Bun-less Linux、Node lock、surface inventory → 全surface green、active finding 0",
+          "failure_and_evidence": "Bun API/command/lock/CI/distribution残存、部分互換の完了claim / inventory、workflow logs、lock、package smoke",
+          "acceptance_ids": [
+            "HAC-HIL-13a",
+            "HAC-HIL-13b",
+            "HAC-HIL-13c"
+          ],
+          "system_test_id": "HAT-HIL-13",
+          "semantic_digest": "sha256:3206e47b94bbc19635e0f0fb44796caf1c0e7d8935cc68dc266e57dccf0773e7"
+        },
+        "contract_file": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+          "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+          "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+        },
+        "acceptance_cases": [
+          {
+            "id": "HAC-HIL-13a",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "positive",
+            "statement": "Bun-less Linuxでend-to-end green",
+            "semantic_digest": "sha256:3358feb7d61c0012ca559aaf016827bc17f54433b7aed3455707cb50df1c5ebd"
+          },
+          {
+            "id": "HAC-HIL-13b",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "negative",
+            "statement": "全active残存形を検出",
+            "semantic_digest": "sha256:7083d54876e80684a44336b77f2e8cfa4d08b1b9e632d43db5e6066c7e306068"
+          },
+          {
+            "id": "HAC-HIL-13c",
+            "revision": 1,
+            "status": "specified",
+            "polarity": "boundary",
+            "statement": "historical allowlistをactiveと分離",
+            "semantic_digest": "sha256:e3d8fd17230c7252757e67bdfe57b5ed9b8f38162b46b0c4b0c42687cfdbab9a"
+          }
+        ],
+        "system_test": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-13",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-13",
+          "acceptance_ids": [
+            "HAC-HIL-13a",
+            "HAC-HIL-13b",
+            "HAC-HIL-13c"
+          ],
+          "supporting_test_ids": [
+            "HST-HIL-013"
+          ],
+          "scenario": "Bun-less Linuxでinstallからdistributionまで完走",
+          "required_evidence": "environment、Node lock、CLI/build/test/package、zero finding",
+          "negative_boundary": "Bun API/command/lock/CI残存、部分claim",
+          "semantic_digest": "sha256:43de34e55f7eb0a4b9bc7aa0ebb61ef6e923ebbbd16b0d8293230d795112f4f9"
+        }
+      },
+      "current_adopted_pairs": [
+        {
+          "requirement_id": "HARNESS-L2-010",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "current_L2_section_sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "fixed_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "current_L11_acceptance_row_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+        },
+        {
+          "requirement_id": "HARNESS-L2-011",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "current_L2_section_sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "fixed_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "current_L11_acceptance_row_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+        },
+        {
+          "requirement_id": "HARNESS-L2-022",
+          "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "L2_fixed_document_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "L2_current_a7_document_sha256": "5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
+          "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
+          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
+          "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
+        },
+        {
+          "requirement_id": "HELIXOS-L2-020",
+          "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "decision_fixed_main": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "L2_fixed_document_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L2_current_a7_document_sha256": "d2732577e89b2a1d0ec96e98e40932bb660f87f95e72a78c558cff8292ccbc97",
+          "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
+          "fixed_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "current_L2_section_sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+        }
+      ],
+      "condition_assessment": [
+        {
+          "source_clause": "Bun cutover完了時のNode clean install/build/test/CLI/hooks/package/distribution",
+          "condition_level_finding": "8 surface closure一括condition。HARNESS-022 verification contract can host evidence, but does not itself say this exact set passes. Current selected pair does not prove cutover happened. "
+        },
+        {
+          "source_clause": "Bun binary/loader/API/lockfileなし",
+          "condition_level_finding": "active residual=0 negative oracle is absent from this exact pair. "
+        },
+        {
+          "source_clause": "boundary: cutover completion not asserted on partial surfaces",
+          "condition_level_finding": "generic receipt/completion fields do not prove this specific no-partial-claim rule."
+        }
+      ]
+    }
+  ],
+  "existing_audit_inputs": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-ir-technical-source-recheck-2026-09-28.md",
+      "sha256": "e7282e979876b4d27dd0c1fd81c8bc066ec792c3aed880c56f8f37b6a7b0a4a3",
+      "use": "legacy row text, mapping and prior interpretation; rechecked condition-by-condition here"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-ir-quality-source-recheck-2026-09-28.md",
+      "sha256": "74d339e4b44987eade8f16bb9dd964a91c7f62580062250fee3c75e421579d81",
+      "use": "check prior quality-source coverage claims and boundaries"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json",
+      "sha256": "0e26f66e4d593f7f710e17b8c2349dffd5849467f208fc5fbdda635e31dd224d",
+      "use": "existing implementation_only/scope_decision labels, not closure evidence"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-ir108-disposition-summary-2026-09-28.md",
+      "sha256": "0b2361a70b39091f3aa61d3601c9cde85258aa194196b38cdf829807a05b8934",
+      "use": "existing disposition grouping and stated limitations"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.md",
+      "sha256": "1c1338e303916e77855e430157585fdb414c62bea437547858975181c985e849",
+      "use": "population/join scope; explicitly not condition closure, unresolved zero, or complete weakening enumeration"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json",
+      "sha256": "286352584c5ef17195b71c57be165eaf2b1d2da1a2877b53258b65e6ec58f4e6",
+      "use": "machine-readable REG06 population and unproven flags"
+    }
+  ]
+}
