@@ -471,6 +471,38 @@
           "source_clause": "負例: Bun依存/API/command/lock/CI/distribution残存を検出、部分移行を完了扱いしない",
           "condition_level_finding": "現行HARNESS pack/callの版・compatibility evidenceでは実行結果の適合は扱うが、Bun残存0の個別oracleではない。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 50,
+          "line_text": "| HIL-TR-01 | 1 | HELIX実装：Node control plane、Bun除去 |",
+          "line_sha256": "b504cb0f6720230db04d12623b11ecfd83857817ede2e5f5a31498ee3c24bfe4",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 143,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-01-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-01\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:20132aa5c7cc5ca9107e826e3ee2be6b3eb959414424594fb8dfbf317b1c5afc\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node control plane、Bun除去\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"HELIX control planeのNode runtimeとBun除去を定めるOS実装制約である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HELIX control planeのNode runtimeとBun除去を定めるOS実装制約である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "c44cbf092d4cf93883b24e9b71b5b4cf5105dba5f5ffd283b12d166b4f02d5e1",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-013-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 114,
+          "line_sha256": "97187c6cda489e40dcf3704caee30891d0060140a6065e6c0f36ffe29cae05e5"
+        },
+        {
+          "case_id": "HST-CASE-013-10",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 402,
+          "line_sha256": "268d58cd9b8e35f49a11a7fc25064eb69224386415db5fad2c607b154854d6b1"
+        }
       ]
     },
     {
@@ -943,6 +975,32 @@
           "source_clause": "受入: normal / invalid IPC terminal+partial 0 / late or direct-write reject",
           "condition_level_finding": "CONNECT/OS/SECURITYの一般境界に関係するが、この旧3ケースと一致するnormal/negative/boundary fixturesは現行ペアに明示確認できず。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 51,
+          "line_text": "| HIL-TR-02 | 1 | 意味照合要：Pythonをdata/detection planeだけに限定せずADR-010 semantic coreと整合 |",
+          "line_sha256": "44e7194ee72b6d60a4f6d967ece0786eaeea2a2359e64e7d588a53011621f996",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 144,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-02-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-02\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:290f35ed940fc065d587c05153f38deaae14d1757c950f442cb30ef1a1e297ec\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"意味照合要：Pythonをdata/detection planeだけに限定せずADR-010 semantic coreと整合\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"product data・document・detector・analysisのPython workerをNode control planeへ接続するOS worker構成である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"product data・document・detector・analysisのPython workerをNode control planeへ接続するOS worker構成である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "5a68c11d7f3354e44e29ee1864289fb23819523e9404fd96210c437086bc85ba",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-007-14",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 403,
+          "line_sha256": "e0404d8eefc15a439cdd176782bc31896e07192aa8a88dd951564d8b895f3acc"
+        }
       ]
     },
     {
@@ -1295,6 +1353,32 @@
           "source_clause": "負例: bypass/direct canonical write、invalid schema/provenance/result",
           "condition_level_finding": "旧HAT09 negative oracle相当が現行ペアに個別fixtureとしてない。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 52,
+          "line_text": "| HIL-TR-03 | 1 | HELIX実装：旧ソース採否と正本非迂回、出典・結果投影 |",
+          "line_sha256": "70711f9fc7c7d28f3c386585e539b7bf86a26e687f54ae209b50317882ed52c4",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 145,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-03-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-03\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:8e14a234b93d4d5c78924b8ec9bd1fb6b926d7559504cde2371581f875ad8d92\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：旧ソース採否と正本非迂回、出典・結果投影\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"旧Python実装をstate／gate外へ出さずprovenance付きprojectionとして管理するOS migration制約である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"旧Python実装をstate／gate外へ出さずprovenance付きprojectionとして管理するOS migration制約である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "c76daef72ad23c65e976c8074976c8587002ac3199aefe100f858f0e98a07c74",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-008-12",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 404,
+          "line_sha256": "04c0b0562e9ab0dae4f4cb436bd6486f58010745ae631de042f6eabc4cb5c4d3"
+        }
       ]
     },
     {
@@ -1566,6 +1650,52 @@
         {
           "source_clause": "負例: matrixより狭いsupportを同一契約と主張しない",
           "condition_level_finding": "3 OS scope fixtureが現行L11でTR04として固定された証拠なし。"
+        }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 53,
+          "line_text": "| HIL-TR-04 | 1 | HELIX実装・提供対応環境：Linux primary。WSL等をcore前提にしない |",
+          "line_sha256": "2843e1a9ce8cbbf7ea0d9fc44656b150e61de5c816fd74b9979801781615a672",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 146,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-04-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-04\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:cdfeddca01d916f1241f11f4c74fe2dcf85e1b95ea8723633e912c1e6a09420b\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供対応環境：Linux primary。WSL等をcore前提にしない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "a5414f082e5001d8a751a091e4d53052ecc4e691750270dd85561931c3e9fadf",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none",
+        "web_product_group_po_decision": {
+          "path": "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md",
+          "line": 119,
+          "line_text": "| Linux限定・OSの分離（全体014、CONNECTOR001・002） | 旧HIL-TR-04（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:168`）、HIL-NFR-19（同`:199`） | Linuxをprimaryとし、他OSの未実施を明示する。Windowsの成功をLinux互換の証拠にしない | 旧はHELIX本体の開発基盤のOS方針。原案は、Web提供系でのHELIXの実行環境を検証済みLinuxに限り、操作端末のOSと対象製品の動作OSを分ける |",
+          "line_sha256": "d312052a295998944e16a1678c0cb8850a199dff59e703e610eef5b2a960fd45",
+          "file_sha256": "32501782b866a888db9536b1b522ee2d1a4d8c70968d78a754bcc508fa34923c"
+        },
+        "web_decision_boundary": "Web product-group decision candidate only; does not change/adopt the main OS support-scope requirement."
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-014-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 122,
+          "line_sha256": "638cfebbca674c33b7973a55531a8f83f834d762818f8182d61c7cd48a6ec1cf"
+        },
+        {
+          "case_id": "HST-CASE-014-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 123,
+          "line_sha256": "412fd1507a0ca15fe92c9188801e99f7d7bf562cbd037c89f7840d9953ed063f"
+        },
+        {
+          "case_id": "HST-CASE-014-09",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 405,
+          "line_sha256": "4003dc4351180ccd4424af465071335c4ae972180f896596f15827e776f0c6eb"
         }
       ]
     },
@@ -1902,6 +2032,32 @@
         {
           "source_clause": "negative: adapter leak/path/process/lock anomaly fail",
           "condition_level_finding": "L11-14bの旧fixtureを現行具体pairで再現する受入なし。"
+        }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 54,
+          "line_text": "| HIL-TR-05 | 1 | HELIX実装：OS adapterとplatform別検証 |",
+          "line_sha256": "1d4307f5925b0f4e1845d3778a1b4793cfb4b77520c335f797a19ba4f64ad667",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 147,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-05-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-05\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:472de11079841e874b39bc1170b95a07805818e7c31178541f8929560e2f6567\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：OS adapterとplatform別検証\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "e88f31e9a86c35838dbef06ee0791e494304d4fcb7ad38c2c7876bcb82f19a0f",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-014-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 124,
+          "line_sha256": "36da444ec889858a385dc1826ed2d09c7110047fe58e0cddddc09eda9bf4ab9e"
         }
       ]
     },
@@ -2403,6 +2559,56 @@
           "source_clause": "negative/boundary: unlock/drift/secret/license/policy violation拒否",
           "condition_level_finding": "現行pairへの個別fixture/receipt oracleがない。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 55,
+          "line_text": "| HIL-TR-06 | 1 | HELIX実装・提供物：依存lock・clean install・検査の再現性 |",
+          "line_sha256": "d8a0ae838ec6a00a602e8e04951bbd7a73a683ae48ec0f63a964b18a6b943aa3",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 148,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-06-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-06\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:0948d379b01567c2405bb4c61992b5a48423872c629c05d734e9aae523269e94\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供物：依存lock・clean install・検査の再現性\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "ade2828a9ecab280cca7cd88b6dde2f0aeeae5efab0e95e93ec930bd2c85a230",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-017-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 139,
+          "line_sha256": "a15980f3ba18d345393ad59b9089b5ec36c458287e49ef1b28a7a4c5e863869a"
+        },
+        {
+          "case_id": "HST-CASE-017-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 140,
+          "line_sha256": "a341ccc78c98fc026c0b5684dd5d31817d217832331819c3888d8ab107662bbc"
+        },
+        {
+          "case_id": "HST-CASE-017-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 141,
+          "line_sha256": "128e6d7830084fdcb7f5b3ab6396ec2a38b04bec5e722e9370bc02b0b4bc9fd0"
+        },
+        {
+          "case_id": "HST-CASE-017-06",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 144,
+          "line_sha256": "975a73cb0f4d87b53eebad2c1226fabc1212b17338e325098e6d39317ae70101"
+        },
+        {
+          "case_id": "HST-CASE-017-07",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 406,
+          "line_sha256": "07a2f87dfa17b6cd0c3feb47afb195b5eeed1f9d8c148e0b8d65d6eb869c2036"
+        }
       ]
     },
     {
@@ -2674,6 +2880,32 @@
         {
           "source_clause": "write authority変更はL4決定",
           "condition_level_finding": "現行層番号へ旧L4を移さない。authority変更の上流判断要否は現行authority modelに照らす。旧記録から変更済/廃止を推定しない。"
+        }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 56,
+          "line_text": "| HIL-TR-07 | 1 | 意味変更要：write authorityをL4で決定する旧条件はADR-010のNode transactional boundaryと衝突 |",
+          "line_sha256": "31dd7f89643f5548e5974358f71b02963d77bdbdf82e9ba49878f5d9537b4f60",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 149,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-07-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-07\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f30a529a80f752c4df4a05d93d25e0f28fd7a71659d9bcc2469f4d193832a113\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"意味変更要：write authorityをL4で決定する旧条件はADR-010のNode transactional boundaryと衝突\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"harness.db event／projection backbone、read model、Node write authorityを管理するOS state責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"harness.db event／projection backbone、read model、Node write authorityを管理するOS state責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "83c987273e50eb62dfbb9bdf1ef7b8304e07938a2b1686db7f93ad1c5375df66",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-007-15",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 407,
+          "line_sha256": "820bba593b4121ed2843bf877920143e73eb15ab8fd69954ccbd3a6bdd4ca1be"
         }
       ]
     },
@@ -3079,6 +3311,44 @@
           "source_clause": "negative: invalid/oversize/timeout/crash/late/direct write",
           "condition_level_finding": "OS-023 worker lifecycle/delegationは関係するが全failure modeのterminal/partial-zero oracleは未確認。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 57,
+          "line_text": "| HIL-TR-08 | 1 | HELIX実装：Node／Python IPC契約。HARNESS利用先の言語・通信方式に強制しない |",
+          "line_sha256": "44e257bd64e4df8a38d70f9c160507d87e71a70b5cfd6202858a9aef805046ee",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 150,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-08-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-08\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node／Python IPC契約。HARNESS利用先の言語・通信方式に強制しない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "b4d60c93fa39d8928846717ab38d93a1b5f6aa762d5b256fac01fefb21a50646",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-007-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 66,
+          "line_sha256": "79e4c8349287547c86e5581f5242e5b4cfe3267444db7c1be2b52dfcace86bd1"
+        },
+        {
+          "case_id": "HST-CASE-007-12",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 77,
+          "line_sha256": "c024bd29aa6c182445a25639dc39ce7e095b06d2a145d1c09d2799634ce2f336"
+        },
+        {
+          "case_id": "HST-CASE-007-16",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 408,
+          "line_sha256": "3aa9d531bd5fbea7a8636c90ca3fc08d6911097ffc3ff3ea020cb5618f480dd3"
+        }
       ]
     },
     {
@@ -3423,6 +3693,50 @@
           "source_clause": "Pythonへ最小read snapshotのみを渡す",
           "condition_level_finding": "data minimization/read snapshot envelope/negative unauthorized readsを現行pairで確認できない。"
         }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 58,
+          "line_text": "| HIL-TR-09 | 1 | HELIX実装：Node commitとPythonへの最小入力。read snapshotの範囲をADR-010と照合 |",
+          "line_sha256": "02515040071e84a1c907149e103f6ff06c5395cdae897dff2d1e9f91ed823b34",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 151,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-09-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-09\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f00f879f39a72198d3f245da1391c7da88d661b9a9659a52925091169bdc65e6\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node commitとPythonへの最小入力。read snapshotの範囲をADR-010と照合\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"Python workerをDB write authorityから隔離しNodeだけがtransaction commitするOS control plane責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"Python workerをDB write authorityから隔離しNodeだけがtransaction commitするOS control plane責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "6f036eaa4339d927d70fa5302a101cdc5833d6c0a9512f35aff1782608587473",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-007-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 66,
+          "line_sha256": "79e4c8349287547c86e5581f5242e5b4cfe3267444db7c1be2b52dfcace86bd1"
+        },
+        {
+          "case_id": "HST-CASE-007-11",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 76,
+          "line_sha256": "04c079dc233f53c6345f423b64a75da04b71c2f27ce3cba7c350e61b26dac6a2"
+        },
+        {
+          "case_id": "HST-CASE-010-06",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 98,
+          "line_sha256": "40e6b5459a76aa175a0aae0e41f493b65368b0d335a0424832d9397dab382ed1"
+        },
+        {
+          "case_id": "HST-CASE-007-17",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 409,
+          "line_sha256": "b38a2c31605abf71ee5fefa4da74e26edaa8bcda5df666589adfb174e59a1167"
+        }
       ]
     },
     {
@@ -3762,6 +4076,32 @@
         {
           "source_clause": "負例: cross-domain collision/misassociation/unauthorized writes",
           "condition_level_finding": "旧IR/HAT relationからは抽出できるが現行具体受入caseへの対応なし。"
+        }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 59,
+          "line_text": "| HIL-TR-10 | 1 | OS実装：DB内の責務・状態分離。DBを要求意味正本にしない |",
+          "line_sha256": "e3b5a74f02003d03b0831f7574bba58d2d222135288127cd0043a9c26b022726",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 152,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-10-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-10\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f4aae528a618810c40344831e9fbf3290e29ff1786f7d07eae7a9ac73e175df7\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS実装：DB内の責務・状態分離。DBを要求意味正本にしない\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"harness.db内のsource・engine・detector・CI・agent lifecycle projectionを分離するOS data責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"harness.db内のsource・engine・detector・CI・agent lifecycle projectionを分離するOS data責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "a6a26ce4fd85759c5145e0ba307c05df993ffbd9c97fa9d29a2a0907729bb7da",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-009-08",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 410,
+          "line_sha256": "20ba258f480f7f4cfddecab27aa5d92093409444d7acf439a048a64eca7cc495"
         }
       ]
     },
@@ -4183,6 +4523,44 @@
         {
           "source_clause": "boundary: cutover completion not asserted on partial surfaces",
           "condition_level_finding": "generic receipt/completion fields do not prove this specific no-partial-claim rule."
+        }
+      ],
+      "related_existing_source_audit_evidence": {
+        "quality_constraint_crosswalk": {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 60,
+          "line_text": "| HIL-TR-11 | 1 | HELIX実装・提供物：全active surfaceのBun不依存。consumerプロダクト自体の言語制約ではない |",
+          "line_sha256": "a3b01ed990b3e395605de7aa5ac81ad199ff4e6e7e852c4f2ecb4169dac71808",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        "product_routing_bootstrap": {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 153,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-11-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-11\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:a60d775089a0729e6c2b8f17c106df23d54fa922f79adb0301520cc665775696\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供物：全active surfaceのBun不依存。consumerプロダクト自体の言語制約ではない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "3bca9ce7e13164bbbda6d6928e0ec5acdf7f858e460c6897e26185d26022c0e9",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        "candidate_only": true,
+        "authority_effect": "none"
+      },
+      "legacy_assertion_case_references": [
+        {
+          "case_id": "HST-CASE-013-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 114,
+          "line_sha256": "97187c6cda489e40dcf3704caee30891d0060140a6065e6c0f36ffe29cae05e5"
+        },
+        {
+          "case_id": "HST-CASE-013-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 117,
+          "line_sha256": "2c54a666850c330a3e207375d3ab57ca15a174713bb1c4f28c91203212f19029"
+        },
+        {
+          "case_id": "HST-CASE-013-11",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "line": 411,
+          "line_sha256": "e9b7ee0584057eb324c86202a4f7e5049f3a02d82c2bf1dfdabe46bc1b0a739d"
         }
       ]
     }
@@ -9159,5 +9537,684 @@
       },
       "result": "Current latest-main locators use the next same-or-higher Markdown heading boundary. All selected adopted L2 sections and L11 sections/rows, PO decisions, legacy source/consumer snapshots and existing audit inputs remain byte-identical to the a7 audit baseline; a7/f6 basis remains preserved."
     }
-  ]
+  ],
+  "related_existing_source_audits": {
+    "quality_constraint_crosswalk": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "line_range": "50-60",
+      "purpose": "既存のTR別評価。各TR行の原文・行SHAはline_evidenceに保持。",
+      "authority_effect": "none",
+      "line_evidence": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 50,
+          "line_text": "| HIL-TR-01 | 1 | HELIX実装：Node control plane、Bun除去 |",
+          "line_sha256": "b504cb0f6720230db04d12623b11ecfd83857817ede2e5f5a31498ee3c24bfe4",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 51,
+          "line_text": "| HIL-TR-02 | 1 | 意味照合要：Pythonをdata/detection planeだけに限定せずADR-010 semantic coreと整合 |",
+          "line_sha256": "44e7194ee72b6d60a4f6d967ece0786eaeea2a2359e64e7d588a53011621f996",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 52,
+          "line_text": "| HIL-TR-03 | 1 | HELIX実装：旧ソース採否と正本非迂回、出典・結果投影 |",
+          "line_sha256": "70711f9fc7c7d28f3c386585e539b7bf86a26e687f54ae209b50317882ed52c4",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 53,
+          "line_text": "| HIL-TR-04 | 1 | HELIX実装・提供対応環境：Linux primary。WSL等をcore前提にしない |",
+          "line_sha256": "2843e1a9ce8cbbf7ea0d9fc44656b150e61de5c816fd74b9979801781615a672",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 54,
+          "line_text": "| HIL-TR-05 | 1 | HELIX実装：OS adapterとplatform別検証 |",
+          "line_sha256": "1d4307f5925b0f4e1845d3778a1b4793cfb4b77520c335f797a19ba4f64ad667",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 55,
+          "line_text": "| HIL-TR-06 | 1 | HELIX実装・提供物：依存lock・clean install・検査の再現性 |",
+          "line_sha256": "d8a0ae838ec6a00a602e8e04951bbd7a73a683ae48ec0f63a964b18a6b943aa3",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 56,
+          "line_text": "| HIL-TR-07 | 1 | 意味変更要：write authorityをL4で決定する旧条件はADR-010のNode transactional boundaryと衝突 |",
+          "line_sha256": "31dd7f89643f5548e5974358f71b02963d77bdbdf82e9ba49878f5d9537b4f60",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 57,
+          "line_text": "| HIL-TR-08 | 1 | HELIX実装：Node／Python IPC契約。HARNESS利用先の言語・通信方式に強制しない |",
+          "line_sha256": "44e257bd64e4df8a38d70f9c160507d87e71a70b5cfd6202858a9aef805046ee",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 58,
+          "line_text": "| HIL-TR-09 | 1 | HELIX実装：Node commitとPythonへの最小入力。read snapshotの範囲をADR-010と照合 |",
+          "line_sha256": "02515040071e84a1c907149e103f6ff06c5395cdae897dff2d1e9f91ed823b34",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 59,
+          "line_text": "| HIL-TR-10 | 1 | OS実装：DB内の責務・状態分離。DBを要求意味正本にしない |",
+          "line_sha256": "e3b5a74f02003d03b0831f7574bba58d2d222135288127cd0043a9c26b022726",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        },
+        {
+          "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+          "line": 60,
+          "line_text": "| HIL-TR-11 | 1 | HELIX実装・提供物：全active surfaceのBun不依存。consumerプロダクト自体の言語制約ではない |",
+          "line_sha256": "a3b01ed990b3e395605de7aa5ac81ad199ff4e6e7e852c4f2ecb4169dac71808",
+          "file_sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+        }
+      ]
+    },
+    "product_routing_bootstrap": {
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "line_range": "143-153",
+      "purpose": "TRごとの製品配置候補。authority_effect:noneの候補記録。",
+      "authority_effect": "none",
+      "line_evidence": [
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 143,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-01-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-01\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:20132aa5c7cc5ca9107e826e3ee2be6b3eb959414424594fb8dfbf317b1c5afc\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node control plane、Bun除去\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"HELIX control planeのNode runtimeとBun除去を定めるOS実装制約である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HELIX control planeのNode runtimeとBun除去を定めるOS実装制約である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "c44cbf092d4cf93883b24e9b71b5b4cf5105dba5f5ffd283b12d166b4f02d5e1",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 144,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-02-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-02\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:290f35ed940fc065d587c05153f38deaae14d1757c950f442cb30ef1a1e297ec\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"意味照合要：Pythonをdata/detection planeだけに限定せずADR-010 semantic coreと整合\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"product data・document・detector・analysisのPython workerをNode control planeへ接続するOS worker構成である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"product data・document・detector・analysisのPython workerをNode control planeへ接続するOS worker構成である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "5a68c11d7f3354e44e29ee1864289fb23819523e9404fd96210c437086bc85ba",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 145,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-03-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-03\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:8e14a234b93d4d5c78924b8ec9bd1fb6b926d7559504cde2371581f875ad8d92\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：旧ソース採否と正本非迂回、出典・結果投影\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"旧Python実装をstate／gate外へ出さずprovenance付きprojectionとして管理するOS migration制約である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"旧Python実装をstate／gate外へ出さずprovenance付きprojectionとして管理するOS migration制約である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "c76daef72ad23c65e976c8074976c8587002ac3199aefe100f858f0e98a07c74",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 146,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-04-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-04\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:cdfeddca01d916f1241f11f4c74fe2dcf85e1b95ea8723633e912c1e6a09420b\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供対応環境：Linux primary。WSL等をcore前提にしない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"外部提供HARNESSと管理運転OSの双方についてLinux基準・macOS portable・Windows compatibilityを別対象として拘束する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "a5414f082e5001d8a751a091e4d53052ecc4e691750270dd85561931c3e9fadf",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 147,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-05-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-05\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:472de11079841e874b39bc1170b95a07805818e7c31178541f8929560e2f6567\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：OS adapterとplatform別検証\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESS配布runtimeとOS control planeの双方でplatform差異をadapterへ隔離し別々に検証する必要がある\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "e88f31e9a86c35838dbef06ee0791e494304d4fcb7ad38c2c7876bcb82f19a0f",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 148,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-06-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-06\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:0948d379b01567c2405bb4c61992b5a48423872c629c05d734e9aae523269e94\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供物：依存lock・clean install・検査の再現性\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESSとOSのNode／Python dependency、runtime、install、SBOM／secret／license再現性を別々に拘束する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "ade2828a9ecab280cca7cd88b6dde2f0aeeae5efab0e95e93ec930bd2c85a230",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 149,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-07-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-07\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f30a529a80f752c4df4a05d93d25e0f28fd7a71659d9bcc2469f4d193832a113\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"意味変更要：write authorityをL4で決定する旧条件はADR-010のNode transactional boundaryと衝突\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"harness.db event／projection backbone、read model、Node write authorityを管理するOS state責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"harness.db event／projection backbone、read model、Node write authorityを管理するOS state責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "83c987273e50eb62dfbb9bdf1ef7b8304e07938a2b1686db7f93ad1c5375df66",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 150,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-08-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-08\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node／Python IPC契約。HARNESS利用先の言語・通信方式に強制しない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESS Python semantic coreとOS側Python workerを含むNode／Python境界へ同じIPC契約を適用するため分割する\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "b4d60c93fa39d8928846717ab38d93a1b5f6aa762d5b256fac01fefb21a50646",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 151,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-09-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-09\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f00f879f39a72198d3f245da1391c7da88d661b9a9659a52925091169bdc65e6\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装：Node commitとPythonへの最小入力。read snapshotの範囲をADR-010と照合\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"Python workerをDB write authorityから隔離しNodeだけがtransaction commitするOS control plane責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"Python workerをDB write authorityから隔離しNodeだけがtransaction commitするOS control plane責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "6f036eaa4339d927d70fa5302a101cdc5833d6c0a9512f35aff1782608587473",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 152,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-10-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-10\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:f4aae528a618810c40344831e9fbf3290e29ff1786f7d07eae7a9ac73e175df7\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS実装：DB内の責務・状態分離。DBを要求意味正本にしない\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"harness.db内のsource・engine・detector・CI・agent lifecycle projectionを分離するOS data責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"harness.db内のsource・engine・detector・CI・agent lifecycle projectionを分離するOS data責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "a6a26ce4fd85759c5145e0ba307c05df993ffbd9c97fa9d29a2a0907729bb7da",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        },
+        {
+          "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+          "line": 153,
+          "line_text": "{\"routing_registration_id\":\"PRC-HIL-TR-11-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-TR-11\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:a60d775089a0729e6c2b8f17c106df23d54fa922f79adb0301520cc665775696\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[],\"legacy_seed_assessment\":\"HELIX実装・提供物：全active surfaceのBun不依存。consumerプロダクト自体の言語制約ではない\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"routing_candidate\":\"split_required\",\"routing_rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"included\",\"rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"HARNESSのCLI／package／distributionとOSのbuild／test／hook surfaceをBun非依存へ別々にcutoverする必要がある\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX開発基盤のimplementation／control plane制約を対象とし、Web製品または展開後service runtimeの固有技術制約を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+          "line_sha256": "3bca9ce7e13164bbbda6d6928e0ec5acdf7f858e460c6897e26185d26022c0e9",
+          "file_sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+        }
+      ]
+    },
+    "web_product_group_po_decision": {
+      "path": "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md",
+      "file_sha256": "32501782b866a888db9536b1b522ee2d1a4d8c70968d78a754bcc508fa34923c",
+      "line": 119,
+      "purpose": "Web製品群の候補判断にあるTR-04保持点・Web側で変える点。Web判断候補であり本体OSの採択へ転用しない。",
+      "authority_effect": "none",
+      "line_evidence": {
+        "path": "docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md",
+        "line": 119,
+        "line_text": "| Linux限定・OSの分離（全体014、CONNECTOR001・002） | 旧HIL-TR-04（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:168`）、HIL-NFR-19（同`:199`） | Linuxをprimaryとし、他OSの未実施を明示する。Windowsの成功をLinux互換の証拠にしない | 旧はHELIX本体の開発基盤のOS方針。原案は、Web提供系でのHELIXの実行環境を検証済みLinuxに限り、操作端末のOSと対象製品の動作OSを分ける |",
+        "line_sha256": "d312052a295998944e16a1678c0cb8850a199dff59e703e610eef5b2a960fd45",
+        "file_sha256": "32501782b866a888db9536b1b522ee2d1a4d8c70968d78a754bcc508fa34923c"
+      }
+    }
+  },
+  "legacy_assertion_case_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "file_sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+    "case_row_count": 23,
+    "distinct_case_count": 23,
+    "requirement_case_association_count": 25,
+    "scope": "原文case row 23件。複数TRに属するcaseはrequirement_case_associationsで対応を分ける。",
+    "authority_effect": "none",
+    "lifecycle": "design-defined; not-implemented; read-only source; no execution performed",
+    "normative_boundary": "旧IRが規範source。assertion caseは旧consumer/test設計証拠であり、規範IRの代替・現行採択・実行完了を示さない。",
+    "cases": [
+      {
+        "case_id": "HST-CASE-007-01",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-08",
+          "HIL-TR-09"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 66,
+        "source_line": "| HST-CASE-007-01 | HST-HIL-007 | HIL-FR-27, HIL-TR-08, HIL-TR-09 | 対応versionのPython workerが利用可能 | 正常requestを一件送る | queued | committed | handshake、result、terminal receipt、DB commitが各一件 | なし（正常系） | FX-HST-007-01 | design-defined | not-implemented |",
+        "line_sha256": "79e4c8349287547c86e5581f5242e5b4cfe3267444db7c1be2b52dfcace86bd1",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-11",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-09"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 76,
+        "source_line": "| HST-CASE-007-11 | HST-HIL-007 | HIL-FR-27, HIL-TR-09 | run leaseが再割当済み | 旧workerがresultを返す | running | running | late result commit 0件 | HIL_WORKER_LATE_RESULT_FENCED | FX-HST-007-11 | design-defined | not-implemented |",
+        "line_sha256": "04c079dc233f53c6345f423b64a75da04b71c2f27ce3cba7c350e61b26dac6a2",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-12",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-08"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 77,
+        "source_line": "| HST-CASE-007-12 | HST-HIL-007 | HIL-TR-08 | request payload digestが記録済み | digestと異なるpayloadを送る | accepted | quarantined | worker処理0件とdigest finding | HIL_WORKER_PAYLOAD_DIGEST_MISMATCH | FX-HST-007-12 | design-defined | not-implemented |",
+        "line_sha256": "c024bd29aa6c182445a25639dc39ce7e095b06d2a145d1c09d2799634ce2f336",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-010-06",
+        "parent_hst_id": "HST-HIL-010",
+        "source_requirement_ids": [
+          "HIL-TR-09"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 98,
+        "source_line": "| HST-CASE-010-06 | HST-HIL-010 | HIL-TR-09 | Python workerがrunning | harness.dbへ直接writeする | fetching | quarantined | authoritative増分0件 | HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN | FX-HST-010-06 | design-defined | not-implemented |",
+        "line_sha256": "40e6b5459a76aa175a0aae0e41f493b65368b0d335a0424832d9397dab382ed1",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-013-01",
+        "parent_hst_id": "HST-HIL-013",
+        "source_requirement_ids": [
+          "HIL-TR-01",
+          "HIL-TR-11"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 114,
+        "source_line": "| HST-CASE-013-01 | HST-HIL-013 | HIL-BR-19, HIL-TR-01, HIL-TR-11 | Bun未導入clean Linuxが存在 | core workflowを完走する | verifying | verified | active Bun count 0 | なし（正常系） | FX-HST-013-01 | design-defined | not-implemented |",
+        "line_sha256": "97187c6cda489e40dcf3704caee30891d0060140a6065e6c0f36ffe29cae05e5",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-013-04",
+        "parent_hst_id": "HST-HIL-013",
+        "source_requirement_ids": [
+          "HIL-TR-11"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 117,
+        "source_line": "| HST-CASE-013-04 | HST-HIL-013 | HIL-TR-11 | bun lockfileがactive | Gateを評価する | verifying | failed | finding一件 | HIL_ACTIVE_BUN_LOCKFILE | FX-HST-013-04 | design-defined | not-implemented |",
+        "line_sha256": "2c54a666850c330a3e207375d3ab57ca15a174713bb1c4f28c91203212f19029",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-014-02",
+        "parent_hst_id": "HST-HIL-014",
+        "source_requirement_ids": [
+          "HIL-TR-04"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 122,
+        "source_line": "| HST-CASE-014-02 | HST-HIL-014 | HIL-TR-04, HIL-NFR-19 | macOS adapterが存在 | portable suiteを実行する | queued | passed | difference manifest | なし（正常系） | FX-HST-014-02 | design-defined | not-implemented |",
+        "line_sha256": "638cfebbca674c33b7973a55531a8f83f834d762818f8182d61c7cd48a6ec1cf",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-014-03",
+        "parent_hst_id": "HST-HIL-014",
+        "source_requirement_ids": [
+          "HIL-TR-04"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 123,
+        "source_line": "| HST-CASE-014-03 | HST-HIL-014 | HIL-TR-04, HIL-NFR-19 | Windows adapterが存在 | smokeを実行する | queued | passed | scope receipt | なし（正常系） | FX-HST-014-03 | design-defined | not-implemented |",
+        "line_sha256": "412fd1507a0ca15fe92c9188801e99f7d7bf562cbd037c89f7840d9953ed063f",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-014-04",
+        "parent_hst_id": "HST-HIL-014",
+        "source_requirement_ids": [
+          "HIL-TR-05"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 124,
+        "source_line": "| HST-CASE-014-04 | HST-HIL-014 | HIL-TR-05 | domainにplatform分岐がある | boundaryを検査する | verifying | failed | leak一件 | HIL_OS_ADAPTER_LEAK | FX-HST-014-04 | design-defined | not-implemented |",
+        "line_sha256": "36da444ec889858a385dc1826ed2d09c7110047fe58e0cddddc09eda9bf4ab9e",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-017-01",
+        "parent_hst_id": "HST-HIL-017",
+        "source_requirement_ids": [
+          "HIL-TR-06"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 139,
+        "source_line": "| HST-CASE-017-01 | HST-HIL-017 | HIL-TR-06 | canonical lockが存在 | online clean installする | queued | passed | lock digestとmanifest | なし（正常系） | FX-HST-017-01 | design-defined | not-implemented |",
+        "line_sha256": "a15980f3ba18d345393ad59b9089b5ec36c458287e49ef1b28a7a4c5e863869a",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-017-02",
+        "parent_hst_id": "HST-HIL-017",
+        "source_requirement_ids": [
+          "HIL-TR-06"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 140,
+        "source_line": "| HST-CASE-017-02 | HST-HIL-017 | HIL-TR-06 | dependency cacheが存在 | offline installする | queued | passed | network 0、同一digest | なし（正常系） | FX-HST-017-02 | design-defined | not-implemented |",
+        "line_sha256": "a341ccc78c98fc026c0b5684dd5d31817d217832331819c3888d8ab107662bbc",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-017-03",
+        "parent_hst_id": "HST-HIL-017",
+        "source_requirement_ids": [
+          "HIL-TR-06"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 141,
+        "source_line": "| HST-CASE-017-03 | HST-HIL-017 | HIL-TR-06 | componentがSBOMに無い | Gateを評価する | verifying | failed | missing一件 | HIL_SBOM_COMPONENT_MISSING | FX-HST-017-03 | design-defined | not-implemented |",
+        "line_sha256": "128e6d7830084fdcb7f5b3ab6396ec2a38b04bec5e722e9370bc02b0b4bc9fd0",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-017-06",
+        "parent_hst_id": "HST-HIL-017",
+        "source_requirement_ids": [
+          "HIL-TR-06"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 144,
+        "source_line": "| HST-CASE-017-06 | HST-HIL-017 | HIL-TR-06 | manifestとlockが不一致 | clean installする | queued | failed | receipt 0件 | HIL_SUPPLY_CHAIN_LOCK_DRIFT | FX-HST-017-06 | design-defined | not-implemented |",
+        "line_sha256": "975a73cb0f4d87b53eebad2c1226fabc1212b17338e325098e6d39317ae70101",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-013-10",
+        "parent_hst_id": "HST-HIL-013",
+        "source_requirement_ids": [
+          "HIL-TR-01"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 402,
+        "source_line": "| HST-CASE-013-10 | HST-HIL-013 | HIL-TR-01 | TypeScript strict sourceとBun固有fixtureがある | Node buildとdependency scanを実行する | assertion_input_ready | assertion_pass | control planeはNodeで動きBun固有依存を報告する | HIL_NODE_CONTROL_PLANE_INVALID | FX-HST-013-10 | design-defined | not-implemented |",
+        "line_sha256": "268d58cd9b8e35f49a11a7fc25064eb69224386415db5fad2c607b154854d6b1",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-14",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-02"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 403,
+        "source_line": "| HST-CASE-007-14 | HST-HIL-007 | HIL-TR-02 | Python worker capabilityとversioned contractがある | Nodeからworkerを起動する | assertion_input_ready | assertion_pass | data planeだけがschema適合resultを返す | HIL_PYTHON_PLANE_BOUNDARY_INVALID | FX-HST-007-14 | design-defined | not-implemented |",
+        "line_sha256": "e0404d8eefc15a439cdd176782bc31896e07192aa8a88dd951564d8b895f3acc",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-008-12",
+        "parent_hst_id": "HST-HIL-008",
+        "source_requirement_ids": [
+          "HIL-TR-03"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 404,
+        "source_line": "| HST-CASE-008-12 | HST-HIL-008 | HIL-TR-03 | ZIP workerが正本直接writeを試みる | ingestionを実行する | assertion_input_ready | assertion_pass | writeを拒否しprovenance付きresultだけNodeへ返す | HIL_PYTHON_AUTHORITY_BYPASS | FX-HST-008-12 | design-defined | not-implemented |",
+        "line_sha256": "04c0b0562e9ab0dae4f4cb436bd6486f58010745ae631de042f6eabc4cb5c4d3",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-014-09",
+        "parent_hst_id": "HST-HIL-014",
+        "source_requirement_ids": [
+          "HIL-TR-04"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 405,
+        "source_line": "| HST-CASE-014-09 | HST-HIL-014 | HIL-TR-04 | Linux、macOS、Windowsのclean profileがある | coreとcompatibility suiteを実行する | assertion_input_ready | assertion_pass | Linuxがfull、macOSがportable、Windowsがcompatibilityとして記録される | HIL_OS_PRIORITY_INVALID | FX-HST-014-09 | design-defined | not-implemented |",
+        "line_sha256": "4003dc4351180ccd4424af465071335c4ae972180f896596f15827e776f0c6eb",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-017-07",
+        "parent_hst_id": "HST-HIL-017",
+        "source_requirement_ids": [
+          "HIL-TR-06"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 406,
+        "source_line": "| HST-CASE-017-07 | HST-HIL-017 | HIL-TR-06 | canonical lockとclean、offline環境がある | installとsupply-chain検証を行う | assertion_input_ready | assertion_pass | version再現、統合SBOM、secretゼロ、policy適合licenseを証明する | HIL_SUPPLY_CHAIN_NOT_REPRODUCIBLE | FX-HST-017-07 | design-defined | not-implemented |",
+        "line_sha256": "07a2f87dfa17b6cd0c3feb47afb195b5eeed1f9d8c148e0b8d65d6eb869c2036",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-15",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-07"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 407,
+        "source_line": "| HST-CASE-007-15 | HST-HIL-007 | HIL-TR-07 | Node writerとPython reader fixtureがある | 同時readとwriteを行う | assertion_input_ready | assertion_pass | event backboneを維持しPython authoritative writeを拒否する | HIL_DB_WRITE_AUTHORITY_INVALID | FX-HST-007-15 | design-defined | not-implemented |",
+        "line_sha256": "820bba593b4121ed2843bf877920143e73eb15ab8fd69954ccbd3a6bdd4ca1be",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-16",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-08"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 408,
+        "source_line": "| HST-CASE-007-16 | HST-HIL-007 | HIL-TR-08 | 正常と不正のJSON Lines envelopeがある | stdio protocolへ投入する | assertion_input_ready | assertion_pass | stdoutだけをprotocolとして検証し全必須envelope fieldを要求する | HIL_IPC_ENVELOPE_INVALID | FX-HST-007-16 | design-defined | not-implemented |",
+        "line_sha256": "3aa9d531bd5fbea7a8636c90ca3fc08d6911097ffc3ff3ea020cb5618f480dd3",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-007-17",
+        "parent_hst_id": "HST-HIL-007",
+        "source_requirement_ids": [
+          "HIL-TR-09"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 409,
+        "source_line": "| HST-CASE-007-17 | HST-HIL-007 | HIL-TR-09 | Python resultと直接DB write試行がある | result commitを要求する | assertion_input_ready | assertion_pass | Nodeがschema検証済みresultだけをtransaction commitする | HIL_RESULT_WRITE_AUTHORITY_INVALID | FX-HST-007-17 | design-defined | not-implemented |",
+        "line_sha256": "b38a2c31605abf71ee5fefa4da74e26edaa8bcda5df666589adfb174e59a1167",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-009-08",
+        "parent_hst_id": "HST-HIL-009",
+        "source_requirement_ids": [
+          "HIL-TR-10"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 410,
+        "source_line": "| HST-CASE-009-08 | HST-HIL-009 | HIL-TR-10 | 全logical entity種別のfixtureがある | DB projectionを構築する | assertion_input_ready | assertion_pass | product、engine、detector、IPC、CI、agentのauthorityが分離される | HIL_DB_PROJECTION_BOUNDARY_INVALID | FX-HST-009-08 | design-defined | not-implemented |",
+        "line_sha256": "20ba258f480f7f4cfddecab27aa5d92093409444d7acf439a048a64eca7cc495",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      },
+      {
+        "case_id": "HST-CASE-013-11",
+        "parent_hst_id": "HST-HIL-013",
+        "source_requirement_ids": [
+          "HIL-TR-11"
+        ],
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 411,
+        "source_line": "| HST-CASE-013-11 | HST-HIL-013 | HIL-TR-11 | Bun binary、loader、API、lockfileが無いclean環境がある | canonical workflowを完走する | assertion_input_ready | assertion_pass | installからdistributionまでNodeだけでgreenになる | HIL_BUN_CUTOVER_INCOMPLETE | FX-HST-013-11 | design-defined | not-implemented |",
+        "line_sha256": "e9b7ee0584057eb324c86202a4f7e5049f3a02d82c2bf1dfdabe46bc1b0a739d",
+        "design_status": "design-defined",
+        "execution_status": "not-implemented"
+      }
+    ],
+    "requirement_case_associations": [
+      {
+        "source_requirement_id": "HIL-TR-08",
+        "case_id": "HST-CASE-007-01",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 66,
+        "line_sha256": "79e4c8349287547c86e5581f5242e5b4cfe3267444db7c1be2b52dfcace86bd1"
+      },
+      {
+        "source_requirement_id": "HIL-TR-09",
+        "case_id": "HST-CASE-007-01",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 66,
+        "line_sha256": "79e4c8349287547c86e5581f5242e5b4cfe3267444db7c1be2b52dfcace86bd1"
+      },
+      {
+        "source_requirement_id": "HIL-TR-09",
+        "case_id": "HST-CASE-007-11",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 76,
+        "line_sha256": "04c079dc233f53c6345f423b64a75da04b71c2f27ce3cba7c350e61b26dac6a2"
+      },
+      {
+        "source_requirement_id": "HIL-TR-08",
+        "case_id": "HST-CASE-007-12",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 77,
+        "line_sha256": "c024bd29aa6c182445a25639dc39ce7e095b06d2a145d1c09d2799634ce2f336"
+      },
+      {
+        "source_requirement_id": "HIL-TR-09",
+        "case_id": "HST-CASE-010-06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 98,
+        "line_sha256": "40e6b5459a76aa175a0aae0e41f493b65368b0d335a0424832d9397dab382ed1"
+      },
+      {
+        "source_requirement_id": "HIL-TR-01",
+        "case_id": "HST-CASE-013-01",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 114,
+        "line_sha256": "97187c6cda489e40dcf3704caee30891d0060140a6065e6c0f36ffe29cae05e5"
+      },
+      {
+        "source_requirement_id": "HIL-TR-11",
+        "case_id": "HST-CASE-013-01",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 114,
+        "line_sha256": "97187c6cda489e40dcf3704caee30891d0060140a6065e6c0f36ffe29cae05e5"
+      },
+      {
+        "source_requirement_id": "HIL-TR-11",
+        "case_id": "HST-CASE-013-04",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 117,
+        "line_sha256": "2c54a666850c330a3e207375d3ab57ca15a174713bb1c4f28c91203212f19029"
+      },
+      {
+        "source_requirement_id": "HIL-TR-04",
+        "case_id": "HST-CASE-014-02",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 122,
+        "line_sha256": "638cfebbca674c33b7973a55531a8f83f834d762818f8182d61c7cd48a6ec1cf"
+      },
+      {
+        "source_requirement_id": "HIL-TR-04",
+        "case_id": "HST-CASE-014-03",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 123,
+        "line_sha256": "412fd1507a0ca15fe92c9188801e99f7d7bf562cbd037c89f7840d9953ed063f"
+      },
+      {
+        "source_requirement_id": "HIL-TR-05",
+        "case_id": "HST-CASE-014-04",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 124,
+        "line_sha256": "36da444ec889858a385dc1826ed2d09c7110047fe58e0cddddc09eda9bf4ab9e"
+      },
+      {
+        "source_requirement_id": "HIL-TR-06",
+        "case_id": "HST-CASE-017-01",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 139,
+        "line_sha256": "a15980f3ba18d345393ad59b9089b5ec36c458287e49ef1b28a7a4c5e863869a"
+      },
+      {
+        "source_requirement_id": "HIL-TR-06",
+        "case_id": "HST-CASE-017-02",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 140,
+        "line_sha256": "a341ccc78c98fc026c0b5684dd5d31817d217832331819c3888d8ab107662bbc"
+      },
+      {
+        "source_requirement_id": "HIL-TR-06",
+        "case_id": "HST-CASE-017-03",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 141,
+        "line_sha256": "128e6d7830084fdcb7f5b3ab6396ec2a38b04bec5e722e9370bc02b0b4bc9fd0"
+      },
+      {
+        "source_requirement_id": "HIL-TR-06",
+        "case_id": "HST-CASE-017-06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 144,
+        "line_sha256": "975a73cb0f4d87b53eebad2c1226fabc1212b17338e325098e6d39317ae70101"
+      },
+      {
+        "source_requirement_id": "HIL-TR-01",
+        "case_id": "HST-CASE-013-10",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 402,
+        "line_sha256": "268d58cd9b8e35f49a11a7fc25064eb69224386415db5fad2c607b154854d6b1"
+      },
+      {
+        "source_requirement_id": "HIL-TR-02",
+        "case_id": "HST-CASE-007-14",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 403,
+        "line_sha256": "e0404d8eefc15a439cdd176782bc31896e07192aa8a88dd951564d8b895f3acc"
+      },
+      {
+        "source_requirement_id": "HIL-TR-03",
+        "case_id": "HST-CASE-008-12",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 404,
+        "line_sha256": "04c0b0562e9ab0dae4f4cb436bd6486f58010745ae631de042f6eabc4cb5c4d3"
+      },
+      {
+        "source_requirement_id": "HIL-TR-04",
+        "case_id": "HST-CASE-014-09",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 405,
+        "line_sha256": "4003dc4351180ccd4424af465071335c4ae972180f896596f15827e776f0c6eb"
+      },
+      {
+        "source_requirement_id": "HIL-TR-06",
+        "case_id": "HST-CASE-017-07",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 406,
+        "line_sha256": "07a2f87dfa17b6cd0c3feb47afb195b5eeed1f9d8c148e0b8d65d6eb869c2036"
+      },
+      {
+        "source_requirement_id": "HIL-TR-07",
+        "case_id": "HST-CASE-007-15",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 407,
+        "line_sha256": "820bba593b4121ed2843bf877920143e73eb15ab8fd69954ccbd3a6bdd4ca1be"
+      },
+      {
+        "source_requirement_id": "HIL-TR-08",
+        "case_id": "HST-CASE-007-16",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 408,
+        "line_sha256": "3aa9d531bd5fbea7a8636c90ca3fc08d6911097ffc3ff3ea020cb5618f480dd3"
+      },
+      {
+        "source_requirement_id": "HIL-TR-09",
+        "case_id": "HST-CASE-007-17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 409,
+        "line_sha256": "b38a2c31605abf71ee5fefa4da74e26edaa8bcda5df666589adfb174e59a1167"
+      },
+      {
+        "source_requirement_id": "HIL-TR-10",
+        "case_id": "HST-CASE-009-08",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 410,
+        "line_sha256": "20ba258f480f7f4cfddecab27aa5d92093409444d7acf439a048a64eca7cc495"
+      },
+      {
+        "source_requirement_id": "HIL-TR-11",
+        "case_id": "HST-CASE-013-11",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "line": 411,
+        "line_sha256": "e9b7ee0584057eb324c86202a4f7e5049f3a02d82c2bf1dfdabe46bc1b0a739d"
+      }
+    ]
+  }
 }
