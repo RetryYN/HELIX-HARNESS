@@ -1013,6 +1013,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
 - **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。
 
+- **最小変換の正例**：同一scopeのsource obligationsを満たす二案（局所的な一変換と、複数consumerへ広がる共通層追加）を与える。前者だけが必要義務を満たし、全consumer/oracle/invariant/rollback条件を保つ場合は、そのより広い案を選ばず、最小案と比較根拠をPLANへ記録する。
+- **最小性の独立負例**：有効なより小さい変換案を提示したまま、根拠なく全consumerへ広がる案を採るfixtureでは、計画を未完として接続しない。existing all-consumer、pair/oracle、authority、rollback条件は同一fixtureで保つ。
+- **旧oracle対応**：HST-CASE-025-07/-08/-09/-10をそれぞれ文字列類似のみ、consumer不足、rollback target欠落、将来利用のみとして個別fixtureにし、対応する拒否/未完を返す。これらは`design-defined / not-implemented`の旧oracle contextであり、実行証拠ではない。
+- **grounds適用性**：commonize例でduplicate/change-impactを選ぶとき、選択した各根拠はすべて満たす。responsibility-mixing/semantic-renameを非適用とする根拠とscopeも明示する。選択ground一つを除く独立負例ではその変換を通さない。A/B/CのPO判断は未選択のまま示す。
+- **固定tuple**：上記L2の010/011 fixed revision, section digest, row hashとselected callを受入入力へ束ねる。正常例ではowner/source/scope/operation/compatibilityが一致し、独立負例で010または011の片側だけのrevision/range/proofを変更してcallを保留する。
+
 ### HARNESS-L2-077 source条件からdesign-obligation graphを閉じる受入候補（未採択・未実行）
 
 - **Positive — scope内graph closure**：authorityが選んだ同一scope/revisionについてsource/directive atom、requirement atom、capability/service、domain object、該当するAPI/data/state/event/failure/security/observability/lifecycle/operation/test-oracle/gate relation、適用pair/template契約とL11 oracleを与える。各適用relationから必要なdesign obligationが個別に導かれ、対応oracleへ結ばれる。各選択atomの順方向・逆方向のtyped pathが対応し、11観点の適用性と非適用理由がそれぞれ追跡でき、obligation graph、個別discharge/coverage receipt、未消込findingが同じscope/revisionに揃い、全義務に対応oracleがあれば、その選択scope/revisionだけをcomplete候補とする。
@@ -1022,6 +1028,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **Negative — aggregate一括消込**：一つのsummary/aggregate receiptだけで複数source atomまたは観点の個別義務を消し込む。個別対応の証拠がないatomを未完として残し、pair-freezeを拒否する。
 - **受入限界**：旧HIL-FR-42一行の選択条件だけを対象とする静的oracle案で、旧HR-FR-HIL-17全体・全資産・実graph/runtime、要求採択、設計pair実体、実行結果、pair freeze実績を主張しない。旧runtime/test/CIは実行せず、本候補oracleも未実行である。
 
+
+- **意味ある設計内容の正例**：各個別義務にsource atom、対象scope/revision、意味を持つ設計内容、双方向edge、対応test oracleまたはscope付きN/A evidence、discharge receiptを結ぶ。PO選択肢Aを採る場合に限り、個別展開された義務列を表示上`A–B`と略記でき、A/B各々のreceiptとoracleは独立する。Aは未選択の変更案であり、現行保証として扱わない。
+- **boilerplate負例（HST-CASE-027-10）**：必要見出し・欄・templateが存在しても、複数義務の設計欄が同じboilerplate文だけで具体的意味、scope、edge、oracleとの対応を持たないfixtureを与える。全対象義務を未消込にし、complete/freezeを拒否する。
+- **rangeのPO選択肢**：A案は、個別にatom化・dischargeした義務の表示略記を許容し、未展開の`A–B: complete`一行による一括消込を拒否する候補であり、このfixtureはA/BのPO選択に用いる判断材料である。B案は原文の語句に従いrange表記を一律に拒否する。A/Bは未選択であり、Aを現行保証や採択済みの意味として扱わない。
+- **旧oracle 9件の個別対応**：HST-CASE-027-08 required section欠落、-09 `TBD`、-10 boilerplate、-12 N/A根拠欠落、-13偽N/A、-14 deferred義務、-28 aggregate-only、-29 digest変更後のstale receipt再利用、-30 同一入力からの非決定的graphを別fixtureにする。各条件はその義務・receiptだけを未完/stale/failureとし、別義務の成功で埋め合わせない。すべて旧`design-defined / not-implemented`のoracle contextで、実行結果ではない。
+- **固定tuple**：上記L2記載のHARNESS-010/011 fixed revision・section/row hashesと`request_pair_freeze` callを正常例に結び、独立負例では010だけ、または011だけの契約revision/range/compatibility根拠を誤らせる。各fixtureはsource owner、契約owner、scope、applicability、戻し先を記録する。
 
 ### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの受入候補（未採択・未実行）
 
