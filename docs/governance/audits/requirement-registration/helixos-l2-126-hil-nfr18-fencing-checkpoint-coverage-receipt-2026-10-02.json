@@ -2,7 +2,7 @@
   "receipt_id": "HELIXOS-L2-126-HIL-NFR-18-FENCING-CHECKPOINT-COVERAGE-2026-10-02",
   "status": "registered_proposal_no_authority_effect; one_atom_with_two_source_conditions",
   "authority_effect": "none",
-  "read_after_base_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+  "read_after_base_commit": "fd3e799710bf5b06081fee271e536fc7f51213ba",
   "candidate_identity": "HELIXOS-L2-126",
   "paired_acceptance_identity": "HELIXOS-L11-126",
   "source_atom_count": 1,
@@ -372,7 +372,7 @@
       "line_start": 463,
       "line_end": 498,
       "section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
-      "file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+      "file_sha256": "sha256:dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47"
     },
     "current_L11_section": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -380,7 +380,7 @@
       "line_start": 219,
       "line_end": 234,
       "section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
-      "file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
+      "file_sha256": "sha256:64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e"
     },
     "selected_meaning": "same input/revision yields same effective dependency closure; always-required, operation-only, selected-source, reference-only; unknown remains unknown, no selected-source fallback, no safety dependency optionalization.",
     "decision_document_revision_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
@@ -527,7 +527,7 @@
     "Resume from progress later than the latest durable checkpoint, a staged/corrupt checkpoint, an older checkpoint, provider memory, or intermediate artifact is individually refused.",
     "Missing/stale/conflicting/unknown checkpoint lineage, operation/revision/scope, or required handoff authority makes resume unknown/unfinished. A valid new-owner/new-attempt handoff to the same operation/revision/scope may resume from the latest durable checkpoint whose originating attempt is retained; attempt mismatch alone is not a rejection reason."
   ],
-  "dependency_fixture": "Concrete four-category row tuples, field-by-field failure fixtures, and the new-owner resume normal control are recorded in current HELIXOS-L11-126 section sha256:26cf9e89321dd612a452cc1ae801a5d297802dbb773d6f2a16110ef43d7507b2. HARNESS-023 decision row/pair pins and distinct 010/011 contract revision and synthetic compatibility rows are listed under harness_010_011_fixture_contract_inputs. Each selected lease/checkpoint source has identity, owner, contract revision, declared range, compatibility evidence, class and applicability. The reference-only row is a synthetic historical context value; unselected inputs remain unobserved.",
+  "dependency_fixture": "Concrete four-category row tuples, field-by-field failure fixtures, and the new-owner resume normal control are recorded in current HELIXOS-L11-126 section sha256:5323a85577c34fd9c74776f8abed09510bce7f5a1e6ee7c1aa05baa4258dca23. HARNESS-023 decision row/pair pins and distinct 010/011 contract revision and synthetic compatibility rows are listed under harness_010_011_fixture_contract_inputs. Each selected lease/checkpoint source has identity, owner, contract revision, declared range, compatibility evidence, class and applicability. The reference-only row is a synthetic historical context value; unselected inputs remain unobserved.",
   "human_decision_options": {
     "source_text": "agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。",
     "options": [
@@ -589,7 +589,7 @@
         "line_start": 340,
         "line_end": 351,
         "section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-        "file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+        "file_sha256": "sha256:dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47"
       },
       "fixed_target_L11_row": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -621,7 +621,7 @@
         "line_start": 352,
         "line_end": 362,
         "section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-        "file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+        "file_sha256": "sha256:dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47"
       },
       "fixed_target_L11_row": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -668,5 +668,11 @@
     ],
     "compatibility_boundary": "The fixture evidence marks these synthetic revision tokens compatible with the selected pack input; it does not define an actual version comparison algorithm, assert an individual 010/011 adoption decision, or create a new owner."
   },
-  "checkpoint_attempt_boundary": "Resume is under current valid fence and authority with a valid handoff. The checkpoint retains its originating attempt and provenance; current owner/assignment/attempt may differ. Same operation/revision/scope and latest durable checkpoint are required, but attempt identity equality is not. IT-AGLC-006 line 40 is pinned as unexecuted consumer context."
+  "checkpoint_attempt_boundary": "Resume is under current valid fence and authority with a valid handoff. The checkpoint retains its originating attempt and provenance; current owner/assignment/attempt may differ. Same operation/revision/scope and latest durable checkpoint are required, but attempt identity equality is not. IT-AGLC-006 line 40 is pinned as unexecuted consumer context.",
+  "latest_main_prefix": {
+    "commit": "fd3e799710bf5b06081fee271e536fc7f51213ba",
+    "line_count": 673,
+    "candidate_append_line": 674,
+    "prefix_sha256": "sha256:17615d26bd51280e6841687dcf3a235f98c5e78b1a1c03fec41b73905d9100c0"
+  }
 }
