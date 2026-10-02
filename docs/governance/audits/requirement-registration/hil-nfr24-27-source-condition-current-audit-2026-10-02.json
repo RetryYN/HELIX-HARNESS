@@ -1,0 +1,232 @@
+{
+  "audit_id": "HIL-NFR24-27-SOURCE-CONDITION-CURRENT-2026-10-02",
+  "kind": "read_only_source_to_current_condition_audit",
+  "baseline_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
+  "created_at": "2026-10-02",
+  "scope": ["HIL-NFR-24", "HIL-NFR-25", "HIL-NFR-26", "HIL-NFR-27"],
+  "source_files": [
+    {
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    {
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    },
+    {
+      "legacy_asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+    },
+    {
+      "legacy_asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+    }
+  ],
+  "line_hash_definition": "L1 line sha256 includes its physical LF; line_sha256_without_lf hashes exact line content after removing CR/LF only. IR keyline hashes are the exact physical JSON key line including line ending.",
+  "consumer_context": {
+    "HR-FR-HIL-16": {
+      "statement_semantic_digest": "5eed525bf1051d7751d3472211985cd68589aeeaeb80a95b99604b513c489bae",
+      "meaning": "Design Refactor candidates evaluated by semantic/consumer/oracle equivalence; behavior-preserving change routes to Refactor, contract change to Redesign, state change to Retrofit.",
+      "acceptance": {
+        "HAC-HIL-16a": "5c2a956a3a254d0edfdf18d81600e435bced310a4e50a0f7a18ba5b8f293ce0f",
+        "HAC-HIL-16b": "48a5f553663c196aacd96f93ce7725ff307facf396cb04286d5f477f644d7d68",
+        "HAC-HIL-16c": "2cb26c2e0546ccd276ae1a95c3ea8d32d91b72dce8400dd2dd3d97c776078a4c"
+      },
+      "test": {"id": "HAT-HIL-16", "status": "designed_not_implemented"}
+    },
+    "HR-FR-HIL-17": {
+      "statement_semantic_digest": "46638389e09a375aa1059fb3b6d3321703bfb2763c3777b2c321e06d25bc1fa7",
+      "meaning": "Translate source to authority-held atomic requirements with design obligations and stable revision/edge/change receipts; template gaps go to shadow review.",
+      "acceptance": {
+        "HAC-HIL-17a": "b5603c8d13edbdaaab52a69baff70609799c53b99ca3cef8e10ddf9909250dee",
+        "HAC-HIL-17b": "5c0dd5f774457524ef7bac010d3df40ecbf324b72cd799a1c8373d7df8757d79",
+        "HAC-HIL-17c": "717a0bf0166831ea252b21ad2b7283a2ae236059a6723b28c56ad606b3b1f41d"
+      },
+      "test": {"id": "HAT-HIL-17", "status": "designed_not_implemented"}
+    },
+    "identity_relation": "The requirement IR identity is the single source atom for each NFR. L1 corroboration and HR/HAC/HAT records are consumer/context evidence, not additional atoms or formal successors."
+  },
+  "selected_span_evidence": {
+    "receipt": {
+      "path": "docs/governance/audits/requirement-registration/o9-harness-coverage-receipt-2026-09-29.json",
+      "sha256": "517ff75b333ac4931a0230d0415773771226c485d94163e8eb26fc9fb18132ea",
+      "source_line_ledger": {
+        "path": "docs/governance/audits/requirement-registration/ops-o9-naming-source-lines-2026-09-29.jsonl",
+        "sha256": "f743f49bdfb1d652d29c00ecabe486bdfc6f25114da0715c05105b122f639554"
+      },
+      "source_holding_ledger": {
+        "path": "docs/governance/audits/requirement-registration/ops-o9-naming-source-holding-lines-2026-09-29.jsonl",
+        "sha256": "8ad688981a53ff1b802010d6286e7796c05d10cbd7d107e65c3634adfce602a3"
+      },
+      "source_atom_count": 17,
+      "coverage_result": "no_loss_for_17_selected_spans_only",
+      "scope_note": "The receipt says all full source lines and complementary segments remain in MPR-SH-O9-NAMING-001; unselected semantics are pending and no whole-line/archive closure is claimed."
+    },
+    "selected_nfr24_spans": [
+      {"atom_id": "O9-infinity-loop-platform-requirements-L0204-S01", "sha256": "4074ed4b8072a7c367e01bbf3a4bc0a1332c57f5fcd0e032d69171b7afdf80fe", "text": "名称の文字列類似だけでrename", "source_holding": "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204"},
+      {"atom_id": "O9-infinity-loop-platform-requirements-L0204-S02", "sha256": "eb11780dc351527368943fd1ef63d708df9e2c73e774686870f531d77892f56c", "text": "全consumer、最小変換、behavior invariant、退行時rollback", "source_holding": "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0204"}
+    ],
+    "selected_nfr25_spans": [
+      {"atom_id": "O9-infinity-loop-platform-requirements-L0205-S01", "sha256": "cf23313bd03230118c23da1a866f28952acd72253fb541db104a603f9fb7ddff", "text": "責務不明名を根拠なしで許さない", "source_holding": "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205"},
+      {"atom_id": "O9-infinity-loop-platform-requirements-L0205-S02", "sha256": "8b7264013f461172fc68e4301c301b1e32426d1a1c82da98cb320354f7cb2838", "text": "test binds domain object + operation + oracle ID rather than private implementation name", "source_holding": "MPR-SH-O9-NAMING-001#O9-HOLD-infinity-loop-platform-requirements-L0205"}
+    ]
+  },
+  "decision_pins": [
+    {
+      "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_scope": "HARNESS L2/L11 fixed bytes; rows 53-55 explicitly identify HARNESS-024/-025/-026. Exact target and rows, not MPR status metadata, establish adoption."
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "rows": {
+        "46": {"identity": "HARNESS-L2-041-002", "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260", "l11_section_sha256": "259c383203d86b79c159395b64c0d03d88db665486d28f5fc2aea8f7556a73a8"},
+        "47": {"identity": "HARNESS-L2-042-001", "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb", "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"}
+      },
+      "scope_caution": "Decision explicitly excludes later 048 and BRAIN-031 additions."
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "rows": {
+        "27": {"identity": "HARNESS-L2-041-003", "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260", "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"},
+        "28": {"identity": "HARNESS-L2-048-001", "l2_section_sha256": "9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5", "l11_section_sha256": "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d"},
+        "29": {"identity": "HELIXBRAIN-L2-031-001", "l2_section_sha256": "65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca", "l11_section_sha256": "b9e074f72682d161905d96bb20beb06e312db5c23dfd643deb54cf188a18bb1d"}
+      }
+    },
+    {
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "adoption_scope": "Decision explicitly agrees to OS L2-001 through L2-029 and paired L11 bytes, including OS-015/-022/-024."
+    },
+    {
+      "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "row": "54; OS-101 is adopted as part of HARNESS-058 + OS-034 + OS-101 bundle, only within PR finding disposition scope.",
+      "os101_l2_section_sha256": "03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+      "os101_l11_section_sha256": "bea9231cf52c1491768397621ecb9fd42f54f07b3eb323a3cfaa68aff08d818a"
+    }
+  ],
+  "current_file_pins_at_baseline": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "5e8a521274d6f21deb6b10a42625e39d9e82550856efb59adccc40679f8fa9a5",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "f1e3de3192aecb32b7a60352714d95ccace8ad28608dec2174a5de14da6654ec",
+    "docs/helix-brain/L2-requirements/brain-requirements.md": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+    "docs/helix-brain/L11-acceptance/brain-acceptance.md": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5"
+  },
+  "canonical_section_hashes_l2_then_l11": {
+    "HARNESS-L2-016": ["3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26", "af638df15c01789c0b130047655bed93f24efa9f9913581870990e7fde7388e7"],
+    "HARNESS-L2-024": ["b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8", "638e6ddf383c40fab1d17c57ccec6fafbb56aa724216c547863da2f65d1e49cc"],
+    "HARNESS-L2-025": ["452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979", "1953d9eac34f694e0d317de37a47133546e7270eea5fbd30fe9b7433c8a3e82d"],
+    "HARNESS-L2-026": ["d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880", "7a9b631d08d21e1bbefb97996fced810311a57e5ae9dce24e20326f9c84fe522"],
+    "HARNESS-L2-041": ["d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260", "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"],
+    "HARNESS-L2-042": ["7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb", "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"],
+    "HARNESS-L2-048": ["9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5", "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d"],
+    "HELIXBRAIN-L2-031": ["65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca", "b9e074f72682d161905d96bb20beb06e312db5c23dfd643deb54cf188a18bb1d"],
+    "HELIXOS-L2-015": ["f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef", "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"],
+    "HELIXOS-L2-022": ["0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea", "844a21ece8560bc7fd0cad5b1982d96027847ac07a44518a85e5eab29539c7a8"],
+    "HELIXOS-L2-024": ["b84651c09401e2d58c50652d2e74942cbe3f485ec949d79a42255a947b075dcb", "7e4f145d506c50084fcaa993a255e4dc098b4055c477f0917c1d0bccfea03e54"],
+    "HELIXOS-L2-101": ["03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5", "bea9231cf52c1491768397621ecb9fd42f54f07b3eb323a3cfaa68aff08d818a"]
+  },
+  "conditions": [
+    {
+      "identity": "HIL-NFR-24",
+      "source": {
+        "legacy_ir_pointer": "requirements-ir/requirements.json#/HIL-NFR-24",
+        "legacy_ir_statement_semantic_digest": "72284f7840fb26841527f2520d29ff0b64b473e136211bc0fc6099ed5d89ac24",
+        "legacy_ir_record_semantic_digest": "6dda4aec0dd8832c332f65e0983ad66ac2a52139faaba1298a76d2f0236df620",
+        "l1_line": 204,
+        "l1_line_sha256_including_lf": "c84485956f221a91c80708cd144c3eb669842d8b8c622d8b2da8669d1ff659cb",
+        "l1_line_sha256_without_lf": "f9d8dde0cc8f928e8bbefbc4a0ba024686da3989e41b358d7ada45cf328e2311",
+        "ir_keyline": 5412,
+        "ir_keyline_sha256": "3ff65c1bf2fb4e08d388ad3e75c1476a29072cd908fddea9f52df01fd15ebf6b",
+        "consumer_ids": ["HR-FR-HIL-16", "HAC-HIL-16a", "HAC-HIL-16b", "HAC-HIL-16c", "HAT-HIL-16"]
+      },
+      "condition_crosswalk": [
+        {"source_condition": "Behavior/contract/requirement preservation and correct route for semantic change", "current_destination": ["HARNESS-L2-016 + L11", "HARNESS-L2-042 + L11"], "evidence": "Adopted 016 holds refactor/backflow boundary. Adopted 042 holds semantic similarity, consumer, oracle and dependency-graph comparison, plus separate episode for feature addition.", "status": "partial_contextual_hold"},
+        {"source_condition": "No rename/common layer/base/generic object/config surface merely because it may be useful/prettier or names resemble", "current_destination": ["HARNESS-L2-048 + L11 selected span", "HARNESS-L2-042 + L11 related distinct source"], "evidence": "048 directly selected only name-string similarity alone is insufficient; 042 rejects name-only integration. Neither shows full NFR24 predicate set or all listed abstraction surfaces.", "status": "partial_source_holding"},
+        {"source_condition": "Require actual semantic similarity/name collision and evidence of duplicate/change impact/mixed responsibility", "current_destination": ["HARNESS-L2-042 + L11"], "evidence": "042 requires semantic similarity, consumers, oracle and graph evidence for its own adopted source scope; full NFR24 condition combination is not established.", "status": "partial_source_holding"},
+        {"source_condition": "Require all consumers, minimum transformation, behavior invariant, and rollback", "current_destination": ["HARNESS-L2-048 + L11 selected span", "HARNESS-L2-016 + L11"], "evidence": "048 explicitly carries this selected NFR24 span; 016 separately protects behavior/contract. This closes only the selected source span and corresponding outcome.", "status": "held_for_selected_span"},
+        {"source_condition": "Reject false name unification, unjustified abstraction, and scope creep", "current_destination": ["HARNESS-L2-042 + L11 related scope"], "evidence": "Name-only integration is rejected; no exact adopted clause was found for all three NFR24 rejection outcomes and abstraction surfaces.", "status": "unproven_source_holding"}
+      ],
+      "overall": "Partial adopted coverage; full source atom remains held. No formal successor inferred."
+    },
+    {
+      "identity": "HIL-NFR-25",
+      "source": {
+        "legacy_ir_pointer": "requirements-ir/requirements.json#/HIL-NFR-25",
+        "legacy_ir_statement_semantic_digest": "a8e7e11e262e12aa53009f37e6c288213c1175b2853491cb0f998ac122c09b8d",
+        "legacy_ir_record_semantic_digest": "0c6baa7a54925a515eb67011558cd0f41c8a386d3e5f38341dbb8e92da4ac2a1",
+        "l1_line": 205,
+        "l1_line_sha256_including_lf": "68b75825816c471c5ec8d08073934b224613a52f81867d2c412507cdac65fba6",
+        "l1_line_sha256_without_lf": "83651c4dfcbc55f2c526ca0532a0c61515d27f42aa5037bc8707527ffd81956a",
+        "ir_keyline": 5455,
+        "ir_keyline_sha256": "b337665332a45d71b6bba6ae2a5ed4e52fba6dc1704d30538bf02de4d9fb6f87",
+        "consumer_ids": ["HR-FR-HIL-16", "HAC-HIL-16a", "HAC-HIL-16b", "HAC-HIL-16c", "HAT-HIL-16"]
+      },
+      "condition_crosswalk": [
+        {"source_condition": "Do not promote payload to Entity/Aggregate absent identity, invariant, lifecycle, authority", "current_destination": ["HARNESS-L2-025/026 + L11"], "evidence": "Generic state/invariant and design composition clauses exist; no exact adopted domain-promotion gate established.", "status": "unproven_source_holding"},
+        {"source_condition": "Value Object immutable; Aggregate update transaction remains inside root boundary", "current_destination": ["HARNESS-L2-025/026 + L11 generic state/data invariant"], "evidence": "Generic composite invariant is not a specific immutability or aggregate-root transaction condition.", "status": "unproven_source_holding"},
+        {"source_condition": "Query has no side effects; Domain Event is a past-tense completed fact", "current_destination": ["No exact adopted destination identified"], "evidence": "No exact selected/adopted section among checked pairs states these specific domain rules.", "status": "unproven_source_holding"},
+        {"source_condition": "Domain depends on Adapter through Port", "current_destination": ["HARNESS-L2-026 + L11 generic dependency and interface design"], "evidence": "Generic interface/dependency direction is present but not the exact domain-Port-Adapter rule.", "status": "unproven_source_holding"},
+        {"source_condition": "Reject unsupported ambiguous Manager/Helper/Util/Data names; tests bind domain object+operation+oracle ID, not private symbol", "current_destination": ["HARNESS-L2-048 + L11 selected NFR25 spans", "HELIXBRAIN-L2-031 + L11 distinct role vocabulary"], "evidence": "048 explicitly adopts the two selected NFR25 naming/test spans. BRAIN-031 is knowledge vocabulary and does not supply domain-model authority.", "status": "held_for_selected_spans"}
+      ],
+      "overall": "The selected naming/test spans are adopted; domain-model clauses remain unproven source holding. No formal successor inferred."
+    },
+    {
+      "identity": "HIL-NFR-26",
+      "source": {
+        "legacy_ir_pointer": "requirements-ir/requirements.json#/HIL-NFR-26",
+        "legacy_ir_statement_semantic_digest": "239e05f4a6d7453b7b5c6c966ded8acbf1ee6565a38518cc43f8869800cd839f",
+        "legacy_ir_record_semantic_digest": "e2912d416ff66d23b22f7ba3695cb2baf9cb03d9f2ad83e0455b9208e0ac97aa",
+        "l1_line": 206,
+        "l1_line_sha256_including_lf": "0a22af5a6913efa219b25fc8d8f5d9281f54bfffe032a04147742390c2eb4baa",
+        "l1_line_sha256_without_lf": "6ed5a24e55c06fcf71a48e3161cce7716292c9661824c778079072b9620c681d",
+        "ir_keyline": 5498,
+        "ir_keyline_sha256": "d34f201785ca47cc9600eff2427547dc454139f6664d3dadc583a06e0bb4806c",
+        "consumer_ids": ["HR-FR-HIL-17", "HAC-HIL-17a", "HAC-HIL-17b", "HAC-HIL-17c", "HAT-HIL-17"]
+      },
+      "condition_crosswalk": [
+        {"source_condition": "Template/document/headings/field presence alone does not prove design completeness", "current_destination": ["HARNESS-L2-041-003 + L11"], "evidence": "Adopted 041 extracts active-template elements to atom or reasoned gap; 025/026 separately demand meaningful design and composition checks.", "status": "held_with_scope_boundary"},
+        {"source_condition": "Each obligation needs meaningful design content and bidirectional edge", "current_destination": ["HARNESS-L2-025/026 + L11"], "evidence": "Adopted generic unit/composite design clauses require meaningful design and bidirectional requirement/design/oracle traces; 041 extraction alone is not design fulfillment.", "status": "partially_held_source_granularity_unproven"},
+        {"source_condition": "Each obligation closes by test oracle or scope-specific N/A receipt", "current_destination": ["HARNESS-L2-025/026 + L11; HARNESS-L2-041-003 + L11"], "evidence": "Generic oracle and unknown/N/A clauses exist; exact individual scope-bearing N/A receipt for each NFR26 obligation was not established from the inspected adopted text.", "status": "unproven_source_holding"},
+        {"source_condition": "Reject TBD, blank, range notation, and one row bundling several duties", "current_destination": ["HARNESS-L2-041-003 + L11", "HARNESS-L2-025/026 + L11"], "evidence": "041-003 rejects empty/TBD, omission/duplicate, and multi-obligation atom bundling. Specific rejection of range notation as a substitute for separate obligations was not found in the inspected adopted clauses.", "status": "partial_source_holding"}
+      ],
+      "overall": "Template extraction/gap atomicity and generic design closure are adopted; per-design-obligation N/A scope receipt and range-notation rejection remain unproven. HAT-17 is design-only, not run."
+    },
+    {
+      "identity": "HIL-NFR-27",
+      "source": {
+        "legacy_ir_pointer": "requirements-ir/requirements.json#/HIL-NFR-27",
+        "legacy_ir_statement_semantic_digest": "9a56f576e707cda0a58668fd22baf775afde65ff1954474352c53dc53d17705c",
+        "legacy_ir_record_semantic_digest": "fe846afe86cb71f73f707d2b28bc547226471dcbe7c05e513dff43a9a1116e8f",
+        "l1_line": 207,
+        "l1_line_sha256_including_lf": "2ce5d18cf016e57b8ceb9c5e3b63a044661d586ea44a48065a9d83f1cd14bf9f",
+        "l1_line_sha256_without_lf": "d382eba434c3c04cfb26110820231d8bcfb6edc7ba9294cf6c01a7362835a057",
+        "ir_keyline": 5541,
+        "ir_keyline_sha256": "5857b16f1a9345c8deb020c66dec40ac3b1a3c3dab133c36b9e253cf11702f95",
+        "consumer_ids": ["HR-FR-HIL-17", "HAC-HIL-17a", "HAC-HIL-17b", "HAC-HIL-17c", "HAT-HIL-17"]
+      },
+      "condition_crosswalk": [
+        {"source_condition": "Translator/Template Improvement Loop preserves original source", "current_destination": ["HELIXOS-L2-015 + L11", "HARNESS-L2-041-003 + L11"], "evidence": "OS-015 protects authority-origin event immutability; 041 preserves active-template source spans in atom/gap extraction. Neither explicitly closes per-requirement translator preservation across translation.", "status": "partial_source_holding"},
+        {"source_condition": "Expose translation confidence and unresolved ambiguity", "current_destination": ["HARNESS-L2-024 + L11"], "evidence": "024 exposes uncertainty/open items for requirement formation and fixed target scope; this is adjacent, not an exact translation-confidence guarantee.", "status": "partial_source_holding"},
+        {"source_condition": "Subagent may not delete, merge, or terminalize requirements", "current_destination": ["HELIXOS-L2-015 + L11", "HARNESS-L2-041-003 + L11"], "evidence": "OS authority cannot be generated from records; 041 rejects omitted/duplicate/template multi-obligation atoms. Neither states a translator/subagent prohibition on deleting, merging, or terminalizing source requirement identities.", "status": "unproven_source_holding"},
+        {"source_condition": "Unaudited template cannot become active", "current_destination": ["HARNESS-L2-041-003 + L11", "HELIXOS-L2-015 + L11"], "evidence": "041 candidate rows are not registry adoption and its active-template extraction presupposes selection; OS-015 prevents records from creating authority. A direct adopted translator/template-activation rejection oracle was not established.", "status": "partial_source_holding"}
+      ],
+      "overall": "Source-authority and template extraction protections are adopted in their scopes; translator-specific identity preservation, subagent prohibitions and activation oracle remain unproven. OS-101 is unrelated PR finding disposition scope."
+    }
+  ],
+  "verification_limits": [
+    "No legacy runtime, CLI, test, or CI was executed.",
+    "No formal successor, new adoption, implementation completion, or current execution success is asserted.",
+    "Current file SHA-256 values and canonical section SHA-256 values were independently recomputed from baseline bytes; source physical-line hashes include/exclude LF as labeled."
+  ]
+}
