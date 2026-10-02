@@ -1632,3 +1632,9 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **共有consumerの未配賦**：旧HR-FR-HIL-23はHIL-NFR-37〜40等を束ね、HAC-HIL-23cは「quota枯渇・egress乖離」を合わせてfail-close退避・quarantineとする。normative NFR-40はegress乖離やquarantineを述べないため、本候補はquota/rate retreatだけを保持し、egress/quarantineを黙ってNFR-40へ配賦しない。選択肢と影響はcoverage receiptへ記録し、候補起草を止めず、条件を追加する場合だけ対象revisionの既存PO判断へ戻す。
 - **既存routing/crosswalkの位置付け**：旧routing `docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl:142` の `PRC-HIL-NFR-40-001`（row SHA-256 without LF `91eb93498d713a11eacd28cc3183e17390f82302f0bf2562848b2b5601dad480`）と `docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:49`（row SHA-256 without LF `c35dd67ee0b4f7d5020a9c77c0312fe7c991e5c5f29589cb58c8b0569836acba`）は旧OS配置案を示すが、いずれも提案／照合記録で採択authorityやsuccessor assignmentではない。OSを主identityとする根拠は現行Concept・固定OS-L1-003の運転責務と、INTELLIGENCE案を割当へ昇格させない境界である。原source・参照rowのexact bytesはreceiptに固定する。
 - **023依存4区分**：実行dependency分類は対L11に示す。IR whole source、L1 corroboration、共有consumer oracleはruntime-dependency分類の外でsource/condition evidenceとして保持し、reference-onlyへ落とさない。
+
+#### Worker runtime適用scope候補（未採択）
+
+旧HIL-NFR-40の規範文は「worker runtime」「lane」と記し、Claude/Codex以外または第三者runtimeへの限定を明記しない。したがって本候補の原文忠実な推奨scopeは、現在のassignmentで選ばれたruntime一般であり、主Workerも含む。ただしこれは候補上の推奨であって採択、主Workerへの現在の合否、許可、禁止を決めない。HR-FR-HIL-23は第三者workerの共有consumer契約であり、NFR-40本文のscopeを自動で限定しない。HIL-BR-32のClaude/Codex以外という境界は同BR-32自身の条件として保持する。PO判断まではprimary Worker適用範囲を未決として扱い、候補の起草・reviewを止めない。
+
+適用scopeの選択肢は、**案A：第三者runtimeに限定**（BR-32/HR-23の第三者worker文脈へ本NFRのquota/rate条件を限定する）と、**案B：選択runtime一般**（normative NFR-40の無限定な文言どおり、primary Workerを含む）である。**案Bを推奨**する。根拠はnormative atom自体にruntime種別の限定がなく、第三者限定はconsumer/隣接BRの文脈にあるためである。案AはNFR-40原文の適用範囲を狭める。案Bの選択は既採択SECURITY-029/031の追加runtime向け範囲を主Workerへ広げず、decision 57 row 112の判断も変更しない。候補のこのscope選択だけでruntime/operation authority、assignment、dispatch許可は生じない。

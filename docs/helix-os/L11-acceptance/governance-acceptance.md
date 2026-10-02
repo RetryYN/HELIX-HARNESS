@@ -1322,3 +1322,13 @@ HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実�
 | 参照資料のみ | HR-FR-HIL-23、HAC-HIL-23a/b/c、HAT-HIL-23およびlegacy HOT-HIL-56は023のruntime-dependency分類上のconsumer context。これらのcondition/oracle自体はconsumer evidenceとして別に保持し、reference-only分類でsource・oracle義務を消さない。 |
 
 Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corroborationとして4区分の外に保持する。HR/HAC/HAT/HOTの共有consumer条件も別途追跡し、正確な配賦なしに本pairのsource条件へ足さない。HAT-HIL-23/HOT-HIL-56は旧設計上`designed_not_implemented`/`not-implemented`であり、実行結果は主張しない。受入pairとsourceのdigest、HAC-23cの未配賦境界、PO判断材料は[coverage receipt](../../governance/audits/requirement-registration/helixos-l2-129-hil-nfr40-quota-rate-coverage-receipt-2026-10-03.json)を参照する。
+
+#### Worker runtime適用scope fixture（未採択）
+
+既存のqueue-hold／routing-proposal正常例、独立negative、unknown、四区分dependency tupleは選択scope以外の値を変えず、次のscope fixtureと組み合わせる。どちらも文書上のfixtureであり、現行runtimeの状態・許可・合否を示さない。
+
+- **第三者runtime fixture**：BR-32/HR-23が指すClaude/Codex以外の選択runtimeでquota/rate状態を与える。案A/Bのいずれでも本候補の既存OR受入とnegativeが適用される。
+- **primary Worker fixture**：primary Workerを選択runtimeとして同じquota/rate状態とし、残りのtupleを同一にする。案Bでは第三者runtimeと同じ既存OR受入とnegativeを適用する。案Aでは本候補scope外として扱うが、scope外という記録から合格、適法、quota状態、実行許可を推定せず、他の既採択authority/pairを適用する。
+- **PO未選択時**：primary Workerに関する本候補の適用判定はunknownのまま保持する。二つのsource上の退避経路のいずれかを削除・固定せず、queue-hold／routing-proposal双方の既存正常例を維持する。scope未決を理由にdependencyの6 fieldsやHARNESS-023の4分類を変えない。
+
+案Bを推奨する理由と案A/Bの具体的影響は対L2のscope候補とcoverage receiptに記録する。SECURITY-029/031の追加runtime向け既採択境界はdecision 57 row 112のまま維持し、NFR-40 scope候補へ混ぜない。
