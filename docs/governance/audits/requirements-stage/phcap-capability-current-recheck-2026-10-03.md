@@ -119,7 +119,7 @@ PHCAP-02〜20の現行L2 identityとPO採択状態は次のとおり。2026-09-2
 
 先行節の43d5比較は履歴比較として保持する。今回のcurrent projection対象はmerge commit `86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c`で、固定f6対象から元の145 locatorを同じpath+line・raw bytes規則で再比較した。145/145行が一致し、identity anchorも145/145で確認した。OS-L2/L11-017..021の見出し行10件も固定対象とraw bytes一致した。行別SHA、locator、固定対象との比較結果、86時点の8 pair全体SHAはbyte比較JSONの`subsequent_main_comparison`に追記した。先行`comparison_revisions.latest_main=43d5...`とその比較結果は変更していない。
 
-byte比較JSONの追補後SHA-256は`90a0f2d137944f9f96207254de49a72cdefdf8987ced3f6b84fc1974bbe7627a`。先行検証記録にある`429a268d...`は追補前JSON revisionのdigestであり、43d5比較時点の証拠revisionを指す。現在のJSONでは先行145行比較を保持しつつ86比較を追加している。
+commit `2812ccbfea0967336ff405f138e145a10990ec6d` 時点のbyte比較JSON（86比較追補後）のSHA-256は`90a0f2d137944f9f96207254de49a72cdefdf8987ced3f6b84fc1974bbe7627a`。先行検証記録にある`429a268d...`は追補前JSON revisionのdigestであり、43d5比較時点の証拠revisionを指す。現在のJSONでは先行145行比較を保持しつつ86比較を追加している。
 
 初期inventory JSONへ`current_projection`を追加し、初期20 records、e784fa snapshot、歴史的status/gap/transition値は保持した。追補はOS-L2/L11-017..021の採択、PHCAP-08のHARNESS-L2/L11-051限定採択と旧25 source atoms holding・意味同等性unknown、PHCAP-19のOS/LABO/INTELLIGENCE限定pair参照、PHCAP-20のOS memoryとLABO learning責務分離を反映する。phase全体source closure、実装回復、受入実行、縮退受容、successorは生成しない。旧実装未回復を要求stage開始の新条件へしていない。
 
