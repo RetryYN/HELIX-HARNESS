@@ -331,7 +331,26 @@
     "nfr29_clause_to_pair_scope_crosswalk_recorded": true,
     "deferred_separate_from_unexecuted_stale_and_snapshot": true
   },
-  "root_integration_note": "r2 is a new point-in-time candidate receipt for MPR-RC-HARNESS-L2-072-002 on base 0e160e146874f039155f9e406e7ae650a01f43ee. Historical 001/source snapshot/r1 receipt remain byte-for-byte intact; register 002 supersedes 001 and does not imply adoption.",
+  "root_integration_note": {
+    "latest_main_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "latest_main_register_prefix_lines": 680,
+    "new_072_002_append_line": 681,
+    "historical_worker_comparison_base": "0e160e146874f039155f9e406e7ae650a01f43ee",
+    "historical_worker_register_prefix": {
+      "new_registration_id": "MPR-RC-HARNESS-L2-072-002",
+      "supersedes": "MPR-RC-HARNESS-L2-072-001",
+      "new_row_sha256_including_lf": "sha256:3bc016822184c7c5b705c77d59c4ea260db2b2c57af1a86e073fcb9da1e7c0b4",
+      "prefix_line_count": 677,
+      "prefix_sha256": "sha256:cf18c5f0041dff9170613ded4c1fc2cdef4fe6d6b5eafe7fe0c93d0d1539a300",
+      "append_is_final_register_row": true,
+      "historical_001_registration_preserved": true,
+      "historical_r1_source_snapshot_and_receipt_paths": [
+        "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
+        "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json"
+      ]
+    },
+    "meaning": "最新mainの680行をbyte保持し072002だけ追記。r1 receipt/source snapshot/072001を変更せず、r2候補pairは最新main取込でもbyte不変。古い比較base証拠は固定時点のまま区別。"
+  },
   "source_atom_count": 3,
   "source_atom_set_file_sha256": "sha256:c35c8182087b2c6af8e575c066027ceda59528caba39fe72207f8cf6071f0799",
   "source_line_coverage_result": "r2 maps three selected inputs and all NFR-29 clauses separately; exact pair semantics, source binding, and candidate/adoption state are distinguished. No runtime evidence.",
@@ -369,8 +388,8 @@
     "new_registration_id": "MPR-RC-HARNESS-L2-072-002",
     "supersedes": "MPR-RC-HARNESS-L2-072-001",
     "new_row_sha256_including_lf": "sha256:3bc016822184c7c5b705c77d59c4ea260db2b2c57af1a86e073fcb9da1e7c0b4",
-    "prefix_line_count": 677,
-    "prefix_sha256": "sha256:cf18c5f0041dff9170613ded4c1fc2cdef4fe6d6b5eafe7fe0c93d0d1539a300",
+    "prefix_line_count": 680,
+    "prefix_sha256": "sha256:6baa0d164ba84cdf9767f759a6f06368e559b55109e4ee4a4f1b98b59acc0f8e",
     "append_is_final_register_row": true,
     "historical_001_registration_preserved": true,
     "historical_r1_source_snapshot_and_receipt_paths": [
