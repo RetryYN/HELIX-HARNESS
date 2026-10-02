@@ -1029,9 +1029,9 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **受入限界**：旧HIL-FR-42一行の選択条件だけを対象とする静的oracle案で、旧HR-FR-HIL-17全体・全資産・実graph/runtime、要求採択、設計pair実体、実行結果、pair freeze実績を主張しない。旧runtime/test/CIは実行せず、本候補oracleも未実行である。
 
 
-- **意味ある設計内容の正例**：各個別義務にsource atom、対象scope/revision、意味を持つ設計内容、双方向edge、対応test oracleまたはscope付きN/A evidence、discharge receiptを結ぶ。個別に展開された義務列は表示上`A–B`と略記できるが、A/B各々のreceiptとoracleは独立する。
+- **意味ある設計内容の正例**：各個別義務にsource atom、対象scope/revision、意味を持つ設計内容、双方向edge、対応test oracleまたはscope付きN/A evidence、discharge receiptを結ぶ。PO選択肢Aを採る場合に限り、個別展開された義務列を表示上`A–B`と略記でき、A/B各々のreceiptとoracleは独立する。Aは未選択の変更案であり、現行保証として扱わない。
 - **boilerplate負例（HST-CASE-027-10）**：必要見出し・欄・templateが存在しても、複数義務の設計欄が同じboilerplate文だけで具体的意味、scope、edge、oracleとの対応を持たないfixtureを与える。全対象義務を未消込にし、complete/freezeを拒否する。
-- **rangeのPO選択肢**：Aでは個別にatom化・dischargeした義務の表示略記を許容し、未展開の`A–B: complete`一行による一括消込を拒否する。Bでは原文の語句に従いrange表記を一律に拒否する。A/Bどちらも候補の推奨/判断材料であり採択ではない。
+- **rangeのPO選択肢**：A案は、個別にatom化・dischargeした義務の表示略記を許容し、未展開の`A–B: complete`一行による一括消込を拒否する候補であり、このfixtureはA/BのPO選択に用いる判断材料である。B案は原文の語句に従いrange表記を一律に拒否する。A/Bは未選択であり、Aを現行保証や採択済みの意味として扱わない。
 - **旧oracle 9件の個別対応**：HST-CASE-027-08 required section欠落、-09 `TBD`、-10 boilerplate、-12 N/A根拠欠落、-13偽N/A、-14 deferred義務、-28 aggregate-only、-29 digest変更後のstale receipt再利用、-30 同一入力からの非決定的graphを別fixtureにする。各条件はその義務・receiptだけを未完/stale/failureとし、別義務の成功で埋め合わせない。すべて旧`design-defined / not-implemented`のoracle contextで、実行結果ではない。
 - **固定tuple**：上記L2記載のHARNESS-010/011 fixed revision・section/row hashesと`request_pair_freeze` callを正常例に結び、独立負例では010だけ、または011だけの契約revision/range/compatibility根拠を誤らせる。各fixtureはsource owner、契約owner、scope、applicability、戻し先を記録する。
 

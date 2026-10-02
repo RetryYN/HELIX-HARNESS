@@ -6,23 +6,23 @@
   "candidate_registration_id": "MPR-RC-HARNESS-L2-077-002",
   "supersedes_registration_id": "MPR-RC-HARNESS-L2-077-001",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:52156b1a9ed2bc7c61594a902de41b5d9eed49715dd00c9823e6dcaecd8974c2",
+  "candidate_semantic_digest": "sha256:d847d936b1b1200797f190ccd97ad5c301924c943a633b4aa0b2fb11742c0c53",
   "candidate_digest_rule": "候補identityの既存L2節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
-  "candidate_l2_file_sha256": "sha256:cadb7b9750f6a18b7587257d86f2ec9222fd098976411b66844f353a8c818be0",
+  "candidate_l2_file_sha256": "sha256:2fb3ecd0b1a33bc0a7e3d26f23e6dd7706654501b22884b1e4391d3cf9a8357a",
   "candidate_l2_section_lines": [
     1316,
     1335
   ],
   "paired_acceptance_identity": "HARNESS-L2-077",
-  "paired_acceptance_digest": "sha256:77829b10a8f41c36deb405c46de30e6241ed79248e51f58cdcfdc4e86e5cbff2",
+  "paired_acceptance_digest": "sha256:f04244e8d0cebbebdb31691910ec51e90283197dcd4674d6d9e51be36f2debf0",
   "l11_digest_rule": "対応L11の既存節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
-  "candidate_l11_file_sha256": "sha256:75f24db0fcb6f9c7f3f481be8b4e408c7806ec401e6672d15cd0a9b9e4fca8dd",
+  "candidate_l11_file_sha256": "sha256:a704454e8f63382cd97b0789a754b6491d0ca1bbb66de5d9b20550338b5eca5a",
   "candidate_l11_section_lines": [
     1022,
     1037
   ],
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr42-nfr26-candidate-source-atoms-2026-10-03.jsonl",
-  "source_atom_set_sha256": "sha256:eea5f7702daf8e3bb7db6c5b5d170ed637c166e4f9abaf472428f939c126fffd",
+  "source_atom_set_sha256": "sha256:3b7e054326044c976e18339f11c137f2dc75af941aaf27b9e876d034393ba377",
   "source_atom_set_digest": "sha256:63da8b1ee24a509aff74dc1b5424977a9341653b57a2f02f23073b3a1ab60893",
   "source_atom_set_digest_rule": "atom_id昇順。atom_id + 半角空白 + source_statement_semantic_digest（sha256接頭辞なし）+ LFを連結しUTF-8 SHA-256。NFR IR identityと既存FR line atomはsource identityごとに一件。",
   "source_collection_scope": "選択した旧functional source atomとnormative IR NFR全体のidentity atom。対応するL1行はcorroborationであり別atomにしない。HR/HAC/HATはconsumer/oracle contextのみ。両source atomはpreserved_pending_rehomeのまま保持する。",
@@ -554,12 +554,12 @@
     "docs/governance/audits/requirement-registration/hil-fr42-nfr26-candidate-source-atoms-2026-10-03.jsonl"
   ],
   "candidate_pair_full_file_sha256": {
-    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:cadb7b9750f6a18b7587257d86f2ec9222fd098976411b66844f353a8c818be0",
-    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:75f24db0fcb6f9c7f3f481be8b4e408c7806ec401e6672d15cd0a9b9e4fca8dd"
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:2fb3ecd0b1a33bc0a7e3d26f23e6dd7706654501b22884b1e4391d3cf9a8357a",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:a704454e8f63382cd97b0789a754b6491d0ca1bbb66de5d9b20550338b5eca5a"
   },
   "candidate_pair_section_sha256": {
-    "HARNESS-L2-077": "sha256:52156b1a9ed2bc7c61594a902de41b5d9eed49715dd00c9823e6dcaecd8974c2",
-    "HARNESS-L11-077": "sha256:77829b10a8f41c36deb405c46de30e6241ed79248e51f58cdcfdc4e86e5cbff2"
+    "HARNESS-L2-077": "sha256:d847d936b1b1200797f190ccd97ad5c301924c943a633b4aa0b2fb11742c0c53",
+    "HARNESS-L11-077": "sha256:f04244e8d0cebbebdb31691910ec51e90283197dcd4674d6d9e51be36f2debf0"
   },
   "source_atom_set_file_sha256": "sha256:3b7e054326044c976e18339f11c137f2dc75af941aaf27b9e876d034393ba377",
   "source_classification_boundary": {
