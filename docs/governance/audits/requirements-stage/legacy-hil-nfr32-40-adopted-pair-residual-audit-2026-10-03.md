@@ -85,13 +85,13 @@ HARNESS行hashはIDが先頭列にある原子行だけを選択。OS-004/-009�
 
 ## 最新mainへの再照合（e05a45ca）
 
-比較revisionは `e05a45ca27104e37909c49388c38ece0cf1c69f0`。固定・歴史revisionの66 locatorの明記した行範囲について、選択した生bytesが最新mainの連続行範囲に完全一致することを再計算した。JSONの `latest_main_comparison` に最新行位置と全文SHAを記録した。旧locator・抽出規則・pinは変更していない。072の4部分のcanonical本文連結digestも独立再計算して一致した。
+比較revisionは `e05a45ca27104e37909c49388c38ece0cf1c69f0`。固定・歴史revisionの66 locatorの明記した行範囲について、選択した生bytesが最新mainの連続行範囲に完全一致することを再計算した。JSONの `latest_main_e05_comparison` に当時の行位置と全文SHAを履歴として保存した。旧locator・抽出規則・pinは変更していない。072の4部分のcanonical本文連結digestも独立再計算して一致した。
 
 
 
 ## 最新mainへの追補再照合（43d5ff7f）
 
-元の `latest_main_comparison`（e05a45ca、66 locator）は変更せず、同じ66 locatorを `43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5` で再照合した。e05の各locatorで実際に選ばれたraw bytesを基準に43d5の同じpathを検索し、全66件で一意の連続一致を確認した。選択範囲のSHA、43d5上の行位置、raw full-file SHAはJSONの `latest_main_43d5_comparison` に記録した。旧revision・行範囲・正規化・pinは変更していない。HARNESS-L2-023の固定分類pairも43d5で再hashし、L2 `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47` で一致した。
+e05a45caの66 locator比較は `latest_main_e05_comparison` に保持し、同じ66 locatorを `43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5` で再照合した。e05の各locatorで実際に選ばれたraw bytesを基準に43d5の同じpathを検索し、全66件で一意の連続一致を確認した。選択範囲のSHA、43d5上の行位置、raw full-file SHAはJSONの `latest_main_43d5_comparison` に記録した。旧revision・行範囲・正規化・pinは変更していない。HARNESS-L2-023の固定分類pairも43d5で再hashし、L2 `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47` で一致した。
 
 これは選択した範囲の比較であり、旧原文全体の無損失、受入の実行、候補の採択、要求ステージ完了を証明しない。各残差と意味の制限は本文のとおり保持する。
 
@@ -117,7 +117,7 @@ IR `requirements.json` 全体はSHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab
 
 NFR-37/39のscope差は断定しない。HIL-BR-32 line 84が追加runtime（Claude/Codex以外）を定義する一方、HR-FR-HIL-23 line 57はNFR-37..40を含む第三者worker委譲契約だが主Worker例外を書かない。NFR-37 line 217は「第三者runtime」、NFR-39 line 219はHELIXのlocal enforcementを規定する。既採択029とdecision line 112のprimary Worker除外が、このより広いHR/NFR組合せをすべて閉じたとは扱わない。029を暗黙に拡張したり、主Workerへ追加runtime条件を自動適用したりしない。scopeを広げる判断が必要ならexact target revisionのPO判断に残す。
 
-HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pairはf6 revision、L2 `docs/helix-harness/L2-requirements/product-requirements.md:463-497` SHA `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:219-233` SHA `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47`。見出しsectionから次の同格以上見出し前までを選び、末尾空行を除いてLFを1つ付けたSHA。四区分は常時必須／特定操作時のみ必須／選択sourceに応じて必須／参照資料のみで、定義はこのpairの本文と対L11に記録される。ここでは分類方法としてのみ使う。IR source atomはnormative sourceで常時保持する。HR/HAC/HATは共有consumer/oracle evidenceで、source条件を適切な単位へ割り当てる根拠として保持し、runtime dependencyそのものとはしない。IRと旧L1の規範source identityは4区分の外で保持する。reference-onlyは023のruntime-dependency分類上のconsumer contextに限り、source条件やoracle義務をそこへ降格させない。
+HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pairはf6 revision、L2 `docs/helix-harness/L2-requirements/product-requirements.md:463-497` SHA `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:219-233` SHA `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47`。見出しsectionから次の同格以上見出し前までを選び、末尾空行を除いてLFを1つ付けたSHA。四区分は常時必須／特定操作時のみ必須／選択sourceに応じて必須／参照資料のみで、定義はこのpairの本文と対L11に記録される。ここでは分類方法としてのみ使う。IR whole source atomはnormative sourceとして常時保持する。旧L1行はそのcorroborationとして記録し、IRとL1はいずれもruntime dependencyではない。HR/HAC/HATは共有consumer/oracle evidenceで、source条件を適切な単位へ割り当てる根拠として保持する。4区分は実行dependencyの分類だけに使い、normative IR、L1 corroboration、consumer condition/oracleをreference-onlyへ降格させない。reference-onlyは023のruntime-dependency分類上のconsumer contextに限り、source条件やoracle義務をそこへ降格させない。
 
 ### HIL-NFR-37 — 追加runtime sliceは既採択、primary scopeは未決着
 
@@ -127,7 +127,7 @@ HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pair�
 
 **L11 fixture材料**：追加runtimeのpublic/opt-out完了、opt-out未完了時の非public拒否、機密以上・secret/PII拒否、unknown分類拒否、runtime/version/configをまたぐopt-out evidence流用拒否は現行029 L11にあるため重複しない。source scopeを広げる決定があった場合だけ、主Workerケースを別caseにして006/007/016既存条件との関係を明示する。未決着中のprimaryケースはpass/failを推測しない。
 
-023分類は、常時＝source identity・評価対象revision・既存classification/authority、操作時＝選択したruntimeへのdata delegation gate、選択source＝そのruntime/version/config・payload classification・scan・opt-out evidence、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。共有condition/oracle evidenceは別途保持し、IRとL1の規範sourceは分類対象外。provider UI/declaration/flagは充足根拠として認めない。
+023分類は、常時＝source identity・評価対象revision・既存classification/authority、操作時＝選択したruntimeへのdata delegation gate、選択source＝そのruntime/version/config・payload classification・scan・opt-out evidence、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。共有condition/oracle evidenceは別途保持し、IR whole sourceは規範source、L1行はそのcorroborationとして4区分の外に保持し、どちらも実行dependency分類へ入れない。provider UI/declaration/flagは充足根拠として認めない。
 
 ### HIL-NFR-38 — permanent deny優先は既採択、temporary lifecycleは残差
 
@@ -137,7 +137,7 @@ HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pair�
 
 **L11 fixture材料**：allowlist対応runtimeでallowlistを使いYOLOを有効化しない正常例、allowlistのないruntimeでの移行中だけの限定利用、成功/失敗/cancelを含むrun終了後に次runから設定が消えている例を分ける。persistent setting、対応runtimeでのYOLO代替、次runへの残置は負例。032のpermanent deny対one-shot/provider flagは現行採択oracleのままとする。
 
-023分類は、常時＝同じsource/revisionと既存操作権限/deny状態、操作時＝bypass/YOLO設定を選んだrunのcleanup/allowlist条件、選択source＝当該runtimeのallowlist能力・run・repository policy、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。IR/L1は規範sourceとして分類対象外、共有consumer conditionは別途保持。provider説明はlocal enforcerの証拠ではない。期限、runtime一覧、承認、schemaを追加しない。YOLOの廃止や期限の固定は意味変更としてPO判断へ送る。
+023分類は、常時＝同じsource/revisionと既存操作権限/deny状態、操作時＝bypass/YOLO設定を選んだrunのcleanup/allowlist条件、選択source＝当該runtimeのallowlist能力・run・repository policy、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。IR whole sourceは規範source、L1行はそのcorroborationとして4区分の外に保持し、共有consumer conditionは別途保持する。provider説明はlocal enforcerの証拠ではない。期限、runtime一覧、承認、schemaを追加しない。YOLOの廃止や期限の固定は意味変更としてPO判断へ送る。
 
 ### HIL-NFR-39 — local evidence四種類のoracle対応が未証明
 
@@ -147,18 +147,22 @@ HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pair�
 
 **L11 fixture材料**：sandbox欠落/未適用、network allowlist欠落・scope不一致、egress測定欠落・許可範囲外、FS diff欠落・許可外変更を個別negativeにする。positiveでは選択したoperationで適用される各証拠を照合する。vendor UI/宣言/remote flagだけを与えlocal evidenceを欠く独立negativeも置く。一証拠を別証拠の代用にしない。primary Worker適用fixtureはsource/target scope決定まで追加しない。
 
-023分類は、常時＝claimのtarget/revisionと既存security policy、操作時＝sandbox/network/egress/FS各enforcement surfaceに応じた証拠、選択source＝そのruntime/config/scopeのlocal evidence、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。IR/L1は規範sourceとして分類対象外、consumer oracleは別途保持。provider claimはlocal proofを満たさない。主Worker適用scopeを広げること、またはlocal-enforcementの意味を変えることはPO判断が必要。
+023分類は、常時＝claimのtarget/revisionと既存security policy、操作時＝sandbox/network/egress/FS各enforcement surfaceに応じた証拠、選択source＝そのruntime/config/scopeのlocal evidence、参照のみ＝HR/HAC/HATのconsumer contextだけ（023 runtime-dependency分類上）。IR whole sourceは規範source、L1行はそのcorroborationとして4区分の外に保持し、consumer oracleは別途保持する。provider claimはlocal proofを満たさない。主Worker適用scopeを広げること、またはlocal-enforcementの意味を変えることはPO判断が必要。
 
 ### HIL-NFR-40 — quota/rateを予定状態として扱うlane retreat
 
-**旧条件**はquota枯渇/rate制限を予定状態として扱い、laneがfail-closeで「queue hold」または「別runtimeへのrouting proposal」へ退避し、枯渇を無視した続行や無計画retryを行わないこと。OS-018/-019が持つ一般budget/deadline/attempt stop、handoff、cumulative constraintとevidence continuityは再提案しない。INTELLIGENCE-010のplacement proposalもdispatch許可ではない。SECURITY-029のdata/opt-out pairからquota retreatを推測しない。
+**旧条件**はquota枯渇/rate制限を予定状態として扱い、laneがfail-closeで「queue hold」または「別runtimeへのrouting proposal」へ退避し、枯渇を無視した続行や無計画retryを行わないこと。OS-018/-019が持つ一般budget/deadline/attempt stop、handoff、cumulative constraintとevidence continuityは再提案しない。INTELLIGENCE-010のplacement proposalはroute proposalの根拠として有効だが、実行済みroute、dispatch許可、quota/rate状態の証拠ではない。SECURITY-029のdata/opt-out pairからquota retreatを推測しない。
 
 **L2 draft材料**：選択runtimeがquota/rate状態を返した場合、その状態を成功と区別した予定済み非成功状態として扱う。laneはfail-closeし、sourceが示すどちらか一方（queue hold または別runtime routing proposal）を返す。proposalを自動dispatchへ変えず、既存OS assignment/authorityを通してから再開する。無計画retryを拒否する。retry数・時間・quota閾値・reset時刻・provider schemaは新設しない。
 
 **L11 fixture材料**：正常例をqueue holdとroute proposalの二択で別々にする。quota/rate exhaustionを無視した続行、計画されていないretry、generic transient errorとして状態を捨てる例、proposalを承認済みroutingとして即時dispatchする例は独立negative。後刻利用可能状態に戻る場合も、既存assignmentと累積制約を保ったhandoff/restartを確認する。HAC-23cはquarantineも述べるが共有consumerの割当は未確定なので、NFR-40へ自動追加しない。
 
-023分類は、常時＝既存OS assignment/authority/scope/budget/deadline/continuity、操作時＝quota/rate event時だけretreat、選択source＝実際に選択したruntimeからの状態、参照のみ＝HR/HAC/HATのconsumer referencesだけ（023 runtime-dependency分類上）。IR/L1は規範sourceとして分類対象外。共有quota/fail-close/quarantine条件は別途保持し、正確な割当なしにNFR-40へ配賦しない。INTELLIGENCE-010はroute proposalの証拠や実行権限にならない。sourceの二つの退避方法のどちらかを守る限り追加PO選択は不要。自動reroute、hold-only、固定retry計画を要求する変更は意味変更となりPO判断が必要。
+023分類は、常時＝既存OS assignment/authority/scope/budget/deadline/continuity、操作時＝quota/rate event時だけretreat、選択source＝実際に選択したruntimeからの状態、参照のみ＝HR/HAC/HATのconsumer referencesだけ（023 runtime-dependency分類上）。IR whole sourceは規範source、L1行はそのcorroborationとして4区分の外に保持する。共有quota/fail-close/quarantine条件は別途保持し、正確な割当なしにNFR-40へ配賦しない。INTELLIGENCE-010はplacement/route proposalの証拠になり得るが、実行済みroute、dispatch authority、quota/rate stateの証明にはならない。sourceの二つの退避方法のどちらかを守る限り追加PO選択は不要。自動reroute、hold-only、固定retry計画を要求する変更は意味変更となりPO判断が必要。
 
 ### draftの適用限界
 
-これはsource-faithful draft材料であり、requirements candidate、MPR、採択、実行、test passを作っていない。旧test/runtimeは実行していない。SECURITY-029/032、OS-018/019、SECURITY-006/007/008の選択済み本文は変更せず、既存規則と新たな意味条件を重複させない。全caseでIR source atomと旧L1 corroborationをnormative sourceとして4区分の外に保持する。HR/HAC/HATはconsumer/oracle evidenceとして保持しつつ、023では実行dependencyにしない。どちらも新authorityにはしない。
+これはsource-faithful draft材料であり、requirements candidate、MPR、採択、実行、test passを作っていない。旧test/runtimeは実行していない。SECURITY-029/032、OS-018/019、SECURITY-006/007/008の選択済み本文は変更せず、既存規則と新たな意味条件を重複させない。全caseでIR whole source atomをnormative sourceとして保持し、旧L1行はそのcorroborationとして4区分の外に記録する。HR/HAC/HATはconsumer/oracle evidenceとして保持しつつ、023では実行dependencyにしない。どちらも新authorityにはしない。
+
+## 最新mainへの追補再照合（86ecd59a）
+
+最新main `86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c` の対象ファイルを生bytesで再読し、固定66 locatorを再計算した。全66選択のhashが元pinと一致し、各選択bytesはそのpath内に一意に存在する。HARNESS-L2-023の固定sectionもL2 `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47`で一致する。e05と43d5の比較記録は履歴としてJSONに保持した。詳細な行位置・full-file SHAは `latest_main_comparison`、旧比較は`latest_main_e05_comparison`と`latest_main_43d5_comparison`を参照。選択範囲外のsource同値や全条件closureは示さない。
