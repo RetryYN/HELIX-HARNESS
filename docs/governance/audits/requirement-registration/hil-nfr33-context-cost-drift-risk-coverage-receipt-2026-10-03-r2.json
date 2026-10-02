@@ -351,10 +351,10 @@
   "candidate_pair": {
     "requirement_identity": "HARNESS-L2-085",
     "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-085",
-    "l2_section_sha256": "sha256:d187da4947125885c65869acdfedd4914610d56ae03f81e4bb1a667a7e9ffffb",
-    "l11_section_sha256": "sha256:ef57b7a957192f3516c5868f57c4cfa68e50605c62353197394c38dd21ee530c",
-    "l2_full_file_sha256": "sha256:9b47efea026e2afa798a42b0c0c5178aff64faaa119a986702fbb284a5ed5924",
-    "l11_full_file_sha256": "sha256:68c1969995916b90357a5d6bd3f0099ef44c05953c7a50f0d7a35ed1b32c9d3a",
+    "l2_section_sha256": "sha256:ca759f634fa06b0472cd633061dba74eb2b659b431d1eaa393fda5e9fe61cf86",
+    "l11_section_sha256": "sha256:4385a80ca9d21aff3bac3a87ff127b88446a8ae7dea07c9639c5438bcc7a9332",
+    "l2_full_file_sha256": "sha256:7c20a3bfbd0cf007a0ff8070e67234475420a170e43a5c23662b64b342982743",
+    "l11_full_file_sha256": "sha256:cdb2cb8068ac55f67cf791ecea1689ecbaa0f71f4efc304de3599296caced98b",
     "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
   },
   "po_decision_material": {
@@ -401,7 +401,8 @@
     "consumer_ir_record_projected_field_count": 12,
     "consumer_ir_record_omitted_field_count": 10,
     "nfr33_dependency_four_classes_explicit_in_l2_l11": true,
-    "nfr33_required_missing_and_reference_metadata_only_fixtures_present": true
+    "nfr33_required_missing_and_reference_metadata_only_fixtures_present": true,
+    "nfr33_normative_ir_source_and_l1_corroboration_not_downgraded_to_reference_only": true
   },
   "candidate_registration_id": "MPR-RC-HARNESS-L2-085-002",
   "correction_reason": "Pre-review correction to registration 002: preserves portfolio-scope duplicate context-cost/drift-risk findings while pack/call use is optional; records exact fixed 010/011 L11 row SHA pins and distinct one-sided negatives; corrects 041 selected-section boundary to stop at the next same-or-higher heading (current L2 pin matches expected d689...); states that the embedded legacy consumer record is a 12-field projection, not a full record snapshot; and spells out all four adopted 023 dependency classes with a missing-required-input negative and reference-metadata-only normal case. No whole-source closure is claimed.",
@@ -446,14 +447,32 @@
     },
     "reference_only": {
       "sources": [
-        "legacy HIL-NFR-33 IR",
-        "legacy L1 line 213",
-        "HR-FR-HIL-20/HAC/HAT consumer context"
+        "HR-FR-HIL-20",
+        "HAC-HIL-20a",
+        "HAC-HIL-20b",
+        "HAC-HIL-20c",
+        "HAT-HIL-20"
       ],
       "class": "reference_only",
-      "applicability": "legacy interpretation only",
+      "applicability": "legacy consumer/oracle context only",
       "execution_compatibility": "not_applicable_for_execution",
-      "omission_behavior": "missing owner/version/range/execution metadata alone does not block portfolio evaluation"
+      "omission_behavior": "missing owner/version/range/execution metadata on these consumer-context records alone does not block portfolio evaluation; this does not downgrade the normative IR source atom or L1 corroboration."
+    },
+    "normative_source_identity": {
+      "source_atom_id": "IR153-HIL-NFR-33-WHOLE-REQUIREMENT-IDENTITY",
+      "source_atom_count": 1,
+      "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "ir_pointer": "#/HIL-NFR-33",
+      "statement_semantic_digest": "sha256:fd35b9d635312dc6f0e848c4bcbd28c70b5e8cd7da6aa1af4810053e9481fe35",
+      "whole_identity_record_semantic_digest": "sha256:88b466a8b1824c31ff3aa808b6989b8a8ed9f0d2c7707dd64037dd1bd59431f4",
+      "classification": "normative_source_atom; not a HARNESS-L2-023 execution dependency and not reference_only",
+      "l1_corroboration": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 213,
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "counted_as_atom": false,
+        "classification": "same-statement corroboration; not a 023 execution dependency and not reference_only"
+      }
     }
   }
 }
