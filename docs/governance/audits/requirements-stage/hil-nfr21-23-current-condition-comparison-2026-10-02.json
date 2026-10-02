@@ -177,7 +177,7 @@
             1099,
             1121
           ],
-          "coverage_receipt_sha256": "sha256:82f32a20f4182cd2ebc816e2c274bd9f69386a75e7c5939c39d9154c54d1f161"
+          "coverage_receipt_sha256": "sha256:d2a2cae0f196f53e433eaf6b137554b181fb9725f2cd6694c10f039c90fadfaf"
         }
       },
       "formal_successor_assignment": "none; carry-forward line 124 remains preserved_pending_rehome",
