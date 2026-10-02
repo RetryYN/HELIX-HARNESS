@@ -378,9 +378,9 @@
       "l11_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
       "l11_selected_lines": [
         359,
-        365
+        364
       ],
-      "l11_section_sha256": "sha256:f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+      "l11_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
       "role": "OS-018 owns assignment and incomplete-duty return; OS-020 records selected verification execution state/result. Neither replaces SECURITY policy, effective enforcement, or HARNESS acceptance oracle."
     },
     "helixsecurity_l2_006": {
@@ -429,6 +429,18 @@
       "l11_007_line_31_sha256": "sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
       "l11_007_write_path_fixture_line_75_sha256": "sha256:e24348512c607a08ff620b26df47af5099336682831a227e92a7605bb655601a",
       "meaning": "Fixed 1.0 adoption target; selected SEC-007 bytes above match current identical lines, and no adopted text is modified by this correction."
+    },
+    "os_020_selector_correction": {
+      "reason": "The prior unmerged receipt selected an incorrect line range and digest for the adopted OS-020 section. Recalculation from the exact HELIXOS-L2-020 heading through the next same-or-higher heading, trimming trailing blank lines and appending one LF, yields lines 359–364 and the digest below.",
+      "fixed_adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "current_comparison_base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+      "selected_lines": [
+        359,
+        364
+      ],
+      "selected_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+      "fixed_and_current_bytes_match": true,
+      "adopted_requirement_content_changed": false
     }
   },
   "condition_mapping": [
