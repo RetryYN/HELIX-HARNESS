@@ -182,7 +182,7 @@
       "adopted_clause_table_row_exact": "| HELIXOS-L2-007 | HELIXOS-L1-002／HELIXOS-L1-004／HELIXOS-L1-007／HELIXOS-L1-008 |"
     },
     {
-      "requirement": "HELIXOS-L2-067",
+      "requirement": "HARNESS-L2-067",
       "adoption": "unadopted candidate only",
       "current_locator": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-067; docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-067",
       "coverage": "selected-source atomic behavior decomposition proposal; candidate is not adopted and does not define BR14 exact two-repository authority receipts or dynamic ref/tree/edge denominator. It is context only, not guaranteed current coverage."
@@ -202,7 +202,9 @@
       "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
       "row_locator": "line 52",
-      "decision_effect": "row 52 lists HARNESS-L2-023 / MPR-RC-HARNESS-L2-023-002 in the adopted explicit candidate set; paired L11 comes from the fixed decision bytes."
+      "decision_effect": "row 52 lists HARNESS-L2-023 / MPR-RC-HARNESS-L2-023-002 in the adopted explicit candidate set; paired L11 comes from the fixed decision bytes.",
+      "row_sha256_including_lf": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "exact_row_text": "| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |"
     },
     "fixed_pair": {
       "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -244,13 +246,13 @@
     "L2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "section_sha256": "sha256:66881747d87d799a8fcec031674d7b6ca54df0f19fffa29c2f34d30cf8e10afc",
-      "full_file_sha256": "sha256:cbf2acbd369ed87ef14f81ee98e914f7d754c4529b19eef2bd6eb5584065e45f",
+      "full_file_sha256": "sha256:77dbba201571b248797e7b8079c418ec51c9d2328461be739b802897612cf7da",
       "section_boundary": "heading HELIXOS-L2-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
     },
     "L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "section_sha256": "sha256:e1a9a89a5699605c95db3a0af39d1eca0d8b9078d960dcd6da9e81b17680f734",
-      "full_file_sha256": "sha256:b1aefc4e1789338299d26f8e9737e35795573758549d5be8b3253c1df6899bac",
+      "full_file_sha256": "sha256:ef4949bbe64066a5b9b4319926065b4f360c56b9cd2123d7bfe9942cb3c487b0",
       "section_boundary": "heading HELIXOS-L11-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
     }
   },
@@ -317,8 +319,8 @@
   "human_decision_disposition_refs": [],
   "unaccounted_atom_refs": [],
   "method_note": "Direct IR identity and current exact adopted L2/L11 wording were compared. Current adopted general clauses were not inferred to cover BR14-specific authority/ref denominators. Existing 067 is unadopted partial context. No old runtime/test/CI/remote was executed.",
-  "read_after_base_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
-  "current_candidate_sections_read_after_commit": "local worktree after fast-forward to 606bb1fa04eeb1512e665fb52a2a10c689056d64; inherited main prefix left unchanged before this candidate append.",
+  "read_after_base_commit": "0e76f9c6f6609dc6a8e101116c1a652ff5871771",
+  "current_candidate_sections_read_after_commit": "local worktree after latest main 0e76f9c6f6609dc6a8e101116c1a652ff5871771; historical source and adopted decision fixed pins are retained at their original commits.",
   "historical_source_pins": {
     "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "l1_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
