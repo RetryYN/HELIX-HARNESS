@@ -477,21 +477,21 @@
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）",
-      "start_line": 1642,
-      "end_line_exclusive": 1662,
+      "start_line": 1660,
+      "end_line_exclusive": 1680,
       "section_sha256": "sha256:178f05b71c5037878e68cbb8c7e08e9dd6e4a19fda52667aa6ccb3f574b6b906"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
-      "start_line": 1336,
-      "end_line_exclusive": 1358,
+      "start_line": 1363,
+      "end_line_exclusive": 1385,
       "section_sha256": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
     },
     "pair_rule": "Exact selected heading to next same-or-higher heading or EOF; trailing blank lines trimmed; exactly one UTF-8 LF appended. Section boundaries and raw full-file digests are independently pinned.",
     "full_file_sha256": {
-      "l2": "sha256:569052d39abe0caa910cf9e8b9da2e18bf8c806fd2e3681494f9be453f09fa39",
-      "l11": "sha256:a580283790ce77c5622c7bcd4a731928eb9f543b8a2e0389849eefc4821ce265"
+      "l2": "sha256:061056e154830000aa6fac1d683bd2c37e752f9e95733fa1db342c849b2350b2",
+      "l11": "sha256:4e42ebb11bc3312d21af20c7dd98d3e256db9a1f712faa291a641a71e2491424"
     }
   },
   "human_decision_material": {
@@ -645,8 +645,8 @@
     "HELIXOS-L11-131": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
   },
   "candidate_pair_full_file_sha256": {
-    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:569052d39abe0caa910cf9e8b9da2e18bf8c806fd2e3681494f9be453f09fa39",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:a580283790ce77c5622c7bcd4a731928eb9f543b8a2e0389849eefc4821ce265"
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:061056e154830000aa6fac1d683bd2c37e752f9e95733fa1db342c849b2350b2",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:4e42ebb11bc3312d21af20c7dd98d3e256db9a1f712faa291a641a71e2491424"
   },
   "selected_source_units": [
     {
@@ -678,5 +678,13 @@
   },
   "selected_source_unit_count": 2,
   "ir_requirement_atom_count": 1,
-  "supplementary_contract_record_count": 1
+  "supplementary_contract_record_count": 1,
+  "latest_main_comparison": {
+    "commit": "898e9d1b6277861b2ee9ec1a42083fabb401529c",
+    "register_prefix_line_count": 707,
+    "register_prefix_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "registration_line": 708,
+    "candidate_section_bytes_unchanged": true,
+    "source_and_selected_two_unit_set_unchanged": true
+  }
 }
