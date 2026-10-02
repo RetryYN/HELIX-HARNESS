@@ -23,7 +23,7 @@
     },
     "source_lines": {
       "path": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r2.jsonl",
-      "sha256": "sha256:31a5a1a401c1d0ba37330d141533eef0e0b52e67987fc10dbf221fa45cb5e9c0",
+      "sha256": "sha256:7d2d78be530ea2bd257bf2b5f19150780e928056ea7a93f80c0622b131439084",
       "count": 3,
       "supersedes_snapshot": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl (historical r1; bytes unchanged)"
     },
@@ -350,7 +350,7 @@
       ]
     },
     "meaning": "最新mainの680行をbyte保持し072002だけ追記。r1 receipt/source snapshot/072001を変更せず、r2候補pairは最新main取込でもbyte不変。古い比較base証拠は固定時点のまま区別。",
-    "source_pointer_correction": "NFR29 carry-forward参照の移管後pathを実行131行の既存recordへ修正し、source snapshotとMPR重複SHA欄を実bytesへ同期。原IR record/statement/選択atom集合の意味は不変。"
+    "source_pointer_correction": "NFR29 carry-forward参照の移管後pathを実際の131行の既存recordへ修正し、source snapshotとMPR重複SHA欄を実bytesへ同期。原IR record/statement/選択atom集合の意味は不変。 NFR29原IR record物理範囲の末尾LFを含む実bytesへtextとSHAを同期。"
   },
   "source_atom_count": 3,
   "source_atom_set_file_sha256": "sha256:31a5a1a401c1d0ba37330d141533eef0e0b52e67987fc10dbf221fa45cb5e9c0",
@@ -388,7 +388,7 @@
   "registration_append_integrity": {
     "new_registration_id": "MPR-RC-HARNESS-L2-072-002",
     "supersedes": "MPR-RC-HARNESS-L2-072-001",
-    "new_row_sha256_including_lf": "sha256:a3deb4afceb0c0d0bdb2c480d2622814845977e8d81b24e80671e90f15395c83",
+    "new_row_sha256_including_lf": "sha256:8a18e0c7c5462790bff5d087a83fb72844195e823169d876618195e7a4c71ec3",
     "prefix_line_count": 680,
     "prefix_sha256": "sha256:6baa0d164ba84cdf9767f759a6f06368e559b55109e4ee4a4f1b98b59acc0f8e",
     "append_is_final_register_row": true,
