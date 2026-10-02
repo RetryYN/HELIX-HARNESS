@@ -39,9 +39,14 @@ def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
         current = json.loads(current_path.read_bytes())
     except (json.JSONDecodeError, UnicodeDecodeError, OSError):
         return False
+    if not isinstance(source, dict) or not isinstance(current, dict):
+        return False
+    source_keys = set(source)
+    current_keys = set(current)
     return (
-        set(current) == set(source) | {"current_projection"}
-        and {key: value for key, value in current.items() if key != "current_projection"} == source
+        source_keys <= current_keys
+        and current_keys - source_keys <= {"current_projection"}
+        and {key: current[key] for key in source_keys} == source
     )
 HISTORICAL_REF_COMMIT = "11a22679dc2bfce57d3294759531282445625001"
 CURRENT_CONCEPT = "docs/concept/helix-concept.md"
