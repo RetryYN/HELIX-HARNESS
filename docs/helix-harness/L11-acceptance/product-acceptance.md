@@ -1023,14 +1023,32 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **受入限界**：旧HIL-FR-42一行の選択条件だけを対象とする静的oracle案で、旧HR-FR-HIL-17全体・全資産・実graph/runtime、要求採択、設計pair実体、実行結果、pair freeze実績を主張しない。旧runtime/test/CIは実行せず、本候補oracleも未実行である。
 
 
-### HARNESS-L2-078 typed requirement definitionと変更receiptの受入候補（未採択・未実行）
+### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの受入候補（未採択・未実行）
 
-- **Positive — definition fieldsとrevision**：一つの対象scopeに対するstable requirement IDとimmutable revisionを与え、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationの13 field群すべてを個別に識別できる値とtyped edgeで同対象revisionへ結ぶ。項目単位の適用外/N/Aや省略を認めず、13項目すべてとrelationが欠落なく保存された場合だけ当該definitionの候補をcompleteとして扱う。物理的に単一file/schemaへ格納することは検査しない。
-- **Positive — 変更操作receipt**：split/merge/rename/supersede/reject/N/Aの一例について、対象operation、前後scope/revision、before/after semantic digest、全入力source atomのdisposition、影響downstreamとstale/result、既存authority契約に基づくreview authorityが相互に同じ変更を指す。すべてが整合するときだけ当該operationを適用済みとして表せる。
-- **Negative — field単独欠落**：13 field群の各項目を一つずつmissing、unknown、誤revisionまたは不明型にする。欠けた項目を他fieldから推測せず、definitionをcompleteとしない。field単位のN/A/適用外を使って13項目の必須条件を省略する場合は拒否し、definitionをcompleteとしない。
+- **Positive — definition fieldsとrevision**：一つの対象scopeのfixtureにactiveな`req-A@rev-1`と`req-B@rev-3`を2件とも明示し、各requirementの13 field群すべてに値・意味型・対象revisionへのtyped edgeを与える。両者についてsource atom、authority/rationale、acceptance oracle、template applicability、design obligationを個別に結び、`req-A`の`capability/service`は「このfixtureの対象scopeではservice/capability適用なし」とする理由・applicability根拠・authority/scope/revision参照を値として保持する。`req-B`にはfixture内の該当service/capability値を結ぶ。2件それぞれでNFR-28の6 bindingがそろい、ambiguity/orphan/staleがない場合に限り、このfixtureで列挙したtarget scopeのactive集合をcompleteとして示す。例のIDや表現は固定schema/enumではない。物理的に単一file/schemaへ格納することは検査しない。
+- **Negative — 件数・連番・文書存在だけの設計完全性**：対象scopeでactiveな`req-001@rev-1`と`req-002@rev-3`について、coverage row数は2件と一致し、表示IDは連番、両requirementの文書も存在するfixtureを用意する。それでも`req-002`の`design obligation` relationが欠落する入力はscope全体をcomplete/greenにせず、欠けたsemantic edgeをfindingにする。件数一致、ID連番、文書存在の3つを揃えてもrelation欠落を補完しない。旧`HST-CASE-029-23`（line 436、`design-defined / not-implemented`）に対応する内容oracle参照であり、実行結果ではない。
+- **Positive — FR-45の6変更操作receipt**：以下の各operationについて別々の対象fixtureを用意し、operation名、前後scope/revision、before/after semantic digest、全入力source atomそれぞれのdisposition、影響downstream範囲とstale/result、既存authority契約に基づくreview authorityが同じ変更に対応している場合だけ、そのoperationを適用済みとして表せる。
+
+  | operation | 対象にする変化の例 |
+  |---|---|
+  | `split` | 1 requirementを複数の後続requirementへ分ける |
+  | `merge` | 複数のsource requirementを1つの後続requirementへ統合する |
+  | `rename` | 意味を保ったID/name変更を追跡する |
+  | `supersede` | 旧revisionを後続revisionで置換する |
+  | `reject` | 対象requirementを却下しsource dispositionを記録する |
+  | `N/A` | requirement changeとして非適用を適用する |
+
+  この表はoperationごとに異なる必須証拠を足さず、FR-45が列挙する共通receipt条件を全6種に適用する。field値のservice/capability非該当は`N/A` operationとは別であり、operation receiptを発生させない。
+- **Positive — NFR-28の理由付き非該当値**：上の`req-A`では`capability/service` fieldを残したまま、値「このfixtureの対象scopeではservice/capability適用なし」に理由、対象scope/revision、根拠authority/applicabilityを同fieldへtyped relationで結ぶ。NFR-28はこの根拠付き値を許すため、値が非該当という理由だけで6 bindingを落とさず、active集合から`req-A`を除かず、field欠落とも扱わない。この非該当値だけでは要求変更operation `N/A`を実行しない。実際にchange operation `N/A`を選ぶ場合は、上表の全証拠を結ぶ。
+- **Negative — 適用可能なのに偽N/A**：`req-B@rev-3`の対象scope/revisionとauthority/applicability根拠がservice/capabilityを適用可能と示すのに、値を残したまま「非該当」とする理由付きN/Aを与える。根拠が実際の適用条件と矛盾するためfalse-not-applicable findingを返し、`req-B`をactive分母から除外せず、scope全体をgreenにしない。正当な非該当のPositive fixtureとは独立した負例にする。旧`HST-CASE-029-18`（line 287、`design-defined / not-implemented`）のapplicable requirementへの偽N/A拒否に対応する設計専用参照で、実行証拠ではない。
+- **Negative — field単独欠落・無根拠N/A**：13 field群の各項目を一つずつmissing、unknown、誤revisionまたは不明型にする。欠けた項目を他fieldから推測せず、definitionをcompleteとしない。`capability/service`を取り除く、暗黙にN/Aとする、理由・scope/revision・authority/applicability根拠のいずれかを欠いたN/A値にする入力も拒否する。理由付き非該当値を使って、他の12 fieldやtyped relationを省略してはならない。
+- **Negative — NFR-28許容の他fieldへの一般化**：`service/capability`以外の各fieldへ、field固有の明示根拠がない非該当値を個別に与える。13 fieldの各field意味・必要値および関連relationは保持し、その値を正当化済みとしてgreenにしない。仮に別sourceが特定field値の非該当を明示的に認めるfixtureでも、そのfield値・理由・対象scope/revision・authority/applicability根拠を記録し、owner/source/oracle等のrelationを免除しない。
 - **Negative — change receiptの各証拠欠落**：6操作それぞれに対し、before digest、after digest、いずれかのsource atom disposition、downstream stale/result、review authorityを個別に欠落・不一致にする。該当operationを適用済みにせず、orphan/stale findingと影響する義務・下流範囲を未完またはunknownとして残す。別操作、別revision、一般のasset lineage evidenceで欠落分を補わない。
+- **Negative — active集合の一件除外・subset偽装**：対象scopeのauthority/membershipが`req-A@rev-1`と`req-B@rev-3`をactiveとしているのに、`req-B`を入力から落とす、`req-A`の理由付き非該当値を口実に`req-A`を落とす、別subsetだけを提示してscope全体のcompleteとする、またはmembership資料自体をunknownにする。全target scopeをgreen/completeとせず、欠落・scope不明をunknown／未完として示す。選択した旧source atomが2件という出所件数をtarget active requirementの分母に流用しない。集合外の別機構や全4,020資産をこのfixtureの母集団へ混ぜない。
+- **Negative — NFR-28の6 bindingとfinding**：active requirementごとに、source atom、authority、acceptance oracle、capability/serviceまたは理由付き非該当、template applicability、design obligationの各relationについて、missing、unknown、wrong-revision、orphanを一つずつ独立に与える。各ケースでその要件をscope全体結果のgreenから除外せず、ambiguity/orphan/staleを特定してtarget scopeをcompleteにしない。subset評価しかできない場合はsubset結果と範囲を明示し、全scopeを完了としない。
 - **Negative — revision/authority/stale不一致**：同じrequirement IDの本文意味を変えながらimmutable revision/digestを据え置く、別scopeのauthorityを参照する、影響downstreamをstaleにしない、または旧receiptを新revisionに流用する。新revisionの扱いを旧authorityで成立させず、現行authority-stateとchange契約に沿って未完として返す。
-- **受入限界**：旧HIL-FR-45一行の選択条件に限る静的oracle案である。全IR/HR条件のclosure、物理DB/schemaの採用、特定record layout、runtime、旧test/CI、PO採択、L3承認、実行受入を主張しない。候補oracleは未実行である。
+- **source範囲と意味判断**：今回の候補入力は旧HIL-FR-45 line 135とHIL-NFR-28 IR identity全体。HIL-NFR-28 line 208はIR statementの文言照合用corroborationで、別atomではない。根拠付き非該当値の許容はNFR-28が明示する`service/capability` fieldに限定し、他fieldへ一般化しない。別fieldの明示的な根拠がある場合もfield単位の証拠として区別し、FR-45 line 135に帰属させない。service/capability fieldの理由付き非該当値を認める候補案と、NFR-28の当該条件を未対応で保留する選択肢の両方をPO材料へ記録し、002自身は採択・意味変更を確定しない。
+- **受入限界**：NFR-28については明示されたtarget scopeのactive requirement集合のみが分母であり、全4,020旧資産や全機構の母集団は規定しない。source全体のformal successor、他IR/HR条件のclosure、物理DB/schemaの採用、特定record layout、runtime、旧test/CI、PO採択、L3承認、実行受入を主張しない。候補oracleは未実行である。
 
 ### HARNESS-L2-072 選択pairのstale revision・異snapshot・deferred結果受入候補（未実行）
 
