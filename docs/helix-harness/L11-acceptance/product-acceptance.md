@@ -1261,3 +1261,16 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 | 参照資料のみ | identity={reference:old design-bottomup.md/drive-route-system.md, requirement:HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001}; owner={meaning:HARNESS, execution:unknown}; contract_revision=該当なし（参照資料は現行実行契約ではない）; declared_version_range=該当なし（実行互換範囲を宣言しない）; compatibility_evidence={design-bottomup.md exact file sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c; drive-route-system.md exact file sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950}; applicability=設計条件と旧consumerの意味の理解に限る。現行runtime依存=false | 旧consumer本文はcontext evidence。§4.2.2のsource atomは規範sourceのままで、参照資料へ降格しない。未選択資料の欠落と選択義務の欠落を別判定する。 |
 
 **受入限界・後続版**：本candidateは未来の機能契約の静的受入案。現行1.0への追加、旧runtimeの移植、実execution、command registry、generated projection、既定route、固定物理schema、test threshold、新承認procedureを提案しない。採択・実装時に使う正確な後続versionとownerはsourceに指定がなく未決のまま残す。要求意味変更・alias retireは別の対象revision付きauthority判断を必要とする場合に限って既存判断へ戻す。
+
+
+### HARNESS-L2-086 revision 002 source受入・関係補足（未採択・未実行）
+
+revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r2の追加条件を静的oracleへ対応づける。coverage receipt r2はsource atom 14件を列挙し、既存5 atom、design-bottomup §§1–4の4 span atom、v1.3 lines 174–175/236–238の5 atomを区別する。各line/spanのselector、physical line、LFを含むspan SHA、source full-file SHA、legacy asset ID、source holding状態はsource ledger r2とreceiptへ記録する。v1.3の5追加行は既存REQSRC-SUP identityを再利用し、重複atom IDを作らない。
+
+**追加sourceの受入対応**：§1は選択scopeのbackend/API/domain-event/permission/failure factsからFE requirement、screen、interaction、state、content、analytics obligation候補が抽出されること、およびL7実装だけで設計作業を閉じないことを確認する。§2は順序と分岐を別々に照合し、UIならsame-scope prototype agreement、非UIならsame-scope current no-UI receipt、未知なら未評価とする。mock-only、backend画面化のみ、L6 designのみを完了扱いしない。§3は候補生成・design・oracle draftが自律作業であること、PO判断を体験意味確定actionの境界に限定し通常PR/review/CIを止めないことを確認する。§4の四exit条件を個別に確認し、1条件の充足から残りを推定しない。v1.3 174–175は後続version境界と未実装identityのunsupported/fail-close、236–238はbare tokenの曖昧性、exit/status、exact set外、fallback禁止、success statusをそれぞれfixtureで区別する。これらは静的候補oracleであり、旧runtime/testを実行した証拠ではない。
+
+**sourceとruntime分類は別**：HARNESS-L2-023-002の四dependency classを使う場合の採択根拠は2026-09-28 HARNESS decision row 52およびそのexact selected section revisionである。各fixtureではidentity/owner/revision/compatibility/applicabilityを現行分類指示どおり分離する。一方、選択済み旧source atomとconsumer条件は規範的な意味条件として保持し、runtime依存ではないことを理由に`reference-only`へ移して受入対象から除かない。023-002採択から086の候補採択・runtime実装・全consumer closureは推定しない。
+
+**HARNESS-L2-079との境界fixture**：079は未採択のまま扱い、prototype artifactのmanifest/digest/start/trace・9状態・仮データ境界と、exact prototype revisionに結ぶwalkthrough actor/observation/request deltaまたは`no_delta`/reflection/checkpointを別候補のoracleとする。086側のscreen mock/prototype agreementは、これら079固有のartifact/walkthrough条件を満たした証明にならない。逆に079 fixtureは086のbackend-derived FE requirement elicitation、L3接着、Discovery/Forward/Add-feature routingやprototype/no-UI applicabilityを置換しない。両candidateの採択・実行はここから生成しない。
+
+**範囲限界**：no-lossの主張はreceipt r2に列挙した14 selected atomsと、既存candidateで明示した機能条件に限定する。MPR-SH-SUPPLEMENTARY-003の残りsource、design-bottomupの未選択consumer、その他のHR/HAC/HATや旧実装の全体closureは未証明のまま保持する。
