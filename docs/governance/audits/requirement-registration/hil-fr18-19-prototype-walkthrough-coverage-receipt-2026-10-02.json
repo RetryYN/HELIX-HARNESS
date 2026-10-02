@@ -6,15 +6,15 @@
   "candidate_identity": "HARNESS-L2-079",
   "candidate_revision": "MPR-RC-HARNESS-L2-079-001",
   "candidate_section_digests": {
-    "l2": "sha256:eb73deb1433b1944a745342bbba293a186b3d1791c2a53228b7ee3b079ceb04e",
-    "l11": "sha256:273b16eecf17c679edfac685231f793212c89338dd50fd4f8b477ea503681835"
+    "l2": "sha256:c2a26d88e4b4bcb110e6c3e9767d8449920a652321a16700af2e98ea82721922",
+    "l11": "sha256:b265c6150e442886c7d770888fcb8389e2f3648d1ad53b500b21c29ef3056576"
   },
   "candidate_digest_rule": "From exact ### HARNESS-L2-079 heading up to next same-level ### heading; trim trailing blank lines; UTF-8 with one LF.",
   "current_file_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_file_sha256": "sha256:45663b9e13192ddb70886ffedfb2d0a277bd45e549c3bf803ada2667060c45ba",
+    "l2_file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_file_sha256": "sha256:26b345e74be83a0537f12bdfcaa228a1191070cb955c23933bb0949dacd1e0bc"
+    "l11_file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
   },
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
@@ -99,8 +99,8 @@
     {
       "identity": "HARNESS-L2-039",
       "adoption_basis": "2026-09-29 57-candidate exact -003 decision",
-      "l2_section_sha256": "sha256:fcb6400610a8b87e633a3487e7bda5fc1e4e3db58c5f9d5f5f121c1bbf15ee55",
-      "l11_section_sha256": "sha256:338eb75284ac80f7ad2bb7899e19f8624d21819c6dc494ed9169888b23755b3b",
+      "l2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "l11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
       "meaning": "UI/Experience relation, not prototype builder or FR19 receipt."
     },
     {
@@ -154,16 +154,27 @@
         "exact prototype revision",
         "user observation",
         "requirement delta or explicit no_delta",
-        "L1 reflection target and state",
+        "legacy L1 means requirement layer; current reflection target is the corresponding L2 requirement and its state",
         "rebuild decision",
         "bounded iteration",
         "walkthrough receipt, requirements delta, iteration checkpoint"
       ],
-      "candidate_whereabouts": "L2-079 FR19; L11-079 normal FR19 + individual negatives",
+      "candidate_whereabouts": "L2-079 FR19: old L1 requirement target is rendered as current L2 requirement target/state; only a planning meaning change returns to existing current L1 human boundary. L11-079 normal + individual negatives.",
       "status": "candidate condition only; not adopted/formal successor"
     }
   ],
-  "layer_mapping": "Legacy rows are from old L1 and are now represented as a current HARNESS L2 requirement candidate paired with L11 acceptance oracle. This is a condition-level re-expression, not numeric old-layer transfer. L1 target within FR19 is retained literally; L2 delta follows existing HARNESS-L2-012 Backflow. Any change to upstream L1 meaning remains with the existing human decision boundary.",
+  "layer_mapping": {
+    "legacy_layer_source": "archive/legacy-generation-2026-09-14/root/CLAUDE.md:84",
+    "legacy_claude_file_sha256": "sha256:7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+    "legacy_claude_line_84_sha256": "sha256:f258f88e31cdfd172e38cb87864c687d45130b96525672498ef1344be19badfe",
+    "legacy_requirement_source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:109",
+    "legacy_requirement_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "legacy_requirement_line_109_sha256": "sha256:edaa9d6668ebf049c6400ee4d43a253c47313862e5e3d638d1037c49fd7b91fc",
+    "legacy_definition": "旧L0は企画、旧L1は要求、旧L2はデザインモック。旧FR19の「L1反映先」は旧要求層を意味する。",
+    "current_mapping": "旧L1要求の反映先は現行L2要求。企画（現行L1）の意味に差分が及ぶ場合だけ既存の人間判断境界へ戻す。",
+    "mapping_kind": "condition-level layer correspondence grounded in legacy CLAUDE and current layer model; not numeric layer transfer",
+    "authority_boundary": "この対応は既存旧sourceと現行層対応の読み替えであり、新しいPO判断、承認gate、source meaning changeを追加しない。"
+  },
   "holding": "Both IR rows remain preserved_pending_rehome with successor_requirement_ids empty and no decision_record. Candidate does not assign formal successor, retire source, authorize implementation, or claim runtime/test completion.",
   "validation_scope": "Static source/document/pin consistency only; no archive workflow/runtime/test/CLI/hook/CI execution. Supporting legacy HR/HAC/HAT and consumer cases are not execution evidence or additional source atoms.",
   "unaccounted_selected_atoms": [],
@@ -175,16 +186,16 @@
     "current_l1_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "current_l1_reference": "HARNESS-L1-006 line 36: requirements formation, prototype/non-UI applicability, agreement, freeze, return/re-entry/completion",
     "current_l2_012_reference": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-012: HARNESS provides HTML prototype and sends results through Backflow before second requirement formation/Decide",
-    "mapping": "Current L2/L11 express the requirement output and acceptance meaning; existing OS progression/recording stays under its existing role. Physical prototype generator/runtime and receipt-storage schema are not specified here. Legacy layer numbers are not mechanically transferred."
+    "mapping": "Current L2/L11 express the requirement output and acceptance meaning. The old FR19 L1 target means the old requirement layer and maps to current L2. Only a planning-meaning change is returned to the existing current-L1 human boundary. Existing OS progression/recording stays under its current role. Physical prototype generator/runtime and receipt-storage schema remain unspecified."
   },
   "legacy_crosswalk_context": {
     "path": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
     "file_sha256": "sha256:c61aeff2e0839054f24b68296d5c48b5e99c8329a0ba776e52b8c3f0e192b71b",
     "rows": {
       "27": "HIL-FR-18 historical assessment: OS mechanism / HARNESS discovery conditions",
-      "28": "HIL-FR-19 historical proposal: correct L1 target to L2 requirement, L1 only for planning impact"
+      "28": "HIL-FR-19 historical proposal: correct old L1 requirement target to current L2 requirement; return to current L1 only if planning meaning is affected"
     },
-    "treatment": "Rows 27-28 are historical assessments, not current authority or a new human-decision prerequisite. Current Concept service 1, L1-006, and adopted 012 are read. The candidate specifies HARNESS output/requirement semantics already present in 012 while OS retains existing progression/recording; it does not transfer artifact meaning to OS. FR19 source L1 target is retained, and L2 requirement delta relates through existing 012 Backflow. No semantic change to Concept/L1 is proposed."
+    "treatment": "Row 28 is historical assessment, not authority or a new decision prerequisite. Its layer correspondence agrees with the direct mapping established by old CLAUDE.md:84 (old L1=requirements) and the current layer model (requirements=L2). Preserve FR19 source meaning at current L2 requirement; use current L1 human boundary only if the delta changes planning meaning. This mapping is not adopted because the crosswalk proposed it; it follows the source layer definitions. Row 27 OS generator assignment remains a historical proposal and does not move HARNESS artifact responsibility."
   },
   "legacy_supporting_contracts": [
     {
@@ -256,10 +267,10 @@
     "docs/governance/decisions/po-decision-2026-09-30-live26.md#HARNESS-L2-049 adopted measurement-only revision"
   ],
   "responsibility_and_semantic_delta": {
-    "retained": "HARNESS L2-012 already provides HTML prototype and Backflow; HARNESS L2-079 adds missing artifact/walkthrough acceptance details, while OS remains existing progression/recording role. FR19 L1 target is retained and L2 delta uses existing Backflow. L1 semantic changes remain at existing human boundary.",
-    "changed": "Old L1 legacy layer number is re-expressed in current HARNESS L2 plus paired L11; no numeric layer transfer, source owner transfer, successor assignment, or full condition closure.",
-    "reason": "Current Concept service 1, current HARNESS L1-006, and adopted HARNESS L2-012 establish the current prototype/requirement responsibility. Exact missing conditions are supported by the old requirement line and old consumer oracle.",
-    "not_adopted": "Legacy crosswalk rows 27-28 suggested OS generator / changing FR19 destination to L2. Those are historical proposals, not current authority; the candidate retains the source L1 target and current 012 Backflow relation."
+    "retained": "HARNESS L2-012 already provides HTML prototype and Backflow; HARNESS-L2-079 adds missing artifact/walkthrough acceptance details, while OS remains existing progression/recording role. FR19 preserves the old L1 requirement-reflection meaning, now expressed as current L2 requirement target/state, plus user observation, delta/no_delta, rebuild decision and bounded checkpoint.",
+    "changed": "Only the legacy layer identifier is normalized: old L1=requirement maps to current L2. Current L1 means planning; route a delta there only if its planning meaning changes. No source owner transfer, successor assignment, formal consumer, or full condition closure.",
+    "reason": "Old CLAUDE.md:84 explicitly defines old L0 planning/L1 requirement/L2 design mock; HIL-FR-19 line 109 uses that old numbering. Current requirements are L2, so mapping to current L2 preserves the original destination and avoids assigning every requirement delta to current planning.",
+    "not_adopted": "Crosswalk rows 27-28 are historical assessments, not authority. Row 28 independently suggests the same layer correspondence, but the candidate derives it from the old source definition and current layer model; the crosswalk does not create a human-decision prerequisite. Row 27 OS-generator assignment is not adopted; existing HARNESS prototype responsibility and OS progression/recording remain."
   },
   "revision_history": [
     {
@@ -271,18 +282,28 @@
         "l11": "sha256:176e8f055282ccf3aceaf594e31711ca49266909e2be455b1b29992f619e3910"
       },
       "disposition": "superseded locally by the current dependency-class and illustrative-example revision; original commit retained in ancestry"
+    },
+    {
+      "revision": "review correction 01",
+      "base_head": "34944c66840f9e1a4b9d2d832fe43c64544ee1c2",
+      "review_ref": "RH-PR2506-REVIEW-01",
+      "changes": [
+        "FR19 legacy layer mapping old L1=requirements to current L2; only planning meaning changes use current L1 human boundary",
+        "receipt HARNESS-L2-039 adopted pair digests corrected"
+      ],
+      "source_atom_set_unchanged": true
     }
   ],
   "comparison_base_merge_commit": "f28607e31cfb685c2b2af75d444db962ce19b000",
   "dependency_classes_from_HARNESS-L2-023": [
     {
       "class": "always_required",
-      "dependencies": "selected target L1 and requirement source/scope/revision; current applicability/authority; applicable adopted 012/003/024 contract revisions; paired L11 oracle; identity/owner/version-or-range/applicability basis",
+      "dependencies": "selected target requirement (legacy L1/current L2) and source/scope/revision; current applicability/authority; applicable adopted 012/003/024 contract revisions; paired L11 oracle; identity/owner/version-or-range/applicability basis",
       "closure": "unknown/stale/missing required dependency holds the affected operation; stable same-input revision reproduces same closure/reason"
     },
     {
       "class": "operation_only",
-      "dependencies": "prototype artifact generation and replay require screen/operation/transition/state/data obligations and executable artifact; walkthrough requires artifact revision, actor/observation, delta or no_delta, L1 target, rebuild and bounded checkpoint",
+      "dependencies": "prototype artifact generation and replay require screen/operation/transition/state/data obligations and executable artifact; walkthrough requires artifact revision, actor/observation, delta or no_delta, current L2 requirement target/state, rebuild and bounded checkpoint",
       "closure": "condition explicitly false can exclude that operation dependency; unknown cannot become false"
     },
     {
@@ -298,8 +319,8 @@
   ],
   "concrete_acceptance_examples": {
     "FR18": "Illustrative `account-settings` screen and display-name Save operation with screen/interaction/transition trace, all nine exact old state-kind names and temporary-data boundary. Labels do not set an ID format, state meaning, or schema.",
-    "FR19_delta": "Illustrative prototype revision p7; actor observes Save result unclear; requirement delta points to the source L1 reflection target, L2 delta routes through existing 012 Backflow, and rebuild decision points to a subsequent artifact revision.",
-    "FR19_no_delta": "A distinct actual observation finds no new requirement: preserve its observation, state explicit no_delta, no L1 edit/rebuild, and outstanding obligations. no_delta is not missing observation."
+    "FR19_delta": "Illustrative prototype revision p7; actor observes Save result unclear; requirement delta points to the old source L1 requirement target expressed as current L2 requirement and state, and L2 delta routes through existing 012 Backflow. A current L1 planning target is involved only if planning meaning changes. Rebuild decision points to a subsequent artifact revision.",
+    "FR19_no_delta": "A distinct actual observation finds no new requirement: preserve its observation, state explicit no_delta, no requirement change or rebuild, and outstanding obligations. no_delta is not missing observation."
   },
   "MPR_prefix_invariant": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
@@ -335,5 +356,27 @@
     "fixed_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
     "current_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
     "fixed_and_current_l11_section_exact": true
-  }
+  },
+  "legacy_layer_mapping_evidence": {
+    "old_claude_path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+    "old_claude_file_sha256": "sha256:7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+    "old_claude_line_84": "- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。",
+    "old_claude_line_84_sha256": "sha256:f258f88e31cdfd172e38cb87864c687d45130b96525672498ef1344be19badfe",
+    "crosswalk_path": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+    "crosswalk_file_sha256": "sha256:c61aeff2e0839054f24b68296d5c48b5e99c8329a0ba776e52b8c3f0e192b71b",
+    "crosswalk_line_28": "| HIL-FR-19 | 1 | HARNESS／OS・意味変更要 | L1反映先の旧記述をL2要求へ是正し、企画影響時だけL1にも戻す |",
+    "crosswalk_line_28_sha256": "sha256:d616062e8df357d873602a2b0f59879ef18eb31fa0630e53a786b6e3081f2d16",
+    "old_requirement_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "old_requirement_line_109_sha256": "sha256:edaa9d6668ebf049c6400ee4d43a253c47313862e5e3d638d1037c49fd7b91fc",
+    "interpretation": "Old L1 is requirements. Current L2 is the requirement target. Current L1 is planning and is involved only when planning meaning changes."
+  },
+  "review_corrections": [
+    {
+      "review": "RH-PR2506-REVIEW-01",
+      "finding": "F1 Major",
+      "change": "Map old L1 requirement destination to current L2; current L1 human boundary applies only to planning-meaning changes. Keep source atoms unchanged and align L11 dependency references with that mapping.",
+      "finding_2": "F2 Minor",
+      "change_2": "Correct HARNESS-L2-039 paired section digests to exact 2026-09-29 decision row 44 values."
+    }
+  ]
 }
