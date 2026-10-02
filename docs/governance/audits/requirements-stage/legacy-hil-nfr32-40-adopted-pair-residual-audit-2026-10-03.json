@@ -2528,9 +2528,48 @@
           "always_required": "selected HIL-NFR-37 source identity and current target/revision; existing SECURITY operation/classification condition for any evaluated delegated data",
           "operation_specific": "path/secret/opt-out gates only when the selected operation delegates data to the added third-party runtime slice; primary-worker extension is unresolved",
           "selected_source": "only the selected runtime/version/config, payload path/classification/scan result, and that runtime’s opt-out evidence; do not infer from another runtime",
-          "reference_only": "HIL-BR-32/NFR-37 and HR/HAC/HAT are semantic/consumer evidence, not runtime services; vendor UI/declaration/flag cannot establish local compliance"
+          "reference_only": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 consumer context only for the 023 runtime-dependency partition; preserve their condition/oracle evidence separately. Vendor UI/declaration/remote flag is inadmissible as local compliance evidence.",
+          "normative_source_outside_runtime_dependency_classes": "HIL-NFR-37 IR statement identity and matching legacy L1 row are normative source evidence; retain them independently of HARNESS-L2-023 runtime dependency classes.",
+          "consumer_evidence_outside_dependency_classes": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 remain mapped consumer/oracle evidence as applicable; their shared conditions are not silently distributed to this NFR and are not runtime dependencies.",
+          "reference_only_boundary": "This category does not demote normative IR/L1 source, acceptance conditions, safety rules, or consumer oracles; those remain source/condition evidence outside the runtime dependency partition."
         },
-        "po_decision_boundary": "No PO decision is needed for a source-faithful mapping of existing clauses across current pairs. A PO decision is needed before changing the source interpretation or expanding adopted SECURITY-029 scope to primary Worker; if the source scope cannot be resolved without choosing between those meanings, hold and present that exact choice."
+        "po_decision_boundary": "No PO decision is needed for a source-faithful mapping of existing clauses across current pairs. A PO decision is needed before changing the source interpretation or expanding adopted SECURITY-029 scope to primary Worker; if the source scope cannot be resolved without choosing between those meanings, hold and present that exact choice.",
+        "ir_statement_binding": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+          "json_pointer": "#/HIL-NFR-37",
+          "whole_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+          "statement_semantic_digest": "c193885771e85f07857776dbce87ceac9cb91725d64aa68eddd53ff2aa4902db",
+          "record_semantic_digest": "3f9879998b2c5856f087472bc33abf14f4c7b4fb46187b3e5e6be02083634ce9",
+          "l1_row_line": 217,
+          "l1_row_sha256_without_lf": "e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+          "normalization": "IR semantic_digest is recorded in source JSON; L1 corroboration row SHA removes terminal LF only"
+        },
+        "condition_to_ir_statement_mapping": [
+          {
+            "draft_condition": "classify public/confidential/secret-or-PII",
+            "exact_ir_statement_phrases": [
+              "委譲データを公開可能/機密/secret・PIIへ分類し"
+            ]
+          },
+          {
+            "draft_condition": "machine-gate confidential-or-higher additional third-party delegation using path allowlist and secret scan",
+            "exact_ir_statement_phrases": [
+              "機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する"
+            ]
+          },
+          {
+            "draft_condition": "runtime adoption requires opt-out complete",
+            "exact_ir_statement_phrases": [
+              "訓練利用opt-outの完了を当該runtime採用の前提条件とし"
+            ]
+          },
+          {
+            "draft_condition": "while opt-out incomplete, only public code may be delegated",
+            "exact_ir_statement_phrases": [
+              "未完了の間は公開可能コード以外を委譲しない"
+            ]
+          }
+        ]
       },
       {
         "id": "HIL-NFR-38",
@@ -2559,9 +2598,48 @@
           "always_required": "the selected operation remains under existing operation authority and the repository’s applicable permanent-deny state; source identity/revision is retained",
           "operation_specific": "temporary cleanup and allowlist/YOLO transition apply only when such setting/operation is selected; ordinary operations with no bypass setting do not gain a new gate",
           "selected_source": "the exact runtime capability (explicit allowlist supported or not), selected run, and effective repository policy state",
-          "reference_only": "old BR/HR/HAC/HAT and provider descriptions provide source/test context, not current policy authority or an executable enforcer"
+          "reference_only": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 consumer context only for the 023 runtime-dependency partition; preserve their condition/oracle evidence separately. Provider descriptions do not prove a local enforcer.",
+          "normative_source_outside_runtime_dependency_classes": "HIL-NFR-38 IR statement identity and matching legacy L1 row are normative source evidence; retain them independently of HARNESS-L2-023 runtime dependency classes.",
+          "consumer_evidence_outside_dependency_classes": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 remain mapped consumer/oracle evidence as applicable; their shared conditions are not silently distributed to this NFR and are not runtime dependencies.",
+          "reference_only_boundary": "This category does not demote normative IR/L1 source, acceptance conditions, safety rules, or consumer oracles; those remain source/condition evidence outside the runtime dependency partition."
         },
-        "po_decision_boundary": "Faithfully preserving source semantics needs no PO change. Removing the source’s transitional YOLO allowance, allowing YOLO for allowlist-capable runtimes, or adding a fixed end date/retirement rule changes source meaning and requires a PO decision. The permanent-deny precedence remains the adopted 032 decision."
+        "po_decision_boundary": "Faithfully preserving source semantics needs no PO change. Removing the source’s transitional YOLO allowance, allowing YOLO for allowlist-capable runtimes, or adding a fixed end date/retirement rule changes source meaning and requires a PO decision. The permanent-deny precedence remains the adopted 032 decision.",
+        "ir_statement_binding": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+          "json_pointer": "#/HIL-NFR-38",
+          "whole_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+          "statement_semantic_digest": "623495c53d8e952d930ee57bc420714a8ed8e9749859fa4597543ff156e8fd9f",
+          "record_semantic_digest": "1d103f4dacdf25f1c230e717630c2dcd67c11ff974a4df311a3df0fd1f8650e9",
+          "l1_row_line": 218,
+          "l1_row_sha256_without_lf": "34a91d2f4e367f8500455e8dfd2f2283b7fac60b9eb028c3a2da1cef5c0f4c41",
+          "normalization": "IR semantic_digest is recorded in source JSON; L1 corroboration row SHA removes terminal LF only"
+        },
+        "condition_to_ir_statement_mapping": [
+          {
+            "draft_condition": "YOLO/bypass/auto-approve setting is active only during runtime and must be removed at run end",
+            "exact_ir_statement_phrases": [
+              "YOLO/bypass/auto-approve系設定は実行時のみ有効化し終了時に必ず除去する"
+            ]
+          },
+          {
+            "draft_condition": "repository setting can permanently deny bypass",
+            "exact_ir_statement_phrases": [
+              "repository設定でbypassを恒久禁止できるdenyスイッチを持ち"
+            ]
+          },
+          {
+            "draft_condition": "headless delegation ideal is deny-default plus explicit allowlist",
+            "exact_ir_statement_phrases": [
+              "headless委譲の権限モデルはdeny既定+明示allowlistを理想形とし"
+            ]
+          },
+          {
+            "draft_condition": "YOLO allowance is transitional and only for runtimes that lack allowlist support",
+            "exact_ir_statement_phrases": [
+              "YOLO許容はallowlist型を持たないruntimeへの経過措置に限定する"
+            ]
+          }
+        ]
       },
       {
         "id": "HIL-NFR-39",
@@ -2591,9 +2669,39 @@
           "always_required": "the compliance claim’s source/target revision and applicable existing SECURITY rule; local claim must not be derived from provider assertion alone",
           "operation_specific": "sandbox, allowlist, egress, and FS modalities are selected based on the operation and enforcement surface; unknown applicability stays unknown",
           "selected_source": "only selected local enforcement and observed result evidence for the selected runtime/config/scope",
-          "reference_only": "provider policy UI/declaration/remote flag and legacy consumer/test text are reference/context only for local security proof; they do not satisfy it"
+          "reference_only": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 consumer context only for the 023 runtime-dependency partition; preserve their condition/oracle evidence separately. Provider UI/declaration/remote flag is inadmissible as local compliance evidence.",
+          "normative_source_outside_runtime_dependency_classes": "HIL-NFR-39 IR statement identity and matching legacy L1 row are normative source evidence; retain them independently of HARNESS-L2-023 runtime dependency classes.",
+          "consumer_evidence_outside_dependency_classes": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 remain mapped consumer/oracle evidence as applicable; their shared conditions are not silently distributed to this NFR and are not runtime dependencies.",
+          "reference_only_boundary": "This category does not demote normative IR/L1 source, acceptance conditions, safety rules, or consumer oracles; those remain source/condition evidence outside the runtime dependency partition."
         },
-        "po_decision_boundary": "No PO decision is needed to retain the four original evidence types or map them to exact existing pairs. A PO decision is needed before changing the local-enforcement meaning or expanding adopted SECURITY-029 scope to primary Worker; unresolved source applicability remains held."
+        "po_decision_boundary": "No PO decision is needed to retain the four original evidence types or map them to exact existing pairs. A PO decision is needed before changing the local-enforcement meaning or expanding adopted SECURITY-029 scope to primary Worker; unresolved source applicability remains held.",
+        "ir_statement_binding": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+          "json_pointer": "#/HIL-NFR-39",
+          "whole_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+          "statement_semantic_digest": "cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+          "record_semantic_digest": "c64f42507553e77ceeb363e98776a67a5e6285d1825be2fceeda939e963987b7",
+          "l1_row_line": 219,
+          "l1_row_sha256_without_lf": "401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+          "normalization": "IR semantic_digest is recorded in source JSON; L1 corroboration row SHA removes terminal LF only"
+        },
+        "condition_to_ir_statement_mapping": [
+          {
+            "draft_condition": "vendor privacy UI, correction declaration, and remote flag are not proof of compliance",
+            "exact_ir_statement_phrases": [
+              "ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない"
+            ]
+          },
+          {
+            "draft_condition": "local enforcement evidence types named: OS sandbox, network allowlist, measured egress, filesystem difference inspection",
+            "exact_ir_statement_phrases": [
+              "OS sandbox",
+              "network allowlist",
+              "egress実測",
+              "FS差分検査"
+            ]
+          }
+        ]
       },
       {
         "id": "HIL-NFR-40",
@@ -2624,9 +2732,49 @@
           "always_required": "existing OS assignment/attempt identity, authority, scope, budget/deadline and continuity/unfinished-obligation conditions; no new independent identity or state schema",
           "operation_specific": "quota/rate retreat is evaluated only when the selected worker runtime reports that state; normal operations do not gain a quota/rate gate",
           "selected_source": "the selected runtime’s quota/rate response/state and the selected lane/assignment; do not infer from general price, provider claims, or another runtime",
-          "reference_only": "HIL-NFR-40 IR and HR/HAC/HAT are source/consumer references, not runtime authority; INTELLIGENCE-010 proposal is not execution permission"
+          "reference_only": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 consumer references only in the 023 runtime-dependency partition; retain their quota/fail-close/quarantine condition evidence separately and do not allocate shared clauses without exact mapping.",
+          "normative_source_outside_runtime_dependency_classes": "HIL-NFR-40 IR statement identity and matching legacy L1 row are normative source evidence; retain them independently of HARNESS-L2-023 runtime dependency classes.",
+          "consumer_evidence_outside_dependency_classes": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 remain mapped consumer/oracle evidence as applicable; their shared conditions are not silently distributed to this NFR and are not runtime dependencies.",
+          "excluded_permission_evidence": "INTELLIGENCE-010 placement proposal is not routing permission, execution authority, or quota/rate state evidence.",
+          "reference_only_boundary": "This category does not demote normative IR/L1 source, acceptance conditions, safety rules, or consumer oracles; those remain source/condition evidence outside the runtime dependency partition."
         },
-        "po_decision_boundary": "The source already gives the two retreat alternatives as an OR; preserving either path requires no PO change. Replacing the proposal with automatic routing, mandating only one alternative, adding retry thresholds/schedules, or reallocating lane/OS/INTELLIGENCE authority changes meaning and requires a PO decision."
+        "po_decision_boundary": "The source already gives the two retreat alternatives as an OR; preserving either path requires no PO change. Replacing the proposal with automatic routing, mandating only one alternative, adding retry thresholds/schedules, or reallocating lane/OS/INTELLIGENCE authority changes meaning and requires a PO decision.",
+        "ir_statement_binding": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+          "json_pointer": "#/HIL-NFR-40",
+          "whole_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+          "statement_semantic_digest": "4171419553664d7150ffe9875c14b6bc5212f14635d339dafc2af08ddc656c54",
+          "record_semantic_digest": "d75e68668b1fb28d7ffd340c20c9d37214962b291935dbb40667597a2a27402b",
+          "l1_row_line": 220,
+          "l1_row_sha256_without_lf": "89e31140c248c2f1bcb7140bd6549f7d86768c2c2bcf2ce88d623e7a06f01f95",
+          "normalization": "IR semantic_digest is recorded in source JSON; L1 corroboration row SHA removes terminal LF only"
+        },
+        "condition_to_ir_statement_mapping": [
+          {
+            "draft_condition": "worker runtime quota exhaustion and rate limit are planned states",
+            "exact_ir_statement_phrases": [
+              "worker runtimeのquota枯渇・rate制限を予定された状態として扱い"
+            ]
+          },
+          {
+            "draft_condition": "lane retreats fail-closed by either holding the queue or proposing routing to an alternative runtime",
+            "exact_ir_statement_phrases": [
+              "laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する"
+            ]
+          },
+          {
+            "draft_condition": "do not continue while ignoring exhaustion",
+            "exact_ir_statement_phrases": [
+              "枯渇を無視した継続"
+            ]
+          },
+          {
+            "draft_condition": "do not perform unplanned retries",
+            "exact_ir_statement_phrases": [
+              "無計画retryを行わない"
+            ]
+          }
+        ]
       }
     ],
     "nonregression_boundaries": [
@@ -2675,7 +2823,956 @@
           "sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
         },
         "normalization": "UTF-8; trim trailing blank lines; append one LF"
+      },
+      "latest_main_43d5": {
+        "revision": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+        "l2": {
+          "line_start": 463,
+          "line_end_inclusive": 497,
+          "sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+        },
+        "l11": {
+          "line_start": 219,
+          "line_end_inclusive": 233,
+          "sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+        },
+        "normalization": "raw UTF-8 section bytes with existing LF; fixed identity pair rehashed at 43d5; it remains classification-method evidence only."
       }
     }
+  },
+  "latest_main_43d5_comparison": {
+    "comparison_revision": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+    "prior_e05_comparison_preserved": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+    "locator_count": 66,
+    "selection_comparison": "For each prior locator, rehashed the exact e05-selected byte sequence and located its unique contiguous occurrence in the specified path at 43d5; historical source revision, locator, normalization, and original pin remain unchanged.",
+    "normalization": "Raw UTF-8 source bytes including existing LF; no trimming or reserialization. Full-file SHA-256 is over raw file bytes.",
+    "same_selected_bytes_count": 66,
+    "selections": [
+      {
+        "locator_index": 1,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "historical_line_start": 491,
+        "prior_e05_line_start": 491,
+        "prior_e05_line_end_inclusive": 501,
+        "latest_line_start": 491,
+        "latest_line_end_inclusive": 501,
+        "raw_selected_bytes_sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+      },
+      {
+        "locator_index": 2,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "historical_line_start": 233,
+        "prior_e05_line_start": 233,
+        "prior_e05_line_end_inclusive": 239,
+        "latest_line_start": 233,
+        "latest_line_end_inclusive": 239,
+        "raw_selected_bytes_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+      },
+      {
+        "locator_index": 3,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "historical_line_start": 561,
+        "prior_e05_line_start": 561,
+        "prior_e05_line_end_inclusive": 589,
+        "latest_line_start": 561,
+        "latest_line_end_inclusive": 589,
+        "raw_selected_bytes_sha256": "a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39"
+      },
+      {
+        "locator_index": 4,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "historical_line_start": 592,
+        "prior_e05_line_start": 592,
+        "prior_e05_line_end_inclusive": 598,
+        "latest_line_start": 592,
+        "latest_line_end_inclusive": 598,
+        "raw_selected_bytes_sha256": "08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39"
+      },
+      {
+        "locator_index": 5,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "historical_line_start": 289,
+        "prior_e05_line_start": 289,
+        "prior_e05_line_end_inclusive": 303,
+        "latest_line_start": 289,
+        "latest_line_end_inclusive": 303,
+        "raw_selected_bytes_sha256": "b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749"
+      },
+      {
+        "locator_index": 6,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "historical_line_start": 306,
+        "prior_e05_line_start": 306,
+        "prior_e05_line_end_inclusive": 314,
+        "latest_line_start": 306,
+        "latest_line_end_inclusive": 314,
+        "raw_selected_bytes_sha256": "8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749"
+      },
+      {
+        "locator_index": 7,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "historical_line_start": 466,
+        "prior_e05_line_start": 466,
+        "prior_e05_line_end_inclusive": 489,
+        "latest_line_start": 466,
+        "latest_line_end_inclusive": 489,
+        "raw_selected_bytes_sha256": "d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39"
+      },
+      {
+        "locator_index": 8,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "historical_line_start": 199,
+        "prior_e05_line_start": 199,
+        "prior_e05_line_end_inclusive": 199,
+        "latest_line_start": 199,
+        "latest_line_end_inclusive": 199,
+        "raw_selected_bytes_sha256": "e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749"
+      },
+      {
+        "locator_index": 9,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 55,
+        "prior_e05_line_start": 55,
+        "prior_e05_line_end_inclusive": 55,
+        "latest_line_start": 55,
+        "latest_line_end_inclusive": 55,
+        "raw_selected_bytes_sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 10,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 24,
+        "prior_e05_line_start": 24,
+        "prior_e05_line_end_inclusive": 24,
+        "latest_line_start": 24,
+        "latest_line_end_inclusive": 24,
+        "raw_selected_bytes_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 11,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 55,
+        "prior_e05_line_start": 55,
+        "prior_e05_line_end_inclusive": 55,
+        "latest_line_start": 55,
+        "latest_line_end_inclusive": 55,
+        "raw_selected_bytes_sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 12,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 24,
+        "prior_e05_line_start": 24,
+        "prior_e05_line_end_inclusive": 24,
+        "latest_line_start": 24,
+        "latest_line_end_inclusive": 24,
+        "raw_selected_bytes_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 13,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 56,
+        "prior_e05_line_start": 56,
+        "prior_e05_line_end_inclusive": 56,
+        "latest_line_start": 56,
+        "latest_line_end_inclusive": 56,
+        "raw_selected_bytes_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 14,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 25,
+        "prior_e05_line_start": 25,
+        "prior_e05_line_end_inclusive": 25,
+        "latest_line_start": 25,
+        "latest_line_end_inclusive": 25,
+        "raw_selected_bytes_sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 15,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 56,
+        "prior_e05_line_start": 56,
+        "prior_e05_line_end_inclusive": 56,
+        "latest_line_start": 56,
+        "latest_line_end_inclusive": 56,
+        "raw_selected_bytes_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 16,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 25,
+        "prior_e05_line_start": 25,
+        "prior_e05_line_end_inclusive": 25,
+        "latest_line_start": 25,
+        "latest_line_end_inclusive": 25,
+        "raw_selected_bytes_sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 17,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 293,
+        "prior_e05_line_start": 293,
+        "prior_e05_line_end_inclusive": 293,
+        "latest_line_start": 293,
+        "latest_line_end_inclusive": 293,
+        "raw_selected_bytes_sha256": "84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 18,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 24,
+        "prior_e05_line_start": 24,
+        "prior_e05_line_end_inclusive": 24,
+        "latest_line_start": 24,
+        "latest_line_end_inclusive": 24,
+        "raw_selected_bytes_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 19,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 293,
+        "prior_e05_line_start": 293,
+        "prior_e05_line_end_inclusive": 293,
+        "latest_line_start": 293,
+        "latest_line_end_inclusive": 293,
+        "raw_selected_bytes_sha256": "84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 20,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 24,
+        "prior_e05_line_start": 24,
+        "prior_e05_line_end_inclusive": 24,
+        "latest_line_start": 24,
+        "latest_line_end_inclusive": 24,
+        "raw_selected_bytes_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 21,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 297,
+        "prior_e05_line_start": 297,
+        "prior_e05_line_end_inclusive": 297,
+        "latest_line_start": 297,
+        "latest_line_end_inclusive": 297,
+        "raw_selected_bytes_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 22,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 29,
+        "prior_e05_line_start": 29,
+        "prior_e05_line_end_inclusive": 29,
+        "latest_line_start": 29,
+        "latest_line_end_inclusive": 29,
+        "raw_selected_bytes_sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 23,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 297,
+        "prior_e05_line_start": 297,
+        "prior_e05_line_end_inclusive": 297,
+        "latest_line_start": 297,
+        "latest_line_end_inclusive": 297,
+        "raw_selected_bytes_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 24,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 29,
+        "prior_e05_line_start": 29,
+        "prior_e05_line_end_inclusive": 29,
+        "latest_line_start": 29,
+        "latest_line_end_inclusive": 29,
+        "raw_selected_bytes_sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 25,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 642,
+        "prior_e05_line_start": 642,
+        "prior_e05_line_end_inclusive": 650,
+        "latest_line_start": 642,
+        "latest_line_end_inclusive": 650,
+        "raw_selected_bytes_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 26,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 324,
+        "prior_e05_line_start": 324,
+        "prior_e05_line_end_inclusive": 329,
+        "latest_line_start": 324,
+        "latest_line_end_inclusive": 329,
+        "raw_selected_bytes_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 27,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 642,
+        "prior_e05_line_start": 642,
+        "prior_e05_line_end_inclusive": 650,
+        "latest_line_start": 642,
+        "latest_line_end_inclusive": 650,
+        "raw_selected_bytes_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 28,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 324,
+        "prior_e05_line_start": 324,
+        "prior_e05_line_end_inclusive": 329,
+        "latest_line_start": 324,
+        "latest_line_end_inclusive": 329,
+        "raw_selected_bytes_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 29,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 652,
+        "prior_e05_line_start": 652,
+        "prior_e05_line_end_inclusive": 660,
+        "latest_line_start": 652,
+        "latest_line_end_inclusive": 660,
+        "raw_selected_bytes_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 30,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 331,
+        "prior_e05_line_start": 331,
+        "prior_e05_line_end_inclusive": 336,
+        "latest_line_start": 331,
+        "latest_line_end_inclusive": 336,
+        "raw_selected_bytes_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 31,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 652,
+        "prior_e05_line_start": 652,
+        "prior_e05_line_end_inclusive": 660,
+        "latest_line_start": 652,
+        "latest_line_end_inclusive": 660,
+        "raw_selected_bytes_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 32,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 331,
+        "prior_e05_line_start": 331,
+        "prior_e05_line_end_inclusive": 336,
+        "latest_line_start": 331,
+        "latest_line_end_inclusive": 336,
+        "raw_selected_bytes_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 33,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 662,
+        "prior_e05_line_start": 662,
+        "prior_e05_line_end_inclusive": 670,
+        "latest_line_start": 662,
+        "latest_line_end_inclusive": 670,
+        "raw_selected_bytes_sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 34,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 338,
+        "prior_e05_line_start": 338,
+        "prior_e05_line_end_inclusive": 343,
+        "latest_line_start": 338,
+        "latest_line_end_inclusive": 343,
+        "raw_selected_bytes_sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 35,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 662,
+        "prior_e05_line_start": 662,
+        "prior_e05_line_end_inclusive": 670,
+        "latest_line_start": 662,
+        "latest_line_end_inclusive": 670,
+        "raw_selected_bytes_sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 36,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 338,
+        "prior_e05_line_start": 338,
+        "prior_e05_line_end_inclusive": 343,
+        "latest_line_start": 338,
+        "latest_line_end_inclusive": 343,
+        "raw_selected_bytes_sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 37,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 672,
+        "prior_e05_line_start": 672,
+        "prior_e05_line_end_inclusive": 680,
+        "latest_line_start": 672,
+        "latest_line_end_inclusive": 680,
+        "raw_selected_bytes_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 38,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 345,
+        "prior_e05_line_start": 345,
+        "prior_e05_line_end_inclusive": 350,
+        "latest_line_start": 345,
+        "latest_line_end_inclusive": 350,
+        "raw_selected_bytes_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 39,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 672,
+        "prior_e05_line_start": 672,
+        "prior_e05_line_end_inclusive": 680,
+        "latest_line_start": 672,
+        "latest_line_end_inclusive": 680,
+        "raw_selected_bytes_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 40,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 345,
+        "prior_e05_line_start": 345,
+        "prior_e05_line_end_inclusive": 350,
+        "latest_line_start": 345,
+        "latest_line_end_inclusive": 350,
+        "raw_selected_bytes_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 41,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 682,
+        "prior_e05_line_start": 682,
+        "prior_e05_line_end_inclusive": 690,
+        "latest_line_start": 682,
+        "latest_line_end_inclusive": 690,
+        "raw_selected_bytes_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 42,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 352,
+        "prior_e05_line_start": 352,
+        "prior_e05_line_end_inclusive": 357,
+        "latest_line_start": 352,
+        "latest_line_end_inclusive": 357,
+        "raw_selected_bytes_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 43,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 682,
+        "prior_e05_line_start": 682,
+        "prior_e05_line_end_inclusive": 690,
+        "latest_line_start": 682,
+        "latest_line_end_inclusive": 690,
+        "raw_selected_bytes_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 44,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 352,
+        "prior_e05_line_start": 352,
+        "prior_e05_line_end_inclusive": 357,
+        "latest_line_start": 352,
+        "latest_line_end_inclusive": 357,
+        "raw_selected_bytes_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 45,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "historical_line_start": 447,
+        "prior_e05_line_start": 447,
+        "prior_e05_line_end_inclusive": 453,
+        "latest_line_start": 447,
+        "latest_line_end_inclusive": 453,
+        "raw_selected_bytes_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5"
+      },
+      {
+        "locator_index": 46,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "historical_line_start": 116,
+        "prior_e05_line_start": 116,
+        "prior_e05_line_end_inclusive": 122,
+        "latest_line_start": 116,
+        "latest_line_end_inclusive": 122,
+        "raw_selected_bytes_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556"
+      },
+      {
+        "locator_index": 47,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "historical_line_start": 405,
+        "prior_e05_line_start": 405,
+        "prior_e05_line_end_inclusive": 415,
+        "latest_line_start": 405,
+        "latest_line_end_inclusive": 415,
+        "raw_selected_bytes_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5"
+      },
+      {
+        "locator_index": 48,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "historical_line_start": 89,
+        "prior_e05_line_start": 89,
+        "prior_e05_line_end_inclusive": 95,
+        "latest_line_start": 89,
+        "latest_line_end_inclusive": 95,
+        "raw_selected_bytes_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556"
+      },
+      {
+        "locator_index": 49,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 515,
+        "prior_e05_line_start": 515,
+        "prior_e05_line_end_inclusive": 532,
+        "latest_line_start": 515,
+        "latest_line_end_inclusive": 532,
+        "raw_selected_bytes_sha256": "89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 50,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 241,
+        "prior_e05_line_start": 241,
+        "prior_e05_line_end_inclusive": 252,
+        "latest_line_start": 241,
+        "latest_line_end_inclusive": 252,
+        "raw_selected_bytes_sha256": "e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 51,
+        "historical_source_revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "historical_line_start": 515,
+        "prior_e05_line_start": 515,
+        "prior_e05_line_end_inclusive": 532,
+        "latest_line_start": 515,
+        "latest_line_end_inclusive": 532,
+        "raw_selected_bytes_sha256": "89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+      },
+      {
+        "locator_index": 52,
+        "historical_source_revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "historical_line_start": 241,
+        "prior_e05_line_start": 241,
+        "prior_e05_line_end_inclusive": 252,
+        "latest_line_start": 241,
+        "latest_line_end_inclusive": 252,
+        "raw_selected_bytes_sha256": "e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+      },
+      {
+        "locator_index": 53,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "historical_line_start": 466,
+        "prior_e05_line_start": 466,
+        "prior_e05_line_end_inclusive": 489,
+        "latest_line_start": 466,
+        "latest_line_end_inclusive": 489,
+        "raw_selected_bytes_sha256": "d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39"
+      },
+      {
+        "locator_index": 54,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "historical_line_start": 199,
+        "prior_e05_line_start": 199,
+        "prior_e05_line_end_inclusive": 199,
+        "latest_line_start": 199,
+        "latest_line_end_inclusive": 199,
+        "raw_selected_bytes_sha256": "e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749"
+      },
+      {
+        "locator_index": 55,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 957,
+        "prior_e05_line_start": 957,
+        "prior_e05_line_end_inclusive": 968,
+        "latest_line_start": 957,
+        "latest_line_end_inclusive": 968,
+        "raw_selected_bytes_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 56,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 699,
+        "prior_e05_line_start": 699,
+        "prior_e05_line_end_inclusive": 714,
+        "latest_line_start": 699,
+        "latest_line_end_inclusive": 714,
+        "raw_selected_bytes_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 57,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 986,
+        "prior_e05_line_start": 986,
+        "prior_e05_line_end_inclusive": 1000,
+        "latest_line_start": 986,
+        "latest_line_end_inclusive": 1000,
+        "raw_selected_bytes_sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 58,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 728,
+        "prior_e05_line_start": 728,
+        "prior_e05_line_end_inclusive": 738,
+        "latest_line_start": 728,
+        "latest_line_end_inclusive": 738,
+        "raw_selected_bytes_sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 59,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 1002,
+        "prior_e05_line_start": 1002,
+        "prior_e05_line_end_inclusive": 1011,
+        "latest_line_start": 1002,
+        "latest_line_end_inclusive": 1011,
+        "raw_selected_bytes_sha256": "690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 60,
+        "historical_source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 740,
+        "prior_e05_line_start": 740,
+        "prior_e05_line_end_inclusive": 750,
+        "latest_line_start": 740,
+        "latest_line_end_inclusive": 750,
+        "raw_selected_bytes_sha256": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 61,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 340,
+        "prior_e05_line_start": 340,
+        "prior_e05_line_end_inclusive": 350,
+        "latest_line_start": 340,
+        "latest_line_end_inclusive": 350,
+        "raw_selected_bytes_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 62,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 205,
+        "prior_e05_line_start": 205,
+        "prior_e05_line_end_inclusive": 205,
+        "latest_line_start": 205,
+        "latest_line_end_inclusive": 205,
+        "raw_selected_bytes_sha256": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 63,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 352,
+        "prior_e05_line_start": 352,
+        "prior_e05_line_end_inclusive": 361,
+        "latest_line_start": 352,
+        "latest_line_end_inclusive": 361,
+        "raw_selected_bytes_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 64,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 206,
+        "prior_e05_line_start": 206,
+        "prior_e05_line_end_inclusive": 206,
+        "latest_line_start": 206,
+        "latest_line_end_inclusive": 206,
+        "raw_selected_bytes_sha256": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      },
+      {
+        "locator_index": 65,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "historical_line_start": 463,
+        "prior_e05_line_start": 463,
+        "prior_e05_line_end_inclusive": 497,
+        "latest_line_start": 463,
+        "latest_line_end_inclusive": 497,
+        "raw_selected_bytes_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44"
+      },
+      {
+        "locator_index": 66,
+        "historical_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "historical_line_start": 219,
+        "prior_e05_line_start": 219,
+        "prior_e05_line_end_inclusive": 233,
+        "latest_line_start": 219,
+        "latest_line_end_inclusive": 233,
+        "raw_selected_bytes_sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+        "same_selected_bytes": true,
+        "unique_match_count": 1,
+        "latest_full_file_sha256": "ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e"
+      }
+    ],
+    "conclusion": "All 66 previously fixed locator byte selections occur exactly once and remain byte-identical at 43d5. This does not establish whole-source closure, requirement adoption, or unselected content equivalence."
   }
 }
