@@ -1,0 +1,309 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-086-V13-POLICY-167-171-2026-10-03",
+  "authority_effect": "none",
+  "candidate_digest_rule": "For L2 and L11 separately, select exact ### HARNESS-L2-086 heading through the next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF.",
+  "source_atom_set_digest_rule": "Sort by atom_id; concatenate UTF-8 atom_id + SPACE + source_line_sha256 with sha256: prefix omitted + LF; SHA-256. Each selected source atom is one exact physical source line.",
+  "scope": "Five physical source-line atoms REQSRC-SUP-00127..00131, lines 167–171 of the held v1.3.14 source. They preserve future-version functional conditions for typed SCREEN_DESIGN input, right-arm verification/L12 operation test, and NFR_MEASUREMENT connection. This selected-line accounting is not full v1.3/IR/consumer closure; no formal successor, owner transfer, adoption, or current execution is asserted.",
+  "source_atom_set": {
+    "source_atom_file": "docs/governance/audits/requirement-registration/harness-v13-policy-167-171-source-lines-2026-10-03.jsonl",
+    "source_atom_file_sha256": "sha256:2ec7cd609408d940e48b969f0c84019f47fbf50cc175371783892d42bb2334d4",
+    "source_atom_set_digest": "sha256:b95439aa4d209c0d8e9ee8e6736f5cb69eb1048635272deefa170c1e12306512",
+    "source_atom_count": 5,
+    "source_holding": "MPR-SH-SUPPLEMENTARY-003",
+    "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "held_copy_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+    "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "atoms": [
+      {
+        "atom_id": "REQSRC-SUP-00127",
+        "source_line": 167,
+        "source_line_sha256": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+        "source_text": "- 旧`design-bottomup`は`SCREEN_DESIGN` specialist workflowへbackend-derived trigger／方向条件を与える"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00128",
+        "source_line": 168,
+        "source_line_sha256": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001",
+        "source_text": "  compatibility inputである。同名workflow modelを新設しない。"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00129",
+        "source_line": 169,
+        "source_line_sha256": "sha256:7dc52084a9aaf5ab0c7c5717fa8857a6a5f07f964d8c9981cc750d573355ae6e",
+        "source_text": "- 旧`operation_verification`／`verification`はL7〜L12 right-arm verification scopeとL12運用テストを"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00130",
+        "source_line": 170,
+        "source_line_sha256": "sha256:a2dd6fe1aa27f954a7d6e30fc78102af23b10152c89de8c488434e264af1bda8",
+        "source_text": "  指すcompatibility inputである。同名workflow modelを新設せず、必要なNFR計測は"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00131",
+        "source_line": 171,
+        "source_line_sha256": "sha256:7196e911d3b82adaa3c88733c95f92ef5ce293b1b868bfe6599ee0854724d0d7",
+        "source_text": "  `NFR_MEASUREMENT` capabilityへ接続する。"
+      }
+    ]
+  },
+  "current_candidate_pair": {
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 1455,
+      "end_line": 1485,
+      "section_sha256": "sha256:cef4bb68938fc082b87618b000fb32b1f428aa2d6322916b8926fb6ffcb037a2",
+      "full_file_sha256": "sha256:9b043f389dfeddeae251108b756ad4d0b353cda131ea06ec174c16222d64176c"
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 1225,
+      "end_line": 1263,
+      "section_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+      "full_file_sha256": "sha256:644df7dad5bbdea6607bd3747457addbb1f32a74d2ac8d85e92680bc97793f1e"
+    },
+    "pair_digest_rule": "The candidate pair sections are separate; no existing adopted pair is rewritten. Each digest uses the exact section selection rule above."
+  },
+  "source_atom_mapping": [
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00127",
+        "REQSRC-SUP-00128"
+      ],
+      "condition": "typed design-bottomup compatibility input supplies backend-derived trigger/direction to SCREEN_DESIGN; no same-named workflow model.",
+      "current_pair_reuse": "Adopted 039 covers the selected same-scope Experience/UI/Frontend relation, not backend-fact elicitation, FE requirement formation, screen mock/backfill, prototype/no-UI disposition, Discovery-if-uncertain or Add-feature routing.",
+      "candidate_scope": "Future-version functional requirement: pass typed backend/API/domain-event/permission/error and trigger/direction context into SCREEN_DESIGN; produce FE requirement/design candidates; connect stable FE requirement to L3 and applicable V-pairs; require UI prototype agreement or current no-UI receipt; do not claim completion from mock/backend rendering; uncertain user meaning returns to existing Discovery; implementation delta routes to existing Add-feature. Applicability is tri-state: same-scope/revision current no-UI receipt grounds N/A; UI=true applies the screen mock obligation; unknown remains unassessed."
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00129",
+        "REQSRC-SUP-00130"
+      ],
+      "condition": "typed operation_verification/verification compatibility input points to L7–L12 right-arm verification scope and L12 operation test; no same-named workflow model.",
+      "current_pair_reuse": "Existing 003/005/022 provide current stage, obligation, evidence and oracle responsibilities, but do not adopt the legacy typed input relation or expand its scope.",
+      "candidate_scope": "Future-version functional requirement: preserve the explicitly selected right-arm scope and L12 operation-test relation as distinct from a bare ambiguous alias, current workflow identity, execution result, or completion."
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00131"
+      ],
+      "condition": "necessary NFR measurement connects to NFR_MEASUREMENT capability.",
+      "current_pair_reuse": "Adopted 034 provides the exact current requirement/NFR measurement contract and completion oracle, not legacy capability identity, formal successor, route, owner, or measurement result.",
+      "candidate_scope": "Future-version functional requirement: when selected operation requires NFR measurement, connect the applicable NFR to adopted 034 contract and keep contract selection, execution and measurement evidence as separate states."
+    }
+  ],
+  "source_internal_context": {
+    "same_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "section_4_2_4_bare_ambiguous_token_context_lines_236_238": [
+      {
+        "line": 236,
+        "text": "`forward`、`scrum`、`design-bottomup`、`verification`は複数axis、条件、scopeを畳み込んだ曖昧入力なので、",
+        "line_sha256": "sha256:80ad036de8661306cb8cda0cbd723551eb0097ce309997db8ebce59bdcab305d"
+      },
+      {
+        "line": 237,
+        "text": "推測せず`ambiguous`／exit 1でfail-closeする。exact set外は`unsupported`／exit 1とし、Forward等へ",
+        "line_sha256": "sha256:a11d27cc4ccfa1f25cd39e9dffe66ff3ee4da60663de2d88c5a82fec95dd95b3"
+      },
+      {
+        "line": 238,
+        "text": "fallbackしない。変換成功だけを`converted`／exit 0とする。",
+        "line_sha256": "sha256:0b21bf9616695b995256b4740e99becce8ea881dd115ea448918cbaa3cd6672e"
+      }
+    ],
+    "interpretation_boundary": "§4.2.2 lines 167–171 specify typed functional relations; lines 174–175 defer execution-policy/registry/projection/consumer-migration implementation to an unspecified later version. §4.2.4 lines 236–238 makes bare design-bottomup/verification tokens ambiguous and fail-close. Typed context and bare-token ambiguity are different conditions and both are retained; no source correction or precedence is asserted.",
+    "version_boundary_lines_174_175": {
+      "same_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "locator": "§4.2.2 lines 174–175; contextual version boundary, not included in the 5 selected source atoms",
+      "lines": [
+        {
+          "line": 174,
+          "text": "execution policyの実体、command registry、generated projection、consumer移行は本分類境界を満たす",
+          "line_sha256": "sha256:4d03c721822d7b1d215a490b40497b1750f12443ae5d430696f61760014a8c50"
+        },
+        {
+          "line": 175,
+          "text": "後続versionで追加する。未実装identityへのexecution要求はpolicyを推測せずunsupportedとしてfail-closeする。",
+          "line_sha256": "sha256:48420267fd12aa05650518f8028ec06fe57c44956f89b6947b00d016d83d3084"
+        }
+      ],
+      "interpretation": "Execution policy implementation, command registry, generated projection and consumer migration are assigned to a later version with no exact version specified. This preserves future functional requirement drafting while not asserting those implementation artifacts or moving them into 1.0."
+    }
+  },
+  "legacy_consumer_evidence": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/drive-route-system.md",
+      "file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950",
+      "locator": "§§1–5",
+      "finding": "legacy alias and typed axis boundary; raw design-bottomup/verification are ambiguous and fail-close"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+      "file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+      "locator": "frontmatter, §§1–4",
+      "finding": "Future functional flow: backend/API/domain-event/permission/error facts → FE requirement candidates → screen mock → stable FE requirement/L3 and L2/L5/L6 backfill; UI prototype agreement or current no-UI receipt; Discovery when meaning/value/success is uncertain; Forward when settled; implementation delta to Add-feature. Mock, backend screen rendering, or L6 design alone is not completion. Applicability N/A requires the same-scope current no-UI receipt; unknown remains unassessed. Old workflow is evidence, not execution in current work."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md",
+      "file_sha256": "sha256:2d931cd3296fc0fb6ba33543af3edd37f1587dda972a29c8aed0094a516d7eab",
+      "locator": "U-WFLEG-003/U-WFLEG-005",
+      "finding": "bare ambiguous alias rejected; current output omits old mode/model/catalog route"
+    }
+  ],
+  "adopted_pair_pins": [
+    {
+      "identity": "HARNESS-L2-039",
+      "disposition": "adopted_exact_pair_revision",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": 44,
+      "L2_section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "L11_section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+      "condition_scope": "Experience/UI/Frontend contract relation; no legacy route alias binding"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "disposition": "adopted_exact_pair_revision",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": 39,
+      "L2_section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "L11_section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+      "condition_scope": "requirement/NFR metrics and completion oracle; no legacy capability identity binding"
+    }
+  ],
+  "coverage_result": "no_loss_limited_to_five_selected_v13_physical_line_atoms; functional requirements and old consumer flow are preserved in an unadopted later-version candidate, while full source/consumer closure and current implementation remain unproven.",
+  "carried_atom_refs": [
+    "REQSRC-SUP-00127",
+    "REQSRC-SUP-00128",
+    "REQSRC-SUP-00129",
+    "REQSRC-SUP-00130",
+    "REQSRC-SUP-00131"
+  ],
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SUPPLEMENTARY-003 remains live; formal successor/owner/adoption/source closure remain unassigned.",
+    "HARNESS-L2/L11-034 and 039 adoption remains restricted to decision-selected exact revisions."
+  ],
+  "authority_boundary": "Unadopted future-version functional requirement proposal with static acceptance fixtures only. No old runtime/tool/test executed; no current runtime route, adoption, owner assignment, source retirement, or exact target version introduced.",
+  "static_validation": {
+    "source_lines_exact_match": true,
+    "source_line_hashes_lf_excluded": true,
+    "coverage_receipt_does_not_claim_full_source_closure": true,
+    "candidate_pair_does_not_change_adopted_034_or_039": true,
+    "typed_functional_conditions_preserved": true,
+    "later_version_boundary_preserved": true,
+    "bare_token_ambiguity_preserved": true,
+    "old_consumer_flow_and_noncompletion_preserved": true,
+    "grounded_na_separated_from_unknown": true,
+    "023_four_dependency_classes_have_concrete_synthetic_tuples": true
+  },
+  "acceptance_fixture_classes": [
+    {
+      "dependency_class": "always_required",
+      "synthetic_fixture_tuple": {
+        "identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "固定Concept/L1のrevision pinと固定採択039 pair pin。",
+        "applicability": "固定した正常SCREEN_DESIGN callの選択scope。screen適用性がunknownなら未判定。"
+      },
+      "expected": "identity、scope、authority、適用するpair/oracleを確認する。候補登録からruntimeや実行ownerを生成しない。"
+    },
+    {
+      "dependency_class": "operation_only",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "operation": "SCREEN_DESIGN",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに操作互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "同一scopeの要求・設計oracleと固定採択039 pair pin。",
+        "applicability": "選択operationはSCREEN_DESIGN、screen applicabilityはUI=true。"
+      },
+      "expected": "このoperationでbackend-derived contextとmock/prototype義務を評価し、無関係なoperationへ広げない。"
+    },
+    {
+      "dependency_class": "selected_input_source",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "input": "archive v1.3.14/design-bottomup",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_atoms": [
+            "REQSRC-SUP-00127",
+            "REQSRC-SUP-00128"
+          ],
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          }
+        },
+        "declared_version_range": "保持sourceのexact revision v1.3.14のみ。sourceにより広い互換版範囲は宣言されていない。",
+        "compatibility_evidence": {
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          },
+          "selected_scope_facts": "選択scopeのbackend/API/domain-event/permission/error facts"
+        },
+        "applicability": "typed inputがbackend-derived trigger、方向条件、screen scopeを選択した場合。UI=trueならscreen義務を適用し、同一scopeの根拠付きN/Aなら現行no-UI receiptへ接続し、unknownは未判定とする。"
+      },
+      "expected": "このfixtureでの条件に限り、実装済みregistry/rangeや全aliasの互換性を宣言しない。"
+    },
+    {
+      "dependency_class": "reference_only",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "references": [
+            "old design-bottomup.md",
+            "drive-route-system.md"
+          ],
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": "該当なし。参照資料は現行実行契約ではない。",
+        "reference_revision": {
+          "design-bottomup.md_file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+          "drive-route-system.md_file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950"
+        },
+        "declared_version_range": "該当なし。実行互換範囲は宣言しない。",
+        "compatibility_evidence": "exactな旧file revisionと記録済みlocatorはcontextだけを裏付ける。",
+        "applicability": "設計条件と旧consumer意味の理解だけに参照し、現行runtime依存にはしない。"
+      },
+      "expected": "旧consumer本文はcontext evidenceとして保持する。選択した§4.2.2 source atomsは規範sourceのままであり、reference-onlyへ降格しない。"
+    }
+  ],
+  "applicability_states": {
+    "ui_applicable": "UI=true: apply screen mock/prototype obligation.",
+    "grounded_not_applicable": "N/A only when a current no-UI receipt matches the same scope/revision; use non-UI path without requiring a screen mock.",
+    "unknown": "Return applicability as unassessed; do not infer UI=true, N/A, pass, or completion."
+  },
+  "acceptance_fixture_basis": "4つのHARNESS-L2-023依存区分を通して、正常なSCREEN_DESIGN callを固定する合成fixtureである。各tupleはidentity、owner、exactな契約/source revision、宣言された版範囲、互換根拠、適用条件を分離する。適用条件は版範囲ではない。このfixtureはruntime ownerやcompatibility registryを定めず、規範sourceや旧consumerの意味上の義務をruntime依存へ降格しない。"
+}

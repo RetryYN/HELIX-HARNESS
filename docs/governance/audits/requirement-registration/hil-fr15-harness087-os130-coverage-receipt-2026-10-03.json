@@ -194,20 +194,20 @@
       "l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "lines": [
-          1455,
-          1465
+          1501,
+          1511
         ],
         "sha256": "sha256:6ff019751ec9b357dad94a946ac79ecacf7f92b09550fdd09e5c68f2bd4456c7",
-        "full_file_sha256": "sha256:139bd4cf0bcbca04efd129024e20391c118d546f559e33ca025b2679e80ace89"
+        "full_file_sha256": "sha256:fc96958c9858fad5d95d6cbc1fa25afb8586d91eb8545ade8a3b241083ad5028"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
         "lines": [
-          1225,
-          1242
+          1279,
+          1296
         ],
         "sha256": "sha256:171d3433842b1044626b56884b89c6a88193d6d31c15be04a1e25d00a275311a",
-        "full_file_sha256": "sha256:faa5880a34cabf3d827dd0cb323f3201cd509c893b494cb462aa5fbee1758b64"
+        "full_file_sha256": "sha256:ac7a9cc825f13f18c7e1d2d3ef28247f7f508cf823094903df163db4e9d83c2d"
       },
       "pair_digest": "sha256:f27f9c95bdbf4716687032bb0356f1ab961252d14e45437416710bec469eb1de",
       "source_atom_refs": [
@@ -654,17 +654,17 @@
   ],
   "union_mapping_limit": "This table maps the single normative statement across two unadopted candidate pairs. The split is a placement proposal only; it does not assign a formal successor, make either pair adopted, close MPR-SH-IR-003, or claim source-wide coverage.",
   "post_merge_integration": {
-    "latest_main_commit": "29c72e94c50a607ccff5472289d5ef1fdea71ba6",
-    "latest_main_register_prefix_line_count": 699,
-    "latest_main_register_prefix_sha256": "sha256:df686fc4d00c3d31a68365ecdcb41de8f5e1cde89c7a32e444d1eb3e45fe4f54",
+    "latest_main_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+    "latest_main_register_prefix_line_count": 702,
+    "latest_main_register_prefix_sha256": "sha256:918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
     "appended_registration_ids": [
       "MPR-RC-HARNESS-L2-087-001",
       "MPR-RC-HELIXOS-L2-130-001"
     ],
-    "combined_register_line_count": 701,
+    "combined_register_line_count": 704,
     "registration_rows": {
-      "MPR-RC-HARNESS-L2-087-001": 700,
-      "MPR-RC-HELIXOS-L2-130-001": 701
+      "MPR-RC-HARNESS-L2-087-001": 703,
+      "MPR-RC-HELIXOS-L2-130-001": 704
     },
     "historical_registration_baseline_preserved": true
   }
