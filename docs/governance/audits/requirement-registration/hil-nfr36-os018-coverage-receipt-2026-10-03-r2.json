@@ -8,7 +8,7 @@
   "authority_effect": "none",
   "source_atom_set": {
     "ref": "docs/governance/audits/requirement-registration/hil-nfr36-os018-source-atoms-2026-10-03.jsonl#HIL-NFR-36",
-    "file_sha256": "sha256:b9ad0284a7a86f97741fe130f73c628aa97e5359ba1418e3cc917bf6491bfbde",
+    "file_sha256": "sha256:3bb49bebd790c98f9ffb3d41c6154015e680387bb87ae14df31e2d4d3a58ebd8",
     "atom_count": 1,
     "digest_rule": "atom_idを昇順に並べ、各atomの `atom_id SP statement_semantic_digest（sha256:を除く） LF` をUTF-8で連結してSHA-256。",
     "digest": "sha256:402ed3657393d0928df5b5229bfcaa87d3269a32ce7c5dfc31396c8316fd55d3",
@@ -436,5 +436,27 @@
   ],
   "receipt_scope_boundary": "原文の「receipt化」は実際の逸脱と実際のescalation順序・結果を既存recordへ結ぶ観測事実として扱う。事前gate、全run停止、source未確定時の全操作禁止を追加せず、適用sourceまたはownerが不明なfacetはunknownとして既存ownerへ返す。",
   "candidate_digest_rule": "L2/L11各pairについて、各exact見出しから次の同階層以上見出しまで（EOF supplementは次の同階層以上見出しまたは現在のEOFまで）を選択し、末尾空行を除いて各part末尾へUTF-8 LFを一つ付加する。multipart digestは正規化identity section bytes + UTF-8 LF一つのseparator + 正規化EOF supplement section bytes。L2 digestをcandidate_semantic_digest、L11 digestをpaired_acceptance_digestとする。固定採択pair pinは別に保持し変更しない。",
-  "adopted_neighbor_evidence_scope": "These are exact selected sections/rows at current main bdf1532 and are cross-checked against the cited target commit/decision. They preserve only their stated LABO scopes; their existence is not evidence that all HIL-NFR-36 conditions or consumers are closed."
+  "adopted_neighbor_evidence_scope": "These are exact selected sections/rows at current main bdf1532 and are cross-checked against the cited target commit/decision. They preserve only their stated LABO scopes; their existence is not evidence that all HIL-NFR-36 conditions or consumers are closed.",
+  "placement_corroboration": [
+    {
+      "kind": "legacy_seed_assessment",
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "line": 45,
+      "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "line_sha256_including_lf": "sha256:fae6c7b5f6cdcf93c5350a9fe834af90ebfdb05734b18f179a47c5ff9e623fa5",
+      "line_sha256_excluding_lf": "sha256:c35c984840adbe56c116bd4d94c294a0ba86b108c2f254b328e42cdd5f7e55ab",
+      "text": "| HIL-NFR-36 | 1 | OS：model／effort選択と品質・費用・再試行の追跡 |",
+      "relation": "OS placement corroboration only; not a normative source atom, adoption, or formal successor assignment"
+    },
+    {
+      "kind": "routing_candidate",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "line": 138,
+      "file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "line_sha256_including_lf": "sha256:9eea8b4f2cb41b8961004a7a1a960a5708cb8ca3e9783de1ebd5573bbbad66aa",
+      "line_sha256_excluding_lf": "sha256:3c3c22b81eb4c5d1db8ed7d700a68c9dbce2be9d1f63dc0f8eb594b13b0233d4",
+      "text": "{\"routing_registration_id\":\"PRC-HIL-NFR-36-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-NFR-36\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS：model／effort選択と品質・費用・再試行の追跡\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"model／effort／retry／品質／costの選択lineageを記録するOS配置責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"model／effort／retry／品質／costの選択lineageを記録するOS配置責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+      "relation": "OS placement corroboration only; not a normative source atom, adoption, or formal successor assignment"
+    }
+  ]
 }
