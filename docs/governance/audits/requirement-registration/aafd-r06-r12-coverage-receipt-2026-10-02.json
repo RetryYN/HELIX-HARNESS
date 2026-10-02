@@ -546,5 +546,24 @@
       "current_bytes_match_fixed": true,
       "dependency_closure_and_delta_digest_are_separate_oracles": true
     }
+  },
+  "current_registration_state": {
+    "comparison_base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "main_prefix_line_count": 662,
+    "main_prefix_sha256": "sha256:7c5d03aec57d9126f1cf4fd59a3777308fcfa04ba398cd65bf72b4d5114dffe3",
+    "candidate_append_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-078-001",
+    "candidate_row_sha256": "sha256:0168e8aa3600ebd25e3a3a4df9855308851c402b3f2949e3be1cefb66c8c34c9",
+    "current_register_line_count": 663,
+    "current_register_file_sha256": "sha256:33c2507ab3a1569e310e0e0e011e03fac41639de9cedf5e80042b03d8cfd98ba",
+    "prefix_relation": "The 662 physical lines from comparison base 26ce662 are byte-identical and remain a prefix; only the unadopted 078-001 candidate row follows."
+  },
+  "current_revision_check": {
+    "latest_base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "candidate_full_file_pins_still_match": true,
+    "concept_current_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "planning_current_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+    "b537_baseline_preserved_as_ancestor": true,
+    "history_note": "created_against_commit remains b537706 as the candidate/source comparison baseline; the later 26ce662 integration is recorded here without rewriting that historical pin."
   }
 }
