@@ -226,10 +226,11 @@
       "same_revision_as_current_candidate_bytes": true,
       "finding": "The 2026-09-29 decision explicitly adopted HARNESS-L2-035-002 and its paired base L11 plus scope-measure addendum. This is separate from HELIXOS-L2-035.",
       "current_revision_digest_validation": {
-        "current_l2_identity_section_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
         "current_l11_identity_section_digest": "sha256:65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670",
         "current_l11_addendum_digest": "sha256:5cd7416ba2260603c98458669c35ee5a16e9e2030b9ca7ef9416447676521ef7",
-        "all_fixed_section_digests_match": true
+        "all_fixed_section_digests_match": true,
+        "current_l2_combined_candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+        "current_l2_combined_digest_rule": "UTF-8 SHA-256 of the exact canonical section bytes for HARNESS-L2-035 base section followed by the scope-measure addendum section, in that order. For each section, start at its heading and stop before the next same-or-higher-level heading, remove trailing blank lines, and end with exactly one LF; concatenate the two resulting byte sequences. The base-section and addendum digests remain separately recorded in current_candidate.candidate_l2_file."
       },
       "separate_os035_identity": {
         "identity": "HELIXOS-L2-035",
