@@ -8,7 +8,7 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:7b470c562c6a04b5034bbda4d0302d1c70fcf4f67948e8a584bea0e21744f647",
   "candidate_digest_rule": "Multipart candidate digest: SHA-256 UTF-8 of canonical text shown in candidate_digest_composition; each part removes trailing blank lines and appends exactly one LF.",
-  "candidate_l2_file_sha256": "sha256:c75bea6bfa77b743f25bdecdb541df688dea84d002e6efed9cf1e1a3675dbfdb",
+  "candidate_l2_file_sha256": "sha256:9eeb4afb688f3d2604440496b5a7572046329a427de4384423345ea1fc52c80f",
   "candidate_l2_section_lines": [
     1290,
     1304
@@ -16,7 +16,7 @@
   "paired_acceptance_identity": "HARNESS-L2-068",
   "paired_acceptance_digest": "sha256:6e9ceba6c8c9278dd0d38610dec3e337020e13a326e9a33387c6638f400d340c",
   "l11_digest_rule": "Multipart paired acceptance digest: SHA-256 UTF-8 of canonical text shown in paired_acceptance_digest_composition; each part removes trailing blank lines and appends exactly one LF.",
-  "candidate_l11_file_sha256": "sha256:2169650caf9e6764fe5723f696b9e4182d0b8602bdc230d170ebbc0928674b13",
+  "candidate_l11_file_sha256": "sha256:84d9dd7f632ca0bd7305afedaeaf74a922aacfa5a4dc34acc407fdba84465414",
   "candidate_l11_section_lines": [
     1002,
     1014
@@ -478,8 +478,8 @@
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
         "heading": "## HARNESS-L2-068 訂正003",
         "line_range": [
-          1398,
-          1410
+          1409,
+          1421
         ],
         "canonical_sha256": "sha256:c7f1c02c5c23faa7d132c8649225dfd6d7374faa780071b082952582c847e669"
       }
@@ -503,8 +503,8 @@
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
         "heading": "## HARNESS-L2-068 訂正003",
         "line_range": [
-          1157,
-          1169
+          1187,
+          1199
         ],
         "canonical_sha256": "sha256:95152751f426a89026d36a58f9e13205e143d7e0763a758f52624165e657b300"
       }
