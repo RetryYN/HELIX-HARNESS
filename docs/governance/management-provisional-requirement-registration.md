@@ -183,3 +183,10 @@ OS-122の採択関係を `MPR-RC-HELIXOS-L2-122-002` として訂正追補した
 ## 2026-10-02 HELIXOS-L2-126 仮登録
 
 旧HIL-NFR-18のIR identity atom一件を対象に、失効leaseとfencing token不一致時のtool call/artifact/completion拒否、およびcrash後の最後のdurable checkpointだけからの再開を、未採択候補`MPR-RC-HELIXOS-L2-126-001`として追補した。採択済みOS-009/018/019/032の一般停止・event/checkpoint保証、未採択115/118/120/125との範囲差を照合し、旧source atomとHAT/HST/IT-AGLC-006 line 40の未実行consumer contextを区別した。source holdingとformal successorは未解決、旧HATは設計のみで実行していない。候補本文、source ledger、decision/pair pins、正常・負・unknown oracle、選択肢は[coverage receipt](audits/requirement-registration/helixos-l2-126-hil-nfr18-fencing-checkpoint-coverage-receipt-2026-10-02.json)と[source ledger](audits/requirement-registration/hil-nfr18-fencing-checkpoint-source-lines-2026-10-02.jsonl)を参照。
+
+
+## HIL-NFR-34選択source stale facet候補（2026-10-03）
+
+`MPR-RC-HELIXINTELLIGENCE-L2-072-005`は、既採択INTELLIGENCE-L2-072-004の4つの選択partを不変に保ち、HIL-NFR-34全IR identityのうち、選択済みscope/requirement/template/skill/model catalog/allowlist依存のrevisionまたはdigest変更を該当candidate facetのstaleとして扱い、旧facetのcandidate/shadow入力への再利用を止めて該当source ownerへ戻す条件だけをL2/L11末尾へ候補追補する。候補は未採択で、runtime gate、OS dispatch拒否、SECURITY authority、旧要求全体のsuccessor/closureを主張しない。
+
+source ledgerは`audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl`、coverage receiptは`audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r1.json`。whole IR HIL-NFR-34は一atom、旧L1 line 214は同一文のcorroboration、HR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21は共有consumer/oracle contextであり追加atomではない。no_lossはsource条件を候補facetまたは生存source holdingへ割り当てた意味に限定し、残余条件を`MPR-SH-IR-003#HIL-NFR-34`へ保留する。PO選択肢A/Bはreceiptに原文、影響、推奨とともに記録した。

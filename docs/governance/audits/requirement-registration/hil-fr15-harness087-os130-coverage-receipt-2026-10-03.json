@@ -230,7 +230,9 @@
         "physical DB",
         "formal successor",
         "source-wide closure"
-      ]
+      ],
+      "l2_section_sha256": "sha256:6ff019751ec9b357dad94a946ac79ecacf7f92b09550fdd09e5c68f2bd4456c7",
+      "l11_section_sha256": "sha256:171d3433842b1044626b56884b89c6a88193d6d31c15be04a1e25d00a275311a"
     },
     {
       "identity": "HELIXOS-L2-130",
@@ -272,7 +274,9 @@
         "physical DB",
         "formal successor",
         "source-wide closure"
-      ]
+      ],
+      "l2_section_sha256": "sha256:9916804ec017c5854f496066e76fb6d4c7781462388478c8e9d4a0f4196027a5",
+      "l11_section_sha256": "sha256:8e5fc049b06882e6049b02fd7c1fd4f21a20a352d4193532bbf0996536eaf1a1"
     }
   ],
   "aggregate_parts": {
@@ -363,14 +367,14 @@
       "l2_section": {
         "lines": [
           559,
-          571
+          572
         ],
         "sha256": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032"
       },
       "l11_section": {
         "lines": [
           365,
-          373
+          374
         ],
         "sha256": "sha256:a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd"
       },
@@ -398,14 +402,14 @@
       "l2_section": {
         "lines": [
           642,
-          650
+          651
         ],
         "sha256": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
       },
       "l11_section": {
         "lines": [
           324,
-          329
+          330
         ],
         "sha256": "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
       },
@@ -433,14 +437,14 @@
       "l2_section": {
         "lines": [
           652,
-          660
+          661
         ],
         "sha256": "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
       },
       "l11_section": {
         "lines": [
           331,
-          336
+          337
         ],
         "sha256": "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
       },
@@ -648,5 +652,20 @@
       "HELIXOS130": "preserves meaning as typed relation/evidence reference; physical DB realization remains unspecified"
     }
   ],
-  "union_mapping_limit": "This table maps the single normative statement across two unadopted candidate pairs. The split is a placement proposal only; it does not assign a formal successor, make either pair adopted, close MPR-SH-IR-003, or claim source-wide coverage."
+  "union_mapping_limit": "This table maps the single normative statement across two unadopted candidate pairs. The split is a placement proposal only; it does not assign a formal successor, make either pair adopted, close MPR-SH-IR-003, or claim source-wide coverage.",
+  "post_merge_integration": {
+    "latest_main_commit": "29c72e94c50a607ccff5472289d5ef1fdea71ba6",
+    "latest_main_register_prefix_line_count": 699,
+    "latest_main_register_prefix_sha256": "sha256:df686fc4d00c3d31a68365ecdcb41de8f5e1cde89c7a32e444d1eb3e45fe4f54",
+    "appended_registration_ids": [
+      "MPR-RC-HARNESS-L2-087-001",
+      "MPR-RC-HELIXOS-L2-130-001"
+    ],
+    "combined_register_line_count": 701,
+    "registration_rows": {
+      "MPR-RC-HARNESS-L2-087-001": 700,
+      "MPR-RC-HELIXOS-L2-130-001": 701
+    },
+    "historical_registration_baseline_preserved": true
+  }
 }
