@@ -319,8 +319,8 @@
   "human_decision_disposition_refs": [],
   "unaccounted_atom_refs": [],
   "method_note": "Direct IR identity and current exact adopted L2/L11 wording were compared. Current adopted general clauses were not inferred to cover BR14-specific authority/ref denominators. Existing 067 is unadopted partial context. No old runtime/test/CI/remote was executed.",
-  "read_after_base_commit": "0e76f9c6f6609dc6a8e101116c1a652ff5871771",
-  "current_candidate_sections_read_after_commit": "local worktree after latest main 0e76f9c6f6609dc6a8e101116c1a652ff5871771; historical source and adopted decision fixed pins are retained at their original commits.",
+  "read_after_base_commit": "4d1c8db1a670224e83e8bc20834a717cf4289de2",
+  "current_candidate_sections_read_after_commit": "local worktree after latest main 4d1c8db1a670224e83e8bc20834a717cf4289de2; historical source and adopted decision fixed pins are retained at their original commits.",
   "historical_source_pins": {
     "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "l1_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
@@ -416,5 +416,6 @@
       }
     ],
     "repeat_result": "Same exact input including ZIP, both named repositories and current HELIX source revision, plus declaration revision, must yield the same class/state/reason closure. Any changed or missing input is unknown or a distinct result, never a default. Selected-source failure cannot silently fall back."
-  }
+  },
+  "prior_comparison_base_commit": "0e76f9c6f6609dc6a8e101116c1a652ff5871771"
 }
