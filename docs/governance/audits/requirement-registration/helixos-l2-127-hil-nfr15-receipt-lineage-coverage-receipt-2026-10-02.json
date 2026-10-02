@@ -19,20 +19,20 @@
     "l2_identity": "HELIXOS-L2-127",
     "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
     "l2_line": 1593,
-    "l2_section_sha256": "sha256:fb3515f9653d3bb9d68fd08c428da1393d30cde1ee82ecb6cbba33b637d160cb",
+    "l2_section_sha256": "sha256:784929f31392f44b763e890bac1a5b8d1446649aa78527c5004ad1f333a352c7",
     "l11_identity": "HELIXOS-L11-127",
     "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
     "l11_line": 1227,
     "l11_section_sha256": "sha256:ff7e8ac4b754c208bc08491eaec1ecd8232fc1a20a42a62e1f70a2f5aec9a49a",
     "section_digest_rule": "UTF-8 exact bytes from candidate heading through before next same-or-higher heading; remove trailing blank lines and end with one LF.",
-    "l2_full_file_sha256": "sha256:90cba8d0712ea30570b856ee496ab3d8a5c932c8b61fa8a4e1dfd451d27670cf",
+    "l2_full_file_sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
     "l11_full_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
     "source_lines_file": "docs/governance/audits/requirement-registration/hil-nfr15-ci-receipt-lineage-source-lines-2026-10-02.jsonl",
-    "source_lines_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
+    "source_lines_file_sha256": "sha256:8fa18a7506762463732e3bc7fe334302d2df40063785d7134bfb72dca3530045",
     "source_atom_set_digest_rule": "SHA-256 of UTF-8 `HIL-NFR-15 ` + statement semantic digest without `sha256:` + LF. Exactly the IR identity is selected; L1 corroborates the same wording; HR/HAC/HAT/HST are consumer context.",
     "source_atom_set_digest": "sha256:65125cfa1dfec63bee1c0ed26faf32d5b3c5ab3ef06c52234ec9bd3b27d65628",
     "raw_l1_line_hash_method": "L1 source line without-LF removes exactly one trailing LF (and CR only if CRLF); separate with-LF hash is retained.",
-    "source_atom_set_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
+    "source_atom_set_file_sha256": "sha256:8fa18a7506762463732e3bc7fe334302d2df40063785d7134bfb72dca3530045",
     "l2_section_end_line_exclusive": 1606,
     "l2_heading": "### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）",
     "l11_section_end_line_exclusive": 1248,
@@ -100,13 +100,13 @@
       "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
       "decision_row": 55,
       "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
-      "fixed_target_commit": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
       "fixed_l2_section_sha256": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
       "fixed_l11_section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460",
       "current_l2_section_sha256": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
       "current_l11_section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460",
       "adoption": "Adopted by explicit decision row 55; do not infer from MPR registered_proposal metadata.",
-      "scope": "quarantine eligibility does not produce green."
+      "scope": "quarantine eligibility does not produce green.",
+      "fixed_l2_file_sha256": "sha256:89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
     },
     {
       "identity": "HARNESS-L2/L11-023",
@@ -189,7 +189,7 @@
     {
       "condition": "各段自身のcommit/tree digestへbind",
       "legacy_locator": "IR #/HIL-NFR-15; L1:195; HR-FR-HIL-06",
-      "current_destination": "HARNESS-L2/L11-005 target revision/evidence and OS-L2/L11-020 exact run identity; current fixed/adopted text pinned above. Candidate repeats the digest at each selected dependent receipt as input to the direct edge."
+      "current_destination": "HARNESS-005/OS-020は採択済みtarget revision/run identityの隣接保証であり、tree digestの明示を含まない。OS-127候補は前段依存の有無にかかわらず選択された各check自身のexact commit/tree digest束縛を明記し、L11の独立check正常例とtree相違反例へ対応する。"
     },
     {
       "condition": "直前段receiptへbind",
@@ -210,7 +210,7 @@
   "candidate_not_adopted": true,
   "runtime_test_ci_executed": false,
   "formal_successor_ids": [],
-  "coverage_result": "One exact residual candidate for immediate predecessor receipt lineage under selected dynamic CI dependencies; other conditions map to adopted HARNESS/OS pairs. No source holding change or formal successor assignment.",
+  "coverage_result": "OS-127候補は選択された各check自身のcommit/tree束縛と、宣言された段間依存の直前receipt lineageを明記する。採択済みquarantine非greenはOS-032へ接続する。旧003-09全体のstale propagationと003-10 neutral非greenの正式対応は未確定としてholding継続し、原文全条件closureを主張しない。正式successor未割当。",
   "old_fixed_stage_change": {
     "source_text": "旧HIL-NFR-15/HR-FR-HIL-06 describes prejoin→postjoin→external and three green stages.",
     "decision_evidence": [
@@ -357,5 +357,55 @@
     "main_register_prefix_lines": 680,
     "candidate_append_line": 681,
     "meaning": "latest main full L2/L11/register byte prefixes preserved; unchanged candidate sections appended after existing content; fixed snapshot comparisons remain historical."
-  }
+  },
+  "legacy_assertion_condition_destinations": [
+    {
+      "identity": "HST-CASE-003-01",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "physical_line": 35,
+      "line_sha256_including_lf": "sha256:63d721baf3b34a50a661b834b605b7d4280e3f1738b347f95c839a5e346093ba",
+      "text": "| HST-CASE-003-01 | HST-HIL-003 | HIL-BR-16, HIL-FR-28, HIL-NFR-15 | 実装済みtreeとrequired check setが存在 | local prejoin CIを成功させる | implemented | prejoin_accepted | SHA/tree/check-setにbindしたpassed receipt | なし（正常系） | FX-HST-003-01 | design-defined | not-implemented |",
+      "meaning": "各check自身のSHA/tree/check-set binding正常対照。固定prejoin構成はcontextのみ。OS-127の選択check自身のdigest束縛へ対応。",
+      "context_only": true,
+      "execution_status": "design-defined; not-implemented; not run"
+    },
+    {
+      "identity": "HST-CASE-003-09",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "physical_line": 43,
+      "line_sha256_including_lf": "sha256:1c72dde0c1cd788eb273f27b162b0b2972dd0d5ea7dd9be5b2503e9d8df9f2ef",
+      "text": "| HST-CASE-003-09 | HST-HIL-003 | HIL-NFR-15 | external CIのgreen receiptが存在 | PR headをforce-pushで変更する | external_accepted | stale | external以降のstale eventとmerge不可判定 | HIL_CI_SHA_STALE | FX-HST-003-09 | design-defined | not-implemented |",
+      "meaning": "head変更でexternal以降staleとなる旧条件。OS-127は新revisionへ旧receiptを継承しない範囲だけ対応する。external以降全体のstale propagation/merge不可oracleの正式対応は未確定、holding継続。",
+      "context_only": true,
+      "execution_status": "design-defined; not-implemented; not run"
+    },
+    {
+      "identity": "HST-CASE-003-10",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "physical_line": 44,
+      "line_sha256_including_lf": "sha256:5bed146b905e3e638e7e7997029c79c58e6ed1b0aba236a40695c85074879002",
+      "text": "| HST-CASE-003-10 | HST-HIL-003 | HIL-NFR-15 | check conclusionがneutral | stage receiptを発行する | external_running | failed | green count 0件と非green finding | HIL_CI_CONCLUSION_NOT_GREEN | FX-HST-003-10 | design-defined | not-implemented |",
+      "meaning": "neutral conclusionをgreen件数へ算入しない旧条件。OS-032のquarantine非green条件とは別であり、採択済み対応は未証明。正式対応未確定としてholding継続。",
+      "context_only": true,
+      "execution_status": "design-defined; not-implemented; not run"
+    },
+    {
+      "identity": "HST-CASE-003-13",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "physical_line": 426,
+      "line_sha256_including_lf": "sha256:341a3ab7f52097297c44e5698013cff360bc6b2d63f117d77759d1a0777e1b25",
+      "text": "| HST-CASE-003-13 | HST-HIL-003 | HIL-NFR-15 | 別SHA green、lineage欠落、quarantine resultがある | 次CI段へ進める | assertion_input_ready | assertion_pass | current段とpredecessorにbindしないgreenを拒否する | HIL_CI_RECEIPT_LINEAGE_INVALID | FX-HST-003-13 | design-defined | not-implemented |",
+      "meaning": "current段自身およびpredecessorへbindしないgreenを拒否する直接oracle。OS-127の自身digest/宣言edge直前receipt束縛へ対応し、quarantine非greenは採択済みOS-032へ接続。",
+      "context_only": true,
+      "execution_status": "design-defined; not-implemented; not run"
+    }
+  ]
 }
