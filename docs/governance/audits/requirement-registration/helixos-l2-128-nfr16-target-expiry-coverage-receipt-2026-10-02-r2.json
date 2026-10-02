@@ -263,7 +263,7 @@
     "base_read_after": "ebad1aa406d4cb0215e589f708b2001408f03f75",
     "source_atom_identity": "complete IR HIL-NFR-16 identity; count=1; L1 line 196 corroboration only",
     "fixed_parent_l1_004": "checked against exact f6dad2 fixed file and current decision record source commit 51e170f8",
-    "main_prefix_preservation": "main91db674行のbyte prefixと、reviewed ebadの675行目OS128-001を保持。002を676行目へ単独追記。",
+    "main_prefix_preservation": "latest main00cfdadの676行byte prefixを保持し、reviewed OS128-001原行を677行へ、002を678行へ追記。過去base91db/main674行証拠は固定時点のまま区別する。",
     "candidate_sections_rehashed_after_review_finding": true
   },
   "canonical_ir_record_pin": {
@@ -439,5 +439,13 @@
     "sha256": "sha256:f326562069de23330a7f3190f73004bbec3ea2767c3391cf8d975c9e8c1668e6",
     "reviewed_content_commit": "ebad1aa406d4cb0215e589f708b2001408f03f75",
     "preserved_byte_for_byte": true
+  },
+  "latest_main_read_after": {
+    "commit": "00cfdad179a15e59c0b27d8e78421f5083a8ea6d",
+    "mpr_prefix_lines": 676,
+    "mpr_prefix_sha256": "sha256:fa37d3bf91d2ebc4a041ce685b06c760210c4da60d59a63541fecd2c152b08ea",
+    "prior_registration_line": 677,
+    "new_registration_line": 678,
+    "candidate_pair_unchanged_by_main_merge": true
   }
 }
