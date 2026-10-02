@@ -570,7 +570,7 @@
       "full_file_sha256": "sha256:2f31a62cbe4d5a9f3f2e143d7090b7c8cc8cdc2b3da592eca429db0cbdd62d50"
     },
     "legacy_source_atoms": {
-      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
       "old_source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
       "old_source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
       "records": [
@@ -590,7 +590,10 @@
             "HAC-HIL-15c"
           ],
           "system_test": "HAT-HIL-15",
-          "downstream_status": "pending_pair_descent"
+          "downstream_status": "pending_pair_descent",
+          "source_line_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_line_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line_identity_role": "L1 corroborating line, not physical line within the IR record"
         },
         {
           "requirement_id": "HIL-FR-19",
@@ -608,10 +611,14 @@
             "HAC-HIL-15c"
           ],
           "system_test": "HAT-HIL-15",
-          "downstream_status": "pending_pair_descent"
+          "downstream_status": "pending_pair_descent",
+          "source_line_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_line_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line_identity_role": "L1 corroborating line, not physical line within the IR record"
         }
       ],
-      "relation": "079 is a separate, unadopted candidate; its distinct source conditions are prototype artifact operation path and walkthrough evidence. Locator and record digests are from the held whole IR and existing source-line ledger."
+      "relation": "079 is a separate, unadopted candidate; its distinct source conditions are prototype artifact operation path and walkthrough evidence. Locator and record digests are from the held whole IR and existing source-line ledger.",
+      "corroborating_L1_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
     }
   }
 }
