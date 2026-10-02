@@ -264,8 +264,8 @@
   "method_note": "Meaning comparison is old source/consumers against adopted exact current pair and current candidates. Candidate maps the one selected statement only; adoption, any semantic change, and formal successor stay with their existing authority.",
   "source_atom_set_file_sha256": "sha256:4281215c34701db0025f7f4cf74faeb800ca8cc4c86592167ce64f4f9da1cfb5",
   "source_atom_set_encoding": "UTF-8 JSONL, one line per selected identity atom; source_line_text excludes LF while line SHA fields state whether LF is included.",
-  "read_after_base_commit": "cf159dffea3d6539ed3b8f5637152baf042b0653",
-  "current_candidate_sections_read_after_commit": "local worktree after exact-prefix merge of latest main cf159dffea3d6539ed3b8f5637152baf042b0653; full-file and canonical section hashes below bind current bytes.",
+  "read_after_base_commit": "3ce292e3711d4a954b4c6334b318590b374ba7b8",
+  "current_candidate_sections_read_after_commit": "local worktree after latest-main 3ce292e3711d4a954b4c6334b318590b374ba7b8; OS120/121 latest bytes are retained as exact prefix and candidate section/full-file hashes bind current bytes.",
   "human_decision_options": {
     "source_text": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
     "options": [
