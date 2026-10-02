@@ -351,10 +351,10 @@
   "candidate_pair": {
     "requirement_identity": "HARNESS-L2-085",
     "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-085",
-    "l2_section_sha256": "sha256:2ce51a0e67982f1fab977d4e706946ef4e8a03868a0233ec84ab9e6250dd09c7",
-    "l11_section_sha256": "sha256:d10517a83f30e8ef9653d15018771c45ecc653c862eb256b7e82d34d101b8185",
-    "l2_full_file_sha256": "sha256:c77a4be3fe02f3ca43d39e77efa24bc56bff8143954dbd9d3ba79f6a1f3a63f3",
-    "l11_full_file_sha256": "sha256:bb1715f0badf27a85b703231afa0baeb0f04a9cac5fdc6fbe41632d832978430",
+    "l2_section_sha256": "sha256:d187da4947125885c65869acdfedd4914610d56ae03f81e4bb1a667a7e9ffffb",
+    "l11_section_sha256": "sha256:ef57b7a957192f3516c5868f57c4cfa68e50605c62353197394c38dd21ee530c",
+    "l2_full_file_sha256": "sha256:9b47efea026e2afa798a42b0c0c5178aff64faaa119a986702fbb284a5ed5924",
+    "l11_full_file_sha256": "sha256:68c1969995916b90357a5d6bd3f0099ef44c05953c7a50f0d7a35ed1b32c9d3a",
     "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
   },
   "po_decision_material": {
@@ -399,10 +399,12 @@
     "consumer_ir_record_semantic_digest_checked_against_whole_source": true,
     "consumer_ir_record_projection_is_not_whole_record_snapshot": true,
     "consumer_ir_record_projected_field_count": 12,
-    "consumer_ir_record_omitted_field_count": 10
+    "consumer_ir_record_omitted_field_count": 10,
+    "nfr33_dependency_four_classes_explicit_in_l2_l11": true,
+    "nfr33_required_missing_and_reference_metadata_only_fixtures_present": true
   },
   "candidate_registration_id": "MPR-RC-HARNESS-L2-085-002",
-  "correction_reason": "Pre-review correction to registration 002: preserves portfolio-scope duplicate context-cost/drift-risk findings while pack/call use is optional; records exact fixed 010/011 L11 row SHA pins and distinct one-sided negatives; corrects 041 selected-section boundary to stop at the next same-or-higher heading (current L2 pin matches expected d689...); and states that the embedded legacy requirements record is a 12-field projection, not a full record snapshot. No whole-source closure is claimed.",
+  "correction_reason": "Pre-review correction to registration 002: preserves portfolio-scope duplicate context-cost/drift-risk findings while pack/call use is optional; records exact fixed 010/011 L11 row SHA pins and distinct one-sided negatives; corrects 041 selected-section boundary to stop at the next same-or-higher heading (current L2 pin matches expected d689...); states that the embedded legacy consumer record is a 12-field projection, not a full record snapshot; and spells out all four adopted 023 dependency classes with a missing-required-input negative and reference-metadata-only normal case. No whole-source closure is claimed.",
   "fixed_010_011_l11_row_pins": {
     "source_file": "docs/helix-harness/L11-acceptance/product-acceptance.md",
     "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -415,6 +417,43 @@
     "HARNESS-L2-011": {
       "row_number": 206,
       "row_sha256": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+    }
+  },
+  "dependency_four_class_conditions": {
+    "always_required": {
+      "fixture": "fixture:portfolio-S@r1",
+      "owner": "fixture:portfolio-owner-S",
+      "contract_revision": "fixture:portfolio-contract-S@r1",
+      "range": "r1 exact",
+      "applicability": "target scope S selected",
+      "evidence": "target portfolio/scope/revision plus selected 041/043/044 evidence needed to assess the duplicate relation"
+    },
+    "operation_specific": {
+      "identities": [
+        "HARNESS-L2-010",
+        "HARNESS-L2-011"
+      ],
+      "applicability": "only when selected operation includes/calls a pack",
+      "omission_behavior": "when pack/call operation is unselected or inapplicable, no pack/call compatibility is required and portfolio-wide finding remains evaluable"
+    },
+    "selected_source": {
+      "fixture": "fixture:contract-example-source-A@r1",
+      "owner": "fixture:source-owner-A",
+      "contract_revision": "fixture:source-contract-A@r1",
+      "range": "r1 exact",
+      "applicability": "source A explicitly selected for scope S",
+      "omission_behavior": "unselected sources remain unobserved; only findings that depend on missing selected-source evidence become unevaluated"
+    },
+    "reference_only": {
+      "sources": [
+        "legacy HIL-NFR-33 IR",
+        "legacy L1 line 213",
+        "HR-FR-HIL-20/HAC/HAT consumer context"
+      ],
+      "class": "reference_only",
+      "applicability": "legacy interpretation only",
+      "execution_compatibility": "not_applicable_for_execution",
+      "omission_behavior": "missing owner/version/range/execution metadata alone does not block portfolio evaluation"
     }
   }
 }
