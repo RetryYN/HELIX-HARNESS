@@ -351,11 +351,5 @@
       "receipt": false
     },
     "scope_note": "The candidate was first added by local commit 88336e8886a62e579049b9705c9381d2024309da, whose parent/review base is 91db17752d29c8bb8dd30a4b4bf693136bcd858f. Its absence at 91db/0e160 is ordinary unpublished-candidate state, not a deletion or authority decision. Source holding and successor status are unchanged."
-  },
-  "candidate_worktree_source_snapshot": {
-    "commit_before_local_commit": "fb15d981c",
-    "mpr_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "mpr_file_sha256": "sha256:d71befd687fc60a8e97cc341874679158c75211e1871dbffeff12743c6eddf0c",
-    "comparison_note": "This is the exact current candidate-worktree MPR bytes, including MPR-RC-HELIXOS-L2-127-001 candidate digest. latest_main_comparison remains separately pinned to exact a7f85b4 main bytes."
   }
 }
