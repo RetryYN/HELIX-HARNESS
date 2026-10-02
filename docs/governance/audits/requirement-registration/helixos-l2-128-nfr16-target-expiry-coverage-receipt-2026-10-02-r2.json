@@ -263,7 +263,7 @@
     "base_read_after": "ebad1aa406d4cb0215e589f708b2001408f03f75",
     "source_atom_identity": "complete IR HIL-NFR-16 identity; count=1; L1 line 196 corroboration only",
     "fixed_parent_l1_004": "checked against exact f6dad2 fixed file and current decision record source commit 51e170f8",
-    "main_prefix_preservation": "MPR main 675 rows through OS128-001 remain byte-identical; OS128-002 is a single appended correction revision.",
+    "main_prefix_preservation": "main91db674行のbyte prefixと、reviewed ebadの675行目OS128-001を保持。002を676行目へ単独追記。",
     "candidate_sections_rehashed_after_review_finding": true
   },
   "canonical_ir_record_pin": {
@@ -433,5 +433,11 @@
   },
   "receipt_revision": 2,
   "supersedes_receipt_id": "MPR-RCPT-HELIXOS-L2-128-NFR16-TARGET-EXPIRY-2026-10-02",
-  "correction_reason": "Revision -002 correction: preserve the reviewed revision -001 receipt byte-for-byte; separate the new decision packet and target-change outcome from the immutable r1 evidence. For choice A, a known target change yields ordinary failure for the new target; unknown target change remains on hold."
+  "correction_reason": "Revision -002 correction: preserve the reviewed revision -001 receipt byte-for-byte; separate the new decision packet and target-change outcome from the immutable r1 evidence. For choice A, a known target change yields ordinary failure for the new target; unknown target change remains on hold.",
+  "prior_receipt": {
+    "path": "docs/governance/audits/requirement-registration/helixos-l2-128-nfr16-target-expiry-coverage-receipt-2026-10-02.json",
+    "sha256": "sha256:f326562069de23330a7f3190f73004bbec3ea2767c3391cf8d975c9e8c1668e6",
+    "reviewed_content_commit": "ebad1aa406d4cb0215e589f708b2001408f03f75",
+    "preserved_byte_for_byte": true
+  }
 }
