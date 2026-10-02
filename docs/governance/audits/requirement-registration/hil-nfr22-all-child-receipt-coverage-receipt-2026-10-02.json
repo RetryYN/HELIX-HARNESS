@@ -56,19 +56,19 @@
     "digest_rule": "Each section begins at its ### heading and ends before the next ### heading or EOF; trim trailing blank lines and include one UTF-8 LF.",
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:573890dd2d1efc305c6df43022fbb9168878fc0b2472167ab0d700812df17d76",
+      "full_file_sha256": "sha256:5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
       "section_heading": "HARNESS-L2-082",
       "start_line": 1372,
       "end_line": 1382,
-      "section_sha256": "sha256:492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b"
+      "section_sha256": "sha256:6fed3818adb19d99fc1287e61546876d8b13543b21e18a8223fa8911859a54db"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:7a332aeaf61f873180a83b6bca41b2784a3bb2b12b11881865ad5f8da9427932",
+      "full_file_sha256": "sha256:15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
       "section_heading": "HARNESS-L11-082",
       "start_line": 1099,
       "end_line": 1121,
-      "section_sha256": "sha256:f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c"
+      "section_sha256": "sha256:c314d9ff50ece8eb4fedeb91c55b25c302b445796b4bf7397ce1b3f867311c82"
     }
   },
   "condition_mapping": [
@@ -223,6 +223,7 @@
     "main_mpr_lines": 676,
     "prefix_sha256": "sha256:fa37d3bf91d2ebc4a041ce685b06c760210c4da60d59a63541fecd2c152b08ea",
     "candidate_line": 677,
-    "candidate_section_digests_unchanged": true
+    "candidate_section_digests_unchanged": false,
+    "scope_clarification": "同一選択scope/prior child集合内のreceiptはrun identity差のみでは除外しない。集合外の無関係receiptは追加しない。"
   }
 }
