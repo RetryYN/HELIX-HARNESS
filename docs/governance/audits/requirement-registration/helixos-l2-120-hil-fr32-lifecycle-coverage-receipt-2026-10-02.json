@@ -1,0 +1,741 @@
+{
+  "receipt_id": "HELIXOS-L2-120-HIL-FR-32-AGENT-LIFECYCLE-2026-10-02",
+  "candidate_identity": "HELIXOS-L2-120",
+  "source_holding_registration_id": "MPR-SH-IR-003",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr32-agent-instance-lifecycle-source-lines-2026-10-02.jsonl#IR153-HIL-FR-32-AGENT-INSTANCE-LIFECYCLE",
+  "source_atom_set_digest": "sha256:1365fe9473c8d76c5ab0359eb715db5cf0ca9cf374e7e49bafb2ac95f472816d",
+  "source_atom_count": 1,
+  "source_collection_scope": "One exact IR153 HIL-FR-32 functional requirement identity and its L1 raw line. HR-FR-HIL-08/HAC-HIL-08a/b/c/HAT-HIL-08 are linked historical consumer context, recorded separately and not added as selected source atoms. This is not all HR-FR-HIL-08, all its consumers, or whole HIL-FR-32 closure.",
+  "coverage_result": "no_loss_limited_to_one_HIL-FR-32_lifecycle_requirement_line; adoption/formal-successor/source-holding release remain unassigned",
+  "carried_atom_refs": [
+    "IR153-HIL-FR-32-AGENT-INSTANCE-LIFECYCLE"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-FR-32 remains live; no formal successor, adoption, selected operation scope, or retirement is assigned.",
+    "All unselected HR/HAC/HAT and neighboring HIL requirements remain outside the candidate input."
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "candidate_l2_ref": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-120",
+  "candidate_l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L11-120",
+  "active_mpr_registration_id": "MPR-RC-HELIXOS-L2-120-001",
+  "candidate_pair_pins": {
+    "l2": {
+      "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "HELIXOS-L2-120",
+      "line_start": 1497,
+      "line_end": 1507,
+      "section_sha256": "sha256:eac3dd9d72146cf48af9b8e8371f5b8df0ddb1e792fe74c75b8c98db55646f64",
+      "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
+    },
+    "l11": {
+      "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "HELIXOS-L11-120",
+      "line_start": 1079,
+      "line_end": 1090,
+      "section_sha256": "sha256:545a2ce58b05228213c95524a2dc4fc5f24fda4ffaec6bc5b097fd455aa72348",
+      "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
+    }
+  },
+  "parent_concept_pin": {
+    "path": "docs/concept/helix-concept.md",
+    "read_after_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "full_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "meaning_boundary": "HELIX-OS is a mechanism; only HARNESS and Web have product attribute. This candidate does not add product scope or runtime behavior."
+  },
+  "parent_l1_fixed_pin": {
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_full_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "fixed_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "fixed_decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "current_full_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "parent_requirement_ids": [
+      "HELIXOS-L1-003",
+      "HELIXOS-L1-008"
+    ],
+    "decision_scope": "Fixed OS L1-003 worker delegation/execution/resume and L1-008 evidence/projection responsibilities are adopted. This does not adopt L2/L11-120 or establish its operation applicability."
+  },
+  "fixed_os_l2_l11_decision": {
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_l2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+    "fixed_l11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+    "status": "The decision adopted exact fixed L2/L11 bytes at f6; for rows 018/019/020/023 the current sections remain byte-identical to that fixed revision. This does not adopt candidate 120."
+  },
+  "current_adopted_pair_comparison": {
+    "base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "current_l2_full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
+    "current_l11_full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
+    "pairs": [
+      {
+        "identity": "HELIXOS-L2-018",
+        "status": "adopted_fixed_at_f6",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-018",
+          "line_start": 672,
+          "line_end": 681,
+          "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L2-018",
+          "line_start": 345,
+          "line_end": 351,
+          "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        },
+        "fixed_f6_section_sha256": {
+          "l2": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "l11": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+        },
+        "current_equals_fixed_section_bytes": true
+      },
+      {
+        "identity": "HELIXOS-L2-019",
+        "status": "adopted_fixed_at_f6",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-019",
+          "line_start": 682,
+          "line_end": 691,
+          "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L2-019",
+          "line_start": 352,
+          "line_end": 358,
+          "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        },
+        "fixed_f6_section_sha256": {
+          "l2": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "l11": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        },
+        "current_equals_fixed_section_bytes": true
+      },
+      {
+        "identity": "HELIXOS-L2-020",
+        "status": "adopted_fixed_at_f6",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-020",
+          "line_start": 692,
+          "line_end": 701,
+          "section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L2-020",
+          "line_start": 359,
+          "line_end": 365,
+          "section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        },
+        "fixed_f6_section_sha256": {
+          "l2": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "l11": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+        },
+        "current_equals_fixed_section_bytes": true
+      },
+      {
+        "identity": "HELIXOS-L2-023",
+        "status": "adopted_fixed_at_f6",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-023",
+          "line_start": 722,
+          "line_end": 731,
+          "section_sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L2-023",
+          "line_start": 380,
+          "line_end": 386,
+          "section_sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        },
+        "fixed_f6_section_sha256": {
+          "l2": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+          "l11": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+        },
+        "current_equals_fixed_section_bytes": true
+      },
+      {
+        "identity": "HELIXOS-L2-115",
+        "status": "unadopted_candidate",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-115",
+          "line_start": 1445,
+          "line_end": 1454,
+          "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L2-115",
+          "line_start": 1034,
+          "line_end": 1042,
+          "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        }
+      },
+      {
+        "identity": "HELIXOS-L2-118",
+        "status": "unadopted_candidate",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "HELIXOS-L2-118",
+          "line_start": 1455,
+          "line_end": 1467,
+          "section_sha256": "sha256:4e3fbf98a8c81e30d9029833fae8e7030952da5d52a266f675193b328f7a78d3",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "HELIXOS-L11-118",
+          "line_start": 1043,
+          "line_end": 1054,
+          "section_sha256": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d",
+          "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
+        }
+      }
+    ],
+    "residual": "018 provides assignment/attempt, allowed progress/stop/results and handoff, but does not state the whole instance-stage/result/verification/release sequence or quarantine/retirement terminal branch; 019 provides event provenance/checkpoint/continuity but not those lifecycle transition preconditions; 020 distinguishes CI execution outcomes, not agent instance lifecycle; 023 ensures inter-unit handoff, not intra-instance lifecycle. The residual is semantic transition/terminal coverage, not a missing old enum or runtime.",
+    "worktree_full_file_scope": "These full-file SHA values are for this candidate worktree, including HELIXOS-L2/L11-121 from main and the unmerged HELIXOS-L2/L11-120 candidate at the file tail. Adopted section hashes are compared with fixed f6 bytes; exact main 26ce bytes are separately recorded in latest_main_read_after."
+  },
+  "adjacent_candidate_boundary": [
+    {
+      "identity": "HELIXOS-L2-115",
+      "status": "unadopted candidate",
+      "scope": "One late-result rejection atom for one terminated assignment/attempt; not full worker lifecycle progression."
+    },
+    {
+      "identity": "HELIXOS-L2-118",
+      "status": "unadopted candidate",
+      "scope": "CI event-class run replacement/current-main terminal evidence; not worker instance status lifecycle."
+    },
+    {
+      "identity": "HARNESS-L2-064",
+      "status": "separate later proposal; adoption not established by reviewed PO57 record",
+      "scope": "Its receipt selects four source slices only: HIL-TR-04, HIL-FR-34 common fixture relation, HIL-NFR-09, and HIL-NFR-19. The exact HARNESS-L2-064 identity is absent from the PO57 decision matrix; no adoption is inferred from candidate preamble/MPR metadata. This supplemental subset does not establish full HIL-FR-34/HAC/HAT closure."
+    },
+    {
+      "identity": "HARNESS-L2-065",
+      "status": "separate proposal; decision status not inferred from PO57",
+      "scope": "Adapter-operation cancellation/lock failure subset; no HIL-FR-32 lifecycle guarantee."
+    }
+  ],
+  "historical_source_and_prior_audit": {
+    "source_identity": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:122; LEGACY-ASSET-719D5EC9C06FC4AAD0FF; line SHA excludes LF; exact IR #/HIL-FR-32 file SHA 80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688.",
+    "prior_condition_audit": {
+      "path": "docs/governance/audits/requirements-stage/legacy-ir-functional-source-recheck-2026-09-28.md",
+      "sha256": "sha256:1eaf6a9c97854e38f7adc52857ab5546ea656c745b5da7ace34461c75b3b134d",
+      "section": "HIL-FR-32",
+      "limitation": "Historical comparison audit; its fixed L2/L11 snapshot is not the current read-after. It deferred fixed enum/provider states to lower refinement; this candidate retains that physical boundary while proposing explicit state/terminal semantics at L2/L11."
+    },
+    "hil13_auxiliary_context": {
+      "path": "docs/governance/audits/requirements-stage/hil13-auxiliary-node-runtime-cutover-condition-audit-2026-10-01.md",
+      "sha256": "sha256:6fb80f8daf47f7598460fd52dce768add3a0e8b8c0227f405d8815b3ecd8194f",
+      "limitation": "HIL-FR-33 Node/Bun migration scope only; not HIL-FR-32 lifecycle evidence."
+    }
+  },
+  "source_vs_candidate_scope_delta": {
+    "source_exact": "Agent Lifecycle Controller manages registered→eligible→mustered→leased→running→checkpointed→completed/failed/cancelled→verified→released and has quarantined/retired terminal branches; outputs instance event, lease/heartbeat, context/result/verification receipt.",
+    "candidate_preserves": "Equivalent lifecycle stages and result/verification/release ordering; quarantine/retirement terminality; evidence-backed state progression and exact instance/assignment/attempt/revision binding; failed/cancelled remain distinct outcomes.",
+    "candidate_changes": "Maps legacy controller terminology to current OS worker operation/assignment lifecycle while retaining source stage semantics. Does not require old state strings, provider runtime, transport, JSON/receipt schema, team registry, or process implementation.",
+    "change_reason": "Current adopted OS L1-003/008 own bounded worker delegation/resume and source evidence/projection. Adopted L2-018/019/020/023 preserve adjacent assignment, evidence, execution-result and handoff duties but leave lifecycle progression/result-verification-release and quarantine/retirement branches unstated. This candidate makes only that requirement-stage semantic residual explicit.",
+    "limits": "Does not extend to unselected product/runtime or every OS operation; applicability only when current operation declares a worker lifecycle contract. Does not infer owner or requirement adoption from the old controller name."
+  },
+  "human_decision_options": [
+    {
+      "option": "A",
+      "choice": "Current OS worker-operation semantic lifecycle",
+      "meaning": "Apply the lifecycle guarantees to the complete current set of OS worker operations whose current contracts define lifecycle stages; assess that set as a whole, with no operation subset silently omitted. The operation contract maps semantic stages without fixing legacy enums.",
+      "recommendation": "Recommended; preserves HIL-FR-32 lifecycle/result/verification/release and terminal guarantees across the OS operation scope connected to fixed L1-003/008, without importing legacy mechanism or authority.",
+      "impact": [
+        "HELIXOS-L1-003/008",
+        "adopted HELIXOS-L2/L11-018/019/020/023",
+        "all currently applicable OS worker operations",
+        "unadopted candidate boundaries 115/118"
+      ]
+    },
+    {
+      "option": "B",
+      "choice": "Lower-level refinement only",
+      "meaning": "Do not add the lifecycle guarantee to L2 now; preserve the complete HIL-FR-32 atom and consumer conditions in holding pending a later lower-level refinement.",
+      "recommendation": "Use only if the PO determines generic worker lifecycle outcomes belong exclusively to lower-level refinement; keep the complete HIL-FR-32 atom and consumers in source holding. This choice removes the proposed L2 lifecycle guarantee; it does not release or retire the source.",
+      "impact": [
+        "HIL-FR-32 L2 meaning remains unresolved",
+        "OS L1-003/008 and adopted 018/019 remain unchanged"
+      ]
+    },
+    {
+      "option": "C",
+      "choice": "Selected operations only",
+      "meaning": "Apply the candidate only to the exact worker-operation identities/scopes explicitly selected in the PO decision packet. Any other operation remains out of this candidate scope and unknown for lifecycle applicability; it is not treated as non-applicable or successful.",
+      "recommendation": "Use only if the PO chooses a bounded named subset instead of the full currently applicable OS operation set; list the exact operation identities/scopes in the decision. Candidate drafting and independent review can proceed before that scope decision.",
+      "impact": [
+        "the exact operation identities/scopes selected by the PO",
+        "all unselected operations remain unknown/outside this candidate; no applicability, absence, success, or fallback is inferred",
+        "adopted L2-018/019/020/023 remain unchanged"
+      ]
+    }
+  ],
+  "adoption_boundary": "PO decision is required to adopt candidate semantics or choose applicability; faithful candidate drafting and independent review may proceed while adoption/applicability remain pending. MPR, candidate text, source receipt, and static acceptance fixtures do not adopt HELIXOS-L2/L11-120, assign a formal successor, release source holding, or authorize execution.",
+  "base_commit": "9f5d70855e34009fdd532baa9c9f3fe9dab81b08",
+  "authority_effect": "none",
+  "validation": {
+    "legacy_runtime_cli_test_ci_executed": false,
+    "candidate_fixture_execution": false,
+    "static_pin_validation_pending_after_mpr_append": true
+  },
+  "current_source_condition_whereabouts": {
+    "read_after_main": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "authority_effect": "none",
+    "fr20": {
+      "requirement_id": "HIL-FR-20",
+      "legacy_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 110,
+        "line_sha256_lf_excluded": "sha256:5396b657dea6a9ca5620e83d2757fba3c59b27fc8d1f78e79402f66015d31c3a",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-20",
+        "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "statement_semantic_digest": "sha256:222133a9de644396f35972616f71b14d07b7f1c501c737366b9a56f8f5ff5643",
+        "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01861",
+        "formal_successor_ids": [],
+        "decision_record": null
+      },
+      "historical_audit_refs": [
+        {
+          "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-correction.md",
+          "file_sha256": "sha256:99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2",
+          "lines": [
+            12,
+            21
+          ],
+          "lines_pin": [
+            {
+              "line": 12,
+              "line_sha256_lf_excluded": "sha256:df5a954d2db3961ffb05bbb263040d774181fa6fd9a9e99a62d7810c8e1626b4"
+            },
+            {
+              "line": 21,
+              "line_sha256_lf_excluded": "sha256:b885d6675bd9a4a1e8ebd1b8745667b4c543bde7d2861d43ff0fcd0cc04506b1"
+            }
+          ],
+          "role": "履歴上の原文矛盾と訂正案。旧sourceの「L1 freeze/L3 start」から、L3 freeze/後続実装停止へ意味対応し、L3起草禁止は維持しない。authority decisionではない。"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-ir-functional-source-recheck-2026-09-28.md",
+          "file_sha256": "sha256:1eaf6a9c97854e38f7adc52857ab5546ea656c745b5da7ace34461c75b3b134d",
+          "section": "HIL-FR-20",
+          "role": "過去のsource recheck。現行状態のauthorityは対象revisionのPO decisionとcurrent section bytesから再確認する。"
+        }
+      ],
+      "current_authority": {
+        "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l2_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "fixed_l11_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "authority_text_location": "lines 18-21: explicit 24-candidate set adopted, preserving version_target/applicability and agreeing to paired L11; line 52 names 023. The MPR registered_proposal/authority_effect metadata is not the adoption authority.",
+        "decision_record_line_pins": [
+          {
+            "line": 18,
+            "line_sha256_lf_excluded": "sha256:667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971"
+          },
+          {
+            "line": 52,
+            "line_sha256_lf_excluded": "sha256:6128df2a6a74cf46714fe273b8f43434985de27edde87041812eda420e0bde5e"
+          }
+        ]
+      },
+      "current_condition_destinations": {
+        "l2": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "current_file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+          "fixed_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "adopted_fixed_sections": [
+            {
+              "heading": "HARNESS-L2-012",
+              "line_start": 363,
+              "line_end": 370,
+              "section_sha256": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+              "fixed_section_sha256": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+              "current_section_sha256": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HARNESS-L2-013",
+              "line_start": 371,
+              "line_end": 378,
+              "section_sha256": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+              "fixed_section_sha256": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+              "current_section_sha256": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+              "current_bytes_match_fixed_source_revision": true
+            }
+          ],
+          "adopted_fixed_line": {
+            "line": 54,
+            "line_sha256_lf_excluded": "sha256:693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0"
+          },
+          "condition": "L2.5 separates screen Prototype applicability from technology-uncertainty PoC applicability; where non-applicable, record non-applicability, reason, decision maker, HEAD, requirement impact, and reevaluation condition. L2 requirements remain required.",
+          "current_bytes_match_fixed_source_revision": true,
+          "main_file_sha256_at_read_after": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+        },
+        "l11": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "current_file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3",
+          "fixed_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "adopted_fixed_line_pins": [
+            {
+              "line": 23,
+              "line_sha256_lf_excluded": "sha256:1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5"
+            },
+            {
+              "line": 41,
+              "line_sha256_lf_excluded": "sha256:6bea0cc9659f23db5ca5d11e38a975a5e71464257b8e8c382d4e09445448bdab"
+            },
+            {
+              "line": 42,
+              "line_sha256_lf_excluded": "sha256:9ebd98977c114559a4e7633e337ce8edb5c95e852f66b62134b167d6ffe91bdb"
+            }
+          ],
+          "condition": "L11-003 independently rejects missing Prototype agreement, unreturned PoC result, or incomplete non-applicability record; neither condition permits skipping L2 requirements or L3 freeze.",
+          "current_bytes_match_fixed_source_revision": true,
+          "main_file_sha256_at_read_after": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
+        }
+      },
+      "finding": "FR20 non-UI applicability record and fail-close condition are retained in adopted HARNESS-L2-003/012/013 and paired L11 oracle. The UI artifact/walkthrough condition remains in the historical source/correction record and is not declared whole-FR20 closure here. Old source holding remains live, formal successor ids remain empty, and no new candidate is needed solely for the non-UI gate."
+    },
+    "fr33": {
+      "requirement_id": "HIL-FR-33",
+      "legacy_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 123,
+        "line_sha256_lf_excluded": "sha256:977914711b3efcf5ecaf0b3689c858a1159069b049be636a383761a8d52c7746",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-33",
+        "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "statement_semantic_digest": "sha256:21cb2d593ce14771ea0675e9dd5e441eb2ffaa214c7e300437836f052a2b80dd",
+        "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01874",
+        "formal_successor_ids": [],
+        "decision_record": null
+      },
+      "historical_audit_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-ir-functional-source-recheck-2026-09-28.md",
+          "file_sha256": "sha256:1eaf6a9c97854e38f7adc52857ab5546ea656c745b5da7ace34461c75b3b134d",
+          "section": "HIL-FR-33",
+          "lines": [
+            83,
+            85,
+            86,
+            87,
+            88,
+            89
+          ],
+          "role": "Current-reference map and recorded requirement: examine selected active HELIX surfaces only; distinguish historical/archive with reason; preserve classified ledger/count after scope selection; do not infer Bun as current runtime or archive-only."
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/hil13-auxiliary-node-runtime-cutover-condition-audit-2026-10-01.md",
+          "file_sha256": "sha256:6fb80f8daf47f7598460fd52dce768add3a0e8b8c0227f405d8815b3ecd8194f",
+          "comparison_snapshot": "8297a0af40fd5469e447c932a6689f008b6ee11d",
+          "section": "現行L2/L11と後続PO判断; line 25 HIL-FR-33",
+          "role": "Post-index limited follow-up; it does not assert runtime execution, all-source closure, or formal successor. Its original main snapshot is historical; this receipt separately reads the exact fixed/current targets below at c7e9."
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/ir153-first60-current-whereabouts-index-2026-10-02.json",
+          "file_sha256": "sha256:54b4149feb2177dc73982808b81ed3137537c1844a35a36e7414d028a23185ad",
+          "role": "Locator only; its earlier `current_evidence: []` is superseded as a locator by the later HIL13 audit and does not prove absence of current guarantees."
+        }
+      ],
+      "current_authority": {
+        "infrastructure_decision": {
+          "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "file_sha256": "sha256:0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        },
+        "os_decision": {
+          "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        },
+        "decision_boundary": "Decisions fix exact L2/L11 bytes and their listed scopes. They do not assign HIL-FR-33 a formal successor or select Node/Bun as current runtime. MPR state is not the decision authority."
+      },
+      "current_condition_destinations": {
+        "infrastructure_l2": {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "current_file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "fixed_file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "adopted_fixed_sections": [
+            {
+              "heading": "HELIXINFRASTRUCTURE-L2-001",
+              "line_start": 32,
+              "line_end": 41,
+              "section_sha256": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+              "fixed_section_sha256": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+              "current_section_sha256": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXINFRASTRUCTURE-L2-003",
+              "line_start": 52,
+              "line_end": 61,
+              "section_sha256": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+              "fixed_section_sha256": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+              "current_section_sha256": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXINFRASTRUCTURE-L2-010",
+              "line_start": 126,
+              "line_end": 135,
+              "section_sha256": "sha256:c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+              "fixed_section_sha256": "sha256:c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+              "current_section_sha256": "sha256:c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+              "current_bytes_match_fixed_source_revision": true
+            }
+          ],
+          "historical_crosswalk_lines": [
+            32,
+            52,
+            126
+          ],
+          "condition": "Environment/runtime resource boundaries and worker-operation/security responsibility are current refs; these sections do not inventory Bun across all active surfaces or select Node/Bun.",
+          "current_bytes_match_fixed_source_revision": true,
+          "main_file_sha256_at_read_after": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+        },
+        "os_l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "current_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
+          "fixed_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "adopted_fixed_sections": [
+            {
+              "heading": "HELIXOS-L2-018",
+              "line_start": 672,
+              "line_end": 681,
+              "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+              "fixed_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+              "current_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXOS-L2-019",
+              "line_start": 682,
+              "line_end": 691,
+              "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+              "fixed_section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+              "current_section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXOS-L2-020",
+              "line_start": 692,
+              "line_end": 701,
+              "section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+              "fixed_section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+              "current_section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+              "current_bytes_match_fixed_source_revision": true
+            }
+          ],
+          "condition": "018 assignment/attempt, lease, stop and handoff; 019 event provenance/evidence/continuity; 020 workflow acceptance/CI state boundaries. These hold nearby operation/evidence semantics, not full Bun active-surface inventory or runtime cutover.",
+          "current_bytes_match_fixed_source_revision": true,
+          "main_file_sha256_at_read_after": "sha256:e1555b59985fd98e38a7cc732a432f4a95650751e904c2a43f25bd0217b9f95c"
+        },
+        "os_l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "current_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
+          "fixed_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "adopted_fixed_sections": [
+            {
+              "heading": "HELIXOS-L2-018",
+              "line_start": 345,
+              "line_end": 351,
+              "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+              "fixed_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+              "current_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXOS-L2-019",
+              "line_start": 352,
+              "line_end": 358,
+              "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+              "fixed_section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+              "current_section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+              "current_bytes_match_fixed_source_revision": true
+            },
+            {
+              "heading": "HELIXOS-L2-020",
+              "line_start": 359,
+              "line_end": 365,
+              "section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+              "fixed_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+              "current_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+              "current_bytes_match_fixed_source_revision": true
+            }
+          ],
+          "condition": "Receipt and evidence/continuity acceptance boundaries only; no Bun migration or runtime selection.",
+          "current_bytes_match_fixed_source_revision": true,
+          "main_file_sha256_at_read_after": "sha256:aba09bcbe051d7d6ddf45ee09c076e381bbd4a025f98fafb6639217cea46c2b7"
+        }
+      },
+      "finding": "The selected-scope active/historical classification and visible unanalysed count remain a requirement to preserve after target selection. Current fixed L2/L11 references do not establish whole FR33 closure, Bun as current runtime, Bun as archive-only, a cutover target, or a formal successor. This unresolved scope/target is recorded rather than converted into a new candidate or a claim that source conditions are absent."
+    }
+  },
+  "harness_023_dependency_authority": {
+    "current_read_after_main": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "current_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "fixed_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_lines": [
+        18,
+        52
+      ],
+      "line_pins": [
+        {
+          "line": 18,
+          "line_sha256_lf_excluded": "sha256:667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971"
+        },
+        {
+          "line": 52,
+          "line_sha256_lf_excluded": "sha256:6128df2a6a74cf46714fe273b8f43434985de27edde87041812eda420e0bde5e"
+        }
+      ],
+      "authority": "Line 18 adopts all explicit candidate sets preserving version_target/applicability and the paired L11 set; line 52 names HARNESS-L2-023. The table MPR state registered_proposal/authority_effect=none is registration metadata and does not override the PO decision."
+    },
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "current_file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5",
+      "fixed_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "fixed_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "current_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "section": {
+        "heading": "HARNESS-L2-023",
+        "line_start": 463,
+        "line_end": 498
+      },
+      "current_bytes_match_fixed_source_revision": true
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "current_file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3",
+      "fixed_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "fixed_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "section": {
+        "heading": "HARNESS-L2-023",
+        "line_start": 219,
+        "line_end": 234
+      },
+      "current_bytes_match_fixed_source_revision": true
+    },
+    "adopted_semantics": "The four dependency classes are inherited into OS120 as a semantic sorting rule for lifecycle inputs. It cannot imply adoption of OS120 or transfer HARNESS authority."
+  },
+  "po57_064_scope_check": {
+    "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+    "read_after_main": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
+    "result": "The PO57 record fixes an explicit 57-identity matrix; HARNESS-L2-064 and HARNESS-L2-065 are not identities in that matrix. The later 064 proposal receipt identifies four selected source slices (TR-04, FR-34 common fixture relation, NFR-09, NFR-19). Neither the later candidate preamble nor MPR registered_proposal metadata is an adoption decision; current adoption of this later revision is not claimed here."
+  },
+  "latest_main_read_after": {
+    "commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "meaning": "The main snapshot is distinct from this unmerged candidate worktree. Candidate pins/current pair full-file pins describe local bytes; these entries pin exact main bytes. Historical fixed source revisions and original receipt base remain unchanged.",
+    "main_files": {
+      "os_l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_file_sha256": "sha256:e1555b59985fd98e38a7cc732a432f4a95650751e904c2a43f25bd0217b9f95c"
+      },
+      "os_l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_file_sha256": "sha256:aba09bcbe051d7d6ddf45ee09c076e381bbd4a025f98fafb6639217cea46c2b7"
+      },
+      "h_l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+      },
+      "h_l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
+      },
+      "infra_l2": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "full_file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+      }
+    },
+    "adopted_os_sections": {
+      "l2": {
+        "HELIXOS-L2-018": {
+          "line_start": 672,
+          "line_end": 681,
+          "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+        },
+        "HELIXOS-L2-019": {
+          "line_start": 682,
+          "line_end": 691,
+          "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+        },
+        "HELIXOS-L2-020": {
+          "line_start": 692,
+          "line_end": 701,
+          "section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a"
+        },
+        "HELIXOS-L2-023": {
+          "line_start": 722,
+          "line_end": 731,
+          "section_sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020"
+        }
+      },
+      "l11": {
+        "HELIXOS-L2-018": {
+          "line_start": 345,
+          "line_end": 351,
+          "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+        },
+        "HELIXOS-L2-019": {
+          "line_start": 352,
+          "line_end": 358,
+          "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        },
+        "HELIXOS-L2-020": {
+          "line_start": 359,
+          "line_end": 365,
+          "section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+        },
+        "HELIXOS-L2-023": {
+          "line_start": 380,
+          "line_end": 386,
+          "section_sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
+        }
+      }
+    }
+  }
+}

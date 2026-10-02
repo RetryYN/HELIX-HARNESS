@@ -43,7 +43,8 @@ No runtime, external source, old HAT, old test, CI, or CLI was run. These are ca
 
 ## Revision pins
 
-- Base read: `26ce66202f7a57230093701fc90abb2f9f1c355f`.
+- Initial drafting base: `26ce66202f7a57230093701fc90abb2f9f1c355f`; pre-latest-main candidate commit: `51edcb3e8f304cef4ee00f41dd935adca4bd6840`.
 - Parent L1: decision-fixed commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, exact SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`; the bytes match at the base.
-- Current candidate section digests, full-file pins, supplemental ledger pin, and MPR revision are recorded in the paired receipt and append-only register revision `MPR-RC-HELIXOS-L2-112-002`.
+- Latest-main read-after base: `cf159dffea3d6539ed3b8f5637152baf042b0653` (contains OS120/121 and their existing register revisions). At that base, OS L2 full-file SHA-256 is `c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a`, L11 full-file SHA-256 is `b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76`, and the MPR register prefix has 663 rows with SHA-256 `a228d2bfa92315da4b8d63d6d800a65c79636fc1a9d5a883bdf2b8a837898c72`. The 112 section digests remain `86574d236aeaeeba0b0ee5169b9165e5570e45a323bdb28058b888dff398b0d3` (L2) and `4f54c6ec5948b73eb692377f616024ff96e1d7a0c6b044955ae4b20ff0b585c9` (L11); the main additions did not alter either 112 section.
+- The paired receipt records the latest-main comparison and full-file read-after pins. The append-only register preserves the exact 663-row prefix from `cf159dff` and appends only `MPR-RC-HELIXOS-L2-112-002` after it.
 - Prior receipt `...-001`, MPR revision `...-001`, original source-lines ledger, fixed-source hashes, and historical audits are preserved as their point-in-time records.
