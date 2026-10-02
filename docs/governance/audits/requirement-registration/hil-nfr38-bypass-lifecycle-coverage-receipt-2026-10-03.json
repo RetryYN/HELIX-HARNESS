@@ -441,7 +441,7 @@
     "option_B": {
       "scope": "all headless delegation operations including primary Worker",
       "basis": "read HIL-NFR-38 line 218 and HR-FR-HIL-23 line 57 as primary-inclusive for these four clauses after explicit PO selection.",
-      "operational_impact": "If selected, primary-Worker headless runs selecting bypass-related settings must meet all four candidate conditions. This has not been selected and creates no current lane prohibition or candidate pass/fail."
+      "operational_impact": "If selected, a primary Worker runtime with an explicit allowlist must use that allowlist; choosing YOLO/bypass/auto-approve as its alternative fails this candidate oracle and the affected operation is rejected or held. Thus current lane operations using such settings could require configuration changes and cleanup/deny evidence. No such selection or current lane prohibition is inferred before PO decision."
     },
     "decision_57_row_112": {
       "locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:112",
@@ -461,5 +461,10 @@
       "impact": "If PO means OS takes repository deny/allowlist policy decision responsibility, that changes current SECURITY L1 responsibility and requires an explicit L1-aligned PO choice. If policy/authority remains with SECURITY while this requirement is located under OS, OS operates only under SECURITY-owned conditions; this narrows the meaning of historical OS-only placement to requirement location/operation and records a SECURITY policy dependency. PO must select the intended meaning; neither interpretation is inferred from the legacy route."
     },
     "authority": "These are proposed placement alternatives only; current OS routing and crosswalk entries have no adoption effect, and neither choice changes operation authority or adopted 032 precedence by itself."
+  },
+  "current_main_comparison": {
+    "commit": "638d61496e44d676e2499acc717c39b6b7f804c2",
+    "register_prefix_rows": 693,
+    "meaning": "Merged NFR32 OS001 candidate is preserved. NFR38 remains an unadopted corrected candidate; old source/decision/parent pins remain fixed and unchanged."
   }
 }
