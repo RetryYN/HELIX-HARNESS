@@ -18,24 +18,24 @@
   "candidate_pair": {
     "l2_identity": "HELIXOS-L2-127",
     "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-    "l2_line": 1575,
+    "l2_line": 1593,
     "l2_section_sha256": "sha256:fb3515f9653d3bb9d68fd08c428da1393d30cde1ee82ecb6cbba33b637d160cb",
     "l11_identity": "HELIXOS-L11-127",
     "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-    "l11_line": 1208,
+    "l11_line": 1227,
     "l11_section_sha256": "sha256:ff7e8ac4b754c208bc08491eaec1ecd8232fc1a20a42a62e1f70a2f5aec9a49a",
     "section_digest_rule": "UTF-8 exact bytes from candidate heading through before next same-or-higher heading; remove trailing blank lines and end with one LF.",
-    "l2_full_file_sha256": "sha256:66e0eebc8c1bcad533085e9744e276dcc66b191092d2a19c5387d8bdafb6d7e5",
-    "l11_full_file_sha256": "sha256:0b362847b655656ea006b9989aa4ecb081a8c800bc8452e7713b67824e029cb2",
+    "l2_full_file_sha256": "sha256:90cba8d0712ea30570b856ee496ab3d8a5c932c8b61fa8a4e1dfd451d27670cf",
+    "l11_full_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
     "source_lines_file": "docs/governance/audits/requirement-registration/hil-nfr15-ci-receipt-lineage-source-lines-2026-10-02.jsonl",
     "source_lines_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
     "source_atom_set_digest_rule": "SHA-256 of UTF-8 `HIL-NFR-15 ` + statement semantic digest without `sha256:` + LF. Exactly the IR identity is selected; L1 corroborates the same wording; HR/HAC/HAT/HST are consumer context.",
     "source_atom_set_digest": "sha256:65125cfa1dfec63bee1c0ed26faf32d5b3c5ab3ef06c52234ec9bd3b27d65628",
     "raw_l1_line_hash_method": "L1 source line without-LF removes exactly one trailing LF (and CR only if CRLF); separate with-LF hash is retained.",
     "source_atom_set_file_sha256": "sha256:0327f8c8cf10854d856772fcb503ef5a9051c78ce3cb026defef0eaa6d569427",
-    "l2_section_end_line_exclusive": 1588,
+    "l2_section_end_line_exclusive": 1606,
     "l2_heading": "### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）",
-    "l11_section_end_line_exclusive": 1229,
+    "l11_section_end_line_exclusive": 1248,
     "l11_heading": "### HELIXOS-L11-127 選択されたCI依存段間のreceipt lineage",
     "latest_main_comparison_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1"
   },
@@ -351,5 +351,11 @@
       "receipt": false
     },
     "scope_note": "The candidate was first added by local commit 88336e8886a62e579049b9705c9381d2024309da, whose parent/review base is 91db17752d29c8bb8dd30a4b4bf693136bcd858f. Its absence at 91db/0e160 is ordinary unpublished-candidate state, not a deletion or authority decision. Source holding and successor status are unchanged."
+  },
+  "root_integration": {
+    "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "main_register_prefix_lines": 680,
+    "candidate_append_line": 681,
+    "meaning": "latest main full L2/L11/register byte prefixes preserved; unchanged candidate sections appended after existing content; fixed snapshot comparisons remain historical."
   }
 }
