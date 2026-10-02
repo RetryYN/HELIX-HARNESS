@@ -414,8 +414,8 @@
     "source_audit_snapshot": {
       "path": "docs/governance/audits/requirement-registration/hil-nfr24-27-source-condition-current-audit-2026-10-02.json",
       "sha256": "b2903a20373fbcda44dea29bc39725ababc2d300b7b45f13b894bb98eca2354a",
-      "historical_base_commit": "6bdda5b7aa8bab784210e9ac0eaa3c94f69372cc",
-      "role": "2026-10-02時点のimmutable source audit contextのみ。現在の002候補sectionのpinまたは検証証拠ではない。"
+      "role": "2026-10-02時点のimmutable source audit contextのみ。現在の002候補sectionのpinまたは検証証拠ではない。",
+      "source_snapshot_revision": "d2370188b9f05d67fac700266131c5a81e06055a"
     },
     "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
     "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
