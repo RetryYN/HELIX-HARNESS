@@ -1508,3 +1508,12 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 - **既存候補との境界**：HARNESS-L2-067は選択source内のatomic behavior atomization、081は宣言scope内の全量列挙と判断trace、082はsource／extractor変更時の全child receipt stale化をそれぞれ候補として扱う。状態は各自の登録・判断から読み、本候補から採択済みとは推定しない。088はFR16のexact source集合、Git ref namespaceとA/B一致、機能ごとの四disposition、HEAD/tag peelの分母除外と証拠、未判断0の組を保存する。これらの一般条件を重複起草しないが、既存候補の存在もFR16固有条件を代替しない。HELIXOS-L2/L11-123はHIL-BR-14の別IR identityを対象とする未採択候補で、BR14のscope、MPR登録、authority receipt、source集合、disposition、採択をFR16へ流用しない。OSが持つauthority/provenance evidenceはHARNESS comparison/oracleへ入力される候補根拠であり、OSの候補登録を実外部取得・実採否・FR16 closureと扱わない。
 - **旧sourceとの差分・人の意味判断**：旧IRの全条件を保持し、repository数・namespace・対象sourceを狭めず、方式・固定件数・外部接続を新設しない。歴史的source routingではHIL-FR-16をOS単独targetとするassessmentが残る一方、Conceptと固定HARNESS-L1は工程・要求・検証契約をHARNESS、authority／状態／証拠の運転と管理をOSへ分ける。ここでは機能比較とdispositionの意味責務をHARNESS候補、source authority／provenance記録を既存OS責務として提案するが、旧routingとの責任差を正式decisionやsuccessor assignmentへ変換しない。POが扱う場合の材料は、A) 全source範囲の機能比較／四disposition oracleをHARNESS、authority観測・provenance custodyをOSとする（推奨候補）、B) source holdingを維持しowner意味を未選択のままにする、C) 明示した責務境界を人が別途指定する、の三案である。Aを本候補・MPR・fixtureが選択したとは扱わない。
 - **保持・限界**：MPR-SH-IR-003#HIL-FR-16はpreserved_pending_rehomeのまま保持し、successor_requirement_idsを空のままにする。旧source全体のformal successor、HR/HAC/HAT consumer closure、実物source取得、採否判断、全資産回収、実装・実行・test・CI、要求受入を主張しない。旧remote、旧CLI、runtime、test、CIを実行しない。candidate oracleは静的な判断材料で、未実行である。
+
+### HARNESS-L2-088 scope解釈のPO選択肢（未決材料）
+
+旧HIL-FR-16の原文は現行HELIX、ZIP、前身repository exact 2件をこのAsset Inventoryの対象に列挙するが、exact 2件を全HARNESS案件の常時必須入力とするか、FR16の比較能力を別案件の選択sourceにも再利用できる一般能力と読むかは定めていない。この未決意味を勝手に確定せず、候補本文の原文由来scope（今回列挙された全sourceとexact 2件）を保持したまま、PO判断材料として次を示す。
+
+- **A — 今回の旧資産引継ぎに限定**：current HELIX、ZIP、exact 2 predecessorは、このHIL-FR-16の旧資産比較に限るscopeとする。別案件で同じ機能を使う場合のsource selection capabilityは本候補から導かない。旧原文の列挙を守るが、一般利用能力の範囲は残らない。
+- **B — 案件ごとの選択sourceを扱える比較能力（推奨候補）**：比較能力は案件ごとに選択されたsource scopeを扱う候補とし、このHIL-FR-16のsource条件およびfixtureではcurrent HELIX、ZIP、exact 2 predecessorを固定対象として保持する。exact 2件はこの旧source照合の具体対象であり、他の案件すべてへ一律必須としない。再利用可能な範囲を示せる一方、一般能力への拡張は旧FR16の列挙だけでは確定しない。
+
+影響はHARNESS-L2-088の適用scope、source選択の再利用範囲、及び各案件でsource completenessを主張できる条件である。Bを推奨材料として記録するが、候補、fixture、receipt、MPRはA/Bを選択せず、どちらも採択・successor・外部source取得許可にしない。exact 2件を本文から削除したり、逆にあらゆるHARNESS案件の条件へ一般化したりせず、意味は未決のまま保持する。

@@ -131,26 +131,26 @@
   },
   "candidate_pair": {
     "L11": {
-      "full_file_sha256": "89e4db605034d74f5586dd0bbb19be78d7b369e0b4e1cb07d7b89d07dc982fdd",
+      "full_file_sha256": "c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
       "line_range": [
         1278,
-        1301
+        1310
       ],
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "section_sha256": "52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea",
-      "selector": "HARNESS-L2-088 through next same-or-higher heading (currently EOF; any later heading is excluded)"
+      "section_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+      "selector": "元のL11 HARNESS-L2-088候補節と文末scope解釈追補の複合候補。詳細はcandidate_pair_partsを参照。"
     },
     "L2": {
-      "full_file_sha256": "6e85fba6133d246ccb1b975338eb64ce1c7c8c01ffed9b8bec927226328f540c",
+      "full_file_sha256": "8aa2cb4d0db102f3341dccf0dc82ebd7a31ee0f7ce738c8e5ab4457184fe32a8",
       "line_range": [
         1500,
-        1510
+        1519
       ],
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "section_sha256": "7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b",
-      "selector": "HARNESS-L2-088 through next same-or-higher heading (currently EOF; any later heading is excluded)"
+      "section_sha256": "sha256:71169ac7c8d6d0cfd4b0fd6d6e6768bae72fe481c42a3dae05f3cdef23f11861",
+      "selector": "元のL2 HARNESS-L2-088候補節と文末scope解釈追補の複合候補。詳細はcandidate_pair_partsを参照。"
     },
-    "section_digest_rule": "Trim trailing blank lines and append one LF. Separate L2/L11 section pins, no multipart concatenation. MPR candidate_semantic_digest is the L2 section hash."
+    "section_digest_rule": "各sideのdigestはcandidate_pair_partsに記載する順序付き2-part composite。full-file SHAは文書全体の現在bytesをpinする。"
   },
   "execution_boundary": {
     "adoption_claim": false,
@@ -253,7 +253,7 @@
     "legacy_L1_line_106": "same statement corroboration, not second atom; raw row hash is in source ledger"
   },
   "source_holding": "MPR-SH-IR-003#HIL-FR-16 remains preserved_pending_rehome; successor_requirement_ids stays empty.",
-  "status": "candidate_only_unadopted_static_source_condition_mapping",
+  "status": "候補のscope解釈を追補。FR16原文条件は保持し、PO判断は未決。採択・authorityなし。",
   "latest_main_comparison": {
     "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
     "register_prefix_line_count": 702,
@@ -263,11 +263,88 @@
     "candidate_registration_line": 703,
     "candidate_l2_section_lines": [
       1500,
-      1510
+      1519
     ],
     "candidate_l11_section_lines": [
       1278,
-      1301
-    ]
-  }
+      1310
+    ],
+    "candidate_l2_composite_sha256": "sha256:71169ac7c8d6d0cfd4b0fd6d6e6768bae72fe481c42a3dae05f3cdef23f11861",
+    "candidate_l11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+    "candidate_pair_composite_sha256": "sha256:51ff3cc326b8bf31d6cae6db9c7649004f8bbf7718bbb1621f34c5f64b21c749",
+    "candidate_l2_full_file_sha256": "sha256:8aa2cb4d0db102f3341dccf0dc82ebd7a31ee0f7ce738c8e5ab4457184fe32a8",
+    "candidate_l11_full_file_sha256": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
+    "candidate_l2_section_lines_label": "L2既存候補節から末尾追補までの連続範囲。個別part境界はcandidate_pair_partsに記録。",
+    "candidate_l11_section_lines_label": "L11既存候補節から末尾追補までの連続範囲。個別part境界はcandidate_pair_partsに記録。"
+  },
+  "scope_interpretation_decision_material": {
+    "status": "unresolved; no option selected",
+    "source_basis": {
+      "identity": "HIL-FR-16",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-16",
+      "meaning": "原文は今回のAsset Inventoryに現行HELIX、ZIP、前身repository exact 2件を列挙するが、比較能力をこの旧資産引継ぎだけに限るか、案件ごとに選択するsource集合へ再利用できる一般能力とするかは定めていない。"
+    },
+    "options": [
+      {
+        "option": "A: 今回の旧資産引継ぎのみ",
+        "meaning": "列挙された現行HELIX、ZIP、exact 2 predecessorは、このHIL-FR-16比較だけへ適用する。任意のHARNESS案件で再利用できるsource選択能力は、この候補から導かない。",
+        "impact": "FR16の列挙scopeを保つが、一般利用の範囲は候補外に残る。"
+      },
+      {
+        "option": "B: 案件ごとの選択sourceを扱える比較能力",
+        "meaning": "比較能力は案件ごとに選択されたsource scopeを扱う候補とする。このFR16候補とfixtureでは旧原文にある現行HELIX、ZIP、exact 2 predecessorを固定対象として保持する。",
+        "impact": "exact 2 predecessorをすべてのHARNESS案件に一律必須としない再利用解釈を示す。ただし一般化はFR16単独から確定しない。"
+      }
+    ],
+    "recommendation": "Bを候補解釈として推奨する。HIL-FR-16が明示する全sourceを保持しつつ、根拠のない全案件共通のexact-2条件を避けるためである。これはPO判断ではない。",
+    "decision_boundary": "候補本文、fixture、receipt、MPRはA/Bを選択しない。原文source scope、source atom、FR16の全条件は保持する。採択、formal successor、source取得、実行許可を生成しない。"
+  },
+  "candidate_digest_rule": "各sideについて、選択partの末尾空行を除き、UTF-8・LF改行・末尾LF一つへ正規化する。記載順に正規化partを追加のLF一つで区切って連結する。L2とL11は個別にpinし、pair digestはL2 composite bytes、NUL byte、L11 composite bytesの順のSHA-256とする。既存候補節bytesは不変で、各scope追補を文書末尾へ独立見出しで追加する。",
+  "candidate_semantic_digest": "sha256:71169ac7c8d6d0cfd4b0fd6d6e6768bae72fe481c42a3dae05f3cdef23f11861",
+  "candidate_pair_parts": {
+    "rule": "各sideは既存HARNESS-L2/L11-088候補節と文末scope解釈追補で構成する。各partの末尾空行を除き、LF改行と末尾LF一つへ正規化して、part間を追加LF一つで区切る。既存本文と既存行位置は不変。",
+    "L2": [
+      {
+        "order": 1,
+        "selector": "### HARNESS-L2-088 全source authorityから機能単位の採否記録までを閉じる候補（未採択）（次の同位以上の見出し直前まで）",
+        "lines": [
+          1500,
+          1511
+        ],
+        "sha256": "sha256:7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b"
+      },
+      {
+        "order": 2,
+        "selector": "### HARNESS-L2-088 scope解釈のPO選択肢（未決材料）（次の同位以上の見出し直前まで）（現在はEOFまで）",
+        "lines": [
+          1512,
+          1519
+        ],
+        "sha256": "sha256:a8cdc278b7f445d4caf784e62e1aa288ae14a81ab076a132a9571d786667a9eb"
+      }
+    ],
+    "L11": [
+      {
+        "order": 1,
+        "selector": "### HARNESS-L2-088 全source authorityから機能単位の採否記録を検査する受入候補（未採択・未実行）（次の同位以上の見出し直前まで）",
+        "lines": [
+          1278,
+          1302
+        ],
+        "sha256": "sha256:52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea"
+      },
+      {
+        "order": 2,
+        "selector": "### HARNESS-L2-088 scope解釈の受入境界（PO未決）（次の同位以上の見出し直前まで）（現在はEOFまで）",
+        "lines": [
+          1303,
+          1310
+        ],
+        "sha256": "sha256:b6469cb77bbee91d7a9325bd1444a800fe0da84055342119f44692b7ec878f9d"
+      }
+    ],
+    "L2_composite_sha256": "sha256:71169ac7c8d6d0cfd4b0fd6d6e6768bae72fe481c42a3dae05f3cdef23f11861",
+    "L11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f"
+  },
+  "candidate_pair_composite_sha256": "sha256:51ff3cc326b8bf31d6cae6db9c7649004f8bbf7718bbb1621f34c5f64b21c749"
 }

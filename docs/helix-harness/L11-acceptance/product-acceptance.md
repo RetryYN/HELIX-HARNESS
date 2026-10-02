@@ -1299,3 +1299,12 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 | 参照資料のみ | archive:HR-FR-HIL-09+HAC-HIL-09a/b/c+HAT-HIL-09 | fixture-owner:historical-context | archive source revisionsはledger記録のrevision | archive source revisionsのみ | source ledger内の原文locator／digestをcontextとして照合した記録。execution compatibilityは主張しない | 背景参照のみ。依存closure・authority・oracleに使わない |
 
 本fixtureの6欄は行ごとにidentity、owner、contract revision、宣言されたversion range、互換性証拠、適用条件を分ける。これらのmock値は現行実owner／実契約／実version rangeを選ばない。ZIP/ref適用性やsource meaningがunknownなら表のmock値で実入力を補わず、未完とする。archive contextがreference-onlyだからといって、選択source、HARNESS oracleまたはOS authorityをreference-onlyへ落とさない。正常fixtureのすべての選択依存は上記固定HARNESS contract revisionと明示的なfixture compatibility evidenceを持つ。各contract revision、range、evidence、applicabilityのいずれかを単独で欠落・誤値にした場合は、その依存をunknown／未完とする（各欄が分かる例を個別に作り、成功fixtureの別欄で補わない）。
+
+### HARNESS-L2-088 scope解釈の受入境界（PO未決）
+
+上のfull-scope正常fixtureがcurrent HELIX、ZIP、exact predecessor A/Bを含むのは、旧HIL-FR-16が列挙する今回の対象を表すためである。このfixtureは「任意のHARNESS案件が常にexact 2 predecessorを使う」という一般条件を検証しない。原文はFR16の列挙対象を定めるが、比較能力の将来の再利用scopeまでは定めない。意味を確定しないPO判断材料は次の通り。
+
+- **A — この旧資産比較だけに適用**：今回のfixture tupleとFR16候補だけにcurrent HELIX、ZIP、exact predecessor A/Bを固定する。別案件のsource selection capabilityは候補範囲外に残す。
+- **B — 案件ごとのselected-source能力として扱う（推奨候補）**：一般の比較能力は案件ごとに選んだsource scopeを扱う候補とし、このFR16 fixtureでは旧原文どおりcurrent HELIX、ZIP、exact predecessor A/Bを固定する。exact 2件を他案件の一律必須条件にしない。再利用scopeを明らかにするが、一般化はFR16単独から確定しない。
+
+どちらの選択肢もfixtureのexact 2 tuple、A/B二重観測、全ref・ZIP範囲、機能disposition、未判断0の既存oracleを削除・弱化・採択しない。この追補はPO選択肢と影響を示す判断材料であり、fixture結果からA/B、候補採択、一般source authority、外部取得または実行を生成しない。
