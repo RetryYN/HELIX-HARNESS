@@ -6,10 +6,10 @@
   "candidate_kind": "connection",
   "l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
   "l2_section_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
-  "l2_section_digest_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
+  "l2_section_digest_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
   "l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
   "l11_section_digest": "sha256:a93d6a2590560fd93572cdae326430081c93dd53c9c3b68165fb621eb2ad5c8f",
-  "l11_section_digest_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
+  "l11_section_digest_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
   "source_atom_set_digest": "sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4",
   "source_atom_set_digest_rule": "atom_id昇順。各atomの `atom_id SP source_semantic_digest（sha256:を除く） LF` をUTF-8で連結してSHA-256。source_semantic_digestは各選択identityのstatement.semantic_digestを使い、identity object全体のsemantic_digestは使わない。",
@@ -107,7 +107,6 @@
     "tombstone, stale/freshness and schema-drift boundaries",
     "redaction/minimization and negative oracle preventing current/watermark advancement",
     "selected freshness SLA and retention policy references, with no new numeric values inferred",
-    "HIL-BR-15 six roles have separate selected-consumer mapping and failure/unknown fixture conditions; actual owner, consumer set, role applicability, schema, business mapping and adoption remain unresolved.",
     "HIL-BR-15 six roles have separate selected-consumer mapping and failure/unknown fixture conditions; actual owner, consumer set, role applicability, schema, business mapping and adoption remain unresolved."
   ],
   "version_target": "2.0 candidate only; crosswalk placement proposal, not PO decision",
@@ -161,7 +160,8 @@
     "Latest comparison base is 3ce292e3711d4a954b4c6334b318590b374ba7b8. Its 664-row register prefix is exact; the final unshared tree contains only MPR-112-002 after that prefix. No separate MPR-003 is created.",
     "Final unshared r2 candidate includes Japanese human-facing audit text, a concrete synthetic normal fixture with six independent consumer identities/revisions/mapping edges/lineage, a separate normal fixture with explicit owner-declared non-applicable roles, and role-specific missing-edge, wrong-revision and unknown-owner outcomes.",
     "Supplemental source-condition ledger now says explicitly that it does not increment or alter the existing four-atom source set. Original BR15 source statement/line, atom set, MPR-001 and receipt-001 are unchanged.",
-    "Latest comparison base is 3ce292e3711d4a954b4c6334b318590b374ba7b8. Its 664-row register prefix is exact, followed by the sole unshared corrected MPR-112-002 row. No MPR-003 or receipt r3 is created."
+    "Latest comparison base is 3ce292e3711d4a954b4c6334b318590b374ba7b8. Its 664-row register prefix is exact, followed by the sole unshared corrected MPR-112-002 row. No MPR-003 or receipt r3 is created.",
+    "Post-merge receipt correction: normalized current section digest rule descriptions to the canonical next same-level-or-higher Markdown heading boundary; the historical local snapshot wording and pins remain unchanged. Exact recomputation at current and historical snapshots preserves the recorded digests. Removed one duplicated BR15 residual description."
   ],
   "source_semantic_digest_definition": "各atomのsource_semantic_digestは、source_identityで特定したrequirements.json objectのstatement.semantic_digest。source_pointerは同じidentityのstatement objectを指し、source_semantic_digest_pointerはそのsemantic_digest field、source_text_pointerはstatement.text fieldを指す。",
   "source_record_semantic_digest_definition": "source_record_semantic_digestはidentity root objectのsemantic_digestであり、statement.semantic_digestとは異なる別digest。",
@@ -220,7 +220,7 @@
       "base_sha256": "sha256:37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
       "base_section_digest": "sha256:6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6",
       "section_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
-      "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended."
+      "section_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended."
     },
     "candidate_l11_file": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -228,7 +228,7 @@
       "base_sha256": "sha256:adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4",
       "base_section_digest": "sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99",
       "section_digest": "sha256:a93d6a2590560fd93572cdae326430081c93dd53c9c3b68165fb621eb2ad5c8f",
-      "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended."
+      "section_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended."
     },
     "source_atom_file": {
       "path": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
