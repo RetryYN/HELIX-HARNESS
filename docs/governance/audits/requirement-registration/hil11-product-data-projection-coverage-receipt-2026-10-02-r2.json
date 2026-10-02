@@ -125,8 +125,8 @@
     "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-112",
     "docs/governance/audits/requirements-stage/hil11-product-data-projection-residual-candidate-record-2026-10-02.md"
   ],
-  "candidate_base_commit": "3ce292e3711d4a954b4c6334b318590b374ba7b8",
-  "candidate_base_register_sha256": "sha256:a1fe5c423158f8dce0cbdf78069d8337168ac7a9e41c86d8e6da014467c15a04",
+  "candidate_base_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
+  "candidate_base_register_sha256": "sha256:11c97569e7737a80f8e83a1420b801602048d3cbd3f99dbe99ca2dea79088afe",
   "parent_concept_revision": "docs/concept/helix-concept.md@1cd77015081b87d5bcde7d5e45ee4e0a227e02c2 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed bytes; candidate adoption not inherited)",
   "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 fixed/adopted L1 target; this does not adopt HELIXOS-L2-112/L11)",
   "registration_id": "MPR-RC-HELIXOS-L2-112-002",
@@ -137,7 +137,7 @@
     "HIL11-IR-FR24",
     "HIL11-IR-NFR17"
   ],
-  "parent_planning_current_main_check": "d31a4c8500d131001dc349bfbdfde82fb0b46839; docs/helix-os/L1-planning/system-intent.md SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e, byte-equal to decision-fixed target",
+  "parent_planning_current_main_check": "606bb1fa04eeb1512e665fb52a2a10c689056d64; docs/helix-os/L1-planning/system-intent.md SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e, byte-equal to the decision-fixed target at latest comparison base.",
   "parent_planning_decision_record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#対象revision",
   "candidate_parent_adoption_status": "L1 parent target is adopted only for exact SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e under HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28; the new L2-112/L11 pair is not adopted.",
   "candidate_parent_fixed_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
@@ -213,19 +213,19 @@
     "decision_status": "not decided by this candidate or receipt"
   },
   "current_bytes_read_after": {
-    "comparison_base_commit": "3ce292e3711d4a954b4c6334b318590b374ba7b8",
+    "comparison_base_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
     "candidate_l2_file": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "sha256:2549183da7410343dfd5fe69c38a197ab93c878915bca1b3af6bff7c482e8330",
-      "base_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
+      "sha256": "sha256:fb7c87ee05a15112af6849c3a759fa4b0c9deee7f5ababb8e925f7a31436c1fa",
+      "base_sha256": "sha256:37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
       "base_section_digest": "sha256:6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6",
       "section_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
       "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended."
     },
     "candidate_l11_file": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "sha256": "sha256:6b8949e7e0564bec57018dff03b75f74fcfd60d7e694d35657d9ed8170c3c4ab",
-      "base_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
+      "sha256": "sha256:c3ed3c30bf727f2054451d88a7d6f93f45d4ed96fa0ea8dfb9df658eb1a87b0a",
+      "base_sha256": "sha256:adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4",
       "base_section_digest": "sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99",
       "section_digest": "sha256:a93d6a2590560fd93572cdae326430081c93dd53c9c3b68165fb621eb2ad5c8f",
       "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended."
@@ -244,10 +244,10 @@
     },
     "register": {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "base_prefix_rows": 664,
-      "base_prefix_sha256": "sha256:a1fe5c423158f8dce0cbdf78069d8337168ac7a9e41c86d8e6da014467c15a04",
-      "current_rows": 665,
-      "current_file_sha256": "sha256:0ca742b1339384aacde433d00f8762f16572a64f0842115e3709f40f6aa49049",
+      "base_prefix_rows": 665,
+      "base_prefix_sha256": "sha256:11c97569e7737a80f8e83a1420b801602048d3cbd3f99dbe99ca2dea79088afe",
+      "current_rows": 666,
+      "current_file_sha256": "sha256:0eaaebe840b3e281b6c05dc8bda01b636acb0d6164adaae8eade3e7ee31e1264",
       "new_registration_id": "MPR-RC-HELIXOS-L2-112-002",
       "supersedes": "MPR-RC-HELIXOS-L2-112-001",
       "prefix_preserved": true,
@@ -261,7 +261,7 @@
       "matches_latest_main_bytes": true,
       "does_not_adopt": "HELIXOS-L2-112/L11"
     },
-    "latest_main_additions": "INTELLIGENCE 078 remains in the latest-main body and 664-row register prefix; OS112 was checked separately and its base section pins are recorded above.",
+    "latest_main_additions": "OS122 and INTELLIGENCE 078 remain in the latest-main body; the 665-row register prefix is preserved, followed by only MPR-RC-HELIXOS-L2-112-002. OS112 base section digests were read from exact 606bb1fa bytes above.",
     "identity_123_check": "No HELIXOS-L2-123 registration exists in the latest-main prefix; not used because BR15 is within the existing HIL-BR-15 atom and OS112 candidate."
   },
   "initial_drafting_base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
