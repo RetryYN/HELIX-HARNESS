@@ -3,7 +3,7 @@
   "status": "candidate_input_no_loss; requirement_condition_closure_not_asserted; not_adopted",
   "base_commit": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr38-bypass-lifecycle-source-atoms-2026-10-03.jsonl",
-  "source_atom_set_sha256": "sha256:00fa5282377d946bf11903031b271a3b76cbe978eb97ee44c5cf2cf5be686add",
+  "source_atom_set_sha256": "sha256:b83bb19aed56538778bf13b94b36d11ad44c90816deea2a07aebb6c4588a93b2",
   "source_atom_count": 1,
   "source_atom_set_digest": "sha256:72bd4f5ed6319b397d241ffb6fdfda4b5ad16ec15e26171bac5372c499f00896",
   "source_atom_set_digest_rule": "atom_id + SP + statement.semantic_digest hex without sha256: prefix + LF; UTF-8 SHA-256; one whole IR identity atom.",
@@ -40,7 +40,8 @@
       "HAC-HIL-23b",
       "HAC-HIL-23c"
     ],
-    "consumer_test_design": "HAT-HIL-23 line 55, designed_not_implemented; not run"
+    "consumer_test_design": "HAT-HIL-23 line 55, designed_not_implemented; not run",
+    "scope_evidence_locator_rule": "Scope/placement row evidence records exact source path, physical line, UTF-8 row bytes, line SHA with and without terminal LF, and whole-file SHA; see scope_and_placement_source_refs."
   },
   "conditions": [
     {
@@ -64,24 +65,24 @@
       "closure": "adopted pair reused within exact scope"
     }
   ],
-  "candidate_semantic_digest": "sha256:b25d3967965c68bd0c72b0b2687e5d3baa8bdae76165ae5d828b54deb0567762",
+  "candidate_semantic_digest": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
   "current_pair": {
     "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
-    "l2_full_file_sha256": "sha256:d2a1b0d25897a97b59574f125b8650d2d8860a0339b0f75e5d20f2b2675f50a2",
+    "l2_full_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
     "l2_heading": "### HELIXSECURITY-L2-035 bypass系設定のrun限定と恒久deny能力（単体追補候補、version_target: 1.0）",
     "l2_line_start": 487,
-    "l2_line_end_inclusive": 497,
+    "l2_line_end_inclusive": 499,
     "l2_normalization": "UTF-8; section from identity heading to before next same-or-higher heading; trim trailing blank lines; append exactly one LF",
-    "l2_section_sha256": "sha256:b25d3967965c68bd0c72b0b2687e5d3baa8bdae76165ae5d828b54deb0567762",
+    "l2_section_sha256": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
     "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
-    "l11_full_file_sha256": "sha256:0b1b4e1ff6b9d4edde957f90c013291a45af620ba32aba23019f8b6c62ef3091",
+    "l11_full_file_sha256": "sha256:9648b668c61318932e3c9498fb918cedeba6d0e63af408015841b1dd77d62d67",
     "l11_heading": "### HELIXSECURITY-L2-035 対応L11受入候補",
     "l11_line_start": 153,
-    "l11_line_end_inclusive": 166,
+    "l11_line_end_inclusive": 167,
     "l11_normalization": "UTF-8; section from identity heading to before next same-or-higher heading; trim trailing blank lines; append exactly one LF",
-    "l11_section_sha256": "sha256:84d0360748e63d9fcbb69d1af9d7feac941abf75ad8212e5e4ba0c3132853954",
-    "candidate_semantic_digest": "sha256:b25d3967965c68bd0c72b0b2687e5d3baa8bdae76165ae5d828b54deb0567762",
-    "paired_acceptance_digest": "sha256:84d0360748e63d9fcbb69d1af9d7feac941abf75ad8212e5e4ba0c3132853954"
+    "l11_section_sha256": "sha256:76f7f174a03db3d162c14409b4c970b75d202af4794c5faf6d7832593a42fa7b",
+    "candidate_semantic_digest": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
+    "paired_acceptance_digest": "sha256:76f7f174a03db3d162c14409b4c970b75d202af4794c5faf6d7832593a42fa7b"
   },
   "parent_revisions": {
     "concept": "docs/concept/helix-concept.md@bdf1532cc7df12c21aea43c3af8eb17d458ccf7a sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
@@ -197,12 +198,18 @@
     "MPR-SH-IR-003#HIL-NFR-38 remains preserved_pending_rehome; old holding is not terminalized"
   ],
   "po_decision_boundary": {
-    "recommended": "Keep the whole HIL-NFR-38 meaning, including the permanent repository deny capability and the allowlist-less-runtime transition boundary; adopt/reject the candidate later through the existing authority route.",
-    "meaning_change_options": [
-      "If PO intends to forbid YOLO even for runtime without an allowlist, treat that as removing the explicit transition exception and decide against the exact candidate revision.",
-      "If PO intends to change the target scope or remove the repository deny-switch capability, identify the exact source clause and impact to SECURITY-032/006/007/008 and OS-018 before deciding."
-    ],
-    "not_options": "Do not invent deadlines, named runtime lists, new approval gates, setting schema, or a new authority."
+    "scope_options": {
+      "A": "Apply all four whole HIL-NFR-38 clauses only to HIL-BR-32 additional runtimes (Claude/Codex excluded).",
+      "B": "Apply the same four clauses to all headless delegation, including primary Worker.",
+      "pending": "Until selection, primary scope remains unknown; no acceptance result or current lane prohibition is inferred.",
+      "recommendation": "Recommend option A as the candidate baseline because BR-32 expressly covers additional runtimes, while NFR-38 and shared HR-23 leave primary applicability unresolved. This is material for PO selection, not a decision; option B remains available and all four clauses remain in both."
+    },
+    "placement_options": {
+      "A_recommended": "SECURITY policy/authority, Worker execution enforcement, OS run/assignment operations.",
+      "B": "Historical OS-only product placement; if selected, align SECURITY L1 policy ownership and OS operation/assignment responsibilities."
+    },
+    "recommendation": "Recommend scope option A for fidelity to BR-32 and to avoid inferring primary scope from shared/unspecified text; recommend placement option A because it follows the approved SECURITY L1 responsibility split. Neither is selected in this candidate.",
+    "meaning_change": "Any eventual primary-inclusive scope choice is recorded against an exact target revision; keep all four legacy clauses in both choices. No decision is requested in this task."
   },
   "mpr_registration_id": "MPR-RC-HELIXSECURITY-L2-035-001",
   "review_boundary": "Static source/pair/decision evidence only; no legacy runtime/test/CI execution; local-only candidate preparation.",
@@ -317,5 +324,142 @@
       "negative_boundary": "機密漏洩、allowlist外通信、bypass残置、未検証proposal",
       "classification": "test design source only; designed_not_implemented, never executed."
     }
+  },
+  "scope_and_placement_source_refs": {
+    "HIL-BR-32": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 84,
+      "locator": "| **HIL-BR-32**",
+      "raw_line_utf8": "| **HIL-BR-32** | Claude/Codex以外の定額worker runtime（Kimi/Grok等）をprecedenceを曲げずproposal-only workerとして接続し、実行を隔離worktree/sandbox内に限定してrepository本体、`.helix/` state、harness DB、credentialへ到達させない。秘密・機密を含む作業の第三者runtime委譲を禁止する。 |",
+      "raw_line_sha256_without_lf": "sha256:3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+      "raw_line_sha256_with_lf": "sha256:461d471b4d49649b44e3ff4001c0a78cca3f251ef43c8752970a148cb1869ad1",
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    },
+    "HIL-NFR-38": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 218,
+      "locator": "| **HIL-NFR-38**",
+      "raw_line_utf8": "| **HIL-NFR-38** | YOLO/bypass/auto-approve系設定は実行時のみ有効化し終了時に必ず除去する。repository設定でbypassを恒久禁止できるdenyスイッチを持ち、headless委譲の権限モデルはdeny既定+明示allowlistを理想形とし、YOLO許容はallowlist型を持たないruntimeへの経過措置に限定する。 |",
+      "raw_line_sha256_without_lf": "sha256:34a91d2f4e367f8500455e8dfd2f2283b7fac60b9eb028c3a2da1cef5c0f4c41",
+      "raw_line_sha256_with_lf": "sha256:9d84bc2807e59c492ef603e34d3febd22c41ed9bbb26e15950c44f295a8790c1",
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    },
+    "HR-FR-HIL-23": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line": 57,
+      "locator": "| HR-FR-HIL-23 |",
+      "raw_line_utf8": "| HR-FR-HIL-23 | HIL-BR-32, HIL-FR-64, HIL-FR-65, HIL-FR-66, HIL-FR-67, HIL-FR-68, HIL-FR-69, HIL-NFR-37, HIL-NFR-38, HIL-NFR-39, HIL-NFR-40 | 第三者worker委譲をsandbox契約、環境浄化、最小払い出し、proposal再検証、audit付きで実行し、安全境界の充足をローカル強制機構だけで判定する | sandbox template・分類ゲート・opt-out receiptあり → 隔離実行、検証済みproposal、完全なaudit chain | allowlist外egress、scope外diff、bypass常態化、機密委譲、vendor設定依拠 / sandbox digest、egress計測、FS diff、audit row | HAC-HIL-23a, HAC-HIL-23b, HAC-HIL-23c |",
+      "raw_line_sha256_without_lf": "sha256:4abc48322b27ddb5b9127c7fa0f9efb2c4f7221652648a5a523cfcee9883f641",
+      "raw_line_sha256_with_lf": "sha256:34609b4d44fc891b508fc38f804641ccdab870f9fd2db70dc9133b4adc1e6c6c",
+      "file_sha256": "sha256:8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    },
+    "decision_57_line_112": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 112,
+      "locator": "decision 57 row 112",
+      "raw_line_utf8": "- **HELIXSECURITY-L2-029／031**：追加runtime向け制限を主Worker全体へ適用しない。",
+      "raw_line_sha256_without_lf": "sha256:ad6baa051550ab670427d7e85e55c0debe72ee40896838bf466fbb99c03118f7",
+      "raw_line_sha256_with_lf": "sha256:0680cb7a3f6a5f7f0c9f9a0043c33a3a040a7035580c3f95bbaa1e41ba937383",
+      "file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    },
+    "product_routing_row": {
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "line": 140,
+      "locator": "PRC-HIL-NFR-38-001",
+      "raw_line_utf8": "{\"routing_registration_id\":\"PRC-HIL-NFR-38-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-NFR-38\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:623495c53d8e952d930ee57bc420714a8ed8e9749859fa4597543ff156e8fd9f\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS：一時設定の終了時除去とrepository側deny。設定有効化を本表で認可しない\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"bypassの一時化、deny switch、権限allowlistを強制するOS runtime security責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"bypassの一時化、deny switch、権限allowlistを強制するOS runtime security責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+      "raw_line_sha256_without_lf": "sha256:fe9642ff4e41e8d27c3dc44ce3be6d6304079d3dc5828db94f772d6a4be2b770",
+      "raw_line_sha256_with_lf": "sha256:9fcbfe350757e36ad5a71469e165e51d532a5a6b254056d7face4569af658ef5",
+      "file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF.",
+      "parsed_authority_state": {
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "routing_candidate": "single_product",
+        "authority_effect": "none",
+        "successor_requirement_ids": [],
+        "successor_assignment_status": "unassigned"
+      }
+    },
+    "legacy_quality_crosswalk_row": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "line": 47,
+      "locator": "| HIL-NFR-38 |",
+      "raw_line_utf8": "| HIL-NFR-38 | 1 | OS：一時設定の終了時除去とrepository側deny。設定有効化を本表で認可しない |",
+      "raw_line_sha256_without_lf": "sha256:97dc6750795e1ccd74397b35ff5f3401db8f334f536ec1378a03837b6f7ca220",
+      "raw_line_sha256_with_lf": "sha256:589617aada297e2457beae4c34b09be7092fe2756b439ce46d8e8c7b0b958845",
+      "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    },
+    "scope_interpretation": "BR-32 supports additional-runtime option A; HIL-NFR-38 and shared HR-FR-HIL-23 do not decide whether the four NFR-38 clauses apply to the primary Worker. Decision 57 row 112 only excludes SECURITY-029/031 added-runtime restrictions from the primary Worker; it does not decide this candidate scope.",
+    "current_security_l1_responsibility_rows": {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "file_sha256": "sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "rows": [
+        {
+          "line": 31,
+          "raw_line_utf8": "| HELIX-SECURITY | 方針、authority、信頼の境界 |",
+          "raw_line_sha256_without_lf": "sha256:32cf9d7c1c24345fa6327ee899920abaaed7f7f970de42e0adf8a1567ed54362",
+          "raw_line_sha256_with_lf": "sha256:8dff44d3b036f88dcff3e40704dfe76598648a0db7e5058d977cef5d2bf6b18d"
+        },
+        {
+          "line": 32,
+          "raw_line_utf8": "| Worker | 制約の強制（Workerの実行環境が強制する（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）） |",
+          "raw_line_sha256_without_lf": "sha256:66bca6cb6d6312232c780640826a1de0445322de7c2116a05a3e3cd578d808cb",
+          "raw_line_sha256_with_lf": "sha256:3709e35f4e4dae7eeffb3317e0b579e88972cfb6695ee7ce9a68166b9b501630"
+        },
+        {
+          "line": 33,
+          "raw_line_utf8": "| HELIX-OS | 運転と進行 |",
+          "raw_line_sha256_without_lf": "sha256:a58636400660f33170b1c8a9db18ee741fe5ca8191624321edbd3d429516b50e",
+          "raw_line_sha256_with_lf": "sha256:ec520ad47bfcb8d31bc13cd11a52e5d121bcdd1e65971ef3e0518afd63ccfcf4"
+        }
+      ],
+      "normalization": "Exact UTF-8 physical line bytes; without_lf removes only terminal LF; with_lf includes LF."
+    }
+  },
+  "primary_worker_scope": {
+    "decision_required": true,
+    "current_status": "unknown_pending_PO_selection",
+    "no_inference": "Do not assign pass/fail to primary-Worker fixtures and do not infer prohibition, invalidity, or a lane block from this candidate before selection.",
+    "whole_requirement_common_to_both_options": [
+      "run-only bypass/YOLO/auto-approve setting and remove at run end",
+      "repository setting can permanently deny bypass",
+      "headless deny-default plus explicit allowlist ideal",
+      "YOLO transition only for a runtime without allowlist support"
+    ],
+    "option_A": {
+      "scope": "HIL-BR-32 runtimes other than Claude/Codex (additional runtimes) only",
+      "basis": "BR-32 line 84 names this runtime boundary; HR-FR-HIL-23 and NFR-38 remain broader shared text and are not silently used to expand or close it.",
+      "recommendation": "recommended_candidate_scope",
+      "recommendation_reason": "BR-32 explicitly names additional runtimes; NFR-38 and shared HR-23 do not explicitly allocate these four clauses to the primary Worker. This preserves the unresolved boundary and avoids inferring broader primary scope; the separate 029/031 decision is not extended to 035."
+    },
+    "option_B": {
+      "scope": "all headless delegation operations including primary Worker",
+      "basis": "read HIL-NFR-38 line 218 and HR-FR-HIL-23 line 57 as primary-inclusive for these four clauses after explicit PO selection.",
+      "operational_impact": "If selected, primary-Worker headless runs selecting bypass-related settings must meet all four candidate conditions. This has not been selected and creates no current lane prohibition or candidate pass/fail."
+    },
+    "decision_57_row_112": {
+      "locator": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:112",
+      "raw_line_sha256_with_lf": "sha256:0680cb7a3f6a5f7f0c9f9a0043c33a3a040a7035580c3f95bbaa1e41ba937383",
+      "meaning": "excludes SECURITY-029/031 added-runtime restrictions from primary Worker; does not decide HIL-NFR-38/035 scope."
+    },
+    "adopted_032_separate_scope": "L2/L11-032 precedence applies to main and added Worker under its adopted exact scope. That adopted precedence is independent from the unresolved primary applicability of the other four L2/L11-035 clauses."
+  },
+  "placement_options": {
+    "option_A_recommended": {
+      "responsibility": "SECURITY owns policy/authority; Worker execution environment enforces; OS operates runs/assignments under adopted OS-018.",
+      "basis": "current security L1 responsibility boundary; adopted SECURITY-006/007/008 and OS-018.",
+      "recommendation_reason": "Follows the adopted current SECURITY L1 split: SECURITY owns policy/authority, Worker enforces execution constraints, and OS operates runs/assignments."
+    },
+    "option_B": {
+      "responsibility": "Reconsider the historical OS-only routing target. That historical route is not an adopted authority decision and does not by itself transfer policy authority from SECURITY to OS.",
+      "impact": "If PO means OS takes repository deny/allowlist policy decision responsibility, that changes current SECURITY L1 responsibility and requires an explicit L1-aligned PO choice. If policy/authority remains with SECURITY while this requirement is located under OS, OS operates only under SECURITY-owned conditions; this narrows the meaning of historical OS-only placement to requirement location/operation and records a SECURITY policy dependency. PO must select the intended meaning; neither interpretation is inferred from the legacy route."
+    },
+    "authority": "These are proposed placement alternatives only; current OS routing and crosswalk entries have no adoption effect, and neither choice changes operation authority or adopted 032 precedence by itself."
   }
 }
