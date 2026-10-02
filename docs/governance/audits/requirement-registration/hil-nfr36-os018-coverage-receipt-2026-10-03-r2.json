@@ -107,13 +107,13 @@
       "identity_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
       "supplement_selector": "### HELIXOS-L2-018 Worker割当・実行統制の受入（HIL-NFR-36残差候補revision -002・未採択）",
       "supplement_lines_1based_inclusive": [
-        1250,
-        1267
+        1279,
+        1296
       ],
       "supplement_sha256": "sha256:ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c",
       "multipart_digest_rule": "Identity section: select from its exact heading through the next same-or-higher-level heading; trim trailing blank lines and append one UTF-8 LF. EOF supplement: select from its exact supplement heading through the next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF. Multipart digest = normalized identity section bytes + one UTF-8 LF separator + normalized EOF supplement section bytes.",
       "paired_acceptance_digest": "sha256:e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
-      "current_full_file_sha256": "sha256:22cb093022414d66aa22a85deec0baea831c1c4193f04903d990f87a14e90b9f"
+      "current_full_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f"
     },
     "fixed_adopted_pair_preserved": {
       "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
@@ -188,8 +188,8 @@
     "old source holdings and all consumer obligations remain open unless separately dispositioned"
   ],
   "latest_integrated_main": {
-    "commit": "764458a72480bc4a497ef652c6c67b16e980b002",
-    "comparison": "Integrated latest main 764458a72480bc4a497ef652c6c67b16e980b002 after checking the selected OS-001 requirement-canonical-update management context; fixed adopted OS-018 L2/L11 identity sections remain unchanged, and the -002 EOF parts remain unadopted."
+    "commit": "638d61496e44d676e2499acc717c39b6b7f804c2",
+    "comparison": "Preserve all main bytes, including merged unadopted NFR32 OS001 acceptance candidate; append only NFR36 parts. Fixed adopted018 parts remain byte-identical. No candidate adoption or source closure inferred."
   },
   "consumer_record_pins": [
     {
