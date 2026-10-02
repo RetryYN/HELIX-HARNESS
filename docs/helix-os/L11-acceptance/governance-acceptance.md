@@ -1274,3 +1274,23 @@ HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実�
 | 参照資料のみ | 旧runtime、CLI、schema、enum、実装class名。旧test/runtimeは実行しない。 |
 
 全caseは候補fixtureであり、未実行である。candidateのauthority effectは`none`。adoption、formal successor、owner確定およびwhole-source closureは未確認のまま保持する。
+
+
+### HELIXOS-L2-018 Worker割当・実行統制の受入（HIL-NFR-36残差候補revision -002・未採択）
+
+本節はL2の同identity追補候補に対する未実行のfixture/oracleであり、2026-09-28に採択された018の固定L11本文を変更しない。
+
+- **正常fixture（未実行）**：合成task/scope/risk、OS既存assignment/attempt、runtime/model/effort/retry/result/costの既存参照を一つのrunに固定する。適用可能な既存default sourceが選択scopeと一致し、既選択configurationと照合できるsource identity/revision/scopeとfield-level evidenceを与える。実選択がそのdefaultに一致するケースと、実選択が異なり既存の根拠/理由receiptが参照できるケースを別々に示し、どちらも逸脱の有無を値や新規閾値で推定しない。品質問題が発生するcaseでは同じassignment/attemptにHARNESS oracle/resultを結び、適用可能な既存order sourceと実際に通ったstep/result receiptを実順序で参照する。consultまたはsupportを実際に選ぶfixtureだけ、OS-028またはOS-029の該当receiptを接続する。OS-019は同じevent/evidence/未完義務を参照・連続させる。fixtureは観測可能なリンク関係だけを説明し、物理schemaや現行owner/valueを定義しない。
+- **独立negative oracle 1—default deviation**：正常fixtureから一入力だけ変え、適用sourceがそのscopeで有効であるまま、actual selected configurationがdefaultと異なる一caseで、逸脱理由/既存根拠receiptの参照だけを欠落または別revisionにする。逸脱なしとして完了せず、そのreceipt facetだけunknown/未完とする。assignment自体の可否は既存authority/制約で別判定する。
+- **独立negative oracle 2—escalation order**：正常fixtureから一入力だけ変え、品質event・order source・他stepは一致したまま、実際に通った一stepの既存result/event receiptだけを欠落または順序不整合にする。意図したroute案や別attemptの成功結果で補完せず、そのescalation receiptを未完とする。
+- **unknown fixture**：選択task/scopeに適用するdefaultまたはorder sourceがない、適用revisionがstale/conflict、scopeが確定できない、またはownerが未特定の場合、legacy FR-63の候補値・直前の別scope値・INTELLIGENCE proposalから既定値/orderを補わない。該当facetをunknownにして元のdecision/policy meaning ownerへ返す。sourceがunknownでも適用外または逸脱なしとはしない。
+- **未実行・未選択境界**：quality eventがないrunでescalation stepを要求しない。未選択のconsult/supportは実行済みhandoffにならず、OS-028/029のreceiptを捏造しない。停止/denied/未実行は既存状態のまま記録し、候補fixtureから成功を生成しない。
+- **HARNESS-L2/L11-023 dependency分類fixture**：同一合成入力と適用理由で4区分を再評価する。
+  - 常時必須: ticket/scope/revision、OS assignment/attempt、当該runの実event参照、適用HARNESS oracle/result identity。
+  - 特定操作時のみ: 実際に選択された比較/escalation/consult/support operationとその既存receipt。独立caseではoperation未選択を確認し、未観測を成功・不適用へしない。
+  - 選択した入力元に応じて必須: 選択済みdefault/order source、そのrevision/scope、選択INTELLIGENCE proposal/LABO evidence。別sourceへの暗黙fallbackを拒否する。
+  - 参照資料のみ: 旧implementation/runtime/schemaなど歴史的実行手段だけを含める。HIL-NFR-36 IR、L1、HR/HAC/HATをreference-onlyへ分類しない。
+- **観測receiptの適用境界**：原文の「receipt化」は実際の逸脱と実際のescalation順序・結果を既存recordへ結ぶ観測事実として扱う。事前gate、全run停止、source未確定時の全操作禁止を追加せず、適用sourceまたはownerが不明なfacetはunknownとして既存ownerへ返す。
+- **受入状態**：すべてfixtureは静的な候補oracleで、実行済みtestではない。候補revisionの採択、source formal successor、OS実行成功、quality acceptance、PR/merge許可は生成しない。
+
+**旧source/consumer対応**：規範sourceは`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-36`全体。旧L1 `infinity-loop-platform-requirements.md:216`は同文のcorroboration。`HR-FR-HIL-22`は再現bench・実task scorecard・品質/安全/retry込みcostの用途別比較、`HAC-HIL-22a/b/c`はpositive/negative/品質低下時比較のboundary、`HAT-HIL-22`はfixture/rubric/blind score/effective cost/route receiptの設計済みtest条件を示す。これらを消さず、HATを実行したとはしない。

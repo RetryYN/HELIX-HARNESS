@@ -196,7 +196,7 @@ read-only operationでは、差分検査を新たな一律要件として追加�
 | 独立case | 一つだけ変える入力 | 期待する失敗出力と戻し先 |
 |---|---|---|
 | sandbox適用がclaim-only | 他入力を保ち、effective enforcement observationだけを欠かせ、runtimeまたはpolicyの自己申告を残す | このtupleのローカル適合claimを出さず、観測不足をINFRASTRUCTURE（実行環境）と制約不足をSECURITYへ返す。 |
-| allowlist scope不一致 | 他入力を保ち、allowlistを残したままselected destinationだけをpolicy scope外へ変える | `mismatch`を示し、policyはSECURITYへ、適用観測はINFRASTRUCTUREへ返す。 |
+| allowlist scope不一致 | selected destination・operation・target・egress measurementを正常tupleのまま固定し、allowlist evidenceの許可scopeだけを変更してそのdestinationを含めない | `mismatch`を示し、policyはSECURITYへ、適用観測はINFRASTRUCTUREへ返す。 |
 | egress測定unknown | 他入力を保ち、egress measurementの状態だけを`unknown`にする | `unknown`を返し、実測はINFRASTRUCTURE、許可scopeはSECURITYへ返す。別の許可済destinationの証拠を流用しない。 |
 | FS差分scope外変更 | 他入力を保ち、FS differenceを観測済みにしたうえで選択write scope外のpathだけを含める | scope逸脱を返し、execution/observationはINFRASTRUCTURE、許可scopeはSECURITYへ返す。 |
 

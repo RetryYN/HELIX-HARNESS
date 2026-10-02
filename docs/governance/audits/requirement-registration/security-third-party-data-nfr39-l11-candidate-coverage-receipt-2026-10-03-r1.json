@@ -6,7 +6,7 @@
   "requirement_identity": "HELIXSECURITY-L2-029",
   "product_target": "HELIX-SECURITY",
   "authority_effect": "none",
-  "comparison_base_commit": "61a6574473f32add70e5fd3f22ab990289b13a10",
+  "comparison_base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
   "registration_semantics": {
     "supersedes_registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
     "meaning": "003はcandidate record revisionとして002を後続する。PO decision 57 row 88が採択した対象revisionは002のまま維持し、003で取消・置換・再採択しない。003は未採択候補。",
@@ -62,14 +62,14 @@
       }
     ],
     "candidate_l2_composite_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
-    "candidate_l11_composite_digest": "sha256:e05217af61d04142470e1aeb3e5fbc13375bc3e0e948fb552ef0270959c2c74f",
-    "candidate_pair_composite_digest": "sha256:80ede212345d146f6994e7de2e2a3eb3c64c52c789d348d927fbc6efb5f3de87",
+    "candidate_l11_composite_digest": "sha256:bad6c3ebc301cecf328777a9497ad17cfcc9df023b57a5e897db8f44437da210",
+    "candidate_pair_composite_digest": "sha256:3cd7d5826ea82bd3bc3004b4901bbd8e35b4aafddb8d14b58802f552edf3e072",
     "fixed_adopted_parts_unchanged_by_candidate": true,
     "fixed_adopted_parts": "decision 57 row 88 fixed 002 selected L2/L11 sections remain byte-identical at their pinned section hashes; only the unadopted EOF L11 supplement is appended.",
     "l2_full_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
-    "l11_full_file_sha256": "sha256:7d6e48c65b524ea517073400830e8396112f9a4335da8ab2ed827c51d71e2d8a",
+    "l11_full_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
     "parts": {
-      "digest_rule": "各partは末尾空行を除き、物理行をLFで連結し末尾LFを一つ付けてUTF-8化する。L11複数partは列挙順に一つの追加LFで連結しSHA-256。各selectorは見出しから次の同位以上の見出し直前まで。NFR-39追補は現在そのような後続見出しがないためEOFまでを含み、後日追加された同位以上見出し以降は含めない。",
+      "digest_rule": "各partは見出し範囲から末尾空行を除き、物理行をLFで連結し末尾LFを一つ付けてUTF-8化する。複数partは列挙順に一つの追加LFで連結してSHA-256。selectorは見出しから次の同位以上見出し直前まで。追補partは現在EOFまでだが、将来追加された同位以上の見出し以降を含めない。candidate_l11_composite_digestは列挙したL11 part bytesを一つの追加LFで連結した値。candidate_pair_composite_digestはL2 part bytes、追加LF、順序どおりのL11 part bytesを連結した値。",
       "l2": [
         {
           "order": 1,
@@ -101,9 +101,11 @@
             169,
             222
           ],
-          "sha256": "sha256:618afd1dec5cd241e8ae65ae3c43651adba3a7d96e4624d07b198302220a6ea7"
+          "sha256": "sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288"
         }
-      ]
+      ],
+      "l2_full_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "l11_full_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
     }
   },
   "source_atom_set": {
@@ -165,6 +167,48 @@
     "line_sha256_without_lf": "sha256:401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
     "line_sha256_including_lf": "sha256:faa2110a6666023373dd31ccd8e71e8cefd50c122a9e2a0f93ca369390fe4853",
     "relation": "IR statementのcorroboration。source atom追加ではない。"
+  },
+  "legacy_product_placement_context": {
+    "role": "historical placement/classification corroboration only; these records are not additional normative requirement atoms and do not change the immutable three-atom source set.",
+    "crosswalk": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "line": 48,
+      "whole_file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "line_sha256_including_terminal_lf": "sha256:057ccfa09e413e2f503b96c3ff6dde8ea34d93f32e763f9780b261a01f12e6ae",
+      "line_digest_rule": "SHA-256 of the exact UTF-8 physical line bytes including its terminal LF.",
+      "raw_line_text": "| HIL-NFR-39 | 1 | OS：第三者runtimeの隔離・通信・FS検証。ベンダー宣言をローカル証明へ転用しない |"
+    },
+    "routing_bootstrap": {
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "line": 141,
+      "whole_file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "line_sha256_including_terminal_lf": "sha256:fe3bdfd1236825b71e0933f41b07dc27db7c9b2fb47d1e2b520b1c671094d6a1",
+      "line_digest_rule": "SHA-256 of the exact UTF-8 physical line bytes including its terminal LF.",
+      "record": {
+        "routing_registration_id": "PRC-HIL-NFR-39-001",
+        "source_holding_registration_id": "MPR-SH-IR-003",
+        "source_requirement_id": "HIL-NFR-39",
+        "source_legacy_revision": 1,
+        "source_statement_semantic_digest": "sha256:cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+        "legacy_seed_targets": [
+          "HELIX-OS"
+        ],
+        "legacy_seed_assessment": "OS：第三者runtimeの隔離・通信・FS検証。ベンダー宣言をローカル証明へ転用しない",
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "routing_candidate": "single_product",
+        "routing_rationale": "vendor宣言ではなくlocal sandbox・egress・FS差分でsecurityを判定するOS責務である",
+        "classification_state": "proposed_four_product_reviewed",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_assignment_status": "unassigned",
+        "successor_requirement_ids": []
+      }
+    },
+    "scope_and_authority": "The routing row records a proposed OS placement with authority_effect=none, meaning_change_applied=false, and successor_assignment_status=unassigned. This is not an adopted successor or a transfer of source ownership. The candidate 003 addresses only the four NFR-39 local-evidence oracles within adopted 029 additional-runtime scope. Existing SECURITY-006/007 own their policy constraints and security enforcement, while OS routing/assignment remains an operational responsibility; the records establish a conditional responsibility mapping, not complete source migration, successorship, or closure.",
+    "source_atom_set_unchanged": true,
+    "authority_effect": "none"
   },
   "legacy_consumer_context": {
     "records": [
@@ -306,14 +350,14 @@
     "os_018": {
       "identity": "HELIXOS-L2-018",
       "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "l2_file_sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
+      "l2_file_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
       "l2_selected_lines": [
         672,
         680
       ],
       "l2_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
       "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "l11_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
+      "l11_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
       "l11_selected_lines": [
         345,
         350
@@ -324,14 +368,14 @@
     "os_020": {
       "identity": "HELIXOS-L2-020",
       "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "l2_file_sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
+      "l2_file_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
       "l2_selected_lines": [
         692,
         700
       ],
       "l2_section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
       "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "l11_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
+      "l11_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
       "l11_selected_lines": [
         359,
         365
@@ -350,7 +394,7 @@
       ],
       "l2_section_sha256": "sha256:8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
       "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
-      "l11_file_sha256": "sha256:1f2105e32d44226c343226842ca7e9fe3734eb24314860294088ba6531c26599",
+      "l11_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
       "l11_selected_line": 30,
       "l11_line_sha256_including_lf": "sha256:a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
       "l11_text": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |"
@@ -366,7 +410,7 @@
       ],
       "l2_section_sha256": "sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
       "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
-      "l11_file_sha256": "sha256:1f2105e32d44226c343226842ca7e9fe3734eb24314860294088ba6531c26599",
+      "l11_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
       "l11_selected_line": 31,
       "l11_line_sha256_including_lf": "sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
       "l11_text": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
@@ -413,7 +457,7 @@
     "normal": "Same additional-runtime identity/version/config, operation, OS-018 assignment, target, data classification, policy revision and scope; all four evidence types are marked applicable; each has independent state/output and owner return. No real runtime executed.",
     "independent_negatives": [
       "sandbox適用がclaim-only: effective enforcement observationだけを欠かせ、runtime/policyの自己申告を残す。",
-      "allowlist scope不一致: allowlistを保ったままselected destinationだけをpolicy scope外にする。",
+      "allowlist scope不一致: selected destination・operation・target・egress measurementを正常tupleのまま固定し、allowlist evidenceの許可scopeだけを変更してそのdestinationを含めない。",
       "egress測定unknown: egress measurementの状態だけをunknownにする。",
       "FS差分scope外変更: 観測済みFS differenceへ選択write scope外のpathだけを含める。"
     ],
