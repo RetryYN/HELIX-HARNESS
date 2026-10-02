@@ -1434,6 +1434,11 @@
         "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
         "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
         "scope": "長期学習・知識評価をLABOへ置く責務移管。OS memory/continuityと分離。"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "scope": "HELIXLABO-L2/L11-063修復再発評価の限定採択（PHCAP-19全体closureではない）。"
       }
     ],
     "phase_records": [
@@ -1497,12 +1502,13 @@
       },
       {
         "task_id": "PHCAP-19",
-        "existing_assessment": "degraded_to_draft; high-level requirement meaning adopted, implementation_recovered=false",
+        "existing_assessment": "degraded_to_draft",
         "adopted_requirement_refs": [
           "HELIXOS-L2/L11-005",
           "HELIXOS-L2/L11-022",
           "HELIXLABO-L2/L11-050",
-          "HELIXINTELLIGENCE-L2/L11-063"
+          "HELIXINTELLIGENCE-L2/L11-063",
+          "HELIXLABO-L2/L11-063"
         ],
         "additional_existing_pair_refs": [
           "HELIXLABO-L2/L11-001",
@@ -1514,7 +1520,35 @@
         ],
         "audit_ref": "docs/governance/audits/requirements-stage/phcap19-semantic-recovery-audit-2026-09-28.md",
         "audit_sha256": "9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8",
-        "limit": "改善循環の高位意味と責務分担の限定採択。UIL-R-01..15の全詳細closure、runtime、feedback receipt、L3/L10、L11実行は未回復。LABO-L2-063の候補や後続version_targetを採択へ含めない。"
+        "limit": "LABO-L2/L11-063は後発decisionで修復再発評価の限定範囲が採択済み。source receiptの6行scopeを越える旧Pillar/PHCAP-19全条件closureではない。UIL-R-01..15の他詳細、runtime、feedback receipt、L3/L10、L11実行は未回復。LABO-L2-033/051の2.0、INTELLIGENCEの3.0 version_targetを1.0へ前倒ししない。",
+        "current_meaning": "既採択の高位改善循環意味に加え、HELIXLABO-L2/L11-063の修復再発評価・予防候補還流が後発decisionで限定採択済み。",
+        "implementation_recovered": false,
+        "historical_audit_state": "2026-09-28 PHCAP-19 audit/crosswalkではLABO-L2-063を未採択candidateと記録。この記載は当時のauthority状態として保持し、後発decisionは別に投影する。",
+        "repair_recurrence_adoption": {
+          "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+          "decision_date": "2026-09-29",
+          "row_locator": "line 78",
+          "decision": "採択",
+          "requirement_id": "HELIXLABO-L2-063",
+          "mpr_id": "MPR-RC-HELIXLABO-L2-063-001",
+          "fixed_pair_section_sha256": {
+            "L2": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+            "L11": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+          },
+          "fixed_pair_file_sha256": {
+            "L2": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+            "L11": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0"
+          },
+          "current_section_ref": "current pair section digests match exact decision pins; section locators and full-file SHAs are in the proof JSON post_86_latest_main_comparison",
+          "source_receipt_path": "docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json",
+          "source_receipt_sha256": "7e01979487f4afba59c8c2cca709e4207183d9cf0def2d99f007285f652ce66e",
+          "source_atom_count": 6,
+          "scope": "成功したrepair recipeのLABO knowledge保持とOS backlog接続、原因/手順/適用条件/版/episodeを揃えた再発集計、根拠付き閾値を入力とするgate/detector予防候補と未処理頻出問題の警告、失敗時のLABO/OSへの戻し。反復数/母集団/閾値は新設せず、不明を維持。評価だけの操作に修復実行を強制せず、LABOがgateを直接強制しない。",
+          "source_atoms": "PREISO-REV-000013 baseline/pre-isolationのHR-FR-P4-02/HAC-P4-02a/b計6行。receipt scopeに限定。",
+          "does_not_establish": "旧Pillar/PHCAP-19全条件のsource closure、UIL-R-01..15全詳細のclosure、全phaseの縮退受容、implementation recovery、runtime、L11実行。"
+        }
       },
       {
         "task_id": "PHCAP-20",
@@ -1560,6 +1594,12 @@
         "sha256": "99b88815908f3779d3f35a49fca9944b97840be9f61180c9a583ff95ea4ab4ff",
         "scope": "PHCAP-19旧UIL-R条件別の既存pair対応と未解決詳細。"
       }
-    ]
+    ],
+    "subsequent_main_comparison": {
+      "revision": "125908004787d949a60c5eb373c93819b0a1ceea",
+      "prior_projection_revision": "86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c",
+      "comparison_summary": "LABO-L2/L11-063対象pairは86から125908へsection digestとwhole-file bytesが不変。固定decision pinとも一致。decision/receipt bytesも不変。",
+      "proof_ref": "docs/governance/audits/requirements-stage/phcap-capability-current-recheck-byte-proof-2026-10-03.json#post_86_latest_main_comparison"
+    }
   }
 }

@@ -4066,5 +4066,85 @@
         "fixed_equals_main_86ecd59_raw_bytes": true
       }
     ]
+  },
+  "post_86_latest_main_comparison": {
+    "revision": "125908004787d949a60c5eb373c93819b0a1ceea",
+    "prior_projection_revision": "86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c",
+    "method": "Compare exact HELIXLABO-L2/L11-063 section extraction under the coverage receipt rule: from exact ### identity heading to next HELIXLABO-L2 heading, trim trailing blank lines only, encode one terminal LF. Separately compare each complete source blob SHA. Do not use this later narrow comparison to replace the preserved 145-locator e05/43d5/86 proof.",
+    "summary": {
+      "pair_whole_file_bytes_unchanged_since_86": true,
+      "adopted_section_digest_match": true,
+      "decision_and_receipt_bytes_unchanged_since_86": true
+    },
+    "fixed_adopted_pair": {
+      "l2_identity": "HELIXLABO-L2-063",
+      "l11_identity": "paired HELIXLABO-L2-063 acceptance condition",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_status": "採択",
+      "mpr_id": "MPR-RC-HELIXLABO-L2-063-001",
+      "decision_row_section_digests": {
+        "L2": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+        "L11": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+      },
+      "decision_row_file_sha256": {
+        "L2": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "L11": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0"
+      },
+      "source_receipt_path": "docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json",
+      "source_receipt_sha256": "7e01979487f4afba59c8c2cca709e4207183d9cf0def2d99f007285f652ce66e",
+      "source_atom_count": 6,
+      "source_atom_scope": "PREISO-REV-000013 baseline/pre-isolationのHR-FR-P4-02/HAC-P4-02a/b計6行のみ。旧Pillar全体やPHCAP-19全条件の閉包ではない。"
+    },
+    "pair_sections": {
+      "L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "prior_86": {
+          "line_start_1based": 480,
+          "line_end_exclusive_1based": 491,
+          "sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+          "bytes": 4297,
+          "raw_sha256": "bb239f6a98b11cba1bc8bb3a8f0f42563f377594e8018c644808a8b5d0bf3416"
+        },
+        "latest_125": {
+          "line_start_1based": 480,
+          "line_end_exclusive_1based": 491,
+          "sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+          "bytes": 4297,
+          "raw_sha256": "bb239f6a98b11cba1bc8bb3a8f0f42563f377594e8018c644808a8b5d0bf3416"
+        },
+        "whole_file_sha256_prior_86": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "whole_file_sha256_latest_125": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "whole_file_bytes_unchanged": true,
+        "fixed_adopted_section_sha256": "274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a"
+      },
+      "L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "prior_86": {
+          "line_start_1based": 225,
+          "line_end_exclusive_1based": 233,
+          "sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174",
+          "bytes": 1928,
+          "raw_sha256": "610eb45a40c2eabbe7323d9f6d18f055121b910b46f934c7471aea98a8557b48"
+        },
+        "latest_125": {
+          "line_start_1based": 225,
+          "line_end_exclusive_1based": 233,
+          "sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174",
+          "bytes": 1928,
+          "raw_sha256": "610eb45a40c2eabbe7323d9f6d18f055121b910b46f934c7471aea98a8557b48"
+        },
+        "whole_file_sha256_prior_86": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "whole_file_sha256_latest_125": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "whole_file_bytes_unchanged": true,
+        "fixed_adopted_section_sha256": "5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174"
+      }
+    },
+    "relevant_decision_row_locator": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line_1based": 78,
+      "identity": "HELIXLABO-L2-063",
+      "status": "採択"
+    }
   }
 }

@@ -123,6 +123,17 @@ byte比較JSONの追補後SHA-256は`90a0f2d137944f9f96207254de49a72cdefdf8987ce
 
 初期inventory JSONへ`current_projection`を追加し、初期20 records、e784fa snapshot、歴史的status/gap/transition値は保持した。追補はOS-L2/L11-017..021の採択、PHCAP-08のHARNESS-L2/L11-051限定採択と旧25 source atoms holding・意味同等性unknown、PHCAP-19のOS/LABO/INTELLIGENCE限定pair参照、PHCAP-20のOS memoryとLABO learning責務分離を反映する。phase全体source closure、実装回復、受入実行、縮退受容、successorは生成しない。旧実装未回復を要求stage開始の新条件へしていない。
 
-`phase-capability-inventory.json`追補後SHA-256は`0130d92104d87851b159c8291a4b6ca18c3e3d9808f1e3e7155ac8a16951079c`。初期inventoryの初期分類refと固定sourceを参照する過去のvalidator/bindingは、当時のsnapshot evidenceとして扱う。現行のBinding upstream full-file SHAは変更によりstaleとなるためcurrent-pin refreshが必要で、固定BASE・historical pinは変更しない。読み取り調査では51 Binding（active 9、registered 42）が旧inventory JSON SHA `16deda...`をpinし、SCF-B-0113/0114/0116/0119/0148/0150等はMarkdown SHAもpinしていた。既存のfixed-BASE validatorsは歴史入力digestを検査するためcurrent consumer refreshとは分ける。
+`phase-capability-inventory.json`追補後SHA-256は`1de615a8a3788a42d8cbccb3e323fe0363b633083c51e10b47b489c6c79c8944`。初期inventoryの初期分類refと固定sourceを参照する過去のvalidator/bindingは、当時のsnapshot evidenceとして扱う。現行のBinding upstream full-file SHAは変更によりstaleとなるためcurrent-pin refreshが必要で、固定BASE・historical pinは変更しない。読み取り調査では51 Binding（active 9、registered 42）が旧inventory JSON SHA `16deda...`をpinし、SCF-B-0113/0114/0116/0119/0148/0150等はMarkdown SHAもpinしていた。既存のfixed-BASE validatorsは歴史入力digestを検査するためcurrent consumer refreshとは分ける。
 
 この追補により、本書「次に重複なく修正する候補」に記したinventory projection作業は完了した。上記は追加projectionの記録で、初期inventory分類値や既存auditの歴史basisを書き換えない。
+
+
+## 後続main `125908004787d949a60c5eb373c93819b0a1ceea` とLABO-L2/L11-063の現行authority追補
+
+`86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c`との比較では、LABO-L2/L11-063の節digestおよびL2/L11両fileのwhole-file SHAは不変であり、`125908004787d949a60c5eb373c93819b0a1ceea`でもdecision固定pinと一致した。L2節は480–490行で`274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a`（decision記録の固定file SHA `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`）、L11節は225–232行で`5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174`（固定file SHA `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`）。双方の固定revision lineとsection digestはdecision `docs/governance/decisions/po-decision-2026-09-29-57candidates.md` row 78（SHA `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`）の採択pin。receipt `docs/governance/audits/requirement-registration/labo-repair-recurrence-coverage-receipt-2026-09-28.json` SHA `7e01979487f4afba59c8c2cca709e4207183d9cf0def2d99f007285f652ce66e` はsource atom 6行だけを扱い、全Pillar/PHCAP-19 closureを主張しない。
+
+旧PHCAP-19 audit SHA `9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8`と旧crosswalkはdecision前のLABO-063候補状態を記録する歴史証拠として保持する。後発採択を別projectionに反映し、既存assessment値`degraded_to_draft`とimplementation未回復を分離した。追加固定条件・旧全source closure・実装/受入実行は生成しない。
+
+今回のproof追補後SHA-256: `cb47eee31eb4efac487973b482381b48d0be049a2a7c1bc323668aefa91f2e08`。既存e05/43d5/86比較のキーとlocator結果は保持し、125908比較を`post_86_latest_main_comparison`として追加した。
+
+現行projection SHA-256（LABO-063採択追補後）: `1de615a8a3788a42d8cbccb3e323fe0363b633083c51e10b47b489c6c79c8944`。

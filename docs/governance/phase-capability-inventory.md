@@ -93,3 +93,10 @@ Issue作成やcloseから要求採否、旧assetの再利用許可、L2/L11承�
 - **現行pair bytes:** 86ecd59a54f0c612a7f87e1cb4fea038dcc35f3cの全体SHAはJSON projectionに記録した。先行main 43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5の比較は履歴として残し、86ecd59は別の後続比較にする。決定対象の行が一致することは、phase全体のsource closureや受入実行を意味しない。
 
 このprojectionは`authority_effect:none`であり、要求採否、successor、phase closure、新しい承認条件、`new_build_allowed:true`を生成しない。旧実装・runtimeが未回復であることを今回要求stage開始の新gateへ昇格しない。
+
+
+### PHCAP-19の後発LABO修復再発条件
+
+2026-09-29の`HDEC-REQUIREMENTS-57-2026-09-29` decision row 78は、固定revisionの`HELIXLABO-L2-063`と対のL11条件を`MPR-RC-HELIXLABO-L2-063-001`として採択した。固定section digestはL2 `274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a`、L11 `5e7c8afa50b3f430b01b641f145abee034e0b4ef87af3a4146c820c9c9aea174`。旧PHCAP-19 auditがこれを未採択candidateと記したのは9/28時点の記録であり、後発authorityと分けて保持する。
+
+この採択範囲は成功repair recipeのLABO記録とOS backlog接続、同種repairの再発評価、根拠付き閾値を入力とする予防候補・未処理問題の警告、責務分離と未完義務の戻しを含む。receiptのsource範囲はPREISO-REV-000013 baseline/pre-isolationのHR-FR-P4-02/HAC-P4-02a/b計6行に限定される。これはPHCAP-19全体、旧Pillar全条件、UIL-R-01..15詳細のsource closureや実装回復を示さない。section text内に残る「未採択候補」の記述は固定された候補revisionの本文であり、採択状態は後続decision rowが定める。
