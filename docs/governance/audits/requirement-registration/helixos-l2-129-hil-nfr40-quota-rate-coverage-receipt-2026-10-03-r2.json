@@ -412,7 +412,7 @@
         {
           "option": "B: selected worker runtime generally, including primary Worker",
           "meaning": "NFR40の無限定な“worker runtime”に沿い、選択されたprimary/third-party runtime双方に同一の既存quota/rate OR contractを適用する。",
-          "impact": "primary Workerのheadless runも同じqueue-hold/routing-proposal candidate oracleの範囲に入る。現行runtimeへの採択・実行許可・合否は生成しない。"
+          "impact": "選択されたprimary Workerも同じqueue-hold/routing-proposal candidate oracleの範囲に入る。現行runtimeへの採択・実行許可・合否は生成しない。"
         }
       ],
       "recommendation": "Bを候補上で推奨する。直接の規範source HIL-NFR-40はruntime種別を限定せず、第三者runtimeはBR32/HR23という隣接source/consumerの範囲だからである。これはPOの採択を代行しない。",
@@ -524,15 +524,15 @@
       {
         "identity": "HELIXOS-L2-129 worker runtime applicability scope supplement",
         "sha256": "sha256:c57ffd8ce23c3c30a184f78ea98d0a84f8672da633b0c7cb119e96a9d8614233",
-        "exact_bytes_ref": "current L2 section suffix beginning #### Worker runtime適用scope候補"
+        "exact_bytes_ref": "Exact physical byte suffix of docs/helix-os/L2-requirements/governance-requirements.md starting immediately after the public MPR-001 full-file bytes at HEAD 1d48bdc33a755651e1874ac243d3dafc05d9593e; includes the leading separator LF before #### Worker runtime適用scope候補."
       },
       {
         "identity": "HELIXOS-L11-129 worker runtime applicability scope fixture supplement",
         "sha256": "sha256:aa3544e9f96ef8e4b9c5b9a1ab38101ff463871d81d45596f8cad5c040721031",
-        "exact_bytes_ref": "current L11 section suffix beginning #### Worker runtime適用scope fixture"
+        "exact_bytes_ref": "Exact physical byte suffix of docs/helix-os/L11-acceptance/governance-acceptance.md starting immediately after the public MPR-001 full-file bytes at HEAD 1d48bdc33a755651e1874ac243d3dafc05d9593e; includes the leading separator LF before #### Worker runtime適用scope fixture."
       }
     ],
-    "composite_rule": "Current section bytes are each original section exact bytes followed by the corresponding supplement exact bytes. Pair composite digest is SHA256(L2 current section bytes + one NUL byte + L11 current section bytes)."
+    "composite_rule": "For each path, the MPR-001 original section is the exact candidate heading through the public file EOF, normalized by trimming trailing blank lines and ending in one LF. Each MPR-002 supplement is the exact physical current-file suffix beginning at the byte offset immediately after that same public MPR-001 full-file byte sequence; the suffix includes its leading separator LF and the new #### heading. The current section is the original normalized section bytes followed by that exact suffix. Pair composite digest is SHA256(L2 current section bytes + one NUL byte + L11 current section bytes)."
   },
   "candidate_pair_composite_sha256": "sha256:2d0a43f177d70c129bfaa7b7a9c143fe576662811606081bce3f34990ab91081",
   "worker_runtime_scope_decision_material": {
@@ -590,7 +590,7 @@
       {
         "option": "B: selected worker runtime generally, including primary Worker",
         "meaning": "NFR40の無限定な“worker runtime”に沿い、選択されたprimary/third-party runtime双方に同一の既存quota/rate OR contractを適用する。",
-        "impact": "primary Workerのheadless runも同じqueue-hold/routing-proposal candidate oracleの範囲に入る。現行runtimeへの採択・実行許可・合否は生成しない。"
+        "impact": "選択されたprimary Workerも同じqueue-hold/routing-proposal candidate oracleの範囲に入る。現行runtimeへの採択・実行許可・合否は生成しない。"
       }
     ],
     "recommendation": "Bを候補上で推奨する。直接の規範source HIL-NFR-40はruntime種別を限定せず、第三者runtimeはBR32/HR23という隣接source/consumerの範囲だからである。これはPOの採択を代行しない。",
