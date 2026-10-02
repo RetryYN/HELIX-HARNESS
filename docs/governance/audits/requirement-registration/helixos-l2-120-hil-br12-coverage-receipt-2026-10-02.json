@@ -1,0 +1,266 @@
+{
+  "receipt_id": "helixos-l2-120-hil-br12-intake-style-coverage-2026-10-02",
+  "authority_effect": "none",
+  "registration_id": "MPR-RC-HELIXOS-L2-120-001",
+  "candidate_ids": [
+    "HELIXOS-L2-120",
+    "HELIXOS-L11-120"
+  ],
+  "source_atom_count": 1,
+  "source_atoms": [
+    {
+      "source_identity": "HIL-BR-12",
+      "source_kind": "legacy_ir_requirement_identity",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-12",
+      "source_file": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "legacy_revision": 1,
+      "statement_semantic_digest": "8db32d18ea7e86ae89ded3b6b16e871cd2a40e9e2dc9a01c06532955857f39e4",
+      "record_semantic_digest": "041ef355bd2f89d1a613d81af1b2413a09b8430f106447d0921d224feaade46f",
+      "source_text": "GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、development style、case-driven activation、specialist capability、style再接続点を決定する。",
+      "source_asset_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_asset_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_asset_physical_line": 64,
+      "source_asset_line_text": "| **HIL-BR-12** | GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、development style、case-driven activation、specialist capability、style再接続点を決定する。 |",
+      "source_asset_line_sha256_including_lf": "6c030e174521a60414dfe3e5f5e9c676fc2cab9e5b19c917777b39bb2fe72482",
+      "line_text_excludes_lf": true,
+      "atom_count": 1,
+      "atom_note": "旧IR identity statement一件のみ。L1 raw lineは同一要求の由来確認であり追加atomではない。"
+    }
+  ],
+  "source_context": {
+    "legacy_ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "identity": "HIL-BR-12",
+      "record_semantic_digest": "041ef355bd2f89d1a613d81af1b2413a09b8430f106447d0921d224feaade46f",
+      "statement_semantic_digest": "8db32d18ea7e86ae89ded3b6b16e871cd2a40e9e2dc9a01c06532955857f39e4"
+    },
+    "raw_L1": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 64,
+      "line_sha256_including_lf": "6c030e174521a60414dfe3e5f5e9c676fc2cab9e5b19c917777b39bb2fe72482",
+      "text": "| **HIL-BR-12** | GitHub由来のIssue/PR/CI eventとユーザー差し込みIssue/PLANを同じintake契約へ正規化し、development style、case-driven activation、specialist capability、style再接続点を決定する。 |",
+      "role": "corroboration_of_same_identity_not_additional_atom"
+    },
+    "consumer_context": [
+      {
+        "id": "HR-FR-HIL-01",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "semantic_digest": "696de9979c134c3b1aecc0db8881a40f80d094e85f1526a887e740f3ec06430c"
+      },
+      {
+        "id": "HAC-HIL-01a",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "aa927582ef5baf68d6bfe5fdc175a379a90dd26cbacb27484065afabd4c27710"
+      },
+      {
+        "id": "HAC-HIL-01b",
+        "semantic_digest": "cc216a790b806649976acb1c7fd630865adb61122dbc6dc5414e033e4a8e26d8"
+      },
+      {
+        "id": "HAC-HIL-01c",
+        "semantic_digest": "48ef719a2a8b88c61738357d3d5f66e7360438e22cad13e9aae662d54cf4adc7"
+      },
+      {
+        "id": "HAT-HIL-01",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "semantic_digest": "9a7a56f7466cbb4dc9e61d1c4b72dca6279f03a47f033847e80a5ee6c2c08a76",
+        "status": "designed_not_implemented"
+      }
+    ],
+    "current_adoption": {
+      "OS_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "OS_decision_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "scope": "L2-001..029 and paired L11 fixed bytes agreed; new 120 is outside that decision."
+    },
+    "current_mapping": [
+      {
+        "condition": "development style and process semantics",
+        "locator": "HARNESS L2:53,100-102; L11:22,34-39",
+        "finding": "adopted style rules exist; exact BR12 intake four-facet oracle not claimed."
+      },
+      {
+        "condition": "style freeze/reconnect/backflow lifecycle",
+        "locator": "HARNESS L2:54,106-113; L11:23,41-57",
+        "finding": "adopted lifecycle exists; exact BR12 intake reconnection output not explicit."
+      },
+      {
+        "condition": "OS intake/source trace and mode separation",
+        "locator": "OS L2:54-56; OS L11:22-24",
+        "finding": "adopted general tracking exists; do not equate it with all four BR12 facets."
+      },
+      {
+        "condition": "assignment/capability/role boundary",
+        "locator": "OS L2:57,293; OS L11:24,37-38,80",
+        "finding": "adopted assignment conditions exist; keep required capability distinct from team/muster/placement."
+      },
+      {
+        "condition": "ticket/workflow boundary",
+        "locator": "OS L11:49,308-309",
+        "finding": "adopted workflow boundaries exist; exact BR12 mapping not claimed."
+      }
+    ],
+    "dependency_partition_source": {
+      "path": "docs/governance/decisions/body-reinforcement-po-decisions-2026-09-27.md",
+      "sha256": "c0cf47913b93e462cd609b51f3a8ca634b84bf46dc351aa1debfcb91b919ce8d",
+      "locator": "item 2, four categories"
+    },
+    "candidate_section_sha256": {
+      "L2": "8946357dca635cf8b01df4d3ee2459209eba06ffc32ef81cde5e1296eed2627b",
+      "L11": "524a560b214b8c60120fc191ce654362e26047d83e1380400ffb19148d15eccd"
+    }
+  },
+  "facet_mapping": [
+    {
+      "facet": "development style",
+      "meaning": "HARNESS owns selected production style and process meaning; intake preserves it.",
+      "residual": "Current style clauses exist but no exact four-facet BR12 intake oracle."
+    },
+    {
+      "facet": "case-driven activation",
+      "meaning": "Apply only the selected HARNESS case condition; unknown stays unknown.",
+      "residual": "Current process clauses do not separately test BR12 activation output."
+    },
+    {
+      "facet": "specialist capability",
+      "meaning": "Carry required capability on work item to OS assignment; INTELLIGENCE proposal and team/muster do not substitute.",
+      "residual": "General capability assignment exists, but exact BR12 mapping is not asserted."
+    },
+    {
+      "facet": "style reconnection point",
+      "meaning": "Rejoin selected HARNESS style boundary without OS-created phase/ticket kind.",
+      "residual": "Existing backflow/freeze clauses exist; BR12 re-entry output is not explicit."
+    }
+  ],
+  "normal_controls": [
+    "GitHub event and user Issue/PLAN enter same contract boundary, preserve provenance and four distinct facets.",
+    "Valid user-authored PLAN is accepted even if imperative; its content does not widen authority."
+  ],
+  "negative_oracles": [
+    "style missing/mismatch",
+    "activation on false/unknown case",
+    "capability inferred from team/muster/placement only",
+    "reconnection point missing/wrong",
+    "GitHub embedded command promoted to authority",
+    "user PLAN blanket-rejected",
+    "INTELLIGENCE proposal conflated with OS assignment/Worker execution"
+  ],
+  "unknown_controls": [
+    "unknown source class/style/case/capability/reconnection remains unknown and cannot default to false, N/A, capable, or a default phase."
+  ],
+  "dependency_classes": {
+    "always_required": "source/cause/authority/revision provenance and SECURITY boundary",
+    "operation_only": "selected-case activation; style transition/reconnection; capability-constrained assignment",
+    "selected_input_source": "selected GitHub Issue/PR/CI event or user Issue/PLAN and source revision/span",
+    "reference_only": "legacy DB/schema/hooks/muster/runtime and unrelated background"
+  },
+  "meaning_boundary": {
+    "preserved": "same intake contract and four named decision facets",
+    "derived": "current HARNESS/OS/INTELLIGENCE/Worker/SECURITY responsibility mapping",
+    "not_approved": "no current PO decision adopts the new candidate or semantic mapping"
+  },
+  "adoption_state": "unadopted_candidate; 9/28 decision fixed existing OS L2-001..029 and paired L11, not candidate 120",
+  "formal_successor": "none; MPR-SH-IR-003#HIL-BR-12 remains alive",
+  "implementation_execution": "not claimed; no legacy runtime/test/CI invoked",
+  "candidate_section_sha256": {
+    "L2": "8946357dca635cf8b01df4d3ee2459209eba06ffc32ef81cde5e1296eed2627b",
+    "L11": "524a560b214b8c60120fc191ce654362e26047d83e1380400ffb19148d15eccd"
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_file_sha256": "sha256:76349dc416323e5026bd354d500152d58e42b151e657a8d269b08d68f75a3738",
+      "heading": "### HELIXOS-L2-120 HIL-BR-12 intakeとstyle接続の未採択候補",
+      "start_line": 1483,
+      "end_line": 1496,
+      "section_sha256": "sha256:1bf7b9f68f7003c044bbfa69d0f0a3f093f67526138f0b59578791952f324d91",
+      "digest_rule": "heading through before next peer heading; trailing blank lines normalized to one LF"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_file_sha256": "sha256:7fe502770865e87121285437d44197ff23021bf1a4833e003ab57dee94aa0a9f",
+      "heading": "### HELIXOS-L11-120 HIL-BR-12 intake/style接続の受入候補（未実行）",
+      "start_line": 1068,
+      "end_line": 1077,
+      "section_sha256": "sha256:e6caa44e640ab20da95b7d21c67c7e38b75672f91fb7662b09533d77760739b3",
+      "digest_rule": "heading through before next peer heading; trailing blank lines normalized to one LF"
+    }
+  },
+  "source_scope": {
+    "source_lines_file": "docs/governance/audits/requirement-registration/hil-br12-intake-style-source-lines-2026-10-02.jsonl",
+    "source_lines_file_sha256": "sha256:66dda76faf237e7faf21a807aa904a661a8762de91c7dc12bfa01f013d29cf20",
+    "source_atom_count": 1,
+    "source_atom_set_digest": "sha256:5156f6c85dd2b1cd5a9fc3cc92d4ca89278e040a7309f0416f808925ab348cf4",
+    "atom_digest_rule": "Sort atom_id; concatenate UTF-8 atom_id + SPACE + statement semantic digest without sha256: prefix + LF; one selected IR identity.",
+    "identity_source_line": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "line": 475,
+      "text": "  \"HIL-BR-12\": {",
+      "sha256_including_lf": "sha256:62a0dc3032304091dd1c2b46ed74da417c90fac98d0bbd72a450198e02c0df87",
+      "sha256_without_lf": "sha256:95ed6a8595014da68e283ab4e17d8fe977069f5bc6532d4ff6098a18115e8b93"
+    },
+    "asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "file_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "line": 424,
+      "line_sha256_including_lf": "sha256:057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+      "line_sha256_without_lf": "sha256:14487c02147a27add1aca4402692eebcf4767f7097b09e77ba9542ddbe3d54b9",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "disposition": "source_snapshot_preservation; read-only/non-executable"
+    },
+    "carry_forward": {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "line": 12,
+      "line_sha256_including_lf": "sha256:ab6fac74152305fa742b075fa07fa1356935ec3671820f2b0eed613fa4c15e0d",
+      "line_sha256_without_lf": "sha256:ded38e5f37b8fb96bec2fc1537ee8339264b956430f1e3f02e6a141008bda59a",
+      "status": "preserved_pending_rehome",
+      "successor_requirement_ids": []
+    }
+  },
+  "current_adopted_contract_composition": {
+    "po_decision": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_clause": "POは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上のL2本文 HELIXOS-L2-001〜029 と、それぞれに対になる固定L11受入本文一式に合意した。",
+      "fixed_l2_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_l11_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    "exact_existing_clauses": [
+      {
+        "locator": "HELIXOS-L2-003, docs/helix-os/L2-requirements/governance-requirements.md:56",
+        "quote": "共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる",
+        "coverage": "ownership and propagation; not four-facet BR12 intake acceptance"
+      },
+      {
+        "locator": "HELIXOS-L2-004, docs/helix-os/L2-requirements/governance-requirements.md:57",
+        "quote": "Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる",
+        "coverage": "assignment obligation; does not map input specialist capability facet itself"
+      },
+      {
+        "locator": "HELIXOS-L11-004, docs/helix-os/L11-acceptance/governance-acceptance.md:24",
+        "quote": "割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はWorker、自己承認の防止と権限の制限はSECURITYが担う",
+        "coverage": "adopted owner boundaries; capability requirement remains separate from team/muster or placement proposal"
+      },
+      {
+        "locator": "HARNESS-L2-002, docs/helix-harness/L2-requirements/product-requirements.md:53,100-102",
+        "quote": "対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる",
+        "coverage": "adopted style choices; not exact intake activation/reconnection output"
+      },
+      {
+        "locator": "HARNESS-L2-003, docs/helix-harness/L2-requirements/product-requirements.md:54,106-113",
+        "quote": "工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる",
+        "coverage": "adopted process and return conditions; not BR12 four-facet intake oracle"
+      }
+    ],
+    "adoption_separation": "Exact accepted current clauses and new unadopted candidate are separate. Candidate frontmatter or MPR registration does not alter PO decision."
+  }
+}

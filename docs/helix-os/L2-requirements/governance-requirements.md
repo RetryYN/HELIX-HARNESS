@@ -1478,3 +1478,19 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **旧source・意味差**：旧`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のIR `HIL-BR-03`一atomを起点にする。旧L1 line 55は関連する同一要求文の由来で、別atomとして加算しない。旧文の「Claude CodeはCodex完了時」を現行POのCodex・Claude連携範囲へ対応づけ、「DB continuation」は旧技術として持ち込まずL2-019のepisode continuationへ対応づける。HR-FR-HIL-07とHAC/HAT-HIL-07は親・consumer/oracle contextであり、この一atom候補がそれら全体を閉じない。`MPR-SH-IR-003#HIL-BR-03`と旧source holdingを維持する。
 - **未決の意味差**：圧縮を適用するsource集合の選択条件と、旧actor/DB表現から現行の協働episodeへ置く対応は候補上の再導出である。receiptのPO判断packetに選択肢を残し、旧要求の意味変更・適用scope・正式successorをこの候補や仮登録から確定しない。
 - **version_target**：親L1または選択した旧atomに値がないため未指定。
+
+
+### HELIXOS-L2-120 HIL-BR-12 intakeとstyle接続の未採択候補
+
+- **状態・authority**：未採択の`registered_proposal`、`authority_effect: none`。候補本文・receipt・仮登録は要求採択、旧要求のformal successor、L3承認、実装・実行許可を生成しない。旧`MPR-SH-IR-003#HIL-BR-12`は生存させる。
+- **親と責務**：主親は採択済み`HELIXOS-L1-002`（作業から運用までの追跡）と`HELIXOS-L1-008`（要求・判断出所）に接続する。HELIX-OSはGitHub由来Issue/PR/CI eventとユーザーが差し込むIssue/PLANを同じintake契約へ受け取り、source/cause/authorityの区別を保って投影・割当責務へ渡す。HARNESSはproduction development styleとcase-driven activationの規範を所有し、OSはHARNESSの選択結果を変えない。INTELLIGENCEのplacementは案、assignmentと進行統制はOS、実行はWorker、権限制限はSECURITYが担う。
+- **保証**：同じcontract boundaryへ正規化した各work itemで、(1)HARNESSの選択済みdevelopment style、(2)そのstyleまたはoperationに対するcase-driven activation条件、(3)必要なspecialist capability、(4)処理後に再接続するstyle上の工程位置を別々の意味として保持する。specialist capabilityはwork itemに必要な能力制約であり、team/muster構成やprovider/model名、INTELLIGENCEの配置案だけで代用しない。OS assignmentは必要能力との適合を確かめ、実行主体へ渡す。style再接続点は選択済みHARNESS styleの工程境界へ対応づけ、OSが独自phaseやticket kindを作らない。
+- **常時必須**：source identity/provenance、cause、権限区分、正規化後の契約revisionを既存OS intake/evidence契約に沿って保持する。採否・作業許可をGitHub状態から推定しない。既存SECURITY authorityは常に適用する。
+- **特定操作時のみ必須**：対象operationがHARNESSのcase-driven条件を満たすときだけ、そのcaseに対応するactivationを適用する。開発style変更またはstyle間接続を行う場合は、HARNESSが選んだstyleとその工程上の再接続先を照合する。specialist capability制約のあるwork itemをassignmentするときは、assignment側で当該能力適合を確認する。
+- **選択した入力元に応じて必須**：そのintakeで選択されたGitHub Issue/PR/CI eventまたはuser Issue/PLANの出所・対象revision・関連spanと、その選択入力から判定した四条件を保持する。未選択入力元は未観測のままとし、無関係なsource群への接続を要求しない。
+- **参照資料のみ**：旧`harness.db`、旧Issue schema、Claude hook、固定agent/muster構成、旧workflow/runtime/test/CIは意味再導出の資料に限る。旧実装やtestを実行・移植しない。
+- **失敗・戻し先**：正規化、source/cause、採否またはauthority、style、activation case、capability、再接続点のいずれかがmissing/unknown/stale/conflictなら、該当facetを完了扱いせずOS intake/assignmentの未完として保持する。style/activation意味の不足はHARNESS ownerへ、capability evidence/assignment不足はOS assignment ownerおよび既存SECURITY境界へ戻す。unknownなcaseを非該当へ、未知capabilityを満足へ、未知再接続先をdefault phaseへ読み替えない。
+- **保持と変更**：保持するのは旧HIL-BR-12の同一intake契約への正規化と、development style・case-driven activation・specialist capability・style再接続点を決定する4 facetである。旧IRは決定主体や物理schema/routeの実装を特定していないため、authority・責務は現行HARNESS/OS/INTELLIGENCE/Worker/SECURITY境界へ再導出する。旧DB/schema/hookを再導入せず、具体的enum・provider・実行手段は固定しない。
+- **既存条件との関係**：採択済み`HARNESS-L2-002/003`はstyleの選択・方式/工程の意味・開始/凍結/差戻しを、採択済み`HELIXOS-L2-001/002/003/004/010`は要求出所、作業追跡、共通統制とproduct方式の分離、assignment、ticket/workflow境界をそれぞれ保持する。本候補はこれらを変更せず、BR-12四facetがintakeからHARNESS style、OS assignment、再接続点まで一つずつ辿れる条件を補う。既存の一般traceやcapability/muster行だけでは四facetすべての保持を主張しない。
+- **旧source・限界**：選択したsource atomは旧IR `HIL-BR-12` statement一件のみ。旧L1 `infinity-loop-platform-requirements.md:64`は同じstatementの由来を確認するcorroborating sourceで、別atomではない。関連する`HR-FR-HIL-01`、`HAC-HIL-01a/b/c`、`HAT-HIL-01`はconsumer/oracle contextでありsource atom数へ加えない。HATは`designed_not_implemented`であり実行証拠ではない。旧runtime/test/CI、固定Issue schema、exactly-onceの旧実装手段は移植せず、HR/HAC全体のclosureも主張しない。
+- **version_target**：旧source identityに値がないため指定しない。
