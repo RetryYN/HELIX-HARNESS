@@ -149,3 +149,18 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 - **資格情報境界の正常例・反例**：正常例として、対象operation・target・revision・scope・expiryに一致する既存L2-008 authorityと、L2-005の非公開・範囲付きcredential-use capabilityがあり、raw credential値とsecret／機密task内容をWorkerへ渡さず、L2-007制約および該当するL2-006 egress条件も満たすtaskを与える。この認証付きtaskは、既存契約の範囲で起動でき、追加の毎回承認を要求しない。反例として、上記条件が成立しているのに「credentialを使うtask」という理由だけでdispatchを一律denyしたら不合格とする。raw secret値をWorkerへ渡す必要があるtask、またはsecret／機密内容を外部Workerへ渡すtaskを起動するfixtureは引き続き拒否する。この区別はL2-005の境界を変えず、taskや送信の許可を新設しない。旧HR-FR-P2-05の「secret task deny」が認証付きoperation全般を意味するかは原文で確定できない。全 credential-use task も禁止する意図を選ぶ場合は、採択済みL2-005の対象revisionと影響を示す意味変更としてPO判断へ出し、この候補から先取りしない。
 
 - **訂正source pin**：[source-lines](../../governance/audits/requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl)の2 atomとdigestを再利用し、[訂正coverage receipt](../../governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)へ現行L2/L11 bytesと訂正内容を記録する。
+
+### HELIXSECURITY-L2-035 対応L11受入候補
+
+**対応要求・状態**：HELIXSECURITY-L2-035の未採択・未実行受入oracle候補。以下のfixtureは文書上の判定例で、runtime、旧test、CIの実行を主張しない。
+
+- **正常例—allowlist対応runtime**：既存authority内のheadless Worker operationについて、選択runtimeが明示allowlistを持ち、そのallowlistと既存deny／policy状態を照合できるfixtureを与える。操作はallowlistを使いYOLO／bypass／auto-approve系代替設定を有効化しない。runがsuccessで終了した後も恒久deny設定は変わらず、他の実行時だけの設定があればrun終了時に消え、次runへ残らないことを確認する。
+- **正常例—allowlistを持たないruntimeの経過措置**：明示allowlist型を持たないことと選択した既存policyを確認でき、既存operation authorityが有効なfixtureを与える。YOLO経過措置が選択されていても、その設定は当該runだけに限定する。runの終端がsuccess、failure、cancelの各場合で設定が除去され、次runには引き継がれず、repository-level permanent deny switchはcleanup後も有効であることを確認する。権限を追加せず、設定形式・期限・runtime名を固定しない。
+- **独立negative—終了後の残置**：success、failure、cancelそれぞれの終端後にbypass系設定が残るcaseを個別に与える。終了処理は成功扱いされず、設定が残った状態を次runの有効条件として使わない。
+- **独立negative—allowlistのYOLO代替**：明示allowlist対応runtimeでallowlistを無視し、YOLO／bypass設定を代わりに使うcaseを与える。そのoperationは不適格として拒否・保留され、provider flagで成功扱いしない。
+- **独立negative—次runへの持越し**：前runがどの終端結果でも次runに実行時設定が残るcaseを与える。次runは残置設定を継承せず、該当するpolicy／cleanup ownerへ戻す。
+- **独立negative—恒久denyの上書き試行**：repository-level permanent deny switchが有効な対象repository／operationで、run-level YOLO設定またはprovider flagから許可を得ようとするcaseを与える。既採択L2/L11-032のexact precedence oracleを同じ対象・scopeで再利用し、operationがdenyのまま維持され、run cleanup後も恒久denyが有効であることを確認する。これは032の優先順位を再定義せず、cleanupとの組合せを示すnegative fixtureである。
+- **deny能力と032境界**：repository設定にbypass恒久禁止switchを設定でき、その有効状態が同じrepository／operationに適用され、run-level設定やprovider flagを用いてもdenyが維持され、run cleanup後も有効であることを確認する。既採択L2/L11-032のdeny優先oracleはそのまま再利用し、032のone-shot/provider precedenceを本候補が再記述しない。repository設定でdenyを構成できない、またはその適用状態を確認できないfixtureは能力不足／unknownとして扱い、032の採択だけからswitchが存在すると推定しない。
+- **unknown／fail-close**：runtime allowlist能力、repository deny switchの設定可能性、対象repositoryへの適用状態、既存authorityのいずれかが欠落・unknown・staleなら、そのrunのbypass／YOLO選択を許可根拠にせず、該当operationを保留して既存policy／authority ownerへ不足を戻す。別repository／runtimeの判定を流用しない。
+- **非回帰・依存**：L2-006 egress、L2-007 Worker constraint、L2-008 operation authority、OS-L2-018 assignment／attemptの条件は各既存pairで確認する。いずれかの既存条件の失敗をこの候補の成功で相殺しない。主Workerを除外する新条件や追加runtimeへの限定は作らず、旧HIL-NFR-38のheadless委譲範囲をそのまま入力にする。HR-FR-HIL-23の隔離／proposal／audit条件、HAC-HIL-23a/b/cの共有oracle、HAT-HIL-23の設計範囲はconsumer evidenceとして保持するが、旧testを実行済みとは扱わない。
+- **sourceと受入範囲**：旧IR HIL-NFR-38全体が規範sourceで、旧L1 line 218はcorroboration、HR/HAC/HATはconsumer/oracleである。旧IRにないruntime列挙、期限、schema、承認手続きは判定項目へ加えない。入力source atomと各locatorの正規化・digest・candidate pair pinsはcoverage receiptに記録する。
