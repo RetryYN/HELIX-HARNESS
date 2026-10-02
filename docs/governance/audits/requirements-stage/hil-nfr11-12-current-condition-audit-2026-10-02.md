@@ -20,7 +20,7 @@
 
 | 条件 | 現行本文とauthority | 判定 |
 |---|---|---|
-| 暗黙skip禁止、PrototypeとPoCを別判定 | 採択HARNESS-L2-003/008/012と対L11。003は両方N/AのときだけL2.5 skipを認め、L11はPrototype合意、PoC結果Backflow、N/A記録を別々に拒否例化する。fixed pairはf6dad2a decisionにより採択。 | 意味上対応あり。旧source identityのformal binding/retireは未割当。 |
+| 暗黙skip禁止、PrototypeとPoCを別判定 | 採択HARNESS-L2-003/008/012と対L11。003は両方N/AのときだけL2.5 skipを認め、L11はPrototype合意、PoC結果Backflow、N/A記録を別々に拒否例化する。decision記録commit 03b1969b26a30e9e2b68149bff2e10c5bfe78110（file SHA-256 sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23）が、判断対象revision f6dad2a33e24f000b87d7f09b8d40288257e74ccに固定されたpairを採択。 | 意味上対応あり。旧source identityのformal binding/retireは未割当。 |
 | 画面対象を静的wireframe/proseのみで代用しない | HARNESS-L2/L11-079がexecutable artifactとstatic-only負例を記述する。MPR-079 source atomはHIL-FR-18/19二件のみ。079は未採択で、NFR11のbindingはない。 | 意味上のcandidate所在あり。別identityだけを理由に候補を重複発行しない。採択・bindingは未解決。 |
 | 画面非対象をLLM自由文だけでskip扱いしない | 採択003の構造的N/A条件、理由/判定者/HEAD/影響/再評価条件の記録と対L11。 | 003の意味条件で対応あり。旧NFR11 source atom bindingは未割当。 |
 
@@ -41,7 +41,7 @@
 
 ## 採択範囲と候補状態
 
-9/28のfixed f6dad2a決定では、明示的に選択されたHARNESS 24候補のL2/L11 pairを採択している。したがって003/008/012/027は採択済み。027の候補headingや登録時metadataから未採択とは判定しない。9/29-57では038、040-002、041-002が各選択source範囲に限って採択。041-003のL11補足は別appendであり、decision fixed pairとは区別する。9/30 live26では063の3条件とOS107/108の各選択atomだけを採択し、NFR12全量coverageを追加していない。
+記録commit 03b1969b26a30e9e2b68149bff2e10c5bfe78110（file SHA-256 sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23）にある9/28 PO判断は、対象revision f6dad2a33e24f000b87d7f09b8d40288257e74ccについて、明示的に選択されたHARNESS 24候補のL2/L11 pairを採択している。したがって003/008/012/027は採択済み。027の候補headingや登録時metadataから未採択とは判定しない。9/29-57では038、040-002、041-002が各選択source範囲に限って採択。041-003のL11補足は別appendであり、decision fixed pairとは区別する。9/30 live26では063の3条件とOS107/108の各選択atomだけを採択し、NFR12全量coverageを追加していない。
 
 HARNESS-L2/L11-079は未採択候補で、NFR11 static-onlyの意味条件が現れる場所として記録する。MPR-079はFR18/19を対象としNFR11を含まず、正式bindingを作らない。HARNESS-L2/L11-081はIR HIL-NFR-12一atomだけの未採択候補（L1 line 192はcorroboration）で、全資産を走査したことや正式successorを示さない。旧carry-forwardのHIL-NFR-11/12は`preserved_pending_rehome`、successor空のまま保持する。
 
@@ -49,6 +49,6 @@ HARNESS-L2/L11-079は未採択候補で、NFR11 static-onlyの意味条件が現
 
 旧crosswalkの`target_assessment: OS`は歴史的な評価欄で、対象revisionのPO decisionではない。候補を忠実に起草・reviewする作業は継続可能。採択時にPOはHARNESSの意味oracleと機構別source取得/保存を分ける責務配置を判断する。推奨は、HARNESSが宣言されたscopeの全量性と判断traceの意味oracleを持ち、source取得・運転イベント・保存は既存ownerに残すこと。影響するのはHIL-NFR-12のcurrent target/bindingと機構間のsource責務配置。採択されるまではcandidate authority effect none。
 
-本監査は初回比較snapshot 46beの履歴を保持し、作成時点以後に最新main `d1fd70d4338717301b05f87da1806d2f81ec5b34` をread-afterした。候補081はMPR registerの既存671行prefixを維持した上でline 672に一行追加した。最新candidate pair section SHA-256はL2 `sha256:61f0ac911e136e2e6c18f93c1cc62c97cc0abf4e620991127848dcc9b189f9d2`、L11 `sha256:6cd4619ab1ac2c5b52373956fff999779fd4f826c5ad1db78a08aee18846be25`。IR atom source JSONL SHA-256は`sha256:283c0e3b801f6dbefa3277966b80e55e03335c89af1a25ac6ca41ff67ec7b5e5`、atom-set digestは`sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910`.
+本監査は初回比較snapshot 46beの履歴を保持し、作成時点以後に最新main `d1fd70d4338717301b05f87da1806d2f81ec5b34` をread-afterした。候補081はMPR registerの既存671行prefixを維持した上でline 672に一行追加した。最新candidate pair section SHA-256はL2 `sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8`、L11 `sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1`。IR atom source JSONL SHA-256は`sha256:283c0e3b801f6dbefa3277966b80e55e03335c89af1a25ac6ca41ff67ec7b5e5`、atom-set digestは`sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910`.
 
 本監査・候補は固定件数、全4020資産走査、繰返し走査、特定digest/time schema、legacy runtime/test/CI、source全体のclosureを要求しない。

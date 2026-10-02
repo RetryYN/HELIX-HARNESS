@@ -74,13 +74,13 @@
     {
       "condition": "NFR11 implicit skip and prototype/non-UI applicability",
       "current": "adopted HARNESS-L2-003/008/012 and paired L11; L2-003 separates Prototype from PoC and says both N/A only skips L2.5; L11-003 has separate missing-prototype-agreement, missing-PoC-backflow and missing-N/A-fields negatives.",
-      "authority": "9/28 fixed f6dad2a decision; adopted baseline.",
+      "authority": "Decision record docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:18 at commit 03b1969b26a30e9e2b68149bff2e10c5bfe78110 (file SHA-256 c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23), adopting selected pairs against fixed subject revision f6dad2a33e24f000b87d7f09b8d40288257e74cc.",
       "residual": "Formal source successor/binding remains unassigned."
     },
     {
       "condition": "NFR11 static wireframe/prose not an interactive artifact; no free-text-only skip",
       "current": "HARNESS-L2/L11-079 contains static-only negative and executable-artifact condition; MPR-079 source set is only FR18 and FR19, not NFR11; registered proposal, authority_effect none.",
-      "authority": "Unadopted 079 candidate semantic location only; no NFR11 binding.",
+      "authority": "Unadopted HARNESS-L2/L11-079 candidate at this scope; MPR-079 covers FR18/19 only, so it is a semantic location and creates no NFR11 binding.",
       "residual": "No duplicate candidate solely for source identity difference; preserve NFR11 holding and binding absence."
     },
     {
@@ -104,7 +104,11 @@
       "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
       "fixed_l2_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
       "fixed_l11_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
-      "authority_rule": "24 explicitly selected pairs are adopted; current heading/metadata do not reverse decision."
+      "authority_rule": "24 explicitly selected pairs are adopted; current heading/metadata do not reverse decision.",
+      "decision_record_commit": "03b1969b26a30e9e2b68149bff2e10c5bfe78110",
+      "decision_record_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "fixed_revision_subject": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_revision_subject_is_not_record_commit": true
     },
     {
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
@@ -167,15 +171,16 @@
     "human_decision_status": "unresolved; candidate drafting/review is not gated on it",
     "version_target": "not specified by source and left unassigned",
     "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-nfr12-coverage-candidate-receipt-2026-10-02.json",
-    "mpr_register_line": 670,
-    "candidate_l2_section_digest": "sha256:61f0ac911e136e2e6c18f93c1cc62c97cc0abf4e620991127848dcc9b189f9d2",
-    "candidate_l11_section_digest": "sha256:6cd4619ab1ac2c5b52373956fff999779fd4f826c5ad1db78a08aee18846be25",
+    "mpr_register_line": 672,
+    "candidate_l2_section_digest": "sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8",
+    "candidate_l11_section_digest": "sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1",
     "comparison_base_at_candidate_creation": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
     "current_main_read_after": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
     "current_mpr_register_line_after_merge": 672,
-    "current_l2_file_sha256": "sha256:dab2020107572dd8f7f604ae5d5957b6c2b40a22162e3a8048381dc129dc0605",
-    "current_l11_file_sha256": "sha256:cef788e6313e6636e2338cd04f1927db68b2024ede0719257574942d0de93571",
-    "source_atom_role_note": "Selected identity is IR HIL-NFR-12; legacy L1 line 192 is corroboration only."
+    "current_l2_file_sha256": "sha256:a9140780b13ed8c1a727ca36ae9e623653f69d1f9ced476c7a28234965fc6595",
+    "current_l11_file_sha256": "sha256:9d6e2c5a0ee7cfb5b4063f07fd97333df0991cc0491f97b50673b567c63d2a23",
+    "source_atom_role_note": "Selected identity is IR HIL-NFR-12; legacy L1 line 192 is corroboration only.",
+    "mpr_register_line_at_candidate_creation": 670
   },
   "claims_not_made": [
     "HIL-NFR-11/HIL-NFR-12 formal successor assigned",
@@ -200,12 +205,12 @@
   },
   "current_target_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_sha256": "sha256:dab2020107572dd8f7f604ae5d5957b6c2b40a22162e3a8048381dc129dc0605",
+    "l2_sha256": "sha256:a9140780b13ed8c1a727ca36ae9e623653f69d1f9ced476c7a28234965fc6595",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_sha256": "sha256:cef788e6313e6636e2338cd04f1927db68b2024ede0719257574942d0de93571",
+    "l11_sha256": "sha256:9d6e2c5a0ee7cfb5b4063f07fd97333df0991cc0491f97b50673b567c63d2a23",
     "current_candidate_section_digests": {
-      "081_l2": "sha256:61f0ac911e136e2e6c18f93c1cc62c97cc0abf4e620991127848dcc9b189f9d2",
-      "081_l11": "sha256:6cd4619ab1ac2c5b52373956fff999779fd4f826c5ad1db78a08aee18846be25",
+      "081_l2": "sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8",
+      "081_l11": "sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1",
       "027_l2": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
       "027_l11": "sha256:a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd"
     },
