@@ -1,0 +1,231 @@
+{
+  "audit_id": "legacy-hil-nfr19-20-current-condition-audit-2026-10-02",
+  "audit_kind": "read_only_current_requirement_condition_comparison",
+  "comparison_base_commit": "fd3e799710bf5b06081fee271e536fc7f51213ba",
+  "date": "2026-10-02",
+  "legacy_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "requirements": [
+      {
+        "id": "HIL-NFR-19",
+        "physical_line": 199,
+        "physical_line_sha256_including_lf": "fd75eee1c6091435d18459c745f659cf53636d11c30e9bec62cb80f641dd355e",
+        "physical_line_sha256_without_lf": "565639d759a5a6241f95982f7caf10a8b581c56d7e975bf44e0dacfd0cc7c276",
+        "statement": "Linuxをcore completion platformとし、macOS portable suiteとWindows compatibility smokeの未実施は明示する。Windows wrapper成功をLinux互換証拠にしない。",
+        "ir_pointer": "#/HIL-NFR-19",
+        "ir_statement_digest": "07cc796cd8d1ebc6ed1164f6c96551a811b4bca04caa94e51a451155df9fddc7",
+        "ir_record_digest": "8fc272e3889410eca6fec14ded32b6ad196828355f6edd0fc9e247cb0efa21b2",
+        "legacy_contract": "HR-FR-HIL-14",
+        "acceptance_ids": ["HAC-HIL-14a", "HAC-HIL-14b", "HAC-HIL-14c"],
+        "test_id": "HAT-HIL-14",
+        "test_status": "designed_not_implemented; not executed"
+      },
+      {
+        "id": "HIL-NFR-20",
+        "physical_line": 200,
+        "physical_line_sha256_including_lf": "9a0c91aaeac12827d5e19a02655cc2864d7f42dbc1590a3fc3d8af7b48a705bd",
+        "physical_line_sha256_without_lf": "16d2c661e33dcc6245387590a48e4ce45259b0d4590a5ea05135e90eff5cbc0c",
+        "statement": "Reverse artifactは非空、stage間非同一、source span再現可能、obligation coverage 100%を満たす。文字数だけの下限を内容証拠にせず、stage固有fieldとsemantic assertionで検査する。",
+        "ir_pointer": "#/HIL-NFR-20",
+        "ir_statement_digest": "a478ca26c7c97f063cf0a6d52358b9a0e35603ca1d8dac40c205b515fc18885a",
+        "ir_record_digest": "af152329f90d4a1c16f170c3eb050150ed1b128485c1015f8dc753310165f9ba",
+        "legacy_contract": "HR-FR-HIL-04",
+        "acceptance_ids": ["HAC-HIL-04a", "HAC-HIL-04b", "HAC-HIL-04c"],
+        "test_id": "HAT-HIL-04",
+        "test_status": "designed_not_implemented; not executed"
+      }
+    ],
+    "relevant_legacy_consumers": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "ids": ["HR-FR-HIL-14", "HR-FR-HIL-04"]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "ids": ["HAC-HIL-14a", "HAC-HIL-14b", "HAC-HIL-14c", "HAC-HIL-04a", "HAC-HIL-04b", "HAC-HIL-04c"]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "id": "HAT-HIL-04",
+        "status": "designed_not_implemented; not executed"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+        "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+        "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+        "line": 62,
+        "id": "HOT-HIL-35",
+        "scope": "supporting NFR20 substantive-content, stage-specific rejection, and incomplete-below-100-percent evidence"
+      }
+    ]
+  },
+  "current_snapshot": {
+    "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "l2_full_file_sha256": "dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47",
+    "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "l11_full_file_sha256": "64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e",
+    "mpr_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "mpr_full_file_sha256": "17615d26bd51280e6841687dcf3a235f98c5e78b1a1c03fec41b73905d9100c0",
+    "mpr_line_count": 673,
+    "mpr_rows": {
+      "HARNESS-L2-019-001": 43,
+      "HARNESS-L2-027-003": 444,
+      "HARNESS-L2-038-001": 515,
+      "HARNESS-L2-063-001": 638,
+      "HARNESS-L2-064-001": 646
+    },
+    "decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "authority": "fixed L1 and explicitly adopted 24 candidates; row 48 adopts 019-001 and row 56 adopts 027-003"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "authority": "row 43 adopts exact HARNESS-L2-038-001 paired revision"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "scope": "row 48 adopts HARNESS-L2-063-001's selected three conditions only; not a general reverse-artifact completion requirement"
+      }
+    ],
+    "canonical_section_rule": "Heading section from ### target through the next heading at the same or higher level, ending with exactly one LF after stripping trailing blank lines; SHA-256 of those UTF-8 bytes.",
+    "pairs": {
+      "HARNESS-L2-038-001": {
+        "adoption": "adopted by 2026-09-29 decision row 43; this exact revision only",
+        "fixed_l2_file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+        "fixed_l11_file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+        "fixed_l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+        "fixed_l11_section_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+        "current_l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+        "current_l11_section_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+        "l2_lines": "834-890",
+        "l11_lines": "574-637",
+        "source_atom_count": 3,
+        "source_atom_ids": ["REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0112", "REVERSE-SUBSTANCE-infinity-loop-platform-requirements.md-L0125", "REVERSE-SUBSTANCE-L1-infinity-loop-operational-test-design.md-L0062"],
+        "source_atom_set_digest": "068afcddf101fdcd7d0da8e743f6d5f2e89509f182888e6efd22674c4ca91cc4",
+        "receipt_path": "docs/governance/audits/requirement-registration/harness-reverse-substance-coverage-receipt-2026-09-28.json",
+        "receipt_sha256": "790a8760fe87fa77490b128c8eae8d7cc37407ffda7e246ab172b0564dcaf134",
+        "scope_limit": "selected-scope HIL-FR-22/HIL-FR-35/HOT-HIL-35 content oracle; not a formal successor or global closure for HIL-NFR-20"
+      },
+      "HARNESS-L2-064-001": {
+        "adoption": "no adoption row found in current docs/governance/decisions search; candidate remains unadopted",
+        "current_l2_section_sha256": "c53c35381eed5753c459f23a8fed7fc9a411f66907609e96600085dea82dc44d",
+        "current_l11_section_sha256": "3518119ce51aca9831ec46453d4300597337a8df3f523fea7976a74c4b5c9fb7",
+        "l2_lines": "1250-1259",
+        "l11_lines": "965-980",
+        "source_atom_count": 4,
+        "source_atom_ids": ["HIL14-SUPPORT-SLICE-TR-04", "HIL14-SUPPORT-SLICE-FR-34-COMMON-FIXTURE", "HIL14-SUPPORT-SLICE-NFR-09", "HIL14-SUPPORT-SLICE-NFR-19"],
+        "source_atom_set_digest": "0d74e77fe738b5a1653c952d7a6fc1da6688c13a54af98ac65611fcdf49b4711",
+        "source_atom_file": "docs/governance/audits/requirement-registration/hil14-support-tier-source-lines-2026-10-02.jsonl",
+        "source_atom_file_sha256": "af506d734bdfa21f90a6e9ea3e72e3823672683ff2f6fe7e169bcb7ceab0dbbf",
+        "nfr19_slice_id": "HIL14-SUPPORT-SLICE-NFR-19",
+        "nfr19_slice_source_line": 199,
+        "nfr19_slice_line_sha256_without_lf": "565639d759a5a6241f95982f7caf10a8b581c56d7e975bf44e0dacfd0cc7c276",
+        "receipt_path": "docs/governance/audits/requirement-registration/hil14-support-tier-coverage-receipt-2026-10-02.json",
+        "receipt_sha256": "da785f3d42321c8a826ad80e82cabb5cc66511fd4aadaae3e8161abc88229d08",
+        "receipt_source_atom_count": 4,
+        "receipt_authority_effect": "none",
+        "scope_limit": "limited support tier/profile relation proposal; scope not selected; not a formal successor to the complete HIL-NFR-19/HIL-FR-34/HAC-HIL-14 set"
+      }
+    }
+  },
+  "condition_comparisons": [
+    {
+      "legacy_requirement": "HIL-NFR-19",
+      "current_condition_status": "all stated conditions have a location in HARNESS-L2/L11-064 candidate; candidate is unadopted, so adopted current-requirement coverage is not established",
+      "conditions": [
+        {
+          "source_condition": "Linux is the core completion platform; all required core gates must run on Linux before Linux core completion is represented.",
+          "current_l2": "product-requirements.md:1253,1255-1256",
+          "current_l11": "product-acceptance.md:970,973",
+          "specific_negative": "partial Linux required-core-gate set with another gate missing/not-run/unknown must remain incomplete"
+        },
+        {
+          "source_condition": "macOS portable suite and Windows compatibility smoke have separate profile evidence; an unrun/not-confirmed profile remains explicitly unrun/unknown, never inferred green or silently N/A.",
+          "current_l2": "product-requirements.md:1254-1256",
+          "current_l11": "product-acceptance.md:969,975-977",
+          "specific_negative": "for a scope explicitly containing all three OS profiles, Linux green with macOS/Windows unrun cannot satisfy HAC-HIL-14a; missing/stale profile evidence cannot be offset by another profile"
+        },
+        {
+          "source_condition": "A Windows wrapper success is not Linux compatibility evidence.",
+          "current_l2": "product-requirements.md:1256",
+          "current_l11": "product-acceptance.md:972,976",
+          "specific_negative": "Windows wrapper green while Linux is unrun rejects Linux core completion"
+        }
+      ],
+      "binding_and_authority": "The selected HIL-NFR-19 source slice is one of four selected slices in 064's source atom set, not a standalone NFR-19 IR atom registration. MPR row 646 and the receipt register a proposal only; no decision row adopts 064. Current holding remains preserved_pending_rehome with no formal successor. This audit does not claim adoption or source closure.",
+      "result": "no duplicated candidate proposed; requirement meaning is represented in the existing unadopted 064 pair as a condition destination, while adoption/formal binding remains unresolved"
+    },
+    {
+      "legacy_requirement": "HIL-NFR-20",
+      "current_condition_status": "all six stated conditions have substantive current requirement and acceptance oracles in exact adopted HARNESS-L2-038-001 pair; this is selected-scope partial correspondence, not formal HIL-NFR-20 successor or global source closure",
+      "conditions": [
+        {
+          "source_condition": "Reverse artifact must be nonempty.",
+          "current_l2": "product-requirements.md:859",
+          "current_l11": "product-acceptance.md:598",
+          "specific_negative": "empty coverage table is individually rejected as substantive completion"
+        },
+        {
+          "source_condition": "Stages must not be duplicates of one another.",
+          "current_l2": "product-requirements.md:859,861",
+          "current_l11": "product-acceptance.md:598,612,614",
+          "specific_negative": "same content/digest reused as another capability or stage is rejected; five stage content categories are separately inspected"
+        },
+        {
+          "source_condition": "Source spans must be reproducible.",
+          "current_l2": "product-requirements.md:849-850,868",
+          "current_l11": "product-acceptance.md:578,602,618",
+          "specific_negative": "new selected source revision/field requires re-pinning; prior scope receipt cannot be reused, unknown remains unknown"
+        },
+        {
+          "source_condition": "Selected-scope obligation coverage must be 100 percent.",
+          "current_l2": "product-requirements.md:857-858,867,889",
+          "current_l11": "product-acceptance.md:592-595,618,634-636",
+          "specific_negative": "missing c3, duplicate c2, one-way relation, missing endpoint, or less-than-100-percent at checkpoint blocks the applicable closure claim and preserves incomplete duties"
+        },
+        {
+          "source_condition": "Character count or a length threshold alone is not substantive content evidence.",
+          "current_l2": "product-requirements.md:859,861",
+          "current_l11": "product-acceptance.md:598,612-614",
+          "specific_negative": "placeholder, copied source prose, coverage-table-only result without required as-is design/test, or no-finding without obligation relation is rejected even if text is present; this is the substantive-content implication of the accepted oracle, not a new numeric length threshold"
+        },
+        {
+          "source_condition": "Stage-specific fields and semantic assertions inspect actual content.",
+          "current_l2": "product-requirements.md:861,867",
+          "current_l11": "product-acceptance.md:612-614,618-620",
+          "specific_negative": "the five distinct content categories (source map, observed contract, as-is design/test, intent hypothesis plus existing PO-verification state, gap plus owner/routing) are individually traceable; a required but absent stage cannot be replaced by a coverage table"
+        }
+      ],
+      "binding_and_authority": "Decision row 43 of the 2026-09-29 57-candidate decision explicitly adopts exact MPR-RC-HARNESS-L2-038-001. Current and fixed L2/L11 section digests match. Its three selected atoms are FR-22, FR-35, and HOT-HIL-35; HIL-NFR-20 is corroborating old source but is not a selected atom in that receipt. HIL-NFR-20 carry-forward status remains preserved_pending_rehome with no formal successor.",
+      "result": "no new 082 candidate proposed; do not infer global HIL-NFR-20 successor/closure from 038's adopted, selected-scope oracle"
+    }
+  ],
+  "authority_search": {
+    "search_scope": "all tracked files under docs/governance/decisions at comparison base fd3e799710bf5b06081fee271e536fc7f51213ba",
+    "query_ids": ["HARNESS-L2-064", "MPR-RC-HARNESS-L2-064-001"],
+    "matches": [],
+    "search_result": "No adoption decision row for 064 found. Its MPR registered_proposal/authority_effect:none fields describe registration only; they were not used as adoption proof. 038 adoption is supported by the exact 2026-09-29 decision row 43."
+  },
+  "holding_status": {
+    "ledger": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "HIL-NFR-19": {"line": 121, "status": "preserved_pending_rehome", "formal_successor_ids": [], "decision_record": null},
+    "HIL-NFR-20": {"line": 122, "status": "preserved_pending_rehome", "formal_successor_ids": [], "decision_record": null}
+  },
+  "changes_made_by_audit": {
+    "requirement_or_acceptance_candidate_changed": false,
+    "MPR_changed": false,
+    "authority_or_adoption_created": false,
+    "legacy_runtime_ci_cli_or_test_executed": false,
+    "new_candidate_082_created": false
+  }
+}
