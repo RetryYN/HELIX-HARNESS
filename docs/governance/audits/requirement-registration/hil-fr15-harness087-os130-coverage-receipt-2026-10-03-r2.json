@@ -3,9 +3,9 @@
   "receipt_id": "HIL-FR-15-HARNESS087-HELIXOS130-2026-10-03-r2",
   "authority_effect": "none",
   "management_state": "registered_proposal; both pairs unadopted",
-  "current_main_at_registration": "771e40a8a87881e9703fe939fc9fe01d76de7635",
-  "mpr_prefix_line_count": 702,
-  "mpr_prefix_sha256": "sha256:918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
+  "current_main_at_registration": "0e09e096bcdb0e9e1b94680f7684daa486354f41",
+  "mpr_prefix_line_count": 703,
+  "mpr_prefix_sha256": "sha256:bc1bd1fee2c9a755d7de4eb488f564e5717a2ce377e1a09c70bf38711a590ba9",
   "source_holding_ref": "MPR-SH-IR-003#HIL-FR-15 remains preserved_pending_rehome; successor_requirement_ids remain empty",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr15-harness087-os130-source-atoms-2026-10-03.jsonl",
   "source_atom_set_file_sha256": "sha256:85e6a4956792a75c00a6933fe33a030f55d205f1b0c6177a941b9144424c1a29",
@@ -196,44 +196,44 @@
         "identity_section": {
           "selector": "exact original identity heading through next same-or-higher heading; trim trailing blanks; terminal LF",
           "lines": [
-            1501,
-            1511
+            1524,
+            1534
           ],
           "sha256": "sha256:6ff019751ec9b357dad94a946ac79ecacf7f92b09550fdd09e5c68f2bd4456c7"
         },
         "eof_supplement": {
           "selector": "revision 002 supplement heading through next same-or-higher heading or current EOF; trim trailing blanks; terminal LF",
           "lines": [
-            1513,
-            1519
+            1536,
+            1542
           ],
           "sha256": "sha256:4bbb651b7e88b3d6c256444f55112636ba18df2c26ab993458c7492562ce14a1"
         },
         "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
         "composite_sha256": "sha256:b361e4a28f7e9a7c8cc8b678bdc87c4f7495e45e49e5b253bf28666c6b7bc462",
-        "full_file_sha256": "sha256:b67979d4f00e638c767ac890a6bdee24c41bb7c35b8ef8f69af08615f7a7d0ed"
+        "full_file_sha256": "sha256:60e06675b8019a2310a45df6ab4bef0bf32d697e649ad72547322b752dd3c1ee"
       },
       "l11": {
         "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
         "identity_section": {
           "selector": "exact original identity heading through next same-or-higher heading; trim trailing blanks; terminal LF",
           "lines": [
-            1279,
-            1296
+            1313,
+            1330
           ],
           "sha256": "sha256:171d3433842b1044626b56884b89c6a88193d6d31c15be04a1e25d00a275311a"
         },
         "eof_supplement": {
           "selector": "revision 002 supplement heading through next same-or-higher heading or current EOF; trim trailing blanks; terminal LF",
           "lines": [
-            1298,
-            1304
+            1332,
+            1338
           ],
           "sha256": "sha256:2497a6804926a73e4014ad96aa0e4ff2a4556fc8cd63e01ab4608cce8f88084f"
         },
         "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
         "composite_sha256": "sha256:4a55bb10d3eb9bd4cfb7f967cef6aa0f30353f5ee853d8e726f82bcdff6b35d6",
-        "full_file_sha256": "sha256:b9397db54361f0656594b82a5d783a8c8453c92e2704c90a545bde490048d34e"
+        "full_file_sha256": "sha256:bdc4a7e8d3a55f6cc2e90909ad31b4819165ca9d0284e96bbd4737370ddc69ea"
       },
       "pair_digest": "sha256:0825339bc745181b16ddd73032c93e37ea2a450552cb6ec11920534c75712cc4",
       "source_atom_refs": [
@@ -684,9 +684,9 @@
   ],
   "union_mapping_limit": "The limited no-loss claim covers one whole HIL-FR-15 IR atom and its twelve conditions. It does not close other HR-FR-HIL-09 identities/consumers, source holding, adoption, or formal successor assignment.",
   "post_merge_integration": {
-    "latest_main_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
-    "latest_main_register_prefix_line_count": 702,
-    "latest_main_register_prefix_sha256": "sha256:918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
+    "latest_main_commit": "0e09e096bcdb0e9e1b94680f7684daa486354f41",
+    "latest_main_register_prefix_line_count": 703,
+    "latest_main_register_prefix_sha256": "sha256:bc1bd1fee2c9a755d7de4eb488f564e5717a2ce377e1a09c70bf38711a590ba9",
     "preserved_prior_registration_ids": [
       "MPR-RC-HARNESS-L2-087-001",
       "MPR-RC-HELIXOS-L2-130-001"
@@ -696,12 +696,12 @@
       "MPR-RC-HELIXOS-L2-130-002"
     ],
     "registration_rows": {
-      "MPR-RC-HARNESS-L2-087-001": 703,
-      "MPR-RC-HELIXOS-L2-130-001": 704,
-      "MPR-RC-HARNESS-L2-087-002": 705,
-      "MPR-RC-HELIXOS-L2-130-002": 706
+      "MPR-RC-HARNESS-L2-087-001": 704,
+      "MPR-RC-HELIXOS-L2-130-001": 705,
+      "MPR-RC-HARNESS-L2-087-002": 706,
+      "MPR-RC-HELIXOS-L2-130-002": 707
     },
-    "combined_register_line_count": 706,
+    "combined_register_line_count": 707,
     "historical_001_registration_and_r1_receipt_bytes_preserved": true
   },
   "source_line_coverage_result": "no_loss_limited_to_all_12_conditions_of_one_whole_HIL-FR-15_IR_atom_across_the_two_composite_pair_unions; no other HR09 identity or consumer-wide closure claimed",
@@ -762,7 +762,7 @@
     }
   ],
   "candidate_registration_rows": {
-    "MPR-RC-HARNESS-L2-087-002": 705,
-    "MPR-RC-HELIXOS-L2-130-002": 706
+    "MPR-RC-HARNESS-L2-087-002": 706,
+    "MPR-RC-HELIXOS-L2-130-002": 707
   }
 }
