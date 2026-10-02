@@ -160,3 +160,7 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 ## HIL-BR-12 intake/style接続候補（2026-10-02）
 
 `MPR-RC-HELIXOS-L2-121-001`は`management-provisional-requirement-register.jsonl`へ追記した`registered_proposal`である。選択atomは旧IR `requirements.json#/HIL-BR-12`（asset `LEGACY-ASSET-A60CF91DD2AF6693E6F9`）一件であり、旧L1 line 64（asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）は同じstatementのcorroborationで別atomではない。source-linesとcoverage receiptは`docs/governance/audits/requirement-registration/hil-br12-intake-style-source-lines-2026-10-02.jsonl`および`helixos-l2-121-hil-br12-coverage-receipt-2026-10-02.json`。`no_loss`はこの一atomを四facet候補へ対応したことだけを示す。2026-09-28 OS decisionの固定L2-001〜029/paired L11は合意済みで、本候補はその対象revision外かつ未採択である。HARNESS-L2-023の依存意味はHELIX-HARNESS 9/28 exact decision revisionで採択済みと確認し、そのMPR frontmatter/register stateをauthority根拠にしない。`MPR-SH-IR-003#HIL-BR-12`は生存し、formal successor、owner/scope/version、旧HR/HAC/HAT全体closure、L3承認、runtime/test/CI実行を主張しない。旧sourceは読取専用で実行しない。
+
+## 2026-10-02 HELIXOS-L2-122 仮登録
+
+旧HIL-NFR-01の一IR atomに対する未採択OS connection候補を `MPR-RC-HELIXOS-L2-122-001` として追記した。候補はdelivery、Issue contract、job、PR headの各既存identityとowner効果を因果・既存receiptで結び、同一operationの重複効果、異payload conflict、部分失敗後の継続、unknown時の保留を扱う。LABO／INTELLIGENCE／BRAINの知識責務は移さず、採択済みOS 007/009/019およびHARNESS 023の範囲を超える保証を採択済みとは主張しない。source holding、formal successor、要求採否は未解決のまま維持する。詳細は [coverage receipt](audits/requirement-registration/helixos-l2-122-hil-nfr-01-idempotency-coverage-receipt-2026-10-02.json) を参照。
