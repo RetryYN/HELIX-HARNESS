@@ -8,11 +8,6 @@
 - 旧assetは参照のみ。archive workflow/runtime/test/CIは実行していない。正式successorは全11件で未割当、downstreamは`pending_pair_descent`。この監査は実装・実行・受入完了や旧source retirementを主張しない。
 - 旧source監査の「implementation_only」は方式選択を切り分ける分類として読む。これをもって同じ行の意味条件、受入、負例、証拠まで消えたとは扱わない。旧source全体の条件closureが無い限り、その意味を「方式だけ」と狭めず未証明を残す。
 
-## 最新mainとの別比較
-
-- latest main `a5c83e1991973c03dc0fd3497509b0b9b2aec96c`に対し、audit basis `a7f85b4c2fd88510c32de4a1ade4c95662bd98c1`とfixed revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`は維持した。37 crosswalk pair参照が指す19の一意な採択targetについて、L2 section、L11 section/row、各PO decision fileを最新mainで再hashした。全対象section/rowとdecision fileはa7時点から不変。文書全体の追補有無とsection不変を区別し、監査基準を最新mainへ置換していない。各最新見出し/行の具体locatorはJSON `latest_main_comparison`に記録した。
-- 最新mainのHARNESS-L2-083 MPR rows 001/002はいずれも`registered_proposal`・`authority_effect: none`であり、登録やmergeから採択を推定しない。旧L1、11個のIR record、33個のacceptance case、11個のsystem-test根拠と5 source/consumer file hash、および6既存監査入力のhashも最新mainで照合し、全て記録値と一致した。
-
 ## 条件別判定
 
 | Source | 原文条件と現在の状態 | 現行採択ペア・意味保持境界 |
@@ -41,3 +36,12 @@
 分類上の実装方式（Node/Python/ZIP/SQLite/stdio/adapter・CI方式）を現行要求へ自動移植しない判断は維持する。一方で、TR01/11のBun-removal end-state oracle、TR02/03/05/06/07/08/09/10の個別責務・failure/negative evidence、TR04のplatform support scopeを「implementation-only」の一括表示で閉じてはならない。この監査では多くの対応を「関連する採択pair」と「同じ受入条件の証明」に分け、後者が無い条件を未証明として列挙した。
 
 次段階はこの記録の独立reviewと親検収後、真の要求残差だけを既存L2 owner・authorityへ戻すこと。新IDや新しいplatform/runtime要件はこの監査で起草・予約しない。旧scope決定はTR04の判断状態に残し、L3実装方式をL2条件へ昇格しない。
+
+## 最新mainとの別比較
+
+- latest main `a5c83e1991973c03dc0fd3497509b0b9b2aec96c`に対し、audit basis `a7f85b4c2fd88510c32de4a1ade4c95662bd98c1`とfixed revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`は維持した。37 crosswalk pair参照が指す19の一意な採択targetについて、L2 section、L11 section/row、各PO decision fileを最新mainで再hashした。全対象section/rowとdecision fileはa7時点から不変。文書全体の追補有無とsection不変を区別し、監査基準を最新mainへ置換していない。各最新見出し/行の具体locatorはJSON `latest_main_comparison`に記録した。
+- 最新mainのHARNESS-L2-083 MPR rows 001/002はいずれも`registered_proposal`・`authority_effect: none`であり、登録やmergeから採択を推定しない。旧L1、11個のIR record、33個のacceptance case、11個のsystem-test根拠と5 source/consumer file hash、および6既存監査入力のhashも最新mainで照合し、全て記録値と一致した。
+
+## 最新mainの追補比較（212cefee88df4b0914c6253aa109fe9d884eae51）
+
+直前のa5比較はその時点の独立照合として保持し、この追補を新しいlatest-main比較とする。監査basis `a7f85b4c2fd88510c32de4a1ade4c95662bd98c1`と固定要求revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`は更新していない。37 crosswalk参照に対応する19の一意な採択pair targetのL2/L11 sectionまたは受入row、PO decision fileを212ceで再照合し、38 locatorすべてがa7基準のSHA-256と一致した。INFRASTRUCTURE-011は次の同階層以上の見出しで範囲を切り、後続章を含めていない。旧L1/IR/consumerの5 source file、IR 11件・acceptance case 33件・system-test 11件の母数、および既存6監査入力も記録SHAと一致する。HARNESS-083のMPR 001/002は`registered_proposal`／`authority_effect: none`のままで、採択を推定しない。全section/row、決定record、sourceと入力のlocator・hashはJSONの`latest_main_comparison`に記録した。
