@@ -1245,3 +1245,32 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **受入判定**：同一plan/target上の依存段についてのみ、後段自身のdigestと直前依存receiptのidentityが追跡できることを確認する。HARNESS oracleの成否、OS実行状態、quarantine状態はそれぞれ既存pairの条件で判定する。候補・fixture・receipt記録だけからruntime実行、採択、merge許可を生成しない。
 
 **旧source**：normative IR atomは`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のHIL-NFR-15、L1 line 195は`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`による同一文のcorroboration。HR-FR-HIL-06/HAC-HIL-06a/b/cは旧consumer context、HAT-HIL-06と旧prejoin/postjoin/external物理構成は参照のみ。参照のみ分類は旧runtime/固定stageの来歴だけに適用し、normative IR atom全体やそのreceipt lineage条件を実行closure外へ落とさない。OS-032の採択済み限定quarantineと本候補の段間参照を混同しない。
+
+
+## HIL-NFR-32 対 HELIXOS-L2-019 L11 の候補追補
+
+本節はHELIXOS-L2-019のL11候補に属する独立した末尾partである。MPR-RC-HELIXOS-L2-019-002と `hil-nfr32-019-candidate-correction-receipt-2026-10-03-r2.json` が、対象identity、本文selector、part順、digestを固定する。固定採択revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の019本文と受入はgit履歴上のまま保持し、本追補はその採択へ含まれない未採択candidateである。
+
+以下は固定採択revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のHELIXOS-L2-019/L11-019の過去本文bytesをgit履歴に保持したうえで、同じL11文書に追加する未採択候補である。HELIXOS-L2-019-001の登録やf6での採択を取り消さず、新しいL11候補revisionを採択済みとも扱わない。現行L2契約は変更せず、既存のOS-L2-015/016/019、HARNESS-L2-004/005と「要求正本を更新する管理条件」へ接続するL11候補である。HIL-NFR-32の原文「意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。」をそのまま保持し、対象の意味変更をCanonical化する操作では六条件をすべて照合する。対象外sourceや無関係な全projectを一律に要求する追加規則にはしない。適用scope内で必要なsourceの欠落・unknownは「影響なし」や成功に読み替えない。
+
+- **正常fixture（未実行）**：同じ意味変更operation、変更前の要求revision、適用scopeを固定し、適用するauthority、影響要求/designと既存pair、互換pair revision、変更に適用するoracle/expected failure、rollback/recoveryの根拠、影響するdownstream relationと、既存管理条件で対象となるstale stateの更新結果を結ぶ。期待結果は、既存の一括更新契約の下で変更とevidenceを同じrevisionへ追跡でき、六条件のどれも別operationや別revisionから借りないこと。すべてのdownstream作業完了や、scope外を含む全consumerの処理は要求しない。これは設計上の期待であり、実行済みの受入証拠ではない。
+- **独立negative fixture群（未実行）**：正常fixtureと同じoperation、base revision、scopeおよび他の入力を固定し、以下の一項目だけを各caseで欠落・不一致にする。それぞれCanonical化を成立させず、他の五項目や成功した下位処理で補償しない。
+  1. 適用するauthorityの根拠だけを欠落させる、または無権限にする。
+  2. 影響対象と変更のrelationだけを欠落させ、影響範囲をunknownにする。
+  3. 対象changeに結ばれたpairまたは互換revisionだけを欠落・不一致にする。
+  4. 適用するoracle/expected failureだけを欠落させる、または対象changeと不一致にする。
+  5. rollback/recoveryの根拠だけを欠落させる。
+  6. 既存管理条件の対象となる影響下流のstale state更新根拠だけを欠落させる。全consumerの処理完了や無関係な下流作業完了はこの条件に加えない。
+- **別oracleのnegative**：stale base拒否、要求・receipt等の初期write faultによるpartial-current防止、複数revisionから混ぜた根拠の拒否は、上記六つの独立欠落と別caseにする。初期write faultでは更新の原子的確定とrollback/recoveryを確認する。既存管理条件で対象となるdownstream stale state更新の根拠欠落caseでは、初期transaction成功だけではcanonicalization条件を満たさないことを確認する。全downstream処理完了へ条件を広げず、二段階のfailureを同じoracleへまとめない。
+- **未見・unknown**：未選択source、未確定の適用scope、影響先を確定できないrelationは、非該当や影響なしに変換しない。必要sourceの範囲が分からないcaseはunknown/未完として残す。六条件はこの意味変更操作の前提であり、意味変更を伴わない全操作へ広げない。
+
+HARNESS-L2-023との実行dependency分類は次のとおりとする。この分類はdependencyだけを表し、IRの規範性やHR/HAC/HATの原文条件を参照資料へ降格しない。
+
+| 分類 | この候補での適用 |
+|---|---|
+| 常時必須 | 対象の要求identity/revision、変更前base、操作scopeと現行のL2/L11契約を同定する。 |
+| 特定操作時のみ | 意味変更をCanonical化する操作を選択した場合に限り、六条件を同じoperation/base/scopeについて照合する。 |
+| 選択した入力元に応じて必須 | 当該操作で適用されるauthority、impact/pair、oracle、rollback/recovery、downstream relationのsource identity・revision・適用scopeを入力として結ぶ。原IRはnormative source、L1同文はcorroboration、HR-FR-HIL-19/HAC-HIL-19a..c/HAT-HIL-19はcontract・設計済みoracle/testのconsumer contextとして残す。個々の条件が適用される根拠sourceの選択と未選択sourceの範囲を記録する。 |
+| 参照資料のみ | 旧runtime、CLI、schema、enum、実装クラス名は実行dependencyにしない。旧test/runtimeは実行しない。 |
+
+これはL2に新しいguard、field、schema、固定実行段数を足す提案ではない。既存L2条件の意味関係は固定本文から導き、各機構ownerの既存契約を参照する。HARNESSが検証義務/oracleを定め、OSが許可された実行結果・continuityを記録する。候補のauthority effectはnone、L2/L11 adoption、正式successor、whole-source closure、実行成功は未確認である。
