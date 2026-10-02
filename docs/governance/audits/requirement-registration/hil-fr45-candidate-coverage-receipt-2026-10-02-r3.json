@@ -1,0 +1,546 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-078-IR153-2026-10-02-r3",
+  "receipt_state": "draft_unadopted_candidate_revision_002",
+  "authority_effect": "none",
+  "candidate_identity": "HARNESS-L2-078",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:986b276e67c1c21ec93c58dbe60c05afbc82393dc3ff0e7f44bb0b1887c54567",
+  "candidate_digest_rule": "L2の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "candidate_l2_file_sha256": "sha256:37c15240f05cacceb2702603eb5c6e31fb28d9f6d5c3d000dea5f8e3c760985f",
+  "paired_acceptance_identity": "HARNESS-L2-078-002",
+  "paired_acceptance_digest": "sha256:c6a78fc71a47e33c60229001bd0813c426f65513e3942e7cc7fcfe4dd174a2e9",
+  "l11_digest_rule": "L11の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "l11_file_sha256": "sha256:c35f117ac21069ec4c40087dd0151d647d9ed361963e319741a068cf282359c2",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl",
+  "source_atom_set_digest": "sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + atom_digest + LF として連結しUTF-8 SHA-256を計算する。HIL-FR-45行atomのatom_digestはsource_line_sha256のprefixなし値、whole HIL-NFR-28 IR identity atomのatom_digestはidentity.statement.semantic_digestのprefixなし値を使う。NFR-28のcorroborating L1行は含めない。",
+  "source_collection_scope": "Two selected source identities: HIL-FR-45 line 135 (one selected old source line atom) and the whole HIL-NFR-28 Requirement IR identity at #/HIL-NFR-28 (one IR atom). NFR-28 old L1 line 208 is corroborating wording, not an additional atom. The selected source atom count (2) is not the target active-requirement denominator: for the explicitly authority-scoped target, enumerate every active requirement revision from its membership source and bind all six NFR-28 conditions per requirement. NFR-28 contributes its scope-bounded active-requirement population, six individual binding conditions, and ambiguity/orphan/stale not-green conditions. No universal all-4,020 or all-mechanism population is added.",
+  "source_collection_atom_count": 2,
+  "candidate_input_atom_refs": [
+    "IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT",
+    "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING"
+  ],
+  "candidate_input_atom_count": 2,
+  "candidate_input_atom_set_digest": "sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa",
+  "candidate_input_accounting_status": "Two selected source atoms are attached to this unadopted 078-002 candidate only; they do not set the target active-requirement denominator. HIL-NFR-28 remains a whole IR identity. Candidate clauses and source mapping are stated per condition. No formal successor, owner transfer, adoption, execution, or full source closure is claimed.",
+  "source_line_coverage_result": "candidate_input_scoped; preserves the selected HIL-FR-45 line and full HIL-NFR-28 identity. Adds individual design-only consumer references for HST-CASE-029-11..15, -17, -18, -20, and -23; no archived test was executed. NFR-28 coverage row count, sequential IDs, or document existence alone do not establish design completeness; an actually applicable service/capability falsely labeled non-applicable remains incomplete/failing. Formal successor/source owner/adoption/execution remain unconfirmed.",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "candidate_input_scoped; all 13 FR-45 semantic fields and typed relations retained; only NFR-28 justified service/capability non-applicability may be an evidence-bound value; other twelve fields retain required meaning/values unless separately evidenced; actual applicability contradicting a reasoned N/A fails; active target-scope denominator and all six bindings remain; FR-45 N/A operation remains separately receipt-gated.",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-FR-45 remains live; successor_requirement_ids remain empty; source owner, target scope/version, adoption, execution and full source closure remain unconfirmed.",
+    "MPR-SH-IR-003#HIL-NFR-28 remains preserved_pending_rehome; successor_requirement_ids remain empty; target scope, owner, adoption, and formal source binding remain unconfirmed."
+  ],
+  "preserved_pending_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT",
+      "source_holding_registration_id": "MPR-SH-IR-003",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 135,
+      "source_line_sha256": "sha256:618f08eec7918d50938b2b09914da9be34524d5f9662b5bdfd1dfa43aed4b871",
+      "source_text": "| **HIL-FR-45** | Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding |",
+      "source_identity": "infinity-loop-platform-requirements.md::HIL-FR-45",
+      "candidate_input": true,
+      "disposition": "candidate_scope_only; source holding remains live",
+      "relation": "HARNESS-L2-78/L11 candidate only; no formal successor, owner transfer, adoption, execution, or full condition closure is claimed.",
+      "atomization_rationale": "One exact old explicit-requirement row is selected. Adjacent source rows and associated system contract/HAC/HAT are evidence context, not additional candidate input atoms.",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md#L135",
+      "source_ledger_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886"
+    },
+    {
+      "atom_id": "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING",
+      "source_holding_registration_id": "MPR-SH-IR-003",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_revision_kind": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_pointer": "#/HIL-NFR-28",
+      "source_record_start_line": 5584,
+      "source_record_end_line": 5626,
+      "source_record_sha256": "sha256:c93e4aaa762b5477bbc70067d7dae0e2e0290ba8d8a886123d42a1b7c9740f92",
+      "source_record_text": "  \"HIL-NFR-28\": {\n    \"schema_version\": \"helix-requirement.v1\",\n    \"requirement_id\": \"HIL-NFR-28\",\n    \"revision\": 1,\n    \"kind\": \"non_functional\",\n    \"status\": \"specified\",\n    \"definition_status\": \"frozen\",\n    \"evidence_origin\": \"legacy_markdown_migration\",\n    \"statement\": {\n      \"text\": \"requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。\",\n      \"semantic_digest\": \"sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357\"\n    },\n    \"assertion_id\": \"HIA-NFR-028\",\n    \"primary_system_contract_id\": \"HR-FR-HIL-17\",\n    \"acceptance_ids\": [\n      \"HAC-HIL-17a\",\n      \"HAC-HIL-17b\",\n      \"HAC-HIL-17c\"\n    ],\n    \"system_test_id\": \"HAT-HIL-17\",\n    \"downstream_obligation\": {\n      \"obligation_id\": \"DOWNSTREAM-HIL-NFR-28\",\n      \"owner_id\": \"HR-FR-HIL-17\",\n      \"status\": \"pending_pair_descent\",\n      \"route_issue_ids\": []\n    },\n    \"actor_ids\": [],\n    \"task_ids\": [],\n    \"surface_ids\": [],\n    \"design_template_ids\": [],\n    \"design_obligation_ids\": [],\n    \"required_design_artifact_kinds\": [],\n    \"pending_resolution\": [\n      \"legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence\",\n      \"design template selection remains pending until Issue #290 is activated after G1/G3 rebind\"\n    ],\n    \"source\": {\n      \"canonical_pointer\": \"requirements-ir/requirements.json#/HIL-NFR-28\",\n      \"migration_source_pointer\": \"docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208\",\n      \"authority_id\": \"RAS-HIL-17\"\n    },\n    \"semantic_digest\": \"sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f\"\n  },\n",
+      "source_identity": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-28",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。",
+          "semantic_digest": "sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357"
+        },
+        "assertion_id": "HIA-NFR-028",
+        "primary_system_contract_id": "HR-FR-HIL-17",
+        "acceptance_ids": [
+          "HAC-HIL-17a",
+          "HAC-HIL-17b",
+          "HAC-HIL-17c"
+        ],
+        "system_test_id": "HAT-HIL-17",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-28",
+          "owner_id": "HR-FR-HIL-17",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-28",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208",
+          "authority_id": "RAS-HIL-17"
+        },
+        "semantic_digest": "sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f"
+      },
+      "legacy_statement_semantic_digest": "sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357",
+      "legacy_record_semantic_digest": "sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f",
+      "corroborating_source": {
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "line": 208,
+        "line_text": "| **HIL-NFR-28** | requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。 |",
+        "line_sha256_including_lf": "sha256:033a70672918f8a4028c8cb2e274f9a0a7be278139a4cdf24855afe7cd7577cc",
+        "line_sha256_without_lf": "sha256:bf881d1f482f751657f80cf4f0de4b57403eec6c2effb82a4ed9a853444243e1",
+        "semantic_line_carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01951",
+        "semantic_line_sha256_without_lf": "bf881d1f482f751657f80cf4f0de4b57403eec6c2effb82a4ed9a853444243e1",
+        "relation": "Old layer-1 text corroborates the same NFR-28 IR statement; it is not a separate source atom."
+      },
+      "carry_forward_record": {
+        "requirement_id": "HIL-NFR-28",
+        "legacy_revision": 1,
+        "legacy_kind": "non_functional",
+        "statement_text": "requirement coverageの行数、ID連番、文書存在だけを要件定義の設計完全性としない。各active requirementはsource atom、authority、acceptance oracle、service/capabilityまたは根拠付き非該当、template applicability、design obligationへ個別に結び、未解決ambiguity、orphan、stale revisionをgreenにしない。",
+        "statement_semantic_digest": "sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357",
+        "record_semantic_digest": "sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f",
+        "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-28",
+        "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "carry_status": "preserved_pending_rehome",
+        "requirement_change_authority": "explicit_human_decision_only",
+        "target_assessment": "HARNESS／OS：要求と設計義務の完全性条件、対応と状態の管理",
+        "crosswalk": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "carry_forward_status": "preserved_pending_rehome; successor_requirement_ids=[]",
+      "selected_source_condition": "Whole HIL-NFR-28 identity as the source atom. Candidate conditions cover target-scope active-set denominator, six per-active requirement bindings, and ambiguity/orphan/stale not-green. No global 4020-asset scope or formal successor.",
+      "source_semantic_digest_definition": "requirements.json identity.statement.semantic_digest; record semantic_digest and exact record byte span are separately pinned."
+    }
+  ],
+  "parent_l1": {
+    "identities": [
+      "HARNESS-L1-001",
+      "HARNESS-L1-003",
+      "HARNESS-L1-004",
+      "HARNESS-L1-009"
+    ],
+    "path": "docs/helix-harness/L1-planning/product-intent.md",
+    "source_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+    "source_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "adoption_basis": "HARNESS L1 target fixed/adopted by helix-harness-requirements-po-decision-2026-09-28.md; parent adoption does not adopt this L2/L11 candidate."
+  },
+  "parent_concept": {
+    "path": "docs/concept/helix-concept.md",
+    "source_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f",
+    "source_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "authority": "Fixed concept bytes at the candidate base; this does not claim PO adoption of this L2/L11 candidate."
+  },
+  "accepted_pair_comparison": {
+    "accepted_requirements": [
+      "HARNESS-L2-040",
+      "HARNESS-L2-041",
+      "HARNESS-L2-053",
+      "HARNESS-L2-063"
+    ],
+    "accepted_l11": [
+      "HARNESS-L2-040",
+      "HARNESS-L2-041-003",
+      "HARNESS-L2-053",
+      "HARNESS-L2-063"
+    ],
+    "findings": "040 provides stable row/revision/owner/source span and generic typed edges; 053 provides selected identity lineage for rename/move/split/merge/supersede; 063 provides source/change/stale/oracle closure only for three selected HR-FR-HIL-17 slices. These do not establish all thirteen HIL-FR-45 field semantics and the full evidence condition for each listed operation. Do not count mere missing physical schema/name or repeat guarantees already supplied for their stated scopes.",
+    "exact_adopted_revisions": {
+      "HARNESS-L2-040": {
+        "registration": "MPR-RC-HARNESS-L2-040-002",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:45",
+        "l2": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+        "l11": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212"
+      },
+      "HARNESS-L2-041": {
+        "registration": "MPR-RC-HARNESS-L2-041-003",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27",
+        "l2": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+        "l11": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+      },
+      "HARNESS-L2-053": {
+        "registration": "MPR-RC-HARNESS-L2-053-001",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:33",
+        "l2": "ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587",
+        "l11": "c22abfd29780a4016b0fcef74d6b2c29b3628b81c12d0fcb0b1fcabfb48bb61f"
+      },
+      "HARNESS-L2-063": {
+        "registration": "MPR-RC-HARNESS-L2-063-001",
+        "decision": "docs/governance/decisions/po-decision-2026-09-30-live26.md:48",
+        "l2": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+        "l11": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233"
+      }
+    },
+    "authority_note": "採否はcandidate/status metadataではなく、各PO decisionのregistration IDとsection digestをcurrent bytesで照合した。L2/L11のfull-file bytesとdecision-file bytesはcaptured pinsおよびMPRで追跡する。",
+    "decision_file_sha256": {
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "docs/governance/decisions/po-decision-2026-09-29-11candidates.md": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "docs/governance/decisions/po-decision-2026-09-30-live26.md": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    }
+  },
+  "po_decision_material": {
+    "source_semantics": {
+      "HIL-NFR-28": "For each active requirement in the specified target scope, bind six stated conditions individually and keep unresolved ambiguity/orphan/stale not green. Service/capability may have a reasoned non-applicability.",
+      "HIL-FR-45": "Preserve thirteen semantic fields with typed edges; split/merge/rename/supersede/reject/N/A each require complete before/after digest, all source atom dispositions, downstream stale/result, and review-authority receipt.",
+      "difference": "The sources are compatible when NFR-28 justified service/capability non-applicability is preserved as a supported value within the required field, not as field omission or a requirement-change operation. The selected source pair does not establish general field-value non-applicability for the other twelve fields; retain their required meaning and values. Any separately evidenced field-specific non-applicability must be documented with its own source, scope, revision, authority/applicability basis and cannot waive owner/source/oracle or other relation fields. The independent PO choice is whether to retain this source-faithful candidate interpretation for service/capability (A), defer the NFR-28 clause as unrepresented under strict 078-001 reading (B), or request an explicit meaning decision (C). FR-45 itself does not prohibit field-value N/A in the abstract; it explicitly gates N/A when used as a listed requirement-change operation."
+    },
+    "options": {
+      "A": "Recommended: retain capability/service as a required field and permit only NFR-28’s explicit reasoned non-applicability value for that field when scope, revision, authority/applicability basis and typed relation are present; other twelve fields retain required meaning/values unless a separate field-specific source explicitly supports an exception; omission/unknown remains incomplete, and FR-45 requirement-change N/A keeps its full separate receipt.",
+      "B": "Keep 078-001’s strict interpretation; preserve NFR-28 in source holding and leave its service/capability non-applicability clause unresolved rather than claiming candidate coverage.",
+      "C": "If the PO considers these requirements semantically incompatible, defer adoption and return an explicit meaning-change decision for the two exact source revisions; do not silently drop either clause."
+    },
+    "recommendation": "A, because NFR-28 expressly allows a reasoned non-applicability for service/capability, while FR-45 requires semantic fields/typed relations and separately receipt-gates listed change operations. Preserve that field with an evidence-bound value; do not infer field deletion, generalize the exception to the other twelve fields, or infer operation N/A.",
+    "impact": "A represents both source clauses while preserving all 13 fields and change-operation controls; its non-applicability value exception is limited to NFR-28’s service/capability field. B leaves an explicit NFR-28 condition without a candidate destination. C postpones the semantic choice. This packet records choices; it does not create adoption, owner transfer, or new approval procedure.",
+    "affected_requirements": [
+      "HIL-NFR-28",
+      "HIL-FR-45",
+      "HARNESS-L2-078-002"
+    ]
+  },
+  "review_pins": {
+    "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "latest_main_comparison": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+    "source_ledger": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886",
+    "source_line_archive": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208",
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "current_harness_l1_decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "current_decision_files": [
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "docs/governance/decisions/po-decision-2026-09-30-live26.md"
+    ],
+    "decision_file_sha256": {
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "docs/governance/decisions/po-decision-2026-09-29-11candidates.md": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "docs/governance/decisions/po-decision-2026-09-30-live26.md": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    "source_line_sha256_lf_excluded": "sha256:bf881d1f482f751657f80cf4f0de4b57403eec6c2effb82a4ed9a853444243e1",
+    "source_atom_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
+    "fixed_l2_l11_before_append_sha256": {
+      "l2": "sha256:e22ff41b5ed36a00c0c0a9807052759d01f930ce5574aa860d80f7b90b76bdf4",
+      "l11": "sha256:2cf983e2ac8771badd056f8e49dd0a0f6704a2f088b4f816b99792f5a7a8ac82"
+    },
+    "current_contract_composition_audit": {
+      "path": "docs/governance/audits/requirements-stage/hil-fr42-fr45-current-contract-composition-audit-2026-10-02.json",
+      "full_file_sha256": "sha256:87dadc9476626c405c2fbe9fd9c3e8bc2e5739cbb9ff4d77e4c7134e718625fc",
+      "base_commit": "f38bde044a7dfbf12aec0203b21a9384eef6ad8f"
+    },
+    "source_ir": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-28"
+  },
+  "registered_at": "2026-10-03",
+  "source_atom_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
+  "current_bytes_read_after": {
+    "candidate_l2_section_sha256": "sha256:986b276e67c1c21ec93c58dbe60c05afbc82393dc3ff0e7f44bb0b1887c54567",
+    "candidate_l2_full_file_sha256": "sha256:37c15240f05cacceb2702603eb5c6e31fb28d9f6d5c3d000dea5f8e3c760985f",
+    "candidate_l11_section_sha256": "sha256:c6a78fc71a47e33c60229001bd0813c426f65513e3942e7cc7fcfe4dd174a2e9",
+    "candidate_l11_full_file_sha256": "sha256:c35f117ac21069ec4c40087dd0151d647d9ed361963e319741a068cf282359c2",
+    "candidate_identity": "HARNESS-L2-078",
+    "registration_id": "MPR-RC-HARNESS-L2-078-003",
+    "authority_effect": "none"
+  },
+  "root_integration_note": "Receipt r3 preserves the original candidate base a7f85b4c2fd88510c32de4a1ade4c95662bd98c1 and historical_snapshot, and supersedes MPR-RC-HARNESS-L2-078-002/r2. Against latest main a5c83e1991973c03dc0fd3497509b0b9b2aec96c, all 685 raw MPR rows remain byte-for-byte; the existing 002 row follows at line 686 unchanged and the new 003 row is appended at line 687. The 001/r1 receipt, source archive, and registration history are unchanged. Current 078 L2/L11 section and full-file pins match the r3 receipt. No adoption, source closure, or new identity is claimed.",
+  "review_correction": {
+    "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception. Old HIL-NFR-28 explicitly permits reasoned non-applicability only for its service/capability binding; this permission does not generalize to other fields.",
+    "response": "Correction: 13 field meanings and typed relations remain present; FR-45 line 135 does not itself prohibit a justified non-applicability value. NFR-28 explicitly permits that value for service/capability, so keep this field and bind its value to reason, target scope/revision, authority/applicability basis. The two selected sources do not authorize generalizing non-applicability to the other twelve fields; preserve their required meaning and values unless separate explicit field-specific source evidence applies. No non-applicability value waives owner/source/oracle or related fields. Missing/unknown/stale/implicit omission remains incomplete. A requirement-change operation N/A is distinct and still needs its full FR-45 receipt.",
+    "comparison_base_commit": "f8be390d15c8709da82af38d0d7679dffe1f5312",
+    "authority_effect": "none"
+  },
+  "candidate_l2_line_start": 1316,
+  "candidate_l2_line_end": 1327,
+  "l11_line_start": 1026,
+  "l11_line_end": 1052,
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-078-003",
+  "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "sha256:37c15240f05cacceb2702603eb5c6e31fb28d9f6d5c3d000dea5f8e3c760985f",
+      "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの条件候補（HARNESS-CORE単体、未採択）",
+      "start_line": 1316,
+      "end_before_line": 1328,
+      "sha256": "sha256:986b276e67c1c21ec93c58dbe60c05afbc82393dc3ff0e7f44bb0b1887c54567",
+      "byte_length": 7465
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "sha256:c35f117ac21069ec4c40087dd0151d647d9ed361963e319741a068cf282359c2",
+      "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの受入候補（未採択・未実行）",
+      "start_line": 1026,
+      "end_before_line": 1053,
+      "sha256": "sha256:c6a78fc71a47e33c60229001bd0813c426f65513e3942e7cc7fcfe4dd174a2e9",
+      "byte_length": 8548
+    },
+    "candidate_digest_rule": "From the HARNESS-L2-078 heading through the next same-level ### heading, remove trailing blank lines, UTF-8 encode with one final LF, then SHA-256. L11 section is independently pinned by the same boundary rule."
+  },
+  "condition_crosswalk": [
+    {
+      "source_atom": "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING",
+      "condition": "Row count, ID sequence, or document presence does not establish completeness.",
+      "candidate_destination": "L2-078 target-scope active revision membership is the denominator; do not infer from document/row counts."
+    },
+    {
+      "source_atom": "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING",
+      "condition": "Each active requirement individually binds source atom, authority, acceptance oracle, service/capability or justified non-applicability, template applicability, and design obligation.",
+      "candidate_destination": "L2-078 requires all six typed relations for every active revision in authority-specified target scope; a justified service/capability non-applicability is an allowed value, with field retained and scope/revision/authority/applicability basis bound to it."
+    },
+    {
+      "source_atom": "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING",
+      "condition": "Unresolved ambiguity, orphan, or stale revision is not green.",
+      "candidate_destination": "L2/L11-078 leave every affected active requirement not-green, distinguish missing/unknown/stale relation; no other active requirement or subset result masks it."
+    },
+    {
+      "source_atom": "IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT",
+      "condition": "13 semantic fields, typed edges, and listed split/merge/rename/supersede/reject/N/A change operation receipt conditions.",
+      "candidate_destination": "All 13 field meanings and typed relations are retained. The NFR-28 justified service/capability non-applicability is a supported field value and does not itself apply change-operation N/A. Each FR-45 split/merge/rename/supersede/reject/N/A operation separately requires before/after digest, every source atom disposition, downstream stale/result, and review-authority evidence."
+    },
+    {
+      "source_atom": "IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING",
+      "condition": "A service/capability binding that is actually applicable in the authority/scope/revision evidence cannot be made non-applicable by a contradictory reasoned-looking N/A.",
+      "candidate_destination": "L11-078 independently tests req-B@rev-3 where capability/service applies but the fixture supplies a contradicted reasoned N/A; return false-not-applicable and keep that active requirement in the denominator. Design-only corroboration: HST-CASE-029-18 at old consumer line 287."
+    }
+  ],
+  "current_adopted_comparison": {
+    "decision_scope": "Exact current adopted pairs read from 9/28 fixed decision, 9/29 57 candidates, 9/29 11 candidates, and 9/30 live26 decision; exact revisions/pins in accepted_pair_comparison retained from r1 and current full files re-read at base a7f85b4.",
+    "interpretation": "The adopted 040/041-003/053/063 sections are adopted only for their decision-selected scopes. They do not by themselves establish NFR-28’s target-scope active population denominator and six-binding join. 077/078 candidate registrations remain proposals; registration metadata is not adoption."
+  },
+  "candidate_pair_lineage": {
+    "r1_candidate_registration": "MPR-RC-HARNESS-L2-078-001",
+    "r1_receipt_path": "docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02.json",
+    "r1_receipt_sha256": "sha256:608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14",
+    "r1_receipt_and_source_snapshot_mutated": false,
+    "r2_registration": "MPR-RC-HARNESS-L2-078-002",
+    "r2_supersedes": "MPR-RC-HARNESS-L2-078-001",
+    "r2_receipt_path": "docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r2.json",
+    "r2_receipt_sha256": "sha256:7e54787414f3a5beda3069895a9e9e9e6a6c9ce4e669c944a0683c05b9c55243",
+    "r2_bytes_mutated": false,
+    "r3_registration": "MPR-RC-HARNESS-L2-078-003",
+    "r3_supersedes": "MPR-RC-HARNESS-L2-078-002"
+  },
+  "source_set_digest_rule": "Sort by atom_id; concatenate UTF-8 atom_id + SPACE + atom_digest + LF, SHA-256. For the selected old line atom IR153-HIL-FR-45-TYPED-LEDGER-RECEIPT, atom_digest is source_line_sha256 without prefix; for whole IR identity IR153-HIL-NFR-28-ACTIVE-REQUIREMENT-BINDING, atom_digest is identity.statement.semantic_digest without prefix. The NFR-28 corroborating L1 line is not counted.",
+  "source_line_archive": {
+    "path": "docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl",
+    "full_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
+    "atom_count": 2,
+    "r1_source_file_unchanged": true,
+    "r2_source_archive_bytes_preserved": true,
+    "r3_selected_source_atoms_unchanged": true
+  },
+  "historical_snapshot": {
+    "status": "superseded_pre_correction_pins; not current authority or current-byte evidence",
+    "pre_correction_candidate_semantic_digest": "sha256:5059c70d0779f935ffe43e3b1b37400735f4eeee1ba31ff5e48559fb9a875c60",
+    "pre_correction_candidate_l2_file_sha256": "sha256:1294584edc0dfa833c7c93cf1e605945b10be07c768f3c992861aeec46237e96",
+    "pre_correction_paired_acceptance_digest": "sha256:6a2ea79f5da15083c5cbcc51c2133d0ef412569f5fa6daff3f3002bbe156bfb4",
+    "pre_correction_l11_file_sha256": "sha256:67ee9f817c640e54ab997a3eb00b7d13147c4483101f4d9ab982840b62b87149",
+    "pre_correction_source_atom_set_digest": "sha256:80d2b3d9706b181442af18ed01522729f5578c93597c305edb35f3439d595669",
+    "pre_correction_source_atom_file_sha256": "sha256:2c1691a7046ae3e7d195ed6cfc65397a8000e7f1eb83efa5b02cfefb35817bdf",
+    "note": "These are retained only to make the corrected r2 receipt's prior metadata discrepancy explicit; active fields above and the existing MPR-RC-HARNESS-L2-078-002 record carry the verified current values. HARNESS-L2-078-001/r1 is a separate immutable historical receipt."
+  },
+  "source_identity_pins": {
+    "legacy_ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "legacy_ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "nfr28_ir_pointer": "#/HIL-NFR-28",
+    "nfr28_statement_semantic_digest": "sha256:dcd5e597e7ffda1290911e74f7eb29498f59a07062c94c76e44bfe8e87f31357",
+    "nfr28_record_semantic_digest": "sha256:3b21e9956fd08cb2b1df2c2d00182cf8cf1eb347d9f033899335f692540b389f",
+    "source_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "corroborating_l1_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "corroborating_l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "corroborating_l1_line": 208,
+    "corroborating_l1_line_sha256_including_lf": "sha256:033a70672918f8a4028c8cb2e274f9a0a7be278139a4cdf24855afe7cd7577cc",
+    "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-NFR-28",
+    "carry_forward_state": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "source_semantic_line_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01951"
+  },
+  "consumer_context": {
+    "HR-FR-HIL-17": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-17",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "semantic_digest": "sha256:46638389e09a375aa1059fb3b6d3321703bfb2763c3777b2c321e06d25bc1fa7",
+      "behavior": "原文をauthority付きatomic requirementへ翻訳しdesign obligation/stable revision/edge/change receiptを正本化、template gapはshadow reviewへ。Failure includes source loss, aggregate/TBD/false N/A, self-promotion, stale propagation omission."
+    },
+    "HAC-HIL-17a/b/c": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-17a,b,c",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "semantic_digests": [
+        "sha256:b5603c8d13edbdaaab52a69baff70609799c53b99ca3cef8e10ddf9909250dee",
+        "sha256:5c0dd5f774457524ef7bac010d3df40ecbf324b72cd799a1c8373d7df8757d79",
+        "sha256:717a0bf0166831ea252b21ad2b7283a2ae236059a6723b28c56ad606b3b1f41d"
+      ],
+      "meaning": "positive atom/challenge complete revision; negative TBD/N/A/orphan/missing change freeze; boundary template gap stays inactive before independent review."
+    },
+    "HAT-HIL-17": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-17",
+      "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "semantic_digest": "sha256:1433c06a0d7b8cbf06ab4fbd4a2abe03ffccf2d40b651e86f306f763e051e814",
+      "status": "designed_not_implemented; read-only design evidence, not execution."
+    }
+  },
+  "source_limits": "NFR-28 IR source is the one source atom; its direct old L1 line and HR/HAC/HAT are corroboration/consumer context, not additional atoms. HIL-NFR-28 target assessment remains HARNESS/OS and no product owner/successor is assigned. Its target-scope active requirement denominator is independent of the two selected candidate source atoms. Whole old source remains preserved_pending_rehome.",
+  "candidate_l11_line_start": 1026,
+  "candidate_l11_line_end": 1052,
+  "integration_read_after": {
+    "comparison_main_commit": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+    "candidate_base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "main_register_prefix_row_count": 685,
+    "registration_id": "MPR-RC-HARNESS-L2-078-003",
+    "registration_line_after_integration": 687,
+    "superseded_registration_id": "MPR-RC-HARNESS-L2-078-002",
+    "superseded_registration_line": 686,
+    "historical_registration_id": "MPR-RC-HARNESS-L2-078-001",
+    "historical_r1_immutable": true,
+    "r1_receipt_bytes_unchanged": true,
+    "r2_receipt_bytes_unchanged": true,
+    "main_prefix_and_002_row_byte_preserved": true
+  },
+  "latest_main_comparison": {
+    "commit": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+    "mpr_prefix_line_count": 685,
+    "mpr_prefix_sha256": "sha256:ea9766951ef5d3939634a2cbd8beaca4539734ced0195d6ea5e9b9cb406e4494",
+    "post_append_line_count": 687,
+    "mpr_prefix_preserved_byte_for_byte": true,
+    "candidate_registration_id": "MPR-RC-HARNESS-L2-078-003",
+    "candidate_registration_line": 687,
+    "historical_002_registration_id": "MPR-RC-HARNESS-L2-078-002",
+    "historical_002_registration_line": 686,
+    "current_l2_file_sha256": "sha256:37c15240f05cacceb2702603eb5c6e31fb28d9f6d5c3d000dea5f8e3c760985f",
+    "current_l11_file_sha256": "sha256:c35f117ac21069ec4c40087dd0151d647d9ed361963e319741a068cf282359c2",
+    "comparison_main_l2_full_file_sha256": "sha256:535c369d01ef87f3fb9d1baa98d208697f254a406c634db2bc0883219bb16efd",
+    "comparison_main_l11_full_file_sha256": "sha256:4e15afc67c8d2bb19b470289d0287ca265b0fb713fdaf75e7918ea95eb56b223",
+    "binding_conflict_resolution": {
+      "conflicted_binding_count": 35,
+      "comparison": "Each stage-2 and stage-3 Scaffold Binding JSON compared equal after removing hash/digest keys and normalizing 64-hex digest tokens in values.",
+      "selected_bytes": "latest main a5c83e1991973c03dc0fd3497509b0b9b2aec96c bytes"
+    }
+  },
+  "receipt_revision": 3,
+  "supersedes_receipt": "docs/governance/audits/requirement-registration/hil-fr45-candidate-coverage-receipt-2026-10-02-r2.json",
+  "prior_revision_snapshot": {
+    "registration_id": "MPR-RC-HARNESS-L2-078-002",
+    "receipt_sha256": "sha256:7e54787414f3a5beda3069895a9e9e9e6a6c9ce4e669c944a0683c05b9c55243",
+    "r1_registration_id": "MPR-RC-HARNESS-L2-078-001",
+    "r1_receipt_sha256": "sha256:608877d31361ad3c06d2373515849b64fb9393a6237cb221a77b8818c4a38f14",
+    "r1_bytes_preserved": true,
+    "r2_bytes_preserved": true,
+    "note": "This r3 supersedes only the current provisional registration/pins; both earlier receipt files and the existing 001/r1 and 002/r2 register rows remain byte-for-byte unchanged."
+  },
+  "legacy_design_only_consumer_cases": {
+    "source_asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+    "case_records": [
+      {
+        "line": 280,
+        "case_id": "HST-CASE-029-11",
+        "line_text": "| HST-CASE-029-11 | HST-HIL-029 | HIL-NFR-28 | split receiptが無い | requirementを二atomへsplitする | current | current | revision増分0件 | HIL_REQUIREMENT_SPLIT_RECEIPT_MISSING | FX-HST-029-11 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:20861b21e0698c620711b2e83051c40a61c1e84873e5dde1e91031d70500d5b5",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 split missing-receipt condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 281,
+        "case_id": "HST-CASE-029-12",
+        "line_text": "| HST-CASE-029-12 | HST-HIL-029 | HIL-NFR-28 | merge receiptが無い | 二requirementをmergeする | current | current | revision増分0件 | HIL_REQUIREMENT_MERGE_RECEIPT_MISSING | FX-HST-029-12 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:bd6336c4f298696a0d0b5c87d2f6a95448392e5b7758453f7af21bec6bdfd7d9",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 merge missing-receipt condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 282,
+        "case_id": "HST-CASE-029-13",
+        "line_text": "| HST-CASE-029-13 | HST-HIL-029 | HIL-NFR-28 | rename receiptが無い | requirement IDをrenameする | current | current | identity不変 | HIL_REQUIREMENT_RENAME_RECEIPT_MISSING | FX-HST-029-13 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:1173a659a3e2785709f94c4342762edcf83cfe15c5e7342eee15a60b57a86bd6",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 rename missing-receipt condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 283,
+        "case_id": "HST-CASE-029-14",
+        "line_text": "| HST-CASE-029-14 | HST-HIL-029 | HIL-NFR-28 | supersede receiptが無い | old revisionをsupersedeする | current | current | status不変 | HIL_REQUIREMENT_SUPERSEDE_RECEIPT_MISSING | FX-HST-029-14 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:8cad471636e305c7efd6fa67a00315042ac176451dcec3833f50ae7112421f76",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 supersede missing-receipt condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 284,
+        "case_id": "HST-CASE-029-15",
+        "line_text": "| HST-CASE-029-15 | HST-HIL-029 | HIL-NFR-28 | N/A evidence receiptが無い | requirementをN/A化する | current | current | status不変 | HIL_REQUIREMENT_NA_RECEIPT_MISSING | FX-HST-029-15 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:9999aa4514fe025cf4b2c15e491302116c0ae3231a56c065e41e874fc97dc4d1",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 requirement-change N/A missing-receipt condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 286,
+        "case_id": "HST-CASE-029-17",
+        "line_text": "| HST-CASE-029-17 | HST-HIL-029 | HIL-NFR-28 | renameがacceptance意味を変更する | rename receiptを検証する | current | rejected | rename適用0件 | HIL_REQUIREMENT_RENAME_SEMANTIC_CHANGE | FX-HST-029-17 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:96a5f7981c23013df35dac9426da1025d2ed61bc9789124ff11c620406da3ccc",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 rename semantic-change rejection condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 287,
+        "case_id": "HST-CASE-029-18",
+        "line_text": "| HST-CASE-029-18 | HST-HIL-029 | HIL-NFR-28 | applicable requirementに偽N/A receiptがある | ledgerを検証する | ledger_ready | failed | active N/A 0件 | HIL_REQUIREMENT_FALSE_NOT_APPLICABLE | FX-HST-029-18 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:311dc5a3ff4bd5832c986c7185f1e491e93386cb620f6683b21769314aa93d0b",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "NFR-28 actually-applicable requirement false-N/A rejection condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 289,
+        "case_id": "HST-CASE-029-20",
+        "line_text": "| HST-CASE-029-20 | HST-HIL-029 | HIL-NFR-28 | split receiptにchild一件だけ記載 | splitをactive化する | current | current | revision増分0件 | HIL_REQUIREMENT_SPLIT_CHILD_MISSING | FX-HST-029-20 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:218946ed4348b717874b7c412b1a4a64f05b39fb740b79984edb06b4cf0b1d3f",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "FR-45 split child omission rejection condition",
+        "execution_evidence": false
+      },
+      {
+        "line": 436,
+        "case_id": "HST-CASE-029-23",
+        "line_text": "| HST-CASE-029-23 | HST-HIL-029 | HIL-NFR-28 | 連番とcoverage行だけがある要求、orphan、stale、ambiguity fixtureがある | requirement freezeを要求する | assertion_input_ready | assertion_pass | semantic設計edgeが完全でない要求をgreenにしない | HIL_REQUIREMENT_LEDGER_SEMANTIC_GAP | FX-HST-029-23 | design-defined | not-implemented |",
+        "line_sha256_with_lf": "sha256:aa3d32afd4c9a78deea6a092a05945565c37076f7631f067c185af5e8be4208d",
+        "implementation_status": "design-defined / not-implemented",
+        "candidate_condition_mapping": "NFR-28 coverage-row/ID-sequence-only, orphan/stale/ambiguity not-green condition",
+        "execution_evidence": false
+      }
+    ],
+    "interpretation": "Design-only consumer/oracle references. They corroborate the candidate conditions but do not add selected source atoms and do not represent executed tests."
+  },
+  "correction_reason": "Independent review of 002/r2 required two source-faithful additions: (1) make HIL-NFR-28 first sentence explicit that coverage row count, ID sequence, and document existence alone do not establish design completeness, with an independent L11 negative; (2) reject a reasoned-looking service/capability N/A when authority/scope evidence shows that field actually applies. Old HST-CASE-029-23 and -18 are retained as individually hashed design-only references, with cases -11..-15/-17/-20 individually mapped to FR-45 operation receipt conditions. They are design-defined/not-implemented and were not executed. This revision adds only the same HARNESS-L2-078 identity, preserves 001/r1 and 002/r2 bytes, and updates the current 003/r3 candidate, receipt, and registration pins; no authority/adoption effect."
+}
