@@ -165,4 +165,8 @@ HARNESS-L2-023の4依存区分は分類方法として使う。固定採択pair�
 
 ## 最新mainへの追補再照合（86ecd59a）
 
-最新main `86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c` の対象ファイルを生bytesで再読し、固定66 locatorを再計算した。全66選択のhashが元pinと一致し、各選択bytesはそのpath内に一意に存在する。HARNESS-L2-023の固定sectionもL2 `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47`で一致する。e05と43d5の比較記録は履歴としてJSONに保持した。詳細な行位置・full-file SHAは `latest_main_comparison`、旧比較は`latest_main_e05_comparison`と`latest_main_43d5_comparison`を参照。選択範囲外のsource同値や全条件closureは示さない。
+最新main `86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c` の対象ファイルを生bytesで再読し、固定66 locatorを再計算した。全66選択のhashが元pinと一致し、各選択bytesはそのpath内に一意に存在する。HARNESS-L2-023の固定sectionもL2 `32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03`、L11 `f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47`で一致する。e05と43d5の比較記録は履歴としてJSONに保持した。詳細な行位置・full-file SHAは `latest_main_86ecd_comparison`、旧比較は`latest_main_e05_comparison`と`latest_main_43d5_comparison`を参照。選択範囲外のsource同値や全条件closureは示さない。
+
+## 最新mainへの追補再照合（12590800）
+
+main `125908004787d949a60c5eb373c93819b0a1ceea` で全66選択の生bytes・行位置・全文SHA・一意出現を再計算し、86ecd59aの選択結果と一致した。JSONの `latest_main_comparison` に今回の結果を記録し、86ecd59aの比較は `latest_main_86ecd_comparison` に保持する。追加されたTR監査から採択・source closureを生成しない。
