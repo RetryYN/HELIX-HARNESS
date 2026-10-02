@@ -1,0 +1,280 @@
+{
+  "schema_version": "1.0",
+  "receipt_id": "aafd-r15-000074-coverage-receipt-2026-10-02",
+  "created_against_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
+  "authority_effect": "none",
+  "requirement_identity": "HELIXINTELLIGENCE-L2-079",
+  "requirement_status": "unadopted proposal; no implementation, execution, promotion, adoption, or formal successor authority",
+  "selected_source_scope": {
+    "source_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+        "file_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+        "selected_lines": [
+          108,
+          109
+        ],
+        "context_only_lines": [
+          106,
+          107
+        ],
+        "source_role": "AAFD-R-15; lines 108-109 are one continued sentence and must be read together."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+        "file_sha256": "sha256:09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+        "selected_lines": [
+          29,
+          41
+        ],
+        "source_role": "AC-015 oracle at line 29; independent bypass negative atom LEGACY-CAND-LINE-000074 at line 41."
+      }
+    ],
+    "atom_count": 4,
+    "atom_refs": [
+      "LEGACY-CAND-LINE-000064",
+      "LEGACY-CAND-LINE-000074",
+      "LEGACY-CAND-LINE-000179",
+      "LEGACY-CAND-LINE-000180"
+    ],
+    "atom_set_digest_rule": "Sort atom_id ascending; concatenate atom_id + SPACE + source_line_sha256 hex without sha256: prefix + LF; SHA-256 UTF-8.",
+    "atom_set_digest": "sha256:f26bbc80854fb9f31d98f2d837d752224c7b223be147fda09402e6c480f337cc",
+    "source_jsonl": "docs/governance/audits/requirement-registration/aafd-r15-000074-source-lines-2026-10-02.jsonl",
+    "source_jsonl_sha256": "sha256:96da7dc8110e2e810ad9906212053c685a52389db12b4cc3b4bcdd0527a6215d",
+    "context_read_not_counted": [
+      "LEGACY-CAND-LINE-000178 is the R-15 heading at requirements source line 106; context only, not an atom. Physical lines 108-109 are paired to restore the complete sentence."
+    ],
+    "full_source_text_and_hashes": "The JSONL records preserve exact selected physical source text, source-line hash, raw physical-line bytes hash, full asset SHA, path, line, and asset ID. The source atom count is exactly four.",
+    "facet_mapping": [
+      {
+        "facet": "AAFD-R-15",
+        "atoms": [
+          "LEGACY-CAND-LINE-000179",
+          "LEGACY-CAND-LINE-000180"
+        ],
+        "meaning": "Benchmark result is candidate evidence; one model revision alone cannot automatically change rule, provider routing, Requirement, or Design. Promotion follows independent VERIFY, counterexample, expiry, and human gate. Lines 108-109 form one continued clause."
+      },
+      {
+        "facet": "AAFD-AC-015",
+        "atoms": [
+          "LEGACY-CAND-LINE-000064"
+        ],
+        "meaning": "Acceptance oracle independently names the same four nonpromotion targets."
+      },
+      {
+        "facet": "source bypass",
+        "atoms": [
+          "LEGACY-CAND-LINE-000074"
+        ],
+        "meaning": "Reject free-text input to Future Synthesis that bypasses UIL/TER. This is an independent source facet and does not identify a current parent or version target."
+      }
+    ]
+  },
+  "candidate_pair": {
+    "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+    "l2_file_sha256": "sha256:1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39",
+    "l2_section": {
+      "sha256": "sha256:dbe6a2674881f036c16af843d2b72c6dfeb0bff7f5258509ef8dd1991d2673cc",
+      "start_line": 659,
+      "end_line": 670
+    },
+    "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+    "l11_file_sha256": "sha256:28d1f4bff131bc2bdd1c0b4f96b44509e397c0ce1e2c9350c6714b9721f55749",
+    "l11_section": {
+      "sha256": "sha256:1e0a7eb14c33d6cf8c3358ed0370a3add99c4a905bfab2f105f42d3685872458",
+      "start_line": 384,
+      "end_line": 395
+    },
+    "source_lineage": "Meaning rederived from the selected old candidate requirement/oracles only. No old runtime, API, current UIL/TER owner, Future Synthesis consumer, or issue route is copied."
+  },
+  "parent_and_authority": {
+    "concept_path": "docs/concept/helix-concept.md",
+    "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "planning_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+    "planning_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+    "r15_parent_l1_rows": [
+      {
+        "line": 63,
+        "line_sha256": "sha256:62ae6d93fd1df57c348d75b741af166653c78706a463b85904415c7725dedbc3",
+        "text": "| HELIXINTELLIGENCE-L1-021 | 人間は、LABOが渡す評価済みの事例・反例・学習の材料を使い、判断の領域または能力に特化したローカルLLM（要求の理解、設計のReview、実装の診断、CIの失敗の診断、統合のReview、Workerの配置、Model Router、監査、限定修復等）を学習・チューニングできる。一つの万能のモデルへの統合を必須とせず、領域や能力ごとの小型のモデルを持つ構成を許す | INTELLIGENCE-L1-021（追加の原文） | 3.0 | 単体（材料はLABOからの接続） |"
+      },
+      {
+        "line": 64,
+        "line_sha256": "sha256:42ffeb18e7e8d20f947499f9f607249094e537c60d0a2fee6e38744015d6883b",
+        "text": "| HELIXINTELLIGENCE-L1-022 | 人間は、LABOから渡されたデータの利用区分（training、validation、evaluation、holdout、prohibited）を保ち、混同しないことを確かめられる。評価用に隔離した事例を学習へ混ぜず、学習データへの適合だけでモデルの改善を判定しない | INTELLIGENCE-L1-022 | 3.0 | 単体 |"
+      },
+      {
+        "line": 65,
+        "line_sha256": "sha256:9593e1bc06b1341de3db2d2b44ab836b341e9b45291140126f2d06641c68ae2b",
+        "text": "| HELIXINTELLIGENCE-L1-023 | 人間は、モデルの候補について、base model、版、学習データのrevision、チューニングの方法、構成、領域、能力、学習の環境、評価のcorpus、分かっている限界、戻し先を辿れる。どの材料と設定から生まれたか分からない候補を稼働のモデルへ昇格させない | INTELLIGENCE-L1-023 | 3.0 | 単体 |"
+      },
+      {
+        "line": 66,
+        "line_sha256": "sha256:4abbffd83aec3e8222b188e3772fe7e81957fa6ac85df265a3eebd45124c281f",
+        "text": "| HELIXINTELLIGENCE-L1-024 | 人間は、モデルの候補を、同じ責務の範囲と比べられるcorpusで今のモデルと比べられる。成功、所見、誤検出、見逃し、再現性、遅延、費用、資源の消費、失敗のパターンを比べ、新しい・大きい・学習済みであることだけを改善の根拠にしない | INTELLIGENCE-L1-024 | 3.0 | 単体 |"
+      },
+      {
+        "line": 67,
+        "line_sha256": "sha256:4f676e6dffc04592818482b26910b5cc459001d2c1665b2fc0e8a3b5e62273bf",
+        "text": "| HELIXINTELLIGENCE-L1-025 | 人間は、モデルごとに領域×能力の適格な範囲を持たせられる。一つのモデルの性能の向上からINTELLIGENCE全体を置き換えず、適格と確かめていない領域へ能力を外挿しない | INTELLIGENCE-L1-025 | 3.0 | 単体 |"
+      },
+      {
+        "line": 68,
+        "line_sha256": "sha256:0ece2da6e92aca49f677334b80353bcc6e49b9758e1ef23c0b9167f2272e3b5a",
+        "text": "| HELIXINTELLIGENCE-L1-026 | 人間は、モデルの候補または採用したモデルの実績をLABOへ返し、品質、誤検知、見逃し、再作業、時間、費用、人の介入、運用の負荷、退行について、過去の方式との差をLABOに独立して評価させられる。INTELLIGENCEの中のモデルの評価だけで、恒久の改善を確定しない | INTELLIGENCE-L1-026 | 3.0 | 接続（LABO） |"
+      }
+    ],
+    "r15_parent_basis": "Only R-15 facet maps to L1-021..026, whose exact rows set version_target 3.0. The 000074 facet has no source- or current-parent-grounded version mapping.",
+    "000074_parent_and_version": "No current parent or version target is assigned from this source row. It remains separate and does not inherit 3.0 from the combined candidate identity.",
+    "adopted_l2_065": {
+      "decision_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "decision_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_row": {
+        "line": 95,
+        "line_sha256": "sha256:29a547400fccc0898dde900b04207bc1d11baff4297768f2972869ffb910e217",
+        "text": "| `HELIXINTELLIGENCE-L2-065` | `MPR-RC-HELIXINTELLIGENCE-L2-065-001` | composite / 3.0 |"
+      },
+      "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "fixed_l2_file_sha256": "sha256:40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "fixed_l2_section_sha256": "sha256:be4bf04ef0f18146a7f98d7693b83e714438df769a56e162a814235d922f2463",
+      "current_l2_section_sha256": "sha256:be4bf04ef0f18146a7f98d7693b83e714438df769a56e162a814235d922f2463",
+      "fixed_and_current_section_equal": true,
+      "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "fixed_l11_file_sha256": "sha256:4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "fixed_l11_row": {
+        "line": 119,
+        "line_sha256": "sha256:93dfcef899479072209e66ff3296f59588a2a107bce3db85254a74a20ef052c0",
+        "text": "| HELIXINTELLIGENCE-L2-065 | 3.0 learning data separation/lineage/model comparison/scope/LABO effect cycleを追跡する | learned candidateを自動交換する、3.0を1.0 preconditionにする |"
+      },
+      "current_and_fixed_row_equal": true,
+      "adopted_scope": "3.0 data-use separation, lineage, same-scope/corpus comparison, limited qualification, OS ticket/Worker execution, and independent LABO effect evaluation as separate stages; no learned-candidate automatic exchange; no 3.0 precondition for 1.0.",
+      "r15_residual": "Does not state the four exact R-15 targets or independent VERIFY/counterexample/expiry/human gate.",
+      "section_digest_rule": "From the exact ### HELIXINTELLIGENCE-L2-065 heading through immediately before the next heading of the same or higher level (### or ##); strip trailing blank lines and normalize to one UTF-8 LF.",
+      "decision_row_sha256_encoding": "The recorded decision row line_sha256 is SHA-256 of the exact UTF-8 physical row including its terminating LF."
+    },
+    "adopted_l2_073": {
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": {
+        "line": 86,
+        "line_sha256": "sha256:b28798bd87d020ea53aa62ca87fe5c5f107e425f571f2412da1a1120be7c024f",
+        "text": "| `HELIXINTELLIGENCE-L2-073` | 採択 | `MPR-RC-HELIXINTELLIGENCE-L2-073-002` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d` | `sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5` | `HELIXINTELLIGENCE-L2-073` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d` | `sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1` | `docs/governance/audits/requirement-registration/intelligence-free-text-boundary-coverage-receipt-2026-09-28-r2.json` |"
+      },
+      "current_l2_section_sha256": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+      "current_l11_section_sha256": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1",
+      "exact_adopted_pair_sha256": {
+        "l2": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5",
+        "l11": "sha256:d98488d23fc02992143edb4a1e689a0c12dcc91d0ec1c9adabe1b8e334dd9ef1"
+      },
+      "comparison_limit": "073 covers detector priority and the named direct-projection destinations but does not explicitly state the LEGACY-CAND-LINE-000074 condition: UIL/TER bypass into Future Synthesis. 000074 is not counted as covered.",
+      "section_digest_rule": "From the exact ### identity heading through immediately before the next heading of the same or higher level (### or ##); strip trailing blank lines and normalize to one UTF-8 LF.",
+      "decision_row_sha256_encoding": "The recorded decision row line_sha256 is SHA-256 of the exact UTF-8 physical row including its terminating LF."
+    },
+    "adopted_l2_011": "The 1.0 same-corpus/responsibility-scope model/provider comparison and no automatic substitution is separate from the R-15 3.0 promotion lifecycle and its four gates.",
+    "dependency_source_023": {
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_row": {
+        "line": 52,
+        "line_sha256": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+        "text": "| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |"
+      },
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "fixed_l2_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "fixed_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "current_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "fixed_and_current_l2_section_equal": true,
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_l11_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "fixed_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_l11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "fixed_and_current_l11_section_equal": true,
+      "classes": [
+        "always required",
+        "operation-specific",
+        "selected-input-source-specific",
+        "reference-only"
+      ],
+      "use_boundary": "The dependency classifications aid this candidate oracle; they do not adopt 079, assign Future Synthesis ownership, or make both UIL and TER always required.",
+      "section_digest_rule": "From the exact ### identity heading through immediately before the next heading of the same or higher level (### or ##); strip trailing blank lines and normalize to one UTF-8 LF.",
+      "decision_row_sha256_encoding": "The recorded decision row line_sha256 is SHA-256 of the exact UTF-8 physical row including its terminating LF."
+    }
+  },
+  "historical_consumer_context_not_selected_atoms": {
+    "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+    "source_sha256": "sha256:70ed887f35ca38a6e406d91b7508489a8b9cde73825358c554ad009d473a115a",
+    "read_lines": "40-100",
+    "context": "Historical material distinguishes candidate evidence, independent reviewer and promotion roles, and proposal from write. It is context only; no old Node/DB/provider-family schema, fixed field set, runtime, or repeated per-operation human approval is transferred into the four selected source atoms."
+  },
+  "condition_comparison": [
+    {
+      "source": "R-15 atoms 000179/000180 and AC-015 atom 000064",
+      "current_adopted_retained": "065 keeps 3.0 data separation/lineage/comparison/limited qualification/LABO evaluation as distinct stages and prohibits automatic candidate exchange. 011 separately prohibits model-name-only superiority and automatic substitution in 1.0.",
+      "specific_residual": "Neither adopted pair states the individual no-auto-change oracle for all four targets or independent VERIFY/counterexample/expiry/human gate. 079 maps these as separate unadopted R-15 conditions."
+    },
+    {
+      "source": "LEGACY-CAND-LINE-000074",
+      "current_adopted_retained": "073 keeps detector priority and no direct free-text projection to its named Issue/Requirement/CI/merge destinations.",
+      "specific_residual": "The exact adopted 073 pair does not name UIL/TER bypass into Future Synthesis. 079 retains this as an independent facet with no assigned parent/version."
+    }
+  ],
+  "human_decision_material": {
+    "r15_options": [
+      "A (recommended): map only R-15 to the 3.0 L1-021..026/L2-L11-065 candidate boundary and keep each source condition separate.",
+      "B: keep R-15 source atoms in holding; do not change adopted 065.",
+      "C: if target placement/meaning differs from the 3.0 parent rows, identify the human-owned parent/meaning decision before revising its target."
+    ],
+    "000074_options": [
+      "A (recommended): keep the bypass oracle separate with no current parent/version assigned; do not transfer it to 3.0.",
+      "B: keep 000074 in source holding until a current parent/owner is identified from evidence."
+    ],
+    "recommendation": "Proceed with faithful unadopted candidate text. R-15 alone inherits 3.0 from L1-021..026. Preserve 000074 without version/owner inference. Do not change adopted 065/073, do not transfer old #1035/#1384 into current owner routes, and do not turn the source human gate into per-run approval.",
+    "impacted_requirements": [
+      "HELIXINTELLIGENCE-L1-021..026 and adopted L2/L11-065 (R-15 facet only)",
+      "adopted HELIXINTELLIGENCE-L2/L11-073 (comparison boundary only; unchanged)",
+      "current parent/owner for LEGACY-CAND-LINE-000074 remains unassigned pending evidence",
+      "HELIXINTELLIGENCE-L2/L11-011 retained as separate 1.0 comparison context"
+    ],
+    "decision_effect": "The candidate and this packet do not create adoption, source owner, version, route, promotion permission, or a new approval process."
+  },
+  "source_holding_and_successor": {
+    "original_carry_forward_rows": [
+      "LEGACY-CAND-LINE-000064",
+      "LEGACY-CAND-LINE-000074",
+      "LEGACY-CAND-LINE-000179",
+      "LEGACY-CAND-LINE-000180"
+    ],
+    "state": "Original carry-forward rows retain successor_requirement_ids empty and no decision_record. Registration of 079 is not formal successor assignment, retirement, adoption, or release of source holding."
+  },
+  "registration": {
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "pre_append_line_count": 666,
+    "pre_append_sha256": "sha256:0eaaebe840b3e281b6c05dc8bda01b636acb0d6164adaae8eade3e7ee31e1264",
+    "appended_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-079-001",
+    "appended_row_sha256": "sha256:bdbb126943aeb2d5eb2d2f4ca382514a2d810ded426eed711b3f829d86d5b2f3",
+    "post_append_line_count": 667,
+    "post_append_sha256": "sha256:24425056ffa70f1d20c4e519e439afa816b3f7e564a8345c9a5c144163e914f5",
+    "post_append_row_candidate_digest": "sha256:dbe6a2674881f036c16af843d2b72c6dfeb0bff7f5258509ef8dd1991d2673cc",
+    "register_semantics": "Registered proposal metadata only; authority_effect metadata is not used as adoption evidence."
+  },
+  "static_validation": {
+    "source_atom_ids_line_text_and_raw_line_hashes_verified": true,
+    "source_asset_full_hashes_verified": true,
+    "paired_l2_l11_section_hashes_pinned": true,
+    "adopted_065_fixed_decision_target_and_pair_rechecked": true,
+    "adopted_073_decision_and_pair_rechecked": true,
+    "dependency_023_fixed_pair_rechecked": true,
+    "source_holding_successor_and_decision_fields_unchanged": true,
+    "implementation_or_execution_closure": "none; old runtime/CI/test/CLI were not run",
+    "adopted_065_canonical_section_boundary_rechecked": true,
+    "adopted_073_and_dependency_023_section_pins_rechecked": true
+  },
+  "latest_main_read_after": {
+    "commit": "0e76f9c6f6609dc6a8e101116c1a652ff5871771",
+    "note": "Merged latest main after reading exact MPR prefix. Preserved the 666-line main register byte-for-byte and appended the existing unadopted 079 registration as one new row; historical source and fixed adopted decision/pair pins are unchanged."
+  }
+}
