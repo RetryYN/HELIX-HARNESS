@@ -290,8 +290,8 @@
     "docs/helix-harness/L11-acceptance/product-acceptance.md": "64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e"
   },
   "candidate_pair_full_file_sha256": {
-    "l2": "49eef3cdb4dcfa68bc6e62afb46ccf994dafe41306b176788853c1973c8fcf6a",
-    "l11": "9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794"
+    "l2": "573890dd2d1efc305c6df43022fbb9168878fc0b2472167ab0d700812df17d76",
+    "l11": "7a332aeaf61f873180a83b6bca41b2784a3bb2b12b11881865ad5f8da9427932"
   },
   "latest_main_read_after": {
     "commit": "00cfdad179a15e59c0b27d8e78421f5083a8ea6d",
