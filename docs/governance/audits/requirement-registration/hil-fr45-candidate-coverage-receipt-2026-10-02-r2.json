@@ -228,7 +228,7 @@
   },
   "review_pins": {
     "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
-    "latest_main_comparison": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "latest_main_comparison": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
     "source_ledger": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886",
     "source_line_archive": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208",
     "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
@@ -268,7 +268,7 @@
     "registration_id": "MPR-RC-HARNESS-L2-078-002",
     "authority_effect": "none"
   },
-  "root_integration_note": "This r2 receipt records HARNESS-L2-078-002 against candidate base a7f85b4c2fd88510c32de4a1ade4c95662bd98c1 only. It does not claim a latest-main64a9 prefix or include a 077 change. Historical fixed-before pins remain unchanged; current 078 L2/L11 section and full-file pins are synchronized to the candidate bytes and the existing -002 registration. No adoption or source closure is claimed.",
+  "root_integration_note": "This r2 receipt preserves candidate base a7f85b4c2fd88510c32de4a1ade4c95662bd98c1 and all historical_snapshot values. After comparison against latest main 263eca0a131e7abc2543dfbf81cf7bcf2031d851, the main management register prefix contains 681 rows; the existing HARNESS-L2-078-002 row follows at line 682. HARNESS-L2-078-001/r1 and the main prefix are preserved byte-for-byte. The current HARNESS-L2-078 L2/L11 sections remain the candidate bytes pinned above. No 077 change, adoption, or source closure is claimed.",
   "review_correction": {
     "finding": "Old HIL-FR-45 line 135 requires all thirteen typed semantic fields. N/A is a listed requirement-change operation with receipt conditions, not a per-field applicability exception. Old HIL-NFR-28 explicitly permits reasoned non-applicability only for its service/capability binding; this permission does not generalize to other fields.",
     "response": "Correction: 13 field meanings and typed relations remain present; FR-45 line 135 does not itself prohibit a justified non-applicability value. NFR-28 explicitly permits that value for service/capability, so keep this field and bind its value to reason, target scope/revision, authority/applicability basis. The two selected sources do not authorize generalizing non-applicability to the other twelve fields; preserve their required meaning and values unless separate explicit field-specific source evidence applies. No non-applicability value waives owner/source/oracle or related fields. Missing/unknown/stale/implicit omission remains incomplete. A requirement-change operation N/A is distinct and still needs its full FR-45 receipt.",
@@ -395,5 +395,14 @@
   },
   "source_limits": "NFR-28 IR source is the one source atom; its direct old L1 line and HR/HAC/HAT are corroboration/consumer context, not additional atoms. HIL-NFR-28 target assessment remains HARNESS/OS and no product owner/successor is assigned. Its target-scope active requirement denominator is independent of the two selected candidate source atoms. Whole old source remains preserved_pending_rehome.",
   "candidate_l11_line_start": 1026,
-  "candidate_l11_line_end": 1050
+  "candidate_l11_line_end": 1050,
+  "integration_read_after": {
+    "comparison_main_commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+    "candidate_base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
+    "main_register_prefix_row_count": 681,
+    "registration_id": "MPR-RC-HARNESS-L2-078-002",
+    "registration_line_after_integration": 682,
+    "historical_registration_id": "MPR-RC-HARNESS-L2-078-001",
+    "historical_r1_immutable": true
+  }
 }
