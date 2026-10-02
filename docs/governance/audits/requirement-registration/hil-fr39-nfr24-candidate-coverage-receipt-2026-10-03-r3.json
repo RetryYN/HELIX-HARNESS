@@ -6,20 +6,20 @@
   "candidate_registration_id": "MPR-RC-HARNESS-L2-068-003",
   "supersedes_registration_id": "MPR-RC-HARNESS-L2-068-002",
   "requirement_kind": "unit",
-  "candidate_semantic_digest": "sha256:7270348e5ffe3634f0242b346ccfd05c91102f2403910e213ebba64a1bc1b457",
-  "candidate_digest_rule": "L2見出しから次の###まで。末尾空行を除きUTF-8 LF一つでcanonicalize。",
-  "candidate_l2_file_sha256": "sha256:9f63238c322a683f4cd670eb6b0c5f8055cddfee5d5cefd0fa023bd72b590c51",
+  "candidate_semantic_digest": "sha256:201de64d0c77f619c32e8328b2703827a451d350a501523767a77095ce7b7f35",
+  "candidate_digest_rule": "Multipart SHA-256 of canonical text shown in candidate_digest_composition; each ordered part is canonicalized by removing trailing blank lines and appending one LF.",
+  "candidate_l2_file_sha256": "sha256:fe8f85804b5eb70ca68d652376abcf6c3fa3fe3a9f937e8bb9982446509a126c",
   "candidate_l2_section_lines": [
     1290,
-    1331
+    1304
   ],
   "paired_acceptance_identity": "HARNESS-L2-068",
-  "paired_acceptance_digest": "sha256:51e5c1c8529d6489355a6f4cb82ba81278257ef027792f65025ea96f8dc03404",
-  "l11_digest_rule": "L11見出しから次の###まで。末尾空行を除きUTF-8 LF一つでcanonicalize。",
-  "candidate_l11_file_sha256": "sha256:100b15c8c32a43fb590c707924e1ab4079b8cd834ce3ede71ece7940b46b84ac",
+  "paired_acceptance_digest": "sha256:3b7d9ddd6076fc88d750c22b76204061877fb445436fdb0a6f072c195882f3aa",
+  "l11_digest_rule": "Multipart SHA-256 of canonical text shown in paired_acceptance_digest_composition; each ordered part is canonicalized by removing trailing blank lines and appending one LF.",
+  "candidate_l11_file_sha256": "sha256:561a6ec812320d35d5dec691276a60adf37086b82850f46d8b254b20408e2031",
   "candidate_l11_section_lines": [
     1002,
-    1035
+    1014
   ],
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr39-nfr24-candidate-source-atoms-2026-10-03-r3.jsonl",
   "source_atom_set_sha256": "sha256:2f7c3421f5fe03ec4073a826c942817fbba51ebc7dc9510c5d755df880d11b0e",
@@ -206,36 +206,45 @@
         "9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
         "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d"
       ],
-      "010": [
-        "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-        "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144"
-      ],
-      "011": [
-        "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-        "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144"
-      ]
+      "010": {
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "identity": "HARNESS-L2-010",
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "decision_row": 39,
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L205",
+        "l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+        "decision_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "011": {
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "identity": "HARNESS-L2-011",
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "decision_row": 40,
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L206",
+        "l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+        "decision_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      }
     },
-    "decision_scope": "Exact decision rows/selected section digests only. Candidate states, MPR proposals and fixtures do not establish adoption. 063 adoption is restricted to the selected three HR-FR-HIL-17 slices.",
-    "fixed_target_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
+    "decision_scope": "This candidate only consumes the adopted 010/011 contract pins as static selected-call fixture inputs. Candidate proposals and fixtures do not create or alter adoption.",
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "decision_rows": {
       "HARNESS-L2-010": {
         "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
         "row": 39,
-        "l2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-        "l11_acceptance_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144"
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L205",
+        "l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
       },
       "HARNESS-L2-011": {
         "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
         "row": 40,
-        "l2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-        "l11_acceptance_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144"
-      },
-      "HARNESS-L2-023": {
-        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
-        "row": 52,
-        "l2_section_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
-        "l11_section_sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
-        "version_target": "1.0; correction candidates do not inherit this target."
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L206",
+        "l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
       }
     },
     "decision_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
@@ -247,10 +256,14 @@
       "contract_range": "fixture:010-contract@fixed-row-39",
       "class": "always_required",
       "condition": "candidate pack contract selected for the same scope/revision",
-      "l2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-      "paired_l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+      "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
       "compatibility_fixture": "fixture:010-contract-declaration",
-      "compatibility_role": "input/output/dependency contract declaration"
+      "compatibility_role": "input/output/dependency contract declaration",
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l11_physical_row_line": 205,
+      "l11_physical_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+      "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
     },
     "operation_specific": {
       "identity": "HARNESS-L2-011",
@@ -258,26 +271,38 @@
       "contract_range": "fixture:011-compat@fixed-row-40",
       "class": "operation_specific",
       "condition": "operation=connect_existing_refactor selected",
-      "l2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-      "paired_l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+      "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
       "compatibility_fixture": "fixture:011-selected-call-compatibility",
       "selected_call_contract": "Exact candidate identity + operation + source selection + scope/revision + both 010/011 contract revisions/ranges; compatibility evidence attaches to both ends of this same call.",
       "compatible_pair": {
         "010": {
           "identity": "HARNESS-L2-010",
-          "l2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-          "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+          "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
           "decision_row": 39,
-          "fixture_revision": "fixture:010-contract@fixed-row-39"
+          "fixture_revision": "fixture:010-contract@fixed-f6dad2a",
+          "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_l11_row_line": 205,
+          "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+          "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
         },
         "011": {
           "identity": "HARNESS-L2-011",
-          "l2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-          "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+          "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
           "decision_row": 40,
-          "fixture_revision": "fixture:011-compat@fixed-row-40"
+          "fixture_revision": "fixture:011-compat@fixed-f6dad2a",
+          "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_l11_row_line": 206,
+          "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+          "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
         }
-      }
+      },
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l11_physical_row_line": 206,
+      "l11_physical_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+      "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
     },
     "selected_source": {
       "identities": [
@@ -292,12 +317,12 @@
       "missing_selected_atom": "unknown/unaccounted; not absent, N/A or covered"
     },
     "reference_only": {
-      "identity": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF@sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
-      "owner": "fixture:historical-context",
-      "contract_range": "pinned legacy source SHA-256",
+      "identity": "16 + HAC-HIL-16a/b/c + HAT-HIL-16",
+      "owner": "fixture:historical-consumer-context",
+      "contract_range": "pinned legacy consumer/oracle record identities",
       "class": "reference_only",
       "compatibility": "not_applicable_for_execution",
-      "effect": "Context only; unknown historical owner/version does not block selected current operation and does not become execution evidence."
+      "effect": "HR/HAC/HAT consumer/oracle context only. Normative HIL-FR-39 and HIL-NFR-24 source atoms are selected normative inputs, never reference_only."
     },
     "fixture_boundary": "fixture values are static acceptance inputs, not real service owners, contract revisions, capability availability, implementation, runtime, or candidate adoption.",
     "selected_call_fixture": {
@@ -311,23 +336,37 @@
       ],
       "010_contract": {
         "identity": "HARNESS-L2-010",
-        "l2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-        "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
         "decision_row": 39,
-        "fixture_revision": "fixture:010-contract@fixed-row-39"
+        "fixture_revision": "fixture:010-contract@fixed-row-39",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l11_row_line": 205,
+        "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+        "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39"
       },
       "011_contract": {
         "identity": "HARNESS-L2-011",
-        "l2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-        "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
         "decision_row": 40,
-        "fixture_revision": "fixture:011-compat@fixed-row-40"
+        "fixture_revision": "fixture:011-compat@fixed-row-40",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l11_row_line": 206,
+        "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+        "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40"
       },
       "normal": "both selected contracts and compatibility evidence match the exact tuple for this same call",
       "independent_negative_010": "keep 011 and every call input unchanged; alter only 010 contract revision/selection SHA; hold this call",
       "independent_negative_011": "keep 010 and every call input unchanged; alter only 011 contract revision/range/selection SHA; hold this call",
-      "compatibility_string_only": "insufficient to infer either contract identity, revision, owner, range, or bilateral compatibility"
-    }
+      "compatibility_string_only": "insufficient to infer either contract identity, revision, owner, range, or bilateral compatibility",
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_rows": {
+        "HARNESS-L2-010": 39,
+        "HARNESS-L2-011": 40
+      }
+    },
+    "source_classification_boundary": "Normative selected source atoms: HIL-FR-39 and whole-IR HIL-NFR-24; L1 line 204 is same-statement corroboration only. HR/HAC/HAT are context only."
   },
   "po_decision_material": {
     "source_meaning": "Preserve literal HIL-NFR-24, its normative IR classification and HIL-FR-39 condition; do not create a requirement identity or change source meaning.",
@@ -368,19 +407,26 @@
     },
     "current_main_at_registration": "94e7132ecec04043ae18c4a93c2ca35426001199",
     "adopted_010_011_fixed_tuple": {
-      "HARNESS-L2-010": {
-        "identity": "HARNESS-L2-010",
-        "l2_section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
-        "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
-        "decision_row": 39,
-        "fixture_revision": "fixture:010-contract@fixed-row-39"
-      },
-      "HARNESS-L2-011": {
-        "identity": "HARNESS-L2-011",
-        "l2_section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
-        "l11_section_sha256": "95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144",
-        "decision_row": 40,
-        "fixture_revision": "fixture:011-compat@fixed-row-40"
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "contracts": {
+        "HARNESS-L2-010": {
+          "identity": "HARNESS-L2-010",
+          "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "fixed_l11_row_line": 205,
+          "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+          "fixture_revision": "fixture:010-contract@fixed-f6dad2a"
+        },
+        "HARNESS-L2-011": {
+          "identity": "HARNESS-L2-011",
+          "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "fixed_l11_row_line": 206,
+          "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+          "fixture_revision": "fixture:011-compat@fixed-f6dad2a"
+        }
       }
     },
     "source_audit_snapshot": {
@@ -410,8 +456,58 @@
     },
     {
       "supersedes_registration_id": "MPR-RC-HARNESS-L2-068-002",
-      "reason": "Revision 003 preserves the literal normative source and 002/r2 history; clarifies that NFR24 evidence-ground applicability is unresolved and must be PO-derived per transform (no universal unrelated grounds and no arbitrary OR); keeps NFR26 range shorthand allowed except one unexpanded aggregate discharge; adds fixed adopted 010/011 tuples with two independent compatibility negatives; records IR normative classification; synchronizes only the current candidate registration and exact pins."
+      "reason": "Revision 003 preserves the literal normative source and 002/r2 history; clarifies that NFR24 evidence-ground applicability is unresolved and must be PO-derived per transform (no universal unrelated grounds and no arbitrary OR); keeps NFR26 range shorthand allowed except one unexpanded aggregate discharge; adds fixed adopted 010/011 tuples with two independent compatibility negatives; records IR normative classification; synchronizes only the current candidate registration and exact pins. Exact tuple uses fixed f6dad pair and distinct L11 table-row hashes; normative FR/NFR atoms stay selected sources, while HR/HAC/HAT alone are reference context."
     }
   ],
-  "current_main_at_registration": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c"
+  "current_main_at_registration": "a5c83e1991973c03dc0fd3497509b0b9b2aec96c",
+  "candidate_digest_composition": {
+    "algorithm": "HARNESS-L2-068\nbase:06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d\ncorrection-003:3ac4bbd8a472ba15a004274d84df5da8e976359bf4acf390733e3b63b5f31a97\n",
+    "ordered_parts": [
+      {
+        "part": "base",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "heading": "### HARNESS-L2-068",
+        "line_range": [
+          1290,
+          1304
+        ],
+        "canonical_sha256": "sha256:06a842c3b8533fd7d677498c1359734d1cccf69ac4c7b02a4ce30d42d9a0de7d"
+      },
+      {
+        "part": "correction-003",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "heading": "## HARNESS-L2-068 correction 003",
+        "line_range": [
+          1396,
+          1408
+        ],
+        "canonical_sha256": "sha256:3ac4bbd8a472ba15a004274d84df5da8e976359bf4acf390733e3b63b5f31a97"
+      }
+    ]
+  },
+  "paired_acceptance_digest_composition": {
+    "algorithm": "HARNESS-L11-068\nbase:2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8\ncorrection-003:de85e7bd97ae98c7f4b98e3c87da1b9d8f09b2f592d3264eb423b8b31c16c350\n",
+    "ordered_parts": [
+      {
+        "part": "base",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "heading": "### HARNESS-L2-068",
+        "line_range": [
+          1002,
+          1014
+        ],
+        "canonical_sha256": "sha256:2ada3186200c9f8c2bd4935bea4b0c7ab169181eceba1d4bc353d16bca416bb8"
+      },
+      {
+        "part": "correction-003",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "heading": "## HARNESS-L2-068 correction 003",
+        "line_range": [
+          1140,
+          1150
+        ],
+        "canonical_sha256": "sha256:de85e7bd97ae98c7f4b98e3c87da1b9d8f09b2f592d3264eb423b8b31c16c350"
+      }
+    ]
+  }
 }
