@@ -1,7 +1,7 @@
 {
   "receipt_id": "DRAFT-RCPT-HARNESS-L2-086-V13-POLICY-167-171-2026-10-03",
   "authority_effect": "none",
-  "candidate_digest_rule": "L2/L11 exact ### HARNESS-L2-086 heading through next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF.",
+  "candidate_digest_rule": "For L2 and L11 separately, select exact ### HARNESS-L2-086 heading through the next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF.",
   "source_atom_set_digest_rule": "Sort by atom_id; concatenate UTF-8 atom_id + SPACE + source_line_sha256 with sha256: prefix omitted + LF; SHA-256. Each selected source atom is one exact physical source line.",
   "scope": "Five physical source-line atoms REQSRC-SUP-00127..00131, lines 167–171 of the held v1.3.14 source. They preserve future-version functional conditions for typed SCREEN_DESIGN input, right-arm verification/L12 operation test, and NFR_MEASUREMENT connection. This selected-line accounting is not full v1.3/IR/consumer closure; no formal successor, owner transfer, adoption, or current execution is asserted.",
   "source_atom_set": {
@@ -59,8 +59,8 @@
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "start_line": 1225,
       "end_line": 1263,
-      "section_sha256": "sha256:5b89dda1391c55c01795a3167cbc2d879a859bc4f186123cb139e186c940559b",
-      "full_file_sha256": "sha256:c52114283f4da443ff6e38bae71c152b718bd2e445c8cb1f9daabca3ce35c8b5"
+      "section_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+      "full_file_sha256": "sha256:644df7dad5bbdea6607bd3747457addbb1f32a74d2ac8d85e92680bc97793f1e"
     },
     "pair_digest_rule": "The candidate pair sections are separate; no existing adopted pair is rewritten. Each digest uses the exact section selection rule above."
   },
@@ -202,72 +202,108 @@
     {
       "dependency_class": "always_required",
       "synthetic_fixture_tuple": {
-        "requirement_identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
-        "meaning_owner": "HARNESS",
-        "execution_owner": "unknown",
-        "parent": "fixed Concept/L1",
-        "contract_revision": {
-          "adopted_039_L2": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
-          "adopted_039_L11": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        "identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
         },
-        "declared_compatibility_range": "selected requirement scope only; no runtime route range asserted",
-        "compatibility_evidence": "fixed Concept/L1 and exact adopted pair pins",
-        "applicability": "screen applicability evaluated separately; unknown remains unassessed"
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "固定Concept/L1のrevision pinと固定採択039 pair pin。",
+        "applicability": "固定した正常SCREEN_DESIGN callの選択scope。screen適用性がunknownなら未判定。"
       },
-      "expected": "identity, scope, authority and applicable pair/oracle are present; candidate does not imply runtime or runtime owner."
+      "expected": "identity、scope、authority、適用するpair/oracleを確認する。候補登録からruntimeや実行ownerを生成しない。"
     },
     {
       "dependency_class": "operation_only",
       "synthetic_fixture_tuple": {
-        "operation": "SCREEN_DESIGN",
-        "requirement_identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
-        "meaning_owner": "HARNESS",
-        "execution_owner": "unknown",
-        "contract_revision": {
-          "adopted_039_L2": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
-          "adopted_039_L11": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        "identity": {
+          "operation": "SCREEN_DESIGN",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
         },
-        "declared_compatibility_range": "synthetic fixture range: selected operation has screen applicability UI=true",
-        "compatibility_evidence": "same-scope requirement/design oracle plus adopted 039 exact pair pins",
-        "applicability": "UI=true"
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに操作互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "同一scopeの要求・設計oracleと固定採択039 pair pin。",
+        "applicability": "選択operationはSCREEN_DESIGN、screen applicabilityはUI=true。"
       },
-      "expected": "for this selected operation, evaluate backend-derived context and mock/prototype obligations; do not extend these obligations to unrelated operations."
+      "expected": "このoperationでbackend-derived contextとmock/prototype義務を評価し、無関係なoperationへ広げない。"
     },
     {
       "dependency_class": "selected_input_source",
       "synthetic_fixture_tuple": {
-        "input_identity": "archive v1.3.14 design-bottomup compatibility input",
-        "requirement_identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
-        "meaning_owner": "HARNESS",
-        "execution_owner": "unknown",
-        "contract_revision": "source file sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406; source atoms REQSRC-SUP-00127/00128",
-        "declared_compatibility_range": "synthetic fixture range: typed alias plus backend-derived trigger, direction and selected screen scope",
-        "compatibility_evidence": "exact selected source lines/hashes plus selected backend/API/domain-event/permission/error facts",
-        "applicability": "UI=true applies screen obligation; same-scope current no-UI receipt grounds N/A; unknown remains unassessed"
+        "identity": {
+          "input": "archive v1.3.14/design-bottomup",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_atoms": [
+            "REQSRC-SUP-00127",
+            "REQSRC-SUP-00128"
+          ],
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          }
+        },
+        "declared_version_range": "保持sourceのexact revision v1.3.14のみ。sourceにより広い互換版範囲は宣言されていない。",
+        "compatibility_evidence": {
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          },
+          "selected_scope_facts": "選択scopeのbackend/API/domain-event/permission/error facts"
+        },
+        "applicability": "typed inputがbackend-derived trigger、方向条件、screen scopeを選択した場合。UI=trueならscreen義務を適用し、同一scopeの根拠付きN/Aなら現行no-UI receiptへ接続し、unknownは未判定とする。"
       },
-      "expected": "tuple is fixture data only; it does not declare a real compatibility registry, schema or all-alias range."
+      "expected": "このfixtureでの条件に限り、実装済みregistry/rangeや全aliasの互換性を宣言しない。"
     },
     {
       "dependency_class": "reference_only",
       "synthetic_fixture_tuple": {
-        "reference_identity": "old design-bottomup.md and drive-route-system.md",
-        "requirement_identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
-        "meaning_owner": "HARNESS",
-        "execution_owner": "unknown",
-        "contract_revision": {
-          "design_bottomup_file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
-          "drive_route_file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950"
+        "identity": {
+          "references": [
+            "old design-bottomup.md",
+            "drive-route-system.md"
+          ],
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
         },
-        "declared_compatibility_range": "read-only source/consumer context, not runtime dependency",
-        "compatibility_evidence": "fixed file SHA and recorded locator",
-        "applicability": "context for interpreting selected operation; current runtime dependency=false"
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": "該当なし。参照資料は現行実行契約ではない。",
+        "reference_revision": {
+          "design-bottomup.md_file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+          "drive-route-system.md_file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950"
+        },
+        "declared_version_range": "該当なし。実行互換範囲は宣言しない。",
+        "compatibility_evidence": "exactな旧file revisionと記録済みlocatorはcontextだけを裏付ける。",
+        "applicability": "設計条件と旧consumer意味の理解だけに参照し、現行runtime依存にはしない。"
       },
-      "expected": "consumer context remains available without classifying normative source atoms as reference-only or executing old runtime."
+      "expected": "旧consumer本文はcontext evidenceとして保持する。選択した§4.2.2 source atomsは規範sourceのままであり、reference-onlyへ降格しない。"
     }
   ],
   "applicability_states": {
     "ui_applicable": "UI=true: apply screen mock/prototype obligation.",
     "grounded_not_applicable": "N/A only when a current no-UI receipt matches the same scope/revision; use non-UI path without requiring a screen mock.",
     "unknown": "Return applicability as unassessed; do not infer UI=true, N/A, pass, or completion."
-  }
+  },
+  "acceptance_fixture_basis": "4つのHARNESS-L2-023依存区分を通して、正常なSCREEN_DESIGN callを固定する合成fixtureである。各tupleはidentity、owner、exactな契約/source revision、宣言された版範囲、互換根拠、適用条件を分離する。適用条件は版範囲ではない。このfixtureはruntime ownerやcompatibility registryを定めず、規範sourceや旧consumerの意味上の義務をruntime依存へ降格しない。"
 }
