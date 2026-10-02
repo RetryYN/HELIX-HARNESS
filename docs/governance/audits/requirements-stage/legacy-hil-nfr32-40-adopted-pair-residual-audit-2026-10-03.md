@@ -12,7 +12,7 @@
 
 | 旧要求 | 対象pair／根拠 | 照合結果 |
 | --- | --- | --- |
-| NFR-32 | HARNESS-004/-005（2026-09-28 HARNESS decisionの固定L2/L11 file pins）、OS-015/-016/-019（OS decision固定L2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`、L11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680`） | authority/revision、meaning impact、pair/oracle、rollback、downstream stale/unfinishedは複数pairに分担される。六条件を一つのCanonicalization前gateとして揃え、全条件を同じ変更へ結ぶ受入条件は明示されない。 |
+| NFR-32 | HARNESS-004/-005（2026-09-28 HARNESS decisionの固定L2/L11 file pins）、OS-015/-016/-019（OS decision固定L2 `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`、L11 `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680`） | authority/revision、meaning impact、pair/oracle、rollback、downstream stale/unfinishedはHARNESS/OS pairに分担される。OS L2 515–532/L11 241–252がscope、authority、atomic consistency、rollback/recovery、downstream staleを同一変更の複合管理経路として記述するため、L2 joint guard欠落とは判定しない。未解決なのは同一change/base revisionに対する六つの独立欠落negativeを現行L11が十分示すかというfixture/oracle coverageである。 |
 | NFR-34 | HARNESS-010/-011、INTELLIGENCE-014/-072-004、OS-015/-017/-018/-019。072採択decisionは候補生成とshadow評価まで（candidate pair pinsはdecision 57行85、registration receipt `intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json`）。 | receipt規則どおり072のL2/L11本文と追補を4部に分けて正規化し、4 part digestと連結digestがdecision pinに一致した。採択意味範囲でも候補packのsource/scope trace、shadow、独立review、既存authorityによる採用は自動化しない。旧NFR-34の全stale triggerとnamed fail-close条件は採択scopeに含まれない。意味残差あり。 |
 | NFR-35 | INTELLIGENCE-010/-011、LABO-006/-055/-059、OS-018/-020、およびLABO-064-002。後者はdecision 57行79、L2 digest `e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8`、L11 digest `4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3`。 | 採択064-002 pairは候補名遮蔽、fixture/rubric/judge version/sample/retry固定、smokeとfull benchの分離、重大security/scope/verification failureを平均で相殺しない条件を保持。source-recheck:319-322とaccepted pair pinが一致し、この範囲の残差なし。 |
 | NFR-36 | INTELLIGENCE-010/-011/-067、LABO-055/-059、OS-018/-028/-029。INTELLIGENCE-067は2026-09-28固定decisionの採択集合に含まれる（固定pair pinsはJSONに記録）。 | 36の残差なし判定を撤回する。採択pairは比較、品質gate、retry/cost、停止等を分担するが、少なくとも「既定値からの逸脱receipt」と「品質問題へのescalation順序receipt」は条件ごとの採択根拠が示されていない。067は採択済みで、quality gate/priority/tolerance等の入力契約を既存proposalへ提供する。ただし、既定値逸脱と品質問題escalation順序の二receiptを要求する採択条件は確認できず、未証明を維持する。本文のhistorical candidate metadataは固定decisionの採択を覆さない。両receipt条件を未証明として保持する。 |
@@ -21,13 +21,17 @@
 | NFR-39 | OS-018/-020、SECURITY-006/-007/-029-002（SECURITY-029 pinsは上記）。 | SECURITY-029-002 L2はvendor証拠の排除とlocal sandbox/network allowlist/egress/FS差分証拠を列挙する。L11はvendor-only proofを拒否してlocal evidenceを要求するが、原文の4種それぞれをどのcase/oracleで判定するかは示さない。decision 57:112はprimary Workerを適用scopeから除外する。全条件の閉鎖は未証明として保持し、本文の「未採択候補」表示と採択decisionの不整合も記録する。 |
 | NFR-40 | INTELLIGENCE-010、OS-004/-009/-017/-018/-019。OS-017/-018/-019 pairとL11はOS decision固定file pins。 | 一般budget/deadline/累積attempt、停止、未完保持はある。quota/rate exhaustedを予定状態として表現し、fail-closeでqueue holdまたは代替runtime routing提案へ退避し、無計画retryを拒否する記述は見当たらない。SECURITY-029はsource-recheckでquota/rate retreatを明示的に範囲外とする。残差あり。 |
 
+## OS管理経路の追加照合
+
+OS L2 515–532およびL11 241–252は要求正本更新の複合管理経路を記述する。該当line-rangeのUTF-8/LF SHA-256は212cefeeとlatest main e05で同一（L2 `89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5`、L11 `e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1`）。対象path/revision/line boundsは併記JSONの`requirements.HIL-NFR-32.current_management_path_evidence`に記録する。
+
 ## 旧IR／consumer条件単位の真偽
 
 旧Requirement IR本文は一件ごとの `statement.semantic_digest` と `record.semantic_digest` をJSONに固定し、旧definition ledgerとassertion coverage ledgerの該当行、HR-FR consumer contract、HAC normal/negative/boundary oracle、HAT設計statusも結び付けた（JSONの `legacy_ir_source_and_consumer_records`）。各HATは `designed_not_implemented` であり、実行済みの証拠としていない。
 
 | 旧要求 | 旧consumer oracleで明示している条件 | 現行pairとの条件別判定 |
 | --- | --- | --- |
-| NFR-32 | HR-FR-HIL-19/HAC-19bはauthority/impact/transaction欠落を拒否、HAC-19cはstaleとrename/split/merge時のidentity/rollbackを検査。 | 現行HARNESS-004/-005とOS-015/-016/-019には六条件が分散して保持されるが、Canonical化前に同一変更へ全部を結ぶgateは明示されず残差。 |
+| NFR-32 | HR-FR-HIL-19/HAC-19bはauthority/impact/transaction欠落を拒否、HAC-19cはstaleとrename/split/merge時のidentity/rollbackを検査。 | 現行HARNESS-004/-005とOS-015/-016/-019に条件が分担され、OS管理節は同一変更の複合経路を記述するため、L2 joint guard欠落は主張しない。L11が同一変更/base revisionで六条件を一つずつ欠く独立negativeを列挙していないことを、限定的なfixture/oracle coverage確認点として残す。 |
 | NFR-33 | HR-FR-HIL-20/HAC-20b/cはobligation/negative/S4 edge欠落拒否と発見deltaのbackflow。 | 採択pair比較でcoverage正しさと数量合格拒否は確認した。過剰重複のcontext-cost/drift-risk findingは確認済み残差として記録する。IR全条件・全consumerの適用scope別照合を完了したとは証明しておらず、source全体の唯一残差やclosureとは断定しない。比較記録は本監査の「NFR-33 採択pair照合と確認済み残差」節に統合した。 |
 | NFR-34 | HR-FR-HIL-21/HAC-21b/cはself-promotion・未許可tool・自己検証拒否、およびcatalog変更時stale化/再生成/retire。 | 採択072-004はcandidate/shadow範囲で非権威/独立review境界を保持するが、全legacy stale triggers、未許可tool、subagent上限、工程外completion authorityの閉包は示さず残差。 |
 | NFR-35/-36 | HR-FR-HIL-22/HAC-22a/b/cはblind bench/実task比較、重大failure非相殺、品質低下時model/effort比較rerouteを要求。 | 064-002がNFR-35条件を保持。36は採択pairによる関連範囲を確認したが、既定値逸脱receiptと品質問題escalation順序receiptは未証明。067は固定decisionで採択済みだが、二receipt条件の閉鎖根拠にはならない。 |

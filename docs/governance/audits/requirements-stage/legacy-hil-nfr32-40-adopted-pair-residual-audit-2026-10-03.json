@@ -893,7 +893,78 @@
         "HELIXOS-L2-015/-016/-019"
       ],
       "residual": true,
-      "finding": "authority, impact, pair/oracle, rollback and downstream stale propagation are distributed across pairs; no single pre-Canonical gate explicitly requires and binds all six conditions to the same semantic change"
+      "finding": "Withdraw the claim that no L2 joint guard binds all six conditions. Existing HELIXOS L2 515–532 and L11 241–252 define a same-change composite management path covering scope, authority/application, affected downstream/stale, atomic consistency, rollback/recovery, and evidence; the selected bytes are identical at historical main 212 and latest main e05 (exact pins below). Fixed HARNESS/OS pairs supply the corresponding impact, pair, and oracle responsibilities. The bounded visible question is whether adopted L11 oracles sufficiently prove the six conditions jointly: the examined acceptance text does not enumerate six independent one-condition-absent cases for the same change/base revision. Classify this as fixture/oracle coverage and interpretation review; do not claim a missing L2 meaning/gate or infer source closure.",
+      "residual_classification": "L11 fixture/oracle coverage question; no L2 joint-guard absence or missing source meaning established.",
+      "current_management_path_evidence": {
+        "historical_comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+        "latest_comparison_revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "selected_bytes_equal_across_revisions": true,
+        "selected_sections": [
+          {
+            "revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "selection": "exact inclusive source line range",
+              "line_start": 515,
+              "line_end_inclusive": 532,
+              "normalization": "UTF-8 selected lines joined by LF and terminated by one LF",
+              "sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "source_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
+              "selection": "exact inclusive source line range",
+              "line_start": 241,
+              "line_end_inclusive": 252,
+              "normalization": "UTF-8 selected lines joined by LF and terminated by one LF",
+              "sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1"
+            },
+            "whole_file_sha256": {
+              "l2": {
+                "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+                "sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+              },
+              "l11": {
+                "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+                "sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+              }
+            }
+          },
+          {
+            "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+            "l2": {
+              "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+              "source_revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+              "selection": "exact inclusive source line range",
+              "line_start": 515,
+              "line_end_inclusive": 532,
+              "normalization": "UTF-8 selected lines joined by LF and terminated by one LF",
+              "sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5"
+            },
+            "l11": {
+              "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+              "source_revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+              "selection": "exact inclusive source line range",
+              "line_start": 241,
+              "line_end_inclusive": 252,
+              "normalization": "UTF-8 selected lines joined by LF and terminated by one LF",
+              "sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1"
+            },
+            "whole_file_sha256": {
+              "l2": {
+                "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+                "sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8"
+              },
+              "l11": {
+                "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+                "sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3"
+              }
+            }
+          }
+        ],
+        "interpretation": "These selected existing OS requirements and acceptance material provide a same-change composite path. Their existence withdraws the L2 joint-guard-absent claim; remaining bounded concern is explicit independent L11 negative-fixture coverage."
+      }
     },
     {
       "legacy_id": "HIL-NFR-33",
@@ -1001,12 +1072,31 @@
           "selector": "| `HELIXINTELLIGENCE-L2-067` L11受入補強",
           "line_start": 199,
           "line_end_inclusive": 199,
-          "normalization": "UTF-8 exact row bytes including LF",
-          "sha256": "sha256:e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd"
+          "normalization": "UTF-8 exact identity-row bytes with the terminal LF removed (matches the Worker-084 NFR36 fixed-row convention)",
+          "sha256": "sha256:fc8d1da5f7a9bf06e8d91301f8458a5e4c10780e74a9cfb5fd209c2de824ad14",
+          "sha256_including_lf": "sha256:e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd",
+          "equivalent_including_lf_normalization": "UTF-8 exact table row including one terminal LF"
         },
         "current_main_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
         "current_selected_bytes_match_fixed": true,
-        "metadata_note": "Current candidate-state labels draft_candidate/not_adopted are historical candidate metadata and do not override the fixed PO decision."
+        "metadata_note": "Current candidate-state labels draft_candidate/not_adopted are historical candidate metadata and do not override the fixed PO decision.",
+        "l11_normalization_comparison": {
+          "without_lf_sha256": "sha256:fc8d1da5f7a9bf06e8d91301f8458a5e4c10780e74a9cfb5fd209c2de824ad14",
+          "with_lf_sha256": "sha256:e21a75c053fb953850f81f76105080a1a27ab8ed781d94f256b3bd989e21b2fd",
+          "same_selected_row": true,
+          "same_row_line": 199,
+          "source_revisions": [
+            "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "e05a45ca27104e37909c49388c38ece0cf1c69f0"
+          ],
+          "selected_row_identity": "| `HELIXINTELLIGENCE-L2-067` L11受入補強（単体候補、primary parent `HELIXINTELLIGENCE-L1-010`, comparison context `HELIXINTELLIGENCE-L1-011`）",
+          "comparison_source_revisions": [
+            "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "212cefee88df4b0914c6253aa109fe9d884eae51",
+            "e05a45ca27104e37909c49388c38ece0cf1c69f0"
+          ]
+        }
       },
       "status_label_conflict": {
         "fixed_decision": "adopted among all 54 explicit HELIX-INTELLIGENCE candidates",
@@ -1274,7 +1364,9 @@
     "legacy_runtime_test_ci_executed": false,
     "security_006_008_l11_selected_rows_recomputed_from_f6_94e_212": true,
     "security_006_008_prior_wrong_l11_section_hashes_withdrawn": true,
-    "intelligence_067_adoption_checked_against_fixed_2026_09_28_decision": true
+    "intelligence_067_adoption_checked_against_fixed_2026_09_28_decision": true,
+    "nfr32_l2_joint_guard_absence_claim_withdrawn": true,
+    "nfr32_os_management_path_compared_at_212_and_e05": true
   },
   "independent_review_correction_basis": {
     "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.md": {
@@ -1293,7 +1385,8 @@
     "NFR37": "additional-runtime clause mapping retained; decision 57:112 primary Worker exclusion recorded as scope hold; stale unadopted labels recorded.",
     "NFR39": "per-evidence-type L11 fixture mapping remains unproven; primary Worker exclusion and stale labels recorded; no closure inferred.",
     "NFR33": "prior missing separate-file dependency removed by integrating the adopted-pair comparison and residual into this audit.",
-    "NFR-33": "a visible context-cost/drift-risk residual is recorded; exhaustive whole-IR/consumer-condition closure and sole-residual status are unproven; comparison integrated in this audit."
+    "NFR-33": "a visible context-cost/drift-risk residual is recorded; exhaustive whole-IR/consumer-condition closure and sole-residual status are unproven; comparison integrated in this audit.",
+    "NFR32": "Withdraw the L2 joint-guard absence claim: existing OS L2 515–532/L11 241–252 provide a same-change composite management path, byte-identical at historical 212 and latest main e05. Keep only the bounded L11 independent-negative fixture/oracle coverage question; do not infer a missing L2 meaning or source closure."
   },
   "nfr33_adopted_pair_exact_selections": {
     "comparison_revision": "212cefee88df4b0914c6253aa109fe9d884eae51",
