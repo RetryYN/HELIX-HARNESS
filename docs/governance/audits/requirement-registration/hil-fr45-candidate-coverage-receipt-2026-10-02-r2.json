@@ -6,11 +6,11 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc",
   "candidate_digest_rule": "L2の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "candidate_l2_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
+  "candidate_l2_file_sha256": "sha256:799486a38b10929b74583591892ccdd4427919d5607e4f89d26c6b04aee3332a",
   "paired_acceptance_identity": "HARNESS-L2-078-002",
   "paired_acceptance_digest": "sha256:8634acd14543ae65ece594885a867cd8edfe5c9ddd7cd5e811d3a8cf41c6736e",
   "l11_digest_rule": "L11の「### HARNESS-L2-078 」見出しから次の同階層「###」見出しまたはファイル末尾まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
-  "l11_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
+  "l11_file_sha256": "sha256:ff40e397180dd93642fa61b13060d3030c9966152d95c6941ac904df43cf8471",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr45-nfr28-candidate-source-lines-2026-10-02-r2.jsonl",
   "source_atom_set_digest": "sha256:d1c3d686f58bdd005332c2518169b1dcce397c2f9ef2ca94c10eb88b6fba64aa",
   "source_atom_set_digest_rule": "atom_id昇順。各atomを atom_id + 半角空白 + atom_digest + LF として連結しUTF-8 SHA-256を計算する。HIL-FR-45行atomのatom_digestはsource_line_sha256のprefixなし値、whole HIL-NFR-28 IR identity atomのatom_digestはidentity.statement.semantic_digestのprefixなし値を使う。NFR-28のcorroborating L1行は含めない。",
@@ -228,7 +228,7 @@
   },
   "review_pins": {
     "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
-    "latest_main_comparison": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+    "latest_main_comparison": "94e7132ecec04043ae18c4a93c2ca35426001199",
     "source_ledger": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-01886",
     "source_line_archive": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208",
     "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
@@ -261,9 +261,9 @@
   "source_atom_file_sha256": "sha256:ae9c6503aa36675d6b4be17b9dff159eb545257b69f2a5eb6ba31387b6f57f4f",
   "current_bytes_read_after": {
     "candidate_l2_section_sha256": "sha256:475b9340765d0b74fcad48102a433d836f654ce72213e689b2822b4ccdacebbc",
-    "candidate_l2_full_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
+    "candidate_l2_full_file_sha256": "sha256:799486a38b10929b74583591892ccdd4427919d5607e4f89d26c6b04aee3332a",
     "candidate_l11_section_sha256": "sha256:8634acd14543ae65ece594885a867cd8edfe5c9ddd7cd5e811d3a8cf41c6736e",
-    "candidate_l11_full_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
+    "candidate_l11_full_file_sha256": "sha256:ff40e397180dd93642fa61b13060d3030c9966152d95c6941ac904df43cf8471",
     "candidate_identity": "HARNESS-L2-078",
     "registration_id": "MPR-RC-HARNESS-L2-078-002",
     "authority_effect": "none"
@@ -284,7 +284,7 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:e3ac7db714836f78a61e7807dc47bec42b3a39776b979f8646cff9740a38b0d1",
+      "full_file_sha256": "sha256:799486a38b10929b74583591892ccdd4427919d5607e4f89d26c6b04aee3332a",
       "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの条件候補（HARNESS-CORE単体、未採択）",
       "start_line": 1316,
       "end_before_line": 1326,
@@ -293,7 +293,7 @@
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:2ec108643b7e214c3205d8028df28c10b0c247399dd4d2f88dccde7581bb04bf",
+      "full_file_sha256": "sha256:ff40e397180dd93642fa61b13060d3030c9966152d95c6941ac904df43cf8471",
       "heading": "### HARNESS-L2-078 typed requirement definition・active-scope binding・変更receiptの受入候補（未採択・未実行）",
       "start_line": 1026,
       "end_before_line": 1051,
@@ -404,5 +404,16 @@
     "registration_line_after_integration": 682,
     "historical_registration_id": "MPR-RC-HARNESS-L2-078-001",
     "historical_r1_immutable": true
+  },
+  "latest_main_comparison": {
+    "commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
+    "mpr_prefix_line_count": 683,
+    "mpr_prefix_sha256": "sha256:60e8e157044785d6e86bdca0fc0fe6eee76534630a09e576dc9ed2bb5d56c80e",
+    "post_append_line_count": 684,
+    "mpr_prefix_preserved_byte_for_byte": true,
+    "candidate_registration_id": "MPR-RC-HARNESS-L2-078-002",
+    "candidate_registration_line": 684,
+    "current_l2_file_sha256": "sha256:799486a38b10929b74583591892ccdd4427919d5607e4f89d26c6b04aee3332a",
+    "current_l11_file_sha256": "sha256:ff40e397180dd93642fa61b13060d3030c9966152d95c6941ac904df43cf8471"
   }
 }

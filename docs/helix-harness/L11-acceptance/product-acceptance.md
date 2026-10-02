@@ -1048,7 +1048,7 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **source範囲と意味判断**：今回の候補入力は旧HIL-FR-45 line 135とHIL-NFR-28 IR identity全体。HIL-NFR-28 line 208はIR statementの文言照合用corroborationで、別atomではない。根拠付き非該当値の許容はNFR-28が明示する`service/capability` fieldに限定し、他fieldへ一般化しない。別fieldの明示的な根拠がある場合もfield単位の証拠として区別し、FR-45 line 135に帰属させない。service/capability fieldの理由付き非該当値を認める候補案と、NFR-28の当該条件を未対応で保留する選択肢の両方をPO材料へ記録し、002自身は採択・意味変更を確定しない。
 - **受入限界**：NFR-28については明示されたtarget scopeのactive requirement集合のみが分母であり、全4,020旧資産や全機構の母集団は規定しない。source全体のformal successor、他IR/HR条件のclosure、物理DB/schemaの採用、特定record layout、runtime、旧test/CI、PO採択、L3承認、実行受入を主張しない。候補oracleは未実行である。
 
-### HARNESS-L2-072 選択pairのstale revision・異snapshot結果受入候補（未実行）
+### HARNESS-L2-072 選択pairのstale revision・異snapshot・deferred結果受入候補（未実行）
 
 **対応要求**：HARNESS-L2-072（HARNESS-CORE unit候補、未採択）。以下は静的な内容oracle案であり、実行結果、採択、L3承認、実装許可を示さない。
 
@@ -1057,7 +1057,10 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **FR49正常対照**：指定scope・対象revision・canonical pair・oracle対応を同一にしたまま、design artifactとverification evidenceが同じ実snapshotを指す入力ではsnapshot mismatchを返さない。この結果だけでpairの他条件や実行済みoracleを推定しない。
 - **FR49独立負例**：正常対照からverification evidence側のsnapshot参照だけを別snapshotへ替え、pair、scope、target revision、source authority revision、oracle identity、表示revision labelは同じに保つ。このときsnapshot mismatchを識別し、該当pairをgreen／成立として返さない。revision labelまたはauthority revisionが一致してもsnapshot一致へ読み替えない。旧HST-CASE-032-12（line 320）はこの条件のdesign-only参照である。
 - **欠落・不明境界**：比較対象scope/pair/revision、またはdesign/verification snapshot参照のどちらかが欠ける・矛盾する入力は一致と推定せずunknown／未完とし、greenにしない。旧HST-CASE-032-14（line 400）のsnapshot欠落fixtureは補助oracle参照として記録するが、FR49の選択source atomを増やさない。
-- **証拠の限界と戻し先**：参照した旧HST-CASE-031-04/07、032-12/14、および031-09（line 399）はいずれも`design-defined / not-implemented`で、実行結果ではない。source/scope/revisionやsnapshotの意味が不明なら該当要求ownerへ戻し、OSの保存・実行状態からHARNESS判定を推測しない。結果内容はこの2つの選択条件だけに限り、旧test/runtime/CI、実装、採択、source全体のclosureへ読み替えない。
+- **deferred正常対照**：fixture例としてscope `S-A`に個別obligation `obl-A`とoracle `oracle-A`を置き、両側edgeが同じ意味粒度・対象revision `rev-A`・snapshot `snap-A`を指し、oracle結果がcurrent/verifiedとして与えられる場合、deferredであることを理由とする不成立は返さない。この対照はdeferred条件の結果だけを示し、pair成立、coverage、他条件の充足を主張しない。各ラベルは例示値で固定schema/enumではない。この静的fixtureは実行実績を主張しない。
+- **deferred個別負例**：上の正常対照のscope `S-A`、`obl-A`、`oracle-A`、両側edge、粒度、`rev-A`/`snap-A`を保ち、pair状態だけを`deferred`にする。仮に他の入力にcurrent/verified相当の結果があっても、該当pairをgreen／complete／実行済みとして返さず、deferred理由を別に示す。`unexecuted`、stale revision、snapshot mismatch、片側欠落をdeferredと同一視しない。deferredかどうか自体がunknownなら、状態を補わずunknown／未完とする。各ラベルはfixture例で固定schema/enumではない。
+- **IR identityとpair範囲**：source atom `HIL-NFR-29`（IR `#/HIL-NFR-29`）のstatement全体をr3 receiptに保存する（前回r2は履歴として保持する）。NFR-29各句の条件別対応は、採択済みHARNESS-055-001/056-001のexact selected scope、072で具体化するstale/snapshot/deferred、正式対応未確定に分け、これらのpair条件を同じNFR-29 sourceから採択・正式移管したとは扱わない。
+- **証拠の限界と戻し先**：参照した旧HST-CASE-031-04/07、032-12/14、および031-09（line 399）はいずれも`design-defined / not-implemented`で、実行結果ではない。旧HST-CASE-030-15（`archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:437`、行SHA-256 without LF `1f55a1fc44c9d7c75854486ab470a8f3344bc402366462f9381277f4ae314bec`）もcoverage分母・atomic/bidirectional・同一revision/snapshot・実行済み条件を束ねたdesign-only oracleであり、実行結果ではない。旧target assessment `docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:38`（行SHA-256 without LF `47336d3095c59897e39afe23c0ba385d549cccf09043651aa1c46e3d673ec33e`）はHARNESS／OSの歴史的評価で、現在の移管や採択判断ではない。source/scope/revisionやsnapshotの意味が不明なら該当要求ownerへ戻し、OSの保存・実行状態からHARNESS判定を推測しない。結果内容はFR48/49の選択条件とNFR-29のdeferred条件に限る。NFR-29全source句・formal successor・旧test/runtime/CI、実装、採択、source全体のclosureへ読み替えない。
 
 
 ### HARNESS-L2-079 画面prototype artifactとwalkthrough反復の受入候補（未採択・未実行）
