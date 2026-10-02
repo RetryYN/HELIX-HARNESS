@@ -3,9 +3,9 @@
   "receipt_id": "HIL-FR-15-HARNESS087-HELIXOS130-2026-10-03",
   "authority_effect": "none",
   "management_state": "registered_proposal; both pairs unadopted",
-  "current_main_at_registration": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
-  "mpr_prefix_line_count": 696,
-  "mpr_prefix_sha256": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
+  "current_main_at_registration": "2ca47bc4dafd9b7f4049e0f0c66976160cdbd1d7",
+  "mpr_prefix_line_count": 698,
+  "mpr_prefix_sha256": "sha256:743aec87963567d52ae86d66d47a5a20f1233029475f6252d922f99d11a74eb7",
   "source_holding_ref": "MPR-SH-IR-003",
   "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr15-harness087-os130-source-atoms-2026-10-03.jsonl",
   "source_atom_set_file_sha256": "sha256:85e6a4956792a75c00a6933fe33a030f55d205f1b0c6177a941b9144424c1a29",
@@ -241,20 +241,20 @@
       "l2": {
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
         "lines": [
-          1626,
-          1635
+          1643,
+          1652
         ],
         "sha256": "sha256:9916804ec017c5854f496066e76fb6d4c7781462388478c8e9d4a0f4196027a5",
-        "full_file_sha256": "sha256:f689685a2eb04206721ccd1d4186ecbfb2927a5050fdd9784e998ed89c5968ed"
+        "full_file_sha256": "sha256:088a84fb0d6c64aa0de7d2ce2e7a70dea8faa24fdb511f2e8389d88f73a2af12"
       },
       "l11": {
         "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
         "lines": [
-          1299,
-          1316
+          1337,
+          1354
         ],
         "sha256": "sha256:8e5fc049b06882e6049b02fd7c1fd4f21a20a352d4193532bbf0996536eaf1a1",
-        "full_file_sha256": "sha256:89f35af94f59e95eda84fee29432f7855e1c68d2d87e3bd038ed487d00c7568d"
+        "full_file_sha256": "sha256:8d3732c2e7f9a4256923189ad16e71e3b2920b7599f5a0edccd20daa70e0e4e5"
       },
       "pair_digest": "sha256:2fe0cca1782c8e473f438b5909471646b120b9b1b3787704fdaa7cc78dd56225",
       "source_atom_refs": [
