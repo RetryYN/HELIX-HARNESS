@@ -155,7 +155,7 @@
       "requirement": "HELIXOS-L2-007",
       "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007",
-      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
+      "current_file_sha256": "3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52",
       "coverage": "provenance/source/cause and evidence references; does not state effect-level dedup across all four source identities"
     },
     {
@@ -163,8 +163,8 @@
       "adoption_basis": "OS 2026-09-28 decision fixed L2-001..029 and paired L11 bytes",
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-009; docs/helix-os/L11-acceptance/governance-acceptance.md:29,55",
       "coverage": "durable event/idempotent projection, checkpoint, interrupted event-save/projection recovery; only same event/projection guarantee, not Issue+implementation+memory effects across owners",
-      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
-      "current_L11_file_sha256": "b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+      "current_file_sha256": "3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52",
+      "current_L11_file_sha256": "57ac649d5f74902986bcfac4e3eb1ae78a97a2e08d5712567c2a5d7c679b8e25"
     },
     {
       "requirement": "HELIXOS-L2-019",
@@ -172,8 +172,8 @@
       "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
       "fixed_L11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
       "coverage": "episode provenance, duplicate/stale/denied/unexecuted distinction, continuity and no duplicate side-effect from duplicate events; not all four identity/effect-owner closure",
-      "current_L2_file_sha256": "sha256:39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
-      "current_L11_file_sha256": "sha256:b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+      "current_L2_file_sha256": "sha256:3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52",
+      "current_L11_file_sha256": "sha256:57ac649d5f74902986bcfac4e3eb1ae78a97a2e08d5712567c2a5d7c679b8e25"
     },
     {
       "requirement": "HELIXOS-L2-035",
@@ -181,8 +181,8 @@
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035; docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-035",
       "coverage": "選択PR lifecycle eventから同じ論理監査jobを一度だけ生成する保証。122のdelivery/event→jobと重なるが、Issue作成・実装・選択memory効果や4 identity全体のowner間closureは規定しない。",
       "adoption_basis": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md row 58; exact fixed/current L2 and L11 section digests recorded in adopted_pair_crosswalk",
-      "current_file_sha256": "sha256:39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b",
-      "current_L11_file_sha256": "sha256:b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+      "current_file_sha256": "sha256:3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52",
+      "current_L11_file_sha256": "sha256:57ac649d5f74902986bcfac4e3eb1ae78a97a2e08d5712567c2a5d7c679b8e25"
     },
     {
       "requirement": "HELIXOS-L2-102",
@@ -190,7 +190,7 @@
       "current_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-102; docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-102",
       "coverage": "同一revision/digestのdurable intake/projection/handoff。HARNESS-L2-059と一組で採択されたが、4 identityにまたがるIssue・実装・memory効果の重複防止までは閉じない。",
       "adoption_basis": "docs/governance/decisions/po-decision-2026-09-30-live26.md rows 55 and 70; exact fixed/current L2 and L11 section digests recorded in adopted_pair_crosswalk",
-      "current_file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b"
+      "current_file_sha256": "3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52"
     },
     {
       "requirement": "HARNESS-L2-059",
@@ -232,7 +232,7 @@
       "line_start": 1510,
       "line_end": 1524,
       "section_sha256": "f92eaa3f148b0b63d14c3f7cd8a93d1f13a360d916cab93011aba8e872e0fc21",
-      "file_sha256": "39c6d0e884c3d318450b593eaad2567fc9c0185fa1b5270f0fe58a9cbb7ee13b"
+      "file_sha256": "3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52"
     },
     "L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -240,7 +240,7 @@
       "line_start": 1106,
       "line_end": 1118,
       "section_sha256": "09e77bca9eb7d4f8e907a85dfde4d407e3ef04454646a2384c3ac185de194d2f",
-      "file_sha256": "b6ad20394ece20a069e447f7ba43ea81963929dbca6787ee097dc4a1ddd8d6c2"
+      "file_sha256": "57ac649d5f74902986bcfac4e3eb1ae78a97a2e08d5712567c2a5d7c679b8e25"
     }
   },
   "candidate_semantic_digest": "sha256:f92eaa3f148b0b63d14c3f7cd8a93d1f13a360d916cab93011aba8e872e0fc21",
@@ -273,8 +273,8 @@
   "method_note": "Meaning comparison is old source/consumers against adopted exact current pair and current candidates. Candidate maps the one selected statement only; adoption, any semantic change, and formal successor stay with their existing authority.",
   "source_atom_set_file_sha256": "sha256:4281215c34701db0025f7f4cf74faeb800ca8cc4c86592167ce64f4f9da1cfb5",
   "source_atom_set_encoding": "UTF-8 JSONL, one line per selected identity atom; source_line_text excludes LF while line SHA fields state whether LF is included.",
-  "read_after_base_commit": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
-  "current_candidate_sections_read_after_commit": "Read at base 46be4fa55d384b8a8eb95f464f78c8a11e95542c; current L2/L11 bytes include this correction and section/full-file hashes bind the working revision.",
+  "read_after_base_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
+  "current_candidate_sections_read_after_commit": "Read at base 903c9b12ba9753b09d63a87b2a6a816fd73b5b42; current L2/L11 bytes include this correction and section/full-file hashes bind the working revision.",
   "human_decision_options": {
     "source_text": "同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。",
     "options": [
