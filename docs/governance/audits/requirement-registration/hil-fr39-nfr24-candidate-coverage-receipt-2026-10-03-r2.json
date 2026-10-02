@@ -63,7 +63,7 @@
         "HIL-NFR-24",
         "HIL-NFR-25"
       ],
-      "relation": "One legacy requirement atom. Related NFR/system-contract/HAC/HAT records provide constraints and positive/negative/boundary context, not additional requirement atoms or formal successors.",
+      "relation": "旧FR-39を一つの規範source atomとして保持し、現用002ではNFR-24 whole-IR identityを第二の規範atomとして選択する。関連system contract/HAC/HATはconsumer/oracle contextであり追加atomやformal successorではない。",
       "candidate_input": true,
       "disposition": "candidate_scope_only; source holding remains live",
       "source_record_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39",
@@ -130,19 +130,23 @@
   ],
   "whole_ir_condition_mapping": [
     {
-      "source_condition": "文書/template/見出し/入力欄の存在のみを設計完全性とせず、意味のある内容、双方向edge、test oracleまたはscope付きN/Aで各義務を個別dischargeする。",
+      "source_condition": "将来使えそう・綺麗になるという推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。",
       "adopted_scope": [
-        "HARNESS-L2-025/026の一般的な選択設計/trace/oracle scope",
-        "HARNESS-L2-041-003の選択template atom/gap scope",
-        "HARNESS-L2-063のHR-FR-HIL-17から選択された3 slice"
+        "HARNESS-L2-048の選択されたrename安全条件",
+        "HARNESS-L2-016/042の選択されたbehavior/contract保存・consumer/oracle照合"
       ],
-      "candidate_scope": "既存077節の選択scope内双方向graph・個別discharge条件を保持し、002で意味ある設計内容の正例とboilerplate負例、個別oracle対応を明示する。",
-      "remaining": "採択済みscopeはいずれもnormative NFR26全体を閉じない。"
+      "candidate_scope": "068の根拠のない追加・意味の異なる概念の誤統合・scope外拡張の拒否、対L11の文字列類似のみ/将来利用のみ独立負例。",
+      "remaining": "既採択の限定scopeはNFR24全体のclosureではない。"
     },
     {
-      "source_condition": "TBD、空欄、範囲表記、1行での複数義務消込を拒否する。",
-      "candidate_scope": "原文を逐語で保持する。候補Aは各義務をatom化して個別dischargeした場合の表示用略記だけを許す。候補Bは範囲表記を一律に拒否する。どちらの解釈でも未展開range行一つによる複数義務の一括dischargeは拒否する。",
-      "remaining": "A/Bは未決PO選択。Aを原文の逐語的意味として扱わない。"
+      "source_condition": "実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求する。",
+      "candidate_scope": "068元節の全consumer/behavior/rollback接続条件を保持し、最小変換の比較根拠と対L11の独立負例を追補。各groundのtransform別適用性はA/B/C未決として残す。",
+      "remaining": "transform-ground対応はPO未選択。選択groundの欠落を他groundで相殺しない。"
+    },
+    {
+      "source_condition": "誤った名称統一、抽象化、scope creepを拒否する。",
+      "candidate_scope": "068のsemantic signature比較と誤統合/根拠なし抽象化/選択scope外拡張の拒否、必要な既存reroute。",
+      "remaining": "候補起草から採択・formal successor・source closureは生成しない。"
     }
   ],
   "condition_closure": "not_asserted",
