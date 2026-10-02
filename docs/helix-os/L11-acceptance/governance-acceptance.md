@@ -1247,6 +1247,35 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 **旧source**：normative IR atomは`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のHIL-NFR-15、L1 line 195は`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`による同一文のcorroboration。HR-FR-HIL-06/HAC-HIL-06a/b/cは旧consumer context、HAT-HIL-06と旧prejoin/postjoin/external物理構成は参照のみ。参照のみ分類は旧runtime/固定stageの来歴だけに適用し、normative IR atom全体やそのreceipt lineage条件を実行closure外へ落とさない。OS-032の採択済み限定quarantineと本候補の段間参照を混同しない。
 
 
+### 要求正本更新の受入：HIL-NFR-32の六条件候補
+
+本追補は、既存の「要求正本更新の受入」（`governance-acceptance.md` 241–252行）とHELIXOS-L2-001に結び付く、未採択のL11候補partである。source identityは旧HIL-NFR-32全体の一atomを保持する。L2へ新しいguardは加えず、既存の「要求正本を更新する管理条件」（`governance-requirements.md` 515–532行）を適用先とする。候補登録`MPR-RC-HELIXOS-L2-001-001`とreceiptの`condition_mapping`から、選択partと各条件の対応を辿る。
+
+旧原文は「意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。」である。sourceの六条件を保持し、意味変更をCanonical化する候補operationに対する独立fixtureを示す。HARNESSが要求意味、影響範囲、pair、verification obligationとoracleを所有する。OSは同じoperation/base/scopeの入力根拠を照合し要求正本更新を管理するが、HARNESSの検証義務を引き受けない。
+
+- **正常fixture（未実行）**：同一の意味変更operation、変更前の要求revision、適用scopeを固定し、そのoperationに適用されるauthority、影響要求/designと既存pair・互換revision、適用されるoracle/expected failure、rollback/recovery根拠、影響するdownstream relationと既存管理条件で対象となるstale state更新結果を同一の更新traceへ結ぶ。適用される六条件を一つずつ根拠へ辿れ、別operationや別revisionの証拠を混ぜない。scope外のsourceや無関係な全consumerを一律に要求しない。
+- **六つの独立negative fixture（各々未実行）**：正常fixtureのoperation、base revision、scopeおよび他の入力を固定し、一回に一条件だけ欠落・不一致とする。各caseでcanonicalizationを成立させない。
+  1. 適用されるauthorityの根拠だけを欠落、または無権限にする。
+  2. 影響対象と変更のrelationだけを欠落させ、影響範囲をunknownにする。
+  3. 対象changeに結ばれたpairまたは互換revisionだけを欠落・不一致にする。
+  4. 適用されるoracle/expected failureだけを欠落、または対象changeと不一致にする。
+  5. rollback/recoveryの根拠だけを欠落させる。
+  6. 既存管理条件で対象となる影響下流のstale state更新根拠だけを欠落させる。これはその更新条件のnegativeであり、全consumerや全downstream作業の完了を要求する条件には広げない。
+- **別oracleのnegative（未実行）**：stale base拒否、更新・receipt初期write fault時のpartial-current防止、複数revisionの証拠混在拒否を六つの一条件欠落caseと分ける。初期write faultは原子的確定とrollback/recoveryを確認する。downstream stale state更新根拠の欠落は、初期transaction成功だけでは正本化条件を満たさないことを確認する。二つのfailure段階を一つのoracleにまとめない。
+- **未見・unknown（未実行）**：選択input source、適用scopeまたは影響relationが不明ならunknown/未完のまま保持する。非該当・影響なし・成功に読み替えない。適用根拠の選択を明記し、無関係なすべてのsourceを一律必須にはしない。
+
+HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実行時のdependencyのみを示し、規範IRやconsumer契約を参照資料へ降格しない。
+
+| 分類 | この候補での扱い |
+|---|---|
+| 常時必須 | 対象requirement identity/revision、変更前base、operation scope、現行L2/L11契約。 |
+| 特定操作時のみ | 意味変更をcanonicalizeするoperationを選択したとき、原文の六条件を照合する。 |
+| 選択した入力元に応じて必須 | 当該operationに適用されるauthority、impact/pair、oracle、rollback/recovery、downstream relationについて、source identity・revision・scopeを結ぶ。IRはnormative、L1同文はcorroboration、HR-FR-HIL-19/HAC-HIL-19a..c/HAT-HIL-19はcontract・設計済みoracle/testのconsumer contextである。 |
+| 参照資料のみ | 旧runtime、CLI、schema、enum、実装class名。旧test/runtimeは実行しない。 |
+
+全caseは候補fixtureであり、未実行である。candidateのauthority effectは`none`。adoption、formal successor、owner確定およびwhole-source closureは未確認のまま保持する。
+
+
 ### HELIXOS-L2-018 Worker割当・実行統制の受入（HIL-NFR-36残差候補revision -002・未採択）
 
 本節はL2の同identity追補候補に対する未実行のfixture/oracleであり、2026-09-28に採択された018の固定L11本文を変更しない。
