@@ -1,0 +1,161 @@
+{
+  "schema_version": "hil-nfr12-os123-overlap-review.v1",
+  "audit_id": "HIL-NFR12-OS123-OVERLAP-REVIEW-2026-10-02",
+  "comparison_base_commit": "d948ebef2dac78e5f0642d6e64534f9fde2c3cdf",
+  "authority_effect": "none",
+  "review_finding_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/2523#issuecomment-5944566014",
+  "finding_summary": "共通の旧consumerを持つ未採択OS-123候補とのsource scope・oracle・独立adoption境界を081 L2/L11、receipt r2へ記録する。",
+  "legacy_source_and_common_consumers": {
+    "shared_context": {
+      "system_contract": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-09",
+      "acceptance_cases": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-09a",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-09b",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-09c"
+      ],
+      "system_test": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-09",
+      "context_only": "同じ旧consumer identityはsource atom、adoption、または他方の候補によるoracle fulfillmentを統合しない。HATはdesigned_not_implemented。"
+    },
+    "nfr12": {
+      "selected_atom": "IR153-HIL-NFR-12",
+      "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-12/statement/text",
+      "statement_semantic_digest": "sha256:a85de817bf5698825a759488e16ad07868c18cfe03a62d7b6fe478e3e422391e",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr12-source-lines-2026-10-02.jsonl",
+      "source_atom_set_digest": "sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910",
+      "source_atom_count": 1,
+      "holding": "MPR-SH-IR-003#HIL-NFR-12 preserved_pending_rehome; successor_requirement_ids=[]",
+      "oracle_scope": "HARNESS-L2/L11-081: declared scope path/entry full enumeration; reject four false completeness proofs; decision trace to source path/entry, digest, extraction time."
+    },
+    "br14": {
+      "selected_atom": "HIL-BR-14",
+      "pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-14",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "statement_semantic_digest": "sha256:917252a5fad425980897510684f7ca3053711fe8c0541da3cb2eb2c84873fe5c",
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-br14-source-lines-2026-10-02.jsonl#HIL-BR-14",
+      "source_atom_set_digest": "sha256:cfcb3a04f794d7a81508a905e53eae859072f963681e038308f5177ab509f901",
+      "source_atom_count": 1,
+      "holding": "MPR-SH-IR-003#HIL-BR-14 preserved_pending_rehome; successor_requirement_ids=[]",
+      "oracle_scope": "HELIXOS-L2/L11-123: ZIP, two exact former repositories, current HELIX source; source authority receipt; receipt-derived refs/unique-entry/ref-entry-edge denominators; atomic disposition and decision-to-Gate trace."
+    }
+  },
+  "candidate_status_at_comparison_base": {
+    "081": {
+      "registration_id": "MPR-RC-HARNESS-L2-081-001",
+      "status": "registered_proposal",
+      "authority_effect": "none",
+      "source_scope": "HIL-NFR-12 only; one IR atom",
+      "r1_registration_immutable": "MPR-RC-HARNESS-L2-081-001 at line 674 of the historical creation base d948ebef2dac78e5f0642d6e64534f9fde2c3cdf; prior receipt remains immutable.",
+      "current_revision": "MPR-RC-HARNESS-L2-081-002 was added after the historical base; current branch line 676, with section digests in r2 receipt."
+    },
+    "123": {
+      "registration_id": "MPR-RC-HELIXOS-L2-123-001",
+      "status": "registered_proposal at historical comparison base d948ebef2dac78e5f0642d6e64534f9fde2c3cdf; authority_effect none.",
+      "authority_effect": "none",
+      "source_scope": "HIL-BR-14 only; one IR atom"
+    }
+  },
+  "receipt_pins": {
+    "081_r1_path": "docs/governance/audits/requirement-registration/hil-nfr12-coverage-candidate-receipt-2026-10-02.json",
+    "081_r1_sha256": "sha256:ddb0532efa65dd568887cb2d804484989ab0aaf63c3fadac6a4249a23e96e653",
+    "123_receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-123-hil-br14-coverage-receipt-2026-10-02.json",
+    "123_receipt_sha256": "sha256:5c76a58d0d9f9e348b0f5a35792d355b475c876e2add3c53b4445cae964818c4",
+    "123_source_lines_path": "docs/governance/audits/requirement-registration/hil-br14-source-lines-2026-10-02.jsonl",
+    "123_source_lines_sha256": "sha256:262606e5a6a9bedd52228539b46884f93c6cf6f43bdfb5b7e820d5785d9304bd",
+    "081_r2_path": "docs/governance/audits/requirement-registration/hil-nfr12-coverage-candidate-receipt-2026-10-02-r2.json"
+  },
+  "boundary_findings": [
+    {
+      "condition": "NFR-12 full census and decision trace",
+      "owner_candidate": "HARNESS-L2/L11-081",
+      "status": "semantic oracle candidate only; does not acquire or authority-seal source inputs"
+    },
+    {
+      "condition": "BR-14 source authority and receipt-derived denominators",
+      "owner_candidate": "HELIXOS-L2/L11-123",
+      "status": "BR-14-only OS connection candidate; does not enumerate or decide NFR-12 coverage"
+    },
+    {
+      "condition": "shared HR-FR-HIL-09/HAC/HAT context",
+      "status": "consumer context only; not a shared source atom or proof of candidate adoption"
+    },
+    {
+      "condition": "generic false completeness claim rejection",
+      "status": "各source条件はそれぞれのoracleで判定する。同一scope/entry/revision/digest/抽出時点を実照合したevidenceは共有できるが、一方のreceipt・採択・consumer一致だけから他方のoracle passは推定しない。両条件が適用されるoperationでは各oracleを独立に満たす。"
+    }
+  ],
+  "adoption_boundary": {
+    "081_choice_scope": "A places NFR-12 semantic oracle at HARNESS-L1-004; B retains NFR-12 holding and leaves 081 unadopted.",
+    "123_choice_scope": "A retains full BR-14 source scope; B retains holding; C is explicit subset scope change and retains excluded obligations.",
+    "independence": "The two existing candidate decisions are independent. Neither choice adopts, depends on, assigns source owner for, or alters the other candidate.",
+    "no_new_decision_or_gate": true,
+    "version_target": "not specified by either legacy atom/fixed decision; remains unspecified."
+  },
+  "preservation": {
+    "source_files_unchanged": true,
+    "081_001_row_and_r1_receipt_immutable": true,
+    "123_source_atom_and_MPR_row_immutable": true,
+    "only_new_candidate_revision": "MPR-RC-HARNESS-L2-081-002",
+    "new_registration_line_after_prefix": 676,
+    "prior_081_001_registration_line": 675,
+    "mpr_prefix_lines_from_latest_main": 674
+  },
+  "latest_main_read_after_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
+  "latest_main_read_after": {
+    "commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
+    "mpr_line_count": 674,
+    "mpr_prefix_sha256": "sha256:693b5d7bc983d85a75e7680d0d95dc4ce905cc71474f9a5b0e18231bf135767e",
+    "mpr_prefix_preserved_byte_for_byte": true,
+    "harness_l2_main_file_sha256": "sha256:dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47",
+    "harness_l11_main_file_sha256": "sha256:64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e",
+    "os123_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "os123_l2_section_sha256": "sha256:66881747d87d799a8fcec031674d7b6ca54df0f19fffa29c2f34d30cf8e10afc",
+    "os123_l2_main_file_sha256": "sha256:5e8a521274d6f21deb6b10a42625e39d9e82550856efb59adccc40679f8fa9a5",
+    "os123_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "os123_l11_section_sha256": "sha256:7f7131426421fde996fed2c380184696304536aa2d1e5c117a5fd57e737f9bfd",
+    "os123_l11_main_file_sha256": "sha256:f1e3de3192aecb32b7a60352714d95ccace8ad28608dec2174a5de14da6654ec",
+    "os123_receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-123-hil-br14-coverage-receipt-2026-10-02.json",
+    "os123_receipt_file_sha256": "sha256:5c76a58d0d9f9e348b0f5a35792d355b475c876e2add3c53b4445cae964818c4"
+  },
+  "candidate_branch_pins_after_main_read_after": {
+    "081_l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "081_l2_full_file_sha256": "sha256:7b45ddcb429fddec2faafb3f9f78a5b1094029f70c49d9f26de131e9281dfd93",
+    "081_l2_section_sha256": "sha256:0d1aff584107f45400749366699f69e00e21d53d511296925ffbd95177203c45",
+    "081_l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "081_l11_full_file_sha256": "sha256:ca4e9c26fc090dddc89a008f68ff9621c1919f7846f2bbc6cd7e3a69396bafef",
+    "081_l11_section_sha256": "sha256:2b5b4a7e1a44e0e47c56b6d3dcad3427e28e4392f40810601c75071f8cd54c29",
+    "mpr_081_001_line": 675,
+    "mpr_081_002_line": 676,
+    "main_prefix_lines": 674,
+    "mpr_prefix_source": "latest_main_read_after_commit exact 674 lines; local candidate branch appends prior row 001 at 675 and current row 002 at 676"
+  },
+  "adoption_authority_check": {
+    "rule": "採否はPO decision recordのexact identity・registration revision・section digestで読む。MPRのregistered_proposal/authority_effect metadataは採否の証拠にしない。",
+    "checked_decision_records": [
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "scope_read": "明示候補24件の全表",
+        "exact_identity_match": false,
+        "decision_record_commit": "03b1969b26a30e9e2b68149bff2e10c5bfe78110"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "scope_read": "判断対象候補の全表・適用境界",
+        "exact_identity_match": false,
+        "decision_record_commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45"
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "scope_read": "26 identityの全採否表・revision pin",
+        "exact_identity_match": false,
+        "decision_record_commit": "5744308b9194656635bbf0fee4ea5ad460b93d15"
+      }
+    ],
+    "full_decision_directory_identity_search": "docs/governance/decisionsでHARNESS-L2-081、MPR-RC-HARNESS-L2-081、HELIXOS-L2-123、MPR-RC-HELIXOS-L2-123、HIL-NFR-12、HIL-BR-14を検索し、exact adoption entryなし。",
+    "result": "comparison時点で081-001/002及び123-001を対象にした採択decisionは確認されず、両候補を未採択のまま保持する。これは登録metadataからの推定ではない。"
+  }
+}
