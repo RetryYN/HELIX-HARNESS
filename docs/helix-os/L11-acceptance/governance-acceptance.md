@@ -1332,3 +1332,26 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 - **PO未選択時**：primary Workerに関する本候補の適用判定はunknownのまま保持する。二つのsource上の退避経路のいずれかを削除・固定せず、queue-hold／routing-proposal双方の既存正常例を維持する。scope未決を理由にdependencyの6 fieldsやHARNESS-023の4分類を変えない。
 
 案Bを推奨する理由と案A/Bの具体的影響は対L2のscope候補とcoverage receiptに記録する。SECURITY-029/031の追加runtime向け既採択境界はdecision 57 row 112のまま維持し、NFR-40 scope候補へ混ぜない。
+
+### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補
+
+- **前提**：未採択・未実行の文書上fixtureである。既存operation authority/assignmentを与え、候補から新規権限・dispatchや人間承認を作らない。候補本文および本oracleは旧runtime・旧test・CIを起動しない。通常operationにこの条件を一律適用しない。
+- **正常 fixture**：既存authorityの対象operationで使用する版付きpack `pack-P@r1`と必要最小の専門agent contract/team `agent-A@r1`が、ticket/requirement revision `req-R@r7`、scope `scope-S@r3`、snapshot `snap-Q@r2/digest=d-Q2`、選択されたsource revision/digestへ結び付く。同じ対象revision/scope/packに対するshadow reviewとruntime guardが使用前に確認でき、独立verifyの担当は作成主体と分離される。選択Worker/tool/pathは既存authority内、自己検証なし、有限の明示member/task集合、停止・budget条件と既存workflowのcompletion範囲が一致する。guardはそのoperationの該当actionのみ進行可能と返し、packやagent自身に権限を与えず、新しいapprovalを要求しない。fixture値はschemaやrevision形式を規定しない。生成工程全体、musterの全lifecycle、lifecycle receiptの充足はこのfixtureから推定しない。
+- **正常—通常operationの非適用**：pack/agentを選択しない通常operationに、generated artifactのguard義務を追加しない。assignment/authorityと既存の適用条件に従う。非適用結果から別条件の充足やruntime成功を推定しない。
+- **独立negative—提案物の自己権威化**：他の入力を正常に保ち、packまたはagentが提案状態からoperation/tool/completion authorityを自己宣言する例を与える。既存authorityの別証拠なしに受理したら不合格。
+- **独立negative—snapshot/digest不一致**：他の条件を正常に保ち、生成snapshot identity/digestと対象operationのbound sourceを一つだけ変える。旧facetをcurrentとして再利用したら不合格。scope、requirement、template、skill、model catalog、allowlistは一つずつ独立に変えるfixtureを設ける。各例の影響範囲はexisting 072-005の未決A/Bを決定済みと偽らず、少なくとも実際に選択・適用されたsourceの不一致を当該operationでstale/unknownにする。
+- **独立negative—shadow review欠落**：scope/revision/tool/authorityを正常に保ち、同一revision/scope/packのshadow reviewだけを欠かせる。未完を確認済みに読み替えてoperationを進めたら不合格。
+- **独立negative—runtime guard欠落**：shadow reviewと他条件を正常に保ち、同一operationのruntime guard resultだけを欠かせる。guard前に該当operation actionを進めたら不合格。
+- **独立negative—independent verify欠落**：shadow/guard/authorityを正常に保ち、選択した必要最小team contractのindependent verify担当/evidenceだけを欠かせる。未完を完了証拠として受け入れたら不合格。
+- **独立negative—許可外tool/path**：同一operation authorityから一つのtoolまたはpathを外し、生成agentがそれを使う例を与える。既存SECURITY authorityに含まれないactionを許可したら不合格。policy自体を候補が緩和したり新しい許可を追加したりしてはならない。
+- **独立negative—自己検証**：workerとverification actor/context/authority/routeを同一にした例を与える。本候補対象のpack/agent operationで作成側の自己確認をindependent verificationとして扱ったら不合格。この条件をpack/agentを使わないoperation全般へ拡大しない。
+- **独立negative—無制限subagent**：上限または停止条件を持たず再帰的に子agentを増やせる例を与える。明示された有限のtask/member境界がないまま生成が継続可能なら不合格。明示範囲内の有限な再帰委譲は、このnegativeだけを根拠に拒否しない。固定人数上限を新設しない。
+- **独立negative—必要最小teamを超える生成**：HR-FR-HIL-21の必要最小team条件を選択したoperationで、既存のtaskに不要なagentを追加した有限teamを与える。要求された必要task/memberを超えたteamを最小構成として受け入れたら不合格。固定人数上限は新設しない。
+- **独立negative—工程外completion authority**：同じ作業結果を保ったまま、agentが既存workflow外のticket/stage/phaseを完了扱いする例を与える。該当する既存operation authorityの範囲を越えたcompletionを受け入れたら不合格。
+- **unknown/未見**：未見のpack・agent contract、source owner不明、stale applicability、未定のtool/path、verification担当との独立性不明、completion scope不明、またはteam境界不明を入力する。未見という理由で正常とせず、影響を受けるoperationをunknown/未完に保ち、推測せず該当する既存source/authority ownerへ戻す。他の正常tupleは失敗条件を覆い隠さない。
+- **依存4区分 fixture**：同一の `operation=fixture:op-A@r1 / assignment=fixture:assignment-A@r2 / scope=fixture:scope-S@r3 / pack=fixture:pack-P@r1` を二度照合し、同じ有効dependencyと理由を返す。
+  - 常時必須：`HELIXOS-L2-018`の固定採択pair revision、fixtureの既存ticket/assignment/authority、operation scope。compatibility根拠は同じtask/revision/Worker/attemptであること。
+  - 特定操作時のみ：`HELIXOS-L2-131`の候補pairはpack/agentを使用するoperationでだけ適用する。候補pair自体は未採択と明記し、採択済みauthority扱いしない。
+  - 選択した入力元に応じて必須：fixtureで実選択されたpack、agent contract、source dependencyのidentity/owner/revision/digest/applicabilityとsnapshot bind。選択sourceを変更した場合はその同じfacetにstale/unknownを返す。
+  - 参照資料のみ：旧`HR-FR-HIL-21`、`HAC-HIL-21a/b/c`、`HAT-HIL-21`、`HOT-HIL-52/53`はconsumer/oracle contextとして参照する。これはconsumerのnormative dutyやsource mappingを消さず、実行互換rangeや成功の証拠にしない。
+- **source mappingと限界**：旧IR HIL-NFR-34の原文一atomは候補のauthority非付与、snapshot/digest bind、六sourceカテゴリのstale、未監査pack・未許可tool・自己検証・無制限subagent・工程外completionのnegativeへ対応する。旧L1 line 214は同文corroboration。HR-FR-HIL-21 revision 1 whole recordからは版付きpack、必要最小team contract、独立verify、pack使用前のshadow review/runtime guardだけを追加source条件として対応づける。pack/teamの生成工程全体、musterの全lifecycle、receiptは未回収のままsource holdingへ残す。HAC-HIL-21a/b/cとHAT-HIL-21は旧consumer/oracleで、HAT-HIL-21は`designed_not_implemented`のため実行結果を主張しない。詳細は対L2 candidateのcoverage receiptにsource file SHA、物理line、record digest、選択条件、未回収条件、現在の対応pairを記録する。
