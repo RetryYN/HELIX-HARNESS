@@ -50,9 +50,9 @@
   },
   "candidate_pair": {
     "l2_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
-    "l2_section_sha256": "sha256:d4c0dda5a78078becd195d42496c53de8eb07dfe7e935c97b3c4f5b32f9e65c0",
+    "l2_section_sha256": "sha256:885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e",
     "l11_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
-    "l11_section_sha256": "sha256:4a3b06b1287595fe6504bfaa67761176f62dedb59483c1b87e2b60b987be7594",
+    "l11_section_sha256": "sha256:6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711",
     "source_lineage": "meaning rederived from historical candidate; no runtime/API/schema or owner route copied"
   },
   "parent_and_authority": {
@@ -63,7 +63,17 @@
     "parent_requirement": "HELIXINTELLIGENCE-L1-009",
     "parent_decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
     "parent_scope": "audit proposal traceability and no free-text authority; owner for formal future-delta consumer is not inferred",
-    "adoption_decision": "No PO decision covers L2-077; management register state/authority_effect metadata do not determine adoption."
+    "adoption_decision": "No PO decision covers L2-077; management register state/authority_effect metadata do not determine adoption.",
+    "version_target_basis": {
+      "target": "1.0",
+      "source_of_target": "current parent only; the selected old AAFD-R-05/R-08 source atoms do not specify version_target",
+      "parent_requirement": "HELIXINTELLIGENCE-L1-009",
+      "parent_table_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "parent_table_line": 51,
+      "parent_file_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "parent_row_version": "1.0",
+      "interpretation": "077 carries the current parent L1-009 version_target; this does not create a version or alter the parent meaning."
+    }
   },
   "existing_candidate_and_adopted_pair_comparison": [
     {
@@ -128,7 +138,7 @@
       "source_text": "| AAFD-AC-008 | AAFD-R-08 | unknown→0/unchanged/observed mutationとdeltaからのRequirement direct writeを拒否する |",
       "candidate_location": "HELIXINTELLIGENCE-L2-077 and paired L11-077",
       "disposition": "carried_to_unadopted_candidate_limited_scope",
-      "semantic_limit": "Reject mutation of unknown to 0/unchanged and direct Requirement write; other listed targets are separately covered by R-08 and negative oracle."
+      "semantic_limit": "Reject unknown completion as 0, unchanged, or observed mutation and reject direct Requirement write. R-08 line 71 separately preserves neutral and all five non-write targets."
     },
     {
       "atom_id": "LEGACY-CAND-LINE-000072",
@@ -195,7 +205,7 @@
     }
   ],
   "positive_negative_unseen": {
-    "positive": "Separate qualified internal/UIL and external/TER receipt examples preserve identity, origin type and owner; no authority write. These are candidate expected meanings, not runtime results.",
+    "positive": "Two distinct illustrative tuples: (receipt r-int-7, revision rev-3, origin_type internal, fixture-provided existing owner identity owner-int-existing) and (receipt r-ext-4, revision rev-2, origin_type external, fixture-provided existing owner identity owner-ext-existing). Compare identity/revision/origin/owner separately; the external tuple includes a provider release observation and does not establish a HELIX defect without internal HELIX evidence. Keep unobserved delta dimensions unknown; direct writes to Requirement/Design/Release/Assignment/merge are 0. Fixture values are examples, not runtime results, an owner registry, or a new schema.",
     "negative": [
       "external release alone => defect",
       "internal->TER / external->UIL owner/source swap",
@@ -207,9 +217,12 @@
       "Design",
       "Release",
       "Assignment",
-      "merge"
+      "merge",
+      "selected receipt cannot be read => unknown/incomplete; return to selected source owner; never silently use another available receipt",
+      "selected receipt revision/qualification check fails => unknown/incomplete; no fallback to a different receipt, unselected source, or reference-only material",
+      "selected receipt owner identity is missing or contradicts the existing source owner => unknown/incomplete; distinguish from fixture case with matching existing owner identity"
     ],
-    "unseen": "held-out missing/mismatched owner, origin type, receipt revision or qualification evidence must remain unknown/incomplete; no qualification inferred from reference-only or unselected source.",
+    "unseen": "A held-out selected receipt with missing/mismatched owner, origin type, revision or qualification evidence, unreadable selected receipt, or failed qualification lookup remains unknown/incomplete and returns to that selected source owner. Do not silently substitute another receipt, unselected source, or reference-only material. Keep owner-known fixture and owner-unknown/mismatch cases distinct.",
     "runtime_status": "not run; old runtime, CLI, CI and tests prohibited"
   },
   "owner_and_meaning_decision_material": {
@@ -228,10 +241,10 @@
   },
   "pins": {
     "base_commit": "064eb83cdf78dad0bad6f5f256ff7048b25203bd",
-    "l2_file_sha256": "sha256:b3be5387f072fd15bf34091668e112e72583edb89f60d81f3fe2d7e4f0a80a5f",
-    "l11_file_sha256": "sha256:7095133e1f190ab01e7ff0d8fbce151cf5343c52c2e6c756a2a21186a139397a",
-    "l2_section_sha256": "sha256:d4c0dda5a78078becd195d42496c53de8eb07dfe7e935c97b3c4f5b32f9e65c0",
-    "l11_section_sha256": "sha256:4a3b06b1287595fe6504bfaa67761176f62dedb59483c1b87e2b60b987be7594",
+    "l2_file_sha256": "sha256:0678d961b85f383e9a2d49dc0fd56395c28eafeed23285e999615f30a7207895",
+    "l11_file_sha256": "sha256:065e6f5c8f43f501b53146dc2481f31648ce8d1e8abb6cb60e5d91dea8d45bc6",
+    "l2_section_sha256": "sha256:885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e",
+    "l11_section_sha256": "sha256:6cebdcbe581a34c3e9f7ef934c19c78fdbb0e9cf81174340221bf2d579c38711",
     "source_jsonl_sha256": "sha256:71bbe0b1dea2b7f557e63f19c400dc616158e83ac71f1388e91c1097851b4a06",
     "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
     "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
@@ -239,13 +252,32 @@
     "legacy_requirement_sha256": "sha256:685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
     "legacy_acceptance_sha256": "sha256:09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a"
   },
-  "validation_boundary": "Static source file/line/atom/hash, candidate paired section, parent/decision, MPR append-only and four dependency-class distinction. No old runtime, test, CI or CLI; no authority adoption or execution claim.",
+  "validation_boundary": "Static source file/line/atom/hash, candidate paired section, parent/decision, MPR append-only and four dependency-class distinction, concrete receipt-read/qualification failure no-fallback oracle, and current-parent version_target evidence. No old runtime, test, CI or CLI; no authority adoption or execution claim.",
   "management_registration": {
     "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
     "register_line": 658,
     "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
-    "appended_row_sha256": "sha256:8ad82276c943e3b355703aaf5682d2439f1eac062de22b68f7a33b0f67652912",
+    "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
     "append_only_prefix_verified": true,
     "status": "registered_proposal; authority_effect none; no adoption inferred"
-  }
+  },
+  "review_corrections": [
+    {
+      "review": "root follow-up after local candidate review",
+      "changes": [
+        "Make selected receipt read/qualification failure return unknown/incomplete to its source owner with explicit no-fallback oracle.",
+        "Add concrete internal and external receipt tuples with separate origin type/owner, provider release observation, unknown preservation, and zero direct writes; distinguish owner-known fixture from owner unknown/mismatch.",
+        "Record that version_target 1.0 is inherited from current parent HELIXINTELLIGENCE-L1-009, not inferred from legacy AAFD source."
+      ],
+      "scope_limit": "No source atom, owner route, schema, authority, adoption, runtime, or new mechanism added."
+    },
+    {
+      "review": "root follow-up source interpretation correction",
+      "changes": [
+        "Correct AC-008 selected source summary to include observed alongside 0/unchanged.",
+        "Keep the broader R-08 line 71 requirement as four unknown substitutions including neutral and five non-write targets."
+      ],
+      "scope_limit": "Selected source JSONL/raw source lines and hashes remain unchanged."
+    }
+  ]
 }
