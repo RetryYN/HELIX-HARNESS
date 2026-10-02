@@ -427,3 +427,8 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 - **未監査/不一致/unknown**：selected source identity、revision、digest、applicability、ownerのいずれかが欠落・不一致・unknownの場合は、旧値を最新とみなしたり、未選択/非適用へ読み替えたりせず、該当candidate facetをunknown/stale/incompleteとして保留し、特定できるsource ownerへ戻す。formal ownerが不明なら所有者を捏造しない。
 - **残る旧条件**：未監査packのauthority化、未許可tool、self-verification、無上限subagent生成、工程外completion authority、専門agentの全muster/lifecycleは本fixtureの合格対象でない。既存採択pairや別候補が個別に扱う条件を参照しても、NFR-34全体またはHR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21のclosureに数えない。
 - **人の判断が残る点**：六種変更の適用scopeはL2末尾のA/B選択肢をfixture化したものである。A（いずれかのcatalog変更で全pack stale）とB（選択済み依存だけ該当pack stale、推奨）を比較し、Aは不要な広域再評価を発生させ、Bは明示されたdependency/applicabilityに沿う。選択結果は本候補の範囲と後続pairへ影響し、candidate text自体は採択を生成しない。
+
+#### 配置根拠と隣接候補の分離（未採択revision 005）
+
+- **配置境界の正常例**：crosswalk 43行とrouting `PRC-HIL-NFR-34-001`がNFR-34全体をOS配置候補としていること、decision 57 row 85が固定した条件付き採択004（B配置、候補生成・shadow評価のみ）を別々に提示する。005は004の配置に沿うINTELLIGENCE内candidate/shadow表現として評価する。row 85から005の採択を推定せず、実行時stale guard・dispatchがこのfixtureの判定対象またはINTELLIGENCEの責務になったとも扱わない。実行時の責務は既存OS契約に残る。
+- **独立境界例**：provider/model/runtime/versionのTER変更だけがあり、当該packでmodel-catalog sourceが選択されていないfixtureでは、005は選択依存のstaleを主張しない。model資格の再検証proposalは未採択L2/L11-076の範囲である。逆に、選択済みmodel-catalogのrevision/digestだけが変わった場合、005はcandidate facetをstaleとしてsource ownerへ戻すが、qualification結果を作らず、076の採択・再検証完了を推定しない。
