@@ -6,15 +6,15 @@
   "candidate_identity": "HARNESS-L2-080",
   "candidate_revision": "MPR-RC-HARNESS-L2-080-001",
   "candidate_section_digests": {
-    "l2": "sha256:4864f5ece64be5d7516eeeaf41e50bc0ba465b1d24dd565ecff874de881a739e",
-    "l11": "sha256:ecb56690d7485721dbb2209d55b2b65345542360faf712233117afcb9faafe74"
+    "l2": "sha256:47131f0e84bc830ff9751df8736518630a4987968b6b98c7ef0dbe7f000441ab",
+    "l11": "sha256:256db11da475ab02db9fbac867509ef03b3418da6ca579e91048d48e189d32e4"
   },
   "candidate_digest_rule": "From exact ### HARNESS-L2-080 / ### HARNESS-L11-080 heading through next same-level ### heading; trim trailing blank lines; UTF-8 with one LF.",
   "current_file_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_file_sha256": "sha256:4fef51fa73c3eb9e9c1da89ee90173028ed704a83717cd49a437f9bca51d1a2e",
+    "l2_file_sha256": "sha256:f10372de4ee35a9bcbb554a17780bc4bda92abf3148ae9416d2b1ef107a53d2d",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_file_sha256": "sha256:9313151b38de5dd8317e6dda2ae3d9d45b9a5e9cafa0ae6d46cfd48127bf967a"
+    "l11_file_sha256": "sha256:3b60046a238734de34b411e10db3074d4e26827a1bcd8d5230a259a0bd38c308"
   },
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-nfr10-agent-adapter-source-lines-2026-10-02.jsonl",
@@ -162,24 +162,39 @@
   "condition_mapping": [
     {
       "source_condition": "agent adapter can be regenerated from remaining HARNESS registry after adapter deletion",
-      "l2_location": "HARNESS-L2-080 regeneration semantics",
+      "l2_location": "HARNESS-L2-080 regeneration semantics; derived as specific explicit source/configuration/condition under fixed adopted HARNESS-L1-005 → HARNESS-L2-006",
       "l11_location": "HARNESS-L11-080 normal registry-retained/adapter-missing case",
       "status": "candidate requirement and candidate acceptance oracle; not adopted or executed"
     },
     {
       "source_condition": "runtime-specific agent memory/rule silo is not source of truth",
-      "l2_location": "HARNESS-L2-080 canonical authority boundary",
+      "l2_location": "HARNESS-L2-080 canonical authority boundary; interpreted under L1-005 no-implicit-internal-dependency boundary",
       "l11_location": "HARNESS-L11-080 silo-conflict negative",
       "status": "candidate requirement and candidate acceptance oracle; not adopted or executed"
     }
   ],
   "layer_mapping": {
-    "old_l1_source": "HIL-NFR-10 in old L1 requirements",
-    "current_mapping": "Requirement text is compared in current HARNESS L2. Current HARNESS L1 planning file remains draft/draft_candidate and lines 31-39 do not identify a registry-regeneration parent; no parent is inferred.",
+    "old_source_identity": "HIL-NFR-10 is one IR identity atom. L1 line 190 is corroboration only.",
+    "fixed_adopted_parent_l1": {
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_locator": "9/28 PO decision: target L1 revision fixed; explicit candidate set adopted (all 24); target source revision f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "full_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "parent_id": "HARNESS-L1-005",
+      "line_sha256_including_lf": "sha256:3cebaa9a4f570a103b3ac506c1a7fa19ffe654b41f1f12735a4d4e454096a586",
+      "exact_text": "| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |",
+      "mapped_l2_parent": "HARNESS-L2-006",
+      "l1_to_l2_mapping_row_sha256_including_lf": "sha256:9471713776c53507676aecd25fa2a4417bc828e6fddeb2e506bb7739184320a8",
+      "l2_contract_support_row_sha256_including_lf": "sha256:b7cf3f4cce7fc373cb494ac3554f43cc983ba3574f87d62a687a691ebb603ee6",
+      "fixed_current_parent_bytes_equal": true
+    },
+    "semantic_parent_comparison": "HARNESS-L1-005 meaning is an external-use boundary: no implicit dependence on HELIX internal management and explicit version/configuration/conditions. HIL-NFR-10 makes that broader adopted condition concrete for registry-backed agent adapter regeneration and canonicality. This is a child requirement candidate; it does not claim the L1 item literally names agent adapters or assigns a current registry service owner.",
     "current_l1_path": "docs/helix-harness/L1-planning/product-intent.md",
     "current_l1_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "current_l1_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
-    "current_l1_locator": "front matter status/authority_status; lines 31-39 HARNESS-L1-001..009 and planned L2 connections"
+    "current_l1_locator": "HARNESS-L1-005 row; bytes checked against fixed adopted revision. Current front matter metadata is not used to infer the 9/28 target revision adoption or absence of parent."
   },
   "holding": {
     "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
@@ -210,7 +225,7 @@
     {
       "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
       "full_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
-      "locator": "lines 25 and 35: all 24 explicit candidates and each listed disposition are adopted; rows 39,40,52 identify 010,011,023",
+      "locator": "9/28 decision lines 25 and 35 establish adoption policy; lines 25 onward fix the exact L1 target revision SHA; rows 39,40,52 explicitly adopt 010,011,023. The selected parent item is L1-005 in fixed L1 revision f6dad2a33e24f000b87d7f09b8d40288257e74cc.",
       "decision_date": "2026-09-28",
       "fixed_candidate_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "note": "Decision document postdates fixed candidate target; its current tracked bytes are pinned separately. MPR registered_proposal/authority_effect fields are not used to infer adoption."
@@ -240,10 +255,11 @@
     "preserved": "The exact two HIL-NFR-10 conditions: regenerate a deleted adapter from the remaining HARNESS registry; do not make runtime-specific memory/rule silo canonical.",
     "not_transferred": "Registry ownership is not moved to OS; old source does not specify current consumer/service owner, product placement, version target or schema.",
     "po_choice": {
-      "A_recommended": "Keep the source wording and HARNESS registry locus; leave current service owner, scope and version target unspecified until supported. Does not change HARNESS-L1-005, HARNESS-L2-010/011, OS-L2-004/010 or INTELLIGENCE-L2-014.",
-      "B_meaning_change": "Decide whether to move registry ownership to OS as suggested in a historical crosswalk. This changes upstream responsibility and HARNESS/OS L2 boundaries, requiring reconsideration of HARNESS-L2-010/011, OS-L2-004/010 and INTELLIGENCE-L2-014. Not applied.",
+      "A_recommended": "Preserve HIL-NFR-10 wording and derive a narrow agent-adapter condition under the adopted HARNESS-L1-005 → HARNESS-L2-006 external-use boundary; keep concrete current registry service owner, runtime scope and version target unspecified. This does not alter HARNESS-L1-005 or adopted HARNESS-L2-006/010/011.",
+      "B_meaning_change": "Decide whether to move registry ownership to OS as suggested in a historical crosswalk. That goes beyond the adopted L1-005 external-use boundary and changes HARNESS/OS responsibility; reconsider HARNESS-L1-005, HARNESS-L2-006/010/011, OS-L2-004/010 and INTELLIGENCE-L2-014. Not applied.",
       "drafting_gate": "Neither choice is a gate to faithful candidate drafting; no adoption, successor, implementation, execution permission or runtime owner is generated."
-    }
+    },
+    "parent_status": "The exact L1 target revision is fixed by 9/28 decision; current draft front matter does not negate that target. Candidate 080 remains unadopted."
   },
   "MPR_prefix_invariant": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
@@ -255,5 +271,20 @@
   },
   "latest_main_merge_head": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
   "source_collection_scope": "Exactly one selected atom is the HIL-NFR-10 IR statement. The direct L1 row 190 corroborates wording but is not a second atom. HR-FR-HIL-08, HAC-HIL-08a/b/c, HAT-HIL-08 and L5 are context only.",
-  "current_l1_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42"
+  "current_l1_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
+  "current_upstream_mapping": {
+    "adopted_parent": "HARNESS-L1-005 at the fixed 9/28 decision target revision",
+    "supporting_current_l2": "HARNESS-L2-006 / HARNESS-L1-005 mapping; no existing requirement explicitly states the HIL-NFR-10 adapter-specific condition, so this is a requirement candidate elaborating the adopted parent meaning.",
+    "no_parent_absence_inference": "Do not infer no parent from exact phrase absence in current draft metadata."
+  },
+  "fixed_adopted_parent_comparison": {
+    "fixed_l1_005_line_sha256_including_lf": "sha256:3cebaa9a4f570a103b3ac506c1a7fa19ffe654b41f1f12735a4d4e454096a586",
+    "current_l1_005_line_sha256_including_lf": "sha256:3cebaa9a4f570a103b3ac506c1a7fa19ffe654b41f1f12735a4d4e454096a586",
+    "fixed_equals_current": true,
+    "fixed_l1_to_l2_006_mapping_row_sha256_including_lf": "sha256:9471713776c53507676aecd25fa2a4417bc828e6fddeb2e506bb7739184320a8",
+    "current_l1_to_l2_006_mapping_row_sha256_including_lf": "sha256:9471713776c53507676aecd25fa2a4417bc828e6fddeb2e506bb7739184320a8",
+    "fixed_l2_006_contract_row_sha256_including_lf": "sha256:b7cf3f4cce7fc373cb494ac3554f43cc983ba3574f87d62a687a691ebb603ee6",
+    "current_l2_006_contract_row_sha256_including_lf": "sha256:b7cf3f4cce7fc373cb494ac3554f43cc983ba3574f87d62a687a691ebb603ee6",
+    "fixed_equals_current_l2_mapping_and_contract": true
+  }
 }
