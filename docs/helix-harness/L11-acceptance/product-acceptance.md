@@ -1154,3 +1154,21 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **依存欄別の独立負例**：他入力を正常に保ち、execution closureへ入る各dependency rowについてidentity、owner、contract revision、range、compatibility evidence、class、applicabilityを一欄ずつmissing/wrong/stale/unknownにする。各caseで影響するconditionをunknown／未完にし、別rowまたは別classの成功で補わない。選択source Aの欠落・不一致から未選択source Bへfallbackするcaseも不合格とする。reference-only rowのowner/version/compatibility metadataだけを欠いたcaseでは、他の必須条件が揃えばexecution closureは維持する。
 - **010/011 compatibilityの独立負例**：正常例と同じpack/call tuple、scope、source、owner、revision、range、class、applicabilityを保ち、HARNESS-L2-010 selected pack contractとのfield別compatibility proofだけをfalseにしたfixtureではexecution closureを保留する。別fixtureではpack proofをcompatibleに保ち、HARNESS-L2-011 selected call contractとのfield別compatibility proofだけをfalseにし、同じく保留する。片側falseだけで個別に失敗し、他方のcompatible証拠は補完しない。
 - **同一入力再現と限界**：同一scope/source/operation/revision/fixture値から、六条件それぞれの判定と依存closure理由を再照合できることを求める。このoracle案は静的受入条件であり、実装の存在、test実行、設計承認、source disposition、formal successor、全条件の現行被覆を主張しない。
+
+### HARNESS-L2-085 重複contract/exampleのcontext cost・drift risk finding候補
+
+**対応要求・authority**：未採択のHARNESS-L2-085候補。旧HIL-NFR-33 whole IR identity一件をsourceとし、旧L1 line 213はcorroboration、HR-FR-HIL-20/HAC-HIL-20a/b/c/HAT-HIL-20はconsumer/oracle contextとして区別する。source holdingは生存し、formal successorは未確定。以下は静的な受入oracle候補であり、旧HATを実行しない。固定比較元はPO判断対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の採択HARNESS-L2-010/011 pairである。010 pack tupleはowner `fixture:mock-pack-owner`、exact selected section revision/rangeのみ、class `always_required`、applicability `pack selected in portfolio`、L2 section SHA-256 `9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4`、L11 row 205を固定L11 file SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`で照合する。011 call tupleはowner `fixture:mock-call-owner`、同固定revision/rangeのみ、class `operation_specific`、applicability `selected operation calls that pack`、L2 section SHA-256 `30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952`、同じL11 fixed file row 206で照合する。owner/rangeはmock fixtureで実製品を指定しない。
+
+**正常例 — portfolio全体の重複finding**：一つのtarget portfolio revisionと選択scopeを固定する。041-003の対象revision付きatom/gap、043-002の全applicable rule/branch分母・positive/boundary-negative・該当risk/oracle、044-002の全applicable obligation-class割当と意味重複根拠を提示する。二つ以上のcontract/exampleが別の変更面に同じ意味classを反復する根拠を示し、085はidentity/revision、意味対応、source/oracle、scope、変更面を結んだcontext cost/drift risk findingを返す。例ではpackを選択せず、その呼出しoperationも適用外と明示する。この非適用は選択portfolio内の重複findingを止めない。数値推定、閾値判定、削除・統合命令を出さず、既存coverageの成立にも読み替えない。
+
+**正常例 — 選択pack/call operation**：別のfixtureで010 pack tupleと011 call tupleを上記のexact revision、owner、range、class、applicabilityに一致させ、各固定sectionとのfield別compatibility evidenceを与える。選択portfolio内で過剰な意味重複が確認された場合は、そのfindingへ関係するpack/call evidenceを結び付ける。両tupleを個別に適合させ、他方から適合を推定しない。
+
+**独立負例 — 010 pack側のみ不適合**：正常な選択operation fixtureの他の全入力を保持し、010側だけを別revisionへ差し替えるか、010 exact section照合結果を除く。011 call tupleは正確で適合したままにする。pack適合は成立せず、そのpackを前提とするoperation適用判定はunknown／未評価に保つ。010の誤りを011で補わない。
+
+**独立負例 — 011 call側のみ不適合**：別fixtureでは010 pack tupleを正確で適合したまま保持し、011側だけを別revisionへ差し替えるか、011 exact section照合結果を除く。call適合は成立せず、そのcall operationの判定はunknown／未評価に保つ。011の誤りを010で補わない。この二つの負例は同時に両側を壊す例へまとめない。
+
+**負例 — 数量・名前だけの類似**：010/011適合と同じ件数は保つが、二つのcontract/exampleが異なる義務class、適用branch、risk、oracleを持ち、同一意味である証拠はない入力を与える。名前や件数だけでcontext cost/drift riskの重複findingを生成しない。意味関係またはscopeが不明ならunknownに残す。
+
+**未見例**：作成側に伏せたactive template revisionまたはapplicability branchに、既存義務と同じ意味を持つ別contract/exampleをportfolio内の別変更面へ追加する。pack/call operationは選択しない。この場合も変更後scope/revisionに対応する041/043/044 evidenceと023分類を更新すれば、新しい重複findingの対象として検出する。操作の選択時のみ010/011の個別適合を追加照合する。source、coverage、oracleのいずれかが欠ける場合は未評価にし、既存receiptを流用して重複なしとしない。
+
+**受入限界**：このcandidateは既採択041/043/044のcoverage条件を再判定・縮小せず、portfolio全体で重複を評価する。選択operationのpack/call compatibilityは関係する場合だけ適用する。数値context budgetやdrift probability、固定threshold、物理schema、例数制限、削除・統合の義務を追加しない。pack/call適合、要求採否、formal successor、L3承認、実装・実行、利用者受入は別のauthority/契約に従う。
