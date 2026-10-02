@@ -161,7 +161,7 @@
     "parent_revision_basis": "004採択対象は2026-09-29 PO decision row 85が固定する。005はその採択範囲外の候補である。"
   },
   "candidate_current_pin": {
-    "comparison_base": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "comparison_base": "2ca47bc4dafd9b7f4049e0f0c66976160cdbd1d7",
     "l2": {
       "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
       "full_file_sha256": "sha256:483637a5482dd43f5b7c94cb87fd7566de97288854ea5c289544a4fd070a105c",
@@ -378,13 +378,13 @@
   },
   "mpr_register_append": {
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
-    "prefix_line_count": 696,
-    "prefix_sha256": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
+    "base_commit": "2ca47bc4dafd9b7f4049e0f0c66976160cdbd1d7",
+    "prefix_line_count": 698,
+    "prefix_sha256": "sha256:743aec87963567d52ae86d66d47a5a20f1233029475f6252d922f99d11a74eb7",
     "appended_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
-    "appended_row_line": 697,
+    "appended_row_line": 699,
     "append_only_prefix_verified": true,
-    "meaning": "既存696行のbyte prefixを保持し、未公開・未採択の末尾005候補行だけをin-place訂正。既採択004と過去receipt/採択行は不変。"
+    "meaning": "既存mainの698行byte prefixを保持し、未公開・未採択の末尾005候補行だけを同期。既採択004と過去receipt・採択行は不変。"
   },
   "acceptance_fixture_basis": "一つの正常candidate/shadow callを四つの023 dependency classにわたって固定する合成fixture。分類語彙はPO判断により採択されたHARNESS-L2-023 MPR-RC-HARNESS-L2-023-002のexact revisionから参照する。各classでidentity、owner参照、exact contract/source revisionとdigest、declared contract version range、compatibility evidence、applicabilityを別欄に記録する。適用条件はversion rangeではない。六source tupleはこのcallで選択された場合の具体例であり、実owner、source registry、schema、runtime gate、dispatch authorityを作らない。023の採択を005へ継承しない。",
   "acceptance_fixture_classes": [
