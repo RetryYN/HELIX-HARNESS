@@ -1308,3 +1308,31 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 - **B — 案件ごとのselected-source能力として扱う（推奨候補）**：一般の比較能力は案件ごとに選んだsource scopeを扱う候補とし、このFR16 fixtureでは旧原文どおりcurrent HELIX、ZIP、exact predecessor A/Bを固定する。exact 2件を他案件の一律必須条件にしない。再利用scopeを明らかにするが、一般化はFR16単独から確定しない。
 
 どちらの選択肢もfixtureのexact 2 tuple、A/B二重観測、全ref・ZIP範囲、機能disposition、未判断0の既存oracleを削除・弱化・採択しない。この追補はPO選択肢と影響を示す判断材料であり、fixture結果からA/B、候補採択、一般source authority、外部取得または実行を生成しない。
+
+
+### HARNESS-L2-087 ZIP docgen metadata変換の受入候補（未実行）
+
+このL11 partは未採択のHARNESS-L2-087候補に対応する。以下は静的fixture設計であり、ZIP取込、旧runtime実行、要求採択またはsource closureではない。
+
+- **常時必須**：選択target identity/revision、scope、選択ZIP source identity/revision/digest、変換contract/extractor identity・revision、対になるL2/L11 identityを固定する。field source locatorとmapping resultを同一scopeに結ぶ。旧IRはnormative source、旧L1 line 105は同文corroborationであり、いずれも実行dependencyの`reference_only`へ降格しない。
+- **特定操作時のみ**：docgen metadataをHELIX contract候補へ変換する操作を選んだときに限り、入力fieldごとのmapping/evidenceと未分類・conflict・staleを確認する。OSでadoption/authority relationを記録する操作は対のOS-130 L11で別に確認する。
+- **選択した入力元に応じて必須**：選択ZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果それぞれの存在・field locator・値またはunknownを示す。未選択entry/sourceは未観測として扱う。source ownerや互換範囲の値をfixtureのために実在値と偽装しない。
+- **参照資料のみ**：旧CLI、旧schema、旧Python/DB実装、旧test/runtime/CIは履歴資料に限り、現行実行dependencyやpass根拠にしない。HR-FR-HIL-09/HAC/HATはconsumer/oracle contextであり、HR09のGit全ref/2 repository条件をこのfixtureへ持ち込まない。
+
+| fixture | 六欄のsource/contract tuple（すべてsynthetic） | 条件と期待結果 |
+|---|---|---|
+| 正常 | `source_identity=fixture:docgen-zip-A@r1`; `owner_or_authority=fixture:source-owner-A`; `contract_revision=fixture:docgen-contract@r1`; `declared_compatibility_range=fixture:docgen-contract [r1,r1]`; `compatibility_evidence=fixture:compat-proof-A`; `applicability=selected ZIP entry set for target fixture:project-A@r4` | 八つのFR15 fieldすべてにsource locatorと変換結果があり、source digest/contract revisionに束縛された候補とfield mapping evidenceを返す。adoption/approvalは生成しない。 |
+| 独立欠落負例 | 正常tupleを固定し、`detector結果`だけをZIP entry/locatorから除く。他の七fieldとscopeは同一 | detector fieldの欠落をunknown/unmappedとして明示し、全field変換成功やcontract completeにしない。default値、source不在の推測、他fieldからの推定をしない。 |
+| 未見・互換unknown | `source_identity=fixture:docgen-zip-U@r9`; `owner_or_authority=unknown`; `contract_revision=fixture:unrecognized-docgen-contract@r9`; `declared_compatibility_range=unknown`; `compatibility_evidence=missing`; `applicability=scope declared, mapping applicability unknown` | 互換性、適用性、変換成功を推定しない。unknownと未完義務を保持し、確認先を返す。 |
+
+**023依存区分・適用例**：上表のsource identity、scope、対象revisionおよび本候補pairは常時必須。docgen変換operationを選択した場合だけ八fieldの変換確認が必須。019 Full Reverseからこのsource typeを選択して087を呼ぶ場合は、019の既存input/result/unknown境界も適用するが、019完了は087の単独変換依存にしない。010/011のpack/call契約は087をpackとして選んだ操作だけに適用する。fieldごとのentry/locator/evidenceは選択ZIP inputに応じて必須。旧schema、runtime、testとconsumer contextは参照資料のみであり、規範sourceの代替ではない。HARNESS-L2-023の4区分はdependency分類であり、未選択sourceの非存在から成功/非該当を導かない。
+
+**戻し先**：source・scope・契約revision・field mappingが欠ける場合は変換候補をunknown/未完で返し、選択sourceまたはHARNESS contract ownerへ戻す。adoption decisionとcanonical relationはOS-130候補の適用範囲で別に扱う。候補・fixtureからsource変更、apply、adoption、下流完了を生成しない。
+
+### HARNESS-L2-087 revision 002 acceptance supplement — ZIP applicability
+
+このsupplementは既存HARNESS-L2-087 L2/L11 section bytesを保持したうえで、同候補revision 002の差分を受け入れる静的oracleである。12個の旧HIL-FR-15条件はHARNESS-087／OS-130 pair unionで追跡し、この候補revisionがsource holdingを閉じたり採択を生んだりしない。
+
+- **正常例**：宣言されたZIP snapshotを一つ選び、八つのmetadata fieldをそれぞれlocator・source digest・mapping contract revision・結果またはunknownに束縛する。source digest、既存adoption decision reference、typed DB relationの管理projectionはOS-130側へ分ける。fixtureはlegacy ZIPのsource identityを再現せずsynthetic tupleを使い、変換完了と採択を区別する。
+- **scope選択材料（未決）**：A) 今回特定されたlegacy ZIP引継ぎ資産に限る。B) 案件ごとに明示選択されたZIPを扱う再利用可能unitとし、legacy ZIPは忠実なexampleとして保持する（推奨候補）。両案ともZIP format、12条件、field-level unknown/conflictを保持する。Bは適用する資産・案件の範囲を広げ、選択scope・oracle・下流relationへの影響がある。選択対象revisionで意味が決まるまで、正常fixtureはBの採用証拠にせず、未見scopeを勝手に含めない。ZIP以外の形式は範囲外。
+- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。
