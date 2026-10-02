@@ -21,27 +21,27 @@
   "active_mpr_registration_id": "MPR-RC-HELIXOS-L2-120-001",
   "candidate_pair_pins": {
     "l2": {
-      "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba",
+      "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
       "heading": "HELIXOS-L2-120",
-      "line_start": 1482,
-      "line_end": 1492,
+      "line_start": 1497,
+      "line_end": 1507,
       "section_sha256": "sha256:eac3dd9d72146cf48af9b8e8371f5b8df0ddb1e792fe74c75b8c98db55646f64",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     },
     "l11": {
-      "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60",
+      "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
       "heading": "HELIXOS-L11-120",
-      "line_start": 1067,
-      "line_end": 1078,
+      "line_start": 1079,
+      "line_end": 1090,
       "section_sha256": "sha256:545a2ce58b05228213c95524a2dc4fc5f24fda4ffaec6bc5b097fd455aa72348",
       "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator"
     }
   },
   "parent_concept_pin": {
     "path": "docs/concept/helix-concept.md",
-    "read_after_commit": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
+    "read_after_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
     "full_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "meaning_boundary": "HELIX-OS is a mechanism; only HARNESS and Web have product attribute. This candidate does not add product scope or runtime behavior."
   },
@@ -67,9 +67,9 @@
     "status": "The decision adopted exact fixed L2/L11 bytes at f6; for rows 018/019/020/023 the current sections remain byte-identical to that fixed revision. This does not adopt candidate 120."
   },
   "current_adopted_pair_comparison": {
-    "base_commit": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
-    "current_l2_full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba",
-    "current_l11_full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60",
+    "base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "current_l2_full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
+    "current_l11_full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
     "pairs": [
       {
         "identity": "HELIXOS-L2-018",
@@ -81,7 +81,7 @@
           "line_end": 681,
           "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -90,7 +90,7 @@
           "line_end": 351,
           "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         },
         "fixed_f6_section_sha256": {
           "l2": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
@@ -108,7 +108,7 @@
           "line_end": 691,
           "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -117,7 +117,7 @@
           "line_end": 358,
           "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         },
         "fixed_f6_section_sha256": {
           "l2": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
@@ -135,7 +135,7 @@
           "line_end": 701,
           "section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -144,7 +144,7 @@
           "line_end": 365,
           "section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         },
         "fixed_f6_section_sha256": {
           "l2": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
@@ -162,7 +162,7 @@
           "line_end": 731,
           "section_sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -171,7 +171,7 @@
           "line_end": 386,
           "section_sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         },
         "fixed_f6_section_sha256": {
           "l2": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
@@ -189,7 +189,7 @@
           "line_end": 1454,
           "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -198,7 +198,7 @@
           "line_end": 1042,
           "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         }
       },
       {
@@ -211,7 +211,7 @@
           "line_end": 1467,
           "section_sha256": "sha256:4e3fbf98a8c81e30d9029833fae8e7030952da5d52a266f675193b328f7a78d3",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba"
+          "full_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a"
         },
         "l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -220,12 +220,12 @@
           "line_end": 1054,
           "section_sha256": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d",
           "hash_method": "UTF-8 bytes from heading through before next same-or-higher Markdown heading; trailing blank lines removed; one LF terminator",
-          "full_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60"
+          "full_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76"
         }
       }
     ],
     "residual": "018 provides assignment/attempt, allowed progress/stop/results and handoff, but does not state the whole instance-stage/result/verification/release sequence or quarantine/retirement terminal branch; 019 provides event provenance/checkpoint/continuity but not those lifecycle transition preconditions; 020 distinguishes CI execution outcomes, not agent instance lifecycle; 023 ensures inter-unit handoff, not intra-instance lifecycle. The residual is semantic transition/terminal coverage, not a missing old enum or runtime.",
-    "worktree_full_file_scope": "These full-file SHA values are for this candidate worktree, including unmerged HELIXOS-L2/L11-120. The adopted section hashes are separately compared with fixed f6 bytes and the exact main b537 snapshot is in latest_main_read_after."
+    "worktree_full_file_scope": "These full-file SHA values are for this candidate worktree, including HELIXOS-L2/L11-121 from main and the unmerged HELIXOS-L2/L11-120 candidate at the file tail. Adopted section hashes are compared with fixed f6 bytes; exact main 26ce bytes are separately recorded in latest_main_read_after."
   },
   "adjacent_candidate_boundary": [
     {
@@ -314,7 +314,7 @@
     "static_pin_validation_pending_after_mpr_append": true
   },
   "current_source_condition_whereabouts": {
-    "read_after_main": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
+    "read_after_main": "26ce66202f7a57230093701fc90abb2f9f1c355f",
     "authority_effect": "none",
     "fr20": {
       "requirement_id": "HIL-FR-20",
@@ -533,7 +533,7 @@
         },
         "os_l2": {
           "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-          "current_file_sha256": "sha256:45a12593a0f435bb2ce793c3970e0ebb40f05887e3ca6a0442f292d404dfdeba",
+          "current_file_sha256": "sha256:c88523466705e2d60a296fdfc53714a5d92201d63c78add72460ff169032d59a",
           "fixed_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
           "adopted_fixed_sections": [
             {
@@ -566,11 +566,11 @@
           ],
           "condition": "018 assignment/attempt, lease, stop and handoff; 019 event provenance/evidence/continuity; 020 workflow acceptance/CI state boundaries. These hold nearby operation/evidence semantics, not full Bun active-surface inventory or runtime cutover.",
           "current_bytes_match_fixed_source_revision": true,
-          "main_file_sha256_at_read_after": "sha256:b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3"
+          "main_file_sha256_at_read_after": "sha256:e1555b59985fd98e38a7cc732a432f4a95650751e904c2a43f25bd0217b9f95c"
         },
         "os_l11": {
           "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-          "current_file_sha256": "sha256:739c1f95b45c9f79aa66f38446bff7e6c399955ba47dcc59d9ca5bf238d77b60",
+          "current_file_sha256": "sha256:b656074acb8998b9f80e4755043cdefc7020a3b09af5abd0897aec66f74b6f76",
           "fixed_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "adopted_fixed_sections": [
             {
@@ -603,14 +603,14 @@
           ],
           "condition": "Receipt and evidence/continuity acceptance boundaries only; no Bun migration or runtime selection.",
           "current_bytes_match_fixed_source_revision": true,
-          "main_file_sha256_at_read_after": "sha256:4f72ecd7c86e7e41f99ff2361e717c7d4556cc642bccde799b412b8de73a7033"
+          "main_file_sha256_at_read_after": "sha256:aba09bcbe051d7d6ddf45ee09c076e381bbd4a025f98fafb6639217cea46c2b7"
         }
       },
       "finding": "The selected-scope active/historical classification and visible unanalysed count remain a requirement to preserve after target selection. Current fixed L2/L11 references do not establish whole FR33 closure, Bun as current runtime, Bun as archive-only, a cutover target, or a formal successor. This unresolved scope/target is recorded rather than converted into a new candidate or a claim that source conditions are absent."
     }
   },
   "harness_023_dependency_authority": {
-    "current_read_after_main": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
+    "current_read_after_main": "26ce66202f7a57230093701fc90abb2f9f1c355f",
     "fixed_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "po_decision": {
       "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
@@ -667,16 +667,16 @@
     "result": "The PO57 record fixes an explicit 57-identity matrix; HARNESS-L2-064 and HARNESS-L2-065 are not identities in that matrix. The later 064 proposal receipt identifies four selected source slices (TR-04, FR-34 common fixture relation, NFR-09, NFR-19). Neither the later candidate preamble nor MPR registered_proposal metadata is an adoption decision; current adoption of this later revision is not claimed here."
   },
   "latest_main_read_after": {
-    "commit": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
-    "meaning": "The main snapshot is distinct from this unmerged candidate worktree. Candidate pins below/current pair full-file pins describe worktree bytes; these entries pin exact main bytes. Historical fixed source revisions and the original receipt base remain unchanged.",
+    "commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "meaning": "The main snapshot is distinct from this unmerged candidate worktree. Candidate pins/current pair full-file pins describe local bytes; these entries pin exact main bytes. Historical fixed source revisions and original receipt base remain unchanged.",
     "main_files": {
       "os_l2": {
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "full_file_sha256": "sha256:b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3"
+        "full_file_sha256": "sha256:e1555b59985fd98e38a7cc732a432f4a95650751e904c2a43f25bd0217b9f95c"
       },
       "os_l11": {
         "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-        "full_file_sha256": "sha256:4f72ecd7c86e7e41f99ff2361e717c7d4556cc642bccde799b412b8de73a7033"
+        "full_file_sha256": "sha256:aba09bcbe051d7d6ddf45ee09c076e381bbd4a025f98fafb6639217cea46c2b7"
       },
       "h_l2": {
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
