@@ -10216,5 +10216,15 @@
         "line_sha256": "e9b7ee0584057eb324c86202a4f7e5049f3a02d82c2bf1dfdabe46bc1b0a739d"
       }
     ]
+  },
+  "line_evidence_extraction_rule": {
+    "line_numbering": "1-based physical line number in the pinned source file",
+    "line_sha256": "SHA-256 over the exact raw line bytes, including the line terminator (LF; include CRLF as present in the source).",
+    "stored_text": "line_text/source_line is the UTF-8 decoded raw line with only its terminal line ending removed; do not trim other whitespace, normalize text, parse/reserialize, or rewrite the source bytes.",
+    "file_sha256": "SHA-256 over the exact complete source file bytes.",
+    "applies_to": [
+      "related_existing_source_audits.*.line_evidence",
+      "legacy_assertion_case_source.cases"
+    ]
   }
 }
