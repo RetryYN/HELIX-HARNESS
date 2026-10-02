@@ -1,0 +1,755 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-001-2026-10-03-R3",
+  "authority_effect": "none",
+  "status": "candidate correction only; no new L2 guard; L11 supplement unadopted; source closure not claimed",
+  "requirement_identity": "HELIXOS-L2-001",
+  "candidate_revision": "MPR-RC-HELIXOS-L2-001-001",
+  "supersedes_registration_id": null,
+  "correction_scope": "Whole IR HIL-NFR-32 remains one normative source atom. The candidate is reattributed from the incorrect OS-L2-019 Evidence/continuity destination to existing OS-L2-001 requirement-source/revision management. L2 selected parts are the existing HELIXOS-L2-001 table row and the shared requirement-update management section. L11 selected parts are the existing HELIXOS-L2-001 table row, the existing requirement-update acceptance section, and one appended EOF fixture supplement. No adopted requirement bytes are changed and no new guard or source closure is claimed.",
+  "candidate_digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through EOF. Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
+  "fixed_adopted_revision": {
+    "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "meaning": "The selected OS-L2-001 matrix rows and shared requirement-update L2/L11 sections are byte-identical at the fixed comparison revision and in the latest main base. The existing OS-L2-019 adoption and registration MPR-RC-HELIXOS-L2-019-001 are unrelated and unchanged; this candidate does not supersede or revoke them.",
+    "selected_existing_pair_parts": {
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "parts": [
+          {
+            "selector": "table row HELIXOS-L2-001",
+            "line": 54,
+            "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78"
+          },
+          {
+            "selector": "## 要求正本を更新する管理条件 through next equal-or-higher heading",
+            "lines": [
+              515,
+              532
+            ],
+            "sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5"
+          }
+        ]
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "parts": [
+          {
+            "selector": "table row HELIXOS-L2-001",
+            "line": 21,
+            "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364"
+          },
+          {
+            "selector": "## 要求正本更新の受入 through next equal-or-higher heading",
+            "lines": [
+              241,
+              252
+            ],
+            "sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1"
+          }
+        ]
+      }
+    }
+  },
+  "candidate_current_pin": {
+    "comparison_base": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_file_sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
+      "parts": [
+        {
+          "order": 1,
+          "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001",
+          "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78"
+        },
+        {
+          "order": 2,
+          "selector": "docs/helix-os/L2-requirements/governance-requirements.md#L2:515-532",
+          "lines": [
+            515,
+            532
+          ],
+          "sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5"
+        }
+      ],
+      "composite_digest": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_file_sha256": "sha256:52f9245a27123f63edce6d71c09c4e5753a4c8888ad5ff9a152e02eff5de3992",
+      "parts": [
+        {
+          "order": 1,
+          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001",
+          "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364"
+        },
+        {
+          "order": 2,
+          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#L11:241-252",
+          "lines": [
+            241,
+            252
+          ],
+          "sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1"
+        },
+        {
+          "order": 3,
+          "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#EOF:要求正本更新の受入：HIL-NFR-32の六条件候補",
+          "lines": [
+            1250,
+            1276
+          ],
+          "boundary": "through EOF; normalized after trimming trailing blank lines; no EOF-wide fixed-source claim",
+          "sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6"
+        }
+      ],
+      "composite_digest": "sha256:9e60291b227320cee9647f5c22c0ee8dec0d728aba1dca63decd3c18864f7aaf",
+      "relation": "Existing adopted row/section parts remain unchanged. The EOF supplement is a separate unadopted candidate part."
+    }
+  },
+  "source_atom_set": {
+    "source_holding": "MPR-SH-IR-003#HIL-NFR-32",
+    "ref": "docs/governance/audits/requirement-registration/helixos-l2-001-hil-nfr32-source-atoms-2026-10-03-r3.jsonl",
+    "file_sha256": "sha256:85a8a512f08152dc9db04d91b645adc3827760de79bfdd9af16d1f1d67026b51",
+    "atom_count": 1,
+    "atom_ids": [
+      "IR153-HIL-NFR-32-WHOLE-IDENTITY"
+    ],
+    "digest_rule": "Sort atom_id; concatenate UTF-8 atom_id + one ASCII space + identity_statement_semantic_digest without sha256: prefix + LF; SHA-256.",
+    "digest": "sha256:8ed6d9593624c7a291efc8921db1d65fb6f1e28052a0dfc165862c9a9468e4e0",
+    "source_scope": "One whole IR HIL-NFR-32 revision 1 normative identity atom. L1 line 212 is same-statement corroboration, not another atom. HR-FR-HIL-19/HAC-HIL-19a..c/HAT-HIL-19 remain consumer contract/oracle context, not additional source atoms. The candidate does not close the whole source holding.",
+    "formal_successor_ids": [],
+    "source_closure": "not claimed"
+  },
+  "condition_mapping": [
+    {
+      "source_condition": "authority",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009"
+      ],
+      "HARNESS_owner": "HARNESS owns the requirement meaning and applicable authority/verification obligations; OS-001 manages target/source/revision and does not infer authority from registration.",
+      "source_locator": "governance-requirements.md:515-532; governance-acceptance.md:241-252",
+      "interpretation": "For the selected operation, applicable authority and its identity/revision/scope are required; the cited shared update management path is the destination for recording and checking them."
+    },
+    {
+      "source_condition": "impact",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "HARNESS_owner": "HARNESS owns impact scope, impacted design/pair, required revalidation and oracle; OS does not take over those obligations.",
+      "source_locator": "product-requirements.md:55-56; product-acceptance.md:44-52; governance-requirements.md:515-532; governance-acceptance.md:241-252",
+      "interpretation": "Impact relations and applicable scope remain explicit; unknown impact stays unknown. Unrelated requirements are not pulled into reapproval."
+    },
+    {
+      "source_condition": "pair",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007"
+      ],
+      "HARNESS_owner": "HARNESS owns the V-pair/relation and compatible revision obligations.",
+      "source_locator": "product-requirements.md:52-56; product-acceptance.md:44-52; governance-requirements.md:515-532",
+      "interpretation": "The applicable existing pair and compatible revision remain linked to the same changed meaning and operation; this candidate does not redefine pair semantics."
+    },
+    {
+      "source_condition": "oracle",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-007"
+      ],
+      "HARNESS_owner": "HARNESS owns required verification, expected failure, evidence and return conditions; OS records/checks the same-scope input evidence without taking over verification.",
+      "source_locator": "product-requirements.md:56; product-acceptance.md:46-52; governance-requirements.md:515-532; governance-acceptance.md:241-252",
+      "interpretation": "Use only oracle/expected-failure evidence applicable to this operation. A document or CLI name alone is not execution evidence."
+    },
+    {
+      "source_condition": "rollback",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-009",
+        "HELIXOS-L2-007"
+      ],
+      "HARNESS_owner": "HARNESS owns the rollback and recovery verification oracle; OS records the update and recovery state.",
+      "source_locator": "governance-requirements.md:515-532; governance-acceptance.md:241-252",
+      "interpretation": "The existing management path already includes atomic update, failure/recovery and receipt trace. Initial transaction failure is distinct from downstream stale-state update."
+    },
+    {
+      "source_condition": "downstream stale propagation",
+      "source_atom": "IR153-HIL-NFR-32-WHOLE-IDENTITY",
+      "primary_management_identity": "HELIXOS-L2-001",
+      "connected_management_context": [
+        "HELIXOS-L2-002",
+        "HELIXOS-L2-007",
+        "HELIXOS-L2-009"
+      ],
+      "HARNESS_owner": "HARNESS owns impact and revalidation duties; OS manages the same-operation update trace and affected stale state without making every downstream task completion a prerequisite.",
+      "source_locator": "product-requirements.md:44-52; governance-requirements.md:515-532; governance-acceptance.md:241-252",
+      "interpretation": "Require evidence for the in-scope affected stale-state update. Do not expand this to all consumers or all downstream work."
+    }
+  ],
+  "consumer_context": {
+    "IR": "normative source; whole HIL-NFR-32 identity is retained as one atom",
+    "L1": "same-statement corroboration at line 212, not another atom",
+    "HR-FR-HIL-19": "shared system contract across HIL-BR-26/HIL-FR-51..53/HIL-NFR-30..32; context, not an additional HIL-NFR-32 atom",
+    "HAC-HIL-19a": "designed reversible-change positive case; atomic canonicalization",
+    "HAC-HIL-19b": "designed broad missing authority/impact/transaction rejection; not six independent one-factor negatives",
+    "HAC-HIL-19c": "designed stale/rename/split/merge identity and rollback case",
+    "HAT-HIL-19": "designed_not_implemented; required receipts; not executed",
+    "management_owner_boundary": "HARNESS retains requirement meaning, impact, pair and verification/oracle obligations; OS-L2-001 manages canonical update evidence for the same operation/base/scope."
+  },
+  "fixtures": {
+    "normal": "One meaning-change operation, base revision and scope bind applicable authority, impacted requirement/design and pair with compatible revision, applicable oracle/expected failure, rollback/recovery basis, and in-scope downstream stale-state update. The existing atomic update trace contains the same change/evidence. This is a proposed fixture, not executed.",
+    "independent_negatives": [
+      "Only applicable authority is absent/unauthorized.",
+      "Only impact relation evidence is absent; impact remains unknown.",
+      "Only pair or compatible revision evidence is absent/mismatched.",
+      "Only applicable oracle/expected-failure evidence is absent/mismatched.",
+      "Only rollback/recovery basis is absent.",
+      "Only evidence for the in-scope affected downstream stale-state update is absent; no all-consumer completion condition is added."
+    ],
+    "separate_oracles": [
+      "stale base rejection",
+      "initial update/receipt write fault and partial-current prevention with rollback/recovery",
+      "evidence mixed across revisions"
+    ],
+    "unseen_unknown": "Unselected sources do not become non-applicable or no-impact. If selected input scope or impact relations are unknown, preserve unknown/incomplete; no failure code or schema is invented.",
+    "execution_status": "all cases are draft fixtures only; no tests/runtime/CI executed"
+  },
+  "HARNESS_L2_023_execution_dependency_classes": {
+    "always_required": "Target requirement identity/revision, base revision, operation scope and applicable current L2/L11 contract.",
+    "operation_only": "Run the six-condition comparison only when a meaning-change canonicalization operation is selected.",
+    "selected_input_source": "Only sources applicable to the selected operation are required: authority, impact/pair, oracle, rollback/recovery and affected downstream relation, each bound to identity/revision/scope. The normative IR remains normative; L1 corroborates; HR/HAC/HAT remain consumer context. Do not turn nonselected grounds into a uniform mandatory input.",
+    "reference_only": "Legacy runtime/CLI/schema/enum/class names and implementation details that do not control current meaning or execution dependencies; old source runtime remains unexecuted.",
+    "reference_only_label": "参照資料のみ"
+  },
+  "dependency_and_reuse_boundaries": {
+    "fixed_adopted_pairs": [
+      "HELIXOS-L2-001 (primary requirement-update management)",
+      "HELIXOS-L2-002 (trace context)",
+      "HELIXOS-L2-007 (evidence/provenance context)",
+      "HELIXOS-L2-009 (recovery context)",
+      "HARNESS-L2-004/005 (HARNESS-owned impact and verification duties)"
+    ],
+    "candidate_not_adopted": "HARNESS-L2-068/072/078/083/084 and HELIXOS-L2-053/108-111 are not adopted as NFR-32 closure. Their distinct source scopes are not expanded or duplicated here.",
+    "no_new_guard": "Existing HELIXOS-L2-001 management conditions (L2:515-532; L11:241-252) already define the shared requirement-update management path. The candidate only adds separate static L11 examples for the six source conditions; no L2 condition is added and HARNESS verification ownership is unchanged."
+  },
+  "mpr_history": {
+    "superseded_registration_id": null,
+    "superseded_registration_remains_in_register_history": false,
+    "preserved_existing_registration_id": "MPR-RC-HELIXOS-L2-019-001",
+    "preserved_existing_registration_relation": "Unrelated OS-019 history remains unchanged; this corrected OS-001 candidate does not supersede it.",
+    "register_base_commit": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
+    "register_prefix_line_count": 692,
+    "register_prefix_sha256": "sha256:360e9e01d1bfd7573d1a19ce14707002a4ce4a65471a2e514b809953da14fc46",
+    "registration_id": "MPR-RC-HELIXOS-L2-001-001",
+    "replaced_unmerged_draft": "MPR-RC-HELIXOS-L2-019-002 was the incorrect unmerged destination in the preceding draft and is replaced by this corrected candidate."
+  },
+  "correction_reason": "Review M1 found that the six HIL-NFR-32 conditions were incorrectly attributed to OS-L2-019 Evidence/continuity. The existing OS-L2-001 common requirement-update management path (L2:515-532 and L11:241-252) is the supported destination; OS-002/007/009 remain trace/evidence/recovery context. Replace only the unmerged wrong-destination draft registration, retain the main 692-row prefix and existing OS-019-001 history, and append a separate L11 fixture part. No adopted bytes, L2 guard, source meaning, or HARNESS verification ownership change.",
+  "parent_revision_pins": {
+    "concept": {
+      "revision": "docs/concept/helix-concept.md@125908004787d949a60c5eb373c93819b0a1ceea",
+      "sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "status": "current Concept bytes; no new Concept decision"
+    },
+    "os_l1": {
+      "revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "status": "fixed/adopted OS L1 target; does not separately adopt this L11 correction"
+    }
+  },
+  "adopted_pair_pins": {
+    "HARNESS-L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "fixed_adopted_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "latest_main_baseline_file_sha256": "sha256:e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
+      "selected_line_evidence_fixed_adopted": [
+        {
+          "line": 52,
+          "raw_line_sha256_including_lf": "sha256:07fd53b87cd953069b05dfefd9960146cd03f2745067536cd1be61e15d0ec4bb",
+          "text_without_lf": "| HARNESS-L2-001 | 企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる | v1.3 §2、HBR-P3、2026-09-24 PO判断 | L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる。L2.5の結果を要求の合意と区別する |"
+        },
+        {
+          "line": 53,
+          "raw_line_sha256_including_lf": "sha256:9b14ae90560f6195fba59fdc70c117dc63edde807ccd8e76da3ad3e3ce2678c8",
+          "text_without_lf": "| HARNESS-L2-002 | 対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める | HBR-P0／P1、v1.3 §4、2026-09-24 PO判断、[2026-09-25 PO判断](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md) | 4つの方式を下の定義どおりに区別し、駆動（ticketの種類）と混同しない。どの組み合わせでも、L1–L3と人の要件承認、V字の対、品質条件を落とさない。提供の単位ごとにリリースカンバン上の状態が分かる |"
+        },
+        {
+          "line": 54,
+          "raw_line_sha256_including_lf": "sha256:053434e10c236347f022cf389c5988c88bcc4901d3ee6f000b4d6209ca9c4c5e",
+          "text_without_lf": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |"
+        },
+        {
+          "line": 55,
+          "raw_line_sha256_including_lf": "sha256:a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
+          "text_without_lf": "| HARNESS-L2-004 | 要求から設計・テストへの対応と、変更時の再検証範囲を導出できる | HBR-P3／P9、2026-09-24 PO判断 | 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない |"
+        },
+        {
+          "line": 56,
+          "raw_line_sha256_including_lf": "sha256:6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f",
+          "text_without_lf": "| HARNESS-L2-005 | ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない | HNFR-P3、v1.3 §4、旧GH-FR-025、新世代CI要求候補、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | CIの段数を固定せず、特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる。全件の実行を既定にせず、省いた検査を記録して合流先のticketで回収する |"
+        }
+      ]
+    },
+    "HARNESS-L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "fixed_adopted_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "latest_main_baseline_file_sha256": "sha256:b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba",
+      "selected_line_evidence_fixed_adopted": [
+        {
+          "line": 44,
+          "raw_line_sha256_including_lf": "sha256:2e0abd3b6c54424b69eed9d9e859872682972c73593756d7917bae98b3d6c2b0",
+          "text_without_lf": "- HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。"
+        },
+        {
+          "line": 45,
+          "raw_line_sha256_including_lf": "sha256:ad9965ee2a16e90485b4f639e4bcd6cb86bf7960c86cb19b768fabc87215276e",
+          "text_without_lf": "- HARNESS-L2-004：入力source atom集合の各atomが、当該要求への保持、別の生存中仮登録への保持、対象revision付き人間decisionのいずれか一つへ割り当てられる。未計上、根拠のない重複、digest違い、仮登録先の失効があれば`no_loss`を発行しない。"
+        },
+        {
+          "line": 46,
+          "raw_line_sha256_including_lf": "sha256:28b200564474f426339670e8a129c2c329ee211f13a941606d00909295099aef",
+          "text_without_lf": "- HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。"
+        },
+        {
+          "line": 47,
+          "raw_line_sha256_including_lf": "sha256:08e04baa6dacdfa415bd6f02377ef6d59b521a062414206b026fa2fc132f36af",
+          "text_without_lf": "- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。"
+        },
+        {
+          "line": 48,
+          "raw_line_sha256_including_lf": "sha256:f1a9c885e500c97a8fd2b4932f924488a28c01cce7d6aaf490808a06abe2b08d",
+          "text_without_lf": "- HARNESS-L2-005：変更の内容・layer・pair・変更種別・riskが異なる変更を与え、それぞれに必要な検証だけが導出され、CIがその検証から組み立てられることを確認する。固定の段数をすべて回す構成、導出された検証を省いた構成、導出の根拠を説明できない構成を不成立とする。"
+        },
+        {
+          "line": 49,
+          "raw_line_sha256_including_lf": "sha256:2cad4b462d26dbcc63045927907d17dd5637ee4a7023c960b044e2d80af0daed",
+          "text_without_lf": "- HARNESS-L2-005：Forward 小・中・大のticketを与え、PRの前に回すCIが、原子CI、境界の証明（触ったコネクタの契約を含む）、システムの証明と、ticketとの関係から導かれることを確認する。危険度の高い変更（認証、DBのmigration、security、release）は、小さな変更でも上の証明を早めに求めることを確認する。"
+        },
+        {
+          "line": 50,
+          "raw_line_sha256_including_lf": "sha256:3b75117bfb9237c0668ef2bec928117f64d9abd5ce5e1111c22f65fc80b74368",
+          "text_without_lf": "- HARNESS-L2-005：Forward 小のscopeの中の変更でも、密結合によって別の接続・構成体の振る舞いに影響する変更を与え、影響する接続・構成体の検査がそのPRで広げられ、成立するまで合流が止まり、結合の解消はDesign-refactorとして別に発行されることを確認する。Design-refactorの発行と、省いた検査の後続ticketへの持ち越しだけで合流させる構成を不成立とする。"
+        },
+        {
+          "line": 51,
+          "raw_line_sha256_including_lf": "sha256:dd199acc3856bac8f2d1186e78ccab7726d387af05cd292d4e78043866c887bc",
+          "text_without_lf": "- HARNESS-L2-005：ticketの範囲の外を変更した変更を与え、mainへの合流が止まることを確認する。省いた検査の記録を欠く構成、合流先のticketで回収されない検査を残したままRelease Portを通す構成を不成立とする。"
+        },
+        {
+          "line": 52,
+          "raw_line_sha256_including_lf": "sha256:8a8250430db8b5f5b477019ba47fc8b11cb331a4ba977f4eb6a26e4406113462",
+          "text_without_lf": "- HARNESS-L2-005：検査をすり抜けて合流の後に見つかった失敗を与え、失敗が閉じたticketへ証拠付きのrelationで接続され、元の完了の記録が書き換えられず、HELIX-LABOが原子CIやコネクタの契約が足りているかを評価して返すことを確認する。時間的な近さや同じpathだけで原因のticketを断定する構成を不成立とする（旧HXB-FR-007、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319`）。"
+        },
+        {
+          "line": 62,
+          "raw_line_sha256_including_lf": "sha256:3c0357ae2f9140c37f63ef4a453105b0de1e057bc1be0840c8920b3004392d8f",
+          "text_without_lf": "- HARNESS-L2-004：単体Aを変更し、Aが加わる接続と上の構成体がAffectedと識別されることを確認する。接続や構成体を自動でfailedやpassedにする構成を不成立とする。"
+        },
+        {
+          "line": 63,
+          "raw_line_sha256_including_lf": "sha256:5853e53db61fe996b49cf48f47c4239b6689453ac2d33c9ac883c510c01912be",
+          "text_without_lf": "- HARNESS-L2-004：影響を証明できないrelationを入力し、Unknownが保たれることを確認する。UnknownをUnaffectedや検証不要へ変える構成を不成立とする。"
+        }
+      ]
+    },
+    "OS-L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "fixed_adopted_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "latest_main_baseline_file_sha256": "sha256:027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8",
+      "selected_line_evidence_fixed_adopted": [
+        {
+          "line": 54,
+          "raw_line_sha256_including_lf": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+          "text_without_lf": "| HELIXOS-L2-001 | プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる | HCV4-L2-001／002、HBR-P9 | GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる |"
+        },
+        {
+          "line": 515,
+          "raw_line_sha256_including_lf": "sha256:10caef06cf2d7f75398543039f2f779eb8d2ff7bb65aec5e2e860ef182956655",
+          "text_without_lf": "## 要求正本を更新する管理条件"
+        },
+        {
+          "line": 516,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 517,
+          "raw_line_sha256_including_lf": "sha256:6ea96b5cba04dde6e1bc6f39e4b1f914eeaefcb95ba5dfeff78fd8c4a0ec7be6",
+          "text_without_lf": "HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と"
+        },
+        {
+          "line": 518,
+          "raw_line_sha256_including_lf": "sha256:70a28291f3ef6e1d742f540da107a0f7d2597a8f818540b7fe56c542667c2c13",
+          "text_without_lf": "HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、"
+        },
+        {
+          "line": 519,
+          "raw_line_sha256_including_lf": "sha256:66e2c813ca6fa99a015ae67d791c0bb5ae8d4a8945ad00550d6e8cafb3a022b6",
+          "text_without_lf": "[契約](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。"
+        },
+        {
+          "line": 520,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 521,
+          "raw_line_sha256_including_lf": "sha256:e45f9fa000ea5f60d8a60533161fafe4f6da17c59de7a9b81798c66accdbc3dd",
+          "text_without_lf": "| 条件 | 利用者が確認できるべき結果 |"
+        },
+        {
+          "line": 522,
+          "raw_line_sha256_including_lf": "sha256:ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "text_without_lf": "|---|---|"
+        },
+        {
+          "line": 523,
+          "raw_line_sha256_including_lf": "sha256:87d7d47481a712771eb1f752122d3d810ab01ef2fc9f5f430fb895e572e9a0b4",
+          "text_without_lf": "| 変更案の保持 | 未確定の要求変更も原文・理由・対象・変更前revisionとともに保持し、正本化待ちを理由に消失させない |"
+        },
+        {
+          "line": 524,
+          "raw_line_sha256_including_lf": "sha256:2883b2d0377ad3ff3db70b02a848ab4440cf3f6964452aed9f173fcfc00ed2b0",
+          "text_without_lf": "| 更新範囲の提示 | 変更する要求・契約・受入・検証・下流影響を示し、意味変更と生成projectionの追従を区別する |"
+        },
+        {
+          "line": 525,
+          "raw_line_sha256_including_lf": "sha256:6e770d4ef413edfd20ed65c6f2dddd3716e1ed1dc08d2f59d61ac8f363c7bd96",
+          "text_without_lf": "| 適用判断 | 適用するpolicy・根拠・scopeから自動適用、修復、必要な人間判断、拒否、競合を区別する。既に許可された変更を同じ理由で再質問しない |"
+        },
+        {
+          "line": 526,
+          "raw_line_sha256_including_lf": "sha256:3f993e11151a61003072643c4b2a9180eba3e137cdda47e0b63ae5bfb223749b",
+          "text_without_lf": "| 原子的な確定 | 要求revision・履歴・trace・下流失効・生成view・DB・receiptの整合を確認できる。部分更新を現行正本として公開しない |"
+        },
+        {
+          "line": 527,
+          "raw_line_sha256_including_lf": "sha256:6b01aac519da0c159b1cb233a643b462593cc1652be11503dc9c24f83d88877f",
+          "text_without_lf": "| 競合と再実行 | staleな変更前revisionを拒否し、同じoperationの再試行で二重更新しない。失敗時は元状態または復旧待ちを明示する |"
+        },
+        {
+          "line": 528,
+          "raw_line_sha256_including_lf": "sha256:a3133232c42dc6e0594e41e3da11a159c266931674604fa710e7c84bd12f5d1f",
+          "text_without_lf": "| 旧版からの保護 | 互換Markdown・旧shadow・Issue本文から現行JSONを再生成して最新要求を巻き戻さない |"
+        },
+        {
+          "line": 529,
+          "raw_line_sha256_including_lf": "sha256:192f1882b86ee24ac2f3ad6fd290c0f7e6115ee18944422d95e8e66244a2c772",
+          "text_without_lf": "| 更新経路の実証 | 契約文書やCLI名の存在だけで更新可能と表示せず、正規経路の実行結果・before／after revision・receiptへ辿れる |"
+        },
+        {
+          "line": 530,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 531,
+          "raw_line_sha256_including_lf": "sha256:55c34d5649e6ae1f8688dd598a46adcac03bb9ab343dddfd780bff47eaa293aa",
+          "text_without_lf": "現時点でこの更新経路の実証は未取得。[L2凍結境界の是正調査](../../governance/audits/source-rebaseline/l2-freeze-ir-correction.md)では、"
+        },
+        {
+          "line": 532,
+          "raw_line_sha256_including_lf": "sha256:08d8fa0c49cd27d37b1d6726e5e0ed16efa285687ae763adcc358f3adb41b612",
+          "text_without_lf": "既存PLAN用transaction等を要求shard更新の代用にできないことを確認した。利用者要求の文書化と実装完了を分ける。"
+        }
+      ],
+      "selected_line_evidence_latest_main": [
+        {
+          "line": 54,
+          "raw_line_sha256_including_lf": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+          "text_without_lf": "| HELIXOS-L2-001 | プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる | HCV4-L2-001／002、HBR-P9 | GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる |"
+        },
+        {
+          "line": 515,
+          "raw_line_sha256_including_lf": "sha256:10caef06cf2d7f75398543039f2f779eb8d2ff7bb65aec5e2e860ef182956655",
+          "text_without_lf": "## 要求正本を更新する管理条件"
+        },
+        {
+          "line": 516,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 517,
+          "raw_line_sha256_including_lf": "sha256:6ea96b5cba04dde6e1bc6f39e4b1f914eeaefcb95ba5dfeff78fd8c4a0ec7be6",
+          "text_without_lf": "HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と"
+        },
+        {
+          "line": 518,
+          "raw_line_sha256_including_lf": "sha256:70a28291f3ef6e1d742f540da107a0f7d2597a8f818540b7fe56c542667c2c13",
+          "text_without_lf": "HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、"
+        },
+        {
+          "line": 519,
+          "raw_line_sha256_including_lf": "sha256:66e2c813ca6fa99a015ae67d791c0bb5ae8d4a8945ad00550d6e8cafb3a022b6",
+          "text_without_lf": "[契約](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。"
+        },
+        {
+          "line": 520,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 521,
+          "raw_line_sha256_including_lf": "sha256:e45f9fa000ea5f60d8a60533161fafe4f6da17c59de7a9b81798c66accdbc3dd",
+          "text_without_lf": "| 条件 | 利用者が確認できるべき結果 |"
+        },
+        {
+          "line": 522,
+          "raw_line_sha256_including_lf": "sha256:ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06",
+          "text_without_lf": "|---|---|"
+        },
+        {
+          "line": 523,
+          "raw_line_sha256_including_lf": "sha256:87d7d47481a712771eb1f752122d3d810ab01ef2fc9f5f430fb895e572e9a0b4",
+          "text_without_lf": "| 変更案の保持 | 未確定の要求変更も原文・理由・対象・変更前revisionとともに保持し、正本化待ちを理由に消失させない |"
+        },
+        {
+          "line": 524,
+          "raw_line_sha256_including_lf": "sha256:2883b2d0377ad3ff3db70b02a848ab4440cf3f6964452aed9f173fcfc00ed2b0",
+          "text_without_lf": "| 更新範囲の提示 | 変更する要求・契約・受入・検証・下流影響を示し、意味変更と生成projectionの追従を区別する |"
+        },
+        {
+          "line": 525,
+          "raw_line_sha256_including_lf": "sha256:6e770d4ef413edfd20ed65c6f2dddd3716e1ed1dc08d2f59d61ac8f363c7bd96",
+          "text_without_lf": "| 適用判断 | 適用するpolicy・根拠・scopeから自動適用、修復、必要な人間判断、拒否、競合を区別する。既に許可された変更を同じ理由で再質問しない |"
+        },
+        {
+          "line": 526,
+          "raw_line_sha256_including_lf": "sha256:3f993e11151a61003072643c4b2a9180eba3e137cdda47e0b63ae5bfb223749b",
+          "text_without_lf": "| 原子的な確定 | 要求revision・履歴・trace・下流失効・生成view・DB・receiptの整合を確認できる。部分更新を現行正本として公開しない |"
+        },
+        {
+          "line": 527,
+          "raw_line_sha256_including_lf": "sha256:6b01aac519da0c159b1cb233a643b462593cc1652be11503dc9c24f83d88877f",
+          "text_without_lf": "| 競合と再実行 | staleな変更前revisionを拒否し、同じoperationの再試行で二重更新しない。失敗時は元状態または復旧待ちを明示する |"
+        },
+        {
+          "line": 528,
+          "raw_line_sha256_including_lf": "sha256:a3133232c42dc6e0594e41e3da11a159c266931674604fa710e7c84bd12f5d1f",
+          "text_without_lf": "| 旧版からの保護 | 互換Markdown・旧shadow・Issue本文から現行JSONを再生成して最新要求を巻き戻さない |"
+        },
+        {
+          "line": 529,
+          "raw_line_sha256_including_lf": "sha256:192f1882b86ee24ac2f3ad6fd290c0f7e6115ee18944422d95e8e66244a2c772",
+          "text_without_lf": "| 更新経路の実証 | 契約文書やCLI名の存在だけで更新可能と表示せず、正規経路の実行結果・before／after revision・receiptへ辿れる |"
+        },
+        {
+          "line": 530,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 531,
+          "raw_line_sha256_including_lf": "sha256:55c34d5649e6ae1f8688dd598a46adcac03bb9ab343dddfd780bff47eaa293aa",
+          "text_without_lf": "現時点でこの更新経路の実証は未取得。[L2凍結境界の是正調査](../../governance/audits/source-rebaseline/l2-freeze-ir-correction.md)では、"
+        },
+        {
+          "line": 532,
+          "raw_line_sha256_including_lf": "sha256:08d8fa0c49cd27d37b1d6726e5e0ed16efa285687ae763adcc358f3adb41b612",
+          "text_without_lf": "既存PLAN用transaction等を要求shard更新の代用にできないことを確認した。利用者要求の文書化と実装完了を分ける。"
+        }
+      ],
+      "selected_line_evidence_scope": "HELIXOS-L2-001 table row plus the shared requirement-update section only; the appended candidate is not part of the fixed-adopted evidence."
+    },
+    "OS-L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "fixed_adopted_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "latest_main_baseline_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
+      "selected_line_evidence_fixed_adopted": [
+        {
+          "line": 21,
+          "raw_line_sha256_including_lf": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+          "text_without_lf": "| HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |"
+        },
+        {
+          "line": 241,
+          "raw_line_sha256_including_lf": "sha256:6c7d027a6e347e0ee25cd67666118a047aba17dd6c45b41ee66fe6df45ab539e",
+          "text_without_lf": "## 要求正本更新の受入"
+        },
+        {
+          "line": 242,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 243,
+          "raw_line_sha256_including_lf": "sha256:b2a3d0b4cc200c3f6bd6c8522d59f3cba56c0fc4aa57366ec3eb3c7467716532",
+          "text_without_lf": "HELIXOS-L2-001／002／007／009とHR-FR-HIL-19の利用者受入案。全件未実行。"
+        },
+        {
+          "line": 244,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 245,
+          "raw_line_sha256_including_lf": "sha256:1109340ff37391f551dd2222ad2289898d67f16d5d0d402160329e3db90e34f4",
+          "text_without_lf": "- L2凍結境界の是正案を入力し、対象7レコード・変更前revision・意味差分・下流影響を確認できる。変更案を登録しただけでは正本更新済みにならない。"
+        },
+        {
+          "line": 246,
+          "raw_line_sha256_including_lf": "sha256:952692f0d74bbbfa882f927ce14bdab7f86e3d2a1c7a98850dc2e57261fa26b3",
+          "text_without_lf": "- 許可scope内の変更は根拠付きで進み、scope外の変更は必要な判断を提示する。policyを自分で拡張して通過しない。"
+        },
+        {
+          "line": 247,
+          "raw_line_sha256_including_lf": "sha256:49db3a828b142b45b2d8a8a4625423d1cf62b26b1389b07c8f67c9aba645cba0",
+          "text_without_lf": "- 更新途中で保存・projectionを失敗させ、部分的に新旧が混在した状態を現行正本として提示しない。失敗理由と復旧先を確認できる。"
+        },
+        {
+          "line": 248,
+          "raw_line_sha256_including_lf": "sha256:e693c3df83fe893096745fc52d3f458337a625da1b230580617bdee29f7ef041",
+          "text_without_lf": "- 同一operationを再送してもrevisionを二重に進めず、競合する変更前revisionは明示的に拒否する。"
+        },
+        {
+          "line": 249,
+          "raw_line_sha256_including_lf": "sha256:cbdd23a2a584b8b4232563cda7ed7579e1b5eb79d567a38a2cb477d8628c1198",
+          "text_without_lf": "- 旧shadowやIssue本文を更新入力に与え、最新要求が巻き戻らないことを確認する。原文と旧revisionは履歴として追跡できる。"
+        },
+        {
+          "line": 250,
+          "raw_line_sha256_including_lf": "sha256:aff803b1306bf0f08718320f6cec8258a33824b4f8ded306a47bfd5d1db6725e",
+          "text_without_lf": "- 成功時に要求・契約・受入・下流失効・生成view・DB・receiptを同じ更新へ辿る。未完実装・未実行テストの状態は更新成功と独立に保持する。"
+        },
+        {
+          "line": 251,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 252,
+          "raw_line_sha256_including_lf": "sha256:6b2c50587cada4d4babf0d578dad95fba2368a60fa6910d8b9cda7436337dc15",
+          "text_without_lf": "既存の読取りauthority検査やPLAN transactionの成功を、この要求更新の実行証拠へ転用しない。"
+        }
+      ],
+      "selected_line_evidence_latest_main": [
+        {
+          "line": 21,
+          "raw_line_sha256_including_lf": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+          "text_without_lf": "| HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |"
+        },
+        {
+          "line": 241,
+          "raw_line_sha256_including_lf": "sha256:6c7d027a6e347e0ee25cd67666118a047aba17dd6c45b41ee66fe6df45ab539e",
+          "text_without_lf": "## 要求正本更新の受入"
+        },
+        {
+          "line": 242,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 243,
+          "raw_line_sha256_including_lf": "sha256:b2a3d0b4cc200c3f6bd6c8522d59f3cba56c0fc4aa57366ec3eb3c7467716532",
+          "text_without_lf": "HELIXOS-L2-001／002／007／009とHR-FR-HIL-19の利用者受入案。全件未実行。"
+        },
+        {
+          "line": 244,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 245,
+          "raw_line_sha256_including_lf": "sha256:1109340ff37391f551dd2222ad2289898d67f16d5d0d402160329e3db90e34f4",
+          "text_without_lf": "- L2凍結境界の是正案を入力し、対象7レコード・変更前revision・意味差分・下流影響を確認できる。変更案を登録しただけでは正本更新済みにならない。"
+        },
+        {
+          "line": 246,
+          "raw_line_sha256_including_lf": "sha256:952692f0d74bbbfa882f927ce14bdab7f86e3d2a1c7a98850dc2e57261fa26b3",
+          "text_without_lf": "- 許可scope内の変更は根拠付きで進み、scope外の変更は必要な判断を提示する。policyを自分で拡張して通過しない。"
+        },
+        {
+          "line": 247,
+          "raw_line_sha256_including_lf": "sha256:49db3a828b142b45b2d8a8a4625423d1cf62b26b1389b07c8f67c9aba645cba0",
+          "text_without_lf": "- 更新途中で保存・projectionを失敗させ、部分的に新旧が混在した状態を現行正本として提示しない。失敗理由と復旧先を確認できる。"
+        },
+        {
+          "line": 248,
+          "raw_line_sha256_including_lf": "sha256:e693c3df83fe893096745fc52d3f458337a625da1b230580617bdee29f7ef041",
+          "text_without_lf": "- 同一operationを再送してもrevisionを二重に進めず、競合する変更前revisionは明示的に拒否する。"
+        },
+        {
+          "line": 249,
+          "raw_line_sha256_including_lf": "sha256:cbdd23a2a584b8b4232563cda7ed7579e1b5eb79d567a38a2cb477d8628c1198",
+          "text_without_lf": "- 旧shadowやIssue本文を更新入力に与え、最新要求が巻き戻らないことを確認する。原文と旧revisionは履歴として追跡できる。"
+        },
+        {
+          "line": 250,
+          "raw_line_sha256_including_lf": "sha256:aff803b1306bf0f08718320f6cec8258a33824b4f8ded306a47bfd5d1db6725e",
+          "text_without_lf": "- 成功時に要求・契約・受入・下流失効・生成view・DB・receiptを同じ更新へ辿る。未完実装・未実行テストの状態は更新成功と独立に保持する。"
+        },
+        {
+          "line": 251,
+          "raw_line_sha256_including_lf": "sha256:01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "text_without_lf": ""
+        },
+        {
+          "line": 252,
+          "raw_line_sha256_including_lf": "sha256:6b2c50587cada4d4babf0d578dad95fba2368a60fa6910d8b9cda7436337dc15",
+          "text_without_lf": "既存の読取りauthority検査やPLAN transactionの成功を、この要求更新の実行証拠へ転用しない。"
+        }
+      ],
+      "selected_line_evidence_scope": "HELIXOS-L2-001 table row plus the shared requirement-update section only; the appended candidate is not part of the fixed-adopted evidence."
+    }
+  },
+  "historical_routing_context": {
+    "product_route": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl:134, PRC-HIL-NFR-32-001",
+    "disposition": "historical split proposal only; authority_effect:none; successor IDs unassigned; not current placement/adoption/closure evidence",
+    "crosswalk": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:41"
+  },
+  "latest_main_l11_baseline": {
+    "commit": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
+    "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "full_file_sha256": "sha256:62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3",
+    "prefix_bytes_preserved": true,
+    "candidate_supplement_is_not_in_base": true
+  },
+  "candidate_l2_composite_digest": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b",
+  "candidate_l11_composite_digest": "sha256:9e60291b227320cee9647f5c22c0ee8dec0d728aba1dca63decd3c18864f7aaf",
+  "candidate_pair_parts": {
+    "digest_rule": "For each selected part, remove trailing blank lines and encode normalized physical lines as UTF-8 joined with LF and one final LF. In listed order, concatenate normalized parts with one additional LF separator, then SHA-256. L2 parts: HELIXOS-L2-001 matrix row, then the complete section headed `## 要求正本を更新する管理条件` through the next equal-or-higher heading. L11 parts: HELIXOS-L2-001 acceptance matrix row, then the complete section headed `## 要求正本更新の受入` through the next equal-or-higher heading, then the EOF supplement headed `### 要求正本更新の受入：HIL-NFR-32の六条件候補` through EOF. Original L2/L11 sections and all existing line positions remain unchanged; only the prior unmerged wrong-attribution EOF candidate is replaced.",
+    "l2": [
+      {
+        "order": 1,
+        "name": "HELIXOS-L2-001 matrix row",
+        "selector": "docs/helix-os/L2-requirements/governance-requirements.md#table-row-HELIXOS-L2-001",
+        "sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78"
+      },
+      {
+        "order": 2,
+        "name": "要求正本を更新する管理条件",
+        "selector": "docs/helix-os/L2-requirements/governance-requirements.md#L2:515-532",
+        "sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5"
+      }
+    ],
+    "l11": [
+      {
+        "order": 1,
+        "name": "HELIXOS-L2-001 acceptance row",
+        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#table-row-HELIXOS-L2-001",
+        "sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364"
+      },
+      {
+        "order": 2,
+        "name": "要求正本更新の受入",
+        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#L11:241-252",
+        "sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1"
+      },
+      {
+        "order": 3,
+        "name": "末尾候補part",
+        "selector": "docs/helix-os/L11-acceptance/governance-acceptance.md#EOF:要求正本更新の受入：HIL-NFR-32の六条件候補",
+        "sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6"
+      }
+    ]
+  },
+  "candidate_revision_relation": "MPR-RC-HELIXOS-L2-001-001 is an unadopted correction candidate. Existing adopted OS-L2-001 conditions remain unchanged. Existing OS-L2-019 adopted bytes and MPR-RC-HELIXOS-L2-019-001 remain unchanged and are not superseded."
+}
