@@ -486,12 +486,12 @@
       "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
       "start_line": 1336,
       "end_line_exclusive": 1358,
-      "section_sha256": "sha256:1be208a5c2a6621b02ad634e4cd1a108560264b129a5eda9828e57d29f36c6dc"
+      "section_sha256": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
     },
     "pair_rule": "Exact selected heading to next same-or-higher heading or EOF; trailing blank lines trimmed; exactly one UTF-8 LF appended. Section boundaries and raw full-file digests are independently pinned.",
     "full_file_sha256": {
       "l2": "sha256:569052d39abe0caa910cf9e8b9da2e18bf8c806fd2e3681494f9be453f09fa39",
-      "l11": "sha256:f8a1d2e48234df68a1d2e3ae79166fe34fee6035f93b0117f61c9b2eb0ddf7f7"
+      "l11": "sha256:a580283790ce77c5622c7bcd4a731928eb9f543b8a2e0389849eefc4821ce265"
     }
   },
   "human_decision_material": {
@@ -642,11 +642,11 @@
   },
   "candidate_pair_section_sha256": {
     "HELIXOS-L2-131": "sha256:178f05b71c5037878e68cbb8c7e08e9dd6e4a19fda52667aa6ccb3f574b6b906",
-    "HELIXOS-L11-131": "sha256:1be208a5c2a6621b02ad634e4cd1a108560264b129a5eda9828e57d29f36c6dc"
+    "HELIXOS-L11-131": "sha256:e066b3f277d9cc8164b287c2322c3d9f7d379a229c53a8e8155c837034c5c5eb"
   },
   "candidate_pair_full_file_sha256": {
     "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:569052d39abe0caa910cf9e8b9da2e18bf8c806fd2e3681494f9be453f09fa39",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:f8a1d2e48234df68a1d2e3ae79166fe34fee6035f93b0117f61c9b2eb0ddf7f7"
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:a580283790ce77c5622c7bcd4a731928eb9f543b8a2e0389849eefc4821ce265"
   },
   "selected_source_units": [
     {
