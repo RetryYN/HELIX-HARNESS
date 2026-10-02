@@ -196,15 +196,49 @@
     "HAT-HIL-09": "designed_not_implemented; not executed."
   },
   "dependency_contract": {
-    "identity": "HARNESS-L2-023; adopted by HARNESS 2026-09-28 decision row 52; fixed at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-    "locator": "docs/helix-harness/L2-requirements/product-requirements.md:463-498; docs/helix-harness/L11-acceptance/product-acceptance.md:219-234",
+    "identity": "HARNESS-L2-023; exact adopted candidate MPR-RC-HARNESS-L2-023-002, HELIX-HARNESS 2026-09-28 decision row 52; not inferred from registered_proposal metadata.",
+    "adoption_decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "row_locator": "line 52",
+      "decision_effect": "row 52 lists HARNESS-L2-023 / MPR-RC-HARNESS-L2-023-002 in the adopted explicit candidate set; paired L11 comes from the fixed decision bytes."
+    },
+    "fixed_pair": {
+      "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "L2_full_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "L2_section_locator": "HARNESS-L2-023 at lines 463-498",
+      "L2_canonical_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "L11_full_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "L11_section_locator": "HARNESS-L2-023 acceptance row/fixtures at lines 219-234",
+      "L11_canonical_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_exact_bytes_match_fixed_sections": true
+    },
+    "required_input_fields": [
+      "pack identity and source revision",
+      "HARNESS-L2-010 and L2-011 contract revisions",
+      "requested operation",
+      "target and scope",
+      "explicitly selected input source identity",
+      "required permission, isolation and data-use classification",
+      "dependency identity and declared owner",
+      "contract version and compatibility range",
+      "dependency class (one of four) and applicability condition"
+    ],
     "categories": [
       "always required",
       "operation condition",
       "selected input source",
       "reference only"
     ],
-    "oracle": "Preserve selected input and identity/owner/contract version-range/applicability. Same input closes to same effective dependencies. Unknown remains unknown, not false or reference-only; selected-source failure does not silently fall back. Candidate does not claim dependency authority."
+    "exact_obligations": [
+      "Bind each class/condition to pack revision and reproduce same effective dependency closure from same input.",
+      "Classify selected-source dependencies using selected identity, contract version and scope; unselected input is unobserved, not present/absent/eligible/successful.",
+      "If applicability is missing, ambiguous, contradictory, stale, version range unknown, or safety authority unknown, preserve unknown/hold; do not infer non-applicable or reference-only.",
+      "Do not silently fallback to another source after selected-source failure. Reference-only cannot erase operational condition, authority, verification oracle or safety constraint."
+    ],
+    "synthetic_fixture_status": "The values in L11-123 are opaque synthetic tokens solely for a static oracle. They do not name real owners/revisions, define version comparison or compatibility rules, or establish authority."
   },
   "candidate_sections": {
     "L2": {
@@ -215,8 +249,8 @@
     },
     "L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "section_sha256": "sha256:b7ed0e589414ceb47ffa46a8638642f8ebc1bd28b26e00a46dcb70af991b31e8",
-      "full_file_sha256": "sha256:71657d6d1eb36cbe107649f41f2fe675dd7daabdb33d76b4583065d75dab87c1",
+      "section_sha256": "sha256:e1a9a89a5699605c95db3a0af39d1eca0d8b9078d960dcd6da9e81b17680f734",
+      "full_file_sha256": "sha256:b1aefc4e1789338299d26f8e9737e35795573758549d5be8b3253c1df6899bac",
       "section_boundary": "heading HELIXOS-L11-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
     }
   },
@@ -292,5 +326,82 @@
     "hac_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
     "hat_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
   },
-  "version_target_source_status": "HIL-BR-14 does not specify version_target; intentionally unspecified."
+  "version_target_source_status": "HIL-BR-14 does not specify version_target; intentionally unspecified.",
+  "dependency_fixture": {
+    "fixture_only": true,
+    "pack_id": "fixture:BR14-pack",
+    "pack_revision": "fixture-pack-r1",
+    "source_revision": "fixture-source-r1",
+    "contract_revisions": {
+      "HARNESS-L2-010": "fixture-010-r1",
+      "HARNESS-L2-011": "fixture-011-r1"
+    },
+    "requested_operation": "inventory-selected-BR14-sources",
+    "target_scope": "fixture:BR14-scope",
+    "selected_sources": [
+      "ZIP",
+      "unison-ai-product/UT-TDD_AGENT-HARNESS",
+      "RetryYN/ai-dev-kit-vscode"
+    ],
+    "authority_permission": "fixture:authority-read",
+    "isolation": "fixture:read-only-isolation",
+    "data_use": "fixture:source-analysis-data-use",
+    "dependency_rows": [
+      {
+        "identity": "fixture:core-trace",
+        "declared_owner_ref": "fixture-owner:core",
+        "contract_version": "fixture-contract:core-r1",
+        "compatibility_range_token": "fixture-range:core-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "always required",
+        "applicability": "always"
+      },
+      {
+        "identity": "fixture:ref-authority",
+        "declared_owner_ref": "fixture-owner:authority",
+        "contract_version": "fixture-contract:authority-r2",
+        "compatibility_range_token": "fixture-range:authority-r2",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "operation condition",
+        "applicability": "requested operation is inventory-selected-BR14-sources; true in fixture"
+      },
+      {
+        "identity": "fixture:source-zip",
+        "declared_owner_ref": "fixture-owner:zip",
+        "contract_version": "fixture-contract:zip-r1",
+        "compatibility_range_token": "fixture-range:zip-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:source-unison-ai-product-ut-tdd_agent-harness",
+        "declared_owner_ref": "fixture-owner:unison-ai-product-ut-tdd_agent-harness",
+        "contract_version": "fixture-contract:unison-ai-product-ut-tdd_agent-harness-r1",
+        "compatibility_range_token": "fixture-range:unison-ai-product-ut-tdd_agent-harness-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:source-retryyn-ai-dev-kit-vscode",
+        "declared_owner_ref": "fixture-owner:retryyn-ai-dev-kit-vscode",
+        "contract_version": "fixture-contract:retryyn-ai-dev-kit-vscode-r1",
+        "compatibility_range_token": "fixture-range:retryyn-ai-dev-kit-vscode-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:glossary-note",
+        "declared_owner_ref": "fixture-owner:glossary",
+        "contract_version": "fixture-glossary-r1",
+        "compatibility_range_token": "fixture-range:glossary-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "reference only",
+        "applicability": "explanatory only; no operation/source/authority/oracle effect"
+      }
+    ],
+    "repeat_result": "Same exact input and declaration revision must yield the same class/state/reason closure. Any changed or missing input is unknown or a distinct result, never a default."
+  }
 }
