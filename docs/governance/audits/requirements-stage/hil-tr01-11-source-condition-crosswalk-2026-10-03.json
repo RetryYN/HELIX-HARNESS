@@ -294,8 +294,8 @@
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
-          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+          "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
         }
       ],
       "condition_assessment": [
@@ -452,8 +452,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
-          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+          "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
           "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
         },
@@ -468,10 +468,10 @@
           "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
           "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
           "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
-          "fixed_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
-          "current_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
-          "fixed_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e",
-          "current_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+          "fixed_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+          "current_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+          "fixed_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
+          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
         },
         {
           "requirement_id": "HELIXCONNECT-L2-002",
@@ -484,10 +484,10 @@
           "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
           "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
           "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
-          "fixed_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
-          "current_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
-          "fixed_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6",
-          "current_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6"
+          "fixed_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+          "current_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+          "fixed_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
+          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -500,10 +500,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
-          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+          "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -518,8 +518,8 @@
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
-          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+          "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
         }
       ],
       "condition_assessment": [
@@ -680,8 +680,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
-          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+          "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
           "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
         },
@@ -696,10 +696,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
-          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+          "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -712,10 +712,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
-          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+          "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
         }
       ],
       "condition_assessment": [
@@ -876,10 +876,10 @@
           "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
           "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
           "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
-          "fixed_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
-          "current_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
-          "fixed_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
-          "current_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe"
+          "fixed_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+          "current_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+          "fixed_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
+          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742"
         },
         {
           "requirement_id": "HELIXINFRASTRUCTURE-L2-011",
@@ -892,10 +892,10 @@
           "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
           "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
           "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
-          "fixed_L2_section_sha256": "efaf3121ce5486df3de26142af8ecc24f1661627df5bc61fb93ddb3fd5c3da0e",
-          "current_L2_section_sha256": "efaf3121ce5486df3de26142af8ecc24f1661627df5bc61fb93ddb3fd5c3da0e",
-          "fixed_L11_acceptance_section_sha256": "57e1fa14e76cb45ac193f2b1991a222977d8c4136799912bd2dbee185a82d336",
-          "current_L11_acceptance_section_sha256": "57e1fa14e76cb45ac193f2b1991a222977d8c4136799912bd2dbee185a82d336"
+          "fixed_L2_section_sha256": "5edc42940e8ce68a4f2754304c526344c809afef0a52d4010a4d63d4d694cc21",
+          "current_L2_section_sha256": "5edc42940e8ce68a4f2754304c526344c809afef0a52d4010a4d63d4d694cc21",
+          "fixed_L11_acceptance_section_sha256": "bc5f5fed1e9f4c19ec9224a895948c135505b336367791c664a1dafaf0ae17a3",
+          "current_L11_acceptance_section_sha256": "bc5f5fed1e9f4c19ec9224a895948c135505b336367791c664a1dafaf0ae17a3"
         }
       ],
       "condition_assessment": [
@@ -1052,10 +1052,10 @@
           "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
           "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
           "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
-          "fixed_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
-          "current_L2_section_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
-          "fixed_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
-          "current_L11_acceptance_section_sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe"
+          "fixed_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+          "current_L2_section_sha256": "1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+          "fixed_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742",
+          "current_L11_acceptance_section_sha256": "54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742"
         },
         {
           "requirement_id": "HELIXINFRASTRUCTURE-L2-003",
@@ -1068,10 +1068,10 @@
           "L11_path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
           "L11_fixed_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
           "L11_current_a7_document_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
-          "fixed_L2_section_sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
-          "current_L2_section_sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
-          "fixed_L11_acceptance_section_sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db",
-          "current_L11_acceptance_section_sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db"
+          "fixed_L2_section_sha256": "dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+          "current_L2_section_sha256": "dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+          "fixed_L11_acceptance_section_sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe",
+          "current_L11_acceptance_section_sha256": "202bceb56f70fbbcffa74eb5f875e38d18297003a7fc4e2b57cc6411ec3251fe"
         },
         {
           "requirement_id": "HELIXOS-L2-020",
@@ -1086,8 +1086,8 @@
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
-          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+          "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
         }
       ],
       "condition_assessment": [
@@ -1246,8 +1246,8 @@
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
-          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+          "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
         },
         {
           "requirement_id": "HELIXSECURITY-L2-003",
@@ -1260,8 +1260,8 @@
           "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
           "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
-          "fixed_L2_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
-          "current_L2_section_sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
+          "fixed_L2_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
+          "current_L2_section_sha256": "dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
           "fixed_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
           "current_L11_acceptance_row_sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0"
         },
@@ -1276,8 +1276,8 @@
           "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
           "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
-          "fixed_L2_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
-          "current_L2_section_sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+          "fixed_L2_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
+          "current_L2_section_sha256": "8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
           "fixed_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
           "current_L11_acceptance_row_sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107"
         },
@@ -1292,8 +1292,8 @@
           "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
           "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
-          "fixed_L2_section_sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
-          "current_L2_section_sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
+          "fixed_L2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+          "current_L2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
           "fixed_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
           "current_L11_acceptance_row_sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25"
         },
@@ -1308,8 +1308,8 @@
           "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
           "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
-          "fixed_L2_section_sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
-          "current_L2_section_sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
+          "fixed_L2_section_sha256": "a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a",
+          "current_L2_section_sha256": "a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a",
           "fixed_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
           "current_L11_acceptance_row_sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114"
         }
@@ -1472,10 +1472,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
-          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+          "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -1488,10 +1488,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
-          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+          "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
         }
       ],
       "condition_assessment": [
@@ -1648,10 +1648,10 @@
           "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
           "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
           "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
-          "fixed_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
-          "current_L2_section_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
-          "fixed_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e",
-          "current_L11_acceptance_section_sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+          "fixed_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+          "current_L2_section_sha256": "895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+          "fixed_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056",
+          "current_L11_acceptance_section_sha256": "437f822eee764595ff677ca31b6789e9d51179cfc6c6f1bb461eaaed54a0d056"
         },
         {
           "requirement_id": "HELIXCONNECT-L2-002",
@@ -1664,10 +1664,10 @@
           "L11_path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
           "L11_fixed_document_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
           "L11_current_a7_document_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
-          "fixed_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
-          "current_L2_section_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
-          "fixed_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6",
-          "current_L11_acceptance_section_sha256": "609e81954fa14c0410fbd260a76f3042e4fcd1df875fa543b2886e06c5d30be6"
+          "fixed_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+          "current_L2_section_sha256": "ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+          "fixed_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708",
+          "current_L11_acceptance_section_sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
         },
         {
           "requirement_id": "HELIXOS-L2-018",
@@ -1680,10 +1680,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
-          "current_L2_section_sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
-          "fixed_L11_acceptance_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
-          "current_L11_acceptance_section_sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891"
+          "fixed_L2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "current_L2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "fixed_L11_acceptance_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+          "current_L11_acceptance_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
         },
         {
           "requirement_id": "HELIXOS-L2-023",
@@ -1696,10 +1696,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
-          "current_L2_section_sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
-          "fixed_L11_acceptance_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
-          "current_L11_acceptance_section_sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d"
+          "fixed_L2_section_sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+          "current_L2_section_sha256": "d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+          "fixed_L11_acceptance_section_sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
+          "current_L11_acceptance_section_sha256": "a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20"
         }
       ],
       "condition_assessment": [
@@ -1860,10 +1860,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
-          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+          "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -1876,10 +1876,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
-          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+          "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
         },
         {
           "requirement_id": "HELIXSECURITY-L2-015",
@@ -1892,8 +1892,8 @@
           "L11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
           "L11_fixed_document_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
           "L11_current_a7_document_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
-          "fixed_L2_section_sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
-          "current_L2_section_sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
+          "fixed_L2_section_sha256": "6307d5833296e0c438401e8a4a11221a601da0c1389bd813cfb4641fee114a6a",
+          "current_L2_section_sha256": "6307d5833296e0c438401e8a4a11221a601da0c1389bd813cfb4641fee114a6a",
           "fixed_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
           "current_L11_acceptance_row_sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4"
         }
@@ -2052,10 +2052,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "current_L2_section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
-          "fixed_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
-          "current_L11_acceptance_section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+          "fixed_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "current_L2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "fixed_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "current_L11_acceptance_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
         },
         {
           "requirement_id": "HELIXOS-L2-016",
@@ -2068,10 +2068,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
-          "current_L2_section_sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
-          "fixed_L11_acceptance_section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
-          "current_L11_acceptance_section_sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b"
+          "fixed_L2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+          "current_L2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+          "fixed_L11_acceptance_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3",
+          "current_L11_acceptance_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
         },
         {
           "requirement_id": "HELIXOS-L2-019",
@@ -2084,10 +2084,10 @@
           "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
           "L11_fixed_document_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
-          "fixed_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "current_L2_section_sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
-          "fixed_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
-          "current_L11_acceptance_section_sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900"
+          "fixed_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "current_L2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "fixed_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+          "current_L11_acceptance_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
         }
       ],
       "condition_assessment": [
@@ -2277,8 +2277,8 @@
           "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "L11_fixed_document_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
           "L11_current_a7_document_sha256": "15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-          "fixed_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
-          "current_L2_section_sha256": "cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409",
+          "fixed_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+          "current_L2_section_sha256": "88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
           "fixed_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755",
           "current_L11_acceptance_row_sha256": "75f4de4a008c8e7dce69c72aad261b1069ef9a4c772b689679af03e52c701755"
         },
@@ -2295,8 +2295,8 @@
           "L11_current_a7_document_sha256": "d144eabd462fc2729fcb1012cf43c3426ed5e3ae8ab2c48e55f2e27b5f59e0e8",
           "fixed_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
           "current_L2_section_sha256": "fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
-          "fixed_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
-          "current_L11_acceptance_section_sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03"
+          "fixed_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+          "current_L11_acceptance_section_sha256": "a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
         }
       ],
       "condition_assessment": [
@@ -2347,6 +2347,6 @@
       "use": "machine-readable REG06 population and unproven flags"
     }
   ],
-  "section_sha256_extraction_rule": "For each L2 requirement section, start at its exact `### <requirement_id>` heading and stop immediately before the next `### ` heading; decode/encode UTF-8, remove all trailing LF characters (trailing blank lines), append exactly one LF, then SHA-256 those bytes.",
-  "section_sha256_interpretation": "Section hashes identify fixed/current document bytes only. Matching fixed/current hashes do not establish adoption; adoption is determined only by the referenced PO decision record exact revision and its explicit candidate row."
+  "section_sha256_extraction_rule": "For every pinned L2 or L11 section, select the exact `### <requirement_id>` heading (HELIXCONNECT acceptance uses its corresponding `HELIXCONNECT-L11-<nnn>` heading), stop before the next `### ` heading, preserve source UTF-8 bytes, trim trailing LF bytes only, append exactly one LF, then SHA-256 those bytes. For an L11 acceptance-row pin, hash the exact UTF-8 table row including its terminating LF; do not parse/reserialize or normalize the row.",
+  "section_sha256_interpretation": "Fixed/current section or row hashes identify the exact bytes at the two recorded revisions. Matching hashes mean bytes match only; adoption is established solely by the referenced exact PO decision revision and its explicit adopted row."
 }
