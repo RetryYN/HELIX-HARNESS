@@ -171,14 +171,14 @@
     "human_decision_status": "unresolved; candidate drafting/review is not gated on it",
     "version_target": "not specified by source and left unassigned",
     "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-nfr12-coverage-candidate-receipt-2026-10-02.json",
-    "mpr_register_line": 672,
+    "mpr_register_line": 674,
     "candidate_l2_section_digest": "sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8",
     "candidate_l11_section_digest": "sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1",
     "comparison_base_at_candidate_creation": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
-    "current_main_read_after": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
-    "current_mpr_register_line_after_merge": 672,
-    "current_l2_file_sha256": "sha256:a9140780b13ed8c1a727ca36ae9e623653f69d1f9ced476c7a28234965fc6595",
-    "current_l11_file_sha256": "sha256:9d6e2c5a0ee7cfb5b4063f07fd97333df0991cc0491f97b50673b567c63d2a23",
+    "current_main_read_after": "fd3e799710bf5b06081fee271e536fc7f51213ba",
+    "current_mpr_register_line_after_merge": 674,
+    "current_l2_file_sha256": "sha256:ada2b2593e0e3f9c69c2fcdb91493cc045e45fa28d77d8369b97adcf6dd20390",
+    "current_l11_file_sha256": "sha256:e4d0343cf5db2b0afef99bb88d1ce1ff80ef0c5af074e6bb7b9be0c35898cc82",
     "source_atom_role_note": "Selected identity is IR HIL-NFR-12; legacy L1 line 192 is corroboration only.",
     "mpr_register_line_at_candidate_creation": 670
   },
@@ -199,15 +199,15 @@
     "authority_effect": "none",
     "legacy_execution": "not_run",
     "current_main_at_audit_creation": "46be4fa55d384b8a8eb95f464f78c8a11e95542c",
-    "current_main_read_after": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
-    "mpr_register_line_after_merge": 672,
+    "current_main_read_after": "fd3e799710bf5b06081fee271e536fc7f51213ba",
+    "mpr_register_line_after_merge": 674,
     "nfr12_selected_source_atom_count": 1
   },
   "current_target_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_sha256": "sha256:a9140780b13ed8c1a727ca36ae9e623653f69d1f9ced476c7a28234965fc6595",
+    "l2_sha256": "sha256:ada2b2593e0e3f9c69c2fcdb91493cc045e45fa28d77d8369b97adcf6dd20390",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_sha256": "sha256:9d6e2c5a0ee7cfb5b4063f07fd97333df0991cc0491f97b50673b567c63d2a23",
+    "l11_sha256": "sha256:e4d0343cf5db2b0afef99bb88d1ce1ff80ef0c5af074e6bb7b9be0c35898cc82",
     "current_candidate_section_digests": {
       "081_l2": "sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8",
       "081_l11": "sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1",
@@ -216,7 +216,7 @@
     },
     "081_source_atom_set_sha256": "sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910",
     "081_source_atom_file_sha256": "sha256:283c0e3b801f6dbefa3277966b80e55e03335c89af1a25ac6ca41ff67ec7b5e5",
-    "mpr_register_line_after_merge": 672
+    "mpr_register_line_after_merge": 674
   },
   "legacy_consumer_pins": [
     {

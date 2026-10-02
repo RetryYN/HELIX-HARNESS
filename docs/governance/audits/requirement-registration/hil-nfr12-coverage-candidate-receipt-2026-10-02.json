@@ -1,6 +1,6 @@
 {
   "receipt_id": "HIL-NFR12-COVERAGE-CANDIDATE-2026-10-02",
-  "comparison_base": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+  "comparison_base": "fd3e799710bf5b06081fee271e536fc7f51213ba",
   "authority_effect": "none",
   "candidate_status": "unadopted_requirement_candidate",
   "candidate_identity": "HARNESS-L2-081",
@@ -12,9 +12,9 @@
   "candidate_digest_rule": "Canonical digest: for each pair side, from its exact HARNESS-L2-081 or HARNESS-L11-081 heading up to the next same-or-higher heading; trim trailing blank lines and terminate with one LF; UTF-8 SHA-256.",
   "current_file_pins": {
     "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
-    "l2_file_sha256": "sha256:a9140780b13ed8c1a727ca36ae9e623653f69d1f9ced476c7a28234965fc6595",
+    "l2_file_sha256": "sha256:ada2b2593e0e3f9c69c2fcdb91493cc045e45fa28d77d8369b97adcf6dd20390",
     "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-    "l11_file_sha256": "sha256:9d6e2c5a0ee7cfb5b4063f07fd97333df0991cc0491f97b50673b567c63d2a23"
+    "l11_file_sha256": "sha256:e4d0343cf5db2b0afef99bb88d1ce1ff80ef0c5af074e6bb7b9be0c35898cc82"
   },
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-nfr12-source-lines-2026-10-02.jsonl",

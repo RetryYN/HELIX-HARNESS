@@ -1,7 +1,7 @@
 # HIL-NFR-11/12 現行条件照合
 
 - 初回比較snapshot: `46be4fa55d384b8a8eb95f464f78c8a11e95542c`（監査作成時の履歴）
-- 最新比較先: `d1fd70d4338717301b05f87da1806d2f81ec5b34`。MPR registerはmain prefix 671行を保持し、081候補をline 672へ追加した。
+- 最新比較先: `fd3e799710bf5b06081fee271e536fc7f51213ba`。MPR registerはmain prefix 673行を保持し、081候補をline 674へ追加した。
 - 対象: 旧HIL-NFR-11 line 191、HIL-NFR-12 line 192。旧原文/consumerは参照のみ。旧test/runtime/CLI/CIは実行していない。
 - この監査とHARNESS-L2/L11-081はauthorityを持たない。候補登録や所在記録から要求採択、formal successor、全資産closureを生成しない。
 
@@ -49,6 +49,6 @@ HARNESS-L2/L11-079は未採択候補で、NFR11 static-onlyの意味条件が現
 
 旧crosswalkの`target_assessment: OS`は歴史的な評価欄で、対象revisionのPO decisionではない。候補を忠実に起草・reviewする作業は継続可能。採択時にPOはHARNESSの意味oracleと機構別source取得/保存を分ける責務配置を判断する。推奨は、HARNESSが宣言されたscopeの全量性と判断traceの意味oracleを持ち、source取得・運転イベント・保存は既存ownerに残すこと。影響するのはHIL-NFR-12のcurrent target/bindingと機構間のsource責務配置。採択されるまではcandidate authority effect none。
 
-本監査は初回比較snapshot 46beの履歴を保持し、作成時点以後に最新main `d1fd70d4338717301b05f87da1806d2f81ec5b34` をread-afterした。候補081はMPR registerの既存671行prefixを維持した上でline 672に一行追加した。最新candidate pair section SHA-256はL2 `sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8`、L11 `sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1`。IR atom source JSONL SHA-256は`sha256:283c0e3b801f6dbefa3277966b80e55e03335c89af1a25ac6ca41ff67ec7b5e5`、atom-set digestは`sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910`.
+本監査は初回比較snapshot 46beの履歴を保持し、作成時点以後に最新main `fd3e799710bf5b06081fee271e536fc7f51213ba` をread-afterした。候補081はMPR registerの既存673行prefixを維持した上でline 674に一行追加した。最新candidate pair section SHA-256はL2 `sha256:026234a3b330c12597d84c77b72e6ce022905ab143557d9cc385e422c20970e8`、L11 `sha256:0303fbd094d23e4bfea266c3582fd5832b5ea2c32cba942ba3de3f96cf6088e1`。IR atom source JSONL SHA-256は`sha256:283c0e3b801f6dbefa3277966b80e55e03335c89af1a25ac6ca41ff67ec7b5e5`、atom-set digestは`sha256:f7ce96b2a96f6d4f073498d5f6ae1048ef2535c08fedd1d33125aef7d64cf910`.
 
 本監査・候補は固定件数、全4020資産走査、繰返し走査、特定digest/time schema、legacy runtime/test/CI、source全体のclosureを要求しない。
