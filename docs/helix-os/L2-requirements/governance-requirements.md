@@ -1622,6 +1622,23 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存条件との境界**：旧FR-63の具体的model-class defaultやeffort値、NFR-36の指定しないorder policyを持ち込まない。OS-019の記録/continuity、OS-028の選択された実相談handoff、OS-029の選択されたsupport composite、INTELLIGENCE/LABOの既存責務を置換しない。旧HIL-NFR-32の六条件はOS-001を含む既存の「要求正本を更新する管理条件」と照合する。OS-019への候補追補として扱わない。別途作業中のNFR-32 L11 fixture/oracle候補は未採択のdraft contextとしてのみ参照し、その存在からOS-001の採択状態やsource closureを推定しない。本候補は実run assignment/attempt receiptを扱い、要求正本更新条件やNFR-32のfixture/oracle条件を複製しない。
 - **source scopeと限界**：本候補はIR identity `HIL-NFR-36`の全statement一atomに対応し、既存pairが持つ選択tracking/品質・費用比較を再定義せず、確認済み残差であるdefault deviation receiptと実escalation順序/resultのreceipt参照を補う提案である。MPR source holdingは保持され、正式successor割当、全consumer/source closure、実装・実行・受入を主張しない。
 
+### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避（単体候補、未採択）
+
+- **候補状態・親**：HELIX-OSの未採択unit候補。親はConceptの「OSが実際に進める」境界と、固定採択対象のHELIXOS-L1-003（許可・予算・依存の範囲でWorkerへ委譲し、中断後も安全に再開する）。候補追補・仮登録は要求採択、実装・実行許可を生まない。
+- **規範sourceと保持条件**：旧IR `requirements.json#/HIL-NFR-40` 全体を一つのnormative source atomとして保持する。旧sourceが求めるのは、worker runtimeのquota枯渇／rate制限を予定状態として扱うこと、laneをfail-closeで「キュー保留」または「代替runtimeへのrouting提案」へ退避すること、枯渇を無視した続行と無計画retryを行わないことである。旧L1 line 220は同じ条件のcorroborationで別atomではない。旧IRにない閾値、quota/reset時刻、retry回数・間隔、provider固有status schemaや自動切替を加えない。
+- **保証候補**：現在のassignmentで選択されたworker runtimeがquota枯渇またはrate制限を報告したとき、対象laneはその状態をplanned non-successとして記録し、作業を続行せず、queue holdまたは代替runtimeへのrouting proposalのいずれかでfail-close retreatする。選んだ退避状態を成功・完了・枯渇解消と扱わない。無計画retryを行わない。sourceが明記する二つの代替経路はORのまま保ち、どちらか一方への固定や新しいretry計画は要求しない。
+- **既存OS条件の再利用**：HELIXOS-L2/L11-017のticket/workflow、018のassignment/attempt・停止・handoff、019のprovenance・budget/deadline/累積制約・未完義務の継続を再利用し、本候補で重複定義しない。queue holdは既存task/assignment identity、期限、予算、attempt/cumulative constraint、未完義務を保った停止として扱う。後に利用可能状態が確認された場合も、再開・再割当は既存OS authority/assignmentと同じ制約の下で行い、状態観測だけから実行許可を作らない。
+- **既存機構との分担**：INTELLIGENCE-L2-010のWorker placement proposalは代替runtimeを提案する根拠として再利用できるが、proposal自体は実際のroute、OS assignment、dispatch authority、quota/rate stateの証明ではない。OSが既存のassignment手順で選択・記録する。INFRASTRUCTURE-L2-003/-004/-009は対象範囲に含むruntime resource/capacity/incident observationとOS状態接続を持つ。そこに選択runtimeのquota/rate観測が実際に含まれる場合はその出所を使えるが、一般capacity値からprovider quota/rate状態を推定しない。観測sourceやselected-runtime statusがmissing/stale/unknownならquota解消と推定せず、そのoperationをunknown/未完として観測source ownerへ戻し、OS-019のcontinuityを保つ。SECURITYの既存operation authorityとpolicyはそのまま適用し、quota退避を新authorityにしない。SECURITY-029の追加runtime data/opt-out条件をquota/rate条件の代用とみなさない。
+- **共有consumerの未配賦**：旧HR-FR-HIL-23はHIL-NFR-37〜40等を束ね、HAC-HIL-23cは「quota枯渇・egress乖離」を合わせてfail-close退避・quarantineとする。normative NFR-40はegress乖離やquarantineを述べないため、本候補はquota/rate retreatだけを保持し、egress/quarantineを黙ってNFR-40へ配賦しない。選択肢と影響はcoverage receiptへ記録し、候補起草を止めず、条件を追加する場合だけ対象revisionの既存PO判断へ戻す。
+- **既存routing/crosswalkの位置付け**：旧routing `docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl:142` の `PRC-HIL-NFR-40-001`（row SHA-256 without LF `91eb93498d713a11eacd28cc3183e17390f82302f0bf2562848b2b5601dad480`）と `docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:49`（row SHA-256 without LF `c35dd67ee0b4f7d5020a9c77c0312fe7c991e5c5f29589cb58c8b0569836acba`）は旧OS配置案を示すが、いずれも提案／照合記録で採択authorityやsuccessor assignmentではない。OSを主identityとする根拠は現行Concept・固定OS-L1-003の運転責務と、INTELLIGENCE案を割当へ昇格させない境界である。原source・参照rowのexact bytesはreceiptに固定する。
+- **023依存4区分**：実行dependency分類は対L11に示す。IR whole source、L1 corroboration、共有consumer oracleはruntime-dependency分類の外でsource/condition evidenceとして保持し、reference-onlyへ落とさない。
+
+#### Worker runtime適用scope候補（未採択）
+
+旧HIL-NFR-40の規範文は「worker runtime」「lane」と記し、Claude/Codex以外または第三者runtimeへの限定を明記しない。したがって本候補の原文忠実な推奨scopeは、現在のassignmentで選ばれたruntime一般であり、主Workerも含む。ただしこれは候補上の推奨であって採択、主Workerへの現在の合否、許可、禁止を決めない。HR-FR-HIL-23は第三者workerの共有consumer契約であり、NFR-40本文のscopeを自動で限定しない。HIL-BR-32のClaude/Codex以外という境界は同BR-32自身の条件として保持する。PO判断まではprimary Worker適用範囲を未決として扱い、候補の起草・reviewを止めない。
+
+適用scopeの選択肢は、**案A：第三者runtimeに限定**（BR-32/HR-23の第三者worker文脈へ本NFRのquota/rate条件を限定する）と、**案B：選択runtime一般**（normative NFR-40の無限定な文言どおり、primary Workerを含む）である。**案Bを推奨**する。根拠はnormative atom自体にruntime種別の限定がなく、第三者限定はconsumer/隣接BRの文脈にあるためである。案AはNFR-40原文の適用範囲を狭める。案Bの選択は既採択SECURITY-029/031の追加runtime向け範囲を主Workerへ広げず、decision 57 row 112の判断も変更しない。候補のこのscope選択だけでruntime/operation authority、assignment、dispatch許可は生じない。
+
 
 ### HELIXOS-L2-130 docgen source・採否・要求traceの管理projection候補（unit、未採択）
 

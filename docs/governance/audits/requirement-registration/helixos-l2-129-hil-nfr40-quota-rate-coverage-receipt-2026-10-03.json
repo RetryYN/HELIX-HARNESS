@@ -1,0 +1,489 @@
+{
+  "receipt_id": "HELIXOS-L2-129-HIL-NFR-40-QUOTA-RATE-COVERAGE-2026-10-03",
+  "status": "registered_proposal_no_authority_effect; one_whole_IR_atom_candidate_mapping",
+  "authority_effect": "none",
+  "read_after_base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+  "candidate_identity": "HELIXOS-L2-129",
+  "paired_acceptance_identity": "HELIXOS-L2-129 (L11 acceptance section)",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr40-quota-rate-source-lines-2026-10-03.jsonl#HIL-NFR-40",
+  "source_atom_set_file_sha256": "sha256:e6ef221c4f0421b17d33fd8da4934eb23bf303390da9b2cccc68346c860672ec",
+  "source_atom_set_digest": "sha256:4e728032efa4b761175f04456c3a5e6e317884c8f7bfe11435bcf275d79a4ecc",
+  "source_scope": "一つのnormative atomは旧IR identity HIL-NFR-40 whole recordのみ。L1 line 220は同statementのcorroborationで別atomではない。HR-FR-HIL-23/HAC-HIL-23a,b,c/HAT-HIL-23はconsumer/oracle context。HAC-23cのquota+egress+quarantine複合条件のうち、NFR40本文が明示しないegress/quarantineは現候補へ配賦しない。source holding MPR-SH-IR-003は生存し、正式successor・全source closureを主張しない。HATは設計のみで実行していない。",
+  "source_identity": {
+    "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-40",
+    "file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "identity_anchor_physical_line": 6115,
+    "identity_anchor_text": "  \"HIL-NFR-40\": {",
+    "identity_anchor_sha256_including_lf": "sha256:c861f0f472e5c5adcc44956a184c2764354f73fd4861274b24d61e185e05ef4b",
+    "statement_text_physical_line": 6124,
+    "statement_text_line": "      \"text\": \"worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。\",",
+    "statement_text_line_sha256_including_lf": "sha256:f741115bc4bfefa073b35e7a81c74e64fb97cad70a6d5eacda2f3606fafcaeb0",
+    "statement_digest_physical_line": 6125,
+    "source_line_text_excludes_lf": true,
+    "status": "specified; definition_status=frozen",
+    "record_start_physical_line": 6115,
+    "record_end_physical_line": 6162,
+    "record_raw_sha256_trim_trailing_blank_lines_one_lf": "sha256:6bb8d10e3c876c528ae89e4eb0f69aed6726780b8f7f1ea858eb5730ef6bc315",
+    "statement_digest_line_sha256_including_lf": "sha256:07d8de0d434a381cd2d81ea1fa53075424232e76e3a946f0256dfc2e040525e6"
+  },
+  "corroborating_L1_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "physical_line": 220,
+    "text": "| **HIL-NFR-40** | worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。 |",
+    "line_sha256_including_lf": "sha256:f5d61b7c0f7c65684af3270f28d1efa26f4a3fb1fbf77533be7097af1cb54a02",
+    "line_sha256_without_lf": "sha256:89e31140c248c2f1bcb7140bd6549f7d86768c2c2bcf2ce88d623e7a06f01f95",
+    "same_statement_not_extra_atom": true
+  },
+  "consumer_context": [
+    {
+      "identity": "HR-FR-HIL-23",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "locator": "record HR-FR-HIL-23, physical lines 539-567",
+      "semantic_digest": "sha256:9f4d2db470aaa44878294d41641b87736f43c7dd87c35d650951b134c4465070",
+      "context_role": "HIL-NFR-37..40 shared contract; consumer context, not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-23a",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "physical_line": 728,
+      "physical_line_sha256_including_lf": "sha256:9003aac4f826eb8fac73f20344e49f2ec452604e5f00ce4c38a2dddaf89c3d8c",
+      "semantic_digest": "sha256:efb74a9471f38c0fb3892ddde4651d8ff76151c275de476389e772f1f03ee442",
+      "polarity": "positive",
+      "statement": "sandbox契約内で委譲が完走しproposalが再検証済み",
+      "context_role": "consumer/oracle; not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-23b",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "physical_line": 739,
+      "physical_line_sha256_including_lf": "sha256:fd09eba95eb1ccb86e625cdf83d46f620e776d88d2fb6e4cbea4c6737bdc80ba",
+      "semantic_digest": "sha256:137bb21711923bb2b8007420ac3cf97cd411e6a03167a028d52de81c54a49325",
+      "polarity": "negative",
+      "statement": "allowlist外egress/scope外diff/機密委譲/bypass常態化を拒否",
+      "context_role": "consumer/oracle; not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-23c",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "physical_line": 750,
+      "physical_line_sha256_including_lf": "sha256:72c9f08ff8c987644d720f44344a69356407c8ba31adf69720b1e2bc1257b732",
+      "semantic_digest": "sha256:1ff618cd61c60d4f9633a9bff43e337239881acd09b42e1ea7f5c9edabf87322",
+      "polarity": "boundary",
+      "statement": "quota枯渇・egress乖離でfail-close退避とquarantine",
+      "context_role": "shared consumer composite; quota facet overlaps, egress/quarantine ownership unresolved; not silently assigned to NFR40"
+    },
+    {
+      "identity": "HAT-HIL-23",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "physical_line": 440,
+      "physical_line_sha256_including_lf": "sha256:24c4e17dbe4a67719a09709921f982af5b005659b8cdf3e8d432149a711999b7",
+      "semantic_digest": "sha256:006bf237fbd5c99991cb59533e2ced2d86fe1f76e95bc79cfecae32105647a8c",
+      "status": "designed_not_implemented",
+      "context_role": "consumer/test design only; not run"
+    },
+    {
+      "identity": "HOT-HIL-56",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "physical_line": 83,
+      "row_text": "| **HOT-HIL-56** | HIL-BR-32, HIL-FR-64/65/66/67/68/69, HIL-NFR-37/38/39/40 | 隔離なし委譲、allowlist外egress、履歴込み払い出し、未浄化env、bypass残置、機密ファイル混入、vendor設定依拠の充足claim、quota枯渇を投入する | sandbox契約・環境浄化・最小払い出し・proposal再検証・auditをローカル強制機構だけで判定し、違反をfail-close/quarantineする |",
+      "sha256_including_lf": "sha256:81791b7ed7cc1e3164a474df9433b1f0c0c7e6c826558d676508428c21a25f12",
+      "sha256_without_lf": "sha256:e10eff730011e74d476f495f5c3410fd8e6c1c3d8a7b96b6216480375818b9c0",
+      "status": "design-only; not implemented and not run",
+      "context_role": "shared operational-test design for HIL-BR-32/HIL-FR-64..69/HIL-NFR-37..40; consumer/oracle provenance only, not another source atom or execution evidence"
+    }
+  ],
+  "source_holding": "MPR-SH-IR-003#HIL-NFR-40 remains registered_source_holding / preserved_pending_rehome; no formal successor, retirement, or whole-source closure is claimed.",
+  "historical_routing_and_recheck": {
+    "routing": {
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "locator": "line 142 / PRC-HIL-NFR-40-001",
+      "file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "raw_row_text": "{\"routing_registration_id\":\"PRC-HIL-NFR-40-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-NFR-40\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:4171419553664d7150ffe9875c14b6bc5212f14635d339dafc2af08ddc656c54\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS：quota・rate制限の保留と代替提案、無計画retry禁止\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"quota枯渇を状態としてfail-closeし保留・代替routingを管理するOS Worker運転責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"quota枯渇を状態としてfail-closeし保留・代替routingを管理するOS Worker運転責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+      "sha256_including_lf": "sha256:4400d04aa1bd792e4e1e293a5366d53b7965dc44131fe2cf41932f9001bf3f04",
+      "sha256_without_lf": "sha256:91eb93498d713a11eacd28cc3183e17390f82302f0bf2562848b2b5601dad480",
+      "status": "proposed HELIX-OS route; not adoption or successor assignment"
+    },
+    "quality_source_crosswalk": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "locator": "line 49 / HIL-NFR-40",
+      "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "raw_row_text": "| HIL-NFR-40 | 1 | OS：quota・rate制限の保留と代替提案、無計画retry禁止 |",
+      "sha256_including_lf": "sha256:01679e981a6100adac16640455cc8bd6734dca7d4f74320c1054251835052532",
+      "sha256_without_lf": "sha256:c35dd67ee0b4f7d5020a9c77c0312fe7c991e5c5f29589cb58c8b0569836acba",
+      "status": "quality-source recheck/crosswalk evidence; not adoption or successor assignment"
+    }
+  },
+  "adopted_OS_017_018_019": {
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "pairs": [
+      {
+        "identity": "HELIXOS-L2-017/L11-017",
+        "adoption": "explicit in fixed OS decision candidate set",
+        "L2_section_sha256": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+        "L11_section_sha256": "sha256:33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a",
+        "reused_meaning": "ticket/workflow continuity"
+      },
+      {
+        "identity": "HELIXOS-L2-018/L11-018",
+        "adoption": "explicit in fixed OS decision candidate set",
+        "L2_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "L11_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "reused_meaning": "assignment/attempt, stop, handoff, budgets and cumulative constraints"
+      },
+      {
+        "identity": "HELIXOS-L2-019/L11-019",
+        "adoption": "explicit in fixed OS decision candidate set",
+        "L2_section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "L11_section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "reused_meaning": "provenance, budget/deadline/cumulative continuity and unfinished obligations"
+      }
+    ],
+    "decision_document_revision_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+    "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+  },
+  "adjacent_owner_boundaries": {
+    "INTELLIGENCE-L2-010": {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "meaning": "Worker placement proposal only; not actual route, assignment, dispatch authority or quota/rate evidence. Selected only in routing-proposal branch."
+    },
+    "INFRASTRUCTURE-L2-003/004/009": {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "L1_path": "docs/helix-infrastructure/L1-planning/infrastructure-planning.md",
+      "meaning": "resource/capacity/incident observations and OS connection only where observation actually covers selected runtime and quota/rate state; general capacity does not prove provider quota or rate state. Missing/stale source returns unknown to its source owner."
+    },
+    "SECURITY-L2-029": {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "meaning": "added-runtime data/opt-out scope is not quota/rate evidence; existing operation authority remains in force."
+    },
+    "exact_current_section_pins": [
+      {
+        "identity": "HELIXINTELLIGENCE-L2-010",
+        "pair_revision": {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "heading": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補",
+          "line_start": 102,
+          "line_end": 107,
+          "section_sha256": "sha256:29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+          "file_sha256": "sha256:1aef1804b6b4e6ffde085a22cc2a66de97bcf90a29a19c7c79001a387c292c39"
+        },
+        "boundary": "placement proposal; not route/assignment/dispatch/quota evidence"
+      },
+      {
+        "identity": "HELIXINFRASTRUCTURE-L2-003",
+        "pair_revision": {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "heading": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量",
+          "line_start": 52,
+          "line_end": 61,
+          "section_sha256": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+          "file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+        },
+        "boundary": "capacity observation; only if selected runtime quota/rate is actually covered"
+      },
+      {
+        "identity": "HELIXINFRASTRUCTURE-L2-004",
+        "pair_revision": {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "heading": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State",
+          "line_start": 62,
+          "line_end": 71,
+          "section_sha256": "sha256:376be52bead7ab561f39188fb968b515401204265750d7c08d80fa2e4fe905bf",
+          "file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+        },
+        "boundary": "runtime observability/incident state; not assumed quota evidence"
+      },
+      {
+        "identity": "HELIXINFRASTRUCTURE-L2-009",
+        "pair_revision": {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "heading": "### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続",
+          "line_start": 114,
+          "line_end": 122,
+          "section_sha256": "sha256:9dcdc2fe685a7a80df26b070ef128611c44bf3fe109c52dfdecde69743a73a92",
+          "file_sha256": "sha256:569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "selector": "identity heading through before next same-or-higher heading; trim trailing blank lines; UTF-8 with one LF"
+        },
+        "boundary": "runtime resource state connection to OS Work/Change",
+        "prior_selector_correction": "旧選択はheading 114から次の###までを取り、後続##章を含めていた。正しい範囲はline 114-122、section SHA sha256:9dcdc2fe685a7a80df26b070ef128611c44bf3fe109c52dfdecde69743a73a92。"
+      },
+      {
+        "identity": "HELIXSECURITY-L2-029",
+        "pair_revision": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "heading": "### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件（単体追補候補、1.0）",
+          "line_start": 405,
+          "line_end": 416,
+          "section_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+          "file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+        },
+        "boundary": "added-runtime data/opt-out; not quota/rate status"
+      }
+    ],
+    "adoption_sources": [
+      {
+        "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "decision_document_revision_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+        "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "meaning": "OS adopted pair selection"
+      },
+      {
+        "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_document_revision_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+        "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "meaning": "HARNESS-023 4-class pair selection"
+      },
+      {
+        "decision_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "decision_document_revision_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+        "decision_file_sha256": "sha256:8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "meaning": "INTELLIGENCE-010 placement-proposal owner"
+      }
+    ]
+  },
+  "shared_HAC_23c_scope_decision_material": {
+    "source_text": "quota枯渇・egress乖離でfail-close退避とquarantine",
+    "option_A_recommended": "NFR40候補は原文のquota/rate planned-state、queue-hold OR routing-proposal、ignore/unplanned-retry拒否だけを保持する。HAC-23cのegress/quarantine複合consumer条件はHR-23 shared consumerとして別に追跡し、未配賦のまま残す。根拠はnormative HIL-NFR-40の範囲と既存owner pairの分担であり、新しい意味判断を要求しない。",
+    "option_B": "HAC-23c全複合条件をNFR40へ割り当て、egress divergence / quarantineもNFR40の受入義務へ含める。これは旧NFR40本文を越える意味拡張であり、NFR39・SECURITY・INFRASTRUCTUREとの責務重複を生むため、実際に選ぶ場合のみPOの対象revision判断を要する。",
+    "impact": "Aでは未配賦consumer closureは主張しない。BはOS quota/rate candidateの意味とpair範囲を拡大する。候補起草の開始条件として選択を要求しない。"
+  },
+  "candidate_sections": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避（単体候補、未採択）",
+      "line_start": 1625,
+      "line_end": 1634,
+      "section_sha256": "sha256:3e9222ac234c34102782d30f771dac100e11939a7dbc469a30efbffe4d8d916c",
+      "file_sha256": "sha256:8d8c0c61c329c00a836c8a472fb11e719726c7bbf412b120bb069c400ac828fa"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避の受入候補",
+      "line_start": 1298,
+      "line_end": 1324,
+      "section_sha256": "sha256:49fb6c62f4fcbc3c5e167f3955bc10c0997f0eb8f04331267b194bc2664e6bff",
+      "file_sha256": "sha256:3cbb37bdb86bdabc3cbde3bc7c3e5f953046946a63a4a416c77ceb66fe36a289"
+    }
+  },
+  "candidate_pair_section_sha256": {
+    "HELIXOS-L2-129": "sha256:3e9222ac234c34102782d30f771dac100e11939a7dbc469a30efbffe4d8d916c",
+    "HELIXOS-L11-129": "sha256:49fb6c62f4fcbc3c5e167f3955bc10c0997f0eb8f04331267b194bc2664e6bff"
+  },
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:8d8c0c61c329c00a836c8a472fb11e719726c7bbf412b120bb069c400ac828fa",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:3cbb37bdb86bdabc3cbde3bc7c3e5f953046946a63a4a416c77ceb66fe36a289"
+  },
+  "candidate_semantic_digest": "sha256:3e9222ac234c34102782d30f771dac100e11939a7dbc469a30efbffe4d8d916c",
+  "normal_oracles": [
+    {
+      "id": "queue-hold-normal",
+      "fixture": "同一selected lane/assignment/runtime。runtime sourceがquota枯渇またはrate制限をplanned non-successとして報告。",
+      "expected": "作業継続・success化せずqueue hold。OS-018/019のidentity、期限、budget、attempt/cumulative limits、未完義務を保持。後の再開は独立したavailability evidenceと既存authority/assignment下のみ。"
+    },
+    {
+      "id": "routing-proposal-normal",
+      "fixture": "別fixtureで同様の状態。selected INTELLIGENCE-010 placement proposalがある。",
+      "expected": "OSは代替runtime routing proposalを記録するだけ。自動選択/assignment/dispatchをしない。実進行は既存OS assignment/authority/cumulative limitsで処理し、proposalなしならsource上の別OR経路queue holdが使える。"
+    }
+  ],
+  "negative_oracles": [
+    {
+      "id": "ignore-exhaustion",
+      "change": "runtime reports quota/rate exhausted; all other inputs normal",
+      "reject": "same lane continues work or returns success/completion"
+    },
+    {
+      "id": "unplanned-retry",
+      "change": "no existing assignment retry plan",
+      "reject": "automatic/repeated retry proceeds as if planned"
+    },
+    {
+      "id": "erase-planned-state",
+      "change": "quota/rate observation is collapsed into generic transient error",
+      "reject": "planned state, selected retreat, or unfinished obligation is lost"
+    },
+    {
+      "id": "proposal-auto-dispatch",
+      "change": "proposal present but no existing OS authority/assignment selection",
+      "reject": "dispatch/assignment occurs from proposal alone"
+    },
+    {
+      "id": "stale-or-unseen-runtime-status",
+      "change": "missing, stale, or runtime-mismatched observation",
+      "reject": "availability/exhaustion-cleared/routeability inferred; keep selected operation unknown/unfinished and return to observation source owner"
+    }
+  ],
+  "unseen_fixture": "Unseen selected runtime or status source is absent/stale/conflicting. Preserve unknown/unfinished with provenance; do not borrow another runtime status, fall back to a provider, or halt unrelated lanes.",
+  "dependency_fixture": {
+    "adopted_classification_pair": {
+      "identity": "HARNESS-L2/L11-023",
+      "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_row": 52,
+      "fixed_L2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "fixed_L11_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "decision_document_revision_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+      "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "selected_synthetic_pack_call": "pack=fixture:OS129-lane-L7@r1; call=fixture:OS129-call-L7@r1; runtime=fixture:runtime-A@r1; operation=quota/rate-retreat; scope=fixture:lane-L7",
+    "rows": [
+      {
+        "class": "always_required",
+        "identity": "fixture:OS129-selected-lane-assignment@r1",
+        "owner": "fixture-owner:HELIX-OS-018",
+        "contract_revision": "fixed adopted OS-018 section pair",
+        "declared_range": "exact selected section revision",
+        "compatibility_evidence": "same lane/task/assignment/attempt and active operation scope",
+        "applicability": "always for this selected call"
+      },
+      {
+        "class": "operation_specific",
+        "identity": "fixture:quota-rate-retreat-oracle@r1",
+        "owner": "fixture-owner:HELIXOS-L2-129-candidate",
+        "contract_revision": "this candidate revision",
+        "declared_range": "exact candidate section digest",
+        "compatibility_evidence": "call identity selects quota/rate handling",
+        "applicability": "only when selected runtime status reports quota exhaustion/rate limit"
+      },
+      {
+        "class": "selected_source",
+        "identity": "fixture:runtime-A-quota-status@r1",
+        "owner": "fixture-owner:runtime-A-observation-source",
+        "contract_revision": "fixture:runtime-A-status-contract@r1",
+        "declared_range": "=fixture:runtime-A-status-contract@r1",
+        "compatibility_evidence": "fixture status is explicitly bound to selected runtime-A and lane-L7",
+        "applicability": "only selected runtime/source in this call; INTELLIGENCE-010 proposal row is included only in routing-proposal branch"
+      },
+      {
+        "class": "reference_only",
+        "identity": "legacy-HR-FR-HIL-23/HAC-HIL-23a,b,c/HAT-HIL-23",
+        "owner": "legacy shared consumer context",
+        "contract_revision": "pinned source records in source ledger",
+        "declared_range": "not applicable to runtime closure",
+        "compatibility_evidence": "provenance-only; no execution compatibility claim",
+        "applicability": "context only; consumer obligations remain separately tracked and are not erased"
+      }
+    ],
+    "compatibility_boundary": "Fixture values are synthetic and selected-call-specific. Four rows expose identity, owner, contract revision/range, compatibility evidence and applicability. No actual runtime owner/status source or new authority is asserted. HARNESS-023 supplies the four-class oracle; its use here does not claim NFR40 adoption."
+  },
+  "human_decision_options": {
+    "source_text": "worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。",
+    "options": [
+      {
+        "option": "A (推奨)",
+        "meaning": "原文全条件の候補scope。quota/rate planned state、source上の二つのfail-close OR経路、ignore/unplanned-retry拒否を保持し、HAC-23cのegress/quarantine配賦は保留。",
+        "reason": "normative atomとL1 corroborationに忠実。既存OS-017/018/019およびsource-specific owner境界を再定義せず、shared consumerの無根拠な配賦を避ける。"
+      },
+      {
+        "option": "B",
+        "meaning": "候補を採択しないままsource holdingに保持し、formal successor/no-loss closureを主張しない。",
+        "impact": "要求pairは登録候補のままになり、実装/実行許可は生じない。"
+      },
+      {
+        "option": "C (意味変更)",
+        "meaning": "POが明示する subset のみを対象とし、除外されたquota/rate/retreat/retry条件を未充足source holdingへ残す。",
+        "impact": "対象revisionの意味を狭め、decision根拠なしに実行適合と扱わない。"
+      }
+    ],
+    "impact": "Candidate drafting/review is not gated on PO choice. Adoption, whole-source closure, HAC-23c full closure and implementation status remain undecided."
+  },
+  "version_target_source_status": "HIL-NFR-40 has no version_target; candidate leaves it unspecified.",
+  "formal_successor_ids": [],
+  "coverage_result": "no_loss_limited_to_one_whole_HIL-NFR-40_IR_identity_atom; L1 is same-statement corroboration; consumers/routing/crosswalk remain separately classified; formal successor, adoption, and whole-source closure are not claimed.",
+  "verification_status": "Candidate pair, atom ledger, source/consumer locators, fixed adopted pair pins and MPR append are synchronized; all fixtures are documentary and unexecuted; no old runtime/test/CI was run.",
+  "mpr_current_prefix": {
+    "latest_main_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "line_count": 696,
+    "file_sha256_before_candidate": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
+    "ends_in_lf": true
+  },
+  "latest_main_prefix": {
+    "commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "candidate_pair_prefix_line_count": 1624,
+    "candidate_L2_append_line": 1625,
+    "candidate_L11_append_line": 1298,
+    "L2_prefix_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
+    "L11_prefix_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
+    "L2_prefix_bytes": 433516,
+    "L2_line_count": 1623,
+    "L11_prefix_bytes": 317449,
+    "L11_line_count": 1296,
+    "L2_candidate_append_line": 1625,
+    "L11_candidate_append_line": 1298
+  },
+  "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-129",
+  "decision_scope_boundary": "Candidate preserves the whole source statement and recommends faithful option A. Option B retains the candidate unadopted with the source holding live and makes no formal-successor or whole-source-closure claim; it does not revise source meaning. Option C narrows the covered source conditions only through an explicit PO decision for that target revision and leaves excluded conditions unfulfilled in source holding. Candidate drafting/review is not gated on PO choice.",
+  "mpr_registration": {
+    "registration_id": "MPR-RC-HELIXOS-L2-129-001",
+    "kind": "requirement_candidate",
+    "management_state": "registered_proposal",
+    "authority_effect": "none",
+    "base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "base_line_count": 696,
+    "base_file_sha256": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
+    "candidate_row_appended_after_base": true,
+    "coverage_result": "no_loss",
+    "source_holding_remains_live": true
+  },
+  "historical_assertion_context": {
+    "identity": "HIA-NFR-040",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+    "asset_id": "LEGACY-ASSET-A52AD67A5575E2B4ACFE",
+    "file_sha256": "sha256:bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
+    "physical_line": 198,
+    "row_text": "| HIL-NFR-40 | HIA-NFR-040 | quota/rate制限がある | 退避挙動を検査する | 枯渇無視の継続・無計画retryを拒否する | `HIL_QUOTA_UNPLANNED` | HOT-HIL-56 | QuotaResilience | draft-defined | not-implemented |",
+    "sha256_including_lf": "sha256:693766ef55d671549616a34adcb09b368bdb419f68d9d658d0a199760f5a5ad5",
+    "sha256_without_lf": "sha256:86436f7251d5d12fb6c5fe22cfb8683834b5cf3343ba6be36526747511670534",
+    "meaning": "quota/rate制限を退避挙動で検査し、枯渇無視の継続・無計画retryを拒否。HIL_QUOTA_UNPLANNED; draft-defined/not-implemented。旧consumer assertion evidenceで追加atomではない。"
+  },
+  "rejected_prior_assertion_locator": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "physical_line": 198,
+    "row_text": "| HST-CASE-025-08 | HST-HIL-025 | HIL-NFR-24 | consumer一件が未列挙 | planをfenceする | draft | draft | fenced receipt 0件 | HIL_DESIGN_REFACTOR_CONSUMER_MISSING | FX-HST-025-08 | design-defined | not-implemented |",
+    "sha256_including_lf": "sha256:baad3ba59166f0cd5956f9c8d925fb44e4f9b2424153caf331cefc6dc661e74a",
+    "sha256_without_lf": "sha256:c3ece364be3b1468750b2ca2b8fc080fcb5e344ff4158c98c2ee514c377c2de4",
+    "reason": "この物理行はHIA-NFR-040ではなくHST-CASE-025-08。Assertion coverage ledgerのHIA rowに置換する。"
+  },
+  "legacy_downstream_progress_context": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-design-progress-ledger.md",
+    "file_sha256": "sha256:e326a93400149115e9074ea23c52ea965ce0298fa1f58c42b05a5e00d43b7ac1",
+    "unexecuted_unlowered_rows": [
+      {
+        "physical_line": 44,
+        "row_text": "| HST pointer実在 | 141/153 | 92.16% | 追加12件はHOT-HIL-56/57まででL9降下待ち |",
+        "sha256_including_lf": "sha256:ba4b97bba6d5ea03b3d81c1295f71cdfa16ad5c9115cc20460095f4d849d6e25",
+        "sha256_without_lf": "sha256:87be48f1dad01034cbf3e88afe4c1fdb23246cdf5234aa66bfc60f9925907ed0"
+      },
+      {
+        "physical_line": 46,
+        "row_text": "| 親HST内atomic case到達 | 141/153 | 92.16% | 既存411 atomic case、追加12件は未降下 |",
+        "sha256_including_lf": "sha256:ec27e4571992bc8b8a90ca7a964ac8dbc596156610304bcb8816b43929c8ccb1",
+        "sha256_without_lf": "sha256:9d8adf4fcbf2787a4017d097711c525ecd2cba08f289ece5118bf8b9920ad374"
+      },
+      {
+        "physical_line": 48,
+        "row_text": "| 全component解決済み要求 | 141/153 | 92.16% | 追加12件のL4 component obligation未降下 |",
+        "sha256_including_lf": "sha256:a1a799dcfd9c839e4791fe78eca779f8d4b4d7ca1dda500650ed7202e55606cf",
+        "sha256_without_lf": "sha256:9b7af5312c806fb65fa23ea2208ae9be0359352042cf4ca327618091d5d62be3"
+      }
+    ],
+    "meaning": "12 additional cases remain below legacy HST/L9 atomic-case reach and L4 component obligation; HOT pointer presence is not implementation or execution closure."
+  },
+  "correction_reason": "未公開候補receiptのB/C境界、HIA-NFR-040 locator、HOT-HIL-56 pin、INFRASTRUCTURE-009 selectorを訂正。候補本文/section・normative atom identity/digestは変更なし。"
+}

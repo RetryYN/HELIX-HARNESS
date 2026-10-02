@@ -1295,6 +1295,44 @@ HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実�
 
 **旧source/consumer対応**：規範sourceは`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-36`全体。旧L1 `infinity-loop-platform-requirements.md:216`は同文のcorroboration。`HR-FR-HIL-22`は再現bench・実task scorecard・品質/安全/retry込みcostの用途別比較、`HAC-HIL-22a/b/c`はpositive/negative/品質低下時比較のboundary、`HAT-HIL-22`はfixture/rubric/blind score/effective cost/route receiptの設計済みtest条件を示す。これらを消さず、HATを実行したとはしない。
 
+### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避の受入候補
+
+**状態・対象**：未採択・未実行のL11 oracle候補。ケースは現在選択されたlane、assignment、worker runtimeと既存OS制約を固定した文書上のfixtureであり、runtime、旧test、CIを実行しない。正常の退避経路は旧sourceの二択なので別々に検査する。
+
+- **正常例A—queue hold**：選択assignmentのworker runtimeからquota枯渇またはrate制限の状態が得られるfixtureを与える。laneはその状態をplanned non-successとして保持し、queue holdへ退避する。枯渇を無視して処理を続行せず、完了扱いもしない。既存OS-018/-019のassignment、attempt、budget、deadline、累積制約、停止理由と未完義務が保持される。後続の利用可能状態を別の根拠から確認した後も、再開は既存assignment/authorityと累積制約に従う。
+- **正常例B—代替runtime routing proposal**：同じ種類のquota/rate状態を固定した別fixtureを与え、INTELLIGENCE-010のplacement proposalが利用可能な場合、OSは代替runtimeへのrouting proposalを記録する。proposalは選択・採択済みrouteやdispatchではなく、このoracle単独でassignmentを変更しない。実際に進める場合は既存OS assignment/authorityを通し、既存budget/deadline/cumulative constraintsと未完義務を引き継ぐ。proposalが得られない場合にも、queue holdというsource上の別経路を選べる。
+- **独立negative—枯渇を無視した続行**：他の入力を正常に保ち、runtimeがquota枯渇／rate制限を示しているのに同laneが同じassignmentで処理を続けるcaseを与える。成功・完了と扱ったら不合格。
+- **独立negative—無計画retry**：既存assignmentにretryを計画した根拠がない状態で、自動または反復retryを行うcaseを与える。retryを成立させたら不合格。既存計画に基づく retry policy の閾値や再試行間隔はこのcandidateで新設しない。
+- **独立negative—予定状態の消失**：quota/rate eventをgeneric transient errorへ畳み、planned state、退避先または未完義務のいずれかを失うcaseを与える。一般error記録だけでNFR-40の状態処理済みとしたら不合格。
+- **独立negative—proposalからの自動dispatch**：INTELLIGENCE placement proposalだけを与え、OS assignment/operation authorityによる既存選択が無いのに代替runtimeへ自動dispatchするcaseを与える。proposalを実行許可へ昇格したら不合格。
+- **未見・unknown**：未観測のruntime、staleなquota/rate observation、またはselected runtime/sourceとの対応が不明なfixtureでは、利用可能・枯渇解消・route可能と推定しない。既存OS-019に従い対象operationのunknown/未完状態と証拠・停止理由を保持し、該当observation source ownerへ戻す。他runtimeの状態を転用しない。
+- **依存closureの同一入力（合成fixture）**：`call=fixture:OS129-call-L7@r1; lane=fixture:lane-L7; assignment=fixture:assignment-A@r1; runtime=fixture:runtime-A@r1; operation=quota-rate-retreat`を固定する。四区分はHARNESS-L2/L11-023の採択済み分類契約を使い、値はすべてfixture用で実ownerを割り当てない。
+  - 常時必須：identity `fixture:OS129-lane-assignment@r1`、owner `fixture-owner:HELIX-OS-018`、contract revision/range `fixture:OS018-selected-section-pair`、compatibility evidence `same lane/task/assignment/attempt and active operation scope`、applicability `このcallで常時`。
+  - 特定操作時のみ：identity `fixture:quota-rate-retreat-oracle@r1`、owner `fixture-owner:HELIXOS-L2-129-candidate`、contract revision/range `fixture:this-candidate-section-digest`、compatibility evidence `call selects quota/rate handling`、applicability `選択runtimeがquota枯渇/rate制限を報告した場合のみ`。
+  - 選択した入力元に応じて必須：identity `fixture:runtime-A-quota-status@r1`、owner `fixture-owner:runtime-A-observation-source`、contract revision `fixture:runtime-A-status-contract@r1`、range `=fixture:runtime-A-status-contract@r1`、compatibility evidence `status explicitly bound to selected runtime-A and lane-L7`、applicability `選択runtime/sourceのみ。代替proposal経路ではINTELLIGENCE-010 proposalを追加選択する`。
+  - 参照資料のみ：identity `legacy-HR-FR-HIL-23/HAC-HIL-23a,b,c/HAT-HIL-23`、owner `legacy shared consumer context`、revision/range `source-ledger-pinned records / not an execution range`、compatibility evidence `provenance only; no runtime compatibility claim`、applicability `背景contextのみ。consumer義務は別途保持し、これに分類したことで消さない`。
+  HARNESS-023は2026-09-28 decision row 52、fixed target `f6dad2a33e24f000b87d7f09b8d40288257e74cc`のpairである。これは四分類oracleの入力で、NFR40の採択を生成しない。分類/applicabilityがunknown・矛盾ならreference-onlyへ推測せず、当該callをunknown/未完として保留する。
+- **依存分類（HARNESS-L2-023の4区分）**：
+
+| 分類 | このpairで必要なもの |
+|---|---|
+| 常時必須 | 同じlane/assignment/task、selected runtime、適用中のOS authority/scope、OS-018/-019のbudget・deadline・累積制約・continuity。 |
+| 特定操作時のみ必須 | selected runtimeがquota exhaustion/rate limitを示したoperationで、planned non-successとqueue holdまたはrouting proposalのどちらかを評価する。通常operationにquota gateを追加しない。 |
+| 選択sourceに応じて必須 | 当該selected runtime/sourceのquota/rate状態。routing proposalを使う場合だけINTELLIGENCE-010のproposalとその適用根拠。INFRASTRUCTURE観測は実際に当該runtime/stateを覆う範囲に限って使用し、一般capacityから補わない。 |
+| 参照資料のみ | HR-FR-HIL-23、HAC-HIL-23a/b/c、HAT-HIL-23およびlegacy HOT-HIL-56は023のruntime-dependency分類上のconsumer context。これらのcondition/oracle自体はconsumer evidenceとして別に保持し、reference-only分類でsource・oracle義務を消さない。 |
+
+Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corroborationとして4区分の外に保持する。HR/HAC/HAT/HOTの共有consumer条件も別途追跡し、正確な配賦なしに本pairのsource条件へ足さない。HAT-HIL-23/HOT-HIL-56は旧設計上`designed_not_implemented`/`not-implemented`であり、実行結果は主張しない。受入pairとsourceのdigest、HAC-23cの未配賦境界、PO判断材料は[coverage receipt](../../governance/audits/requirement-registration/helixos-l2-129-hil-nfr40-quota-rate-coverage-receipt-2026-10-03.json)を参照する。
+
+#### Worker runtime適用scope fixture（未採択）
+
+既存のqueue-hold／routing-proposal正常例、独立negative、unknown、四区分dependency tupleは選択scope以外の値を変えず、次のscope fixtureと組み合わせる。どちらも文書上のfixtureであり、現行runtimeの状態・許可・合否を示さない。
+
+- **第三者runtime fixture**：BR-32/HR-23が指すClaude/Codex以外の選択runtimeでquota/rate状態を与える。案A/Bのいずれでも本候補の既存OR受入とnegativeが適用される。
+- **primary Worker fixture**：primary Workerを選択runtimeとして同じquota/rate状態とし、残りのtupleを同一にする。案Bでは第三者runtimeと同じ既存OR受入とnegativeを適用する。案Aでは本候補scope外として扱うが、scope外という記録から合格、適法、quota状態、実行許可を推定せず、他の既採択authority/pairを適用する。
+- **PO未選択時**：primary Workerに関する本候補の適用判定はunknownのまま保持する。二つのsource上の退避経路のいずれかを削除・固定せず、queue-hold／routing-proposal双方の既存正常例を維持する。scope未決を理由にdependencyの6 fieldsやHARNESS-023の4分類を変えない。
+
+案Bを推奨する理由と案A/Bの具体的影響は対L2のscope候補とcoverage receiptに記録する。SECURITY-029/031の追加runtime向け既採択境界はdecision 57 row 112のまま維持し、NFR-40 scope候補へ混ぜない。
+
 
 ### HELIXOS-L2-130 docgen source・採否・trace projectionの受入候補（未実行）
 
