@@ -45,3 +45,7 @@
 ## 最新mainの追補比較（212cefee88df4b0914c6253aa109fe9d884eae51）
 
 直前のa5比較はその時点の独立照合として保持し、この追補を新しいlatest-main比較とする。監査basis `a7f85b4c2fd88510c32de4a1ade4c95662bd98c1`と固定要求revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`は更新していない。37 crosswalk参照に対応する19の一意な採択pair targetのL2/L11 sectionまたは受入row、PO decision fileを212ceで再照合し、38 locatorすべてがa7基準のSHA-256と一致した。INFRASTRUCTURE-011は次の同階層以上の見出しで範囲を切り、後続章を含めていない。旧L1/IR/consumerの5 source file、IR 11件・acceptance case 33件・system-test 11件の母数、および既存6監査入力も記録SHAと一致する。HARNESS-083のMPR 001/002は`registered_proposal`／`authority_effect: none`のままで、採択を推定しない。全section/row、決定record、sourceと入力のlocator・hashはJSONの`latest_main_comparison`に記録した。
+
+## 最新mainの追補比較（e05a45ca27104e37909c49388c38ece0cf1c69f0）
+
+既存のa7監査基準・固定f6要求revisionと212ceの比較記録を保持し、e05aで19対象のL2/L11全38箇所とPO判断ファイルを再照合した。全選択SHAはa7基準と一致し、最新全文SHAと具体locatorをJSONへ追記した。この一致は旧sourceの条件充足や実行の完了を意味しない。
