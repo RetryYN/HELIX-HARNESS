@@ -1004,7 +1004,17 @@
         "closure_claim": "none; whole IR and all consumer conditions are not proven closed"
       },
       "closure_status": "whole_requirement_closure_unproven",
-      "consumer_scope_closure_proven": false
+      "consumer_scope_closure_proven": false,
+      "existing_unadopted_candidate": {
+        "identity": "HARNESS-L2-085",
+        "registration_id": "MPR-RC-HARNESS-L2-085-001",
+        "merged_main_revision": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+        "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-085",
+        "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-085",
+        "state": "未採択候補",
+        "scope": "選択portfolio/scope内の過剰な重複contract/exampleをcontext cost・drift risk findingとして示す。",
+        "limit": "候補の存在は採択を意味せず、採択pairとの残差判定は変わらない。source closureや正式successorを生成しない。"
+      }
     },
     {
       "legacy_id": "HIL-NFR-34",
@@ -1372,17 +1382,6 @@
     "latest_main_66_locator_unique_count": 66,
     "latest_main_66_locator_method": "Exact UTF-8 byte selections and original locator ranges; LF preserved; each selected byte sequence uniquely located in latest source file; no trim or reserialization."
   },
-  "independent_review_correction_basis": {
-    "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.md": {
-      "commit": "24ad26489ac6161ad266360fb8e2b53739379e9e",
-      "sha256": "8b2b6303f2cf817cec098035aaa30951f428b9ff46be855075e3b14b1c8ae85d"
-    },
-    "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.json": {
-      "commit": "24ad26489ac6161ad266360fb8e2b53739379e9e",
-      "sha256": "ede8c6144e9678b426b3e7a50fd7293052e41350aeb5fcb815168aeb0141a265"
-    }
-  },
-  "corrected_from_audit_commit": "a265cde478c93dfd248375122950df1551a57f0a",
   "correction_base_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
   "correction_summary": {
     "NFR36": "residual=false withdrawn; two receipt conditions retained as unproven; HELIXINTELLIGENCE-L2-067 confirmed adopted by fixed 2026-09-28 PO decision, but its selected conditions do not prove those receipts.",
@@ -2590,7 +2589,7 @@
           "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
           "line": 55,
           "file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
-          "row_sha256_with_lf": "bb14d999661859fdbe7d0a5d557859fdbe1c0a35d56fb9daf5cc3a3b74c9688c",
+          "row_sha256_with_lf": "bb14d999661859cdfe7d0a5d557859fdbe1c0a35d56fb9daf5cc3a3b74c9688c",
           "row_sha256_without_lf": "7a8229a9cb25457f18659f92e6c03a7d398a78f306c66b1870c340b596ce9877"
         },
         "test_ir": {

@@ -49,6 +49,8 @@ OS L2 515–532およびL11 241–252は要求正本更新の複合管理経路�
 
 041はactive-template要素の原子的obligation抽出とgap提示、043は全適用validation rule/applicability branchに対する例・oracle・risk coverage、044は適用義務classのcontract/oracle coverage、未被覆と意味重複を扱う。この照合対象の範囲では、数量だけの合格拒否、applicable coverage、semantic overlapの責務が既採択pairに対応する。一方、比較したこれらの本文は「過剰な重複contract/exampleをcontext costとdrift riskとしてfinding化する」明示条件を含まない。この比較で確認できる残差として、過剰な重複contract/exampleをcontext costとdrift riskのfindingにする明示条件を記録する。ただし、この監査はHIL-NFR-33のIR statementと全consumer条件を全採択pair/各適用範囲へ漏れなく写像したことを証明していないため、これを唯一の残差またはsource全体のclosureとは断定しない。別監査ファイルへの参照には依存しない。なお本節はNFR-33の採択状態や正式successorを新たに生成しない。
 
+現行mainには、この確認済み残差を扱う未採択候補 `HARNESS-L2-085`（`MPR-RC-HARNESS-L2-085-001`、merge revision `43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5`）と対のL11がある。選択portfolio/scope内の過剰な重複contract/exampleをcontext cost・drift risk findingにする候補であり、採択ではないため採択pairに対する残差判定は変わらない。
+
 ## 対象pair section/row pins
 
 選択範囲の行またはheading sectionをUTF-8、末尾空行trim、LF終端でhashし、現行bytesとbase commitの値が一致することを確認した。L11のOS acceptance見出しsectionは各見出しから次の同格以上見出し直前まで。
