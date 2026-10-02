@@ -342,5 +342,15 @@
     "source_closure": false,
     "formal_successor_assigned": false,
     "legacy_runtime_executed": false
+  },
+  "mpr_register_append": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "prefix_line_count": 696,
+    "prefix_sha256": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
+    "appended_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+    "appended_row_line": 697,
+    "append_only_prefix_verified": true,
+    "meaning": "既存696行のbyte prefixを保持し、005のregistered_proposal行を末尾へ追加した。過去receipt/MPR行は書換えていない。"
   }
 }
