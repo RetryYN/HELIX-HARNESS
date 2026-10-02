@@ -1,7 +1,7 @@
 {
   "audit_id": "HIL-NFR-07-source-condition-current-recheck-2026-10-02",
   "audit_kind": "source_condition_current_recheck",
-  "comparison_base_commit": "4d1c8db1a670224e83e8bc20834a717cf4289de2",
+  "comparison_base_commit": "0c9baec55a85e98ce624f68957ba989ee169406c",
   "claim_scope": "Old HIL-NFR-07 condition routing into the adopted exact HELIX-HARNESS-L2-035-002 L2/L11 revisions; no IR153-wide closure claim.",
   "legacy_requirement": {
     "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -198,8 +198,8 @@
       "record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
       "current_record_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
       "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-      "current_os_l2_sha256": "sha256:fb7c87ee05a15112af6849c3a759fa4b0c9deee7f5ababb8e925f7a31436c1fa",
-      "current_os_l11_sha256": "sha256:c3ed3c30bf727f2054451d88a7d6f93f45d4ed96fa0ea8dfb9df658eb1a87b0a",
+      "current_os_l2_sha256": "sha256:77dbba201571b248797e7b8079c418ec51c9d2328461be739b802897612cf7da",
+      "current_os_l11_sha256": "sha256:eec6bb276b0076e82ec38e4ad36d6947fc030589ec9787e90e31c83ba2461673",
       "finding": "No direct HIL-NFR-07 equivalent was found in current OS L2/L11; OS decision does not assign HARNESS scope/minimality meaning to OS."
     },
     "current_decision_packet": {
@@ -264,12 +264,57 @@
     "runtime_or_test_executed": false
   },
   "latest_main_read_after": {
+    "comparison_base_commit": "0c9baec55a85e98ce624f68957ba989ee169406c",
+    "note": "Current main 0c9baec55a85e98ce624f68957ba989ee169406c includes later independent candidates and binding refreshes. HIL-NFR-07 source, HARNESS L2/L11 sections, and 2026-09-29/30 decision records are byte-identical to the prior 4d snapshot; OS L2/L11 files changed for unrelated OS-123 and their fullfile pins were refreshed. Adoption is read from the exact 2026-09-29 decision; OS-L2-035 is a separate identity.",
+    "management_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "rows": 668,
+      "sha256": "sha256:82d18a5514421920e3dfdc476a15f712082a57fc1e44a2d6c41a93a8c6e91fe5",
+      "scope_measures_source_holding_row": 529,
+      "max_registered_harness_l2_candidate": "HARNESS-L2-079-001",
+      "matches_comparison_base_bytes": true,
+      "harness_035_002_candidate_row": 530
+    },
+    "source_condition_ledger": {
+      "path": "docs/governance/audits/requirement-registration/scope-measures-source-lines-2026-09-28.jsonl",
+      "sha256": "sha256:cbecbd6244877bea38bbb53d1a92fe373337fb7aea614aea5f492b995a25b649",
+      "atom_id": "SCOPE-MEASURES-HIL-NFR-07-L0187",
+      "source_holding_registration_id": "MPR-SH-SCOPE-MEASURES-001"
+    },
+    "candidate_receipt": {
+      "path": "docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28-r2.json",
+      "sha256": "sha256:669829398571661d482720c7b7d6f8a253244e91ce9b20c57f1e0abb46eedcc9"
+    },
+    "current_independent_changes": [
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "change": "HELIXOS-L2-123 appended; unrelated to HARNESS HIL-NFR-07",
+        "file_sha256": "sha256:77dbba201571b248797e7b8079c418ec51c9d2328461be739b802897612cf7da"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "change": "HELIXOS-L11-123 appended; unrelated to HARNESS HIL-NFR-07",
+        "file_sha256": "sha256:eec6bb276b0076e82ec38e4ad36d6947fc030589ec9787e90e31c83ba2461673"
+      }
+    ]
+  },
+  "l11_negative_oracle_granularity": {
+    "normal_requires_all_three_dimensions": true,
+    "independent_negative_dimensions": [
+      "complexity",
+      "operational debt"
+    ],
+    "public_surface_missing_as_standalone_negative": false,
+    "other_public_surface_negative_example": "A candidate expands public API/settings and maintenance burden while claiming minimum necessity from feature count alone.",
+    "interpretation": "A missing public-surface measurement fails the adopted normal condition that requires all three measurements; absence of a standalone negative fixture is recorded as example granularity, not a demonstrated requirement gap."
+  },
+  "prior_main_read_after": {
     "comparison_base_commit": "4d1c8db1a670224e83e8bc20834a717cf4289de2",
     "note": "PR #2515 adds a later register suffix only for the compared scope. HIL-NFR-07 source, HARNESS/OS L2/L11, and relevant decision bytes were verified against this base. Adoption is read from the exact 2026-09-29 decision, not MPR metadata; OS-L2-035 is a separate identity.",
     "management_register": {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "rows": 667,
-      "sha256": "sha256:24425056ffa70f1d20c4e519e439afa816b3f7e564a8345c9a5c144163e914f5",
+      "rows": 668,
+      "sha256": "sha256:82d18a5514421920e3dfdc476a15f712082a57fc1e44a2d6c41a93a8c6e91fe5",
       "scope_measures_source_holding_row": 529,
       "max_registered_harness_l2_candidate": "HARNESS-L2-079-001",
       "matches_comparison_base_bytes": true,
@@ -285,15 +330,5 @@
       "path": "docs/governance/audits/requirement-registration/harness-scope-derivation-coverage-receipt-2026-09-28-r2.json",
       "sha256": "sha256:669829398571661d482720c7b7d6f8a253244e91ce9b20c57f1e0abb46eedcc9"
     }
-  },
-  "l11_negative_oracle_granularity": {
-    "normal_requires_all_three_dimensions": true,
-    "independent_negative_dimensions": [
-      "complexity",
-      "operational debt"
-    ],
-    "public_surface_missing_as_standalone_negative": false,
-    "other_public_surface_negative_example": "A candidate expands public API/settings and maintenance burden while claiming minimum necessity from feature count alone.",
-    "interpretation": "A missing public-surface measurement fails the adopted normal condition that requires all three measurements; absence of a standalone negative fixture is recorded as example granularity, not a demonstrated requirement gap."
   }
 }

@@ -1,0 +1,421 @@
+{
+  "receipt_id": "HELIXOS-L2-123-HIL-BR-14-COVERAGE-2026-10-02",
+  "authority_effect": "none",
+  "registration_id": "MPR-RC-HELIXOS-L2-123-001",
+  "candidate_ids": [
+    "HELIXOS-L2-123",
+    "HELIXOS-L11-123"
+  ],
+  "candidate_status": "registered_proposal; unadopted; no L3 approval, remote operation, runtime execution, acceptance, or formal legacy successor asserted",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-br14-source-lines-2026-10-02.jsonl#HIL-BR-14",
+  "source_atom_set_digest": "sha256:cfcb3a04f794d7a81508a905e53eae859072f963681e038308f5177ab509f901",
+  "source_atom_set_file_sha256": "sha256:262606e5a6a9bedd52228539b46884f93c6cf6f43bdfb5b7e820d5785d9304bd",
+  "source_atom_set_encoding": "UTF-8 JSONL, one line; source physical line hashes include LF while displayed text excludes the line ending.",
+  "source_collection_scope": "Exactly one selected frozen IR identity HIL-BR-14 revision 2. L1 line 66 corroborates the same wording, not a second atom. HR-FR-HIL-09/HAC-HIL-09a,b,c/HAT-HIL-09 are consumer/oracle context and not extra atoms. Adjacent IR identities excluded.",
+  "source_atom": {
+    "source_identity": "HIL-BR-14",
+    "atom_id": "HIL-BR-14",
+    "kind": "legacy_ir_requirement_identity",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "ir_revision": 2,
+    "ir_status": "specified",
+    "ir_definition_status": "frozen",
+    "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-14",
+    "source_file": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_physical_line": 561,
+    "source_line_text": "  \"HIL-BR-14\": {",
+    "source_line_sha256_including_lf": "sha256:52222c18a9a29823f70ebdfb0cbfcb4834570c290b9f6167a064acf6adbc125b",
+    "source_line_text_excludes_line_ending": true,
+    "source_statement": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。",
+    "source_statement_semantic_digest": "sha256:917252a5fad425980897510684f7ca3053711fe8c0541da3cb2eb2c84873fe5c",
+    "source_record_semantic_digest": "sha256:26aef574554cfc15aa4293a16c7ff0521d4a5172f663e2e1276f7ff5cb756d98",
+    "direct_L1_corroboration": {
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "physical_line": 66,
+      "line_text": "| **HIL-BR-14** | ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。 |",
+      "line_sha256_including_lf": "sha256:92d3896fe28e9655dd853037ced204983b5d9f193325b54515f26fba5183861c",
+      "relation": "same HIL-BR-14 wording, corroboration only, not a second atom"
+    },
+    "consumer_context": [
+      {
+        "identity": "HR-FR-HIL-09",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea",
+        "status": "specified",
+        "behavior": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する",
+        "transition_contract": "source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0",
+        "failure_and_evidence": "aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt",
+        "relation": "consumer context, multi-requirement contract; not an additional source atom"
+      },
+      {
+        "identity": "HAC-HIL-09a",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7",
+        "status": "specified",
+        "polarity": "positive",
+        "statement": "ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成",
+        "relation": "consumer/acceptance context; not an additional source atom"
+      },
+      {
+        "identity": "HAC-HIL-09b",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83",
+        "status": "specified",
+        "polarity": "negative",
+        "statement": "parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否",
+        "relation": "consumer/acceptance context; not an additional source atom"
+      },
+      {
+        "identity": "HAC-HIL-09c",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614",
+        "status": "specified",
+        "polarity": "boundary",
+        "statement": "remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale",
+        "relation": "consumer/acceptance context; not an additional source atom"
+      },
+      {
+        "identity": "HAT-HIL-09",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da",
+        "status": "designed_not_implemented",
+        "scenario": "三sourceをsnapshot/atom/coverageへ処理",
+        "required_evidence": "manifests、atom spans、decision/edge/stale receipt",
+        "negative_boundary": "branch/child欠落、aggregate-only、pending",
+        "execution_status": "designed_not_implemented; not run"
+      }
+    ],
+    "source_scope": "one HIL-BR-14 IR statement; adjacent IR requirements excluded; direct L1 same wording corroborates; HR/HAC/HAT are consumer context only",
+    "old_source_access": "read-only; no old runtime/test/CI/remote/GitHub operation"
+  },
+  "legacy_source_meaning": {
+    "identity": "HIL-BR-14",
+    "statement": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。",
+    "statement_semantic_digest": "sha256:917252a5fad425980897510684f7ca3053711fe8c0541da3cb2eb2c84873fe5c",
+    "record_semantic_digest": "sha256:26aef574554cfc15aa4293a16c7ff0521d4a5172f663e2e1276f7ff5cb756d98",
+    "condition_slices": [
+      "ZIP and exactly the named two predecessor repositories",
+      "current advertised heads/tags/pull ref authority",
+      "current HELIX source",
+      "complete atomic behavior decomposition",
+      "trace each item from adoption decision through requirement/design/test/Gate",
+      "aggregate/file-set/source declaration/read-alone does not equal adoption",
+      "derive ref count, unique tree-entry denominator and all ref-entry-edge denominator from authority receipts",
+      "do not freeze observed counts into requirement"
+    ]
+  },
+  "consumer_context": [
+    {
+      "identity": "HR-FR-HIL-09",
+      "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea",
+      "role": "source consumer context; exact authority receipt/ref/materialization and trace elaboration; not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-09a",
+      "semantic_digest": "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7",
+      "polarity": "positive",
+      "role": "acceptance context; not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-09b",
+      "semantic_digest": "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83",
+      "polarity": "negative",
+      "role": "acceptance context; not extra atom"
+    },
+    {
+      "identity": "HAC-HIL-09c",
+      "semantic_digest": "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614",
+      "polarity": "boundary",
+      "role": "acceptance context; not extra atom"
+    },
+    {
+      "identity": "HAT-HIL-09",
+      "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da",
+      "status": "designed_not_implemented",
+      "execution": "not run; no old test invocation"
+    }
+  ],
+  "current_adoption_basis": {
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "decision_scope": "Decision fixes L2-001..029 and paired L11 bytes, with explicit candidates 014..029 adopted. Candidate 123 is outside the fixed/adopted revision; decision authority is not inferred from candidate metadata."
+  },
+  "current_contract_crosswalk": [
+    {
+      "requirement": "HELIXOS-L2-002",
+      "adoption": "fixed/agreed by OS 2026-09-28 decision as part of L2-001..029 and paired L11",
+      "fixed_L2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_L11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "fixed_section_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-002; docs/helix-os/L11-acceptance/governance-acceptance.md:22,66-68",
+      "coverage": "separate project tracking for missing/conflict/unverified, release status; general archived asset disposition/read-after; no exact 2 named repositories/current advertised refs or authority-receipt-derived ref/unique-entry/ref-entry-edge denominators",
+      "current_exact_locator": "docs/helix-os/L2-requirements/governance-requirements.md:55; docs/helix-os/L11-acceptance/governance-acceptance.md:22,66-68",
+      "adopted_clause_table_row_exact": "| HELIXOS-L2-002 | HELIXOS-L1-002／HELIXOS-L1-007／HELIXOS-L1-008 |"
+    },
+    {
+      "requirement": "HELIXOS-L2-005",
+      "adoption": "fixed/agreed by OS 2026-09-28 decision as part of L2-001..029 and paired L11",
+      "fixed_L2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_L11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "fixed_section_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-005; docs/helix-os/L11-acceptance/governance-acceptance.md:25,39,82,140,146",
+      "coverage": "source/scope-bound improvement candidate flow and downstream disposition/reverification; does not specify BR14 ref authority, dynamic denominators, full atomic source partition or every item-to-Gate trace",
+      "current_exact_locator": "docs/helix-os/L2-requirements/governance-requirements.md:58; docs/helix-os/L11-acceptance/governance-acceptance.md:25,39,82,140,146",
+      "adopted_clause_table_row_exact": "| HELIXOS-L2-005 | HELIXOS-L1-006 |"
+    },
+    {
+      "requirement": "HELIXOS-L2-007",
+      "adoption": "fixed/agreed by OS 2026-09-28 decision as part of L2-001..029 and paired L11",
+      "fixed_L2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_L11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "fixed_section_locator": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007; docs/helix-os/L11-acceptance/governance-acceptance.md:26,32",
+      "coverage": "general provenance/evidence trace and stale/missing/duplicate distinction; not BR14 full closure",
+      "current_exact_locator": "docs/helix-os/L2-requirements/governance-requirements.md:60; docs/helix-os/L11-acceptance/governance-acceptance.md:26,32",
+      "adopted_clause_table_row_exact": "| HELIXOS-L2-007 | HELIXOS-L1-002／HELIXOS-L1-004／HELIXOS-L1-007／HELIXOS-L1-008 |"
+    },
+    {
+      "requirement": "HARNESS-L2-067",
+      "adoption": "unadopted candidate only",
+      "current_locator": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-067; docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-067",
+      "coverage": "selected-source atomic behavior decomposition proposal; candidate is not adopted and does not define BR14 exact two-repository authority receipts or dynamic ref/tree/edge denominator. It is context only, not guaranteed current coverage."
+    }
+  ],
+  "old_consumer_to_candidate_boundary": {
+    "HR-FR-HIL-09": "Use exact-two-repository identity, authority receipt/materialization and denominator wording as context for the direct atom; do not count as another atom or require legacy-specific implementation details beyond the selected source meaning.",
+    "HAC-HIL-09a": "positive context for ZIP + two sealed authorities + receipt-derived denominators + atomic trace.",
+    "HAC-HIL-09b": "negative context for parent-only/child missing/overlap, omitted/extra advertised refs and unverified objects.",
+    "HAC-HIL-09c": "boundary context for identity, A/B advertisement, namespace and source/extractor staleness.",
+    "HAT-HIL-09": "designed_not_implemented; not executed."
+  },
+  "dependency_contract": {
+    "identity": "HARNESS-L2-023; exact adopted candidate MPR-RC-HARNESS-L2-023-002, HELIX-HARNESS 2026-09-28 decision row 52; not inferred from registered_proposal metadata.",
+    "adoption_decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "row_locator": "line 52",
+      "decision_effect": "row 52 lists HARNESS-L2-023 / MPR-RC-HARNESS-L2-023-002 in the adopted explicit candidate set; paired L11 comes from the fixed decision bytes.",
+      "row_sha256_including_lf": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "exact_row_text": "| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |"
+    },
+    "fixed_pair": {
+      "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "L2_full_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "L2_section_locator": "HARNESS-L2-023 at lines 463-498",
+      "L2_canonical_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "L11_full_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "L11_section_locator": "HARNESS-L2-023 acceptance row/fixtures at lines 219-234",
+      "L11_canonical_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "current_exact_bytes_match_fixed_sections": true
+    },
+    "required_input_fields": [
+      "pack identity and source revision",
+      "HARNESS-L2-010 and L2-011 contract revisions",
+      "requested operation",
+      "target and scope",
+      "explicitly selected input source identity",
+      "required permission, isolation and data-use classification",
+      "dependency identity and declared owner",
+      "contract version and compatibility range",
+      "dependency class (one of four) and applicability condition"
+    ],
+    "categories": [
+      "always required",
+      "operation condition",
+      "selected input source",
+      "reference only"
+    ],
+    "exact_obligations": [
+      "Bind each class/condition to pack revision and reproduce same effective dependency closure from same input.",
+      "Classify selected-source dependencies using selected identity, contract version and scope; unselected input is unobserved, not present/absent/eligible/successful.",
+      "If applicability is missing, ambiguous, contradictory, stale, version range unknown, or safety authority unknown, preserve unknown/hold; do not infer non-applicable or reference-only.",
+      "Do not silently fallback to another source after selected-source failure. Reference-only cannot erase operational condition, authority, verification oracle or safety constraint."
+    ],
+    "synthetic_fixture_status": "The values in L11-123 are opaque synthetic tokens solely for a static oracle. They do not name real owners/revisions, define version comparison or compatibility rules, or establish authority."
+  },
+  "candidate_sections": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "section_sha256": "sha256:66881747d87d799a8fcec031674d7b6ca54df0f19fffa29c2f34d30cf8e10afc",
+      "full_file_sha256": "sha256:77dbba201571b248797e7b8079c418ec51c9d2328461be739b802897612cf7da",
+      "section_boundary": "heading HELIXOS-L2-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "section_sha256": "sha256:7f7131426421fde996fed2c380184696304536aa2d1e5c117a5fd57e737f9bfd",
+      "full_file_sha256": "sha256:eec6bb276b0076e82ec38e4ad36d6947fc030589ec9787e90e31c83ba2461673",
+      "section_boundary": "heading HELIXOS-L11-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
+    }
+  },
+  "candidate_semantic_digest": "sha256:66881747d87d799a8fcec031674d7b6ca54df0f19fffa29c2f34d30cf8e10afc",
+  "static_fixture": {
+    "authority": "synthetic only; no remote/source retrieval",
+    "repo_A_refs": {
+      "refs/heads/main": [
+        "a",
+        "b"
+      ],
+      "refs/tags/v1": [
+        "a",
+        "b"
+      ],
+      "refs/pull/7/head": [
+        "b"
+      ]
+    },
+    "repo_B_refs": {
+      "refs/heads/main": [
+        "c"
+      ]
+    },
+    "fixture_derived_values": {
+      "ref_count": 4,
+      "unique_tree_entry_count": 3,
+      "ref_entry_edge_count": 6
+    },
+    "value_status": "fixture output only; never a fixed threshold, observed archive count, or requirement count"
+  },
+  "normal_oracles": [
+    "Exact ZIP + repo identity + advertised ref authority receipt; three denominator values derive from receipt sets, not hard-coded requirement numbers.",
+    "Every atom has source span/digest and separate disposition; pending decision cannot be shown adopted; complete trace has decision→requirement→design→test→Gate edges.",
+    "For a fully observed selected scope, no missing/duplicate/orphan atom remains; unknown scope is not a zero-count closure."
+  ],
+  "negative_oracles": [
+    "Advertised ref omitted or extra receipt ref; wrong repo identity; A/B advertisement drift; wrong OID or unverified object/tree; stale authority/source/extractor revision blocks dependent closure.",
+    "Aggregate parent/file set without child atom, missing/duplicated atom, or unknown atom relation cannot be treated as complete.",
+    "Missing disposition/decision revision or any missing requirement/design/test/Gate edge leaves the atom pending/orphan; another source success cannot cancel it.",
+    "New namespace/ref policy/source span/extractor not observed remains unknown; it is not treated as non-applicable or adopted."
+  ],
+  "human_decision_options": {
+    "source_text": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` ref authority、現行HELIXのsourceをatomic behavior単位へ完全分解し、各項目を採否判断から要件・設計・テスト・Gateまで追跡する。file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない。ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し、観測時の件数を要件へ固定しない。",
+    "options": {
+      "A": "忠実候補のsource scope・receipt分母・atomic disposition・decision-to-Gate traceを全列挙どおり保持して採択判断に提示（推奨、候補起草/独立reviewを妨げない）。",
+      "B": "候補を採択せず、旧HIL-BR-14をpreserved_pending_rehomeのまま保持。",
+      "C": "人が指定するsubsetだけを対象にする意味変更。subset外の旧source/ref/atom条件と未完義務はholdingに残す。"
+    },
+    "A_vs_C": "全列挙された旧scopeを保持するか、明示選択したsubsetに制限するか。",
+    "impact": "HELIXOS-L2-123とpaired L11-123の適用scope/受入候補だけ。固定採択済みOS L2/L11、HARNESS-067の採否、各source owner、外部操作authorityは変更しない。",
+    "version_target": "未指定。旧sourceにversion_target指定なし。"
+  },
+  "source_holding": [
+    "MPR-SH-IR-003#HIL-BR-14 remains preserved_pending_rehome. No formal successor, all consumer closure, full archive recovery, implementation or acceptance claimed."
+  ],
+  "coverage_result": "no_loss_limited_to_one_HIL-BR-14_IR_identity_atom; candidate remains unadopted",
+  "carried_atom_refs": [
+    "HIL-BR-14"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-BR-14"
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "method_note": "Direct IR identity and current exact adopted L2/L11 wording were compared. Current adopted general clauses were not inferred to cover BR14-specific authority/ref denominators. Existing 067 is unadopted partial context. No old runtime/test/CI/remote was executed.",
+  "read_after_base_commit": "4d1c8db1a670224e83e8bc20834a717cf4289de2",
+  "current_candidate_sections_read_after_commit": "local worktree after latest main 4d1c8db1a670224e83e8bc20834a717cf4289de2; historical source and adopted decision fixed pins are retained at their original commits.",
+  "historical_source_pins": {
+    "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "l1_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "hr_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+    "hac_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+    "hat_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+  },
+  "version_target_source_status": "HIL-BR-14 does not specify version_target; intentionally unspecified.",
+  "dependency_fixture": {
+    "fixture_only": true,
+    "pack_id": "fixture:BR14-pack",
+    "pack_revision": "fixture-pack-r1",
+    "source_revision": "fixture-source-r1",
+    "contract_revisions": {
+      "HARNESS-L2-010": "fixture-010-r1",
+      "HARNESS-L2-011": "fixture-011-r1"
+    },
+    "requested_operation": "inventory-selected-BR14-sources",
+    "target_scope": "fixture:BR14-scope",
+    "selected_sources": [
+      "ZIP",
+      "unison-ai-product/UT-TDD_AGENT-HARNESS",
+      "RetryYN/ai-dev-kit-vscode",
+      "fixture:current-HELIX-source@fixture-source-r1"
+    ],
+    "authority_permission": "fixture:authority-read",
+    "isolation": "fixture:read-only-isolation",
+    "data_use": "fixture:source-analysis-data-use",
+    "dependency_rows": [
+      {
+        "identity": "fixture:core-trace",
+        "declared_owner_ref": "fixture-owner:core",
+        "contract_version": "fixture-contract:core-r1",
+        "compatibility_range_token": "fixture-range:core-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "always required",
+        "applicability": "always"
+      },
+      {
+        "identity": "fixture:ref-authority",
+        "declared_owner_ref": "fixture-owner:authority",
+        "contract_version": "fixture-contract:authority-r2",
+        "compatibility_range_token": "fixture-range:authority-r2",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "operation condition",
+        "applicability": "requested operation is inventory-selected-BR14-sources; true in fixture"
+      },
+      {
+        "identity": "fixture:source-zip",
+        "declared_owner_ref": "fixture-owner:zip",
+        "contract_version": "fixture-contract:zip-r1",
+        "compatibility_range_token": "fixture-range:zip-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:source-unison-ai-product-ut-tdd_agent-harness",
+        "declared_owner_ref": "fixture-owner:unison-ai-product-ut-tdd_agent-harness",
+        "contract_version": "fixture-contract:unison-ai-product-ut-tdd_agent-harness-r1",
+        "compatibility_range_token": "fixture-range:unison-ai-product-ut-tdd_agent-harness-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:source-retryyn-ai-dev-kit-vscode",
+        "declared_owner_ref": "fixture-owner:retryyn-ai-dev-kit-vscode",
+        "contract_version": "fixture-contract:retryyn-ai-dev-kit-vscode-r1",
+        "compatibility_range_token": "fixture-range:retryyn-ai-dev-kit-vscode-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:source-current-helix-source",
+        "declared_owner_ref": "fixture-owner:current-helix-source",
+        "source_revision": "fixture-source-r1",
+        "contract_version": "fixture-contract:current-helix-source-r1",
+        "compatibility_range_token": "fixture-range:current-helix-source-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
+        "identity": "fixture:glossary-note",
+        "declared_owner_ref": "fixture-owner:glossary",
+        "contract_version": "fixture-glossary-r1",
+        "compatibility_range_token": "fixture-range:glossary-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "reference only",
+        "applicability": "explanatory only; no operation/source/authority/oracle effect"
+      }
+    ],
+    "repeat_result": "Same exact input including ZIP, both named repositories and current HELIX source revision, plus declaration revision, must yield the same class/state/reason closure. Any changed or missing input is unknown or a distinct result, never a default. Selected-source failure cannot silently fall back."
+  },
+  "prior_comparison_base_commit": "0e76f9c6f6609dc6a8e101116c1a652ff5871771"
+}

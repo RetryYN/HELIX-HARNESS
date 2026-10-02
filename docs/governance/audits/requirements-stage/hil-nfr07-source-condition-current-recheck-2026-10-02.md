@@ -2,7 +2,7 @@
 
 ## 対象と結果
 
-比較先はmain `4d1c8db1a670224e83e8bc20834a717cf4289de2`。この記録は、旧HIL-NFR-07の原文条件が現行のどこへ移されたかを、固定した旧source・現行L2/L11・PO判断・仮登録と照合したもの。原source、以前の監査、採択済み本文は変更していない。
+現在の比較先はmain `0c9baec55a85e98ce624f68957ba989ee169406c`。この記録は、旧HIL-NFR-07の原文条件が現行のどこへ移されたかを、固定した旧source・現行L2/L11・PO判断・仮登録と照合したもの。原source、以前の監査、採択済み本文は変更していない。
 
 旧sourceは`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、旧L1 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:187`とRequirement IR `requirements.json#/HIL-NFR-07/statement`。原文は、追加機能数だけに依存せず複雑さ・公開面・運用負債を測定し、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。IR statement digestは`e3df2d68697433af977cfca1e4f63d83f2f9f9b7fa305e66734cd046fbad2058`、IR object digestは別値`4b11c5f8c85597e51373236dc05ec9063d60b768d85bdeef0253f092b7995dc9`である。
 
@@ -40,6 +40,6 @@ L11追補678–684行は正常fixtureで複雑さ・公開面・運用負債の�
 
 ## Revision pins
 
-- 比較base: `4d1c8db1a670224e83e8bc20834a717cf4289de2`。
+- 現在の比較base: `0c9baec55a85e98ce624f68957ba989ee169406c`。初回の4d1c8db1a670224e83e8bc20834a717cf4289de2照合時から、HARNESS対象節・9/29/9/30決定は不変。OS L2/L11には別OS候補123が追加されたため全file SHAを更新した。
 - 旧L1 source full SHA-256: `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。L187のLF除外SHA-256: `0bf32cc3753f24c90def870e54353e6b7a968d01bf0117d5983d6eb648c24b24`。
 - 現行L2/L11全file SHA-256、035節と追補各digest、2026-09-29採択decision SHA-256、source ledger/receipt SHA-256は対応JSONで固定する。
