@@ -395,13 +395,14 @@
       ]
     }
   },
-  "audit_base_commit": "926658d9fc7316a7ce92e09443cf7a91daf383fa",
+  "audit_base_commit": "b537706c85a7258a6e46c0a50d85eaa5268b2502",
   "history": {
     "superseded_receipt_digest_metadata": {
       "recorded_at_commit": "11ed79cf820e19959120fc4338b2991e6534e45f",
       "previous_L2_value": "8946357dca635cf8b01df4d3ee2459209eba06ffc32ef81cde5e1296eed2627b",
       "previous_L11_value": "524a560b214b8c60120fc191ce654362e26047d83e1380400ffb19148d15eccd",
       "classification": "superseded noncanonical receipt fields; not valid section digests. Current canonical section hashes are candidate_pair.l2/l11.section_sha256."
-    }
+    },
+    "audit_base_commit_at_draft": "926658d9fc7316a7ce92e09443cf7a91daf383fa"
   }
 }
