@@ -95,3 +95,26 @@
 ## 最新main 43d5ff7fへの追随
 
 比較対象は `43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5`。19対象のL2/L11、計38箇所を見出しまたは原文表行から再抽出し、監査基準a7のSHAとすべて一致した。選択した判断記録のSHAも一致した。e05比較はJSONの履歴配列へそのまま保持し、最新のlocatorと全文SHAを追補した。追加された085はNFR33の未採択候補であり、TR原文の全体closureの証拠にしない。
+
+
+## 最新main `86ecd59`への追随
+
+比較対象は`86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c`。この追随は過去のaudit basis `a7f85b4c2fd88510c32de4a1ade4c95662bd98c1`と固定PO decision revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`を保持する。直前の`43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5`比較object全体はJSON `prior_latest_main_comparisons`へdeep copyで保存し、`a5c83e`、`212ce`、`e05a45`の過去比較も変更していない。
+
+37 crosswalk参照が示す19の一意な採択targetについて、L2 sectionとL11 section/table rowの計38 locatorを86ecd59の実blobから再抽出した。全locator SHA-256はa7基準値と一致し、選択されたPO decision fileも全て一致する。各最新locator、source heading/table row境界、section/row SHA-256、およびL2/L11全文SHA-256はJSON `latest_main_comparison.selected_pair_checks`へ追記した。a7とfixed f6はこの再比較で更新していない。
+
+旧source/consumerと監査入力、追加参照fileの全文pinは86ecd59のGit blobから再計算し、過去値を残したまま最新値を別fieldへ記録した。旧IRはnormative sourceのまま、assertion caseはconsumer/test設計の参照のみである。旧case ledgerは全文SHA `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、23件のcase行・25件のTR対応を再確認した。行ごとのSHAは全件不変で、`design-defined`／`not-implemented`のまま、実行や受入を主張しない。MPR HARNESS-L2-083の2行も`registered_proposal`／`authority_effect:none`で、採用とは扱わない。
+
+| source種別 | path | `86ecd59`全文SHA-256 |
+|---|---|---|
+| `L1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` |
+| `IR` | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json` | `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` |
+| `consumer` | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json` | `2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab` |
+| `consumer` | `archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json` | `4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19` |
+| `consumer` | `archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json` | `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a` |
+| `related source` | `docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md` | `89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8` |
+| `related source` | `docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl` | `c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1` |
+| `related source` | `docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md` | `32501782b866a888db9536b1b522ee2d1a4d8c70968d78a754bcc508fa34923c` |
+| `assertion case ledger` | `archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md` | `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8` |
+
+差分検証はsource bytesと選択locatorの静的再計算に限定し、archive runtime/test/CIを実行していない。更新後も要求採択、formal successor割当、source closure、実行完了を推定しない。
