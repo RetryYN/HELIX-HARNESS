@@ -1204,3 +1204,16 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
   - **正常closureと欄別単独反例**：上記全row・同一pack/source/operation・010/011 fixed revision・compatibility evidenceを同じ入力に再適用し、同じeffective closure/reasonを得る。実行必須rowは他入力を正常に固定したまま、identity、owner、contract revision、declared range、range evidence、class、applicabilityをそれぞれ一欄ずつmissingまたはwrongにした独立fixtureで、その適用operationをunknown/pendingにする。010/011各contract revisionとその個別compatibility evidenceも一欄ずつmissing/staleならclosureを保留し、他rowで補完しない。reference-only rowの説明metadataだけ一欄欠ける例は参照provenanceをunknownにするがclosureを停止しない。選択lease/checkpoint sourceの失敗後の別source/provider-memory fallbackは不合格。HARNESS-023の同一入力再現、unknown保持、選択source fallback禁止を確認する。
 - **戻し先・未見**：fencing不一致は該当effectの受領境界、operation/assignment/authorityの不一致は既存OS/SECURITY owner、HARNESS意味・oracleの不明はHARNESS owner、checkpoint sourceの欠落や最新性不明は該当operation/evidence ownerへ返す。未見operationまたはsourceは適用/非適用を推定せずunknownのままにし、無関係な確定済みeffect・義務を変更しない。検知記録だけからruntimeが拒否した、またはresumeが成功したとは主張しない。
 - **既存条件との境界**：L2/L11-018/019/009の採択済み一般保証、L2/L11-032の別目的quarantine、候補115のterminal run後late result、118のCI run replacement、120のHIL-FR-32 lifecycle、125のHIL-NFR-14 result failure classesとの条件差はL2-126 receiptに固定する。過去の個別条件を重複採択せず、本oracleは旧NFR-18の二つのsource clauseだけを照合する。
+
+### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage
+
+**対象**：未採択候補HELIXOS-L2-127。採択済みHARNESS-L2-005/022、HELIXOS-L2-008/020/032の意味は変更せず、選択planにある段間依存のreceipt接続だけを判定する。旧prejoin→postjoin→externalの固定3段や固定順序は追加しない。
+
+- **正常例**：同一の選択plan `P7`、target commit `C7`、tree digest `T7`で、選択された検証依存 `check-A → check-B` が計画される。Aのreceipt `R-A` は`P7/A/C7/T7`を記録し、Bのreceipt `R-B` は`P7/B/C7/T7`と`predecessor_receipt=R-A`を記録する。両receiptの状態とHARNESS-L2-005/022に対応するoracle/evidenceを照合できる場合、Bはこの依存についてのみ証拠を持つ。追加の固定stageや一律三つのgreenを要求しない。
+- **独立checkの正常例**：同じplan内の独立した`check-C`に前段依存が宣言されていない場合、Cのreceiptは自身のplan/check/target digestを束縛する。AやBへの無関係な前段参照を求めず、依存chainに混ぜない。
+- **負例**：①Bのreceiptから`R-A`参照が欠落、②参照が同planの直前依存段ではなく別runまたは古い非直前receipt、③Bの自身のcommit/tree digestが`R-A`と不一致、④別targetのgreen receiptだけをBの依存証拠として提示、⑤receiptのplan/check identityが選択planと不一致。各場合、Bの依存結果を未完/不一致とし、そのgreen表示だけで当該依存を満たさない。独立check Cの結果は、Bの不成立とは別に判定する。
+- **quarantine境界**：checkのfailureがHELIXOS-L2-032の限定quarantine条件を満たしても、そのeligible receiptはpass/greenではない。代替minimum gateがある場合もHARNESS義務を弱めず、quarantine receipt自体を段間のgreen証拠にしない。
+- **未見・unknown**：選択planの依存関係、receipt参照、対象digestのいずれかが未観測または不明なら、その関係はunknown/未完のまま保持する。全check間に依存を推定せず、前段receiptが存在するというだけで後段依存を成立させない。
+- **受入判定**：同一plan/target上の依存段についてのみ、後段自身のdigestと直前依存receiptのidentityが追跡できることを確認する。HARNESS oracleの成否、OS実行状態、quarantine状態はそれぞれ既存pairの条件で判定する。候補・fixture・receipt記録だけからruntime実行、採択、merge許可を生成しない。
+
+**旧source**：`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のHIL-NFR-15、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`のL1 line 195、およびconsumer context HR-FR-HIL-06/HAC-HIL-06a/b/c/HAT-HIL-06。旧consumerの「同一lineage三段green」はその3段構造を現行へ要求する根拠にしない。OS-032の採択済み限定quarantineと本候補の段間参照を混同しない。

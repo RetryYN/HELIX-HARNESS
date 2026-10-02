@@ -1571,3 +1571,14 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **PO判断材料・推奨・影響**：旧原文「agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。」に対し、A) 二つの条件を選択された該当agent operation全体へ忠実に適用する（推奨。sourceのeffect列挙と再開限定を保つ）、B) L2/L11-126を採択せずsource holdingと未採択候補を保持する、C) POが明示したeffectまたはresume条件のsubsetだけへ限定し、除外した旧条件を未充足のsource holdingへ残す（Aからの意味変更）を選べる。影響するのはOSの選択operationにおけるfencing/再開のL2/L11受入範囲だけであり、018/019/009/032、115/118/120/125の既存対象、他ownerのauthorityを変更しない。候補の忠実な起草・reviewをPO選択の前提にしない。
 - **version_target**：旧HIL-NFR-18に指定がないため指定しない。
 - **原文・比較証拠**：旧IR `requirements.json#/HIL-NFR-18`とL1 line 198、consumer HR-FR-HIL-08/HAC-HIL-08a/b/c/HAT-HIL-08およびHST-CASE-006-22のpath・line・digest、現行採択pair/未採択候補との条件別比較は[coverage receipt](../../governance/audits/requirement-registration/helixos-l2-126-hil-nfr18-fencing-checkpoint-coverage-receipt-2026-10-02.json)と[source ledger](../../governance/audits/requirement-registration/hil-nfr18-fencing-checkpoint-source-lines-2026-10-02.jsonl)に固定する。
+
+### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）
+
+- **親L1**：`HELIXOS-L1-004`（CI・検証結果の運転）。親L1の採択・意味を変更しない。
+- **状態**：要求候補。旧sourceは`version_target`を指定しないため、この候補も指定しない。採択・実装・運転完了は主張しない。
+- **境界**：HARNESS-L2-005がticket/change/riskから選ぶ検証義務・oracle、およびHARNESS-L2-022が定める段階別oracle/証拠/stateを変更しない。OS-L2-008/020の動的profile生成・実行・結果回収の範囲で、選択済みplanが段間依存を定めた場合のreceipt参照関係を記録する。旧prejoin/postjoin/externalの固定段数・順序を戻さず、独立したcheckを一つのchainへまとめない。 この候補のHELIX-OS配置は提案targetに限る。`PRC-HIL-NFR-15-001`の`split_required`を採択・変更せず、HARNESS側のgreen判定責務や正式source successor/partitionを確定しない。
+- **入力と保証**：選択されたplanの対象revision、選択したcheck/段のidentity、適用される依存関係、各run receipt identity、各receiptが対象とするexact commit/tree digest、および実行状態を受け取る。plan上で前段結果に依存する後段receiptは、自身の対象commit/tree digestと、当該planで直前の依存段となるreceipt identityを直接束縛する。前後receiptの対象digestが異なる場合、または参照先が欠落・別plan・古い非直前段の場合、当該後段の結果は依存の充足に使えず未完/不一致として残す。前段依存のない選択checkにはこの参照を要求しない。
+- **再利用境界**：同じgreen表示だけ、別commit/treeのgreen、または依存関係のないrun receiptは選択された後段の依存証拠にならない。異なるtarget revisionへ移った場合、旧receiptを新しい依存chainへ継承せず、その新revision/planに対応するreceiptを照合する。
+- **既存契約との関係**：採択済みHARNESS-L2-005/L11-005は動的な義務選択と固定段数拒否、HARNESS-L2-022/L11-022は段階ごとの証明/state/evidence、採択済みHELIXOS-L2-008/L11-008と020/L11-020はprofile生成・隔離実行・結果回収を担う。採択済みHELIXOS-L2-032/L11-032は限定quarantineのeligible判定をtest/profile greenへ変換しない。これらの責務を置換せず、直接の前段receipt参照条件だけを補う。quarantine結果をgreenとして数えない条件は032へ接続し、本候補で重複定義しない。
+- **差戻し**：HARNESS義務/oracleまたは選択段間の意味が不明ならHARNESS-L2-005/022の責務へ、plan/実行/receipt identityまたはdigest不一致ならHELIXOS-L2-008/020へ戻す。quarantine適用可否はHELIXOS-L2-032の条件で扱う。欠けた参照をgreenや完了へ補完しない。
+- **旧source**：`LEGACY-ASSET-A60CF91DD2AF6693E6F9`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-15`（statement semantic digest `sha256:253e02566e21dcf8dd677f89aadee788839b6c7e4da49f4b86505eaf14b13819`）。L1 line 195は同一文のcorroborationで追加atomではない。HR-FR-HIL-06/HAC-HIL-06a/b/c/HAT-HIL-06は旧consumer/contextで、旧3段の形を現行へ固定しない。
