@@ -114,3 +114,15 @@ PHCAP-02〜20の現行L2 identityとPO採択状態は次のとおり。2026-09-2
 上記のe05比較は当初の歴史記録として保持し、後続mainとの差分確認を別に追加する。対象はmerge commit `43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5`（親にe05を含む）。PHCAP-18 JSONの同じ145件について、固定decision対象f6→歴史main e05に加え、f6→43d5でもpath+line位置のraw bytes（LF含む）とID anchorが145/145一致した。SHA証拠は前掲JSONの`latest_main`比較欄に保存した。
 
 43d5時点のL2/L11ファイル全体SHA-256はHARNESS L2 `6be245da3b22667cff0b79739c1c61dce4f18f7b61566bede9d4e9ca1adfce44`、HARNESS L11 `ce6d68c401eeacffd375dc4a34451d68de66d6e7481167dba17fc2f416680e5e`、OS L2 `027dcf9fb3005e0ed76872b56d3c2e5684ba68d489a803c5f8dfc8b744397da8`、OS L11 `62ee2da1ae93e01c0c921e3e35e93661a165bb6c4cf9940142a91971cdc00ec3`。全体SHAの更新は、固定対象のPO判断やL2/L11 adoption pinが変わったことを意味しない。
+
+## 2026-10-03 inventory projection追補と後続main `86ecd59`
+
+先行節の43d5比較は履歴比較として保持する。今回のcurrent projection対象はmerge commit `86ecd59a54f0c612a7f87e1cb4fea038dcc35f3c`で、固定f6対象から元の145 locatorを同じpath+line・raw bytes規則で再比較した。145/145行が一致し、identity anchorも145/145で確認した。OS-L2/L11-017..021の見出し行10件も固定対象とraw bytes一致した。行別SHA、locator、固定対象との比較結果、86時点の8 pair全体SHAはbyte比較JSONの`subsequent_main_comparison`に追記した。先行`comparison_revisions.latest_main=43d5...`とその比較結果は変更していない。
+
+byte比較JSONの追補後SHA-256は`90a0f2d137944f9f96207254de49a72cdefdf8987ced3f6b84fc1974bbe7627a`。先行検証記録にある`429a268d...`は追補前JSON revisionのdigestであり、43d5比較時点の証拠revisionを指す。現在のJSONでは先行145行比較を保持しつつ86比較を追加している。
+
+初期inventory JSONへ`current_projection`を追加し、初期20 records、e784fa snapshot、歴史的status/gap/transition値は保持した。追補はOS-L2/L11-017..021の採択、PHCAP-08のHARNESS-L2/L11-051限定採択と旧25 source atoms holding・意味同等性unknown、PHCAP-19のOS/LABO/INTELLIGENCE限定pair参照、PHCAP-20のOS memoryとLABO learning責務分離を反映する。phase全体source closure、実装回復、受入実行、縮退受容、successorは生成しない。旧実装未回復を要求stage開始の新条件へしていない。
+
+`phase-capability-inventory.json`追補後SHA-256は`0130d92104d87851b159c8291a4b6ca18c3e3d9808f1e3e7155ac8a16951079c`。初期inventoryの初期分類refと固定sourceを参照する過去のvalidator/bindingは、当時のsnapshot evidenceとして扱う。現行のBinding upstream full-file SHAは変更によりstaleとなるためcurrent-pin refreshが必要で、固定BASE・historical pinは変更しない。読み取り調査では51 Binding（active 9、registered 42）が旧inventory JSON SHA `16deda...`をpinし、SCF-B-0113/0114/0116/0119/0148/0150等はMarkdown SHAもpinしていた。既存のfixed-BASE validatorsは歴史入力digestを検査するためcurrent consumer refreshとは分ける。
+
+この追補により、本書「次に重複なく修正する候補」に記したinventory projection作業は完了した。上記は追加projectionの記録で、初期inventory分類値や既存auditの歴史basisを書き換えない。

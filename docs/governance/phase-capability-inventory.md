@@ -80,3 +80,16 @@ source／inventory／静的evidence／negative caseを保持するBinding登録�
 ## 境界
 
 Issue作成やcloseから要求採否、旧assetの再利用許可、L2/L11承認、L3/L10 freeze、実装開始を生成しない。旧CI・旧runtime・旧hook・旧testは実行しない。
+
+
+## 後続PO判断に基づく現行projection（2026-10-03）
+
+この節は初期分類表とJSONの`records[*]`／`current_evidence_snapshot`を履歴として保持したうえで、後続PO判断で採択された対象だけを参照する追補である。初期inventoryのcurrent status、`gaps`、`transition_assessment`、e784fa68702af4b7c57911b866b48fe7df094f88のsnapshotは変更していない。JSONの`current_projection`に構造化参照を置く。
+
+- **OS-L2/L11-017〜021:** 2026-09-28 OS decisionは`HELIXOS-L2-014..029`と対のL11条件を採択しており、017〜021も採択済みである。`version_target`と適用条件は保持される。PHCAP-07/08/09/10/11/14/18/20との限定対応はJSON projectionに記録した。旧監査のlocator種別`candidate_or_version_target_detail`を未採択状態と解釈しない。
+- **PHCAP-08:** `HARNESS-L2/L11-051`の2026-09-29採択は選択されたstage-exit evidence mappingに限る。旧25 source atomsはholdingに残り、旧WBS・PLAN・roadmap・current-location・state機能との意味同等性はunknownのまま。phase closureやsuccessorを生成しない。
+- **PHCAP-19:** 高位の改善循環意味と限定された責務境界をOS `HELIXOS-L2/L11-005,022`、LABO `HELIXLABO-L2/L11-050`ほか既存対応行、INTELLIGENCE `HELIXINTELLIGENCE-L2/L11-063`が担う。旧UIL-R-01..15全詳細のclosureや実装回復は示さない。`implementation_recovered:false`を維持する。
+- **PHCAP-20:** OS memory/continuityとLABO learning/knowledge evaluationを分離する。旧resume/stop 4 predicate、retention/purge、takeover、consumer closureは未証明のまま。
+- **現行pair bytes:** 86ecd59a54f0c612a7f87e1cb4fea038dcc35f3cの全体SHAはJSON projectionに記録した。先行main 43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5の比較は履歴として残し、86ecd59は別の後続比較にする。決定対象の行が一致することは、phase全体のsource closureや受入実行を意味しない。
+
+このprojectionは`authority_effect:none`であり、要求採否、successor、phase closure、新しい承認条件、`new_build_allowed:true`を生成しない。旧実装・runtimeが未回復であることを今回要求stage開始の新gateへ昇格しない。
