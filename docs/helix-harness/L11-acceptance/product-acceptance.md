@@ -1013,6 +1013,27 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **限界**：この受入はrollbackを実行する、特定の復旧手順を採択する、毎ticketの人手承認を要求する、または旧test/runtimeを復活させるものではない。候補本文とoracleからL2採択・L3承認・実装/実行許可を生成しない。
 - **HARNESS-L2-053との境界**：053の採択pairはasset identity、revision、lineage relation、authority/oracle/typed-edge対応と欠落unknownを扱う。ここではそれらのhistoryを前提に、Design Refactorの独立変換計画、既存Refactor接続前に更新すべき設計pair、および対象scopeへ適用できる回復basisの有無を評価する。053のlineage確認だけでこれらの接続前条件が満たされたとはしない。
 
+
+**訂正revision 002 — HIL-NFR-24追加atomの受入oracle（候補・未実行）**
+
+以下は既存068 oracleに対する追加条件だけを扱い、既存のsemantic-signature、all-consumer、invariant、pair/oracle更新、rollback、rerouteのfixtureを再定義しない。**正常例**：scope Sに実在する重複contractと変更影響または責務混在の根拠があり、最小のcommonize提案がそれらを解消し、既存068本文どおりの全consumer/paired oracle/authority/rollback条件も揃う入力は、その限定変換をRefactor候補として評価できる。「将来使えそう」「綺麗になる」を根拠欄に持たずとも、意味・重複根拠が独立に揃えば正常候補となる。
+
+**独立負例 — 推測だけで列挙構造を追加**：意味重複、変更波及、責務混在が確認できない状態で、将来有用/綺麗になるという予測だけを根拠にcommon layer、base class、generic objectまたはconfig surfaceを足す案を与える。Refactor candidateとして通さない。
+
+**独立負例 — 構造証拠不足**：名称文字列が似ているだけ、実重複がない、変更波及の根拠がない、または責務混在の主張がsource graph/consumer evidenceに結び付かない各入力を個別に与える。該当条件を成立とせず、unknownな根拠はunknownとして返す。既存のlexical-only/homonym負例もそのまま使う。
+
+**独立負例 — 誤統合・抽象化・scope creep**：semantic signature/責務が異なる概念を同名化して統合する、根拠のないgeneric abstractionを行う、または選択scope外へ共通層/config surfaceを拡張する案を個別に与える。正当なNFR24根拠・最小変換として通さない。これらの結果で既存068のall-consumer/rollback条件を代替しない。
+
+**未見／unknown**：未読consumer、適用scope外のsource、欠落した変更影響または責務根拠を与える。見えていない範囲を不存在や安全な抽象化と推定せず、影響する変換をunknown/未完とする。範囲内で独立に評価できる他の変換結果は保つ。全例は静的なfixture定義で、旧HAT-HIL-16やruntime/test/CIの実行証拠ではない。
+
+**訂正revision 003 — 根拠category適用性と010/011 selected-call fixture（未採択・未実行）**：旧HIL-NFR-24の列挙根拠はsemantic similarity/name collision、重複、変更波及、責務混在に個別分類し、全種類を各変換へ一律適用しない。正常fixtureは既存authority/POが変換種別ごとの適用categoryを同一scope/revisionで定めている。例としてcommonizeを選び、PO applicability fixtureが「重複＋変更波及」を選択根拠、「責務混在」と「semantic rename根拠」をこの変換では非適用と理由付きで示す。適用された重複と変更波及のevidence、最小変換、全consumer/paired oracle/Scope Authority/rollbackの既存条件はすべて保持する。非適用categoryは入力closureから除外し、source原文上存在しない扱いへ変えない。適用categoryの全てが揃った場合だけ当該変換を候補評価可能とし、他の変換結果とは分ける。
+
+**独立負例 — 適用ground単独欠落**：正常例の同じscope/revision、変換、PO applicability fixture、非適用category、semantic signature、consumer、pair/oracle、authority、rollbackを固定し、選択された「重複」evidenceだけを除く。該当変換を根拠不十分として通さない。別負例では正常例の他入力を固定し「変更波及」evidenceだけを除き、同じく該当変換を通さない。非適用の「責務混在」等を欠落扱いしない。PO applicability fixtureが未設定、対象変換に根拠を割り当てていない、または適用可否unknownなら、その変換をpassにせずunknown/未完にする。
+
+**PO選択肢fixture**：A＝変換ごとに適用categoryを指定し、非適用理由も固定（推奨）；B＝全categoryを各変換に要求；C＝categoryのいずれか一つで全変換の根拠を満たす。これらは選択肢の受入fixtureであり、実際のPO選択や要求意味を生成しない。sourceをliteral保持し、未決の適用条件を勝手に決めない。
+
+**HARNESS-L2-010/011 tuple正常・独立負例**：選択call `candidate=HARNESS-L2-068, operation=connect_existing_refactor, scope=S, revision=R, selected_source={HIL-FR-39,HIL-NFR-24}` に対し、010はL2 selection SHA `9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4`／L11 selection SHA `95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144`、011はL2 selection SHA `30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952`／同じL11 selection SHAで固定し、同じcall tupleのcontract version/rangeと両側compatibility証拠が一致する正常例を与える。負例Aは正常例の011・scope/source/operation等を固定し、010 contract revisionだけを別revisionへ替えて不一致を検出する。負例Bは正常例の010・他入力を固定し、011 compatibility revision/rangeだけを別revisionへ替える。各負例でそのselected callのみをunknown/未完とし、compatibility文字列の一致や他側の成功で補わない。010は常時必須契約、011は選択されたcallに限る操作依存として023の区分を保つ。
+
 ### HARNESS-L2-077 source条件からdesign-obligation graphを閉じる受入候補（未採択・未実行）
 
 - **Positive — scope内graph closure**：authorityが選んだ同一scope/revisionについてsource/directive atom、requirement atom、capability/service、domain object、該当するAPI/data/state/event/failure/security/observability/lifecycle/operation/test-oracle/gate relation、適用pair/template契約とL11 oracleを与える。各適用relationから必要なdesign obligationが個別に導かれ、対応oracleへ結ばれる。各選択atomの順方向・逆方向のtyped pathが対応し、11観点の適用性と非適用理由がそれぞれ追跡でき、obligation graph、個別discharge/coverage receipt、未消込findingが同じscope/revisionに揃い、全義務に対応oracleがあれば、その選択scope/revisionだけをcomplete候補とする。
@@ -1022,6 +1043,21 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **Negative — aggregate一括消込**：一つのsummary/aggregate receiptだけで複数source atomまたは観点の個別義務を消し込む。個別対応の証拠がないatomを未完として残し、pair-freezeを拒否する。
 - **受入限界**：旧HIL-FR-42一行の選択条件だけを対象とする静的oracle案で、旧HR-FR-HIL-17全体・全資産・実graph/runtime、要求採択、設計pair実体、実行結果、pair freeze実績を主張しない。旧runtime/test/CIは実行せず、本候補oracleも未実行である。
 
+
+
+**訂正revision 002 — HIL-NFR-26追加atomの受入oracle（候補・未実行）**
+
+**正常例 — 範囲を略記に使い、義務を個別化**：source obligation AとBを「A–B」と表示しても、個別source atom A/B、意味あるdesign content、双方向edge、各々のtest oracleまたは理由/対象scope付きN/A receipt、個別discharge receiptが揃うfixtureを与える。範囲表記だけを理由に拒否しない。
+
+**独立負例 — 未展開rangeによる一括消込**：AとBを含むsource scopeに対し、単一のrange row `A–B: complete`だけを与え、A/Bの個別atom・edge・oracle/N/A receipt・discharge receiptを省く。少なくともAとBを未消込として残し、そのscopeをcompleteにせずpair-freezeを拒否する。他facetや別atomのpassで補わない。これは範囲表記全般の禁止ではない。
+
+**独立負例 — 合法range略記との識別**：同じ`A–B`表示でもA/Bが個別に展開済みの正常例を与える。rangeを拒否したり、表示文字列を追加義務と数えたりしない。sourceにA/Bの範囲内容が含まれるか読めず展開可否を判断できない場合は、成功でなくunknown/未完とする。
+
+**対応scope**：template見出しだけ、意味内容のない設計、片方向edge、義務全体に結び付かないoracle/N/A、TBD/空、複数義務の1-row消込は既存の041-003/025/026/063/077 oracleのscopeを保って評価する。本追補はrange shorthandと未展開aggregate dischargeを区別する条件だけを加える。source atomはHIL-NFR-26 IR全体一件とFR42一件であり、HIL-FR-42の11 facet列挙をNFR26 atom数へ加えない。fixtureは静的設計のみ、旧HAT-HIL-17/旧runtime/test/CIは実行しない。
+
+**訂正revision 003 — NFR26 normative atom classificationと010/011 selected-call fixture（未採択・未実行）**：HIL-NFR-26 IR atomは `kind=non_functional`, `status=specified`, `definition_status=frozen`, `evidence_origin=legacy_markdown_migration`, authority `RAS-HIL-17`, primary consumer `HR-FR-HIL-17`, downstream `DOWNSTREAM-HIL-NFR-26 / pending_pair_descent` として扱う。L1 line 206は同じstatementのcorroboration、HR/HAC/HATはconsumer/oracle contextであり、追加atomや採択を意味しない。原文を保持する。
+
+**HARNESS-L2-010/011 tuple正常・独立負例**：選択call `candidate=HARNESS-L2-077, operation=request_pair_freeze, scope=S, revision=R, selected_source={HIL-FR-42,HIL-NFR-26}` に対し、010はL2 selection SHA `9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4`／L11 selection SHA `95c29f2cab092b16f40930802a97c2116a2f238e81e2b2a42819916e4a188144`、011はL2 selection SHA `30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952`／同じL11 selection SHAで固定する。正常callは各source atomの個別義務、edge、oracleまたは理由付きN/A、discharge receiptを結び、010/011のexact identity/revision/rangeと両側compatibility evidenceも同一callへ束縛する。負例Aは正常例の011・source/operation/scopeと個別closureを保持したまま010 revisionだけを変更し、010 mismatchでfreezeを保留する。負例Bは正常例の010・その他入力を保持したまま011 revision/compatibilityだけを変更し、011 mismatchでfreezeを保留する。互換文字列だけでは不足を補わない。010は常時必須pack contract、011は `request_pair_freeze` が選択されたときだけのoperation-specific dependencyである。
 
 ### HARNESS-L2-078 typed requirement definitionと変更receiptの受入候補（未採択・未実行）
 
