@@ -255,8 +255,8 @@
   "validation_boundary": "Static source file/line/atom/hash, candidate paired section, parent/decision, MPR append-only and four dependency-class distinction, concrete receipt-read/qualification failure no-fallback oracle, and current-parent version_target evidence. No old runtime, test, CI or CLI; no authority adoption or execution claim.",
   "management_registration": {
     "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
-    "register_line": 658,
-    "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
+    "register_line": 660,
+    "pre_append_register_sha256": "sha256:e748ed4446ffb16aaedb59bc11c7c3142766694b761e15e31f2fa538f9af24ee",
     "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
     "append_only_prefix_verified": true,
     "status": "registered_proposal; authority_effect none; no adoption inferred"
@@ -279,5 +279,20 @@
       ],
       "scope_limit": "Selected source JSONL/raw source lines and hashes remain unchanged."
     }
-  ]
+  ],
+  "historical_management_registration": {
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-077-001",
+    "register_line": 658,
+    "pre_append_register_sha256": "sha256:a9c20b2ff574e9ee54b98b87975d4c0836f9db62514e98012c6e63016789cfb6",
+    "appended_row_sha256": "sha256:3a70f98f95d50fd4768c2875f5fa1bcce76efa41602b0f59e00800490312b875",
+    "append_only_prefix_verified": true,
+    "status": "registered_proposal; authority_effect none; no adoption inferred"
+  },
+  "integration_read_after": {
+    "base_commit": "c7e9d7f558bfde4b24bb94c9eb1d47b3424c3caf",
+    "main_prefix_rows": 659,
+    "local_append_rows": 1,
+    "current_pair_full_file_pins_unchanged": true,
+    "source_raw_lines_unchanged": true
+  }
 }
