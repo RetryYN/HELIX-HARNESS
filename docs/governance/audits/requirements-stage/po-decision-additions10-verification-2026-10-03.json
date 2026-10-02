@@ -1,0 +1,541 @@
+{
+  "schema_version": "po-decision-additions10-static-verification.v1",
+  "decision_record": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+  "basis_main": "898e9d1b6277861b2ee9ec1a42083fabb401529c",
+  "latest_rechecked_main": "62d9eedca25a927916594a0a96690b2441437712",
+  "comparison": {
+    "target_file_count": 9,
+    "files": [
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "docs/helix-security/L2-requirements/security-requirements.md",
+      "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "docs/helix-harness/L2-requirements/product-requirements.md",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    ],
+    "result": "MPR register and eight target L2/L11 files byte-identical between basis and latest main"
+  },
+  "register": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "row_count": 707,
+    "file_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "selected_rows": [
+      {
+        "identity": "HELIXOS-L2-001",
+        "registration_id": "MPR-RC-HELIXOS-L2-001-001",
+        "line_1based": 693,
+        "raw_jsonl_row_sha256_including_lf": "sha256:c1ca48dde3e27a673d65f342fc60df8266ae59cd1bdce87c1d61c82ce988de91",
+        "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-001:line-54+L2:515-532",
+        "candidate_semantic_digest": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-001-hil-nfr32-candidate-correction-receipt-2026-10-03-r3.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXOS-L2-018",
+        "registration_id": "MPR-RC-HELIXOS-L2-018-002",
+        "line_1based": 695,
+        "raw_jsonl_row_sha256_including_lf": "sha256:c1e5e7ad8762c27bc7635f4b3a55de2775ea022e755a5a2b926c63cfb89e0e65",
+        "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-018",
+        "candidate_semantic_digest": "sha256:5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-nfr36-os018-coverage-receipt-2026-10-03-r2.json#HELIXOS-L2-018-HIL-NFR-36-RESIDUAL-COVERAGE-2026-10-03-r2",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXSECURITY-L2-029",
+        "registration_id": "MPR-RC-HELIXSECURITY-L2-029-003",
+        "line_1based": 696,
+        "raw_jsonl_row_sha256_including_lf": "sha256:b2abf2bbe95c3c7a31c3aa389b7676a4c606ab8f1bfdce1689194308e60e1a17",
+        "candidate_source_path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-029",
+        "candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-nfr39-l11-candidate-coverage-receipt-2026-10-03-r1.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXINTELLIGENCE-L2-072",
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+        "line_1based": 699,
+        "raw_jsonl_row_sha256_including_lf": "sha256:1ccf995c31aab8c0e57cc47c862d07d6fa5fb0fcc73aad938521b5c35591a9c9",
+        "candidate_source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-072",
+        "candidate_semantic_digest": "sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r1.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXOS-L2-129",
+        "registration_id": "MPR-RC-HELIXOS-L2-129-002",
+        "line_1based": 698,
+        "raw_jsonl_row_sha256_including_lf": "sha256:fd84228f0cc13274ec8c7a0fb9c510966529ddc1fb1cb472e30684c44757e857",
+        "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-129",
+        "candidate_semantic_digest": "sha256:42ac19a01b0929a9e92b8d5ba83061ea929c0f23d02c8d885472d2c2969137c7",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-129-hil-nfr40-quota-rate-coverage-receipt-2026-10-03-r2.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXSECURITY-L2-035",
+        "registration_id": "MPR-RC-HELIXSECURITY-L2-035-001",
+        "line_1based": 694,
+        "raw_jsonl_row_sha256_including_lf": "sha256:0cc7e699ba668fb8cf6a6726bd34a46bc12183084169478225fbee275bf0541a",
+        "candidate_source_path": "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-035",
+        "candidate_semantic_digest": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-nfr38-bypass-lifecycle-coverage-receipt-2026-10-03.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HARNESS-L2-086",
+        "registration_id": "MPR-RC-HARNESS-L2-086-002",
+        "line_1based": 701,
+        "raw_jsonl_row_sha256_including_lf": "sha256:a5de505579eab269382ce58778a941b704d032843987efde23bf0495a2e5bfcf",
+        "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-086; revision-002 EOF supplement",
+        "candidate_semantic_digest": "sha256:1156537dc160a27de13dc9b9f3b5f829128010bfd31f39ac99ed7bf2e6d01094",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-v13-policy-167-171-coverage-receipt-2026-10-03-r2.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HARNESS-L2-087",
+        "registration_id": "MPR-RC-HARNESS-L2-087-002",
+        "line_1based": 706,
+        "raw_jsonl_row_sha256_including_lf": "sha256:8c293b034464fec6f5d7f7e938f99e1e7d9315fc30cbaa72a0ca1a988b8b4776",
+        "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-087",
+        "candidate_semantic_digest": "sha256:b361e4a28f7e9a7c8cc8b678bdc87c4f7495e45e49e5b253bf28666c6b7bc462",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr15-harness087-os130-coverage-receipt-2026-10-03-r2.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HELIXOS-L2-130",
+        "registration_id": "MPR-RC-HELIXOS-L2-130-002",
+        "line_1based": 707,
+        "raw_jsonl_row_sha256_including_lf": "sha256:875bf6e3668192382fea364c8190ba5b46bd903ac7fc7f944b56ddcc6bfebdd3",
+        "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-130",
+        "candidate_semantic_digest": "sha256:e89705deadaae98977387141f10e7413c5d0e085e07d2ebe047c3c565559cddf",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr15-harness087-os130-coverage-receipt-2026-10-03-r2.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      {
+        "identity": "HARNESS-L2-088",
+        "registration_id": "MPR-RC-HARNESS-L2-088-001",
+        "line_1based": 703,
+        "raw_jsonl_row_sha256_including_lf": "sha256:75f936140cbb88f001101e2afa40a87dfb1d70f1ce8e53558398415516f2755a",
+        "candidate_source_path": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-088+EOF-scope-interpretation-supplement",
+        "candidate_semantic_digest": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+        "coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr16-asset-inventory-coverage-receipt-2026-10-03-r1.json",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      }
+    ]
+  },
+  "source_copy": {
+    "original_path": "scaffold/review-handoff/local/po-decision-2026-10-03-additions10.md",
+    "stored_path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-additions10-2026-10-03.md",
+    "sha256": "sha256:cc735c33e298ca51a388b715ff5f9632f9ed20c42e453ff5bfc8db63f2d75954"
+  },
+  "receipt_sha256": {
+    "helixos-l2-001-hil-nfr32-candidate-correction-receipt-2026-10-03-r3.json": "sha256:f590f94f0e192653c9fd826621b5b9fbcf174aff7650180077d0439f22864d01",
+    "hil-nfr36-os018-coverage-receipt-2026-10-03-r2.json": "sha256:5b04caa53eba673a975d9f5315d0a81482a0d7579f95b7faf4573dda586ea229",
+    "security-third-party-data-nfr39-l11-candidate-coverage-receipt-2026-10-03-r1.json": "sha256:a505a76af39314044370dbe0a758db9e87f0ecb781381c170d4f1eb572b36c82",
+    "hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r1.json": "sha256:6f2637a7835df5058749ffcd7b0108d1f6aa16b831b0698f7521c85e52dcaa99",
+    "helixos-l2-129-hil-nfr40-quota-rate-coverage-receipt-2026-10-03-r2.json": "sha256:1ac252ebf085d4b668fd5e74facb06eacace142c570ce66c759e9a7302022c45",
+    "hil-nfr38-bypass-lifecycle-coverage-receipt-2026-10-03.json": "sha256:5cca2e753f96c2e4698fd772028a8000d1a3db162056732adf6336191fa927b3",
+    "harness-v13-policy-167-171-coverage-receipt-2026-10-03-r2.json": "sha256:6b722a05674be1603eeb5c2076e2c935f78cab2e810a2dd25359406ea545818c",
+    "hil-fr15-harness087-os130-coverage-receipt-2026-10-03-r2.json": "sha256:f8dd9886c29e5d5234c1c91a1bbecbd345879d629da62d95a787cf5e32331b21",
+    "hil-fr16-asset-inventory-coverage-receipt-2026-10-03-r1.json": "sha256:d50930b878fab171f1940be4822dfdc536ea41302a7737a9553473ace3214dd6"
+  },
+  "recalculation": {
+    "passed": 55,
+    "failed": 0,
+    "checks": [
+      {
+        "label": "001 L2 part 1",
+        "actual_sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+        "expected_sha256": "sha256:4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78",
+        "pass": true
+      },
+      {
+        "label": "001 L2 part 2",
+        "actual_sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5",
+        "expected_sha256": "sha256:89ae22c348d83783920e5423d7c3bbe076c2b315b1dd6fcc65fbea416461cbd5",
+        "pass": true
+      },
+      {
+        "label": "001 L2 composite",
+        "actual_sha256": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b",
+        "expected_sha256": "sha256:77887b2d5c6d7c4f01ee905c503276fe96edaddc6505b28f6ffaafedc315472b",
+        "pass": true
+      },
+      {
+        "label": "001 L11 part 1",
+        "actual_sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+        "expected_sha256": "sha256:ff822f0d9751edf6beeb58ee691fe957e3e3b9d6acea35faa0b0b773a2856364",
+        "pass": true
+      },
+      {
+        "label": "001 L11 part 2",
+        "actual_sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1",
+        "expected_sha256": "sha256:e39078e65d47e75116e10eeffe9a3791368e1c70c3cda3fa9256da37efeb6ea1",
+        "pass": true
+      },
+      {
+        "label": "001 L11 part 3",
+        "actual_sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6",
+        "expected_sha256": "sha256:52b0cb4a04ce26c7cba9badf97b95387d6bd4b103e3fd8625d7a8232e34c64f6",
+        "pass": true
+      },
+      {
+        "label": "001 L11 composite",
+        "actual_sha256": "sha256:9e60291b227320cee9647f5c22c0ee8dec0d728aba1dca63decd3c18864f7aaf",
+        "expected_sha256": "sha256:9e60291b227320cee9647f5c22c0ee8dec0d728aba1dca63decd3c18864f7aaf",
+        "pass": true
+      },
+      {
+        "label": "018 l2 identity",
+        "actual_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "expected_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "pass": true
+      },
+      {
+        "label": "018 l2 supplement",
+        "actual_sha256": "sha256:634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d",
+        "expected_sha256": "sha256:634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d",
+        "pass": true
+      },
+      {
+        "label": "018 l2 composite",
+        "actual_sha256": "sha256:5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2",
+        "expected_sha256": "sha256:5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2",
+        "pass": true
+      },
+      {
+        "label": "018 l11 identity",
+        "actual_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "expected_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "pass": true
+      },
+      {
+        "label": "018 l11 supplement",
+        "actual_sha256": "sha256:ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c",
+        "expected_sha256": "sha256:ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c",
+        "pass": true
+      },
+      {
+        "label": "018 l11 composite",
+        "actual_sha256": "sha256:e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
+        "expected_sha256": "sha256:e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
+        "pass": true
+      },
+      {
+        "label": "029 l2 採択済HELIXSECURITY-L2-029 section",
+        "actual_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "expected_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "pass": true
+      },
+      {
+        "label": "029 l2 composite",
+        "actual_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "expected_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "pass": true
+      },
+      {
+        "label": "029 l11 採択済HELIXSECURITY-L2-029 L11 section",
+        "actual_sha256": "sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "expected_sha256": "sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "pass": true
+      },
+      {
+        "label": "029 l11 未採択HIL-NFR-39末尾補足part",
+        "actual_sha256": "sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288",
+        "expected_sha256": "sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288",
+        "pass": true
+      },
+      {
+        "label": "029 l11 composite",
+        "actual_sha256": "sha256:bad6c3ebc301cecf328777a9497ad17cfcc9df023b57a5e897db8f44437da210",
+        "expected_sha256": "sha256:bad6c3ebc301cecf328777a9497ad17cfcc9df023b57a5e897db8f44437da210",
+        "pass": true
+      },
+      {
+        "label": "072 L2-072-original",
+        "actual_sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+        "expected_sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+        "pass": true
+      },
+      {
+        "label": "072 L2-072-supplement",
+        "actual_sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b",
+        "expected_sha256": "sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b",
+        "pass": true
+      },
+      {
+        "label": "072 L11-072-original",
+        "actual_sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
+        "expected_sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
+        "pass": true
+      },
+      {
+        "label": "072 L11-072-supplement",
+        "actual_sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8",
+        "expected_sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8",
+        "pass": true
+      },
+      {
+        "label": "072 L2-072-NFR34-supplement",
+        "actual_sha256": "sha256:511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8",
+        "expected_sha256": "sha256:511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8",
+        "pass": true
+      },
+      {
+        "label": "072 L11-072-NFR34-supplement",
+        "actual_sha256": "sha256:9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194",
+        "expected_sha256": "sha256:9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194",
+        "pass": true
+      },
+      {
+        "label": "072 six-part composite",
+        "actual_sha256": "sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775",
+        "expected_sha256": "sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775",
+        "pass": true
+      },
+      {
+        "label": "129 L2",
+        "actual_sha256": "sha256:42ac19a01b0929a9e92b8d5ba83061ea929c0f23d02c8d885472d2c2969137c7",
+        "expected_sha256": "sha256:42ac19a01b0929a9e92b8d5ba83061ea929c0f23d02c8d885472d2c2969137c7",
+        "pass": true
+      },
+      {
+        "label": "129 L11",
+        "actual_sha256": "sha256:f1f756669272512f3d53a84b9b1a1d266b2a3f83e518ea86ea825e17fad33394",
+        "expected_sha256": "sha256:f1f756669272512f3d53a84b9b1a1d266b2a3f83e518ea86ea825e17fad33394",
+        "pass": true
+      },
+      {
+        "label": "035 l2",
+        "actual_sha256": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
+        "expected_sha256": "sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
+        "pass": true
+      },
+      {
+        "label": "035 l11",
+        "actual_sha256": "sha256:76f7f174a03db3d162c14409b4c970b75d202af4794c5faf6d7832593a42fa7b",
+        "expected_sha256": "sha256:76f7f174a03db3d162c14409b4c970b75d202af4794c5faf6d7832593a42fa7b",
+        "pass": true
+      },
+      {
+        "label": "086 L2 immutable section",
+        "actual_sha256": "sha256:cef4bb68938fc082b87618b000fb32b1f428aa2d6322916b8926fb6ffcb037a2",
+        "expected_sha256": "sha256:cef4bb68938fc082b87618b000fb32b1f428aa2d6322916b8926fb6ffcb037a2",
+        "pass": true
+      },
+      {
+        "label": "086 L2 raw 002 suffix",
+        "actual_sha256": "sha256:79d045418eef00464074f5b451721452c094feeca2a1adee855366a46cee4f7c",
+        "expected_sha256": "sha256:79d045418eef00464074f5b451721452c094feeca2a1adee855366a46cee4f7c",
+        "pass": true
+      },
+      {
+        "label": "086 L2 candidate composite",
+        "actual_sha256": "sha256:1156537dc160a27de13dc9b9f3b5f829128010bfd31f39ac99ed7bf2e6d01094",
+        "expected_sha256": "sha256:1156537dc160a27de13dc9b9f3b5f829128010bfd31f39ac99ed7bf2e6d01094",
+        "pass": true
+      },
+      {
+        "label": "086 L11 immutable section",
+        "actual_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+        "expected_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+        "pass": true
+      },
+      {
+        "label": "086 L11 raw 002 suffix",
+        "actual_sha256": "sha256:21fcbd6382b2c34ef8fb73c418ceb080999efc609230966d4c25716cb3dd297f",
+        "expected_sha256": "sha256:21fcbd6382b2c34ef8fb73c418ceb080999efc609230966d4c25716cb3dd297f",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l2 identity",
+        "actual_sha256": "sha256:6ff019751ec9b357dad94a946ac79ecacf7f92b09550fdd09e5c68f2bd4456c7",
+        "expected_sha256": "sha256:6ff019751ec9b357dad94a946ac79ecacf7f92b09550fdd09e5c68f2bd4456c7",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l2 supplement",
+        "actual_sha256": "sha256:4bbb651b7e88b3d6c256444f55112636ba18df2c26ab993458c7492562ce14a1",
+        "expected_sha256": "sha256:4bbb651b7e88b3d6c256444f55112636ba18df2c26ab993458c7492562ce14a1",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l2 composite",
+        "actual_sha256": "sha256:b361e4a28f7e9a7c8cc8b678bdc87c4f7495e45e49e5b253bf28666c6b7bc462",
+        "expected_sha256": "sha256:b361e4a28f7e9a7c8cc8b678bdc87c4f7495e45e49e5b253bf28666c6b7bc462",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l11 identity",
+        "actual_sha256": "sha256:171d3433842b1044626b56884b89c6a88193d6d31c15be04a1e25d00a275311a",
+        "expected_sha256": "sha256:171d3433842b1044626b56884b89c6a88193d6d31c15be04a1e25d00a275311a",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l11 supplement",
+        "actual_sha256": "sha256:2497a6804926a73e4014ad96aa0e4ff2a4556fc8cd63e01ab4608cce8f88084f",
+        "expected_sha256": "sha256:2497a6804926a73e4014ad96aa0e4ff2a4556fc8cd63e01ab4608cce8f88084f",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 l11 composite",
+        "actual_sha256": "sha256:4a55bb10d3eb9bd4cfb7f967cef6aa0f30353f5ee853d8e726f82bcdff6b35d6",
+        "expected_sha256": "sha256:4a55bb10d3eb9bd4cfb7f967cef6aa0f30353f5ee853d8e726f82bcdff6b35d6",
+        "pass": true
+      },
+      {
+        "label": "HARNESS-L2-087 pair LF",
+        "actual_sha256": "sha256:0825339bc745181b16ddd73032c93e37ea2a450552cb6ec11920534c75712cc4",
+        "expected_sha256": "sha256:0825339bc745181b16ddd73032c93e37ea2a450552cb6ec11920534c75712cc4",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l2 identity",
+        "actual_sha256": "sha256:9916804ec017c5854f496066e76fb6d4c7781462388478c8e9d4a0f4196027a5",
+        "expected_sha256": "sha256:9916804ec017c5854f496066e76fb6d4c7781462388478c8e9d4a0f4196027a5",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l2 supplement",
+        "actual_sha256": "sha256:485068e885c39889d72cb8278da492664fe5347b8b059f469e11accc27e816a1",
+        "expected_sha256": "sha256:485068e885c39889d72cb8278da492664fe5347b8b059f469e11accc27e816a1",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l2 composite",
+        "actual_sha256": "sha256:e89705deadaae98977387141f10e7413c5d0e085e07d2ebe047c3c565559cddf",
+        "expected_sha256": "sha256:e89705deadaae98977387141f10e7413c5d0e085e07d2ebe047c3c565559cddf",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l11 identity",
+        "actual_sha256": "sha256:8e5fc049b06882e6049b02fd7c1fd4f21a20a352d4193532bbf0996536eaf1a1",
+        "expected_sha256": "sha256:8e5fc049b06882e6049b02fd7c1fd4f21a20a352d4193532bbf0996536eaf1a1",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l11 supplement",
+        "actual_sha256": "sha256:9e57c45852ce4680b6460e2a25aeec82a0e96ca5bd92b32cf5ff291e9fd56bd6",
+        "expected_sha256": "sha256:9e57c45852ce4680b6460e2a25aeec82a0e96ca5bd92b32cf5ff291e9fd56bd6",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 l11 composite",
+        "actual_sha256": "sha256:bc525bc9a1734f3f994e3ec4d257aae0c0c9f1d7c8e78a576ee848decafd0949",
+        "expected_sha256": "sha256:bc525bc9a1734f3f994e3ec4d257aae0c0c9f1d7c8e78a576ee848decafd0949",
+        "pass": true
+      },
+      {
+        "label": "HELIXOS-L2-130 pair LF",
+        "actual_sha256": "sha256:b14e358f2d7b6c09d5f257de0033c30ad88174c1f098bb5eb4e736cbc38c0075",
+        "expected_sha256": "sha256:b14e358f2d7b6c09d5f257de0033c30ad88174c1f098bb5eb4e736cbc38c0075",
+        "pass": true
+      },
+      {
+        "label": "088 L2 part 1",
+        "actual_sha256": "sha256:7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b",
+        "expected_sha256": "sha256:7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b",
+        "pass": true
+      },
+      {
+        "label": "088 L2 part 2",
+        "actual_sha256": "sha256:42830ea75a20fb3ce71c2e77bd69e8f68ec79a7d6243a2b81d5525eed4462a0a",
+        "expected_sha256": "sha256:42830ea75a20fb3ce71c2e77bd69e8f68ec79a7d6243a2b81d5525eed4462a0a",
+        "pass": true
+      },
+      {
+        "label": "088 L2 composite",
+        "actual_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+        "expected_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+        "pass": true
+      },
+      {
+        "label": "088 L11 part 1",
+        "actual_sha256": "sha256:52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea",
+        "expected_sha256": "sha256:52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea",
+        "pass": true
+      },
+      {
+        "label": "088 L11 part 2",
+        "actual_sha256": "sha256:b6469cb77bbee91d7a9325bd1444a800fe0da84055342119f44692b7ec878f9d",
+        "expected_sha256": "sha256:b6469cb77bbee91d7a9325bd1444a800fe0da84055342119f44692b7ec878f9d",
+        "pass": true
+      },
+      {
+        "label": "088 L11 composite",
+        "actual_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+        "expected_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+        "pass": true
+      },
+      {
+        "label": "088 pair NUL",
+        "actual_sha256": "sha256:3ce8866aa9455fa4323b7dc87bab44bc1b36fbb3215ab4f038acbc39a0fa45db",
+        "expected_sha256": "sha256:3ce8866aa9455fa4323b7dc87bab44bc1b36fbb3215ab4f038acbc39a0fa45db",
+        "pass": true
+      }
+    ],
+    "special_086_rule": "L2 original selected bytes + raw suffix bytes lines 1486-1498, including initial two LF bytes; L11 original section and raw suffix lines 1264-1276; receipt r2 and published r1 bytes kept distinct."
+  },
+  "adopted_previous_revision_pins": {
+    "SECURITY-029-002": "57-candidates decision row 88; L2 sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745; L11 sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+    "INTELLIGENCE-072-004": "57-candidates decision row 85; four-part composite sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+  },
+  "routing_correction_proposals_not_adopted": [
+    "PRC-CORR-HIL-FR-15-001",
+    "PRC-CORR-HIL-FR-16-001"
+  ],
+  "authority_register_append_ref": "docs/governance/upstream-authority-register-2026-09-14.md#追加10件のPO判断参照-2026-10-03",
+  "result": "PASS",
+  "decision_record_sha256": "sha256:a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+  "authority_register_update": {
+    "path": "docs/governance/upstream-authority-register-2026-09-14.md",
+    "append_only": true,
+    "base_commit": "62d9eedca25a927916594a0a96690b2441437712",
+    "prefix_sha256": "sha256:e1b861c9d3609f060b3c9f2b54618115826f9cb728a5d4c62d119549bf2fd33c",
+    "current_sha256": "sha256:3c289562e204eb89e997e48893e86b4602ced40ede10cff33fed745fa49c623a",
+    "preserved_base_prefix": true,
+    "exact_appended_bytes_text": "\n## 追加10件のPO判断参照（2026-10-03）\n\n[追加・改訂10件のPO判断記録](decisions/po-decision-2026-10-03-additions10.md)が固定するexact registration revisionとL2/L11本文だけを採択対象とする。対象は`HELIXOS-L2-001@MPR-RC-HELIXOS-L2-001-001`、`HELIXOS-L2-018@MPR-RC-HELIXOS-L2-018-002`、`HELIXSECURITY-L2-029@MPR-RC-HELIXSECURITY-L2-029-003`、`HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005`、`HELIXOS-L2-129@MPR-RC-HELIXOS-L2-129-002`、`HELIXSECURITY-L2-035@MPR-RC-HELIXSECURITY-L2-035-001`、`HARNESS-L2-086@MPR-RC-HARNESS-L2-086-002`（後続版向け、1.0へ追加しない）、`HARNESS-L2-087@MPR-RC-HARNESS-L2-087-002`と`HELIXOS-L2-130@MPR-RC-HELIXOS-L2-130-002`（一組）、および`HARNESS-L2-088@MPR-RC-HARNESS-L2-088-001`である。MPR各行は`registered_proposal`／`authority_effect: none`のまま維持し、判断記録のみが対象revisionの採否authorityを持つ。既採択029-002と072-004は別revisionとして存続する。`PRC-CORR-HIL-FR-15-001`／`PRC-CORR-HIL-FR-16-001`の提案状態、旧source holding、同判断記録に明記した保留は変えない。\n",
+    "MPR_modified": false
+  },
+  "special_086_lineage": {
+    "public_MPR001_snapshot_commit": "9f700cdfe^",
+    "public_L2_full_file_sha256": "sha256:9b043f389dfeddeae251108b756ad4d0b353cda131ea06ec174c16222d64176c",
+    "public_L11_full_file_sha256": "sha256:644df7dad5bbdea6607bd3747457addbb1f32a74d2ac8d85e92680bc97793f1e",
+    "r2_file_bytes_are_append_only_suffixes": true,
+    "r2_L2_raw_suffix_sha256": "sha256:79d045418eef00464074f5b451721452c094feeca2a1adee855366a46cee4f7c",
+    "r2_L11_raw_suffix_sha256": "sha256:21fcbd6382b2c34ef8fb73c418ceb080999efc609230966d4c25716cb3dd297f",
+    "physical_ranges_in_current_file": {
+      "L2_immutable_001": [
+        1455,
+        1485
+      ],
+      "L2_raw_002_suffix_including_two_initial_LFs": [
+        1486,
+        1498
+      ],
+      "L11_immutable_001": [
+        1225,
+        1263
+      ],
+      "L11_raw_002_suffix_including_two_initial_LFs": [
+        1264,
+        1276
+      ]
+    },
+    "L2_candidate_composite_rule": "SHA256(immutable L2 001 selected section bytes + exact raw r2 EOF suffix; do not normalize/re-serialize suffix)",
+    "L2_candidate_composite_sha256": "sha256:1156537dc160a27de13dc9b9f3b5f829128010bfd31f39ac99ed7bf2e6d01094",
+    "L11_rule": "pin immutable L11 001 selected section and exact raw 002 suffix separately; no adopted L11 digest inferred"
+  }
+}
