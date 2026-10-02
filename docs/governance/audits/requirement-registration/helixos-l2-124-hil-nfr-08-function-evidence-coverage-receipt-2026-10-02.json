@@ -144,8 +144,7 @@
           "row_sha256_including_lf": "sha256:1b2f3e8bd602b488a4af5f20db36de7674359673da3b3dcb0ed4f2f09df6855a",
           "row_sha256_without_lf": "sha256:54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
         }
-      ],
-      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+      ]
     },
     {
       "identity": "HELIXOS-L2/L11-035",
@@ -164,8 +163,7 @@
           "row_sha256_including_lf": "sha256:f4a5dec58d237ed7836aac99488ea08fde6bb48cfad1155fea4442ce8a1fce2c",
           "row_sha256_without_lf": "sha256:86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
         }
-      ],
-      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+      ]
     },
     {
       "identity": "HELIXOS-L2/L11-019",
@@ -235,8 +233,7 @@
           "row_sha256_including_lf": "sha256:b4340a499b663592033fa7800e7694bbc9f4f98d12416b7d33ec6fbc2f29f09a",
           "row_sha256_without_lf": "sha256:30543b99a6dda6ee7b825cc6879d5f1494e53799f91a8288f2fe152d77e2b6f1"
         }
-      ],
-      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+      ]
     },
     {
       "identity": "HARNESS-L2/L11-059 + HELIXOS-L2/L11-102",
@@ -268,8 +265,7 @@
           "row_sha256_including_lf": "sha256:1c8544ba7c62568860a57793e76c060e21d45ed51f7f76cd54ba46779a03b1e8",
           "row_sha256_without_lf": "sha256:7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d"
         }
-      ],
-      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+      ]
     },
     {
       "identity": "HELIXOS-L2/L11-054",
@@ -287,8 +283,7 @@
           "row_sha256_including_lf": "sha256:ef3e945bd02e8693510a01ccb4a1aee5353ef7a61adc44dd5ef77ff02182147c",
           "row_sha256_without_lf": "sha256:63be074a8b79ad02f7e5305a036f21606b52212ab08b484812fb5295ab502992"
         }
-      ],
-      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+      ]
     },
     {
       "identity": "HELIXOS-L2/L11-044",
@@ -306,8 +301,7 @@
           "row_sha256_including_lf": "sha256:bd00123dd927c76e73dc4c135408a405f4fbcfdb06d143db932467474c579afc",
           "row_sha256_without_lf": "sha256:6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153"
         }
-      ],
-      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+      ]
     },
     {
       "identity": "HELIXOS-L2/L11-119",
