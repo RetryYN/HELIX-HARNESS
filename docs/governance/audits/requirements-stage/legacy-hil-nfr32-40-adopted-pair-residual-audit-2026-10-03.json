@@ -1,0 +1,521 @@
+{
+  "audit_id": "legacy-hil-nfr32-40-adopted-pair-residual-audit-2026-10-03",
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "crosswalk": "docs/governance/audits/requirements-stage/legacy-ir-quality-source-recheck-2026-09-28.md",
+    "legacy_consumers": {
+      "definition_ledger": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+      "assertion_ledger": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+      "assertion_ids": {
+        "32": "HIA-NFR-032 / HOT-HIL-49",
+        "33": "HIA-NFR-033 / HOT-HIL-50",
+        "34": "HIA-NFR-034 / HOT-HIL-52",
+        "35": "HIA-NFR-035 / HOT-HIL-54",
+        "36": "HIA-NFR-036 / HOT-HIL-55",
+        "37-40": "HIA-NFR-037..040 / HOT-HIL-56"
+      },
+      "functional_consumers": "HR-FR-HIL-19, HR-FR-HIL-21, HR-FR-HIL-22, HR-FR-HIL-23 and corresponding HAT/HAC; exact mapping recorded per source-recheck section"
+    }
+  },
+  "adopted_pair_pins": {
+    "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "base_decisions": {
+      "harness": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "os": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "intelligence": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "labo": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "security": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md"
+    },
+    "later_adoptions": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+    "later_adopted_pairs": {
+      "HELIXLABO-L2-064-002": {
+        "decision_row": 79,
+        "receipt": "docs/governance/audits/requirement-registration/labo-worker-blind-coverage-receipt-2026-09-28-r2.json",
+        "l2_sha256": "e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
+        "l11_sha256": "4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+      },
+      "HELIXINTELLIGENCE-L2-072-004": {
+        "decision_row": 85,
+        "decision_scope": "conditional adoption; 1.0 limited to candidate generation and shadow evaluation",
+        "receipt": "docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r4.json",
+        "l2_sha256": "02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+        "l11_sha256": "381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a",
+        "part_hashes": {
+          "l2_original": "a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+          "l2_supplement": "08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b",
+          "l11_original": "b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f",
+          "l11_supplement": "8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
+        },
+        "pin_result": "all four parts match; concatenated semantic digest matches"
+      },
+      "HELIXSECURITY-L2-029-002": {
+        "decision_row": 88,
+        "receipt": "docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28-r2.json",
+        "l2_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "l11_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "scope_decision": "row 112: added third-party runtime only; do not broaden to primary Worker",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:88",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "selected_l2_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "selected_l11_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "current_l2_section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "current_l11_section_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "current_section_check": "exact heading sections in main 212 match decision row 88 selected section pins"
+      },
+      "HELIXSECURITY-L2-032-001": {
+        "decision_row": 91,
+        "receipt": "docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json",
+        "l2_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+        "l11_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+      }
+    }
+  },
+  "exact_pair_section_comparison": {
+    "base_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "normalization": "UTF-8; selected primary identity row or L2/L11 identity section; trailing blank lines removed; one LF terminator",
+    "current_vs_base": "All listed selected sections match their corresponding fixed/adopted pins in the recorded comparison, including SECURITY-029-002 at decision 57:88; its authority scope remains bounded by 57:112.",
+    "pairs": {
+      "HARNESS-L2-004": {
+        "l2_primary_row_sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
+        "l11_primary_row_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632"
+      },
+      "HARNESS-L2-005": {
+        "l2_primary_row_sha256": "6d4ca115f2d2114ddfa4dd41b4ec0305cb4818954b64ebb66bd2a08a39e5f63f",
+        "l11_primary_row_sha256": "d13efe4614dd4455583bc7fe5f4585829082a4dcbb28e8159b33f4bbb72925eb"
+      },
+      "HELIXOS-L2-004": {
+        "l2_primary_row_sha256": "84ca221c8917168e8eeb9a7481b7176c0b0484a0077de6b8fe1a6a88512a84a5",
+        "l11_primary_row_sha256": "2c3954ea845306a2120f9119ea3b6503ba4957b5eab2b23b946a2f04cc5a19a1"
+      },
+      "HELIXOS-L2-009": {
+        "l2_primary_row_sha256": "23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+        "l11_primary_row_sha256": "276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8"
+      },
+      "HELIXOS-L2-015": {
+        "l2_section_sha256": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+        "l11_section_sha256": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+      },
+      "HELIXOS-L2-016": {
+        "l2_section_sha256": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+        "l11_section_sha256": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+      },
+      "HELIXOS-L2-017": {
+        "l2_section_sha256": "d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+        "l11_section_sha256": "33fa3c66d69861c88593bccd1b2c22d2a92b4c6b5ec82c4456f0bf2ce52d3f4a"
+      },
+      "HELIXOS-L2-018": {
+        "l2_section_sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "l11_section_sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+      },
+      "HELIXOS-L2-019": {
+        "l2_section_sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "l11_section_sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+      },
+      "HELIXSECURITY-L2-006": {
+        "l2_section_sha256": "8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+        "l11_section_sha256": "0a48798ef2b523f862862cd929582d6efcb114c5e9baa7a7cab11d3ba2ed4f1d"
+      },
+      "HELIXSECURITY-L2-007": {
+        "l2_section_sha256": "1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+        "l11_section_sha256": "982d0033e8483b228cd8b3f645bea65ae979c07cc64f5c02986971092ac9b089"
+      },
+      "HELIXSECURITY-L2-008": {
+        "l2_section_sha256": "6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+        "l11_section_sha256": "42b074eeb934dee84394e5602761373c484b493d58c29c2868c704d58b77a33b"
+      },
+      "HELIXSECURITY-L2-032": {
+        "l2_section_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8",
+        "l11_section_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+      },
+      "HELIXSECURITY-L2-029-002": {
+        "l2_section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "l11_section_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "l2_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "l11_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:88",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_row_112_scope": "added third-party runtime only; primary Worker excluded"
+      }
+    },
+    "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+  },
+  "requirements": [
+    {
+      "legacy_id": "HIL-NFR-32",
+      "source_line": 212,
+      "source_line_sha256": "be45c5624fe48a251af1ff6a40f6f1762f637f564e14394eab046fd181c54fdd",
+      "pairs": [
+        "HARNESS-L2-004/-005",
+        "HELIXOS-L2-015/-016/-019"
+      ],
+      "residual": true,
+      "finding": "authority, impact, pair/oracle, rollback and downstream stale propagation are distributed across pairs; no single pre-Canonical gate explicitly requires and binds all six conditions to the same semantic change"
+    },
+    {
+      "legacy_id": "HIL-NFR-33",
+      "source_line": 213,
+      "source_line_sha256": "a76665f3bca8945b5cc116326120eaed7c38f26468a401dc935fcf4197dfd28b",
+      "residual": true,
+      "finding": "A visible residual in this comparison is the explicit context-cost/drift-risk finding for excessive duplicate contracts/examples. Full whole-IR and consumer-condition closure across all applicable adopted pair scopes has not been established; this is not asserted as the sole residual.",
+      "integrated_audit_evidence": {
+        "base_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
+        "residual": "visible residual: excessive duplicate contracts/examples explicitly finding as context cost and drift risk",
+        "adopted_pairs": {
+          "HARNESS-L2-041-003": {
+            "decision": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md:27",
+            "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+            "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+            "current_base_section_sha256": {
+              "l2": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+              "l11": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+            },
+            "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+          },
+          "HARNESS-L2-043-002": {
+            "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:48",
+            "l2_section_sha256": "da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666",
+            "l11_section_sha256": "583bfaf669729d3148e072be3ca74f1ef125997e933f6a1a94f08c732cb6f4b4",
+            "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+          },
+          "HARNESS-L2-044-002": {
+            "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:49",
+            "l2_section_sha256": "690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2",
+            "l11_section_sha256": "9c79b73100f4afa63abba7f79d47b8931a1c29983ac08a3e4ded95e56107bfc8",
+            "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+          }
+        },
+        "finding": "The compared adopted pair texts cover their exact mapped scopes, but this audit has not proven exhaustive whole-IR and consumer-condition mapping across all applicable scopes. A visible residual is the explicit context-cost/drift-risk finding for excessive duplicate contracts/examples; this is not asserted as the sole residual or whole-source closure.",
+        "source_condition_comparison_complete": false,
+        "closure_claim": "none; whole IR and all consumer conditions are not proven closed"
+      },
+      "closure_status": "whole_requirement_closure_unproven",
+      "consumer_scope_closure_proven": false
+    },
+    {
+      "legacy_id": "HIL-NFR-34",
+      "source_line": 214,
+      "source_line_sha256": "caff7c98fbb388be37c8b72c135786905ac8512ee2ceca90a7c633aa46c220fc",
+      "pairs": [
+        "HARNESS-L2-010/-011",
+        "HELIXINTELLIGENCE-L2-014/-072-004",
+        "HELIXOS-L2-015/-017/-018/-019"
+      ],
+      "residual": true,
+      "finding": "072's adopted scope is candidate generation/shadow only and does not close the legacy stale triggers for scope/requirement/template/skill/model-catalog/allowlist changes or all named fail-close cases: unreviewed pack, unauthorized tool, self-validation, unbounded subagents, and out-of-process completion authority. All four receipt R4 parts match their current section pins and recompute the adopted semantic digest 02e8cd..."
+    },
+    {
+      "legacy_id": "HIL-NFR-35",
+      "source_line": 215,
+      "source_line_sha256": "9b5ec86c741f375d416ceb9796bf7a469794c8ddd4204e139adb1447c25bc5aa",
+      "pairs": [
+        "HELIXINTELLIGENCE-L2-010/-011",
+        "HELIXLABO-L2-006/-055/-059",
+        "HELIXOS-L2-018/-020",
+        "HELIXLABO-L2-064-002"
+      ],
+      "residual": false,
+      "finding": "adopted 064-002 L2/L11 digests match decision row 79; blind candidate identity, fixed fixture/rubric/judge/sample/retry, smoke/full separation, and non-compensable failures are retained"
+    },
+    {
+      "legacy_id": "HIL-NFR-36",
+      "source_line": 216,
+      "source_line_sha256": "b15aad6eeff64e21d844f136a4c65cfe26b0a77cefb8524aecdfa59ff3efd16f",
+      "pairs": [
+        "HELIXINTELLIGENCE-L2-010/-011/-067",
+        "HELIXLABO-L2-055/-059",
+        "HELIXOS-L2-018/-028/-029"
+      ],
+      "residual": true,
+      "finding": "撤回「残差なし」。HELIXINTELLIGENCE-L2-067 は draft_candidate / authority_status: not_adopted のため採択根拠ではない。採択済み010/011、LABO-055/059、OS-018/028/029に関連条件は分担されるが、既定値逸脱を記録するreceiptと品質問題のescalation順序を記録するreceiptは条件別の採択根拠が示されていない。少なくともこの二receipt条件を未証明として保持する。単価のみ/単発成功のみで最適性を主張しない条件もsourceに保持する。",
+      "status": "closure_unproven",
+      "unproven_source_conditions": [
+        "receipt default-value deviation",
+        "receipt quality-problem escalation order"
+      ],
+      "excluded_unadopted_evidence": {
+        "pair": "HELIXINTELLIGENCE-L2-067",
+        "current_status": "draft_candidate; authority_status: not_adopted",
+        "use_as_closure_evidence": false
+      }
+    },
+    {
+      "legacy_id": "HIL-NFR-37",
+      "source_line": 217,
+      "source_line_sha256": "e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+      "pairs": [
+        "HELIXINTELLIGENCE-L2-021/-022/-042",
+        "HELIXSECURITY-L2-001/-006/-014/-016/-027",
+        "HELIXSECURITY-L2-029-002"
+      ],
+      "residual": true,
+      "scope": "採択SECURITY-029-002は第三者/追加runtimeの範囲に限る。PO decision 57:112がprimary Workerへ拡張しないと明記するため、source全体の残差なしとは扱わずprimary Worker適用範囲を保留する。",
+      "finding": "追加runtime scope内で該当clauseの対応は確認できるが、decision 57:112によりprimary Workerは選択scopeから除外される。したがってsource-wide residual=falseとせず、primary Worker適用は未確定/保留として記録する。L2/L11の未採択表示とdecisionの採択状態の矛盾も記録する。",
+      "status": "scope_limited_coverage_primary_worker_scope_held",
+      "adopted_scope_coverage": "Decision 57:88で採択されたpairのL2/L11は追加runtime scopeで分類、path allowlist+secret scan、opt-out前提、未完了時の公開可能コードのみを条件にする。",
+      "status_label_conflict": "採択decision 57:88に対し、現行pinned L2/L11本文には「未採択候補」と表示される。この不整合は解消したと推測しない。",
+      "adopted_pair_pins": {
+        "pair": "HELIXSECURITY-L2-029-002",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:88",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "selected_l2_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "selected_l11_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "l2_section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "l11_section_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+      },
+      "adopted_pair_status": "adopted MPR-RC-HELIXSECURITY-L2-029-002 per decision row 88; primary Worker remains outside selected scope per row 112"
+    },
+    {
+      "legacy_id": "HIL-NFR-38",
+      "source_line": 218,
+      "source_line_sha256": "34a91d2f4e367f8500455e8dfd2f2283b7fac60b9eb028c3a2da1cef5c0f4c41",
+      "pairs": [
+        "HELIXOS-L2-018",
+        "HELIXSECURITY-L2-006/-007/-008/-032-001"
+      ],
+      "residual": true,
+      "finding": "adopted pairs cover deny-default and scoped operation authority; adopted SECURITY-032-001 additionally makes existing repository-level permanent bypass deny override one-shot markers/provider flags. Remaining gaps are runtime-only bypass activation with mandatory cleanup at run end and limiting YOLO to a transitional allowance for runtimes lacking explicit allowlists. SECURITY-033 dispatch-context binding does not substitute for these conditions"
+    },
+    {
+      "legacy_id": "HIL-NFR-39",
+      "source_line": 219,
+      "source_line_sha256": "401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+      "pairs": [
+        "HELIXOS-L2-018/-020",
+        "HELIXSECURITY-L2-006/-007",
+        "HELIXSECURITY-L2-029-002"
+      ],
+      "residual": true,
+      "scope": "Decision 57:88/112の追加runtime scopeに限定され、primary Workerは適用対象外。source-wide closureは主張しない。",
+      "finding": "部分対応は確認できるが、原文の4種類のローカルevidenceそれぞれをどのaccepted case/oracleが検査するかは未証明。加えてdecision 57:112はprimary Workerをscopeから除外する。残差なしへ閉じず、種類別fixture mappingとprimary Worker scopeを保留する。採択decisionとL2/L11未採択表示の不整合も保持する。",
+      "status": "partial_evidence_primary_worker_scope_held",
+      "adopted_scope_coverage": "L2はvendor privacy UI/declaration/remote flagを根拠としない条件と、local sandbox/network allowlist/egress/FS-difference evidenceを列挙する。L11はvendor-only proofを拒否し、local evidenceを要求する。",
+      "unproven_condition_mapping": [
+        "L11 oracle/caseへのOS sandbox evidenceの個別対応",
+        "L11 oracle/caseへのnetwork allowlist evidenceの個別対応",
+        "L11 oracle/caseへのegress measurement evidenceの個別対応",
+        "L11 oracle/caseへのfilesystem-difference evidenceの個別対応"
+      ],
+      "status_label_conflict": "採択decision 57:88に対し、現行pinned L2/L11本文には「未採択候補」と表示される。この不整合は解消したと推測しない。",
+      "adopted_pair_pins": {
+        "pair": "HELIXSECURITY-L2-029-002",
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:88",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "selected_l2_full_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+        "selected_l11_full_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+        "l2_section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+        "l11_section_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+        "comparison_main_commit": "212cefee88df4b0914c6253aa109fe9d884eae51"
+      },
+      "adopted_pair_status": "adopted MPR-RC-HELIXSECURITY-L2-029-002 per decision row 88; individual four evidence-type oracle mapping unproven; primary Worker remains outside selected scope per row 112"
+    },
+    {
+      "legacy_id": "HIL-NFR-40",
+      "source_line": 220,
+      "source_line_sha256": "89e31140c248c2f1bcb7140bd6549f7d86768c2c2bcf2ce88d623e7a06f01f95",
+      "pairs": [
+        "HELIXINTELLIGENCE-L2-010",
+        "HELIXOS-L2-004/-009/-017/-018/-019"
+      ],
+      "residual": true,
+      "finding": "general budget/deadline/cumulative-attempt/stop handling does not explicitly model quota/rate exhaustion as planned state, fail-close queue hold or alternate-runtime routing proposal, and prohibition on unplanned retries; SECURITY-029 explicitly excludes quota/rate retreat"
+    }
+  ],
+  "legacy_ir_source_and_consumer_records": {
+    "requirement_ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    "consumer_files": {
+      "system_contracts": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+      },
+      "acceptance_cases": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+      },
+      "system_tests": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+      },
+      "definition_ledger": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-requirement-definition-ledger.md",
+        "sha256": "ff5313eb0e7d4e8dd22c4227910bd954cec85299e037f629ff3424834e6e1881",
+        "rows": "174-190"
+      },
+      "assertion_coverage_ledger": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-assertion-coverage-ledger.md",
+        "sha256": "bd3b4bf3a58980edd47d4964ef56c78b88a986ffd4b0e77724af312c6a920386",
+        "rows": "190-198"
+      }
+    },
+    "requirements": [
+      {
+        "id": "HIL-NFR-32",
+        "statement_digest": "1beba8953dbc66f4ebfc308995105ad2cf1a0545fa7dc700b526c89b7f1a6a5b",
+        "record_digest": "d72e7284f3f1a7afb2ecb1cc1692dee2e795fde0c47ddca5779fb8e1b9a5651e",
+        "assertion": "HIA-NFR-032",
+        "contract": "HR-FR-HIL-19",
+        "acceptance": [
+          "HAC-HIL-19a",
+          "HAC-HIL-19b",
+          "HAC-HIL-19c"
+        ],
+        "test": "HAT-HIL-19",
+        "downstream": "DOWNSTREAM-HIL-NFR-32; pending_pair_descent",
+        "consumer_truth": "HAC-19b rejects missing authority/impact/transaction; HAC-19c checks stale/rename/split/merge identity and rollback. They do not combine all six source edges into one pre-Canonical gate."
+      },
+      {
+        "id": "HIL-NFR-33",
+        "statement_digest": "fd35b9d635312dc6f0e848c4bcbd28c70b5e8cd7da6aa1af4810053e9481fe35",
+        "record_digest": "88b466a8b1824c31ff3aa808b6989b8a8ed9f0d2c7707dd64037dd1bd59431f4",
+        "assertion": "HIA-NFR-033",
+        "contract": "HR-FR-HIL-20",
+        "acceptance": [
+          "HAC-HIL-20a",
+          "HAC-HIL-20b",
+          "HAC-HIL-20c"
+        ],
+        "test": "HAT-HIL-20",
+        "downstream": "DOWNSTREAM-HIL-NFR-33; pending_pair_descent",
+        "consumer_truth": "HAC-20b rejects missing obligation/negative/S4 edges and HAC-20c checks discovery-delta backflow. The adopted-pair comparison and a visible context-cost/drift-risk residual are integrated in this audit. Exhaustive whole-IR and consumer-condition closure is unproven; no sole residual or source closure is claimed."
+      },
+      {
+        "id": "HIL-NFR-34",
+        "statement_digest": "8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+        "record_digest": "bcf9d9a969abf7321dd827165c33f13ef27aa71e36f1fe27ab48acc27931b833",
+        "assertion": "HIA-NFR-034",
+        "contract": "HR-FR-HIL-21",
+        "acceptance": [
+          "HAC-HIL-21a",
+          "HAC-HIL-21b",
+          "HAC-HIL-21c"
+        ],
+        "test": "HAT-HIL-21",
+        "downstream": "DOWNSTREAM-HIL-NFR-34; pending_pair_descent",
+        "consumer_truth": "Contract binds task/skill/model-catalog/allowlist to generated pack/minimal team/independent verify; negative case rejects self-promotion/unauthorized tool/self-verification; boundary case stales on catalog change and requires regenerate/retire. Adopted 072 covers candidate/shadow authority only; remaining legacy stale triggers and all named fail-closed branches are not closed by that pair."
+      },
+      {
+        "id": "HIL-NFR-35",
+        "statement_digest": "75bc063dbce9013c692f5a213d4974fccff2809c64b5f28137f8181723621364",
+        "record_digest": "e07df923a32d5fee681cdfd0a45bf3bee8ffd71cfcfab9859b5c5ebf9c7622cf",
+        "assertion": "HIA-NFR-035",
+        "contract": "HR-FR-HIL-22",
+        "acceptance": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "test": "HAT-HIL-22",
+        "downstream": "DOWNSTREAM-HIL-NFR-35; pending_pair_descent",
+        "consumer_truth": "Positive case uses blind bench plus real task for use-specific selection; negative case rejects averaging away severe failures/scope deviation; boundary case compares and reroutes model/effort on quality decline. Adopted LABO-064-002 pair exactly preserves NFR-35's blind/reproducibility/no-compensation conditions."
+      },
+      {
+        "id": "HIL-NFR-36",
+        "statement_digest": "2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3",
+        "record_digest": "1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065",
+        "assertion": "HIA-NFR-036",
+        "contract": "HR-FR-HIL-22",
+        "acceptance": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "test": "HAT-HIL-22",
+        "downstream": "DOWNSTREAM-HIL-NFR-36; pending_pair_descent",
+        "consumer_truth": "The same contract requires reproducible fixture/rubric/task/risk, blind score, effective cost, routing and exception receipt; negative case rejects smoke-only, serious-failure averaging, unit-price optimization, and unjustified effort defaults; boundary case re-routes on quality decline."
+      },
+      {
+        "id": "HIL-NFR-37",
+        "statement_digest": "c193885771e85f07857776dbce87ceac9cb91725d64aa68eddd53ff2aa4902db",
+        "record_digest": "3f9879998b2c5856f087472bc33abf14f4c7b4fb46187b3e5e6be02083634ce9",
+        "assertion": "HIA-NFR-037",
+        "contract": "HR-FR-HIL-23",
+        "acceptance": [
+          "HAC-HIL-23a",
+          "HAC-HIL-23b",
+          "HAC-HIL-23c"
+        ],
+        "test": "HAT-HIL-23",
+        "downstream": "DOWNSTREAM-HIL-NFR-37; pending_pair_descent",
+        "consumer_truth": "Contract requires sandbox/classification/opt-out; HAC-23b rejects allowlist escape, scope escape, confidential delegation, and persistent bypass; 23c fails closed on quota exhaustion or egress deviation. Adopted SECURITY-029-002 retains the third-party-runtime data/opt-out slice only."
+      },
+      {
+        "id": "HIL-NFR-38",
+        "statement_digest": "623495c53d8e952d930ee57bc420714a8ed8e9749859fa4597543ff156e8fd9f",
+        "record_digest": "1d103f4dacdf25f1c230e717630c2dcd67c11ff974a4df311a3df0fd1f8650e9",
+        "assertion": "HIA-NFR-038",
+        "contract": "HR-FR-HIL-23",
+        "acceptance": [
+          "HAC-HIL-23a",
+          "HAC-HIL-23b",
+          "HAC-HIL-23c"
+        ],
+        "test": "HAT-HIL-23",
+        "downstream": "DOWNSTREAM-HIL-NFR-38; pending_pair_descent",
+        "consumer_truth": "HAC-23b rejects persistent bypass. Adopted SECURITY-032-001 proves repository permanent deny precedence over one-shot marker/provider flag; runtime-only activation and cleanup, plus YOLO limited to allowlist-less runtime transition, remain unclosed."
+      },
+      {
+        "id": "HIL-NFR-39",
+        "statement_digest": "cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+        "record_digest": "c64f42507553e77ceeb363e98776a67a5e6285d1825be2fceeda939e963987b7",
+        "assertion": "HIA-NFR-039",
+        "contract": "HR-FR-HIL-23",
+        "acceptance": [
+          "HAC-HIL-23a",
+          "HAC-HIL-23b",
+          "HAC-HIL-23c"
+        ],
+        "test": "HAT-HIL-23",
+        "downstream": "DOWNSTREAM-HIL-NFR-39; pending_pair_descent",
+        "consumer_truth": "Contract says security sufficiency is judged only by local enforcement; adopted SECURITY-029-002 keeps vendor claims separate from locally verified egress/filesystem/scan evidence within its added third-party-runtime scope."
+      },
+      {
+        "id": "HIL-NFR-40",
+        "statement_digest": "4171419553664d7150ffe9875c14b6bc5212f14635d339dafc2af08ddc656c54",
+        "record_digest": "d75e68668b1fb28d7ffd340c20c9d37214962b291935dbb40667597a2a27402b",
+        "assertion": "HIA-NFR-040",
+        "contract": "HR-FR-HIL-23",
+        "acceptance": [
+          "HAC-HIL-23a",
+          "HAC-HIL-23b",
+          "HAC-HIL-23c"
+        ],
+        "test": "HAT-HIL-23",
+        "downstream": "DOWNSTREAM-HIL-NFR-40; pending_pair_descent",
+        "consumer_truth": "HAC-23c explicitly requires fail-closed retreat and quarantine for quota depletion/egress drift. Adopted OS general budget/stop records do not state planned quota/rate queue hold or alternate-runtime proposal and no-unplanned-retry behavior."
+      }
+    ],
+    "test_status": "HAT-HIL-19/20/21/22/23 are all designed_not_implemented; archived tests and runtimes were not executed.",
+    "scope_note": "IR rows, HR-FR contracts, HAC oracles, and HAT references are source/consumer evidence. They do not establish current L2/L11 adoption, execution, or formal successor closure."
+  },
+  "verification": {
+    "legacy_source_read_only": true,
+    "accepted_pair_sections_compared_to_exact_pins": true,
+    "security_029_002_decision_and_pins_recorded": true,
+    "nfr33_whole_ir_condition_closure_proven": false,
+    "legacy_runtime_test_ci_executed": false
+  },
+  "independent_review_correction_basis": {
+    "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.md": {
+      "commit": "24ad26489ac6161ad266360fb8e2b53739379e9e",
+      "sha256": "8b2b6303f2cf817cec098035aaa30951f428b9ff46be855075e3b14b1c8ae85d"
+    },
+    "docs/governance/audits/requirements-stage/legacy-hil-nfr32-40-worker078-independent-review-2026-10-03.json": {
+      "commit": "24ad26489ac6161ad266360fb8e2b53739379e9e",
+      "sha256": "ede8c6144e9678b426b3e7a50fd7293052e41350aeb5fcb815168aeb0141a265"
+    }
+  },
+  "corrected_from_audit_commit": "a265cde478c93dfd248375122950df1551a57f0a",
+  "correction_base_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
+  "correction_summary": {
+    "NFR36": "residual=false withdrawn; two receipt conditions retained as unproven; 067 excluded as not adopted.",
+    "NFR37": "additional-runtime clause mapping retained; decision 57:112 primary Worker exclusion recorded as scope hold; stale unadopted labels recorded.",
+    "NFR39": "per-evidence-type L11 fixture mapping remains unproven; primary Worker exclusion and stale labels recorded; no closure inferred.",
+    "NFR33": "prior missing separate-file dependency removed by integrating the adopted-pair comparison and residual into this audit.",
+    "NFR-33": "a visible context-cost/drift-risk residual is recorded; exhaustive whole-IR/consumer-condition closure and sole-residual status are unproven; comparison integrated in this audit."
+  }
+}
