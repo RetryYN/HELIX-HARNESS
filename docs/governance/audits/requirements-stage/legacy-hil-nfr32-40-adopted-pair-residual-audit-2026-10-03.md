@@ -81,3 +81,10 @@ HARNESS行hashはIDが先頭列にある原子行だけを選択。OS-004/-009�
 - 072-004はreceipt R4指定どおりL2 original/supplement、L11 original/supplementを別々に正規化して4 part hashesを照合し、4つすべて一致、連結digestもdecision pinに一致した。064-002とSECURITY-029-002のL2/L11 section pinsも一致した。
 - 旧source行の意味・digestとconsumer mappingはsource-recheckに照合した。NFR-35/-37/-39の後発pair状態とNFR-34の条件付き採択範囲は、対応decision/receiptを照合した。
 - 旧CLI、runtime、hook、test、CIは実行していない。差分のみを `git diff --check` とJSON parseで検証する。
+
+
+## 最新mainへの再照合（e05a45ca）
+
+比較revisionは `e05a45ca27104e37909c49388c38ece0cf1c69f0`。固定・歴史revisionの66 locatorの明記した行範囲について、選択した生bytesが最新mainの連続行範囲に完全一致することを再計算した。JSONの `latest_main_comparison` に最新行位置と全文SHAを記録した。旧locator・抽出規則・pinは変更していない。072の4部分のcanonical本文連結digestも独立再計算して一致した。
+
+これは選択した範囲の比較であり、旧原文全体の無損失、受入の実行、候補の採択、要求ステージ完了を証明しない。各残差と意味の制限は本文のとおり保持する。
