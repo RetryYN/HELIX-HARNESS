@@ -537,7 +537,7 @@
       "relation": "accepted fixed neighbor evidence; its scope is retained and candidate 087 does not duplicate it"
     }
   ],
-  "source_atom_set_digest_rule": "Atom rows in source set order: UTF-8 bytes of atom_id + one ASCII space + source_line_sha256 including its sha256: prefix, LF-separated, no terminal LF; SHA-256.",
+  "source_atom_set_digest_rule": "Atom rows in source set order: UTF-8 atom_id + one ASCII space + source_line_sha256_including_lf including its sha256: prefix + terminal LF for every row, including the last. SHA-256 of the concatenated rows. The line hash selects the raw physical IR statement line including its LF; whole statement/record semantic digests are separately pinned.",
   "fixed_parent_authority_pins": {
     "concept_path": "docs/concept/helix-concept.md",
     "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
