@@ -3,12 +3,6 @@
   "audit_id": "HIL-NFR-21-23-CURRENT-CONDITION-COMPARISON-2026-10-02",
   "comparison_base_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
   "scope": "Old IR identities HIL-NFR-21, HIL-NFR-22, HIL-NFR-23 and exact current L2/L11 destinations only; no old runtime/test/CI/CLI execution.",
-  "current_pair_full_file_sha256": {
-    "docs/helix-harness/L2-requirements/product-requirements.md": "d6a32523b3b72bf222d94e54216ea2596e2416ba0961b8bc4d010aa0ac58ba80",
-    "docs/helix-harness/L11-acceptance/product-acceptance.md": "1f2ba2f30891e8f67a870444d4b3ee5c7a6c8794e2bd11a78a93fbf3d97f7b1b",
-    "docs/helix-os/L2-requirements/governance-requirements.md": "5e8a521274d6f21deb6b10a42625e39d9e82550856efb59adccc40679f8fa9a5",
-    "docs/helix-os/L11-acceptance/governance-acceptance.md": "f1e3de3192aecb32b7a60352714d95ccace8ad28608dec2174a5de14da6654ec"
-  },
   "decision_file_sha256": {
     "docs/governance/decisions/po-decision-2026-09-30-live26.md": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
     "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
@@ -115,17 +109,24 @@
     },
     "NFR22": {
       "source": {
-        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
-        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+        "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
         "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-22",
         "ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
         "statement_semantic_digest": "sha256:e0dcb185c615c632c93ff9df21f645e9293ed76f21317a5d1abe9a91123e84b9",
         "record_semantic_digest": "sha256:9e812da1be6072bdeb009ea88a93c7c3db30faec0ccca2b0196f6f2b139dbf93",
-        "line": 202,
-        "text": "| **HIL-NFR-22** | source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。 |",
-        "sha256_with_lf": "a3883ab55532a3fabeb2f58620d243502ff339761c05b8aa6e8dd1d8f2ed5278",
-        "sha256_without_lf": "52fc7723a0a9abf2d1d108e973125ac03b2af9b452b7be2d8eb743033efeb606"
+        "corroboration": {
+          "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "line": 202,
+          "line_sha256_with_lf": "a3883ab55532a3fabeb2f58620d243502ff339761c05b8aa6e8dd1d8f2ed5278",
+          "relation": "same-statement corroboration; not a second IR atom",
+          "text": "| **HIL-NFR-22** | source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。 |",
+          "sha256_with_lf": "a3883ab55532a3fabeb2f58620d243502ff339761c05b8aa6e8dd1d8f2ed5278",
+          "sha256_without_lf": "52fc7723a0a9abf2d1d108e973125ac03b2af9b452b7be2d8eb743033efeb606"
+        }
       },
       "conditions": [
         {
@@ -165,16 +166,16 @@
           ]
         },
         "HARNESS-L2-082-001": {
-          "authority": "unadopted NFR-22 residual candidate",
-          "l2_sha256": "ddb42d06239488c1b45b33d2ff7e9491d7e4cc1e1d5e2813216a682c35b1d2dc",
-          "l11_sha256": "b8dd386e169857b3314db1aa5424323df76c5f92e79346465c6b7726922f8573",
+          "authority": "unadopted NFR-22 residual candidate; exact pair is not an adoption decision",
+          "l2_sha256": "c9cf57f52825e390077af1f2ad0292d9b1118b1fe89c45cda54931eec8193d12",
+          "l11_sha256": "f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c",
           "l2_section_lines": [
             1360,
             1369
           ],
           "l11_section_lines": [
-            1059,
-            1075
+            1081,
+            1103
           ]
         }
       },
@@ -282,5 +283,13 @@
       "NFR23": "#/HAT-HIL-05",
       "status": "designed_not_implemented; not executed"
     }
+  },
+  "comparison_base_pair_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "dace6c9470a1f0ddb23129805e8458f2f28ab3b219f37db628231cc0ceb1ac47",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e"
+  },
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "e8478af512833a16c7a07ff6b34a771e5e46870cb759285c46ca1217ccd9e918",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794"
   }
 }

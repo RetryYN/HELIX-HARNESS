@@ -1,10 +1,12 @@
 # HIL-NFR-21〜23 現行条件照合
 
 - 比較基準: `91db17752d29c8bb8dd30a4b4bf693136bcd858f`（2026-10-02 main）
-- 旧asset: `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`
+- 旧L1 asset: `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`
+- 旧requirements IR asset: `LEGACY-ASSET-A60CF91DD2AF6693E6F9`
 - 旧requirements IR: `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`
 - 旧L1 source: `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`
 - 詳細pinと条件対応: [`hil-nfr21-23-current-condition-comparison-2026-10-02.json`](hil-nfr21-23-current-condition-comparison-2026-10-02.json)
+- JSONの`comparison_base_pair_full_file_sha256`は91db mainの比較元、`candidate_pair_full_file_sha256`はこの未採択候補を含む作業時点の全file pinであり、両方を分けて記録した。
 - 旧consumer IR files: `system_contracts.json` `2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab`; `acceptance_cases.json` `4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19`; `system_tests.json` `7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a`。NFR-21/23のconsumerはHR/HAC/HAT-05、NFR-22はHR/HAC/HAT-09として照合した。
 - 旧runtime、test、CI、CLIは実行していない。
 
@@ -16,9 +18,9 @@ IR `#/HIL-NFR-21`と旧L1 line 201の四条件（append-only原記録、AIによ
 
 ## HIL-NFR-22
 
-IR `#/HIL-NFR-22`と旧L1 line 202は、atomic behavior分母とaggregate parent・directory/file count・representative fixtureの除外に加えて、extractor変更またはsource差分時に「全child receipt」をstale化する。
+IR asset `LEGACY-ASSET-A60CF91DD2AF6693E6F9`の`#/HIL-NFR-22`が選択identityであり、旧L1 asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` line 202は同文のcorroborationで別atomではない。両sourceはatomic behavior分母とaggregate parent・directory/file count・representative fixtureの除外に加えて、extractor変更またはsource差分時に「全child receipt」をstale化する。
 
-採択HARNESS-038はcapability manifest/closureのscopeを扱う。HARNESS-067-001は未採択で、FR-37 line 127一atomの候補であり、stale条件はaffected atoms/child closureを対象にする。選択scopeの全prior child receiptを一律stale化するexact oracleは確認できなかった。残差をHARNESS-082の未採択候補に記録した。082はsource holdingを閉じず、NFR-22全体のsuccessor/adoptionを主張しない。
+採択HARNESS-038はcapability manifest/closureのscopeを扱う。HARNESS-067-001は未採択で、FR-37 line 127一atomの候補であり、stale条件はaffected atoms/child closureを対象にする。選択scopeの全prior child receiptを一律stale化するexact oracleは確認できなかった。残差をHARNESS-082の未採択候補に記録した。candidate pair section pinsはL2 `sha256:c9cf57f52825e390077af1f2ad0292d9b1118b1fe89c45cda54931eec8193d12`、L11 `sha256:f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c`（receipt `61ed95854999c417619d178d8fee8ef0d4d2c406ed2ad1b0e6f90bdd1e0321ba`）である。082はsource holdingを閉じず、NFR-22全体のsuccessor/adoptionを主張しない。
 
 ## HIL-NFR-23
 

@@ -7,7 +7,7 @@
   "base_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-nfr22-all-child-receipt-source-lines-2026-10-02.jsonl",
-    "file_sha256": "sha256:4a8dc1f1155eed753bebd022ffb29429e5a5c0803683532c62a069e7412a72ec",
+    "file_sha256": "sha256:ea5c895785f95310241a3d8a759c6573ff6e6a513535a7dec761641afb5b0aba",
     "digest": "sha256:cd5c8aa0749483656d22cf0292b48cff55b8b6a43206407185c4d58ff642f06e",
     "count": 1,
     "digest_rule": "One IR identity atom: SHA-256 over UTF-8 \"HIL-NFR-22 \" + statement semantic digest without sha256: prefix + LF. L1 line 202 corroborates the same text and is not a second atom.",
@@ -18,7 +18,7 @@
   "source_scope": {
     "atom_id": "HIL-NFR-22",
     "source_holding_registration_id": "MPR-SH-IR-003",
-    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
     "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
     "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-22",
@@ -27,15 +27,6 @@
     "source_statement": "source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。",
     "source_statement_semantic_digest": "sha256:e0dcb185c615c632c93ff9df21f645e9293ed76f21317a5d1abe9a91123e84b9",
     "source_record_semantic_digest": "sha256:9e812da1be6072bdeb009ea88a93c7c3db30faec0ccca2b0196f6f2b139dbf93",
-    "migration_corrobation": {
-      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
-      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
-      "source_line": 202,
-      "source_line_text": "| **HIL-NFR-22** | source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。 |",
-      "source_line_sha256_with_lf": "sha256:a3883ab55532a3fabeb2f58620d243502ff339761c05b8aa6e8dd1d8f2ed5278",
-      "source_line_sha256_without_lf": "sha256:52fc7723a0a9abf2d1d108e973125ac03b2af9b452b7be2d8eb743033efeb606",
-      "relation": "same HIL-NFR-22 wording corroboration; not an additional source atom"
-    },
     "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-NFR-22",
     "carry_forward_line": 124,
     "carry_status": "preserved_pending_rehome",
@@ -49,25 +40,35 @@
       "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-09c"
     ],
     "supporting_test_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-09",
-    "consumer_sources_context_only": true
+    "consumer_sources_context_only": true,
+    "migration_corroboration": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 202,
+      "source_line_text": "| **HIL-NFR-22** | source coverage分母はatomic behavior集合とし、aggregate parent、directory/file count、代表fixtureをcovered件数へ算入しない。extractor変更またはsource差分で全child receiptをstale化する。 |",
+      "source_line_sha256_with_lf": "sha256:a3883ab55532a3fabeb2f58620d243502ff339761c05b8aa6e8dd1d8f2ed5278",
+      "source_line_sha256_without_lf": "sha256:52fc7723a0a9abf2d1d108e973125ac03b2af9b452b7be2d8eb743033efeb606",
+      "relation": "same HIL-NFR-22 wording corroboration; not an additional source atom",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+    }
   },
   "candidate_pair": {
-    "digest_rule": "Each section begins at its ### heading and ends before the next ### heading; trim trailing blank lines and include one UTF-8 LF.",
+    "digest_rule": "Each section begins at its ### heading and ends before the next ### heading or EOF; trim trailing blank lines and include one UTF-8 LF.",
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:d6a32523b3b72bf222d94e54216ea2596e2416ba0961b8bc4d010aa0ac58ba80",
+      "full_file_sha256": "sha256:e8478af512833a16c7a07ff6b34a771e5e46870cb759285c46ca1217ccd9e918",
       "section_heading": "HARNESS-L2-082",
       "start_line": 1360,
       "end_line": 1369,
-      "section_sha256": "sha256:ddb42d06239488c1b45b33d2ff7e9491d7e4cc1e1d5e2813216a682c35b1d2dc"
+      "section_sha256": "sha256:c9cf57f52825e390077af1f2ad0292d9b1118b1fe89c45cda54931eec8193d12"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:1f2ba2f30891e8f67a870444d4b3ee5c7a6c8794e2bd11a78a93fbf3d97f7b1b",
+      "full_file_sha256": "sha256:9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794",
       "section_heading": "HARNESS-L11-082",
-      "start_line": 1059,
-      "end_line": 1075,
-      "section_sha256": "sha256:b8dd386e169857b3314db1aa5424323df76c5f92e79346465c6b7726922f8573"
+      "start_line": 1081,
+      "end_line": 1103,
+      "section_sha256": "sha256:f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c"
     }
   },
   "condition_mapping": [
@@ -160,5 +161,33 @@
       "pointer": "#/HAT-HIL-09",
       "status": "design reference only; not executed"
     }
+  },
+  "dependency_fixture_contract": {
+    "authority": "HARNESS-L2/L11-023 exact adopted revision, decision 2026-09-28 row 52; HARNESS-L2-010/011 exact adopted revisions, rows 39/40",
+    "fixture_values": "All fixture identities, owners, exact r1 contract ranges and compatibility records are mock acceptance inputs, not current provider/owner/version selections.",
+    "required_execution_fields": [
+      "dependency identity",
+      "owner",
+      "contract revision",
+      "exact applicable range",
+      "023 class",
+      "applicability condition",
+      "compatibility evidence bound to exact target contract revision and per-field result/reason"
+    ],
+    "compatibility_evidence_contents": [
+      "dependency identity and owner",
+      "contract revision and exact range",
+      "class and applicability",
+      "source identity/revision/digest and selected scope",
+      "operation or selected call identity",
+      "target contract revision and field-by-field result with reason"
+    ],
+    "independent_negative_oracles": [
+      "Each field missing/unknown/stale per execution class independently",
+      "HARNESS-L2-010 compatibility missing/stale independently",
+      "HARNESS-L2-011 selected-call compatibility missing/stale independently"
+    ],
+    "reference_only": "Owner/version/range/execution-compatibility metadata may be unknown if reference_only class and applicability are known; it is excluded from execution closure. Unknown class/applicability is not inferred as reference_only.",
+    "fixture_location": "L2-082 dependency-class paragraph and L11-082 dependency fixture / field-specific oracle paragraphs"
   }
 }
