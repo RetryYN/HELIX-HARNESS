@@ -4,37 +4,39 @@
   "authority_effect": "none",
   "candidate_identity": "HARNESS-L2-084",
   "candidate_kind": "unit",
-  "candidate_semantic_digest": "sha256:337192a90a3e38f47a82bf040d7c4b64914667a1e2d0936ae316a642379ee258",
-  "candidate_l2_file_sha256": "sha256:b36d64a74b412adff4865649e222ad0c18dd1ee3ef340876e9e84132046aed01",
+  "candidate_semantic_digest": "sha256:f8951593c511ffa1e36c4a10f0e0699bfd75d5403bbfef406adf0302659e0a6d",
+  "candidate_l2_file_sha256": "sha256:8145cba7c0031d2a9ef0832e3517223184079743dc85947fd5062231a1788f90",
   "paired_acceptance_identity": "HARNESS-L2-084",
-  "paired_acceptance_digest": "sha256:e7bd1f366cfa2961129106c64e8bfd5253641cf31273abb367cc5ee806706442",
-  "l11_file_sha256": "sha256:e2e3199a12eaddc785137b110de4a51204d52e4370a34819da5f88963ada8e3d",
+  "paired_acceptance_digest": "sha256:5dac5647757710ea73ba042c2cd61e0fe94462807daf48a89fb4773cbc54ffd2",
+  "l11_file_sha256": "sha256:143d8ee2f199252db040a87a4cc6226cf88b0769c8f7ca1ad1b3733efd8225c6",
   "candidate_digest_rule": "各本文見出し HARNESS-L2-084 から次の同階層###見出し直前まで。末尾空行を除きUTF-8 LF 1個で正規化してSHA-256。",
   "source_lines_ref": "docs/governance/audits/requirement-registration/hil-nfr27-translator-authority-source-atoms-2026-10-02.jsonl",
-  "source_atom_file_sha256": "sha256:bc4e08a0719bce074f058d05730255bd5ca672e18db9409f004ed9f0aff8e79b",
-  "source_atom_set_digest": "sha256:6e5e27e48b3b3c339ce5a0b00ecdd27819a42658482105ac7c938bcb4a769be6",
+  "source_atom_file_sha256": "sha256:31ac03824123e8736bb3aec0c39831b6f795a6651a4655cfd5d08c3022211701",
+  "source_atom_set_digest": "sha256:c375657a545dc1b094e30c96fe646b044e3ee7feeea5c165d8b47bc002de0420",
   "source_atom_set_digest_rule": "一つのwhole IR identity atom。atom_id + 半角空白 + source.statement.semantic_digestのprefix除去後64桁hex + LFをUTF-8連結してSHA-256。L1 corroboration/consumer contextは集合へ加えない。",
-  "source_collection_scope": "IR HIL-NFR-27 whole identity 1 atom: preserve original source, expose translation confidence and unresolved ambiguity, and bar subagent from unauthorized change to canonical requirement identity/meaning/terminal disposition. L1 line 207 is same-statement corroboration. HR/HAC/HAT/HOT are consumer context. The unreviewed-template activation prohibition is mapped to adopted HARNESS-L2-063 selected scope, not duplicated in 084.",
+  "source_collection_scope": "IR HIL-NFR-27 whole identity 1 atom. Requirement Translator and Template Improvement Loop both preserve original source and expose/carry translation confidence and unresolved ambiguity while processing translated requirements. Subagent unauthorized canonical requirement changes remain prohibited. L1 line 207 is same-statement corroboration; HR/HAC/HAT/HOT and L1 lines 133-134 are consumer/component context only. Unreviewed-template activation maps to adopted HARNESS-L2-063 exact selected scope only; outside-scope conditions remain live in source holding.",
   "source_atom_count": 1,
   "candidate_input_atom_refs": [
-    "IR153-HIL-NFR-27-TRANSLATOR-CONFIDENCE-AND-SUBAGENT-AUTHORITY"
+    "IR153-HIL-NFR-27-TRANSLATOR-LOOP-CONFIDENCE-AND-SUBAGENT-AUTHORITY"
   ],
   "candidate_input_atom_count": 1,
-  "candidate_input_atom_set_digest": "sha256:6e5e27e48b3b3c339ce5a0b00ecdd27819a42658482105ac7c938bcb4a769be6",
+  "candidate_input_atom_set_digest": "sha256:c375657a545dc1b094e30c96fe646b044e3ee7feeea5c165d8b47bc002de0420",
   "candidate_input_accounting_status": "One whole IR identity atom is selected for faithful unadopted candidate drafting; source holding remains live. No formal successor, owner transfer, adoption, execution, or whole source closure is claimed.",
   "source_reference_pins": {
     "IR_requirement": {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-27",
       "file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
       "statement_semantic_digest": "sha256:9a56f576e707cda0a58668fd22baf775afde65ff1954474352c53dc53d17705c",
-      "record_semantic_digest": "sha256:fe846afe86cb71f73f707d2b28bc547226471dcbe7c05e513dff43a9a1116e8f"
+      "record_semantic_digest": "sha256:fe846afe86cb71f73f707d2b28bc547226471dcbe7c05e513dff43a9a1116e8f",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
     },
     "L1_corroboration": {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:207",
       "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
       "source_line_sha256_with_LF": "sha256:2ce5d18cf016e57b8ceb9c5e3b63a044661d586ea44a48065a9d83f1cd14bf9f",
       "source_line_sha256_without_LF": "sha256:d382eba434c3c04cfb26110820231d8bcfb6edc7ba9294cf6c01a7362835a057",
-      "atom_count_effect": "corroboration only; no second atom"
+      "atom_count_effect": "corroboration only; no second atom",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
     },
     "HR-HAC-HAT_context": [
       {
@@ -67,7 +69,25 @@
         "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
         "semantic_digest": "sha256:1433c06a0d7b8cbf06ab4fbd4a2abe03ffccf2d40b651e86f306f763e051e814"
       }
-    ]
+    ],
+    "legacy_component_context": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "context_only_not_additional_atoms": true,
+      "lines": [
+        {
+          "line": 133,
+          "identity": "HIL-FR-43",
+          "sha256_with_lf": "sha256:a0ef097de2301824221f86452295cd6a40b530d538fa61050de9a68306152455"
+        },
+        {
+          "line": 134,
+          "identity": "HIL-FR-44",
+          "sha256_with_lf": "sha256:fd0f221debdfc99220c86ede5d8d3974b7bf463fd04aa6ea0f0d13d304ee482a"
+        }
+      ]
+    }
   },
   "parent_concept": {
     "path": "docs/concept/helix-concept.md",
@@ -224,37 +244,44 @@
   "candidate_input_coverage_result": "no_loss_limited_to_selected_atom",
   "new_candidate_adoption": "not_adopted",
   "mpr_registration_id": "MPR-RC-HARNESS-L2-084-001",
-  "mpr_file_sha256": "sha256:e71cb9779f442b3276a4fad00619fb50f4721faa3ccee27319acd44b8ad22f32",
+  "mpr_file_sha256": "sha256:726d932f927ff86e90f27ddf5a93baa563f49d928b5ef2fe6ec5ab551167ef4e",
   "base_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
   "current_pair_file_pins": {
-    "l2": "sha256:b36d64a74b412adff4865649e222ad0c18dd1ee3ef340876e9e84132046aed01",
-    "l11": "sha256:e2e3199a12eaddc785137b110de4a51204d52e4370a34819da5f88963ada8e3d"
+    "l2": "sha256:8145cba7c0031d2a9ef0832e3517223184079743dc85947fd5062231a1788f90",
+    "l11": "sha256:143d8ee2f199252db040a87a4cc6226cf88b0769c8f7ca1ad1b3733efd8225c6"
   },
   "candidate_section_pins": {
-    "l2": "sha256:337192a90a3e38f47a82bf040d7c4b64914667a1e2d0936ae316a642379ee258",
-    "l11": "sha256:e7bd1f366cfa2961129106c64e8bfd5253641cf31273abb367cc5ee806706442"
+    "l2": "sha256:f8951593c511ffa1e36c4a10f0e0699bfd75d5403bbfef406adf0302659e0a6d",
+    "l11": "sha256:5dac5647757710ea73ba042c2cd61e0fe94462807daf48a89fb4773cbc54ffd2"
   },
   "review_boundary": "Static document review only; no old runtime/test/CLI/CI, no push or PR.",
   "source_condition_mapping": [
     {
-      "source_condition": "HIL-NFR-27 whole IR identity; preserve original source text",
-      "candidate_mapping": "HARNESS-L2/L11-084 binds source identity, authority/revision/digest/span and original text to the translation proposal; source text remains recoverable.",
-      "residual": "No formal successor or full source closure; holding remains live."
+      "source_condition": "Requirement Translator preserves the original source and exposes translation confidence and unresolved ambiguity.",
+      "candidate_mapping": "HARNESS-L2/L11-084 links source identity/authority/revision/digest/span and original text to the translation; it displays confidence and unresolved ambiguity without adding a scale.",
+      "evidence": [
+        "HIL-NFR-27 whole IR identity; exact source text and digest",
+        "legacy L1 line 133 HIL-FR-43 Translator role; corroboration/context only"
+      ]
     },
     {
-      "source_condition": "Expose translation confidence and unresolved ambiguity",
-      "candidate_mapping": "HARNESS-L2/L11-084 requires visible confidence and visible unresolved ambiguity; no source-unsupported scale, numeric threshold or enum is introduced. Missing evidence remains unknown/incomplete."
+      "source_condition": "Template Improvement Loop preserves the original source and exposes/carries translation confidence and unresolved ambiguity while handling translated requirements.",
+      "candidate_mapping": "HARNESS-L2/L11-084 requires the Loop to retain the same source link and show/carry the incoming confidence and unresolved ambiguity into template-match or gap proposals; it does not claim the Loop re-translates or independently resolves ambiguity.",
+      "evidence": [
+        "HIL-NFR-27 whole IR identity; exact source text and digest",
+        "legacy L1 line 134 HIL-FR-44 Loop role; corroboration/context only"
+      ]
     },
     {
-      "source_condition": "Subagent must not delete, merge or terminalize requirements",
-      "candidate_mapping": "HARNESS-L2/L11-084 permits such actions as proposals only; proposal/worker completion cannot mutate canonical identity, statement, authority or terminal state without applicable existing authority/change basis.",
+      "source_condition": "Subagent must not delete, merge or terminalize requirements.",
+      "candidate_mapping": "HARNESS-L2/L11-084 permits such actions only as proposals; proposal alone does not mutate canonical identity, statement, authority or terminal state. Applicable existing authority/change basis remains necessary.",
       "residual": "Existing authority applicability and any source-level disposition not established by this candidate remain unresolved; no new approval workflow is created."
     },
     {
-      "source_condition": "Subagent must not activate unaudited templates",
+      "source_condition": "Subagent must not activate unaudited templates.",
       "candidate_mapping": "HARNESS-L2-063 adopted exact scope only: its three selected HR-FR-HIL-17 slices, including independent-review-before-active for selected template gaps; no duplicate closure is claimed in 084.",
       "residual": "Any application outside the exact selected 063 scope remains in MPR-SH-IR-003 and is not declared closed."
     }
   ],
-  "candidate_digest": "sha256:337192a90a3e38f47a82bf040d7c4b64914667a1e2d0936ae316a642379ee258"
+  "candidate_digest": "sha256:f8951593c511ffa1e36c4a10f0e0699bfd75d5403bbfef406adf0302659e0a6d"
 }
