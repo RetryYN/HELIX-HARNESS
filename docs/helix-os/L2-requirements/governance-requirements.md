@@ -1639,6 +1639,24 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 適用scopeの選択肢は、**案A：第三者runtimeに限定**（BR-32/HR-23の第三者worker文脈へ本NFRのquota/rate条件を限定する）と、**案B：選択runtime一般**（normative NFR-40の無限定な文言どおり、primary Workerを含む）である。**案Bを推奨**する。根拠はnormative atom自体にruntime種別の限定がなく、第三者限定はconsumer/隣接BRの文脈にあるためである。案AはNFR-40原文の適用範囲を狭める。案Bの選択は既採択SECURITY-029/031の追加runtime向け範囲を主Workerへ広げず、decision 57 row 112の判断も変更しない。候補のこのscope選択だけでruntime/operation authority、assignment、dispatch許可は生じない。
 
+
+### HELIXOS-L2-130 docgen source・採否・要求traceの管理projection候補（unit、未採択）
+
+- **authority・状態**：新規の未採択HELIX-OS候補。`registered_proposal`／`authority_effect:none`。候補本文・fixture・receiptは採択、source authorityの移管、adoption decisionの生成、実装、runtime、source全体closureを示さない。HELIX-OSは製品でなく管理・統制機構である。
+- **親L1・責務候補**：固定`HELIXOS-L1-001`（対象別Concept・要求・採否・合意revisionと判断出所を管理）、`HELIXOS-L1-002`（要求から作業・検証・提供・運用までの欠落・競合・staleを把握）、`HELIXOS-L1-008`（authority/design/verification/runtime projectionの不整合を検出・再構築）に接続する。OSは選択sourceと変換contractのauthority/provenanceおよび人間・既存ownerが与えるadoption decisionを管理projectionへ結び、変換ロジックやsource fieldの業務意味はHARNESS／該当ownerに残す。
+- **入力と記録候補**：明示されたZIP source identity/revision/digest、選択scope、HARNESS-L2-087候補の変換contract identity/revisionとfield mapping evidence、field単位のunknown/conflict/stale、対象要求・design・test contract identity/revision、adoption decisionの既存正本への参照を受け取る。各relationは両端identity・revision・digestとscopeを結ぶ。ZIPに記載された`assignment`と`schedule`はsource値であり、OS-018が管理する実assignmentやticket期限ではない。
+- **管理projection**：source digest、変換済みcontract候補、採否decision参照、対象要求・design・test間のrelationを区別して辿れる。`adoption decision`は決定権を持つ既存authority ownerが提示したrecordだけを参照し、source metadata、mapping成功、Issue/PR/CI状態、候補登録から採否やapprovalを推定しない。旧sourceの`DB relation`は、相互参照可能な型付きrelation/evidenceとして意味を保持するが、物理DB、table、schemaまたはtransaction方式を決めない。
+- **unknown・conflict・stale**：source identity/digest、変換revision、field mapping、target revision、decision reference、relation endpoint/scopeのいずれかが欠落・unknown・conflict・staleなら、adopted/current/completeと表示せず、該当edgeと未完義務を保持する。source/extractor/contract/target revision変更時にはそのrevisionへ結んだrelationをstaleとして区別し、source、HARNESS変換owner、既存decision authorityまたは対象requirement/design ownerへ戻す。未観測やunknownを非該当・無影響と推定しない。
+- **既存要求との境界**：採択済み`HELIXOS-L2-015`の一般authority/source identity/revision記録、`HELIXOS-L2-016`のportfolio trace・unknown/staleを再定義・削除しない。本候補はFR15のZIP metadata変換とdecision/contract relationという選択scopeに限定する。HARNESS-087のfield transformをOSが代行せず、OS-015の一般recordやOS-016の一般traceがFR15のfield mappingを自動充足したとはみなさない。
+- **旧source・保持範囲**：`HIL-FR-15`のsource digest、adoption decision、DB relationのうち、本候補はsource/adoption/relational management projectionのOS側条件を提案する。normative inputは`MPR-SH-IR-003`の同じwhole IR atom一件であり、HARNESS-087とのsource集合unionは一件のまま。旧L1同文はcorroboration、HR/HAC/HATはconsumer/oracle contextであり追加atomでもこの候補単独のclosure根拠でもない。旧routing bootstrap/correctionは配置史のproposalで、OS owner assignmentを確定しない。
+- **version_target**：旧IRに版指定がないため未指定。固定済みOS L1親は候補を採択しない。
+
+### HELIXOS-L2-130 revision 002 correction supplement — selected ZIP scope
+
+revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-selection適用範囲だけを人の意味判断材料として明記する。OS側のsource identity・authority/provenance・decision/relation記録はHARNESS変換候補と同一のZIP scopeに従う。source scopeを独立に拡張せず、HARNESS-087のfield意味やadoption decisionをOSが生成しない。
+
+**ZIP適用scopeの意味選択（未決）**：source formatはいずれもZIPである。A) 旧引継ぎで特定されたlegacy ZIP資産一件についてのみOS projectionを行う。B) 案件ごとに明示選択されたZIPのidentity/revision/digestとHARNESS変換関係を記録する再利用可能な管理unitとする（HARNESS-087との整合を推奨候補とする）。Bはsource資産一件から選択案件への適用範囲を広げる意味差であり、owner、source取得、decision authority、selectionは生成しない。A/Bは未決であり、意味変更に必要な判断まではOS-130の既存candidate境界を保持する。非ZIP形式への拡張は含めない。
+
 ### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）
 
 - **状態・対象**：HELIX-OSの未採択unit候補。OS-L1-003の、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開する責務へ接続する。対象は、既存のassignmentとoperation authorityの下で、生成judgment packまたは専門agentを使用することが明示された個別Worker operationである。通常の文書作成、候補の起草、packを使わないoperation全般を停止条件へ変えない。旧sourceに版指定がないため`version_target`を新設しない。

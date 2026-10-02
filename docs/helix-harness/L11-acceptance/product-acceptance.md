@@ -1274,3 +1274,65 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 **HARNESS-L2-079との境界fixture**：079は未採択のまま扱い、prototype artifactのmanifest/digest/start/trace・9状態・仮データ境界と、exact prototype revisionに結ぶwalkthrough actor/observation/request deltaまたは`no_delta`/reflection/checkpointを別候補のoracleとする。086側のscreen mock/prototype agreementは、これら079固有のartifact/walkthrough条件を満たした証明にならない。逆に079 fixtureは086のbackend-derived FE requirement elicitation、L3接着、Discovery/Forward/Add-feature routingやprototype/no-UI applicabilityを置換しない。両candidateの採択・実行はここから生成しない。
 
 **範囲限界**：no-lossの主張はreceipt r2に列挙した14 selected atomsと、既存candidateで明示した機能条件に限定する。MPR-SH-SUPPLEMENTARY-003の残りsource、design-bottomupの未選択consumer、その他のHR/HAC/HATや旧実装の全体closureは未証明のまま保持する。
+
+### HARNESS-L2-088 全source authorityから機能単位の採否記録を検査する受入候補（未採択・未実行）
+
+本節は未採択HARNESS-L2-088候補に対する静的oracle材料である。旧HIL-FR-16、現行source、旧HR/HAC/HAT、HARNESS-L2-067/081/082、HELIXOS-L2-123のいずれも、このfixtureから採択、source移管、外部取得、実行許可、実行・受入済みにはならない。旧HAT-HIL-09は設計済み・未実装であり実行しない。
+
+- **正常例 — full-scope合成入力**：架空の一つの対象scopeに、current HELIX source、全体を表すZIP source、source記録に固定されたexact predecessor repository A = unison-ai-product/UT-TDD_AGENT-HARNESS と B = RetryYN/ai-dev-kit-vscodeを与える。実物、remote、credential、実repository OIDは使わない。各sourceのfixture identity、revision、source scope、観測時点、owner参照を明示し、scopeはsource全体を表す。Git authorityのある3 sourceについて観測A/Bそれぞれのrefs/heads/main、refs/tags/v1、refs/pull/7/head、refs/pull/7/mergeが全て同じsynthetic identity/OID tupleで一致する。ZIPについても全entryの観測A/Bを与えて一致させるが、ZIPにGit ref namespaceが存在すると仮定しない。合成関数atom F-A〜F-Dを各sourceのentry／ref evidenceへ個別に結び、dispositionをそれぞれadopt、harden、redesign、rejectとする。各atomには比較対象、個別理由、dispositionの判断authority参照がある。ref denominatorは各authorityがadvertiseした一意ref identityから算出し、fixtureでは12。各Git sourceのsymbolic HEADはrefs/heads/mainのtargetを指し、annotated refs/tags/v1の^{} peel evidenceはそのtag targetを示すが、どちらも12件へ重複加算しない。ledgerはsource／scope全体、両観測、四namespaceの全ref、ZIP全entry、四atom、disposition根拠を列挙する。authority receiptとledgerが一致し、未判断atomが0であることをこの架空scopeだけの結果として示す。数値、名前、OID文字列、atom数、owner参照、disposition結果はfixture値であり実source・固定閾値・現行ownerを決めない。
+- **独立負例 — A/B観測差**：正常fixtureを複製し、repo Bの観測Bだけでrefs/pull/7/mergeを欠落させる。他のidentity、観測、source scope、全entry、全dispositionは正常fixtureと同じに保つ。A/B不一致かつadvertised ref omissionとしてそのauthority scopeを未完にし、ref denominator確定・complete・未判断0を返さない。
+- **独立負例 — namespace内ref欠落**：同じrepo authorityの観測A/Bは互いに一致させたまま、両方からadvertised refs/tags/v1を落とす。source authorityのadvertisementではv1が存在するため、両観測一致だけで完全とはせず、欠落を返す。観測Bだけの差とは別条件である。
+- **独立負例 — exact repository identityとsource全体欠落**：他の入力を固定し、predecessor Bを別repo identityへ一つだけ置換したfixtureではexact two identityを満たさない。別fixtureではrepository identityは正しいがZIP全体のsource identity／entry listingだけを欠落させる。各々について該当条件をunknown／未完とし、他のsource成功で補完しない。
+- **独立負例 — ref分母とHEAD／tag peel証拠**：全 advertised refとA/Bは正常なまま、symbolic HEADを追加refとして分母へ加えるfixtureはref identity重複として拒否する。別fixtureではannotated tag refs/tags/v1^{}を追加refとして数えるがtarget／peel evidenceを省く。分母へ加えず、tag target／peel evidence欠落を未完として返す。正常fixtureではこれらのevidenceを保持したまま分母外にしてあり、分母除外と証拠保存の両方を確認する。
+- **独立負例 — 機能atomごとのdisposition**：scope、両観測、refとentryは正常に保ち、F-Cだけdispositionを未判断にする。完全球に未判断0を表示しない。別fixtureではF-CとF-Dを一つのaggregate dispositionだけで表し、各機能単位の対応または理由を欠く。個別比較・dispositionの代替にならず未完とする。総括行やfile集合だけから採否済みを導かない。
+- **独立負例 — ledger／authority receipt不一致**：正常fixtureからauthority receiptだけのref集合またはsource scopeを変え、ledgerは変えない。別fixtureではledgerだけに一つの機能atomまたはdispositionを追加する。どちらも全scopeの同一性が崩れるため、未判断0／completeにせず不一致と影響scopeを返す。
+- **未見・適用性unknown**：新しいref namespace、pull-ref種別、source identity、ZIPのGit/ref形式、機能境界の読み方、比較authorityが現れ、FR16の列挙範囲や適用条件を source evidenceから確定できないfixtureを別に与える。自動的に包含・除外・非該当を決めず、該当source/scopeをunknown／未完に保持する。refs/heads/*、refs/tags/*、refs/pull/*/head、refs/pull/*/mergeの適用対象が判別できない場合も同じ扱いとする。旧routing上のOS target assessmentだけでは機能disposition ownerやsource scopeを確定しない。
+- **HST／consumer contextとの対応**：旧HST-CASE-011-09はZIP、exact 2 Git authorities、現行HELIX manifest上でatomic capabilityごとのdispositionとpending 0を期待する設計contextとして照合する。HST-CASE-011-10はHIL-FR-21のsource changeによるstale conditionであり、このFR16 oracleへ含めない。HR-FR-HIL-09のexact OID materialization、全tree snapshot、extractor version、ref/content/edge denominatorやHAC-HIL-09b/cのより広いaggregate/verification/stale例は共有consumer contextとしてsource ledger/receiptに記録するだけであり、FR16のsource atom数・新規条件・実行結果へ加算しない。
+- **既存候補との独立性**：HARNESS-L2-067のatomization、081のsource coverage、082のchange-triggered child staleはそれぞれのscope／statusを保持する。正常fixtureのatom分解やsource列挙をこれらの採択証拠にしない。HELIXOS-L2/L11-123は別のBR14候補であり、同じsource名、receipt用語、consumerを共有してもFR16の採否やauthorityにならない。OSがauthority観測／provenanceを記録する候補境界から、現実のexternal fetch、disposition決定、gateを起動しない。
+- **HARNESS-L2-023採択済み依存区分fixture**：以下は採択HARNESS-L2/L11-023の4分類をこの静的fixtureの依存説明に用いるだけで、新しいregistry、compatibility rule、依存source、操作authorityを定義しない。契約参照は採択済みHARNESS-L2-010/011のfixed commit f6dad2a33e24f000b87d7f09b8d40288257e74ccに限定する。010 section SHA-256 9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4、011 section SHA-256 30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952、採択決定row 39/40を対応付ける。依存fixtureは一つのmock selected callとして固定し、各欄を次のように分ける。
+
+| HARNESS-L2-023の区分 | dependency identity | mock owner | contract revision | 宣言版range | compatibility evidence | applicability |
+|---|---|---|---|---|---|---|
+| 常時必須 | fixture:inventory-package | fixture-owner:package | HARNESS-L2-010@f6dad2a33e24f000b87d7f09b8d40288257e74cc / section 9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4 | fixed section revisionのみ | PO採択row 39のL2-010固定sectionをこのfixture dependencyと照合した記録 | このfixtureでは選択inventory packageの有無にかかわらず常時 |
+| 特定操作時のみ必須 | fixture:inventory-call | fixture-owner:call | HARNESS-L2-011@f6dad2a33e24f000b87d7f09b8d40288257e74cc / section 30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952 | fixed section revisionのみ | PO採択row 40のL2-011固定sectionをこのfixture callと照合した記録 | operation=fixture:compare-full-source-scopeを選択したcallでのみ |
+| 選択した入力元に応じて必須 | fixture:source-set-HELIX+ZIP+repo-A+repo-B | fixture-owner:selected-source-set | fixture:selected-source-contract@fixture-r1 | fixture-r1のみ | 同じcallで四source identityと全scope inputを選択したfixture manifestの対応記録 | このfixtureでcurrent HELIX、ZIP、exact repo A/Bを全て選択した場合。別選択sourceへfallbackしない |
+| 参照資料のみ | archive:HR-FR-HIL-09+HAC-HIL-09a/b/c+HAT-HIL-09 | fixture-owner:historical-context | archive source revisionsはledger記録のrevision | archive source revisionsのみ | source ledger内の原文locator／digestをcontextとして照合した記録。execution compatibilityは主張しない | 背景参照のみ。依存closure・authority・oracleに使わない |
+
+本fixtureの6欄は行ごとにidentity、owner、contract revision、宣言されたversion range、互換性証拠、適用条件を分ける。これらのmock値は現行実owner／実契約／実version rangeを選ばない。ZIP/ref適用性やsource meaningがunknownなら表のmock値で実入力を補わず、未完とする。archive contextがreference-onlyだからといって、選択source、HARNESS oracleまたはOS authorityをreference-onlyへ落とさない。正常fixtureのすべての選択依存は上記固定HARNESS contract revisionと明示的なfixture compatibility evidenceを持つ。各contract revision、range、evidence、applicabilityのいずれかを単独で欠落・誤値にした場合は、その依存をunknown／未完とする（各欄が分かる例を個別に作り、成功fixtureの別欄で補わない）。
+
+### HARNESS-L2-088 scope解釈の受入境界（PO未決）
+
+上のfull-scope正常fixtureがcurrent HELIX、ZIP、exact predecessor A/Bを含むのは、旧HIL-FR-16が列挙する今回の対象を表すためである。このfixtureは「任意のHARNESS案件が常にexact 2 predecessorを使う」という一般条件を検証しない。原文はFR16の列挙対象を定めるが、比較能力の将来の再利用scopeまでは定めない。意味を確定しないPO判断材料は次の通り。
+
+- **A — この旧資産比較だけに適用**：今回のfixture tupleとFR16候補だけにcurrent HELIX、ZIP、exact predecessor A/Bを固定する。別案件のsource selection capabilityは候補範囲外に残す。
+- **B — 案件ごとのselected-source能力として扱う（推奨候補）**：一般の比較能力は案件ごとに選んだsource scopeを扱う候補とし、このFR16 fixtureでは旧原文どおりcurrent HELIX、ZIP、exact predecessor A/Bを固定する。exact 2件を他案件の一律必須条件にしない。再利用scopeを明らかにするが、一般化はFR16単独から確定しない。
+
+どちらの選択肢もfixtureのexact 2 tuple、A/B二重観測、全ref・ZIP範囲、機能disposition、未判断0の既存oracleを削除・弱化・採択しない。この追補はPO選択肢と影響を示す判断材料であり、fixture結果からA/B、候補採択、一般source authority、外部取得または実行を生成しない。
+
+
+### HARNESS-L2-087 ZIP docgen metadata変換の受入候補（未実行）
+
+このL11 partは未採択のHARNESS-L2-087候補に対応する。以下は静的fixture設計であり、ZIP取込、旧runtime実行、要求採択またはsource closureではない。
+
+- **常時必須**：選択target identity/revision、scope、選択ZIP source identity/revision/digest、変換contract/extractor identity・revision、対になるL2/L11 identityを固定する。field source locatorとmapping resultを同一scopeに結ぶ。旧IRはnormative source、旧L1 line 105は同文corroborationであり、いずれも実行dependencyの`reference_only`へ降格しない。
+- **特定操作時のみ**：docgen metadataをHELIX contract候補へ変換する操作を選んだときに限り、入力fieldごとのmapping/evidenceと未分類・conflict・staleを確認する。OSでadoption/authority relationを記録する操作は対のOS-130 L11で別に確認する。
+- **選択した入力元に応じて必須**：選択ZIPのagent metadata、spec ID、trace、impact、consistency、assignment、schedule、detector結果それぞれの存在・field locator・値またはunknownを示す。未選択entry/sourceは未観測として扱う。source ownerや互換範囲の値をfixtureのために実在値と偽装しない。
+- **参照資料のみ**：旧CLI、旧schema、旧Python/DB実装、旧test/runtime/CIは履歴資料に限り、現行実行dependencyやpass根拠にしない。HR-FR-HIL-09/HAC/HATはconsumer/oracle contextであり、HR09のGit全ref/2 repository条件をこのfixtureへ持ち込まない。
+
+| fixture | 六欄のsource/contract tuple（すべてsynthetic） | 条件と期待結果 |
+|---|---|---|
+| 正常 | `source_identity=fixture:docgen-zip-A@r1`; `owner_or_authority=fixture:source-owner-A`; `contract_revision=fixture:docgen-contract@r1`; `declared_compatibility_range=fixture:docgen-contract [r1,r1]`; `compatibility_evidence=fixture:compat-proof-A`; `applicability=selected ZIP entry set for target fixture:project-A@r4` | 八つのFR15 fieldすべてにsource locatorと変換結果があり、source digest/contract revisionに束縛された候補とfield mapping evidenceを返す。adoption/approvalは生成しない。 |
+| 独立欠落負例 | 正常tupleを固定し、`detector結果`だけをZIP entry/locatorから除く。他の七fieldとscopeは同一 | detector fieldの欠落をunknown/unmappedとして明示し、全field変換成功やcontract completeにしない。default値、source不在の推測、他fieldからの推定をしない。 |
+| 未見・互換unknown | `source_identity=fixture:docgen-zip-U@r9`; `owner_or_authority=unknown`; `contract_revision=fixture:unrecognized-docgen-contract@r9`; `declared_compatibility_range=unknown`; `compatibility_evidence=missing`; `applicability=scope declared, mapping applicability unknown` | 互換性、適用性、変換成功を推定しない。unknownと未完義務を保持し、確認先を返す。 |
+
+**023依存区分・適用例**：上表のsource identity、scope、対象revisionおよび本候補pairは常時必須。docgen変換operationを選択した場合だけ八fieldの変換確認が必須。019 Full Reverseからこのsource typeを選択して087を呼ぶ場合は、019の既存input/result/unknown境界も適用するが、019完了は087の単独変換依存にしない。010/011のpack/call契約は087をpackとして選んだ操作だけに適用する。fieldごとのentry/locator/evidenceは選択ZIP inputに応じて必須。旧schema、runtime、testとconsumer contextは参照資料のみであり、規範sourceの代替ではない。HARNESS-L2-023の4区分はdependency分類であり、未選択sourceの非存在から成功/非該当を導かない。
+
+**戻し先**：source・scope・契約revision・field mappingが欠ける場合は変換候補をunknown/未完で返し、選択sourceまたはHARNESS contract ownerへ戻す。adoption decisionとcanonical relationはOS-130候補の適用範囲で別に扱う。候補・fixtureからsource変更、apply、adoption、下流完了を生成しない。
+
+### HARNESS-L2-087 revision 002 acceptance supplement — ZIP applicability
+
+このsupplementは既存HARNESS-L2-087 L2/L11 section bytesを保持したうえで、同候補revision 002の差分を受け入れる静的oracleである。12個の旧HIL-FR-15条件はHARNESS-087／OS-130 pair unionで追跡し、この候補revisionがsource holdingを閉じたり採択を生んだりしない。
+
+- **正常例**：宣言されたZIP snapshotを一つ選び、八つのmetadata fieldをそれぞれlocator・source digest・mapping contract revision・結果またはunknownに束縛する。source digest、既存adoption decision reference、typed DB relationの管理projectionはOS-130側へ分ける。fixtureはlegacy ZIPのsource identityを再現せずsynthetic tupleを使い、変換完了と採択を区別する。
+- **scope選択材料（未決）**：A) 今回特定されたlegacy ZIP引継ぎ資産に限る。B) 案件ごとに明示選択されたZIPを扱う再利用可能unitとし、legacy ZIPは忠実なexampleとして保持する（推奨候補）。両案ともZIP format、12条件、field-level unknown/conflictを保持する。Bは適用する資産・案件の範囲を広げ、選択scope・oracle・下流relationへの影響がある。選択対象revisionで意味が決まるまで、正常fixtureはBの採用証拠にせず、未見scopeを勝手に含めない。ZIP以外の形式は範囲外。
+- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。

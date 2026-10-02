@@ -1333,6 +1333,33 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 
 案Bを推奨する理由と案A/Bの具体的影響は対L2のscope候補とcoverage receiptに記録する。SECURITY-029/031の追加runtime向け既採択境界はdecision 57 row 112のまま維持し、NFR-40 scope候補へ混ぜない。
 
+
+### HELIXOS-L2-130 docgen source・採否・trace projectionの受入候補（未実行）
+
+このL11 partは未採択のOS-130候補に対応する。HARNESS-087との分割は提案であり、現行OSのadoption決定やsource全体の完了を示さない。
+
+- **常時必須**：source identity/revision/digest、scope、変換contract identity/revision、変換出力digest、対象要求/design/test identity/revision、adoption decision参照（状態を含む）、本L2/L11 pairを別々に特定する。各relation endpointのauthorityと適用scopeを結ぶ。IRはnormative source、旧L1は同文corroborationであり、実行dependencyの`reference_only`へ降格しない。
+- **特定操作時のみ**：OS管理projectionへadoption/trace relationを登録または更新する操作を選んだ場合、その操作に適用される既存decision sourceを照合する。OSはdecisionを作らず、decision authorityの既存recordを参照する。
+- **選択した入力元に応じて必須**：HARNESS-087変換候補を選択したsource scopeに限り、入力ZIP digest、変換contract revision、各FR15 field mapping/unknownおよび出力 digestを結ぶ。採否decisionと要求/design/test consumer relationは入力で特定された対象だけを結び、未選択consumerを適用済みとしない。
+- **参照資料のみ**：旧DB/table/schema、旧workflow/runtime/test/CI、旧Issue/PR、routing bootstrap/correctionは実行・decision sourceにしない。HR/HAC/HATは旧consumer/oracle contextであり、他Requirementや全repo censusをOS-130のoracle範囲へ拡張しない。
+
+| fixture | 六欄のsource/contract tuple（すべてsynthetic） | 条件と期待結果 |
+|---|---|---|
+| 正常 | `source_identity=fixture:docgen-zip-A@r1`; `owner_or_authority=fixture:source-owner-A`; `contract_revision=fixture:docgen-contract@r1`; `declared_compatibility_range=fixture:docgen-contract [r1,r1]`; `compatibility_evidence=fixture:compat-proof-A`; `applicability=selected transform relation to fixture:project-A@r4` | source digest、HARNESS-087出力identity/revision/digest、既存authority ownerが与える`fixture:adoption-decision@r2`（explicit adopted state）、対象requirement/design/test revisionとのtyped relationを記録する。decision内容はOSが生成・変更しない。 |
+| 独立欠落負例 | 正常tuple・transform出力・targetは固定し、`adoption decision reference`だけを欠落させる | sourceと変換が一致してもadoptionはunknown/pending。active/adopted relation、要求採択、完了を表示せず、decision authorityへ戻す。 |
+| 未見・stale | `source_identity=fixture:docgen-zip-U@r9`; `owner_or_authority=unknown`; `contract_revision=fixture:docgen-contract@r8`; `declared_compatibility_range=unknown`; `compatibility_evidence=stale`; `applicability=target scope declared, target mapping unknown` | revision/digest/owner/scopeの不整合をstale/unknownで保持する。015/016の一般記録だけでFR15 mappingを充足扱いしない。 |
+
+**023依存区分・適用例**：OS対象identity/revision、明示source scope、authority decision source、選択pairは常時必須。OSへadoption/trace projectionを登録する特定operationのときdecisionと対象relation確認が必須。HARNESS-087 outputはそのsourceを選択したときだけ必須。旧runtime/schema/testとrouting資料は参照資料のみであり、旧規範sourceは入力から外さない。
+
+**戻し先**：source digest/transform revisionはHARNESS変換owner、採否recordは既存decision authority、target relationは要求/design/testの既存ownerへ戻す。unknown/conflict/staleと未完edgeを保持し、source不在やdecision欠落をN/Aにしない。物理DB・schema・transaction・新approval手続きを定めず、候補・fixtureから操作許可やsource closureを生成しない。
+
+### HELIXOS-L2-130 revision 002 acceptance supplement — selected ZIP scope
+
+このsupplementはHELIXOS-L2-130の元sectionを変更せず、HARNESS-087と共有するZIP適用scope選択を記録する。HARNESS-087の変換結果を選択入力として参照し、OS-130は同じsource identity/revision/scopeと既存decision referenceを結ぶ。どちらの候補も単独で採択・source authority移管・外部取得を行わない。
+
+- **正常例**：宣言されたsynthetic ZIP sourceとHARNESS-087 transform revisionを同一scopeへ結び、source digest、既存decision record reference、requirement/design/test relationを記録する。source/transform identityが一致してもdecision欠落をunknownのまま保持する。
+- **scope選択材料（未決）**：A) legacy引継ぎで特定されたZIP一件だけを対象にする。B) 案件ごとに明示選択されたZIPを記録する再利用可能な管理unitへ広げる（HARNESS-087と整合する推奨候補）。両案ともZIPのみで、OSの判断権限や外部取得を増やさない。Bは適用案件とsource record範囲を変える。選択前は受入fixtureをowner assignmentやscope採択とみなさず、未見scopeを保持する。
+
 ### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補
 
 - **前提**：未採択・未実行の文書上fixtureである。既存operation authority/assignmentを与え、候補から新規権限・dispatchや人間承認を作らない。候補本文および本oracleは旧runtime・旧test・CIを起動しない。通常operationにこの条件を一律適用しない。
