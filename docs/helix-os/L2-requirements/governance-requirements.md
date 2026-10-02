@@ -1650,3 +1650,9 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **既存要求との境界**：採択済み`HELIXOS-L2-015`の一般authority/source identity/revision記録、`HELIXOS-L2-016`のportfolio trace・unknown/staleを再定義・削除しない。本候補はFR15のZIP metadata変換とdecision/contract relationという選択scopeに限定する。HARNESS-087のfield transformをOSが代行せず、OS-015の一般recordやOS-016の一般traceがFR15のfield mappingを自動充足したとはみなさない。
 - **旧source・保持範囲**：`HIL-FR-15`のsource digest、adoption decision、DB relationのうち、本候補はsource/adoption/relational management projectionのOS側条件を提案する。normative inputは`MPR-SH-IR-003`の同じwhole IR atom一件であり、HARNESS-087とのsource集合unionは一件のまま。旧L1同文はcorroboration、HR/HAC/HATはconsumer/oracle contextであり追加atomでもこの候補単独のclosure根拠でもない。旧routing bootstrap/correctionは配置史のproposalで、OS owner assignmentを確定しない。
 - **version_target**：旧IRに版指定がないため未指定。固定済みOS L1親は候補を採択しない。
+
+### HELIXOS-L2-130 revision 002 correction supplement — selected ZIP scope
+
+revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-selection適用範囲だけを人の意味判断材料として明記する。OS側のsource identity・authority/provenance・decision/relation記録はHARNESS変換候補と同一のZIP scopeに従う。source scopeを独立に拡張せず、HARNESS-087のfield意味やadoption decisionをOSが生成しない。
+
+**ZIP適用scopeの意味選択（未決）**：source formatはいずれもZIPである。A) 旧引継ぎで特定されたlegacy ZIP資産一件についてのみOS projectionを行う。B) 案件ごとに明示選択されたZIPのidentity/revision/digestとHARNESS変換関係を記録する再利用可能な管理unitとする（HARNESS-087との整合を推奨候補とする）。Bはsource資産一件から選択案件への適用範囲を広げる意味差であり、owner、source取得、decision authority、selectionは生成しない。A/Bは未決であり、意味変更に必要な判断まではOS-130の既存candidate境界を保持する。非ZIP形式への拡張は含めない。

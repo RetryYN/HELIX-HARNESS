@@ -1352,3 +1352,10 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 **023依存区分・適用例**：OS対象identity/revision、明示source scope、authority decision source、選択pairは常時必須。OSへadoption/trace projectionを登録する特定operationのときdecisionと対象relation確認が必須。HARNESS-087 outputはそのsourceを選択したときだけ必須。旧runtime/schema/testとrouting資料は参照資料のみであり、旧規範sourceは入力から外さない。
 
 **戻し先**：source digest/transform revisionはHARNESS変換owner、採否recordは既存decision authority、target relationは要求/design/testの既存ownerへ戻す。unknown/conflict/staleと未完edgeを保持し、source不在やdecision欠落をN/Aにしない。物理DB・schema・transaction・新approval手続きを定めず、候補・fixtureから操作許可やsource closureを生成しない。
+
+### HELIXOS-L2-130 revision 002 acceptance supplement — selected ZIP scope
+
+このsupplementはHELIXOS-L2-130の元sectionを変更せず、HARNESS-087と共有するZIP適用scope選択を記録する。HARNESS-087の変換結果を選択入力として参照し、OS-130は同じsource identity/revision/scopeと既存decision referenceを結ぶ。どちらの候補も単独で採択・source authority移管・外部取得を行わない。
+
+- **正常例**：宣言されたsynthetic ZIP sourceとHARNESS-087 transform revisionを同一scopeへ結び、source digest、既存decision record reference、requirement/design/test relationを記録する。source/transform identityが一致してもdecision欠落をunknownのまま保持する。
+- **scope選択材料（未決）**：A) legacy引継ぎで特定されたZIP一件だけを対象にする。B) 案件ごとに明示選択されたZIPを記録する再利用可能な管理unitへ広げる（HARNESS-087と整合する推奨候補）。両案ともZIPのみで、OSの判断権限や外部取得を増やさない。Bは適用案件とsource record範囲を変える。選択前は受入fixtureをowner assignmentやscope採択とみなさず、未見scopeを保持する。

@@ -1294,3 +1294,11 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 **023依存区分・適用例**：上表のsource identity、scope、対象revisionおよび本候補pairは常時必須。docgen変換operationを選択した場合だけ八fieldの変換確認が必須。019 Full Reverseからこのsource typeを選択して087を呼ぶ場合は、019の既存input/result/unknown境界も適用するが、019完了は087の単独変換依存にしない。010/011のpack/call契約は087をpackとして選んだ操作だけに適用する。fieldごとのentry/locator/evidenceは選択ZIP inputに応じて必須。旧schema、runtime、testとconsumer contextは参照資料のみであり、規範sourceの代替ではない。HARNESS-L2-023の4区分はdependency分類であり、未選択sourceの非存在から成功/非該当を導かない。
 
 **戻し先**：source・scope・契約revision・field mappingが欠ける場合は変換候補をunknown/未完で返し、選択sourceまたはHARNESS contract ownerへ戻す。adoption decisionとcanonical relationはOS-130候補の適用範囲で別に扱う。候補・fixtureからsource変更、apply、adoption、下流完了を生成しない。
+
+### HARNESS-L2-087 revision 002 acceptance supplement — ZIP applicability
+
+このsupplementは既存HARNESS-L2-087 L2/L11 section bytesを保持したうえで、同候補revision 002の差分を受け入れる静的oracleである。12個の旧HIL-FR-15条件はHARNESS-087／OS-130 pair unionで追跡し、この候補revisionがsource holdingを閉じたり採択を生んだりしない。
+
+- **正常例**：宣言されたZIP snapshotを一つ選び、八つのmetadata fieldをそれぞれlocator・source digest・mapping contract revision・結果またはunknownに束縛する。source digest、既存adoption decision reference、typed DB relationの管理projectionはOS-130側へ分ける。fixtureはlegacy ZIPのsource identityを再現せずsynthetic tupleを使い、変換完了と採択を区別する。
+- **scope選択材料（未決）**：A) 今回特定されたlegacy ZIP引継ぎ資産に限る。B) 案件ごとに明示選択されたZIPを扱う再利用可能unitとし、legacy ZIPは忠実なexampleとして保持する（推奨候補）。両案ともZIP format、12条件、field-level unknown/conflictを保持する。Bは適用する資産・案件の範囲を広げ、選択scope・oracle・下流relationへの影響がある。選択対象revisionで意味が決まるまで、正常fixtureはBの採用証拠にせず、未見scopeを勝手に含めない。ZIP以外の形式は範囲外。
+- **旧consumer pins**：HST-CASE-008-10のline 373（旧system-assertion-cases file SHA-256 `98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8`、row SHA-256 including LF `6730eb0367123265f30fe4d8e94c3eed05262445a96d7ee7c915d49eb257bcc9`）はmetadata等のprovenance付き変換と`HIL_HYBRID_INGESTION_INCOMPLETE`を示す設計contextとして保持する。HST-CASE-008-01 line 78（同file SHA、row SHA-256 including LF `f231a05e565b9f3e489315a474356f32e1c0a86b88a3639c1ed412c390f9f64d`）はHIL-FR-25 build-engine run/artifact manifestの別境界であり、実行しない。HIL-FR-25 versioned-capability条件は別identityのまま。
