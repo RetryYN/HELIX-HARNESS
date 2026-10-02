@@ -1,7 +1,7 @@
 {
   "requirement_identity": "HARNESS-L2-072",
-  "candidate_registration_id": "MPR-RC-HARNESS-L2-072-002",
-  "candidate_status": "unadopted_proposal_revision_002",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-072-003",
+  "candidate_status": "unadopted_proposal_revision_003",
   "product_target": "HELIX-HARNESS",
   "base_commit": "0e160e146874f039155f9e406e7ae650a01f43ee",
   "source_atom_set": {
@@ -22,10 +22,10 @@
       "source_pointer": "#/HIL-NFR-29"
     },
     "source_lines": {
-      "path": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r2.jsonl",
-      "sha256": "sha256:7d2d78be530ea2bd257bf2b5f19150780e928056ea7a93f80c0622b131439084",
+      "path": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r3.jsonl",
+      "sha256": "sha256:d55e0d3127b10e1c3b02dd3d9a67b6f72351b8dcb16874292b31c4739d1893b2",
       "count": 3,
-      "supersedes_snapshot": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl (historical r1; bytes unchanged)"
+      "supersedes_snapshot": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-nfr29-source-lines-2026-10-02-r2.jsonl (immutable revision 002 bytes; corrected source citation is r3)"
     },
     "source_atom_ids": [
       "FR48-STALE-REVISION-L0138",
@@ -33,7 +33,7 @@
       "HIL-NFR-29-IR-A60CF91DD2AF6693E6F9"
     ],
     "source_atom_set_digest": "sha256:5039003fc1758b008997bf4bf6842a4ffb836efa05f34bc1278653e34e8acd79",
-    "scope": "Two selected HIL-FR-48/49 condition slices plus one whole HIL-NFR-29 IR identity atom. This revision adds only the deferred-not-green condition from NFR-29 to the candidate; it does not claim whole-identity transfer, formal successor, full FR48/49 closure, or adoption.",
+    "scope": "Two selected HIL-FR-48/49 condition slices plus one whole HIL-NFR-29 IR identity atom. The candidate newly specifies only deferred-not-green. Clause-level comparisons to adopted 055/056 are limited to their exact selected scopes; all additional NFR-29 clauses not established there remain explicitly held, with no formal source binding or whole-source closure.",
     "carry_forward_status": {
       "HIL-FR-48": "preserved_pending_rehome; successor_requirement_ids=[]",
       "HIL-FR-49": "preserved_pending_rehome; successor_requirement_ids=[]"
@@ -87,8 +87,23 @@
           "line": 400,
           "line_sha256_without_lf": "sha256:ff6f45121dde209de5c9d8357e7cba1fe9d44de164ac134bef61658aafcfb7f5",
           "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-030-15",
+          "line": 437,
+          "line_sha256_without_lf": "sha256:1f55a1fc44c9d7c75854486ab470a8f3344bc402366462f9381277f4ae314bec",
+          "execution_state": "design-defined / not-implemented",
+          "relation": "NFR-29 source atom design-only cross-check for atomic denominator, bidirectionality, same revision/snapshot and executed-only coverage; no runtime/test invocation."
         }
-      ]
+      ],
+      "target_assessment": {
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+        "line": 38,
+        "line_sha256_without_lf": "sha256:47336d3095c59897e39afe23c0ba385d549cccf09043651aa1c46e3d673ec33e",
+        "assessment": "HARNESS／OS",
+        "relation": "Historical target assessment only; not present adoption, transfer, or authority."
+      }
     },
     "supporting_consumer_contracts": {
       "HR-FR-HIL-18": {
@@ -156,11 +171,11 @@
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:7e01f35a72f172e2a37627a4ac12e188fd95dca841e72bad6a4106d50e5bec5f",
+      "full_file_sha256": "sha256:8e9bedd3d5507e4b35c998f48eae2b74452ba3452de1693626c840c66485be03",
       "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot・deferred結果受入候補（未実行）",
       "start_line": 1035,
       "end_line": 1047,
-      "sha256": "sha256:aa5f317b7c19b12f1be14bc7388fa03d64d545f7c5798941cf02ee3e41ef7fbd"
+      "sha256": "sha256:e207233d7f8c3156f5ceac410732d5613b8a4cc1d98a985d65a41146bef6c480"
     },
     "candidate_semantic_digest_rule": "L2 selected candidate section SHA-256; L11 is paired independently by exact section digest. Receipt r2 is a point-in-time comparison and leaves receipt r1 historical bytes unchanged."
   },
@@ -258,29 +273,43 @@
       "source_identity": "HIL-NFR-29, whole IR identity at archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-29; statement text/hash and full record pin in r2 source snapshot.",
       "source_clauses": [
         {
-          "clause": "template/file/chapter/aggregate-parent existence is not pair coverage denominator; atomic obligation and oracle are denominator",
-          "destination": "Meaning is represented by atomic/aggregate rejection in adopted 055/056 selected pair contracts; this does not establish formal NFR-29 source binding or universal population closure."
+          "clause": "template/file/chapter/aggregate-parent existence is not pair coverage; denominator is atomic obligation and its oracle",
+          "adopted_scope_mapping": [
+            {
+              "destination": "HARNESS-L2-055-001 (2026-09-30 decision row 40), exact selected scope only",
+              "represented_meaning": "Reject an individual obligation covered only by an aggregate parent. This does not establish that template/file/chapter presence is excluded from the denominator or define the coverage denominator/population."
+            },
+            {
+              "destination": "HARNESS-L2-056-001 (decision row 41), exact selected scope only",
+              "represented_meaning": "Compare each selected canonical pair at its atomic oracle correspondence. This does not define a universal atomic obligation/oracle denominator or exclude template/file/chapter presence."
+            }
+          ],
+          "remaining_status": "Not established by the adopted pair revisions; retain as source holding. HST-CASE-030-15 line 437 is a design-only cross-reference, not adopted coverage."
         },
         {
           "clause": "vertical and horizontal edges are bidirectional",
-          "destination": "Adopted 055-001 and 056-001 exact selected source scopes cover their own selected vertical/horizontal outcomes; no NFR-29 adoption or broader pair population inferred."
+          "destination": "HARNESS-L2-055-001 and HARNESS-L2-056-001 cover their exact selected vertical and canonical V-pair scopes respectively; 055/056 selected atoms and decisions do not transfer NFR-29.",
+          "remaining_status": "Only those selected scopes are represented. No broader layer/pair population or NFR-29 source binding is established."
         },
         {
-          "clause": "same revision and snapshot; semantic granularity matches",
-          "destination": "072 candidate explicitly handles selected FR48 stale revision and FR49 snapshot mismatch; 055/056 selected pair boundaries remain exact and exclude these cross-conditions."
+          "clause": "same revision, same snapshot, and matching semantic granularity (vertical and horizontal)",
+          "candidate_mapping": "HARNESS-L2-072-002 separately adds the selected FR48 stale-revision slice and FR49 different-snapshot slice only.",
+          "remaining_status": "Vertical source-snapshot equality remains held (HST-CASE-031-08 line 308; existing residual audit records the general pair-source-snapshot equality oracle as not established). Horizontal semantic-revision mismatch remains held. Semantic-granularity equality across both vertical and horizontal pairs remains held. Exact selected 055/056 scope does not close these NFR-29 conditions."
         },
         {
           "clause": "deferred, stale, unexecuted, and one-sided pair are not green",
-          "destination": "072-002 adds a separate deferred-not-green oracle; stale/snapshot remain the two 072 selected slices. Adopted 055/056 acceptance has selected-scope unexecuted/one-sided negatives; they are not source-bound to NFR-29 and do not substitute for deferred."
+          "candidate_mapping": "072-002 specifies deferred-not-green separately; its FR48 stale-revision and FR49 different-snapshot slices remain bounded to their selected conditions.",
+          "adopted_scope_mapping": "HARNESS-L2-055-001 selected vertical scope and HARNESS-L2-056-001 selected six-pair scope include their own unexecuted/one-sided negative meanings. HST-CASE-032-13 line 321 (verification→design edge only) is a design-only reference corresponding to the one-direction-missing case in 056; 056 L11 treats a missing edge on one selected pair as incomplete.",
+          "remaining_status": "These adopted pair meanings apply only to exact selected scopes and are not NFR-29 source-bound. Outside those scopes, NFR-29 one-sided/unexecuted meaning remains held; no full-source closure."
         }
       ],
-      "candidate_destination": "072 L2/L11 deferred-status condition only; r2 receipt maps remaining clauses to exact current adopted pair scopes or leaves source binding/whole-source closure unresolved.",
+      "candidate_destination": "072-002 specifies only NFR-29 deferred-not-green in its selected pair scope. Existing adopted 055/056 meanings are represented only for their exact selected aggregate/atomic/bidirectional/unexecuted/one-sided conditions. Stale and snapshot slices are separately selected by 072. Remaining denominator, vertical snapshot equality, horizontal revision equality, semantic granularity, source binding and broader population conditions stay held.",
       "adopted_comparison_boundary": "HARNESS-L2-055-001 row 40 and HARNESS-L2-056-001 row 41 of po-decision-2026-09-30-live26.md; exact selected revision pins retained from r1.",
-      "status": "candidate_input_scoped; not adopted; no formal successor assigned"
+      "status": "candidate_input_scoped; partial exact-scope semantic parallels recorded; additional clauses explicitly held; not adopted; no formal successor assigned."
     }
   ],
-  "source_collection_scope": "Three selected inputs: HIL-FR-48 line 138 stale-revision slice; HIL-FR-49 line 139 different-snapshot slice; and the whole HIL-NFR-29 Requirement IR identity atom. The source line/IR record and all three IDs/digests are pinned in the r2 source snapshot. Only the deferred-not-green clause of NFR-29 is newly specified by 072-002. Other NFR-29 clauses are mapped to exact selected 055/056 adopted meanings where semantically corresponding or marked as formal source binding/closure unresolved. Supporting HR/HAC/HAT are context only; HAT remains designed_not_implemented.",
-  "coverage_result": "candidate_input_scoped; 2 condition slices plus whole NFR-29 IR identity preserved; only deferred-not-green newly specified; formal source binding, successor, and whole-source closure remain pending.",
+  "source_collection_scope": "Three selected inputs: HIL-FR-48 line 138 stale-revision slice; HIL-FR-49 line 139 different-snapshot slice; and whole HIL-NFR-29 IR identity atom. Only deferred-not-green is newly specified by 072-002. Clause-level adopted parallels are bounded to 055/056 exact selected scopes; denominator rules beyond aggregate-only rejection and atomic oracle correspondence, vertical snapshot equality, horizontal revision equality, semantic-granularity equality, and any wider population/source binding remain held. Supporting HR/HAC/HAT and added HST cases are context/design-only, not added atoms or execution evidence.",
+  "coverage_result": "candidate_input_scoped; two selected line slices plus whole NFR-29 IR identity preserved; only deferred-not-green is newly specified. 055/056 meanings are compared only at their exact selected adopted scopes. Additional NFR-29 conditions remain explicitly held; no formal source binding, successor, or whole-source closure.",
   "carried_atom_refs": [
     "FR48-STALE-REVISION-L0138",
     "FR49-DIFFERENT-SNAPSHOT-L0139",
@@ -295,11 +324,11 @@
   "human_decision_disposition_refs": [],
   "authority_effect": "none",
   "po_disposition_packet": {
-    "choice_a": "採択済み055/056の選択範囲を変えず、072-002をstale/snapshot/deferredの明示scope candidateとして扱う。NFR-29のsource bindingやformal successorは別途未解決のまま保持する（推奨）。",
+    "choice_a": "採択済み055/056の選択範囲を変えず、072-002をstale/snapshot/deferredの明示scope candidateとして扱う。deferred以外にも、coverage分母の母集団・非算入、vertical snapshot一致、horizontal revision一致、意味粒度一致など正式対応未確定の句が残る。NFR-29のsource bindingやformal successorは別途未解決のまま保持する（推奨）。",
     "choice_b": "deferred条件をsource holdingへ戻し、072-001のstale/snapshot二条件だけを維持する。",
     "choice_c": "NFR-29の全句をひとつのより広いpair要求へ再編する。これはsource/pair scopeと1.0/版の意味を変更し得るため、現候補で自動実施しない。",
-    "recommendation_basis": "旧IR atomは全体を保存しつつ、既存055/056 adopted scopesがNFR-29として採択されたと誤認しない。deferredはunexecutedとは異なるため、pair状態だけをdeferredへ替える個別oracleを追加する。",
-    "impact": "A preserves the adopted pair scope and adds a bounded candidate condition; B leaves deferred not-green without a current candidate oracle; C changes population/coverage meaning and requires a separate source-grounded choice. No option in this packet is itself an adoption or approval."
+    "recommendation_basis": "旧IR atomは全体を保存し、候補ではdeferredをunexecutedとは別の条件として扱う。055/056のatomic/aggregate and pair meanings are represented only within exact selected scopes; remaining NFR-29 conditions stay held rather than being inferred from neighboring adopted requirements.",
+    "impact": "A preserves exact adopted pair scope and adds one bounded deferred condition; B returns deferred to holding; C would change the source/pair population and needs a separate source-grounded choice. Under A, additional NFR-29 conditions remain held beyond deferred. No option is adoption or approval."
   },
   "version_target": {
     "value": null,
@@ -316,7 +345,10 @@
     "NFR-29 full-condition closure",
     "No adoption of HARNESS-L2-072-002 is created by this receipt or MPR row.",
     "The entire HIL-NFR-29 identity is preserved as one source atom, but only its deferred-not-green condition is specified in this candidate revision; source binding/formal successor/full closure remain unresolved.",
-    "Adopted 055/056 exact pair revisions are evidence for their own selected scopes only, not adoption of NFR-29 or 072."
+    "Adopted 055/056 exact pair revisions are evidence for their own selected scopes only, not adoption of NFR-29 or 072.",
+    "Adopted HARNESS-L2-055/056 atomic or aggregate semantics do not establish that template/file/chapter presence is excluded from the coverage denominator or define a universal denominator.",
+    "Vertical pair source-snapshot equality, horizontal pair semantic-revision equality, and vertical/horizontal semantic-granularity equality remain held; 072 only adds its selected stale-revision, different-snapshot, and deferred conditions.",
+    "HST-CASE-030-15 and the HIL-NFR-29 target-assessment row are design/historical references, not execution evidence or current adoption."
   ],
   "verification": {
     "source_line_and_case_hashes_recomputed": true,
@@ -329,7 +361,11 @@
     "source_ir_nfr29_record_and_statement_hashes_recomputed": true,
     "r1_source_snapshot_and_receipt_bytes_preserved": true,
     "nfr29_clause_to_pair_scope_crosswalk_recorded": true,
-    "deferred_separate_from_unexecuted_stale_and_snapshot": true
+    "deferred_separate_from_unexecuted_stale_and_snapshot": true,
+    "nfr29_unmatched_clauses_explicitly_held": true,
+    "m1_design_only_source_refs_pinned": true,
+    "m2_source_atom_file_sha256_matches_bytes": true,
+    "m3_deferred_normal_does_not_claim_pair_success": true
   },
   "root_integration_note": {
     "latest_main_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
@@ -349,12 +385,21 @@
         "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json"
       ]
     },
-    "meaning": "最新mainの680行をbyte保持し072002だけ追記。r1 receipt/source snapshot/072001を変更せず、r2候補pairは最新main取込でもbyte不変。古い比較base証拠は固定時点のまま区別。",
-    "source_pointer_correction": "NFR29 carry-forward参照の移管後pathを実際の131行の既存recordへ修正し、source snapshotとMPR重複SHA欄を実bytesへ同期。原IR record/statement/選択atom集合の意味は不変。 NFR29原IR record物理範囲の末尾LFを含む実bytesへtextとSHAを同期。"
+    "meaning": "最新mainの680行をbyte保持し072002だけ追記。r1 receipt/source snapshot/072001を変更せず、r2候補pairは最新main取込でもbyte不変。古い比較base証拠は固定時点のまま区別。 Corrective 003 is appended after preserving the original 680-line main prefix and 001/002 rows; only the current r2 source atom row is revised to add design-only pins.",
+    "source_pointer_correction": "NFR29 carry-forward参照の移管後pathを実際の131行の既存recordへ修正し、source snapshotとMPR重複SHA欄を実bytesへ同期。原IR record/statement/選択atom集合の意味は不変。 NFR29原IR record物理範囲の末尾LFを含む実bytesへtextとSHAを同期。",
+    "corrective_append_line": 682,
+    "corrective_registration": {
+      "registration_id": "MPR-RC-HARNESS-L2-072-003",
+      "supersedes": "MPR-RC-HARNESS-L2-072-002",
+      "prefix_line_count": 681,
+      "prefix_sha256": "sha256:a77dc9222f5aa7ae971dee46a86fc3f7df2a4a4246ed0a49ded40911e0ae25e6",
+      "row_sha256_including_lf": "sha256:2d0f20d69ff42a45c3bdd0fb1c40384fe3a9fd1d5576f065a0e0f7454f8f67f9",
+      "appended_as_final_line": true
+    }
   },
   "source_atom_count": 3,
-  "source_atom_set_file_sha256": "sha256:31a5a1a401c1d0ba37330d141533eef0e0b52e67987fc10dbf221fa45cb5e9c0",
-  "source_line_coverage_result": "r2 maps three selected inputs and all NFR-29 clauses separately; exact pair semantics, source binding, and candidate/adoption state are distinguished. No runtime evidence.",
+  "source_atom_set_file_sha256": "sha256:d55e0d3127b10e1c3b02dd3d9a67b6f72351b8dcb16874292b31c4739d1893b2",
+  "source_line_coverage_result": "r2 preserves 3 selected inputs; clause-level destinations distinguish exact 055/056 selected meanings, 072 selected stale/snapshot/deferred clauses, and unresolved holdings for denominator population, vertical snapshot equality, horizontal revision equality, semantic granularity, wider one-sided/unexecuted scope, source binding, and whole-source closure.",
   "source_semantic_digest_definition": "For the whole NFR-29 input use requirements.json identity.statement.semantic_digest. For line-slice atoms use the same IR statement semantic digest as r1; exact physical source text, file/line or JSON pointer, statement digest, and full record digest are separately pinned.",
   "current_adopted_pair_comparisons": [
     {
@@ -386,21 +431,25 @@
     "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
   },
   "registration_append_integrity": {
-    "new_registration_id": "MPR-RC-HARNESS-L2-072-002",
-    "supersedes": "MPR-RC-HARNESS-L2-072-001",
-    "new_row_sha256_including_lf": "sha256:8a18e0c7c5462790bff5d087a83fb72844195e823169d876618195e7a4c71ec3",
-    "prefix_line_count": 680,
-    "prefix_sha256": "sha256:6baa0d164ba84cdf9767f759a6f06368e559b55109e4ee4a4f1b98b59acc0f8e",
+    "new_registration_id": "MPR-RC-HARNESS-L2-072-003",
+    "supersedes": "MPR-RC-HARNESS-L2-072-002",
+    "new_row_sha256_including_lf": "sha256:2d0f20d69ff42a45c3bdd0fb1c40384fe3a9fd1d5576f065a0e0f7454f8f67f9",
+    "prefix_line_count": 681,
+    "prefix_sha256": "sha256:a77dc9222f5aa7ae971dee46a86fc3f7df2a4a4246ed0a49ded40911e0ae25e6",
     "append_is_final_register_row": true,
     "historical_001_registration_preserved": true,
-    "historical_r1_source_snapshot_and_receipt_paths": [
+    "historical_002_registration_bytes_preserved": true,
+    "r1_source_snapshot_and_receipt_bytes_preserved": true,
+    "historical_r1_paths": [
       "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
       "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json"
     ]
   },
   "revision_lineage": {
     "r1_registration": "MPR-RC-HARNESS-L2-072-001 remains historical; its MPR row, 2-atom source snapshot and receipt are unmodified.",
-    "r2_registration": "MPR-RC-HARNESS-L2-072-002 supersedes registration 001 and references the new 3-input source snapshot and new receipt; it remains unadopted.",
-    "candidate_scope_delta": "Adds one whole HIL-NFR-29 IR identity as source input and one candidate condition: deferred pair result is not green. Does not alter already adopted 055/056 pairs or assert full NFR-29 transfer."
-  }
+    "r2_registration": "MPR-RC-HARNESS-L2-072-002 introduced the three-input source snapshot/receipt and remains an immutable historical registration line; corrective MPR-RC-HARNESS-L2-072-003 supersedes it to bind corrected source/current receipt pins and clause-level holding limits. Both remain unadopted.",
+    "candidate_scope_delta": "Adds one whole HIL-NFR-29 IR identity as source input and one candidate condition: deferred pair result is not green. Does not alter already adopted 055/056 pairs or assert full NFR-29 transfer.",
+    "corrective_scope": "No L2 requirement scope is added. Corrects the source snapshot file pin, exposes limits of adopted-pair parallels, preserves unresolved NFR-29 clauses, and corrects the L11 deferred-normal wording."
+  },
+  "correction_reason": "Revision 003 preserves reviewed revision 002 and its exact r2 receipt/source bytes unchanged. It corrects the NFR-29 clause crosswalk so adopted 055/056 meanings are limited to their exact selected scopes and unmatched denominator/revision/snapshot/granularity conditions remain held; adds pinned design-only HST-CASE-030-15 and historical target-assessment sources; synchronizes the corrected source snapshot digest; and aligns the deferred normal oracle with the selected condition only. No requirement scope is added."
 }
