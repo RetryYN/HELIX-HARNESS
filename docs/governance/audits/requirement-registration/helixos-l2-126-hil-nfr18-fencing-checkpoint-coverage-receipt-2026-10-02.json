@@ -1,0 +1,545 @@
+{
+  "receipt_id": "HELIXOS-L2-126-HIL-NFR-18-FENCING-CHECKPOINT-COVERAGE-2026-10-02",
+  "status": "registered_proposal_no_authority_effect; one_atom_with_two_source_conditions",
+  "authority_effect": "none",
+  "read_after_base_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+  "candidate_identity": "HELIXOS-L2-126",
+  "paired_acceptance_identity": "HELIXOS-L11-126",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr18-fencing-checkpoint-source-lines-2026-10-02.jsonl#HIL-NFR-18",
+  "source_atom_set_file_sha256": "sha256:sha256:15e432534d8057316d102c290ac5f4967d0d114f3ed20075f5a7c411d9c2691d",
+  "source_atom_set_digest": "sha256:91bf4ec78b0f26f8540793d851d732035166579df23af565e40598cf9e1c8214",
+  "source_scope": "数えるのはIR identity HIL-NFR-18だけ。L1 line 198は同一文面のcorroborationで追加atomではない。HR-FR-HIL-08/HAC-HIL-08a/b/c/HAT-HIL-08/HST-CASE-006-22は契約・oracleのconsumer contextで、atom数に加えない。隣接NFR行は対象外。HATは設計済み・未実装で、旧test/runtime/CIを実行しない。",
+  "source_identity": {
+    "source_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-18",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "legacy_revision": 1,
+    "statement_semantic_digest": "sha256:09206374c8d11af21ebad0450f00c8205fe27d24ba055350a008a119cc49bd06",
+    "record_semantic_digest": "sha256:36e097d3f95d703a18a0187554c8844087689dccd3e0cac6cdee8f3c9d1f26e1",
+    "statement_text": "agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。",
+    "source_locator_physical_line": 5154,
+    "source_locator_line_sha256_including_lf": "sha256:ece78655cb7683bcee1a6ae80169ac28187acbea4f60fa6a9b8714b2af30aca8"
+  },
+  "corroborating_L1_source": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "physical_line": 198,
+    "text": "| **HIL-NFR-18** | agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。 |",
+    "line_sha256_including_lf": "sha256:cba345ce2aced971634a56f68d5b7a6ade9925ac8ec8b49add503fcce8eb5709",
+    "line_sha256_without_lf": "sha256:17e2260c3b626fb3ccd2068576f337c42a356b9623a9fa1db970e022f9170f0c",
+    "same_statement_not_extra_atom": true
+  },
+  "consumer_context": [
+    {
+      "identity": "HR-FR-HIL-08",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "semantic_digest": "sha256:a54a1096744c223a67d028199edc9433985e04b73059a72d50f163981f3723ca",
+      "context_role": "consumer/oracleの文脈。追加source atomではない。",
+      "record": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-08",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-09",
+          "HIL-BR-18",
+          "HIL-FR-11",
+          "HIL-FR-12",
+          "HIL-FR-13",
+          "HIL-FR-32",
+          "HIL-NFR-10",
+          "HIL-NFR-18"
+        ],
+        "behavior": "HARNESS-owned contractからteamを決定し、lease/run/checkpoint/verify/release/quarantine/retireをfencing付き正本化する",
+        "transition_contract": "versioned registry、task、eligible roles → 再生成可能projection、単一lease、独立verify",
+        "failure_and_evidence": "manual drift、worker=verifier、二重lease、旧fence、不正遷移 / contract、muster、lease、lifecycle、verify receipt",
+        "acceptance_ids": [
+          "HAC-HIL-08a",
+          "HAC-HIL-08b",
+          "HAC-HIL-08c"
+        ],
+        "system_test_id": "HAT-HIL-08",
+        "semantic_digest": "sha256:a54a1096744c223a67d028199edc9433985e04b73059a72d50f163981f3723ca"
+      },
+      "physical_line": 172,
+      "physical_line_sha256_including_lf": "sha256:5365418774522c68b997e64e95c176efd487ec6debe7eff07bb22fa8e6152a0d",
+      "physical_line_sha256_without_lf": "sha256:de425ec4b0b263d1404d8bef655844692bd5334e0180e5e5bf8f13d546079fe3"
+    },
+    {
+      "identity": "HAC-HIL-08a",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "semantic_digest": "sha256:4f8058f144c18c486db69b92e063c38a28a81236e91c3dfe03ffd36d5da9c408",
+      "context_role": "consumer/oracleの文脈。追加source atomではない。",
+      "record": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-08a",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-08",
+        "polarity": "positive",
+        "statement": "同入力から同team/lifecycle",
+        "system_test_id": "HAT-HIL-08",
+        "semantic_digest": "sha256:4f8058f144c18c486db69b92e063c38a28a81236e91c3dfe03ffd36d5da9c408"
+      },
+      "physical_line": null,
+      "physical_line_sha256_including_lf": null,
+      "physical_line_sha256_without_lf": null
+    },
+    {
+      "identity": "HAC-HIL-08b",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "semantic_digest": "sha256:a6ae07c1679dad87e60140f378f5a8bf1d7c659ffb91cdcdd25e04292c761162",
+      "context_role": "consumer/oracleの文脈。追加source atomではない。",
+      "record": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-08b",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-08",
+        "polarity": "negative",
+        "statement": "drift/二重claim/旧fence拒否",
+        "system_test_id": "HAT-HIL-08",
+        "semantic_digest": "sha256:a6ae07c1679dad87e60140f378f5a8bf1d7c659ffb91cdcdd25e04292c761162"
+      },
+      "physical_line": null,
+      "physical_line_sha256_including_lf": null,
+      "physical_line_sha256_without_lf": null
+    },
+    {
+      "identity": "HAC-HIL-08c",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "semantic_digest": "sha256:4edfb7965410c572e9538f097bcf03cd5c51356abce1d6ccddc87e852af3a30a",
+      "context_role": "consumer/oracleの文脈。追加source atomではない。",
+      "record": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-08c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-08",
+        "polarity": "boundary",
+        "statement": "checkpoint再開とquarantine/retire維持",
+        "system_test_id": "HAT-HIL-08",
+        "semantic_digest": "sha256:4edfb7965410c572e9538f097bcf03cd5c51356abce1d6ccddc87e852af3a30a"
+      },
+      "physical_line": null,
+      "physical_line_sha256_including_lf": null,
+      "physical_line_sha256_without_lf": null
+    },
+    {
+      "identity": "HAT-HIL-08",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+      "semantic_digest": "sha256:9b6708767a5b9ac9b9fb6ddb2a6aae04f5ecab6d90f2221f88d0e6bf1b50c8fb",
+      "context_role": "consumer/oracleの文脈。追加source atomではない。",
+      "record": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-08",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-08",
+        "acceptance_ids": [
+          "HAC-HIL-08a",
+          "HAC-HIL-08b",
+          "HAC-HIL-08c"
+        ],
+        "supporting_test_ids": [
+          "HST-HIL-006"
+        ],
+        "scenario": "registryからteam/lifecycleを完走",
+        "required_evidence": "registry/team digest、lease/fence/checkpoint/verify",
+        "negative_boundary": "manual drift、self-verify、late write",
+        "semantic_digest": "sha256:9b6708767a5b9ac9b9fb6ddb2a6aae04f5ecab6d90f2221f88d0e6bf1b50c8fb"
+      },
+      "physical_line": 141,
+      "physical_line_sha256_including_lf": "sha256:4cee17394c9b47332bd476698e048fcaba3b86cbfeda0d5bf623694e48893546",
+      "physical_line_sha256_without_lf": "sha256:89eabf243daf84bfac58399741a1077385c1d92070509f29d28499b8c88a872f"
+    },
+    {
+      "identity": "HST-CASE-006-22",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+      "semantic_digest": null,
+      "context_role": "旧test設計行の文脈。追加atomではなく、実行していない。",
+      "record": {
+        "source_line_text": "| HST-CASE-006-22 | HST-HIL-006 | HIL-NFR-18 | lease再割当後に旧agentがtool callとcompletionを返す | artifact commitと再開を要求する | assertion_input_ready | assertion_pass | fencing mismatchを拒否しdurable checkpointからだけ再開する | HIL_AGENT_FENCING_VIOLATION | FX-HST-006-22 | design-defined | not-implemented |",
+        "physical_line_sha256_including_lf": "sha256:39cdeeb4b2d2b0b95974976353928d0f8801228a4b24410397b65fd21c511622",
+        "physical_line_sha256_without_lf": "sha256:5f58ab5948a2927f37862fb65a4fcfd55fa62f2ba85b340a1885fd0e7519fd4a"
+      }
+    }
+  ],
+  "source_holding": "MPR-SH-IR-003#HIL-NFR-18 remains preserved_pending_rehome; successor_requirement_ids empty; no formal successor, retirement, or source closure claimed.",
+  "old_HR_HAC_HAT_context": "HR-FR-HIL-08 includes lease/run/checkpoint/verify/release/quarantine/retire under fencing and failure evidence includes old fence; HAC-HIL-08a same-input lifecycle, 08b drift/double claim/old fence rejection, 08c checkpoint restart/quarantine/retire; HAT-HIL-08 designed_not_implemented. HST-CASE-006-22 design row describes reassigned lease then old tool/completion, artifact commit, and resume; it is context, not extra atom and not executed.",
+  "historical_audit": {
+    "path": "docs/governance/audits/requirements-stage/legacy-ir-quality-source-recheck-2026-09-28.md",
+    "sha256": "sha256:74d339e4b44987eade8f16bb9dd964a91c7f62580062250fee3c75e421579d81",
+    "base": "559ae3ba4bfe660d666a57f227466d7dcdd440d9",
+    "historical_summary": "HIL-NFR-18 prior source recheck said lease expiry/interim result/durable attempt were rederived through 018/019. This audit rechecks the exact adopted bytes and records the limits below; historical audit wording is not itself adopted current guarantee."
+  },
+  "condition_crosswalk": [
+    {
+      "source_clause": "lease失効後のtool call/artifact/completionをfencing token不一致で拒否",
+      "already_held": "018 adopted pair stops starting/continuing on lease/authority/scope/head mismatch and isolates interim output; 009/019 preserve event/evidence/checkpoint; 032 is unrelated narrow quarantine. 115 only applies after an existing terminal run; 120 models lifecycle-stage mismatch; 125 concerns NFR14 result reception; 118 concerns CI run event generation.",
+      "residual": "No exact current adopted oracle states all three effect boundaries individually reject an expired-agent effect when the run itself is not otherwise terminal and the fence mismatches. An event may be preserved as stale without the individual tool/artifact/completion effect being explicitly rejected at its boundary. Candidate 126 makes that source condition explicit, without replacing 018 stop/authority behavior."
+    },
+    {
+      "source_clause": "crash後は最後のdurable checkpointからだけ再開",
+      "already_held": "009 publishes checkpoint only after durable event/projection and preserves cumulative obligations; 019 rejects a success checkpoint after failed write/projection/replay, reconstructs from failure position, preserves obligations and forbids provider memory/summary-only resume. 120 includes lifecycle checkpoint stage but is unadopted.",
+      "residual": "Adopted text does not state that resume origin must be exactly the latest durable checkpoint for the same operation/attempt/revision/scope, excluding older durable checkpoints and non-durable later state. Candidate 126 states only that source condition and leaves storage/replay mechanism to current owners."
+    }
+  ],
+  "adopted_current_pair_crosswalk": [
+    {
+      "requirement": "HELIXOS-L2-018",
+      "paired_acceptance_heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+      "adoption": "採択decisionはL2-001..029と対になるL11本文bytesを固定対象とする旨を記録。対象sectionの固定revisionと現行bytesを照合。",
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_target_commit": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
+      "decision_locator": "line 48: explicit 014-029 set includes HELIXOS-L2-018",
+      "fixed_L2_section": {
+        "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "line_start": 672,
+        "line_end": 681
+      },
+      "current_L2_section": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+        "line_start": 672,
+        "line_end": 681,
+        "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "fixed_L11_section": {
+        "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "line_start": 345,
+        "line_end": 351
+      },
+      "current_L11_section": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+        "line_start": 345,
+        "line_end": 351,
+        "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "scope_and_limit": "assignment/attempt・許可範囲内の割当/進行/停止/handoff。L11はscope/head/lease/capability/authority不一致時に起動・継続を停止し途中成果を隔離する。失効後の各tool/artifact/completionのtoken照合と結果拒否は個別に明示しない。"
+    },
+    {
+      "requirement": "HELIXOS-L2-019",
+      "paired_acceptance_heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+      "adoption": "採択decisionはL2-001..029と対になるL11本文bytesを固定対象とする旨を記録。対象sectionの固定revisionと現行bytesを照合。",
+      "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_target_commit": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
+      "decision_locator": "line 48: explicit 014-029 set includes HELIXOS-L2-019",
+      "fixed_L2_section": {
+        "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "line_start": 682,
+        "line_end": 691
+      },
+      "current_L2_section": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+        "line_start": 682,
+        "line_end": 691,
+        "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "fixed_L11_section": {
+        "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "line_start": 352,
+        "line_end": 358
+      },
+      "current_L11_section": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L2-019 Evidence・continuityの受入",
+        "line_start": 352,
+        "line_end": 358,
+        "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "scope_and_limit": "provenance、再構築、未完義務、event書込/projection/replay失敗時に成功checkpointを公開しない。last durable checkpointのみをresume originにする個別条件は明示しない。"
+    },
+    {
+      "requirement": "HELIXOS-L2-032",
+      "paired_acceptance_heading": "### HELIXOS-L2-032 Known failureの限定quarantine",
+      "adoption": "adopted; decision row 55",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": {
+        "line": 55,
+        "text": "| `HELIXOS-L2-032` | 採択 | `MPR-RC-HELIXOS-L2-032-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202` | `HELIXOS-L2-032` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460` | `docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json` |",
+        "sha256_including_lf": "sha256:5f98a0421541fd210a79eff7b3c68da5ef81b9d20291d2401e1934a7f214c186",
+        "sha256_without_lf": "sha256:878ad5a4eda88fbac3f6341ddbe58a613d386be06d668b12d6a90be4dc4b67c1",
+        "line_text_excludes_lf": true
+      },
+      "fixed_section_sha256": {
+        "L2": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+        "L11": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460"
+      },
+      "current_L2_section": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-032 Known failureの限定quarantine（単体候補）",
+        "line_start": 913,
+        "line_end": 928,
+        "section_sha256": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "current_L11_section": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L2-032 Known failureの限定quarantine",
+        "line_start": 513,
+        "line_end": 523,
+        "section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "scope_and_limit": "限定check単位known-failure quarantine。agent lease後のtool/artifact/completion fencingおよびresume位置を規定しない。"
+    }
+  ],
+  "adopted_009_crosswalk": {
+    "L2": {
+      "line": 297,
+      "text": "| HELIXOS-L2-009 | eventをdurableに記録して冪等に投影し、成功後だけcheckpointを公開する。session交代で予算・期限・失敗回数・未完義務を初期化せず、同一作業の二重claimや副作用を防ぐ | HBR-P1、HNFR-P5、柱要求§2.7 |",
+      "sha256_including_lf": "sha256:23a8653051671a6b68bbf8502d04aa7cb76f4286a57cc4d54a50331cae567452",
+      "sha256_without_lf": "sha256:b4901de216daa45a5007f5a0fba06b6d6d054dab3cf8559f68f12b735f197acf",
+      "line_text_excludes_lf": true
+    },
+    "L11_summary": {
+      "line": 29,
+      "text": "| HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |",
+      "sha256_including_lf": "sha256:276390afe57ef9ae94f40616bca0a756f962c4a3b230ea090080da065cedeed8",
+      "sha256_without_lf": "sha256:7de0dfc509ae5755279f8d093d8eda6c83c98d3d1b0ce9badb81f534ceed2ec2",
+      "line_text_excludes_lf": true
+    },
+    "L11_acceptance_detail": {
+      "line": 419,
+      "text": "| HELIXOS-L2-009 | 018／019／023／025 | 中断・交代時のscope/budget/期限/未完義務、重複防止 |",
+      "sha256_including_lf": "sha256:8385519e75fcb50ead73f77a61cea9d0f6dd68af2bbf6d18a4fcb61ac17c812c",
+      "sha256_without_lf": "sha256:11d60b16d534981deb2eae80bc44cd71b28284e3bfb0ea9aa26758a8cc4b0d8d",
+      "line_text_excludes_lf": true
+    },
+    "L2_file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33",
+    "L11_file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7",
+    "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+    "fixed_scope": "OS 2026-09-28 fixed L2-001..029 and paired L11 bytes; L2-009 is a named row in that fixed pair.",
+    "coverage": "durable event, idempotent projection, success-only checkpoint publication, preserve budget/deadline/unfinished obligations, no duplicate claims/side effects. It does not state an exact last-durable-checkpoint-only recovery origin."
+  },
+  "adopted_dependency_pair": {
+    "requirement": "HARNESS-L2-023/L11-023",
+    "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "decision_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "decision_row": {
+      "line": 52,
+      "text": "| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |",
+      "sha256_including_lf": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "sha256_without_lf": "sha256:6128df2a6a74cf46714fe273b8f43434985de27edde87041812eda420e0bde5e",
+      "line_text_excludes_lf": true
+    },
+    "fixed_section_sha256": {
+      "L2": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "L11": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+    },
+    "current_L2_section": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+      "line_start": 463,
+      "line_end": 498,
+      "section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "file_sha256": "sha256:dfcb9428e4b7d08aac203e6c929782b0bef554dadf358ad2e30bb0e91fc737d5"
+    },
+    "current_L11_section": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "heading": "### HARNESS-L2-023 利用条件別の依存宣言の受入",
+      "line_start": 219,
+      "line_end": 234,
+      "section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "file_sha256": "sha256:2c1d1b539f65408d1efd58ea69d08bd432b628b40b1e16787e7d5f570a7603b3"
+    },
+    "selected_meaning": "same input/revision yields same effective dependency closure; always-required, operation-only, selected-source, reference-only; unknown remains unknown, no selected-source fallback, no safety dependency optionalization."
+  },
+  "other_candidate_crosswalk": [
+    {
+      "requirement": "HELIXOS-L2-115",
+      "state": "registered_proposal; authority_effect none; unadopted candidate",
+      "current_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない（単体追補候補、未採択）",
+        "line_start": 1446,
+        "line_end": 1455,
+        "section_sha256": "sha256:c5e173bd23bb40419579f509978c2930992cdbf462623710e2404e4ccc00e63f",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "current_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない — L11受入候補",
+        "line_start": 1048,
+        "line_end": 1056,
+        "section_sha256": "sha256:941bf6174746b69bea40bc00043eb954749aaf865e7f96d51e07ff2ebfcb74f4",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-115-late-result-coverage-receipt-2026-10-02.json"
+    },
+    {
+      "requirement": "HELIXOS-L2-118",
+      "state": "registered_proposal; authority_effect none; unadopted candidate",
+      "current_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-118 検証義務を保つrun置換・終端証拠（単体候補、未採択）",
+        "line_start": 1456,
+        "line_end": 1468,
+        "section_sha256": "sha256:4e3fbf98a8c81e30d9029833fae8e7030952da5d52a266f675193b328f7a78d3",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "current_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L11-118 検証義務を保つrun置換・終端証拠の受入候補（未採択・未実行）",
+        "line_start": 1057,
+        "line_end": 1068,
+        "section_sha256": "sha256:8590e78e81005c6eb074211eaaf40793eb6f0be1ef5639d9e6eb1da79bf82d4d",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "receipt_ref": "docs/governance/audits/requirement-registration/ci-event-concurrency-coverage-receipt-2026-10-02-r2.json"
+    },
+    {
+      "requirement": "HELIXOS-L2-120",
+      "state": "registered_proposal; authority_effect none; unadopted candidate",
+      "current_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-120 Agent instance lifecycle outcome and terminal separation (candidate, unadopted)",
+        "line_start": 1498,
+        "line_end": 1509,
+        "section_sha256": "sha256:eac3dd9d72146cf48af9b8e8371f5b8df0ddb1e792fe74c75b8c98db55646f64",
+        "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+      },
+      "current_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L11-120 Agent instance lifecycle outcome and terminal separation 受入候補（未採択・未実行）",
+        "line_start": 1093,
+        "line_end": 1105,
+        "section_sha256": "sha256:545a2ce58b05228213c95524a2dc4fc5f24fda4ffaec6bc5b097fd455aa72348",
+        "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+      },
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-120-hil-fr32-lifecycle-coverage-receipt-2026-10-02.json"
+    },
+    {
+      "requirement": "HELIXOS-L2-125",
+      "state": "registered_proposal; authority_effect none; unadopted candidate",
+      "reviewed_revision_commit": "a88e25f520abec3e65f6a5a16f773a034b796b04",
+      "reviewed_revision_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-125 Worker結果境界のfail-close（単体候補、version_target未指定）",
+        "line_start": 1550,
+        "line_end": 1560,
+        "section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+        "file_sha256": "sha256:23cd1bc48cd8cbd92a70196b37a5c8ee297562ffefece517c592366b3c58c393"
+      },
+      "reviewed_revision_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L11-125 Worker結果境界fail-closeの受入候補",
+        "line_start": 1166,
+        "line_end": 1190,
+        "section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+        "file_sha256": "sha256:8dfbc0abb2dd59836014d861c8978bdd4fe5e9840ebdf1c11f602083f5267357"
+      },
+      "current_revision_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+      "current_L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "heading": "### HELIXOS-L2-125 Worker結果境界のfail-close（単体候補、version_target未指定）",
+        "line_start": 1550,
+        "line_end": 1560,
+        "section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+        "file_sha256": "sha256:3d5af50f39083d6b23804f2d95e031a1a576e046b2ebc659338cea668cd87b52"
+      },
+      "current_L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "heading": "### HELIXOS-L11-125 Worker結果境界fail-closeの受入候補",
+        "line_start": 1166,
+        "line_end": 1190,
+        "section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+        "file_sha256": "sha256:57ac649d5f74902986bcfac4e3eb1ae78a97a2e08d5712567c2a5d7c679b8e25"
+      },
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-02.json",
+      "scope": "HIL-NFR-14 result-receive failure classes, timeout/cancel/backpressure/partial-result nonpromotion; it does not state the HIL-NFR-18 post-expiry fencing or last-durable-checkpoint-only condition."
+    }
+  ],
+  "candidate_sections": {
+    "L2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "### HELIXOS-L2-126 失効後fencingとdurable checkpoint再開（単体候補、未採択）",
+      "line_start": 1562,
+      "line_end": 1573,
+      "section_sha256": "sha256:e3b3fbdd1c58cf92f229773333424d6f7c501ada3b17e1aa0ee79bd9588c9637",
+      "file_sha256": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33"
+    },
+    "L11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "### HELIXOS-L11-126 失効後fencingとdurable checkpoint再開の受入候補（未採択・未実行）",
+      "line_start": 1192,
+      "line_end": 1206,
+      "section_sha256": "sha256:f9c3ca7c342c7d0c1a82275d8c2cdf8490155d85c678a3c4445223000838d964",
+      "file_sha256": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+    }
+  },
+  "candidate_pair_section_sha256": {
+    "HELIXOS-L2-126": "sha256:e3b3fbdd1c58cf92f229773333424d6f7c501ada3b17e1aa0ee79bd9588c9637",
+    "HELIXOS-L11-126": "sha256:f9c3ca7c342c7d0c1a82275d8c2cdf8490155d85c678a3c4445223000838d964"
+  },
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:85ca164f8e4537e5cbbe520017588ffc8083523546ca31a2ca78b2f29d698c33",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:a38f6fadf2fca167f1fcfcae515c8d307d727ca6f29c107a886f89d972b632b7"
+  },
+  "candidate_semantic_digest": "sha256:e3b3fbdd1c58cf92f229773333424d6f7c501ada3b17e1aa0ee79bd9588c9637",
+  "normal_oracle": "Matching current fence under an active lease is evaluated only under existing authority/operation contract; after a simulated crash, resume origin is precisely latest durable checkpoint C7 for same operation/attempt/revision/scope; no unpersisted later progress is used.",
+  "negative_oracles": [
+    "After lease expiry/reassignment, stale token separately used for tool call is rejected; no operation is accepted.",
+    "After lease expiry/reassignment, stale token separately used for artifact is rejected; no artifact is accepted as current output.",
+    "After lease expiry/reassignment, stale token separately used for completion is rejected; no completion/current state is accepted.",
+    "Resume from progress later than latest durable checkpoint, an older checkpoint, provider memory, or intermediate artifact is individually refused.",
+    "Missing/stale/conflicting/unknown last-durable-checkpoint identity makes resume unknown/unfinished, not successful or silently fallback."
+  ],
+  "dependency_fixture": "L11-126 uses one synthetic pack/source/010/011/operation/target fixture, dependency rows for always-required authority and operation identity, operation-only lease/checkpoint conditions, selected lease/checkpoint sources, and legacy materials reference-only. Each row has synthetic owner/version/range/compatibility evidence. Same input gives same closure; required row/facet loss is independently unknown; no source fallback. No real owner/schema/version is asserted.",
+  "human_decision_options": {
+    "source_text": "agent lease失効後のtool call/artifact/completionはfencing token不一致で拒否し、crash後は最後のdurable checkpointからだけ再開する。",
+    "options": [
+      {
+        "option": "A",
+        "meaning": "Apply both source conditions faithfully to every selected existing agent operation with a lease; recommended.",
+        "recommendation": "推奨。sourceの3効果列挙と最後のdurable checkpoint限定を維持する。"
+      },
+      {
+        "option": "B",
+        "meaning": "Keep L2/L11-126 unadopted and source holding unresolved."
+      },
+      {
+        "option": "C",
+        "meaning": "Apply only PO-selected effect/resume subset; explicitly record excluded clause as unfulfilled and preserve it in source holding. This changes source scope."
+      }
+    ],
+    "impact": "Only OS selected lease-operation fencing and resume acceptance scope. Does not alter adopted 009/018/019/032, candidate 115/118/120/125 scope, other owner authority, runtime, or implementation."
+  },
+  "version_target_source_status": "HIL-NFR-18 does not specify version_target; candidate leaves it unspecified.",
+  "formal_successor_ids": [],
+  "coverage_result": "no_loss_limited_to_one_HIL-NFR-18_IR_statement_atom; two source clauses recorded with limited current overlaps and specific residual conditions; adoption/formal successor/source holding release remain pending.",
+  "verification_status": "Latest-base read-after d1fd70d verified. Source IR file/atom/statement and physical-line SHA pins, candidate L2/L11 canonical section and full-file pins, exact adopted 018/019/032 pair bytes, 009 source locator, HARNESS-023 decision and pair pins, MPR prefix and appended 126 row were checked. OS-125 reviewed revision a88e25f and current d1fd section bytes are separately pinned; it remains an unadopted candidate. No old runtime, test, or CI was executed."
+}
