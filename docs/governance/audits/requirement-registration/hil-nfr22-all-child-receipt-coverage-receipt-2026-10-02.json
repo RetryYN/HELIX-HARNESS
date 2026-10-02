@@ -56,11 +56,11 @@
     "digest_rule": "Each section begins at its ### heading and ends before the next ### heading or EOF; trim trailing blank lines and include one UTF-8 LF.",
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:e8478af512833a16c7a07ff6b34a771e5e46870cb759285c46ca1217ccd9e918",
+      "full_file_sha256": "sha256:49eef3cdb4dcfa68bc6e62afb46ccf994dafe41306b176788853c1973c8fcf6a",
       "section_heading": "HARNESS-L2-082",
       "start_line": 1360,
-      "end_line": 1369,
-      "section_sha256": "sha256:c9cf57f52825e390077af1f2ad0292d9b1118b1fe89c45cda54931eec8193d12"
+      "end_line": 1370,
+      "section_sha256": "sha256:492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -189,5 +189,33 @@
     ],
     "reference_only": "Owner/version/range/execution-compatibility metadata may be unknown if reference_only class and applicability are known; it is excluded from execution closure. Unknown class/applicability is not inferred as reference_only.",
     "fixture_location": "L2-082 dependency-class paragraph and L11-082 dependency fixture / field-specific oracle paragraphs"
+  },
+  "parent_revisions": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "comparison_base_commit": "91db17752d29c8bb8dd30a4b4bf693136bcd858f",
+      "full_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "role": "current fixed Concept parent pin; distinct from L1 decision subject revision"
+    },
+    "harness_l1": {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "decision_subject_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "full_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "git_blob": "7d49551dac8da0ad15151090d971ce72807ce353",
+      "parent_ids_and_exact_fixed_rows": {
+        "HARNESS-L1-001": "利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる",
+        "HARNESS-L1-003": "利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる",
+        "HARNESS-L1-004": "利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる",
+        "HARNESS-L1-008": "利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる"
+      }
+    },
+    "po_decision_record": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "record_commit": "03b1969b26a30e9e2b68149bff2e10c5bfe78110",
+      "record_commit_timestamp": "2026-09-28",
+      "full_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "record_subject_source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "relevant_record": "対象revisionとL2/L11要求一式への合意。L1 source SHAは238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f。候補082はこの固定L1の意味・authorityを変更しない。"
+    }
   }
 }

@@ -167,16 +167,17 @@
         },
         "HARNESS-L2-082-001": {
           "authority": "unadopted NFR-22 residual candidate; exact pair is not an adoption decision",
-          "l2_sha256": "c9cf57f52825e390077af1f2ad0292d9b1118b1fe89c45cda54931eec8193d12",
+          "l2_sha256": "492f6fe0e2cd8f4561afcc0baf653ae8204bd5c9e824251fade7cf0d001f945b",
           "l11_sha256": "f68a85dd7f3cc8fd781383082bf9951c392dfabdf8a25ab8a8acb593bcc2ca1c",
           "l2_section_lines": [
             1360,
-            1369
+            1370
           ],
           "l11_section_lines": [
             1081,
             1103
-          ]
+          ],
+          "coverage_receipt_sha256": "sha256:82f32a20f4182cd2ebc816e2c274bd9f69386a75e7c5939c39d9154c54d1f161"
         }
       },
       "formal_successor_assignment": "none; carry-forward line 124 remains preserved_pending_rehome",
@@ -289,7 +290,7 @@
     "docs/helix-harness/L11-acceptance/product-acceptance.md": "64a6f6b0bf05f12d04e995f73e373114b40b96c276c4fd06818a43f741c6635e"
   },
   "candidate_pair_full_file_sha256": {
-    "docs/helix-harness/L2-requirements/product-requirements.md": "e8478af512833a16c7a07ff6b34a771e5e46870cb759285c46ca1217ccd9e918",
-    "docs/helix-harness/L11-acceptance/product-acceptance.md": "9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794"
+    "l2": "49eef3cdb4dcfa68bc6e62afb46ccf994dafe41306b176788853c1973c8fcf6a",
+    "l11": "9177fcb3c060e1a9c9bdc32fbb7f6f9860d2f7e14c73a09a9731b921546b8794"
   }
 }
