@@ -352,7 +352,7 @@
       {
         "ref_id": "CUR-OS-L2-OPS",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
+        "sha256": "b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-OPS",
@@ -366,7 +366,7 @@
       {
         "ref_id": "CUR-OS-L2-BOUNDARY",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
+        "sha256": "b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-BOUNDARY",
