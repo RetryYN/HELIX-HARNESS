@@ -4,7 +4,7 @@
   "candidate_registration_id": "MPR-RC-HARNESS-L2-083-002",
   "candidate_status": "unadopted_proposal_revision_002",
   "product_target": "HELIX-HARNESS",
-  "base_commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+  "base_commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
   "source_atom_set": {
     "path": "docs/governance/audits/requirement-registration/hil-nfr25-domain-object-source-lines-2026-10-03-r2.jsonl",
     "file_sha256": "sha256:d06abec173398073ea65574b7afff7f79c0a97bfb24b2145e70ab6ee4a637654",
@@ -309,19 +309,19 @@
     "digest_rule": "Exact candidate heading through before next same-level ### heading or EOF; trim trailing blank lines; UTF-8 with one LF.",
     "l2": {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "full_file_sha256": "sha256:575052a83a040bde08c828ee76f5c4b9a89a0f76c4d7377807037aa9aef37cf8",
+      "full_file_sha256": "sha256:535c369d01ef87f3fb9d1baa98d208697f254a406c634db2bc0883219bb16efd",
       "section_heading": "### HARNESS-L2-083 Domain Objectの不変条件と依存方向候補（単体、未採択）",
-      "start_line": 1384,
-      "end_line": 1393,
+      "start_line": 1385,
+      "end_line": 1394,
       "section_sha256": "sha256:ebff1a509eb71b3d888b1fb14ac80370eabf6c53fb7e94460ee0a4020fd496e3"
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:3580f82ad349848b0dbc009d0139c3efde9ec185c8b04cb0a8842c29dee66151",
+      "full_file_sha256": "sha256:4e15afc67c8d2bb19b470289d0287ca265b0fb713fdaf75e7918ea95eb56b223",
       "section_heading": "### HARNESS-L11-083 Domain Objectの不変条件と依存方向受入候補",
-      "start_line": 1123,
-      "end_line": 1135,
-      "section_sha256": "sha256:49118144cfa03bcaa7e719a6e496c499b777b2118b01b532f6ebdf8c2a0af4ad"
+      "start_line": 1126,
+      "end_line": 1138,
+      "section_sha256": "sha256:764af0afeda8bc6475c69564db7b4d4588b5a12bd20034adaf95f397b3a733a6"
     }
   },
   "parent_l1_fixed_pin": {
@@ -445,26 +445,16 @@
     "Role-use declarations do not decide the unresolved upstream source scope or PO option."
   ],
   "latest_main_comparison": {
-    "commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
-    "mpr_main_prefix_lines": 681,
-    "mpr_main_file_sha256": "sha256:27f101d2dd6fe23a93cc6cddf57db75d153e647b17e54f9d5914bfd0085619e8",
-    "mpr_main_prefix_preserved_byte_for_byte": true,
+    "commit": "94e7132ecec04043ae18c4a93c2ca35426001199",
+    "register_prefix_line_count": 683,
+    "register_prefix_sha256": "sha256:60e8e157044785d6e86bdca0fc0fe6eee76534630a09e576dc9ed2bb5d56c80e",
+    "register_prefix_preserved_byte_for_byte": true,
     "prior_candidate_registration_id": "MPR-RC-HARNESS-L2-083-001",
-    "prior_candidate_line": 682,
-    "prior_candidate_row_sha256": "sha256:42802af8f037720bd4ebb2435081b8f06b53d24a64d627b822eac42d26e6db82",
+    "prior_candidate_line": 684,
     "prior_candidate_row_preserved_byte_for_byte": true,
-    "new_registration_id": "MPR-RC-HARNESS-L2-083-002",
-    "new_candidate_append_line": 683,
-    "current_register_line_count": 683,
-    "candidate_002_is_only_new_row_since_base_head": true,
-    "harness_l2_main_file_sha256": "sha256:5267182d386e303f9f02d6fd9c9d26193f6eaa31a6ca5735647f4014afe77c36",
-    "harness_l2_main_content_preserved_as_prefix": true,
-    "harness_l11_main_file_sha256": "sha256:15dc5fe9e7d052111d17f0fe45e9f42e4c720e6b3a2a33172706c3753d163729",
-    "harness_l11_main_content_preserved_as_prefix": true,
-    "candidate_002_l2_section_sha256": "sha256:ebff1a509eb71b3d888b1fb14ac80370eabf6c53fb7e94460ee0a4020fd496e3",
-    "candidate_002_l11_section_sha256": "sha256:49118144cfa03bcaa7e719a6e496c499b777b2118b01b532f6ebdf8c2a0af4ad",
-    "fixed_historical_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
-    "fixed_historical_pins_preserved": true
+    "candidate_registration_id": "MPR-RC-HARNESS-L2-083-002",
+    "candidate_registration_line": 685,
+    "current_register_line_count": 685
   },
   "legacy_assertion_case_review": {
     "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
