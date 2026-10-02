@@ -150,3 +150,7 @@ POは確認資料が固定した本体8機構のL1 revisionを確定し、L2と�
 
 [上流再整備の実行backlog](upstream-rebaseline-execution-backlog-2026-09-14.md)は、本台帳の各集合を
 U0 archive-first隔離・母集団固定からU7意味移管・最終退役までのwork unitへ変換する。GitHub Issueを起票しなくても作業契約を保持できる。
+
+## 後発35件の判断参照（2026-10-03）
+
+[PO判断記録](decisions/po-decision-2026-10-03-later35.md)が固定するexact登録・L2/L11を採否入口とする。本文どおり7件と選択・適用範囲付き21件を承認し、現行版では承認しない7件と従来の保留5件を維持する。同日のlater32受領から承認を生成しない。MPR既存行の仮登録状態は変更しない。選択内容・例外・未指定版・holding・L3以降の非許可境界は判断記録に従う。
