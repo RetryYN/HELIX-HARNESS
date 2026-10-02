@@ -235,11 +235,12 @@
         "composite_sha256": "sha256:4a55bb10d3eb9bd4cfb7f967cef6aa0f30353f5ee853d8e726f82bcdff6b35d6",
         "full_file_sha256": "sha256:b9397db54361f0656594b82a5d783a8c8453c92e2704c90a545bde490048d34e"
       },
-      "pair_digest": "sha256:9b12c5f69048fdcb9e2616f0c84ca31b6774e1fc0bc2e2b947b64b277b38d160",
+      "pair_digest": "sha256:0825339bc745181b16ddd73032c93e37ea2a450552cb6ec11920534c75712cc4",
       "source_atom_refs": [
         "HIL-FR-15"
       ],
-      "source_scope": "one whole normative HIL-FR-15 atom; ZIP format; scope choice A/B remains unselected"
+      "source_scope": "one whole normative HIL-FR-15 atom; ZIP format; scope choice A/B remains unselected",
+      "pair_digest_rule": "各L2/L11 section partは、exact見出しから次の同階層以上の見出しまで（EOF supplementは次の同階層以上の見出しまたは現在EOFまで）を選び、末尾空行を除いてUTF-8 LF結合し末尾にLFを1つ付ける。L2 composite = normalized identity section bytes + LF separator 1つ + normalized EOF supplement bytes。L11 compositeも同様。pair digest = L2 composite bytes + LF separator 1つ + L11 composite bytes を連結したUTF-8 bytesのSHA-256。"
     },
     {
       "identity": "HELIXOS-L2-130",
@@ -291,11 +292,12 @@
         "composite_sha256": "sha256:bc525bc9a1734f3f994e3ec4d257aae0c0c9f1d7c8e78a576ee848decafd0949",
         "full_file_sha256": "sha256:3d453a599d4c32de3e98d8cf54fd7948a087010d39fdf1ac02798c25cfebafcc"
       },
-      "pair_digest": "sha256:d4750ce934b5dd2982bc425bcc3f1d099fc2079ce8027c0a117f0e7a466d8a25",
+      "pair_digest": "sha256:b14e358f2d7b6c09d5f257de0033c30ad88174c1f098bb5eb4e736cbc38c0075",
       "source_atom_refs": [
         "HIL-FR-15"
       ],
-      "source_scope": "one whole normative HIL-FR-15 atom; ZIP format; scope choice A/B remains unselected"
+      "source_scope": "one whole normative HIL-FR-15 atom; ZIP format; scope choice A/B remains unselected",
+      "pair_digest_rule": "各L2/L11 section partは、exact見出しから次の同階層以上の見出しまで（EOF supplementは次の同階層以上の見出しまたは現在EOFまで）を選び、末尾空行を除いてUTF-8 LF結合し末尾にLFを1つ付ける。L2 composite = normalized identity section bytes + LF separator 1つ + normalized EOF supplement bytes。L11 compositeも同様。pair digest = L2 composite bytes + LF separator 1つ + L11 composite bytes を連結したUTF-8 bytesのSHA-256。"
     }
   ],
   "aggregate_parts": {
@@ -309,7 +311,7 @@
       "sha256:8e5fc049b06882e6049b02fd7c1fd4f21a20a352d4193532bbf0996536eaf1a1",
       "sha256:9e57c45852ce4680b6460e2a25aeec82a0e96ca5bd92b32cf5ff291e9fd56bd6"
     ],
-    "digest_rule": "For each L2/L11 pair, its composite is identity-section normalized bytes + one LF separator + EOF-supplement normalized bytes. Aggregate SHA-256 uses all eight normalized sections in listed order, with one LF separator between each part.",
+    "digest_rule": "pair順（HARNESS-087, HELIXOS-130）、各pair内の順（L2 identity, L2 supplement, L11 identity, L11 supplement）で各partを正規化し、隣接part間にLFを1つ挿入して連結したbytesのSHA-256。part正規化は選択行の末尾空行を除去しLF結合、末尾LFを1つ付加する。",
     "aggregate_digest": "sha256:3804d3ac23a4f8efa75bf7545f151fe882b491f8c70096bcd373ac56817f8d7c",
     "source_atom_union_count": 1
   },
