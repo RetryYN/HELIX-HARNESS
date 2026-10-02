@@ -2,15 +2,15 @@
   "MPR_append": {
     "H088_preexisting": false,
     "OS131_registered_or_reserved": false,
-    "base_commit": "29c72e94c50a607ccff5472289d5ef1fdea71ba6",
+    "base_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
     "existing_OS123_registration_id": "MPR-RC-HELIXOS-L2-123-001",
     "new_registration_id": "MPR-RC-HARNESS-L2-088-001",
     "path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "prefix_line_count": 699,
+    "prefix_line_count": 702,
     "prefix_preserved_byte_for_byte": true,
-    "prefix_sha256": "df686fc4d00c3d31a68365ecdcb41de8f5e1cde89c7a32e444d1eb3e45fe4f54",
-    "candidate_registration_line": 700,
-    "current_main_at_registration": "29c72e94c50a607ccff5472289d5ef1fdea71ba6"
+    "prefix_sha256": "918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
+    "candidate_registration_line": 703,
+    "current_main_at_registration": "771e40a8a87881e9703fe939fc9fe01d76de7635"
   },
   "adjacent_candidate_scope": {
     "HARNESS-L2-067": {
@@ -131,20 +131,20 @@
   },
   "candidate_pair": {
     "L11": {
-      "full_file_sha256": "ba46d639e925c23b8215ad69bd5ac6481aca2a563c9f671b044460bd98059c7a",
+      "full_file_sha256": "89e4db605034d74f5586dd0bbb19be78d7b369e0b4e1cb07d7b89d07dc982fdd",
       "line_range": [
-        1223,
-        1246
+        1278,
+        1301
       ],
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
       "section_sha256": "52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea",
       "selector": "HARNESS-L2-088 through next same-or-higher heading (currently EOF; any later heading is excluded)"
     },
     "L2": {
-      "full_file_sha256": "424cda34bb32865999a34152a8f678ca0972681ca71f72b12c7528416c4695a2",
+      "full_file_sha256": "6e85fba6133d246ccb1b975338eb64ce1c7c8c01ffed9b8bec927226328f540c",
       "line_range": [
-        1453,
-        1463
+        1500,
+        1510
       ],
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
       "section_sha256": "7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b",
@@ -179,7 +179,7 @@
       "C: PO specifies another boundary and holds omitted conditions."
     ],
     "boundary": "OS retains source identity/authority/provenance and state records. HARNESS candidate owns function comparison and disposition oracle. Proposal only; no source owner/successor transfer.",
-    "concept_commit": "29c72e94c50a607ccff5472289d5ef1fdea71ba6",
+    "concept_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
     "concept_sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
     "historical_OS_routing": "PRC-HIL-FR-16-001 and infinity-functional-target-crosswalk.md line 25 remain historical routing candidates, no authority and no successor assignment."
   },
@@ -255,19 +255,19 @@
   "source_holding": "MPR-SH-IR-003#HIL-FR-16 remains preserved_pending_rehome; successor_requirement_ids stays empty.",
   "status": "candidate_only_unadopted_static_source_condition_mapping",
   "latest_main_comparison": {
-    "commit": "29c72e94c50a607ccff5472289d5ef1fdea71ba6",
-    "register_prefix_line_count": 699,
-    "register_prefix_sha256": "sha256:df686fc4d00c3d31a68365ecdcb41de8f5e1cde89c7a32e444d1eb3e45fe4f54",
+    "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+    "register_prefix_line_count": 702,
+    "register_prefix_sha256": "sha256:918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
     "register_prefix_preserved_byte_for_byte": true,
     "candidate_registration_id": "MPR-RC-HARNESS-L2-088-001",
-    "candidate_registration_line": 700,
+    "candidate_registration_line": 703,
     "candidate_l2_section_lines": [
-      1453,
-      1463
+      1500,
+      1510
     ],
     "candidate_l11_section_lines": [
-      1223,
-      1246
+      1278,
+      1301
     ]
   }
 }

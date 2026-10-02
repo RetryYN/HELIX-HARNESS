@@ -1450,6 +1450,53 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 **判定限界・戻し先**：041/043/044が担う全量coverage・意味重複判定を置換せず、例数やcontract数で十分性を判定しない。context costやdrift riskの数値、確率、閾値を推定・追加せず、重複だけを理由に削除・統合を命じない。source、scope/revision、意味関係、risk、oracle、または選択されたpack/call operationに必要なcompatibilityが欠落・unknown・conflict・staleなら、関係する判定をunknown／未評価にする。ただし未選択または適用外のpack/call compatibility欠落から、portfolio-wide findingの欠落を推定しない。義務・risk・oracleの意味不足はHARNESS-L2-004/該当ownerへ、template適用は009/対象ownerへ、041/043/044のcoverage不足は各契約ownerへ戻す。文書・finding・仮登録から採択、正式successor、L3承認、設計承認、実装、実行、利用者受入を生成しない。
 
 **既存pairとの境界**：041はactive template要素の原子的抽出・gap、043は全applicable rule/branchのpositive・boundary-negativeとrisk例coverage、044は全applicable obligation classとcontract/oracleの対応・意味重複を扱う。085はそれらの対象portfolio/scope内に残る過剰な重複contract/exampleをcontext cost/drift risk findingとして記述する。選択操作のpack/call適合条件は適用時だけ010/011の固定契約で照合する。HARNESS-L2-010/011/023の固定済み契約を変更せず、新しいapproval、ticket、物理schema、例数制限、削除指示を作らない。
+
+
+### HARNESS-L2-086 v1.3 typed specialist inputからSCREEN_DESIGN／right-arm契約へ接続する候補
+
+**状態・親・版**：HELIX-HARNESSの未採択connection候補。親は固定済みHELIX-ConceptとHARNESS-L1-001/002/003/004/008の現行意味とする。旧v1.3はexecution policyの実体、command registry、generated projection、consumer移行を「後続version」とし、版番号を指定していない。本候補も`version_target: 後続version（正確な版は未指定、1.0へ自動追加しない）`とする。要求の起草・受入案は進めるが、候補は採択、実装、実行許可、現行owner移管を生成しない。
+
+**選択sourceと範囲**：旧HELIX v1.3.14 `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md`（SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）§4.2.2 lines 167–171、source IDs `REQSRC-SUP-00127`〜`REQSRC-SUP-00131`の5物理行を選択する。現在のsource holding `MPR-SH-SUPPLEMENTARY-003`を生存させる。5行の外のv1.3全体や全consumerのcoverageは主張しない。
+
+**機能要求**：HARNESSはtyped specialist workflowとverification契約、その入力・出力・既存V-pairへの接続を定める。OSの既存authority下の登録・実行・進行・状態と証拠の記録はOS、利用環境内の実行は該当ownerに残す。旧aliasは単独の現行workflow identityではないが、明示したtyped contextを持つ互換入力として以下の条件を与える。
+
+- **Screen design入力**：選択scopeのsource revision、対象範囲、backend/API/domain event、権限・失敗契約、screen適用性と、backend-derived trigger／方向条件を結ぶ。screen適用性が根拠付きN/Aの場合は同一scope/revisionのcurrent no-UI receiptへ接続し、screen mock義務を課さない。適用性がunknownなら未判定で返し、UI対象と判明した場合だけscreen mock義務を適用する。入力が`design-bottomup`を指すとき、既存backendの事実から未定義のFE要求・screen・interaction・state・content・analytics obligationを抽出する`SCREEN_DESIGN` specialist workflowへこのcontextを渡す。出力は要求候補・設計候補であり、stableなFE要求をL3へ接続し、screen mock/prototype、L2↔L11、L3↔L10、影響するL5↔L8、L6↔L7の適用関係と未完義務を示す。
+- **進行・意味境界**：screen mockまたは既存backendの画面化だけで完了にしない。stableなFE requirementをL3へ接着し、UI対象はL2 prototype agreement、非UI対象はcurrent no-UI receiptへ接続し、L2↔L11、L3↔L10、影響するL5↔L8、L6↔L7の次工程と未完義務を示す。体験意味・利用者価値・成功条件が不確実なら、既存HARNESS-L2-003のDiscoveryへ戻して既存の判断・Backflowを使う。意味が確定している場合は既存V-pairへ接続する。実装deltaは既存Add-featureへ分ける。旧S0–S4を新しい現行state machineとして追加しない。
+- **Verification入力**：typed `operation_verification`／`verification` contextが明示されたoperationでは、対象と適用範囲をL7–L12 right-arm verification scope、L12運用テスト、対応する現行oracleへ結ぶ。genericな裸tokenからscope、workflow、実行状態を推定しない。
+- **NFR計測**：選択したoperationにNFR計測義務がある場合、採択済みHARNESS-L2-034の対象要求/NFR、metric、測定条件、oracle、owner、実行layerへ接続する。034が定める計測契約は再定義しない。旧`NFR_MEASUREMENT`を新workflow modelにせず、034から旧capabilityのformal successor、owner、実測結果を推定しない。
+
+**bare tokenとtyped contextの区別**：同じv1.3 source §4.2.4 lines 236–238は、`design-bottomup`と`verification`という裸tokenが複数axis・condition・scopeを畳み込む場合、曖昧としてfail-closeし推測routeへ進めないと定める。lines 167–171のtyped contextは、明示されたbackend-derived trigger／方向条件またはright-arm/NFR scopeを持つ別の入力条件である。必要contextがそろうときは上記の専門機能へ渡し、alias文字列だけのときは`ambiguous`／`unknown`を返す。この条件差を保ち、両source記述を片方へ縮減しない。
+
+**identity・実行・版境界**：旧`design-bottomup`、`operation_verification`、`verification`、`NFR_MEASUREMENT`を同名のcurrent `workflow_model`として新設しない。互換入力と警告・由来はsource receiptへ保持し、旧tokenをcurrent output identityへ再出力しない。旧v1.3が後続versionへ送るexecution policy実体・command registry・generated projection・consumer migrationを1.0へ前倒ししない。現在未実装のidentityへの実行要求はsourceどおりunsupportedとしてfail-closeする。本候補はfuture behavior contractの受入案であって、現在そのruntimeがあるとは主張しない。
+
+**採択済みpairとの境界**：採択済みHARNESS-L2/L11-039は同じscope/revisionに結ぶExperience/UI/Frontend契約を担い、034は要求/NFRの計測契約とcompletion oracleを担う。039だけではbackend-derived triggerからのFE requirement elicitation、FE requirement候補のelicitation、stable requirementからL3への接着、mockからのbackfill、prototype/no-UI条件、意味未確定時のDiscovery接続を満たさない。034だけでは旧right-arm aliasのscope解釈、workflow接続、実測実施を満たさない。本候補はそれらの機能境界を補う将来versionの未採択要求であり、034/039の採択範囲と固定digestを変更・拡張しない。HARNESS-L2-001/002/003/005/022/023およびOSの実行責務を置換しない。
+
+**依存区分（採択済みHARNESS-L2-023を適用）**：
+
+- **常時必須**：固定Concept/L1、current requirement・scope・revision・authority、適用するworkflow/verification pairとoracle。candidate capabilityだけではruntime/ownerの存在を補わない。
+- **特定操作時のみ必須**：screen-design入力の評価時はbackend-derived contextとUI/screen適用性を照合する。right-arm verification操作では当該L7–L12 scope、L12運用テスト、該当oracleを照合する。NFR計測が選択されたoperationにだけ034のmetric contractを適用する。
+- **選択した入力元に応じて必須**：legacy artifactまたはv1.3 sourceを明示選択した場合、そのsource revision、alias、typed trigger／方向条件、対象scope、owner/authority、互換条件を確認する。backend/API/domain-event/permission/errorやscreen/prototype資料もそのoperationが選択したものだけを入力とする。未選択は不在・N/A・passを意味しない。
+- **参照資料のみ**：旧runtime、CLI、adapter、test、実行PLANはfailureとconsumer歴のread-only evidenceであり、現在の実行dependencyやpass証拠ではない。選択したv1.3 lines 167–171は規範source atomsであり、参照資料へ降格しない。
+
+**既存境界と戻し先**：要求・prototypeの意味不足はHARNESS-L2-008/024、screen applicabilityは既存024、unit/構成体のtraceは026/025、対象scopeとstage状態は003、verification obligation/oracleは005/022、measurement contractは034へ接続する。意味未確定は既存Discovery/Backflowへ、技術実行と証拠記録は既存OSまたは利用者環境ownerへ渡す。実行owner・source owner・successorがunknownならその責任関係をunknownに保つ。新しい承認者、承認gate、workflow enum、schema、timeout、fallbackを追加しない。
+
+**旧consumerと保持点・変更点**：旧`docs/process/modes/design-bottomup.md` frontmatter/§§1–4（SHA-256 `525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c`）は、backend/API/domain event/permission/errorからFE requirement候補を抽出し、mock、L3/L5/L6 backfill、必要時Discovery、Forwardへ進む流れを記録する。mock/backend画面化だけでは完了せず、未確定意味をDiscoveryへ、実装deltaをAdd-featureへ分ける。旧`drive-route-system.md` §§1–5（SHA-256 `22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950`）はtyped axisとcompatibility adapterを区別する。旧`L8-workflow-classification-legacy-adapter-unit-test-design.md` U-WFLEG-003/005（SHA-256 `2d931cd3296fc0fb6ba33543af3edd37f1587dda972a29c8aed0094a516d7eab`）は裸の曖昧tokenを拒否し、current outputへ旧identityを出さない。保持点はこれらの機能的なinput/output/route、non-completion、same-name model禁止、bare-token ambiguityである。変更点は旧runtime/toolを新世代で実行せず、新Concept/L1と既存pair/OS責務の範囲で将来versionの機能契約へ再導出すること。理由はsource自身が実装・registry・projection・consumer移行を後続versionとし、現行初版へ追加しないためである。
+
+**範囲限界**：このcandidateは5 source-line atomsと列挙した対応機能の未採択要求案。後続versionの正確な版、各runtime command、実装owner、formal successor、現行採択、実行/受入結果、旧source全体・consumer全体のclosureは未確定である。旧sourceの意味変更・retireを提案していないため、本候補起草の前提に別のPO判断を作らない。
+
+
+### HARNESS-L2-086 revision 002 source訂正・関係補足（未採択）
+
+**source集合の訂正**：公開revision 001が選んだv1.3 lines 167–171の5 atomはそのまま保持する。revision 002はsource集合を14 atomへ拡張し、旧`design-bottomup.md` §§1–4を各節の正確な物理行範囲で選択し、v1.3 lines 174–175および236–238の5行を既存carry-forward identity `REQSRC-SUP-00133/00134/00184/00185/00186`のまま追加する。個々のsource path、physical line、line/span raw SHA-256、full-file SHA-256、source holding、関係はcoverage receipt r2とsource ledger r2に記録する。これは5行から他条件を演繹したものではなく、別sourceの明示的選択である。MPR-SH-SUPPLEMENTARY-003は全体の655 atom holdingとして引き続きliveであり、この選択で全sourceまたはconsumer closureを主張しない。
+
+**design-bottomup §§1–4の条件対応**：§1はbackend/API/domain event/permission/failure契約から未定義のFE requirement、screen、interaction、state、content、analytics obligationを抽出し、設計事実のelicitationを所有してL7実装を終点にしない条件として保持する。§2はinventory→FE要求抽出→mock→L3/L5/L6 backfill→必要時Discovery→Forwardの経路、確定意味と不確実意味の分岐、UIのL2 prototype agreement／非UIのcurrent no-UI receipt、およびL6だけ/mockだけ/backend画面化だけでは完了しない条件を保持する。§3はinventory・要求候補・design・oracle draftをAIが自律実行し、PO判断をDiscovery S4またはL2 prototype agreementで体験意味を確定するactionに限る条件を保持する。§4のexit四条件（stable FE requirement ID→L3、mock+agreementまたはno-UI receipt、L2↔L11/L3↔L10/影響するL5↔L8/L6↔L7の次工程、未確定意味→Discovery／実装delta→Add-feature）を別々に維持する。各条件と既存機能の再利用・未回収範囲・受入oracleの対応はr2 receiptに記録し、未回収consumer範囲をsource closure扱いしない。
+
+**v1.3の追加条件**：lines 174–175はexecution policy実体、command registry、generated projection、consumer migrationを分類境界を満たす「後続version」に置き、実装されていないidentityへのexecution要求をpolicy推測なしにunsupported/fail-closeとする。正確なversionは指定されず、本候補は1.0へ追加しない。lines 236–238はbare `forward`/`scrum`/`design-bottomup`/`verification`の曖昧性、`ambiguous`／exit 1、exact set外の`unsupported`／exit 1、Forward fallback禁止、変換成功のみ`converted`／exit 0を保持する。これらはv1.3の規範source atomsであり、旧runtimeや実行方式を現在の依存として主張するものではない。
+
+**HARNESS-L2-079との境界**：079は別の未採択candidateで、prototype artifactのmanifest/digest/start/traceと9状態fixture・仮データ境界、およびrevisionに結び付いたwalkthroughのactor/observation/deltaまたは`no_delta`/reflection/checkpointを扱う。086はscreen mock/prototype obligation、L2 agreement、FE requirement/backfill接続を扱うが、079のartifact再生可能性・walkthrough記録条件を代替または採択しない。両者の重なるprototype語だけから同一条件や採択を推定しない。
+
+**023依存区分との関係**：HARNESS-L2-023-002の採択範囲は2026-09-28 HARNESS decision row 52にあるexact revisionに限る（decision本文と固定L2/L11 section pinsはreceipt r2に記録）。その四区分はfixtureのruntime dependency分類に適用する。normative source文書・条件の区分とは別軸であり、旧source条件を`reference-only`と呼んで義務から外さない。runtime/tool/test/CLIの非実行・非依存という分類は、規範source atomや旧consumerの意味上の条件を消去しない。023採択自体から086の採択、runtime実装、ownerまたはsource closureは導かない。
+
 ### HARNESS-L2-088 全source authorityから機能単位の採否記録までを閉じる候補（未採択）
 
 - **状態・責務境界**：本節は未採択候補で、MPR登録・source ledger・receipt・静的fixtureは要求採択、L3承認、実装・実行、外部取得許可、旧要求のformal successorを生成しない。旧HIL-FR-16の機能比較と各機能の採否記録を候補としてHARNESS側へ置く。OSの既存責務はsource identity／authority観測・provenance receipt・要求状態の記録であり、機能の意味解釈、adopt／harden／redesign／rejectの内容判断、HARNESSの要求・設計・test oracleを代行しない。旧routing表のOS assessmentとsource holdingは履歴として残し、正式なowner移管は主張しない。
