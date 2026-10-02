@@ -6,7 +6,7 @@
   "requirement_identity": "HELIXINTELLIGENCE-L2-072",
   "candidate_revision": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
   "supersedes_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
-  "correction_scope": "既採択004の意味・4 existing selected partsは不変。旧HIL-NFR-34 whole IR identityをsource atomとして追加し、そのうち六種のselected dependency changeによる候補/shadow facetのstale、旧facetの再評価前再利用禁止、該当source ownerへの返却だけを072へ候補追補する。INTELLIGENCE候補からruntime gate/OS dispatch/SECURITY authorityを生成しない。残りのNFR-34義務とHR/HAC/HAT全体はsource holdingへ残し、全source closureを主張しない。",
+  "correction_scope": "既採択004の意味・4 existing selected partsは不変。旧HIL-NFR-34 whole IR identityをsource atomとして追加し、そのうち六種のselected dependency changeによる候補/shadow facetのstale、旧facetの再評価前再利用禁止、該当source ownerへの返却だけを072へ候補追補する。INTELLIGENCE候補からruntime gate/OS dispatch/SECURITY authorityを生成しない。残りのNFR-34義務とHR/HAC/HAT全体はsource holdingへ残し、全source closureを主張しない。 Parentのfixed_commit pinをdecision固定先f6dad2aへ訂正（5c798とblob同値）。未公開005 fixtureはidentity、owner、exact revision/digest、declared contract version range、互換根拠、applicabilityを分け、六source種の選択variantを示す。004の4partsとsource atomは不変。",
   "candidate_digest_rule": "r4と同じ既存4 partにL2/L11 EOF追加partを順に加える。各partは選択headingから規定境界までをUTF-8 physical linesで取り、末尾空行を除去しLF1つで正規化する。part順はcandidate_digest_partsに示す。正規化part bytesを区切りなしで連結しSHA-256。EOF追加partの境界は次の同位以上のheading直前まで（現状EOF）。この境界は後続の無関係追記を候補digestへ混入させない。",
   "candidate_digest_parts": [
     {
@@ -59,12 +59,12 @@
       "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
       "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）",
       "line_start": 398,
-      "line_end": 412,
+      "line_end": 429,
       "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
-      "sha256": "sha256:a130349c4afe0a3a49afea7ee43ff7c0f68fc274b69c6d4ae5b6fd5cc52830c7"
+      "sha256": "sha256:9f76c09a4cdbd4d398a41a808d4e0482e5bb7525fdccc4b67e5345dfc53b4010"
     }
   ],
-  "candidate_semantic_digest": "sha256:6b5c8578d2bc9a0ac3c3c62e87049b467c6f0dcfa9ae682042df884794b004cc",
+  "candidate_semantic_digest": "sha256:2a20f351ba92f2654c6656b7dbdfa50630000767ce9e3b1500558ba62335dfeb",
   "candidate_semantic_digest_scope": "既採択/固定revision 004のL2/L11 original + FR57/58 supplementの4 partsを同一bytesで保持し、NFR34限定scopeの新規L2/L11 supplement各1 partを追加した合成候補。005全体は未採択。004 adoptionはdecision pinによって存続し、本receiptは取り消し・拡張・修正しない。",
   "source_atom_set": {
     "source_holding": "MPR-SH-IR-003#HIL-NFR-34",
@@ -157,7 +157,8 @@
         "boundary": "through next equal-or-higher heading; trailing blank lines removed",
         "sha256": "sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8"
       }
-    ]
+    ],
+    "parent_revision_basis": "004採択対象は2026-09-29 PO decision row 85が固定する。005はその採択範囲外の候補である。"
   },
   "candidate_current_pin": {
     "comparison_base": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
@@ -197,7 +198,7 @@
     },
     "l11": {
       "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
-      "full_file_sha256": "sha256:3d0dc073d55802302b079acf68a9afc2708e6d5ca6c8031da7207d920a29a6e4",
+      "full_file_sha256": "sha256:b44b69afd814ad6cfde7629dea2a7b159de7360230b97e0a658abb4d675ebeee",
       "parts": [
         {
           "part": "L11-072-original",
@@ -222,14 +223,14 @@
           "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
           "heading": "### HELIXINTELLIGENCE-L2-072: HIL-NFR-34選択source stale候補の受入fixture（未採択revision 005）",
           "line_start": 398,
-          "line_end": 412,
+          "line_end": 429,
           "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
-          "sha256": "sha256:a130349c4afe0a3a49afea7ee43ff7c0f68fc274b69c6d4ae5b6fd5cc52830c7"
+          "sha256": "sha256:9f76c09a4cdbd4d398a41a808d4e0482e5bb7525fdccc4b67e5345dfc53b4010"
         }
       ],
-      "composite_digest": "sha256:aaf23588ee405b6f95b6e9ddf68910d093f50f8c6422e4dd2544766188cbf5cf"
+      "composite_digest": "sha256:84d88de53258764260cc31cce084120c45b8cd1899dd392e490cbcc31f181f87"
     },
-    "relation": "Four 004 parts byte-identical to their r4 pins; each new source-facet supplement is a separate unadopted EOF part."
+    "relation": "既採択004の4partsは固定r4の実bytesと一致して不変。005のL2/L11追加source-facetはそれぞれEOF追加part。compositeは区切りなしの直接連結。"
   },
   "source_to_current_mapping": {
     "old_source": {
@@ -281,12 +282,12 @@
     "current_owner_boundary": "INTELLIGENCE owns only candidate representation/applicability evidence in this unadopted supplement; HARNESS retains pack contract/gate semantics, OS retains actual assignment/dispatch under existing adopted pair, SECURITY retains per-operation tool authority, and selected source owners resolve their own revision/applicability. This mapping does not create new dispatch duty."
   },
   "dependency_023": {
-    "classification_contract": "Adopted HARNESS-L2/L11-023 four classes are reused: always required, required for selected operation, required by selected input source, reference material only.",
-    "candidate_classification": "This candidate's six source kinds are required only when actually selected by the candidate pack; target scope/revision is part of the candidate input. Shadow case/oracle is required only when that evaluation operation is selected. Unselected sources are unobserved, not successful. Unknown applicability remains unknown; reference material never substitutes for source or authority.",
+    "classification_contract": "HARNESS-L2-023に記載された4区分の語彙をfixture分類に使う。HARNESS-L2-023自体はregister rowにregistered_proposal／authority_effect=noneと記録されており、本receiptはそれを採択・変更しない。",
+    "candidate_classification": "この候補は当該candidate/shadow operationが実際に選んだ六sourceだけを照合する。各sourceのidentity、合成owner参照、exact source revision/digest、互換根拠、applicabilityを分離する。candidate契約rangeは1.0の候補生成・shadow評価までに限り、applicabilityをversion rangeとして扱わない。未選択sourceは未観測。applicability unknownはunknownのままとし、参照資料をsourceやauthorityの代用にしない。",
     "runtime_dependency_claim": false
   },
   "fixture_coverage": {
-    "normal": "Same target scope/revision, snapshot/digest and selected source tuples match; candidate/shadow remains non-gating.",
+    "normal": "一つの正常合成candidate/shadow callでpack-P@r1、scope-S@r4、snap-A/d-A、個別にpinした六つの選択source tuple、四つの023分類を固定する。identity/owner/revision/digest、契約version range、互換根拠、applicabilityを分け、結果はnon-gatingのままにする。",
     "independent_negatives": [
       "selected scope revision changed only",
       "selected requirement revision/digest changed only",
@@ -309,12 +310,13 @@
   "parent_pins": {
     "concept": {
       "path": "docs/concept/helix-concept.md",
-      "fixed_commit": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca",
-      "sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "equivalent_blob_verified_at": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca"
     },
     "intelligence_l1": {
       "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
-      "fixed_commit": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
       "parent_ids": [
         "HELIXINTELLIGENCE-L1-001",
@@ -323,7 +325,8 @@
         "HELIXINTELLIGENCE-L1-012",
         "HELIXINTELLIGENCE-L1-013",
         "HELIXINTELLIGENCE-L1-020"
-      ]
+      ],
+      "equivalent_blob_verified_at": "5c79869daba9a5c4fe426ddf3ad8e1bc380e64ca"
     },
     "po_scope_decision": {
       "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
@@ -351,6 +354,277 @@
     "appended_registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
     "appended_row_line": 697,
     "append_only_prefix_verified": true,
-    "meaning": "既存696行のbyte prefixを保持し、005のregistered_proposal行を末尾へ追加した。過去receipt/MPR行は書換えていない。"
-  }
+    "meaning": "既存696行のbyte prefixを保持し、未公開・未採択の末尾005候補行だけをin-place訂正。既採択004と過去receipt/採択行は不変。"
+  },
+  "acceptance_fixture_basis": "一つの正常candidate/shadow callを四つの023 dependency classにわたって固定する合成fixture。各classでidentity、owner参照、exact contract/source revisionとdigest、declared contract version range、compatibility evidence、applicabilityを別欄に記録する。適用条件はversion rangeではない。六source tupleはこのcallで選択された場合の具体例であり、実owner、source registry、schema、runtime gate、dispatch authorityを作らない。",
+  "acceptance_fixture_classes": [
+    {
+      "dependency_class": "always_required",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "candidate": "HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+          "target_scope": "scope-S@r4"
+        },
+        "owner": {
+          "candidate_representation": "INTELLIGENCE",
+          "pack_contract_and_gate": "HARNESS",
+          "actual_runtime": "unknown"
+        },
+        "contract_revision": {
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+          "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+        },
+        "declared_contract_version_range": "1.0：候補生成とshadow評価のみ（PO判断row 85で固定）。",
+        "compatibility_evidence": {
+          "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_line": 85,
+          "decision_line_sha256_without_lf": "sha256:62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+          "adopted_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+        },
+        "applicability": "この候補/shadow callの選択target scope/revisionに限る。候補は採択・実dispatchへ昇格しない。"
+      },
+      "expected": "identity、owner境界、固定採択契約revisionと適用scopeを確認する。"
+    },
+    {
+      "dependency_class": "operation_only",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "operation": "candidate_generation_and_shadow_evaluation",
+          "candidate": "pack-P@r1",
+          "snapshot": "snap-A",
+          "snapshot_digest": "d-A"
+        },
+        "owner": {
+          "candidate_representation": "INTELLIGENCE",
+          "actual_executor": "unknown"
+        },
+        "contract_revision": {
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+          "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+        },
+        "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。実dispatchは対象外。",
+        "compatibility_evidence": {
+          "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_line": 85,
+          "decision_line_sha256_without_lf": "sha256:62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+          "snapshot_match": "snap-A/d-A matches selected tuple set"
+        },
+        "applicability": "このoperationを選択したcallに限る。shadow operationを選択しない利用には広げない。"
+      },
+      "expected": "このfixture operation内のsourceを照合し、結果をcandidate/shadowのまま返す。"
+    },
+    {
+      "dependency_class": "selected_input_source",
+      "synthetic_fixture_tuple": {
+        "selected_source_tuples": [
+          {
+            "source_kind": "scope",
+            "identity": "scope-S",
+            "owner_reference": "owner-ref-scope",
+            "source_revision": "r4",
+            "source_digest": "d-scope-r4",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-scope-r4",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "scope-S@r4 selected as target scope",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          },
+          {
+            "source_kind": "requirement",
+            "identity": "req-R",
+            "owner_reference": "owner-ref-requirement",
+            "source_revision": "r8",
+            "source_digest": "d-req-r8",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-req-r8",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "req-R@r8 selected as candidate source",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          },
+          {
+            "source_kind": "template",
+            "identity": "template-T",
+            "owner_reference": "owner-ref-template",
+            "source_revision": "r2",
+            "source_digest": "d-template-r2",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-template-r2",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "template-T@r2 selected by this call",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          },
+          {
+            "source_kind": "skill",
+            "identity": "skill-K",
+            "owner_reference": "owner-ref-skill",
+            "source_revision": "r3",
+            "source_digest": "d-skill-r3",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-skill-r3",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "skill-K@r3 selected by this call",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          },
+          {
+            "source_kind": "model_catalog",
+            "identity": "catalog-M",
+            "owner_reference": "owner-ref-model",
+            "source_revision": "r5",
+            "source_digest": "d-catalog-r5",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-catalog-r5",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "catalog-M@r5 selected by this call",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          },
+          {
+            "source_kind": "allowlist",
+            "identity": "allowlist-A",
+            "owner_reference": "owner-ref-allowlist",
+            "source_revision": "r6",
+            "source_digest": "d-allowlist-r6",
+            "contract_revision": {
+              "identity": "HELIXINTELLIGENCE-L2-072-004",
+              "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+            },
+            "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。source側の広い互換rangeは未宣言。",
+            "compatibility_evidence": {
+              "synthetic_receipt": "receipt-allowlist-r6",
+              "binds": [
+                "identity",
+                "source revision",
+                "source digest",
+                "applicability"
+              ]
+            },
+            "applicability": "allowlist-A@r6 selected by this call",
+            "owner_status": "合成参照値。実source ownerはreceipt照合までunknown。"
+          }
+        ],
+        "classification_reference": {
+          "identity": "HARNESS-L2-023",
+          "registration_id": "MPR-RC-HARNESS-L2-023-002",
+          "candidate_digest": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+          "management_state": "registered_proposal",
+          "authority_effect": "none"
+        },
+        "declared_contract_version_range": "1.0：候補生成とshadow評価のみ。各sourceの互換version範囲は広く宣言せず、個別exact revision/digestへpinする。",
+        "applicability": "各tupleはこのcallが選択した場合のみ依存として照合する。各独立負例では他入力を固定し、一つのselected source revision/digestだけを変更する。",
+        "identity": {
+          "selected_source_kinds": [
+            "scope",
+            "requirement",
+            "template",
+            "skill",
+            "model_catalog",
+            "allowlist"
+          ],
+          "candidate": "HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005"
+        },
+        "owner": {
+          "source_owner_references": {
+            "scope": "owner-ref-scope",
+            "requirement": "owner-ref-requirement",
+            "template": "owner-ref-template",
+            "skill": "owner-ref-skill",
+            "model_catalog": "owner-ref-model",
+            "allowlist": "owner-ref-allowlist"
+          },
+          "resolution": "actual source owners remain unknown until the corresponding receipt is checked"
+        },
+        "contract_revision": {
+          "identity": "HELIXINTELLIGENCE-L2-072-004",
+          "candidate_pair_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+        },
+        "compatibility_evidence": {
+          "per_source_receipts": {
+            "scope": "receipt-scope-r4",
+            "requirement": "receipt-req-r8",
+            "template": "receipt-template-r2",
+            "skill": "receipt-skill-r3",
+            "model_catalog": "receipt-catalog-r5",
+            "allowlist": "receipt-allowlist-r6"
+          },
+          "each_receipt_binds": [
+            "identity",
+            "source_revision",
+            "source_digest",
+            "applicability"
+          ],
+          "all_values_are_synthetic": true
+        }
+      },
+      "expected": "source receiptがidentity/revision/digest/applicabilityを結ばない場合はunknown/stale/incompleteに留める。未選択sourceは未観測とする。"
+    },
+    {
+      "dependency_class": "reference_only",
+      "synthetic_fixture_tuple": {
+        "identity": "historical-runtime-cli-test-context",
+        "owner": "not applicable (reference only; no current dependency owner)",
+        "contract_revision": "not applicable; this is not a current execution contract",
+        "declared_contract_version_range": "not applicable; no execution compatibility range is declared",
+        "compatibility_evidence": {
+          "fixed_candidate_boundary": "MPR-RC-HELIXINTELLIGENCE-L2-072-004 adopted decision row 85",
+          "selection_state": "not selected by pack-P@r1"
+        },
+        "applicability": "背景参照のみ。normative source atom、HR/HAC/HAT consumer duty、選択source入力の代用にせず、runtime dependencyに数えない。"
+      },
+      "expected": "参考資料からsource applicability、candidate success、execution permissionを推定しない。"
+    }
+  ]
 }
