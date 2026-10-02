@@ -171,13 +171,13 @@
     },
     "l11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "full_file_sha256": "sha256:8e9bedd3d5507e4b35c998f48eae2b74452ba3452de1693626c840c66485be03",
+      "full_file_sha256": "sha256:8c9e4eb7c51e1038a17ebc13715f061cd24f71d43853e519e8a934a6fb38f04b",
       "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot・deferred結果受入候補（未実行）",
       "start_line": 1035,
       "end_line": 1047,
-      "sha256": "sha256:e207233d7f8c3156f5ceac410732d5613b8a4cc1d98a985d65a41146bef6c480"
+      "sha256": "sha256:019206fc72e9d44f84edca01c14f3b7b9020a362ab120ecb7f454e6c3e35c4fe"
     },
-    "candidate_semantic_digest_rule": "L2 selected candidate section SHA-256; L11 is paired independently by exact section digest. Receipt r2 is a point-in-time comparison and leaves receipt r1 historical bytes unchanged."
+    "candidate_semantic_digest_rule": "L2 selected candidate section SHA-256; L11 independently pinned. Corrective r3 is current; reviewed r1/r2 receipts and source snapshots remain byte-identical."
   },
   "parent_l1": {
     "concept": {
@@ -367,36 +367,7 @@
     "m2_source_atom_file_sha256_matches_bytes": true,
     "m3_deferred_normal_does_not_claim_pair_success": true
   },
-  "root_integration_note": {
-    "latest_main_commit": "a7f85b4c2fd88510c32de4a1ade4c95662bd98c1",
-    "latest_main_register_prefix_lines": 680,
-    "new_072_002_append_line": 681,
-    "historical_worker_comparison_base": "0e160e146874f039155f9e406e7ae650a01f43ee",
-    "historical_worker_register_prefix": {
-      "new_registration_id": "MPR-RC-HARNESS-L2-072-002",
-      "supersedes": "MPR-RC-HARNESS-L2-072-001",
-      "new_row_sha256_including_lf": "sha256:3bc016822184c7c5b705c77d59c4ea260db2b2c57af1a86e073fcb9da1e7c0b4",
-      "prefix_line_count": 677,
-      "prefix_sha256": "sha256:cf18c5f0041dff9170613ded4c1fc2cdef4fe6d6b5eafe7fe0c93d0d1539a300",
-      "append_is_final_register_row": true,
-      "historical_001_registration_preserved": true,
-      "historical_r1_source_snapshot_and_receipt_paths": [
-        "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
-        "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-coverage-receipt-2026-10-02.json"
-      ]
-    },
-    "meaning": "最新mainの680行をbyte保持し072002だけ追記。r1 receipt/source snapshot/072001を変更せず、r2候補pairは最新main取込でもbyte不変。古い比較base証拠は固定時点のまま区別。 Corrective 003 is appended after preserving the original 680-line main prefix and 001/002 rows; only the current r2 source atom row is revised to add design-only pins.",
-    "source_pointer_correction": "NFR29 carry-forward参照の移管後pathを実際の131行の既存recordへ修正し、source snapshotとMPR重複SHA欄を実bytesへ同期。原IR record/statement/選択atom集合の意味は不変。 NFR29原IR record物理範囲の末尾LFを含む実bytesへtextとSHAを同期。",
-    "corrective_append_line": 682,
-    "corrective_registration": {
-      "registration_id": "MPR-RC-HARNESS-L2-072-003",
-      "supersedes": "MPR-RC-HARNESS-L2-072-002",
-      "prefix_line_count": 681,
-      "prefix_sha256": "sha256:a77dc9222f5aa7ae971dee46a86fc3f7df2a4a4246ed0a49ded40911e0ae25e6",
-      "row_sha256_including_lf": "sha256:2d0f20d69ff42a45c3bdd0fb1c40384fe3a9fd1d5576f065a0e0f7454f8f67f9",
-      "appended_as_final_line": true
-    }
-  },
+  "root_integration_note": "Latest main263eca0 contains OS127 and681 historical registration rows; preserve all those bytes plus reviewed072002. Corrective072003/r3 records bounded clause mappings; historical r1/r2 preserved. No source closure/adoption generated.",
   "source_atom_count": 3,
   "source_atom_set_file_sha256": "sha256:d55e0d3127b10e1c3b02dd3d9a67b6f72351b8dcb16874292b31c4739d1893b2",
   "source_line_coverage_result": "r2 preserves 3 selected inputs; clause-level destinations distinguish exact 055/056 selected meanings, 072 selected stale/snapshot/deferred clauses, and unresolved holdings for denominator population, vertical snapshot equality, horizontal revision equality, semantic granularity, wider one-sided/unexecuted scope, source binding, and whole-source closure.",
@@ -433,9 +404,9 @@
   "registration_append_integrity": {
     "new_registration_id": "MPR-RC-HARNESS-L2-072-003",
     "supersedes": "MPR-RC-HARNESS-L2-072-002",
-    "new_row_sha256_including_lf": "sha256:2d0f20d69ff42a45c3bdd0fb1c40384fe3a9fd1d5576f065a0e0f7454f8f67f9",
-    "prefix_line_count": 681,
-    "prefix_sha256": "sha256:a77dc9222f5aa7ae971dee46a86fc3f7df2a4a4246ed0a49ded40911e0ae25e6",
+    "new_row_sha256_including_lf": "sha256:52a10861075102f9d4b2f7b0d867965a7432f2011ffdf1b23a8ddd7253760e63",
+    "prefix_line_count": 682,
+    "prefix_sha256": "sha256:7bcdf1125ce6a7e6317e657b1be340f969ac65a76a256664252db29600f21ff4",
     "append_is_final_register_row": true,
     "historical_001_registration_preserved": true,
     "historical_002_registration_bytes_preserved": true,
@@ -451,5 +422,12 @@
     "candidate_scope_delta": "Adds one whole HIL-NFR-29 IR identity as source input and one candidate condition: deferred pair result is not green. Does not alter already adopted 055/056 pairs or assert full NFR-29 transfer.",
     "corrective_scope": "No L2 requirement scope is added. Corrects the source snapshot file pin, exposes limits of adopted-pair parallels, preserves unresolved NFR-29 clauses, and corrects the L11 deferred-normal wording."
   },
-  "correction_reason": "Revision 003 preserves reviewed revision 002 and its exact r2 receipt/source bytes unchanged. It corrects the NFR-29 clause crosswalk so adopted 055/056 meanings are limited to their exact selected scopes and unmatched denominator/revision/snapshot/granularity conditions remain held; adds pinned design-only HST-CASE-030-15 and historical target-assessment sources; synchronizes the corrected source snapshot digest; and aligns the deferred normal oracle with the selected condition only. No requirement scope is added."
+  "correction_reason": "Revision 003 preserves reviewed revision 002 and its exact r2 receipt/source bytes unchanged. It corrects the NFR-29 clause crosswalk so adopted 055/056 meanings are limited to their exact selected scopes and unmatched denominator/revision/snapshot/granularity conditions remain held; adds pinned design-only HST-CASE-030-15 and historical target-assessment sources; synchronizes the corrected source snapshot digest; and aligns the deferred normal oracle with the selected condition only. No requirement scope is added.",
+  "latest_main_comparison": {
+    "commit": "263eca0a131e7abc2543dfbf81cf7bcf2031d851",
+    "main_mpr_prefix_lines": 681,
+    "corrective_prior_002_line": 682,
+    "corrective_003_line": 683,
+    "meaning": "main681 rawbyteprefix and reviewed002 rawrow preserved; append003 only after002. Reviewed r2 receipt/source unchanged."
+  }
 }
