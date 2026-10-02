@@ -1220,3 +1220,57 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **未見例**：作成側に伏せたactive template revisionまたはapplicability branchに、既存義務と同じ意味を持つ別contract/exampleをportfolio内の別変更面へ追加する。pack/call operationは選択しない。この場合も変更後scope/revisionに対応する041/043/044 evidenceと023分類を更新すれば、新しい重複findingの対象として検出する。操作の選択時のみ010/011の個別適合を追加照合する。source、coverage、oracleのいずれかが欠ける場合は未評価にし、既存receiptを流用して重複なしとしない。
 
 **受入限界**：このcandidateは既採択041/043/044のcoverage条件を再判定・縮小せず、portfolio全体で重複を評価する。選択operationのpack/call compatibilityは関係する場合だけ適用する。数値context budgetやdrift probability、固定threshold、物理schema、例数制限、削除・統合の義務を追加しない。pack/call適合、要求採否、formal successor、L3承認、実装・実行、利用者受入は別のauthority/契約に従う。
+
+
+### HARNESS-L2-086 v1.3 typed specialist inputからSCREEN_DESIGN／right-arm契約へ接続する候補の受入（後続version、未採択・未実行）
+
+**対応要求・authority**：HELIX-HARNESSの未採択HARNESS-L2-086。v1.3 sourceはexecution policy実体・command registry・generated projection・consumer migrationを後続versionとするため、本候補のversion targetは後続version（正確な番号未指定）であり、1.0へ自動追加しない。受入例は将来契約の静的fixtureで、旧runtime/tool/test/CIを実行しない。candidate、receipt、fixtureから採択、L3承認、runtime実装、owner移管、実行許可を生成しない。
+
+**sourceとexact adopted pair**：選択source file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。対象行は`REQSRC-SUP-00127..00131`、物理行167–171。各line SHAはsource-line ledgerとcoverage receiptの`source_atom_set.atoms`に記録し、L2末尾にあるとは扱わない。Decision `po-decision-2026-09-29-57candidates.md` SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad` row 44は039 pairを、row 39は034 pairをexact digestで採択する。039 L2/L11 digestは`e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0` / `63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746`、034は`dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156` / `391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf`。034/039採択本文に未記載のlegacy trigger、workflow、formal successorを読み込まない。
+
+**正常例 — typed design-bottomup**：明示されたlegacy source revision、`design-bottomup`、screen-applicable scope、backend/API/domain-event、permission/error context、backend-derived triggerと方向条件を与える。candidate oracleは、`SCREEN_DESIGN` specialist workflowへのtyped input relation、そこから得るFE requirement候補、screen mock/prototype obligation、およびstable FE requirementのL3接着、UI対象のL2 prototype agreement／非UI対象のcurrent no-UI receipt、L2/L11・L3/L10・該当L5/L8・L6/L7へのbackfill relationを区別できることを確認する。意味・成功条件が不確実なら既存HARNESS-L2-003のDiscoveryへ返してから正規pairへ進む。意味が確定しているなら既存pairへforward接続し、実装deltaは既存Add-featureへ分ける。既存L2-039のscope relationは選択したUI contractへ用いる。mock、backendのscreen表示、またはsystem上のroute登録だけで要求合意・実装・完了を主張しない。旧`design-bottomup`文字列はcurrent output identityや新workflow modelにならない。
+
+**正常例 — typed operation-verification/NFR測定**：`operation_verification`というtyped input、対象V-pair scope、L7–L12 right-arm verification、L12 operation test、対応するNFRを明示する。候補はverification scopeとL12運用テストの要求relationを分け、計測義務が選択されている場合にだけ034のexact metric/oracle contractへ結ぶ。034のfield・契約が成立しても実測済み、L12完了、利用者受入を推定しない。source alias、現在の要求identity、計測実行結果は別々の値として保持する。
+
+**個別反例 — raw alias ambiguity**：
+
+- bare `design-bottomup`だけでbackend context/trigger/方向条件/scopeがない入力は`ambiguous`／`unknown`。Forward、Add-feature、SCREEN_DESIGNへのrouteを推測しない。
+- bare `verification`だけで対象layer・scope・verification obligationがない入力は`ambiguous`／`unknown`。operation_verification、全L7–L12範囲、またはNFR計測へ自動解決しない。
+- 根拠付きでscreen非適用と判定され、same-scopeのcurrent no-UI receiptがあるfixtureは、mock義務を要求せず非UI経路へ接続する。receiptのscope/revisionが合わない、または根拠が欠ける場合はN/Aを成立させない。
+- screen適用性がunknownのfixtureは適用性を未判定で返し、UIとも非UIとも解決しない。
+- screen適用性がUI=trueのfixtureではscreen mock/prototype義務を適用する。欠落をN/Aで閉じるfixtureは不適合。
+
+**個別反例 — 機能条件と境界**：
+
+- 同名`workflow_model: DESIGN_BOTTOMUP`または`workflow_model: OPERATION_VERIFICATION`を作り、旧tokenをcurrent outputへ出すfixtureは不適合。
+- backendの一覧だけを生成してFE requirement候補、screen interaction/state/content/analytics obligationへ接続しないfixture、mockだけで安定したFE requirement/L3 relationまたはUI prototype agreement／非UI no-UI receiptがないfixtureはscreen-design機能の成立にならない。実装deltaをAdd-featureへ分けずscreen design完了とするfixtureも不適合。
+- 体験意味・成功条件がunknownなのにDiscoveryを省略しForwardへ確定するfixtureは不適合。逆に意味が明確でもsourceで指定のない一律Discoveryを作らない。
+- `operation_verification`が示す範囲と異なるcurrent V-pair/layerを選んだfixtureはscope適合にならない。L12運用テストのoracleまたはresultがなければL12完了を主張しない。
+- NFR_MEASUREMENT capability relationだけを与え、034のmetric identity、target、方法、測定条件、oracle等を欠くfixtureは計測契約成立にならない。034の適切なcontractがあってもmeasurement receipt/resultがない状態を測定済みとしない。
+- 実装前の将来version identityを実行要求へ渡してpolicyを推測するfixtureは、source §4.2.2の後続version境界に従ってunsupported/fail-closeする。これは未実装identityの実行要求に対する既存source条件であり、candidate起草、設計、無関係operationを一律停止するgateではない。
+
+**未見例**：異なるbackend/API/frameworkや別のtyped trigger/directionの組み合わせを与える。明示scope、authority、oracleが揃えば同じrequirement candidate→screen mock/backfill→Discovery if uncertain→Forward契約を適用する。未見というだけで拒否しない。必要入力やownerがunknownならその主張だけを未評価にし、過去のfixtureから条件やownerを補わない。
+
+**023 dependency classとfixture tuple**：以下は、正常なSCREEN_DESIGN callを固定した静的acceptance fixtureの合成値である。実データschema、compatibility registry、runtime owner、または一般的な版範囲を宣言しない。各tupleはidentity、owner、exact revision、宣言された版範囲、互換根拠、適用条件を別々に記録する。要求意味のownerはHARNESS、実行ownerはsourceが指定しないためunknownのままにする。4区分は候補依存性の分類であり、旧規範source atomや旧consumerの意味上の義務をruntime依存へ変換しない。
+
+| 023区分 | 合成fixture tuple（各欄を分離） | 受入判定 |
+| --- | --- | --- |
+| 常時必須 | identity=HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001; owner={meaning:HARNESS, execution:unknown}; contract_revision={HARNESS-L2/L11-039の固定採択pair: L2 sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0; L11 sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746}; declared_version_range=sourceに互換版範囲の宣言なし（fixtureは上記exact pairだけを参照）; compatibility_evidence=固定Concept/L1のrevision pinと上記039 exact pair pin; applicability=当該screen-design callの選択scope。screen適用性unknownは未判定 | identity/scope/authority/current pairの特定を確認。候補登録だけからruntime/ownerを作らない。 |
+| 特定操作時のみ | identity={operation:SCREEN_DESIGN, requirement:HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001}; owner={meaning:HARNESS, execution:unknown}; contract_revision={HARNESS-L2/L11-039の固定採択pair: L2 sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0; L11 sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746}; declared_version_range=sourceに操作互換版範囲の宣言なし（fixtureは上記exact pairだけを参照）; compatibility_evidence=同一scopeの要求・設計oracleと上記039 exact pair pin; applicability=選択operationがSCREEN_DESIGNで、screen applicabilityがUI=true | この操作ではbackend-derived contextとscreen mock/prototype条件を確認。非screen操作へ同じ義務を広げない。 |
+| 選択した入力元に応じて必須 | identity={input:archive v1.3.14/design-bottomup, requirement:HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001}; owner={meaning:HARNESS, execution:unknown}; contract_revision={選択source file sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406; REQSRC-SUP-00127/00128}; declared_version_range=保持sourceのv1.3.14 exact revisionのみ（sourceに別の互換版範囲の宣言なし）; compatibility_evidence=REQSRC-SUP-00127 sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697; REQSRC-SUP-00128 sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001; 選択scopeのbackend/API/domain-event/permission/error facts; applicability=typed inputでbackend-derived trigger・方向条件・screen scopeを選択した場合。UI=trueならscreen義務、同一scopeの根拠付きN/Aならno-UI receipt、unknownなら未判定 | これは正常fixtureの選択条件であり、実装済みregistry/rangeや全alias一般の互換宣言ではない。 |
+| 参照資料のみ | identity={reference:old design-bottomup.md/drive-route-system.md, requirement:HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001}; owner={meaning:HARNESS, execution:unknown}; contract_revision=該当なし（参照資料は現行実行契約ではない）; declared_version_range=該当なし（実行互換範囲を宣言しない）; compatibility_evidence={design-bottomup.md exact file sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c; drive-route-system.md exact file sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950}; applicability=設計条件と旧consumerの意味の理解に限る。現行runtime依存=false | 旧consumer本文はcontext evidence。§4.2.2のsource atomは規範sourceのままで、参照資料へ降格しない。未選択資料の欠落と選択義務の欠落を別判定する。 |
+
+**受入限界・後続版**：本candidateは未来の機能契約の静的受入案。現行1.0への追加、旧runtimeの移植、実execution、command registry、generated projection、既定route、固定物理schema、test threshold、新承認procedureを提案しない。採択・実装時に使う正確な後続versionとownerはsourceに指定がなく未決のまま残す。要求意味変更・alias retireは別の対象revision付きauthority判断を必要とする場合に限って既存判断へ戻す。
+
+
+### HARNESS-L2-086 revision 002 source受入・関係補足（未採択・未実行）
+
+revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r2の追加条件を静的oracleへ対応づける。coverage receipt r2はsource atom 14件を列挙し、既存5 atom、design-bottomup §§1–4の4 span atom、v1.3 lines 174–175/236–238の5 atomを区別する。各line/spanのselector、physical line、LFを含むspan SHA、source full-file SHA、legacy asset ID、source holding状態はsource ledger r2とreceiptへ記録する。v1.3の5追加行は既存REQSRC-SUP identityを再利用し、重複atom IDを作らない。
+
+**追加sourceの受入対応**：§1は選択scopeのbackend/API/domain-event/permission/failure factsからFE requirement、screen、interaction、state、content、analytics obligation候補が抽出されること、およびL7実装だけで設計作業を閉じないことを確認する。§2は順序と分岐を別々に照合し、UIならsame-scope prototype agreement、非UIならsame-scope current no-UI receipt、未知なら未評価とする。mock-only、backend画面化のみ、L6 designのみを完了扱いしない。§3は候補生成・design・oracle draftが自律作業であること、PO判断を体験意味確定actionの境界に限定し通常PR/review/CIを止めないことを確認する。§4の四exit条件を個別に確認し、1条件の充足から残りを推定しない。v1.3 174–175は後続version境界と未実装identityのunsupported/fail-close、236–238はbare tokenの曖昧性、exit/status、exact set外、fallback禁止、success statusをそれぞれfixtureで区別する。これらは静的候補oracleであり、旧runtime/testを実行した証拠ではない。
+
+**sourceとruntime分類は別**：HARNESS-L2-023-002の四dependency classを使う場合の採択根拠は2026-09-28 HARNESS decision row 52およびそのexact selected section revisionである。各fixtureではidentity/owner/revision/compatibility/applicabilityを現行分類指示どおり分離する。一方、選択済み旧source atomとconsumer条件は規範的な意味条件として保持し、runtime依存ではないことを理由に`reference-only`へ移して受入対象から除かない。023-002採択から086の候補採択・runtime実装・全consumer closureは推定しない。
+
+**HARNESS-L2-079との境界fixture**：079は未採択のまま扱い、prototype artifactのmanifest/digest/start/trace・9状態・仮データ境界と、exact prototype revisionに結ぶwalkthrough actor/observation/request deltaまたは`no_delta`/reflection/checkpointを別候補のoracleとする。086側のscreen mock/prototype agreementは、これら079固有のartifact/walkthrough条件を満たした証明にならない。逆に079 fixtureは086のbackend-derived FE requirement elicitation、L3接着、Discovery/Forward/Add-feature routingやprototype/no-UI applicabilityを置換しない。両candidateの採択・実行はここから生成しない。
+
+**範囲限界**：no-lossの主張はreceipt r2に列挙した14 selected atomsと、既存candidateで明示した機能条件に限定する。MPR-SH-SUPPLEMENTARY-003の残りsource、design-bottomupの未選択consumer、その他のHR/HAC/HATや旧実装の全体closureは未証明のまま保持する。
