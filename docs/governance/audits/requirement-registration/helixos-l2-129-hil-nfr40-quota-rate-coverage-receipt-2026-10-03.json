@@ -2,7 +2,7 @@
   "receipt_id": "HELIXOS-L2-129-HIL-NFR-40-QUOTA-RATE-COVERAGE-2026-10-03",
   "status": "registered_proposal_no_authority_effect; one_whole_IR_atom_candidate_mapping",
   "authority_effect": "none",
-  "read_after_base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+  "read_after_base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
   "candidate_identity": "HELIXOS-L2-129",
   "paired_acceptance_identity": "HELIXOS-L2-129 (L11 acceptance section)",
   "source_atom_count": 1,
@@ -123,13 +123,6 @@
       "sha256_without_lf": "sha256:c35dd67ee0b4f7d5020a9c77c0312fe7c991e5c5f29589cb58c8b0569836acba",
       "status": "quality-source recheck/crosswalk evidence; not adoption or successor assignment"
     }
-  },
-  "legacy_assertion_context": {
-    "identity": "HIA-NFR-040",
-    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
-    "locator": "line 198",
-    "sha256_without_lf": "sha256:86436f7251d5d12fb6c5fe22cfb8683834b5cf3343ba6be36526747511670534",
-    "meaning": "quota/rate; fail-close retreat; reject ignore and unplanned retry; HIL_QUOTA_UNPLANNED; draft-defined/not-implemented; corroborating consumer evidence, not extra atom"
   },
   "adopted_OS_017_018_019": {
     "decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
@@ -415,13 +408,13 @@
   "coverage_result": "no_loss_limited_to_one_whole_HIL-NFR-40_IR_identity_atom; L1 is same-statement corroboration; consumers/routing/crosswalk remain separately classified; formal successor, adoption, and whole-source closure are not claimed.",
   "verification_status": "Candidate pair, atom ledger, source/consumer locators, fixed adopted pair pins and MPR append are synchronized; all fixtures are documentary and unexecuted; no old runtime/test/CI was run.",
   "mpr_current_prefix": {
-    "latest_main_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
-    "line_count": 695,
-    "file_sha256_before_candidate": "sha256:5476f0e4cfbfaa396b134442e2ade08276a47936b5bdf5589dfccdd16ac203d8",
+    "latest_main_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "line_count": 696,
+    "file_sha256_before_candidate": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
     "ends_in_lf": true
   },
   "latest_main_prefix": {
-    "commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+    "commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
     "candidate_pair_prefix_line_count": 1624,
     "candidate_L2_append_line": 1625,
     "candidate_L11_append_line": 1298,
@@ -441,9 +434,9 @@
     "kind": "requirement_candidate",
     "management_state": "registered_proposal",
     "authority_effect": "none",
-    "base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
-    "base_line_count": 695,
-    "base_file_sha256": "sha256:5476f0e4cfbfaa396b134442e2ade08276a47936b5bdf5589dfccdd16ac203d8",
+    "base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+    "base_line_count": 696,
+    "base_file_sha256": "sha256:5d4c723de387a948a7130925894038410ef4d7ff0243bc707afd6a853d7b1d48",
     "candidate_row_appended_after_base": true,
     "coverage_result": "no_loss",
     "source_holding_remains_live": true
