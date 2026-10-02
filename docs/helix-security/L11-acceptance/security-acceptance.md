@@ -149,3 +149,56 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 - **資格情報境界の正常例・反例**：正常例として、対象operation・target・revision・scope・expiryに一致する既存L2-008 authorityと、L2-005の非公開・範囲付きcredential-use capabilityがあり、raw credential値とsecret／機密task内容をWorkerへ渡さず、L2-007制約および該当するL2-006 egress条件も満たすtaskを与える。この認証付きtaskは、既存契約の範囲で起動でき、追加の毎回承認を要求しない。反例として、上記条件が成立しているのに「credentialを使うtask」という理由だけでdispatchを一律denyしたら不合格とする。raw secret値をWorkerへ渡す必要があるtask、またはsecret／機密内容を外部Workerへ渡すtaskを起動するfixtureは引き続き拒否する。この区別はL2-005の境界を変えず、taskや送信の許可を新設しない。旧HR-FR-P2-05の「secret task deny」が認証付きoperation全般を意味するかは原文で確定できない。全 credential-use task も禁止する意図を選ぶ場合は、採択済みL2-005の対象revisionと影響を示す意味変更としてPO判断へ出し、この候補から先取りしない。
 
 - **訂正source pin**：[source-lines](../../governance/audits/requirement-registration/security-v13-worker-context-source-lines-2026-09-28.jsonl)の2 atomとdigestを再利用し、[訂正coverage receipt](../../governance/audits/requirement-registration/security-v13-worker-context-coverage-receipt-2026-09-28-r2.json)へ現行L2/L11 bytesと訂正内容を記録する。
+
+### HELIXSECURITY-L2-029 ローカル強制証拠の型別受入候補
+
+本追補は採択済みHELIXSECURITY-L2-029／L11-029本文を変更せず、その末尾に追加する未採択L11候補partである。対象は決定記録`po-decision-2026-09-29-57candidates.md` 88行が採択した`MPR-RC-HELIXSECURITY-L2-029-002`と同じ、主Worker契約の外で選択された追加runtimeのoperationに限る。決定記録112行のとおり、追加runtime向け制限を主Worker全体へ広げない。既存L2-029のscope、classification、opt-out条件、SECURITY-L2-006/007の許可・強制条件はこの候補で再起草しない。
+
+このpartのselectorは当見出しから次の同位以上の見出し直前までとする。現時点では後続する同位以上の見出しがないため、現在の文書末尾までが対象である。後日同位以上の見出しが追加された場合、その先の本文をこのpartへ含めない。
+
+旧原文HIL-NFR-39は「ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。」である。IR全体を規範sourceとして保持し、旧L1 219行は同文のcorroborationとする。HR-FR-HIL-23/HAC-HIL-23a..c/HAT-HIL-23は複数旧要求にまたがるconsumer・oracle contextであり、全条件を本NFRへ配賦したり、runtime dependencyを増やしたりしない。
+
+#### 正常fixture（未実行）
+
+同一の選択済み追加runtime identity/version/config、operation、assignment、target、data分類、適用policy revision、scopeを一つのfixture tupleへ固定する。例示tupleは`runtime=fixture:additional-runtime-A@revision-R1/config-C1`、`operation=fixture:delegate-operation-D1`、`assignment=fixture:OS-018-assignment-A1`、`target=fixture:workspace-W1@revision-T1`、`scope=fixture:approved-source-and-write-scope-S1`である。これはcase内の仮fixture識別子であり、provider一覧・実runtime・固定schemaを新設しない。対象caseでは四つのローカル証拠型すべてを適用対象として明示し、各証拠を同じtupleへ結ぶ。
+
+| 証拠型・契約tuple | 入力と期待出力 | ownerへの戻し先 |
+|---|---|---|
+| OS sandbox：`identity=HELIXSECURITY-L2-007`、owner=`SECURITY`（制約）／`INFRASTRUCTURE`（実環境の適用観測）、contract revision=現行採択L2-007/L11-007、range=このfixtureの同一runtime/config/scopeに限る、applicability=追加runtime operationでsandbox制約を適用 | 選択したsandbox policyとeffective enforcement観測を入力する。出力は`enforced`／`not_enforced`／`unknown`と同じruntime/config/scopeへの根拠参照。 | policy不足・解釈不明はSECURITYへ、適用不能・観測不足は実行環境owner（INFRASTRUCTURE）へ返す。OS-018 assignmentには未完義務を残す。 |
+| network allowlist：`identity=HELIXSECURITY-L2-006`、owner=`SECURITY`（許可policy）／`INFRASTRUCTURE`（適用観測）、contract revision=現行採択L2-006/L11-006、range=このfixtureの選択destination/protocol/data scope、applicability=このoperationがnetwork接続する | 選択destinationに対するallowlistとeffective enforcement観測を入力する。出力は選択scopeとの`match`／`mismatch`／`unknown`。 | 許可policy・scope不明はSECURITYへ、適用観測不足はINFRASTRUCTUREへ返す。 |
+| measured egress：`identity=HELIXSECURITY-L2-006`、owner=`INFRASTRUCTURE`（egress観測）／`SECURITY`（allowlistとの評価）、contract revision=現行採択L2-006/L11-006、range=同じ選択destination/protocol/data scope、applicability=このoperationでegressが発生し観測できる | 当該fixtureの実測egressと上記allowlistを入力する。出力は測定結果が選択scope内か、逸脱か、測定不能かを区別し、測定値と根拠を同じtupleへ結ぶ。新しい量的thresholdは設けない。 | 測定・観測不能はINFRASTRUCTUREへ、許可scopeとの不一致やpolicy不明はSECURITYへ返す。 |
+| filesystem difference：`identity=HELIXSECURITY-L2-007`、owner=`SECURITY`（write制約）／`INFRASTRUCTURE`（FS差分観測）、contract revision=現行採択L2-007/L11-007、range=assignmentで選択されたwrite scope、applicability=このoperationがisolated copyへwriteする | 選択write scopeと同じruntime/config/targetに結ばれたFS differenceを入力する。出力は変更pathがscope内か、scope外か、観測不能かを区別する。 | 差分欠落・適用不能はINFRASTRUCTUREへ、scope許可が不明ならSECURITYへ返す。OS-018 assignmentで未完を保持する。 |
+
+正常期待は、四証拠のうちcaseで適用対象にした各型が当該runtime/version/config/operation/target/scopeへ結ばれ、各状態と根拠を個別に確認できること。OS-018はassignmentと未完義務、OS-020は選択された検証実行の状態・結果記録を担う。これらはSECURITY policy、実資源の強制、HARNESS検証義務を引き受けない。provider privacy設定等の申告は別フィールドの申告として記録できるが、上のローカル証拠の代用にしない。
+
+#### 独立negative fixture（未実行）
+
+以下の各caseでは上の正常tuple・同一対象・他の三つの適用証拠を保ち、一つの証拠型だけを欠落・不一致・unknownへ変える。各caseは別々のoracleであり、残る型やprovider側申告で補わない。期待出力はそのcaseのローカルcompliance claimを成立させず、不足または逸脱を示して既存のSECURITY-029失敗時経路へ戻すことである。すべてのoperationを一律停止させる新条件は追加しない。
+
+| 独立case | 一つだけ変える入力 | 期待する失敗出力と戻し先 |
+|---|---|---|
+| sandbox適用がclaim-only | 他入力を保ち、effective enforcement observationだけを欠かせ、runtimeまたはpolicyの自己申告を残す | このtupleのローカル適合claimを出さず、観測不足をINFRASTRUCTURE（実行環境）と制約不足をSECURITYへ返す。 |
+| allowlist scope不一致 | 他入力を保ち、allowlistを残したままselected destinationだけをpolicy scope外へ変える | `mismatch`を示し、policyはSECURITYへ、適用観測はINFRASTRUCTUREへ返す。 |
+| egress測定unknown | 他入力を保ち、egress measurementの状態だけを`unknown`にする | `unknown`を返し、実測はINFRASTRUCTURE、許可scopeはSECURITYへ返す。別の許可済destinationの証拠を流用しない。 |
+| FS差分scope外変更 | 他入力を保ち、FS differenceを観測済みにしたうえで選択write scope外のpathだけを含める | scope逸脱を返し、execution/observationはINFRASTRUCTURE、許可scopeはSECURITYへ返す。 |
+
+#### 未見・境界fixture（未実行）
+
+既知fixtureのruntime version/config、target revisionまたはoperation scopeだけを変え、以前のsandbox/allowlist/egress/FS evidenceを新tupleへ流用できないcaseを与える。新対象へ結ぶ証拠が確認できない場合は`unknown/incomplete`を保持し、適用証拠を再取得するownerへ戻す。証拠型の適用可否自体がunknownなら、非該当として除外せずunknownのまま残す。一方、適用根拠により特定の型がこのoperationで非該当と確認できる場合は、その理由を記録し、全operationへ四型すべてを一律必須にしない。
+
+provider UI・修正宣言・remote flagだけではローカル保証にならないというnegativeは、採択済みL2-029/L11-029で既に扱うため、本追補で再作成しない。opt-out、classification、秘密・機密遮断の条件も同じく既存L2-029とその対L11に残す。この候補が扱うのは、その既存条件と別に、原文が名指すローカル証拠の四型をL11の個別oracleへ対応づける不足だけである。
+
+#### HARNESS-L2-023実行dependencyの4分類
+
+次の分類は実行時dependencyだけを示す。規範source、consumer義務、採択済みSECURITY/OS条件を「参照資料のみ」へ降格させない。
+
+| 分類 | この候補での扱い |
+|---|---|
+| 常時必須 | 選択operationのsource/target revision、追加runtime identity/version/config、OS-018 assignment、採択済みSECURITY-029のscope、およびそのoperationに適用されるSECURITY-006/007条件。これらのscope・revisionがunknownなら成功claimを作らない。 |
+| 特定操作時のみ必須 | network egressがあるときallowlistとegress観測、隔離writeがあるときsandboxとFS differenceを照合する。これはoperationのenforcement surfaceで選択し、適用条件をsourceが決めていない全operationへ拡張しない。 |
+| 選択した入力元に応じて必須 | 明示選択したruntime/config、data/source、target、scopeに対応するpolicyとeffective local evidenceのみを同じidentity/revisionへ結ぶ。別runtime・旧config・別sourceの証拠へfallbackしない。 |
+| 参照資料のみ | 旧runtime/CLI、provider privacy UI・修正宣言・remote flag、旧schema名は実行dependencyでも適合proofでもない。HR-FR-HIL-23/HAC-HIL-23a..c/HAT-HIL-23はconsumer/oracle contextとして保持するが、実行dependencyの必須項目へ一律配賦しない。 |
+
+IRのHIL-NFR-39は規範sourceであり、旧L1 219行はcorroborationである。HR-FR-HIL-23が束ねるHIL-BR-32／HIL-FR-64..69／HIL-NFR-37..40の共有条件、HAC-HIL-23a..cとHAT-HIL-23の設計oracleは対応関係を保って記録する。ただし、旧consumer全条件を本NFRだけで閉じたとはしない。HIL-BR-32の残条件、NFR-37/38/40、HR23のNFR39対象範囲、主Worker適用拡張はsource holdingまたは既存の担当identityに残す。Decision 57:112のprimary Worker除外を覆すscope変更や採択はこの候補から生成しない。
+
+全fixtureは候補設計であり未実行である。既存L2-029採択を変更せず、L2本文、schema、量的threshold、provider/runtime一覧、追加承認者を追加しない。candidate authority effectは`none`、source owner/formal successor、全source/consumer closureは未確認である。
