@@ -157,7 +157,6 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 
 `HARNESS-L2-077`／`HARNESS-L2-078`はそれぞれ旧HIL-FR-42 line 132とHIL-FR-45 line 135の一atomだけを未採択候補pairへ対応する。source-linesと各coverage receiptをMPR行が固定する。`no_loss`は当該一atomの候補入力対応だけを示す。`MPR-SH-IR-003`は生存し、旧要求の正式successor、owner移管、対象scope/version、全HR/HIL condition closure、PO採択、L3承認、実装・実行を主張しない。旧runtime/schema/test/CIは移植または実行しない。
 
-
 ## HIL-BR-12 intake/style接続候補（2026-10-02）
 
-`MPR-RC-HELIXOS-L2-120-001`は`management-provisional-requirement-register.jsonl`へ追記した`registered_proposal`である。旧IR `HIL-BR-12` statement一atomをHELIXOS-L2/L11-120未採択候補pairへ入力する。source-linesとcoverage receiptは`docs/governance/audits/requirement-registration/hil-br12-intake-style-source-lines-2026-10-02.jsonl`および`helixos-l2-120-hil-br12-coverage-receipt-2026-10-02.json`。旧L1 line 64は同一statementの由来確認であり別atomではない。`no_loss`はこの一atomを四facet候補へ対応したことだけを示す。2026-09-28 OS decisionの固定L2-001〜029/paired L11は合意済みで、本候補はその対象revision外かつ未採択である。`MPR-SH-IR-003#HIL-BR-12`は生存し、formal successor、owner/scope/version、旧HR/HAC/HAT全体closure、L3承認、runtime/test/CI実行を主張しない。旧sourceは読取専用で実行しない。
+`MPR-RC-HELIXOS-L2-121-001`は`management-provisional-requirement-register.jsonl`へ追記した`registered_proposal`である。旧IR `HIL-BR-12` statement一atomをHELIXOS-L2/L11-121未採択候補pairへ入力する。source-linesとcoverage receiptは`docs/governance/audits/requirement-registration/hil-br12-intake-style-source-lines-2026-10-02.jsonl`および`helixos-l2-121-hil-br12-coverage-receipt-2026-10-02.json`。旧L1 line 64は同一statementの由来確認であり別atomではない。`no_loss`はこの一atomを四facet候補へ対応したことだけを示す。2026-09-28 OS decisionの固定L2-001〜029/paired L11は合意済みで、本候補はその対象revision外かつ未採択である。`MPR-SH-IR-003#HIL-BR-12`は生存し、formal successor、owner/scope/version、旧HR/HAC/HAT全体closure、L3承認、runtime/test/CI実行を主張しない。旧sourceは読取専用で実行しない。

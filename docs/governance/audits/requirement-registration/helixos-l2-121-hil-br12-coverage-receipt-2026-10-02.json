@@ -1,10 +1,10 @@
 {
-  "receipt_id": "helixos-l2-120-hil-br12-intake-style-coverage-2026-10-02",
+  "receipt_id": "HELIXOS-L2-121-HIL-BR-12-COVERAGE-2026-10-02",
   "authority_effect": "none",
-  "registration_id": "MPR-RC-HELIXOS-L2-120-001",
+  "registration_id": "MPR-RC-HELIXOS-L2-121-001",
   "candidate_ids": [
-    "HELIXOS-L2-120",
-    "HELIXOS-L11-120"
+    "HELIXOS-L2-121",
+    "HELIXOS-L11-121"
   ],
   "source_atom_count": 1,
   "source_atoms": [
@@ -165,9 +165,10 @@
   "meaning_boundary": {
     "preserved": "same intake contract and four named decision facets",
     "derived": "current HARNESS/OS/INTELLIGENCE/Worker/SECURITY responsibility mapping",
-    "not_approved": "no current PO decision adopts the new candidate or semantic mapping"
+    "not_approved": "no current PO decision adopts the new candidate or semantic mapping",
+    "candidate_identity": "HELIXOS-L2-121"
   },
-  "adoption_state": "unadopted_candidate; 9/28 decision fixed existing OS L2-001..029 and paired L11, not candidate 120",
+  "adoption_state": "unadopted_candidate; 9/28 decision fixed existing OS L2-001..029 and paired L11, not candidate 121",
   "formal_successor": "none; MPR-SH-IR-003#HIL-BR-12 remains alive",
   "implementation_execution": "not claimed; no legacy runtime/test/CI invoked",
   "candidate_section_sha256": {
@@ -177,20 +178,20 @@
   "candidate_pair": {
     "l2": {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "full_file_sha256": "sha256:76349dc416323e5026bd354d500152d58e42b151e657a8d269b08d68f75a3738",
-      "heading": "### HELIXOS-L2-120 HIL-BR-12 intakeとstyle接続の未採択候補",
-      "start_line": 1483,
-      "end_line": 1496,
-      "section_sha256": "sha256:1bf7b9f68f7003c044bbfa69d0f0a3f093f67526138f0b59578791952f324d91",
+      "full_file_sha256": "sha256:c331a821e406934b85246bbd7b82a9c26d523e387944af83b5a3b4af78e1a90e",
+      "heading": "### HELIXOS-L2-121 HIL-BR-12 intakeとstyle接続の未採択候補",
+      "start_line": 1482,
+      "end_line": 1495,
+      "section_sha256": "sha256:5451ebfd6b5a2bf7fbb5c04e427dddcb6df2c5806873de937c057bb42b3eb1e8",
       "digest_rule": "heading through before next peer heading; trailing blank lines normalized to one LF"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "full_file_sha256": "sha256:7fe502770865e87121285437d44197ff23021bf1a4833e003ab57dee94aa0a9f",
-      "heading": "### HELIXOS-L11-120 HIL-BR-12 intake/style接続の受入候補（未実行）",
-      "start_line": 1068,
-      "end_line": 1077,
-      "section_sha256": "sha256:e6caa44e640ab20da95b7d21c67c7e38b75672f91fb7662b09533d77760739b3",
+      "full_file_sha256": "sha256:28de1d0a99f9dfa7338d98632481e85f6f1417fbe6fa9443de75983bc5040f39",
+      "heading": "### HELIXOS-L11-121 HIL-BR-12 intake/style接続の受入候補（未実行）",
+      "start_line": 1067,
+      "end_line": 1076,
+      "section_sha256": "sha256:d6c0df6ee9a9427f596914118d4fea5149000650dc90334be7e39ab2f54c29ca",
       "digest_rule": "heading through before next peer heading; trailing blank lines normalized to one LF"
     }
   },
@@ -262,5 +263,6 @@
       }
     ],
     "adoption_separation": "Exact accepted current clauses and new unadopted candidate are separate. Candidate frontmatter or MPR registration does not alter PO decision."
-  }
+  },
+  "audit_base_commit": "c7e9d7f558bfde4b24bb94c9eb1d47b3424c3caf"
 }

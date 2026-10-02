@@ -1064,10 +1064,9 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **既存oracleとの関係**：HAC-HIL-07aのknowledge/continuation分離、07bの禁止内容/self-promotion拒否、07cのshadow改善・退行rollback、およびHAT-HIL-07のinput/output digest・shadow metric・review/rollbackは旧設計済みoracleとして意味対応を示す。旧HATは`designed_not_implemented`であり実行済み証拠ではない。本候補はpromotion/shadow/rollback全体を受入範囲へ取り込まず、BR-03の圧縮coverageと三種別分離に限定する。
 - **未決の意味差**：旧DB continuationや旧actor語を現行のepisode/checkpointとCodex・Claude協働へ置換する対応はPO判断材料に残す。明示されたPO 9/24のmemory境界は既存判断として適用し、同じ意味の再承認を求めない。旧source全体closure、formal successor、実行・実装は本候補の合格条件にしない。
 
+### HELIXOS-L11-121 HIL-BR-12 intake/style接続の受入候補（未実行）
 
-### HELIXOS-L11-120 HIL-BR-12 intake/style接続の受入候補（未実行）
-
-- **対応要求・authority**：未採択`HELIXOS-L2-120`の静的oracle候補。HELIX-OS 2026-09-28 PO decisionが固定したL2-001〜029とpaired L11本文を変更せず、候補、fixture、receiptは採択、L3承認、runtime/test/CI実行、旧要求のformal successorを意味しない。
+- **対応要求・authority**：未採択`HELIXOS-L2-121`の静的oracle候補。HELIX-OS 2026-09-28 PO decisionが固定したL2-001〜029とpaired L11本文を変更せず、候補、fixture、receiptは採択、L3承認、runtime/test/CI実行、旧要求のformal successorを意味しない。
 - **正常対照**：異なる入力sourceの二work itemとして、(A)GitHub Issue/PR/CI event由来のitem、(B)利用者が差し込んだIssue/PLANを同じintake contract boundaryへ渡す。各々でsource/cause/authorityと対象revisionを識別したうえで、HARNESSの選択済みdevelopment style、該当caseのactivation条件、必要なspecialist capability、処理後のstyle再接続点を個別に確認する。例として、選択styleがScrumでactivation caseが成立したwork itemに必要能力`API migration review`を付し、assignmentはOSが適合を検証し、INTELLIGENCEの案は案のまま、実行後の再接続先はScrumの次の合意済みcheckpointとして照合する。CI event由来の結果はそのsource identity/revisionに結び、別の要求やsourceから条件を補完しない。
 - **ユーザーPLAN境界の正常対照**：利用者が意図的に記述したPLANを有効な入力sourceとして受け入れ、PLAN内に命令形の文があるだけで一律拒否しない。同時に、PLANの受理はそこに記された範囲外の操作authority・要求承認を増やさず、既存SECURITY authorityとscopeに従う。外部GitHub本文に埋め込まれた命令文はsource dataとして扱い、承認・実行命令やrouting authorityへ昇格させない。
 - **独立negative oracle**：他の条件を固定し、(1)二sourceの一方を別contractへ正規化、(2)development style欠落/不一致、(3)case条件未成立なのにactivation、(4)case成立後にactivation条件を落とす、(5)specialist capability欠落・不一致をteam名/muster/placement案だけで満たした扱い、(6)処理後のreconnection point欠落または別styleのphaseへ接続、(7)intake bodyからauthority・要求採択を推定、(8)外部GitHub本文の命令を実行指示へ昇格、(9)利用者PLANを命令形というだけで拒否、(10)INTELLIGENCE案をOS assignmentまたはWorker実行そのものと同一視、を個別に与える。影響facetをsuccess/completeとして受け入れず、source・不足条件・責務境界を示す。ケース(9)は候補で禁じた拒否条件のnegative controlとして、正当な利用者PLANが受理されることを確認する。

@@ -1,7 +1,7 @@
 # IR153 HIL-FR-01〜60 現行所在索引（2026-10-02）
 
 - 構築時main snapshot（歴史）: `2a6b1fdd49ffa74eb2075fd98f67daca316408f2`。current所在はbase68 read-after欄を参照。
-- current所在read-after main: `360eec2d11dd2b838206b6096c7226aaefb8252c`（#2503後の最新main）。構築時のread-afterは `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d`。
+- current所在read-after main: `9f743cb0854ad7f2ef6a215510f88379d8c3fa90`（PR #2504 merge後。監査作成時のmain read-afterは `360eec2d11dd2b838206b6096c7226aaefb8252c`）。構築時のread-afterは `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d`。
 - 追加FR02等/FR56–60 auditのartifact content HEAD: `2711d4d39ed59647a55cb3e38d297a9901e2f8b9`。これはmain baselineとは別。
 - PR #2497: merged main `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20`（FR35–41監査）。旧audit construction HEAD `970d9c7c…` は歴史locator。
 - PR #2498: reviewed correction `e4a815614d15ee5136e0812d6373f245224a964f`（reviewer Claude）、merged main `432ca78c4465bee9d1463ff995e299f80ea1fff1`（FR42–55監査）。旧construction HEAD `3b3472d8…` は歴史locator。
@@ -17,7 +17,7 @@
 
 ## current read-after と歴史snapshot
 
-各 `current_evidence.snapshot` はmain `360eec2d11dd2b838206b6096c7226aaefb8252c` のread-afterを示す。監査自身の `audit_baseline_commit` は監査が比較した歴史時点、`artifact_content_commit` と `artifact_sha256` はそのlocatorの実体を区別する。PR #2497/#2498/#2500/#2501はmainへmerge済みだが、候補本文の存在・PR merge・監査記録はPO採択やformal successorを意味しない。#2500の077/078と#2501の072は未採択候補として所在だけを記録する。
+各 `current_evidence.snapshot` は各監査が実際に参照したmain/current文書snapshotを示す。監査自身の `audit_baseline_commit`、artifactを含むPR HEAD、merge後mainのread-afterは別に記録する。PR #2497/#2498/#2500/#2501/#2504はmainへmerge済みだが、候補本文の存在・PR merge・監査記録はPO採択やformal successorを意味しない。#2500の077/078、#2501の072、#2504監査内の候補参照は各範囲内でのみ所在として扱う。
 
 ## FR別 locator
 
@@ -32,22 +32,22 @@
 | HIL-FR-07 | 97 | `4ffc176ae20e…` | `REQSRC-LINE-01848` | `docs/governance/audits/requirement-registration/hil-fr07-closure-coverage-receipt-2026-09-29.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirement-registration/hil-fr07-closure-source-lines-2026-09-29.jsonl` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>bounded source atom partition。IR downstream pair pending。 |
 | HIL-FR-08 | 98 | `711b4e50db2f…` | `REQSRC-LINE-01849` | `docs/governance/audits/requirements-stage/ir153-hil-fr02-04-05-06-08-current-condition-audit-2026-10-02.json` / `.md` (artifact 2711d4d39ed5; main read-after 360eec2d11dd)<br>2026-10-02のFR02–08条件監査に所在。ready/lease等の現行行き先と、OS claim/tool startを選択HARNESS gate完了へ結ぶ未立証接続を分けて記録。 |
 | HIL-FR-09 | 99 | `1f941a539d06…` | `REQSRC-LINE-01850` | `docs/governance/audits/requirement-registration/hil-fr09-disposition-coverage-receipt-2026-09-29-r3.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirement-registration/hil-fr09-disposition-source-atoms-2026-09-29.jsonl` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirement-registration/hil-fr09-disposition-meaning-gaps-2026-09-29.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>選択disposition subset。no_lossは選択atomsだけ;旧FR09全体未閉包。 |
-| HIL-FR-10 | 100 | `98607f726a0f…` | `REQSRC-LINE-01851` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-11 | 101 | `68e73c87adcc…` | `REQSRC-LINE-01852` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-12 | 102 | `5e72384301df…` | `REQSRC-LINE-01853` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-13 | 103 | `1260dfa3a168…` | `REQSRC-LINE-01854` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-14 | 104 | `84222a38061f…` | `REQSRC-LINE-01855` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-15 | 105 | `44273843b5fb…` | `REQSRC-LINE-01856` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-16 | 106 | `8d0d781ee0ee…` | `REQSRC-LINE-01857` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-17 | 107 | `4cd89c187551…` | `REQSRC-LINE-01858` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-18 | 108 | `19b365805022…` | `REQSRC-LINE-01859` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-19 | 109 | `edaa9d6668eb…` | `REQSRC-LINE-01860` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
+| HIL-FR-10 | 100 | `98607f726a0f…` | `REQSRC-LINE-01851` | `FR10–14` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-11 | 101 | `68e73c87adcc…` | `REQSRC-LINE-01852` | `FR10–14` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-12 | 102 | `5e72384301df…` | `REQSRC-LINE-01853` | `FR10–14` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-13 | 103 | `1260dfa3a168…` | `REQSRC-LINE-01854` | `FR10–14` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-14 | 104 | `84222a38061f…` | `REQSRC-LINE-01855` | `FR10–14` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-15 | 105 | `44273843b5fb…` | `REQSRC-LINE-01856` | `FR15–19` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-16 | 106 | `8d0d781ee0ee…` | `REQSRC-LINE-01857` | `FR15–19` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-17 | 107 | `4cd89c187551…` | `REQSRC-LINE-01858` | `FR15–19` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-18 | 108 | `19b365805022…` | `REQSRC-LINE-01859` | `FR15–19` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-19 | 109 | `edaa9d6668eb…` | `REQSRC-LINE-01860` | `FR15–19` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
 | HIL-FR-20 | 110 | `5396b657dea6…` | `REQSRC-LINE-01861` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-21 | 111 | `844dee51d5ca…` | `REQSRC-LINE-01862` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-22 | 112 | `a25967dc2a74…` | `REQSRC-LINE-01863` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-23 | 113 | `85a92638e7c8…` | `REQSRC-LINE-01864` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-24 | 114 | `a61697f41088…` | `REQSRC-LINE-01865` | —<br>個別の後続current-condition audit/receiptは索引範囲で確認できず。実証未確認。歴史Dispositionのtargetは現行採否/条件充足の証明ではない。 |
-| HIL-FR-25 | 115 | `c28b208b2be9…` | `REQSRC-LINE-01866` | `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>現行pair条件監査あり。formal successor割当・source holding解放は監査ごとの明示範囲のみ。 |
+| HIL-FR-21 | 111 | `844dee51d5ca…` | `REQSRC-LINE-01862` | `FR21–25` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-22 | 112 | `a25967dc2a74…` | `REQSRC-LINE-01863` | `FR21–25` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-23 | 113 | `85a92638e7c8…` | `REQSRC-LINE-01864` | `FR21–25` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-24 | 114 | `a61697f41088…` | `REQSRC-LINE-01865` | `FR21–25` audit row locator (see #2504 addendum below)<br>所在のみ。監査自身のsnapshot/残差を参照し、source保証の充足・successor・closureは推定しない。 |
+| HIL-FR-25 | 115 | `c28b208b2be9…` | `REQSRC-LINE-01866` | `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>既存FR25–31監査に加え、FR21–25監査も下記locator registryに追加。formal successor割当・source holding解放は各監査の明示範囲のみ。 |
 | HIL-FR-26 | 116 | `5b18e75312a5…` | `REQSRC-LINE-01867` | `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>現行pair条件監査あり。formal successor割当・source holding解放は監査ごとの明示範囲のみ。 |
 | HIL-FR-27 | 117 | `a8d16c77cd5a…` | `REQSRC-LINE-01868` | `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>現行pair条件監査あり。formal successor割当・source holding解放は監査ごとの明示範囲のみ。 |
 | HIL-FR-28 | 118 | `5bba89bb6af7…` | `REQSRC-LINE-01869` | `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.json` (main read-after 360eec2d11dd; introduction 2a6b1fdd49); `docs/governance/audits/requirements-stage/ir153-hil-fr25-31-current-pairs-condition-audit-2026-10-02.md` (main read-after 360eec2d11dd; introduction 2a6b1fdd49)<br>現行pair条件監査あり。formal successor割当・source holding解放は監査ごとの明示範囲のみ。 |
@@ -84,19 +84,38 @@
 | HIL-FR-59 | 149 | `809e21f8712d…` | `REQSRC-LINE-01900` | `docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json` / `.md` (artifact 2711d4d39ed5; main read-after 360eec2d11dd)<br>2026-10-02 FR56–60条件監査に所在。FR59条件と現行pairの照合範囲を記録し、formal successor/全条件closureは主張しない。 |
 | HIL-FR-60 | 150 | `646140e1b019…` | `REQSRC-LINE-01901` | `docs/governance/audits/requirements-stage/ir153-hil-fr56-60-current-pairs-condition-audit-2026-10-02.json` / `.md` (artifact 2711d4d39ed5; main read-after 360eec2d11dd); historical audit/receiptはJSONに保持<br>旧FR60 audit/receiptに加え、2026-10-02 FR56–60 current-pairs監査をmain read-afterで所在確認。採択047/OS-004の業務保証とTeamDefinition物理名を分け、未実行と未保証を混同しない。 |
 
+## PR #2504 current audit locator追補（2026-10-02）
+
+PR #2504 content HEAD `404bfbe0523cd17c1bda68fe323a295e431cd44f` はmain `9f743cb0854ad7f2ef6a215510f88379d8c3fa90`へmerge済み。以下のJSON/MD bytesを両revisionで比較し一致を確認した。artifactのcurrent main所在、監査個別のbaseline/current pair snapshot、監査内容commitを分離する。ここで更新するのはlocatorだけで、60行のraw source text、physical source SHA、IR pointer/digest、carry-forward、historical dispositionは変更していない。
+
+| 監査群 | 対象source identity | 監査baseline / internal current snapshot | JSON SHA / MD SHA | JSON content commit / MD content commit | 読み方 |
+|---|---|---|---|---|---|
+| FR10-14 | HIL-FR-10, HIL-FR-11, HIL-FR-12, HIL-FR-13, HIL-FR-14 | `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20` | `da77bb5a9e7757357b97735947a1aa0553683569526449f1abd7db35ee9df866` / `c7fbb31a77c3178a079c0b5f044a0d7a85a6cdfefee8b3c6c6e72bcd104365ef` | `5773becf30e936bb865b58a5bdb20fd09a31b247` / `5773becf30e936bb865b58a5bdb20fd09a31b247` | row locator only |
+| FR15-19 | HIL-FR-15, HIL-FR-16, HIL-FR-17, HIL-FR-18, HIL-FR-19 | `64a9fdd2757197f84172d7eda8b9ccb7f92db86a` | `b3f2ec581f5fe1221f1ef18d0e5802c95e5d6dbcf1dd734091aac15e188df256` / `b5acc621a4abba6572c02672e6c6e90b98941c61d77c25e72318de6baee48810` | `26cd23aa4272aa57933abe2e87b6b6f7a4269b70` / `26cd23aa4272aa57933abe2e87b6b6f7a4269b70` | row locator only |
+| FR21-25 | HIL-FR-21, HIL-FR-22, HIL-FR-23, HIL-FR-24, HIL-FR-25 | `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d` | `18c02477f8cbad1b16fbcdc571ccb49a472e201af3709b0e3b8dc68e909b8d4c` / `18d7c282027474bda7835b645f921315cf6095fc3256a7633bcdfd0f350fb928` | `abd301983501b81dddf2e0a918bc1c1e5cfeffa7` / `abd301983501b81dddf2e0a918bc1c1e5cfeffa7` | row locator only |
+| FR61-65 | HIL-FR-61, HIL-FR-62, HIL-FR-63, HIL-FR-64, HIL-FR-65 | `432ca78c4465bee9d1463ff995e299f80ea1fff1` | `f208a7c3324101a262a21beb44d5be4c547100a4f03889c36dc980fc490fdaf5` / `152415cadeda4073ada7a702b7c65ae8e18bb3a53426c6cda83eb44b2a253cdb` | `7803d0de290dca1fff415e2db517a7b561967ff7` / `2843194295e7edc978277a699308402f0d1cd0cf` | first60 source identityへ紐付けない |
+| FR66-70 | HIL-FR-66, HIL-FR-67, HIL-FR-68, HIL-FR-69; FR70 source-existence search | `432ca78c4465bee9d1463ff995e299f80ea1fff1` | `059d9e2fc01f87f191aa35386a66bf5befa6d22e0dcd06a1f7246832faa4ef01` / `6bb2c6333331b1eb06a6546e34d7ba49f4a3e93e0d2c80b833eabfbe51b71a93` | `1caecd81acb86a26c6d198a13893a25f1ccc40b5` / `1caecd81acb86a26c6d198a13893a25f1ccc40b5` | first60 source identityへ紐付けない |
+
+FR10–19およびFR21–25の各rowには、対応する監査JSONのrow pointerとfull artifact SHAを `current_evidence` へ追記した。FR25の既存FR25–31 locatorも保全した。FR10–14監査の現行要求snapshotは `a93fec99...`、FR15–19監査の比較baseは `64a9fdd...`、FR21–25監査のcurrent read-afterは `68e1e3ad...`であり、どれも#2504 merged mainのartifact所在 `9f743cb...`と同じ時点ではない。各監査の本文内current L2/L11 SHA/section pinsを超えて、merge後の要求意味freshnessを主張しない。
+
+FR61–65とFR66–70の2監査もmain上のlocatorとfull SHAを上表に記録したが、それらが対象にする旧source identityはFR01–60の母集団外である。FR61–65監査のcurrent pair表示はFR61–65自身の選択scope、FR66–69はその旧行scope、FR70はsource-existence searchである。これらをFR01–60 rowへsource条件の証拠として割り当てていない。
+
+追補後も個別locatorがないfirst60行はFR20/FR32/FR33。これは所在未確認であり、保証欠落の結論ではない。新たにlocatorを追加したFR10–19/FR21–25も、監査の明記範囲・残差以上の保証保持/採択/完了を示さない。
+
 ## 時点と範囲
 
 | Snapshot | FR範囲 | 読み方 |
 |---|---|---|
-| main `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d` (current read-after) | FR01–60 index locators and merged/current candidate bytes | Current tree snapshot; audit baselines and content artifact commits are separate fields. |
+| main `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d` (construction-time current read-after) | FR01–60 index locators and merged/current candidate bytes | Historical snapshot; current locator read-after was advanced to #2504 merge `9f743cb0854ad7f2ef6a215510f88379d8c3fa90`. |
 | PR #2497 merged `a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20` | FR35–41 | Merged audit; bounded condition mapping only, no whole-source closure. |
 | PR #2498 merged `432ca78c4465bee9d1463ff995e299f80ea1fff1` (reviewed `e4a815614d15ee5136e0812d6373f245224a964f`) | FR42–55 | Merged corrected audit; bounded condition mapping only. |
 | PR #2500 merged `b6aed5a4ec63fcd37e0b9994107dd1976aef8ce2` | FR42/45 candidate 077/078 | Main contains candidate/receipts; unadopted, no full FR42/45 successor. Old `2909aae…` is historical unreachable snapshot only. |
 | PR #2501 merged `68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d` | FR48/49 selected residual slices | HARNESS-072 candidate/receipt is present in main and remains unadopted; no whole-row closure. |
+| PR #2504 merged `9f743cb0854ad7f2ef6a215510f88379d8c3fa90` (content HEAD `404bfbe0523cd17c1bda68fe323a295e431cd44f`) | FR10–19, FR21–25, FR61–65, FR66–69; FR70 source search | Current audit artifacts are indexed above. Their internal current-pair snapshots are older and remain separate; no source-wide closure. |
 
 ## 未確認・残件
 
-本索引はcurrent-condition audit/receiptへの個別locatorを確認できないIDを実証未確認として扱う。これは保証欠落の判断ではない。現行pair本文、L11 oracle、PO固定revision/decision、既存candidate subset、source holdingの連接を保証単位で比較する全量照合はしていない。HIL-FR-32/33/34に関係する064/065/115等は、それぞれ別個のsource atom/consumer oracle選択subsetであり、FR全体closureへ一般化しない。
+本索引はcurrent-condition audit/receiptへの個別locatorを確認できないIDを実証未確認として扱う。これは保証欠落の判断ではない。現行pair本文、L11 oracle、PO固定revision/decision、既存candidate subset、source holdingの連接を保証単位で比較する全量照合はしていない。HIL-FR-20/32/33の個別current-condition locatorはこの索引範囲で未確認。FR34に関係する064/065/115等は、それぞれ別個のsource atom/consumer oracle選択subsetであり、FR全体closureへ一般化しない。
 
 JSONに全60 IDの物理line、line SHA、IR pointer/semantic digest、HR/HAC/HAT接続、carry-forward identity、historical disposition pointerとcurrent evidence locatorを記録した。
 

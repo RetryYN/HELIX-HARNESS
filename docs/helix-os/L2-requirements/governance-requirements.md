@@ -1479,8 +1479,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **未決の意味差**：圧縮を適用するsource集合の選択条件と、旧actor/DB表現から現行の協働episodeへ置く対応は候補上の再導出である。receiptのPO判断packetに選択肢を残し、旧要求の意味変更・適用scope・正式successorをこの候補や仮登録から確定しない。
 - **version_target**：親L1または選択した旧atomに値がないため未指定。
 
-
-### HELIXOS-L2-120 HIL-BR-12 intakeとstyle接続の未採択候補
+### HELIXOS-L2-121 HIL-BR-12 intakeとstyle接続の未採択候補
 
 - **状態・authority**：未採択の`registered_proposal`、`authority_effect: none`。候補本文・receipt・仮登録は要求採択、旧要求のformal successor、L3承認、実装・実行許可を生成しない。旧`MPR-SH-IR-003#HIL-BR-12`は生存させる。
 - **親と責務**：主親は採択済み`HELIXOS-L1-002`（作業から運用までの追跡）と`HELIXOS-L1-008`（要求・判断出所）に接続する。HELIX-OSはGitHub由来Issue/PR/CI eventとユーザーが差し込むIssue/PLANを同じintake契約へ受け取り、source/cause/authorityの区別を保って投影・割当責務へ渡す。HARNESSはproduction development styleとcase-driven activationの規範を所有し、OSはHARNESSの選択結果を変えない。INTELLIGENCEのplacementは案、assignmentと進行統制はOS、実行はWorker、権限制限はSECURITYが担う。
