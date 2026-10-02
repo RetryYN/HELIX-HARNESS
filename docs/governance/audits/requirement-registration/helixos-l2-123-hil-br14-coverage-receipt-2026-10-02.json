@@ -251,8 +251,8 @@
     },
     "L11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "section_sha256": "sha256:e1a9a89a5699605c95db3a0af39d1eca0d8b9078d960dcd6da9e81b17680f734",
-      "full_file_sha256": "sha256:ef4949bbe64066a5b9b4319926065b4f360c56b9cd2123d7bfe9942cb3c487b0",
+      "section_sha256": "sha256:7f7131426421fde996fed2c380184696304536aa2d1e5c117a5fd57e737f9bfd",
+      "full_file_sha256": "sha256:eec6bb276b0076e82ec38e4ad36d6947fc030589ec9787e90e31c83ba2461673",
       "section_boundary": "heading HELIXOS-L11-123 through before next same-or-higher-level heading; canonical section has one terminal LF"
     }
   },
@@ -343,7 +343,8 @@
     "selected_sources": [
       "ZIP",
       "unison-ai-product/UT-TDD_AGENT-HARNESS",
-      "RetryYN/ai-dev-kit-vscode"
+      "RetryYN/ai-dev-kit-vscode",
+      "fixture:current-HELIX-source@fixture-source-r1"
     ],
     "authority_permission": "fixture:authority-read",
     "isolation": "fixture:read-only-isolation",
@@ -395,6 +396,16 @@
         "applicability": "identity in explicit selected_sources"
       },
       {
+        "identity": "fixture:source-current-helix-source",
+        "declared_owner_ref": "fixture-owner:current-helix-source",
+        "source_revision": "fixture-source-r1",
+        "contract_version": "fixture-contract:current-helix-source-r1",
+        "compatibility_range_token": "fixture-range:current-helix-source-r1",
+        "compatibility_evidence": "fixture input explicitly says compatible",
+        "class": "selected input source",
+        "applicability": "identity in explicit selected_sources"
+      },
+      {
         "identity": "fixture:glossary-note",
         "declared_owner_ref": "fixture-owner:glossary",
         "contract_version": "fixture-glossary-r1",
@@ -404,6 +415,6 @@
         "applicability": "explanatory only; no operation/source/authority/oracle effect"
       }
     ],
-    "repeat_result": "Same exact input and declaration revision must yield the same class/state/reason closure. Any changed or missing input is unknown or a distinct result, never a default."
+    "repeat_result": "Same exact input including ZIP, both named repositories and current HELIX source revision, plus declaration revision, must yield the same class/state/reason closure. Any changed or missing input is unknown or a distinct result, never a default. Selected-source failure cannot silently fall back."
   }
 }
