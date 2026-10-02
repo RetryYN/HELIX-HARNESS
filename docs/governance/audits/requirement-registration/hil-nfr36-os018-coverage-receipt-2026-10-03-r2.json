@@ -92,10 +92,10 @@
         1608,
         1623
       ],
-      "supplement_sha256": "sha256:047f83db18b5339467aaeede668cd080988691ca597c6b53366c07081e2fbc51",
-      "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
-      "candidate_semantic_digest": "sha256:32e0baf98aa80268ceabd7912b6eaa7453d246b9ec837be26942884c05c5338a",
-      "current_full_file_sha256": "sha256:bb66bdd516c1515db53ea421ab29cd069128bc6ec594ff79f950b3b6335cf50e"
+      "supplement_sha256": "sha256:634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d",
+      "multipart_digest_rule": "Identity section: select from its exact heading through the next same-or-higher-level heading; trim trailing blank lines and append one UTF-8 LF. EOF supplement: select from its exact supplement heading through the next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF. Multipart digest = normalized identity section bytes + one UTF-8 LF separator + normalized EOF supplement section bytes.",
+      "candidate_semantic_digest": "sha256:5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2",
+      "current_full_file_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234"
     },
     "l11": {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
@@ -111,7 +111,7 @@
         1267
       ],
       "supplement_sha256": "sha256:ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c",
-      "multipart_digest_rule": "normalized identity section bytes + one LF separator + normalized EOF supplement bytes",
+      "multipart_digest_rule": "Identity section: select from its exact heading through the next same-or-higher-level heading; trim trailing blank lines and append one UTF-8 LF. EOF supplement: select from its exact supplement heading through the next same-or-higher-level heading or current EOF; trim trailing blank lines and append one UTF-8 LF. Multipart digest = normalized identity section bytes + one UTF-8 LF separator + normalized EOF supplement section bytes.",
       "paired_acceptance_digest": "sha256:e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5",
       "current_full_file_sha256": "sha256:22cb093022414d66aa22a85deec0baea831c1c4193f04903d990f87a14e90b9f"
     },
@@ -163,8 +163,8 @@
       "relation": "use their existing consult handoff and support composite receipt only when those operations are actually selected; do not require or invent them otherwise."
     },
     {
-      "identity": "HIL-NFR-32 / OS-019 candidate",
-      "relation": "the separate candidate concerns six conditions for canonicalizing semantic changes; this candidate concerns OS assignment/attempt and observed runtime/event receipt linkage, not canonicalization."
+      "identity": "HELIXOS-L2-001 requirement canonical update management conditions; HIL-NFR-32 L11 fixture/oracle work is separate draft context",
+      "relation": "The six HIL-NFR-32 conditions are compared with the existing requirement-canonical-update management conditions under OS-001, not assigned as an OS-019 candidate supplement. Any separately drafted NFR-32 L11 fixture/oracle material is unadopted context only. This -002 candidate addresses OS assignment/attempt and observed runtime/event receipt linkage; it neither adopts that draft nor changes OS-001/OS-019."
     }
   ],
   "fixtures_and_dependency_classes": {
@@ -188,8 +188,8 @@
     "old source holdings and all consumer obligations remain open unless separately dispositioned"
   ],
   "latest_integrated_main": {
-    "commit": "bdf1532cc7df12c21aea43c3af8eb17d458ccf7a",
-    "comparison": "NFR32–40 audit additions only; adopted OS-018 L2/L11 identity sections remain exact f6-adopted bytes, and the new EOF parts remain unadopted."
+    "commit": "764458a72480bc4a497ef652c6c67b16e980b002",
+    "comparison": "Integrated latest main 764458a72480bc4a497ef652c6c67b16e980b002 after checking the selected OS-001 requirement-canonical-update management context; fixed adopted OS-018 L2/L11 identity sections remain unchanged, and the -002 EOF parts remain unadopted."
   },
   "consumer_record_pins": [
     {
@@ -426,14 +426,15 @@
         "section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
       },
       "decision_selected_full_file_pins": {
-        "l2_commit": "5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
         "l2_section_sha256": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8",
-        "l11_commit": "30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
-        "l11_section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3"
+        "l11_section_sha256": "sha256:4f51be505b3c169f08aa61c2dd192b21b1b185db0f5243f556853bcb3e1a1fe3",
+        "l2_full_file_sha256": "sha256:5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9",
+        "l11_full_file_sha256": "sha256:30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0",
+        "source": "decision row 79 selected target full-file SHA-256 values; these are file hashes, not commit identifiers. The target commit is not inferred here."
       }
     }
   ],
   "receipt_scope_boundary": "原文の「receipt化」は実際の逸脱と実際のescalation順序・結果を既存recordへ結ぶ観測事実として扱う。事前gate、全run停止、source未確定時の全操作禁止を追加せず、適用sourceまたはownerが不明なfacetはunknownとして既存ownerへ返す。",
-  "candidate_digest_rule": "L2/L11それぞれについて、f6採択identity sectionと未採択EOF supplementを個別正規化する（選択見出しから次の同階層以上headingまたはEOFまで。末尾空行を除き、part末尾にUTF-8 LFを一つ付加）。multipart digestはidentity section bytes + separator LF一つ + supplement bytes。L2 digestをcandidate_semantic_digest、L11 digestをpaired_acceptance_digestとする。固定採択pair pinは別に保持し変更しない。",
+  "candidate_digest_rule": "L2/L11各pairについて、各exact見出しから次の同階層以上見出しまで（EOF supplementは次の同階層以上見出しまたは現在のEOFまで）を選択し、末尾空行を除いて各part末尾へUTF-8 LFを一つ付加する。multipart digestは正規化identity section bytes + UTF-8 LF一つのseparator + 正規化EOF supplement section bytes。L2 digestをcandidate_semantic_digest、L11 digestをpaired_acceptance_digestとする。固定採択pair pinは別に保持し変更しない。",
   "adopted_neighbor_evidence_scope": "These are exact selected sections/rows at current main bdf1532 and are cross-checked against the cited target commit/decision. They preserve only their stated LABO scopes; their existence is not evidence that all HIL-NFR-36 conditions or consumers are closed."
 }
