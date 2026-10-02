@@ -282,9 +282,39 @@
     "current_owner_boundary": "INTELLIGENCE owns only candidate representation/applicability evidence in this unadopted supplement; HARNESS retains pack contract/gate semantics, OS retains actual assignment/dispatch under existing adopted pair, SECURITY retains per-operation tool authority, and selected source owners resolve their own revision/applicability. This mapping does not create new dispatch duty."
   },
   "dependency_023": {
-    "classification_contract": "HARNESS-L2-023に記載された4区分の語彙をfixture分類に使う。HARNESS-L2-023自体はregister rowにregistered_proposal／authority_effect=noneと記録されており、本receiptはそれを採択・変更しない。",
+    "classification_contract": "HARNESS-L2-023の四区分は、2026-09-28 PO判断が明示候補24件の全件採用を決め、row 52でMPR-RC-HARNESS-L2-023-002を指定した固定revisionから参照する。MPR rowのregistered_proposal/authority_effect=noneは採択前の登録状態の記録であり、採否はPO判断から読む。ここで分類語を利用しても、005 candidate自体へ採択・権限を継承しない。",
     "candidate_classification": "この候補は当該candidate/shadow operationが実際に選んだ六sourceだけを照合する。各sourceのidentity、合成owner参照、exact source revision/digest、互換根拠、applicabilityを分離する。candidate契約rangeは1.0の候補生成・shadow評価までに限り、applicabilityをversion rangeとして扱わない。未選択sourceは未観測。applicability unknownはunknownのままとし、参照資料をsourceやauthorityの代用にしない。",
-    "runtime_dependency_claim": false
+    "runtime_dependency_claim": false,
+    "adoption_evidence": {
+      "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "fixed_source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_line_18_sha256_including_lf": "sha256:e71eadb369dc081938d5fb39b3b6a7d7fbd5a7976ba0a8d2830f67de07047212",
+      "decision_line_25_sha256_including_lf": "sha256:f444935ee282aa1402640df5bdbae8f214cb3ee722452a54711d6617f56bb645",
+      "decision_line_52_sha256_including_lf": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "decision_line_18_disposition": "各PRの明示候補集合を記載されたversion_targetと適用条件を保って採用",
+      "decision_line_25_disposition": "明示候補24件は全件採用",
+      "decision_row": 52,
+      "selected_registration_id": "MPR-RC-HARNESS-L2-023-002",
+      "selected_candidate_digest": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "selected_receipt_path": "docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json",
+      "selected_receipt_file_sha256": "sha256:f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4",
+      "current_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "registration_state_at_submission": "registered_proposal",
+      "authority_effect_recorded_at_submission": "none",
+      "scope_limit": "この採択はMPR-RC-HARNESS-L2-023-002のdecision-fixed revisionだけに適用する。INTELLIGENCE-072-005は別の未採択candidateで、採択済み004のshadow-only境界を越えない。"
+    },
+    "classification_reference": {
+      "identity": "HARNESS-L2-023",
+      "registration_id": "MPR-RC-HARNESS-L2-023-002",
+      "candidate_digest": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "po_decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "po_decision_row": 52,
+      "adopted_receipt_sha256": "sha256:f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4",
+      "current_l2_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "registration_state_at_submission": "registered_proposal",
+      "adoption_source": "採択根拠はPO判断。登録時MPR stateから採否を推定しない。"
+    }
   },
   "fixture_coverage": {
     "normal": "一つの正常合成candidate/shadow callでpack-P@r1、scope-S@r4、snap-A/d-A、個別にpinした六つの選択source tuple、四つの023分類を固定する。identity/owner/revision/digest、契約version range、互換根拠、applicabilityを分け、結果はnon-gatingのままにする。",
@@ -356,7 +386,7 @@
     "append_only_prefix_verified": true,
     "meaning": "既存696行のbyte prefixを保持し、未公開・未採択の末尾005候補行だけをin-place訂正。既採択004と過去receipt/採択行は不変。"
   },
-  "acceptance_fixture_basis": "一つの正常candidate/shadow callを四つの023 dependency classにわたって固定する合成fixture。各classでidentity、owner参照、exact contract/source revisionとdigest、declared contract version range、compatibility evidence、applicabilityを別欄に記録する。適用条件はversion rangeではない。六source tupleはこのcallで選択された場合の具体例であり、実owner、source registry、schema、runtime gate、dispatch authorityを作らない。",
+  "acceptance_fixture_basis": "一つの正常candidate/shadow callを四つの023 dependency classにわたって固定する合成fixture。分類語彙はPO判断により採択されたHARNESS-L2-023 MPR-RC-HARNESS-L2-023-002のexact revisionから参照する。各classでidentity、owner参照、exact contract/source revisionとdigest、declared contract version range、compatibility evidence、applicabilityを別欄に記録する。適用条件はversion rangeではない。六source tupleはこのcallで選択された場合の具体例であり、実owner、source registry、schema、runtime gate、dispatch authorityを作らない。023の採択を005へ継承しない。",
   "acceptance_fixture_classes": [
     {
       "dependency_class": "always_required",
