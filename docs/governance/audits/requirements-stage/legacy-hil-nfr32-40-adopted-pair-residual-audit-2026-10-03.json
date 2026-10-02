@@ -2288,5 +2288,394 @@
       }
     ],
     "conclusion": "明記した66 locatorの選択bytesは最新mainでも一致。選択範囲外の全条件保持・旧source全体closure・候補採択を証明しない。"
+  },
+  "nfr37_40_candidate_draft_materials": {
+    "status": "source_condition_draft_material_only; no candidate identity, MPR row, adoption, or implementation created",
+    "comparison_main_commit": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+    "source_basis": {
+      "legacy_l1_file": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "revision": "legacy-generation archive snapshot read at main e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_rows": {
+          "HIL-BR-32": {
+            "line": 84,
+            "sha256_without_lf": "3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+            "text": "| **HIL-BR-32** | Claude/Codex以外の定額worker runtime（Kimi/Grok等）をprecedenceを曲げずproposal-only workerとして接続し、実行を隔離worktree/sandbox内に限定してrepository本体、`.helix/` state、harness DB、credentialへ到達させない。秘密・機密を含む作業の第三者runtime委譲を禁止する。 |"
+          },
+          "HIL-NFR-37": {
+            "line": 217,
+            "sha256_without_lf": "e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+            "sha256_with_lf": "f62f3880483db79c55f5f02c39fc56e2329ca8f08f604b5d97ed2ca6572754d9",
+            "statement_semantic_digest": "c193885771e85f07857776dbce87ceac9cb91725d64aa68eddd53ff2aa4902db",
+            "record_semantic_digest": "3f9879998b2c5856f087472bc33abf14f4c7b4fb46187b3e5e6be02083634ce9"
+          },
+          "HIL-NFR-38": {
+            "line": 218,
+            "sha256_without_lf": "34a91d2f4e367f8500455e8dfd2f2283b7fac60b9eb028c3a2da1cef5c0f4c41",
+            "sha256_with_lf": "9d84bc2807e59c492ef603e34d3febd22c41ed9bbb26e15950c44f295a8790c1",
+            "statement_semantic_digest": "623495c53d8e952d930ee57bc420714a8ed8e9749859fa4597543ff156e8fd9f",
+            "record_semantic_digest": "1d103f4dacdf25f1c230e717630c2dcd67c11ff974a4df311a3df0fd1f8650e9"
+          },
+          "HIL-NFR-39": {
+            "line": 219,
+            "sha256_without_lf": "401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+            "sha256_with_lf": "faa2110a6666023373dd31ccd8e71e8cefd50c122a9e2a0f93ca369390fe4853",
+            "statement_semantic_digest": "cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+            "record_semantic_digest": "c64f42507553e77ceeb363e98776a67a5e6285d1825be2fceeda939e963987b7"
+          },
+          "HIL-NFR-40": {
+            "line": 220,
+            "sha256_without_lf": "89e31140c248c2f1bcb7140bd6549f7d86768c2c2bcf2ce88d623e7a06f01f95",
+            "sha256_with_lf": "f5d61b7c0f7c65684af3270f28d1efa26f4a3fb1fbf77533be7097af1cb54a02",
+            "statement_semantic_digest": "4171419553664d7150ffe9875c14b6bc5212f14635d339dafc2af08ddc656c54",
+            "record_semantic_digest": "d75e68668b1fb28d7ffd340c20c9d37214962b291935dbb40667597a2a27402b"
+          }
+        },
+        "normalization": "L1 row sha256_without_lf hashes exact UTF-8 row bytes after removing only the terminal LF; sha256_with_lf includes one terminal LF."
+      },
+      "legacy_ir": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+        "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "records": "#/HIL-NFR-37, #/HIL-NFR-38, #/HIL-NFR-39, #/HIL-NFR-40",
+        "meaning": "Each IR record is a whole normative requirement identity. Its shared HR/HAC/HAT pointers are consumer context, not additional identities or current adoption."
+      },
+      "legacy_consumer_sources": {
+        "system_contract_ir": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-23",
+          "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+          "record_semantic_digest": "9f4d2db470aaa44878294d41641b87736f43c7dd87c35d650951b134c4465070",
+          "lineage": "HR-FR-HIL-23 links HIL-BR-32, HIL-FR-64..69, and HIL-NFR-37..40; behavior is third-party worker delegation with sandbox/environment hygiene/minimal payload/proposal revalidation/audit; transition requires sandbox template, classification gate, and opt-out receipt."
+        },
+        "functional_requirement_row": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+          "line": 57,
+          "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+          "row_sha256_with_lf": "34609b4d44fc891b508fc38f804641ccdab870f9fd2db70dc9133b4adc1e6c6c",
+          "row_sha256_without_lf": "4abc48322b27ddb5b9127c7fa0f9efb2c4f7221652648a5a523cfcee9883f641",
+          "meaning": "HR-FR-HIL-23 spans HIL-NFR-37..40 and calls for local enforcement, isolated execution, verified proposal, and audit; it does not name a primary Worker exception."
+        },
+        "acceptance_ir": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+          "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+          "cases": {
+            "HAC-HIL-23a": {
+              "polarity": "positive",
+              "statement": "sandbox契約内で委譲が完走しproposalが再検証済み",
+              "semantic_digest": "efb74a9471f38c0fb3892ddde4651d8ff76151c275de476389e772f1f03ee442"
+            },
+            "HAC-HIL-23b": {
+              "polarity": "negative",
+              "statement": "allowlist外egress/scope外diff/機密委譲/bypass常態化を拒否",
+              "semantic_digest": "137bb21711923bb2b8007420ac3cf97cd411e6a03167a028d52de81c54a49325"
+            },
+            "HAC-HIL-23c": {
+              "polarity": "boundary",
+              "statement": "quota枯渇・egress乖離でfail-close退避とquarantine",
+              "semantic_digest": "1ff618cd61c60d4f9633a9bff43e337239881acd09b42e1ea7f5c9edabf87322"
+            }
+          }
+        },
+        "acceptance_design_row": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+          "line": 55,
+          "file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+          "row_sha256_with_lf": "bb14d999661859fdbe7d0a5d557859fdbe1c0a35d56fb9daf5cc3a3b74c9688c",
+          "row_sha256_without_lf": "7a8229a9cb25457f18659f92e6c03a7d398a78f306c66b1870c340b596ce9877"
+        },
+        "test_ir": {
+          "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-23",
+          "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+          "status": "designed_not_implemented",
+          "semantic_digest": "006bf237fbd5c99991cb59533e2ced2d86fe1f76e95bc79cfecae32105647a8c",
+          "required_evidence": "sandbox、egress、payload、FS diff、audit receipt",
+          "negative_boundary": "機密漏洩、allowlist外通信、bypass残置、未検証proposal"
+        }
+      },
+      "shared_consumer_caveat": "HR-FR-HIL-23/HAC-HIL-23a/b/c/HAT-HIL-23 connect several source conditions. Their shared tests are design evidence only; do not distribute every consumer clause to every NFR without an exact mapping, and do not claim any archived test was executed."
+    },
+    "adopted_pair_and_decision_evidence": {
+      "decision_file": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      },
+      "SECURITY_029": {
+        "decision_row": 88,
+        "decision_row_sha256_with_lf": "d130de6af75326ce48616172a3d089498735844fae0f31c710e8857196d32650",
+        "registration": "MPR-RC-HELIXSECURITY-L2-029-002",
+        "decision": "adopted",
+        "l2": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "identity_heading": "### HELIXSECURITY-L2-029",
+          "line_start": 405,
+          "selected_through_line": 415,
+          "boundary": "before next same-or-higher heading at line 417; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF",
+          "whole_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "section_sha256": "0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745"
+        },
+        "l11": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "identity_heading": "### HELIXSECURITY-L2-029",
+          "line_start": 89,
+          "selected_through_line": 95,
+          "boundary": "before next same-or-higher heading at line 97; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF",
+          "whole_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "section_sha256": "3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0"
+        },
+        "scope_limit": "adopted added third-party runtime; do not expand its restrictions to primary Worker (decision row 112). Candidate text still says unadopted; the selected revision decision is the adoption authority."
+      },
+      "SECURITY_032": {
+        "decision_row": 91,
+        "decision_row_sha256_with_lf": "6fd4223f3dc2883ebcccefdd0540e50e18c3f43628a85d6efc38ff2a67ffb9bd",
+        "registration": "MPR-RC-HELIXSECURITY-L2-032-001",
+        "decision": "adopted",
+        "l2": {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "identity_heading": "### HELIXSECURITY-L2-032",
+          "line_start": 447,
+          "selected_through_line": 453,
+          "boundary": "before next same-or-higher heading at line 455; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF",
+          "whole_file_sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+          "section_sha256": "ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+        },
+        "l11": {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "identity_heading": "### HELIXSECURITY-L2-032",
+          "line_start": 116,
+          "selected_through_line": 122,
+          "boundary": "before next same-or-higher heading at line 124; trailing blank lines removed",
+          "normalization": "UTF-8, append one LF",
+          "whole_file_sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+          "section_sha256": "5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1"
+        },
+        "scope_limit": "permanent repository-level deny precedence over one-shot marker/provider flag is covered for main and added runtime; the pair does not specify transient bypass cleanup or the YOLO transition boundary."
+      },
+      "SECURITY_primary_worker_exclusion_decision": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "line": 112,
+        "line_sha256_with_lf": "0680cb7a3f6a5f7f0c9f9a0043c33a3a040a7035580c3f95bbaa1e41ba937383",
+        "text": "HELIXSECURITY-L2-029／031の追加runtime向け制限を主Worker全体へ適用しない。"
+      },
+      "legacy_scope_relation": "HIL-BR-32 line 84 explicitly names runtimes other than Claude/Codex. HIL-NFR-37 line 217 says third-party runtime, HIL-NFR-39 line 219 states a general local-enforcement rule, and HR-FR-HIL-23 line 57 covers third-party worker delegation and NFR-37..40 without an explicit primary-Worker exception. Thus BR-32 supports the added-runtime slice; it does not by itself prove that the broader HR/NFR source scope is exhaustively closed by SECURITY-029. Keep any primary-worker mapping unresolved; do not broaden adopted 029 or impose its added-runtime restrictions on primary Worker without a PO decision."
+    },
+    "existing_scope_to_reuse_not_repropose": {
+      "SECURITY-006-007-008": "Fixed adopted pairs provide network egress default deny, worker constraint application, and operation-specific authority; their shared scope/pins are already recorded in the audit exact-pair table. Do not recreate these general conditions.",
+      "HELIXOS-018-019": {
+        "l2_018": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "lines": "672-680; next heading line 682",
+          "sha256": "4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408"
+        },
+        "l11_018": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "lines": "345-350; next heading line 352",
+          "sha256": "77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53"
+        },
+        "l2_019": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "lines": "682-690; next heading line 692",
+          "sha256": "9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+        },
+        "l11_019": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+          "lines": "352-357; next heading line 359",
+          "sha256": "9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+        },
+        "meaning_already_present": "assignment identity, authority/scope, budget/deadline, stop/handoff, cumulative constraints, and preserving evidence/unfinished obligations across runtime/session changes."
+      },
+      "INTELLIGENCE-010": "The current worker-placement proposal is not automatic rerouting authority; do not duplicate generic selection criteria or turn a routing proposal into execution permission.",
+      "SECURITY-029": "Its adopted added-runtime classification/path/secret-scan/opt-out/vendor-vs-local conditions stay in place; this audit records only scope uncertainty and four evidence-type oracle mapping, not a replacement pair."
+    },
+    "requirements": [
+      {
+        "id": "HIL-NFR-37",
+        "status": "source_scope_held; adopted_added_runtime_slice_not_reproposed",
+        "source_conditions": [
+          "classify public/confidential/secret-or-PII",
+          "machine-gate confidential-or-higher additional third-party delegation using path allowlist and secret scan",
+          "runtime adoption requires opt-out complete",
+          "while opt-out incomplete, only public code may be delegated"
+        ],
+        "already_covered": [
+          "SECURITY-029-002 adopted added-runtime slice: classification, path allowlist+secret scan, opt-out prerequisite, public-code-only while incomplete; L2/L11 pins above."
+        ],
+        "true_unresolved_condition": "HR-FR-HIL-23 includes NFR-37 in third-party worker delegation without saying primary Worker is excluded; HIL-BR-32 specifically names runtimes other than Claude/Codex; SECURITY decision 57:112 excludes primary Worker from 029/031 additional-runtime limits. This evidence supports the added-runtime slice but does not prove exhaustive mapping of the broader HR/NFR scope. No claim that primary Worker must be newly blocked is made.",
+        "draft_l2_material": "Do not add another classification/opt-out gate to the adopted 029 slice. A future source-mapping candidate should state whether the HIL-BR-32 definition bounds the NFR/HR third-party term to added runtimes; if so, map the existing 029 slice and preserve any unproven broader HR scope. If the intended target includes primary Worker, hold for an explicit PO scope decision and a new exact target revision; do not edit or expand adopted 029 implicitly.",
+        "draft_l11_material": "Existing 029 already has distinct added-runtime examples for allowed public code, unfinished/unknown opt-out, confidential/secret/PII, classification unknown, and per-runtime/version/config reuse. Do not duplicate them. If scope is decided to include primary Worker, add a separately identified primary-worker fixture and prove its outcomes against existing 006/007/016 conditions; until then keep the primary case unclassified/held rather than pass or fail by inference.",
+        "fixtures": {
+          "already_present_not_to_rewrite": [
+            "added-runtime public code with opt-out and local evidence",
+            "added-runtime opt-out incomplete/unknown with nonpublic payload denied",
+            "confidential/secret/PII denied; unknown classification not public",
+            "runtime/version/config evidence not reused across another target"
+          ],
+          "scope_question_fixture": "Same provider ecosystem, one primary Worker operation and one contract-external added runtime, same payload/classification and permission basis; demonstrate that adopted 029 applies to the added runtime only, and record primary Worker as unresolved mapping rather than silently importing or omitting source conditions."
+        },
+        "dependency_023": {
+          "always_required": "selected HIL-NFR-37 source identity and current target/revision; existing SECURITY operation/classification condition for any evaluated delegated data",
+          "operation_specific": "path/secret/opt-out gates only when the selected operation delegates data to the added third-party runtime slice; primary-worker extension is unresolved",
+          "selected_source": "only the selected runtime/version/config, payload path/classification/scan result, and that runtime’s opt-out evidence; do not infer from another runtime",
+          "reference_only": "HIL-BR-32/NFR-37 and HR/HAC/HAT are semantic/consumer evidence, not runtime services; vendor UI/declaration/flag cannot establish local compliance"
+        },
+        "po_decision_boundary": "No PO decision is needed for a source-faithful mapping of existing clauses across current pairs. A PO decision is needed before changing the source interpretation or expanding adopted SECURITY-029 scope to primary Worker; if the source scope cannot be resolved without choosing between those meanings, hold and present that exact choice."
+      },
+      {
+        "id": "HIL-NFR-38",
+        "status": "distinct_control_transition_and_cleanup_conditions_unclosed",
+        "source_conditions": [
+          "YOLO/bypass/auto-approve setting is active only during runtime and must be removed at run end",
+          "repository setting can permanently deny bypass",
+          "headless delegation ideal is deny-default plus explicit allowlist",
+          "YOLO allowance is transitional and only for runtimes that lack allowlist support"
+        ],
+        "already_covered": [
+          "SECURITY-032-001 adopted: effective repository-level permanent deny outranks one-shot marker/provider flag for main and added Worker; do not re-propose precedence.",
+          "SECURITY-006/007/008 and OS-018 already govern egress, Worker constraint application, operation authority, assignment stop/handoff."
+        ],
+        "true_unresolved_condition": "Temporary-setting teardown and the allowlist-less-runtime transition limit are not specified by adopted 032. 032 presupposes an effective permanent deny and tests precedence; it does not demonstrate that repository setting exposes/retains that switch. Treat switch availability as unproven unless an exact current owner pair already demonstrates it; do not duplicate 032 priority logic.",
+        "draft_l2_material": "Preserve permanent-deny priority by reference to adopted 032. State that any selected YOLO/bypass/auto-approve activation is scoped to the runtime operation and removed when that run ends; keep the deny-default/explicit-allowlist form as the target, with the existing YOLO allowance only as a transition for a runtime lacking allowlist support. Do not invent transition deadline, runtime list, bypass issuer, approval step, schema, or retry/cleanup implementation.",
+        "draft_l11_material": "Use one fixture with explicit allowlist capability: the operation uses the allowlist and no YOLO bypass. Use a separate allowlist-less runtime fixture to show any permitted YOLO use remains transitional and limited to that operation. On success, failure, or cancellation/end, prove the temporary setting is absent from the next operation. Keep a separate permanent repository-deny plus one-shot/provider-flag conflict as covered by adopted 032, not as a newly proposed oracle.",
+        "fixtures": {
+          "normal_allowlist_runtime": "runtime declares allowlist capability; selected operation uses explicit allowlist; no YOLO/bypass setting is activated",
+          "transition_runtime": "selected runtime lacks allowlist capability; show only a transitional YOLO path for that run, without specifying a deadline or new approval",
+          "cleanup_negative": "run ends by success, failure, or cancellation; setting remains active for the next run -> reject/fail closed",
+          "wrong_runtime_negative": "runtime supports explicit allowlist but YOLO path is used instead -> reject",
+          "already_covered_not_to_rewrite": "permanent repo-level deny versus one-shot marker/provider flag priority in SECURITY-032-001"
+        },
+        "dependency_023": {
+          "always_required": "the selected operation remains under existing operation authority and the repository’s applicable permanent-deny state; source identity/revision is retained",
+          "operation_specific": "temporary cleanup and allowlist/YOLO transition apply only when such setting/operation is selected; ordinary operations with no bypass setting do not gain a new gate",
+          "selected_source": "the exact runtime capability (explicit allowlist supported or not), selected run, and effective repository policy state",
+          "reference_only": "old BR/HR/HAC/HAT and provider descriptions provide source/test context, not current policy authority or an executable enforcer"
+        },
+        "po_decision_boundary": "Faithfully preserving source semantics needs no PO change. Removing the source’s transitional YOLO allowance, allowing YOLO for allowlist-capable runtimes, or adding a fixed end date/retirement rule changes source meaning and requires a PO decision. The permanent-deny precedence remains the adopted 032 decision."
+      },
+      {
+        "id": "HIL-NFR-39",
+        "status": "evidence_type_oracle_mapping_unproven_and_source_scope_held",
+        "source_conditions": [
+          "vendor privacy UI, correction declaration, and remote flag are not proof of compliance",
+          "local enforcement evidence types named: OS sandbox, network allowlist, measured egress, filesystem difference inspection"
+        ],
+        "already_covered": [
+          "SECURITY-029-002 adopted added-runtime L2 names local sandbox/network allowlist/egress/FS evidence and rejects vendor-only proof; L11 rejects vendor-only proof and requests local evidence."
+        ],
+        "true_unresolved_condition": "The current adopted L11 does not separately map each of the four local evidence types to a positive/negative oracle. Decision 57:112 also confines 029 to added-runtime restrictions; HR-FR-HIL-23 spans NFR-39 without explicit primary Worker exception, while BR-32 names additional runtimes. Keep both type-level oracle mapping and source-wide scope closure unproven.",
+        "draft_l2_material": "Do not restate or broaden the already adopted 029 local-enforcement rule. Preserve the distinction between provider opt-out claim and locally enforced security evidence. For any source-mapping addition, name the four existing source modalities separately as evidence classes under their applicable operation/scope; do not assert that every modality applies to every operation without applicability evidence.",
+        "draft_l11_material": "Add independent evidence-oriented oracle cases: (a) OS sandbox configuration/effective enforcement evidence, (b) network allowlist policy and effective enforcement evidence, (c) measured egress compared with its selected allowlist/scope, (d) filesystem difference inspection compared with selected write scope. Each is individually missing/unknown or contradicts the selected scope in a separate negative; a positive combines only the evidence applicable to the selected operation. A provider UI/declaration/remote flag-only case is independently negative. Do not accept one evidence type as substitute for another when both are applicable.",
+        "fixtures": {
+          "positive": "selected added-runtime operation has locally observable sandbox and each applicable network/egress/FS evidence item; provider assertion is recorded separately and is not used as local proof",
+          "negative_by_evidence_type": [
+            "sandbox missing/unenforced",
+            "network allowlist missing or scope mismatch",
+            "egress measurement missing or out of scope",
+            "FS diff missing or contains out-of-scope change"
+          ],
+          "vendor_only_negative": "privacy UI, correction declaration, or remote flag says safe, but local evidence required by the selected operation is absent -> no compliance pass",
+          "primary_worker_scope": "include a primary Worker case only after the source/target scope decision; until then do not extend 029’s limits or claim source-wide closure"
+        },
+        "dependency_023": {
+          "always_required": "the compliance claim’s source/target revision and applicable existing SECURITY rule; local claim must not be derived from provider assertion alone",
+          "operation_specific": "sandbox, allowlist, egress, and FS modalities are selected based on the operation and enforcement surface; unknown applicability stays unknown",
+          "selected_source": "only selected local enforcement and observed result evidence for the selected runtime/config/scope",
+          "reference_only": "provider policy UI/declaration/remote flag and legacy consumer/test text are reference/context only for local security proof; they do not satisfy it"
+        },
+        "po_decision_boundary": "No PO decision is needed to retain the four original evidence types or map them to exact existing pairs. A PO decision is needed before changing the local-enforcement meaning or expanding adopted SECURITY-029 scope to primary Worker; unresolved source applicability remains held."
+      },
+      {
+        "id": "HIL-NFR-40",
+        "status": "quota_rate_state_and_lane_retreat_residual",
+        "source_conditions": [
+          "worker runtime quota exhaustion and rate limit are planned states",
+          "lane retreats fail-closed by either holding the queue or proposing routing to an alternative runtime",
+          "do not continue while ignoring exhaustion",
+          "do not perform unplanned retries"
+        ],
+        "already_covered": [
+          "HELIXOS-018/019 adopted source-management scope: assignment/attempt identity, budget/deadline/scope stop, cumulative constraints, handoff, evidence and unfinished obligations persist.",
+          "INTELLIGENCE-010 is a placement proposal, not rerouting or execution authority.",
+          "SECURITY-029 is added-runtime data/opt-out scope; its receipt does not cover quota/rate retreat."
+        ],
+        "true_unresolved_condition": "Existing generic budget/stop/attempt records do not state runtime quota/rate exhaustion as a planned state, the source’s queue-hold-or-alternative-routing-proposal retreat, or reject an unplanned retry. HAC-23c adds a shared consumer-level quarantine oracle, but its exact allocation to NFR-40 versus the other HR-FR-HIL-23 atoms is not resolved; do not silently import it as a new NFR-40 condition.",
+        "draft_l2_material": "For a selected runtime operation that returns quota exhaustion or a rate limit, preserve that condition as a planned non-success state and have the lane fail-close to one of the source’s alternatives: hold the queue or submit a proposal to route to an alternative runtime. A proposal is not an executed reroute; existing OS assignment/authority continues to decide execution. Do not continue as if capacity remained and do not retry without a plan. Reuse current stop, budget, attempt, handoff, and evidence conditions.",
+        "draft_l11_material": "Normal fixture: selected worker runtime reports quota exhaustion/rate limit; lane records a planned non-success and either retains work in queue or emits an alternative-runtime routing proposal, with no execution/retry until existing assignment/authority permits it. Independent negatives: continue despite exhausted quota; retry without an existing plan; bypass state as transient generic error; treat proposal as approved/dispatch and execute alternative runtime automatically. Change fixture: after a later externally supplied available state, resume only under current OS assignment and cumulative constraints.",
+        "fixtures": {
+          "normal_queue_hold": "planned quota/rate state -> queue retained and work not started/continued",
+          "normal_route_proposal": "planned quota/rate state -> alternative runtime proposal returned; no automatic dispatch/adoption",
+          "negative_unplanned_retry": "retry occurs without a planned retry condition -> reject",
+          "negative_ignored_exhaustion": "work continues despite quota/rate exhaustion -> reject",
+          "negative_auto_route": "alternative proposal is treated as permission and dispatched automatically -> reject",
+          "explicit_nonrequirements": "no numeric quota threshold, retry count, reset time, delay, new approval, ticket, or fixed provider schema is inferred"
+        },
+        "dependency_023": {
+          "always_required": "existing OS assignment/attempt identity, authority, scope, budget/deadline and continuity/unfinished-obligation conditions; no new independent identity or state schema",
+          "operation_specific": "quota/rate retreat is evaluated only when the selected worker runtime reports that state; normal operations do not gain a quota/rate gate",
+          "selected_source": "the selected runtime’s quota/rate response/state and the selected lane/assignment; do not infer from general price, provider claims, or another runtime",
+          "reference_only": "HIL-NFR-40 IR and HR/HAC/HAT are source/consumer references, not runtime authority; INTELLIGENCE-010 proposal is not execution permission"
+        },
+        "po_decision_boundary": "The source already gives the two retreat alternatives as an OR; preserving either path requires no PO change. Replacing the proposal with automatic routing, mandating only one alternative, adding retry thresholds/schedules, or reallocating lane/OS/INTELLIGENCE authority changes meaning and requires a PO decision."
+      }
+    ],
+    "nonregression_boundaries": [
+      "No IDs, MPR rows, current L2/L11 edits, runtime behavior, or tests were created or run.",
+      "No previously adopted pair was changed or reported as unadopted due to body metadata; exact decision revision controls adoption.",
+      "Legacy source rows and HR/HAC/HAT remain source/consumer evidence; HAT-HIL-23 remains designed_not_implemented.",
+      "HARNESS-L2-023 four dependency classes are used as a classification method only, not treated as this cross-mechanism requirement’s runtime dependency or as authority to create a schema.",
+      "No thresholds, deadlines, retries, fixed runtime/provider lists, new approver, or automatic reroute were invented."
+    ],
+    "dependency_classification_reference": {
+      "pair": "HARNESS-L2-023",
+      "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md; fixed adopted revision f6dad2a33e24f000b87d7f09b8d40288257e74cc, decision table row 52",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "lines": "463-497",
+        "section_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "lines": "219-233",
+        "section_sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+      },
+      "normalization": "anchored identity heading through before next level 1/2/3 heading; trim trailing blank lines, append one LF, SHA-256 UTF-8",
+      "four_classes": {
+        "always_required": "every permitted use; bind identity/contract version/state/evidence on every use",
+        "operation_specific": "only when the declared operation/applicability condition holds; missing/unknown/stale holds that operation",
+        "selected_source": "bind identity/version/scope of explicitly selected source; unselected source remains unobserved and no fallback is implicit",
+        "reference_only": "background material that does not govern execution/outcome/authority; source authority/oracle/safety conditions may not be demoted here"
+      },
+      "current_comparison": "existing audit exact selection records matching bytes through comparison main 212; current e05 section bytes were separately rehashed before this draft update",
+      "use_boundary": "classification method only; not a runtime dependency for NFR-37..40 and not a license to introduce schema, authority, or new MPR.",
+      "e05_main_comparison": {
+        "revision": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+        "l2": {
+          "line_start": 463,
+          "line_end_inclusive": 497,
+          "next_heading_line": 499,
+          "sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+        },
+        "l11": {
+          "line_start": 219,
+          "line_end_inclusive": 233,
+          "next_heading_line": 235,
+          "sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+        },
+        "normalization": "UTF-8; trim trailing blank lines; append one LF"
+      }
+    }
   }
 }
