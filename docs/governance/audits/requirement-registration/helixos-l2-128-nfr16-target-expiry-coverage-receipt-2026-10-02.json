@@ -1,0 +1,263 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-128-NFR16-TARGET-EXPIRY-2026-10-02",
+  "management_state": "registered_proposal",
+  "authority_effect": "none",
+  "coverage_result": "no_loss",
+  "base_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+  "candidate": {
+    "identity": "HELIXOS-L2-128",
+    "paired_identity": "HELIXOS-L2-128",
+    "product_target": "HELIX-OS",
+    "parent_l1_ids": [
+      "HELIXOS-L1-004"
+    ],
+    "version_target": "1.0",
+    "adoption_status": "未採択候補。採択済みHELIXOS-L2-032の変更ではない。"
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "section_heading": "### HELIXOS-L2-128",
+      "section_start_line": 1562,
+      "section_end_line": 1578,
+      "canonical_section_sha256": "sha256:429b88397e0920690239d13112da39e5f1cfa423c9d90390f32ee355a3fdab48",
+      "current_file_sha256": "sha256:948793b43bbdf940ba80856266f541fa20790e43b40483a1536dac2fd8623253"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "section_heading": "### HELIXOS-L2-128",
+      "section_start_line": 1192,
+      "section_end_line": 1202,
+      "canonical_section_sha256": "sha256:488a97ccf13afe130536c97345638b49ea99df75eb61c73a8656ef11448750ac",
+      "current_file_sha256": "sha256:d7812d1042c45abe6d2e1abaeb31da5a09b97d578e5b5687b5897b500b88d18c"
+    }
+  },
+  "source_atom_count": 1,
+  "source_atom_set_digest": "sha256:7261ecfa4aab8e1b0cc2e654c96a5342531e4789b9787b5afb1505a06ae2656f",
+  "source_atom_set_file": "docs/governance/audits/requirement-registration/helixos-l2-128-nfr16-target-expiry-source-lines-2026-10-02.jsonl",
+  "source_atom_set_file_sha256": "sha256:e38d67ff21885a41a6d1f0bc54f7b5080f37e8448f57beb9344d2ec3f7fe308e",
+  "source_collection_scope": "HIL-NFR-16の「対象変更で失効」1 condition span。旧L1 line 196とcanonical IR HIL-NFR-16は同一statementの重複表現であり一atomとして数える。期限切れ・fingerprint変化・exact-only/non-wildcard等は採択OS-032の対象で、OS-128 atomへ二重計上しない。HR-FR-HIL-06/HAC-HIL-06cはconsumer context、HAT-HIL-06はdesigned_not_implemented contextでありatomではない。",
+  "source_atom": {
+    "atom_id": "NFR16-TARGET-EXPIRY-L0196-S3",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 196,
+    "source_line_sha256": "sha256:3a2a724fd6b82603fb726e680e80bb84bc1ed7695a28033ea9b9a51eb731a7a2",
+    "source_line_text": "| **HIL-NFR-16** | quarantineはexact fingerprintだけに適用し、無期限、wildcard、directory単位、全check一括を禁止する。期限切れ、対象変更、fingerprint変化で失効する。 |",
+    "selected_source_span": "期限切れ、対象変更、fingerprint変化で失効。今回の候補選択spanは「対象変更で失効」。",
+    "source_identity": "HIL-NFR-16",
+    "source_statement_semantic_digest": "sha256:04c0a3f064456d079d0984c4dd1cb64238bade3e329b37611cea2a417630070b",
+    "canonical_ir_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-16",
+    "canonical_ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "canonical_ir_statement": "quarantineはexact fingerprintだけに適用し、無期限、wildcard、directory単位、全check一括を禁止する。期限切れ、対象変更、fingerprint変化で失効する。",
+    "canonical_ir_record_semantic_digest": "sha256:4007b2d12b9e07c69c919cee0b84d0a6a504e05697bbcbe7b18bb7bea81ca474",
+    "relation": "旧source line 196とIR statementは同一NFRの重複表現であり、1つのtarget-change condition atomとして数える。期限/fingerprint/overbreadth clausesはOS-032採択pairへcrosswalkし、ここでは再計上しない。"
+  },
+  "consumer_context": {
+    "HR-FR-HIL-06": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "source_record": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-06",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-16",
+          "HIL-BR-20",
+          "HIL-FR-28",
+          "HIL-FR-29",
+          "HIL-NFR-15",
+          "HIL-NFR-16"
+        ],
+        "behavior": "prejoin→postjoin→external CIを同一SHA/tree lineageで実行し既知failureだけを限定隔離する",
+        "transition_contract": "tree/check/quarantine policyあり → 三段greenまたは該当段failure",
+        "failure_and_evidence": "stage bypass、別SHA、wildcard/期限切れ/new fingerprint隔離 / CI、lineage、quarantine、remediation evidence",
+        "acceptance_ids": [
+          "HAC-HIL-06a",
+          "HAC-HIL-06b",
+          "HAC-HIL-06c"
+        ],
+        "system_test_id": "HAT-HIL-06",
+        "semantic_digest": "sha256:774023c3fe453cc95044b4bcc357f59b5f0be525f6c1cb21f92236a5fd29665d"
+      },
+      "source_statement_digest": "sha256:774023c3fe453cc95044b4bcc357f59b5f0be525f6c1cb21f92236a5fd29665d",
+      "source_record_start_line": 125,
+      "source_record_key_line_sha256_including_lf": "sha256:9518474c1e996d5e7b95aab800a36f718a0320a82993b07084354099c5636042",
+      "source_statement_semantic_digest": "sha256:774023c3fe453cc95044b4bcc357f59b5f0be525f6c1cb21f92236a5fd29665d"
+    },
+    "HAC-HIL-06c": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "source_record": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-06c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-06",
+        "polarity": "boundary",
+        "statement": "exact既知だけ期限付きquarantine",
+        "system_test_id": "HAT-HIL-06",
+        "semantic_digest": "sha256:6efc1ee14e65e9f5b2d933926cff828bf0bc9ca337350c1afdc558097e865bbc"
+      },
+      "source_statement_digest": "sha256:6efc1ee14e65e9f5b2d933926cff828bf0bc9ca337350c1afdc558097e865bbc",
+      "source_record_start_line": 189,
+      "source_record_key_line_sha256_including_lf": "sha256:96eb8f01c700e6406c1ee4389f580badf1048da9f1837a9bf1832503de88b505",
+      "source_statement_semantic_digest": "sha256:6efc1ee14e65e9f5b2d933926cff828bf0bc9ca337350c1afdc558097e865bbc"
+    },
+    "HAT-HIL-06": {
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "source_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "source_record": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-06",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-06",
+        "acceptance_ids": [
+          "HAC-HIL-06a",
+          "HAC-HIL-06b",
+          "HAC-HIL-06c"
+        ],
+        "supporting_test_ids": [
+          "HST-HIL-003",
+          "HST-HIL-022"
+        ],
+        "scenario": "三段CIとquarantineを実行",
+        "required_evidence": "SHA/tree lineage、check/log、expiry",
+        "negative_boundary": "stage bypass、別SHA、overbroad quarantine",
+        "semantic_digest": "sha256:d9842d6acd283df1775f9658a63429143e7b1b77d70fdc2db109ea3b1688fb56"
+      },
+      "source_statement_digest": "sha256:d9842d6acd283df1775f9658a63429143e7b1b77d70fdc2db109ea3b1688fb56",
+      "source_record_start_line": 101,
+      "source_record_key_line_sha256_including_lf": "sha256:507da5b49e6571ad4db44843166135190b649a3a5d70a3512455e5ba711c45df",
+      "source_statement_semantic_digest": "sha256:d9842d6acd283df1775f9658a63429143e7b1b77d70fdc2db109ea3b1688fb56"
+    }
+  },
+  "adopted_neighbor_crosswalk": {
+    "identity": "HELIXOS-L2-032",
+    "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+    "status": "Sept 29 decision exact revision 採択済み",
+    "decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+      "decision_row_sha256_including_lf": "sha256:5f98a0421541fd210a79eff7b3c68da5ef81b9d20291d2401e1934a7f214c186",
+      "decision_row_text": "| `HELIXOS-L2-032` | 採択 | `MPR-RC-HELIXOS-L2-032-001` | `docs/helix-os/L2-requirements/governance-requirements.md` | `89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2` | `sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202` | `HELIXOS-L2-032` | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd` | `sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460` | `docs/governance/audits/requirement-registration/os-quarantine-replay-coverage-receipt-2026-09-28.json` |"
+    },
+    "fixed_revision_target": {
+      "l2_file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+      "l2_section_sha256": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "l11_file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+      "l11_section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460"
+    },
+    "current_base_read_after": {
+      "l2_current_file_sha256": "sha256:948793b43bbdf940ba80856266f541fa20790e43b40483a1536dac2fd8623253",
+      "l2_current_section_sha256": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "l11_current_file_sha256": "sha256:d7812d1042c45abe6d2e1abaeb31da5a09b97d578e5b5687b5897b500b88d18c",
+      "l11_current_section_sha256": "sha256:7dead5624f225136232f0350b089be33c3e9dcffee93ef88f7c839875ae9f460"
+    },
+    "covered_conditions": [
+      "exact known check/fingerprint and version/scope",
+      "expiry/iteration ceiling",
+      "target/current run scope inclusion",
+      "fingerprint change, expired and policy evidence boundary",
+      "unknown/incompatible check does not infer eligibility"
+    ],
+    "not_claimed": "032 binds current target and policy applicability, but no exact adopted clause says a target identity change inside a still-applicable broad policy scope itself expires the prior quarantine disposition. Existing policy reuse/scope is not the NFR-16 target-expiry guard. The original direct HIL-NFR-16 source atom was not in the 032 receipt input set.",
+    "HELIXOS-L2-023_dependency_closure": {
+      "authority": "採択済みのOS候補集合の一つ。固定pairを接続closureの境界として参照し、OS-128では意味を変更しない。",
+      "decision": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "decision_commit": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
+        "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "decision_scope_row_sha256_including_lf": "sha256:9d167c5db90b6b27d94af25d3a219f2c36ccf3b120635ab564447ca61f95b27a",
+        "decision_scope_row_text": "HELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029"
+      },
+      "current_fixed_pair": {
+        "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "l2_current_section_sha256": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+        "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "l11_current_section_sha256": "sha256:a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20",
+        "l2_current_file_sha256": "sha256:948793b43bbdf940ba80856266f541fa20790e43b40483a1536dac2fd8623253",
+        "l11_current_file_sha256": "sha256:d7812d1042c45abe6d2e1abaeb31da5a09b97d578e5b5687b5897b500b88d18c"
+      },
+      "contract_used": "対象revision/digest、因果ID、scope、未完義務、停止理由、証拠のhandoff bindingと、unit/connection/compositeを別々に評価する境界だけ。OS-128が接続完了やticket完了を生成しない。",
+      "four_class_fixture": [
+        {
+          "class": "常時必須",
+          "synthetic_tuple": "owner HELIX-OS; identity adopted OS-032 + OS-007 evidence provenance; revision fixed selected pair; applies to any selected quarantine target comparison"
+        },
+        {
+          "class": "操作時必須",
+          "synthetic_tuple": "only if operation=policy.create/change/apply; owner HELIX-SECURITY; identity SECURITY-008; revision selected current contract; applicability proof binds actor+operation+scope to existing authority"
+        },
+        {
+          "class": "選択入力時必須",
+          "synthetic_tuple": "only if quarantine selected; policy P-demo + check C-demo@v1 + fingerprint F-demo + baseline B-demo + target T1 + run H1; receipt binds old/current target evidence to same case OS128-T1"
+        },
+        {
+          "class": "参照のみ",
+          "synthetic_tuple": "explicit historical context = old three-stage CI and HAT-HIL-06 design; no current execution dependency or pass proof"
+        }
+      ],
+      "closure_negatives": "単一欄ごとにowner/identity/revision/applicabilityのmissing/wrong/stale/unknownを与える。常時/選択/operation dependencyは該当closureをunknown/未完。reference-only provenance欠落は参照状態だけunknown。unselected operation/sourceを成功または不在にしない。",
+      "adoption_boundary": "OS-023の9/28 adoption is decision scope above; current frontmatter/candidate labels are not authority. OS-128 remains unadopted."
+    }
+  },
+  "condition_mapping": [
+    {
+      "source": "HIL-NFR-16 selected span: target change invalidates quarantine",
+      "l2": "HELIXOS-L2-128 §対象同一性/失効の限定",
+      "l11": "HELIXOS-L2-128 normal T1→T2 / independent negative 1-3",
+      "coverage": "candidate; exact target granularity is unspecified in source and remains unknown"
+    },
+    {
+      "source": "HIL-NFR-16 expiry/fingerprint/exact-only remainder",
+      "l2": "adopted HELIXOS-L2-032 fixed pair",
+      "l11": "adopted HELIXOS-L2-032 fixed pair",
+      "coverage": "already adopted; not copied into OS-128 source atom"
+    }
+  ],
+  "po_decision_packet": {
+    "choice_A": "原文どおり、識別済み対象が変化した時点で旧eligibleを新対象へ引き継がない。新対象は既存policy契約で改めて評価。",
+    "choice_B": "未決の対象同一性を保全し、対象変更の適用を保留。",
+    "choice_C": "既存policy scope/current HEAD/tree照合のみを対象変更として扱う。旧NFR-16より狭い意味変更として除外範囲を保持。",
+    "recommended_choice": "A",
+    "difference_and_impact": "AとCは、既存scope内で対象identityが変わった場合の旧eligible再利用可否が異なる。いずれも既開始操作のcancel/rollback、全policy revoke/re-registration、実装許可を含まない。"
+  },
+  "decision_and_scope_limits": {
+    "version_target_source": "旧sourceにversion_target指定なし。候補側version_target 1.0は親L1の範囲に置く提案であり、原文指定の値ではない。",
+    "target_granularity": "旧source未指定。新schema/target fieldは定義しない。",
+    "runtime_oracle_status": "HAT-HIL-06 status=designed_not_implemented。実行・旧CI/testは禁止し、候補の静的oracleだけを記録。",
+    "non_claims": [
+      "OS-032 fixed revisionを変更しない",
+      "eligible freshness/reuse rulesだけでtarget expiryをclosureしたとはしない",
+      "失効後のcancel/rollback/revoke/re-registerを追加しない",
+      "候補記録をadoption・authority・executionへ昇格しない"
+    ]
+  },
+  "validation": {
+    "old_archive_runtime_tests_ci_executed": false,
+    "old_source_read_only": true,
+    "candidate_pair_parity": "paired requirements/acceptance sections recorded above",
+    "common_gate_and_137": "root-owned; not run in this worker",
+    "candidate_sections_rehashed_after_023_fixture_update": true
+  },
+  "canonical_ir_record_pin": {
+    "source_record_start_line": 5068,
+    "source_record_key_line_sha256_including_lf": "sha256:887f6df098cfe63c32fadd0dffdbb4c09f4a42f78c53efdafc47946d70a6466c",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_statement_semantic_digest": "sha256:04c0a3f064456d079d0984c4dd1cb64238bade3e329b37611cea2a417630070b"
+  },
+  "source_asset_ledger": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "file_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "line": 424,
+    "line_sha256_including_lf": "sha256:057a8508576084d4fc805a4434a71be99cf391074bc15f866628b237d59c57b1",
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "disposition": "source_snapshot_preservation; non_executable_read_only_source",
+    "meaning_change": "none asserted by ledger; candidate is an unadopted projection"
+  }
+}
