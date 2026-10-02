@@ -1,0 +1,247 @@
+{
+  "receipt_id": "HELIXOS-L2-119-HIL-BR-03-COVERAGE-2026-10-02",
+  "created_at": "2026-10-02T08:50:09+09:00",
+  "audit_base_commit": "9f743cb0854ad7f2ef6a215510f88379d8c3fa90",
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_file_sha256": "sha256:b8e5ee03cacdbe65ef13040e6fb93a513759852f8961573386a571502e0f2be3",
+      "heading": "### HELIXOS-L2-119 Codex・Claude協働episodeの圧縮とcontinuity分離候補（未採択）",
+      "start_line": 1468,
+      "end_line": 1480,
+      "sha256": "sha256:0ac7fc50da6f6c1370575ecfd0f9ef772761e703bb57360994d33ed60fa24a73"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_file_sha256": "sha256:4f72ecd7c86e7e41f99ff2361e717c7d4556cc642bccde799b412b8de73a7033",
+      "heading": "### HELIXOS-L11-119 Codex・Claude協働episode圧縮・continuity分離の受入候補（未実行）",
+      "start_line": 1055,
+      "end_line": 1065,
+      "sha256": "sha256:5cf6bfd7d7dcd39ea8f7458cb5edc53483d5147684f44c94e02d5a75ad514b44"
+    },
+    "candidate_semantic_digest_rule": "Each exact selected section from heading through before the next peer heading, trailing blank lines normalized to one LF; the JSON records both section and full-file hashes."
+  },
+  "parent_l1": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "fixed_revision": "9f743cb0854ad7f2ef6a215510f88379d8c3fa90",
+      "fixed_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "status": "fixed current Concept bytes; this candidate is not adopted"
+    },
+    "planning": {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "selected_parent_ids": [
+        "HELIXOS-L1-003",
+        "HELIXOS-L1-008"
+      ],
+      "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_scope": "2026-09-28 PO decision fixed/adopted exact L1 bytes; candidate not adopted"
+    },
+    "memory_scope_decision": {
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "sha256:a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de",
+      "decision_locator": "2026-09-24 PO decision, harness memory limited to Codex/Claude collaboration; HMC-BR-003, HMC-BR-006"
+    }
+  },
+  "source_scope": {
+    "source_lines_file": "docs/governance/audits/requirement-registration/hil-br03-compaction-source-lines-2026-10-02.jsonl",
+    "source_lines_file_sha256": "sha256:4cd0fa4506df32c491be5e44c78c13d9ec5e22ee57019ad1baa88a293dfe0cd5",
+    "source_atom_count": 1,
+    "source_atom_set_digest": "sha256:e054c4d4b4de24750a64fa8fcbbec5906d4ee94e22a9cd4836e391125774ea27",
+    "digest_rule": "Sort atom_id; concatenate UTF-8 atom_id + SPACE + identity_statement_semantic_digest without sha256: prefix + LF; SHA-256. HIL-BR-03 is the only selected requirement atom.",
+    "asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "file_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "line": 2866,
+      "line_sha256_without_lf": "sha256:1134f4b0f8f865d5a54fde240b255f3d578bab96c961c4b8392a2e3830558700",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_path": "requirements-ir/requirements.json",
+      "source_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "carry_forward_state": "preserved_pending_rehome"
+    },
+    "related_l1_source": {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 55,
+      "line_sha256_without_lf": "sha256:fe2e8f8d73b09e2000548f6189fffdc9a3c16d3be80309153b8c1c80c57d7fa2"
+    },
+    "supporting_consumer_context": [
+      {
+        "id": "HR-FR-HIL-07",
+        "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-07",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "record_semantic_digest": "sha256:3edce5eb6b2d007c0905a35d6ece3b7b364e13431fece8e68bf6db4a45bf7fbd",
+        "relation": "parent contract also references HIL-BR-11, HIL-FR-10/14, HIL-NFR-02; not extra BR-03 atoms"
+      },
+      {
+        "id": "HAC-HIL-07a/b/c",
+        "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "record_digests": {
+          "HAC-HIL-07a": "sha256:39d20da907cc02270df783032a35b5d242ac7c40bd9bcdf3c63a2094d8a8a739",
+          "HAC-HIL-07b": "sha256:0e055de8644f8b49281f8477a81a9b2d3567ab4b7048bb7309173a5787eff85f",
+          "HAC-HIL-07c": "sha256:08257b8dfdb1537e22cda2939a85746ff5929c6b6524784bf18d66add4f012cd"
+        },
+        "relation": "positive separation, prohibited content/self-promotion, shadow/rollback boundary context; not extra requirement atoms"
+      },
+      {
+        "id": "HAT-HIL-07",
+        "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "record_semantic_digest": "sha256:f81fd90ef864ecbf3f6ad5216098cf25eaab85c05c086462d35033efd0b647fa",
+        "status": "designed_not_implemented",
+        "supporting_test_ids": [
+          "HST-HIL-015",
+          "HST-HIL-016"
+        ],
+        "relation": "design-only oracle input/output digest, shadow metric, review/rollback; not an executed test or extra source atom"
+      }
+    ],
+    "identity_source_line": {
+      "line": 88,
+      "text": "  \"HIL-BR-03\": {",
+      "sha256_without_lf": "sha256:43eb348c3ef430c5c74cd3062e1fbdb8544244ee2b17663b8ce61e6c5d1239fc",
+      "sha256_with_lf": "sha256:d112c8663607c74766e5ff7e01645436ad278b966c09f8fea37ece6c0ed4808d"
+    }
+  },
+  "condition_crosswalk": [
+    {
+      "atom_id": "HIL-BR-03",
+      "source_condition": "At Codex completion, compress the four source classes: raw execution logs, PR, test/CI, and audit findings; only durable knowledge may be promoted to harness memory; progress remains in DB continuation and is not mixed into memory. Each class must be accounted for as present, explicitly not applicable with source/reason, missing, or failed; unknown is not silently treated as not applicable.",
+      "candidate_l2_destination": "HELIXOS-L2-119 requires all four source classes to be accounted for; selected present sources carry identity/revision/digest/span through compaction; unknown/missing coverage stays incomplete. The old DB is mapped to current L2-019 episode continuation.",
+      "candidate_l11_destination": "HELIXOS-L11-119 normal oracle accounts for all four classes, explicit non-applicability, and traceable spans. Independent negatives silently omit each source class or selected source, mutate span/revision, mix progress/rules into knowledge, self-promote, or resume only from provider memory.",
+      "existing_exact_whereabouts": [
+        {
+          "ref": "HELIXOS-L2-019 / L11-019",
+          "locator": "governance-requirements.md:682 onward; governance-acceptance.md:352 onward",
+          "coverage": "general event provenance, episode reconstruction, checkpoint/unfinished obligations; does not express BR-03 source-class/span compression coverage or separate compression/knowledge/continuation outputs"
+        },
+        {
+          "ref": "HELIXOS-L2-005 and HMC-BR-003",
+          "locator": "governance-requirements.md:362 and adjacent improvement-routing requirement",
+          "coverage": "knowledge authority split and no memory-as-source for rules; not BR-03 episode compression coverage"
+        },
+        {
+          "ref": "HELIXOS-L2-009 / HMC-BR-006",
+          "locator": "governance-requirements.md existing event/checkpoint and HMC table lines 362; decision 9/24",
+          "coverage": "durability/provider-memory boundaries; not selected source span/output-separation oracle"
+        },
+        {
+          "ref": "HELIXOS-L2-112, L2-118",
+          "locator": "governance-requirements.md candidate sections; 112 Product Data projection, 118 CI event concurrency",
+          "coverage": "different operation/input identity; no BR-03 compaction/continuity claim"
+        }
+      ],
+      "preserved_meaning": "raw logs/PR/test-CI/audit finding source types, completion boundary, knowledge-only promotion, no progress mixing; current PO restricts harness memory to Codex/Claude collaboration and no over-retention.",
+      "meaning_difference": "Old literal Claude Code/Codex actor and DB continuation are not implemented as old architecture: proposed target is current Codex/Claude collaboration episode and L2-019 continuation. Scope and formal successor remain unconfirmed; requirement candidate remains unadopted.",
+      "positive_oracle": "Two separate controls: A provides one PR target revision, two raw-log spans, a terminal test/CI result, and an audit finding; all four classes are present and every summary claim maps to exact source/revision/span. Continuation retains result, unfinished finding, and resume position; only distinct durable knowledge may be handed off separately. B provides explicit existing operation/scope evidence that no PR was created; only the PR class is marked not applicable with that evidence, while the other three classes are accounted for. No missing/failed class is a positive control.",
+      "negative_oracle": "Silently omit any class; treat unknown as false/not applicable; omit a selected source/span; change a source revision; leave a summary claim untraceable; transfer progress or the whole summary to durable knowledge; promote rules/preferences or unverified findings; resume from provider memory only; or fall back to a prior/provider summary after a selected-source read failure. Reject or retain incomplete/unknown with unfinished obligations.",
+      "not_seen": "No bounded retention duration, numerical compression ratio, fixed source count, storage/DB schema, fixed algorithm, or runtime performance target in selected source; none added.",
+      "scope_limit": "Not-applicable is accepted only with explicit source/operation-scope evidence, as in control B. A class/source that is merely unselected or unconnected remains unobserved and is not classified as reference-only."
+    }
+  ],
+  "dependencies": {
+    "classification_source": {
+      "path": "docs/governance/decisions/body-reinforcement-po-decisions-2026-09-27.md",
+      "sha256": "sha256:c0cf47913b93e462cd609b51f3a8ca634b84bf46dc351aa1debfcb91b919ce8d",
+      "line": 43,
+      "line_sha256_without_lf": "sha256:ada8204e32750c7ff0dab2074e1ea04aa897f60767bee32b1dc9bafb62c56fa4",
+      "line_sha256_with_lf": "sha256:1d758341fed1bf38ba9f5c90e972057818d5455e44e166f0a323dbbf2cdac06d",
+      "source_text": "補強するのは、各パックについて、常時必須・特定操作時のみ必須・選択した入力元に応じて必須・参照資料のみ、を区別することです。Workerの観測だけを扱う構成なら、その接続と安全条件で成立を確認し、未接続の入力元は未観測として保持する。"
+    },
+    "four_categories": {
+      "always_required": "L2-015 source/authority/evidence provenance; L2-019 episode continuity; data-use boundary.",
+      "operation_specific": "Compaction/coverage when this completed episode selects the operation.",
+      "selected_input_dependent": "The selected raw log, PR, test/CI, and audit sources/spans for this episode.",
+      "reference_only": "Legacy DB, extension/hook and memory schema, unrelated background material, future promoter implementation. Unselected selected-input sources/classes are unobserved, not reference-only and not satisfied."
+    }
+  },
+  "coverage_result": "no_loss_limited_to_one_HIL-BR-03_IR_requirement_atom",
+  "carried_atom_refs": [
+    "HIL-BR-03"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-003#HIL-BR-03 full source identity remains preserved; formal successor/owner/scope unresolved",
+    "MPR-SH-IR-003#HR-FR-HIL-07/HAC-HIL-07a/b/c/HAT-HIL-07 are supporting source contexts, not counted as BR-03 atoms; broader contract and consumers remain held"
+  ],
+  "unaccounted_atom_refs": [],
+  "human_decision_disposition_refs": [],
+  "po_disposition_packet": {
+    "choice_a": "Adopt the bounded BR-03 source/span compression and three-way output separation proposal under the current Codex/Claude memory scope; retain L2-019 continuation and LABO/INTELLIGENCE knowledge authority boundaries.",
+    "choice_b": "Keep the legacy BR-03 actor/DB wording literally and leave the proposed current-episode mapping unadopted.",
+    "choice_c": "Keep the whole HIL-BR-03 atom in source holding without this candidate.",
+    "recommendation": "A is recommended as a candidate-only current-layer derivation because the 9/24 PO decision already bounds memory use and the 9/28 fixed L1 includes continuity/reconstruction. Candidate adoption and any residual scope/meaning difference still require existing authority.",
+    "impact": "A assigns only a selected episode compaction/acceptance boundary, not formal IR successor or source closure. B/C leave the exact source/span and output separation oracle absent from current adopted pairs. No runtime, implementation, or memory retention interval is decided."
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Not supplied by selected source or fixed/adopted parent L1."
+  },
+  "no_claims": [
+    "candidate adoption",
+    "formal successor for full HIL-BR-03 row",
+    "source holding closure",
+    "full HR-FR-HIL-07/HAC/HAT-HIL-07 closure",
+    "runtime/test/CI execution",
+    "implementation permission",
+    "old DB/schema/extension migration"
+  ],
+  "verification": {
+    "source_file_hashes_recomputed": true,
+    "selected_source_atom_count_verified": 1,
+    "candidate_sections_and_hashes_written": true,
+    "existing_l2_019_hmc_005_009_112_118_read": true,
+    "legacy_runtime_test_ci_run": false,
+    "new_generation_runtime_test_ci_run": false,
+    "common_8_gates_run_by_worker": false,
+    "137_run_by_worker": false,
+    "concrete_episode_example_added": true,
+    "unseen_class_span_scope_and_no_fallback_oracle_added": true
+  },
+  "current_adopted_contract_composition": {
+    "basis": "Read the exact current text and the decision fixing its bytes; section labels/frontmatter alone do not establish adoption.",
+    "po_decision": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "decision_clause": "The fixed L1 bytes and L2-001 through L2-029 with their paired L11 acceptance text were agreed. This candidate is appended after that fixed revision and is not part of that adoption.",
+      "fixed_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "fixed_l2_file_sha256": "sha256:c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "fixed_l11_file_sha256": "sha256:925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    "existing_exact_clauses": [
+      {
+        "identity": "HELIXOS-L2-019 / L11-019",
+        "status": "fixed/adopted in 2026-09-28 OS decision",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md:682-690; docs/helix-os/L11-acceptance/governance-acceptance.md:352-357",
+        "exact_l2_text": "共通形式のevent、source/revision、相関ID、actor、data-use class、実行・検証結果、訂正、checkpoint、未完義務。episode内の要求・判断・変更・実行・検証・手戻り・運用結果の原記録、参照、再構築用projectionと再開情報。欠落、重複、stale、拒否、未実行を成功証拠から分け、provenanceと訂正履歴を保つ。担当/session/runtimeが変わっても期限、budget、失敗回数、未完義務とscopeを失わない。provider memoryをcontinuityの正本にしない。",
+        "coverage_boundary": "The exact accepted pair retains general event provenance, episode reconstruction, and unfinished obligations. It does not name raw logs, PR, test/CI, audit findings as four source classes or require class/span accounting through a compaction output separated from a knowledge output."
+      },
+      {
+        "identity": "2026-09-24 PO memory boundary / HMC-BR-003 and HMC-BR-006",
+        "status": "human PO decision source; current table locates conditions, table metadata does not replace the decision",
+        "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:67-68; docs/helix-os/L2-requirements/governance-requirements.md:362-363",
+        "exact_decision_text": "harness memory（HIL-BR-03、HIL-FR-10）は、CodexとClaudeの連携用に限る。過度な記録を残さない。／規則は仕組みで吸収する。知識は、1.0〜2.xではLABOが評価して保持し、3.0からはIntelligenceが改善に使う。",
+        "coverage_boundary": "Authority and long-lived knowledge owner are already determined; candidate preserves them and does not re-ask or self-approve. They do not supply the BR-03 source-class/span compression oracle."
+      },
+      {
+        "identity": "HELIXOS-L2-112 and HELIXOS-L2-118",
+        "status": "unadopted candidates; different operation identities",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-112;#HELIXOS-L2-118",
+        "coverage_boundary": "112 is Product Data read projection; 118 is CI-event concurrency. Neither covers collaboration episode memory compaction."
+      }
+    ],
+    "adoption_separation": "Existing L2-019 and the 9/24 memory authority decision are adopted evidence. New L2/L11-119 is an unadopted requirement proposal only. Historical HAT-HIL-07 is design-only, not current acceptance or an executed result."
+  },
+  "registration": {
+    "registration_id": "MPR-RC-HELIXOS-L2-119-002",
+    "supersedes_registration_id": "MPR-RC-HELIXOS-L2-119-001",
+    "correction_reason": "After the 3bd0a522 local candidate revision, clarify that unselected input sources/classes stay unobserved rather than being classified reference-only, and separate the all-four-source-class positive control from an evidence-backed non-applicable-class control. Source atom and authority boundaries are unchanged."
+  }
+}
