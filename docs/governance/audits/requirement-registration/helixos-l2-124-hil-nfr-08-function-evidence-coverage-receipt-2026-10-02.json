@@ -1,0 +1,383 @@
+{
+  "receipt_id": "HELIXOS-L2-124-HIL-NFR-08-FUNCTION-EVIDENCE-COVERAGE-2026-10-02",
+  "authority_effect": "none",
+  "registration_id": "MPR-RC-HELIXOS-L2-124-001",
+  "candidate_ids": [
+    "HELIXOS-L2-124",
+    "HELIXOS-L11-124"
+  ],
+  "candidate_status": "registered_proposal; unadopted; no L3 approval, implementation, runtime execution, acceptance, formal successor, or source closure asserted",
+  "base_commit": "bca7592cf444b07292a1366e3b28e7de4d9f88cb",
+  "source_atom_count": 1,
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-nfr-08-function-evidence-source-lines-2026-10-02.jsonl#HIL-NFR-08",
+  "source_atom_set_digest": "sha256:e82fbf6c5bb686d2315af3fad8062d9b1140180c9f0a41d6cf961f487ec1c333",
+  "source_atom_set_file_sha256": "sha256:b0a14bb0714f72b8d56be09c965a3c44851ba39011e9dc64f9a4134ddd8a926a",
+  "source_atom_set_encoding": "UTF-8 JSONL; source physical line SHA includes LF; source_line_text omits line ending.",
+  "source_collection_scope": "Exactly one frozen IR identity atom HIL-NFR-08. L1 line 188 is same-statement corroboration, not an additional atom. HR-FR-HIL-09, HAC-HIL-09a/b/c, HAT-HIL-09, static HST rows and old test-design row are consumer/oracle context, not extra atoms. Adjacent requirements excluded.",
+  "source_atom": {
+    "source_identity": "HIL-NFR-08",
+    "atom_id": "HIL-NFR-08",
+    "kind": "legacy_ir_requirement_identity",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "ir_revision": 1,
+    "ir_status": "specified",
+    "ir_definition_status": "frozen",
+    "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-08",
+    "source_file": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_physical_line": 4724,
+    "source_line_sha256_including_lf": "sha256:11b1390c80f408cd630b4a795d7c54bde882c2cd7218721bf33da0a93d648adf",
+    "statement": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+    "statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+    "record_semantic_digest": "sha256:c3ebf9ed452d5cc91ba25af6ecb3d66d53cb17dbd5a8c2d37c602e18aa2bc64c",
+    "direct_L1_corroboration": {
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "physical_line": 188,
+      "line_sha256_including_lf": "sha256:aff0e510f76f477640a547022eb72acad78b0cad727a11b2da0439bf5791a50c",
+      "relation": "corroboration only, not an additional atom"
+    },
+    "consumer_context": [
+      {
+        "identity": "HR-FR-HIL-09",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea",
+        "relation": "multi-requirement consumer context; not an additional atom"
+      },
+      {
+        "identity": "HAC-HIL-09a/b/c",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digests": [
+          "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7",
+          "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83",
+          "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614"
+        ],
+        "relation": "positive/negative/boundary oracle context; not additional atoms"
+      },
+      {
+        "identity": "HAT-HIL-09",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da",
+        "status": "designed_not_implemented; not executed"
+      },
+      {
+        "identity": "HST-CASE-005-05 / 001-07 / 006-17 / 015-07 / 009-01 / 009-05 / 009-09; HST-HIL-009",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md and docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+        "relation": "design-only examples and failure oracles; not current enums or additional atoms; not executed"
+      }
+    ],
+    "old_source_access": "read-only; no old runtime/test/CI or external operation"
+  },
+  "legacy_source_meaning": {
+    "identity": "HIL-NFR-08",
+    "statement": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+    "statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+    "condition_slices": [
+      "PR監査はfailure codeとprovenanceを持つ",
+      "Issue Gateはfailure codeとprovenanceを持つ",
+      "agent registryはfailure codeとprovenanceを持つ",
+      "memory compactionはfailure codeとprovenanceを持つ",
+      "ZIP detectorはfailure codeとprovenanceを持つ",
+      "五機能ともproseだけの合格を禁止する"
+    ]
+  },
+  "candidate_sections": {
+    "HELIXOS-L2-124": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "section_sha256": "sha256:7fb91aef0eb06401f333080335a6d12ffecdcc4a0d4b3643cf9270599b57ac7a",
+      "full_file_sha256": "sha256:b891d04ae04a1f371f7b5a3567f891553ca36b77bf45e352f7bbb10527b74a02"
+    },
+    "HELIXOS-L11-124": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "section_sha256": "sha256:a15a091855aa69b83fab50291bf5604d0ec49cb0438a5540e408c26c9de583ca",
+      "full_file_sha256": "sha256:031f79f7b5caa78cbe0aa2f9ebd807c4c013fb19376af26af5ee55928677fc5b"
+    },
+    "canonical_section_hash_rule": "Heading through immediately before next same-or-higher heading; trim trailing whitespace and add one LF."
+  },
+  "current_adoption_basis": {
+    "OS_fixed_decision": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "scope": "fixed/agreed L2-001..029 and paired L11 bytes; candidates 014..029 explicitly adopted; 124 is outside that fixed revision and remains unadopted."
+    },
+    "HARNESS_023": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_locator": "row 52; exact candidate revision explicitly adopted under the PO statement “明示候補24件は全件採用。”",
+      "decision_row_sha256_including_lf": "sha256:f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "decision_row_sha256_without_lf": "sha256:6128df2a6a74cf46714fe273b8f43434985de27edde87041812eda420e0bde5e",
+      "fixed_pair": {
+        "L2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "L2_canonical_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+        "L11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "L11_canonical_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+      },
+      "current_pair": {
+        "L2_canonical_section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+        "L11_canonical_section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+        "fixed_current_bytes_equal": true
+      },
+      "canonical_rule": "Heading through before next same-or-higher heading; trim trailing whitespace and one LF."
+    }
+  },
+  "adopted_pair_crosswalk": [
+    {
+      "identity": "HELIXOS-L2/L11-033",
+      "adoption": "2026-09-29 57-candidate decision row 56 adopted exact pair",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": 56,
+      "L2_section_sha256": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "L11_section_sha256": "sha256:1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1",
+      "covered": "Accepted selected engine/detector result code, evidence, provenance, snapshot reproduction; directly reused for ZIP detector role. Adjacent agent metadata engine capability is identified separately.",
+      "not_inferred": "Does not mean all five NFR-08 roles are covered.",
+      "decision_row_evidence": [
+        {
+          "identity": "HELIXOS-L2-033",
+          "physical_line": 56,
+          "row_sha256_including_lf": "sha256:1b2f3e8bd602b488a4af5f20db36de7674359673da3b3dcb0ed4f2f09df6855a",
+          "row_sha256_without_lf": "sha256:54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+        }
+      ],
+      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+    },
+    {
+      "identity": "HELIXOS-L2/L11-035",
+      "adoption": "2026-09-29 decision row 58 adopted exact pair",
+      "decision_row": 58,
+      "L2_section_sha256": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "L11_section_sha256": "sha256:8507d8f43c2aafae4d8b08fc27e9c3c7c28e6d4a74d912b7667d3dc27786c742",
+      "covered": "PR lifecycle event intake/audit-job request.",
+      "residual": "Does not provide PR audit result failure-code/provenance contract.",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row_evidence": [
+        {
+          "identity": "HELIXOS-L2-035",
+          "physical_line": 58,
+          "row_sha256_including_lf": "sha256:f4a5dec58d237ed7836aac99488ea08fde6bb48cfad1155fea4442ce8a1fce2c",
+          "row_sha256_without_lf": "sha256:86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+        }
+      ],
+      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+    },
+    {
+      "identity": "HELIXOS-L2/L11-019",
+      "adoption": "2026-09-28 fixed/adopted pair within OS 001..029 decision",
+      "covered": "Continuity context only.",
+      "residual": "Not a memory-compaction failure/result code oracle.",
+      "L2_section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+      "L11_section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+      "adoption_decision_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "adoption_basis": "2026-09-28 fixed OS decision included this pair within the agreed L2-001..029 and paired L11 bytes."
+    },
+    {
+      "identity": "HARNESS-L2/L11-047",
+      "adoption": "2026-09-29 decision row 52 conditional adoption, placement A",
+      "decision_row": 52,
+      "L2_section_sha256": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+      "L11_section_sha256": "sha256:8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+      "covered": "Specialist capability contract placement at HARNESS.",
+      "residual": "Not all registry evaluation result failure codes/provenance.",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row_evidence": [
+        {
+          "identity": "HARNESS-L2-047",
+          "physical_line": 52,
+          "row_sha256_including_lf": "sha256:89a6add22224c89b73c6a5fc54734977e80eddce7a59fd4cad1de2b23c839e37",
+          "row_sha256_without_lf": "sha256:234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+        }
+      ]
+    },
+    {
+      "identity": "HARNESS-L2/L11-058 + HELIXOS-L2/L11-034 + 101",
+      "adoption": "2026-09-30 live26 decision row group adopted exact revisions",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_rows": [
+        43,
+        51,
+        54
+      ],
+      "section_sha256": {
+        "HARNESS-L2-058": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3",
+        "HARNESS-L11-058": "sha256:5dfc18281d1ab48e2d0cf81d4c9cfb6f3d7f035a38a5955cfcedc33d0f1875c9",
+        "HELIXOS-L2-034": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+        "HELIXOS-L11-034": "sha256:b89f63d709b38de1ddc8b7ca7d51de595b9cae587da320e027aefed67a3a4e4b",
+        "HELIXOS-L2-101": "sha256:03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5",
+        "HELIXOS-L11-101": "sha256:bea9231cf52c1491768397621ecb9fd42f54f07b3eb323a3cfaa68aff08d818a"
+      },
+      "covered": "PR finding classification/disposition/evidence in their adopted scope.",
+      "residual": "Does not alone define all PR audit result failure-code/provenance or prose-only gate.",
+      "decision_row_evidence": [
+        {
+          "identity": "HARNESS-L2-058",
+          "physical_line": 43,
+          "row_sha256_including_lf": "sha256:4a20d92476907947cdef098185e9dbd639b4c407f90e44fcf5b5c1f2e24f0878",
+          "row_sha256_without_lf": "sha256:8177aa9ef75d22552d4e1b74c6bfacdfdc65782e97f0a7b4088431c27cfac258"
+        },
+        {
+          "identity": "HELIXOS-L2-034",
+          "physical_line": 51,
+          "row_sha256_including_lf": "sha256:33000708725de32e3fad97b4edb9ef4e893edef98adab92b145bfa263d27147a",
+          "row_sha256_without_lf": "sha256:9e5008e562be198466fe57dcbdd9ccfffde23c5f2797e13f60af394cd93e6442"
+        },
+        {
+          "identity": "HELIXOS-L2-101",
+          "physical_line": 54,
+          "row_sha256_including_lf": "sha256:b4340a499b663592033fa7800e7694bbc9f4f98d12416b7d33ec6fbc2f29f09a",
+          "row_sha256_without_lf": "sha256:30543b99a6dda6ee7b825cc6879d5f1494e53799f91a8288f2fe152d77e2b6f1"
+        }
+      ],
+      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    {
+      "identity": "HARNESS-L2/L11-059 + HELIXOS-L2/L11-102",
+      "adoption": "2026-09-30 live26 decision adopted same-decision group",
+      "decision_rows": [
+        44,
+        55
+      ],
+      "section_sha256": {
+        "HARNESS-L2-059": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f",
+        "HARNESS-L11-059": "sha256:830646bc2f5bafcce50d20c88fb3d657ad7f5e2353dcf148628151a7c0992198",
+        "HELIXOS-L2-102": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218",
+        "HELIXOS-L11-102": "sha256:0bfce78875f0e59ded0a2f2ecd31f39e795e043105d33c762d38e15251ea8459"
+      },
+      "covered": "Issue contract fields/intake carryover.",
+      "residual": "Not Issue Gate evaluation failure-code/provenance output.",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_row_evidence": [
+        {
+          "identity": "HARNESS-L2-059",
+          "physical_line": 44,
+          "row_sha256_including_lf": "sha256:384b3f05efe5d64594822167415bbc4b6cbf1ac9b1cd69ae0aecbb70394360ed",
+          "row_sha256_without_lf": "sha256:0bfd9f58757e294ed8dde1e772c5da3c07e91bb7d1956ee4a9a53c84f51e9159"
+        },
+        {
+          "identity": "HELIXOS-L2-102",
+          "physical_line": 55,
+          "row_sha256_including_lf": "sha256:1c8544ba7c62568860a57793e76c060e21d45ed51f7f76cd54ba46779a03b1e8",
+          "row_sha256_without_lf": "sha256:7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d"
+        }
+      ],
+      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    {
+      "identity": "HELIXOS-L2/L11-054",
+      "adoption": "2026-09-30 decision row 52 adopted exact pair",
+      "L2_section_sha256": "sha256:a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef",
+      "L11_section_sha256": "sha256:1021d37a8c3a94113c94aa1b92d3e8a79ae758f274aa40b570b5d151f7233aac",
+      "covered": "Selected closure evidence scope only.",
+      "residual": "Not a replacement for old Issue Gate result/provenance condition.",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "decision_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "decision_row_evidence": [
+        {
+          "identity": "HELIXOS-L2-054",
+          "physical_line": 52,
+          "row_sha256_including_lf": "sha256:ef3e945bd02e8693510a01ccb4a1aee5353ef7a61adc44dd5ef77ff02182147c",
+          "row_sha256_without_lf": "sha256:63be074a8b79ad02f7e5305a036f21606b52212ab08b484812fb5295ab502992"
+        }
+      ],
+      "decision_source_revision": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    {
+      "identity": "HELIXOS-L2/L11-044",
+      "adoption": "2026-09-29 decision row 67 adopted exact pair",
+      "L2_section_sha256": "sha256:45ec39bee8dc441f040b0b571f2c62be900d9619eaa1facda5f9017f97678289",
+      "L11_section_sha256": "sha256:29b83afd96e5ad20c2bdb11c2aaf86578730dc4a8cddf9059d2b2329ae0a9b4a",
+      "covered": "Feedback prose-only condition scoped to feedback finding handover/resolution.",
+      "residual": "Not generalized to all five roles.",
+      "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row_evidence": [
+        {
+          "identity": "HELIXOS-L2-044",
+          "physical_line": 67,
+          "row_sha256_including_lf": "sha256:bd00123dd927c76e73dc4c135408a405f4fbcfdb06d143db932467474c579afc",
+          "row_sha256_without_lf": "sha256:6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153"
+        }
+      ],
+      "decision_source_revision": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2"
+    },
+    {
+      "identity": "HELIXOS-L2/L11-119",
+      "adoption": "unadopted candidate; candidate presence is not adoption",
+      "covered": "None claimed; memory compaction remains a residual role."
+    }
+  ],
+  "role_condition_crosswalk": [
+    {
+      "source_role": "PR監査",
+      "old_condition": "failure code + provenance; prose-only PASS rejected",
+      "current_exact_mapping": [
+        "OS-035 event/job intake",
+        "HARNESS-058/OS-034/101 PR finding classification and disposition"
+      ],
+      "finding": "These adopted pairs cover adjacent intake/classification/disposition, not a complete PR audit failure-result output contract. Residual retained in 124."
+    },
+    {
+      "source_role": "Issue Gate",
+      "old_condition": "failure code + provenance; prose-only PASS rejected",
+      "current_exact_mapping": [
+        "HARNESS-059/OS-102 issue contract fields and handoff",
+        "OS-054 selected closure evidence"
+      ],
+      "finding": "Adopted conditions do not establish a complete Issue Gate evaluation result code/provenance contract. Residual retained in 124."
+    },
+    {
+      "source_role": "agent registry",
+      "old_condition": "failure code + provenance; prose-only PASS rejected",
+      "current_exact_mapping": [
+        "OS-033 agent metadata engine capability",
+        "HARNESS-047 specialist capability contract"
+      ],
+      "finding": "Metadata/capability contract is adjacent; registry evaluation result code/provenance not inferred."
+    },
+    {
+      "source_role": "memory compaction",
+      "old_condition": "failure code + provenance; prose-only PASS rejected",
+      "current_exact_mapping": [
+        "OS-019 continuity"
+      ],
+      "finding": "Continuity is not compaction result verification. OS-119 candidate is unadopted and not current guarantee."
+    },
+    {
+      "source_role": "ZIP detector",
+      "old_condition": "failure code + provenance; prose-only PASS rejected",
+      "current_exact_mapping": [
+        "OS-033 selected engine/detector finding code/evidence/provenance/snapshot conditions"
+      ],
+      "finding": "Covered within exact adopted 033 scope; 124 reuses without redefining or re-adopting."
+    }
+  ],
+  "legacy_quality_audit_boundary": "The 2026-09-28 quality audit is analysis, not a PO meaning-change decision. No target-revision human decision changing the five named roles was located; candidate retains them individually.",
+  "human_decision_material": {
+    "A": {
+      "proposal": "Preserve all five source-named roles individually with role-specific failure code/provenance and prose-only PASS rejection.",
+      "recommendation": "Recommended; no current owner/tool/schema/runtime is fixed."
+    },
+    "B": {
+      "proposal": "Treat role names as examples and allow generic verification evidence to substitute.",
+      "effect": "Meaning change from the enumerated old requirement."
+    },
+    "C": {
+      "proposal": "Limit applicability to explicitly selected roles.",
+      "effect": "Meaning change; excluded roles remain held pending, not closed."
+    },
+    "impact": "Candidate 124 and paired L11 role conditions/closure only. Candidate creation/review is not gated on PO choice; adoption or meaning change remains with existing authority."
+  },
+  "version_target": "not specified by old source; no value inferred",
+  "validation_boundary": "Static document/identity/hash audit only. No legacy runtime, tests, CI, detector, registry, compactor, external operation, or execution acceptance was run.",
+  "candidate_original_base_commit": "0c9baec55a85e98ce624f68957ba989ee169406c",
+  "latest_base_read_after_commit": "bca7592cf444b07292a1366e3b28e7de4d9f88cb"
+}
