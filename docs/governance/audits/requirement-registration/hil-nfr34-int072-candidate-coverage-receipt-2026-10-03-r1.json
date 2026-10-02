@@ -61,10 +61,10 @@
       "line_start": 398,
       "line_end": 429,
       "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
-      "sha256": "sha256:9f76c09a4cdbd4d398a41a808d4e0482e5bb7525fdccc4b67e5345dfc53b4010"
+      "sha256": "sha256:4da07732334adc538fb9a2d17377c34d7d0ae804d097957beaaff91a77c9e8ad"
     }
   ],
-  "candidate_semantic_digest": "sha256:2a20f351ba92f2654c6656b7dbdfa50630000767ce9e3b1500558ba62335dfeb",
+  "candidate_semantic_digest": "sha256:0eb9a64f79dd4ccec138feeb5ec9491d9cefdbe1122e1796c3e42078a745eda0",
   "candidate_semantic_digest_scope": "既採択/固定revision 004のL2/L11 original + FR57/58 supplementの4 partsを同一bytesで保持し、NFR34限定scopeの新規L2/L11 supplement各1 partを追加した合成候補。005全体は未採択。004 adoptionはdecision pinによって存続し、本receiptは取り消し・拡張・修正しない。",
   "source_atom_set": {
     "source_holding": "MPR-SH-IR-003#HIL-NFR-34",
@@ -198,7 +198,7 @@
     },
     "l11": {
       "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
-      "full_file_sha256": "sha256:b44b69afd814ad6cfde7629dea2a7b159de7360230b97e0a658abb4d675ebeee",
+      "full_file_sha256": "sha256:82588a9aa3cc90ff3c62b80e43ed964ee39c567dcd01f753f3fa075b2d1f0cde",
       "parts": [
         {
           "part": "L11-072-original",
@@ -225,10 +225,10 @@
           "line_start": 398,
           "line_end": 429,
           "boundary": "through next equal-or-higher heading (currently EOF); trailing blank lines removed; no EOF-wide fixed-source claim",
-          "sha256": "sha256:9f76c09a4cdbd4d398a41a808d4e0482e5bb7525fdccc4b67e5345dfc53b4010"
+          "sha256": "sha256:4da07732334adc538fb9a2d17377c34d7d0ae804d097957beaaff91a77c9e8ad"
         }
       ],
-      "composite_digest": "sha256:84d88de53258764260cc31cce084120c45b8cd1899dd392e490cbcc31f181f87"
+      "composite_digest": "sha256:5fa0b0059aa78abd667188983b1e9f7e169b270c79773f31f8237394e3ebc56f"
     },
     "relation": "既採択004の4partsは固定r4の実bytesと一致して不変。005のL2/L11追加source-facetはそれぞれEOF追加part。compositeは区切りなしの直接連結。"
   },
