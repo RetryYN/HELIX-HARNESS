@@ -164,3 +164,9 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 ## 2026-10-02 HELIXOS-L2-122 仮登録
 
 旧HIL-NFR-01の一IR atomに対する未採択OS connection候補を `MPR-RC-HELIXOS-L2-122-001` として追記した。候補はdelivery、Issue contract、job、PR headの各既存identityとowner効果を因果・既存receiptで結び、同一operationの重複効果、異payload conflict、部分失敗後の継続、unknown時の保留を扱う。LABO／INTELLIGENCE／BRAINの知識責務は移さず、採択済みOS 007/009/019およびHARNESS 023の範囲を超える保証を採択済みとは主張しない。source holding、formal successor、要求採否は未解決のまま維持する。詳細は [coverage receipt](audits/requirement-registration/helixos-l2-122-hil-nfr-01-idempotency-coverage-receipt-2026-10-02.json) を参照。
+
+## 2026-10-02 HELIXOS-L2-123 仮登録
+
+旧HIL-BR-14のIR identity statement一件を対象とする未採択候補を`MPR-RC-HELIXOS-L2-123-001`として追記した。source scopeはZIP、指定された前身repository exact 2件のcurrent advertised heads/tags/pull ref authority、現行HELIX source、atomic behavior分解と採否からrequirement/design/test/Gateへのtrace、およびauthority receiptから動的に導くref・unique tree entry・ref-entry edge分母である。source countは一IR atomだけで、L1 line 66は同じ文面のcorroboration、HR-FR-HIL-09/HAC-HIL-09a,b,c/HAT-HIL-09はconsumer/oracle contextであり追加atomではない。HATは未実装で実行していない。
+
+候補はsource authority・receipt・traceのOS接続を提案し、各ownerの意味判断を移さない。採択済みOS L2-002/005/007は一般のtracking/provenance経路として参照したが、BR14固有のexact-two-repository ref authorityとreceipt-derived分母・全traceを被覆済みとは扱わない。HARNESS-L2-067は未採択の部分的なsource-atomization候補である。候補は外部remote操作、旧runtime/test/CI、全source closure、formal successorを主張しない。詳細は[source ledger](audits/requirement-registration/hil-br14-source-lines-2026-10-02.jsonl)と[coverage receipt](audits/requirement-registration/helixos-l2-123-hil-br14-coverage-receipt-2026-10-02.json)を参照。
