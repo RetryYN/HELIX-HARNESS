@@ -284,7 +284,7 @@
     "supersedes_registration_id": "MPR-RC-HARNESS-L2-080-001",
     "append_count": 1
   },
-  "latest_main_merge_head": "8215b2b8b788101805f1dd7eac4dd608a1baaef5",
+  "latest_main_merge_head": "d1fd70d4338717301b05f87da1806d2f81ec5b34",
   "source_collection_scope": "Exactly one selected atom is the HIL-NFR-10 IR statement. The direct L1 row 190 corroborates wording but is not a second atom. HR-FR-HIL-08, HAC-HIL-08a/b/c, HAT-HIL-08 and L5 are context only.",
   "current_l1_commit": "903c9b12ba9753b09d63a87b2a6a816fd73b5b42",
   "current_upstream_mapping": {
