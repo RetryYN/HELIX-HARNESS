@@ -8,7 +8,7 @@
   "requirement_kind": "unit",
   "candidate_semantic_digest": "sha256:d847d936b1b1200797f190ccd97ad5c301924c943a633b4aa0b2fb11742c0c53",
   "candidate_digest_rule": "候補identityの既存L2節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
-  "candidate_l2_file_sha256": "sha256:2fb3ecd0b1a33bc0a7e3d26f23e6dd7706654501b22884b1e4391d3cf9a8357a",
+  "candidate_l2_file_sha256": "sha256:e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
   "candidate_l2_section_lines": [
     1316,
     1335
@@ -16,7 +16,7 @@
   "paired_acceptance_identity": "HARNESS-L2-077",
   "paired_acceptance_digest": "sha256:f04244e8d0cebbebdb31691910ec51e90283197dcd4674d6d9e51be36f2debf0",
   "l11_digest_rule": "対応L11の既存節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
-  "candidate_l11_file_sha256": "sha256:a704454e8f63382cd97b0789a754b6491d0ca1bbb66de5d9b20550338b5eca5a",
+  "candidate_l11_file_sha256": "sha256:b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba",
   "candidate_l11_section_lines": [
     1022,
     1037
@@ -352,7 +352,7 @@
     "basis": "Source and fixed parent do not choose product version; do not infer 1.0."
   },
   "review_pins": {
-    "base_commit": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+    "base_commit": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
     "source_ir_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
     "source_l1_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
     "source_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF / LEGACY-ASSET-A60CF91DD2AF6693E6F9",
@@ -373,7 +373,7 @@
       "concept": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
       "harness_l1": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
     },
-    "current_main_at_registration": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+    "current_main_at_registration": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
     "adopted_010_011_fixed_tuple": {
       "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
@@ -426,7 +426,7 @@
       "reason": "002は再現可能な001/r1だけをsupersedeする。元のsource atomと未採択状態を保ち、sourceで根拠付けられる不足条件と対L11の静的oracleだけを追加する。再現できない中間revisionは保持しない。採択、formal successor、source owner移管、source closureは主張しない。"
     }
   ],
-  "current_main_at_registration": "e05a45ca27104e37909c49388c38ece0cf1c69f0",
+  "current_main_at_registration": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
   "legacy_oracle_mapping": [
     {
       "case_id": "HST-CASE-027-08",
@@ -554,8 +554,8 @@
     "docs/governance/audits/requirement-registration/hil-fr42-nfr26-candidate-source-atoms-2026-10-03.jsonl"
   ],
   "candidate_pair_full_file_sha256": {
-    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:2fb3ecd0b1a33bc0a7e3d26f23e6dd7706654501b22884b1e4391d3cf9a8357a",
-    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:a704454e8f63382cd97b0789a754b6491d0ca1bbb66de5d9b20550338b5eca5a"
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba"
   },
   "candidate_pair_section_sha256": {
     "HARNESS-L2-077": "sha256:d847d936b1b1200797f190ccd97ad5c301924c943a633b4aa0b2fb11742c0c53",
