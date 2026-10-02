@@ -188,7 +188,7 @@
     },
     "L11": {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "immutable_revision_001_section_sha256": "sha256:sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+      "immutable_revision_001_section_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
       "revision_002_supplement_sha256": "sha256:21fcbd6382b2c34ef8fb73c418ceb080999efc609230966d4c25716cb3dd297f",
       "full_file_sha256": "sha256:2f31a62cbe4d5a9f3f2e143d7090b7c8cc8cdc2b3da592eca429db0cbdd62d50",
       "append_rule": "old full-file bytes preserved as prefix; supplement starts with two LF bytes from the old EOF location."
@@ -571,8 +571,47 @@
     },
     "legacy_source_atoms": {
       "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
-      "old_source": "archive/legacy-generation-2026-09-14/root/docs/requirements.json#/HIL-FR-18 and #/HIL-FR-19; legacy L1 lines 108-109",
-      "relation": "079 is a separate, unadopted candidate; its distinct source conditions are artifact operation path and walkthrough evidence."
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "old_source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "records": [
+        {
+          "requirement_id": "HIL-FR-18",
+          "exact_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-18",
+          "source_line_ledger": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
+          "source_line_ledger_sha256": "sha256:27138cc17c2024170c844f75c280ffc706ee2eee8e1950cfca518639ebf6a21f",
+          "source_line": 108,
+          "source_line_sha256": "sha256:19b365805022418001b4717576aa368dae4122d23b30fba4c4196c35333de074",
+          "statement_semantic_digest": "sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3",
+          "record_semantic_digest": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913",
+          "primary_contract": "HR-FR-HIL-15",
+          "acceptance_ids": [
+            "HAC-HIL-15a",
+            "HAC-HIL-15b",
+            "HAC-HIL-15c"
+          ],
+          "system_test": "HAT-HIL-15",
+          "downstream_status": "pending_pair_descent"
+        },
+        {
+          "requirement_id": "HIL-FR-19",
+          "exact_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-19",
+          "source_line_ledger": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
+          "source_line_ledger_sha256": "sha256:27138cc17c2024170c844f75c280ffc706ee2eee8e1950cfca518639ebf6a21f",
+          "source_line": 109,
+          "source_line_sha256": "sha256:edaa9d6668ebf049c6400ee4d43a253c47313862e5e3d638d1037c49fd7b91fc",
+          "statement_semantic_digest": "sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35",
+          "record_semantic_digest": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b",
+          "primary_contract": "HR-FR-HIL-15",
+          "acceptance_ids": [
+            "HAC-HIL-15a",
+            "HAC-HIL-15b",
+            "HAC-HIL-15c"
+          ],
+          "system_test": "HAT-HIL-15",
+          "downstream_status": "pending_pair_descent"
+        }
+      ],
+      "relation": "079 is a separate, unadopted candidate; its distinct source conditions are prototype artifact operation path and walkthrough evidence. Locator and record digests are from the held whole IR and existing source-line ledger."
     }
   }
 }
