@@ -165,7 +165,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 ### CONNECT-FR-009-01 — typed feedback relation（親 HELIXCONNECT-L2-009）
 
-必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは先行結果に依存するedgeだけを待ち、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
+必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。自由文feedbackはfindingのまま保持し、resolution・受領・承認・完了へ変換しない。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは先行結果に依存するedgeだけを待ち、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
 
 **受入条件**
 

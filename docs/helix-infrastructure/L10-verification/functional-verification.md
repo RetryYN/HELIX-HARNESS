@@ -186,9 +186,9 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 
 ### HELIXINFRASTRUCTURE-L2-025（INFRA-025-FR-01）
 
-- L10-INFRA-025-C01（AC INFRA-025-AC-01）: CPU/memory/GPU/storage/network demand/available、process/container environment、L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work ref、SECURITY isolation conditionを結んだ正常fixtureを与える。oracleはSEC条件がINFRA管理resource上で適用可能で必要capacityが足り、OS work identityを保つこと。
+- L10-INFRA-025-C01（AC INFRA-025-AC-01）: CPU/memory/GPU/storage/network demand/available、process/container environment、INFRASTRUCTURE-L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work ref、SECURITY isolation conditionを結んだ正常fixtureを与える。oracleはSEC policyの適用可能性宣言と実resource/environment上の適用/観測receiptを別々に確認し、policy revision・対象resource・environmentが一致して必要capacityが足り、OS work identityを保つこと。適用可能と宣言しても未適用/異条件/異revisionの反例は不成立。
 - L10-INFRA-025-C02（AC INFRA-025-AC-02）: 5資源dimensionを各々requested>availableへ、SEC isolation適用不能、ticket/assignment unknown、stale environmentを独立変異する。不成立理由とownerを返し、利用可能/isolatedを推定しない。
 - L10-INFRA-025-C03（AC INFRA-025-AC-03）: resource move前後の元/移動先state、unfinished task/obligation、ticket/request/work refsを与える。identityと未完義務が保持される正常moveと、元state破棄・移動先のみのcapacity条件を元へ誤適用する反例を比較する。
-- L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、automated scaling/placement/operationを別々に試みる。全て拒否し、副作用0と責務別backflowを確認する。
+- L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、自動scaling/placementを行う、この接続からoperation authorityを作る試みを別々に与える。全て拒否し副作用0を確認する。対照fixtureでは既存許可scope内の隔離条件適用/観測を成立させ、実際の適用まで禁止しないことを確認する。
 
 両親の観測tupleはsource/revision、resource/worker identity、owner、unknown/hold、reference continuityである。確認済み部分と未確認部分は分離し、全体successへ丸めない。
