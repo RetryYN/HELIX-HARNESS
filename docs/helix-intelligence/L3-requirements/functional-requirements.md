@@ -451,3 +451,146 @@ Product Core requirementとHARNESS verification obligationのsource/revisionを�
 | `HELIXINTELLIGENCE-L2-033` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L77` row SHA `c6d8dedd71ce5629088f4be2baf389d958d4fabc93bff3cbe4ded531cbe9a0e2`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:201052b0b2faf9fd2a620b7d28e7837beed8152d372a1725f2e2b8de47b2e50b`; exact `MPR-RC-HELIXINTELLIGENCE-L2-033-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:235-243` raw span SHA `d56666c62ce267147d32036a0840e062010fc0b30a55f758eb7cfe6f2dd0495f`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:270-270` raw span SHA `d9a1e1522d2d5996ba2dae6ddbe40fff8a8364b0eaaf1627ee6db8c6f3500ae0`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-C6936A5DA79A6DAE4FE4` `docs/design/helix/L3-requirements/document-authority-census-requirements.md` 行27-61; file SHA-256 `e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c`; 27-61:rawsha=065acdd27a4eccaa83fa89edf348735304db92c82bf34a0f8e6eed38e6f7cc47 | `LEGACY-ASSET-BBD687399574FEE23807` `docs/test-design/helix/document-authority-census-acceptance.md` 行24-43; file SHA-256 `d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6`; 24-43:rawsha=a4d58d4ff76e6f6c5b28082b57a9bb6287682e0a99d552e692c7968ea67540ac | source class/meaning/identity exact joinを再導出。旧class resolver移植なし。 |
 
 旧起点の検索範囲は、旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/` の該当assetと、そのpairとして旧L3 headerが明記する `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/` の対応acceptance文書である。asset ID/full SHAは旧資産台帳と一致する。表に「直接oracleなし」としたものはその二範囲内のitem固有oracleが見つからなかった意味に限定し、旧HELIX全体に対応がないとは主張しない。
+
+## Stage 4 続き — INTELLIGENCE 1.0 部分草稿
+
+Stage 4 rosterから採択済み・`version_target: 1.0`のINTELLIGENCE対象のうち、この追補ではINT-034–041,044,045の10親を収載する。順序stageはG0の採択順序案であり、ここで版・要求意味・ownerを決定しない。以下はPO承認前草稿である。各親の固定L2/L11 identity/revision、decision row、旧source起点と再利用判断は末尾crosswalkに固定した。
+
+### `FR-INTELLIGENCE-L3-034-01` — `HELIXINTELLIGENCE-L2-034`
+
+**要件候補：LABO評価・適用scope・未評価状態**
+
+LABO evaluation, target scope, explicit unassessed state, failure/counterexample/evidenceを受け、scope不一致をWorker suitabilityへ読み替えない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-034-01` 正常成立**：LABOの評価済み結果はそのtarget/revision/method/scopeのevidenceとして、別caseの明示的未評価はunassessedのまま返す。適用先のWorker/task scopeを各結果に結び、両状態を集約して適格判定にしない。
+- **`AC-INTELLIGENCE-L3-034-02` 個別変異と失敗戻し先**：対象と異なるscopeの評価、success/failure/counterexampleの欠落、別caseの未評価を評価済みへ置換する変異を個別に投入する。誤った適用先はLABOへ戻し、結果・未評価state・元scopeを保持する。戻し先はLABOであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-034-03` 未見正常と局所unknown**：未見status/versionでもLABOが定義したstatusとscope compatibilityが一致する結果は対応する評価/未評価stateに保持する。評価または対象scopeの意味が不明な部分だけunassessedのままLABOへ戻す。
+
+### `FR-INTELLIGENCE-L3-035-01` — `HELIXINTELLIGENCE-L2-035`
+
+**要件候補：OS向けgoal/dependency/plan候補**
+
+承認済みgoal・dependency・plan/placement/diagnosis/review/repair candidateをOSへ渡すがticket/assignmentを作らない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-035-01` 正常成立**：approved goal revision・dependency・plan/placement/diagnosis/review/repair rationaleをsource-boundにまとめたcandidate receiptをOSへ渡す。OSはticket化するかを別に判断し、candidateはticket/assignment/executionを作らない。
+- **`AC-INTELLIGENCE-L3-035-02` 個別変異と失敗戻し先**：未承認goal、dependency欠落、stale candidateを個別投入し、INTELLIGENCEへ差し戻してticket化しない。OSが独自に発行したticket/assignmentのownerはOSであり、本ACはそれを生成しない。戻し先は不完全/stale candidateのINTELLIGENCEであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-035-03` 未見正常と局所unknown**：未見task classにOS ticket mappingがない時も有効goal/dependencyとcandidate receiptは保持し、mappingだけunknownと記録する。独自ticketを作らずOSへ渡す。
+
+### `FR-INTELLIGENCE-L3-036-01` — `HELIXINTELLIGENCE-L2-036`
+
+**要件候補：SECURITY action-time permission照合**
+
+SECURITY permission/constraint/revocationをaction・actor・target・scope別に照合し、権限を発行・変更しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-036-01` 正常成立**：操作candidateのaction/actor/target/scopeとSECURITY許可revision/effective timeが実操作時点で一致する場合だけ当該操作candidateに照合結果を結ぶ。permission/constraint/revocationのsourceと発行authorityはSECURITYに残す。
+- **`AC-INTELLIGENCE-L3-036-02` 個別変異と失敗戻し先**：revoke済み、期限切れ、別actor/action/target/scopeの許可と、許可がunknownの各fixtureを分ける。該当操作をeligibleにせずSECURITYへ戻して実行しない。別action許可から未見actionを推論しない。
+- **`AC-INTELLIGENCE-L3-036-03` 未見正常と局所unknown**：INTELLIGENCEで未見のactionでも、SECURITY contractにそのaction固有の許可・scopeが明示されていれば完全一致で照合する。該当許可のないactionは別actionの許可から推論せずSECURITYへ戻し、scope許可自体がunknownなら保留する。
+
+### `FR-INTELLIGENCE-L3-037-01` — `HELIXINTELLIGENCE-L2-037`
+
+**要件候補：OS assignment後のWorker実行/result trace**
+
+OS assignment後のticket-worker-version-scopeとresultを結び、未割当resultを受け入れず実行権限を作らない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-037-01` 正常成立**：OS-issued ticketとOS assignmentが指定したworker/version/task/scopeに一致するWorker actor/result receiptを同一ticketへ結び、実行主体はWorker、assignment ownerはOSのまま保持する。
+- **`AC-INTELLIGENCE-L3-037-02` 個別変異と失敗戻し先**：assignmentのないresult、別ticketのresult、scope不一致、stale/非互換worker versionを個別に投入し、割当済み結果として受領しない。ticket/assignment/task適合の不足はOSへ戻し、Worker結果側の不一致は該当Workerへ返す。INTELLIGENCEから実行permissionを作らない。
+- **`AC-INTELLIGENCE-L3-037-03` 未見正常と局所unknown**：未fixture worker versionでもOS assignmentがあり、宣言済みcompatibility/task/scope条件が一致するなら同じticketへのresultとして照合する。compatibilityまたはtask適合だけが不明な場合はOSへ戻し、INTELLIGENCEから許可しない。
+
+### `FR-INTELLIGENCE-L3-038-01` — `HELIXINTELLIGENCE-L2-038`
+
+**要件候補：HARNESS検証義務handoff**
+
+exact HARNESS verification obligationをrequirement/oracle/expected failure/independent verification/consumer acceptance/backflowへ結び、修復で弱めない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-038-01` 正常成立**：requirement exact revisionに結び付くHARNESS oracle、expected failure、independent verification、consumer acceptance、backflow condition一式をrepair scope付きで渡し、実行後も同じobligation一式を照合する。
+- **`AC-INTELLIGENCE-L3-038-02` 個別変異と失敗戻し先**：oracle削除/弱化、expected failure欠落、independent verifier/consumer acceptance/backflow欠落、stale requirement revisionを個別投入する。obligationを満たさないrepairを検証完了にせずHARNESSへ戻す。戻し先はHARNESSであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-038-03` 未見正常と局所unknown**：新しいobligation種別も対応contractとHARNESSが判定できるoracleがあればrepair scopeへ結ぶ。結果を判定できない間は未充足を保ち、passへ昇格しない。
+
+### `FR-INTELLIGENCE-L3-039-01` — `HELIXINTELLIGENCE-L2-039`
+
+**要件候補：OS acceptanceとWorker/HARNESS結果区別**
+
+candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhandoffし、OS acceptanceを独自に生成しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-039-01` 正常成立**：同一repair scope/candidateのreceipt、Worker result、HARNESS verification resultを順序と相関ID付きで区別してOSへhandoffする。acceptance stateはOS sourceからのみ読み、OSが独自判断できる材料を残す。
+- **`AC-INTELLIGENCE-L3-039-02` 個別変異と失敗戻し先**：Worker successのみ、古いHARNESS result、順序逆転、duplicate receiptを別々に投入し、OS acceptanceを成立させない。evidence/verification欠落は各producerへ戻し、受入判断と進行はOSに残す。
+- **`AC-INTELLIGENCE-L3-039-03` 未見正常と局所unknown**：未見receipt versionでも相関ID/scope/互換契約が一致するedgeはhandoffへ残す。不一致のreceiptだけ未受領/unknownとしてproducer/OSへ戻し、他の独立edgeを消さない。
+
+### `FR-INTELLIGENCE-L3-040-01` — `HELIXINTELLIGENCE-L2-040`
+
+**要件候補：予測と実際の結果・LABO時系列**
+
+predictionを同一episode/scopeのactual outcomeと後から結び、source revision/observation windowを区別する。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-040-01` 正常成立**：prediction/evidence/assumption/falsificationと後続actual outcomeを同一episode/scopeへ結ぶが、source revisionとobservation windowは別々に保持し、LABO評価材料として渡す。
+- **`AC-INTELLIGENCE-L3-040-02` 個別変異と失敗戻し先**：predictionをactualと称する、別episodeをjoinする、遅延/重複actualを別成功として数える変異を個別投入する。actual不足/episode不一致はLABO/INTELLIGENCEへ戻し、重複は追加successに数えず、未対応結果はLABOへunknownとして渡す。
+- **`AC-INTELLIGENCE-L3-040-03` 未見正常と局所unknown**：episode/scope/source revisionとobservation windowが宣言済みなら未見windowも追跡する。まだ取得していないactualはpending/unassessedとし、未観測を成功/失敗の実績にしない。
+
+### `FR-INTELLIGENCE-L3-041-01` — `HELIXINTELLIGENCE-L2-041`
+
+**要件候補：独立source identityとselected source set**
+
+各connector/source mechanismを独立source identity・revision/scope/authorityとして保持し、同名fieldを併合しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-041-01` 正常成立**：admitted HARNESS/OS sourceごとにconnector identity、current revision、scope、authorityを別edgeとしてSituation Modelへ反映し、同名fieldでもsource-specific meaningを維持する。
+- **`AC-INTELLIGENCE-L3-041-02` 個別変異と失敗戻し先**：同名OS/HARNESS fieldを同一identityへmerge、scope/revision欠落を補完、未選択Web/WEB-OSを必須依存とする変異を個別に判定する。誤ったsource edgeを各source ownerへ戻す。未選択機構はunobservedのままで不存在とは断定しない。
+- **`AC-INTELLIGENCE-L3-041-03` 未見正常と局所unknown**：selected sourceの未見revisionもそのsource専用contractが有効ならtraceする。契約外revisionは該当source ownerへ戻し、未選択sourceはunobservedとして記録する。
+
+### `FR-INTELLIGENCE-L3-044-01` — `HELIXINTELLIGENCE-L2-044`
+
+**要件候補：LABO向けgeneric candidate/evidence/scope**
+
+generic candidateとevidence/scopeをLABOへ渡し、BRAIN knowledgeへ直接writeしない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-044-01` 正常成立**：汎用化candidateのidentity/source revision/target/scope/evidenceとassessment stateをLABO intakeへ渡し、評価前をunassessedとして残す。BRAIN knowledgeへのdirect output/writeはない。
+- **`AC-INTELLIGENCE-L3-044-02` 個別変異と失敗戻し先**：genericity/scope evidenceの不足、未評価candidateを評価済みと表示する変異を個別投入し、LABOへ不足を返す。直接BRAIN write要求は行わず、BRAIN stateを変えない。戻し先はLABOであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-044-03` 未見正常と局所unknown**：未見pattern種別は一般化可能と断定せず、評価例がない状態をunknownのままLABOへ渡す。既知のsource/target/scopeはcandidate上で保持する。
+
+### `FR-INTELLIGENCE-L3-045-01` — `HELIXINTELLIGENCE-L2-045`
+
+**要件候補：Product Core issue/backflow candidate**
+
+Product Core issueをproduct/revision/ownerへ候補として返し、requirement/designを直接変更しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-045-01` 正常成立**：meaning矛盾/不足/improvement candidateを該当Product Core product/revision/ownerとsource revisionに結び、backflow candidateとして渡す。正本更新はProduct Core ownerに残す。
+- **`AC-INTELLIGENCE-L3-045-02` 個別変異と失敗戻し先**：target product/revision不明、owner不一致、source evidence欠落を個別投入し、別Product Coreへ誤routingせずunrouted candidateとして該当ownerへ照会する。INTELLIGENCEは正本を変更しない。
+- **`AC-INTELLIGENCE-L3-045-03` 未見正常と局所unknown**：未見issue typeもtarget product/revision/ownerをsourceから確定できる範囲でunrouted candidateとして保持する。targetまたはownerだけがunknownな範囲を推測routingしない。
+
+## Stage 4 追加親・旧source crosswalk（item単位）
+
+基準はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`。decision row SHAは当該PO判断の採択根拠、L2/L11 span endはinclusive、raw span SHAは実bytes（行末LFを含む）。登録台帳の後続metadata修正は承認revisionを更新しない。旧記述はread-only参照であり、旧test/runtime/CLI/CIを実行していない。表の各旧source行は旧asset ID・archive相対path・行範囲・full-file SHA・raw selected span SHAを持つ。旧起点からは表のitem判断に記した意味要素のみ再利用/再導出し、旧schema/runtime/threshold/authorityは継承しない。
+
+| 固定親 | PO decision / registration | 固定L2 | 固定L11 | 旧L3起点（asset/path/line/full+span SHA） | 旧test-design起点（asset/path/line/full+span SHA） | 再利用・再導出・置換 |
+|---|---|---|---|---|---|---|
+| `HELIXINTELLIGENCE-L2-034` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L78` row SHA `f392e9d12118261109de8887542077d99373cf19aca4afd084b98f7b59d16de6`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:d2a74b60bcce104ac7bb6dcb25d870b97cb76f8b184bde0420aead6f0066d182`; exact `MPR-RC-HELIXINTELLIGENCE-L2-034-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:244-252` raw span SHA `891ef0aad488f1276e48afcfda47996732dabe436dde6013088091c6ae4c404d`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:271-271` raw span SHA `0fe3b0f9d91c00734112c9f41475d0526da2926a3f4ca59483b14426dfe8dc00`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-28FB139B26CD61CC51EE` `docs/design/helix/L3-requirements/helix-bench-evaluation.md` 行19-84; file SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`; 19-84:rawsha=9402265e8d5beb01268d7c852eec6b0af14ff67ecdc2592f2889cd0303a6b1ad | `LEGACY-ASSET-A952A3A175EB82A4781B` `docs/test-design/helix/helix-bench-evaluation-acceptance.md` 行24-41; file SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`; 24-41:rawsha=1f675c6a268a6678ba32b95f07732babb9bf106db8442cb298e6bcdb0e5ecddc | failure/missing denominator/evaluation scope保持を再導出。指標値は移植しない。 |
+| `HELIXINTELLIGENCE-L2-035` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L79` row SHA `646a938699903eda980279f727ff1e0c6111f09adbef892af60a0154b0cc0ce3`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:7f3ed0dee45d62139186fd365d80d9da0fe5773a457bc121f4c3f16a3d74eded`; exact `MPR-RC-HELIXINTELLIGENCE-L2-035-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:253-261` raw span SHA `f2c2ce0b311d414a46cc618df617224b139a5d7619ef619401272380a5eeeea2`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:272-272` raw span SHA `82166ddf4a40e34fa0ecbaa155d1cf696268b797ec81780ef1f81e6170a737ca`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-50CA1C554747F12266D3` `docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` 行189-260; file SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`; 189-260:rawsha=2e6a042a6bdc51b4f828ce269db00cf000fa901592576bea04d83378671debaa | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行17-55; file SHA-256 `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707`; 17-55:rawsha=36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da | owner・candidate・assignment separationを再導出。旧lane/lease/scheduler値は移植なし。 |
+| `HELIXINTELLIGENCE-L2-036` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L80` row SHA `3a3e3440c6c983eb712b1285ad99d87cda9a8fe04b6a2c32ae4e6743212c489f`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:10f2ed02ab029383574361bdbf721e5a73b8c1004d1946dc08d70012f2b325d3`; exact `MPR-RC-HELIXINTELLIGENCE-L2-036-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:262-270` raw span SHA `47c04395733245b87d227a29afca2d1d1f2b8ab4a3025a1a11a3d0fea95b3b3c`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:273-273` raw span SHA `63af5d167a5f624ac5fd707cae9942d79d60040d767e507970bc3a75e53f576c`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-B62E49D2E156232B8C63` `docs/design/helix/L3-requirements/security-capability-broker-authority.md` 行30-121; file SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`; 30-121:rawsha=4fe610941a7a70e351be32d8ae584bf6ba3bfff060635b7be05473c0068a71cd | `LEGACY-ASSET-170112AB2FA2FFDBFEE9` `docs/test-design/helix/security-capability-broker-acceptance.md` 行18-29; file SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`; 18-29:rawsha=`1c151e23defe9429c30264d9868ea89c6f148eb6bd57915ead415d682b4f1938` | operation/target/actor/scope authority separationを再導出。旧broker/runtime/enumは移植なし。 |
+| `HELIXINTELLIGENCE-L2-037` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L81` row SHA `1aa2b08406c905a4486b192f309bb447021d4b64376e37af0ce7eccea6eb6bae`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:4746ec003638a1235031def9fe6184bd089a7abc5741c54fa9ed114708bf4447`; exact `MPR-RC-HELIXINTELLIGENCE-L2-037-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:271-279` raw span SHA `0ae3781b81d69f3884a39714e248f45d55255541dd9858efefcfdb3828e13885`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:274-274` raw span SHA `2fbe654169dd8ecc95ae5858bf5b9ede4ef0cd9ce2f6bfafc7ccf5544910cdf9`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-9114D4E463E95B67DD0C` `docs/design/helix/L3-requirements/worker-common-contract.md` 行47-110; file SHA-256 `773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290`; 47-110:rawsha=29aee7e56d632ab40cddf6311876300b43aa04ace80eefbe414820439a53a419 | `LEGACY-ASSET-C6ADB99F1353965C5449` `docs/test-design/helix/worker-common-contract-acceptance.md` 行18-64; file SHA-256 `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d`; 18-64:rawsha=a784efa162392e9186a54ada6b91e7b5377c64e3cb3ed61c0f78237cda1042d1 | Worker identity/version/receipt/failure meaningを限定再導出。provider/runtimeは不使用。 |
+| `HELIXINTELLIGENCE-L2-038` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L82` row SHA `ce4694ecce981a1ff4ba449c070ff1447b55a6fa1ef2ac3d0b61515c4346064f`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:92c59fadb6a8e54d372c47db856a84f45af4f89a57e7fdb5e5fdba1dd7ba93da`; exact `MPR-RC-HELIXINTELLIGENCE-L2-038-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:280-288` raw span SHA `da13d862b60943fce633aa21989d5f3daf98c0613b51660dea5ad1b6e2f99b29`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:275-275` raw span SHA `8cefa4752194c44895f51890f243cd34a0924a6ecd6ca375ae42e77a6d27daaf`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-F1F753F31DB8D874EF21` `docs/design/helix/L3-requirements/system-synthesis-requirements.md` 行40-68; file SHA-256 `69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79`; 40-68:rawsha=b026dd6ef2d7014e655888350e6ca0b0704323f275ab6d300b69112112afabb3 | `LEGACY-ASSET-BEAB5EE27CD04F5E866F` `docs/test-design/helix/system-synthesis-acceptance.md` 行29-42; file SHA-256 `ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16`; 29-42:rawsha=807312bcd9f184c4e97c1bfbb86cba9a9de002e37476e0fd325ef92c0f860605 | requirement→validation candidate traceを再導出。旧gate名/CI pathを移植しない。 |
+| `HELIXINTELLIGENCE-L2-039` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L83` row SHA `85cfe99947b903a840ef24f4b1462f222f18ab2e0bb2ae61a668a80f2dfb2a0a`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:961183663ffca094620a3850f427da247693425be0798436916ed531b73a8fce`; exact `MPR-RC-HELIXINTELLIGENCE-L2-039-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:289-297` raw span SHA `477dfaca06cf3072a2ea801331d7ce1683a91b45ff171e19d6e8790d4fb11c5a`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:276-276` raw span SHA `8e5935cfae15f323ffb6ed920c5624318ef94f1224ce09fbcc31cd1530d0969c`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-50CA1C554747F12266D3` `docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` 行189-260; file SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`; 189-260:rawsha=2e6a042a6bdc51b4f828ce269db00cf000fa901592576bea04d83378671debaa | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行17-55; file SHA-256 `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707`; 17-55:rawsha=36e097a074fe674fddd2719b6c196163a6aa625908c90f0125ff42a99e2a41da | parent-worker-reviewer責務分離を再導出。旧lease/admission semanticsは移植なし。 |
+| `HELIXINTELLIGENCE-L2-040` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L84` row SHA `1b1366b072819c2653dc22ff1181e7bb23525d249823dd72c711e1eac8ec0a74`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:82f9ca85832820d63f2924694f230adf8b15be10512d8832a20290a13c720373`; exact `MPR-RC-HELIXINTELLIGENCE-L2-040-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:298-306` raw span SHA `1aed9bac9aab371bc9034f94b0c97c92f68916a2014034be2c2d64644ea81ebc`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:277-277` raw span SHA `aac2a9c150320a54c1e93964830f7725b2dc6c6c4357e51dc82121d799622971`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-28FB139B26CD61CC51EE` `docs/design/helix/L3-requirements/helix-bench-evaluation.md` 行19-84; file SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`; 19-84:rawsha=9402265e8d5beb01268d7c852eec6b0af14ff67ecdc2592f2889cd0303a6b1ad | `LEGACY-ASSET-A952A3A175EB82A4781B` `docs/test-design/helix/helix-bench-evaluation-acceptance.md` 行24-41; file SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`; 24-41:rawsha=1f675c6a268a6678ba32b95f07732babb9bf106db8442cb298e6bcdb0e5ecddc | prediction/evidence/result and missing evidence handling only; metric catalogs not carried. |
+| `HELIXINTELLIGENCE-L2-041` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L85` row SHA `2fd4cf2ab2bd8a48fbce638b39c6fda37e88327d887a344f7d099d18c3c8e028`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:1c7bf3d8a6b718ab946c29c2b84d04f6a7718aa3715528631c97c6387141bcdf`; exact `MPR-RC-HELIXINTELLIGENCE-L2-041-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:307-315` raw span SHA `930812b3f41f23e3f7a3e2ae7edc28539169db429e8586268d1166932df3a2d4`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:278-278` raw span SHA `36caff44a1293bb41a6c6bd3a05d2a29eaa5b9448699f5851c4e9023b68c3f46`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-C6936A5DA79A6DAE4FE4` `docs/design/helix/L3-requirements/document-authority-census-requirements.md` 行27-61; file SHA-256 `e05adb62d9ad07507f962cf060b3dbe66c161afc3f09391b29b3144ced57535c`; 27-61:rawsha=065acdd27a4eccaa83fa89edf348735304db92c82bf34a0f8e6eed38e6f7cc47 | `LEGACY-ASSET-BBD687399574FEE23807` `docs/test-design/helix/document-authority-census-acceptance.md` 行24-43; file SHA-256 `d8cddea062fa44774a44f1c2cfff5f5d1f01cd186b4abdf8d631b9577f6fd4a6`; 24-43:rawsha=a4d58d4ff76e6f6c5b28082b57a9bb6287682e0a99d552e692c7968ea67540ac | exact source identity/authority join and ambiguous source failure; old resolver not carried. |
+| `HELIXINTELLIGENCE-L2-044` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L88` row SHA `af6c38897b0bd9a9b0ddfddac259428bee9f55e887b0c53146eb3a22fb999ab5`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:269aae5aee154cfdda5465358a5008f2d6c352657a1a630ab52eee3012d9414c`; exact `MPR-RC-HELIXINTELLIGENCE-L2-044-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:334-342` raw span SHA `6e0b792aa564928eddf4fea9660ecaa265d4871e3ef159dcd20c5d7fb48509ea`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:279-279` raw span SHA `492c2193f01f9437c4740c633a5ef0bdb3718c4e0d3f240dd26759cdda20dc78`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-5EE032D657C221184B00` `docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md` 行41-55; file SHA-256 `e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b`; 41-55:rawsha=ce2a8bacdc4676a5be0534b0b69570ca77c58c0ef4ab88707bb91a09d5c9cbba | `LEGACY-ASSET-6FFD7F4E58066D08B053` `docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md` 行17-26; file SHA-256 `1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3`; 17-26:rawsha=63154ad6ef69c6d93b45bfe37076feeea33c31202b5f1765fea04d98f9cf5b98 | candidate-vs-decision boundary only; old human review chain/gates not carried. |
+| `HELIXINTELLIGENCE-L2-045` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L89` row SHA `a023a9ee1eb8d502492ccd41f6cb13f6aa2575bad2757a2a45b220d7866b91ec`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:fafb172e9d475d0390bcd4b92e14774d01a00cdebb8c6f87cb167c2a57b62f29`; exact `MPR-RC-HELIXINTELLIGENCE-L2-045-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:343-351` raw span SHA `f86ab560f3ed08f3dbc524d45e73e9e3a545c8da251d1928b38474017a73c4d3`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:280-280` raw span SHA `6260777fd0ad3e724f17d078a97fb3ad65b39dbd0cd708dc64b465519666af60`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-9B6FC1ED349F96394497` `docs/design/helix/L3-requirements/bugbot-generation-requirements.md` 行18-70; file SHA-256 `3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36`; 18-70:rawsha=d221c2eb47ff52f9bddd2e9ee4e4cef5d8d9f88d39ff67c6758393ff1f459911 | `LEGACY-ASSET-658FF8439F9F8E694710` `docs/test-design/helix/bugbot-generation-acceptance.md` 行31-41; file SHA-256 `9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6`; 31-41:rawsha=`0eb8505f6837011f68a758323739f086567737629280b68eaf870f158c0ade9a` | finding/proposal identityとowner routeを隣接起点として限定参照し、旧severity/CI/merge動作は継承しない。 |
+
+旧起点の検索範囲は、旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/` の該当assetと、そのpairとして旧L3 headerが明記する `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/` の対応acceptance文書である。asset ID/full SHAは旧資産台帳と一致する。表に「直接oracleなし」としたものはその二範囲内のitem固有oracleが見つからなかった意味に限定し、旧HELIX全体に対応がないとは主張しない。

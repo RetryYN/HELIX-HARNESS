@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: adopted version_target 1.0 explicit items drafted through Stage 4 partial items 017/030-033
+scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -64,5 +64,22 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 | `HELIXINTELLIGENCE-L2-031` | 独立business oracleなし。機能L10の該当caseのみ照合。 | OS ticket/state/dependency observationをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
 | `HELIXINTELLIGENCE-L2-032` | 独立business oracleなし。機能L10の該当caseのみ照合。 | BRAIN knowledge applicability/counterexampleをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
 | `HELIXINTELLIGENCE-L2-033` | 独立business oracleなし。機能L10の該当caseのみ照合。 | Product CoreとHARNESS verification obligation分離をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+
+各identityの機能L3/L10 pairは[機能検証Stage 4](functional-verification.md)を参照する。これは事業成果を検証するcaseではない。
+
+## Stage 4 続き — business classificationの検証
+
+| 親L2 | business判定 | 検証材料 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-034` | 独立business oracleなし。機能L10の該当caseのみ照合。 | LABO評価・適用scope・未評価状態をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-035` | 独立business oracleなし。機能L10の該当caseのみ照合。 | OS向けgoal/dependency/plan候補をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-036` | 独立business oracleなし。機能L10の該当caseのみ照合。 | SECURITY action-time permission照合をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-037` | 独立business oracleなし。機能L10の該当caseのみ照合。 | OS assignment後のWorker実行/result traceをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-038` | 独立business oracleなし。機能L10の該当caseのみ照合。 | HARNESS検証義務handoffをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-039` | 独立business oracleなし。機能L10の該当caseのみ照合。 | OS acceptanceとWorker/HARNESS結果区別をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-040` | 独立business oracleなし。機能L10の該当caseのみ照合。 | 予測と実際の結果・LABO時系列をbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-041` | 独立business oracleなし。機能L10の該当caseのみ照合。 | 独立source identityとselected source setをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-044` | 独立business oracleなし。機能L10の該当caseのみ照合。 | LABO向けgeneric candidate/evidence/scopeをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
+| `HELIXINTELLIGENCE-L2-045` | 独立business oracleなし。機能L10の該当caseのみ照合。 | Product Core issue/backflow candidateをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
 
 各identityの機能L3/L10 pairは[機能検証Stage 4](functional-verification.md)を参照する。これは事業成果を検証するcaseではない。
