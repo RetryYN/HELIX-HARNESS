@@ -12,6 +12,19 @@ import sys
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 INV = HERE / "inventory.json"
@@ -108,7 +121,7 @@ def independent_evidence_errors(inv: dict) -> list[str]:
     fail(errors, scope.get("archive_commit") == EXPECTED_ARCHIVE, "E_ARCHIVE_COMMIT_PIN")
     fail(errors, scope.get("work_entry_path") == "docs/governance/new-generation-start-here.md", "E_WORK_ENTRY_PATH")
     fail(errors, scope.get("work_entry_sha256") == EXPECTED_WORK_ENTRY_SHA == digest((ROOT / "docs/governance/new-generation-start-here.md").read_bytes()), "E_WORK_ENTRY_DIGEST")
-    register_path = ROOT / HISTORICAL_REGISTER_PATH
+    register_path = relocated(ROOT / HISTORICAL_REGISTER_PATH)
     register_bytes = register_path.read_bytes()
     fail(errors, scope.get("management_register_path") == HISTORICAL_REGISTER_PATH, "E_REGISTER_PATH")
     fail(errors, scope.get("management_register_capture_commit") == EXPECTED_BASE, "E_REGISTER_CAPTURE")

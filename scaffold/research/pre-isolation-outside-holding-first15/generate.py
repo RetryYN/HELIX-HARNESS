@@ -14,6 +14,7 @@ from pathlib import Path
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -110,7 +111,7 @@ def live_holdings(register: list[dict]) -> list[dict]:
 def build() -> dict:
     report_path = relocated(ROOT / REPORT_PATH)
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    register = load_jsonl(ROOT / REGISTER_PATH)
+    register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     holdings = live_holdings(register)
     holding_rows = {item["registration_id"]: load_jsonl(relocated(ROOT / item["source_atom_set_ref"])) for item in holdings}
     selected = [row for row in report["rows"] if row.get("product_scope") in PRODUCTS][:15]
@@ -213,7 +214,7 @@ def build() -> dict:
             "selected_count": len(paths),
             "approved_products": PRODUCTS,
             "holding_register_path": REGISTER_PATH,
-            "holding_register_sha256": sha((ROOT / REGISTER_PATH).read_bytes()),
+            "holding_register_sha256": sha(relocated(ROOT / REGISTER_PATH).read_bytes()),
             "live_holding_count": len(holdings),
             "outside_report_path": REPORT_PATH,
             "outside_report_sha256": sha(report_path.read_bytes()),

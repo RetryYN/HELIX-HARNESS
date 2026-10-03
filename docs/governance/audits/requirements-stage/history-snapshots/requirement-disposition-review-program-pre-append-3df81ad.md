@@ -18,7 +18,7 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 ## 入力母集団
 
-[管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
+[管理層の要求仮登録契約](../../../management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
 現在の十三のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
 旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
@@ -57,11 +57,11 @@ retireを同じ処理にしない。
 ## 処理順
 
 1. PR #1797でrepository foundation、旧source snapshot、holding、上流運用を固定する。
-2. [bootstrap register](management-provisional-requirement-registration.md#bootstrap境界)で要求PRの仮登録を受ける。自動登録入口の実装完了を前提にしない。
-3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と意味relation closureを先にatom化する。参照候補holdingは参照元・target・分類を保ったまま、要求意味を持つかを別に判断する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
+2. [bootstrap register](../../../management-provisional-requirement-registration.md#bootstrap境界)で要求PRの仮登録を受ける。自動登録入口の実装完了を前提にしない。
+3. 各holdingを別queueとして扱う。IRは[IR再配置wave](../../../legacy-migration/ir/legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と意味relation closureを先にatom化する。参照候補holdingは参照元・target・分類を保ったまま、要求意味を持つかを別に判断する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
 4. 対象productと`unit`／`connection`／`composite`を分け、責務重複や意味類似はrelation候補として示す。
-   重複候補は[責務・機能重複review program](requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
-   旧技術の拘束は[技術代替可能性review program](requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。
+   重複候補は[責務・機能重複review program](../../../requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
+   旧技術の拘束は[技術代替可能性review program](../../../requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。
 5. 必要な場合は親Concept／Vision／企画からresearch、PoC、prototypeへ進み、結果を判断論点へ戻す。
 6. 一つの要求identityごとに、人間decision、対象別L2／L11、無損失被覆receipt、管理層の`registered_proposal`を同じ要求PRへ束縛する。
 7. 全atomが「当該successorへ保持」「別の生存中仮登録へ保留」「人間decision対象」のいずれかに入り、未計上0であることをread-afterする。
@@ -92,13 +92,13 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 
 Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。現在は旧要求を全件保持したまま、
 管理分類登録の第1層で旧Requirement IR 153件すべての対象製品候補を登録し、独立reviewとmain read-afterを完了した。
-完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
-`L2D-S1-01 authority-vocabulary`は[人間判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、
+完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](../../source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
+`L2D-S1-01 authority-vocabulary`は[人間判断packet v2](../../source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、
 判断対象revision、親L1、L2／L11接続、旧L1 6 atom、旧L3 20 atom、旧L10 20 oracle、旧ルール群holdingからの計上、
 変更する旧拘束、未解決事項を集めた。ただし生存中13 source holdingのうち11件が未評価であり、本programが求める
 「生存中の全source holdingについて無損失なatom集合へ展開する」条件を満たしていない。したがって
 **現在は人間判断へ送れる状態ではない**。v1（`MPR-SH-LEGACY-RULE-004`未計上）は`superseded_by_v2`であり、承認に使わない。
-2026-09-19にPOは`L2D-S1-01`を`defer`とした（[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、
+2026-09-19にPOは`L2D-S1-01`を`defer`とした（[decision record](../../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、
 `HDEC-L2D-S1-01-DEFER-01`）。deferは採否の先送りであり、本節の停止条件を解除しない。
 `authority_effect: none`を維持する。対象別L2／L11本文へまだ適用せず、次のdecision unitへ
 進めない。要求の要否判断、successor確定、意味変更、縮退、retire、L3、実装、DB、runtime、新世代CI、archiveの

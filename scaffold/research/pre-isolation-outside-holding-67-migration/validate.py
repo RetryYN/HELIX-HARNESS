@@ -10,6 +10,19 @@ import sys
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 INV = HERE / "migration.json"
@@ -161,9 +174,9 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
         keysets.get(path) == {frozenset(expected)} for path, expected in EXPECTED_KEYSETS.items()
     ), "E_RECURSIVE_KEYSETS")
     current_bytes = CURRENT.read_bytes()
-    historical_bytes = HISTORICAL.read_bytes()
+    historical_bytes = relocated(HISTORICAL).read_bytes()
     current_rows = load(CURRENT)
-    historical_rows = load(HISTORICAL)
+    historical_rows = load(relocated(HISTORICAL))
     source_rows = load(SOURCE)
     current_live = live(current_rows)
     historical_live = live(historical_rows)

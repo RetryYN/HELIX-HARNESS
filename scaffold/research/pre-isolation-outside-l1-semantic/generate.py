@@ -9,6 +9,19 @@ import subprocess
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
@@ -258,12 +271,12 @@ def build_case(case: dict, holdings: list[dict], holding_rows: dict[str, list[di
 
 
 def build() -> dict:
-    register_bytes = (ROOT / REGISTER_PATH).read_bytes()
+    register_bytes = relocated(ROOT / REGISTER_PATH).read_bytes()
     decision_bytes = (ROOT / DECISION_PATH).read_bytes()
     boundary_bytes = (ROOT / BOUNDARY_PATH).read_bytes()
     start_here_bytes = (ROOT / START_HERE_PATH).read_bytes()
     disposition_program_bytes = (ROOT / DISPOSITION_PROGRAM_PATH).read_bytes()
-    register = load_jsonl(ROOT / REGISTER_PATH)
+    register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     holdings = live_holdings(register)
     holding_rows = {item["registration_id"]: load_jsonl(ROOT / item["source_atom_set_ref"]) for item in holdings}
     cases = [build_case(case, holdings, holding_rows, decision_bytes, boundary_bytes) for case in CASES]

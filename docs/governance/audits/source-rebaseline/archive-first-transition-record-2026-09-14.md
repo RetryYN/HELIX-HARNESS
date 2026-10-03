@@ -24,11 +24,11 @@ executed_at: 2026-09-14
 | `src` | 550 | 旧runtime sourceを隔離 |
 | `tests` | 597 | 旧test／fixtureを隔離し、新世代oracleとして実行しない |
 | `docs` | 2603 | 旧要求・設計・PLAN・test design・archiveを構造保持で隔離 |
-| **合計** | **4020** | [manifest](../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
+| **合計** | **4020** | [manifest](../../../../archive/legacy-generation-2026-09-14/MANIFEST.sha256)で固定 |
 
 archiveのsnapshot sourceはcommit `2d4991042be55268bac30a8bbcdac45b3865030a`であり、4,020件は同commitの
 同一pathと全件byte一致する。L2監査基準commit `6fabd12512a3659fff4a956692cdd61faeeb16ce`からsnapshot sourceまでに
-変更された333 pathは、[隔離前revision差分の保全監査](audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md)と
+変更された333 pathは、[隔離前revision差分の保全監査](pre-isolation-revision-delta-audit-2026-09-16.md)と
 機械台帳で両revisionを保持する。隔離直前revisionだけで基準revisionの要求・候補・検証・判断史を置換しない。
 
 active `docs/`には、隔離直後、本再整理で追加したConcept v4.1、対象別L1／L2／L11、上流方針、inventory、crosswalk、
@@ -59,7 +59,7 @@ branch削除禁止を維持している。
 GitHub管理のCodeQL default setupを一時的に`not-configured`へ変更したが、これはrepository全体へ作用し、PR #1797だけへ
 scopeを限定できていなかった。また、review実行指示をrepository-wide停止のaction-binding approvalとして扱うこともできない。
 この不整合を解消するため、2026-09-15に変更前相当の`configured`へ復元し、read-afterで確認した。変更と復元は
-[`github-codeql-default-setup-backup-2026-09-15.json`](github-codeql-default-setup-backup-2026-09-15.json)へ記録した。
+[`github-codeql-default-setup-backup-2026-09-15.json`](github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json)へ記録した。
 復元時に生成されたCodeQL runはGitHub管理のsecurity projectionであり、旧harness CI、新世代上流の意味review、承認、
 merge条件として使用しない。Dependabot Updatesも同じく外部projectionとして扱う。
 
@@ -75,4 +75,4 @@ merge条件として使用しない。Dependabot Updatesも同じく外部projec
 
 ## 2026-09-23の旧資産判断時期に関する追記
 
-上記「未成立事項」は隔離時点の記録として保持する。現在の旧資産reuse dispositionの順序は、[2026-09-23 PO decision record](decisions/legacy-asset-review-timing-2026-09-23.md)に従う。RDPの生存中source holdingの読込と要求閉包は要求disposition前に維持し、要求と製品scopeの確定後、L3要求定義で選択された資産を既存の再利用統制に従って個別に判断する。全4,020件のカタログ対応は保持し、全件の意味移管完了を要求しない。
+上記「未成立事項」は隔離時点の記録として保持する。現在の旧資産reuse dispositionの順序は、[2026-09-23 PO decision record](../../decisions/legacy-asset-review-timing-2026-09-23.md)に従う。RDPの生存中source holdingの読込と要求閉包は要求disposition前に維持し、要求と製品scopeの確定後、L3要求定義で選択された資産を既存の再利用統制に従って個別に判断する。全4,020件のカタログ対応は保持し、全件の意味移管完了を要求しない。

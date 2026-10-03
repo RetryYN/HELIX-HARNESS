@@ -14,6 +14,9 @@ from pathlib import Path
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+    "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+    "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -248,7 +251,7 @@ def proposed_record(source_digest: str, count: int) -> dict:
 def build() -> dict:
     report_path = relocated(ROOT / REPORT_PATH)
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    register_path = ROOT / REGISTER_PATH
+    register_path = relocated(ROOT / REGISTER_PATH)
     register = load_jsonl(register_path)
     holdings = live_holdings(register)
     holding_rows = {item["registration_id"]: load_jsonl(relocated(ROOT / item["source_atom_set_ref"])) for item in holdings}
@@ -291,7 +294,7 @@ def build() -> dict:
             "management_register_path": REGISTER_PATH,
             "management_register_sha256": sha(register_path.read_bytes()),
             "requirement_disposition_program_path": DISPOSITION_PATH,
-            "requirement_disposition_program_sha256": sha((ROOT / DISPOSITION_PATH).read_bytes()),
+            "requirement_disposition_program_sha256": sha(relocated(ROOT / DISPOSITION_PATH).read_bytes()),
             "registration_contract_path": REGISTRATION_PATH,
             "pre_isolation_holding_path": HOLDING_PATH,
             "pre_isolation_holding_sha256": sha(relocated(ROOT / HOLDING_PATH).read_bytes()),

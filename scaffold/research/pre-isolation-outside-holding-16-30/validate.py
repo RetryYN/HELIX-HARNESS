@@ -18,6 +18,7 @@ from pathlib import Path
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
     "scaffold/pre-isolation-outside-holding-16-30": "scaffold/research/pre-isolation-outside-holding-16-30",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -163,7 +164,7 @@ def load_jsonl(path: Path) -> list[dict]:
 
 @lru_cache(maxsize=1)
 def independent_live_holdings() -> tuple[list[dict], dict[str, list[dict]]]:
-    register = load_jsonl(ROOT / REGISTER_PATH)
+    register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
     live_rows = [row for row in register if row.get("registration_id") not in superseded]
     if {row.get("registration_id") for row in live_rows} != LIVE_HOLDING_IDS:

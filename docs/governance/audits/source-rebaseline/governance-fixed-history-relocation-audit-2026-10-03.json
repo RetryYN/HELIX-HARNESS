@@ -1,0 +1,2187 @@
+{
+  "schema": "governance-fixed-history-relocation-audit/v1",
+  "base_commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
+  "generation_head_before_commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
+  "read_only_source_audit": true,
+  "purpose": "Move seven time-record/snapshot documents into existing audit workstream categories, preserve historic locators in append-only and fixed capture evidence, and keep current consumers on the moved bytes.",
+  "file_moves": [
+    {
+      "from": "docs/governance/archive-first-transition-record-2026-09-14.md",
+      "to": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+      "reason": "archive-first切替記録。既存source-rebaseline監査分類へ",
+      "sha256_before": "64819cd05132693b4527cbc79e623c472c70e66430dfa46dac2d5c204a0ea363",
+      "sha256_after": "be4d3140925eca4093963bd89b7417cccf89e8cd56adee9f0f666d490d18e76c",
+      "bytes_before": 6567,
+      "bytes_after": 6580,
+      "byte_identical": false,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/github-codeql-default-setup-backup-2026-09-15.json",
+      "to": "docs/governance/audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+      "reason": "archive-first記録が参照する外部GitHub security projection backup。既存projection-backupsへ",
+      "sha256_before": "4a84a3acd0d04297d43bd005d50bbb6a36e4f84ebab9f6c8fe6364b150a70dfb",
+      "sha256_after": "4a84a3acd0d04297d43bd005d50bbb6a36e4f84ebab9f6c8fe6364b150a70dfb",
+      "bytes_before": 1868,
+      "bytes_after": 1868,
+      "byte_identical": true,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/repository-foundation-readiness.md",
+      "to": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+      "reason": "PR #1797時点のrepository foundation readiness記録。source-rebaselineへ",
+      "sha256_before": "512715edc1358f1e370e772a8c42aff012634b83ee9f64ee4e9562e27bc30451",
+      "sha256_after": "06664f038dce447ccf3cd88e623e664427305d980061500aef71b4ea267d0669",
+      "bytes_before": 7899,
+      "bytes_after": 7910,
+      "byte_identical": false,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/new-generation-workbase-consolidation.md",
+      "to": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+      "reason": "完了済みworkbase operation contractとread-after。source-rebaselineへ",
+      "sha256_before": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+      "sha256_after": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+      "bytes_before": 10180,
+      "bytes_after": 10180,
+      "byte_identical": true,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "to": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "reason": "3df81ad pre-append append-only register snapshot。requirements-stage history-snapshotsへ",
+      "sha256_before": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "sha256_after": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "bytes_before": 44986,
+      "bytes_after": 44986,
+      "byte_identical": true,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+      "to": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+      "reason": "pre-append registration contract snapshot。requirements-stage history-snapshotsへ",
+      "sha256_before": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+      "sha256_after": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+      "bytes_before": 11063,
+      "bytes_after": 11063,
+      "byte_identical": true,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    },
+    {
+      "from": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+      "to": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+      "reason": "pre-append disposition review program snapshot。requirements-stage history-snapshotsへ",
+      "sha256_before": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+      "sha256_after": "c763a07d897990823f299f98fb647bea8f30f1311a3e78bbfcbcf696fa959806",
+      "bytes_before": 10426,
+      "bytes_after": 10498,
+      "byte_identical": false,
+      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+    }
+  ],
+  "markdown_link_rewrites": {
+    "scope": "Only Markdown link target tokens were changed; visible link text and all non-link bytes are identical to base. Target path tokens were rebased to the exact same target file (or, for one previously broken historic path, to the already-existing intended IR rehome register).",
+    "files": [
+      {
+        "file_before": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "file_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "sha256_before": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+        "sha256_after": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+        "link_token_changes": 0,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "file_after": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "sha256_before": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+        "sha256_after": "c763a07d897990823f299f98fb647bea8f30f1311a3e78bbfcbcf696fa959806",
+        "link_token_changes": 8,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/archive-first-transition-record-2026-09-14.md",
+        "file_after": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "sha256_before": "64819cd05132693b4527cbc79e623c472c70e66430dfa46dac2d5c204a0ea363",
+        "sha256_after": "be4d3140925eca4093963bd89b7417cccf89e8cd56adee9f0f666d490d18e76c",
+        "link_token_changes": 4,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "file_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "sha256_before": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+        "sha256_after": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+        "link_token_changes": 0,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/audits/source-rebaseline/repository-foundation-merge-admission-packet.md",
+        "file_after": "docs/governance/audits/source-rebaseline/repository-foundation-merge-admission-packet.md",
+        "sha256_before": "740adabf37957fb30f183d98c79aeeebabe45c1bb6661119e5f0ce966ccbb458",
+        "sha256_after": "51f50a587b9d6e81a561d2e8ba70cd18a06d92d8ec25470cdc10150d4d346931",
+        "link_token_changes": 1,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/repository-foundation-readiness.md",
+        "file_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "sha256_before": "512715edc1358f1e370e772a8c42aff012634b83ee9f64ee4e9562e27bc30451",
+        "sha256_after": "06664f038dce447ccf3cd88e623e664427305d980061500aef71b4ea267d0669",
+        "link_token_changes": 7,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "file_after": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "sha256_before": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376",
+        "sha256_after": "3683088d7af156fbdd3056f124dd6112551f64f5956c0f87232edf9689bbaa5e",
+        "link_token_changes": 5,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "file_after": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "sha256_before": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e",
+        "sha256_after": "69c39b7701a712f3c469c2fda996b56264cac308ac2706dbb0f32c96a0282e54",
+        "link_token_changes": 2,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/decisions/legacy-asset-review-timing-2026-09-23.md",
+        "file_after": "docs/governance/decisions/legacy-asset-review-timing-2026-09-23.md",
+        "sha256_before": "f6d69174766301a644c8b72354b9e931980f78c9e6ee3806fdcd4748f40e7b4e",
+        "sha256_after": "6ac191031a36735600216933c4e117fc99b24de4ee72e2f323da5c0beb0c7d34",
+        "link_token_changes": 1,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/github-upstream-pr-packet.md",
+        "file_after": "docs/governance/github-upstream-pr-packet.md",
+        "sha256_before": "924ec7644460e6bc1ce04b89fb3e266fac8296bc2642a2e1e7e326cc2a425350",
+        "sha256_after": "efe82e83830a96c7d341f2d505f24fe8a25bf85eb625f74b125792651367ba6f",
+        "link_token_changes": 5,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/new-generation-start-here.md",
+        "file_after": "docs/governance/new-generation-start-here.md",
+        "sha256_before": "94ba0d22bf33338960db9c9fa1a61f438ec24e9b44643631c8bf1cdcf19bb154",
+        "sha256_after": "78968907f306b11b87fb58311b1174940ccee9dbf01d372c0db51ac5f0dd9b77",
+        "link_token_changes": 3,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/upstream-authority-register-2026-09-14.md",
+        "file_after": "docs/governance/upstream-authority-register-2026-09-14.md",
+        "sha256_before": "2b5dc96c93b56b396833d8d25eb88d669ca70a885a6d34b465afe6e12952b34e",
+        "sha256_after": "d06a480edf7a388454a061ae669c6548f977741e8392e36d220d842652a6e469",
+        "link_token_changes": 2,
+        "non_link_bytes_equal": true
+      },
+      {
+        "file_before": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "file_after": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "sha256_before": "6838f4929ca67f4fd58b4ce5f1792a76a149571470a473d272e1c1bb45603048",
+        "sha256_after": "47ca01360a6af569dd37c09343d333d6575ec318cd92374bb3cae731f3b01d0e",
+        "link_token_changes": 1,
+        "non_link_bytes_equal": true
+      }
+    ],
+    "tokens": [
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 21,
+        "ordinal": 1,
+        "before": "management-provisional-requirement-registration.md",
+        "after": "../../../management-provisional-requirement-registration.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 60,
+        "ordinal": 2,
+        "before": "management-provisional-requirement-registration.md#bootstrap境界",
+        "after": "../../../management-provisional-requirement-registration.md#bootstrap境界",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 61,
+        "ordinal": 3,
+        "before": "legacy-ir-rehome-wave-register.md",
+        "after": "../../../legacy-migration/ir/legacy-ir-rehome-wave-register.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 63,
+        "ordinal": 4,
+        "before": "requirement-overlap-review-program.md",
+        "after": "../../../requirement-overlap-review-program.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 64,
+        "ordinal": 5,
+        "before": "requirement-technical-substitutability-review-program.md",
+        "after": "../../../requirement-technical-substitutability-review-program.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 95,
+        "ordinal": 6,
+        "before": "audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md",
+        "after": "../../source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 96,
+        "ordinal": 7,
+        "before": "audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md",
+        "after": "../../source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "line": 101,
+        "ordinal": 8,
+        "before": "decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "after": "../../../decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "line": 27,
+        "ordinal": 1,
+        "before": "../../archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "after": "../../../../archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "line": 31,
+        "ordinal": 2,
+        "before": "audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
+        "after": "pre-isolation-revision-delta-audit-2026-09-16.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "line": 62,
+        "ordinal": 3,
+        "before": "github-codeql-default-setup-backup-2026-09-15.json",
+        "after": "github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "line": 78,
+        "ordinal": 4,
+        "before": "decisions/legacy-asset-review-timing-2026-09-23.md",
+        "after": "../../decisions/legacy-asset-review-timing-2026-09-23.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-merge-admission-packet.md",
+        "line": 33,
+        "ordinal": 2,
+        "before": "../../repository-foundation-readiness.md",
+        "after": "repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 1,
+        "before": "new-generation-start-here.md",
+        "after": "../../new-generation-start-here.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 2,
+        "before": "upstream-authority-register-2026-09-14.md",
+        "after": "../../upstream-authority-register-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 3,
+        "before": "github-upstream-operating-model.md",
+        "after": "../../github-upstream-operating-model.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 4,
+        "before": "management-provisional-requirement-registration.md",
+        "after": "../../management-provisional-requirement-registration.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 5,
+        "before": "github-upstream-pr-packet.md",
+        "after": "../../github-upstream-pr-packet.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 24,
+        "ordinal": 7,
+        "before": "legacy-asset-reuse-control.md",
+        "after": "../../legacy-asset-reuse-control.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "line": 61,
+        "ordinal": 8,
+        "before": "audits/source-rebaseline/repository-foundation-merge-admission-packet.md",
+        "after": "repository-foundation-merge-admission-packet.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "line": 64,
+        "ordinal": 24,
+        "before": "../archive-first-transition-record-2026-09-14.md",
+        "after": "../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "line": 64,
+        "ordinal": 25,
+        "before": "../repository-foundation-readiness.md",
+        "after": "../audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "line": 64,
+        "ordinal": 26,
+        "before": "../new-generation-workbase-consolidation.md",
+        "after": "../audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "line": 204,
+        "ordinal": 44,
+        "before": "../archive-first-transition-record-2026-09-14.md",
+        "after": "../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+        "line": 204,
+        "ordinal": 45,
+        "before": "../repository-foundation-readiness.md",
+        "after": "../audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "line": 66,
+        "ordinal": 3,
+        "before": "../repository-foundation-readiness.md",
+        "after": "../audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "line": 66,
+        "ordinal": 4,
+        "before": "../archive-first-transition-record-2026-09-14.md",
+        "after": "../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/decisions/legacy-asset-review-timing-2026-09-23.md",
+        "line": 31,
+        "ordinal": 2,
+        "before": "../archive-first-transition-record-2026-09-14.md",
+        "after": "../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/github-upstream-pr-packet.md",
+        "line": 13,
+        "ordinal": 3,
+        "before": "repository-foundation-readiness.md",
+        "after": "audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/github-upstream-pr-packet.md",
+        "line": 21,
+        "ordinal": 6,
+        "before": "archive-first-transition-record-2026-09-14.md",
+        "after": "audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/github-upstream-pr-packet.md",
+        "line": 23,
+        "ordinal": 8,
+        "before": "repository-foundation-readiness.md",
+        "after": "audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/github-upstream-pr-packet.md",
+        "line": 65,
+        "ordinal": 14,
+        "before": "github-codeql-default-setup-backup-2026-09-15.json",
+        "after": "audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/github-upstream-pr-packet.md",
+        "line": 71,
+        "ordinal": 15,
+        "before": "repository-foundation-readiness.md",
+        "after": "audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/new-generation-start-here.md",
+        "line": 57,
+        "ordinal": 35,
+        "before": "repository-foundation-readiness.md",
+        "after": "audits/source-rebaseline/repository-foundation-readiness.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/new-generation-start-here.md",
+        "line": 58,
+        "ordinal": 36,
+        "before": "new-generation-workbase-consolidation.md",
+        "after": "audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/new-generation-start-here.md",
+        "line": 64,
+        "ordinal": 50,
+        "before": "archive-first-transition-record-2026-09-14.md",
+        "after": "audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/upstream-authority-register-2026-09-14.md",
+        "line": 33,
+        "ordinal": 13,
+        "before": "new-generation-workbase-consolidation.md",
+        "after": "audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/upstream-authority-register-2026-09-14.md",
+        "line": 35,
+        "ordinal": 15,
+        "before": "archive-first-transition-record-2026-09-14.md",
+        "after": "audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "only_link_destination_changed": true
+      },
+      {
+        "file": "docs/governance/upstream-rebaseline-execution-backlog-2026-09-14.md",
+        "line": 90,
+        "ordinal": 3,
+        "before": "github-codeql-default-setup-backup-2026-09-15.json",
+        "after": "audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "only_link_destination_changed": true
+      }
+    ],
+    "count": 39
+  },
+  "references_at_base": {
+    "total_exact_full_path_occurrences": 87,
+    "classification_counts": {
+      "historical_locator": 47,
+      "current_binding_upstream": 13,
+      "historical_binding_prose": 1,
+      "current_reader": 21,
+      "historical_output_locator": 5
+    },
+    "occurrences": [
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r2.json",
+        "line_at_origin_main_4ef29ee": 58,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_foundation\": \"docs/governance/repository-foundation-readiness.md PR #1797 foundation review. Related repository readiness; does not establish Bun-free active surfaces.\""
+      },
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r2.json",
+        "line_at_origin_main_4ef29ee": 89,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/repository-foundation-readiness.md\","
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r2.json",
+        "line_at_origin_main_4ef29ee": 57,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_workbase_consolidation\": \"docs/governance/new-generation-workbase-consolidation.md operation NG-WORKBASE-CONSOLIDATION-20260917-001; completed workbase aggregation, explicitly excludes runtime reconstruction and requirement change. Related context; not same-meaning migration completion e"
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r2.json",
+        "line_at_origin_main_4ef29ee": 88,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/new-generation-workbase-consolidation.md\","
+      },
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+        "line_at_origin_main_4ef29ee": 59,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_foundation\": \"docs/governance/repository-foundation-readiness.md PR #1797 foundation review. Related repository readiness; does not establish Bun-free active surfaces.\""
+      },
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+        "line_at_origin_main_4ef29ee": 92,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/repository-foundation-readiness.md\","
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+        "line_at_origin_main_4ef29ee": 58,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_workbase_consolidation\": \"docs/governance/new-generation-workbase-consolidation.md operation NG-WORKBASE-CONSOLIDATION-20260917-001; completed workbase aggregation, explicitly excludes runtime reconstruction and requirement change. Related context; not same-meaning migration completion e"
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+        "line_at_origin_main_4ef29ee": 91,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/new-generation-workbase-consolidation.md\","
+      },
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03.json",
+        "line_at_origin_main_4ef29ee": 58,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_foundation\": \"docs/governance/repository-foundation-readiness.md PR #1797 foundation review. Related repository readiness; does not establish Bun-free active surfaces.\""
+      },
+      {
+        "target_before": "docs/governance/repository-foundation-readiness.md",
+        "target_after": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03.json",
+        "line_at_origin_main_4ef29ee": 89,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/repository-foundation-readiness.md\""
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03.json",
+        "line_at_origin_main_4ef29ee": 57,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"repository_workbase_consolidation\": \"docs/governance/new-generation-workbase-consolidation.md operation NG-WORKBASE-CONSOLIDATION-20260917-001; completed workbase aggregation, explicitly excludes runtime reconstruction and requirement change. Related context; not same-meaning migration completion e"
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03.json",
+        "line_at_origin_main_4ef29ee": 88,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/new-generation-workbase-consolidation.md\","
+      },
+      {
+        "target_before": "docs/governance/github-codeql-default-setup-backup-2026-09-15.json",
+        "target_after": "docs/governance/audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "consumer": "docs/governance/audits/worker-execution-model-migration-2026-09-26-files.jsonl",
+        "line_at_origin_main_4ef29ee": 1846,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "{\"path\": \"docs/governance/github-codeql-default-setup-backup-2026-09-15.json\", \"area\": \"current_docs\", \"kind\": \"data\", \"hits\": 3, \"terms\": [\"runner\"], \"class\": \"別の意味\", \"destination\": \"none\", \"conflict\": false, \"evidence\": \"L24: \\\"runner_type\\\": \\\"standard\\\",（GitHub Actions・CIのrunnerの意味）\", \"method\": "
+      },
+      {
+        "target_before": "docs/governance/new-generation-workbase-consolidation.md",
+        "target_after": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "consumer": "docs/governance/audits/worker-execution-model-migration-2026-09-26-files.jsonl",
+        "line_at_origin_main_4ef29ee": 1893,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "{\"path\": \"docs/governance/new-generation-workbase-consolidation.md\", \"area\": \"current_docs\", \"kind\": \"doc\", \"hits\": 3, \"terms\": [\"lane\"], \"class\": \"記録（書き換えない）\", \"destination\": \"none\", \"conflict\": false, \"evidence\": \"L134: 旧scanner、receiver、Claude lane等を停止…（status completedの操作契約・証拠記録）\", \"method\": \"re"
+      },
+      {
+        "target_before": "docs/governance/github-codeql-default-setup-backup-2026-09-15.json",
+        "target_after": "docs/governance/audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "consumer": "docs/governance/audits/worker-execution-model-migration-2026-09-26.md",
+        "line_at_origin_main_4ef29ee": 65,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "| `docs/governance/github-codeql-default-setup-backup-2026-09-15.json` | 3 | GitHubの`runner_type`（24、25、44） | 別の意味 | 変更しない |"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line_at_origin_main_4ef29ee": 33,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "{\"registration_id\":\"MPR-SH-OUTSIDE67-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"source_holding\",\"requirement_identity\":null,\"requirement_kind\":null,\"product_target\":\"unassigned_cross_product\",\"candidate_source_path\":null,\"candidate_semantic_digest\":null,\"parent_concept_revision\":nul"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0027.json",
+        "line_at_origin_main_4ef29ee": 32,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0029.json",
+        "line_at_origin_main_4ef29ee": 42,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0034.json",
+        "line_at_origin_main_4ef29ee": 32,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0035.json",
+        "line_at_origin_main_4ef29ee": 27,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0036.json",
+        "line_at_origin_main_4ef29ee": 9,
+        "kind": "historical_binding_prose",
+        "action": "binding narrativeに固定された過去locatorとして保持",
+        "excerpt": "\"reason\": \"outside-67 first15の旧L1 path 4件について、pre-isolation blob、旧承認L1の固定revisionと現行未承認L1、product boundary、decision、`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl` の13 live holding exact関係を静的に照合する。HARNESS／OSはpartial、旧固定BASEではWeb／Web-OSはexact substantive relatio"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0036.json",
+        "line_at_origin_main_4ef29ee": 42,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0038.json",
+        "line_at_origin_main_4ef29ee": 52,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "consumer": "scaffold/bindings/SCF-B-0038.json",
+        "line_at_origin_main_4ef29ee": 62,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md\","
+      },
+      {
+        "target_before": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "consumer": "scaffold/bindings/SCF-B-0038.json",
+        "line_at_origin_main_4ef29ee": 57,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0040.json",
+        "line_at_origin_main_4ef29ee": 52,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "consumer": "scaffold/bindings/SCF-B-0040.json",
+        "line_at_origin_main_4ef29ee": 142,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0043.json",
+        "line_at_origin_main_4ef29ee": 47,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0044.json",
+        "line_at_origin_main_4ef29ee": 47,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/bindings/SCF-B-0045.json",
+        "line_at_origin_main_4ef29ee": 37,
+        "kind": "current_binding_upstream",
+        "action": "upstream.pathを新pathへ追随し、source SHAを維持/再計算。Binding upstreamだけ更新",
+        "excerpt": "\"path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/outside67-global-49-67/README.md",
+        "line_at_origin_main_4ef29ee": 5,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "13 live holdingの比較基準は`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`に保全した親d272時点のhistorical snapshot（register SHA `4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b`、capture `3df81ad27157c471e004083783f37a5860eaa2ee`）に固定します。main/baseが進んでもこの束は静かに追"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/outside67-global-49-67/generate.py",
+        "line_at_origin_main_4ef29ee": 44,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/outside67-global-49-67/generate.py",
+        "line_at_origin_main_4ef29ee": 258,
+        "kind": "historical_output_locator",
+        "action": "コードに記録される時点path string。物理読込先ではなく、旧locatorを維持",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/outside67-global-49-67/inventory.json",
+        "line_at_origin_main_4ef29ee": 26,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/outside67-global-49-67/validate.py",
+        "line_at_origin_main_4ef29ee": 47,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/phcap02-03-registration-classification-audit/generate.py",
+        "line_at_origin_main_4ef29ee": 20,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+        "line_at_origin_main_4ef29ee": 19,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-16-30/README.md",
+        "line_at_origin_main_4ef29ee": 19,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "既存13 holdingは`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`のhistorical 32行snapshotにある`supersedes`終端集合から再計算する。append後のcurrent registerは14 live holdingへ進んでいるが、この候補の13件の証拠境界を置換しない。`inventory.json`は正式67 item source set、coverage receipt、outside report、既存13 path hol"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-16-30/generate.py",
+        "line_at_origin_main_4ef29ee": 50,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
+        "line_at_origin_main_4ef29ee": 24,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-16-30/validate.py",
+        "line_at_origin_main_4ef29ee": 72,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-31-48/generate.py",
+        "line_at_origin_main_4ef29ee": 45,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
+        "line_at_origin_main_4ef29ee": 26,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
+        "line_at_origin_main_4ef29ee": 46,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
+        "line_at_origin_main_4ef29ee": 5,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`は3df81adのregister bytesをそのまま固定した13-holding historical snapshotです。current registerはその32行をprefixとして33行目だけをappendし、14 live holdingsになっています。`read-after-14.json`はcurrent registerを再読し、旧13 IDを保持したまま追加IDを分離しています。旧13 invent"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
+        "line_at_origin_main_4ef29ee": 7,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "既存のfirst15、PHCAP-02/03、delegated-doc003、unassessed-atom、merged #1975 の SCF-B-0036 と outside-L1 validator、merged #1988 のrows 31–48とSCF-B-0043、merged #1989 のrows 49–67とSCF-B-0044、SCF-B-0027/0029/0034/0035は、historical register参照を`docs/governance/management-provisional-requirement-register-pre-append-3d"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
+        "line_at_origin_main_4ef29ee": 30,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "HISTORICAL_REGISTER = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
+        "line_at_origin_main_4ef29ee": 149,
+        "kind": "historical_output_locator",
+        "action": "コードに記録される時点path string。物理読込先ではなく、旧locatorを維持",
+        "excerpt": "\"required_migration\": \"SCF-B-0036 validator/generator/inventoryをdocs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。#1981ではこの移行候補を準備し、merge後にBinding upstreamをrebaselineする\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 17,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 52,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"required_migration\": \"SCF-B-0036 validator/generator/inventoryをdocs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。#1981ではこの移行候補を準備し、merge後にBinding upstreamをrebaselineする\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 85,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 90,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 95,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 100,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 105,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 110,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 115,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 120,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 125,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 130,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 135,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 140,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 145,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+        "line_at_origin_main_4ef29ee": 150,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_register_ref\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/proposed-register-record.json",
+        "line_at_origin_main_4ef29ee": 28,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
+        "line_at_origin_main_4ef29ee": 8,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"historical_snapshot_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py",
+        "line_at_origin_main_4ef29ee": 10,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "SNAPSHOT = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+        "line_at_origin_main_4ef29ee": 19,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "HISTORICAL = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+        "line_at_origin_main_4ef29ee": 30,
+        "kind": "historical_output_locator",
+        "action": "生成inventory/validator expectationに保持する時点path string。物理読込ではなく、旧locatorを維持",
+        "excerpt": "HISTORICAL_REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+        "line_at_origin_main_4ef29ee": 48,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+        "line_at_origin_main_4ef29ee": 52,
+        "kind": "historical_output_locator",
+        "action": "生成inventory/validator expectationに保持する時点path string。物理読込ではなく、旧locatorを維持",
+        "excerpt": "REGISTRATION_PATH = \"docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md\""
+      },
+      {
+        "target_before": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+        "line_at_origin_main_4ef29ee": 50,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "DISPOSITION_PATH = \"docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+        "line_at_origin_main_4ef29ee": 24,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+        "line_at_origin_main_4ef29ee": 28,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"registration_contract_path\": \"docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md\","
+      },
+      {
+        "target_before": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+        "line_at_origin_main_4ef29ee": 26,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"requirement_disposition_program_path\": \"docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+        "line_at_origin_main_4ef29ee": 56,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-first15/generate.py",
+        "line_at_origin_main_4ef29ee": 49,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+        "line_at_origin_main_4ef29ee": 24,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"holding_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-holding-first15/validate.py",
+        "line_at_origin_main_4ef29ee": 18,
+        "kind": "historical_output_locator",
+        "action": "生成inventory/validator expectationに保持する時点path string。物理読込ではなく、旧locatorを維持",
+        "excerpt": "EXPECTED_REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-l1-semantic/README.md",
+        "line_at_origin_main_4ef29ee": 14,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "13 live source holding（`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl` のsupersedes終端）に対する旧path、旧blob OID、旧SHAのexact matchは4件とも0件でした。これはsemantic non-inclusionや要求不採用を意味しません。要求disposition review contract（`docs/governance/requirement-disposition-review-program.md:3"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-l1-semantic/generate.py",
+        "line_at_origin_main_4ef29ee": 18,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+        "line_at_origin_main_4ef29ee": 25,
+        "kind": "historical_locator",
+        "action": "append-only register evidence_ref、snapshot/inventory/receipt、過去decision/audit内 locator。書き換えない",
+        "excerpt": "\"management_register_path\": \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\","
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+        "line_at_origin_main_4ef29ee": 37,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "HISTORICAL_REGISTER_PATH = \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+        "line_at_origin_main_4ef29ee": 23,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+        "line_at_origin_main_4ef29ee": 277,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "for path in (\"scaffold/rdp001-delegated-doc003-unprocessed8/report.json\", \"docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl\", \"docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md\", \"docs/governa"
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+        "line_at_origin_main_4ef29ee": 23,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "REGISTER_PATH = ROOT / \"docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl\""
+      },
+      {
+        "target_before": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "target_after": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "consumer": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+        "line_at_origin_main_4ef29ee": 348,
+        "kind": "current_reader",
+        "action": "Python readerの実読込先を既存RELOCATED_PATHS経由で新pathへ解決。生成recordに書く旧historical locatorは保持",
+        "excerpt": "for path in (\"scaffold/rdp001-unassessed-atom-audit/report.json\", \"docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl\", \"docs/governance/legacy-asset-disposition.jsonl\", \"docs/governance/legacy-asset-decisions.jsonl\", \"docs/governance/management-provisio"
+      }
+    ],
+    "caller_basis": "Each occurrence stores origin-main line and exact source line excerpt; current reader/binding path update vs historical locator preservation is explicit."
+  },
+  "current_readers": {
+    "scaffold/outside67-global-49-67/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/outside67-global-49-67/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/phcap02-03-registration-classification-audit/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/phcap02-03-registration-classification-audit/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-16-30/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-16-30/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-31-48/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-31-48/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-67-migration/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-67-migration/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-67-proposal/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-67-proposal/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-holding-first15/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-l1-semantic/generate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/pre-isolation-outside-l1-semantic/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    },
+    "scaffold/rdp001-unassessed-atom-audit/validate.py": {
+      "source_old_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "resolved_path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "exists": true,
+      "mapping_present": true
+    }
+  },
+  "binding_upstream_rebaseline": {
+    "changed_binding_files": [
+      {
+        "binding_id": "SCF-B-0019",
+        "path": "scaffold/bindings/SCF-B-0019.json",
+        "sha256_before": "6102e6acc3115584f917e26ddf54939d93e452ee5cca5c837ce28011bd96a7a9",
+        "sha256_after": "506edd4f96a26b6f5045d32bf129b9efd64ce35d5fb348c68fb738e2104c74b6",
+        "status": "active"
+      },
+      {
+        "binding_id": "SCF-B-0023",
+        "path": "scaffold/bindings/SCF-B-0023.json",
+        "sha256_before": "868a36c3f3e2c1c6b4ca745317449d3b2298ea6c9a5f94ca9d1ad5909bcbd58b",
+        "sha256_after": "8adbf35d8943b714704e1c0ea98e4390896cdbda8cf6cddfc8ce5049318386d5",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0027",
+        "path": "scaffold/bindings/SCF-B-0027.json",
+        "sha256_before": "750d92f5d7cb7b0179907b48945595289f198b7b0d33ddce9dc99c2adb61b601",
+        "sha256_after": "ee72c6dcb9da7d72477ae7b70ec4810c06c776138226c8236dd821c52640c278",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0028",
+        "path": "scaffold/bindings/SCF-B-0028.json",
+        "sha256_before": "5b7c9ace7c91ae992c5881b75622479383d8c9db8c9b3c7fe73c530f74ebd50b",
+        "sha256_after": "98b90fd48184bcfbdd9a73a8afff09e40010eea32b8f6efa3e42a1abb4699925",
+        "status": "active"
+      },
+      {
+        "binding_id": "SCF-B-0029",
+        "path": "scaffold/bindings/SCF-B-0029.json",
+        "sha256_before": "5b81b7198ada8fe5568742129ce61922dda11ce6bc09ecec7bf20efb5a0f6320",
+        "sha256_after": "eb7df10c6674abe5ea980bf69fb88f6e5a1eeae673321bf8dce4388527b96289",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0031",
+        "path": "scaffold/bindings/SCF-B-0031.json",
+        "sha256_before": "2ab290764037085b5fae04469ffb8df62b450e83337c40ae967b23249a127ab0",
+        "sha256_after": "a91d7eb632b3e52a2fc57056ec9fddeb9926f72f751b9b50851baa80279e2ff8",
+        "status": "active"
+      },
+      {
+        "binding_id": "SCF-B-0034",
+        "path": "scaffold/bindings/SCF-B-0034.json",
+        "sha256_before": "15c8b40dcbbeaf473f77b2e96500e30c4698cbeb7e307a25512e51004e09f923",
+        "sha256_after": "d931f4a008f64994a09704ec2d8208fb8c1d90bc585a789c6e7c8caf92cd67c4",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0035",
+        "path": "scaffold/bindings/SCF-B-0035.json",
+        "sha256_before": "9b0dec471fd7289ca9bada8650442f79b18056c87a501cdedbf46d9fd053ed42",
+        "sha256_after": "0ce19a6838f65cceb73a41ca69f360ab434afee29d25afcccbd104945db660ce",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0036",
+        "path": "scaffold/bindings/SCF-B-0036.json",
+        "sha256_before": "6598ae2c5a519e7a54f84160094919e4298a6d4160848820b91d47883ec075b7",
+        "sha256_after": "58e565a0f3f98b9a77cec5d8b189759eda5d2f058cb9b904ced6fc647e459613",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0038",
+        "path": "scaffold/bindings/SCF-B-0038.json",
+        "sha256_before": "0a4448c50e8f9138f2db4b8b8a7cec371cdc27210aa203ad8dd0d80474b78f55",
+        "sha256_after": "1a2738632953dcdda1f95d5a6937e5462ae2802d5dd7af9272340a76ad67c3f1",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0040",
+        "path": "scaffold/bindings/SCF-B-0040.json",
+        "sha256_before": "249ecacb4cb0c37480b83884a5a41d9cf969a401f8bf844bc5dc2be50c2f435d",
+        "sha256_after": "687144587f907dea6fe3243c6d228f425cfbcf1ce2217a82f9875725c54e3776",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0041",
+        "path": "scaffold/bindings/SCF-B-0041.json",
+        "sha256_before": "fad07d361ca311ea4ab2be96fcc2266e3195bd64bc2e8f764b5f3294eb5fd980",
+        "sha256_after": "1b473f9650fb67804d2a7e4de8cc2dbc724b16fe78cca64b754da008999d9d63",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0043",
+        "path": "scaffold/bindings/SCF-B-0043.json",
+        "sha256_before": "26cc79cebc6c7c3f65a49bf454948412c9b2959abe2d0288f9843f3b3cb0f251",
+        "sha256_after": "7805b9bd9040bb33c281bfdcdb448aa59643978937e60a0b17366ea8610a06b8",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0044",
+        "path": "scaffold/bindings/SCF-B-0044.json",
+        "sha256_before": "1e75df38d64bff58cc4d89a98b0d52834449aa2999b2f541f004a9ccb6bd361a",
+        "sha256_after": "dfafb9126e564d8ec9c77e49a7003a527c20d028b1f6de181776d7c9baa23563",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0045",
+        "path": "scaffold/bindings/SCF-B-0045.json",
+        "sha256_before": "17a7c05b84883b55cf77cd5858041ebde0144916e3a3fdebd9530b2ffc812ca8",
+        "sha256_after": "eb64609538e1b6ab2730c4a9d47c6c03b73f3624913eeba6483cac32b04f61ca",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0046",
+        "path": "scaffold/bindings/SCF-B-0046.json",
+        "sha256_before": "feb30571e048c208af693feb3288d0bec431882d503b68cab833ef489925b5d5",
+        "sha256_after": "e6481c9eb155611b7645386a3c5d207d92ec3e418340dbb30ddb7cfc3c3d42e3",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0049",
+        "path": "scaffold/bindings/SCF-B-0049.json",
+        "sha256_before": "d50a1bad48ebd62c2f66d2519b220dd4df496d240e90617d7dd621eb96b716c6",
+        "sha256_after": "fbdc1c0ec0ea4775629d079e01b2e102e71eeec80402e322c62282e844d30da6",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0050",
+        "path": "scaffold/bindings/SCF-B-0050.json",
+        "sha256_before": "cdb3f963188528c03836753b8df4d023cdbabec8b5aa94a0c1344c362dce1033",
+        "sha256_after": "b93abaca56899e456609d310eecaa9fd80d3addc7fa691b7b488d15baf4b319b",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0052",
+        "path": "scaffold/bindings/SCF-B-0052.json",
+        "sha256_before": "688848c028567ccd25e177d801d67da9d054ac28c690f5bc1bea0e47899cd8e8",
+        "sha256_after": "625623acdd3644039a7a23f6a9a43c743c5b19be6cb89df216f623f393cf5eea",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0054",
+        "path": "scaffold/bindings/SCF-B-0054.json",
+        "sha256_before": "9ecd7a7064ac2cff585865e53a1b1172e82987f04e80936faf6eeeeb51676cbf",
+        "sha256_after": "80aa1e8ec15f1e683e99eca2794385eaec89130d1d12bf20ac5bb22e3a2ce10f",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0056",
+        "path": "scaffold/bindings/SCF-B-0056.json",
+        "sha256_before": "e5590198d88221ff17e7d610beacefaf9e9cb6d81fe2ed69675133704d93152a",
+        "sha256_after": "f82b5b4a68f8a18b41e50329c77202441263ce987454c4589f794c02c7a3e988",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0058",
+        "path": "scaffold/bindings/SCF-B-0058.json",
+        "sha256_before": "c08d9bb455500e3623865f6a8d3ea2d9f7641d6996425fb63caf6993d65dad45",
+        "sha256_after": "287c37ae10757425daaabbf67614d7daa81951a7b1386b0d818feacd27e1b95a",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0061",
+        "path": "scaffold/bindings/SCF-B-0061.json",
+        "sha256_before": "65456ab1441b2f0d11f6132465d0034e7add681b07cb1c294686ec2c3e5169ea",
+        "sha256_after": "d17efbf31589c9e4f1696637253fd986053fec865f7039290ba4d68f84e75a1e",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0062",
+        "path": "scaffold/bindings/SCF-B-0062.json",
+        "sha256_before": "aad4b7ffd940093576d00b939275fd9ccc31dae10e90a8c87c6f83fb705b4f3e",
+        "sha256_after": "b943b402782b32c307e478e77d14f2e4af4d3624945d63a43ad087e6d31c17bb",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0064",
+        "path": "scaffold/bindings/SCF-B-0064.json",
+        "sha256_before": "6c58d64f6b187ba2b81a337509713d75c1323cfc59cfb02fafa3fecee697bc5f",
+        "sha256_after": "1938291de18b4039dddd723d6df292cfffa6fb0c4f89d30320c78a67251e08d4",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0066",
+        "path": "scaffold/bindings/SCF-B-0066.json",
+        "sha256_before": "af71f018d874754a3e02e9dac18bd54dd7456f877e7064e796a3a159a6070752",
+        "sha256_after": "8d88211d0e6e0b96dd6e518b487a5f5ff4bd81b83e1daebbc144682e14255de6",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0068",
+        "path": "scaffold/bindings/SCF-B-0068.json",
+        "sha256_before": "23b0d675648743e3a9772d550e4e00b1a7b78e2ee806185dfc6f3e7cb9e33d11",
+        "sha256_after": "c058ef86b48d17b5f05ef6a176d0999ab191b04b6389f4741a9c7e00e60d085a",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0069",
+        "path": "scaffold/bindings/SCF-B-0069.json",
+        "sha256_before": "9fae9fed2753c1995f5b9f2343c8db80ab539f48f729bfa42f57425761c6d437",
+        "sha256_after": "68348375b4b75f98c6fca8b25d391b4633c890270479cc6286c6714d71be8511",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0070",
+        "path": "scaffold/bindings/SCF-B-0070.json",
+        "sha256_before": "609e62353f706180c5b7307e7f6ce42d6e3ebc7cd7872d53574cedae6c04124c",
+        "sha256_after": "1340c9a5678642fc2ed1178cc872ec655dd4b4287a0640d33f7ee53a20039178",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0071",
+        "path": "scaffold/bindings/SCF-B-0071.json",
+        "sha256_before": "3e3dd23b98a33571cb235397a07e8375fed632e7ac75dc478c40d45a994b410c",
+        "sha256_after": "ebf7415a0123b8ab5ccdc26acd2100cbeffb58c5261854e7aa3752edeaf31b4e",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0072",
+        "path": "scaffold/bindings/SCF-B-0072.json",
+        "sha256_before": "a48bd1edd185650f4e18f514db2a259295eed45f53ce5d7c45e080380de2239f",
+        "sha256_after": "4762328fae79b3ef557ad6c445692fab3e50b3f7d772a8aecdbeb8ffe7e418e5",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0073",
+        "path": "scaffold/bindings/SCF-B-0073.json",
+        "sha256_before": "6a68a31bbd06cca2fe1b0e8d8eadd6ee10d4dca1c02052e47a9f546076b706bd",
+        "sha256_after": "58e5a69c2f4da8c31106a60a948fbb41aae48306c7a602da1dc91a1ca426dcb4",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0074",
+        "path": "scaffold/bindings/SCF-B-0074.json",
+        "sha256_before": "fba1bad569724d02a92ffd44a8e7891c74690ac92991793984589216f773b11b",
+        "sha256_after": "33023cd815ac1e541dd88be9b9f573f97f1aaca2f0fd02f4d35c79fc32723174",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0075",
+        "path": "scaffold/bindings/SCF-B-0075.json",
+        "sha256_before": "ec05604cd63c46a133501c0c4a5d68e0975ee780f9d44960d94b197c6240a3b6",
+        "sha256_after": "39a2d79d9daefb444a7e99b839440d8aa2a10159713baae772a02d1c30052cd4",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0077",
+        "path": "scaffold/bindings/SCF-B-0077.json",
+        "sha256_before": "4d8760ff66437472c706cb489a9261880bbd29b638b59a1c2a3f72988a799492",
+        "sha256_after": "3e7a205a935dd5ef2e767f87bb8fda3d0f425f262f7f94a4b628709b4abcd9c7",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0078",
+        "path": "scaffold/bindings/SCF-B-0078.json",
+        "sha256_before": "04c2802504f3760d33c4aa66d4dc39b2e1c9240c0b65f62c15a67531e5328aee",
+        "sha256_after": "8961a93751f771a1b2f19e818be5815aaf9309ea2dde5b572d39ed3d9bf48464",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0079",
+        "path": "scaffold/bindings/SCF-B-0079.json",
+        "sha256_before": "e6a973da6687c5d054535db5ec5a17a0292cc161d40615afeeb0b3e2c3394f5f",
+        "sha256_after": "96e04b61ce70c62edf5f2647920e015059d467c9bb39520047a12b6cea934e50",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0082",
+        "path": "scaffold/bindings/SCF-B-0082.json",
+        "sha256_before": "dc219cc0b5225fa56a765c13027c5d80bbce568586c3da16fa37f3e5feb41b0a",
+        "sha256_after": "3146424c55c55d7a82d89777d4c60ed95a320365434abbe5f32dbfb9d7099bb1",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0083",
+        "path": "scaffold/bindings/SCF-B-0083.json",
+        "sha256_before": "233bf8092855ce23e8c122fea2ed7f36dc5fc90d49a482ceba995f9c5b4abb9b",
+        "sha256_after": "c8fdc8fdce2e0e8d61491c9d60cab5043a0791ddfb87069265a7577aae082371",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0085",
+        "path": "scaffold/bindings/SCF-B-0085.json",
+        "sha256_before": "33ca869091e1ddab2cf2d7614f16774ab593c7eeb383fe30089b8e82c264621e",
+        "sha256_after": "87f36a340306751f4f15a96a23af300d8aa6fad48f2135a94f094cf7f9978266",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0086",
+        "path": "scaffold/bindings/SCF-B-0086.json",
+        "sha256_before": "a11b82f1164e2468edaca6094dd15f210b774b50358423a21ab5eef72c7e315c",
+        "sha256_after": "714907dc2671eb07fa1ec639f5269ce4d6e7eb7b0af7bf8f489d7aa9d9f8916b",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0087",
+        "path": "scaffold/bindings/SCF-B-0087.json",
+        "sha256_before": "6dc691c13491a518e73f9b638cf00e60f18de00c7d52c977b80b9c0b4acc14bc",
+        "sha256_after": "26c6564e003565a632681fb57746b041a0cc11307ec37a79a27ff20bf9c1e030",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0089",
+        "path": "scaffold/bindings/SCF-B-0089.json",
+        "sha256_before": "1c421a0efad6d9733a2ec80694d7525947f96c84c31bde0458b090e74d7fe232",
+        "sha256_after": "eac618162084dda13a219a229161d8348a532e224eef64d2f41af04d87b0b0c2",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0090",
+        "path": "scaffold/bindings/SCF-B-0090.json",
+        "sha256_before": "1bf1edf34439c9f0108de1216e2e726d51a55e49873a7ba7694a05eb9bf801c4",
+        "sha256_after": "699f8783cb65618bd086741af311ea916ec084ab11519f119ed55e70b04799c3",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0092",
+        "path": "scaffold/bindings/SCF-B-0092.json",
+        "sha256_before": "c5935f5c31cf80a16fa0b5fd0a699daa187abe33b643f3beca3eb1964206508f",
+        "sha256_after": "db774509e8f7691ebf41e6dee81b82b6348c7f2f4e8d45a22c57abff1352a8b2",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0093",
+        "path": "scaffold/bindings/SCF-B-0093.json",
+        "sha256_before": "6752b9ca2be1b41b6bf6313fb682dc8d727573674ee59b34f8efabeeb5955c82",
+        "sha256_after": "d1a6913255cee5ecd59d2c1538ef10da9c13fbcc29127994d6241c93f14ab69c",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0094",
+        "path": "scaffold/bindings/SCF-B-0094.json",
+        "sha256_before": "4c483833da287f198d5079680f133cbb5f7d470c03d34eb68327db2b61cca280",
+        "sha256_after": "a4c531e6d931e33e21f2d04c7585c35b77d940946d71bca3a93657fae8380341",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0095",
+        "path": "scaffold/bindings/SCF-B-0095.json",
+        "sha256_before": "b8867e85a3e87fe36d93c62041a7e5ac9d840288b84a9365c768d8c30e3babe1",
+        "sha256_after": "fdae566b1bb7266780f783a3addb80190dacc7dc83c35a0a0e89ef5122794a70",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0096",
+        "path": "scaffold/bindings/SCF-B-0096.json",
+        "sha256_before": "59aaae5df95f98977f919431e7a939b4ddaa99259be2509b3e9e937819f73a16",
+        "sha256_after": "e6bdd3dd47e26a4d58523382599e7b5bbebf33acc13f6b1b79c56aa1057413a3",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0097",
+        "path": "scaffold/bindings/SCF-B-0097.json",
+        "sha256_before": "1a440ff96ad84aad06267b11944f776a45107e94cde78e192bfc896c336413e1",
+        "sha256_after": "fbd6859d539ac9b3ca81622cd6405db4f903397b7ae581d753928fe6c28ee0d3",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0099",
+        "path": "scaffold/bindings/SCF-B-0099.json",
+        "sha256_before": "dbb1e9467a7418ea4547ee13a370cf2a49f171d8b442bc7f2c43a99a370f581a",
+        "sha256_after": "ab3e36d6388e4d94952ef7923fbe3f3f235c1f3497219844e418c09e2857923e",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0100",
+        "path": "scaffold/bindings/SCF-B-0100.json",
+        "sha256_before": "1168b8e59d225fa38a6b5eb02fe32e4dcc90ea3dadf5bab964e57d82e2bd9ac2",
+        "sha256_after": "766ff068a83f5b1e2e2b3b46118a524b903cb13e4ab5dd992702d734c20d685f",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0101",
+        "path": "scaffold/bindings/SCF-B-0101.json",
+        "sha256_before": "1f1e4dc68f65030f59bbf1df926dc21bb746b5edb1921dd6548d3c4ebf7e94d6",
+        "sha256_after": "5fdd1863400665f9015677c9b60be677bcd4c626daa9038d53125d4a541075d7",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0102",
+        "path": "scaffold/bindings/SCF-B-0102.json",
+        "sha256_before": "40c0bc99910170ae92d5f309036055bc2f8619d692c6bf5bc4400a99c58d1620",
+        "sha256_after": "930bff8b2f6a6fd64f607483ec73b0b9b0d0a402f4612a1ff6d5510d9d69c8fe",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0105",
+        "path": "scaffold/bindings/SCF-B-0105.json",
+        "sha256_before": "89e0f8a19a6496546f3a0c4a05a9c8d10a30ae21b9f18124aadc5e2c2861e328",
+        "sha256_after": "29a49dd7fce51ecaadc770e0b9cd0b2fd52b2a75182481bfe1cdc576cb32f2c1",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0107",
+        "path": "scaffold/bindings/SCF-B-0107.json",
+        "sha256_before": "d22c90f387de0b090bf706b5e883baba74de8b99e3b5335acd655dd943e8395f",
+        "sha256_after": "35c763916b12fc046996f926818436af6ddfceff425ffee5e8206c5ad1e6b93a",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0108",
+        "path": "scaffold/bindings/SCF-B-0108.json",
+        "sha256_before": "8a05e22871417f3fd8928b38b36d022a9216644ee769e4c08586cfba3100d806",
+        "sha256_after": "32d1f02d6ce73eb05dac0070d0d413253f16ff0aacadb74a5be930a757be5fcd",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0111",
+        "path": "scaffold/bindings/SCF-B-0111.json",
+        "sha256_before": "f2cbc27f5602f118f31e0269d9d299ee1ec139521315917cb410a15947e84411",
+        "sha256_after": "26012cc95d7525d2f5469a701071c4ab3b8d1ca2028205edf6796631744568f5",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0116",
+        "path": "scaffold/bindings/SCF-B-0116.json",
+        "sha256_before": "84d6f3a1f964e644586abde5942c5a83173ba22da42a4dad7e0868967dc78913",
+        "sha256_after": "3f923ad7dac7fce8137ca9d027c67f0518b01e8b769b8175a0c1b774089601b5",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0118",
+        "path": "scaffold/bindings/SCF-B-0118.json",
+        "sha256_before": "bc28b51a707c88c7c475a8aba88a1db4877a7b3cbb4d7c12b0fec379436ffc2a",
+        "sha256_after": "7931c21170b270140393b63ed6e4d63b0b4d32c178563cf1b1b83764dc9ce863",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0119",
+        "path": "scaffold/bindings/SCF-B-0119.json",
+        "sha256_before": "6eaeed7a8247087cf718fb4ae234d9af9260fa3bb893bf95c3c1793012c50022",
+        "sha256_after": "7cc055f7ad72b1cb5ffe7e013b1bef8dd8329cc5e6dabddcbbefa979f0189f86",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0120",
+        "path": "scaffold/bindings/SCF-B-0120.json",
+        "sha256_before": "1d8a9d0b8d8e9f234e05ae3d7f6341bc5bfe205e4999499d46c958b8b3c463b1",
+        "sha256_after": "002e9edb22b42b78138f82b020d0fdd6e4a261fb3cba8d305e40b6ee441a659c",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0121",
+        "path": "scaffold/bindings/SCF-B-0121.json",
+        "sha256_before": "b1018312c48d47b17cb619d732133ce49eb68fe535bdb970adea2ac1c383dffb",
+        "sha256_after": "9aae05815c647820741c1d2b2898d26ea502a40fd25ce647d4cc234f9b364ccf",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0122",
+        "path": "scaffold/bindings/SCF-B-0122.json",
+        "sha256_before": "698c6d44aebd1d1d87251ac25465ce49d201fe42f6c3df39e29a3537d045f821",
+        "sha256_after": "b7a570bcf237ba4e6a96600e4110a5a047795ba8d1e5f139fc46f929a6f80437",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0123",
+        "path": "scaffold/bindings/SCF-B-0123.json",
+        "sha256_before": "ac1c3d3a984d850e6abbaacbb7bed928fbb2fe9bb42f2572530269db80ff3946",
+        "sha256_after": "28b92a77f4e7f721a1a323b49ebb203414f8d3bb15ef50e666a3f892b2535645",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0124",
+        "path": "scaffold/bindings/SCF-B-0124.json",
+        "sha256_before": "b09a8d3d141f50534198c969572b05955d6f78f2819f9ca45566f6661fbe7b9e",
+        "sha256_after": "14061b7dd942589d6eb832cd02911b6f3910890bc5cc4676ef77b9cc923b909b",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0125",
+        "path": "scaffold/bindings/SCF-B-0125.json",
+        "sha256_before": "8760008690d49ac6f3232951ae43811ebeae1bae3e2ce5486a95d7cb46be06fc",
+        "sha256_after": "4de7fd50911288eefb2f81e5f42aa6ca5e5501414c6105029931ba7b77d43c2c",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0126",
+        "path": "scaffold/bindings/SCF-B-0126.json",
+        "sha256_before": "0530229a8b9de021a0c1c17228e1d0667349711a265d7c521cf8944781f1982f",
+        "sha256_after": "229636da4fbe9611d7c4f0bb4852d71c6cb2699460a9dc8ec77d6ebd81d117c4",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0129",
+        "path": "scaffold/bindings/SCF-B-0129.json",
+        "sha256_before": "e3e6129a279f1c2e28e34a1f02e7a21eab43ff90394f566b0144758df715a7d5",
+        "sha256_after": "960e6ad038afb63daf7220e15c7616402ecb42d711a9a4528710ba97e21f82e3",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0130",
+        "path": "scaffold/bindings/SCF-B-0130.json",
+        "sha256_before": "323fa28278acc5b086cfe755d3be463f9363052d4e07fae2ad2636eb1b315708",
+        "sha256_after": "ab7c7585c748df54dade2f6fdf0fc7c98c86b1ca46d322e75e367ce26b2f8a52",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0131",
+        "path": "scaffold/bindings/SCF-B-0131.json",
+        "sha256_before": "fce17aa863e9f5dc6405b64941d18b427235b9925acb238dfa657ed76e6de51b",
+        "sha256_after": "d1c256fbf6bb0e4c772c31cc097ce21d526e9073e871dc5d777a6402a647332b",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0132",
+        "path": "scaffold/bindings/SCF-B-0132.json",
+        "sha256_before": "2ff3d78d231a1fcd25455ec12c208b326616fede8f1278ff15300003ef6731d0",
+        "sha256_after": "985eb6d5cbd008219eb86e50879633f4123bdf65be02e56ca5b09f765a52516c",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0141",
+        "path": "scaffold/bindings/SCF-B-0141.json",
+        "sha256_before": "52a4937527820d520e6e2fcdeb9dd3617c786dbdb193243dcb2b07cfd427eaea",
+        "sha256_after": "b879fcfe7d3d89b503054a6a052a5a6a766d6e5443bb74e0d431a403090e4d65",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0142",
+        "path": "scaffold/bindings/SCF-B-0142.json",
+        "sha256_before": "35987844541c1b598b0d17de4dd563ca66fe0218dd9afd7022c1385e6e97a177",
+        "sha256_after": "120a0c43e8818ceae3acd674b54ae1bd0b5b11c76057bc4c9f4215bec384399f",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0145",
+        "path": "scaffold/bindings/SCF-B-0145.json",
+        "sha256_before": "ccdad374114166ba56f84542d89f14fffc738deddcee827f6f1c8184cb7b2124",
+        "sha256_after": "9bb08836595114f52a66b9db12a77c98ed1975b9d8ffec28837af8c2a6a7e694",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0146",
+        "path": "scaffold/bindings/SCF-B-0146.json",
+        "sha256_before": "c7b69dbbeb5e6fa656ef8514b1aa44b99a2250727a5fe9a4b1513a370374de9f",
+        "sha256_after": "e3dead37481b32e4bd7bc4f2752c57634700067e24af5bbbb429f4ea61c619a2",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0147",
+        "path": "scaffold/bindings/SCF-B-0147.json",
+        "sha256_before": "50e753cfa301723fac56a48c4d2f8122d8f11910548a93d350dde7a94b687c15",
+        "sha256_after": "4f9c9640f00f073189e6b28a7ebd0492f39e5aec89523599759d41a5f0f6ada8",
+        "status": "registered"
+      },
+      {
+        "binding_id": "SCF-B-0149",
+        "path": "scaffold/bindings/SCF-B-0149.json",
+        "sha256_before": "62e1f29305f7d8aefed3420b03a9f62c21a87c3b2973973833f2c9dc8da0cd42",
+        "sha256_after": "bb722be7cdd72e833086adfff6e1955da7d7583b266564582fe5963d47dddf8d",
+        "status": "registered"
+      }
+    ],
+    "path_and_sha_updates_only": "For moved sources, current upstream path/SHA updated. For every current binding whose upstream source changed due link-token-only edits or reader source edits, only the upstream SHA was recalculated. No binding role, obligations, authority, state, replacement, receipt text, or historic note changed.",
+    "stale_before": "74 bindings reported current-source stale after initial move/link changes; 98 direct SHA entries plus 2 transitive entries updated. A further 1 SHA change followed the previously broken link correction.",
+    "stale_after": "0"
+  },
+  "legacy_provenance": {
+    "repository_structure": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "lines": "58,74,99-100,117,148-150",
+      "relevance": "current governanceとmigration資料を分ける旧保持点。旧/現行の配置差の根拠として参照"
+    },
+    "old_l3_hil_fr_53": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "legacy_disposition_line": 461,
+      "lines": "HR-FR-HIL-19; HIL-FR-53 listed in group row at 53",
+      "relevance": "旧L3が要求文書である出所。今回のdirectory move対象ではなく、L3 D0とのsource boundary"
+    },
+    "old_l3_definition": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "lines": "13-21,101,148-168",
+      "relevance": "3 subdoc + L3/verification pair freeze source; this audit does not decide L3/L10 paths"
+    },
+    "rg14_009": {
+      "path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+      "line": 7034,
+      "old_source": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md:99-100",
+      "authority_effect": "none",
+      "relevance": "directory creation only simultaneous with first L3 doc per goal; no earlier extra gate inferred"
+    },
+    "governance_layout_decision": {
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376",
+      "relevance": "existing classification of 16 current rules, 4 registers, 6 current inventory artifacts, 7 time records; move 7 and preserve remaining categories"
+    },
+    "web_location_decision": {
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e",
+      "relevance": "PO chose root helix-web/ for Web/Web-OS; that directory placement remains unchanged"
+    }
+  },
+  "governance_root": {
+    "files_before_count": 34,
+    "files_after_count": 27,
+    "files_after": [
+      "authority-state-model.md",
+      "current-l2-structure-classification.jsonl",
+      "github-upstream-operating-model.md",
+      "github-upstream-pr-packet.md",
+      "helix-structure-requirement-coverage.md",
+      "l1-goals-principles-source-atoms.jsonl",
+      "l1-goals-principles-source-inventory.md",
+      "legacy-asset-copy-read-after.jsonl",
+      "legacy-asset-decision-log.md",
+      "legacy-asset-decisions.jsonl",
+      "legacy-asset-disposition.jsonl",
+      "legacy-asset-reuse-control.md",
+      "legacy-requirement-carry-forward-policy.md",
+      "management-provisional-requirement-register.jsonl",
+      "management-provisional-requirement-registration.md",
+      "new-generation-start-here.md",
+      "phase-capability-inventory.json",
+      "phase-capability-inventory.md",
+      "requirement-atomization-review-contract.md",
+      "requirement-carry-forward-status.md",
+      "requirement-disposition-review-program.md",
+      "requirement-overlap-review-program.md",
+      "requirement-technical-substitutability-review-program.md",
+      "requirements-stage-closure.md",
+      "upstream-authority-register-2026-09-14.md",
+      "upstream-rebaseline-and-asset-governance-policy-2026-09-14.md",
+      "upstream-rebaseline-execution-backlog-2026-09-14.md"
+    ],
+    "categories": {
+      "current_rules_models_contracts": [
+        "authority-state-model.md",
+        "github-upstream-operating-model.md",
+        "github-upstream-pr-packet.md",
+        "legacy-asset-decision-log.md",
+        "legacy-asset-reuse-control.md",
+        "legacy-requirement-carry-forward-policy.md",
+        "management-provisional-requirement-registration.md",
+        "new-generation-start-here.md",
+        "requirement-atomization-review-contract.md",
+        "requirement-carry-forward-status.md",
+        "requirement-disposition-review-program.md",
+        "requirement-overlap-review-program.md",
+        "requirement-technical-substitutability-review-program.md",
+        "upstream-authority-register-2026-09-14.md",
+        "upstream-rebaseline-and-asset-governance-policy-2026-09-14.md",
+        "upstream-rebaseline-execution-backlog-2026-09-14.md"
+      ],
+      "append_only_current_registers": [
+        "legacy-asset-copy-read-after.jsonl",
+        "legacy-asset-decisions.jsonl",
+        "legacy-asset-disposition.jsonl",
+        "management-provisional-requirement-register.jsonl"
+      ],
+      "current_inventory_and_status": [
+        "current-l2-structure-classification.jsonl",
+        "helix-structure-requirement-coverage.md",
+        "l1-goals-principles-source-atoms.jsonl",
+        "l1-goals-principles-source-inventory.md",
+        "phase-capability-inventory.json",
+        "phase-capability-inventory.md",
+        "requirements-stage-closure.md"
+      ]
+    },
+    "counts": {
+      "current_rules_models_contracts": 16,
+      "append_only_current_registers": 4,
+      "current_inventory_and_status": 7,
+      "total": 27
+    },
+    "folder_count": 10,
+    "folders": [
+      {
+        "path": "docs/governance/audits",
+        "role": "時点の証拠を工程・workstream別に固定。既存のrequirement-registration、requirements-stage、source-rebaselineの分類を保持",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/candidates",
+        "role": "未承認の候補と研究成果",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/crosswalks",
+        "role": "旧sourceと現行対象・ID等の対応表",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/decisions",
+        "role": "PO・人間判断のappend-only判断記録",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/feature-tickets",
+        "role": "承認済み上流から導くfeature ticket材料・記録",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/intake",
+        "role": "新しいsourceや要求候補の受け入れ・入口",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/legacy-migration",
+        "role": "旧HELIX sourceの保全・移行台帳を種類別に保持",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/requirements-source",
+        "role": "旧要求source snapshotのread-only保全",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/sources",
+        "role": "現行Concept・対象別要求等のsource materials",
+        "preexisting": true
+      },
+      {
+        "path": "docs/governance/tools",
+        "role": "governance用の現行静的確認tool",
+        "preexisting": true
+      }
+    ]
+  },
+  "existing_audit_classification": {
+    "kept": "The existing audit taxonomy remains workstream/phase based, including requirement-registration/, requirements-stage/, and source-rebaseline/.",
+    "new_child_directories": [
+      "docs/governance/audits/requirements-stage/history-snapshots/ (new)"
+    ],
+    "existing_children_used": [
+      "docs/governance/audits/source-rebaseline/github-projection-backups/ (existing)"
+    ]
+  },
+  "legacy_asset_basis": {
+    "governance_repository_structure_asset": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+    "HIL_FR_53_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+    "rule_atom_RG14_009_line": 7034
+  },
+  "scaffold_binding_inventory_comparison": {
+    "baseline_user_supplied": {
+      "total": 137,
+      "active": 82,
+      "registered": 55
+    },
+    "observed_at_4ef29ee": {
+      "total": 143,
+      "active": 28,
+      "registered": 115
+    },
+    "delta_current_minus_baseline": {
+      "total": 6,
+      "active": -54,
+      "registered": 60
+    },
+    "interpretation": "This is inventory state/count only; no binding state is promoted or retired by this move. The inventory file independently records 143 bindings (28 active, 115 registered), 0 formal replacement artifacts, and all 143 replacement_status=pending."
+  },
+  "fixed_scaffold_inventory_baseline": {
+    "total": 143,
+    "active": 28,
+    "registered": 115,
+    "formal_artifact_count": 0,
+    "replacement_pending": 143
+  },
+  "web_location": "helix-web/ remains at repository root per PO decision on 2026-09-26; unchanged in this patch.",
+  "RG14_009_gate": "Do not create L3/L10 target directories before the first L3 document; the goal explicitly allows creating them simultaneously. No additional pre-directory gate inferred.",
+  "prohibited_changes": "No append-only management register, JSON snapshot, historic receipt, old source, symlink, alias contract, Scaffold Binding semantics/state, or approval mechanism was rewritten/created. The 7 registered bindings received only current upstream path/SHA rebaseline where applicable.",
+  "validation": {
+    "markdown_local_links": "294 local links in changed/current-move Markdown files checked; broken=0; baseline same-source set had one pre-existing broken link (disposition snapshot line 61), corrected to the existing legacy-migration/ir/legacy-ir-rehome-wave-register.jsonl; no new broken link",
+    "scfctl_validate": "143 bindings, fail=0",
+    "scfctl_stale": "0",
+    "scfctl_residuals": "0",
+    "python_compileall": "18 current reader modules compiled; static syntax only, no legacy execution",
+    "git_diff_check": "pass"
+  },
+  "authority_effect": "none"
+}

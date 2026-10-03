@@ -14,6 +14,7 @@ from pathlib import Path
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -181,7 +182,7 @@ def validate(inv: dict) -> list[str]:
     check_keyset(errors, inv, KEYSETS["root"], "E_KEYSET:root")
     report_file = relocated(ROOT / REPORT_PATH)
     source_file = relocated(ROOT / SOURCE_SET_PATH)
-    register_file = ROOT / REGISTER_PATH
+    register_file = relocated(ROOT / REGISTER_PATH)
     holding_file = relocated(ROOT / HOLDING_PATH)
     fail(errors, inv.get("schema") == SCHEMA, "E_SCHEMA")
     fail(errors, inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-31-48-0043", "E_CANDIDATE")
