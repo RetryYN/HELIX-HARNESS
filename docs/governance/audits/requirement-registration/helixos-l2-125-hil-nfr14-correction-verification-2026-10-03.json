@@ -36,29 +36,39 @@
     "old_L11_001_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
     "MPR_001_raw_row_byte_identical_current": true,
     "old_receipt_and_source_byte_identical_current": true,
-    "register_base_prefix_latest_main_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "register_base_prefix_latest_main_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
     "current_register_exact_latest_main_prefix": true
   },
   "current_002_pins": {
-    "MPR_002_raw_row_sha256": "sha256:7247d9691438db1c96bf4910a08a01e177f6aeea0075f38376b470a12f568bb5",
-    "candidate_semantic_digest": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "MPR_002_raw_row_sha256": "sha256:b2540787ae1399543aee035f8759f7e663294e0237e62ed004f0ca91da1b1a8a",
+    "candidate_semantic_digest": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
     "source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl",
-    "source_ledger_sha256": "sha256:8c30e5644867f1b055be633481e79c27b7614aaa5d046fa55afe78d292a980c2",
+    "source_ledger_sha256": "sha256:04d2c9b29b141059e6c0f6b8be6175ad6b54297dbf5eb908ac3b6d14eea7e549",
     "receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json",
-    "receipt_sha256": "sha256:569750b1e4b8842722239f4f1dad611825cd0d8938418ee092b5e4746fe2c933",
+    "receipt_sha256": "sha256:2f812d21d677ceff99a9d31ccd768a437500613483c8d64d5b524814f08a07e7",
     "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-    "L2_section_sha256": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
-    "L2_full_file_sha256": "sha256:7bf82065150cb324076fcce330e0d02ede6173c8cad4cd0217c4f38cce095c38",
+    "L2_section_sha256": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+    "L2_full_file_sha256": "sha256:ab0d4cfe07dc6904a68e1a818f757f448d151308a460fc0e1cb6e2db8c4482f2",
     "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-    "L11_section_sha256": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c",
-    "L11_full_file_sha256": "sha256:c5def27f178a17d26844352cc9eb15559914d495fae8e47c07ebe4562abd3e48",
+    "L11_section_sha256": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
+    "L11_full_file_sha256": "sha256:dede568cba49f797a321db1dbee4a0702d36cc7d8fe44f0eb354a9fa9f909e44",
     "source_atom_count": 1,
-    "coverage_result": "pending_coverage"
+    "coverage_result": "candidate_002_condition_map_retained; pending renewed PO decision and source meaning disposition",
+    "L2_section_lines": [
+      1550,
+      1557
+    ],
+    "L11_section_lines": [
+      1166,
+      1171
+    ],
+    "paired_acceptance_digest": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
+    "candidate_pair_digest": "sha256:16129a04c3a67a11c31cb1dc6f9d2022949a82e8ec75f543abc211721738fce0"
   },
   "source_and_acceptance_checks": {
-    "legacy_IR_identity": "HIL-NFR-14 one source statement atom; original source text/digest unchanged",
+    "legacy_IR_identity": "PASS: HIL-NFR-14 is one source statement atom; source text and digest agree with the archived IR statement.",
     "condition_count": 10,
-    "backpressure_lossless_wait_resume_is_normal": "may be normal only within existing contract/upper bound/deadline and complete result",
+    "backpressure_lossless_wait_resume_is_normal": "L2 retains the user guarantee: pressure alone is not failure; loss-free complete result may arrive by waiting/resuming within existing limits and deadline.",
     "backpressure_unresolved_loss_or_gap_is_negative": true,
     "other_failure_conditions_are_individually_mapped": true,
     "HST_CASE_007_09_means_queue_upper_bound_overflow_not_transient_pressure": true,
@@ -69,13 +79,17 @@
       "sha256": "sha256:5ce140954c9ad742fdc0af616b1f5b4427e7c0011147e9e5e9af4084dc088bc2",
       "preserved_as_audit_only": true
     },
-    "023_four_dependency_categories_concretely_mapped_in_L11_and_receipt": true,
-    "023_normal_closure_and_independent_required_dependency_negatives_retained": true,
     "reference_only_metadata_negative_does_not_stop_execution_closure": true,
     "old_001_four_category_fixture_and_independent_negative_material_immutable_audit_pinned": true,
     "old_001_four_category_fixture_and_independent_negative_material_immutable_source_pinned": true,
     "old_001_technical_condition_crosswalk_separately_pinned": true,
-    "runtime_reference_classification_does_not_downgrade_source_or_consumer_conditions": true
+    "runtime_reference_classification_does_not_downgrade_source_or_consumer_conditions": "source atom and all ten source conditions remain in the receipt; reference-only is limited to runtime dependency closure.",
+    "all_ten_source_classes_have_human_confirmation_destination": true,
+    "023_detailed_dependency_tuple_and_closure_are_L11_human_acceptance_conditions": false,
+    "023_dependency_tuple_closure_and_fixture_details_retained_in_receipt": true,
+    "L2_retains_user_guarantee_OS_placement_and_scope": true,
+    "L11_retains_human_confirmation_criteria_normal_incomplete_and_unknown_examples": true,
+    "detailed_internal_material_is_preserved_in_receipt_for_downstream_handoff": true
   },
   "preservation_checks": {
     "only_125_sections_changed_in_L2_L11": true,
@@ -97,6 +111,8 @@
     "section_and_receipt_MPR_pins_reconciled": true,
     "JSON_receipt_parse": "PASS",
     "git_diff_check": "PASS",
-    "receipt_and_register_pins_reconciled": true
+    "receipt_and_register_pins_reconciled": true,
+    "latest_main_708_row_prefix_verified_from_git_bytes": true,
+    "MPR_001_row_and_001_receipt_source_immutability_verified_from_bytes": true
   }
 }
