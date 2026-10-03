@@ -74,7 +74,7 @@
 
 | 親L2／測定項目 | 候補値・比較 | 根拠と測定入力 | 判定材料・限界 |
 |---|---|---|---|
-| `HELIXBRAIN-L2-024` — flow separation | 設計knowledge→CORE/HARNESSとRuntime→LABO→L2-020→BRAIN candidateの2経路を2/2でdistinct identity/owner/scope/revision/receiptへtrace | 固定L2/L11の2種類の提供経路を別normal fixtureとして投入し、boundary receipt欠落・scope不一致を個別mutation | 経路crossing/直接Runtime flow 0を候補観測。runtime dataの中身や実利用価値は測らない |
-| `HELIXBRAIN-L2-024` — direct boundary leakage | direct read/write/learning、raw runtime field（state/account/credential/permission/log/metrics）受領・保存0 | 各field/接続方向を個別と組合せでdeny/hold fixtureにする | secret/raw valueをfixture outputに表示せず、Runtime owner保持を確認。現行L2以上のsecurity mechanismは設計しない |
-| `HELIXBRAIN-L2-025` — owner/state separation | proposal/evaluation/registration/independent verification/adoptionの5段階を5/5別owner/state/receiptで追跡 | 完全sequenceと各receipt欠落/owner誤割当/対象revision不一致mutation | 段階飛越、owner混同0を候補値とするが、外部validator数・独立性閾値は親未指定のため固定しない |
-| `HELIXBRAIN-L2-025` — false promotion | AIのみ・単一実績のみ・LABOのみ・OS ticketのみ・文書存在のみからaccepted/mature/adoptedへ誤遷移0 | 5種の単独根拠fixtureを個別投入、各入力にsource/revisionを保持 | 親が列挙する単独根拠の否定条件に基づく。別の実績件数や採択閾値は追加しない |
+| `HELIXBRAIN-L2-024` — flow separation | 案Aは二経路をsummary stateだけで測る。案Bは設計knowledge→CORE/HARNESSとRuntime→LABO→L2-020→BRAIN candidateを別traceにし、2/2 distinct identity/owner/scope/revision/receiptを確認。境界交差を検出できる案Bを選ぶ | 固定L2/L11の2種類の提供経路を別normal fixtureとして投入し、boundary receipt欠落・scope不一致を個別mutation | 経路crossing/直接Runtime flow 0を候補観測。runtime dataの中身や実利用価値は測らない |
+| `HELIXBRAIN-L2-024` — direct boundary leakage | 案Aは全入力の合算leakage率、案Bはfield/方向ごとのdirect leakage件数0を測る。単一違反が合算に隠れない案Bを選ぶ | 各field/接続方向を個別と組合せでdeny/hold fixtureにする | secret/raw valueをfixture outputに表示せず、Runtime owner保持を確認。現行L2以上のsecurity mechanismは設計しない |
+| `HELIXBRAIN-L2-025` — owner/state separation | 案Aは最終aggregate stateだけを測る。案Bはproposal/evaluation/registration/independent verification/adoptionの各段階を別owner/state/receiptで追跡する。段階飛越とowner混同を識別できる案Bを選ぶ | 完全sequenceと各receipt欠落/owner誤割当/対象revision不一致mutation | 段階飛越、owner混同0を候補観測。source/owner/state/trace照合に追加個数閾値を要しない。必要な別技術値は根拠・比較・測定付きで候補化する |
+| `HELIXBRAIN-L2-025` — false promotion | 案Aは全否定条件をまとめたpromotion率、案BはAIのみ・単一実績のみ・LABOのみ・OS ticketのみ・文書存在のみを個別測定し、それぞれ誤遷移0を確認する。原因別に漏れを見つけられる案Bを選ぶ | 5種の単独根拠fixtureを個別投入、各入力にsource/revisionを保持 | 親が列挙する単独根拠の否定条件に基づく。別の実績件数や採択閾値は追加しない |

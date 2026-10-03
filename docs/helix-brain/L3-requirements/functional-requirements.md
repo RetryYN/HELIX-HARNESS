@@ -1794,7 +1794,7 @@ BRAINは設計知識をL2-019/022の契約に従って製品HELIX-HARNESS-CORE/H
 | 提供：設計知識はCORE/HARNESS、実績のみLABO評価後L2-020 candidate | `AC-01,02` | `L10-BRAIN-024-C01,C02` | 二つのflow経路と別state、宛先 |
 | 否定：BRAIN↔Runtime直接read/write/learningなし。実状態/account/credential/操作権限/log/metricsを保存しない | `AC-03` | `L10-BRAIN-024-C03` | 直接接続・raw/runtime field流入0、Runtime owner保持 |
 | failure/backflow：実状態/操作→Runtime owner、評価→LABO、採用設計→CORE、Pattern意味→BRAIN | `AC-03,04` | `L10-BRAIN-024-C03,C04` | missing boundaryごとのholdとowner |
-| dependency/version：INFRA L2-009/010/012/017、BRAIN L2-019/020/022、CORE/Runtime/LABO契約、1.0 | `FR-01 / AC-01..04` | `L10-BRAIN-024-C01..04` | dependency revisionと候補版を確認。L2-INFRA-017はmaturity状態を扱う時だけ参照 |
+| dependency/version：INFRA L2-009/010/012/017、BRAIN L2-019/020/022、CORE/Runtime/LABO契約、1.0 | `FR-01 / AC-01..04` | `L10-BRAIN-024-C01..04` | 列挙契約のidentity/revisionを適用する知識・flowへ結び、該当flowの境界・互換を照合する。全知識の実装完了を成立条件にしない |
 
 ### BRAIN-025-FR-01 — 内部知識candidateの独立検証・採否状態分離（HELIXBRAIN-L2-025）
 
