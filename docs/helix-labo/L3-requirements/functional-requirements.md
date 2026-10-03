@@ -547,7 +547,7 @@ system ruleの版と運用結果、exception、false positive、avoidance、変�
 
 ## 未承認事項
 
-Stage 2bの残り22 identityは後続追補対象。9件のFRと対L10は部分草稿であり、L3承認前。値候補と測定案は一つの承認対象として提示し、parameterごとのPO gateを作らない。親の意味・scope・owner・versionを変える必要が生じた場合だけL2へ戻す。
+Stage 2bの基本9件と追加22 identity、計31件のFR/L10 pair候補はすべて部分草稿・未承認であり、L3承認前である。値候補と測定案は一つの承認対象として提示し、parameterごとのPO gateを作らない。親の意味・scope・owner・versionを変える必要が生じた場合だけL2へ戻す。
 
 
 ## Stage 2b 接続・条件補足22件（部分草稿・未承認）
