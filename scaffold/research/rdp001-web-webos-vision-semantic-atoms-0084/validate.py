@@ -43,7 +43,13 @@ def sha(b): return hashlib.sha256(b).hexdigest()
 def keys(o,expected,code):
     if not isinstance(o,dict) or set(o)!=set(expected): fail(code,','.join(sorted(set(o)^set(expected))) if isinstance(o,dict) else 'not-object')
 def git_show(path):
-    r=subprocess.run(['git','show',f'HEAD:{path}'],cwd=ROOT,capture_output=True)
+    current_path = path
+    for bundle in ('rdp001-web-webos-vision-source-0080', 'rdp001-web-webos-vision-semantic-atoms-0081'):
+        old_root = 'scaffold/' + bundle + '/'
+        if path.startswith(old_root):
+            current_path = 'scaffold/research/' + bundle + '/' + path[len(old_root):]
+            break
+    r=subprocess.run(['git','show',f'HEAD:{current_path}'],cwd=ROOT,capture_output=True)
     if r.returncode: fail('E_GIT_SOURCE',path)
     return r.stdout
 def read_json(p):
