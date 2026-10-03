@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 1 / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023 / version_class 1.0
+scope: Stage 1 + Stage 2a / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 / version_class 1.0
 owner: HELIX-HARNESS
 paired_l10: ../L10-verification/functional-verification.md
 
-本書はStage 1の3要求に限る部分草稿である。HARNESS全体のL3、他のStage 1要求、L3承認、実装・実行許可を表さない。対のL10総合検証設計は[functional-verification.md](../L10-verification/functional-verification.md)に置き、両文書で同じAC IDを使う。
+本書はStage 1の3要求とStage 2aのHARNESS-L2-022に限る部分草稿である。HARNESS全体のL3、他のStage 1/2a要求、L3承認、実装・実行許可を表さない。対のL10総合検証設計は[functional-verification.md](../L10-verification/functional-verification.md)に置き、両文書で同じAC IDを使う。
 
 ## 親要求revision
 
@@ -78,6 +78,30 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 - **`AC-HARNESS-L3-023-02` 有効closureと状態区別（FR-HARNESS-L3-023）**：常時必須、成立したoperation条件、選択source条件だけを有効closureに含める。条件不成立、未選択／未観測、参照のみ、unknown/staleは別状態として出す。未選択sourceの成功や利用可能性を推測しない。選択sourceの失敗から同じ入力のまま別sourceへ暗黙fallbackしない。利用者がsourceを明示再選択した新入力は別要求として再評価する。
 - **`AC-HARNESS-L3-023-03` 安全依存と決定性（FR-HARNESS-L3-023）**：該当条件下の安全依存は必須としてclosureに残し、unknownな条件は保留にする。人が代行する場合も既存の権限・隔離・版照合・検証・記録を省略せず、source／actor／revision／scope／受領／検証receiptを返す。口頭受領だけではclosure evidenceにならない。分類能力自体は全依存実装の存在を成立条件にせず、missing／unknown状態を出せる。後続版の依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いで削らない。同じinput・pack revisionの再評価でclosureと根拠が一致する。
 
+### `FR-HARNESS-L3-022` — 段階別検証・受入契約（親: `HARNESS-L2-022`）
+
+**保持／再導出**：HARNESS-COREがProvisional→Integrated→Verified→Acceptedの段階別検証契約を持つ。L8/L9 pair evidenceはIntegrated、L10 system-specific obligations evidenceはVerified、L11 content oracleと当該revision/scopeへの利用者受入記録はAcceptedを支える。下位stage passやartifact/trace存在だけで上位へ進めず、意味変更が必要ならL2-003/004に従い左側へ戻す。OSまたは利用者環境がtest/CI実行、ticket、検収を担う。HELIX-OSを必須依存にせず、外部成果は同じrevision/pair/oracle/result/evidence条件を満たす段階まで持ち込む。
+
+**入力**：対象artifact revision、対のL4/L5設計・L3要件・L2/L11条件、L8/L9/L10検証設計、各段階のoracle/result/evidence、L11利用者受入record。
+
+**出力**：各状態と、その状態まで満たした段階別証拠、未評価/未完理由、差分の戻し先。出力は利用者受入recordやrelease decisionを生成しない。
+
+**受入条件**
+
+- **`AC-HARNESS-L3-022-01` 段階証拠の完全結束**：同一artifact revision/scopeについてL8/L9 evidenceでIntegrated、L10 system oracleと固有義務差分の照合でVerified、さらにL11内容oracleと利用者受入recordでAcceptedを別状態として確認する。
+- **`AC-HARNESS-L3-022-02` 誤昇格の拒否**：下位単体/結合pass、CI green、artifact/trace/evidenceの存在だけでは固有義務不足を補えず、L10 passだけではAcceptedにならない。L11 record欠落/wrong revision/内容oracle failureでは実際に満たした段階に留める。
+- **`AC-HARNESS-L3-022-03` 外部持込・差分戻し**：外部成果も同一revision・paired design/requirements/oracle/result/evidenceで段階評価し、不足は満たした段階に留める。振る舞いを保つ差分は同段階を再検証し、意味変更が要る差分はコードで合わせず親L2規則の戻し先へ返す。
+
+
+#### 固定親・旧source locator
+
+- 固定親 `docs/helix-harness/L2-requirements/product-requirements.md:447-462`、commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、全文SHA-256 `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、span SHA-256 `cdc55f82fe6c495c65285c170165c08de51477681adf097b62a5c8389deeb409`。PO判断 `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md`（基準main633bf12の全文SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`、行 51）。管理register `MPR-RC-HARNESS-L2-022-004` は追跡情報でauthority生成元ではない。
+- 固定L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:298-305`、全文SHA-256 `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`、span SHA-256 `e35f8ee929f5bfe2e57f1540856dcd6288d5f3d96f4438c9d86ef521d2967209`。
+- 旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`、`LEGACY-ASSET-EE5DBACC7F28F7D1F605`、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`、行 38-57, 134-197, 198-307。旧test-design `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`、SHA-256 `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`、行 32-90, 91-216。旧pillarのFR/AC量閉じとFR→AC trace構造は再利用し、段階別意味は現行L2から再導出。旧test-designのpositive/negative/boundary oracle形式を再利用するが、旧L10 UX、L12/HAT、CLI/CI/runtimeは移植しない。
+- H022のL2はHARNESS-COREが状態遷移契約を所有し、実行/ticket/検収はOSまたは利用者環境、利用者受入recordはL11の責務とする。
+
+
+
 ## 旧資産の項目別照合
 
 行番号は`archive/legacy-generation-2026-09-14/root/`からの相対値。SHA-256はarchive本文の全文hash。旧test-designはsource上のconsumer／oracle資料として読んだのみで、旧test、CLI、runtimeは実行していない。
@@ -86,6 +110,7 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 |---|---|---|
 | HARNESS-L2-010／`AC-HARNESS-L3-010-01..03` | `LEGACY-ASSET-B5B5E71B2AF1459D59A1` `docs/design/harness/L3-functional/functional-requirements.md:119–148` (FR-03), `149–172` (FR-04)、SHA `a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a`; `LEGACY-ASSET-1B92155F959D7905DD1E` `docs/test-design/harness/L3-acceptance-test-design.md:60–66` (AT-FR-03/04)、SHA `27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1` | FR-03のpair／trace欠落とFR-04の依存cycle negative shapeを再導出。pack identity・契約・owner・版の定義と宣言成果物は現行L2から具体化。旧4-artifact／12-edge数値、PLAN schema、実行例とAT-IDは置換し、移植しない。 |
 | HARNESS-L2-011／`AC-HARNESS-L3-011-01..04` | 同じfunctional-requirements、FR-03 119–148行、FR-05 173–196行、および対のAT-FR-03 60–63行／AT-FR-05 67–69行。FR-08 257–280行（mode routing）とFR-09 281–310行（agent_mandatory／budget／lock）は非対応。全文SHAは上記functional／test-designと同一。 | trace/fail-closeのtest shapeのみ部分再導出し、呼出し境界は採択L2から具体化。旧CLI・mode routing・agent guardのpermission mechanism、bypass、timeout等の制限は本要件へ移植せず置換。authority policyはSECURITY ownerに残す。 |
+| HARNESS-L2-022／`AC-HARNESS-L3-022-01..03` | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:38–57,134–197,198–307`、SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`; `LEGACY-ASSET-44DD86E3DEC09E65EF51` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90,91–216`、SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | FR/ACと段階別normal/negative/boundary oracleの構造は再利用し、現行L2の状態遷移・owner・evidence条件を再導出。旧51件/102AC・旧L10 UX/L12 HAT・旧runtime/CIは置換し移植しない。 |
 | HARNESS-L2-023／`AC-HARNESS-L3-023-01..03` | functional-requirements FR-03 119–148行／FR-04 149–172行と、対のAT-FR-03/04 60–66行。上記2 assetと全文SHAは同じ。 | 旧FR-03/04の欠落・cycleをfailure patternとして再導出するが、`requires/blocks` graphと12 PLAN-kind enumは置換。4分類、条件束縛、未観測／unknown／stale／reference-onlyの意味は現行L2を直接の親とする。 |
 | 方法・区分の起点 | `LEGACY-ASSET-9A772391C7FB1298D45F` `docs/design/harness/L3-functional/README.md:16–56`、SHA `949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4`; `LEGACY-ASSET-F542125805B777D8A56A` `docs/process/forward/L00-L06-design-phase.md:13–21,101,148–168`、SHA `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`; `LEGACY-ASSET-B30F3C82B6B0FDC0D2A8` `docs/process/gates.md:41,64`、SHA `dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08`; `LEGACY-ASSET-6EBDB617A8104A7756D0` `CLAUDE.md:82–85`、SHA `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb` | FR+ACと対のtest-designを作る、functional／business／NFRを分ける、AC欠落を完了扱いしない、AIが起草し人がL3を承認する意味を保持。G3、旧UX L10、old CLI/runtimeによる承認・gate動作は移植しない。 |
 | business/NFR scope確認 | `LEGACY-ASSET-A6E2C7F0565E5F804F06` `docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、SHA `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`; `LEGACY-ASSET-DB669724249A14A665F0` `docs/design/harness/L3-functional/nfr-grade.md:21–34,58–81`、SHA `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d` | BR-21の評価・着手条件は本3親の意味／ownerではないため再利用しない。NFRの測定可能性を記す骨格だけ再導出し、旧IPA grade、旧CI/runtime、placeholder、旧timeout・比率閾値は現行値にしない。 |
@@ -106,10 +131,10 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 
 ## Business範囲
 
-この部分草稿では独立したbusiness criterionを追加しない。3つの固定親はpack、呼出し、依存closureのsystem contractであり、売上・優先順位・投資条件など別の事業判断を定めていない。旧business-detailのBR-21を移植せず、事業価値判断はL1／そのownerに残す。HARNESS-L3全体のbusiness要件を非適用と判定したものではない。
+この部分草稿では独立したbusiness criterionを追加しない。4つの固定親はpack、呼出し、依存closure、段階別検証・受入のsystem contractであり、売上・優先順位・投資条件など別の事業判断を定めていない。旧business-detailのBR-21を移植せず、事業価値判断はL1／そのownerに残す。HARNESS-L3全体のbusiness要件を非適用と判定したものではない。
 
 ## PO承認依頼用要約（承認未取得）
 
-この部分草稿は、packが入力・依存・版と検証範囲を明示し、単一packの差し替えで他packの版と証拠を保つこと、同一入力・版の成果物を再現することを具体化する。画面・provider・CIに依存しない呼出し、渡された権限／隔離境界、相関付き結果、同じ冪等keyからの停止・再開、条件別dependency closureを要件と受入へ結ぶ。権限判断はSECURITY、結果の保存・表示は呼出し元が持ち、Web要求や実装方式を本書から追加しない。
+この部分草稿は、packが入力・依存・版と検証範囲を明示し、単一packの差し替えで他packの版と証拠を保つこと、同一入力・版の成果物を再現することを具体化する。画面・provider・CIに依存しない呼出し、渡された権限／隔離境界、相関付き結果、同じ冪等keyからの停止・再開、条件別dependency closureと、Provisional→Integrated→Verified→Acceptedの段階証拠を要件と受入へ結ぶ。L10の合格でL11の利用者受入recordを作らない。権限判断はSECURITY、結果の保存・表示は呼出し元が持ち、Web要求や実装方式を本書から追加しない。
 
 技術候補は、同じ宣言成果物のdigest一致（contractがmetadataを非意味として明示する場合のみ正規化を許す）、単一pack差替え時の対象外変更0件、同一key再開時の重複効果0件、期限後success 0件、同じinput/revisionからのclosure・理由の完全一致である。比較案とL10観測は[nfr-grade.md](nfr-grade.md)と[nfr-verification.md](../L10-verification/nfr-verification.md)に記載する。数値の根拠がない処理時間・retry上限・TTLは設定せず、L2意味の変更が必要になった場合だけ上流へ戻す。

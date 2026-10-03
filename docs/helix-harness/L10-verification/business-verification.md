@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023 only
+scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 only
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -12,6 +12,7 @@ execution_status: designed_only_not_executed
 |---|---|
 | この部分scopeで独立business criterionなし | `functional-requirements.md`の範囲表と`functional-verification.md`に列挙されたACが対応していること。 |
 | 将来のbusiness criterionが未提示 | 未評価として保持する。売上、費用、優先順位、採用意向などを技術oracleから推定しない。 |
+| H022のstage evidence | L3機能ACとL11利用者recordの段階条件をfunctional L10で確認し、事業価値達成へ読み替えない。 |
 | owner／scopeが異なる基準が入力された | その要求を所有するL1/L2またはLABO／呼出し側へ戻す。ここで新しいacceptance stateを作らない。 |
 
 この記録は、HARNESS全体のbusiness要件非適用、PO承認、要求retire、事業価値達成を意味しない。

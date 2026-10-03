@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023
+scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -25,3 +25,10 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 ## 判定の限界
 
 この測定は候補L3 revision、固定L2/L11、限定fixtureと明示scopeに限る。外部システム全体の性能、可用性、負荷耐性、全consumerでの互換性を証明しない。L10の合格材料だけでL3承認、HARNESS全体のVerified／Accepted、利用者受入、releaseを生成しない。実測を行う場合は下流の承認済み設計と既存authorityが必要だが、本草稿から実行許可を与えない。
+
+
+## H022 NFR測定case
+
+| L10 case ID | NFR候補ID | 入力／比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-022-01` | `NFR-C-HARNESS-022-01` | 同一revision/scopeでProvisional→Integrated→Verified→Acceptedの段階別証拠を与え、各必要evidenceを一つずつ欠落させる。 | 各遷移で必要条件を満たす場合だけ進み、誤昇格0件。L10 pass単独、L11記録なしはAcceptedにしない。 | scope/revisionやoracleが固定できないfixtureは未評価。実測をしておらず値は候補。 |

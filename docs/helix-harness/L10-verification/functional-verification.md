@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023 / version_class 1.0
+scope: Stage 1 + Stage 2a / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 / version_class 1.0
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
-本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義した10個のACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
+本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義した13個のACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
 
 ## 照合対象revision
 
@@ -43,3 +43,13 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 測定候補値と比較案は[NFR候補](../L3-requirements/nfr-grade.md)を参照する。ここでは既存L3 ACのoracleに沿って、同一宣言成果物の差分、単一差し替えによる対象外差分数、同一keyの重複効果、expiry後success、同一dependency input/revisionでのclosure／理由差分を観測する。候補の値は後続のL3承認対象であり、現時点で実測値・達成・承認を主張しない。
 
 旧test-designのAT-FR-03/04/05はnegative fixtureの出所確認だけに使った。旧test/runtime、旧CLI、旧CIを実行せず、そのgreen状態を現行の合格根拠にしない。
+
+
+
+## H022のAC別総合検証
+
+| L10 case ID | L3 FR ID | AC ID（L3正本） | fixture・観測点 | 合格材料 | 反例／未評価の扱い |
+|---|---|---|---|---|---|
+| `CASE-HARNESS-L10-022-01` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-01` | 同一revision/scopeの段階証拠を用意し、各stageに対応するpair/oracle/result/evidenceを段階ごとに与える。 | Integrated/Verified/Acceptedが別状態で観測され、AcceptedにはL11 content oracleと利用者受入recordがともに結び付く。 | 欠落証拠、wrong revision/scope、L11 recordなしは当該状態へ昇格しない。 |
+| `CASE-HARNESS-L10-022-02` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-02` | 下位passのみ、CI green、artifact存在のみ、固有義務差分未照合、L10 passのみ、L11失敗/別revisionのnegative fixtureを個別投入。 | いずれも未充足段階で止まり、誤昇格0件。 | status投影やtrace存在をoracleの代用にした場合は不合格。 |
+| `CASE-HARNESS-L10-022-03` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-03` | 外部持込の同一条件positiveと、revision/pair/oracle/result/evidenceを一つずつ欠いたfixture、意味不一致fixtureを与える。 | 正常入力は満たすstageまで評価し、不足は段階を進めず、意味変更が要る差分はbackflow先を示す。 | 外部CI green/artifact存在だけは未評価。意味差を右側変更で隠せば不合格。 |

@@ -2,10 +2,10 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-023 / version_class 1.0
+scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 / version_class 1.0
 paired_l10: ../L10-verification/nfr-verification.md
 
-これは3つの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、数値値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
+これは4つの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、数値値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
 
 ## 候補値
 
@@ -51,3 +51,10 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 ## 旧NFR資産との照合
 
 `LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`、行21–34・58–81）から、候補値・測定方法・判定材料を一組で書く骨格のみ再導出する。旧IPA grade、CLI／CI実行手順、server/OS条件、旧割合・timeout等の閾値は対象L2の根拠でないため再利用せず置換する。旧NFR-08の4-artifact trace率や閾値を現行pack値へ流用しない。
+
+
+## H022 technical candidate
+
+| NFR候補ID／親 | 候補値 | 根拠・比較案 | L10測定・適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-022-01` / `HARNESS-L2-022` | 段階間の誤昇格0件。各昇格は同一revision/scopeの当該stage証拠一式を要し、L10 passのみからAcceptedへ進む件数0。 | 4状態と3遷移を個別に確認する固定L2を観測可能にした候補。単一green/progressへの縮約は不採択。 | L10で段階別positiveと必要evidenceを一つ欠いたnegativeを比較し、誤昇格件数を数える。利用者受入やreleaseの実施は対象外。実測値ではなく候補。 |
