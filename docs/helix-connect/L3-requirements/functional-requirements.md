@@ -152,27 +152,29 @@
 
 ### CONNECT-FR-008-01 — MCP profile probe descriptor（親 HELIXCONNECT-L2-008）
 
-Probe descriptorはMCP profile identity/revision、configuration contract revision、typed operation/tool capability、read-only probe descriptorを記録する。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchはfail closedとし、staleはCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。
+Probe descriptorはcatalogに列挙されたMCP profile identity/revision、configuration identity/revision/type、descriptor schema/version、typed operation/tool capability、read-only probe descriptorを結ぶ。異なる型のconfig/descriptor、同一identityの競合定義、catalog未登録revisionはtarget/profileを確定せず、raw secretをdescriptorへ含めない。profile/config/descriptorの一件の失敗を他profileへ波及させない。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchはfail closedとし、staleはCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。
 
 **受入条件**
 
-- CONNECT-AC-008-01: profile、configuration contract、typed capability、read-only probe各identity/revisionを結び、正常なdescriptorが実行を開始しないことを確認する。
-- CONNECT-AC-008-02: profile/contract revisionを一つずつ欠落、stale、mismatchにする。該当profileをunknown/staleとして閉じ、古いcompatible記録へfallbackしない。
+- CONNECT-AC-008-01: catalogの各列挙profileについてprofile/configuration/descriptor identityとrevision/type/schema、typed capability、read-only probeを結び、正常descriptorが実行を開始しないことを確認する。
+- CONNECT-AC-008-02: 同一identity競合、config/descriptor型違い、catalog未登録revision、および各列挙fieldのmissing/stale/mismatchを個別に与える。該当targetをunknown/staleにし古いcompatible記録へfallbackしない。他profileの結果は不変。
 - CONNECT-AC-008-03: descriptorの存在だけでpermission、安全、executableをtrueにする変異を拒否する。SECURITY authorityが無い場合もsend eligibilityを生成しない。
+- CONNECT-AC-008-04: raw secretをdescriptor/config observationへ含める入力を拒否し、secret値を出力・保存しない。別profileの有効descriptorは独立に維持する。
 
 旧MCP profile調査 LEGACY-ASSET-1E45495250B6F9793189 はprofile特性の部分類例、旧gap audit DC0AE3267D63F3525BAEは旧L3該当が見つからなかった証拠、旧U-MCPPROFILE test FAAFFA616A44F65911EB は設計形式の参照に限る（正しいIDはFAAFFA616A44F65911EB）。旧test・runtimeは実行しない。
 
 ### CONNECT-FR-009-01 — typed feedback relation（親 HELIXCONNECT-L2-009）
 
-必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。send rightsは推定しない。既存retry/budget/termination policyを使用し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
+必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは先行結果に依存するedgeだけを待ち、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
 
 **受入条件**
 
-- CONNECT-AC-009-01: 固定parentが要求するdirection/topology/feedback relationをlineage、reason、endpoint、contract revisionへ結ぶ正常入力と、未見の複合入力を与える。指定されたrelationだけを再構成する。
-- CONNECT-AC-009-02: first-send依存を一つunknownにし、別fixtureではfeedback endpoint/reason/contractを一つunknownにする。状態と戻し先を別々に保持し、first-sendをfeedback待ちにせず、feedback欠落をsend authorityに昇格しない。
-- CONNECT-AC-009-03: retry/budget/termination policyを欠落・staleにする。新しいretryを試みず、そのpolicy ownerへ返す。独自上限やsend permissionを生成しない。
+- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは先行result前に後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。
+- CONNECT-AC-009-02: eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
+- CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policyを欠落またはstaleにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
+- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。累積値を保持し、期限/terminal解決が不明なら新規retryを止め、未完義務・停止理由・ownerを返す。
 
-旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。
+旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは旧資産source mapに追記する）。
 
 ## Stage 4 fixed-parent and legacy source pins
 
@@ -192,5 +194,8 @@ Probe descriptorはMCP profile identity/revision、configuration contract revisi
 | HELIXCONNECT-L2-008 | LEGACY-ASSET-DC0AE3267D63F3525BAE / archive/legacy-generation-2026-09-14/root/docs/governance/hybrid-engine-requirements-extraction-gap-audit-2026-07-19.md:57–60 | 345928addace631d97f902b391fe6656581c1ff2caea1f94587149e008a98e70 | beafa3a86575ae1391dd9ff591000b31a3f3eea2c06c710196920ee1f9f70c3b | 同gap auditの検索scope/方法を記録。旧runtime/CLIは実行せず、現行probe descriptorをL2から再導出。 |
 | HELIXCONNECT-L2-009 | LEGACY-ASSET-5EE032D657C221184B00 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:50–50 | e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b | 9a90b00908df1d4ba84ad2719cf354575dd6797b34b4d03ed03956edbefb046c | UWJ-FR-006 loop terminal/feedback lifecycleの構造類例を部分参照。CONNECT typed relation/directionは固定親から再導出。 |
 | HELIXCONNECT-L2-009 | LEGACY-ASSET-6FFD7F4E58066D08B053 / archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:22–22 | 1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3 | c0955b863f781efd03adc6d48f82ddc950331efe185ddc7cf26f35107e8401b9 | UWJ-AC-006 required field欠落時のnegative oracle形式のみ参照。 |
+| HELIXCONNECT-L2-008 | LEGACY-ASSET-FAAFFA616A44F65911EB / archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md:558–563 | 0fd9f9dc3ac452fefaa74d3fea79c19a9fe2e162908ed763bfbcc56514186347 | 69ad06e2a671ff8636be0db88bb2caf4ba49bdcf1c51f34879ff6de043b8d952 | U-MCPPROFILE catalog/profile test形式の隣接類例に限定。旧profile setや旧前提は移植せず、現行catalog/revision/type条件は固定親から再導出。 |
+| HELIXCONNECT-L2-009 | LEGACY-ASSET-719D5EC9C06FC4AAD0FF / archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184–184 | db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb | 5c9f6a2b8121965a3c5a0742599921971bb89f7b3bc4f2315fc51df9bdb6b68d | HIL-NFR-04のiteration/time/token/cost budgetは別ownerの隣接類例。特定budget値を移植せず既存policy累積とdeadlineを固定親から再導出。 |
+| HELIXCONNECT-L2-009 | LEGACY-ASSET-23D3D9769B093AFDCC25 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:62–68 | f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6 | d5264cd41eb448f9a866e42063ebed79f6c0186b20883099d19f217547e55822 | MIC-R-02の統合sequence類例。旧merge authorityはCONNECTへ移さず、typed relationを現行L2から再導出。 |
 
 旧runtime、CLI、testを実行せず、採択済みL2/L11の要求意味を本Stage4の正本に再導出した。

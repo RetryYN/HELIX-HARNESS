@@ -182,11 +182,13 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 - L10-INFRA-008-C01（AC INFRA-008-AC-01）: approved design、別revisionのdeployment target、actual observationを与える。design→target mappingとtarget→actual比較を個別に追える。
 - L10-INFRA-008-C02（AC INFRA-008-AC-02）: design approval、target mapping、actual observationを一項目ずつmissing/stale/mismatchにする。該当sideだけunknown/holdとなり、他入力は保持される。
 - L10-INFRA-008-C03（AC INFRA-008-AC-03）: driftをactual→designへ書き戻す、またはINFRAがdesignを変更する要求を与える。両方拒否され、design bytes/authority不変でHARNESS-COREへ戻る。
+- L10-INFRA-008-C04（AC INFRA-008-AC-04）: L2-001/002 versioned interfaceを正常入力した後、missing/stale/version mismatch/scope mismatchを個別に与える。該当時target確定はholdし、design意味やrevisionを推定しない。
 
 ### HELIXINFRASTRUCTURE-L2-025（INFRA-025-FR-01）
 
-- L10-INFRA-025-C01（AC INFRA-025-AC-01）: Worker、execution resource、capacity/state、ticket/request/work referenceを結んだ正常fixtureとresource move後の未見fixture。worker/work identityを維持する。
-- L10-INFRA-025-C02（AC INFRA-025-AC-02）: 各identity、state、work referenceを個別にmissing/stale/mismatchにする。推測で埋めず、field単位のunknownとOSまたはresource ownerを示す。
-- L10-INFRA-025-C03（AC INFRA-025-AC-03）: Worker=machine、resource=assignment、resource stateからisolation、automatic placement/scaling/operationを導く反例を独立に投入する。いずれも拒否し、副作用0を確認する。
+- L10-INFRA-025-C01（AC INFRA-025-AC-01）: CPU/memory/GPU/storage/network demand/available、process/container environment、L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work ref、SECURITY isolation conditionを結んだ正常fixtureを与える。oracleはSEC条件がINFRA管理resource上で適用可能で必要capacityが足り、OS work identityを保つこと。
+- L10-INFRA-025-C02（AC INFRA-025-AC-02）: 5資源dimensionを各々requested>availableへ、SEC isolation適用不能、ticket/assignment unknown、stale environmentを独立変異する。不成立理由とownerを返し、利用可能/isolatedを推定しない。
+- L10-INFRA-025-C03（AC INFRA-025-AC-03）: resource move前後の元/移動先state、unfinished task/obligation、ticket/request/work refsを与える。identityと未完義務が保持される正常moveと、元state破棄・移動先のみのcapacity条件を元へ誤適用する反例を比較する。
+- L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、automated scaling/placement/operationを別々に試みる。全て拒否し、副作用0と責務別backflowを確認する。
 
 両親の観測tupleはsource/revision、resource/worker identity、owner、unknown/hold、reference continuityである。確認済み部分と未確認部分は分離し、全体successへ丸めない。

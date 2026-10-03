@@ -118,14 +118,16 @@
 
 ### HELIXCONNECT-L2-008（CONNECT-FR-008-01）
 
-- CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: MCP profile identity/revision、configuration contract revision、typed operation/tool capability、read-only descriptorが揃うfixture。relationを再構成でき、operation spawnは0。
-- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各identity/revisionを一つずつmissing/stale/mismatchにする。古いcompatible結果を使わず、unknown/staleとprofile ownerへの戻し先を出す。
+- CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: catalog列挙の複数profileから一件を選び、profile/config identity・revision・type、descriptor schema/version、typed capability、read-only probe descriptorを全てsource付きで与える。relationを再構成でき、operation spawnは0。他profileの入力/結果は不変。
+- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各列挙fieldを単独でmissing/stale/mismatch、configとdescriptorの型不一致、同一identityの異なる宣言、catalog未登録revisionに変異する。該当profileだけtarget未確定/unknown/staleとなり、古いcompatibleへfallbackしない。
 - CONNECT-CASE-008-03（AC CONNECT-AC-008-03）: descriptorあり・permissionなし、安全判定なし・実行可能と主張する反例。executable/safe/send eligibilityをfalseまたはunknownに留め、SECURITYへauthority照合を戻す。
+- CONNECT-CASE-008-04（AC CONNECT-AC-008-04）: raw secretをconfig/descriptorに含める反例を与え、拒否・値の非出力を確認する。同時に独立profileの正常descriptorが通ることを確認。
 
 ### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
 
-- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: serial、parallel、direction、typed feedback relationの固定親が定めるnormal fixture、および未見の複合relationを与える。各relationをoperation lineage/reason/endpoint/contract revisionへ追跡する。
-- CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: first-send dependencyをunknownにするfixtureと、feedback endpoint/reason/contractを別々にunknownにするfixture。二種類のunknownを相互流用せず、owner別に保持する。
-- CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: existing retry/budget/termination policyの欠落/staleを与える。追加attemptは0、独自capなし、policy ownerへ戻る。正常fixtureでも既存policyを越えるattemptを作らない。
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは先行結果前の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。
+- CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: eligible first edge＋未送信feedback、ACK未着、feedback endpoint/reason/contract unknownを独立変異する。第一edgeはfeedback欠落で止めず、ACK未着ではattemptを保ったまま受領/完了だけholdし、loop条件欠落は追加retryだけ0となる。
+- CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policyのmissing/staleを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
+- CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。累積attemptは単調に保持し、deadline/terminal確定まで新規retryを止め、停止理由と未完義務を残す。
 
 全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。

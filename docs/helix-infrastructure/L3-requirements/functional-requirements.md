@@ -354,25 +354,27 @@ INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとW
 
 ### INFRA-008-FR-01 — approved designからdeployment targetへの対応
 
-入力はapproved HARNESS-CORE infrastructure designのexact revision/scopeと、deployment targetの別identity/revisionである。設計で宣言した対象とtargetのfield対応を導き、targetとobserved actualを独立sourceとして比較する。INFRASTRUCTUREは設計意味を所有・変更せず、actualからdesignへ書き戻さない。未承認・不一致・unknown designはholdとする。
+入力はHARNESS L2-001/002が定めるversioned infrastructure design interface、approved designのexact revision/scopeと、deployment targetの別identity/revisionである。設計で宣言した対象とtargetのfield対応を導き、targetとobserved actualを独立sourceとして比較する。L2-001/002 interfaceがmissing/stale、またはversion/scope不一致ならtarget mappingを確定しない。INFRASTRUCTUREは設計意味を所有・変更せず、actualからdesignへ書き戻さない。未承認・不一致・unknown designはholdとする。
 
 **受入条件**
 
 - INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。
 - INFRA-008-AC-02: design approval、target mapping、actual observationを個別に欠落/stale/不一致にする。該当比較だけをunknown/holdとし、actualをdesign/targetへ昇格しない。
 - INFRA-008-AC-03: actual driftを設計変更で消す変異、INFRAがdesign ownerとしてwriteする変異を拒否し、設計意味の不足をHARNESS-CORE ownerへ戻す。
+- INFRA-008-AC-04: L2-001/002 versioned design interfaceを欠落、stale、version/scope mismatchにする。deployment targetを確定せず、interface ownerへ戻す。
 
 旧product lifecycle operations LEGACY-ASSET-17C4BF78919578FEBB18とpaired acceptance F46AB11BD14F2C0469F4はdeployment/release境界の類例を部分再利用する。静的な承認design→deployment targetのmappingは現行親から再導出する。
 
 ### INFRA-025-FR-01 — Workerと実行資源の対応維持
 
-Worker identityと実際のexecution resource identity/capacity/stateを対応させ、resource移動時もticket/request/work referenceを保つ。Workerはmachineではない。Infrastructureはresource/stateを所有し、OSはticket/assignment、SECURITYはisolationを所有する。resource mappingは観測・追跡であり、自動scaling、placement optimizer、operation実行を含まない。
+Worker identityと実際のexecution resource identity/capacity/stateを対応させ、resource移動時もticket/request/work referenceとunfinished workを保つ。Workerはmachineではない。SECURITYが隔離policy/条件を所有し、Infrastructureは各resource/environmentへ隔離条件を適用し利用可能性を報告し、OSはticket/assignment/work stateを所有する。CPU、memory、GPU、storage、networkの需要、process/container environment、L2-001/003 resource設計とcapacity、Worker execution contract、OS assignment/reference、該当SECURITY条件を入力に含める。capacity不足・isolation適用不能・ticket/reference不明なら成立しない。resource mappingは観測・追跡であり、自動scaling、placement optimizer、operation実行を含まない。
 
 **受入条件**
 
-- INFRA-025-AC-01: Worker identity、resource identity、capacity/state、ticket/request/work referenceをsource/revision付きで入力し、各参照を結ぶ。正常な再配置後も同一work referenceを保持する。
-- INFRA-025-AC-02: Worker/resource identity、capacity/state、またはwork referenceを一つずつmissing/stale/mismatchにする。未知の対応を推定せず、resource ownerまたはOS ticket ownerへ返す。
-- INFRA-025-AC-03: Workerとmachineを同一化する、resource状態からassignmentを作る、isolationを推定する、自動scale/placement/実行を行う変異を拒否する。
+- INFRA-025-AC-01: CPU/memory/GPU/storage/network requested/available values、process/container environment、L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work reference、SECURITY isolation policyをsource/revision付きで入力し、SEC policyを資源上へ適用した実行可能環境とcapacity結果を結ぶ。適正な再配置後もworker/work identityとunfinished workを保持する。
+- INFRA-025-AC-02: 各資源dimension不足、隔離条件を適用できない、ticket/assignment不明、state stale/mismatchを別々に与える。どれも成立/利用可能にせず、不足dimension・適用不能条件・unknown fieldを示してSECURITY、Infrastructure resource ownerまたはOS ticket ownerへ戻す。
+- INFRA-025-AC-03: 元resourceから移動先resourceへのtransitionでbefore/after state、未完work/義務、ticket/request/work referenceを保持する。移動先だけのcapacity/isolationを元側へ流用する、元stateを破棄する変異は不合格。
+- INFRA-025-AC-04: Worker=machine、resource=assignment、resource stateからSECURITY isolation policyを推定する、自動scale/placement/operationを行う変異を拒否する。resource利用可能性の判断とoperation実行authorityを混同しない。
 
 旧WCC LEGACY-ASSET-9114D4E463E95B67DD0C とpaired acceptance C6ADB99F1353965C5449 はworker descriptor/role境界の類例として部分再利用する。INFRA resource identityとOS ticketの結合意味は固定親から再導出する。
 
