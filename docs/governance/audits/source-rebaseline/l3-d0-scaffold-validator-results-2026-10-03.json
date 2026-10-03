@@ -1,0 +1,973 @@
+{
+  "record_kind": "static_validation_comparison",
+  "authority_effect": "none",
+  "base_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "scope": "all 137 tracked scaffold/*/validate.py; untracked files excluded",
+  "summary": {
+    "count": 137,
+    "pass": 82,
+    "fail": 55,
+    "changed": 0
+  },
+  "results": [
+    {
+      "path": "scaffold/br-implementation-evidence-0102/validate.py",
+      "validator_sha256": "188b9ebebc5a625ff4abd197ecb3e408bde997542e93fa5fe88d85c87871643a",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0104/validate.py",
+      "validator_sha256": "1282179fe77076e11ac6767c0a712e5acfca7a28314750ed17e4575664a768c0",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0106/validate.py",
+      "validator_sha256": "b9ad46ad7a1ccee10a71d28811ceeb2a3a748e43a42b92a8a562f8de352677db",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-002-013-004-029/validate.py",
+      "validator_sha256": "1f8db21acbe427d3dace401d4a6c76a218363937f012f215a1ae8075368b6dda",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-003-028/validate.py",
+      "validator_sha256": "ded92867acb56c3645a0849fdf63fe5b674723e40da2edb0fd2221faa5952b97",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-005-014-011-018/validate.py",
+      "validator_sha256": "f0e9ab89cfcebdb5ece07cadcd6c3b9e2ba08531fb9da1b7b66ebf9ec701cee9",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-006-015/validate.py",
+      "validator_sha256": "196498e4b7d05f9e746e1e535543f7ec4777287abedc7dc50de194350b0c1bbe",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-007-016-030-034/validate.py",
+      "validator_sha256": "c8c9d79eff176cc9db456471194dea4ba0b4cad1f9dacf8d62ad5f606474b88d",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/delegated-doc-008-017/validate.py",
+      "validator_sha256": "57d98510220f07ef1d3759d54a9f82991c1fdfc84140c7eec51ee5d30216f36c",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/fr-harness-first10-evidence-0132/validate.py",
+      "validator_sha256": "6eb80048694112a177d0668f65ad8f61ab812447d9721c4b6079b55b7d522592",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0109/validate.py",
+      "validator_sha256": "af13eee3b20de79b598889b272f21ade432ee449605d47a754a063f7fec61c81",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0110/validate.py",
+      "validator_sha256": "9d9d62a5a538fb1a0673ab314dda9c57defaf788d573ff19eedfd61f5f4fbeec",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0111/validate.py",
+      "validator_sha256": "c34cc4860452b1ef0e1fd94bab2e03f7274de48f8b33a45bbcd342beb9ae088c",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/fr-os-first10-evidence-0129/validate.py",
+      "validator_sha256": "00481f6b6ec34cf9f16138309af15d08999b028d206bce9b38e8aca9bfc63105",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/implementation-evidence-strength-0115/validate.py",
+      "validator_sha256": "1ad3c9960b64639b035d3b8fe83973402c82a6a78daa52004a6b6cb6f547be48",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/validate.py",
+      "validator_sha256": "2baf090fb1fe15fd978f9f2e7669edc36a7600733d50967ce5a460489d7a70ec",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-asset-product-classification-0107/validate.py",
+      "validator_sha256": "e83b3af811cd3ad6d6a917ce16d0a6a79471ec29f8920822edcd65e08012670d",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-config-product-classification-0141/validate.py",
+      "validator_sha256": "de8e0aadd755b964808a0a628e9a3693775230926249a32cc65c1d6d028f4388",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-evidence-crosswalk-0146/validate.py",
+      "validator_sha256": "410828d49e2e90026c1afce59e74a35e6d6ad2292c2770ea781b0c7b47f24b95",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-execution-evidence-0118/validate.py",
+      "validator_sha256": "596e96b3654561d452fe3a15ced8ced71aa8d03a95f2cd620deafd630a0aeb2b",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
+      "validator_sha256": "652f31431527adf65265d7d1038c0715e884a05b780a7bca28f45564795de6f9",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/validate.py",
+      "validator_sha256": "a215c7afc0c9c73135c2451906606ce98b31d7443b7e5cc99c65dfdcb49f85e9",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-ir-routing-correction-impact-0101/validate.py",
+      "validator_sha256": "d2331cd81cbd94a30b44c304a8b723e2a95f650a27998607b032d23e6abd0784",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-ir-target-routing-0100/validate.py",
+      "validator_sha256": "212da50799aab29061321590996d60caae52fa9d5ff8ebae5c6ece9fd2ce9a12",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-lint-candidate-product-classification-0128/validate.py",
+      "validator_sha256": "ee9991e5cbb12db1600797902933cfd8eeb68e51904b44aeef90e82dc2366700",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-lint-product-classification-0108/validate.py",
+      "validator_sha256": "571a7bfb168e1e878c4f05424b13dfc9536d48f566506341abaaf55ea9ee72ed",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-nonexec-evidence-0122/validate.py",
+      "validator_sha256": "b5817413728b1a12674d64b36bfd6349836223a61d880543a00f4f304123a5be",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-overlap-reconciliation-0144/validate.py",
+      "validator_sha256": "d1b6c54a58d0ff5a822504ada5633e4a6c98edee86ad0b7175038435c79c9166",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-phase-gap-review-0101/validate.py",
+      "validator_sha256": "cdc1bba7831a98c849afbebd0d8d14fca267a343bcb9fcf21e06b9c95790de96",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-research-assets-product-classification-0142/validate.py",
+      "validator_sha256": "132fcd357b727e5a03e8f52af743dbfda960f46eba24435b0327b886f897b27e",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-runtime-product-classification-0117/validate.py",
+      "validator_sha256": "67d9b481ddf4eb13cafc001caea0cbb87cf109f3d64aa147213f272687941198",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-runtime-residual-product-classification-0133/validate.py",
+      "validator_sha256": "83c369889ab7eec42c6d37f0232b75969c2c2f21c4d34236d59bcda7c7f79bc5",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-schema-product-classification-0120/validate.py",
+      "validator_sha256": "365cbf9036529ab6b4a09483184d4dd788b414243b375c3d79cdd18f4a93d214",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/validate.py",
+      "validator_sha256": "99de62a6aca45169ca5f2f954355d5eba2172de310c086af3f442963105e9df4",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/validate.py",
+      "validator_sha256": "59dae5eb17ab32760e723b9b850497c62a47b55791763693c3903b036055663b",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave39/validate.py",
+      "validator_sha256": "a7e9efbfb0aa698a5d7a9714be4f4806d61996d4132fc775a633c8dfa8a28676",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/validate.py",
+      "validator_sha256": "3f7071543c629405201f37b29a5524ef00766ecfbf4192f78bd4dcfbfc4d297e",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave41/validate.py",
+      "validator_sha256": "c40062d6ffe26edf9e2e0829c01c393785d8319aacf1092dfefa1c2bf484c890",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave42/validate.py",
+      "validator_sha256": "f9ba4ce90ada02ca26cbf5053e20bbd4e81c81e680de6a9da1a3f0f8db26f48c",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave43/validate.py",
+      "validator_sha256": "7dafbd382d21535a68f8370f2de758f244df8f34d9ad1d2f5fb9824664c3b65e",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/validate.py",
+      "validator_sha256": "5dfed64aa84fcae774a9d3fe78d78bb24dcebe98e47c78c47db85effcc1b6fe0",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave45/validate.py",
+      "validator_sha256": "9034144af475049bde4d387edd39b6ac28a9498d742b7d409359a9fcbc2aa9c4",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave46/validate.py",
+      "validator_sha256": "2a3ac7d0bd1ea4f13fbce94e0fc1c9178dc34c1fae7285abbd10ebd7a92ebd5f",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave47/validate.py",
+      "validator_sha256": "69373744041d156b63016c48ae24670fb3ddd0d694a079d5b87d3f8fcdca7ef1",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave48/validate.py",
+      "validator_sha256": "30fa68515948aa95cdb7474e9194c0984056189efa92d2ac10977af41c40ba01",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave49/validate.py",
+      "validator_sha256": "6db80d5cc410d8df69b824802a4a49ca01ab757353bb591562c5c0cfd68a9360",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave50/validate.py",
+      "validator_sha256": "4ba680c3e0410a6a0f2c2a6676c21b0541e168baa3627894e04bb7ff85556af9",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-source-product-classification-0123/validate.py",
+      "validator_sha256": "2cfc9fed4f026ca9eba61e4c06a3a3d2687bdb5052baec5f339b0fd56acca60a",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-state-db-product-classification-0127/validate.py",
+      "validator_sha256": "ff457d7adc196544087a7b4f917938d117b14d1375857fe857d28fe2c909d6b1",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-status-evidence-0125/validate.py",
+      "validator_sha256": "ebf30b25c9a04a188709ea5491af1829057e45e4c787f5738f5cae439f767b56",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
+      "validator_sha256": "5e95339a9f37e226d883fcd859342bf1c03b2b2bc47ec5298e253de01de77a9e",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py",
+      "validator_sha256": "fa481fc27ad0330ab801536a4aac9a50846c79b8b16626244e2a46a7bf7e8894",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0113/validate.py",
+      "validator_sha256": "c8e8ad57cbb536f43064a402944bd2a498874b6e5aa4b59d765e8d25aa6410b3",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0114/validate.py",
+      "validator_sha256": "05f7e34201cfbb3fca583dd0ece59e6e608020a42a6078701e5092c9a9c876e5",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/validate.py",
+      "validator_sha256": "9a72056840d7acc684d063c722387497734a19fc65835c530b62ab04faeb9453",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-cross-20-review-0116/validate.py",
+      "validator_sha256": "5278ea90d009d119320f8c22dcd7357558074a97c3d1f553972c683e7739f899",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-direct-evidence-first5-0130/validate.py",
+      "validator_sha256": "e447ce4af1a0fb8abda18bdbab16f785b1d86c3343eca16590b6b75a62ab670f",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-direct-evidence-next5-0131/validate.py",
+      "validator_sha256": "92e94c0f8dea42fe662addc57b65a0b05f9722bfecf2f54f31b9c9b802ef5264",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-gap-cross-analysis-0134/validate.py",
+      "validator_sha256": "6b397f8b99fdbf8b5712018ed314afa3d387d1c17e7fff6df45e9086fa48da82",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-source-human-review-0119/validate.py",
+      "validator_sha256": "28996672942b0bb601134b711efe7768082feef8842f7b6c841cef30c9ce1588",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phase-status-taxonomy-0105/validate.py",
+      "validator_sha256": "247bb78517564868e1e3e94d2ec6a6cf34bb2868268fdca5068a196bc881b119",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap01-concept-l1-research/validate.py",
+      "validator_sha256": "096dc25126bcc8e28469646cec76696c8b9a34cd0c9f42c9d72bd7ed1b6554ce",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+      "validator_sha256": "58265c049ec3598ab78c5809f524034889e1628ecd8b7c1e9126b58efa0a9651",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py",
+      "validator_sha256": "bc3811ab05e98bfb5d4c090fa083c8d1a7dae18d36ae8b8a7fa10ba45bebbf21",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap06-design-research/validate.py",
+      "validator_sha256": "0e0b48eaff69d75c3af06b47251ad434056a140e536c46724a60ea65bd33b624",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap07-web-verification-l10/validate.py",
+      "validator_sha256": "00ab7e7fec0610dde911cf15b650d4927e57a136c2d9bf7d42504a6ca890d4b2",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
+      "validator_sha256": "4d5b85bd72190a3bdb2830fc9b9ec22e8fdfc2133b279e0d2f2c62b713f4debd",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap10-11-worker-ci-static/validate.py",
+      "validator_sha256": "c15100956aff0cb448bd2bcf9518057f038124edd7da0e8cab1060fc0b1c6e28",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap12-13-review/validate.py",
+      "validator_sha256": "61d59012004dcb829cb616973465f90ddf9df2f8e66ddb7d45acf77836a831d3",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap14-release-research/validate.py",
+      "validator_sha256": "d69ba8f4d83ea182bb4fec150b232736b13867ec1081697707beb5e80d665d49",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-17-membership-edges/validate.py",
+      "validator_sha256": "3493466a670490a7ab40165244a1f258d5aacc4adb347700bf82961d9fc8c481",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-17-orphan-asset-links/validate.py",
+      "validator_sha256": "012726d60c751ac68f7b039f056b05688e421a62de0305a6e13d7411c6248c5e",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-fifth12-research/validate.py",
+      "validator_sha256": "fd600bb452321854ba7b15710c3f3457f9a562d08a201d716946529599237a57",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-final8-research/validate.py",
+      "validator_sha256": "26ff3fd0d815f2b27c450238e699d404b0339cd9fad01d7b03a28597a29f2bec",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-followup-research/validate.py",
+      "validator_sha256": "8a74072ab472d1d5a665bc5a2c5a7fbd9b3e9c0908bcaf0c27ba53a2d68441de",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-gap-research/validate.py",
+      "validator_sha256": "d815fc47e20b6963af3099582380a53c6a1a5a3d20233d8ab6a623dd25c0dcef",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-next12-research/validate.py",
+      "validator_sha256": "0504d458780344732e6e7aae3aa2e0a6d6d199fefa1491e08d71df9d7f179466",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-pool12-research/validate.py",
+      "validator_sha256": "44f355833fc60ea7904bf5e01a9dcc7f95059bf1d509c6cb6351dbbe26d45765",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-research/validate.py",
+      "validator_sha256": "7fcf8f0f3771a549df71d3d5ac90030db898f79961562641158375f2f4cf4463",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap15-deploy-sixth12-research/validate.py",
+      "validator_sha256": "c0a0e14401a6c89b7cdb5b09f43499cc8c8f4d02aff68db73cb4099b7a6c10dd",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap16-operations-monitoring/validate.py",
+      "validator_sha256": "576a17228c0964bfc5181322d2e44518e1b17e40236010db65ded339bb888562",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap17-incident-research/validate.py",
+      "validator_sha256": "78a8b077dab9c551ca4d333c0345f6f7bc56c65d98af36884eb59024870242a4",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap18-refactor-research/validate.py",
+      "validator_sha256": "8f14242b0b41ae8097d5d46e638710c99eccda4240835830a80c3fba3cf562c6",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap19-learning-research/validate.py",
+      "validator_sha256": "4455b69d4c47bf9053fbd5187bb86f923eb8e93ff3b326e7c1e7a3968989bb90",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/validate.py",
+      "validator_sha256": "d7ccbfcf5cab80fe338648aca3c390bca382e0082cf4dfa78d82f5fb42c90eac",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/validate.py",
+      "validator_sha256": "7695bdc08e3037496b209a7f1ae7efc7ee5b8cf6a51b884104466e5e6feff394",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-batch/validate.py",
+      "validator_sha256": "d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-next/validate.py",
+      "validator_sha256": "bc6b6808a84d3740ba0f14a45a089620f38e793ff2aa9070e5226bbdcae207bf",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/validate.py",
+      "validator_sha256": "8e23faf9272259ea6e0c4a3af42ad84f467c2009bde306b9c99fb32049185b75",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
+      "validator_sha256": "978a53fe717eb85835adc3febb07059f12ffb1f30e42ced52e9eaec38d6f0045",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "validator_sha256": "d5fbbe9205176bb661401ae94ed54317f2112a873896ff1fab9f90f288f4d09c",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+      "validator_sha256": "c5d51ba5614ad40a562354eaac00e3b2811180e7145dbce955819f643728b515",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/validate.py",
+      "validator_sha256": "1bdd9a782a742797e955afd505b77093f204fd1c3a7abfbcc253ce3beccbdce4",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/validate.py",
+      "validator_sha256": "68914fbaaa22ca76ff6770c91fa423cb6283d5fd9c0c6b11c9d9f55113c237a2",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "validator_sha256": "5349a06f22102f2a41eed289d277821ffce71966ba9b231e19a0193d071683c9",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-requirement-next4/validate.py",
+      "validator_sha256": "2b448a8578ba38d8c86fd5f2a7b39a80866af76745f2a7ad72ddc277ff2866d2",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-research-next40/validate.py",
+      "validator_sha256": "9bcfb7c35da52f7ae69cdd62d022341447ff884d2b56eb2b7c2d9b6d1c73b69c",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-research-next60/validate.py",
+      "validator_sha256": "4fd362cc7ad40e73810ca8698348a779c0ec88c04eca4766dea208b8f7724139",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation-research/validate.py",
+      "validator_sha256": "6b49e3ce1b948f28ed5547eb7f64c2e5d6e543824afe730599e0ffb4af7a951f",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/pre-isolation/validate.py",
+      "validator_sha256": "6183b6836650097d523a5f38c222940aa75824ef81c11e58e42dc61dd65136dd",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc001-atom-030/validate.py",
+      "validator_sha256": "8ec26442b9ad7f8dd3e20de2cc94ec01740b89e4c0730321de492292816d50b3",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "validator_sha256": "c6c6913f8faa05e37946ccc0de6802d7f7f1beaee66b5976fbbce764f73d4bfc",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "validator_sha256": "3f053cd9e4a95320c03d3141ee73cf7484237c1e9a1117bdd43c8f3e7ba0ccea",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc009-atom/validate.py",
+      "validator_sha256": "dc7e82cd4a6aac3328eadc9ef3bebd137119c10b1b8ec25a2a47e6ba060b9055",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+      "validator_sha256": "1667c61ca9213f10a1b8c6ac4c48a19c9e795dc047f4b31f2ebfb0ceac831d5b",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-071/validate.py",
+      "validator_sha256": "2e46ed9658ce90c43432986b49bd8a0a6b838c58f41a59b030516bb8cd3bb851",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/validate.py",
+      "validator_sha256": "250a909dd320a3cc4814792769508570382b3bf5b43639c1afb3b6623a6e4663",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/validate.py",
+      "validator_sha256": "3e7d5540eafaed88d84906aa3ddd1ef3e5f99488523b581e910e0498e8269e5b",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-concept-freeze-followup-087/validate.py",
+      "validator_sha256": "0a94f6424731797cfebdad9218f545132d808ea2adc7f8f6b771dc2b948b9e7b",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-final-followup-092/validate.py",
+      "validator_sha256": "d7bb057008b5f0284642d8375d4bb21305fcc243fe6a845181d8f8e6805427d5",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-followup-069/validate.py",
+      "validator_sha256": "d82b235e4ed8ad4f9b9354fee5608a02b742ade0c704e705e3092d3a432a90ee",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-079/validate.py",
+      "validator_sha256": "13f58b642fccd9e0cf1fb0eda5e651bbb8e86199a3c4a7d1a7557e878640220f",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py",
+      "validator_sha256": "1c7c7d8c130b627119c87dbbd313d0ab55de98d9385a556b723c81b344f399f3",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-085/validate.py",
+      "validator_sha256": "b3fb298f4e1f893ba8e1e0f1cc9ff2050b8d8803f9c0124c7b5c9c65662e8acb",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path001-005-atomization-0095/validate.py",
+      "validator_sha256": "d82fa79df56521af9b0f78afb342a5db94829e7b4b9fab539aa219255ad8d2d1",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+      "validator_sha256": "9b691dcd9ff8817a093f8759c061a432ff80589b10fdee3c9b4e692756c4f403",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
+      "validator_sha256": "77c1c1ed96b9ed489333a57d6bd5e9a3074f3ff76ee0f7bfebf8396270b837d7",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-062/validate.py",
+      "validator_sha256": "59b283358d0e4854208fd299a3ce27267a6aa420c24927464a6c1d9bf76d93b7",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/validate.py",
+      "validator_sha256": "5b88a0fc5655a3e5b5412c91491e6280946384de61e26c3670af991269339a5e",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-residual-followup-090/validate.py",
+      "validator_sha256": "27a7d8b77893617c571de41cc7dfbc52fe10a06f0cb7b31f655df9ac816cec04",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+      "validator_sha256": "cabaf7e498277bf6a18d0070db3382b874a90964cc9633db853f2e39e2d191f0",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+      "validator_sha256": "970d010f9af88cf89cda52985ff2bbff995ed913db103beb4d3ca15bc2eecbce",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-ref-subset-0021/validate.py",
+      "validator_sha256": "d9d4c7854b5bc2a188a03299558f44d1475d4e17c1b5545280d02358dbc0e179",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-0011-0030/validate.py",
+      "validator_sha256": "307c5943783574a82e90e683de063b163f5f6dda502b0ea97cf57cebf01754f6",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-0031-0050/validate.py",
+      "validator_sha256": "7a94fb78e2957f2e0d35b6f0d099f6a69d0637c3d8dbcbd17349a67bdbb96bd4",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-0051-0070/validate.py",
+      "validator_sha256": "fa6206f827f68ab5ed11f27311f1e53e513379a9b86de0bd40b900b42bf37db6",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-first5/validate.py",
+      "validator_sha256": "dfc42ca3d67130218386e569a4dfd872c96afff9df37674e2a8fc33defb23b7e",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/validate.py",
+      "validator_sha256": "4b43d601079ec437b95ac323b3cd38ea6a526e6f159ab0277b09b8c70e1bd201",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-rul-osp-04/validate.py",
+      "validator_sha256": "649bda2c4cf62e81790746bceb70ad3201eda53318c10a8c7a410b81cfc7d03a",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+      "validator_sha256": "4f6fd731a347c0d4e33d8c3a2020e20742fa193032271bde045da1ff06625e82",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-asset-semantic-0124/validate.py",
+      "validator_sha256": "25044f0f924a30357bebd12b4a52c919527a2749dcf32eb7f7e5889651b7fcd9",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
+      "validator_sha256": "6c7eb033289414d89a95812b80eadc1ed92c8f103dfe655f33904b1f78b73c60",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+      "validator_sha256": "93b8da85d697577f39f7026fd407f2156ee910314f0161eac183dc1f4b351edf",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "validator_sha256": "129f1cc533ed4f1b45ad4c74d63f82aa94e5918f9d3436fe7aedeaa4546f4843",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+      "validator_sha256": "bddd04d2fb2f9a6aa2e980832eccda57cc59ae708415057afd54f378338c216e",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-source-0080/validate.py",
+      "validator_sha256": "32c268cee0b31ba9701d96cda8b6c0f1b222e43011fc167a7ef3784d9aa3f427",
+      "before_exit": 1,
+      "after_exit": 1,
+      "exit_unchanged": true
+    },
+    {
+      "path": "scaffold/tr-implementation-evidence-0112/validate.py",
+      "validator_sha256": "12c6c331f857b5693256f85445fd50f7704bfceeaa0feebf41f9e05d86a51e52",
+      "before_exit": 0,
+      "after_exit": 0,
+      "exit_unchanged": true
+    }
+  ]
+}
