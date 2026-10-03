@@ -49,6 +49,7 @@ HARNESS-L2-029＝CORE、031＝共通部品、032＝CORE。SECURITYは全操作�
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)
 6. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
    - [L2D-S0-01・S0-02承認とL2D-S1-01 deferのdecision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)
+   - L3本文の起草前に[L3要件・L10総合検証の配置と著述規則](l3-l10-authoring-layout.md)を読む
 7. [企画・Vision→前提research→要求の被覆監査](audits/source-rebaseline/planning-research-requirement-flow-audit-2026-09-15.md)
 8. [上流authority管理台帳](upstream-authority-register-2026-09-14.md)
 9. [上流authority状態モデル](authority-state-model.md)
