@@ -593,7 +593,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **`L10-BRAIN-024-C01` — 正常な設計知識flow**（`BRAIN-024-AC-01`）：対象Product Core、BRAIN Pattern/revision/scope、L2-019/022 boundary receipt、Core/HARNESS受領先を与える。期待oracleは設計知識の行先とsource/revisionを結び、Runtime実績/実状態を混ぜず、操作・writeを0にする。
 - **`L10-BRAIN-024-C02` — 正常な実績評価flow**（`BRAIN-024-AC-02`）：Runtime ownerが実績を所有するsource identity/revision/scope、LABO評価対象revision/結果、L2-020 candidate boundary receiptを順に与える。期待oracleはRuntime→LABO→BRAIN candidate traceを返し、BRAIN受領は評価candidateのsummary/provenanceに限られる。raw log/metricsや実状態は保持しない。
 - **`L10-BRAIN-024-C03` — direct-runtime/data boundary**（`BRAIN-024-AC-03`）：BRAINがInfrastructure Runtimeへ直接read/write/learningする入力、server/network/database state、provider account、credential、operation permission、raw log/metricsを各々/組合せで流入させる。期待oracleは受領・保存・学習を拒否/holdし、Runtime正本ownerへ戻す。secret/raw valueをfixture outputに再出力しない。
-- **`L10-BRAIN-024-C04` — 経路欠落・交差**（`BRAIN-024-AC-04`）：CORE route receipt、Runtime source identity、LABO evaluation、L2-020 candidate receipt、target revision/scopeを一つずつ欠落/stale/cross-scopeにする。該当するflowだけholdし、CORE設計flowでLABO結果を補う、または評価flowを直接Runtime factとする変異を拒否する。
+- **`L10-BRAIN-024-C04` — 経路欠落・交差**（`BRAIN-024-AC-04`）：Infrastructure L2-009/010/012/017、BRAIN L2-019/020/022、CORE/Runtime/LABO契約それぞれのidentity/revisionと適用flow対応を、missing/stale/wrong-scopeに個別変異する。該当するflowだけholdし、CORE設計flowでLABO結果を補う、または評価flowを直接Runtime factとする変異を拒否する。全知識の実装完了は条件にしない。
 
 ### HELIXBRAIN-L2-025 — 独立検証・採否flow（`BRAIN-025-FR-01`）
 
