@@ -1,0 +1,66 @@
+{
+  "schema": "governance-layout-final-validation-correction/1",
+  "recorded_at": "2026-10-04",
+  "authority_effect": "none",
+  "correction_is_append_only": true,
+  "corrects": {
+    "path": "docs/governance/audits/source-rebaseline/governance-layout-final-validation-2026-10-04.md",
+    "commit": "fd4be67cada3f93cfcd4a2ef340f3d8ee4858a1d",
+    "markdown_sha256": "19dbdf56ce19801e7435e95f3948f8167145e761a88d4d892ac0f3ea7031897d",
+    "json_path": "docs/governance/audits/source-rebaseline/governance-layout-final-validation-2026-10-04.json",
+    "json_sha256": "20e7509d6df50e19299271ac175e0185f0a53d2ecb2e2649dbafc22ad4a4cf02"
+  },
+  "corrections": [
+    {
+      "id": "C1",
+      "location": "原監査MD「append-only registerと分母」第1段落",
+      "incorrect_claim": "#2424関連の固定記録では713行から714行への追記とlatest candidate分母384件が記録されている。",
+      "corrected_fact": "該当する時点記録は、#2554の要求終了時点に関するpending4-bun記録である。#2424は検証template seed PRであり、この714行・384候補の記録とは別件。",
+      "evidence": {
+        "path": "docs/governance/audits/requirements-stage/po-decision-pending4-bun-verification-2026-10-03.json",
+        "sha256": "5c3edf2be2c7b3f613fc83cd086df11f4ff0dc3e9c96592fb6956cbcf4cec50c",
+        "basis_main": "7294112e39d8309d4ec43201953bbd706a92b325",
+        "rows_before": 713,
+        "rows_after": 714,
+        "latest_candidates": 384,
+        "authority_effect": "none",
+        "bytes_unchanged_from_main_8a": true
+      }
+    },
+    {
+      "id": "C2",
+      "location": "原監査MD「Bindingと137件の静的validator」第2段落",
+      "incorrect_claim": "新しいvalidator実行は追加していない。",
+      "corrected_fact": "候補HEAD 2a4c478d42146137cd0b4126914bb6775e7900b8に対し、rootが137件のvalidatorを実行した。これは実測manifestで、82 pass／55 fail、timeout 0、157.8秒。",
+      "evidence": {
+        "manifest_path": "/tmp/l3-d0-gov-after-register-fix.json",
+        "manifest_sha256": "8bab10fe9f32c90885bc6715d755d1fcd1a937ad05be49e231ac969f175dbe21",
+        "tested_head": "2a4c478d42146137cd0b4126914bb6775e7900b8",
+        "count": 137,
+        "pass": 82,
+        "fail": 55,
+        "timeout": 0,
+        "elapsed_seconds": 157.8,
+        "executor": "root"
+      }
+    }
+  ],
+  "unchanged_conclusions": {
+    "candidate_head": "2a4c478d42146137cd0b4126914bb6775e7900b8",
+    "validator_total": 137,
+    "pass": 82,
+    "fail": 55,
+    "timeout": 0,
+    "exit_changes_vs_final_publish_baseline": 0,
+    "new_failures": 0,
+    "diagnostic_signature_deltas": 0,
+    "f0_to_2a_reader_code_sha_exit_and_normalized_output_deltas": 0,
+    "fixed_history_moves": 7,
+    "existing_bindings": 143,
+    "binding_non_upstream_semantic_deltas": 0,
+    "register_current_rows": 1077,
+    "register_append_prefix_exact": true,
+    "other_computed_evidence_or_conclusion_changed": false
+  },
+  "handling": "元監査のMD/JSONはfd4be67時点のappend-only証拠として保持し、内容を修正しない。本追補を併読する。"
+}

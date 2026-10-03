@@ -18,6 +18,7 @@ from pathlib import Path
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
     "scaffold/pre-isolation-outside-holding-16-30": "scaffold/research/pre-isolation-outside-holding-16-30",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -63,7 +64,7 @@ BASE_ANCHOR_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
 # The historical-register correction is an uncommitted candidate layered on
 # the reviewed PR tip. Pin the candidate bytes explicitly while retaining the
 # immutable base object checks above.
-EXPECTED_GENERATOR_SHA256 = "b6daa43f4c62a7c8923e9478a18f12105e70e2d4e86b1d396b914333918c1d0a"
+EXPECTED_GENERATOR_SHA256 = "1511ef947a731c2829ffb5af4eae8f08bc808e144e47c55c9ff5e5a4c0880cb3"
 EXPECTED_INVENTORY_SHA256 = "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0"
 
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
@@ -163,7 +164,7 @@ def load_jsonl(path: Path) -> list[dict]:
 
 @lru_cache(maxsize=1)
 def independent_live_holdings() -> tuple[list[dict], dict[str, list[dict]]]:
-    register = load_jsonl(ROOT / REGISTER_PATH)
+    register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
     live_rows = [row for row in register if row.get("registration_id") not in superseded]
     if {row.get("registration_id") for row in live_rows} != LIVE_HOLDING_IDS:

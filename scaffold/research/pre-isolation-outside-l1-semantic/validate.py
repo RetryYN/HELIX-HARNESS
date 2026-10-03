@@ -12,6 +12,19 @@ import sys
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 INV = HERE / "inventory.json"
@@ -37,7 +50,7 @@ EXPECTED_ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL_REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 EXPECTED_REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
 EXPECTED_INVENTORY_SHA = "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e"
-EXPECTED_GENERATOR_SHA = "5212e91534dbf1e8744587088dbf728270120ad03af3f47b727df97b9ea77fc3"
+EXPECTED_GENERATOR_SHA = "ddc4bfab42c911f4f8c60cdb9288928f2a64be01a9b549561cc584f49f8d5aa8"
 EXPECTED_CASES = {
     "HELIX-HARNESS": ("OUTSIDE67-L1-HARNESS", "docs/design/harness/L1-planning/product-intent.md", "docs/helix-harness/L1-planning/product-intent.md", "HDEC-HARNESS-L1-01", "partial_substantive_subset"),
     "HELIX-OS": ("OUTSIDE67-L1-OS", "docs/design/helix-os/L1-planning/system-intent.md", "docs/helix-os/L1-planning/system-intent.md", "HDEC-HELIXOS-L1-01", "partial_refined_boundary"),
@@ -108,7 +121,7 @@ def independent_evidence_errors(inv: dict) -> list[str]:
     fail(errors, scope.get("archive_commit") == EXPECTED_ARCHIVE, "E_ARCHIVE_COMMIT_PIN")
     fail(errors, scope.get("work_entry_path") == "docs/governance/new-generation-start-here.md", "E_WORK_ENTRY_PATH")
     fail(errors, scope.get("work_entry_sha256") == EXPECTED_WORK_ENTRY_SHA == digest((ROOT / "docs/governance/new-generation-start-here.md").read_bytes()), "E_WORK_ENTRY_DIGEST")
-    register_path = ROOT / HISTORICAL_REGISTER_PATH
+    register_path = relocated(ROOT / HISTORICAL_REGISTER_PATH)
     register_bytes = register_path.read_bytes()
     fail(errors, scope.get("management_register_path") == HISTORICAL_REGISTER_PATH, "E_REGISTER_PATH")
     fail(errors, scope.get("management_register_capture_commit") == EXPECTED_BASE, "E_REGISTER_CAPTURE")

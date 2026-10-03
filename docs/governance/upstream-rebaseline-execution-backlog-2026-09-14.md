@@ -87,7 +87,7 @@ archive-first commit `064280b5c`もremote branchへ同期済みで、新runは0�
 使う。旧`harness-check` required contextはPO許可後に解除し、旧workflow 4件もdisable済みである。
 GitHub管理のCodeQL default setupは一時停止のscopeがrepository全体へ及び、明示されたaction-binding approvalもなかったため、
 変更前相当の`configured`へ復元した。before／一時停止／復元read-afterは
-[設定変更記録](github-codeql-default-setup-backup-2026-09-15.json)に保持する。CodeQLとDependabotは外部security projectionであり、
+[設定変更記録](audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json)に保持する。CodeQLとDependabotは外部security projectionであり、
 旧harness CI、新世代上流の意味判定、merge gateには使わず、上流承認やmergeへ自動進行しない。
 
 ## 停止規律

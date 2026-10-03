@@ -10,7 +10,7 @@ base_branch: `main`
 
 PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味reviewに限定する。PR本文、comment、review、checkはローカル上流のprojectionであり、要求、承認、完了の正本ではない。
 
-このpacketにPR本文やreview依頼文の複製を固定しない。AIは作業開始時に[新世代入口](new-generation-start-here.md)、[GitHub上流運用モデル](github-upstream-operating-model.md)、[repository foundation readiness](repository-foundation-readiness.md)を読み、GitHubから現在のPR本文、HEAD、commentをread-afterする。過去commentのHEADは失効したreview対象として扱う。
+このpacketにPR本文やreview依頼文の複製を固定しない。AIは作業開始時に[新世代入口](new-generation-start-here.md)、[GitHub上流運用モデル](github-upstream-operating-model.md)、[repository foundation readiness](audits/source-rebaseline/repository-foundation-readiness.md)を読み、GitHubから現在のPR本文、HEAD、commentをread-afterする。過去commentのHEADは失効したreview対象として扱う。
 
 ## ローカル正本
 
@@ -18,9 +18,9 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 |---|---|
 | HELIX-HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの責務 | [製品責務境界](../concept/product-boundary.md) |
 | 新世代のauthority、PR class、Issue／ticket境界 | [GitHub上流運用モデル](github-upstream-operating-model.md) |
-| archive隔離と現行実行面 | [archive-first隔離記録](archive-first-transition-record-2026-09-14.md) |
+| archive隔離と現行実行面 | [archive-first隔離記録](audits/source-rebaseline/archive-first-transition-record-2026-09-14.md) |
 | 旧要求の保持と再配置状態 | [carry-forward管理状況](requirement-carry-forward-status.md) |
-| マージ条件と現在の証拠 | [repository foundation readiness](repository-foundation-readiness.md) |
+| マージ条件と現在の証拠 | [repository foundation readiness](audits/source-rebaseline/repository-foundation-readiness.md) |
 | merge admissionの対象と非対象 | [repository foundation merge admission packet](audits/source-rebaseline/repository-foundation-merge-admission-packet.md) |
 
 ## GitHubへ投影する内容
@@ -62,10 +62,10 @@ PR #1797を、新世代repository基盤の差分共有とGitHub Claude意味revi
 - [旧Issue退役](audits/source-rebaseline/github-issue-retirement-2026-09-15.md)
 - [旧Project退役](audits/source-rebaseline/github-project-retirement-2026-09-15.md)
 - [Feature Ticket Issue投影](audits/source-rebaseline/github-feature-ticket-projection-2026-09-15.md)
-- [CodeQL default setup変更・復元](github-codeql-default-setup-backup-2026-09-15.json)
+- [CodeQL default setup変更・復元](audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json)
 
 これらの外部状態は操作とread-afterの証拠であり、上流意味の正本ではない。既存CodeQL、旧`harness-check`、旧test、旧runtimeの結果をPR #1797の合格根拠にしない。
 
 ## 現在の停止条件
 
-[repository foundation readiness](repository-foundation-readiness.md)で未成立の条件が一つでもある間はDraftを維持する。個別要求の採否・意味変更、L3以降、新世代CI／runtime、archive資産の意味移管・物理削除へ進まない。
+[repository foundation readiness](audits/source-rebaseline/repository-foundation-readiness.md)で未成立の条件が一つでもある間はDraftを維持する。個別要求の採否・意味変更、L3以降、新世代CI／runtime、archive資産の意味移管・物理削除へ進まない。

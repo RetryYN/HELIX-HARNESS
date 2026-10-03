@@ -5,6 +5,19 @@ import hashlib
 import json
 from pathlib import Path
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path: Path) -> Path:
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 ROOT = Path(__file__).resolve().parents[3]
 REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
 SNAPSHOT = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
@@ -37,7 +50,7 @@ def build() -> dict:
             "authority_effect": row["authority_effect"],
             "management_state": row["management_state"],
         })
-    historical = load(SNAPSHOT)
+    historical = load(relocated(SNAPSHOT))
     historical_superseded = {row.get("supersedes_registration_id") for row in historical if row.get("supersedes_registration_id")}
     old_ids = [row["registration_id"] for row in historical if row.get("registration_id") not in historical_superseded]
     return {
@@ -48,7 +61,7 @@ def build() -> dict:
         "register_sha256": sha(REGISTER),
         "register_record_count": len(register),
         "historical_snapshot_path": str(SNAPSHOT.relative_to(ROOT)),
-        "historical_snapshot_sha256": sha(SNAPSHOT),
+        "historical_snapshot_sha256": sha(relocated(SNAPSHOT)),
         "historical_snapshot_register_record_count": len(historical),
         "historical_13_registration_ids": old_ids,
         "added_registration_ids": [row["registration_id"] for row in live if row["registration_id"] not in old_ids],

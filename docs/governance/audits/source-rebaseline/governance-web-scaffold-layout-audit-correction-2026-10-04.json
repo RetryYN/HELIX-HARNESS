@@ -1,0 +1,71 @@
+{
+  "schema": "governance-web-scaffold-layout-audit-correction/1",
+  "recorded_at": "2026-10-04",
+  "corrects": "docs/governance/audits/source-rebaseline/governance-web-scaffold-layout-integration-audit-2026-10-04.md",
+  "corrected_claim": "両2026-09-26 decision recordの相対link変更はWeb候補が導入した。",
+  "finding": "Web候補とそのmainでは両recordともbaseと同一bytes。相対link token変更はローカルGovernance固定記録移動commitが導入し、cae64e0でbase bytesに戻した。",
+  "records": [
+    {
+      "stage": "base",
+      "commit": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e"
+    },
+    {
+      "stage": "base",
+      "commit": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376"
+    },
+    {
+      "stage": "web_main",
+      "commit": "0c693b271bae23eb9c7cb7c65f79c9c155c18103",
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e"
+    },
+    {
+      "stage": "web_main",
+      "commit": "0c693b271bae23eb9c7cb7c65f79c9c155c18103",
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376"
+    },
+    {
+      "stage": "selected_governance_move",
+      "commit": "ff8442d5bf5e37d46f08372cd9f223817dea9540",
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "69c39b7701a712f3c469c2fda996b56264cac308ac2706dbb0f32c96a0282e54"
+    },
+    {
+      "stage": "selected_governance_move",
+      "commit": "ff8442d5bf5e37d46f08372cd9f223817dea9540",
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "3683088d7af156fbdd3056f124dd6112551f64f5956c0f87232edf9689bbaa5e"
+    },
+    {
+      "stage": "governance_candidate",
+      "commit": "fe8a8a1729d2bf2422a6eece4dd312e3d857a61c",
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "69c39b7701a712f3c469c2fda996b56264cac308ac2706dbb0f32c96a0282e54"
+    },
+    {
+      "stage": "governance_candidate",
+      "commit": "fe8a8a1729d2bf2422a6eece4dd312e3d857a61c",
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "3683088d7af156fbdd3056f124dd6112551f64f5956c0f87232edf9689bbaa5e"
+    },
+    {
+      "stage": "restore_commit",
+      "commit": "cae64e0436c02ef1ced80143d3c91760e6877984",
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e"
+    },
+    {
+      "stage": "restore_commit",
+      "commit": "cae64e0436c02ef1ced80143d3c91760e6877984",
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376"
+    }
+  ],
+  "current_tree_sha_matches_base": true,
+  "append_only_correction": true
+}

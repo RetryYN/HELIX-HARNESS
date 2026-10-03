@@ -28,7 +28,7 @@ POは2026-09-23の作業sessionで、旧資産を再構築時に調べる目的�
 | 対象文書 | 基準revision | SHA-256 |
 |---|---|---|
 | [`legacy-asset-reuse-control.md`](../legacy-asset-reuse-control.md) | `origin/main` `b0b16ecc63cb5da72c55787e846ca2ae3ab6425c` | `50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582` |
-| [`archive-first-transition-record-2026-09-14.md`](../archive-first-transition-record-2026-09-14.md) | `origin/main` `b0b16ecc63cb5da72c55787e846ca2ae3ab6425c` | `6296dd7d58d058ae4d0eeadc294c81ca8b32c646b378fefc11554b3373824b8f` |
+| [`archive-first-transition-record-2026-09-14.md`](../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md) | `origin/main` `b0b16ecc63cb5da72c55787e846ca2ae3ab6425c` | `6296dd7d58d058ae4d0eeadc294c81ca8b32c646b378fefc11554b3373824b8f` |
 
 順序は次のとおりとする。
 

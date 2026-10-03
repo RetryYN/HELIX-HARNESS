@@ -11,6 +11,19 @@ from collections import Counter
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 INV = HERE / "inventory.json"
@@ -151,7 +164,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, set(scope.get("selected_legacy_asset_ids", [])) == SELECTED and len(scope.get("selected_legacy_asset_ids", [])) == 7, "E_SCOPE_ASSETS")
 
     source_files = {
-        "phase": PHASE, "routing": ROUTING, "register": REGISTER, "assets": ASSETS,
+        "phase": PHASE, "routing": ROUTING, "register": relocated(REGISTER), "assets": ASSETS,
         "phase_assets": PHASE_ASSETS, "decisions": DECISIONS,
     }
     for name, path in source_files.items():
@@ -200,7 +213,7 @@ def validate(inv: dict) -> list[str]:
         fail(errors, row.get("authority_effect") == "none" and row.get("meaning_change_applied") is False, f"E_ROUTING_AUTHORITY:{row.get('routing_registration_id')}")
         fail(errors, row.get("successor_assignment_status") == "unassigned" and row.get("successor_requirement_ids") == [], f"E_ROUTING_SUCCESSOR:{row.get('routing_registration_id')}")
 
-    register = load_jsonl(REGISTER)
+    register = load_jsonl(relocated(REGISTER))
     register_audit = inv.get("management_register_audit", {})
     expected_register = {
         "record_count": len(register),

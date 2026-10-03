@@ -10,6 +10,19 @@ from collections import Counter
 from pathlib import Path
 
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 ORIGIN = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
@@ -142,7 +155,7 @@ def build() -> dict:
     phase_inventory = json.loads((ROOT / PHASE_PATH).read_text(encoding="utf-8"))
     phase_records = phase_inventory["records"]
     routing = read_jsonl(ROOT / ROUTING_PATH)
-    register = read_jsonl(ROOT / REGISTER_PATH)
+    register = read_jsonl(relocated(ROOT / REGISTER_PATH))
     disposition_records = {record["asset_id"]: record for record in read_jsonl(ROOT / ASSET_PATH)}
     phase_asset_records = {record["asset_id"]: record for record in read_jsonl(ROOT / PHASE_ASSET_PATH)}
     decision_records = read_jsonl(ROOT / DECISIONS_PATH)

@@ -1,0 +1,1288 @@
+{
+  "schema": "governance-layout-static-validation/1",
+  "authority_effect": "none",
+  "tested_head": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+  "current_reader_sha_errors": [],
+  "manifest_sha256": "4d8e5d91c8bede1a83fe4521246bff6ce727b55eefedf7e7ece486a68220f35a",
+  "comparison": {
+    "baseline_head": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+    "baseline_count": 137,
+    "baseline_pass": 79,
+    "baseline_fail": 58,
+    "candidate_head": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+    "candidate_count": 137,
+    "candidate_pass": 82,
+    "candidate_fail": 55,
+    "timeouts_before": 0,
+    "timeouts_after": 0,
+    "exit_changes": [
+      {
+        "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+        "before_exit": 1,
+        "after_exit": 0
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+        "before_exit": 1,
+        "after_exit": 0
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+        "before_exit": 1,
+        "after_exit": 0
+      }
+    ],
+    "unchanged_failure_diagnostic_code_changes": [],
+    "failed_path_sets_equal_except_exit_changes": {
+      "before_only": [
+        "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+        "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+        "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py"
+      ],
+      "after_only": []
+    }
+  },
+  "suite": {
+    "head": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+    "count": 137,
+    "pass": 82,
+    "fail": 55,
+    "timeout": 0,
+    "elapsed_seconds": 208.8,
+    "results": [
+      {
+        "path": "scaffold/research/br-implementation-evidence-0102/validate.py",
+        "sha256": "e62963c8ed3c0af3b22ebcefc7c09fc7711a4c86985220206a766dba22dc29ee",
+        "exit": 0,
+        "stdout": "SCF-B-0102 validate: PASS (7 units, 21 review edges, 16 old assets; static-only)\n",
+        "stderr": "",
+        "seconds": 1.733,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/br-implementation-evidence-0104/validate.py",
+        "sha256": "46939a07b8ff702a461db8815b78d4ed1503e36bc6bed05cb78b06a9fa521342",
+        "exit": 0,
+        "stdout": "SCF-B-0104 validate: PASS (23 units, 68 review edges, 47 old assets; static-only)\n",
+        "stderr": "",
+        "seconds": 4.648,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/br-implementation-evidence-0106/validate.py",
+        "sha256": "f44432f6b596108b7da8a4076d7c72a61b18c23bb8f340ff2d82380b1b9364bb",
+        "exit": 0,
+        "stdout": "SCF-B-0106 validate: PASS (19 units, 55 review edges, 38 old assets; static-only)\n",
+        "stderr": "",
+        "seconds": 0.85,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-002-013-004-029/validate.py",
+        "sha256": "207e00c5f14afdcc7ea9ae4a6029e546bd98b6179acbf17a4448464d2c37b32c",
+        "exit": 0,
+        "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=344 atoms=53 edges=10 residual=104/766\n",
+        "stderr": "",
+        "seconds": 0.106,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-003-028/validate.py",
+        "sha256": "cebd576e272a6b35cb8f4af13d8d30c590b4b6e883224344749c7b50aa7a3960",
+        "exit": 1,
+        "stdout": "FAIL: DELEGATED-DOC-003/028 + REF-0303/0759/0760 atom candidate\n- source holdingにIDがない: DELEGATED-DOC-003\n- source holdingにIDがない: DELEGATED-DOC-028\n- pair_acceptance_reference_auditが固定blob再計算結果と不一致: expected={'method': 'recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob', 'source_document_id': 'DELEGATED-DOC-003', 'source_defined_acceptance_ids': [], 'reference_document_id': 'DELEGATED-DOC-028', 'referenced_acceptance_ids': [], 'missing_from_pair': [], 'unresolved_decision_ids': [], 'admission': 'fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs'} actual={'method': 'recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob', 'source_document_id': 'DELEGATED-DOC-003', 'source_defined_acceptance_ids': ['GH-AC-001', 'GH-AC-002', 'GH-AC-003', 'GH-AC-004', 'GH-AC-005', 'GH-AC-006', 'GH-AC-007', 'GH-AC-008', 'GH-AC-009', 'GH-AC-010', 'GH-AC-011', 'GH-AC-012', 'GH-AC-013'], 'reference_document_id': 'DELEGATED-DOC-028', 'referenced_acceptance_ids': ['GH-AC-001', 'GH-AC-002', 'GH-AC-003', 'GH-AC-004', 'GH-AC-005', 'GH-AC-006', 'GH-AC-007', 'GH-AC-008', 'GH-AC-009', 'GH-AC-010', 'GH-AC-011', 'GH-AC-012', 'GH-AC-013', 'GH-AC-016', 'GH-AC-017', 'GH-AC-034'], 'missing_from_pair': ['GH-AC-016', 'GH-AC-017', 'GH-AC-034'], 'unresolved_decision_ids': ['RDP-UNRESOLVED-GH-AC-016', 'RDP-UNRESOLVED-GH-AC-017', 'RDP-UNRESOLVED-GH-AC-034'], 'admission': 'fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs'}\n- unresolved_decisionsのmissing AC ID集合が不一致: expected=[]\n- DELEGATED-DOC-003 asset／phase ledger record欠落\n- DELEGATED-DOC-028 asset／phase ledger record欠落\n- reference holdingにIDがない: DELEGATED-REF-0303\n- reference holdingにIDがない: DELEGATED-REF-0759\n- reference holdingにIDがない: DELEGATED-REF-0760\n- DELEGATED-DOC-003 composite line coverageに欠落または重複\n- DELEGATED-DOC-028 composite line coverageに欠落または重複\n- product boundary source digest不一致: docs/concept/product-boundary.md\n- product boundary source digest不一致: docs/helix-harness/L1-planning/product-intent.md\n- product boundary source digest不一致: docs/helix-os/L1-planning/system-intent.md\n",
+        "stderr": "",
+        "seconds": 0.084,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-005-014-011-018/validate.py",
+        "sha256": "9fc1d4617256b9244bf07d86c4359b7bae82589a6a0ef3ad9372455fa59c2a91",
+        "exit": 0,
+        "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=455 atoms=24 edges=4 residual=100/762\n",
+        "stderr": "",
+        "seconds": 0.105,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-006-015/validate.py",
+        "sha256": "c5d97ccf89b4edb7685badef037d8fda3ba19eb1e607828ba6c791b10ea18e12",
+        "exit": 0,
+        "stdout": "PASS: DELEGATED-DOC-006/015 + REF-0308/0424/0425/0765 atom candidate\ndocuments=2; references=4; coverage_spans=8; semantic_atoms=11; source_lines=111; negative_conditions=7\ncandidate_target_counts={'HELIX-HARNESS': 2, 'HELIX-OS': 2, 'unresolved': 7}\nauthority_effect=none; atomization=unresolved; legacy_runtime_test_ci=forbidden; pair_missing_acceptance=[]\n",
+        "stderr": "",
+        "seconds": 0.154,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-007-016-030-034/validate.py",
+        "sha256": "1288d04034c639149e395fb629633b3ab714a77c2bd8e39cbe23d931f918c1a1",
+        "exit": 0,
+        "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=638 atoms=105 edges=4 residual=96/758 original_ids=240/240/0\n",
+        "stderr": "",
+        "seconds": 0.105,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/delegated-doc-008-017/validate.py",
+        "sha256": "8fa4fb0da97c9159ed25cb890eb057bbd161096c3d54b02f37c81e5b3aa2f7a3",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/delegated-doc-008-017/validate.py\", line 344, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/delegated-doc-008-017/validate.py\", line 156, in main\n    if prov.get(field) != digest(path): errors.append(f\"{label} ledger SHA-256不一致\")\n                          ^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/delegated-doc-008-017/validate.py\", line 63, in digest\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n                          ^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/delegated-requirement-document-source-holding.jsonl'\n",
+        "seconds": 0.121,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/fr-harness-first10-evidence-0132/validate.py",
+        "sha256": "581d627f2cc11ac8f03517b11f6f39bd87a2cca3b6056e4b30d8f26ed80ecc47",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0132: 10 existing HELIX-HARNESS units, 30 Wave edges, 22 unique old assets; all unit statuses remain unknown/candidate-only\n",
+        "stderr": "",
+        "seconds": 6.072,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/fr-implementation-evidence-0109/validate.py",
+        "sha256": "32daadeac7f12406f0e1ac761015c3828b9161d77e979bfe5fa38f600c2fb2e9",
+        "exit": 0,
+        "stdout": "SCF-B-0109 validate PASS\n",
+        "stderr": "",
+        "seconds": 3.821,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/fr-implementation-evidence-0110/validate.py",
+        "sha256": "d53aa39f612d9388d6bf353558d19451d3f0caf1fc123c51191147fe69169690",
+        "exit": 0,
+        "stdout": "SCF-B-0110 validate: PASS (27 units, 79 review edges, 50 old assets; static-only)\n",
+        "stderr": "",
+        "seconds": 4.874,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/fr-implementation-evidence-0111/validate.py",
+        "sha256": "4fb7f3304cb00ad0c6cbe889f2432200879017dcbaa9a6a364ce1dce6c14289d",
+        "exit": 0,
+        "stdout": "SCF-B-0111 validate: PASS (37 units, 111 review edges, 75 old assets; static-only)\n",
+        "stderr": "",
+        "seconds": 6.982,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/fr-os-first10-evidence-0129/validate.py",
+        "sha256": "49a471f6ecca7cd62e11c8ede1a58fb753610deed616b5e29106e2227f81d2f0",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0129: 10 existing HELIX-OS units, 30 Wave edges, 23 unique old assets; all unit statuses remain unknown/candidate-only\n",
+        "stderr": "",
+        "seconds": 5.251,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/implementation-evidence-strength-0115/validate.py",
+        "sha256": "5587a3742064127508b914f75b565edf4537bdd361d5d84b05bfd6d81585d630",
+        "exit": 0,
+        "stdout": "SCF-B-0115 validate: PASS (20 selected units; counts derived from fixed BASE; static-only)\n",
+        "stderr": "",
+        "seconds": 4.57,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-ai-instruction-product-classification-0145/validate.py",
+        "sha256": "2baf090fb1fe15fd978f9f2e7669edc36a7600733d50967ce5a460489d7a70ec",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "fatal: path 'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl' does not exist in 'HEAD'\nSCF-B-0145 validate FAIL E_BASE_SOURCE\n",
+        "seconds": 1.826,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-asset-product-classification-0107/validate.py",
+        "sha256": "90a75dd2ad9e5f1c76486c3aeb717cdf92999aa06d9f9901c46000e068dddc29",
+        "exit": 0,
+        "stdout": "SCF-B-0107 validate: PASS records=64 edges=70 categories=direct:56 multi:5 insufficient:3\n",
+        "stderr": "",
+        "seconds": 14.398,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-config-product-classification-0141/validate.py",
+        "sha256": "d9ba8df49e2229734f6e1caeb38b559d7ea0db662f1db6fecb50c80b489236a4",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "fatal: path 'scaffold/legacy-asset-product-classification-0107/inventory.json' does not exist in 'HEAD'\nTraceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 231, in head_bytes\n    try: return subprocess.check_output([\"git\", \"show\", f\"HEAD:{path}\"])\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['git', 'show', 'HEAD:scaffold/legacy-asset-product-classification-0107/inventory.json']' returned non-zero exit status 128.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 452, in <module>\n    if __name__ == \"__main__\": verify()\n                               ^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 427, in verify\n    inv = local_json(INVENTORY); verify_inventory(inv); verify_inputs(inv); verify_binding_closure(inv)\n                                                        ^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 371, in verify_inputs\n    path = item[\"path\"]; data = head_bytes(path) if path in MAIN_RESEARCH_INPUTS else git_bytes(path); blob = head_blob(path) if path in MAIN_RESEARCH_INPUTS else git_blob(path)\n                                ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 232, in head_bytes\n    except subprocess.CalledProcessError: fail(\"E_RESEARCH_INPUT\", path)\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-config-product-classification-0141/validate.py\", line 178, in fail\n    def fail(code: str, msg: str) -> None: raise AssertionError(f\"{code}: {msg}\")\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: E_RESEARCH_INPUT: scaffold/legacy-asset-product-classification-0107/inventory.json\n",
+        "seconds": 0.616,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-evidence-crosswalk-0146/validate.py",
+        "sha256": "9b94cdd41f74cd44a8c78d22c9b8f93a4acec4d6fe597faa25963f8e81b4c5f6",
+        "exit": 0,
+        "stdout": "PASS legacy-evidence-crosswalk-0146: 218 records (217 product units/1 connection), 598 edges, 355 unique assets; all status boundaries match fixed BASE\n",
+        "stderr": "",
+        "seconds": 1.317,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-execution-evidence-0118/validate.py",
+        "sha256": "caf35880823cabb683dd1ee6b34b3dd4773f56875b66abd4a7fdba406f831957",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0118: 28 asset-level receipt records; unit/requirement/acceptance bindings remain absent\n",
+        "stderr": "",
+        "seconds": 1.479,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-execution-ticket-product-classification-0147/validate.py",
+        "sha256": "af95a3adc7840debd36454465b9c91a57fcad5a1dd7bf2e48d4cc769ff10351c",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "E_INVENTORY_BYTES: complete inventory pin mismatch\n",
+        "seconds": 0.038,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-implementation-residual-0126/validate.py",
+        "sha256": "1986729116faac1034df40c8a2fbdf13707aca88540e9890b9a8950b20578dcf",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-implementation-residual-0126/validate.py\", line 1454, in <module>\n    check()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-implementation-residual-0126/validate.py\", line 1440, in check\n    if binding.get(\"id\") != BINDING_ID or not same_typed_value(binding.get(\"upstream\"), expected_binding): fail(\"E_BINDING_UPSTREAM\", \"path/raw SHA closure\")\n                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-implementation-residual-0126/validate.py\", line 702, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_UPSTREAM: path/raw SHA closure\n",
+        "seconds": 16.816,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-ir-routing-correction-impact-0101/validate.py",
+        "sha256": "0866beef337d12d68beb2ca297fa7f2129105f19c9b0afa5995d8a547522215b",
+        "exit": 0,
+        "stdout": "SCF-B-0103 validate: PASS records=7 current_units=218 projected_units=225 applied=false\n",
+        "stderr": "",
+        "seconds": 2.307,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-ir-target-routing-0100/validate.py",
+        "sha256": "fdb034b91bc3a6d7a39f15914ae38a9cf06ed1d09cd9cd0cd92ca260f6b87b21",
+        "exit": 0,
+        "stdout": "SCF-B-0100 validate: PASS records=18 candidate_units=27 queue_unchanged=true\n",
+        "stderr": "",
+        "seconds": 1.574,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-lint-candidate-product-classification-0128/validate.py",
+        "sha256": "fae6a69c1c902e4ba4e0efc5a78f9339384aecbd6afb9a388ff6ac5e281ee292",
+        "exit": 0,
+        "stdout": "SCF-B-0128 validate: PASS records=51 categories={'direct_product_basis': 38, 'multi_product_conflict': 8, 'insufficient_basis': 5} target_wave_edges=24 overlap_0108=0\n",
+        "stderr": "",
+        "seconds": 3.64,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-lint-product-classification-0108/validate.py",
+        "sha256": "9320ca60fd692e7f1697a45e7252f99f6dc17f9462492d1f07598bff4965eac1",
+        "exit": 0,
+        "stdout": "SCF-B-0108 validate: PASS records=95 target_edges=17 categories={'direct_product_basis': 14, 'insufficient_basis': 81, 'multi_product_conflict': 0}\n",
+        "stderr": "",
+        "seconds": 1.601,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-nonexec-evidence-0122/validate.py",
+        "sha256": "4f964eba12172e1d8efe9123bb25820dd036f057f9195ce488ea4e181b70a582",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0122: 29 non-executable requirement snapshots; old/current implementation, degradation/failure, consumer closure and acceptance remain separated/unknown\n",
+        "stderr": "",
+        "seconds": 2.173,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-overlap-reconciliation-0144/validate.py",
+        "sha256": "15026c364d11c3398e963b4ec38fd86aae2719d6ac819a533cbeccd263a81472",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "E_BINDING binding upstream exact schema\n",
+        "seconds": 7.204,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-phase-gap-review-0101/validate.py",
+        "sha256": "0ba5085686a7a358fdee3b09cc1786b2987ab2621f53bd753cbdfde724df7022",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0101 validator: 30 units, source anchors, Wave1-50 edges, asset evidence, authority boundary\n",
+        "stderr": "",
+        "seconds": 1.157,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-research-assets-product-classification-0142/validate.py",
+        "sha256": "e6f58fb3b1870072567d876c57598fd38971d1fd7f306e05e243cc46b44b751d",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-research-assets-product-classification-0142/validate.py\", line 775, in <module>\n    verify()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-research-assets-product-classification-0142/validate.py\", line 732, in verify\n    fail(\"E_BINDING_CLOSURE\", \"upstream closure\")\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-research-assets-product-classification-0142/validate.py\", line 58, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_CLOSURE: upstream closure\n",
+        "seconds": 1.946,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-runtime-product-classification-0117/validate.py",
+        "sha256": "f696f22003ca5a69d406d2fc4494089f85089ada7fb6ba058e08cb40b7f15448",
+        "exit": 0,
+        "stdout": "SCF-B-0117 validate: PASS records=73 target_edges=16 categories={'direct_product_basis': 54, 'insufficient_basis': 11, 'multi_product_conflict': 8}\n",
+        "stderr": "",
+        "seconds": -1.572,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-runtime-residual-product-classification-0133/validate.py",
+        "sha256": "8718f06022c4eb09e4629f5508be97b55bd990cf1298eedce15f335318d39b39",
+        "exit": 0,
+        "stdout": "SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}\n",
+        "stderr": "",
+        "seconds": 4.82,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-schema-product-classification-0120/validate.py",
+        "sha256": "b193deceb855b4f7660b67edc14bdb57d63c2df66fe2a34de8e083bf9351073f",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-schema-product-classification-0120/validate.py\", line 648, in <module>\n    verify()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-schema-product-classification-0120/validate.py\", line 569, in verify\n    verify_binding_input_closure(inventory)\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-schema-product-classification-0120/validate.py\", line 512, in verify_binding_input_closure\n    fail(\"E_BINDING_INPUT_SET\", \"Binding upstream must close over the 66 non-archive inventory inputs in order\")\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-schema-product-classification-0120/validate.py\", line 328, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_INPUT_SET: Binding upstream must close over the 66 non-archive inventory inputs in order\n",
+        "seconds": 1.0,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave37/validate.py",
+        "sha256": "c70ec305b289a350d4b8c2eb316c36ef2a921998b7634e5ed956cc9793bcd136",
+        "exit": 0,
+        "stdout": "Wave37 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 0.585,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave38/validate.py",
+        "sha256": "3f629760aa7ffcc97cb78452419edbe0caec9e4365ea00ac498f8a2e7eaece04",
+        "exit": 0,
+        "stdout": "Wave38 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 0.678,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave39/validate.py",
+        "sha256": "8a431e365292cd5b8f0d1480ab575920e57e5a518a745d9d91bac6109834c173",
+        "exit": 0,
+        "stdout": "Wave39 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 0.957,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave40/validate.py",
+        "sha256": "75729e92a819ced8c7ef6505d959f3dbcdff8450e736a1e69fe3aaef17bdc0ff",
+        "exit": 0,
+        "stdout": "Wave40 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 0.971,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave41/validate.py",
+        "sha256": "1acb3122a32e61234f739cce27d6c11239558df1e15577dd0a817c6045ea5cb9",
+        "exit": 0,
+        "stdout": "Wave41 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.139,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave42/validate.py",
+        "sha256": "ba3ba88fc0b6115ba9217cee06d068528fc9b88dddc78a561fded08d8254b186",
+        "exit": 0,
+        "stdout": "Wave42 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.174,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave43/validate.py",
+        "sha256": "e20ba3416c43c43ace56cbce711b124ad1b01a053781f2ccf681b45a31715adb",
+        "exit": 0,
+        "stdout": "Wave43 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.077,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave44/validate.py",
+        "sha256": "37910917fba3deecf98d39e439572881b752802a44c60e42638386a8b47fe641",
+        "exit": 0,
+        "stdout": "Wave44 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 2.185,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave45/validate.py",
+        "sha256": "20595a27ddef1b132bebb2e65af4c29effe01ea5a8f417a8a55f9b47f6d2e55e",
+        "exit": 0,
+        "stdout": "Wave45 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.727,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave46/validate.py",
+        "sha256": "10a8f6b5b98c9e2099ac58e7061e9344e518db10281b3c41cd8685fe55d250e0",
+        "exit": 0,
+        "stdout": "Wave46 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.407,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave47/validate.py",
+        "sha256": "5801e54c785579605da17135819f141b6316d15fb3ce02e90eea07134a1b4810",
+        "exit": 0,
+        "stdout": "Wave47 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.398,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave48/validate.py",
+        "sha256": "233dd433d5fdbdaca8cbd347bbfbd1f2c6f693562936dea2664ccc72fd7248ae",
+        "exit": 0,
+        "stdout": "Wave48 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.152,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave49/validate.py",
+        "sha256": "38f5ebaef4acb02108f01c5580b971a4c0b954c651e37d51968248bad44c9500",
+        "exit": 0,
+        "stdout": "Wave49 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 1.187,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-semantic-review-wave50/validate.py",
+        "sha256": "5bdf95b7966f681429216298b83c40519c6e4dc4bc866f16e50af5c1e80f24a9",
+        "exit": 0,
+        "stdout": "Wave50 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+        "stderr": "",
+        "seconds": 0.656,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-source-product-classification-0123/validate.py",
+        "sha256": "d16993b75da92a8aad424668f8d1edd50bd86003a27ca3852a82449ab68a65f8",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-source-product-classification-0123/validate.py\", line 949, in <module>\n    verify()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-source-product-classification-0123/validate.py\", line 864, in verify\n    verify_binding_input_closure(inventory)\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-source-product-classification-0123/validate.py\", line 840, in verify_binding_input_closure\n    fail(\"E_INPUT_SET\", \"binding upstream does not close non-archive input_digests\")\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/legacy-source-product-classification-0123/validate.py\", line 614, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_INPUT_SET: binding upstream does not close non-archive input_digests\n",
+        "seconds": 1.274,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-state-db-product-classification-0127/validate.py",
+        "sha256": "26f1ca0e41b9fa9736235346b7b1f4e3322129268ee00353fabc2116c8a169c1",
+        "exit": 0,
+        "stdout": "SCF-B-0127 validate: PASS records=39 categories={'direct_product_basis': 28, 'multi_product_conflict': 10, 'insufficient_basis': 1} target_wave_edges=13\n",
+        "stderr": "",
+        "seconds": 2.486,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-status-evidence-0125/validate.py",
+        "sha256": "39354bc2c8b9b6df91b514b96bc8e016dfb1e949b9dfb60a3b3b9da17674b2f7",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0125: 13 asset-level status partitions; direct unit status remains unknown/pending\n",
+        "stderr": "",
+        "seconds": 1.753,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-test-design-worker-workflow-0148/validate.py",
+        "sha256": "7aa79311edd1eb8ca358783e973f41e386f24a6f20fc989a938b0cb994fb0f15",
+        "exit": 1,
+        "stdout": "SCF-B-0148 static validation failed:\n- E_BINDING: Binding non-upstream contract differs from code-pinned scaffold boundary\n",
+        "stderr": "",
+        "seconds": 2.136,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/legacy-worker-execution-checkpoint-quota-0150/validate.py",
+        "sha256": "79b08ba8b21975447163372b01b9916e405503390d076ac25afa25c88e426e89",
+        "exit": 0,
+        "stdout": "SCF-B-0150 static validation passed: 208 cohort, 52 exclusion, 156 residual, 13 disjoint source/pair records; no execution/authority promotion.\n",
+        "stderr": "",
+        "seconds": 0.404,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/nfr-implementation-evidence-0113/validate.py",
+        "sha256": "ee50d4551cc67cf460fe4d858d98d4734144a228cf0f70d3f411e1bb3cc9570c",
+        "exit": 0,
+        "stdout": "SCF-B-0113 validate: PASS (31 units; counts derived from fixed BASE; static-only)\n",
+        "stderr": "",
+        "seconds": 2.359,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/nfr-implementation-evidence-0114/validate.py",
+        "sha256": "f63c28cefc9afe3654bd7dbc29677603cf631c5583d1ef084a13be648a652cda",
+        "exit": 0,
+        "stdout": "SCF-B-0114 validate: PASS (29 units; counts derived from fixed BASE; static-only)\n",
+        "stderr": "",
+        "seconds": 4.632,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/outside67-global-49-67/validate.py",
+        "sha256": "471af3ad83a70d608f00e9482998e7d9fb5cd91d35f90f65deb2134ab13abfed",
+        "exit": 0,
+        "stdout": "PASS outside67 global 49-67 validator: 19 items / 13 historical live holdings / static-only\n",
+        "stderr": "",
+        "seconds": 3.034,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-cross-20-review-0116/validate.py",
+        "sha256": "b198640e6045bfe2deadfa6b374a13693b8c757293bdcb6bb05dbb62683871fd",
+        "exit": 0,
+        "stdout": "SCF-B-0116 validate PASS (20 units, 40 edges, 22 assets; phase/NA unresolved)\n",
+        "stderr": "",
+        "seconds": 2.831,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-direct-evidence-first5-0130/validate.py",
+        "sha256": "6c10d20ede8dace00dad964c569045021f403f90c8435df15b23c24afb3785f0",
+        "exit": 0,
+        "stdout": "SCF-B-0130 validate PASS (5 units, 13 edges, 9 assets; direct phase evidence unresolved)\n",
+        "stderr": "",
+        "seconds": 1.701,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-direct-evidence-next5-0131/validate.py",
+        "sha256": "1053d0968132e854c6330e5fe951eadbbd3dffd02a8e181896a66978254e7abd",
+        "exit": 0,
+        "stdout": "SCF-B-0131 validate PASS (5 units, 15 edges, 11 assets; direct phase evidence unresolved)\n",
+        "stderr": "",
+        "seconds": 1.733,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-gap-cross-analysis-0134/validate.py",
+        "sha256": "29a74657b8112846f507f2723822187baf0a7ee41edcedde0a5d12db732a5e8d",
+        "exit": 0,
+        "stdout": "SCF-B-0134 validate PASS (30 units, 66 edges, 38 assets; direct phase evidence 0; formal phase 0)\n",
+        "stderr": "",
+        "seconds": 1.056,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-source-human-review-0119/validate.py",
+        "sha256": "efaecc745aee3ab1b3639f14a044357f97c7f7b9fae1a9ca13e44aa8714cc25c",
+        "exit": 0,
+        "stdout": "SCF-B-0119 validate PASS (10 units, 26 edges, 17 assets; source/human unresolved)\n",
+        "stderr": "",
+        "seconds": 2.206,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phase-status-taxonomy-0105/validate.py",
+        "sha256": "f6e1786872486cde63bbace3f29b52cc87cfef82de82d9404c64f5ccb77ff99b",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0105 validator: 30 units, taxonomy matrix, anchors, Wave edges, assets, authority boundary\n",
+        "stderr": "",
+        "seconds": 0.738,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap01-concept-l1-research/validate.py",
+        "sha256": "04a3f4383358cb2d7bb010c40c53b4ef64b09216827b22d7f688532fcd4c1fe8",
+        "exit": 0,
+        "stdout": "PASS PHCAP-01 static research validator: historical four-target Concept/L1 receipts, 8 legacy assets, 45 phase candidates\n",
+        "stderr": "",
+        "seconds": 0.228,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap02-03-registration-classification-audit/validate.py",
+        "sha256": "45a0399838ff582cfd94f4f3d7ab498ad0078e520cbc1fee74a488d404381884",
+        "exit": 0,
+        "stdout": "PASS PHCAP-02/03 validator: static source/ledger/product/phase/evidence-gap checks\n",
+        "stderr": "",
+        "seconds": 0.178,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap04-05-requirement-acceptance-research/validate.py",
+        "sha256": "449bf02b057bd11a416254d0b9c5caa09b654d41ea1074b8aae6c20e435d7508",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-04/05 validator\nE_LEDGER_SHA:phase_inventory_path\nE_REF_SHA:CUR-HARNESS-L2\nE_REF_SHA:CUR-HARNESS-L11\nE_REF_SHA:CUR-OS-L11\n",
+        "stderr": "",
+        "seconds": 0.278,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap06-design-research/validate.py",
+        "sha256": "01a43ba9029ae0e41486e1329995584a45209af3f370aa529b58d02851832f31",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-06 validator\nE_CURRENT_SHA:CUR-06-HARNESS-L2\nE_CURRENT_SHA:CUR-06-HARNESS-L11\nE_CURRENT_SHA:CUR-06-OS-L11\n",
+        "stderr": "",
+        "seconds": 0.162,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap07-web-verification-l10/validate.py",
+        "sha256": "f2cc98d441c5f42f3fbab60c45ddedc96fdef83261571c6b777766555413415f",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-07 validator\nE_PHASE_INVENTORY_SHA\nE_CURRENT_REF_FILE_SHA:CUR-HARNESS-L11\n",
+        "stderr": "",
+        "seconds": 0.152,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap08-09-wbs-ticket-static/validate.py",
+        "sha256": "295d2c79ff1589dae69df08ab9c26cba7daa06778445bd1a0bfcb4b209264f51",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-08/09 validator\nE_PROVENANCE_SHA:phase_inventory_sha256\nE_CURRENT_SHA:HARNESS-L2\nE_CURRENT_SHA:HARNESS-L11\nE_CURRENT_SHA:OS-L11\n",
+        "stderr": "",
+        "seconds": 1.364,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap10-11-worker-ci-static/validate.py",
+        "sha256": "680704d091919810ff657925619aa68a865178e985d02db2c209db4b7b0ab93d",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-10/11 validator\nE_PHASE_INVENTORY_SHA\nE_REF_SHA:CUR-HARNESS-L2-CI\n",
+        "stderr": "",
+        "seconds": 0.248,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap12-13-review/validate.py",
+        "sha256": "94744b1c6298e1316f1c6ceecc5a730fabf985f22410276a62a44f9603250e42",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-12/13 validator\nE_PROVENANCE_SHA:phase_inventory_path\nE_CURRENT_REF_SHA:HARNESS-L2\nE_CURRENT_REF_SHA:HARNESS-L11\nE_CURRENT_REF_SHA:OS-L11\n",
+        "stderr": "",
+        "seconds": 0.255,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap14-release-research/validate.py",
+        "sha256": "7ac7e3439905676e2d7ca5b5e6c479a0e3ab7e5702cdc7e3e9bb1440fdca742a",
+        "exit": 0,
+        "stdout": "PASS PHCAP-14 validator: static source/ledger/boundary/unknown checks\n",
+        "stderr": "",
+        "seconds": 0.272,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-17-membership-edges/validate.py",
+        "sha256": "58ea3a4089a0f7c36d723de99c0331e73fe7187420d25c601e9a7a3302ac380a",
+        "exit": 0,
+        "stdout": "PASS PHCAP-15/17 membership validator: assets=2 memberships=69 affirmative=0 negative=0 unknown=69 exact_requirement_id=0 exact_source_span=0\n",
+        "stderr": "",
+        "seconds": 0.392,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-17-orphan-asset-links/validate.py",
+        "sha256": "c2e3e97c1114b97ca4dcacd17dfaaa83bfd74d9588ecba5db100100bf17a85b3",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-17-orphan-asset-links/validate.py\", line 397, in <module>\n    errors = validate(json.loads(INV_PATH.read_text(encoding=\"utf-8\")))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-17-orphan-asset-links/validate.py\", line 287, in validate\n    rows = load_jsonl(ROOT / \"docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-17-orphan-asset-links/validate.py\", line 170, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl'\n",
+        "seconds": 0.131,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-fifth12-research/validate.py",
+        "sha256": "5e23b51c087a8ef954c0b9a1726ce5ab79d79877ff97f276defac9f3c60f9a05",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-fifth12-research/validate.py\", line 368, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-fifth12-research/validate.py\", line 292, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-fifth12-research/validate.py\", line 197, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.17,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-final8-research/validate.py",
+        "sha256": "7ce84953fe0668e58749bdf7b7ba8d134567da521f11b1c839851ffbce9e3cd2",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-final8-research/validate.py\", line 414, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-final8-research/validate.py\", line 338, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-final8-research/validate.py\", line 239, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.18,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-followup-research/validate.py",
+        "sha256": "5f183c968c3f2a452f1f85db68fd9bdd9c9b02413e40b1c2c60f6d0327b31dfb",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-followup-research/validate.py\", line 439, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-followup-research/validate.py\", line 227, in main\n    phase_rows = jsonl(expected_paths[\"phase_ledger\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-followup-research/validate.py\", line 153, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.133,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-gap-research/validate.py",
+        "sha256": "dc1d04ff7b122301b069424b52fe34a5fc8ed126316ee5f1c494653e4d3a5bf5",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "E_PHASE_SOURCE:docs/governance/phase-capability-inventory.json\nE_CURRENT_DIGEST:docs/helix-harness/L1-planning/product-intent.md\nE_CURRENT_SPAN:docs/helix-harness/L1-planning/product-intent.md\nE_CURRENT_DIGEST:docs/concept/product-boundary.md\nE_CURRENT_SPAN:docs/concept/product-boundary.md\nE_CURRENT_DIGEST:docs/helix-os/L1-planning/system-intent.md\nE_CURRENT_SPAN:docs/helix-os/L1-planning/system-intent.md\nE_CURRENT_DIGEST:docs/helix-os/L2-requirements/governance-requirements.md\nE_CURRENT_SPAN:docs/helix-os/L2-requirements/governance-requirements.md\nE_CURRENT_DIGEST:docs/helix-web/L1-planning/product-intent.md\nE_CURRENT_SPAN:docs/helix-web/L1-planning/product-intent.md\nE_CURRENT_DIGEST:docs/helix-web-os/L1-planning/system-intent.md\nE_CURRENT_SPAN:docs/helix-web-os/L1-planning/system-intent.md\nE_CURRENT_DIGEST:docs/helix-web-os/L2-requirements/service-governance-requirements.md\nE_CURRENT_SPAN:docs/helix-web-os/L2-requirements/service-governance-requirements.md\nE_CURRENT_DIGEST:docs/helix-web-os/L11-acceptance/service-acceptance.md\nE_CURRENT_SPAN:docs/helix-web-os/L11-acceptance/service-acceptance.md\nE_LEDGER_READ:[Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\nPHCAP-15 deploy gap validation: FAIL (18 errors)\n",
+        "seconds": 0.096,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-next12-research/validate.py",
+        "sha256": "2826d868cbccc5b8fc45f66dffb119fd8c605eecd1e389405bfe381e7634c273",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-next12-research/validate.py\", line 331, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-next12-research/validate.py\", line 256, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-next12-research/validate.py\", line 163, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.165,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-pool12-research/validate.py",
+        "sha256": "62d86f666de68508a8d2571a51150ef8cd3ff47e97f45c27a4b0ba3eae3970c5",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-pool12-research/validate.py\", line 558, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-pool12-research/validate.py\", line 342, in main\n    phase_rows = jsonl(expected_paths[\"phase_ledger\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-pool12-research/validate.py\", line 230, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.132,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-research/validate.py",
+        "sha256": "321d9c8035a72bd97f56936bed895b82436f26d4265bbbe62c475207c42cd26e",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-15 validator\nE_PHASE_INVENTORY_SHA\nE_LEDGER_SHA:phase_inventory_path\nE_LEDGER_MISSING:phase_ledger_path\nE_CURRENT_REF_SHA:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_SHA:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_TEXT:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_LINE_SHA:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_TEXT:CUR-OS-L2-DEPLOY-GOVERNANCE\nE_CURRENT_REF_LINE_SHA:CUR-OS-L2-DEPLOY-GOVERNANCE\nE_CURRENT_REF_TEXT:CUR-OS-L2-WEB-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-OS-L2-WEB-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEB-L1-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-WEB-L1-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEB-L2-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-WEB-L2-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L1-DEPLOY\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L1-DEPLOY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L2-DEPLOY\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L2-DEPLOY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L11-UNEXECUTED\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L11-UNEXECUTED\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-54330A68064B58B22259\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-1251704E0BE627232E00\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-189702B332643A3BFDAF\n",
+        "stderr": "",
+        "seconds": 0.192,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap15-deploy-sixth12-research/validate.py",
+        "sha256": "d92a77de760cab269cb86ae04ee9a03476639d952cf59ee7899befa9b7a92fc8",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-sixth12-research/validate.py\", line 430, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-sixth12-research/validate.py\", line 354, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/phcap15-deploy-sixth12-research/validate.py\", line 257, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n",
+        "seconds": 0.216,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap16-operations-monitoring/validate.py",
+        "sha256": "cea425ec79aa7e743f22e1fe738b46adad2ebd8836fcd0dd00bacc93d3310310",
+        "exit": 0,
+        "stdout": "PASS PHCAP-16 validator: static source/ledger/product-unit/edge/unknown checks\n",
+        "stderr": "",
+        "seconds": 0.228,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap17-incident-research/validate.py",
+        "sha256": "798942fa2b24caa4374acb9a600191eff51af088fdae98fbbea29f31c51de22c",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-17 validator\nE_CURRENT_SHA:CUR-HARNESS-L2-01\nE_CURRENT_SHA:CUR-HARNESS-L11-01\nE_CURRENT_SHA:CUR-OS-L11-01\n",
+        "stderr": "",
+        "seconds": 0.209,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap18-refactor-research/validate.py",
+        "sha256": "3751e3acc1d717707b2e4c1c259f90bbfb86548aef2d210a54170988a29846ab",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-18 validator\nE_CURRENT_SHA:CUR-HARNESS-L2-REF\n",
+        "stderr": "",
+        "seconds": 0.217,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap19-learning-research/validate.py",
+        "sha256": "50855349dcc779b05775ed069a91363ffa0b23dc503479dc5637168baf3ecb30",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-19 validator\nE_CURRENT_SHA:CUR-OS-L11\nE_CURRENT_SHA:CUR-HARNESS-L2\nE_CURRENT_SHA:CUR-HARNESS-L2-B\nE_CURRENT_SHA:CUR-HARNESS-L11\n",
+        "stderr": "",
+        "seconds": 0.213,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/phcap20-memory-research/validate.py",
+        "sha256": "09ce4f9520f6938eebc484491c52a132945889abc0cfb64ae4a1cad27cec067e",
+        "exit": 1,
+        "stdout": "FAIL PHCAP-20 validator\nE_CURRENT_SHA:CUR-HARNESS-L2\nE_CURRENT_SHA:CUR-HARNESS-L11\n",
+        "stderr": "",
+        "seconds": 0.231,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation/validate.py",
+        "sha256": "e6b4829f28e87a602029dbc77dfcdc43d69d14b19846b43e3881ef5d14cd726b",
+        "exit": 1,
+        "stdout": "FAIL: RDP-001 PREISOLATION 6-path coherence\n- holding台帳を読めない: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-revision-delta-source-holding.jsonl'\n- holding台帳に欠落: PREISO-REV-000060\n- holding台帳に欠落: PREISO-REV-000026\n- holding台帳に欠落: PREISO-REV-000015\n- holding台帳に欠落: PREISO-REV-000001\n- holding台帳に欠落: PREISO-REV-000016\n- holding台帳に欠落: PREISO-REV-000002\n- holding台帳の必須6行が欠落: PREISO-REV-000001\n- holding台帳の必須6行が欠落: PREISO-REV-000002\n- holding台帳の必須6行が欠落: PREISO-REV-000015\n- holding台帳の必須6行が欠落: PREISO-REV-000016\n- holding台帳の必須6行が欠落: PREISO-REV-000026\n- holding台帳の必須6行が欠落: PREISO-REV-000060\n- product boundary source digest不一致: docs/concept/product-boundary.md\n- product boundary source digest不一致: docs/helix-harness/README.md\n- product boundary source digest不一致: docs/helix-harness/L1-planning/product-intent.md\n- registry provenance source digest value不一致: ('PREISO-REV-000015', 'PREISO-REV-000026', 'authority_source')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000015', 'PREISO-REV-000026', 'authority_source')\n- registry provenance source digest value不一致: ('PREISO-REV-000016', 'PREISO-REV-000026', 'authority_source')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000016', 'PREISO-REV-000026', 'authority_source')\n- registry provenance source digest value不一致: ('PREISO-REV-000001', 'PREISO-REV-000015', 'generated_from_registry')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000001', 'PREISO-REV-000015', 'generated_from_registry')\n- registry provenance source digest value不一致: ('PREISO-REV-000001', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000001', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance source digest value不一致: ('PREISO-REV-000016', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000016', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000016', 'generated_from_registry')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000016', 'generated_from_registry')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000026', 'requirements_source_digest')\n",
+        "stderr": "",
+        "seconds": 0.04,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-002-atomization/validate.py",
+        "sha256": "b416cb55f1b8bc08b2d086f82d1279f20bda22b4764c6d0b243955ea793992a9",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 PREISOLATION-002 semantic atomization (read-only static check)\nGit denominator=400 files / 492 hunks; parent next60=60 files / 60 hunks; parent combined=144 files / 212 hunks; remaining=256 files / 280 hunks\nreview-only subunits=8; selected exact paths/hunks=8 / 8; semantic atoms=0; compound hunk holds=8; unresolved atomization=8\ndecision matches=0; legacy implementation=unknown; consumer closure=pending; authority_effect=none; old runtime/test/CI execution=false\n",
+        "stderr": "",
+        "seconds": 0.483,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-batch/validate.py",
+        "sha256": "863e83afb864b3d1460ae7f0e8d6d306393dbda7ed186544a6e7cf45b578846f",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 PREISOLATION batch 12-path candidate (read-only static check)\nscope=12 selected paths / 58 hunks; full denominator=400 files / 492 hunks; selected remainder=388 files / 434 hunks\ncombined selected with #1934 and SCF-B-0007=24 files / 91 hunks; combined remainder=376 files / 401 hunks\nhunk_classification_counts=requirement:25; constraint:21; provenance:11; generated_metadata:1; unresolved:0\nsemantic_atomization=not_started; semantic_atoms=0; compound_hunk_holds=58; review_only_subunits=8\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+        "stderr": "",
+        "seconds": 0.961,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-next/validate.py",
+        "sha256": "4ed17681e4b6c35d7fe4787c2ae44947095f7efb81cb4b7415702d4ec7576c8b",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-next/validate.py\", line 491, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-next/validate.py\", line 273, in main\n    if prov.get(\"path\") != rel or prov.get(\"sha256\") != file_digest(path): fail(errors, f\"{key} digest不一致\")\n                                                        ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-next/validate.py\", line 135, in file_digest\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n                          ^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-revision-delta-source-holding.jsonl'\n",
+        "seconds": 0.211,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-16-30/validate.py",
+        "sha256": "ede24f0b373fe369d7f246ebc1c25c00fee2e067f853c36c2308f8e28f0eafd1",
+        "exit": 0,
+        "stdout": "PASS outside-67 rows 16-30 validator: 15 paths / 13 live holdings / static blob relation\n",
+        "stderr": "",
+        "seconds": 3.306,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-31-48/validate.py",
+        "sha256": "a47009d37b38a106a68a69e9d906e20bec0b91473272da37da28d65dab9edfbf",
+        "exit": 0,
+        "stdout": "PASS outside-67 rows 31-48 validator: 18 paths / 13 live holdings / static blob relation\n",
+        "stderr": "",
+        "seconds": 3.35,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-67/validate.py",
+        "sha256": "2591b9beab0caa9a42b7eff8d357746ed96fdec3c39f0fb4157ed129baedb8ab",
+        "exit": 0,
+        "stdout": "PASS\n",
+        "stderr": "",
+        "seconds": 2.82,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-67-migration/validate.py",
+        "sha256": "78267eaaf9fa9866d19549946bd441792e12750e2e1896683e1e15d14a57a610",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-holding-67-migration/validate.py\", line 320, in <module>\n    errors = validate(json.loads(INV.read_text(encoding=\"utf-8\")), json.loads(PROPOSAL.read_text(encoding=\"utf-8\")), json.loads(READ_AFTER.read_text(encoding=\"utf-8\")))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-holding-67-migration/validate.py\", line 180, in validate\n    source_rows = load(SOURCE)\n                  ^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-holding-67-migration/validate.py\", line 122, in load\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n",
+        "seconds": 0.169,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-67-proposal/validate.py",
+        "sha256": "24fee7da90d63e4cc4bcd34b45383bf57f9aa15b007fbdd15b2c0de5a86a0ef6",
+        "exit": 0,
+        "stdout": "PASS outside-67 source_holding proposal: 67 path pairs / 39 same / 28 changed / 13 holdings / append blocked\n",
+        "stderr": "",
+        "seconds": 12.54,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-holding-first15/validate.py",
+        "sha256": "a70da4a172ac4ee9c507851c296f7e13dcf4a2e8736982d81da1d46ba2c86671",
+        "exit": 0,
+        "stdout": "PASS outside-67 first-15 validator: 15 paths / 13 live holdings / static blob relation\n",
+        "stderr": "",
+        "seconds": 3.012,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-outside-l1-semantic/validate.py",
+        "sha256": "ee4c53cc005fcb4ce68ca294389db896ee58577997e3d77d8f099a889e81f8a5",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-l1-semantic/validate.py\", line 82, in <module>\n    EXPECTED = generator.build()\n               ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-l1-semantic/generate.py\", line 280, in build\n    holdings = live_holdings(register)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-l1-semantic/generate.py\", line 166, in live_holdings\n    records = load_jsonl(path)\n              ^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/pre-isolation-outside-l1-semantic/generate.py\", line 128, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl'\n",
+        "seconds": 0.177,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-requirement-next4/validate.py",
+        "sha256": "d3d4580494498b46cc89dddde3e535df2f477f2dd7e45cf38c962ddb9ac3b839",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 requirement-bearing next4 candidate (read-only static check)\nselected=4 files / 28 hunks; prior=144 files / 212 hunks; combined=148 files / 240 hunks; remaining full diff=252 files / 252 hunks\nsource holding remaining=185 metadata-only records; holding-external new-path diff=67 files / 67 hunks\nsemantic_atoms=0; compound_hunk_holds=28; requirement_or_verification_hunks=22; authority_or_status_hunks=6; old runtime/test/CI execution=False\n",
+        "stderr": "",
+        "seconds": 1.878,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-research/validate.py",
+        "sha256": "fe32fb8a4c4f381092768e846522f3f3738e0cfc870dab8d6618de29fa1d696f",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 research-premise 20-path candidate (read-only static check)\nprior reviewed=24 files / 91 hunks; current selected=20 files / 21 hunks; combined selected=44 files / 112 hunks\nremaining after current selection=356 files / 380 hunks\nhunk_classification_counts=research_premise:21; unresolved:0; semantic_atoms=0; compound_hunk_holds=21; review_only_subunits=8\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+        "stderr": "",
+        "seconds": 0.467,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-research-next40/validate.py",
+        "sha256": "32c9fb7a4e13b3e9dd747bcc84c2cadba05c993f09d1a18c35d3e2e0abcaeee2",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 research-premise next40-path candidate (read-only static check)\nintegrated prior=24 files / 91 hunks; PR1946 candidate origin=unmerged; latest rebaseline=integrated; selected scope=20 files / 21 hunks; before current selected=44 files / 112 hunks\ncurrent selected=40 files / 40 hunks; combined selected=84 files / 152 hunks; remaining=316 files / 340 hunks\nhunk_classification_counts=research_premise:40; unresolved:0; semantic_atoms=0; compound_hunk_holds=40; review_only_subunits=8; fully_unsubdivided=32\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+        "stderr": "",
+        "seconds": 0.739,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/pre-isolation-research-next60/validate.py",
+        "sha256": "dea857835630b64f022032b79977d7436e09a765c1aaf9c0c64a3ee1956067c9",
+        "exit": 0,
+        "stdout": "PASS: RDP-001 research-premise next60-path candidate (read-only static check)\nintegrated prior=24 files / 91 hunks; PR1946 selected=20 files / 21 hunks; PR1949 lineage=selected-origin-unmerged/rebaseline-integrated, 40 files / 40 hunks; before current selected=84 files / 152 hunks\ncurrent selected=60 files / 60 hunks; combined selected=144 files / 212 hunks; remaining=256 files / 280 hunks\nhunk_classification_counts=research_premise:60; unresolved:0; semantic_atoms=0; compound_hunk_holds=60; review_only_subunits=8; fully_unsubdivided=52\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+        "stderr": "",
+        "seconds": 0.96,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-delegated-doc001-atom-030/validate.py",
+        "sha256": "6f135335ce167a9dad26aeb586d64d72c33d254f235b6dd90f293faed3dff024",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-delegated-doc001-atom-030/validate.py\", line 310, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-delegated-doc001-atom-030/validate.py\", line 299, in main\n    errors = check()\n             ^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-delegated-doc001-atom-030/validate.py\", line 151, in check\n    source_records = load_jsonl(source_holding_path)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-delegated-doc001-atom-030/validate.py\", line 41, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/delegated-requirement-document-source-holding.jsonl'\n",
+        "seconds": 0.197,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+        "sha256": "3fa7c34166ed77f3bfe1155be9621663c8d9dbe843d80c395ee630ac2bd35bdc",
+        "exit": 0,
+        "stdout": "PASS RDP-001 DOC-002 semantic atom candidate: lines=133 atoms=49 residual=21 shared_relations=3 edges=2 products=4\n",
+        "stderr": "",
+        "seconds": 0.303,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-delegated-doc003-unprocessed8/validate.py",
+        "sha256": "01a7c67185c72195dc9f62421d18cb582dc5605ecd79cad133dc675ba203e21c",
+        "exit": 0,
+        "stdout": "PASS rdp001-delegated-doc003-unprocessed8: selected=8 archive=8/8 current_absent=8\n",
+        "stderr": "",
+        "seconds": 0.304,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-delegated-doc009-atom/validate.py",
+        "sha256": "e00b7ec7a7e17250d4426e93f3c62768c95e9830201073ceff6d770e9bf86df1",
+        "exit": 0,
+        "stdout": "PASS rdp001-delegated-doc009-atom: DOC-009 87 lines / 51 spans / 51 atoms; implementation=unknown\n",
+        "stderr": "",
+        "seconds": 0.21,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-boundary-evidence-066/validate.py",
+        "sha256": "b2526b75fb46c8eaeb5c125fd39adfa4f9dc7050f6f74741c1ad95b23e06d5ef",
+        "exit": 1,
+        "stdout": "FAIL outside67 candidate validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.136,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-boundary-followup-071/validate.py",
+        "sha256": "fd90c58c0d83fc877ab92d372125592c3f196e74947eaf23828ff5a99e54de5e",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.357,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-boundary-followup-073/validate.py",
+        "sha256": "bee59547e250da48924152257dd22b94ef595edcacd3f7d16cc5bcd03f3a8f20",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\nE_COUNTERPART_PROV:OUTSIDE67-PATH-060\n",
+        "stderr": "",
+        "seconds": 0.324,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-boundary-followup-074/validate.py",
+        "sha256": "0a8c674df89098ebcffb1b64871a1d09d126956e6144bf0d8bd4b4d041ca13de",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.345,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-concept-freeze-followup-087/validate.py",
+        "sha256": "dc77e4ba4da912f4a165c644d0a6e44ff78c2be3a1c160b78a09262649661a0d",
+        "exit": 1,
+        "stdout": "FAIL outside67 concept/freeze follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.905,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-final-followup-092/validate.py",
+        "sha256": "b3f8d0ed310be9126869198ab7c60b3d1f611ab48770b5384c44a243265a8738",
+        "exit": 1,
+        "stdout": "FAIL outside67 final follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": -1.886,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-followup-069/validate.py",
+        "sha256": "53fe70532fa72565f70815ac62678990382a685cb1282e391b603cdeac513e27",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-followup-069/validate.py\", line 133, in <module>\n    if __name__=='__main__':sys.exit(main())\n                                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-followup-069/validate.py\", line 130, in main\n    ap=argparse.ArgumentParser(); ap.add_argument('--root'); args=ap.parse_args(); errors=validate(args.root or Path(__file__).resolve().parents[3])\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-followup-069/validate.py\", line 58, in validate\n    fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))\n                                                      ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-followup-069/validate.py\", line 34, in sha\n    if isinstance(b,Path): b=b.read_bytes()\n                             ^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n",
+        "seconds": 0.166,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-079/validate.py",
+        "sha256": "e5cdba1d278b502747ff155340f4fe89447f86f7e85f822b3ee2bdd083e089f7",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.382,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py",
+        "sha256": "c808ca4a1ac78d465b5affd44515c22a090a521be60a4fadc97d934b3647576a",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 141, in <module>\n    if __name__=='__main__':sys.exit(main())\n                                     ^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 138, in main\n    ap=argparse.ArgumentParser(); ap.add_argument('--root'); args=ap.parse_args(); errors=validate(args.root or Path(__file__).resolve().parents[3])\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 62, in validate\n    fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))\n                                                      ^^^^^^^^^^^^^^^^^\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 38, in sha\n    if isinstance(b,Path): b=b.read_bytes()\n                             ^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n",
+        "seconds": 0.14,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-governance-crosswalk-followup-085/validate.py",
+        "sha256": "3e8fcd61acd9c8bb35458a0245951ddcf4bf532fd3586de5d811bad6bc5046cc",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.337,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-path001-005-atomization-0095/validate.py",
+        "sha256": "22f48cd1947db7d9e400e3a5688644f6c7bcbdbe9be83d429ad6b189a8cf722d",
+        "exit": 0,
+        "stdout": "PASS SCF-B-0095 validator: 5 source pairs / 863 archive lines / mutually-exclusive partition\n",
+        "stderr": "",
+        "seconds": 1.13,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py",
+        "sha256": "435e4c11067e71852606e23ec629fbaa8f1449a18577218c083243ecbb9bb381",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py\", line 304, in <module>\n    validate()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py\", line 291, in validate\n    validate_inventory(inv)\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py\", line 125, in validate_inventory\n    fail(\"E_LEDGER_DIGEST\")\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-outside67-path006-010-atomization-096/validate.py\", line 56, in fail\n    raise AssertionError(code + ((\":\" + detail) if detail else \"\"))\nAssertionError: E_LEDGER_DIGEST\n",
+        "seconds": 0.31,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/validate.py",
+        "sha256": "3d427bfbb4e096be4b3b41143b70b3c66f3f371d4b6175c4340ed1e44162c761",
+        "exit": 0,
+        "stdout": "PASS validate: PATH-011..015 full pre/archive coverage, reused PATH-011 candidates, new atoms and three-category accounting\n",
+        "stderr": "",
+        "seconds": 1.366,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-product-boundary-062/validate.py",
+        "sha256": "2f3900f8e7f9f60d523ebce2da7a02d413240bbf23585c91e9ade51afc09cf44",
+        "exit": 1,
+        "stdout": "FAIL outside67 product-boundary validator\nE_REGISTER_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.232,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-product-entry-followup-076/validate.py",
+        "sha256": "ff2edf137f2cd363cf118c7fcdc122cca86d42f6af73efcff8fc01c62507374b",
+        "exit": 1,
+        "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 0.433,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-residual-followup-090/validate.py",
+        "sha256": "94c91da47010950b5cb5f15b89da6e34011df65d12c92f78f4c5df1911aa0aa1",
+        "exit": 1,
+        "stdout": "FAIL outside67 residual follow-up validator\nE_SCOPE_DIGEST\n",
+        "stderr": "",
+        "seconds": 1.074,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+        "sha256": "c4f1020c86de175a0037c3a7c70bca309f465fd84c760901bef09ae2b926e76a",
+        "exit": 1,
+        "stdout": "E_INPUT_DIGEST: missing input: /home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl\n",
+        "stderr": "",
+        "seconds": 0.056,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+        "sha256": "d73ea07d4ad81ebbbfb6e7723a62ec6eb27dcddccab8d2155b64514dfbf93a7a",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "E_LEDGER_DIGEST\n",
+        "seconds": 0.08,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-ref-subset-0021/validate.py",
+        "sha256": "650ae118fd1fdad146aed1547c7269dfbaed823062c11b208f5e31aef8dd2e33",
+        "exit": 0,
+        "stdout": "PASS RDP-001 reference subset: edges=24 source_lines=24 target_blobs=24 capture_main_residual=738 rebaseline_main_residual=734 docs_atomized=0\n",
+        "stderr": "",
+        "seconds": 0.589,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-reqatom-0011-0030/validate.py",
+        "sha256": "2a085e16e73302832c67c5d090bad5ee2fa8be00d691fa156ccc8e1ef80895b4",
+        "exit": 0,
+        "stdout": "PASS REQATOM A1 0011--0030: units=20 input_lines=59 atomized_atoms=210 composite_unresolved=8\nPASS four-product denominator: HARNESS=149 OS=22 Web=0 Web-OS=0 unresolved=39\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+        "stderr": "",
+        "seconds": 0.225,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-reqatom-0031-0050/validate.py",
+        "sha256": "e401d43488027c08c82ee5192ee3f9c26981239f33dfe149857f50e8d833a516",
+        "exit": 0,
+        "stdout": "PASS REQATOM A1 0031--0050: units=20 input_lines=101 atomized_atoms=98 composite_unresolved=9\nPASS four-product denominator: HARNESS=58 OS=26 Web=0 Web-OS=0 unresolved=14\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+        "stderr": "",
+        "seconds": 0.186,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-reqatom-0051-0070/validate.py",
+        "sha256": "9d64858d728833215166a86f090aa02aee7f1f0ee80f40d7b43f836a5c4ebb4a",
+        "exit": 0,
+        "stdout": "PASS REQATOM A1 0051--0070: units=20 input_lines=37 atomized_atoms=44 composite_unresolved=6\nPASS four-product denominator: HARNESS=13 OS=0 Web=0 Web-OS=0 unresolved=31\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+        "stderr": "",
+        "seconds": 0.192,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-reqatom-first5/validate.py",
+        "sha256": "e559718cdfc44a9ff1744c532ff661e4cadadec5539934d8250ff863edaceffe",
+        "exit": 0,
+        "stdout": "PASS REQATOM A1 first five: units=5 input_lines=7 atoms=16\nPASS four-product denominator: HARNESS=12 OS=2 Web=0 Web-OS=0 unresolved_target=2\nPASS source／archive digest and semantic line closure; authority/successor/decision remain none\n",
+        "stderr": "",
+        "seconds": 0.136,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-reqatom-next5/validate.py",
+        "sha256": "d0897da33de524d829058c8f7b04a5e1eb3f9c352168bc6df58dfb6b6a3d9509",
+        "exit": 0,
+        "stdout": "PASS REQATOM A1 next five: units=5 input_lines=7 atoms=10\nPASS four-product denominator: HARNESS=5 OS=3 Web=0 Web-OS=0 unresolved_target=2\nPASS source/archive digest, asset decision/read-after, semantic line closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+        "stderr": "",
+        "seconds": 0.168,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-rul-osp-04/validate.py",
+        "sha256": "fd965d74a63fae4c75ca4ee2efa2bcb4ed1814b4e18749548855e1e34a739151",
+        "exit": 0,
+        "stdout": "PASS RUL-OSP-04 atom candidate: primary=25 secondary_relation=22 union=47 source_files=26\nPASS S1-01 distinction: screened_atoms=10/25 secondary_links_from_other_primary=5; inventory secondary relation=22 (not merged)\n",
+        "stderr": "",
+        "seconds": 0.243,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-unassessed-atom-audit/validate.py",
+        "sha256": "4a5fea987b83b0e14726b4a87c48b4debf895ed65b1286337c3981305fa0b6d1",
+        "exit": 0,
+        "stdout": "PASS rdp001-unassessed-atom-audit: 333/333 holding records, Git object/archive/source disposition rechecked\n",
+        "stderr": "",
+        "seconds": 11.828,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-asset-semantic-0124/validate.py",
+        "sha256": "01c7276602d679cdbc0b60dfaa12b63017f0d6247b141d552deb63ed268c4a56",
+        "exit": 1,
+        "stdout": "E_INPUT_DIGEST: current input changed docs/concept/product-boundary.md\n",
+        "stderr": "",
+        "seconds": 0.072,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-coverage-0091/validate.py",
+        "sha256": "d6d68b1f8939150671ea331feb610e64b797e7ca89ba806023e52f7bb0b91865",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "Traceback (most recent call last):\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-web-webos-vision-coverage-0091/validate.py\", line 349, in <module>\n    validate()\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-web-webos-vision-coverage-0091/validate.py\", line 175, in validate\n    fail(\"E_INPUT_DIGEST\", path)\n  File \"/home/tenni/.helix-worktrees/l3-d0-gov-on-web-scaffold/scaffold/research/rdp001-web-webos-vision-coverage-0091/validate.py\", line 92, in fail\n    raise AssertionError(code + ((\":\" + detail) if detail else \"\"))\nAssertionError: E_INPUT_DIGEST:docs/concept/product-boundary.md\n",
+        "seconds": 0.154,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+        "sha256": "58f71296aff44ae01240b5c830a344797b868e35be004919484fa5b7cea09dd7",
+        "exit": 0,
+        "stdout": "PASS validate: 16 source-bound candidates (9 atoms + 7 composites), 10/29 parent spans, 6 legacy links\n",
+        "stderr": "",
+        "seconds": 0.076,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+        "sha256": "7b12535f60d92118bbc5cbb9dcd52d030c54829e870829899bfbc558fe8c2e8e",
+        "exit": 0,
+        "stdout": "PASS validate: 10 next-span candidates (7 atoms + 3 composites), 10/19 unprocessed parent spans, prior overlap=0\n",
+        "stderr": "",
+        "seconds": 0.076,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+        "sha256": "1820ae0d0bf43f72090f3cad18ae934de1118fe22384e83e90756c201a10a222",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "FAIL E_GIT_SOURCE:scaffold/rdp001-web-webos-vision-semantic-atoms-0084/inventory.json\n",
+        "seconds": 0.069,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/rdp001-web-webos-vision-source-0080/validate.py",
+        "sha256": "0038689b0a784ef704cc9c28912a468b47b020e4aeedc1f78593da88eb0f5dbe",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "FAIL E_CURRENT_SOURCE\n",
+        "seconds": 0.074,
+        "timeout": false
+      },
+      {
+        "path": "scaffold/research/tr-implementation-evidence-0112/validate.py",
+        "sha256": "6bdd514bca5d16fe7fcd3f639cd99e3d16fffacd3cc32a3ae9b8e9af99343b88",
+        "exit": 0,
+        "stdout": "SCF-B-0112 validate: PASS (16 units; counts derived from fixed BASE; static-only)\n",
+        "stderr": "",
+        "seconds": 4.137,
+        "timeout": false
+      }
+    ]
+  }
+}

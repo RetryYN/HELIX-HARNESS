@@ -12,6 +12,7 @@ from pathlib import Path
 # （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
 RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
 }
 
@@ -52,7 +53,7 @@ def live(rows: list[dict]) -> list[dict]:
 
 def build() -> dict:
     current = load(CURRENT_REGISTER)
-    historical = load(HISTORICAL_REGISTER)
+    historical = load(relocated(HISTORICAL_REGISTER))
     source = load(relocated(SOURCE_SET))
     proposal = json.loads(PROPOSAL.read_text(encoding="utf-8"))
     read_after = json.loads(READ_AFTER.read_text(encoding="utf-8"))
@@ -114,11 +115,11 @@ def build() -> dict:
         },
         "historical_capture": {
             "register_path": str(HISTORICAL_REGISTER.relative_to(ROOT)),
-            "register_sha256": sha(HISTORICAL_REGISTER.read_bytes()),
+            "register_sha256": sha(relocated(HISTORICAL_REGISTER).read_bytes()),
             "register_record_count": len(historical),
             "live_holding_count": len(historical_live),
             "source_revision": CAPTURE,
-            "preserved_without_rewrite": HISTORICAL_REGISTER.read_bytes() == captured_register,
+            "preserved_without_rewrite": relocated(HISTORICAL_REGISTER).read_bytes() == captured_register,
         },
         "formal_append": {
             "register_path": str(CURRENT_REGISTER.relative_to(ROOT)),
@@ -129,7 +130,7 @@ def build() -> dict:
             "source_set_path": str(SOURCE_SET.relative_to(ROOT)),
             "source_set_sha256": sha(relocated(SOURCE_SET).read_bytes()),
             "source_item_count": len(source),
-            "append_only_prefix_preserved": CURRENT_REGISTER.read_bytes().startswith(HISTORICAL_REGISTER.read_bytes()),
+            "append_only_prefix_preserved": CURRENT_REGISTER.read_bytes().startswith(relocated(HISTORICAL_REGISTER).read_bytes()),
         },
         "read_after": {
             "path": str(READ_AFTER.relative_to(ROOT)),

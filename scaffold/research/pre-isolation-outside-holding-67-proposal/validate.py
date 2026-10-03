@@ -20,6 +20,7 @@ from pathlib import Path
 # 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
 RELOCATED_PATHS = {
     "scaffold/pre-isolation-outside-holding-67": "scaffold/research/pre-isolation-outside-holding-67",
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
@@ -236,7 +237,7 @@ def git_register_refs() -> list[str]:
 
 @lru_cache(maxsize=1)
 def current_holding_snapshot() -> tuple[list[dict], dict[str, list[dict]]]:
-    register = load_jsonl(ROOT / REGISTER_PATH)
+    register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     return live_holdings(register)
 
 
@@ -277,7 +278,7 @@ def validate(inv: dict, source_items: list[dict], proposed: dict) -> list[str]:
     check_inventory_keysets(errors, inv, source_items, proposed)
     report_path = relocated(ROOT / REPORT_PATH)
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    register_path = ROOT / REGISTER_PATH
+    register_path = relocated(ROOT / REGISTER_PATH)
     register = load_jsonl(register_path)
     holdings, _holding_rows = current_holding_snapshot()
 

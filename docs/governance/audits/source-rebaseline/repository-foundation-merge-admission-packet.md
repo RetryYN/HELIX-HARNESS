@@ -30,7 +30,7 @@ PR #1797を、HELIX新世代を上流から組み直すrepository基盤として
 
 | 条件 | 必要な状態 |
 |---|---|
-| 静的整合 | [Repository foundation readiness](../../repository-foundation-readiness.md)の条件1〜4がcurrent content HEADで成立 |
+| 静的整合 | [Repository foundation readiness](repository-foundation-readiness.md)の条件1〜4がcurrent content HEADで成立 |
 | 外部意味review | 許可されたGitHub Claude通路でexact base／content HEAD pairをreviewし、未解消Blocker／Major／Minorが0 |
 | review配送 | [PR投影packet](../../github-upstream-pr-packet.md)に従うdelivery receiptがrequest本文、comment ID、base／content full SHA、payload digestと一致 |
 | pre-merge read-after | PR base／HEAD、main HEAD、merge可能性、merge方式、branch protection、ruleset、required platform gateをGitHub APIから再取得 |
