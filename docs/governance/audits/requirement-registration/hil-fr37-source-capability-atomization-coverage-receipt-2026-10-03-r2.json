@@ -1,0 +1,521 @@
+{
+  "requirement_identity": "HARNESS-L2-067",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-067-002",
+  "candidate_status": "unadopted_resubmission_after_later35_nonapproval",
+  "product_target": "HELIX-HARNESS",
+  "base_commit": "62d9eedca25a927916594a0a96690b2441437712",
+  "source_atom": {
+    "source_holding": "MPR-SH-IR-003#HIL-FR-37 (current hold); original atom ledger row retains historical MPR-SH-IR-001 reference",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_line": 127,
+    "source_line_sha256_without_lf": "0128e17db0a2bb5c024a1b2b812c23301e11228b2b11020387f9e98dee3954a5",
+    "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-37",
+    "legacy_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "statement_semantic_digest": "34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
+    "record_semantic_digest": "4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
+    "carry_forward_path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "carry_forward_line": 70,
+    "carry_status": "preserved_pending_rehome",
+    "source_owner_assessment": "crosswalk/current PO packet disagree: OS vs HARNESS",
+    "successor_requirement_ids": [],
+    "legacy_ir_statement_sha256": "sha256:34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
+    "legacy_ir_record_semantic_digest": "sha256:4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
+    "legacy_ir_exact_statement": "Source Capability Atomizerは各file/entry/symbolからatomic behaviorを抽出し、1 behaviorごとにsource span、extractor version、parent aggregate、入出力/副作用を付与する。aggregate親とfile分類はcoverage分母に数えず、atomic child未閉鎖を隠さない。 | atom manifest、parent-child count、unclassified/overlap finding",
+    "carry_forward_line_sha256_without_lf": "sha256:5a9304d2d6868250c2ae7c8c8b6178445e312249bcc75db27e91404173ae1cac"
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "sha256:9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "section_heading": "HARNESS-L2-067",
+      "section_lines": [
+        1274,
+        1291
+      ],
+      "section_sha256": "sha256:4ee1e8ec5374d7ea1d5cc3ea5f48abb353f371766421ffd61c6ab94e028a9373"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "sha256:1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "section_heading": "HARNESS-L2-067",
+      "section_lines": [
+        993,
+        1003
+      ],
+      "section_sha256": "sha256:f21e31ec15355abb15da22d68396cc05584be92457b49cdc3a4a76523a2fa2c8"
+    },
+    "section_digest_rule": "Exact heading through before next same-or-higher heading; trailing blank lines trimmed; UTF-8 with exactly one terminal LF."
+  },
+  "parent_l1": {
+    "path": "docs/helix-harness/L1-planning/product-intent.md",
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "selected_parent_ids": [
+      "HARNESS-L1-001",
+      "HARNESS-L1-003",
+      "HARNESS-L1-004",
+      "HARNESS-L1-008"
+    ],
+    "decision_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+  },
+  "decision_pins": {
+    "po57": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "full_file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    "po11": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+      "full_file_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5"
+    },
+    "live26": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    "parent_l1": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "full_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    }
+  },
+  "supporting_pairs": {
+    "HARNESS-L2-016": {
+      "l2_section_sha256": "3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+      "l11_section_sha256": "af638df15c01789c0b130047655bed93f24efa9f9913581870990e7fde7388e7",
+      "authority": "2026-09-28 fixed baseline"
+    },
+    "HARNESS-L2-027": {
+      "l2_section_sha256": "fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+      "l11_section_sha256": "a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd",
+      "authority": "2026-09-28 fixed baseline PO decision; adopted exact selected revision (candidate metadata is historical)"
+    },
+    "HARNESS-L2-035-002": {
+      "l2_section_sha256": "4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "l11_section_sha256": "65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-038-001": {
+      "l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+      "l11_section_sha256": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-040-002": {
+      "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_sha256": "366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-041-003": {
+      "l2_section_sha256": "d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "l11_section_sha256": "11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+      "authority": "PO11 adopted"
+    },
+    "HARNESS-L2-042-001": {
+      "l2_section_sha256": "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+      "l11_section_sha256": "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9",
+      "authority": "PO57 adopted"
+    },
+    "HARNESS-L2-048-001": {
+      "l2_section_sha256": "9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+      "l11_section_sha256": "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d",
+      "authority": "PO11 adopted"
+    },
+    "HARNESS-L2-063-001": {
+      "l2_section_sha256": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+      "l11_section_sha256": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+      "authority": "live26 adopted for three selected atoms"
+    }
+  },
+  "source_collection_scope": "One source requirement atom only: HIL-FR-37 revision 1. Its whole IR record and the mapped L1 line are the same requirement, not separate atoms. HR-FR-HIL-09, HIL-NFR-08/12/22, HAC-HIL-09a/b/c, and HAT-HIL-09 remain distinct consumer/context records, not additional atoms and not closure of HR-FR-HIL-09.",
+  "coverage_result": "no_loss_limited_to_one_selected_HIL-FR-37_requirement_atom; owner/scope, successor, adoption, and HR-FR-HIL-09 closure remain pending",
+  "unaccounted_atom_refs": [],
+  "human_decision_disposition_refs": [
+    "#/human_decision_material"
+  ],
+  "authority_effect": "none",
+  "no_claims": [
+    "formal successor assignment",
+    "source owner selection",
+    "source closure",
+    "candidate adoption",
+    "implementation",
+    "runtime/test/CI execution",
+    "acceptance"
+  ],
+  "read_after_comparison": {
+    "commit": "fcf944f839a6269fec63f8823d98f51f1d6ec84b",
+    "note": "Current adopted pair/decision read-after; candidate remains an unadopted proposal."
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Legacy source statement and fixed parent L1 do not specify a target product version; no PO decision selects 1.0. Candidate is unadopted and not automatically included in a product version."
+  },
+  "parent_concept": {
+    "path": "docs/concept/helix-concept.md",
+    "revision": "58cbdb8e799a18b6cfb2e3e9188fa3b694898474",
+    "file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "hash_basis": "SHA-256 of raw file bytes at the specified commit/path; the 40-hex Git object id is a revision identifier, not SHA-256."
+  },
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/harness-source-capability-atomization-source-lines-2026-10-02.jsonl#SOURCE-CAPABILITY-HIL-FR-37-L0127",
+  "source_atom_set_file_sha256": "sha256:3476a6c8e4b95a62d24161dd8392106a966adf6843772caf85da9e7d21281354",
+  "source_atom_file_sha256": "sha256:3476a6c8e4b95a62d24161dd8392106a966adf6843772caf85da9e7d21281354",
+  "source_correspondence": {
+    "selected_requirement_atom": {
+      "atom_id": "SOURCE-CAPABILITY-HIL-FR-37-L0127",
+      "source_holding_at_current_main": "MPR-SH-IR-003",
+      "source_holding_in_immutable_original_ledger": "MPR-SH-IR-001",
+      "source_ledger_path": "docs/governance/audits/requirement-registration/harness-source-capability-atomization-source-lines-2026-10-02.jsonl",
+      "source_ledger_file_sha256": "sha256:3476a6c8e4b95a62d24161dd8392106a966adf6843772caf85da9e7d21281354",
+      "source_ledger_line": 1,
+      "source_ledger_line_record": {
+        "atom_id": "SOURCE-CAPABILITY-HIL-FR-37-L0127",
+        "source_holding_registration_id": "MPR-SH-IR-001",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 127,
+        "source_line_sha256_without_lf": "sha256:0128e17db0a2bb5c024a1b2b812c23301e11228b2b11020387f9e98dee3954a5",
+        "source_text": "| **HIL-FR-37** | Source Capability Atomizerは各file/entry/symbolからatomic behaviorを抽出し、1 behaviorごとにsource span、extractor version、parent aggregate、入出力/副作用を付与する。aggregate親とfile分類はcoverage分母に数えず、atomic child未閉鎖を隠さない。 | atom manifest、parent-child count、unclassified/overlap finding |",
+        "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-37",
+        "legacy_ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "legacy_statement_semantic_digest": "sha256:34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
+        "legacy_record_semantic_digest": "sha256:4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
+        "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-FR-37",
+        "carry_forward_line": 70,
+        "carry_forward_line_sha256_without_lf": "sha256:5a9304d2d6868250c2ae7c8c8b6178445e312249bcc75db27e91404173ae1cac",
+        "carry_status": "preserved_pending_rehome",
+        "legacy_owner_assessment": "OS; successor_requirement_ids empty",
+        "supporting_requirements": [
+          "HIL-NFR-08",
+          "HIL-NFR-12",
+          "HIL-NFR-22"
+        ],
+        "supporting_contract": "HR-FR-HIL-09",
+        "supporting_acceptance_ids": [
+          "HAC-HIL-09a",
+          "HAC-HIL-09b",
+          "HAC-HIL-09c"
+        ],
+        "supporting_test_id": "HAT-HIL-09",
+        "relation": "One legacy requirement atom. Support NFR/contract/HAC/HAT are context references, not extra source atoms or a formal successor assignment."
+      },
+      "atom_count": 1,
+      "atom_set_digest": "sha256:1ad0702ab3fdc75894bdc061d666b141b0b2bbce0e1de85186c89f66c3b0472b"
+    },
+    "normative_ir_identity": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "whole_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "locator": "#/HIL-FR-37",
+      "revision": 1,
+      "statement_semantic_digest": "sha256:34d1fde675a0d97523f479286326cfb162b2b897e5d76921a7dcae514bcb8482",
+      "record_semantic_digest": "sha256:4c6f344ebe6bbdb30fb18e2a6cae04057c5cfeff1801ced68a7f667a1b981ea7",
+      "primary_system_contract_id": "HR-FR-HIL-09",
+      "acceptance_ids": [
+        "HAC-HIL-09a",
+        "HAC-HIL-09b",
+        "HAC-HIL-09c"
+      ],
+      "system_test_id": "HAT-HIL-09",
+      "exact_statement": "Source Capability Atomizerは各file/entry/symbolからatomic behaviorを抽出し、1 behaviorごとにsource span、extractor version、parent aggregate、入出力/副作用を付与する。aggregate親とfile分類はcoverage分母に数えず、atomic child未閉鎖を隠さない。 | atom manifest、parent-child count、unclassified/overlap finding",
+      "status": "one selected requirement; not split into a second atom"
+    },
+    "mapped_legacy_l1_line": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "whole_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 127,
+      "sha256_without_lf": "sha256:0128e17db0a2bb5c024a1b2b812c23301e11228b2b11020387f9e98dee3954a5",
+      "sha256_with_lf": "sha256:ade0ffbd52f0cc7be45ced163a2f1b98bd54379e5e45fbe3448eaf782eb1ed7d",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "relation": "IR migration source/corroborating row for the same HIL-FR-37 requirement; not an additional atom"
+    },
+    "carry_forward": {
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+      "whole_file_sha256": "sha256:51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+      "line": 70,
+      "sha256_without_lf": "sha256:5a9304d2d6868250c2ae7c8c8b6178445e312249bcc75db27e91404173ae1cac",
+      "sha256_with_lf": "sha256:dfde9568a3d0e18cc2f5cc681caa3b673f96049c476c60e0273e35c18d3f4939",
+      "current_status": "preserved_pending_rehome",
+      "successor_requirement_ids": []
+    },
+    "legacy_target_assessment": {
+      "crosswalk": {
+        "path": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+        "whole_file_sha256": "sha256:c61aeff2e0839054f24b68296d5c48b5e99c8329a0ba776e52b8c3f0e192b71b",
+        "line": 46,
+        "line_text": "| HIL-FR-37 | 1 | OS | source behaviorの原子抽出と未分類・重複の検出 |",
+        "line_sha256_without_lf": "sha256:b8056e900aa88d827783f4ff5067273bf0649d2f540ab16f9d0c28521fea7469"
+      },
+      "routing_record": {
+        "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+        "whole_file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+        "line": 70,
+        "line_sha256_without_lf": "sha256:41a2e8b1de8e0daac67efee6b857e6e88dd5dd237c7703f33b2a0b8f248e3019",
+        "routing_registration_id": "PRC-HIL-FR-37-001",
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "routing_candidate": "single_product",
+        "successor_assignment_status": "unassigned",
+        "authority_effect": "none"
+      },
+      "treatment": "Keep the legacy OS target assessment as historical routing evidence. Revision 002 proposes semantic/custody responsibility separation and does not overwrite or convert this old assessment into a current decision."
+    }
+  },
+  "legacy_consumer_context": {
+    "system_contract": {
+      "id": "HR-FR-HIL-09",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "whole_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "locator": "#HR-FR-HIL-09",
+      "record_semantic_digest": "sha256:cb6f8d3da819ea3f52dba452f125fef79f5dc64aa39c185149472dd7c22e9dea",
+      "behavior": "ZIP、前身repository exact 2件（`unison-ai-product/UT-TDD_AGENT-HARNESS`、`RetryYN/ai-dev-kit-vscode`）のcurrent advertised `heads/tags/pull` authority、現行全treeをsnapshot化しatomic behaviorへ分解して採否→requirement→design→test→gateをjoinする。Git authorityはadvertisement A/B一致、exact OID materialize、object/tree/tag peel検証済みsealed receiptからだけ受理し、ref/content/edge分母をreceiptから導出する",
+      "transition_contract": "source/ref/entryとextractor version、exact 2 authority receiptあり → atom分母、disposition、trace、pending/orphan 0",
+      "failure_and_evidence": "aggregate-only、未分類/重複、remote identity不一致、A/B drift、ref/object欠落、stale、prose-only、Python write / manifest、atom、decision、edge、stale receipt",
+      "treatment": "context only; not an additional selected requirement atom; whole-contract closure not claimed"
+    },
+    "acceptance_cases": [
+      {
+        "id": "HAC-HIL-09a",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-09a",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-09",
+          "polarity": "positive",
+          "statement": "ZIP＋exact 2 sealed Git authorities＋current HEADからreceipt由来のref/content/edge分母とatomic trace生成",
+          "system_test_id": "HAT-HIL-09",
+          "semantic_digest": "sha256:7c5e93000f658fbc943d1de3eef252cec8075d26539e73f13b4ca83a892b90b7"
+        }
+      },
+      {
+        "id": "HAC-HIL-09b",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-09b",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-09",
+          "polarity": "negative",
+          "statement": "parent-only/child欠落/overlap、advertised ref omission/extra、unverified objectでfreeze拒否",
+          "system_test_id": "HAT-HIL-09",
+          "semantic_digest": "sha256:4cea839cbfa97f62a330b7667a05e6109937603f87f2626fa9d4a3420f756b83"
+        }
+      },
+      {
+        "id": "HAC-HIL-09c",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-09c",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-09",
+          "polarity": "boundary",
+          "statement": "remote identity、advertisement A/B、namespace policy、source/extractor変更で旧authority以降をstale",
+          "system_test_id": "HAT-HIL-09",
+          "semantic_digest": "sha256:f5cf45258aab6fe90a0ff56a1c648bc7e8edcf64485f2ff6cc7bb3ef7c8c0614"
+        }
+      }
+    ],
+    "acceptance_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+    "system_test": {
+      "id": "HAT-HIL-09",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "whole_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "record": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-09",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-09",
+        "acceptance_ids": [
+          "HAC-HIL-09a",
+          "HAC-HIL-09b",
+          "HAC-HIL-09c"
+        ],
+        "supporting_test_ids": [
+          "HST-HIL-011",
+          "HST-HIL-020"
+        ],
+        "scenario": "三sourceをsnapshot/atom/coverageへ処理",
+        "required_evidence": "manifests、atom spans、decision/edge/stale receipt",
+        "negative_boundary": "branch/child欠落、aggregate-only、pending",
+        "semantic_digest": "sha256:e4533907c7b9f3520544c1fc12dd46d553a90149b3f829feb73cb1db345b25da"
+      },
+      "execution_status": "designed_not_implemented; not run"
+    },
+    "broader_contract_residuals": [
+      "exact source/repository scope and authority acquisition",
+      "snapshot and exact advertised ref inventory",
+      "ref/content/edge denominators and disposition-to-requirement/design/test/gate trace",
+      "whole HR-FR-HIL-09 transition and its full failure/evidence behavior",
+      "HIL-NFR-08/12/22 conditions"
+    ],
+    "treatment": "Context and oracle evidence only. These conditions remain distinct, unclosed, and are not imported into the HIL-FR-37 selected atom."
+  },
+  "responsibility_partition": {
+    "candidate_normative_responsibility": "HARNESS candidate defines the meaning and acceptance boundary of atomic behavior decomposition: one behavior per child atom, source span, extractor version, optional parent aggregate, observed input/output/side-effect, and selected-scope denominator excluding parent aggregates and file classifications.",
+    "existing_os_management_responsibility": "HELIX-OS retains original-source identity/revision/digest/authority, custody/provenance, management record and portfolio/evidence continuity under adopted HELIXOS-L2-015/016/019. Those records establish which source/scope is being managed; they do not establish behavior-atom semantics or atom coverage.",
+    "candidate_does_not_transfer": "Source intake, authority, source custody, original-source preservation, or OS management records are not moved to HARNESS. HARNESS atomization does not make OS source authority or custody decisions.",
+    "status": "proposed responsibility split only; no PO selection, successor assignment, owner change, source holding release, adoption, implementation, or execution.",
+    "human_decision_options": {
+      "A_recommended": "HARNESS owns behavior-atom semantics and oracle; OS retains original-source management/custody/provenance under existing OS requirements. This resolves the old routing split without transferring custody.",
+      "B": "Keep both behavior-atom semantics and source management in OS; HARNESS-027/038/041 continue only their already adopted scopes and HARNESS-067 is not adopted.",
+      "recommendation": "A as a proposal for PO decision, not as an accepted current assignment."
+    }
+  },
+  "adopted_neighbor_evidence": {
+    "HARNESS-L2-027": {
+      "authority": "fixed/adopted HARNESS baseline at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_file_sha256": "sha256:9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "start_line": 559,
+        "end_line_exclusive": 573,
+        "section_sha256": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_file_sha256": "sha256:1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+        "start_line": 365,
+        "end_line_exclusive": 375,
+        "section_sha256": "sha256:a7fdef8e1ca4ed2572b68df69995f1477ae0d95d3faee880a25ba8e702f08abd"
+      }
+    },
+    "HARNESS-L2-038": {
+      "authority": "adopted MPR-RC-HARNESS-L2-038-001; 2026-09-29 57candidates decision row 43",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_file_sha256": "sha256:9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "start_line": 834,
+        "end_line_exclusive": 891,
+        "section_sha256": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_file_sha256": "sha256:1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+        "start_line": 574,
+        "end_line_exclusive": 638,
+        "section_sha256": "sha256:dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297"
+      }
+    },
+    "HARNESS-L2-041": {
+      "authority": "adopted MPR-RC-HARNESS-L2-041-003; 2026-09-29 11candidates decision row 27",
+      "l2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "full_file_sha256": "sha256:9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+        "start_line": 957,
+        "end_line_exclusive": 970,
+        "section_sha256": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+      },
+      "l11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "full_file_sha256": "sha256:1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+        "start_line": 699,
+        "end_line_exclusive": 716,
+        "section_sha256": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b"
+      }
+    },
+    "HELIXOS-L2-015": {
+      "authority": "fixed/adopted HELIXOS L2-001..029 baseline at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_file_sha256": "sha256:bdc41cd8738255dae40ba9a259cb16407119c8d2ff559969d79b095f88916fe4",
+        "start_line": 642,
+        "end_line_exclusive": 652,
+        "section_sha256": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef"
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_file_sha256": "sha256:3d453a599d4c32de3e98d8cf54fd7948a087010d39fdf1ac02798c25cfebafcc",
+        "start_line": 324,
+        "end_line_exclusive": 331,
+        "section_sha256": "sha256:79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0"
+      }
+    },
+    "HELIXOS-L2-016": {
+      "authority": "fixed/adopted HELIXOS L2-001..029 baseline at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_file_sha256": "sha256:bdc41cd8738255dae40ba9a259cb16407119c8d2ff559969d79b095f88916fe4",
+        "start_line": 652,
+        "end_line_exclusive": 662,
+        "section_sha256": "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743"
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_file_sha256": "sha256:3d453a599d4c32de3e98d8cf54fd7948a087010d39fdf1ac02798c25cfebafcc",
+        "start_line": 331,
+        "end_line_exclusive": 338,
+        "section_sha256": "sha256:2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+      }
+    },
+    "HELIXOS-L2-019": {
+      "authority": "fixed/adopted HELIXOS L2-001..029 baseline at f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "full_file_sha256": "sha256:bdc41cd8738255dae40ba9a259cb16407119c8d2ff559969d79b095f88916fe4",
+        "start_line": 682,
+        "end_line_exclusive": 692,
+        "section_sha256": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a"
+      },
+      "l11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "full_file_sha256": "sha256:3d453a599d4c32de3e98d8cf54fd7948a087010d39fdf1ac02798c25cfebafcc",
+        "start_line": 352,
+        "end_line_exclusive": 359,
+        "section_sha256": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351"
+      }
+    }
+  },
+  "later35_nonapproval_and_resubmission": {
+    "decision_path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+    "decision_file_sha256": "sha256:e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+    "relevant_row": 56,
+    "decision_reason": "H-067 is not approved in MPR-RC-HARNESS-L2-067-001 because its Concept/L1 parent references label 40-hex Git blob IDs as SHA-256 and it does not explicitly split HARNESS semantic responsibility from OS original-source management.",
+    "received_handoff_path": "docs/governance/audits/requirements-stage/po-decision-received-handoff-later35-2026-10-03.md",
+    "received_handoff_file_sha256": "sha256:c6fc5cab289ca8a3ba2826e61b6421107f407661be5e916af3dd6a2f6526dfa7",
+    "relevant_handoff_line": 161,
+    "superseded_registration": "MPR-RC-HARNESS-L2-067-001",
+    "new_registration": "MPR-RC-HARNESS-L2-067-002",
+    "resubmission_state": "new revision is candidate-only and must be presented for a fresh PO decision; the non-approval of 001 remains intact."
+  },
+  "candidate_history": {
+    "previous_registration_id": "MPR-RC-HARNESS-L2-067-001",
+    "previous_registration_row": 651,
+    "previous_registration_row_sha256": "sha256:b2dce4f765c441aa86eae5a1fa935a3ff2466395c41f69dff33c87fedf3167cb",
+    "previous_receipt_path": "docs/governance/audits/requirement-registration/hil-fr37-source-capability-atomization-coverage-receipt-2026-10-02.json",
+    "previous_receipt_sha256": "sha256:3c2871496748a903ef6b0aa0159926a4f569649ed6c8b9c56d2f2cbd871e8a98",
+    "previous_l2_section_sha256": "aadf80267f3e4379fb26bdca58f2e86d4e062e935b44e1fec5ba78153aaa19a8",
+    "previous_l11_section_sha256": "1a8f72b416159151ca7ea724311b84d6ec5bc550590507dc8b6333fcc557cebc",
+    "treatment": "Historical row 001 and receipt r1 are unchanged in the main prefix; revision 002 supersedes the unapproved candidate for current presentation. Prior body remains recoverable from Git history."
+  },
+  "candidate_pair_section_sha256": {
+    "HARNESS-L2-067": "sha256:4ee1e8ec5374d7ea1d5cc3ea5f48abb353f371766421ffd61c6ab94e028a9373",
+    "HARNESS-L2-067-L11": "sha256:f21e31ec15355abb15da22d68396cc05584be92457b49cdc3a4a76523a2fa2c8"
+  },
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4"
+  },
+  "source_line_coverage_result": "one selected HIL-FR-37 requirement atom is mapped with responsibility split proposal; formal successor/owner selection, broader HR-FR-HIL-09 conditions, adoption, and source closure remain unassigned/unproven",
+  "human_decision_material": {
+    "basis": "Later35 rejection row for 067-001, recorded at docs/governance/decisions/po-decision-2026-10-03-later35.md:56,130 and received handoff :74,161; explicit current file-byte parent pins and responsibility split are supplied in this revision.",
+    "options": {
+      "A_recommended": "HARNESS owns behavior-atom semantics and oracle; OS retains original-source management/custody/provenance under existing OS requirements. This resolves the old routing split without transferring custody.",
+      "B": "Keep both behavior-atom semantics and source management in OS; HARNESS-027/038/041 continue only their already adopted scopes and HARNESS-067 is not adopted.",
+      "recommendation": "A as a proposal for PO decision, not as an accepted current assignment."
+    },
+    "scope": "The decision concerns only whether HIL-FR-37 behavior-atom semantics are assigned to HARNESS while OS keeps source custody (A) or both remain in OS (B). Existing HARNESS/OS adopted neighbors and whole HR-FR-HIL-09 context remain unchanged.",
+    "not_implied": "A selection does not by itself close HR-FR-HIL-09, transfer OS custody, release the source holding, adopt this candidate, or authorize implementation/execution."
+  },
+  "latest_main_comparison": {
+    "commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "register_prefix_line_count": 707,
+    "register_prefix_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "register_prefix_preserved_byte_for_byte": true,
+    "registration_line": 708,
+    "candidate_section_bytes_match_receipt": true,
+    "source_atom_and_selected_scope_unchanged": true
+  },
+  "correction_reason": "Revision 002 corrects the two parent file SHA-256 values using the raw file bytes at the recorded Git commit/path (the 40-hex Git object IDs remain revision identifiers), and makes the requested HARNESS behavior-semantic / HELIX-OS original-source-management responsibility split explicit. It leaves the one selected HIL-FR-37 source atom, unapproved status, old source conditions, and pending successor/owner decision intact."
+}
