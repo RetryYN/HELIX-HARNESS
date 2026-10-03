@@ -15,7 +15,7 @@ paired_l10: ../L10-verification/nfr-verification.md
 | `NFR-OS-016-02` | `HELIXOS-L2-016` | unit/connection/composite結果の誤昇格0件を候補とする。 比較: 下位greenから親完了を推定する案は固定L2/L11に反する。 | unit-only、connection-only、complete-traceを比較し上位stateは必要な固有証拠時だけ出す。 |
 | `NFR-OS-017-01` | `HELIXOS-L2-017` | 同一入力/revisionによるticket候補の意味digest差分0を候補とする。 比較: 入力差異を無視した固定ticket列は異なる対象のmeaningを落とすため不採択。 | 同一入力反復とtarget/dependencyだけ変更した対照fixtureを比較。 |
 | `NFR-OS-017-02` | `HELIXOS-L2-017` | ticketで参照するbudget/deadlineは入力値と完全一致し、累積制約のreset/増額0を候補とする。 比較: 固定額/固定期限を追加する根拠は親にない。 | budget/deadlineを変えずにhandoff/retryするfixtureとmissing input fixtureを測り、前者は保持、後者は未確定。 |
-| `NFR-OS-018-01` | `HELIXOS-L2-018` | 一つの許可scopeに対する重複active claim 0件、作成者自身の独立review 0件を候補とする。 比較: 旧RLO固定slot数やbranch leaseは現行根拠でないため不採用。 | 並行double-claim/self-review mutationを投入し拒否件数を確認。 |
+| `NFR-OS-018-01` | `HELIXOS-L2-018` | 同一ticket/assignment/operationの同一処理対象に対する重複active claim 0件、作成者自身の独立review 0件を候補とする。別ticket/operationの個別に許可された並行実行は拒否しない。比較: 旧RLO固定slot数やbranch leaseは現行根拠でないため不採用。 | 同一対象の二重claimとself-reviewを拒否し、異なるticket/operationの許可済み並行fixtureは実行可能であることを確認する。 |
 | `NFR-OS-018-02` | `HELIXOS-L2-018` | handoff前後で入力された累積budget/deadline/failure constraintの差分0を候補とする。 比較: 不明な値を固定数値にする案は親の責務を超える。 | 一度停止・Worker switchしたfixtureで全入力constraint維持を測る。 |
 | `NFR-OS-019-01` | `HELIXOS-L2-019` | duplicate eventから生じる二重副作用0、original event上書き0を候補とする。 比較: fail-soft corrupted-line skipや旧JSONL/SQLite方式は移植しない。 | 重複・破損・stale pointer・訂正各fixtureでイベントidentityと効果を照合。 |
 | `NFR-OS-019-02` | `HELIXOS-L2-019` | restart前後の累積制約とopen-duty集合の意味差分0を候補とする。 比較: summaryから状態を再構築する案はprovenanceを失うため不採択。 | 固定event prefixを再生し、制約reset0、未完義務消失0、誤success0を観測。 |

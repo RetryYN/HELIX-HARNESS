@@ -54,7 +54,7 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 **受入条件**
 
 - **`AC-OS-L3-018-01` assignment binding**：parent/ticket revision、scope、authority参照、Worker/lane、入力budget/deadline、head、attempt result/evidenceを相互に照合する。誤対象・stale・unknownは起動/継続しない。
-- **`AC-OS-L3-018-02` 重複とreview分離**：同一許可scopeに重複claim/attemptを作らず、作成Workerとindependent reviewer/approverを別actorとして記録する。
+- **`AC-OS-L3-018-02` 重複とreview分離**：同一ticket/assignment/operationの同一処理対象について重複claim/attemptを作らず、作成Workerとindependent reviewer/approverを別actorとして記録する。別ticket/operationに個別の許可がある並行実行は一律に禁止しない。
 - **`AC-OS-L3-018-03` handoff累積**：Worker交代時に未完義務・部分成果・budget/deadline/failure constraintを引継ぎ、resetしない。権限や資源不足はownerへ返し、OSが自分で承認/資源生成しない。
 
 ### `FR-OS-L3-019` — `HELIXOS-L2-019`
@@ -95,14 +95,14 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 
 ### `FR-OS-L3-027` — `HELIXOS-L2-027`
 
-明示された初回task/attempt/scope/revision/environmentについて、親L2の6つの限定適格条件、既存操作authority、人の確認、限定Worker、親入力済みbudget/deadline/stop criteria、HARNESS oracleを照合する。性能未評価は単独で拒否理由にせず、成功も評価済みにしない。assignment/attempt/evidence/handoffをLABO観測へ渡し、unknown/missing/conflict/stale/拒否なら実行しない。
+明示された初回task/attempt/scope/revision/environmentについて、親L2の6つの限定適格条件、既存操作authority、人の確認、限定Worker、親入力済みbudget/deadline/stop criteria、HARNESS oracleを照合する。性能未評価は単独で拒否理由にしない。初回成功だけでは評価済みにせず、LABOが該当task/model classとscopeの評価を成立させるまでは未評価を維持する。assignment/attempt/evidence/handoffをLABO観測へ渡し、unknown/missing/conflict/stale/拒否なら実行しない。
 
 **責務／依存境界**：限定適格性確認・assignment/stop・receiptはOS。分類/許可/隔離/egressはSECURITY、runner資源はINFRASTRUCTURE、proposalはINTELLIGENCEまたはL2-066同契約の人代行、評価状態/evidenceはLABO、固定oracleはHARNESSが所有する。単独成立依存はOS-L2-015/017/018/019、SECURITY-L2-003/005/006/007/008/016、INFRASTRUCTURE資源、HARNESS-L2-022の証拠、INTELLIGENCE-L2-010、LABO-L2-054/055。OS-L2-020実装およびOS-L2-026導出器の実行は依存でない。
 
 **受入条件**
 
 - **`AC-OS-L3-027-01` 6条件の同一attempt結束**：分類/許可、credential隔離、egress、隔離適用、operation authority、rollbackの6条件すべてを同一task/attempt/scope/revision/environmentで照合。すべて成立したpositiveだけ開始候補となる。
-- **`AC-OS-L3-027-02` 性能stateとpermissionの分離**：同じ適格fixtureでLABO性能を明示的に未評価にしても、それだけでは拒否せず、全安全条件・authority成立時のみ限定attempt可能。初回success後も未評価とする。
+- **`AC-OS-L3-027-02` 性能stateとpermissionの分離**：同じ適格fixtureでLABO性能を明示的に未評価にしても、それだけでは拒否せず、全安全条件・authority成立時のみ限定attempt可能。初回success後もLABOが該当task/model classとscopeの評価を成立させるまでは未評価を維持し、有効な評価receiptがあっても適用範囲だけを評価済みとする。
 - **`AC-OS-L3-027-03` 実行・受渡し**：開始前に人が既存入力範囲を確認し、OSがassignment/stopを行う。result state、HARNESS検証、人による独立確認、OS handoff receiptを同scopeでLABOへ渡す。入力済み予算/期限/停止条件を超過したりreceiptが欠けたら閉じない。
 
 ## 親・旧source crosswalk（item単位）
@@ -122,4 +122,4 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 
 ## PO向け要約（承認未取得）
 
-この部分草稿は、管理authority記録、対象横断trace、ticket推進、Worker assignment、continuity/evidence、CI検収、handoff、および限定初回実行の各責務を別々のFR/ACへ展開する。各ownerの正本・oracle・権限・資源をOSが代替せず、unknown/staleと未完義務を保持する。017/018/019は既存入力のbudget/deadlineを維持するだけで、新しい額・期限・登録義務を設定しない。027は固定親の6条件とpermission/performance状態分離を同一attemptに適用し、初回成功だけでは評価済みにしない。
+この部分草稿は、管理authority記録、対象横断trace、ticket推進、Worker assignment、continuity/evidence、CI検収、handoff、および限定初回実行の各責務を別々のFR/ACへ展開する。各ownerの正本・oracle・権限・資源をOSが代替せず、unknown/staleと未完義務を保持する。017/018/019は既存入力のbudget/deadlineを維持するだけで、新しい額・期限・登録義務を設定しない。027は固定親の6条件とpermission/performance状態分離を同一attemptに適用し、初回成功だけでは評価済みにせず、LABOが該当scopeの評価を成立させるまで未評価を維持する。

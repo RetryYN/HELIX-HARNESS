@@ -16,7 +16,7 @@ NFR候補の測定設計であり、L3機能ACの正本は[機能要件](../L3-r
 | `CASE-OS-L10-NFR-016-02` | `NFR-OS-016-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | unit-only、connection-only、complete-traceを比較し上位stateは必要な固有証拠時だけ出す。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-017-01` | `NFR-OS-017-01` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 同一入力反復とtarget/dependencyだけ変更した対照fixtureを比較。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-017-02` | `NFR-OS-017-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | budget/deadlineを変えずにhandoff/retryするfixtureとmissing input fixtureを測り、前者は保持、後者は未確定。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
-| `CASE-OS-L10-NFR-018-01` | `NFR-OS-018-01` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 並行double-claim/self-review mutationを投入し拒否件数を確認。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
+| `CASE-OS-L10-NFR-018-01` | `NFR-OS-018-01` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 同一ticket/assignment/operationの同一処理対象に対する並行double-claimとself-reviewを拒否する一方、別ticket/operationに個別許可がある並行fixtureは通ることを確認する。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-018-02` | `NFR-OS-018-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 一度停止・Worker switchしたfixtureで全入力constraint維持を測る。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-019-01` | `NFR-OS-019-01` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 重複・破損・stale pointer・訂正各fixtureでイベントidentityと効果を照合。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-019-02` | `NFR-OS-019-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 固定event prefixを再生し、制約reset0、未完義務消失0、誤success0を観測。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
