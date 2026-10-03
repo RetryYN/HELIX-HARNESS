@@ -1347,3 +1347,14 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 - **未見の結果を人が確認する例**：未見のpack/agent、入力owner、適用範囲、独立性、またはcompletion範囲が提示されたとき、利用者は正常扱いへの暗黙変換や別入力へのfallbackがないこと、未解決の条件と確認先が見えることを確認する。情報が得られない範囲は結論を保留し、別の正常例から一般化しない。
 - **依存4区分（要求意味・影響範囲）**：採択済みHARNESS-L2-023に従い、常時必須のticket/要求revision・scope・既存authority、pack/agentを使う操作に限る条件、実際に選択した入力だけへ及ぶ依存、歴史照合に限る参照資料を利用者が区別できることを確認する。四区分の具体identity、contract tuple、機械fixture、個別negativeは監査receiptに技術引継ぎとして保全する。参照資料分類で旧原文条件を消さず、fixtureの記載だけから実在owner、許可、実行成功、採択または全体closureを推定しない。
 - **sourceから利用者確認への対応**：旧HIL-NFR-34の全条件とHR-FR-HIL-21から選択した追加保証、未回収consumer/lifecycle条件、対応する技術材料はcoverage receiptのrevision 002に対応表として記録する。HAT-HIL-21は`designed_not_implemented`であり、実行結果や全体closureの証拠として扱わない。
+
+
+### HELIXOS-L11-132 旧HELIXのBun依存撤去に対応するrepository移行の利用者確認候補（未採択・未実行）
+
+本節は未採択のHELIXOS-L2-132に対する利用者確認基準案であり、現行移行の合否や実行済み状態を示さない。
+
+- **対象とscope**：利用者は、旧HELIXのBun依存撤去に対応するHELIX再構築の一回のrepository移行について、対象repositoryと移行時点でactiveとした開発・実行・検証・配布surfaceの一覧を照合する。任意の別repositoryへの一般化はこの候補に含まれない。historical/inactive扱いのsurfaceも、その分類根拠を確認できる。
+- **完了として確認すること**：列挙されたactive surfaceすべてについて、Bunなしで再現できる根拠を確認する。全surfaceが揃った場合だけ対象の一回限りの移行を完了として受け入れられる。一部surfaceだけの成功では受け入れない。
+- **未完として確認すること**：開発CLIはBunなしで動くが検証または配布がBunに依存する、対象surfaceが未列挙、またはactive/historicalの分類が未確定である場合、利用者は移行完了を受け入れず、未解決の範囲と理由を確認できる。
+- **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureや実行証跡は移行receiptに記録する。個別方式や一時的な成功を本候補へ追加しない。
+- **採択境界**：この候補は利用者確認基準案であり、PO判断前の受入実行やsource retireを意味しない。
