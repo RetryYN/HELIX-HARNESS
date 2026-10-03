@@ -45,8 +45,8 @@
     "base_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
     "base_rows": 714,
     "prefix_exact": true,
-    "current_bytes": 2936566,
-    "current_sha256": "2ba83767d59e49d9c670c6911b8ea1eda4c7edb52b34b4049b5508c795679138",
+    "current_bytes": 2936581,
+    "current_sha256": "f791d0570911125141cf7f882780926f73b4122ccec2703cc6709cb2225fde06",
     "appended_rows": 264,
     "holding_correction": {
       "old_id": "MPR-SH-CANDIDATE-003",
@@ -2743,7 +2743,7 @@
         "source_atom_set_digest": "sha256:b16d9f9532dd8ac5a6ec5752f8b665a94e18c457f8852ef9181c5efd1e044252",
         "source_atom_count": 1,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json#HELIXOS-L2-104",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29-r2.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29-r2.json#HELIXOS-L2-104",
         "metadata_fields_corrected": [
           "coverage_receipt_ref"
         ],
