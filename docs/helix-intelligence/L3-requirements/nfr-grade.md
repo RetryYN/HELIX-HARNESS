@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 / adopted version_target 1.0 explicit items only
 paired_l10: ../L10-verification/nfr-verification.md
 
 以下は固定L2/L11から導出した候補値であり、承認済み閾値や実測ではない。候補ごとに比較案とL10測定を示す。要件意味・scope・owner・版を変更する必要がある場合だけ上流へ戻す。
@@ -16,6 +16,19 @@ paired_l10: ../L10-verification/nfr-verification.md
 | `NFR-INTELLIGENCE-068-01` | `HELIXINTELLIGENCE-L2-068` | 選択sourceを使ったcandidateでは、source identity/revision/scope/provenance/許可/適用性とHARNESS-L2-022 oracle参照の欠落0を候補とする。比較: source本文だけを渡す案は利用根拠と適用範囲を失う。 | 選択sourceの各fieldを単独欠落・stale化し、候補成立/不足返却を測る。0欠落は候補値であり未承認。 |
 | `NFR-INTELLIGENCE-075-01` | `HELIXINTELLIGENCE-L2-075` | proposalに必要なidentity fieldの欠落・別identityへの混入0を候補とする。比較:自由文findingのみでproposalを識別する案はcurrent evidenceとの束縛を再現できない。 | 全fieldの同一episode/HEAD/worktree/authority bindingとdigestを比較し、欠落・誤結合件数を測る。 |
 | `NFR-INTELLIGENCE-075-02` | `HELIXINTELLIGENCE-L2-075` | 必須identity要素に不整合があるのにverified/qualifiedと報告する件数0を候補とする。比較:全体confidenceで項目不一致を相殺する案は個別理由条件に反する。 | 6要素の各negative mutationとqualification未解決例で誤昇格0を観測。candidate値・実測前。 |
+
+## Stage 3 技術値候補の扱い
+
+測定値は根拠付き候補であり未承認。L2にない新しい機能、owner、承認gateは追加しない。性能閾値が今回の意味判定に不要な場合は無理に数値を置かず、必要になった候補値は比較案・分母・計測方法とともに通常のL3草稿へ示す。
+
+| 候補ID | 親L2 | 候補値／比較理由 | 測定案 | 判定材料／限界 |
+|---|---|---|---|---|
+| `NFR-INTELLIGENCE-011-01` | `HELIXINTELLIGENCE-L2-011` | 同一corpus/scopeでのfalse-positive/miss差、再現率、latency/costの提示単位を候補比較する。 | 同一fixed parent/scopeのsynthetic inputを反復し、候補測定を記録する。 | 閾値が未決でも機能ACの意味は検証する。候補値は未承認であり、適用条件/分母/計測再現性が不足する測定はunknown。 |
+| `NFR-INTELLIGENCE-015-01` | `HELIXINTELLIGENCE-L2-015` | fixed L2は複数episodeを要求するが数値閾値を指定しない。技術比較候補は「独立した2 episode（複数の最小解釈）」と「独立した3 episode（偶発反復を減らす比較案）」の二案。旧BBG/BBR sourceにこの頻度閾値を正本化した根拠はないため自動継承しない。 | 同じfailure patternを1/2/3独立episode、同一episode重複、別scope混在で比較し、各案の再現可能性・false-positive・missを同一scopeの実fixtureで計測する。 | `2`/`3`は未承認候補。採否せず、L3/L10レビュー用の比較値として示す。候補分母やepisode independenceを再現できなければunknown。 |
+| `NFR-INTELLIGENCE-016-01` | `HELIXINTELLIGENCE-L2-016` | budgetは親入力値を境界に用い、候補時間/書込件数は実対象サイズで計測し、固定値を新設しない。 | 同一fixed parent/scopeのsynthetic inputを反復し、候補測定を記録する。 | 閾値が未決でも機能ACの意味は検証する。候補値は未承認であり、適用条件/分母/計測再現性が不足する測定はunknown。 |
+| `NFR-INTELLIGENCE-067-01` | `HELIXINTELLIGENCE-L2-067` | 追加NFR閾値なし。既存L2-010 proposal field completenessをfunctional oracleで確認する。 | 同一fixed parent/scopeのsynthetic inputを反復し、候補測定を記録する。 | 閾値が未決でも機能ACの意味は検証する。候補値は未承認であり、適用条件/分母/計測再現性が不足する測定はunknown。 |
+| `NFR-INTELLIGENCE-072-01` | `HELIXINTELLIGENCE-L2-072` | pack size/performance閾値は本親から導かれないため追加しない。version/scope consistencyはAC-072-03で観測する。 | 同一fixed parent/scopeのsynthetic inputを反復し、候補測定を記録する。 | 閾値が未決でも機能ACの意味は検証する。候補値は未承認であり、適用条件/分母/計測再現性が不足する測定はunknown。 |
+| `NFR-INTELLIGENCE-078-01` | `HELIXINTELLIGENCE-L2-078` | delta scale thresholdは追加しない。same input replay equalityとbounded invalidation countを親scopeで測る。 | 同一fixed parent/scopeのsynthetic inputを反復し、候補測定を記録する。 | 閾値が未決でも機能ACの意味は検証する。候補値は未承認であり、適用条件/分母/計測再現性が不足する測定はunknown。 |
 
 ## 親・旧source crosswalk（item単位）
 

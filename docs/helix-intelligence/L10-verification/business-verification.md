@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 adopted explicit items only
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -14,6 +14,35 @@ execution_status: designed_only_not_executed
 | `HELIXINTELLIGENCE-L2-066` の業務基準 | business L3に独立criterionなしと記録し、機能ACだけが別L10で対応していること。 |
 | `HELIXINTELLIGENCE-L2-068` の業務基準 | business L3に独立criterionなしと記録し、機能ACを別L10で扱うこと。 |
 | `HELIXINTELLIGENCE-L2-075` の業務基準 | business L3に独立criterionなしと記録し、資格判定・severity・owner routeをbusiness acceptanceへ読み替えないこと。 |
+
+## Stage 3 適用範囲の照合
+
+独立business oracleを追加せず、L3機能ACと固定L2 owner境界の追跡可能性だけを確認する。
+
+| case ID | 親L2 | L3 AC参照 | 入力／照合 | 合格oracle | 失敗／未評価 |
+|---|---|---|---|---|---|
+| `CASE-INTELLIGENCE-L10-BIZ-001-01` | `HELIXINTELLIGENCE-L2-001` | `AC-INTELLIGENCE-L3-001-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-002-01` | `HELIXINTELLIGENCE-L2-002` | `AC-INTELLIGENCE-L3-002-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-003-01` | `HELIXINTELLIGENCE-L2-003` | `AC-INTELLIGENCE-L3-003-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-004-01` | `HELIXINTELLIGENCE-L2-004` | `AC-INTELLIGENCE-L3-004-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-005-01` | `HELIXINTELLIGENCE-L2-005` | `AC-INTELLIGENCE-L3-005-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-006-01` | `HELIXINTELLIGENCE-L2-006` | `AC-INTELLIGENCE-L3-006-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-007-01` | `HELIXINTELLIGENCE-L2-007` | `AC-INTELLIGENCE-L3-007-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-008-01` | `HELIXINTELLIGENCE-L2-008` | `AC-INTELLIGENCE-L3-008-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-009-01` | `HELIXINTELLIGENCE-L2-009` | `AC-INTELLIGENCE-L3-009-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-011-01` | `HELIXINTELLIGENCE-L2-011` | `AC-INTELLIGENCE-L3-011-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-012-01` | `HELIXINTELLIGENCE-L2-012` | `AC-INTELLIGENCE-L3-012-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-013-01` | `HELIXINTELLIGENCE-L2-013` | `AC-INTELLIGENCE-L3-013-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-014-01` | `HELIXINTELLIGENCE-L2-014` | `AC-INTELLIGENCE-L3-014-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-015-01` | `HELIXINTELLIGENCE-L2-015` | `AC-INTELLIGENCE-L3-015-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-016-01` | `HELIXINTELLIGENCE-L2-016` | `AC-INTELLIGENCE-L3-016-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-018-01` | `HELIXINTELLIGENCE-L2-018` | `AC-INTELLIGENCE-L3-018-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-019-01` | `HELIXINTELLIGENCE-L2-019` | `AC-INTELLIGENCE-L3-019-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-020-01` | `HELIXINTELLIGENCE-L2-020` | `AC-INTELLIGENCE-L3-020-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-067-01` | `HELIXINTELLIGENCE-L2-067` | `AC-INTELLIGENCE-L3-067-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-072-01` | `HELIXINTELLIGENCE-L2-072` | `AC-INTELLIGENCE-L3-072-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-073-01` | `HELIXINTELLIGENCE-L2-073` | `AC-INTELLIGENCE-L3-073-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
+| `CASE-INTELLIGENCE-L10-BIZ-078-01` | `HELIXINTELLIGENCE-L2-078` | `AC-INTELLIGENCE-L3-078-01` | 対象の責務ownerとL3機能fixtureを照合する。 | 機能判定は機能ACで評価し、業務承認は未生成。 | owner/利用者判断をINTELLIGENCEの機能結果から推定したら不合格。独立business基準が上流にない範囲は追加評価しない。 |
 
 ## 親・旧source crosswalk（item単位）
 

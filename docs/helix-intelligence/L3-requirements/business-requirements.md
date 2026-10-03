@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 adopted explicit items only
 paired_l10: ../L10-verification/business-verification.md
 
 対象親から独立した業務価値基準、事業ownerまたは業務閾値を追加導出しない。これは機構全体に業務要件がないという主張ではなく、この部分scopeの限定である。業務意味は固定L2/L1のownerへ残し、機能条件を業務受入へ読み替えない。
@@ -13,6 +13,35 @@ paired_l10: ../L10-verification/business-verification.md
 | `HELIXINTELLIGENCE-L2-066` | 独立business criterionを導出しない。機能ACを参照する。 | L2のowner・業務判断・利用者acceptanceを置換しない。 |
 | `HELIXINTELLIGENCE-L2-068` | 独立business criterionを導出しない。機能ACを参照する。 | L2のowner・業務判断・利用者acceptanceを置換しない。 |
 | `HELIXINTELLIGENCE-L2-075` | 独立business criterionを導出しない。機能ACを参照する。 | adoptionを超えるbusiness promiseやUIL qualificationを作らない。 |
+
+## Stage 3 適用範囲
+
+固定L2に独立の事業受入基準がなく、機能責務をbusiness acceptanceへ言い換えない。各行は機能ACへの参照であり、事業owner/利用者の判断を代替しない。
+
+| 親L2 | 扱い | 境界 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-001` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-001-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-002` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-002-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-003` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-003-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-004` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-004-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-005` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-005-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-006` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-006-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-007` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-007-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-008` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-008-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-009` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-009-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-011` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-011-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-012` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-012-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-013` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-013-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-014` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-014-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-015` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-015-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-016` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-016-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-018` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-018-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-019` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-019-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-020` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-020-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-067` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-067-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-072` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-072-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-073` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-073-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
+| `HELIXINTELLIGENCE-L2-078` | 独立business criterionを追加導出しない。機能条件は `FR-INTELLIGENCE-L3-078-01` のACを参照する。 | owner・利用者acceptance・業務判断をINTELLIGENCE側で代替しない。 |
 
 ## 親・旧source crosswalk（item単位）
 

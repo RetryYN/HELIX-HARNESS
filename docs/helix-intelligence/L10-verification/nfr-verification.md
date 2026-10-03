@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 / adopted version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -17,6 +17,19 @@ NFR候補の測定設計であり、L3機能ACの正本は[機能要件](../L3-r
 | `CASE-INTELLIGENCE-L10-NFR-068-01` | `NFR-INTELLIGENCE-068-01` | 選択したsource/oracleについてidentity、revision、scope、provenance、許可、適用性を全て含むfixtureと各単独欠落/不適用/stale版を比較する。 | 適格sourceだけcandidateへ入り、必要source失敗は不足返却となる。欠落数と誤利用数を記録する。 | 未選択sourceの不存在を失敗にしない。候補は未承認で、適用scope外は未評価。 |
 | `CASE-INTELLIGENCE-L10-NFR-075-01` | `NFR-INTELLIGENCE-075-01` | proposal全fieldのpresence・identity link・digestをpositive fixtureと各1 field欠落/誤結合fixtureで測定する。 | 必須field coverage 100%（候補値）、誤結合0件を照合する。 | fixture/authority digestを再現できない場合は未評価、承認値としない。 |
 | `CASE-INTELLIGENCE-L10-NFR-075-02` | `NFR-INTELLIGENCE-075-02` | 6 identity要素の個別mutation、AI self-qualification、duplicate/expiry unresolvedを投入する。 | 誤verified/qualified 0件と個別reasonの保持を測る。 | 評価できない要素はunknown/incompleteに留める。 |
+
+## Stage 3 技術候補の測定設計
+
+以下は根拠付き比較・計測候補で、承認済みthresholdではない。
+
+| case ID | NFR候補 | 入力／比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-INTELLIGENCE-L10-NFR-011-01` | `NFR-INTELLIGENCE-011-01` | 同一corpus/scopeでのfalse-positive/miss差、再現率、latency/costの提示単位を候補比較する。 | 同一fixed parent/scopeのsynthetic fixtureで分母と再現可能な測定条件を記録する。 | sample/scope不足または再現不能ならunknown。threshold未承認を合否へ昇格しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-015-01` | `NFR-INTELLIGENCE-015-01` | 同じfailure patternの独立1/2/3 episode、同一episodeの重複再送、別scopeの類似failureを対照入力にする。 | fixed L2の「単発では恒久Botにしない」を全案で守り、2 episode案と3 episode案の再現可能性/false-positive/missを同一scopeで比較する。 | 2/3は未承認候補で、いずれも自動採択しない。独立episodeと分母を識別できない場合はunknown。 |
+| `CASE-INTELLIGENCE-L10-NFR-016-01` | `NFR-INTELLIGENCE-016-01` | budgetは親入力値を境界に用い、候補時間/書込件数は実対象サイズで計測し、固定値を新設しない。 | 同一fixed parent/scopeのsynthetic fixtureで分母と再現可能な測定条件を記録する。 | sample/scope不足または再現不能ならunknown。threshold未承認を合否へ昇格しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-067-01` | `NFR-INTELLIGENCE-067-01` | 追加NFR閾値なし。既存L2-010 proposal field completenessをfunctional oracleで確認する。 | 同一fixed parent/scopeのsynthetic fixtureで分母と再現可能な測定条件を記録する。 | sample/scope不足または再現不能ならunknown。threshold未承認を合否へ昇格しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-072-01` | `NFR-INTELLIGENCE-072-01` | pack size/performance閾値は本親から導かれないため追加しない。version/scope consistencyはAC-072-03で観測する。 | 同一fixed parent/scopeのsynthetic fixtureで分母と再現可能な測定条件を記録する。 | sample/scope不足または再現不能ならunknown。threshold未承認を合否へ昇格しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-078-01` | `NFR-INTELLIGENCE-078-01` | delta scale thresholdは追加しない。same input replay equalityとbounded invalidation countを親scopeで測る。 | 同一fixed parent/scopeのsynthetic fixtureで分母と再現可能な測定条件を記録する。 | sample/scope不足または再現不能ならunknown。threshold未承認を合否へ昇格しない。 |
 
 ## 親・旧source crosswalk（item単位）
 
