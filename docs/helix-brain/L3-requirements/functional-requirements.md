@@ -1702,7 +1702,7 @@ Design Registryのtyped identity/edge/trace closureとtest-designのorphan/bidir
 
 ### 要件候補
 
-Visual Design HARNESSからの汎用知識の提供は、その既存受領contractに従って独立して成立する。利用・評価結果をBRAINへ戻す場合や知識を昇格する場合だけLABO評価経路を通し、未評価結果は未評価candidateまたは昇格停止として保持する。汎用Visual Design/UX Pattern/Unit/Part、適用条件、反例、required inputを候補として扱う。製品固有Visual Identity/screen/flow/tokenは製品Coreが所有する。
+BRAINからVisual Design HARNESSへの汎用知識の提供は、Visual Design HARNESSの既存受領contractに従って独立して成立する。利用・評価結果をBRAINへ戻す場合や知識を昇格する場合だけLABO評価経路を通し、未評価結果は未評価candidateまたは昇格停止として保持する。汎用Visual Design/UX Pattern/Unit/Part、適用条件、反例、required inputを候補として扱う。製品固有Visual Identity/screen/flow/tokenは製品Coreが所有する。
 
 ### 受入条件（AC候補）
 
