@@ -24,14 +24,40 @@
 
 | 親L2 | 測定候補・比較 | 根拠／測定方法 | 適用限界 |
 |---|---|---|---|
-| `HELIXLABO-L2-002` | episode edge provenance coverage 100%候補、time/path-only causal claim 0 | 親がsource/revisionに結ぶepisode、時間だけでは因果断定しないと明記。relationごとsource参照を検査し、近接無関係mutationを投入。 | causal thresholdやtime windowは親未指定。決めずにsource evidence中心で測る。 |
-| `HELIXLABO-L2-003` | 親列挙8分類の区別率100%候補、unknown/contradiction消失0 | 8分類を有限fixtureに個別投入し、分類fieldと根拠の分離を照合。 | 分類頻度/重みは未指定で候補値を設けない。 |
+| `HELIXLABO-L2-002` | episode edge provenance coverage 100%候補、time/path-only causal claim 0 | 親がsource/revisionに結ぶepisode、時間だけでは因果断定しないと明記。relationごとsource参照を検査し、近接無関係mutationを投入。 | 現候補はsource relation evidenceとtime/path-only counterexampleで測る。数値windowが必要な別の評価では比較案/測定方法付きcandidateを提示する。 |
+| `HELIXLABO-L2-003` | 親列挙9分類の区別率100%候補、unknown/contradiction消失0 | 9分類を有限fixtureに個別投入し、分類fieldと根拠の分離を照合。 | 頻度/重みの性能値はこの機能ACに不要。別の評価判断で必要な場合はscope別に根拠・比較・測定付き候補として出す。 |
 | `HELIXLABO-L2-004` | purpose/structure/behavior/assumption/constraint/guarantee/cost 7-field coverage 100%候補 | 親の列挙要素を一つずつmissing変異にして候補を停止/unknownへ戻せるか測る。 | 各方式の意味スコア/類似度閾値は未指定。 |
 | `HELIXLABO-L2-005` | action候補が許可語彙内、意味差/適用条件/owner trace completeness 100%候補 | 親列挙12 actionから各候補を作り、維持/変更fieldとsourceを再構成する。 | 各actionの優先順位/採択率は親未指定。 |
-| `HELIXLABO-L2-006` | 条件/assignment/oracle/source result coverage、cost欠測の非零扱い誤り0候補 | baseline/current/candidate/hybridで同一条件fixtureと個別欠落・中断を測定。 | 実験回数・統計的power・時間/cost SLAは未指定。比較候補は同一条件の1回以上と複数反復案（3/5回等）を並べ、分散/再現性・費用から測定設計で選ぶ。 |
-| `HELIXLABO-L2-007` | systemization候補について再現性、oracle、side effect、retry/rollback/idempotenceの5条件全件記録 | 条件別mutationで不成立の不足条件を特定。候補値として同一条件3反復を比較開始案、2回/5回案を安定性と費用で比較できる。 | 反復数は固定合否閾値でなく、親が必要とする比較可能性の測定候補。 |
+| `HELIXLABO-L2-006` | 条件/assignment/oracle/source result coverage、cost欠測を0扱いする誤り0候補 | baseline/current/candidate/hybridで同一条件fixtureと個別欠落・中断を測定。 | 実験回数・統計的power・時間/cost SLAは未指定。比較候補は同一条件の1回以上と複数反復案（3/5回等）を並べ、分散/再現性・費用から測定設計で選ぶ。 |
+| `HELIXLABO-L2-007` | systemization候補について5条件群（再現性; machine決定可能性とoracle; 副作用範囲; retry/rollback/idempotenceを一群）の全件記録 | 条件別mutationで不成立の不足条件を特定。候補値として同一条件3反復を比較開始案、2回/5回案を安定性と費用で比較できる。 | 反復数は固定合否閾値でなく、親が必要とする比較可能性の測定候補。 |
 | `HELIXLABO-L2-008` | rule/versionからexception・FP・avoidance・cost・return condition・ownerへのtrace completeness 100%候補 | 各項目欠落を独立mutateしunknown/return状態を確認。 | 自動切替率や障害時間閾値を追加しない。 |
 | `HELIXLABO-L2-009` | 単一episodeの上位一般化0候補。repeated episodes案は独立3例を初期比較候補、2/5例と条件多様性を比較 | 親は一事例から一般化しないと明記。独立例数を2/3/5で比較し、範囲安定性・反例発見率・偽一般化・追加観測費用を測る。 | 3例はAI候補でありPO承認済値や固定閾値ではない。sample独立性/適用scope別に検証する。 |
 | `HELIXLABO-L2-010` | feedback 16 required fields coverage 100%候補、未根拠field補完0 | 正常fixtureで16/16とtarget-specificityを照合し、各field欠落mutationで差戻しを観察。 | confidenceの尺度/閾値と候補採択率は親未指定。 |
 
 候補数値は通常の対L10測定設計へまとめる。POへparameterごとに確認せず、数値がL2意味・scope・owner・versionを変える必要があると判明した場合だけL2へ戻す。
+
+
+| 親L2 | 候補値・比較 | 根拠と測定 | 適用限界 |
+|---|---|---|---|
+| `HELIXLABO-L2-012` | relation revision/unknown保持100%候補 | relation・episode revisionを個別に欠落/不一致化 | 訂正sourceへ戻す。不一致を分類成功へ昇格しない |
+| `HELIXLABO-L2-013` | 分類軸/根拠のtrace completeness 100%候補 | 根拠field欠落・分類矛盾 mutation | Vector inputからsource evidenceへ往復 |
+| `HELIXLABO-L2-014` | original meaning/purpose/conditionとcandidate delta 100% trace候補 | 元意味不明・partial evidence mutation | 不明時停止、ownerへbackflow |
+| `HELIXLABO-L2-015` | baseline/current/candidate/hybridのversion/condition/oracle一致100%候補 | 比較armの各条件を個別にずらす | 比較成立/不成立を区別 |
+| `HELIXLABO-L2-016` | comparison/counterexample/oracle/interruption status全件保持候補 | oracle不一致・counterexample・中断を独立投入 | 判定不能をoperation候補に保留 |
+| `HELIXLABO-L2-017` | current guarantee/revision/unfinished obligations/owner trace 100%候補 | current versionまたはownerを欠落 | switch実行0、owner returnを記録 |
+| `HELIXLABO-L2-018` | supported scope/evidence/counterexample coverage 100%候補 | sample condition欠落・反例追加 | evidence以上のscope拡張0 |
+| `HELIXLABO-L2-019` | target-specific proposal/evidence/identity一致100%候補 | target identity欠落/target混合 | 不明targetはOSへrouting候補として返す |
+| `HELIXLABO-L2-020` | fallback後のold/new rule revision、unfinished obligation、result provenance 100%候補 | 各fieldを個別欠落/古くする | source owner return、success observation偽装0 |
+| `HELIXLABO-L2-021` | permitted HARNESS observationのsource/revision/authority/scope一致100%候補 | connector/scope/revision欠落・unauthorized | HARNESS authority保持、無許可取込0 |
+| `HELIXLABO-L2-022` | OS event ID/revision/status/unfinished-state一致100%候補 | stale/missing ticket/assignment/receipt | complete/unknown混同0 |
+| `HELIXLABO-L2-023` | BRAIN source revision/usage result trace 100%候補 | identity/permission欠落とwriteback mutation | canonical knowledge writeback 0 |
+| `HELIXLABO-L2-024` | observed fact vs judgment/source version分離100%候補 | historical/stale result current化 mutation | current authority生成0 |
+| `HELIXLABO-L2-025` | selected SECURITY data-use scope coverage 100%候補、restricted payload transfer 0 | scope欠落/restricted field/stale rev | intake拒否、security ownerへ戻す |
+| `HELIXLABO-L2-026` | resource/environment source-version coverage 100%候補 | stale/unknown resource state | current healthyへのcoercion 0 |
+| `HELIXLABO-L2-027` | connection source/schema/trace concordance 100%候補 | schema drift/trace mismatch | unknown/holdが正しく露出 |
+| `HELIXLABO-L2-028` | assignment/task class/Worker result source trace 100%候補 | assignment欠落・status unknown | observed→evaluated誤昇格0 |
+| `HELIXLABO-L2-029` | target revision/test scope/CI status coverage 100%候補 | not-run/stale/interrupted/scope missing | pass誤表記0 |
+| `HELIXLABO-L2-030` | product/source identity/version/scope分離100%候補 | different source merge、unselected product required化 | cross-identity merge0 |
+| `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/unknown scope fixture | 1.0内部evidenceと2.0外部loopの混入0 |
+| `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
+| `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage 100%候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionの有限条件行列 | 選択sourceだけclosureを要求。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |

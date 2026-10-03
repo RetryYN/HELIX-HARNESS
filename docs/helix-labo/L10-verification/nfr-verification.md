@@ -20,13 +20,39 @@
 | 親L2 | 測定case | 入力／変異 | 判定oracle |
 |---|---|---|---|
 | `HELIXLABO-L2-002` | edge provenance / false causality | C01/C02のrelation有無・time/path-only対照 | edgeのsource/revision追跡率、因果誤断定0 |
-| `HELIXLABO-L2-003` | category separation | 親8分類を一つずつ除外/矛盾化 | 分類別field保持、unknown消失0 |
+| `HELIXLABO-L2-003` | category separation | 親9分類を一つずつ除外/矛盾化 | 分類別field保持、unknown消失0 |
 | `HELIXLABO-L2-004` | comparison field fidelity | 7-fieldの各欠落と意味矛盾mutation | field別coverageと停止/unknown処置 |
 | `HELIXLABO-L2-005` | transformation candidate trace | 12 action語彙と保持/変更意味を比較 | 許可action外0、owner/条件/meaning trace欠落0 |
 | `HELIXLABO-L2-006` | experiment comparability | assignment/oracle/revision/cost/interruptionを個別・組合せ欠落 | 比較可能/不能が正しく分離し、missing costを0にしない |
-| `HELIXLABO-L2-007` | assurance condition matrix | 再現条件/oracle/side effect/retry/rollback/idempotenceの全mutation | 5条件の各判定根拠、欠落時systemization 0; 2/3/5反復案の安定性と費用を報告 |
+| `HELIXLABO-L2-007` | assurance condition matrix | 再現条件/oracle/side effect/retry/rollback/idempotenceの全mutation | 5条件群（再現性、machine判定+oracle、副作用、retry/rollback/idempotence）の各判定根拠、欠落時systemization 0; 2/3/5反復案の安定性と費用を報告 |
 | `HELIXLABO-L2-008` | operational return trace | rule/version/exception/FP/avoidance/cost/ownerを個別欠落 | 欠落を特定し戻し候補を保持、実行切替0 |
 | `HELIXLABO-L2-009` | scope generalization | 1例、2/3/5独立例、cross-project/product、counterexample各fixture | 単一例上位scope0、例数別のscope安定性/偽一般化/費用を比較 |
 | `HELIXLABO-L2-010` | feedback completeness | 16 fieldを個別欠落・targetを混在 | 16/16 coverage、未根拠補完0、target別分離 |
 
 3反復および3独立episodeは測定開始の候補比較点であって固定pass閾値ではない。測定はoracle一致、scope安定性、反例検出、追加観測費用を同時記録する。
+
+
+| 親L2 | 測定case | 入力／変異 | 判定oracle |
+|---|---|---|---|
+| `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務の個別欠落/不一致 | provenanceとunknown保持、owner returnの観測 |
+| `HELIXLABO-L2-013` | C01/C02〜04 | 分類軸、根拠、元episodeの個別欠落/矛盾 | 分類軸別trace、根拠欠落の検出 |
+| `HELIXLABO-L2-014` | C01/C02〜04 | original meaning/purpose/condition、candidate deltaの欠落/不整合 | original-to-candidateの意味差trace、unknown停止 |
+| `HELIXLABO-L2-015` | C01/C02〜04 | baseline/current/candidate/hybridのversion/condition/oracleを個別にずらす | 比較arm間の条件一致と不成立理由 |
+| `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落 | 各証拠状態の保持、判定不能のoperation return |
+| `HELIXLABO-L2-017` | C01/C02〜04 | guarantee/revision/unfinished obligation/ownerを個別に欠落 | switch 0、欠落理由とowner return |
+| `HELIXLABO-L2-018` | C01/C02〜04 | sample condition/evidence scope/counterexampleを欠落または追加 | supportされた最大scope、反例によるscope縮小 |
+| `HELIXLABO-L2-019` | C01/C02〜04 | target identity/evidence/target permissionを欠落・混在 | target別提案、unknown targetをOSへ返す |
+| `HELIXLABO-L2-020` | C01/C02〜04 | old/new rule version, result, unfinished obligation, owner | revision/provenance complete、source ownerへの戻し |
+| `HELIXLABO-L2-021` | C01/C02〜04 | HARNESS source/revision/authority/scope/permissionを個別に欠落・範囲外化 | source attribution、unauthorized intake 0、authority writeback 0 |
+| `HELIXLABO-L2-022` | C01/C02〜04 | OS event/ticket/assignment/revision/status/unfinished stateを欠落・stale化 | canonical OS identity保持、staleをcurrent扱いしない |
+| `HELIXLABO-L2-023` | C01/C02〜04 | BRAIN source revision/usage result/permissionを欠落、writebackを要求 | source追跡、canonical knowledge writeback 0 |
+| `HELIXLABO-L2-024` | C01/C02〜04 | observed fact/judgment/source versionを欠落・混同 | factとjudgmentの区分、旧判断をcurrent authorityにしない |
+| `HELIXLABO-L2-025` | C01/C02〜04 | SECURITY data-use scope/permission/source revisionとrestricted fieldを個別操作 | unauthorized/restricted intake 0、SECURITYへreturn |
+| `HELIXLABO-L2-026` | C01/C02〜04 | INFRA resource/environment source versionをstale/unknown化 | stale/unknownをhealthyへ変換しない |
+| `HELIXLABO-L2-027` | C01/C02〜04 | CONNECT source/schema/revision/traceを個別にdriftさせる | mismatch/unknownを可視化しconnection ownerへ返す |
+| `HELIXLABO-L2-028` | C01/C02〜04 | Worker assignment/task class/result source/statusを欠落・未評価化 | observedをevaluatedへ昇格0、assignment owner return |
+| `HELIXLABO-L2-029` | C01/C02〜04 | CI target revision/test scope/statusを欠落、stale/not-run/interrupted化 | 未実行/古い結果のpass表記0 |
+| `HELIXLABO-L2-030` | C01/C02〜04 | Product Core source identity/version/scopeを混在、unselected sourceを必須化 | identity merge 0、unselected sourceはoptional |
+| `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/unknown; 2.0 external input | internal evidence scope、1.0/2.0 boundary |
+| `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed field omission; learning/tuning request | packet trace complete、unassessed retained、3.0+ execution 0 |
+| `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0 | selected-only dependency closure、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
