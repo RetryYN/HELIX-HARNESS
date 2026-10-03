@@ -63,3 +63,9 @@ L3は旧HELIXの3区分を起点に、現行の対象と承認済みL2要求へ�
 旧HELIX資産のIDとsource digestは[資産明細台帳](legacy-asset-disposition.jsonl)にも登録されている。9/26の[docs/governance配置判断](decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md)（`HDEC-GOVERNANCE-LEGACY-MIGRATION-LAYOUT-2026-09-26`、本文SHA-256 `f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376`、§「AIの問いとPOの選択」）は、現行規則と時点の記録を分けること、path変更時に参照を追従させることの前例として参照する。この判断記録自体は書き換えず、本書は現在の規則として同じファイルを更新する。
 
 現行の責務再導出は、2026-09-28の対象別L1確定・L2/L11合意とその正確な対象revisionに従う。責務の根拠として、[HARNESS L2](../helix-harness/L2-requirements/product-requirements.md#提供プロダクトharnessの利用要求)の§「提供プロダクトHARNESSの利用要求」およびHARNESS-L2-001〜005、[LABO L2](../helix-labo/L2-requirements/labo-requirements.md)の冒頭とHELIXLABO-L2-006〜010、[OS L2](../helix-os/L2-requirements/governance-requirements.md)の冒頭・HELIXOS-L2-005・HELIXOS-L2-010を読む。これらはHARNESSの工程契約、LABOの評価・改善提案、OSの登録・統制という境界を示し、旧business-detailの配置だけからownerを決めない。
+
+## L3-D0の整理範囲と締め
+
+2026-10-04更新の作成レーンゴール（`scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`、全文SHA-256 `3561eb221023220ccd6dda9ace008882851eac343ca76611742b07b2e30703e5`）に従い、D0は#2559の研究束集約と現行参照訂正、governanceの現在／時点分割、本書のL3／L10配置決定で閉じる。これ以外の配置変更をD0へ追加しない。閉じた後の構造変更は、L3起草または参照維持に具体的な支障が生じた場合に限り、その支障を記録して行う。
+
+要求段階終了時の物理714行、参照訂正後の1,075行（#2559訂正追記後は1,076行）、要求候補384件の区別は[要求段階の現在状況](requirements-stage-closure.md#台帳行数と要求候補数の読み分け)に置く。時点の終了資料を現在の履歴行数で上書きしない。
