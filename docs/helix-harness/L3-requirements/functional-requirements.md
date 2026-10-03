@@ -427,7 +427,7 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 - AC-HARNESS-L3-026-02: CORE契約欠落、選択Pattern欠落、stale revision、要求未対応を一つずつ変異する。必須欠落はhold、未選択Patternは未適用、要求未対応はuncoveredとして区別し、代替要求を追加しない。
 - AC-HARNESS-L3-026-03: 相互に競合する選択Patternを与え、競合箇所・影響する要求・両代替とsourceを列挙する。勝手な優先順位、採否、承認を出さない。
 
-旧asset 5CBA32E9DB5B0FE05589（旧Design Registry L3、行範囲とfull SHAは下記source map）、D11F51092619506417E4（multimodal authority）はartifact/契約traceの形式を部分再利用する。旧設計意味、旧Pattern選択規則、旧runtimeは再利用しない。旧pillar形式EE5DBACC7F28F7D1F605はFR→AC対応の形式参照。
+旧Design Registryと旧pillar L3のartifact/requirement trace形式を部分再利用する。sourceの完全なpath・行・hashと再利用範囲は下記source mapに記す。旧設計意味、旧Pattern選択規則、旧runtimeは再利用しない。
 
 ### FR-HARNESS-L3-027 — 静的source observation（親 HARNESS-L2-027）
 
@@ -486,6 +486,7 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 |---|---|---|---|---|---|
 | HARNESS-L2-026 | LEGACY-ASSET-5CBA32E9DB5B0FE05589 | archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80 | 4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae | 82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6 | requirements catalog→screen traceのsource identity/version trace形式を部分再利用。旧registry family、parser、lifecycle、承認済み判断は移植しない。 |
 | HARNESS-L2-026 | LEGACY-ASSET-EE5DBACC7F28F7D1F605 | archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:134–197 | 7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544 | 747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0 | 要求/成果relationとFR→AC閉包の形式を部分再利用。現行設計artifact・CORE/PATTERN責務は固定HARNESS-L2-026から再導出。 |
+| HARNESS-L2-026 | LEGACY-ASSET-D11F51092619506417E4 | archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md:56–69 | baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2 | 6e641fd453f9e2d8556f2a73017d6f82f2cfe1423ba14cb0ad835655bcb5bd1b | design artifact/authorityの隣接類例として部分再利用。旧authority意味・実行契約は移植しない。 |
 | HARNESS-L2-027 | LEGACY-ASSET-1E45495250B6F9793189 | archive/legacy-generation-2026-09-14/root/docs/research/mcp-external-verification-profile-research-2026-06-09.md:28–36 | 08801af5be5429204827c0ce2e0adcacaee74bf5fa72b07a9d1c403c16dc330b | 81dde9dea84226a83b9c557ab7e97eff5905dc70c8301f3ae7d8750f1af4c7fb | 外部verification profile情報のsource/identity要素を隣接類例として部分参照。旧probe安全性・実行可能性・permissionを継承しない。 |
 | HARNESS-L2-027 | LEGACY-ASSET-DC0AE3267D63F3525BAE | archive/legacy-generation-2026-09-14/root/docs/governance/hybrid-engine-requirements-extraction-gap-audit-2026-07-19.md:14–14 | 345928addace631d97f902b391fe6656581c1ff2caea1f94587149e008a98e70 | e7058b243f55074b242dcdcd0c847a353cf890dac5554cf08dfa9bc2ce25dff4 | 旧検索時点のMCP profile L1/L3 hit 0という不在範囲の証拠。新要件の承認根拠にはせず、current static observationはL2から再導出。 |
 | HARNESS-L2-028 | LEGACY-ASSET-EE5DBACC7F28F7D1F605 | archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:198–307 | 7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544 | 7f3326adfef43b9fbcc3542cf2351058a87af78e7952875c7bc95f0343f985d5 | requirement/source trace形式とfailure backflowの類例を部分再利用。保存designとの現行exact set照合は固定親から再導出。 |
