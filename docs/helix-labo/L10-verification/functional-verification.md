@@ -1,6 +1,6 @@
 # HELIX-LABO L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061/063/064/065/066のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -1036,5 +1036,27 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | `CASE-LABO-L10-066-01` | `FR-LABO-L3-066` / `AC-LABO-L3-066-01` | Aと候補の事前同一eligible case set、scope/revision/oracle/protocol/cutoff、両群のcase receiptを与え、各群の2 countを算出する。 | 両群のmisrepair_count/Nとunresolved_count/Nを別々に、分子/分母とcase-oracle receipt付きで示し、059費用比較も保つ。 |
 | `CASE-LABO-L10-066-02` | `FR-LABO-L3-066` / `AC-LABO-L3-066-02` | A/候補のcase集合またはoracle条件を変える、結果後にN変更、重複/unknown除外、oracle receiptなし、分子のみ、成功/安価さで隠すmutationを独立に与える。 | 比較不能/未評価を返し、unknownを0・除外・成功として数えない。 |
 | `CASE-LABO-L10-066-03` | `FR-LABO-L3-066` / `AC-LABO-L3-066-03` | A identity/versionまたは初見caseのoracle applicabilityが不明なfixtureを与える。 | Aやthresholdを推測せず該当比較のみunknownとしてownerへ戻し、他scopeは継続可能にする。 |
+
+### HELIXLABO-L2-067/068/069/070/071 — 初回候補・Attempt・再発行・補助計測・資格oracle
+
+固定parentはmain `633bf12`。L2 full SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、L11 full SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`。個別raw spanはL3 crosswalkを参照する。旧test-designは未実行の設計資料で、現行runtime/結果証拠として実行しない。
+
+| L10 case | 対応FR / AC | Fixtureと操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-067-01` | `FR-LABO-L3-067` / `AC-LABO-L3-067-01` | 事前固定eligibility predicate/oracle revision、OS assignment Attempt A、eligible candidate Aの結果後にB/Cへ変更した順序付きdigest・event receiptを与える。同一Attempt内の修復と別Attempt Dを分け、065 first_pass/retry_countと068 Attempt identityを併記する。 | Aをfirst eligibleとして固定。B/CはAttempt Aの修復roundへ各々receiptどおり結び、Attempt Dと混ぜない。065/067/068の値は換算・上書きしない。 |
+| `CASE-LABO-L10-067-02` | `FR-LABO-L3-067` / `AC-LABO-L3-067-02` | 事後predicate選択、predicate/oracle版欠落、candidate digest欠落、順序不明、重複event、Attempt境界交差、final-only入力を一変異ずつ投入し、round event一件欠落の比較fixtureも与える。 | 該当first-eligible/round値のみunknown/未評価。missing eventを0 roundにせず、source/OS/task ownerへ不足を返す。 |
+| `CASE-LABO-L10-067-03` | `FR-LABO-L3-067` / `AC-LABO-L3-067-03` | 新task classまたはpredicate/oracle revisionで既存eligibility条件が適用できるか不明な正常未見fixtureを与える。 | 過去predicate/thresholdを継承せずunknownとする。他の既知scopeは評価を続けられる。 |
+| `CASE-LABO-L10-068-01` | `FR-LABO-L3-068` / `AC-LABO-L3-068-01` | 同じ選択scopeでOS receiptが完全と示すAttempt identity A/B/Cと、Aの重複delivery、各々異なる成功/失敗/中断statusを与える。 | distinct Attempt countは3、A重複は加算せずstatusを改変しない。 |
+| `CASE-LABO-L10-068-02` | `FR-LABO-L3-068` / `AC-LABO-L3-068-02` | Attempt identity欠落、scope外identity、実行前拒否、event gap、067 repair round、065 retry_countをそれぞれ独立変異する。 | identity不存在はAttemptに数えず、gap/完全性不明は総数unknown。067/065から数を推定しない。 |
+| `CASE-LABO-L10-068-03` | `FR-LABO-L3-068` / `AC-LABO-L3-068-03` | 遅延した訂正、assignment引継ぎ後にlineage不明、同じIDの重複と新Attemptを区別不能の3ケースを与える。 | 観測部分値を総数にしないでunknownとし、OS記録ownerへ各不足根拠を返す。 |
+| `CASE-LABO-L10-069-01` | `FR-LABO-L3-069` / `AC-LABO-L3-069-01` | 複数return reason classのticket cohort、事前に特定されたscope/revision/windowとsource-complete母数、元closure、後日findingとの根拠relation、再発行後の検証receiptを与える。 | reason別return count・該当分母と後続verification成立/不成立/未評価を分離し、元closureを保持。ticket/routing/priorityを変更しない。 |
+| `CASE-LABO-L10-069-02` | `FR-LABO-L3-069` / `AC-LABO-L3-069-02` | 時間近接だけ、same-pathだけ、scope/revision混在、母数欠落、source incomplete、観測window未満、未追跡、打切り、未実行、単純count reductionを各々投入する。 | 原因帰属やrate/quality closureを断定しない。母数等欠落はunknown/comparison unavailable、観測途中等は0 defectにしない。 |
+| `CASE-LABO-L10-069-03` | `FR-LABO-L3-069` / `AC-LABO-L3-069-03` | 初見reason class、oracle不足finding、再発行から元ticketへのrelation不在を含む未見正常 fixtureを与える。 | reason/source identityを保持しunknown classは未分類、因果relationを捏造しない。一般Ticket closeを長期window待ちにしない。 |
+| `CASE-LABO-L10-070-01` | `FR-LABO-L3-070` / `AC-LABO-L3-070-01` | 9 selected atomsについて同一scope/revision/windowに属するevent・oracle・time・cost receiptを与える。4 duration、escaped defect、rollback/Recovery、observer overhead、freshness、067/068 co-present fieldsを別々に参照する。 | 各適用fieldはsource receiptへtrace可能。4時間値は分離、escaped defectは既存owner oracleに限り、same receipt費用は一度、067/068は各grainを保つ。 |
+| `CASE-LABO-L10-070-02` | `FR-LABO-L3-070` / `AC-LABO-L3-070-02` | duration合算、start/end欠落、重複wait按分、欠測0、事後oracle/window、unconfirmed finding、rollback/overhead二重計上、推計、timestampなし、ageによる許可、roundをAttempt countへ加算、silent renameを個別変異する。 | 該当fieldをunknown/invalidにして成功scorecardへ混ぜない。既存metric/authorityを変更しない。 |
+| `CASE-LABO-L10-070-03` | `FR-LABO-L3-070` / `AC-LABO-L3-070-03` | selection scopeでは使わないsource/atomと、選択scope内のreceiptが一部未提供のcaseを対照する。 | unselectedをrequired dependencyにしない。selected内missingは理由付きunavailable/unknown、部分値をcomplete scorecardと称さない。 |
+| `CASE-LABO-L10-071-01` | `FR-LABO-L3-071` / `AC-LABO-L3-071-01` | task class/revision別の評価証拠と資格状態、および独立した称号・permission・assignment role fieldsを与える。 | qualificationは対象class/revisionと評価範囲に結び、他fieldを変更しない。 |
+| `CASE-LABO-L10-071-02` | `FR-LABO-L3-071` / `AC-LABO-L3-071-02` | major miss後も有効、model revision更新後の旧qualification/score/title継承、class/revision mismatch、title→permission、qualification→assignment、permission失効と資格失効の同一視を個別変異する。 | 該当qualificationだけを失効またはunknownとし、権限・assignmentを変更しない。 |
+| `CASE-LABO-L10-071-03` | `FR-LABO-L3-071` / `AC-LABO-L3-071-03` | 未知task class、新model revision、major-miss根拠なしの独立未見正常caseを与える。 | qualificationをunknown/未評価とし、class名・title・別revisionから補完しない。 |
 
 各fixtureの候補値は`../L3-requirements/nfr-grade.md`と同じ提案であり、L10 case自体は未実行。実装・runtime・実際のWorker起動を行わず、入力recordと期待stateを静的に照合する。

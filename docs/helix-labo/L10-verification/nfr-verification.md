@@ -70,7 +70,7 @@
 | `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptの全必須field一致100%候補、assignment/authority 0 | C01同scope受領、C02各field変異、C03 extrapolation/assignment、C04別unassessed class | 055/INTELLIGENCE/OS責務を分離し未評価状態を保持 |
 | `HELIXLABO-L2-052` | 選択targetの035/source/receipt identity・revision・scope・status・unassessed・owner relation coverage 100%候補、誤受領0 | summary/部分edge照合と全required tuple/owner別traceを比較し、C01正常受領、C02 schema/revision/scope/receipt独立欠落、C03 training/bot mutation、C04未見材料種別を測る | required relationを分母として出力fieldからcoverageとmissing/mismatch誤受領を算出。未選択sourceを分母/必須にせず、035 contract再定義0、training/model change/placementを1.0化しない |
 
-## Stage 5 — LABO-050/059/060/061/063/064/065/066 NFR case候補
+## Stage 5 — LABO-050/059/060/061/063/064/065/066/067/068/069/070/071 NFR case候補
 
 | case ID | NFR候補 | 入力・比較 | oracle／測定 |
 |---|---|---|---|
@@ -82,3 +82,8 @@
 | `CASE-LABO-L10-NFR-064-01` | `NFR-LABO-L3-064-01` | 選択pairでvisible source全体を走査し、name exposureとfixture/rubric/judge version/sample/retryの各単独driftを投入。 | name exposure 0、5条件一致100%候補。非選択通常historyを分母へ入れない。 |
 | `CASE-LABO-L10-NFR-065-01` | `NFR-LABO-L3-065-01` | 選択資格scopeの8軸、task scorecard 6 fields、receipt/definitionの各欠落を個別に変異する。 | 8/8軸と適用scorecard field定義/結果のtrace候補を確認。未選択scopeや適用外fieldを誤って必須化しない。 |
 | `CASE-LABO-L10-NFR-066-01` | `NFR-LABO-L3-066-01` | 両群のeligible case N、case oracle status、判定receiptを照合し、post-hoc denominator edit、unknown drop/zero、duplicate exclusionを変異する。 | selected case status/receipt 100%候補、分母改変0。両指標を分け、unknownで比較を未評価にする。 |
+| `CASE-LABO-L10-NFR-067-01` | `NFR-LABO-L3-067-01` | selected scopeのpredicate/oracle revision、first-eligible candidate、順序付きround eventとAttempt identityを完全入力し、predicate事後選択・event欠落・round越境を各々変異する。 | required tupleとevent trace一致100%候補。first-eligible上書き、missing-to-zero、Attempt越境誤分類0候補。未見scopeは分母外ではなくunknown適用状態で報告。 |
+| `CASE-LABO-L10-NFR-068-01` | `NFR-LABO-L3-068-01` | 完全性receipt付きOS Attempt identity集合とdistinct countを照合し、duplicate delivery、pre-execution refusal、scope外Attempt、event gapを個別に加える。 | 完全集合のidentity reconciliation 100%候補、重複計上0候補。event gap時に総数確定0。 |
+| `CASE-LABO-L10-NFR-069-01` | `NFR-LABO-L3-069-01` | reason class別return cohortの母数・window・source completeness・元finding relation・reissue verification receiptを照合し、window未満/未追跡/打切りとcount-only presentationを比較する。 | selected cohort denominator/receipt trace候補を確認。return trendとpost-reissue resultを分離し、censored defect=0、count reduction=quality proofの誤り0。 |
+| `CASE-LABO-L10-NFR-070-01` | `NFR-LABO-L3-070-01` | 9 selected atomの各fieldへ適用source/event/definition/scopeを結び、one-field missing、timestamp欠落、duplicate cost receipt、67/68 grain混同を別々に変異する。 | applicable field trace候補を算出し、重複費用・根拠なし推定・silent rename 0候補。unselected atomは分母へ含めない。 |
+| `CASE-LABO-L10-NFR-071-01` | `NFR-LABO-L3-071-01` | class/revision/evidence tupleの完全例と、major-miss、revision-change、title/permission/assignment各field mutationを比較する。 | selected record field trace候補、permission/assignment mutation 0候補。未確定rubricから合否thresholdを生成しない。 |

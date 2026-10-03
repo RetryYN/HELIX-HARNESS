@@ -79,7 +79,7 @@
 | `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
 | `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage 100%候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionの有限条件行列 | 選択sourceだけclosureを要求。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
 
-## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066 測定候補
+## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071 測定候補
 
 値はL3/L10対の測定候補でありPO決定済み閾値ではない。適用範囲は選択scopeと親契約の分母に限り、未選択のcohort/sourceや全通常履歴へ拡張しない。
 
@@ -93,5 +93,10 @@
 | `NFR-LABO-L3-064-01` / `HELIXLABO-L2-064` | 選択blind pairのcandidate-name exposure 0、fixture/rubric/judge version/sample/retryの5固定条件一致100%候補 | 名前欄だけ遮蔽する案と、judge-visible全資料＋record側identity mapping＋5条件のdigestを照合する案を比較し、後者でmetadata漏れと条件driftを個別に計測する。 | 比較未選択の通常historyは分母にしない。固定sample/retry値や適格性thresholdは作らない。 |
 | `NFR-LABO-L3-065-01` / `HELIXLABO-L2-065` | 選択資格scopeの8/8軸判定trace候補、および実task scorecardの6/6 field definition/result receipt coverage候補 | summary totalだけの案と、各軸・各fieldをscope/oracle/rubric/tool版/receiptへ結ぶ案を比較する。L10では8軸個別欠落、6 fieldsのunknown/適用外/初回とretry区別、費用receiptを測る。 | 通常Worker historyはqualification対象でない。diff/lintの未指定共通単位やfull-bench固定sample数を導入しない。 |
 | `NFR-LABO-L3-066-01` / `HELIXLABO-L2-066` | 選択比較のeligible case全件に対する両群oracle/status receipt trace 100%候補、unknown除外/0化による分母改変0 | raw success countと、事前固定Nにおける群別`misrepair_count/N`・`unresolved_count/N`を比較し、分子・分母・case証拠を追える後者を候補とする。 | 新しい許容misrepair率、試行数、Aの定義を設けない。oracle不能caseはunknown/比較不能にする。 |
+| `NFR-LABO-L3-067-01` / `HELIXLABO-L2-067` | 選択scopeのpredicate/oracle revision、candidate identity/digest、Attempt内変更event/result receiptの全trace候補。Attempt越境・round欠落の誤確定0候補 | 最終candidateだけからfirst-eligible/round数を推測する案と、事前predicate＋順序付き全eventを照合する案を比較し、後者を採る。L10でfirst eligible結果、round列、Attempt境界、欠落時unknownを測る。 | 頻度/成功率thresholdや新しいeligibility規則は置かない。 |
+| `NFR-LABO-L3-068-01` / `HELIXLABO-L2-068` | 完全性が確認された選択OS Attempt集合のdistinct identity数と集計一致100%候補、欠測を総数/0へ変換0 | retry_count等から算出する案とOS identityを一意化しcomplete receiptと照合する案を比較し、後者を候補とする。L10でduplicate、pre-execution refusal、scope外、event gapを別々に計測する。 | Attempt成功率やretry上限を追加せず、source completeness不明では総数を出さない。 |
+| `NFR-LABO-L3-069-01` / `HELIXLABO-L2-069` | reason/scope/revision/windowごとの母数・source completeness・return/reissue結果traceを全件照合する候補。未追跡/打切りを0 defect化0候補 | 総return件数だけの案、率だけの案、reason別count＋明示分母＋成立/不成立/未評価を並べる案を比較し、最後の案を候補にする。L10でwindow未満・欠測・単純count reductionと根拠relationの有無を測る。 | rate threshold、観測期間や因果効果を決めない。O2 request snapshotはtask input由来で、PO発言sourceではない。 |
+| `NFR-LABO-L3-070-01` / `HELIXLABO-L2-070` | 9 selected atomの各fieldをscope/revision/window/source event receiptへtraceする候補、double-count・silent rename・根拠なし推定0候補 | summary完了flag案とfield別definition/event/receipt照合案を比較し、後者は欠落fieldと重複を識別できるため候補にする。L10で4 duration・oracle済defect・rollback/overhead/freshness・067/068 co-present fieldを別々に測る。 | freshness期限、escaped defect window、overhead推計、旧12指標への対応規則は作らない。 |
+| `NFR-LABO-L3-071-01` / `HELIXLABO-L2-071` | class/model revision/評価根拠/qualification状態の同一scope trace候補、称号由来qualification・資格由来permission/assignment mutation 0候補 | qualification status単独を記録する案とclass/revision/evidence scope付きtupleを記録する案を比較し、後者でstale資格と誤ったidentity結合を識別できるため候補にする。L10でmajor miss、revision change、title/permission/assignmentの独立変異を測る。 | 数値threshold、class既定集合、失効後の再bench schedule/permission policyは固定しない。 |
 
 これらは提案値である。L3承認に個別parameter gateを追加しない。必要な測定値が固定親に指定されていない場合は、候補・比較理由・観測方法を同一のL3/L10 packageで示す。
