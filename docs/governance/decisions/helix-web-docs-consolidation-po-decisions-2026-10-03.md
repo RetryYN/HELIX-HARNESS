@@ -75,6 +75,4 @@ Bindingの`upstream[].path`はcurrent参照として移動先へ更新し、対�
 
 この判断に伴う移動は31ファイル、`helix-web/README.md`固有説明の`docs/README.md`への統合、および現行参照/pinの更新からなる。current reader/link、mutable frontmatter、Binding upstream path/SHA、current classification/phase locators、研究用current pinを照合する。旧pathを持つ固定履歴はcurrent pointerではないことを区別する。
 
-同一baseでの137個の静的validator実行結果は、変更前後を比較して実測値をここに記録する。追加failure diagnosticは0件を目標として変更前後の個別診断を比較する。新配置に関わるリンク切れとcurrent `helix-web/docs/`参照を検査し、L2意味・分類・authority・versionのfield不変を確認する。
-
-最新base `148c03326f83d027dbeff27ef79f95ab3aeb4692`取り込み後は、同baseのregister/binding更新を保持したうえで同じ検査を再実施し、その統合後の結果を追記する。
+base `148c03326f83d027dbeff27ef79f95ab3aeb4692`のregister/binding更新を保持し、137個の静的validatorの変更前後の実測、個別診断の差、新配置のcurrent参照、L2意味・分類・authority・versionの不変を照合した。結果は[移動検証監査](../audits/helix-web-docs-consolidation-validation-2026-10-03.md)と[同梱JSON](../audits/helix-web-docs-consolidation-validation-2026-10-03.json)に記録した。この判断記録へ後日の検証結果を追記しない。
