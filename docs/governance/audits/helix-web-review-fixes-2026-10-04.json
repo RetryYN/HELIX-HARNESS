@@ -1,0 +1,44 @@
+{
+  "schema": "web-consolidation-review-fix/1",
+  "authority_effect": "none",
+  "reviewed_head": "596089b85bd8c26ae95a97d973e10c5b91f4b7e9",
+  "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2558#issuecomment-5970429336",
+  "findings": [
+    "R2558-01",
+    "R2558-02"
+  ],
+  "changes": [
+    {
+      "path": "docs/governance/crosswalks/concept-mechanism-version-requirement-crosswalk.jsonl",
+      "before_sha256": "8c63b5572a35ebc398bf540b47cf29ccda9f9f6ad86bb968e75959217486dd50",
+      "after_sha256": "3c5de20d997256edad702ccbed79ec9962431e6600400fc88198af5c92de10cc",
+      "rows": 215,
+      "json_values_unchanged": true,
+      "changed_lines_against_main148": 15
+    },
+    {
+      "path": "docs/governance/current-l2-structure-classification.jsonl",
+      "before_sha256": "f590ae80c447bd09ed6eb6bf5a6520f0c2a5d9227b3745274dbdc0aba0c16c4f",
+      "after_sha256": "6cf95241bd47575cf82014bbe743a187d279e74273540a5a9802adf71d8f881c",
+      "rows": 37,
+      "json_values_unchanged": true,
+      "changed_lines_against_main148": 15
+    },
+    {
+      "path": "docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md",
+      "before_sha256": "dd7d93f1330c387b2eb7ccb73a8064c45f0d30f087e0eb34d4ecdbab77f0966f",
+      "after_sha256": "0f18b3934c5ba523029abfe332e6f3a14378739b3b2b425f5dec44947a6a70e0"
+    }
+  ],
+  "validation": {
+    "jsonl_values_unchanged": true,
+    "jsonl_changed_lines_against_main148": 30,
+    "current_binding_refs_to_changed_files": 0,
+    "bindings": 143,
+    "fail": 0,
+    "stale": 0,
+    "diff_check": "pass",
+    "research_python_and_inputs": "137 validatorのPython・入力inventoryは無変更。1014ef9の実測82/55と旧監査を保持し、この書式・説明修正の根拠として範囲を限定する。"
+  },
+  "old_records": "9/26のWeb/governance判断記録と旧137実測監査はbytes不変。旧監査内decision SHAはそこで検査した時点の値として保持。"
+}
