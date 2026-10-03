@@ -262,9 +262,9 @@
 ### SECURITY-CASE-031-01 — 適用scopeと既存authority
 
 - **L3 AC**：`SECURITY-AC-031-01`
-- **正常**：L2-029の追加runtime scope内で有効な既存operation authority、OS assignment、runtime/config、target/scopeを一致させる。既存条件下で同一taskを反復し、毎回の新しい人確認なしに同じpolicy判断へ進むことを確認する。
-- **negative／対照**：authority/assignment/scopeの一項目をdriftさせた追加runtime caseはdeny/unknown。primary Worker、追加runtimeなし、別scopeは031の対象外で不必要に停止されない。
-- **oracleと戻し先**：有効既存条件だけでallow/constrain、欠落/不一致は既存ownerへ理由付きで返す。authority意味不足はSECURITY、assignment不足はOSへ返す。
+- **正常／held-out positive**：L2-029追加runtime scope内で、これまでのfixture名には現れていなくても根拠のある既存operation classを選び、既存authority、OS assignment、runtime/config、target/scope/data conditionsを揃える。同一taskを反復しても毎回の新しい人確認なしに同じpolicy判断となる。未見fixtureというだけでunknownにしない。
+- **negative／対照／根拠あるunknown**：別fixtureでauthority/assignment/scopeの各条件を個別driftさせdeny/unknownを確認する。必要なpolicyまたは適用観測が実際に欠落するfixtureはその不足理由に基づきunknownで返す。primary Worker、追加runtimeなし、別scopeは031の対象外で不必要に停止されない。
+- **oracleと戻し先**：条件が揃ったpositiveはallow/constrain、欠落/不一致は既存ownerへ具体理由付きで返す。authority意味不足はSECURITY、assignment不足はOSへ返す。fixture noveltyのみをunknown根拠にしない。
 
 ### SECURITY-CASE-031-02 — isolated copyとcanonical境界
 
@@ -283,8 +283,8 @@
 ### SECURITY-CASE-031-04 — receiptの実行後生成
 
 - **L3 AC**：`SECURITY-AC-031-04`
-- **正常**：開始前のpolicy/assignment/runtime/config/payload/scopeだけを与えてproposalを出し、後から同一tupleのWorker/INFRASTRUCTURE観測とOS result/diff receiptを入力する。HARNESS既存oracleの再検証状態はreceiptと別に観測する。
-- **negative**：開始前receipt必須化、receiptだけでaccepted/canonical/authority stateへ遷移、別assignment receiptの流用を個別に試す。
-- **oracleと戻し先**：実行開始時に結果receiptは不要、後続receiptは同じ対象へ結び、単体で昇格を作らない。OS/INFRASTRUCTURE/HARNESSの不足ownerを区別して返す。
+- **正常**：開始前のpolicy/assignment/runtime/config/payload/scopeだけを与え、Worker/INFRASTRUCTUREから一致する隔離・data/credential/egress適用観測を受けてpolicy条件と突合しproposal可否を返す。実行後に同一tupleのresult/diff receiptを別入力し、HARNESS既存oracleの再検証状態も別に観測する。
+- **negative／根拠あるunknown**：適用観測を個別に欠落・false・driftさせる。scope外diffまたはegress逸脱を与える。sourceが未選択ならsource固有closureを求めずunobservedとし、明示選択sourceの観測欠落は未完とする。policy適用観測そのものが欠けるrunは未評価/停止として既存OS L2-009へ戻す。
+- **oracleと戻し先**：一致した観測だけ条件適用の材料とし、欠落/non-applied/drift/scope外diff/egressは対象runを停止・隔離して未完理由付きでOSへ返す。SECURITYは実適用・enforcement receiptを生成しない。result receiptは実行後の証拠で、単体で昇格を作らない。OS/INFRASTRUCTURE/HARNESSの不足ownerも区別して返す。
 
 この設計はprimary Workerへの適用拡張、毎作業の人間承認、実runtime/secret/canonical stateへのアクセスを要求しない。

@@ -403,4 +403,4 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/006/007/
 
 実行前にはpolicy/authority、assignment、runtime/config、payload manifest/digest、scope、execution constraintsを照合し、result/diff/完了receiptを開始前提にしない。実行後はWorker/INFRASTRUCTUREの観測とOSの既存assignment記録によりresult/diff receiptが作られ、HARNESSが選択済みoracleでproposalを再検証する。receiptは後続証拠であり、SECURITY判断、OS昇格、HARNESS受入を単独で生成しない。
 
-- **`SECURITY-AC-031-04` 順序・担当**：receiptのない実行前入力でproposalを返せる。実行後のreceiptには同一assignment/runtime/config/target/scopeが結び付く。SECURITYはpolicy判断、OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。receiptだけでproposalをaccepted/canonical化したら不合格。
+- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが判断条件とscopeごとに突合する。観測欠落・非適用・drift・scope外diff・egress逸脱は対象runを停止/隔離し、未完義務を添えてOSの既存L2-009経路へ戻す。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。receiptだけでproposalをaccepted/canonical化したら不合格。

@@ -39,6 +39,6 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-030-01` | `NFR-C-HARNESS-030-01` | 同一要件/design/oracle/source版/scopeから独立生成したcaseを比較。contractが明示する非意味metadataは別集計する。 | 意味差分0。metadata除外は宣言contractに明記された分だけ。 | 未宣言正規化、期待値創作、根拠不明入力は不合格または未評価。 |
 | `CASE-HARNESS-L10-NFR-031-01` | `NFR-C-HARNESS-031-01` | 合成元failure identity、複数reduction stage、oracle同一/不同/未返却receipt、secret markerを投入する。 | identityを全段階に追跡、different oracleを同一扱い0、raw marker露出0。 | receipt前確認済みclaim、元failure消去、markerの値記録は不合格。 |
-| `CASE-HARNESS-L10-NFR-032-01` | `NFR-C-HARNESS-032-01` | 選択consumerの適合packetとfieldごとの不一致packetを比較し、receiptと後続execution resultを分離する。 | packet対応不一致0、初回receipt不要、受渡しからpassを作る件数0。 | consumer/schema不明は未評価、別consumerへのfallbackは不合格。 |
+| `CASE-HARNESS-L10-NFR-032-01` | `NFR-C-HARNESS-032-01` | 選択consumerの適合packetとfieldごとの不一致packetを比較し、handoff前のreceipt/resultなしでpacketを作る。handoff後のdelivery receiptとexecutor実行後のrun resultを順に与える。 | packet対応不一致0、handoff前のreceipt/result要求0、handoff receiptからrun result/passを作る件数0。 | consumer/schema不明は未評価、別consumerへのfallbackは不合格。 |
 
 候補値の測定は合成fixtureで行う設計であり、実測・実行・承認ではない。
