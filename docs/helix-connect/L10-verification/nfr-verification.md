@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 NFR候補検証（Stage 1・Stage 2a・Stage 4 部分草稿）
+# HELIX-CONNECT L10 NFR候補検証（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
 
 本書は[L3 NFR候補](../L3-requirements/nfr-grade.md)の各候補を同じIDで測定する。未指定値は根拠付き候補として比較し、実装値やPO承認値を仮定しない。意味・scope・owner・version変更が必要な場合だけL2/POへ戻す。
 
@@ -17,3 +17,10 @@
 |---|---|---|---|
 | CON-NFR-008 | 選択profile descriptor fieldとsource revisions | 全fieldを照合し、identity mismatchと誤safe/executable/send claimが0。descriptor数のみのcoverage案と比較する。 | 性能閾値・operation成功率を追加しない。 |
 | CON-NFR-009 | relation tuple、attempt trace、既存retry/budget policy revision | tuple欠落とpolicy外attemptを別々に数え、unknownからの追加attempt0を候補とする。 | policy値を発明しない。未指定の必要技術値は計測比較付き候補にできる。 |
+
+## Stage 5 NFR候補測定
+
+| 候補 | 入力・測定 | 判定候補 | 限界 |
+|---|---|---|---|
+| CON-NFR-007-01 | CASE-007-01/03の構成体manifest・required edgeごとの登録、互換、operation lineage、terminal evidence | 全required edgeのtrace closure 100%。aggregate-only案より、欠落edgeと未完ownerをedge単位に特定できる。 | 宣言済み構成体以外を分母へ足さない。業務successや性能SLAを含めない。 |
+| CON-NFR-007-02 | CASE-007-02の中間edge stale/timeout/digest conflict/expiry/cancel/permission revoke/partial success mutationと後続attempt trace | 各negative fixtureで後続未許可attempt 0、false composite success 0。 | 固定L2/L11のfailure列挙の範囲に限り、未指定retry capを追加しない。 |

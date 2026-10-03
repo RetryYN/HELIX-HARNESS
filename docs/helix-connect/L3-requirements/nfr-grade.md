@@ -1,4 +1,4 @@
-# HELIX-CONNECT L3 NFR候補（Stage 1・Stage 2a・Stage 4 部分草稿）
+# HELIX-CONNECT L3 NFR候補（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
 
 > 状態: 全体的なretry/latency/retention数値は固定されていない。以下はfixed L2/L11から直接読める境界値、または比較・測定可能な技術候補であり、実装値やPO承認値ではない。各parameterについて個別PO判断は求めない。意味・scope・owner・versionを変える必要が生じた場合だけL2へ戻す。
 
@@ -19,3 +19,5 @@
 |---|---|---|---|
 | CON-NFR-008 / HELIXCONNECT-L2-008 | identity/revision/typed capability/probe descriptorのfield coverageは選択profileで全件、誤ったsafe/executable/send claimは0 | 固定親のfield列挙を全件照合する案とdescriptor件数だけ数える案を比較。後者は安全性を証明しないため不採用。 | probe latencyやMCP成功率は導かない。必要時は根拠・比較・測定付き候補にする。 |
 | CON-NFR-009 / HELIXCONNECT-L2-009 | 選択relation tupleのlineage/reason/endpoint/contract revision欠落0、unknownから追加attemptを生む件数0 | relation field完全性とattempt traceを測定し、aggregate success count案よりunknown漏れを検出できるfield単位案を候補にする。 | 新retry cap、feedback timeout、共通SLAは追加しない。技術値が必要なら根拠付き候補として提示する。 |
+| CON-NFR-007-01 / HELIXCONNECT-L2-007 | required edge lineage/terminal coverage | required edgeごとのfield/resultを分ける案と、構成体全体のaggregate statusだけを数える案を比較する。aggregate案は未完edgeを隠すため、全required edgeごとのlineage/terminal closure 100%を候補とする。 | L2-007/L11-007は各edgeの順序・結果・終端を辿り、全required edge確認後だけ技術完了とする。coverageは宣言された構成体のrequired edge分母で測る。 |
+| CON-NFR-007-02 / HELIXCONNECT-L2-007 | false composite success・未許可後続attempt | stale/timeout/digest conflict/expiry/cancel/permission revoke/partial successを中間edgeへ一件ずつ変異し、後続未許可attemptと全体successを測る。 | 各列挙negative fixtureで後続未許可attempt 0件、false composite success 0件を候補判定とする。これは固定親のfailure boundaryであり共通性能SLAではない。 |

@@ -1,6 +1,6 @@
-# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a・Stage 4 部分草稿）
+# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
 
-> 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、本追補はStage 2aのCONNECT-L2-006を追加する。
+> 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、Stage 2aのCONNECT-L2-006、Stage 4のCONNECT-L2-008/009、本Stage 5でCONNECT-L2-007を追補する。
 
 ## 判定規約
 
@@ -16,6 +16,7 @@
 | `HELIXCONNECT-L2-004` | `CONNECT-FR-004-01` | `CONNECT-AC-004-01` | `CONNECT-CASE-004-01` | 1.0 |
 | `HELIXCONNECT-L2-005` | `CONNECT-FR-005-01` | `CONNECT-AC-005-01` | `CONNECT-CASE-005-01` | 1.0 |
 | `HELIXCONNECT-L2-006` | `CONNECT-FR-006-01` | `CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 1.0 |
+| `HELIXCONNECT-L2-007` | `CONNECT-FR-007-01` | `CONNECT-AC-007-01,02` | `CONNECT-CASE-007-01..04` | 1.0 |
 
 ## 句別被覆と責務分解（L3/AC/L10）
 
@@ -131,3 +132,14 @@
 - CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。累積attemptは単調に保持し、deadline/terminal確定まで新規retryを止め、停止理由と未完義務を残す。
 
 全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。自由文feedbackをfindingのまま保持し、resolution・ACK・承認・完了へ変換するmutationは不合格とする。
+
+## Stage 5 — HELIXCONNECT-L2-007 構成体総合検証
+
+固定L2/L11はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択本文で照合した。fixtureは宣言された構成体のedge集合に限定し、実端点送信はしない。
+
+- `CONNECT-CASE-007-01`（`CONNECT-AC-007-01`）: 3以上の機構・複数接続identityからなる正常構成を与え、edgeごとに能力名、契約revision、scope、順序、operation/correlation/idempotency identity、expiry/result、SECURITY/data-use、owner/recovery先を割り当てる。oracle: required edgeごとの登録/互換/送受信/終端証拠が揃ったときだけ技術的構成体完了となる。接続成功から業務成立を作らない。
+- `CONNECT-CASE-007-02`（`CONNECT-AC-007-02`）: 中間edgeにstale、timeout、異digest衝突、期限切れ、取消、許可失効、partial successを各々独立に投入する。oracle: 各変異で後続の未許可送信/再送0、全体success 0、停止edgeと未完owner/recovery先を保持。先行edgeの観測済成功は消去しない。
+- `CONNECT-CASE-007-03`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: required edge登録、互換確認、operation mapping、相関/idempotency引継ぎ、終端結果、SECURITY/data-use reference、recovery ownerをそれぞれmissing/stale/wrong-revisionへ個別変異する。oracle: 該当edgeがunknown/unfinishedであり、別edgeのgreenやaggregate表示で補わない。
+- `CONNECT-CASE-007-04`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: 既知fieldを満たす4+ edgeの未見構成と、全技術edgeが終端済みだが業務ownerの受入が未観測の対照fixtureを与える。oracle: 宣言契約を満たす未見構成は許容し、業務結果/承認は未観測のままにする。
+
+NFR候補 `CON-NFR-007-01` はCASE-007-01/03でrequired-edge単位の全field/terminal closureを測る。候補は100% coverageで、単一aggregate statusの案より欠落edgeを隠さない。`CON-NFR-007-02`はCASE-007-02でfailure mutationごとのfalse success/未許可後続attemptを測り、両方0件を候補とする。L2/L11にない共通latencyやretry capは起こさない。

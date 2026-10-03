@@ -1,6 +1,6 @@
-# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a・Stage 4 部分草稿）
+# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
 
-> 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。本追補はStage 2aの`HELIXCONNECT-L2-006`だけを追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
+> 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。Stage 2aは`HELIXCONNECT-L2-006`、Stage 4は`HELIXCONNECT-L2-008/009`、本Stage 5追補は`HELIXCONNECT-L2-007`を追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
 
 ## 適用・責務境界
 
@@ -199,3 +199,24 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 | HELIXCONNECT-L2-009 | LEGACY-ASSET-23D3D9769B093AFDCC25 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:62–68 | f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6 | d5264cd41eb448f9a866e42063ebed79f6c0186b20883099d19f217547e55822 | MIC-R-02の統合sequence類例。旧merge authorityはCONNECTへ移さず、typed relationを現行L2から再導出。 |
 
 旧runtime、CLI、testを実行せず、採択済みL2/L11の要求意味を本Stage4の正本に再導出した。
+
+## Stage 5 — HELIXCONNECT-L2-007 複数接続の構成体
+
+### CONNECT-FR-007-01 — 必須辺と終端のcomposite trace
+
+構成体入力で指定されたrequired connection edgesについて、3つ以上の機構をまたぐ各edge identity、端点、能力名、contract revision、scope、順序、operation/correlation/idempotency対応、期限/result state、SECURITY/data-use識別子、edge ownerとrecovery先を分けて追跡する。各edgeが個別に登録・現revision照合され、operation handoffが終端まで確認されたときだけ技術的通信完了を報告する。先行edgeの成功と後続edgeの部分/失敗状態を保持し、stop locationと未完義務を引継ぐ。CONNECTは接続先の業務成立・承認を決めない。
+
+このFRはL2-001..005の辺契約とHARNESS-L2-010/011のpack契約を参照する。required-edge集合や順序、接続業務の意味をこの文書で追加せず、構成体入力と各source ownerが宣言した契約を照合する。新たなexecution authority、共通retry cap、transport方式を生成しない。
+
+**受入条件**
+
+- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、全required edgeが終端確認された場合だけ構成体の技術完了となる。単体接続のgreenを他edgeへ転用しない。
+- `CONNECT-AC-007-02`: 中間edgeにstale、timeout、異digest衝突、expiry、cancel、authority revoke、partial successを個別に与える。後続edgeの未許可送信/再送を0にし、先行成功を消さずpartial/unknownを保ち、停止edge・未完owner・recovery先を出す。いずれも構成体成功・業務承認を生成しない。
+
+**責務と失敗時の戻し先**：edgeの登録・契約不一致は該当connection/両端ownerへ、SECURITY/data-use・expiryはSECURITYへ、operation/業務結果は元機構のownerへ戻す。後続edgeを実行済みにせず、先行の成功結果は保持する。
+
+### HELIXCONNECT-L2-007 固定親・旧sourceとの照合
+
+固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択revision。L2 `docs/helix-connect/L2-requirements/connect-requirements.md:128–137`（全文SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、raw span SHA `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`、semantic digestも同値）。対L11 `docs/helix-connect/L11-acceptance/connect-acceptance.md:74–76`（全文SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`、raw span SHA `4ac689f38f647b61c77a8bf46c491e9b50f95294e36073379b05912c3200bed8`）。PO decision `helix-connect-requirements-po-decision-2026-09-28.md#L48`（decision SHA `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`）、採択登録 `MPR-RC-HELIXCONNECT-L2-007-001`、semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`。
+
+旧HELIXに現行HELIXCONNECT-L2-007と一対一の複数接続構成体要件は確認できない。旧distribution-package L3 `LEGACY-ASSET-9B7682EBDEA171005D45`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md:24–83`、全文SHA `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c`、raw span SHA `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e`）とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md:16–20`、全文SHA `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc`、raw span SHA `1efc7ea8b809b274ed4b3427747b1b4b19a69fcea12203a867583fee5f721db5`）はsource/revision/consumer整合とpositive/negative分離の構造類例だけに使い、release/promotion authorityやbundle意味をCONNECTへ移さない。複数connection edge、技術終端、途中失敗と戻し先は固定L2/L11から再導出する。
