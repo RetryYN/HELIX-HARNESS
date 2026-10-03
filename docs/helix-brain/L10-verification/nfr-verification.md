@@ -1,6 +1,6 @@
 # HELIX-BRAIN L10 非機能検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
+**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。Stage 1/Stage 2b契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -11,6 +11,10 @@
 | `HELIXBRAIN-L2-028` | range and identity matrix | 共通HARNESS contractのrange内/外/欠落/解釈不能、descriptorとknowledgeのfieldを独立変異 | 内側のみ適用可能、外/unknown拒否またはunknown、field cross-substitutionがない。 |
 | `HELIXBRAIN-L2-028` | boundary ownership | common rollback/unfinished-obligationをBRAIN responseへ要求 | HARNESS共通契約への返却を観測しBRAINが再定義しない。 |
 
+### Stage 2b basic BRAIN measurements
+
+| 親L2 | 測定項目 | 入力・変異 | 判定材料 |
+|---|---|---|---|
 | `HELIXBRAIN-L2-001/002` | candidate domain and hierarchy trace | identity/meaning/state、4 kind level、parent edgeを投入し、重複/unknown/製品名/参照喪失を変異 | 列挙field coverageと候補停止を観測。domain候補一覧を充実させる義務は検証しない |
 | `HELIXBRAIN-L2-003/004` | descriptor and comparison completeness | applicability fieldを一つずつ欠落させ、複数候補のscope/weightを欠落 | field別にunknown/holdを確認し、推測適用・絶対順位がない |
 | `HELIXBRAIN-L2-005/009` | relation source trace | endpoint/type/meaning/sourceを持つedge、名称類似だけのedge、source欠落composite | 各edge/candidateからsourceへtraceでき、根拠なしedgeを確定しない |

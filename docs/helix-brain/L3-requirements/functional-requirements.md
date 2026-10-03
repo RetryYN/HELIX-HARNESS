@@ -187,6 +187,7 @@ Domain identity・意味・状態とPattern関係を識別し、Domainの追加�
 | 否定・failure: 製品/project名、重複・不明なmeaning、既存利用者を消す分割・退役案は確定しない。meaning不明ならcandidateで止めL1-001へ戻す。 | `AC-02` | `L10-BRAIN-001-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 意味不明時に候補で停止し、L1-001へ戻す。 | `AC-02` | `L10-BRAIN-001-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-001、Concept機構境界。PO束ね条件: §BRAIN-L1-001、§初期Domain候補、Visual Designの1.0回答。 | `FR-01 / AC-01,02` | `L10-BRAIN-001-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-001-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-001-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -235,6 +236,7 @@ Domain identity・意味・状態とPattern関係を識別し、Domainの追加�
 | 否定・failure: 孤立要素、誤種別、階層を跨ぐidentity代入、単なるfile/snippet/component集は確定せずunknown/candidateとする。階層意味を決められなければL1-002へ戻す。 | `AC-02` | `L10-BRAIN-002-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 階層またはkind不明はunknownで止めL1-002へ戻す。 | `AC-02` | `L10-BRAIN-002-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-002、L2-001。PO束ね条件: §BRAIN-L1-002。 | `FR-01 / AC-01,02` | `L10-BRAIN-002-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-002-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-002-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -283,6 +285,7 @@ Pattern descriptorにproblem、前提、applicability、required input、constra
 | 否定・failure: input欠落・適用条件不明・failure/negative/evidence/maturity不足を推測補完せず停止する。 | `AC-02` | `L10-BRAIN-003-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 意味・必須inputが未定ならL1-003または要求ownerへ返す。 | `AC-02` | `L10-BRAIN-003-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-003、L2-002。PO束ね条件: §BRAIN-L1-003、旧DST-HARNESS-002のtemplate意味契約。 | `FR-01 / AC-01,02` | `L10-BRAIN-003-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-003-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-003-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -316,12 +319,12 @@ Pattern descriptorにproblem、前提、applicability、required input、constra
 
 **出力・責務**：Strong Consistency、Eventually Consistent、Compensating Transaction等の同一problemに成立し得る候補を併存させ、差と欠落する比較軸を示す。
 
-**否定・境界**：requirements/weightsが欠ける、または候補選定を求める場合は比較未確定として保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 BRAINは採用決定しない。要求値・重みの責任ownerへ戻す。
+**否定・境界**：requirements/weightsが欠ける、または候補選定を求める場合は既知の差分比較は保持したまま選択のみ保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 BRAINは採用決定しない。要求値・重みの責任ownerへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-004-AC-01 — 正常**：Strong Consistency、Eventually Consistent、Compensating Transaction等の同一problemに成立し得る候補を併存させ、差と欠落する比較軸を示す。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
-- **BRAIN-004-AC-02 — 否定・失敗**：requirements/weightsが欠ける、または候補選定を求める場合は比較未確定として保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 BRAINは採用決定しない。要求値・重みの責任ownerへ戻す。
+- **BRAIN-004-AC-02 — 否定・失敗**：requirements/weightsが欠ける、または候補選定を求める場合は既知の差分比較は保持したまま選択のみ保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 BRAINは採用決定しない。要求値・重みの責任ownerへ戻す。
 
 ### 固定親句の被覆
 
@@ -329,9 +332,10 @@ Pattern descriptorにproblem、前提、applicability、required input、constra
 |---|---|---|---|
 | 入力・identity・source: 同一problemの複数候補・適用条件・requirement/weight | `BRAIN-004-FR-01 / AC-01` | `L10-BRAIN-004-C01` | 入力fieldとsource/revision保持 |
 | 正常出力・意味: Strong Consistency、Eventually Consistent、Compensating Transaction等の同一problemに成立し得る候補を併存させ、差と欠落する比較軸を示す。 | `BRAIN-004-FR-01 / AC-01` | `L10-BRAIN-004-C01` | 正常候補/状態/出力が親のmeaningに一致 |
-| 否定・failure: requirements/weightsが欠ける、または候補選定を求める場合は比較未確定として保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 | `AC-02` | `L10-BRAIN-004-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
+| 否定・failure: requirements/weightsが欠ける、または候補選定を求める場合は既知の差分比較は保持したまま選択のみ保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 | `AC-02` | `L10-BRAIN-004-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: BRAINは採用決定しない。要求値・重みの責任ownerへ戻す。 | `AC-02` | `L10-BRAIN-004-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-004、L2-003/012。PO束ね条件: §BRAIN-L1-004。 | `FR-01 / AC-01,02` | `L10-BRAIN-004-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-004-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-004-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -380,6 +384,7 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 | 否定・failure: unknown endpoint、根拠のないtype/meaning/name-only edgeは確定しない。方向・意味が決められない場合L1-005へ戻す。 | `AC-02` | `L10-BRAIN-005-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: unknown endpoint/meaningはunknownとして関係ownerへ戻す。 | `AC-02` | `L10-BRAIN-005-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-005、L2-001/002。PO束ね条件: §BRAIN-L1-005。 | `FR-01 / AC-01,02` | `L10-BRAIN-005-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-005-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-005-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -428,6 +433,7 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 | 否定・failure: 製品名や固定styleを汎用知識へ混入する、または製品固有fieldを切り分けられない候補は共有知識にせずVisual Design HARNESSまたはProduct Coreへ戻す。 | `AC-02` | `L10-BRAIN-006-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 分離不能は候補に入れずsource ownerへ戻す。 | `AC-02` | `L10-BRAIN-006-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-006、L2-001/002/003、Visual Design HARNESS接続L2-023。PO回答: 1.0から扱う、Visual Design HARNESS連携。 | `FR-01 / AC-01,02` | `L10-BRAIN-006-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-006-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-006-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -460,12 +466,12 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 
 **出力・責務**：Pattern AのUnit A1とPattern BのUnit B1を新relationで組む例等を、候補stateとcomponent/relation source付きで示す。
 
-**否定・境界**：component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 不足根拠はsource ownerへ。昇格には既存評価/promotion経路のみ適用。
+**否定・境界**：component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 不足根拠はsource ownerへ、構成meaning不明は固定親のBRAIN L1-009へ戻す。昇格には既存評価/promotion経路のみ適用。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-009-AC-01 — 正常**：Pattern AのUnit A1とPattern BのUnit B1を新relationで組む例等を、候補stateとcomponent/relation source付きで示す。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
-- **BRAIN-009-AC-02 — 否定・失敗**：component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 不足根拠はsource ownerへ。昇格には既存評価/promotion経路のみ適用。
+- **BRAIN-009-AC-02 — 否定・失敗**：component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 不足根拠はsource ownerへ、構成meaning不明は固定親のBRAIN L1-009へ戻す。昇格には既存評価/promotion経路のみ適用。
 
 ### 固定親句の被覆
 
@@ -474,8 +480,9 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 | 入力・identity・source: 既存unit・relation・source/evaluation scope | `BRAIN-009-FR-01 / AC-01` | `L10-BRAIN-009-C01` | 入力fieldとsource/revision保持 |
 | 正常出力・意味: Pattern AのUnit A1とPattern BのUnit B1を新relationで組む例等を、候補stateとcomponent/relation source付きで示す。 | `BRAIN-009-FR-01 / AC-01` | `L10-BRAIN-009-C01` | 正常候補/状態/出力が親のmeaningに一致 |
 | 否定・failure: component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 | `AC-02` | `L10-BRAIN-009-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
-| owner・戻し先: 不足根拠はsource ownerへ。昇格には既存評価/promotion経路のみ適用。 | `AC-02` | `L10-BRAIN-009-C02` | 停止理由と固定親ownerへ返す先 |
+| owner・戻し先: 不足根拠はsource ownerへ、構成meaning不明は固定親のBRAIN L1-009へ戻す。昇格には既存評価/promotion経路のみ適用。 | `AC-02` | `L10-BRAIN-009-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-009、L2-005/007/025。PO束ね条件: §BRAIN-L1-009。 | `FR-01 / AC-01,02` | `L10-BRAIN-009-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-009-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-009-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -524,6 +531,7 @@ Anti-Pattern、Failure Pattern、Invalid Combination、Context-dependent Failure
 | 否定・failure: condition/source/evidenceや代替根拠なしの否定を適用せず、scope不明findingをuniversal prohibitionにしない。評価scopeを定められないfindingはLABOへ返す。 | `AC-02` | `L10-BRAIN-010-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 不明条件はLABO評価へ返し、普遍禁止を作らない。 | `AC-02` | `L10-BRAIN-010-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-010、L2-003/005/007。PO束ね条件: §BRAIN-L1-010、DST-HARNESS-005 negative oracle。 | `FR-01 / AC-01,02` | `L10-BRAIN-010-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-010-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-010-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -573,6 +581,7 @@ Product Core由来の候補、製品名/要求/screen/business rule/user decisio
 | 否定・failure: 一般化がProduct Core固有meaningを変える、または未分離要素を含む場合採用しない。共有範囲の人間判断が必要な場合は既存判断先へ送る。 | `AC-02` | `L10-BRAIN-011-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: 分離不能は提供元CORE/LABOへ戻す。 | `AC-02` | `L10-BRAIN-011-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-011、L2-007/018/020/025。PO束ね条件: §BRAIN-L1-011。 | `FR-01 / AC-01,02` | `L10-BRAIN-011-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-011-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-011-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
@@ -621,6 +630,7 @@ Product Core由来の候補、製品名/要求/screen/business rule/user decisio
 | 否定・failure: 候補応答を採用済み/製品固有判断へ読み替える受け手を拒否する。要求意味/weight不明は適切なdecision ownerへ戻す。 | `AC-02` | `L10-BRAIN-012-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: BRAIN authorityを拡張せず採否ownerへ返す。 | `AC-02` | `L10-BRAIN-012-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-012、L2-019/021/022。PO束ね条件: §BRAIN-L1-012およびConceptのBRAIN/INTELLIGENCE/OS境界。 | `FR-01 / AC-01,02` | `L10-BRAIN-012-C01,C02` | dependency identity/sourceと戻し先を明示 |
+| 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-012-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-012-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 
 ### 旧L3／対テスト設計の再利用・再導出
