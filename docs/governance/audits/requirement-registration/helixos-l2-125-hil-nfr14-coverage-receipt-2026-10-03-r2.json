@@ -114,54 +114,71 @@
     "identity": "HELIXOS-L2/L11-125",
     "current_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
     "current_l2_heading_line": 1550,
-    "current_l2_section_sha256": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "current_l2_section_sha256": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
     "current_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
     "current_l11_heading_line": 1166,
-    "current_l11_section_sha256": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c",
+    "current_l11_section_sha256": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
     "section_digest_rule": "UTF-8 bytes from exact ### candidate heading through before next same-or-higher ### heading; trailing empty lines trimmed, exactly one LF terminator.",
-    "current_l2_full_file_sha256": "sha256:7bf82065150cb324076fcce330e0d02ede6173c8cad4cd0217c4f38cce095c38",
-    "current_l11_full_file_sha256": "sha256:c5def27f178a17d26844352cc9eb15559914d495fae8e47c07ebe4562abd3e48",
-    "current_candidate_semantic_digest": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "current_l2_full_file_sha256": "sha256:ab0d4cfe07dc6904a68e1a818f757f448d151308a460fc0e1cb6e2db8c4482f2",
+    "current_l11_full_file_sha256": "sha256:dede568cba49f797a321db1dbee4a0702d36cc7d8fe44f0eb354a9fa9f909e44",
+    "current_candidate_semantic_digest": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
     "current_pair_sections": {
-      "HELIXOS-L2-125": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
-      "HELIXOS-L11-125": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c"
+      "HELIXOS-L2-125": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+      "HELIXOS-L11-125": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f"
+    },
+    "current_pair_section_lines": {
+      "HELIXOS-L2-125": [
+        1550,
+        1557
+      ],
+      "HELIXOS-L11-125": [
+        1166,
+        1171
+      ]
     }
   },
   "condition_map": [
     {
       "source_condition": "不正JSON",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 1: do not accept as success."
+      "candidate_002": "L11-125 independent negative 1: do not accept as success.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not accept as success. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "schema不一致",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 2: do not accept as success."
+      "candidate_002": "L11-125 independent negative 2: do not accept as success.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not accept as success. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "oversize",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 3: applicable existing upper bound exceeded."
+      "candidate_002": "L11-125 independent negative 3: applicable existing upper bound exceeded.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 applicable existing upper bound exceeded. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "sequence欠落",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 4: required content absent at completion; a transient wait is not itself absence."
+      "candidate_002": "L11-125 independent negative 4: required content absent at completion; a transient wait is not itself absence.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 完了時にも必要な結果内容が欠けている場合、完了成功として表示されないことを確認する。"
     },
     {
       "source_condition": "worker crash",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 5: incomplete attempt is not success."
+      "candidate_002": "L11-125 independent negative 5: incomplete attempt is not success.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 incomplete attempt is not success. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "timeout",
       "consumer_context": "HR12/HAC12c/HAT12",
-      "candidate_002": "L11-125 independent negative 6: existing operation deadline exceeded."
+      "candidate_002": "L11-125 independent negative 6: existing operation deadline exceeded.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 existing operation deadline exceeded. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "cancel",
       "consumer_context": "HR12/HAC12c/HAT12",
-      "candidate_002": "L11-125 independent negative 7: canceled attempt/late result not accepted."
+      "candidate_002": "L11-125 independent negative 7: canceled attempt/late result not accepted.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 canceled attempt/late result not accepted. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "backpressure",
@@ -169,17 +186,20 @@
       "candidate_001_mapping": "fail regardless of whether result fragments are missing.",
       "candidate_002_normal": "transient backpressure followed by a complete, loss-free wait/resume within existing contract limits/deadline may be normal.",
       "candidate_002_negative": "only the unresolved loss/gap or other independently violated condition is a negative; partial result never promoted.",
-      "meaning_boundary": "The 002 interpretation follows the exact later35 correction direction; it remains a candidate for fresh PO decision. It does not edit the old source text, receipt, row, or holding."
+      "meaning_boundary": "The 002 interpretation follows the exact later35 correction direction; it remains a candidate for fresh PO decision. It does not edit the old source text, receipt, row, or holding.",
+      "human_confirmation_destination": "当該operationの既存結果・状態表示に完全で欠損のない結果が示され、要求者またはoperation ownerが既存上限・期限内の完了を確認する。backpressureの発生自体は失敗表示の根拠にしない。"
     },
     {
       "source_condition": "親process消失",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 9: do not infer valid parent state or success."
+      "candidate_002": "L11-125 independent negative 9: do not infer valid parent state or success.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not infer valid parent state or success. の状態が成功扱いされないことを確認する。"
     },
     {
       "source_condition": "partial result非昇格",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 10: partial result alone is never canonical success."
+      "candidate_002": "L11-125 independent negative 10: partial result alone is never canonical success.",
+      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 partial result alone is never canonical success. の状態が成功扱いされないことを確認する。"
     }
   ],
   "human_decision_options": {
@@ -233,16 +253,17 @@
   "preservation_and_limits": {
     "old_001_row_receipt_source": "immutable and byte-preserved in this revision.",
     "old_normative_source": "HIL-NFR-14 source text/file and MPR-SH-IR-003 holding remain unchanged.",
-    "other_adopted_requirement_bodies": "not edited; only the two OS-125 sections and append-only MPR register change.",
+    "other_adopted_requirement_bodies": "not edited; only the two OS-125 sections, unpublished 002 row, and unpublished 2026-10-03 r2 source ledger/coverage receipt are revised.",
     "no_adoption_or_successor": "true",
     "legacy_runtime_test_ci_executed": false,
     "formal_successor_or_source_closure_claimed": false,
     "implementation_or_execution_claimed": false,
-    "old_001_detailed_fixture_audit_preservation": "The concrete four-category fixture and its positive/independent-negative closure oracles are pinned to the immutable 001 L11 section at 94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891 lines 1166-1190. The separate source-condition crosswalk remains pinned under technical_follow_up_material. The 002 receipt maps those old audit cases onto the revised operation-level acceptance without carrying synthetic identifiers into L2/L11."
+    "old_001_detailed_fixture_audit_preservation": "The concrete four-category fixture and its positive/independent-negative closure oracles are pinned to the immutable 001 L11 section at 94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891 lines 1166-1190. The separate source-condition crosswalk remains pinned under technical_follow_up_material. The 002 receipt maps those old audit cases onto the revised operation-level acceptance without carrying synthetic identifiers into L2/L11.",
+    "002_revision_preservation": "MPR-RC-HELIXOS-L2-125-002 is updated in place while unpublished; 001 row, 001 receipt, 001 source ledger and old source atom remain byte-identical."
   },
   "source_atom_set_digest": "sha256:b54b2f59a06a3942b58024203dc0c04ff94eeecf6e064f0987cd82b2a9b013fa",
   "source_atom_count": 1,
-  "coverage_result": "pending_coverage_until_p0_resolves_the_backpressure_source_interpretation",
+  "coverage_result": "candidate_002_condition_map_retained; pending renewed PO decision and source meaning disposition",
   "source_atom_accounting": {
     "candidate_input_atom": "HIL-NFR-14 one IR statement identity",
     "carried_atom_refs": [
@@ -266,6 +287,20 @@
       "md_sha256": "sha256:f26f5d090ca2932ed6cde9e4d9fc3367f862139b5a6fe4cae759cf8740e78d86",
       "scope": "Retains the original ten-condition source-to-consumer/candidate crosswalk for audit traceability. The concrete four-category closure fixture and independent negatives are preserved separately in dependency_scope.candidate_002_class_application.historical_001_fixture_source.",
       "execution_status": "static design material only; not executed"
+    },
+    "candidate_002_downstream_handoff": {
+      "purpose": "L2/L11 から退けた内部状態・機械判定・依存closure・fixtureの情報を保持し、許可された後続要件定義・設計・検証の下流起草材料として渡す。ここで実装許可、要求採択、source dispositionは生成しない。",
+      "reclassification_basis": "旧HELIX L00-L06-design-phase.md:101,262 (AP-6); canonical pair mapping in scaffold/review-handoff/local/document-responsibility-map-2026-10-03.md; Claude review PR #2550 comment 5963568284. Keep user-facing NFR guarantee and OS placement/scope in L2; L11 keeps only user-confirmable outcomes.",
+      "former_l2_detailed_section_verbatim": "### HELIXOS-L2-125 Worker結果境界のfail-close（改訂候補002、未採択）\n\n- **状態と対象**：HELIX-OSの未採択要求候補。選択されたWorker operationの結果を、適用契約とHARNESSの検証条件に沿って受領・記録する境界を対象とする。候補の登録・確認は採択、実装、実行許可を生まない。\n- **親と責務**：採択済みHELIXOS-L1-003の許可範囲内のWorker実行、停止、成果回収に接続する。HARNESS-L2-005/022が検証義務・oracleと成果物の段階契約を所有し、OSはその契約に沿って結果と実行状態を回収・記録する。SECURITYの実行制約、INFRASTRUCTUREの資源制約、Worker内部の成果意味は各ownerに残す。\n- **要求保証**：結果が適用契約、対象revision/scope、完全性、順序、既存の上限と期限を満たすと確認できた場合だけ、適用oracleが受け入れた結果として記録する。一時的なbackpressureの発生だけを失敗理由にしない。backpressure中に既存契約の範囲で待機・再開でき、必要な結果が欠けず、上限・期限内に完全な結果へ到達したケースは正常結果として扱える。backpressure後に欠損・未解決のsequence gap・上限違反・期限超過・不正結果が残る場合、またはWorker crash、cancel後の遅着、親実行の消失がある場合は、そのattemptを正常完了として扱わない。partial resultは有効な完成結果と確認できない限り正本化しない。unknownを成功、空結果、非適用へ補完しない。\n- **失敗・未完の扱い**：不成立の結果、理由、attempt、対象revision/scope、未完義務を関連付けて保持し、既存のOS停止・handoffと該当するHARNESS/SECURITY/INFRASTRUCTURE ownerへ戻す。再試行・待機・復旧の具体的方式や固定値をこの候補で追加せず、再試行を自動成功にしない。\n- **既存要求との境界**：採択済みOS-L2-018はassignment/attempt・停止・回収・handoff、OS-L2-019はevent/evidence provenance・continuity・成功と拒否/未実行の区別、OS-L2-020は隔離CI実行・結果回収を担う。HARNESS-L2-005/022は検証義務/oracle/受入状態を担う。本候補はこれらを置換せず、結果受領時の列挙failure条件とpartial resultの扱いを補う。\n- **依存の区分**：採択済みHARNESS-L2/L11-023の4区分（常時必須、特定操作時のみ、選択した入力元に応じて必須、参照資料のみ）を適用する。実行に必要な依存がmissing/unknown/stale/conflictなら該当operationをunknown/未完に保ち、未選択sourceへfallbackしない。参照資料を実行依存やoracleへ昇格しない。候補は新たな依存schemaや分類を作らない。\n- **保持・限界**：旧HIL-NFR-14の不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失、およびpartial result非昇格をsource identity一件として保持する。backpressure発生だけを失敗とする旧候補001の受入表現は、POの後発35件判断で現行版の承認対象から除外された。002は欠損のない待機・再開と、欠損/上限違反/期限超過等を区別する訂正版候補であり、POによる新revision判断とsource meaningの確定は未了である。旧transport、JSONL、Node/Python、provider、固定schema/size/timeout値、旧authority機構を指定せず、formal successor、source retirement、実装・実行完了を主張しない。\n- **原文・判断根拠**：旧IR `requirements.json#/HIL-NFR-14` とL1 line 194、HR-FR-HIL-12/HAC-HIL-12a/b/c/HAT-HIL-12の条件別対応、旧候補001、later35 decisionのOS-125保留・修正指示を[改訂source ledger](../../governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl)、[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)、旧候補001と後発35件のPO判断に固定する。候補採否は対象revisionを明示する後続PO判断から読む。\n",
+      "former_l11_detailed_section_verbatim": "### HELIXOS-L11-125 Worker結果境界の受入候補（改訂002、未採択・未実行）\n\n- **確認対象**：選択されたWorker operationの結果、対象revision/scope、結果の完全性、適用される上限・期限、HARNESS oracleによる受入状態を確認する。ここに記すのは人が判断できる受入条件であり、実行済み証拠や採択を示さない。\n- **正常例**：結果が適用契約と対象scopeに合い、必要な内容・順序が揃い、既存の上限・期限を満たし、HARNESS oracleが受け入れる。一時的なbackpressureが起きても、既存契約の範囲で待機・再開し、欠損なく完全な結果へ戻れた場合は正常例とする。backpressureの発生だけでは失敗にしない。\n- **個別negative**：次の各条件を独立に確認し、該当する結果を正常完了・検証済み成功として扱わない。\n  1. 不正なJSONまたは結果表現。\n  2. 選択されたoperation契約との不一致。\n  3. 適用される上限の超過。\n  4. operationの完了時点で必要な結果sequenceまたは内容の欠落。\n  5. Worker crashにより結果が未完了。\n  6. 既存のoperation期限を超過した結果。\n  7. cancel後に届いた結果。\n  8. backpressure後も欠損またはsequence gapが解消せず、完全な結果を確認できない状態。\n  9. 親実行の消失により結果の状態・権限を確認できない状態。\n  10. partial resultだけがあり、有効な完成結果を確認できない状態。\n  各negativeでは結果の理由・対象・未完義務を保持し、部分結果を正本化しない。待機・再開を行う実装方式や上限値はこの受入候補で定めない。\n- **未見・unknown**：未登録の結果形式、適用契約、failure class、または完了状態を与えた場合はunknown/未完に留め、成功・空結果・非適用・別sourceへのfallbackへ変換しない。\n- **依存境界（HARNESS-L2/L11-023の採択済み4区分）**：このoperationで使う区分を次の意味で分類し、適用される実行依存だけでclosureを判定する。常時必須にはticket・要求revision・scope、選択operation契約、assignment/attemptと終了状態、選択されたHARNESS oracleおよびOS結果記録境界を含める。特定操作時のみ必須には結果受領・検収・待機再開など、そのoperationで実際に行う処理と、その処理が適用される条件を含める。選択入力元に応じて必須には当該operationが選んだWorker/result sourceとその契約・revisionを含め、未選択sourceは未観測のままにして失敗時にもfallbackしない。参照資料のみには背景の旧HR/HAC/HAT、旧protocol/schema資料を置き、現行operationの実行依存・oracle・権限の代替にしない。このreference-only分類は現行operationのruntime依存closureに限る。旧HR/HAC/HATを参照資料とすることから、HIL-NFR-14の規範条件や本候補で保持する対応条件を消去・降格しない。source条件とconsumer対応はreceiptに個別記録する。これらの区分はHARNESS-023に従う分類であり、新しいdependency schemaやfixture tokenを要求しない。\n- **依存closureの受入**：同一の選択入力と適用条件を再評価したとき、同じ依存closureと理由を得る。適用される常時必須、operation-only、selected-source依存のidentity、owner、contract/revision、適合根拠、分類またはapplicabilityが欠落・不明・stale・矛盾する場合は、そのoperationをunknown/未完として保留し、他の依存の成功で補完しない。参照資料のみと既知の資料について説明・provenance metadataだけが欠けた場合は参照状態だけをunknownとし、実行closureを停止しない。区分やapplicability自体が不明、または参照only指定が実行条件・authority・oracleと矛盾する場合は参照資料へ押し込まず分類をunknownに保つ。個々のidentity/version/compatibility証拠のfixture値は別の技術検討に残し、この受入条件で固定しない。\n- **既存条件との区別**：OS-L2/L11-018/019/020、HARNESS-L2/L11-005/022の一般的なassignment、continuity、検証oracleは各自の採択scopeのまま維持する。本候補の条件から他候補・他機構の採否やsource closureを推定しない。\n- **根拠と実施状態**：旧HIL-NFR-14、HR-FR-HIL-12、HAC-HIL-12a/b/c、HAT-HIL-12、HST-CASE-007-03..10および現行候補001との照合は[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に記録する。HAT/HSTは設計資料であり実行しない。現行runtime/test/CIも実行しておらず、この受入候補は未採択・未実行である。\n",
+      "downstream_layer_routing": {
+        "system_behavior_and_per-condition_acceptance": "L3/L10 requirement and acceptance elaboration after the applicable authorization; keep all ten source classes and backpressure normal/negative distinction.",
+        "operation_dependencies_owner_revision_compatibility_and_applicability": "L4/L9 design/test-design detail, using the already adopted HARNESS-023 categories and preserving unknown classification when applicability is unknown.",
+        "contract_schema_sequence_and_internal_record_representation": "L5/L8 design and integration-test detail; do not infer a legacy schema or transport.",
+        "machine fixtures_negative_vectors_and_edge_cases": "L6/L7 function and unit-test-design detail; synthetic fixture material is design-only until separately authorized."
+      },
+      "human_confirmation_routing": "The ten source conditions remain individually mapped in condition_map and each has a human_confirmation_destination. Use only the selected operation existing result/status surface; do not add a UI or status schema here.",
+      "execution_status": "static handoff material only; no legacy or current runtime/test/CI executed."
     }
   },
   "latest_main_recheck": {

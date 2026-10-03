@@ -1549,14 +1549,11 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-125 Worker結果境界のfail-close（改訂候補002、未採択）
 
-- **状態と対象**：HELIX-OSの未採択要求候補。選択されたWorker operationの結果を、適用契約とHARNESSの検証条件に沿って受領・記録する境界を対象とする。候補の登録・確認は採択、実装、実行許可を生まない。
-- **親と責務**：採択済みHELIXOS-L1-003の許可範囲内のWorker実行、停止、成果回収に接続する。HARNESS-L2-005/022が検証義務・oracleと成果物の段階契約を所有し、OSはその契約に沿って結果と実行状態を回収・記録する。SECURITYの実行制約、INFRASTRUCTUREの資源制約、Worker内部の成果意味は各ownerに残す。
-- **要求保証**：結果が適用契約、対象revision/scope、完全性、順序、既存の上限と期限を満たすと確認できた場合だけ、適用oracleが受け入れた結果として記録する。一時的なbackpressureの発生だけを失敗理由にしない。backpressure中に既存契約の範囲で待機・再開でき、必要な結果が欠けず、上限・期限内に完全な結果へ到達したケースは正常結果として扱える。backpressure後に欠損・未解決のsequence gap・上限違反・期限超過・不正結果が残る場合、またはWorker crash、cancel後の遅着、親実行の消失がある場合は、そのattemptを正常完了として扱わない。partial resultは有効な完成結果と確認できない限り正本化しない。unknownを成功、空結果、非適用へ補完しない。
-- **失敗・未完の扱い**：不成立の結果、理由、attempt、対象revision/scope、未完義務を関連付けて保持し、既存のOS停止・handoffと該当するHARNESS/SECURITY/INFRASTRUCTURE ownerへ戻す。再試行・待機・復旧の具体的方式や固定値をこの候補で追加せず、再試行を自動成功にしない。
-- **既存要求との境界**：採択済みOS-L2-018はassignment/attempt・停止・回収・handoff、OS-L2-019はevent/evidence provenance・continuity・成功と拒否/未実行の区別、OS-L2-020は隔離CI実行・結果回収を担う。HARNESS-L2-005/022は検証義務/oracle/受入状態を担う。本候補はこれらを置換せず、結果受領時の列挙failure条件とpartial resultの扱いを補う。
-- **依存の区分**：採択済みHARNESS-L2/L11-023の4区分（常時必須、特定操作時のみ、選択した入力元に応じて必須、参照資料のみ）を適用する。実行に必要な依存がmissing/unknown/stale/conflictなら該当operationをunknown/未完に保ち、未選択sourceへfallbackしない。参照資料を実行依存やoracleへ昇格しない。候補は新たな依存schemaや分類を作らない。
-- **保持・限界**：旧HIL-NFR-14の不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失、およびpartial result非昇格をsource identity一件として保持する。backpressure発生だけを失敗とする旧候補001の受入表現は、POの後発35件判断で現行版の承認対象から除外された。002は欠損のない待機・再開と、欠損/上限違反/期限超過等を区別する訂正版候補であり、POによる新revision判断とsource meaningの確定は未了である。旧transport、JSONL、Node/Python、provider、固定schema/size/timeout値、旧authority機構を指定せず、formal successor、source retirement、実装・実行完了を主張しない。
-- **原文・判断根拠**：旧IR `requirements.json#/HIL-NFR-14` とL1 line 194、HR-FR-HIL-12/HAC-HIL-12a/b/c/HAT-HIL-12の条件別対応、旧候補001、later35 decisionのOS-125保留・修正指示を[改訂source ledger](../../governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl)、[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)、旧候補001と後発35件のPO判断に固定する。候補採否は対象revisionを明示する後続PO判断から読む。
+- **状態と対象**：HELIX-OSの未採択要求候補。選択されたWorker operationの結果を、既存の適用契約とHARNESSの検証条件に沿って利用者へ届ける責務を対象とする。登録・確認は候補の採択、実装、実行許可を生まない。
+- **要求保証**：利用者は、一時的なbackpressureが起きても、それだけを理由に失敗扱いされず、既存契約の範囲で待機・再開して欠損のない完全な結果を既存の上限・期限内に受け取れる。結果が不正または不完全な場合は、有効な完了結果として扱われない。この保証は選択されたWorker operationに限り、通常作業や未選択sourceを停止対象に広げない。
+- **配置と責務**：採択済みHELIXOS-L1-003の許可範囲内に置く。OSは既存のassignment、実行状態および成果回収の責務を使い、HARNESS-L2-005/022の検証義務・oracleに沿って結果を扱う。SECURITYの実行制約、INFRASTRUCTUREの資源制約、Worker成果の意味は各ownerに残す。新しい権限や承認条件を作らない。
+- **適用範囲**：この要求は、結果受領・回収が適用される選択operationだけに適用する。旧HIL-NFR-14の列挙条件と人が確認する結果先はcoverage receiptに対応づける。候補002はlater35の訂正指示を反映した未採択案であり、旧source、MPR-SH-IR-003の保持、旧候補001の記録は変更せず、formal successorやsource retirementを主張しない。
+- **原文・後続材料**：旧IR `requirements.json#/HIL-NFR-14` とL1 line 194、およびHR-FR-HIL-12/HAC-HIL-12a/b/c/HAT-HIL-12との対応を[改訂source ledger](../../governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl)と[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に固定する。機械的なfailure分類、依存closure、fixtureおよび内部記録の細部はreceiptの下流引継ぎ材料とし、この候補は後続PO判断を待つ。
 
 ### HELIXOS-L2-126 失効後fencingとdurable checkpoint再開（単体候補、未採択）
 

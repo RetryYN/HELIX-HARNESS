@@ -1165,25 +1165,9 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 
 ### HELIXOS-L11-125 Worker結果境界の受入候補（改訂002、未採択・未実行）
 
-- **確認対象**：選択されたWorker operationの結果、対象revision/scope、結果の完全性、適用される上限・期限、HARNESS oracleによる受入状態を確認する。ここに記すのは人が判断できる受入条件であり、実行済み証拠や採択を示さない。
-- **正常例**：結果が適用契約と対象scopeに合い、必要な内容・順序が揃い、既存の上限・期限を満たし、HARNESS oracleが受け入れる。一時的なbackpressureが起きても、既存契約の範囲で待機・再開し、欠損なく完全な結果へ戻れた場合は正常例とする。backpressureの発生だけでは失敗にしない。
-- **個別negative**：次の各条件を独立に確認し、該当する結果を正常完了・検証済み成功として扱わない。
-  1. 不正なJSONまたは結果表現。
-  2. 選択されたoperation契約との不一致。
-  3. 適用される上限の超過。
-  4. operationの完了時点で必要な結果sequenceまたは内容の欠落。
-  5. Worker crashにより結果が未完了。
-  6. 既存のoperation期限を超過した結果。
-  7. cancel後に届いた結果。
-  8. backpressure後も欠損またはsequence gapが解消せず、完全な結果を確認できない状態。
-  9. 親実行の消失により結果の状態・権限を確認できない状態。
-  10. partial resultだけがあり、有効な完成結果を確認できない状態。
-  各negativeでは結果の理由・対象・未完義務を保持し、部分結果を正本化しない。待機・再開を行う実装方式や上限値はこの受入候補で定めない。
-- **未見・unknown**：未登録の結果形式、適用契約、failure class、または完了状態を与えた場合はunknown/未完に留め、成功・空結果・非適用・別sourceへのfallbackへ変換しない。
-- **依存境界（HARNESS-L2/L11-023の採択済み4区分）**：このoperationで使う区分を次の意味で分類し、適用される実行依存だけでclosureを判定する。常時必須にはticket・要求revision・scope、選択operation契約、assignment/attemptと終了状態、選択されたHARNESS oracleおよびOS結果記録境界を含める。特定操作時のみ必須には結果受領・検収・待機再開など、そのoperationで実際に行う処理と、その処理が適用される条件を含める。選択入力元に応じて必須には当該operationが選んだWorker/result sourceとその契約・revisionを含め、未選択sourceは未観測のままにして失敗時にもfallbackしない。参照資料のみには背景の旧HR/HAC/HAT、旧protocol/schema資料を置き、現行operationの実行依存・oracle・権限の代替にしない。このreference-only分類は現行operationのruntime依存closureに限る。旧HR/HAC/HATを参照資料とすることから、HIL-NFR-14の規範条件や本候補で保持する対応条件を消去・降格しない。source条件とconsumer対応はreceiptに個別記録する。これらの区分はHARNESS-023に従う分類であり、新しいdependency schemaやfixture tokenを要求しない。
-- **依存closureの受入**：同一の選択入力と適用条件を再評価したとき、同じ依存closureと理由を得る。適用される常時必須、operation-only、selected-source依存のidentity、owner、contract/revision、適合根拠、分類またはapplicabilityが欠落・不明・stale・矛盾する場合は、そのoperationをunknown/未完として保留し、他の依存の成功で補完しない。参照資料のみと既知の資料について説明・provenance metadataだけが欠けた場合は参照状態だけをunknownとし、実行closureを停止しない。区分やapplicability自体が不明、または参照only指定が実行条件・authority・oracleと矛盾する場合は参照資料へ押し込まず分類をunknownに保つ。個々のidentity/version/compatibility証拠のfixture値は別の技術検討に残し、この受入条件で固定しない。
-- **既存条件との区別**：OS-L2/L11-018/019/020、HARNESS-L2/L11-005/022の一般的なassignment、continuity、検証oracleは各自の採択scopeのまま維持する。本候補の条件から他候補・他機構の採否やsource closureを推定しない。
-- **根拠と実施状態**：旧HIL-NFR-14、HR-FR-HIL-12、HAC-HIL-12a/b/c、HAT-HIL-12、HST-CASE-007-03..10および現行候補001との照合は[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に記録する。HAT/HSTは設計資料であり実行しない。現行runtime/test/CIも実行しておらず、この受入候補は未採択・未実行である。
+- **利用者の確認基準**：選択されたoperationの利用者は、既存の結果・状態表示から、結果が完全で順序どおりに受け取れたか、既存の上限・期限内だったかを確認できる。正常例は、一時的なbackpressureがあっても欠損なく完了した結果を受け取れること。不成立例は、不正または不完全な結果が完成扱いされず、理由と未完義務を確認できること。未見例は、判定できない結果が未完のまま保たれ、成功表示されないこと。
+- **確認結果の行先**：確認は当該operationが既に使う結果・状態表示で行う。要求者またはoperation ownerが、完全な結果もしくは未完了状態を確認できることを基準とする。新しい画面・status value・runtime挙動はこの受入候補で定めない。
+- **出典と実施状態**：旧HIL-NFR-14とそのconsumer対応は[改訂source ledger](../../governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl)および[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に保持する。これらは人の確認先と下流起草材料を記録し、候補採択や実行済み証拠を示さない。候補002は未採択・未実行である。
 
 ### HELIXOS-L11-126 失効後fencingとdurable checkpoint再開の受入候補（未採択・未実行）
 
