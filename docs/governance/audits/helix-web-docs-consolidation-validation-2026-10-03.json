@@ -429,15 +429,19 @@
     "wave38_50_current_prior_review_meta_pins_refreshed": 91,
     "wave38_50_fixed_source_and_prior_input_digests_preserved": true,
     "phase_record_snapshot_current_refs_refreshed": 5,
-    "current_counterpart_bytes_and_sha_pins_refreshed": 10,
     "fixed_pre_isolation_archive_revision_captures_preserved": true,
-    "phase_capability_register_rows": 1075,
-    "register_fullbytes_identical_to_main148": true,
     "binding_current_pins_full_closure": 600,
     "binding_existing_notes_preserved_plus_current_read_after": true,
     "final_post_span_binding_entries": 16,
     "binding_semantic_role_obligations_authority_other_fields_changed": false,
-    "binding_existing_note_entries_preserved": 528
+    "binding_existing_note_entries_preserved": 528,
+    "management_provisional_requirement_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_provisional_requirement_register_rows": 1075,
+    "management_provisional_requirement_register_sha256": "520216521f09b7a9bc77a8c9b9a7d7a836f9ff457bfebcbd6560f17700eee5de",
+    "management_provisional_requirement_register_fullbytes_identical_to_main148": true,
+    "current_counterpart_records_refreshed": 7,
+    "current_counterpart_path_sha_leaves_refreshed": 10,
+    "current_counterpart_bytes_leaves_refreshed": 7
   },
   "scfctl": {
     "validate_pass": 143,

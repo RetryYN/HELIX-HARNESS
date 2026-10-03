@@ -31,7 +31,7 @@ RDP001 validatorは`git show HEAD:<current path>`を行います。基準148で�
 
 消失した診断23行には、上表の旧missing 9行とRDP001の旧git-source 1行が含まれます。残る13行は、current source/file digest・phase/current referenceの以前からのpin不一致がcurrent pin closureで解消したものです。追加19診断行と新規validator failure 0件を区別して記録します。
 
-`scfctl validate`は143/143 PASS、`stale=0`、`residuals=0`でした。`git diff --check`もPASSです。Web文書31件を移動し、destination SHA対応32件は実bytesと全一致しました。PO snapshot delimiter下本文SHA-256と2026-09-26固定判断record bytesを保持しています。classification source path 15件、phase inventory current refs 9件、Wave38–50 current meta pin 91件、phase record current refs 5件、current counterpart bytes/SHA 10件を追随し、fixed source/history captureを保持しました。Phase Capability Register 1075行の全bytesはmain148と同一です。Binding current pins 600件を閉包し、既存528 note本文を保持してcurrent read-afterを追記しました。Binding role/obligations/authority等の意味fieldは変更していません。
+`scfctl validate`は143/143 PASS、`stale=0`、`residuals=0`でした。`git diff --check`もPASSです。Web文書31件を移動し、destination SHA対応32件は実bytesと全一致しました。PO snapshot delimiter下本文SHA-256と2026-09-26固定判断record bytesを保持しています。classification source path 15件、phase inventory current refs 9件、Wave38–50 current meta pin 91件、phase record current refs 5件、7件のcurrent counterpart recordについて、path/SHA 10 leafとbytes 7 leafを追随し、fixed source/history captureを保持しました。管理層の仮要求登録台帳`docs/governance/management-provisional-requirement-register.jsonl`は1075行、SHA-256 `520216521f09b7a9bc77a8c9b9a7d7a836f9ff457bfebcbd6560f17700eee5de`で、全bytesがmain148と同一です。Binding current pins 600件を閉包し、既存528 note本文を保持してcurrent read-afterを追記しました。Binding role/obligations/authority等の意味fieldは変更していません。
 
 添付JSONに各validatorのexit、stdout/stderr、validator/output SHA、診断差分、9 identityのraw span SHA、RDP001固定source比較、current/history pin閉包数を保存しています。
 
