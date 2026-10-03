@@ -1,6 +1,6 @@
 # HELIX-CONNECT L3 機能要件（1.0対象親9件の草稿）
 
-> 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。Stage 2aは`HELIXCONNECT-L2-006`、Stage 4は`HELIXCONNECT-L2-008/009`、本Stage 5追補は`HELIXCONNECT-L2-007`を追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
+> 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。本書の対象はCONNECTの1.0採択親9件である。Stage 1はHELIXCONNECT-L2-001〜005の5件を扱う。Stage 2aは`HELIXCONNECT-L2-006`、Stage 4は`HELIXCONNECT-L2-008/009`、本Stage 5追補は`HELIXCONNECT-L2-007`を追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
 
 ## 適用・責務境界
 

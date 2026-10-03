@@ -6,7 +6,7 @@ scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020, 024) + Stage 2c(HARNES
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
-本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義したStage 1/2a/2b/2c/3のACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
+本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義したStage 1/2a/2b/2c/3/4/5のACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
 
 ## 照合対象revision
 
