@@ -1,6 +1,6 @@
-# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c・Stage 3部分草稿）
+# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
 
-> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はSECURITYのStage 1 19件、Stage 2cの031、Stage 3の029/030/032/034/035の25親を対象とする。
+> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はSECURITYのStage 1 19件、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026の30親を対象とする。
 
 ## 検証共通契約
 
@@ -309,3 +309,27 @@
 | `SECURITY-CASE-035-01` | `SECURITY-AC-035-01` | 追加runtimeの明示allowlist対応正例、非対応確認済み経過措置正例、対応なのにYOLO代替、能力unknown/staleを別々に与える。既存authorityは他条件として固定する。 | 対応時はallowlist、非対応の有効policy内経過措置はrun限定。対応/unknownからYOLO許可を作らない。既存authorityなしは本case正常にせず既存ownerへ戻す。 |
 | `SECURITY-CASE-035-02` | `SECURITY-AC-035-02` | run限定設定を持つ追加runtimeでsuccess/failure/cancel各終端と次runを与える。各終端の設定残置・cleanup観測欠落を別変異する。 | 全終端で除去し次runへ継承しない。残置/未観測はcleanup未完としてWorker/OSへ返し完了成功にしない。固定期限や設定schemaは作らない。 |
 | `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy不足はSECURITY、cleanup/適用不足はWorker/OSへ返す。 |
+
+
+## Stage 4 — 選択接続の総合検証
+
+親固定sourceは[L3 Stage 4](../L3-requirements/functional-requirements.md)の項目別pinを用いる。各caseで正常・個別反例・未見正常・観測欠落を区別する。以下は設計であり実行結果ではない。
+
+| L10 case | 親AC | 入力・反例・観測 | 判定／戻し先 |
+|---|---|---|---|
+| `SECURITY-CASE-021-01` | `SECURITY-AC-021-01` | 正常な二sourceを別分類で受信し、source/revisionと分類を一項目ずつ交換する。 | 正常は各traceが一致、交換は該当情報を保留し誤結合0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-021-02` | `SECURITY-AC-021-02` | deny、分類欠落、未知sourceを正常public sourceと併置する。 | 対象だけdeny/unknownを維持し、正常情報の包括停止0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-021-03` | `SECURITY-AC-021-03` | 外部本文へ許可を自称する文を置き、受領成功だけの未見sourceを与える。 | 自称による権限・保存・採用生成0、利用根拠不明は未評価。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-022-01` | `SECURITY-AC-022-01` | exact tupleと七要素を一つずつ欠落・変更した依頼を比較する。 | exact条件のみ対象判断へ進み、不一致を許可へ補完0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-022-02` | `SECURITY-AC-022-02` | 正常assignmentに別revision判断、期限切れ、revoke後判断を結合する。 | 正常はowner別traceが一致、不正結合は割当未完で実行許可0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-022-03` | `SECURITY-AC-022-03` | 制約一致、適用観測欠落、実状態不一致、開始後revokeを与える。 | 正常適用だけ観測完了、不足はWorker/OSへ戻し判断成功で相殺0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-023-01` | `SECURITY-AC-023-01` | 正常候補とprovenance欠落、未宣言能力差分、別revision admissionを比較する。 | 不足を判断ownerへ戻し、受付だけの昇格0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-023-02` | `SECURITY-AC-023-02` | 後続receiptなしの実行開始と、隔離不一致、実行失敗を与える。 | 条件内の開始可能、将来receipt事前要求0、不一致は実行ownerへ戻る。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-023-03` | `SECURITY-AC-023-03` | 実行結果と対象HEADが一致する検証、別HEAD green、検証未実施を比較する。 | 対象一致の検証だけ結果を結合、未実施は未完。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-023-04` | `SECURITY-AC-023-04` | 全段階正常と各一段階失敗・欠落、途中revision変更の未見候補を比較する。 | 同一対象の必要結果のみ昇格対象、不足・staleの昇格0、失敗段階ownerを特定。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-024-01` | `SECURITY-AC-024-01` | 正常条件と各条件欠落、別environmentへの引渡しを比較する。 | 正常は条件が一致、不足・異環境は該当ownerへ保留。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-024-02` | `SECURITY-AC-024-02` | 資源正常かつ強制正常、資源のみ正常、強制のみ正常、観測なしを与える。 | 両者適用条件一致のみ完了、不足の相殺0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-024-03` | `SECURITY-AC-024-03` | 合成markerを通常資源経路へ混入させる反例と有効scoped利用を比較する。 | 値露出・無条件保存0、既存条件内利用をcredential使用だけで一律denyしない。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-026-01` | `SECURITY-AC-026-01` | 同じ決定的違反をBotなし、補助あり、補助unknownで比較する。 | Guard判断が保持されBot不在だけの停止0、違反の許可化0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-026-02` | `SECURITY-AC-026-02` | 正常な限定依頼と出所欠落、scope拡張、自称allow回答を比較する。 | 必要範囲の判断材料だけを受け、unknownは対象保留、自称allowによる許可0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+| `SECURITY-CASE-026-03` | `SECURITY-AC-026-03` | 未見正常eventと後続Bot能力なしの1.0接続fixtureを与える。 | owner別traceを保ち接続境界を判定、未構築後続能力を1.0失敗へ混入0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |

@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 NFR候補検証（Stage 1・Stage 2c・Stage 3部分草稿）
+# HELIX-SECURITY L10 NFR候補検証（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
 
 [L3 NFR候補](../L3-requirements/nfr-grade.md)の各candidate IDを個別に測る。下記値は根拠付き候補であり、実装値・PO承認値ではない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
@@ -34,3 +34,14 @@
 | `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..03で全三終端と次run、allowlist能力、deny設定能力/適用を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。 |
 
 値は根拠付き候補であり、実測達成・L3承認・実runtime使用許可を表さない。fixtureは合成入力と観測契約の設計に限り、秘密値や実runtimeを使った測定は行っていない。
+
+
+## Stage 4 — 接続の候補値と測定
+
+| 候補／測定case | 親AC | 候補・比較・根拠 | 測定／未評価 |
+|---|---|---|---|
+| `SEC-NFR-021-01` / `CASE-NFR-SECURITY-021-01` | `SECURITY-AC-021-01..03` | source/revision誤結合、deny/unknownのallow化、受領から信頼・保存生成を各0件。A=伝送成功のみ、B=分類と受領traceを独立照合。固定021のowner分離を測れるBを候補とする。 | 二source交換、deny/unknown、外部自称許可、未見正常sourceを対照に各違反を別計数。保存014/027の未実施を受領失敗にしない。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-022-01` / `CASE-NFR-SECURITY-022-01` | `SECURITY-AC-022-01..03` | 七要素tuple不一致の割当・実行許可、判断成功による適用欠落相殺を各0件。A=初回判定だけ、B=判断・割当・適用の各対象を再照合。固定022と008/009の条件を保つBを候補とする。 | 七要素を個別変更し期限切れ/revokeと実適用欠落を別計数。異tuple実行と未観測成功claimを測り、latency上限は未指定とする。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-023-01` / `CASE-NFR-SECURITY-023-01` | `SECURITY-AC-023-01..04` | 不足・失敗・別revisionの昇格と将来receiptの実行前要求を各0件。A=最終greenだけ、B=候補/admission/実行/検証/昇格の段階別記録。固定023の失敗ownerを保存するBを候補とする。 | 一段階ずつ失敗・欠落・revision変更し、未見正常候補と比較。段階別未完率・誤昇格・将来receipt要求を独立計数し、固定timeoutを作らない。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-024-01` / `CASE-NFR-SECURITY-024-01` | `SECURITY-AC-024-01..03` | policy宣言・資源状態・実強制の欠落相殺、raw値の無条件保存・露出を各0件。A=資源readyだけ、B=三ownerの適用条件と観測を独立照合。固定024と005/007の責務を保つBを候補とする。 | 三者各一観測欠落、環境変更、合成marker混入、有効scoped利用を比較。marker値を記録せず漏えい件数と誤deny件数を別計数。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-026-01` / `CASE-NFR-SECURITY-026-01` | `SECURITY-AC-026-01..03` | 決定GuardのBot委譲、自称回答による許可化、後続Bot能力の1.0合格条件化を各0件。A=Bot成功を総合判定、B=Guardと必要時の意味判断材料を別照合。固定020/026の版境界を保つBを候補とする。 | Botなし/補助あり/unknown、scope拡張と自称回答、未見正常eventを比較し各誤判定を別計数。後続意味検出のprecision/recallを1.0達成率へ含めない。 必要観測なしは未評価、意味上の違反候補0件。 |

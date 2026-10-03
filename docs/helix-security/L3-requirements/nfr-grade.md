@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 NFR候補（Stage 1・Stage 2c・Stage 3部分草稿）
+# HELIX-SECURITY L3 NFR候補（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
 
 > 状態: 全体的なtimeout/latency/retention数値は固定されていない。以下はfixed L2/L11から直接導ける境界値と、比較・測定可能な技術候補であり、実装値やPO承認値ではない。parameterごとのPO判断は求めない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
@@ -34,3 +34,14 @@
 | `SEC-NFR-032-01` / `SECURITY-AC-032-01..02` | 有効permanent denyの下位機構上書き0、確認済み非適用への新規allow/deny生成0。 | 032の対象scopeと優先順位。主/追加双方を照合するBを追加runtimeだけのAと比較し、固定親どおりBを候補とする。 | 同一対象のmarker/flag各変異とpolicy状態を測る。switch設定能力は035で別観測し032成功で補わない。 |
 | `SEC-NFR-034-01` / `SECURITY-AC-034-01..03` | profile/revision間の条件流用0、write-capable probeをread-onlyとする件数0、正常scoped credential-useへの追加一律deny0。 | profile束縛Bを全接続一括判定Aと比較し、固定034どおりBを候補とする。 | capability・authority・egress各変異と未見正常profileを比較する。catalog/typed供給の未完はそのまま保持し全source closureを数えない。 |
 | `SEC-NFR-035-01` / `SECURITY-AC-035-01..03` | run設定残置/次run継承0、allowlist対応時のYOLO代替0、deny能力未観測の成功claim0。 | PO scope A/配置Aと旧NFR38四条件。successだけcleanupするAと全終端照合Bを比較しBを候補とする。 | success/failure/cancel各終端、対応/非対応/unknown能力、deny前後を独立計測する。timeoutや経過期限・runtime一覧は未規定であり数値を追加しない。 |
+
+
+## Stage 4 — 接続の候補値と測定
+
+| 候補／測定case | 親AC | 候補・比較・根拠 | 測定／未評価 |
+|---|---|---|---|
+| `SEC-NFR-021-01` / `CASE-NFR-SECURITY-021-01` | `SECURITY-AC-021-01..03` | source/revision誤結合、deny/unknownのallow化、受領から信頼・保存生成を各0件。A=伝送成功のみ、B=分類と受領traceを独立照合。固定021のowner分離を測れるBを候補とする。 | 二source交換、deny/unknown、外部自称許可、未見正常sourceを対照に各違反を別計数。保存014/027の未実施を受領失敗にしない。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-022-01` / `CASE-NFR-SECURITY-022-01` | `SECURITY-AC-022-01..03` | 七要素tuple不一致の割当・実行許可、判断成功による適用欠落相殺を各0件。A=初回判定だけ、B=判断・割当・適用の各対象を再照合。固定022と008/009の条件を保つBを候補とする。 | 七要素を個別変更し期限切れ/revokeと実適用欠落を別計数。異tuple実行と未観測成功claimを測り、latency上限は未指定とする。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-023-01` / `CASE-NFR-SECURITY-023-01` | `SECURITY-AC-023-01..04` | 不足・失敗・別revisionの昇格と将来receiptの実行前要求を各0件。A=最終greenだけ、B=候補/admission/実行/検証/昇格の段階別記録。固定023の失敗ownerを保存するBを候補とする。 | 一段階ずつ失敗・欠落・revision変更し、未見正常候補と比較。段階別未完率・誤昇格・将来receipt要求を独立計数し、固定timeoutを作らない。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-024-01` / `CASE-NFR-SECURITY-024-01` | `SECURITY-AC-024-01..03` | policy宣言・資源状態・実強制の欠落相殺、raw値の無条件保存・露出を各0件。A=資源readyだけ、B=三ownerの適用条件と観測を独立照合。固定024と005/007の責務を保つBを候補とする。 | 三者各一観測欠落、環境変更、合成marker混入、有効scoped利用を比較。marker値を記録せず漏えい件数と誤deny件数を別計数。 必要観測なしは未評価、意味上の違反候補0件。 |
+| `SEC-NFR-026-01` / `CASE-NFR-SECURITY-026-01` | `SECURITY-AC-026-01..03` | 決定GuardのBot委譲、自称回答による許可化、後続Bot能力の1.0合格条件化を各0件。A=Bot成功を総合判定、B=Guardと必要時の意味判断材料を別照合。固定020/026の版境界を保つBを候補とする。 | Botなし/補助あり/unknown、scope拡張と自称回答、未見正常eventを比較し各誤判定を別計数。後続意味検出のprecision/recallを1.0達成率へ含めない。 必要観測なしは未評価、意味上の違反候補0件。 |
