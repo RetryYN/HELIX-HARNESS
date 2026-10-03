@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, Stage 2c HARNESS-L2-030..032
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -30,11 +30,12 @@ case IDは `CASE-HARNESS-L10-NFR-<親番号>-<連番>` とし、親番号のtrac
 | `CASE-HARNESS-L10-NFR-013-01` | `NFR-C-HARNESS-013-01` | 正常な未見requirementと、traceなし追加、未承認出力のfixtureを対比する。 | 出力要件ごとの入力trace/backflow先とapproval stateを照合し、traceなし／自動昇格を0件とする。 | 上流入力・scopeが欠けて妥当性を判断できない場合unknown。 |
 | `CASE-HARNESS-L10-NFR-014-01` | `NFR-C-HARNESS-014-01` | template適用による単体design obligation集合と対応L9/L8/L7検証設計を対応付け、template必須入力欠落/source不明を個別に変異。 | 各義務の根拠・検証対・template provenance欠落を数え、欠落0を候補oracleとする。 | 適用対象kind/risk/domainが決まらない場合はtemplate適合を未評価。 |
 | `CASE-HARNESS-L10-NFR-015-01` | `NFR-C-HARNESS-015-01` | AC-015開発証拠を同一revisionで揃え、各stepとticket関係上省略した検査を1つずつ変える。 | trace欠落数とProvisional超過数を数える。CI greenのみ、または他ownerのCI evidenceなしで昇格しない。 | ticket/evidence scope未入力は未評価。 |
-| `CASE-HARNESS-L10-NFR-016-01` | `NFR-C-HARNESS-016-01` | baseline固定後に同一workload/profileを反復し、候補Aの中央値比較と候補Bの分布・上側quantile比較を実測する。計測runごとの環境・標本数・ばらつきを記録する。 | 回帰oracle違反数、中央値差、分布差、confidence intervalを並記し、要求者が根拠を評価できる候補資料を得る。threshold確定はしない。 | baseline/workload/profile/統計条件/oracleが欠ければ未評価。測定ばらつきの大きい結果を改善達成にしない。 |
+| `CASE-HARNESS-L10-NFR-016-01` | `NFR-C-HARNESS-016-01` | baseline固定後、同一workload/profile条件で候補Aの中央値比較と候補Bの分布・上側quantile比較を行い、実測数・標本数・環境・ばらつき・workload分布を記録する。 | 回帰oracle違反数、中央値差、分布差、上側quantile、confidence intervalを並記し、中央値だけでは見えない尾部回帰を比較できる根拠候補を得る。 | baseline/workload/profile/統計条件/oracleが欠ければ未評価。標本不足やworkload偏りは別の制約／未評価として残り、分布併記で解消した扱いにしない。測定ばらつきの大きい結果を改善達成にしない。 |
 | `CASE-HARNESS-L10-NFR-017-01` | `NFR-C-HARNESS-017-01` | eligible positiveとRelease Port必須条件欠落・未回収検査・revisionずれを対比し、同じinputでartifact再構成を行う。 | 不適格eligible件数とartifact identity/digest差を計数し、候補値0を照合する。 | 配備結果をこのcaseのoracleにしない。 |
 | `CASE-HARNESS-L10-NFR-018-01` | `NFR-C-HARNESS-018-01` | 5状態の根拠を個々に与え、document-only/CI-only昇格を負例として、対象revision・時点・ownerを一つずつ欠く。 | 誤state遷移およびrecord field欠落数を測る。製品固有の品質閾値は入力されたowner基準とだけ比較する。 | owner基準、適用性、観測期間が不明ならその品質判定は未評価。 |
 | `CASE-HARNESS-L10-NFR-019-01` | `NFR-C-HARNESS-019-01` | 任意stage由来の完全・部分・矛盾inputを与え、source/owner/revisionの各欠落を独立して評価する。 | 変換可能、unknown、inconsistentの各結果が原入力へtraceされるか測り、自動承認/release数0を照合する。 | 十分な入力を持つ正常な未見stageを拒否しない。 |
 | `CASE-HARNESS-L10-NFR-020-01` | `NFR-C-HARNESS-020-01` | 隣接producer/consumer契約のvalid、版不一致、field欠落、許容未知fieldを比較する。 | field coverage欠落・不整合暗黙受理・upstream state変更を計数する。個々の欠落名と所在をoracle出力へ含める。 | 契約自体または双方ownerが提示されない場合未評価。 |
+| `CASE-HARNESS-L10-NFR-024-01` | `NFR-C-HARNESS-024-01` | 同一engine/pack/target revision・scope・既回答で同じ質問順・理由・状態を反復比較し、score-only convergence fixtureと必須項目欠落fixtureを与える。 | 順序・理由・状態差分と必須不足の見逃し／誤った合意昇格を計数する。 | 入力revision、oracle、適用性根拠が不足すれば未評価。固定history件数・質問数・統計thresholdは新設しない。 |
 
 Expiry境界のfixtureでは、既存contractが定める比較規則を用いる。未定義なら候補A/Bの各々で直前・等号・直後のdispatch/resumeを比較し、期限切れsuccessが0件であることを測る。
 

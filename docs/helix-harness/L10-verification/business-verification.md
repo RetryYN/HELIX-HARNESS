@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, Stage 2c HARNESS-L2-030..032 partial draft
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032 partial draft
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -11,7 +11,7 @@ execution_status: designed_only_not_executed
 | 状態 | 判定材料 |
 |---|---|
 | この部分scopeで独立business criterionなし | `functional-requirements.md`の範囲表と`functional-verification.md`に列挙されたACが対応していること。 |
-| Stage 2bの固定親 | 独立business criterionなし。Prototype/PoC適用性、設計義務、Provisional、release・運用・reverse/handoffの工程条件を、収益・費用・製品優先順位へ読み替えない。機能AC/L10の正常・反例・unknownが一致することだけをこのscopeで確認する。 |
+| Stage 2bの固定親 | 独立business criterionなし。Prototype/PoC適用性、設計義務、Provisional、release・運用・reverse/handoff・要求形成の工程条件を、収益・費用・製品優先順位へ読み替えない。機能AC/L10の正常・反例・unknownが一致することだけをこのscopeで確認する。 |
 | 将来のbusiness criterionが未提示 | 未評価として保持する。売上、費用、優先順位、採用意向などを技術oracleから推定しない。 |
 | Stage 2c生成・packet receipt | 030/031の候補と032の受渡しreceiptだけでは実行・合格・業務完了を生成せず、functional L10の同じACを参照する。 |
 | H022のstage evidence | L3機能ACとL11利用者recordの段階条件をfunctional L10で確認し、事業価値達成へ読み替えない。 |

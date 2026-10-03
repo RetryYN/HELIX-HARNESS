@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020) + Stage 2c(HARNESS-L2-030..032) / version_class 1.0
+scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020, 024) + Stage 2c(HARNESS-L2-030..032) / version_class 1.0
 owner: HELIX-HARNESS
 paired_l10: ../L10-verification/functional-verification.md
 
-本書はStage 1、Stage 2a、およびStage 2bのHARNESS-L2-012..020とStage 2cのHARNESS-L2-030..032に限る部分草稿である。Stage 2bの9親について機能要件とACを追補し、他のStage 2b項目・HARNESS全体のL3、L3承認、実装・実行許可を表さない。対のL10総合検証設計は[functional-verification.md](../L10-verification/functional-verification.md)に置き、両文書で同じAC IDを使う。要求意味・範囲・owner・versionは固定親を越えて変更しない。
+本書はStage 1、Stage 2a、およびStage 2bのHARNESS-L2-012..020と024、およびStage 2cのHARNESS-L2-030..032に限る部分草稿である。Stage 2bの工程親と要求形成親024について機能要件とACを追補し、その他の項目・HARNESS全体のL3、L3承認、実装・実行許可を表さない。対のL10総合検証設計は[functional-verification.md](../L10-verification/functional-verification.md)に置き、両文書で同じAC IDを使う。要求意味・範囲・owner・versionは固定親を越えて変更しない。
 
 ## 親要求revision
 
@@ -24,6 +24,7 @@ paired_l10: ../L10-verification/functional-verification.md
 | `HARNESS-L2-018` (`MPR-RC-HARNESS-L2-018-001`) | [2026-09-28判断](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L47)、同上 | 同上 | 411–418、`97d4f669fb90eea59a8909a2c5b482a8b438018ab219dd6279e526ae49a89b17` | `3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671` |
 | `HARNESS-L2-019` (`MPR-RC-HARNESS-L2-019-001`) | [2026-09-28判断](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L48)、同上 | 同上 | 419–426、`0f50a16bcb31791e5d27f784a0d97f8142f41559d957b12713e19f1ab80d7609` | `7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000` |
 | `HARNESS-L2-020` (`MPR-RC-HARNESS-L2-020-001`) | [2026-09-28判断](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L49)、同上 | 同上 | 427–437、`28980b6713714debd1aab0c83c83f025ca415209427e9f7a657e624af305b4b3` | `d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d` |
+| `HARNESS-L2-024` (`MPR-RC-HARNESS-L2-024-001`) | [2026-09-28判断](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L53) | 同上 | 499–525、`ec4ece6e411152941c16cd8dc25a1c43613dff5e6b5c3051ef675c66c8b9b2cc` | `b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8` |
 
 固定L2全文SHAは `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`、対のL11全文SHAは `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4`。各L11の固定spanは、010 205行／`ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf`、011 206行／`483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188`、023 223行／`f209dace6dd361437dd2f37785216ff7cdc3e69ef298ce760e1574033c4beaf4`。親の採択状態は判断記録で確認し、固定本文内の候補表現や後続register metadataで変更しない。
 
@@ -109,7 +110,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 
 
-### Stage 2b: 単体工程のL3要件（HARNESS-L2-012..020）
+### Stage 2b: 単体工程のL3要件（HARNESS-L2-012..020, 024）
 
 各FRは固定L2の「受け取るもの」「提供するもの」「保証すること」「単独で成り立つための依存」をそのまま境界として展開する。前段のL2番号が小さいという理由だけで依存を追加せず、単体の工程を単独実施できる親では後続・先行の別工程を必須にしない。提案作成や検証設計はauthorityや実行許可を作らない。
 
@@ -221,6 +222,18 @@ paired_l10: ../L10-verification/functional-verification.md
 - **`AC-HARNESS-L3-020-02`**：版不一致、必須入力欠落、異なるartifact/revision、責務外ownerを一つずつ変異させ、各欠落／不一致を特定して保留する。前stage未使用の外部成果でもHARNESS-L2-019と同じ入力契約を満たす正常caseは受け入れる。正規化可能な未知fieldは契約が許す範囲なら未見正常として受け入れる。
 - **`AC-HARNESS-L3-020-03`**：④のProvisional成果を⑥へ渡すnegativeと、L2-022 Verified/Acceptedの同一条件を満たす成果を渡すpositiveを比較する。前者は止まり後者だけがrelease-unit受渡し候補になる。handoffで前後stageのauthority/stateを変更せず、意味差は該当上流ownerへ戻し、成功をreleaseや全段階完了に読み替えない。
 
+#### `FR-HARNESS-L3-024` — 要求形成の質問優先と収束根拠（親: `HARNESS-L2-024`）
+
+**入力**：engine／product pack revision、対象ConceptとL1 revision、指示・参照根拠のidentity/revision/scope、現在・prior candidate、既回答・訂正・defer・agreementとactor/owner、利用可能なiteration履歴と差分（固定件数を必須にしない）、矛盾・重複、actor/task、正常・取消・failure・timeout・recovery、P0/P1 surface、implicit requirement matrix、Prototype／非UIの適用性と、該当時にはHARNESS-L2-008の工程で得る合意・根拠、ならびに不確実性・影響・下流変更cost・人間専決区分。
+
+**出力**：version/scope/sourceに結び付く要求candidateと意味差分、質問と既存open questionの状態、優先理由・影響範囲、矛盾・欠落・未確定事項、defer owner/re-entry、適用性と非適用根拠、残る人間判断の原文・選択肢・推奨・影響候補、収束判定と不足理由。候補は訂正・合意・採否待ちであり、approved requirement、L3承認、操作許可に昇格しない。
+
+**不変条件**：同一target revision/scopeの既回答は再質問せず、既存open itemは同じidentity・owner・状態で継続する。再開時は新source/revisionまたはfinding、影響scope、意味差分を示し、影響項目だけをownerへ返す。質問順は影響・不確実性・下流変更cost・人間専決度の入力根拠を可視化し、同順位時はversioned pack inputに結び付くtie-breakを用いる。数値weight・固定質問数・固定iteration数を根拠なく設けない。必要な形成情報の不足と、人間確認・合意待ちを区別し、score、質問数、iteration数、timeoutだけで収束や人間判断を成立させない。Prototype／非UI合意が適用対象で未了でもcandidateと未決packetを返せるが、合意状態を作らない。
+
+- **`AC-HARNESS-L3-024-01` 優先順位と再現**：影響・不確実性・下流変更cost・人間専決度の根拠と同順位tie-breakを入力し、同じcandidate・既回答・revisionから質問と理由の順序を再現する。順位根拠または必要tie-breakがない場合は未確定としてownerへ戻す。
+- **`AC-HARNESS-L3-024-02` 重複・矛盾・再開**：同一scopeの既回答／open question、新根拠ありの合意再開、新根拠なしの再質問を比較する。既回答は重複せずopen itemを継続し、再開は影響identityだけをownerへ返す。理由なしの矛盾自動解消や全面stale化は不合格。
+- **`AC-HARNESS-L3-024-03` 形成不足と人間待ちの区別**：actor/task、normal/cancel/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能な履歴差分、該当時Prototype／非UI合意を個別に変異する。必須形成情報unknownは不足として示し、整ったdecision packetの人間確認待ちは候補として提示する。score・質問数・iteration回数・Issue/PR/沈黙から承認・要件採択・操作許可を生成しない。履歴がない／少ないことのみを不足にしない。
+
 L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`から親へtraceする。対のAC IDは `AC-HARNESS-L3-<親番号>-<連番>` とする。L10 case IDは `CASE-HARNESS-L10-<親番号>-<連番>` とし、双方に機構prefixと親番号を含めて重複を避ける。AC本文は本書を正本とし、L10は同じAC IDを参照する。この採番は文書内trace用で、新しい承認・admission gateではない。
 
 
@@ -256,6 +269,12 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 旧processの工程定義、旧L3のFR+AC／paired test-designの分離、旧gatesの「AC欠落を完了扱いしない」形、自律境界の「人は上流要求・要件承認、AIは要件起草以下を進める」点を、本Stage 2bの起草方法として保持する。旧番号を現L2に連番対応させず、旧acceptance designを現L10そのものとも呼ばない。旧asset/sourceの全文は記載SHAで固定され、旧資料やtest/runtimeは参照のみで実行していない。
 
 旧Functional FR-05のdeterministic checkは説明可能な判定の参考にするが、旧G3・環境変数bypass・監査機構を置換対象とする。FR-08はmode routing、FR-09はagent-specific guardであり、HARNESS-L2-011の一般呼出しcontractの根拠にはしない。旧test-designのfrontmatterは`layer: L3`、`executed_at_layer: L12`である。このHARNESS旧paired test-designを旧L10と呼ばない。現行L10はL3↔L10対応を新しい総合検証として設計する。
+
+### HARNESS-L2-024の旧source照合
+
+| 現行親／旧ID | 旧source（asset／path／行／全文SHA-256） | 判断（再利用／再導出／置換） |
+|---|---|---|
+| `HARNESS-L2-024` / `FR-HARNESS-L3-024` | `LEGACY-ASSET-E78B8D68CC327AA00991` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md:48,52` SHA `361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61`; `LEGACY-ASSET-AD746F4F3487103519F9` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md:22,26` SHA `3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e`; `LEGACY-ASSET-63DEDB3F6F768B251BC5` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-screen-applicability-prototype-unit-test-design.md:30–43` SHA `d72c002d485628ba059346b6af6a7233cead8bdf060a2630289d1c8148e0e26f` | RDJ-FR-003の質問優先入力・重複拒否とRDJ-FR-007の収束項目を意味の起点として再導出。旧「直近2 iteration」を最低件数にせず、現在の固定L2/L11の利用可能履歴・差分条件へ置換。旧JSON正本、schema/compiler/runtime、G1/G3 gate、固定ID・数値weightは移植しない。Prototype test-designは適用性・合意の条件付き観測だけを参照し、Prototypeを全対象で必須化しない。 |
 
 ## 固定親が直接参照する旧FRS候補の照合
 

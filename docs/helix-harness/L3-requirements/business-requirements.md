@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, Stage 2c HARNESS-L2-030..032
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032
 paired_l10: ../L10-verification/business-verification.md
 
 Stage 1、Stage 2a、Stage 2bおよびStage 2cの部分草稿では、対象親から独立した業務基準・価値閾値・事業判断を追加しない。Stage 2bの単体工程親は既存ownerと工程契約を定めるが、ここで別の業務ownerや業務stateを割り当てない。これはHELIX-HARNESS全体の業務要件非適用を意味せず、現在の固定親から事業意味を追加しない範囲記録である。
@@ -22,6 +22,7 @@ Stage 1、Stage 2a、Stage 2bおよびStage 2cの部分草稿では、対象親�
 | `HARNESS-L2-018` | 独立したbusiness requirementを導出しない | 運用品質要求のownerは製品側にあり、共通SLOや費用閾値をHARNESSが決定しない。 |
 | `HARNESS-L2-019` | 独立したbusiness requirementを導出しない | 既存成果の逆方向変換は企画・事業判断を自動承認しない。 |
 | `HARNESS-L2-020` | 独立したbusiness requirementを導出しない | 隣接stage handoffの互換性確認から新しい価値基準や優先順位を作らない。 |
+| `HARNESS-L2-024` | 独立したbusiness requirementを導出しない | 質問優先と形成資料の十分性は工程契約であり、事業価値・優先順位・人間の合意を推定しない。 |
 | `HARNESS-L2-030` | 独立したbusiness requirementを導出しない | case生成は共有技術能力であり、実行・受入・品質判断を所有しない。 |
 | `HARNESS-L2-031` | 独立したbusiness requirementを導出しない | 許可入力のreduction/regression候補は業務上の障害優先度・完了判定を新設しない。 |
 | `HARNESS-L2-032` | 独立したbusiness requirementを導出しない | packet受渡しはexecutorの実行や業務完了を意味しない。 |

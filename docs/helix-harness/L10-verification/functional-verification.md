@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020) + Stage 2c(HARNESS-L2-030..032) / version_class 1.0
+scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020, 024) + Stage 2c(HARNESS-L2-030..032) / version_class 1.0
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -28,6 +28,7 @@ Stage 2b parent-to-source pin（633bf12時点の固定PO決定。後続register 
 | `HARNESS-L2-018` | 411–418 / `97d4f669fb90eea59a8909a2c5b482a8b438018ab219dd6279e526ae49a89b17` | 213 / `95a19c6b40416224eb1ba001d975ef1a13a49f20e106b2ac1c759d5268ba8a7c` | 判断記録 #L47、`MPR-RC-HARNESS-L2-018-001`、`3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671` |
 | `HARNESS-L2-019` | 419–426 / `0f50a16bcb31791e5d27f784a0d97f8142f41559d957b12713e19f1ab80d7609` | 214 / `272a6649b26e16d38a8679a36832e3aa621a46373b6beb73c9847969d5a1af89` | 判断記録 #L48、`MPR-RC-HARNESS-L2-019-001`、`7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000` |
 | `HARNESS-L2-020` | 427–437 / `28980b6713714debd1aab0c83c83f025ca415209427e9f7a657e624af305b4b3` | 215 / `4f46adcdb07a0f5a2cb2c0ac54e39a6a6856b9e908570e3826dc4ddaa9204a3d` | 判断記録 #L49、`MPR-RC-HARNESS-L2-020-001`、`d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d` |
+| `HARNESS-L2-024` | 499–525 / `ec4ece6e411152941c16cd8dc25a1c43613dff5e6b5c3051ef675c66c8b9b2cc` | 240 / `2d467ab867ac41999f53f70055f15ad1a129a44e2a04724074bcf7ae7584bf9e` | 判断記録 #L53、`MPR-RC-HARNESS-L2-024-001`、`b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8` |
 
 ## L10共通の試験設計
 
@@ -85,6 +86,14 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 | `CASE-HARNESS-L10-023-01` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-01` | 4 dependency class、owner、version/range、pack revision、operation/source conditionの宣言fixtureを評価。未実装依存を含むclassification-only fixture、分類欠落・曖昧の反例も与える。 | 4区分とrevision結束が保たれ、dependency implementationが未存在でもmissing/unknown分類を出力できる。 | 別区分への暗黙変換、未宣言条件の推測、missing依存をsuccess扱いすれば不合格。 |
 | `CASE-HARNESS-L10-023-02` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-02` | operation条件true/false、selected/unselected source、reference-only、unknown/staleを別fixtureにする。さらにsource選択を明示的に変更した新入力を別fixtureにし、closure/state/reasonを観測。 | 必須closureと4種状態を区別。未選択sourceは未観測。選択sourceが失敗しても同じ要求のまま別sourceへ移らず、明示再選択された新入力では新しいsourceの条件を再評価する。 | unknownをfalse／optional／reference-onlyへ丸める、暗黙fallback、未選択sourceの成功推測は不合格。明示再選択を理由に拒否しない。 |
 | `CASE-HARNESS-L10-023-03` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-03` | 権限・隔離・版・検証・記録が必要なsourceを人が代行するfixture、口頭のみの受領反例、後続版依存、1.0安全依存、依存unknown fixtureを評価し同じinput/revisionを反復する。 | 人代行でもsource/actor/revision/scope/受領/検証receiptが返り、口頭のみは閉包根拠にならない。分類自体はmissing/unknownを出せる。後続版を1.0へ強制せず、1.0安全依存は必須。同一評価のclosure/reason差分0。 | 必要な義務・receipt欠落、安全依存削除、unknown実行可能扱い、再評価差分は不合格。authority定義は新設しない。 |
+
+#### HARNESS-L2-024 AC別の総合検証
+
+| L10 case ID | L3 FR ID | AC ID（L3正本） | fixture・観測点 | 合格材料 | 反例／未評価の扱い |
+|---|---|---|---|---|---|
+| `CASE-HARNESS-L10-024-01` | `FR-HARNESS-L3-024` | `AC-HARNESS-L3-024-01` | 影響・不確実性・下流変更cost・人間専決度の根拠を持つ候補と、同順位項目を与える。pack revisionに結んだtie-breakあり／なしを比較し、同じ入力を再評価する。 | 順序と理由が再現され、tie-break欠落時は決定論的な順序を捏造せず未確定を返す。 | 高影響の不確実な項目を低影響表現より後にする、または入力にないweightを作る場合は不合格。十分な未知正常項目は親scope内で受け入れる。 |
+| `CASE-HARNESS-L10-024-02` | `FR-HARNESS-L3-024` | `AC-HARNESS-L3-024-02` | 同一revision/scopeの既回答とopen question、新根拠のあるagreement再開、同じ質問を別表現にした新規送出をfixture化する。 | 既回答を再質問せず同じopen identityを継続し、新根拠の再開は影響itemとownerだけへ戻す。 | 新根拠なしの再質問、理由なし矛盾解消、無関係agreementまでstale化した場合は不合格。 |
+| `CASE-HARNESS-L10-024-03` | `FR-HARNESS-L3-024` | `AC-HARNESS-L3-024-03` | actor/task、failure/cancel/timeout/recovery、P0/P1、defer owner/re-entry、matrix領域、iteration履歴の各条件を一つずつ欠落・unknownにし、全情報が揃い人間判断だけが残るfixtureも比較する。Prototype／非UI合意は適用あり／適用なし／適用あり未了を分ける。 | 必須形成不足は具体項目を示し、整ったdecision packetは人間確認待ちcandidateとして返す。履歴なし・少数だけで拒否せず、適用未了でもcandidate形成を返し合意pendingを保持する。 | score、質問数、iteration数、timeout、Issue/PR、OS registrationから収束・合意・承認を生成する場合は不合格。 |
 
 ## 技術候補の計測への接続
 

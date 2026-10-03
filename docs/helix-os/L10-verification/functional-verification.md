@@ -10,6 +10,10 @@ execution_status: designed_only_not_executed
 
 | case ID | L3 FR | L3 AC | 入力fixture／観測 | 合格oracle | 反例・未評価 |
 |---|---|---|---|---|---|
+| `CASE-OS-L10-014-01` | `FR-OS-L3-014` | `AC-OS-L3-014-01` | 同じ段階identityにpack/dependency版、設定/data形式、environment、capability boundary、受入evidence、update/rollback条件を結ぶ。source tagだけの例も対照にする。 | すべての宣言入力が同じ段階構成へ結び、再構成結果が一致する。 | 未宣言依存、異なる版、tagのみを段階成功とすれば不合格。 |
+| `CASE-OS-L10-014-02` | `FR-OS-L3-014` | `AC-OS-L3-014-02` | 狭いscopeの要求確認→作業→検証→結果記録を与え、記録工程を人が担う正常例、次段階の構築・検証、rollbackで案件state/evidenceを欠落させる反例を比較する。 | 完結範囲と人の分担が明示され、切戻し後に案件stateと記録が維持される。 | 薄い全機能列挙、rollback後のstate喪失、段階成立による未完義務消去は不合格。 |
+| `CASE-OS-L10-014-03` | `FR-OS-L3-014` | `AC-OS-L3-014-03` | 稼働中の別段階／未リリースtree／次段階を単独で取り外し、必要な安全依存と案件data/secret/credential混入の各変異を与える。 | 自己依存なしで起動・更新・復旧でき、安全依存を欠く例は成立しない。対象data/secretは構成に含まれない。 | 他段階依存、必須安全条件欠落、案件dataやcredential混入を通せば不合格。 |
+| `CASE-OS-L10-014-04` | `FR-OS-L3-014` | `AC-OS-L3-014-04` | 段階成立、1.0到達、外部公開版、HARNESS製品releaseを独立に変化させる。L1-023後続能力なしの段階と、成立していない能力の例も与える。 | 段階状態だけが段階成立を示し、1.0・外部公開・製品releaseへ連鎖しない。後続能力を前提化せず、未成立機能を非対応として示す。 | v0.xを外部版／1.0扱い、H017製品releaseと同一視、L1-023完成を必須化した場合は不合格。 |
 | `CASE-OS-L10-015-01` | `FR-OS-L3-015` | `AC-OS-L3-015-01` | 異なる対象の正本revision/digest、decision source/actor/time、同名path projectionを与える。 | 対象別authority記録から正本とsource差分を特定できる。 | path/filenameだけの一致、digest不一致、対象違いはcurrent authority扱いしない。 |
 | `CASE-OS-L10-015-02` | `FR-OS-L3-015` | `AC-OS-L3-015-02` | 未分類原eventとその訂正分類recordを順に加える前後比較。 | 原event identity/bytesは不変で訂正履歴とsourceが追跡できる。 | 訂正が原eventを上書きしたら不合格。 |
 | `CASE-OS-L10-015-03` | `FR-OS-L3-015` | `AC-OS-L3-015-03` | 同一判断のPR/Issue/CI/memory projectionのみをclose/greenへ個別変更する。 | 要求採否・承認・実装許可のauthority stateは不変。conflict/staleは未解決表示。 | projection statusから判断を生成したら不合格。 |
