@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 NFR候補（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
+# HELIX-SECURITY L3 NFR候補（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
 
 > 状態: 全体的なtimeout/latency/retention数値は固定されていない。以下はfixed L2/L11から直接導ける境界値と、比較・測定可能な技術候補であり、実装値やPO承認値ではない。parameterごとのPO判断は求めない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
@@ -45,3 +45,9 @@
 | `SEC-NFR-023-01` / `CASE-NFR-SECURITY-023-01` | `SECURITY-AC-023-01..04` | 不足・失敗・別revisionの昇格と将来receiptの実行前要求を各0件。A=最終greenだけ、B=候補/admission/実行/検証/昇格の段階別記録。固定023の失敗ownerを保存するBを候補とする。 | 一段階ずつ失敗・欠落・revision変更し、未見正常候補と比較。段階別未完率・誤昇格・将来receipt要求を独立計数し、固定timeoutを作らない。 必要観測なしは未評価、意味上の違反候補0件。 |
 | `SEC-NFR-024-01` / `CASE-NFR-SECURITY-024-01` | `SECURITY-AC-024-01..03` | policy宣言・資源状態・実強制の欠落相殺、raw値の無条件保存・露出を各0件。A=資源readyだけ、B=三ownerの適用条件と観測を独立照合。固定024と005/007の責務を保つBを候補とする。 | 三者各一観測欠落、環境変更、合成marker混入、有効scoped利用を比較。marker値を記録せず漏えい件数と誤deny件数を別計数。 必要観測なしは未評価、意味上の違反候補0件。 |
 | `SEC-NFR-026-01` / `CASE-NFR-SECURITY-026-01` | `SECURITY-AC-026-01..03` | 決定GuardのBot委譲、自称回答による許可化、後続Bot能力の1.0合格条件化を各0件。A=Bot成功を総合判定、B=Guardと必要時の意味判断材料を別照合。固定020/026の版境界を保つBを候補とする。 | Botなし/補助あり/unknown、scope拡張と自称回答、未見正常eventを比較し各誤判定を別計数。後続意味検出のprecision/recallを1.0達成率へ含めない。 必要観測なしは未評価、意味上の違反候補0件。 |
+
+## Stage 5 — 027構成体の技術候補
+
+| 候補／L10測定case | 親AC | 候補・比較・根拠 | 測定／未評価 |
+|---|---|---|---|
+| `SEC-NFR-027-01` / `CASE-NFR-SECURITY-027-01` | `SECURITY-AC-027-01..04` | 経路間証拠流用、deny/holdの成功保存化、単体/一経路からの構成体成立を各0件。A=単体014または最終aggregateのみ、B=三経路ごとの判断とsink結果を照合。固定027が各経路の独立追跡を要求するためBを候補とする。時間・retention・quota値は未指定のままとする。 | 同番号functional caseで三経路正常、各field個別変異、未見正常、一経路unknownを比較。違反件数と経路別未評価を別計数し、候補0件。必要観測なしは未評価であり構成体合格を主張しない。 |

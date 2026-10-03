@@ -1,10 +1,10 @@
-# HELIX-SECURITY L3 機能要件（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
+# HELIX-SECURITY L3 機能要件（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
 
-> 状態: L3要件草稿。全L3文書の完成、L3承認、実装方式確定を表さない。本書はStage 1の19件、Stage 2cの031、Stage 3の029/030/032/034/035およびStage 4の021/022/023/024/026の計30親を固定L2/L11と対象PO判断から起草した部分草稿である。他機構・後続Stageはその正本で扱う。
+> 状態: L3要件草稿。全L3文書の完成、L3承認、実装方式確定を表さない。本書はStage 1の19件、Stage 2cの031、Stage 3の029/030/032/034/035およびStage 4の021/022/023/024/026およびStage 5の027の計31親を固定L2/L11と対象PO判断から起草した部分草稿である。他機構・後続Stageはその正本で扱う。
 
 ## 適用・authority・owner境界
 
-対象はStage 1のHELIXSECURITY-L2-001〜016、020、028、033の19 identity、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026である。SECURITYはpolicy/classification/authority判定と理由を所有する。OSはassignment/progression、Worker実行環境はenforcement、CONNECTは伝送、HARNESSは共通pack lifecycle、LABO/BRAINはそれぞれ評価・知識格納を所有する。各FRはSECURITYが保証する契約と各ownerへ返す情報を述べ、他ownerの実装を肩代わりしない。
+対象はStage 1のHELIXSECURITY-L2-001〜016、020、028、033の19 identity、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026、Stage 5の027である。SECURITYはpolicy/classification/authority判定と理由を所有する。OSはassignment/progression、Worker実行環境はenforcement、CONNECTは伝送、HARNESSは共通pack lifecycle、LABO/BRAINはそれぞれ評価・知識格納を所有する。各FRはSECURITYが保証する契約と各ownerへ返す情報を述べ、他ownerの実装を肩代わりしない。
 
 ## 旧HELIXからの対応
 
@@ -551,3 +551,24 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 - `SECURITY-AC-026-01` — 決定的判定: Bot不在でも020の決定的ruleを適用し、Botへの委譲・全候補Bot必須化をしない。
 - `SECURITY-AC-026-02` — 判断材料の限定: 意味判断が必要な場合はevent/source/revision、判断目的・対象scope・出所と確度を区別して渡す。判断材料からoperation authorityを作らない。
 - `SECURITY-AC-026-03` — 版とownerの分離: INTELLIGENCEは必要時Botの限定判断を担い、SECURITYはpolicyを判断し、OS/Workerは既存実行責務を持つ。Bot具体稼働・model routing・後続意味検出達成を1.0合格条件にしない。
+
+## Stage 5 — HELIXSECURITY-L2-027 永続化promotion構成体
+
+`SECURITY-FR-027-01` / version_target `1.0`。Context/Agent output→Memory、Episode→Training Dataset、Product Knowledge→BRAINの3経路を、source/provenance/classification、promotion request、SECURITY判定、対象sinkへの受渡し結果またはdeny/holdまで個別に追跡する。各sinkの保存・評価・登録はそのownerの接続契約へ保ち、LABO評価やOS登録を全経路の新しい必須工程にしない。Training Dataset受渡しから実学習やINTELLIGENCE 3.0能力を生成しない。
+
+固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、登録 `MPR-RC-HELIXSECURITY-L2-027-002`、PO `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L65`。L2 `docs/helix-security/L2-requirements/security-requirements.md:332–341` 全体SHA `027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、raw `9c8d1c515b1a390d2a5a21f9c271ae29c14b76bad612a8d669bd94335042888e`、正規化意味 `f3d5fa59eba03cf77fbb8d17180b8d086061cef34818ea87e19209b8be33eb9e`。L11 `docs/helix-security/L11-acceptance/security-acceptance.md:51` 全体SHA `25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`、raw `8ba92962fcdf759c86afcbfdba02508ef36ad1f356517d6283fe439067b5b7a1`。
+
+旧sourceはStage 4の021/026で読んだP8-04とpaired testの近接起点である。旧P8-04とpaired testのsource/trust境界と正常/否定oracle形式は近接起点。同じ3promotion経路のcompositeは旧L3で確認できず、固定現行027から各sink ownerへのhandoffまで再導出。旧research/skillify/runtime/DBや全経路LABO評価・OS登録は継承しない。 検索範囲は旧HELIX L3 pillar/security capability brokerおよびpaired acceptanceであり、固定027と同じ三経路構成体の独立旧L3は確認できなかった。新しい上流意味は追加せず採択済み027から起草する。
+
+| 旧asset／path・行 | 全体SHA-256／raw span SHA-256 | 処置 |
+|---|---|---|
+| `LEGACY-ASSET-EE5DBACC7F28F7D1F605` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:168–171` | `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` / `e8a9bb380860412a602572814f10c7dbc792863f7858f596fa930534d8d01511` | 信頼境界と正常/否定oracle形式を再導出。旧runtime/DBを置換。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` / `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:123–129` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` / `a68ccf6656f83eb322737c1cdd2d6e88fa749e56e06b6567e7a853ef2fc31a72` | 信頼境界と正常/否定oracle形式を再導出。旧runtime/DBを置換。 |
+
+- `SECURITY-AC-027-01` — 経路別の構成体追跡: 三経路それぞれのsource/request/revision・分類・判断・sink結果を結び、単体014または一経路の成功を構成体成功にしない。
+
+- `SECURITY-AC-027-02` — 欠落・deny・holdの保持: 各経路のsource/provenance/classification/判断/sink結果を独立照合し、欠落・unknownは永続化前にhold/denyとして保持する。
+
+- `SECURITY-AC-027-03` — sink ownerの固有処理: sink受渡し結果とその後の保存・評価・登録結果を区別し、接続契約で必要な固有処理だけを各ownerへ返す。
+
+- `SECURITY-AC-027-04` — 未見経路条件と局所unknown: 未見sink契約revisionでも既存適用条件が確認できる部分を照合し、互換性・分類・判断不明は該当経路に残す。

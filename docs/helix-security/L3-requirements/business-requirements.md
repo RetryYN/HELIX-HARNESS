@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 業務要件（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
+# HELIX-SECURITY L3 業務要件（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
 
 > 状態: 本Stage 1・Stage 2c・Stage 3・Stage 4の業務要件に独立した新identityはない。固定L2は機構間の業務意味を各ownerへ残すため、業務結果の意味・承認・保存をこの文書で新設しない。
 
@@ -13,3 +13,7 @@ HELIXSECURITY-L2-031も独立したbusiness identityを導出せず、追加runt
 ## Stage 4の業務意味境界
 
 021/022/023/024/026は独立した業務価値・価格・保存完了・risk受容ownerを導出しない。受領・operation判定・admission・資源準備・意味判断材料から業務成功や採用を生成しない。各機能ACの反例をこの境界の照合にも用い、実際の業務結果は既存ownerへ保つ。
+
+## Stage 5の業務意味境界
+
+027は三経路のSECURITY境界とsink受渡しを保証する技術構成体であり、独立した業務成功・保存評価・学習完了を導出しない。機能ACのdeny/hold反例を同じ境界の検証に用い、sink固有の業務結果は既存ownerの接続契約へ保つ。

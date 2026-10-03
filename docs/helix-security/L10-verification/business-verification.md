@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 業務検証（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
+# HELIX-SECURITY L10 業務検証（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
 
 このStage 1・Stage 2c・Stage 3・Stage 4部分scopeに独立した業務要件/ACはない。業務意味をCONNECT/SECURITYが決めない境界を、[L3業務要件](../L3-requirements/business-requirements.md)の記載と照合する。技術receiptだけでbusiness success・approval・保存完了が生じるfixtureをnegative checkとして使う。業務ownerが持つmeaning/resultはownerの受入へ引き渡し、本caseで代行しない。
 
@@ -11,3 +11,7 @@ Stage 2cの `HELIXSECURITY-L2-031` にも独立business ACはない。proposal�
 ## Stage 4の業務意味境界
 
 021/022/023/024/026は独立した業務価値・価格・保存完了・risk受容ownerを導出しない。受領・operation判定・admission・資源準備・意味判断材料から業務成功や採用を生成しない。各機能ACの反例をこの境界の照合にも用い、実際の業務結果は既存ownerへ保つ。
+
+## Stage 5の業務意味境界
+
+027は三経路のSECURITY境界とsink受渡しを保証する技術構成体であり、独立した業務成功・保存評価・学習完了を導出しない。機能ACのdeny/hold反例を同じ境界の検証に用い、sink固有の業務結果は既存ownerの接続契約へ保つ。

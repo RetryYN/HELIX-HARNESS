@@ -1,6 +1,6 @@
-# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c・Stage 3・Stage 4部分草稿）
+# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
 
-> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はSECURITYのStage 1 19件、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026の30親を対象とする。
+> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はSECURITYのStage 1 19件、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026、Stage 5の027の31親を対象とする。
 
 ## 検証共通契約
 
@@ -333,3 +333,14 @@
 | `SECURITY-CASE-026-01` | `SECURITY-AC-026-01` | 同じ決定的違反をBotなし、補助あり、補助unknownで比較する。 | Guard判断が保持されBot不在だけの停止0、違反の許可化0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
 | `SECURITY-CASE-026-02` | `SECURITY-AC-026-02` | 正常な限定依頼と出所欠落、scope拡張、自称allow回答を比較する。 | 必要範囲の判断材料だけを受け、unknownは対象保留、自称allowによる許可0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
 | `SECURITY-CASE-026-03` | `SECURITY-AC-026-03` | 未見正常eventと後続Bot能力なしの1.0接続fixtureを与える。 | owner別traceを保ち接続境界を判定、未構築後続能力を1.0失敗へ混入0。 観測できない条件は未評価であり、該当段階ownerへ返す。 |
+
+## Stage 5 — 027三経路構成体の総合検証
+
+固定親pinと旧source処置は[L3機能要件](../L3-requirements/functional-requirements.md)のStage 5節に従う。合成fixtureによる設計であり実行結果ではない。
+
+| L10 case | 親AC | 入力・反例 | 判定／未評価 |
+|---|---|---|---|
+| `SECURITY-CASE-027-01` | `SECURITY-AC-027-01` | 三経路を異なるsource/requestとsinkで同時に与え、単体014成功だけ、一経路成功だけの対照を置く。 | 三経路の各成立を独立照合し、不足経路を他経路で補完0。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
+| `SECURITY-CASE-027-02` | `SECURITY-AC-027-02` | 各経路の各fieldを一つずつ欠落・異版化し、deny/holdを保存成功へ写す反例を与える。 | 欠落対象を保留/拒否し成功保存へ変換0、他経路の正しい証拠は保全。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
+| `SECURITY-CASE-027-03` | `SECURITY-AC-027-03` | 三経路に異なるsink接続契約を与え、LABO評価/OS登録の全経路必須化、受渡しから学習完了生成を試す。 | 固有ownerの条件を保ち新しい一律工程や学習完了生成0。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
+| `SECURITY-CASE-027-04` | `SECURITY-AC-027-04` | 未見だが条件を満たすsink revisionと、一経路だけ適用性unknownの対照を与える。 | 成立部分を同じ契約で判定、unknown経路があれば構成体成立を主張しない。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
