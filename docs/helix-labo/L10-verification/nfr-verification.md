@@ -24,7 +24,7 @@
 | `HELIXLABO-L2-004` | comparison field fidelity | 7-fieldの各欠落と意味矛盾mutation | field別coverageと停止/unknown処置 |
 | `HELIXLABO-L2-005` | transformation candidate trace | 12 action語彙と保持/変更意味を比較 | 許可action外0、owner/条件/meaning trace欠落0 |
 | `HELIXLABO-L2-006` | experiment comparability | assignment/oracle/revision/cost/interruptionを個別・組合せ欠落 | 比較可能/不能が正しく分離し、missing costを0にしない |
-| `HELIXLABO-L2-007` | assurance condition matrix | 再現条件/oracle/side effect/retry/rollback/idempotenceの全mutation | 5条件群（再現性、machine判定+oracle、副作用、retry/rollback/idempotence）の各判定根拠、欠落時systemization 0; 2/3/5反復案の安定性と費用を報告 |
+| `HELIXLABO-L2-007` | assurance condition matrix | 再現条件、machine判定可能性、oracle、副作用範囲、retry/rollback/idempotenceの5条件を個別・併発で変異 | 5条件それぞれの判定根拠を記録し、不足時はsystemization候補に昇格しない。2/3/5反復案の安定性と費用を比較 |
 | `HELIXLABO-L2-008` | operational return trace | rule/version/exception/FP/avoidance/cost/ownerを個別欠落 | 欠落を特定し戻し候補を保持、実行切替0 |
 | `HELIXLABO-L2-009` | scope generalization | 1例、2/3/5独立例、cross-project/product、counterexample各fixture | 単一例上位scope0、例数別のscope安定性/偽一般化/費用を比較 |
 | `HELIXLABO-L2-010` | feedback completeness | 16 fieldを個別欠落・targetを混在 | 16/16 coverage、未根拠補完0、target別分離 |
