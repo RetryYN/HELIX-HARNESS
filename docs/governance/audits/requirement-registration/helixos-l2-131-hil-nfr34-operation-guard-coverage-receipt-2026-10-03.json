@@ -684,12 +684,13 @@
   "ir_requirement_atom_count": 1,
   "supplementary_contract_record_count": 1,
   "latest_main_comparison": {
-    "commit": "62d9eedca25a927916594a0a96690b2441437712",
-    "register_prefix_line_count": 707,
-    "register_prefix_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
-    "registration_line": 708,
-    "candidate_section_bytes_unchanged": true,
-    "source_and_selected_two_unit_set_unchanged": true
+    "commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
+    "register_prefix_line_count": 708,
+    "register_prefix_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "registration_line": 709,
+    "candidate_section_bytes_unchanged": false,
+    "source_and_selected_two_unit_set_unchanged": true,
+    "retained_latest_main_last_registration": "MPR-RC-HARNESS-L2-067-002"
   },
   "technical_fixture_evidence": {
     "purpose": "L11の純合成fixture tuple値を受入本文から分けて保全する。これは技術的な例データであり、新schema、runtime field contract、authority、採択または実行証拠を定めない。",

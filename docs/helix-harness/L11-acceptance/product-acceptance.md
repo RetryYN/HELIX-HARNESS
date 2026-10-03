@@ -999,6 +999,8 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **境界例**：未対応constructまたは静的sourceから識別できないruntime side effectを含むscopeは、その箇所をunsupported/unknownとして明示し、他のatomの個別状態を保つ。未選択file/entry/sourceの存在・不在を推測しない。source digestまたはextractor versionが変化した場合、影響するatomとchild closureをstaleとして再照合対象へ戻す。
 - **依存境界**：この受入は027の選択source observationと038の個別capability manifest/closureを前提関係として照合するが、027/038の採択・実行済み状態を仮定しない。041のtemplate-derived obligation atomやOSのdurable source projectionをsource behavior atomと同一視しない。これは文書上の期待oracleであり、旧または現行runtimeの実動作・全sourceの網羅・要求採択を証明しない。
 
+- **revision 002の責務境界・利用者確認**：HARNESSは選択sourceのatomic behavior意味、分母と受入条件を示し、OSの既存source identity/authority/custody/provenance記録は原資料管理の根拠として扱う。どちらか一方の記録で他方の条件を満たしたことにしない。owner/scopeが未決または根拠が不足する場合はunknownとして残し、HARNESS意味規範／OS原資料管理の分担案とその適用範囲をPOへ再提示する。この候補文とL11受入は採択、formal successor、原資料移管または実行を生成しない。
+
 ### HARNESS-L2-068 Design Refactor接続前条件の受入候補（未実行）
 
 **状態**：HARNESS-L2-068に対応する未採択・未実行の静的内容oracle案。実変換・rollback実行・CI実施を表さない。
