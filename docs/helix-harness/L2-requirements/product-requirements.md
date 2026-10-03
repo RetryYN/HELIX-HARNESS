@@ -1273,11 +1273,11 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 ### HARNESS-L2-067 選択source scopeのatomic behavior分解候補（unit）
 
-**状態・所属**：新規の未採択HARNESS-CORE候補。source behaviorの意味上のatomizationを定める。所属・候補採択は未確定で、OSのintake・provenance・記録責務を移さない。旧target routingはOS、後続PO packetはHARNESSを示すため、対象owner選択は[FR37照合監査](../../governance/audits/requirements-stage/ir153-hil-fr35-41-current-condition-audit-2026-10-02.md)の選択肢へ残す。
+**状態・所属（revision 002候補）**：未採択・未実行のHARNESS-CORE候補であり、revision 001に対する親参照の訂正と責務分担をPOへ再提示する。HARNESSは選択sourceに対するatomic behaviorの意味基準、分母、atom間関係とその検証条件を定める候補とする。HELIX-OSは原資料のsource identity、revision/digest、authority、custody、provenanceと管理記録を既存L2-015/016/019の範囲で保持する。旧sourceのtarget assessmentがOSであることは維持し、原資料管理をHARNESSへ移さない。意味規範をHARNESSへ分担する案は未採択であり、formal successor、owner変更、source holding解消を生成しない。
 
 **版**：旧HIL-FR-37 line127にversion target指定はなく、固定L1親も候補の製品版を決めない。対象版は未指定で、1.0自動収載を示さない。
 
-**親と既存契約の分担**：候補の親は固定revisionの`HARNESS-L1-001/003/004/008`。`HARNESS-L2-019`はReverse scope入口と未観測の保持、`HARNESS-L2-027`は選択source typeの静的観測、`HARNESS-L2-038`は観測manifest中の各capabilityの内容閉包、`HARNESS-L2-040/041`はlayer catalogとtemplate由来obligationの意味をそれぞれ持つ。067はそれらを置き換えず、sourceに現れる一behaviorを一atomに分ける基準と分母を追加する。HARNESS-L2-041のtemplate obligation atomsはsource code behavior atomsとは異なる。OSの`HELIXOS-L2-015/016/019`が担う原source custody/provenance/state記録とも別責務とする。
+**親と既存契約の分担**：候補の親は固定revisionの`HARNESS-L1-001/003/004/008`で、MPR revision 002とcoverage receiptに実ファイルbytesのSHA-256を記録する。`HARNESS-L2-019`はReverse scope入口と未観測の保持、採択済み`HARNESS-L2-027`は選択source typeの静的観測、`HARNESS-L2-038`は観測manifest中の各capabilityの内容閉包、`HARNESS-L2-040/041`はlayer catalogとtemplate由来obligationの意味をそれぞれ持つ。067はそれらを置き換えず、sourceに現れる一behaviorを一atomに分ける意味基準と分母を追加する。HARNESS-L2-041のtemplate obligation atomsはsource code behavior atomsとは異なる。HELIX-OS L2-015/016/019は原資料のidentity/authority記録、portfolio上の関係・状態、証拠のprovenance/continuityを担い、HARNESSのbehavior分類や意味判定を代行しない。067もOSのsource intake、authority、保管、管理recordを引き受けない。
 
 **対象scope・入力**：Full Reverseまたは旧sourceの意味照合で利用者が明示選択したsource snapshot、read scope、file/entry/symbolに限る。対象revision/digest、読取scopeとauthority、027のsource-bound observationとその抽出限界、extractor/capability版を入力する。067は独自parser、source reader、runtime挙動の実行を要求せず、027が対応しないsourceは未観測/unsupportedのまま保持する。
 
@@ -1285,7 +1285,9 @@ HARNESSは命名規律と変更時の検証条件を提供する。BRAINは再�
 
 **差分と境界**：旧HIL-FR-37のbehavior単位、source span、extractor version、親集約、I/O/副作用、親/fileを分母外とする条件を保持する。source observationをrequirement meaning・承認設計・test oracle・runtime実測へ昇格させない。固定旧source schema、archive全量走査、旧failure code、物理registry/DB、旧runtime/testの実行は要求しない。sourceからのatom抽出・coverage観測は要求意味の採否や下流pair完了を決めない。
 
-**不足時の戻し先**：source identity/span/authority不足、unsupported領域、extractor version不明はsource/027 ownerへ戻し、該当範囲をunknownとして保持する。atom identity/parent-child/overlapまたは分母不足は未完findingとしてHARNESS-COREのatomization ownerへ返す。要求/設計/verification endpointへの処置・authority不足は038と既存ownerへ返す。候補本文、receipt、registerは採択・L3承認・実装・実行・受入を生成しない。
+**責任分担のPO判断材料（未決）**：A) HARNESSが選択source scopeのbehavior atomization意味規範とoracleを持ち、OSが原資料のidentity/authority/custody/provenance/管理記録を既存OS-015/016/019で持つ（推奨候補。旧target assessment OSとHARNESS COREの意味責務を分ける）。B) atomization意味規範もOSへ置き、HARNESSの027/038/041は各採択範囲を保ったまま本候補を採択しない。A/Bはsource scopeの意味、HIL-FR-37のformal successor、候補採択を変える判断であり、この文書やreceiptから決定しない。どちらでもHIL-FR-37、HR-FR-HIL-09、HAC/HATの未回収条件は別々に保つ。
+
+**不足時の戻し先**：原資料identity/revision/digest、source authority、custody/provenanceが不足または競合する場合は既存HELIX-OS-015/016/019の記録・ownerへ返し、source scopeをunknown/未完として保持する。source observation、extractor/capability version、spanが不足する場合はHARNESS-027の既存ownerへ返す。atom identity、behavior分割、parent-child/overlapまたは分母の不足はHARNESSの意味規範ownerへ返し、OS管理recordで代替しない。要求/設計/verification endpointへの処置・authority不足は038と既存ownerへ返す。候補本文、receipt、registerは採択・L3承認・実装・実行・受入を生成しない。
 
 ### HARNESS-L2-068 Design Refactorの独立変換計画と実施前rollback根拠候補（unit）
 
