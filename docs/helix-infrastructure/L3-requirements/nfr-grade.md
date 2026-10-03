@@ -1,4 +1,4 @@
-# HELIX-INFRASTRUCTURE L3 非機能要件・候補値（部分草稿）
+# HELIX-INFRASTRUCTURE L3 非機能要件・候補値（部分草稿・Stage 5追補）
 
 **状態：部分草稿・未承認。** 下表は上流のfield/status/境界を測定可能にする候補値と比較観点である。完全coverage、誤昇格/誤帰属0等の候補は親の明示条件に基づき、L2が指定した性能SLAだとは扱わない。旧HELIXの数値を自動継承せず、測定不能/未観測を成功扱いしない。
 
@@ -27,3 +27,10 @@
 |---|---|---|---|
 | NFR-INFRA-008-01 / HELIXINFRASTRUCTURE-L2-008 | selected design/target/actual field間のtrace欠落0、actual→design誤書戻し0 | 三sourceを別々に追跡する案と実環境結果だけを見る案を比較し、後者は承認designとtargetのずれを隠すため前者を候補とする。 | 選択scopeのfieldだけ。deployment SLAは追加しない。 |
 | NFR-INFRA-025-01 / HELIXINFRASTRUCTURE-L2-025 | Worker/resource/work-reference tupleの欠落0、move前後のwork reference不一致0 | field単位でsource/revisionを追う案とmachine単位で集約する案を比較し、machine集約はWorker identityを失うため不採用。 | capacity閾値・autoscaling目標は指定しない。必要値は根拠・比較・測定付き候補とする。 |
+
+## Stage 5 — L2-011 NFR候補測定
+
+| 候補 | 対象AC | 候補値・比較・根拠 | L10測定 |
+|---|---|---|---|
+| NFR-INFRA-011-01 | INFRA-011-AC-01 | PO固定の最低18 item全てについて個別入力/expected/observed/result参照を閉じるcoverage 18/18を候補とする。aggregate構成体greenだけを数える案より、項目別traceで欠落を特定できる。18という分母は親の列挙で固定される。 | C01–C18を各々正常＋個別欠落/unknown/stale変異として測り、各itemのevidence closureを記録する。 |
+| NFR-INFRA-011-02 | INFRA-011-AC-02 | 欠落/unknown/stale/mismatch/unauthorized unit・connection・minimum itemをcomposite successへ写像する件数0候補。aggregate-only案とunit/connection/compositeを分離する案を比較し、後者がfailure位置・未完ownerを保つため候補とする。 | C19–C23でpartial success、backup-only、stage dependency誤適用、Web/later-version混入、未見正常構成を測定しfalse passを個別記録する。 |

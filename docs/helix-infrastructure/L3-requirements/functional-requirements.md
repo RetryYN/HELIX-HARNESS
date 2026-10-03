@@ -1,6 +1,6 @@
-# HELIX-INFRASTRUCTURE L3 機能要件（部分草稿）
+# HELIX-INFRASTRUCTURE L3 機能要件（部分草稿・Stage 5追補）
 
-**状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2bとStage 4の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2b、Stage 4およびStage 5の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -48,12 +48,6 @@
 ### 旧L3／対のテスト設計からの意味対応
 
 旧nfr-grade・pillar FR/NFRとHAT設計から測定可能性・正常/反例/境界を対にする骨格だけ再利用する。旧runtime/CLI、閾値、old physical topologyは移さない。現行L2/L11にあるidentity/environment/resource graphと明示attributeを再導出し、owner境界に合わせてCONNECT論理接続・INFRA物理pathを分ける。直接一致は確認できず、旧L3 `technology-environment-reconciliation-requirements.md:32-70,72-94`および旧test design `technology-environment-reconciliation-acceptance.md:16-39`のsource/version drift観点を部分参照した。
-
-| 旧asset ID | 旧source path・行 | 旧source full SHA-256 | 旧span SHA-256 |
-|---|---|---|---|
-| `LEGACY-ASSET-8CC5ABFC98C0D00183CA` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md`:19–68 | `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3` | 0ee58a93182c45c23c90b3f0bbaae15ec5c727c3113c4ea32afb9384a04c077b |
-| `LEGACY-ASSET-EE5DBACC7F28F7D1F605` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:134–153; 178–190 | `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | 1182367b0bed125db89a879d2b468ab0dc0df42b480df06456e2ff438a674d41; b22d92ccdaa19287976d6c67a4289cde8f379e16382fc07498a3d9b9746752c0 |
-| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:43–50; 67–90; 91–120 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | 17a29eeb22b6ecf41e8776b556a566f0a0613212de2e7c660e259f3ec1bd6acb; e13598bd4995ac192a747b0690c0c2fa5a2d17eb9c72949211ae1430e8812866; 0493df0f6b3370862f8a2e43ae0eee86f445374bc0f45404208ebbdae14f2a8a |
 
 ## INFRA-006-FR-01 — HELIXINFRASTRUCTURE-L2-006
 
@@ -398,3 +392,53 @@ Worker identityと実際のexecution resource identity/capacity/stateを対応�
 | HELIXINFRASTRUCTURE-L2-025 | LEGACY-ASSET-C6ADB99F1353965C5449 / archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:32–36 | c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d | b0c57435523ab501bc3d36fd785525fdc6ac43da623d85d1973371c90e1c24c8 | identity/receipt/source mismatchのnegative oracle類例を参照のみ。旧testは実行しない。 |
 
 旧runtime、CLI、testを実行せず、採択済みL2/L11の要求意味を本Stage4の正本に再導出した。
+
+## Stage 5 — HELIXINFRASTRUCTURE-L2-011 Infrastructure 1.0構成体の要件草稿
+
+### INFRA-011-FR-01 — PO列挙18 minimum itemの個別・構成体受入
+
+対象はHELIX自身のInfrastructure構成体である。固定親が入力として列挙するHELIX-HARNESS-CORE design、HELIX-OS/SECURITY/Worker connection、対象runtime/recovery environment、およびL2-001〜010/025の必要なversioned identity/evidenceを同一構成scopeへ結ぶ。PO既決の最低18項目は一つずつ個別scope、test input、expected outcome、observed evidence、結果へ対応させてから、unit、CORE/OS/SECURITY/Worker connection、composite outcomeを別々に評価する。
+
+構成体成立には18項目すべての採択済み要求と適用契約、適格なbackup/restore/rollback、独立bootstrap/recovery、rebuildabilityの結果が要る。どれか一つの欠落・unknown/stale/mismatch/unauthorized、または必要な独立recovery/rebuildabilityの失敗があればcompositeは未成立のまま部分成功と未完義務を保ち、欠けたunit/connection ownerへ戻す。HELIX-WEB-OSの顧客runtimeと1.0より後の能力を混ぜない。
+
+HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage releaseへ収載される場合だけ照合する。通常のInfrastructure 1.0 compositeを成立させるための必須dependencyとしては扱わない。OSはWork/Change stateを、INFRASTRUCTUREはresource/runtime stateをそれぞれ所有する。read-only操作に無関係なbackup全件を要求しない一方、構成体の18項目からbackup/restore/rollback/recoveryを外さない。個々のoperationのauthorityはL2-010/SECURITY/OS/Workerの既存契約に従い、このFRから実行権限を生成しない。
+
+**受入条件**
+
+- `INFRA-011-AC-01`: PO最低18項目の各々に、L2 identity、入力source/revision、expected outcome、observed evidence、結果を一件ずつ結ぶ。項目は親の対応表どおりに識別し、合算したgreenで欠落項目を補わない。HELIX-WEB顧客runtime・後続版項目は1.0対象外とする。
+- `INFRA-011-AC-02`: 同一target scopeでunit、CORE/OS/SECURITY/Worker connection、compositeの結果を別々に記録する。backupと実restore/verificationを区別し、rollback適格先、独立bootstrap/recoveryおよびrebuildabilityまで照合する。一つでも欠落/unknown/stale/mismatch/unauthorizedならaggregate passにしない。OS-L2-014はstage収載時のみ追加照合し、OSとの二重state ownershipを作らない。
+
+**最低18項目のtrace分類**（項目定義は固定L2の1.0表をそのまま保つ。下表はFR/AC/L10観測への索引である。）
+
+| item | 固定L2範囲 | 要件で追跡する観点 |
+|---|---|---|
+| 1 Resource identity | L2-001 | resource identity/role/environment/location/version/dependency/lifecycle |
+| 2 Topology | L2-001 | 機構・resource関係とphysical/runtime path |
+| 3 Environment | L2-001 | environment identityとconfig/network/credential/data/version/authority分離 |
+| 4 Design/Deployment Target/Actual separation | L2-002/008 | CORE design・target・actualの区別、actualからdesignを書換えない |
+| 5 Drift | L2-002 | missing/unexpected/version/config/network/permission/capacity/runtime replacement/unknown dependency |
+| 6 Compute/Network/Storage | L2-001/003 | compute/network/storage resource modelと観測 |
+| 7 Model/Worker Runtime | L2-001/003/025 | model/Worker runtime identity・version・要求資源。能力評価・assignmentはownerへ残す |
+| 8 Capacity | L2-003 | demand/available/capacity/utilization/queue/concurrency/saturation/rejection/backpressure |
+| 9 Observability | L2-004 | health/metric/log/resource/dependency/queue/error/latency/deployment/recovery |
+| 10 Incident state | L2-004 | degraded/unavailable/capacity/dependency/data/network/security-isolated/unknown区別 |
+| 11 Backup/Restore | L2-005 | backup状態と実restore/verificationを分ける |
+| 12 Rollback | L2-005 | 適格target、版/config/artifact/dependency/data compatibility/procedure |
+| 13 Deployment version | L2-001/009 | runtime revisionとOS stage release identityを分ける |
+| 14 SECURITY connection | L2-010 | policy/authority/credential/isolation/egressのowner参照 |
+| 15 OS connection | L2-009 | Work/ChangeとRuntime Resource Stateをつなぎ、二重正本を防ぐ |
+| 16 Worker execution | L2-010/025 | OS assignmentとSECURITY-authorized Worker operation/result/actual state |
+| 17 Bootstrap/Out-of-Band Recovery | L2-006 | HELIX/control planeから独立したminimum path/resource/別SECURITY authority |
+| 18 Rebuildability | L2-007/011 | approved design/config/artifact/dependency/data backup/version/evidenceから実再構築結果 |
+
+### HELIXINFRASTRUCTURE-L2-011 固定親・旧sourceとの照合
+
+固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`。採択PO decision `helix-infrastructure-requirements-po-decision-2026-09-28.md#L48`（全文SHA `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`）はL2-001〜011および025を1.0として採択し、最低18項目と後続版境界を維持する。固定L2 `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:138–147`（全文SHA `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、raw span SHA `ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791`、semantic digest `06001f28b80484fc1b3754d0c72f0a727438e8cf52772a9eea1459a6d231a9ff`、採択登録 `MPR-RC-HELIXINFRASTRUCTURE-L2-011-001`）。対L11 `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:140–151`（全文SHA `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、raw span SHA `6b9835a47096ab07f9007e47429bf2415bf29bf23cdf70420f1b0c2b3ac52a6e`）。最低18表 `infrastructure-requirements.md:376–399`のraw SHA `10148eae3c04c7d0f925c27c6d71cdafd4ba2d3e58f41f21c3a00aab4681da69`。
+
+旧HELIX L3/test inventoryでは、1.0最低18項目をHELIX自身のInfrastructure構成体として一件ずつ束ね、CORE/OS/SECURITY/Worker connectionと別に受け入れる同一要件は特定できなかった。`LEGACY-ASSET-7F8960532611D89D03E1`旧Technology Environment Reconciliation L3 (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–70,72–94`、全文SHA `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc`、raw span SHA `c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477` / `afaad3aaa2f623b5979b658c32525c0552dce29b8591dc58e8b11b8b1ab684bf`) と `LEGACY-ASSET-30FFE84409079C9B06D1` paired acceptance (`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:16–39`、全文SHA `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d`、raw span SHA `672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85`) はsource/revision差異を正常・negative/unknownとして扱う観点だけを部分再利用する。旧external technology reconciliation scope、旧threshold、runtime state/CLI/testを持ち込まず、18項目、ownership、backup≠restore、independent recovery、rebuildabilityの意味は採択済み現行L2/L11から再導出する。asset IDとsource SHAは`legacy-asset-disposition.jsonl`照合済み。
+
+| 旧asset ID | 旧source path・行 | 旧source full SHA-256 | 旧span SHA-256 |
+|---|---|---|---|
+| `LEGACY-ASSET-8CC5ABFC98C0D00183CA` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md`:19–68 | `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3` | 0ee58a93182c45c23c90b3f0bbaae15ec5c727c3113c4ea32afb9384a04c077b |
+| `LEGACY-ASSET-EE5DBACC7F28F7D1F605` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`:134–153; 178–190 | `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | 1182367b0bed125db89a879d2b468ab0dc0df42b480df06456e2ff438a674d41; b22d92ccdaa19287976d6c67a4289cde8f379e16382fc07498a3d9b9746752c0 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`:43–50; 67–90; 91–120 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | 17a29eeb22b6ecf41e8776b556a566f0a0613212de2e7c660e259f3ec1bd6acb; e13598bd4995ac192a747b0690c0c2fa5a2d17eb9c72949211ae1430e8812866; 0493df0f6b3370862f8a2e43ae0eee86f445374bc0f45404208ebbdae14f2a8a |

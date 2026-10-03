@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1・Stage 2a・Stage 2b・Stage 4 assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1・Stage 2a・Stage 2b・Stage 4・Stage 5 assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -192,3 +192,40 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 - L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、自動scaling/placementを行う、この接続からoperation authorityを作る試みを別々に与える。全て拒否し副作用0を確認する。対照fixtureでは既存許可scope内の隔離条件適用/観測を成立させ、実際の適用まで禁止しないことを確認する。
 
 両親の観測tupleはsource/revision、resource/worker identity、owner、unknown/hold、reference continuityである。確認済み部分と未確認部分は分離し、全体successへ丸めない。
+
+## Stage 5 — HELIXINFRASTRUCTURE-L2-011 総合構成体のL10 oracle
+
+固定L2/L11と最低18項目表はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択本文。ここでは構成manifest上の静的fixtureと、将来の隔離受入時に観測するevidence shapeだけを定める。runtime、旧stage、実resource操作を実行しない。
+
+各item caseは通常fixtureに加え、そのitemの入力/identity/evidenceを一つずつmissing・stale・unknownまたは不一致にした変異を持つ。影響したitemだけを未完/holdとし、残りの観測済みitemを消去しない。項目定義とL2対応は固定親表のまま使う。
+
+| item | L10 case / 対応AC | 入力・正常fixture | 個別否定・期待oracle |
+|---|---|---|---|
+| 1 Resource identity | `L10-INFRA-011-C01` / `INFRA-011-AC-01` | resource identity/role/environment/location/version/dependency/lifecycleをsource/revision付きで列挙する。 | 各fieldをmissing/staleにし、そのresourceだけunknown。推測で補完しない。 |
+| 2 Topology | `L10-INFRA-011-C02` / `INFRA-011-AC-01` | mechanism/resource relationとphysical/runtime pathのsource/destinationを区別して記録する。 | edge/path/dependencyを個別に外し、論理CONNECT edgeだけで物理到達を成立扱いしない。 |
+| 3 Environment | `L10-INFRA-011-C03` / `INFRA-011-AC-01` | development/verification/staging/production/recovery等のenvironment identityとresource/config/network/credential/data/version/authority scopeを別sourceで与える。 | 別environmentのsuccessを混ぜ、またはscopeを越えてcopyする変異で該当environmentを不成立とする。 |
+| 4 Design/Deployment Target/Actual separation | `L10-INFRA-011-C04` / `INFRA-011-AC-01,02` | CORE design、deployment target、actual observationを同一target scopeの別revision/stateとして与える。 | design/target/actualのsourceを取り違え、またはactualからdesignを書換える変異を拒否する。 |
+| 5 Drift | `L10-INFRA-011-C05` / `INFRA-011-AC-01,02` | missing/unexpected resource、version/config/network/permission/capacity drift、runtime replacement、unknown dependencyを種類別に与える。 | 各driftを一件ずつ変異し、差異を隠さず列挙する。actual driftを承認済変更へ昇格しない。 |
+| 6 Compute/Network/Storage | `L10-INFRA-011-C06` / `INFRA-011-AC-01` | CPU/RAM/GPU/VRAM/storage/network/runtime resourceをidentity・environment・revision・available/requested sourceに結ぶ。 | 各resource dimension/owner/revisionを欠落または別environmentへずらし、該当dimensionのみunknown/hold。 |
+| 7 Model/Worker Runtime | `L10-INFRA-011-C07` / `INFRA-011-AC-01,02` | model/server/version/GPU-memory requirement/concurrency/latency/capacity/health/endpointとWorker resource/runtimeをsource付きで参照する。 | 各属性欠落/owner誤帰属を個別変異。能力評価はINTELLIGENCE/LABO、Worker assignmentはOS、security policyはSECURITYへ残す。 |
+| 8 Capacity | `L10-INFRA-011-C08` / `INFRA-011-AC-01,02` | demand/available/capacity/utilization/queue/concurrency/saturation/rejection/backpressureと起動要求のrevisionを与える。 | requested>available、stale/missing/unmeasurableを別条件にし、eligibleと推定しない。固定hardware値は追加しない。 |
+| 9 Observability | `L10-INFRA-011-C09` / `INFRA-011-AC-01` | health/metric/log/resource/dependency/queue/error/latency/deployment/recovery observationをsource/revisionに結ぶ。 | 各観測/producer欠落はunobservedのまま。 |
+| 10 Incident state | `L10-INFRA-011-C10` / `INFRA-011-AC-01,02` | normal/degraded/unavailable/capacity/dependency/data/network/security-isolated/unknown stateを区別する。 | unknownやcollector-missingをhealthy、incident cause/severityを推測で確定しない。 |
+| 11 Backup/Restore | `L10-INFRA-011-C11` / `INFRA-011-AC-01,02` | backup source/version/location/integrity/expiry evidenceと、別の実restore・dependency reconnection・startup・verification resultを入力する。 | backup存在だけのfixture、restore verification欠落、別revisionのbackupを個別に不合格とする。 |
+| 12 Rollback | `L10-INFRA-011-C12` / `INFRA-011-AC-01,02` | 適格rollback targetとartifact/config/dependency/data compatibilityおよびprocedure evidenceを与える。 | targetまたはcompatibility/procedure欠落はrollback-readyを返さず、部分復元を完了扱いしない。 |
+| 13 Deployment version | `L10-INFRA-011-C13` / `INFRA-011-AC-01` | runtime revisionとOS stage release identityを別field/sourceで参照する。 | runtime revisionをstage IDと同一視またはstaleにし、版境界を保てなければhold。 |
+| 14 SECURITY connection | `L10-INFRA-011-C14` / `INFRA-011-AC-01,02` | SECURITY policy/authority/credential/isolation/egress contract identity/revisionと対象scopeを参照する。 | missing/expired/target/action/scope mismatchはauthorizationを生成せずSECURITYへ戻す。raw credentialは保存しない。 |
+| 15 OS connection | `L10-INFRA-011-C15` / `INFRA-011-AC-01,02` | OS Work/Change identity/state/evidenceとINFRA Runtime Resource Stateを接続し、各ownerの正本を分ける。 | OS-L2-009 field欠落/staleを個別に与え二重正本を作らない。stage収載fixtureでない通常構成にはOS-L2-014を要求しない。 |
+| 16 Worker execution | `L10-INFRA-011-C16` / `INFRA-011-AC-01,02` | OS assignment、SECURITY authority/target/action/revision/scope/expiry、Worker execution/result、actual before/after stateを別sourceで与える。 | assignment/authority/result/effect evidenceの欠落・不一致は実操作成立にせずOS/SECURITY/Worker ownerへ戻す。 |
+| 17 Bootstrap/Out-of-Band Recovery | `L10-INFRA-011-C17` / `INFRA-011-AC-01,02` | OS/control plane停止状態、独立resource/path、別SECURITY authority、SECURITY制約下Worker contract、復旧後OS syncを与える。 | 通常control planeへの依存、別authority欠落、Worker contract欠落、同期なしを各々変異し独立復旧成功にしない。 |
+| 18 Rebuildability | `L10-INFRA-011-C18` / `INFRA-011-AC-01,02` | approved design/config/artifact/dependency/data backup/version/evidenceからisolated environmentを再構築し、declared scopeのverification resultを与える。 | document/backupのみ存在、sourceが消失machine内だけ、dependency/startup/verification失敗を個別に与え、rebuildableにしない。 |
+
+追加の構成体・境界case:
+
+- `L10-INFRA-011-C19`（AC `INFRA-011-AC-02`）: 18 item evidenceがそろうfixtureでunit outcomes、CORE/OS/SECURITY/Worker connections、compositeを別段階で照合する。全item・必要connectionが閉じた場合だけ構成体候補を成立とする。どれか一つのunit greenだけでは成立しない。
+- `L10-INFRA-011-C20`（AC `INFRA-011-AC-02`）: 一つのunit/connection/itemをmissing/unknown/stale/unauthorizedにし、別の成功結果とbackupだけでaggregate passにする変異を試す。compositeは未成立で、部分成功・未完義務・現行稼働版・適格rollback先を保持する。
+- `L10-INFRA-011-C21`（AC `INFRA-011-AC-02`）: HELIX自身のphase releaseへ収載するfixtureではOS-L2-014のstage identity/contract/evidenceを照合する。通常Infrastructure構成体の対照fixtureではその依存を要求しない。HELIX-WEB-OS顧客runtimeや後続version_targetを1.0 scopeに入れたら拒否する。
+- `L10-INFRA-011-C22`（AC `INFRA-011-AC-02`）: authorized read-only/no-change operation、許可update、OS停止中独立recoveryを別fixtureにする。read-onlyは適用scopeのwrite-setと対象resource before/afterを検査し、全state digest不変は要求しない。個々のread-only operationへbackup全件は課さず、compositeの18 item coverageから復旧itemを外さない。
+- `L10-INFRA-011-C23`（AC `INFRA-011-AC-01,02`）: source identity/scope/versionと親が定める18項目を保った、既知の構成とは異なるvalid topology fixtureを与える。oracleは要求field/evidence/ownerが適合する未見構成を許容し、特定の旧実装・製品構成を唯一例として要求しない。
+
+case集合の出力は各itemのinput/expected outcome/observed evidence/result、source/revision、owner、unknown/hold、未完義務、recovery/rollback先である。外部環境操作や実測結果は本設計に含まない。

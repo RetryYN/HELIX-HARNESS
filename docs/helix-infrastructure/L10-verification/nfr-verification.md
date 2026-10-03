@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L10 非機能検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1/Stage 2a/Stage 2b契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
+**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1/Stage 2a/Stage 2bの契約確認やStage 5の構成体照合に根拠のない性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -16,6 +16,13 @@
 | `HELIXINFRASTRUCTURE-L2-010` | authority request field一致率100%候補 | 採択済み親scopeから作る正常・境界・欠損fixture | authority request field一致率100%候補: subject/target/action/revision/scope/expiry (適用時はcredential scope/update-admissionも含む)。不一致/期限切れを実行可能にする件数0。 read-only scopeの宣言write-setは0; updateでdenied/unknown/mismatchなら変更前停止。credential raw valueの記録件数0。 根拠: L2/L11はauthority field、条件付きadmission、read-only write set、限定recovery例外をそれぞれ明示。実scope/fixture単位で照合し旧risk enum/approval機構は持ち込まない。 |
 | `HELIXINFRASTRUCTURE-L2-002` | 9類型識別・三入力非変更 | `L10-INFRA-002-C01..05` の個別9類型、三source欠損、未見複合、scope不一致とbefore/after | 類型識別9/9候補、source/authority無言変更0、unknownから一致0。差異はsource/対象に限定する。 |
 | `HELIXINFRASTRUCTURE-L2-007` | 4段階復旧trace・依存独立 | `L10-INFRA-007-C01..05` の完全/失敗/未知版/停止再開fixture | 4段階の実結果・入力版traceが4/4候補、元machine限定依存0、未完からsuccess0。backup/文書存在だけは不成立。時間SLAは実測・根拠候補を別に要する場合だけ追加する。 |
+
+## Stage 5 — HELIXINFRASTRUCTURE-L2-011候補測定
+
+| 親L2 | 測定項目 | 入力・変異 | 判定材料 |
+|---|---|---|---|
+| `HELIXINFRASTRUCTURE-L2-011` | minimum-item evidence closure | `L10-INFRA-011-C01..18`の18個別scope、各正常fixtureと対応するmissing/stale/unknown変異 | PO列挙範囲の項目別証拠が18/18追跡可能かを数える。合算greenで欠落itemを補わない。 |
+| `HELIXINFRASTRUCTURE-L2-011` | unit/connection/composite false pass | `L10-INFRA-011-C19..23`の部分成功、backup-only、OS014条件、Web/later scope、read-only/update/recovery境界、未見正常構成 | false composite pass 0を候補測定。stage契約の通常構成への誤適用、後続版/Web混入、read-onlyへの無関係なbackup強制、適合する未見構成の拒否を別々に記録する。 |
 
 測定結果はfield完全性、owner境界、source revision、unknown/holdの処置などの観測値で記録する。このStage 1/Stage 2a/Stage 2b契約検証では、対象behaviorの合否に性能時間・容量・保持期間の閾値を要しないため新設しない。別の技術値が要件上必要なら、上流に数値指定がなくてもL3候補として根拠・比較案・測定方法を添えて通常の承認パッケージに提示し、parameterごとの承認は求めない。旧値や参考測定値を自動継承・合否閾値へ昇格させない。
 
