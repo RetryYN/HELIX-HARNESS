@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c / version_target 1.0 explicit items only
 owner: HELIX-OS
 paired_l10: ../L10-verification/functional-verification.md
 
-本稿は固定L2/L11に根拠を置くStage 2a部分範囲であり、機構全体のL3、実装、実行、採択・承認を意味しない。親L2ごとにFR IDを分け、ACはL3正本に一度だけ定義し、L10は同じACを参照する。
+本稿は固定L2/L11に根拠を置くStage 2a・2c部分範囲であり、機構全体のL3、実装、実行、採択・承認を意味しない。Stage 2cはPOの案B「支援・テスト生成を前倒し」に従い、支援candidate、OS handoff、実作業・検証・再作業を別段階で扱う。草稿からassignment、相談実行、test実行、受入状態を生成しない。親L2ごとにFR IDを分け、ACはL3正本に一度だけ定義し、L10は同じACを参照する。
 
 
 ### `FR-OS-L3-015` — `HELIXOS-L2-015`
@@ -105,9 +105,34 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 - **`AC-OS-L3-027-02` 性能stateとpermissionの分離**：同じ適格fixtureでLABO性能を明示的に未評価にしても、それだけでは拒否せず、全安全条件・authority成立時のみ限定attempt可能。初回success後もLABOが該当task/model classとscopeの評価を成立させるまでは未評価を維持し、有効な評価receiptがあっても適用範囲だけを評価済みとする。
 - **`AC-OS-L3-027-03` 実行・受渡し**：開始前に人が既存入力範囲を確認し、OSがassignment/stopを行う。result state、HARNESS検証、人による独立確認、OS handoff receiptを同scopeでLABOへ渡す。入力済み予算/期限/停止条件を超過したりreceiptが欠けたら閉じない。
 
+
+### `FR-OS-L3-028` — `HELIXOS-L2-028`
+
+元ticket/requirement revision/scopeと元Worker assignment/attempt、停止・詰まりのsource、入力済みbudget/期限/停止条件、INTELLIGENCE-L2-068支援candidate、選択contextのprovenance、適用されるHARNESS/SECURITY/INFRASTRUCTURE条件を束ね、元Workerのidentityを保つ限定相談・handoffを運転する。INTELLIGENCE案だけではconsult Workerを起動しない。OSは既存authorityで別assignmentを認可・割当・停止し、返答・分解・修正案を元Workerへ同じscopeで戻す。元Workerまたはmodel classの水準が明示的に未評価でも、限定初回実行を選ぶ場合はHELIXOS-L2-027既存条件を満たす範囲でその状態を保つ。これはL2-027の再定義や全相談への開始前依存追加ではない。source/返答が欠ける場合は成功handoffとしない。
+
+**責務／依存境界**：OSが接続・receipt・戻し先を所有し、INTELLIGENCEは支援candidate、元Workerは作業、HARNESSはoracle、SECURITYは操作authority、INFRASTRUCTUREは資源を所有する。OS-L2-017/018/019/023を利用し、OS-L2-029 compositeの一周と混同しない。consult自体を使わないrunは本接続のreceiptを要求しない。
+
+**受入条件**
+
+- **`AC-OS-L3-028-01` ticket/scope結束**：consult request/responseとreturn handoffのticket、requirement revision/digest、scope、元assignment/attempt、source identity/revision、質問/応答、未完義務を照合する。
+- **`AC-OS-L3-028-02` OS認可と失敗保持**：INTELLIGENCE proposalだけでは割当/起動しない。OSの有効な別assignmentがない、応答未着、sourceがrestricted/stale、範囲超過、またはstop/budget/期限条件到達時は成功再開とせず、attempt/cost/部分成果/未完義務/再開条件をL2-019へ保持する。未評価を理由に一律拒否せず、限定初回経路を選んだ場合だけL2-027の既存適格条件を照合する。
+- **`AC-OS-L3-028-03` 元Workerへの復帰**：相談者へ元Workerのassignment/承認権限を移さず、回答とsource revision、scope、open dutiesを元Workerに返す。subtaskには親ticket・scope・依存・受入条件・停止条件を束ねる。相談者/助言者はindependent reviewerにならない。
+
+### `FR-OS-L3-029` — `HELIXOS-L2-029`
+
+案Bの順序に沿い、作業前のINTELLIGENCE-L2-068 test/instruction candidate、OSの有効な元Worker assignment、元Workerの成果、HARNESS-L2-022 pair/oracleに結んだOS-L2-020実行・証拠、支援者から独立したreview、必要時のOS-L2-028 consultation receipt、失敗時の元Workerへの再作業を因果順で束ねるcomposite候補を扱う。作業前candidateは失敗証拠やconsultを要求しない。Verified/Acceptedは各ownerの有効なreceiptが揃う範囲でのみ候補とし、OSは状態を作らず証拠を受け取り束ねる。
+
+**責務／依存境界**：OSはassignment・stage/evidence binding・停止/未完記録、HARNESSはpair/oracle/段階acceptance、INTELLIGENCEは支援案、元Workerは実装/修正、独立reviewerは修正後exact HEADの独立review、SECURITY/INFRASTRUCTUREはauthority/資源を所有する。consultなし経路ではOS-L2-028 receiptは不要。OS-L2-020は許可された検証運転を行い、CI greenのみで受入を作らない。
+
+**受入条件**
+
+- **`AC-OS-L3-029-01` 作業前候補から開始**：ticket/scope・HARNESS-L2-022既存契約が揃えば、失敗evidenceや相談なしで事前test/instruction候補を元revisionへ結び、元Worker assignmentへ渡せる。候補だけで実装開始やassignmentを生成しない。
+- **`AC-OS-L3-029-02` 作業・検証・段階証拠**：元Workerの変更、HARNESS oracleへtraceした検証結果、OS-L2-020 run identity、target HEAD/environment、段階状態を一致照合する。実相談を選んだrunだけOS-L2-028の認可・response/return receiptを追加条件とする。単体candidateまたはhandoff単独はcomposite successでない。
+- **`AC-OS-L3-029-03` 独立reviewと再作業/停止**：最終変更後のexact HEAD/base/scopeへ独立review receiptと最新結果を結ぶ。修正前receipt、支援者のreview、CI greenだけを使わない。findingは元Workerへ返し、既存budget/期限/停止条件内で再検証する。停止時は未完のままattempt/result/finding/cost/open dutiesを記録し、固定loop回数を設けない。AcceptedにはL11利用者acceptance receiptを別途要する。
+
 ## 親・旧source crosswalk（item単位）
 
-全固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 時点。旧statusは履歴情報のみで現行authorityを継承しない。test-designはoracle/failure consumerとして読んだ資料で、旧test/runtime/CLI/CIは実行していない。
+Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 時点。現行採択はPO decision recordから読み、本文の候補metadataは履歴として保持する。test-designはoracle/failure consumerとして読んだ資料で、旧test/runtime/CLI/CIは実行していない。
 
 | identity／管理行 | PO判断・登録（path/行/SHA） | 固定L2（行・全文SHA・span SHA） | 固定L11（行/span・全文SHA） | 旧L3（asset/path/行/SHA） | 旧test-design（asset/path/行/SHA） | 判断 |
 |---|---|---|---|---|---|---|
@@ -120,6 +145,9 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 | `HELIXOS-L2-023` / `MPR-RC-HELIXOS-L2-023-002` (adopted, `version_target: 1.0`) | PO `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:48`, SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`; register row `62` SHA `a3aa2489fc4ab49fa640ce485ccced73d3db4f04923c3937a79561a53f6df8dd`; candidate digest `sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020` | `docs/helix-os/L2-requirements/governance-requirements.md:722-731`; SHA `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`; span `9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248` | `docs/helix-os/L11-acceptance/governance-acceptance.md` 380-385 / `a376384798f6ddd7ef34ea51a05852e974ee0b25f1f9ec1115674b8dcd316c20`; SHA `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` | `LEGACY-ASSET-50CA1C554747F12266D3` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` 行 34-124, 189-390, 391-478, 495-620, 717-856, 858-925; SHA `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd` | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行 17-55; SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | scope/assignment/worker/reviewer/OS authority境界と失敗条件の意味を照合。旧固定provider/branch/WIP/lease/event modelやimplementation sequenceを移植しない。／scope、wrong actor, stale receipt, lost handoff等のnegative oracle候補。old event/lease/assignment valuesを移植しない。 |
 | `HELIXOS-L2-027` / `MPR-RC-HELIXOS-L2-027-002` (adopted, `version_target: 1.0`) | PO `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:48`, SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`; register row `345` SHA `b20213434b816c9c5de60e506b9b7236302db7f5c9d191d4b73d2db372199246`; candidate digest `sha256:f0e3e68996a3f9b9cf1740413a979483f32b78dcc8cd1aca9a881d7dd7fa2d0c` | `docs/helix-os/L2-requirements/governance-requirements.md:824-846`; SHA `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`; span `49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6` | `docs/helix-os/L11-acceptance/governance-acceptance.md` 442-456 / `a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2`; SHA `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680` | `LEGACY-ASSET-7F8960532611D89D03E1` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md` 行 32-70, 72-94; SHA `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行 17-55; SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | 外部技術の観測・根拠付きdiff・戻り先/再検証の考え方を再導出。外部tech inventory/upgrade lifecycleを現行要件に重複追加しない。／scope、wrong actor, stale receipt, lost handoff等のnegative oracle候補。old event/lease/assignment valuesを移植しない。 |
 
+| `HELIXOS-L2-028` / original `MPR-RC-HELIXOS-L2-028-001` row410, current metadata successor `-002` row905 (same semantic digest `sha256:f41238ee4660d455d6f6a144bdab4a35ef9704aac190835a24589853ed3e4fab`, `authority_effect:none`), PO採択済み (`version_target: 1.0`) | `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:48`, SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da` | `docs/helix-os/L2-requirements/governance-requirements.md:847-862`; SHA `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`; span `f41238ee4660d455d6f6a144bdab4a35ef9704aac190835a24589853ed3e4fab` | `docs/helix-os/L11-acceptance/governance-acceptance.md:457-467`; SHA `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680`; span `92ef51759878794066463d36cda375b19cf2a7025d13062101f72464ef981485` | `LEGACY-ASSET-50CA1C554747F12266D3` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` 行42,90-117,302-310,357-364,591-597; SHA `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd` | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行17-55; SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | 元Worker責任の保持、scope/budgetのbounded支援、元Workerへの戻しとrole separationを再導出。旧daemon/branch/lease/provider/slot数/CLI/runtime/CIを移植せず、現行OS/INT/HARNESS/SECURITY/INFRA責務へ置換。 |
+| `HELIXOS-L2-029` / approved fixed registration `MPR-RC-HELIXOS-L2-029-003` row433, current metadata successor `-004` row911 (same semantic digest `sha256:59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8`, `authority_effect:none`), PO採択済み (`version_target: 1.0`) | `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:27`, SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da` | `docs/helix-os/L2-requirements/governance-requirements.md:863-877`; SHA `c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf`; span `59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8` | `docs/helix-os/L11-acceptance/governance-acceptance.md:468-478`; SHA `925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680`; span `921d184ab89892a7a257600e13e80290053dc49749e9f708909f27f2bd2f42ea` | `LEGACY-ASSET-50CA1C554747F12266D3` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md` 行42,90-117,302-310,357-364,591-597; SHA `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd` | `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md` 行17-55; SHA `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | original Worker・support・reviewerの分離と因果loopを再導出し、L2/L11の案Bで作業前支援を前倒し。旧固定実装順/slot/lease/cycle/provider/runtime/CIは置換し、L2-018/019/020/023・HARNESS oracle ownerを保持。 |
+
 ## PO向け要約（承認未取得）
 
-この部分草稿は、管理authority記録、対象横断trace、ticket推進、Worker assignment、continuity/evidence、CI検収、handoff、および限定初回実行の各責務を別々のFR/ACへ展開する。各ownerの正本・oracle・権限・資源をOSが代替せず、unknown/staleと未完義務を保持する。017/018/019は既存入力のbudget/deadlineを維持するだけで、新しい額・期限・登録義務を設定しない。027は固定親の6条件とpermission/performance状態分離を同一attemptに適用し、初回成功だけでは評価済みにせず、LABOが該当scopeの評価を成立させるまで未評価を維持する。
+この部分草稿は、Stage 2aのauthority/ticket/assignment/continuity/verificationに加え、Stage 2cで支援handoff（028）と支援から検証・再作業までのcomposite（029）を別々のFR/ACへ展開する。案Bに沿う作業前candidateはconsultやfailure evidenceなしで準備可能とし、実相談・実作業・検証・独立reviewは発生後の別証拠で照合する。各ownerの正本・oracle・権限・資源をOSが代替せず、unknown/staleと未完義務を保持する。固定回数のretry/loopや新しいbudget/deadline値は追加しない。
