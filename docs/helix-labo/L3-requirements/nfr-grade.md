@@ -78,3 +78,16 @@
 | `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/unknown scope fixture | 1.0内部evidenceと2.0外部loopの混入0 |
 | `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
 | `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage 100%候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionの有限条件行列 | 選択sourceだけclosureを要求。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
+
+## Stage 5 — LABO-L2-050/059/060/061 測定候補
+
+値はL3/L10対の測定候補でありPO決定済み閾値ではない。適用範囲は選択scopeと親契約の分母に限り、未選択のcohort/sourceや全通常履歴へ拡張しない。
+
+| NFR候補ID / 親 | 候補値／比較 | 根拠と測定 | 限界・未確定 |
+|---|---|---|---|
+| `NFR-LABO-L3-050-01` / `HELIXLABO-L2-050` | 同一ticket/experiment/target revisionの循環stage trace coverage 100%候補、未観測の後段完了claim 0 | 親はObservedから再観測/効果・退行評価まで列挙し、candidate/登録/変更/CI成功を完了としない。L10-050の各段階receipt欠落と誤昇格を測る。 | throughput/latencyや改善効果の共通閾値は新設しない。 |
+| `NFR-LABO-L3-059-01` / `HELIXLABO-L2-059` | 選択比較にrequiredなtask/scope/oracle/scorer/protocol/hardware/decision/evidence tuple一致率100%候補、品質不合格の価格・速度相殺0、missing costを0化0 | Bench R-04〜08とAC-005〜013、親の品質優先・priority/tolerance・費用内訳を測る。全費用receipt合算とfirst candidate単価だけの比較を対置する。未換算human timeは時間量と通貨を分離する。 | repeat/sample数、固定順位、human-time換算率は候補なし。必須品質と選択群の整合を保つ。 |
+| `NFR-LABO-L3-060-01` / `HELIXLABO-L2-060` | 支援on/off比較pairの同一Worker/model/provider/version/effort/oracle/task条件一致100%候補、支援漏出・支援者を独立reviewer扱い0 | L2-060はsupport availabilityだけを変える。L10-060の正常3者分離review→OS-L2-020同oracle rerunと、各1条件差分を照合する。 | 支援経路の実行/割当、普遍的な効用差閾値はLABOの責務外。 |
+| `NFR-LABO-L3-061-01` / `HELIXLABO-L2-061` | 選択scopeのtask snapshot 15/15 field一致候補、選択hidden oracleの隔離違反0、historical resultのcurrent性能流用0 | HELIX-Bench R-04/R-08、AC-005/006/012/013、HIL-NFR-35に沿って全15fieldとdigest/revisionを照合し、public/hidden境界を個別変異する。1回の完全fixture照合と同一snapshotの再実行案を比較し、field fidelityは前者、再現性差分は後者で測る。 | hidden oracle非選択だけで独立judge契約を解除しない。別契約で適用外が明示されたscopeのみ除外する。標本/retry値は親契約の適用scope内でだけ提示し、全LABO-055履歴へ持ち込まない。 |
+
+これらは提案値である。L3承認に個別parameter gateを追加しない。必要な測定値が固定親に指定されていない場合は、候補・比較理由・観測方法を同一のL3/L10 packageで示す。

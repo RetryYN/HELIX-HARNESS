@@ -1,6 +1,6 @@
 # HELIX-LABO L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件およびStage 4のLABO-L2-036/037/038/039/040/041/052/054のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -981,3 +981,41 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 - **L10-LABO-052-C04 — 未見正常**：新しい評価材料種別でも035の既定義payload contractとprovenanceを満たす場合、同じscope/source revisionで受領追跡を成立させる。未評価フィールドは保持し、別材料や未選択sourceを必須にしない。
 
 全caseは候補設計であり未実行である。成功条件は各親のidentity・scope・owner・receipt状態の観測で、旧test結果や文章上の宣言を合格証拠にしない。
+
+## Stage 5 — HELIXLABO-L2-050/059/060/061 L10（部分草稿）
+
+各caseは同番号のL3 ACを参照する。固定L2/L11 basisはmain `633bf12`。旧起点はStage 5 L3 functional-requirements.mdの項目別crosswalkに示したlegacy requirement/acceptance pairであり、旧test・runtimeは実行せず、旧数値や旧実装結果を現行合格証拠にしない。
+
+### `HELIXLABO-L2-050` 内部改善循環
+
+| case ID | FR / AC | 入力・操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-050-01` | `FR-LABO-L3-050` / `AC-LABO-L3-050-01` | 同一scopeのObservedから再観測までの各段階identity/source revision、OS assignment/Worker result、OS routing、target ownerの変更・検証receiptとLABO再観測を対応づける。 | 全段階を同一ticket/experiment/target revisionへ追跡でき、変更後効果・退行評価が独立に表示される。 |
+| `CASE-LABO-L10-050-02` | `FR-LABO-L3-050` / `AC-LABO-L3-050-02` | assignment欠落、target revision drift、変更後観測欠落、effect evaluation欠落を別々にmutateする。 | 影響段階は未完のまま残り、candidate/OS登録/target変更/CI成功から完了へ進まない。元recordを上書きしない。 |
+| `CASE-LABO-L10-050-03` | `FR-LABO-L3-050` / `AC-LABO-L3-050-03` | 未採択candidateだけが存在するrunと、別ticketでは循環が完了した対照を与える。 | candidateは候補状態、別ticketの結果は分離され、割当/target変更をLABOから作らない。 |
+
+### `HELIXLABO-L2-059` 効果優先関係付き比較評価
+
+| case ID | FR / AC | 入力・操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-059-01` | `FR-LABO-L3-059` / `AC-LABO-L3-059-01` | 同task/scope/oracle/scorer/protocol/hardwareの、あらかじめ選んだ2群のrun receipt、適用可能なscope/revision priority decision、retry/救援/rework/CI/review/人修正と価格sourceを与える。実験条件と支援cohortは別fieldで持つ。 | 品質条件を先に評価し、適用済みdecisionを再確認させず選択群に限定した比較を返す。cost・time・human effort・欠測を区分し、未換算人時間を0円にしない。 |
+| `CASE-LABO-L10-059-02` | `FR-LABO-L3-059` / `AC-LABO-L3-059-02` | quality oracle failure、snapshot mismatch、protocol mismatch、hardware mismatch、decision scope mismatchをそれぞれ単独で変異する。更に品質不合格runへ低価格値を与える。 | 比較可能/達成の主張を拒否し、重大失敗を別表示する。低価格・高速で品質不合格を相殺しない。 |
+| `CASE-LABO-L10-059-03` | `FR-LABO-L3-059` / `AC-LABO-L3-059-03` | 選択二群だけ有効なreceiptが揃い未選択第三群がない対照、decision失効/未決、非貨幣化人時間、price missingを個別に投入する。 | 選択二群の限定比較は返せる。未決decisionや不足指標はunknown/部分評価とし、未選択群を必須化せずmissing costを0へしない。 |
+
+### `HELIXLABO-L2-060` Worker支援有無の同一設定比較
+
+| case ID | FR / AC | 入力・操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-060-01` | `FR-LABO-L3-060` / `AC-LABO-L3-060-01` | 対応するsupport-on/off runに同一task snapshot、Worker/model/provider/version/effort、oracle、toolchain、protocolと各OS assignment/result receiptを与え、許可済みsupport-onで元Workerが修正し、元Worker・支援者とは異なるidentity/context/authorityのreviewerがreview、OS-L2-020同一oracle rerunを行ったreceiptを含める。支援側の実source・救援・人介入も添える。 | 支援有無だけ異なるpairと認定し、3者の分離とOS-L2-020の同一oracle検証を確認して、quality gateを保った群別結果・費用・人介入・再作業・欠測を返す。 |
+| `CASE-LABO-L10-060-02` | `FR-LABO-L3-060` / `AC-LABO-L3-060-02` | model/effort差、片群assignment欠落、oracle revision差、支援contextがoff群へ漏れる場合、支援者をreviewerにする場合を一つずつ投入する。 | 当該pairを比較不能にし、片群だけの結果から支援効果を主張しない。支援者reviewを独立検証扱いにせず、支援の実行や割当はLABOから開始しない。 |
+| `CASE-LABO-L10-060-03` | `FR-LABO-L3-060` / `AC-LABO-L3-060-03` | 支援on側の未選択sourceが不在でも実使用source一覧が明確な正常対照と、使用provenanceがunknownのpairを比較する。 | 未選択sourceを要求せず、unknown pairだけ未評価に残す。未選択を使ったことにも、比較成立にも推定しない。 |
+
+### `HELIXLABO-L2-061` task・oracle隔離と履歴の完全性
+
+| case ID | FR / AC | 入力・操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-061-01` | `FR-LABO-L3-061` / `AC-LABO-L3-061-01` | 合成15-field exact task snapshot、scorer/protocol/rubric/judge revision+digestを与え、public worker inputと隠匿oracleの境界を確認する。Worker側からoracleへ到達できない一方、authorとは別identity/session/contextのjudgeへ正しいoracleを渡し、その実role/context receiptをhistorical resultのmodel/runtime/task snapshotへ結ぶ。 | 15項目と必要digestが一致し、Workerにhidden contentがなく、judgeの正当なoracle accessが保たれる。役割・context分離receiptが正しく、歴史結果は歴史scopeでのみ追跡される。 |
+| `CASE-LABO-L10-061-02` | `FR-LABO-L3-061` / `AC-LABO-L3-061-02` | 合成fixture上で15-fieldを1項ずつ欠落させ、各々独立にdigest drift、hidden answer漏出、future answer漏出、合成secret漏出、合成PII漏出、private review context漏出を変異する。別個の変異としてauthorをjudgeにする、identity名札だけ変えてcontextを共有、snapshot/oracle digest不一致、fixture/protocol/scorer version driftを試す。正常対照としてjudgeだけが固定oracleへ正当にアクセスするfixtureも与える。 | 各不一致・各漏出で該当比較を隔離し、重大漏洩/失敗を平均点で相殺せず、旧結果をcurrent evidenceへ再利用しない。judgeの正当なoracle accessをWorker漏出に数えない。記録するのはsource identityとreasonで、secret/PII/private contextの内容をauditへ複写しない。 |
+| `CASE-LABO-L10-061-03` | `FR-LABO-L3-061` / `AC-LABO-L3-061-03` | hidden oracle非選択scopeと、新taskの適用性を比較する。前者は別契約を特定し、独立judge/blind要件が適用外とする契約上の根拠を提示する正常対照を含める。根拠欠落・unknown applicability、以前未見のattachment/derived descriptionにanswerが漏れるfixture、worker可視範囲が不明なcontext-reference欠落も個別に与える。 | 独立judge要件の適用外は別契約の明示根拠がある場合だけ記録し、oracle非選択のみで解除しない。適用性unknownと可視範囲不明は未検証でownerへ戻す。未見source由来answer漏出は漏洩として隔離する。通常履歴全体へhidden taskを要求しない。 |
+
+各fixtureの数値候補は`../L3-requirements/nfr-grade.md`と同じ候補であり、L10 case自体は未実行。実装・runtime・実際のWorker起動を行わず、入力recordと期待stateを静的に照合する。

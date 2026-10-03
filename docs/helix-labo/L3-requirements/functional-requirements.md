@@ -1,6 +1,6 @@
 # HELIX-LABO L3 機能要件（部分草稿）
 
-**状態：部分草稿・未承認。** この文書はStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4 LABO-L2-036/037/038/039/040/041/052/054の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する範囲に従い、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書はStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4 LABO-L2-036/037/038/039/040/041/052/054、Stage 5のうちLABO-L2-050/059/060/061だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する範囲に従い、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -105,6 +105,49 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 ## 未承認事項
 
 各候補の採否は本L3と対のL10を一体として通常のPO L3承認へ渡す。パラメーターごとの承認質問は作らない。親L2の意味・scope・owner・versionに変更が必要だと判明した場合だけL2へ戻す。
+
+## Stage 5 — HELIXLABO-L2-050/059/060/061（部分草稿）
+
+このcheckpointは担当4 identityだけを具体化する。各親のPO判断とL2/L11本文をmain `633bf12`で固定し、後続の候補登録・本文・Stage分類からauthorityを作らない。全対象L2は`docs/helix-labo/L2-requirements/labo-requirements.md`（SHA-256 `cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6`）、L11は`docs/helix-labo/L11-acceptance/labo-acceptance.md`（SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`）。PO判断記録は`helix-labo-requirements-po-decision-2026-09-28.md`（SHA-256 `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`）と`po-decision-2026-09-29-57candidates.md`（SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`）である。L2 raw spanは各行の固定値と一致する。
+
+| L3 ID / 親L2 | PO固定registration／decision行 | L2行／raw SHA-256 | L11行／raw SHA-256 | 旧起点と項目別の扱い |
+|---|---|---|---|---|
+| `FR-LABO-L3-050` / `HELIXLABO-L2-050` | `MPR-RC-HELIXLABO-L2-050-001`, semantic `e41ea805b72f36d34e326b11488f07d2f0a3e030b795442f47370e6869aecbce` / 2026-09-28 decision L92 | 298–303 / `cf8c0d89eed3ce45df65af0f5813f94a2e8bfc0508547c5157f11ac117f3f907` | L11 100 / `2b14174aa263cc1febb95bc17131102c75cf4d8d554741a89031a9a7a7ec0148`; invariant 15 row 125 / `8a17d986dd9c6a60de8ba880e94ca3201a112cb808620cb4adef5579700ef663` | `LEGACY-ASSET-EE5DBACC7F28F7D1F605`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` lines 154–156 raw SHA `9d0257f90826b20a3bb20663eacdc70863c7e093b2ea3bb9095cd6c3b1c39b31`, 237–242 raw SHA `bb865149314ed0458f05af62098c4bb93cc37748be3967acd4d03b321778ffad`; `LEGACY-ASSET-44DD86E3DEC09E65EF51`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` lines 111–113 raw SHA `ebdbb94005d30a24c3e61e3d0b2077c7c13d24f8c7ba5f30ef0fff9994f8c01b`. 修復候補・owner/rollback・再観測・改善候補への還流を意味起点として再導出。旧threshold、runtime、memory/backlog実装は移植しない。 |
+| `FR-LABO-L3-059` / `HELIXLABO-L2-059` | `MPR-RC-HELIXLABO-L2-059-002`, semantic `10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c` / 2026-09-28 decision L99 | 416–440 / `5ead2e790e1d138c633770851687b0e5f91e9dc15d0c4c525c322ba81fd30e08` | L11 170 / `9e5a9113e596edec50d6a068d769a2d3d3ff9b08938e9dbf6db6cb09e789a433` | `LEGACY-ASSET-28FB139B26CD61CC51EE`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md` SHA `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` lines 96–146 raw SHA `4ba5a4f961c7c36a8893b1964101c280b36cdd3d65f89e31448b28a8c01e8aa1`; `LEGACY-ASSET-A952A3A175EB82A4781B`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md` SHA `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` lines 30–41 raw SHA `5d58b45aedb4b44b6984a1e5bc2fc9c204fd39fec240d75ca7fac423c2c634ba`. task snapshot/protocol/同条件比較・oracleから再計算可能なevidence・重大失敗を平均相殺しない・全費用と価格provenanceの意味を再利用。固定5カテゴリ/12指標/実行構成は持ち込まない。 |
+| `FR-LABO-L3-060` / `HELIXLABO-L2-060` | `MPR-RC-HELIXLABO-L2-060-002`, semantic `470bc2c564e2ea6121a7f24645bdb5e9c81f0954d650c1e3e665760ff9c9aca5` / 2026-09-28 decision L100 | 441–456 / `a047f7e535616eb29f5221d81f89a8b319c02910d5cbfde874b0520b0a7c01c5` | L11 178–185 / `50a4e4a914eee9f1f1049b854493e1884c52f77bd7d1394deccf7d7c08116011` | 059と同じBench sourceのR-04/R-05（同一snapshot・protocol・hardware等）を隣接起点にする。Bench L3 lines 96–126 raw SHA `b1e1ad5ce41e266e13b9469c20e87d57d46cf9f7d80773ce2a9c65c96102aae1`、Bench acceptance line 34 raw SHA `212c1056ff2561804fdabad16123c822c8bee9ce51b07cd77ffabfeb4fa09ace`。支援有無だけを変える比較は旧sourceに直接存在しないため現行L2から再導出し、旧runtime/数値を流用しない。 |
+| `FR-LABO-L3-061` / `HELIXLABO-L2-061` | `MPR-RC-HELIXLABO-L2-061-001`, semantic `f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f` / 2026-09-29 decision L76 | 457–469 / `9f064d206645f1db6ef946a78ddfd2fe6656c003c4af86ed46c54dab2ee4ad3a` | L11 205–215 / `d7c170e0b047db4a74ef955f1295a5d8fc893cd0ca84aefc72d96b764ed1bb1b` | HELIX-Bench R-04/R-08、AC-005/006/012/013（上記asset）および`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` SHA `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` line 215 raw SHA `930a87db86581b1433c4682bb626b9a83100503594f6447e3c2be2fd6860ec59` (HIL-NFR-35). 15-field snapshot、hidden oracle分離・candidate名blind・再現条件を再利用し、full Bench admission/固定sampleやprovider条件へ拡張しない。 |
+
+### FR-LABO-L3-050 — 内部改善循環
+
+`HELIXLABO-L2-050`はadopted `version_target: 1.0`。Observed→Correlated→Hypothesized→Experimented→Evaluated→Feedback Candidate→OS登録/routing→target owner変更・検証→運用→LABO再観測の各状態と同じticket/experiment/target revisionのsource identityを結び、変更後の効果と退行を評価できる形で返す。実験はOS assignment/Worker result receiptを要し、LABOは割当・変更・実行を行わない。candidate、登録、target変更、CI成功だけで循環完了にせず、旧記録を上書きしない。
+
+- `AC-LABO-L3-050-01`（正常）：同一scopeの全列挙段階を識別し、実験段階ではOS assignmentと実行receiptを同ticket/experiment/対象revisionへ結び、target変更後の再観測と効果/退行結果までtraceする。
+- `AC-LABO-L3-050-02`（未完）：assignment、target revision、変更後観測または効果評価のいずれかがmissing/staleなら該当義務だけ未完で残す。登録やCI成功を後段の証拠へ昇格させない。
+- `AC-LABO-L3-050-03`（正常対照・境界）：まだ変更を採択していないcandidateはcandidateのまま保ち、旧記録をappend-onlyに残す。別ticketの成功を同じ循環へ結合しない。
+
+### FR-LABO-L3-059 — 効果優先関係付き比較評価
+
+`HELIXLABO-L2-059`はadopted `version_target: 1.0`。scope/revisionに適用可能な品質oracle、優先関係と許容悪化の既決判断を入力として再利用し、runごとに再確認させない。baseline/current/candidate/hybridの実験条件軸とHELIXなし/旧版/新版の支援cohort軸を別fieldにし、主張する比較に必要な群だけを事前選択する。品質不足はcost/time等で相殺せず、適合したrun間だけで既決の順序を用いる。費用はretry、救援、rework、CI/review、人修正も測定scopeに応じて含め、価格source等を保つ。人時間に換算率がなければ別掲して0円化しない。欠測・比較不能は明示し、LABOはpriority決定、配置、実験、ticket、target変更を行わない。
+
+- `AC-LABO-L3-059-01`（正常）：同じtask/scope/oracle/scorer/protocol/hardwareの選択二群を事前に対応付け、各cohortで選択された実験条件だけを比較する。必要品質、適用既決priority/tolerance、全費用、人時間とuncertaintyを分けた結果を返す。適用可能な判断は繰返しrunで再利用する。
+- `AC-LABO-L3-059-02`（独立反例）：oracle、snapshot、protocol、hardware、decision scopeのいずれかを個別にずらす。比較可能・効果達成と主張せず、その不一致を理由付きで残す。重大失敗や品質不成立を平均点・安さ・速度で相殺しない。
+- `AC-LABO-L3-059-03`（部分比較／unknown）：二者比較に必要な群の証拠がそろい第三の未選択群がない場合、二者の限定結果を返す。適用decisionが未決・失効・scope外またはprice/human-timeの一部が欠測なら結論をunknown/部分評価として示し、欠測を0や万能順位にしない。
+
+### FR-LABO-L3-060 — Worker支援有無の同一設定比較
+
+`HELIXLABO-L2-060`はadopted `version_target: 1.0`。059の品質優先・費用/人介入の比較を再利用する。支援の有無だけを変え、task snapshot、対象revision/scope、Worker/model/provider/version/effort、oracle、toolchain、run protocolを同一に保つ。両群のOS assignment/result receiptを入力し、支援側で選択して実際に使ったsource、別Worker救援、相談、人手修正、retry/reworkを記録する。支援なし群への助言や支援context漏れは比較逸脱とする。LABOは支援を実行・割当しない。
+
+- `AC-LABO-L3-060-01`（正常）：同じWorker/model/version/effortの対runで支援有無のみが異なり、同じ品質oracleで両方のresultが観測できる。許可された支援利用後に元Workerが修正し、元Worker・支援者とは別のidentity/context/authorityを持つreviewerがreviewし、OS-L2-020の同一oracle再実行receiptまで結ばれた正常例を含める。品質gate、accepted outcome、費用、作業時間、人介入、再作業、欠測を群別に返す。
+- `AC-LABO-L3-060-02`（独立反例）：片群のassignment/result、oracleまたは設定同一性を一つずつ欠落・変異させ、支援者をindependent reviewerにする場合も試す。比較成立を主張せず不足source/ownerへ返し、片群を成功扱いにしない。支援者reviewを独立検証扱いにしない。
+- `AC-LABO-L3-060-03`（unknown正常対照）：支援なし群に追加助言がなく、支援群が未選択の支援sourceを使っていない適格caseは正常。実使用支援のprovenance不明、または支援漏出の疑いがあれば当該pairを比較不能とし、他scopeを停止しない。
+
+### FR-LABO-L3-061 — task・oracle隔離と履歴の完全性
+
+`HELIXLABO-L2-061`はadopted `version_target: 1.0`。選択task評価の15項目（task_id/version、fixture digest、requirement/acceptance IDs、base HEAD、allowed/forbidden paths、hidden oracle digest、seed、toolchain versions、timeout/retry/cache policy、hardware class）をsnapshotに固定し、public worker inputとhidden oracle/judge contextを分離する。snapshot/scorer/protocol/rubric/judgeの版・digest、介入・retry・結果provenanceとhistorical revisionを保存する。hidden oracleを使う評価scopeではblind分離を必須とする。oracleを使わない場合でも通常の独立judge契約は自動解除せず、別契約で独立judge要件が適用外と確認できる根拠がある範囲だけ適用外と記録する。通常のLABO-055履歴全件にhidden taskを拡張しない。漏洩fixtureは合成データに限り、監査記録へsecret/private contextの内容を複写せずsource identityとreasonだけを記録する。
+
+- `AC-LABO-L3-061-01`（正常）：選択評価の15 fields、snapshot/scorer/protocol/rubric/judge identityとdigestが整合し、workerはpublic inputだけを受領しhidden oracleへ到達できない。judgeは固定oracleを使い、authorとは別のidentity/session/contextで評価し、receiptは実際のrole/context分離を示す。historical結果は当時のscope/model/runtime evidenceとして読める。
+- `AC-LABO-L3-061-02`（独立反例）：15 fieldの単独欠落、digest/version driftに加え、hidden answer、future answer、合成secret、合成PII、private review contextの各漏出を個別に変異する。さらにauthorのjudge兼任、identity名札だけ変更してcontextを共有、task snapshotとoracle digestの不一致、fixture/protocol/scorer version driftを別々に試す。該当比較だけを隔離し、重大leakage/scope/security failureを平均点で相殺しない。正当なjudge oracle accessはWorkerへの漏出と誤判定しない。
+- `AC-LABO-L3-061-03`（条件付き正常・未見）：hidden oracleを使わないscopeでは、別契約の独立judge要件が適用外であることを示す根拠がある場合だけblind要件を適用外と記録する。hidden oracle非選択だけでは通常の独立judge契約を解除しない。新task/scopeの適用性がunknownならownerへ戻して未評価とし、未見attachment由来のanswer leakは漏出、worker可視範囲不明は未検証として隔離する。historical resultをcurrent性能へ流用しない。
 
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054（部分草稿）
 
