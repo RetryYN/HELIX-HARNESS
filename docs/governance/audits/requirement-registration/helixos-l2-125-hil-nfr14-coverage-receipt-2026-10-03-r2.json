@@ -143,65 +143,136 @@
     {
       "source_condition": "不正JSON",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 1: do not accept as success.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not accept as success. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「不正JSON」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          1
+        ]
+      }
     },
     {
       "source_condition": "schema不一致",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 2: do not accept as success.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not accept as success. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「適用schemaとの不一致」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          2
+        ]
+      }
     },
     {
       "source_condition": "oversize",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 3: applicable existing upper bound exceeded.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 applicable existing upper bound exceeded. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「上限超過」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          3
+        ]
+      }
     },
     {
       "source_condition": "sequence欠落",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 4: required content absent at completion; a transient wait is not itself absence.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 完了時にも必要な結果内容が欠けている場合、完了成功として表示されないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「完了時点でのsequence欠落」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          4
+        ]
+      }
     },
     {
       "source_condition": "worker crash",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 5: incomplete attempt is not success.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 incomplete attempt is not success. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「Worker crash」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          5
+        ]
+      }
     },
     {
       "source_condition": "timeout",
       "consumer_context": "HR12/HAC12c/HAT12",
-      "candidate_002": "L11-125 independent negative 6: existing operation deadline exceeded.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 existing operation deadline exceeded. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「timeout」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          6
+        ]
+      }
     },
     {
       "source_condition": "cancel",
       "consumer_context": "HR12/HAC12c/HAT12",
-      "candidate_002": "L11-125 independent negative 7: canceled attempt/late result not accepted.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 canceled attempt/late result not accepted. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「cancelまたはcancel後の遅着」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          7
+        ]
+      }
     },
     {
       "source_condition": "backpressure",
       "consumer_context": "HR12/HAC12b/HAT12; HST-CASE-007-09 only covers queue-at-upper-bound overflow and no commit, not transient pressure without loss.",
       "candidate_001_mapping": "fail regardless of whether result fragments are missing.",
-      "candidate_002_normal": "transient backpressure followed by a complete, loss-free wait/resume within existing contract limits/deadline may be normal.",
-      "candidate_002_negative": "only the unresolved loss/gap or other independently violated condition is a negative; partial result never promoted.",
+      "candidate_002_normal": "L2-125 要求保証 (governance-requirements.md:1553) およびL11-125正常例 (governance-acceptance.md:1168): 一時的なbackpressureだけでは失敗とせず、既存契約の範囲内で待機・再開し、欠損なく完了すれば正常。",
+      "candidate_002_negative": "L2-125 要求保証 (governance-requirements.md:1553): backpressure後も欠損・上限違反・期限超過が残れば成功・完成扱いせず部分結果を正本結果にしない。旧L11詳細の未解消gap確認は上記technical_design_material_locatorのitem 8に残す。",
       "meaning_boundary": "The 002 interpretation follows the exact later35 correction direction; it remains a candidate for fresh PO decision. It does not edit the old source text, receipt, row, or holding.",
-      "human_confirmation_destination": "当該operationの既存結果・状態表示に完全で欠損のない結果が示され、要求者またはoperation ownerが既存上限・期限内の完了を確認する。backpressureの発生自体は失敗表示の根拠にしない。"
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「一時的なbackpressureだけでは失敗とされず、待機・再開後も欠損・上限違反・期限超過が残る場合は成功・完成扱いされない」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          8
+        ]
+      }
     },
     {
       "source_condition": "親process消失",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 9: do not infer valid parent state or success.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 do not infer valid parent state or success. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「親実行の消失により結果を確認できない状態」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          9
+        ]
+      }
     },
     {
       "source_condition": "partial result非昇格",
       "consumer_context": "HR12/HAC12b/HAT12",
-      "candidate_002": "L11-125 independent negative 10: partial result alone is never canonical success.",
-      "human_confirmation_destination": "当該operationが既に使う結果・状態表示。要求者またはoperation ownerが該当attemptの結果と未完義務を確認する。新しい画面・status valueは作らない。 partial result alone is never canonical success. の状態が成功扱いされないことを確認する。"
+      "candidate_002": "L2-125 要求保証 (governance-requirements.md:1553) は「有効な完成結果と確認できないpartial resultは成功・完成扱いされず、部分結果は正本結果とならない」を利用者向け保証として保持する。L11-125はsource class別negativeではなく、正常・不成立・未見の三つの利用者確認基準で確認する。",
+      "human_confirmation_destination": "現行L11-125の「利用者の確認基準」(governance-acceptance.md:1168)と「確認結果の行先」(:1169)。要求者またはoperation ownerが当該operationの既存結果・状態表示で、正常に完了した結果／完成扱いされない結果とその理由・未完義務／判定不能のまま未完で成功表示されない結果を確認する。現行L11にはsource class別の番号付きnegativeはない。",
+      "technical_design_material_locator": {
+        "json_pointer": "/technical_follow_up_material/candidate_002_downstream_handoff/former_l11_detailed_section_verbatim",
+        "detail": "旧L11詳細の番号付きnegative。現行L11に番号条件があることを意味しない。",
+        "negative_item_numbers": [
+          10
+        ]
+      }
     }
   ],
   "human_decision_options": {

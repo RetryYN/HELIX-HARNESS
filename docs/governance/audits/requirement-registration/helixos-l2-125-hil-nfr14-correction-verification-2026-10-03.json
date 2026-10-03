@@ -42,12 +42,12 @@
     "current_register_exact_latest_main_prefix": true
   },
   "current_002_pins": {
-    "MPR_002_raw_row_sha256": "sha256:64b4e1b0e086fea55ce5db6ddd8f21061d3f33d0a5fb052f28a168f8b37c0fce",
+    "MPR_002_raw_row_sha256": "sha256:62dc528e2087edf380b2d9a61eb197b1af506b403bfd36582dc0d5e4720ffb1c",
     "candidate_semantic_digest": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
     "source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl",
     "source_ledger_sha256": "sha256:04d2c9b29b141059e6c0f6b8be6175ad6b54297dbf5eb908ac3b6d14eea7e549",
     "receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json",
-    "receipt_sha256": "sha256:1acba9162e97332b9ba415092203f6248a6cab9a5f05d67b35e36edb7349c726",
+    "receipt_sha256": "sha256:5a6079de61682fcb73ab7f4407fbe8e5065bd69d4799499a35c1ea81a9d90ed7",
     "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
     "L2_section_sha256": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
     "L2_full_file_sha256": "sha256:6db25915f9419f185f745ad36fd90dfe9704ef64b57e98414023c6e8640993c1",
