@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045
+scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -83,3 +83,21 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 | `HELIXINTELLIGENCE-L2-045` | 独立business oracleなし。機能L10の該当caseのみ照合。 | Product Core issue/backflow candidateをbusiness KPI、利用者受入、事業owner判断へ読み替えていないことを文書で確認する。 |
 
 各identityの機能L3/L10 pairは[機能検証Stage 4](functional-verification.md)を参照する。これは事業成果を検証するcaseではない。
+
+## Stage 5 — business scope検証
+
+Stage 5の各親は独立business criterionを導出しない。下表は分類境界がL3 business文書と対応することの静的参照であり、business outcomeを合格とする測定caseではない。
+
+| 親L2 | business扱い | 静的照合 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-060` | 独立business criterionなし | `business-requirements.md` がplan candidateをOS assignment/business outcomeへ読み替えていないこと。 |
+| `HELIXINTELLIGENCE-L2-061` | 独立business criterionなし | placement proposalから売上/品質や恒久資格を導出していないこと。 |
+| `HELIXINTELLIGENCE-L2-062` | 独立business criterionなし | stage receiptを修復承認・完了のbusiness oracleにしていないこと。 |
+| `HELIXINTELLIGENCE-L2-063` | 独立business criterionなし | feedback候補を恒久改善や事業効果に変換していないこと。 |
+| `HELIXINTELLIGENCE-L2-069` | 独立business criterionなし | finite fixture算術を製品性能保証と記述していないこと。 |
+| `HELIXINTELLIGENCE-L2-070` | 独立business criterionなし | LABO受領とactual評価を分けていること。 |
+| `HELIXINTELLIGENCE-L2-071` | 独立business criterionなし | scenario結果から利用者/投資判断の承認を生成していないこと。 |
+| `HELIXINTELLIGENCE-L2-074` | 独立business criterionなし | LABO feedbackをOS assignment/恒久順位へ昇格していないこと。 |
+| `HELIXINTELLIGENCE-L2-077` | 独立business criterionなし | delta candidateをRequirement/Design/Release変更へ直結していないこと。 |
+
+各親の機能L3/L10 pairは[機能検証 Stage 5](functional-verification.md)を参照する。これは事業成果を検証するcaseではない。

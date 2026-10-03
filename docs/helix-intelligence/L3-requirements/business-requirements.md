@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045
+scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l10: ../L10-verification/business-verification.md
 
 対象親から独立した業務価値基準、事業ownerまたは業務閾値を追加導出しない。これは機構全体に業務要件がないという主張ではなく、この部分scopeの限定である。業務意味は固定L2/L1のownerへ残し、機能条件を業務受入へ読み替えない。
@@ -84,5 +84,23 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 | `HELIXINTELLIGENCE-L2-041` | 独立business criterionを導出しない。機能AC `AC-INTELLIGENCE-L3-041-01` を参照。 | 固定親の範囲は独立source identityとselected source setの技術的source/handoff contractであり、事業価値・利用者acceptance・売上/品質閾値を定義しない。 |
 | `HELIXINTELLIGENCE-L2-044` | 独立business criterionを導出しない。機能AC `AC-INTELLIGENCE-L3-044-01` を参照。 | 固定親の範囲はLABO向けgeneric candidate/evidence/scopeの技術的source/handoff contractであり、事業価値・利用者acceptance・売上/品質閾値を定義しない。 |
 | `HELIXINTELLIGENCE-L2-045` | 独立business criterionを導出しない。機能AC `AC-INTELLIGENCE-L3-045-01` を参照。 | 固定親の範囲はProduct Core issue/backflow candidateの技術的source/handoff contractであり、事業価値・利用者acceptance・売上/品質閾値を定義しない。 |
+
+親revisionと旧semantic起点は[functional L3 crosswalk](functional-requirements.md)を参照する。
+
+## Stage 5 — business scope分類
+
+このStage 5 checkpointの9親について、独立business criterionを導出しない。固定L2/L11は技術的な能力・証跡・handoff・数値fixtureの契約であり、事業成果、事業owner判断、売上・品質の合否閾値を定義しない。機能ACをbusiness acceptanceへ読み替えない。
+
+| 親L2 | 扱い | 境界 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-060` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-060-01` を参照。 | OS所有plan/ticket/assignmentを事業成果や配置決定としない。 |
+| `HELIXINTELLIGENCE-L2-061` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-061-01` を参照。 | LABO実績に基づくproposalは事業価値・売上・品質閾値を決めない。 |
+| `HELIXINTELLIGENCE-L2-062` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-062-01` を参照。 | 修復stageのtraceは修復承認や運用完了を意味しない。 |
+| `HELIXINTELLIGENCE-L2-063` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-063-01` を参照。 | feedback loop候補から恒久改善・事業効果を主張しない。 |
+| `HELIXINTELLIGENCE-L2-069` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-069-01` を参照。 | 有限fixture算術は製品性能・事業capacityの約束ではない。 |
+| `HELIXINTELLIGENCE-L2-070` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-070-01` を参照。 | LABO handoffは受領事業価値やactual評価を意味しない。 |
+| `HELIXINTELLIGENCE-L2-071` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-071-01` を参照。 | scenario比較は利用者成果・投資判断の承認ではない。 |
+| `HELIXINTELLIGENCE-L2-074` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-074-01` を参照。 | 評価済feedbackは恒久Worker順位や業務配賦方針を決めない。 |
+| `HELIXINTELLIGENCE-L2-077` | 独立business criterionなし。機能AC `AC-INTELLIGENCE-L3-077-01` を参照。 | delta candidateから要求・設計・releaseの事業承認/変更を生成しない。 |
 
 親revisionと旧semantic起点は[functional L3 crosswalk](functional-requirements.md)を参照する。

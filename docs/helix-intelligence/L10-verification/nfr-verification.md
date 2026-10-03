@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045
+scope: version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -87,3 +87,19 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 | `CASE-INTELLIGENCE-L10-NFR-045-01` | `NFR-INTELLIGENCE-045-01` | `HELIXINTELLIGENCE-L2-045` | 既知product/revision/ownerでissue typeだけ未見の例と、product/target identityまたはowner不明の例を分け、各identity/source fieldの欠落・staleも投入する。 各source/consumer専用CONNECT admitted contractとHARNESS-L2-010/011 packのversion/scope/compatibilityを照合する。contract/packの欠落・stale・非互換とsource-join-onlyを個別に投入し、paired acceptanceと既存rollback evidenceなしの誤handoff数を測る。 | L10実行時は既知targetの契約適合candidateが該当ownerへhandoffされること、不明targetだけunroutedになること、誤配送/owner越境数をoracleと比較する。草稿段階では未実行。 source joinだけでhandoffを受領せず、paired acceptance/rollback oracleを照合する。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
 
 候補値は未承認であり、動作・性能を実行計測した結果ではない。機能要件caseは[functional verification Stage 4](functional-verification.md)を参照する。
+
+## Stage 5 — NFR候補の検証case
+
+以下は未実行のfixture測定設計で、L3候補の値・比較方法を検証する。製品performance guaranteeや承認済みthresholdではない。
+
+| case ID | NFR候補ID | 親L2 | 入力／比較 | 測定oracle | 限界 |
+|---|---|---|---|---|---|
+| `CASE-INTELLIGENCE-L10-NFR-060-01` | `NFR-INTELLIGENCE-060-01` | `HELIXINTELLIGENCE-L2-060` | A→B/独立C planと循環・未充足dependencyを個別投入。full graph再計算とdependency-only更新を比較。 | declared edge coverage、出力順、stop/fallbackの一致、逆順数を固定plan oracleで測る。全input edgeを照合し、未解決edgeはowner別unknown。 | fixture完全性候補でありOS実行時間/割当性能を測らない。 |
+| `CASE-INTELLIGENCE-L10-NFR-061-01` | `NFR-INTELLIGENCE-061-01` | `HELIXINTELLIGENCE-L2-061` | 同taskのLABO level/Worker evidenceと、別task/stale/unassessed/name-only evidenceを混在させる。 | output proposalの適用/除外/未評価とtask/scope/revision edgeを判定し、誤qualified数を計上する。 | 結果は与えたsource scope内に限る。 |
+| `CASE-INTELLIGENCE-L10-NFR-062-01` | `NFR-INTELLIGENCE-062-01` | `HELIXINTELLIGENCE-L2-062` | SEC permission、Worker result、HARNESS obligation/result、OS acceptanceを正順に与え、各stageを単独欠落・stale・scope driftする。 | required stage edge coverageとstage-skipped completion countを固定4-stage oracleと照合する。 | 実行/permission/修復受入を生成しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-063-01` | `NFR-INTELLIGENCE-063-01` | `HELIXINTELLIGENCE-L2-063` | LABO/BRAIN/INT/OS/HARNESSのepisode sourceを別owner/revisionで与え、遅着/duplicateと一つの欠落を比較する。 | source edgeごとのrevision/owner/state traceとauthority mutation countを測る。個別owner recordと違うsummary結合を誤りとして数える。 | 事業効果/恒久改善の測定値ではない。 |
+| `CASE-INTELLIGENCE-L10-NFR-069-01` | `NFR-INTELLIGENCE-069-01` | `HELIXINTELLIGENCE-L2-069` | L11 queue/DB disconnectに加え、load 18 jobs、worker 2/4、3 jobs/min/worker、shared DB ceiling 8 jobs/min、worker cost 0.20 credits/worker-min、DB cost 0.10 credits/minのvirtual worker fixtureを同一oracleへ通し、arrival/service/unit/rate/ceilingを各々単独変異、さらにshared bottleneckを欠落させる。 | queue served 5/8・final 0/2、DB依存枝だけのblocked伝播、2→4 workerのthroughput 6/8 jobs/min・elapsed 3/2.25 min・cost 1.50/2.025 creditsを独立算術/graph oracleへ照合する。 | L11固定fixtureの値で、runtime performance、実価格、deployment thresholdへ外挿しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-070-01` | `NFR-INTELLIGENCE-070-01` | `HELIXINTELLIGENCE-L2-070` | 033 input→069 result→040 send→LABO-024 receiptを正順とし、各receipt欠落/stale/duplicate/out-of-order、simulation/actual revision混同を個別投入する。 | 各段階identity/scope/source revisionと送達順のcoverage、premature received数をledger oracleで照合する。 | recipientの受領速度や性能を主張しない。 |
+| `CASE-INTELLIGENCE-L10-NFR-071-01` | `NFR-INTELLIGENCE-071-01` | `HELIXINTELLIGENCE-L2-071` | 同一model revisionのbaseline/queue増/DB断/worker 2→4を別variantと同時bottleneck variantに投入する。 | variant毎に条件/invariant/state/impact/unit/time/cost/unknownを照合し、L11期待値がある場合は各variantとbundle両方で独立算術oracleとの差0を計上する。 | 結果は有限fixtureに限る。通常scenarioでは期待値oracleは不要、simulationとactualを混ぜない。 |
+| `CASE-INTELLIGENCE-L10-NFR-074-01` | `NFR-INTELLIGENCE-074-01` | `HELIXINTELLIGENCE-L2-074` | 同task/scope/window評価済feedbackと別scope/unassessed/stale/single feedbackを個別投入する。 | proposalの適用根拠・除外・未評価・再評価条件がsourceに一致する割合と誤qualified数を測る。 | 配置効果/資格/順位を測らない。 |
+| `CASE-INTELLIGENCE-L10-NFR-077-01` | `NFR-INTELLIGENCE-077-01` | `HELIXINTELLIGENCE-L2-077` | selected qualified receipt、unselected receipt、stale/unqualified/unknown valueを別々に与える。 | selected-source provenanceとorigin/ownerのedge coverage、unknown補完/direct write件数を照合する。consumer/routeはunknownのまま。 | UIL/TERの現行実体やruntimeを仮定しない。 |

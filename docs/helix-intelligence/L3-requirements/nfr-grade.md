@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: version_target 1.0 explicit items drafted through Stage 4 partial items 017/030-033
+scope: version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l10: ../L10-verification/nfr-verification.md
 
 以下は固定L2/L11から導出した候補値であり、承認済み閾値や実測ではない。候補ごとに比較案とL10測定を示す。要件意味・scope・owner・版を変更する必要がある場合だけ上流へ戻す。
@@ -89,3 +89,19 @@ Stage 4の旧sourceと固定親pinは[functional L3 crosswalk](functional-requir
 | `NFR-INTELLIGENCE-045-01` | `HELIXINTELLIGENCE-L2-045` / Product Core issue/backflow candidate | 候補：product identity/revision, issue evidence, owner, route statusのrequired relation coverage 100%（candidate値、未承認）; 誤ったauthority/source結合0件（candidate値、未承認）。比較案：issue type未知を一律unroutedにすると既知product/revision/ownerへ届く候補を落とす。target/owner既知なら契約で解釈できるcandidateをhandoffし、target/product identityやownerが不明な場合だけunroutedにする方式を候補とする。 | L10実行時はissue→product/revision/owner/source edgeとunrouted stateをoracleと比較し、誤配送/owner越境数を測る。草稿段階では未実行。 各source/consumer専用CONNECT admitted contractとHARNESS-L2-010/011 packのversion/scope/compatibilityを照合する。contract/packの欠落・stale・非互換とsource-join-onlyを個別に投入し、paired acceptanceと既存rollback evidenceなしの誤handoff数を測る。 |
 
 Stage 4の旧sourceと固定親pinは[functional L3 crosswalk](functional-requirements.md)を参照する。
+
+## Stage 5 — INTELLIGENCE NFR候補（未承認）
+
+以下は固定L2/L11の関係完全性・数値fixture再現性に限る候補測定であり、未実行・未承認である。決定的なfixtureでは固定oracleとの完全一致を候補とする。これを製品全体の性能値・資格・新承認gateにしない。必要な技術値は根拠・比較・測定方法を持つ候補として示す。
+
+| NFR候補ID | 親L2／測定対象 | 候補値・比較 | 根拠と測定入力 | 判定材料・限界 |
+|---|---|---|---|---|
+| `NFR-INTELLIGENCE-060-01` | `HELIXINTELLIGENCE-L2-060`／plan dependency | 候補：入力で宣言されたdependency edgeのfixture coverage 100%、逆順edge 0件。全graph再計算と変更edgeのみの増分計算を比較し、変更時に全edgeを再照合する方式を基準候補とする。 | A→Bと独立Cに未充足前提、循環、stale sourceを一つずつ与える。出力planのedge、順序、stop/fallback、ownerを入力oracleと比較しcoverageと誤順序数を測る。 | fixture適合値であり本番処理時間を保証しない。OS ticket/assignment生成数0もfunctional ACで別確認。 |
+| `NFR-INTELLIGENCE-061-01` | `HELIXINTELLIGENCE-L2-061`／配置proposal evidence | 候補：各提案のsource/task/scope/evaluation state trace 100%、誤qualified判定0件。全 evidence再評価とscope一致sourceだけの照合を比較し、未評価を失わない局所照合を候補とする。 | 同一taskと別taskのLABO evidence、Worker/version実績、未評価Bench水準、name/price-onlyを対にする。proposalの適用根拠・除外・未評価欄をLABO/OS receiptと比較する。 | 与えられたfixtureに対する完全性候補。資格thresholdや配置精度を新設しない。 |
+| `NFR-INTELLIGENCE-062-01` | `HELIXINTELLIGENCE-L2-062`／修復段階trace | 候補：SECURITY permission→Worker result→HARNESS verification→OS acceptanceのrequired edge coverage 100%、段階飛越0件。順序付きreceipt照合と単一完了flag照合を比較し、前者を候補とする。 | 各stageを同一target/revision/scopeで正順投入し、各receiptを一つずつ欠落・失効・scope違いにする。出力の四段階state/戻し先を期待表と照合する。 | fixture完全性のみ。実修復成功・許可・受入は測定せず生成もしない。 |
+| `NFR-INTELLIGENCE-063-01` | `HELIXINTELLIGENCE-L2-063`／self-improvement loop | 候補：LABO評価、BRAIN knowledge、INTELLIGENCE判断、OS結果、HARNESS contractのsource/revision/owner分離100%、authority混同0件。一本化summaryとsource別edge方式を比較し、source別edgeを候補とする。 | 同一episodeの過去評価/current判断/未完了OS結果/contract mismatchと、遅着feedbackを投入し、outputが誰の状態を変えるか比較する。 | loopの候補trace測定であり、恒久改善や知識writeを認めない。 |
+| `NFR-INTELLIGENCE-069-01` | `HELIXINTELLIGENCE-L2-069`／有限model計算 | 候補：L11の固定 queue・DB断・仮想Worker/shared-DB fixtureで数値/state oracle mismatch 0件、未定義量の局所unknown率100%。全状態遷移traceと最終値のみの比較を行い、trace照合を候補とする。 | 同じmodel/rule/unit sourceからqueue例（処理5/8、終端queue 0/2）、DB dependency graph、load 18 jobs、worker 2→4、per-worker 3 jobs/min、shared DB ceiling 8 jobs/min、worker 0.20 credits/worker-min、DB 0.10 credits/minの算術fixtureを計算し、独立oracleとの差分を測る。arrival/service/rate/ceilingの単独変異とshared bottleneck欠落も投入する。 | 固定小fixtureの算術整合だけ。期待値付き検証operation以外の一般scenarioに期待値oracleを要求しない。実環境worker/性能へ外挿しない。 |
+| `NFR-INTELLIGENCE-070-01` | `HELIXINTELLIGENCE-L2-070`／計算結果の段階handoff | 候補：L2-033 input→069 result→040 send→LABO-024 receiptの順序・identity trace 100%、先行stage欠落時のpremature handoff 0件。単一aggregate receiptと段階receiptを比較する。 | 正常順、各段階の欠落/stale、重複/out-of-order LABO receipt、simulationと後日actualを別revisionで投入し、四段階の出力receipt ledgerを照合する。 | 受領率やlatencyの性能値ではない。simulationをactualに書き換えず、LABO-006評価は別責務。 |
+| `NFR-INTELLIGENCE-071-01` | `HELIXINTELLIGENCE-L2-071`／scenario比較bundle | 候補：同一model/revision・単位の比較列とimpact edge coverage 100%、oracle差分0件。各scenario独立比較とbundle後の再集計を比較し、後者でもsource/revision traceを保持する。 | 069 queue/DB/Worker fixtureをbaselineと変更scenarioへ再利用し、単独変更・併発変更・shared DB bottleneckを個別投入する。bundleの変更条件、不変条件、順序、state/impact、時間/費用、unknown、LABO receiptを独立oracleへ照合する。 | L11 fixture一致のみで実モデルの汎用性・精度を保証しない。実測/予測の混同は0を候補とする。 |
+| `NFR-INTELLIGENCE-074-01` | `HELIXINTELLIGENCE-L2-074`／feedback適用範囲 | 候補：同task/scope/revision/windowの評価済feedbackのみを引用する正しいsource trace 100%、別scopeまたはunassessedのqualified化0件。比較案：全feedbackを次回proposalへ一律引用する方式はscope汚染を生みうる。一方、task/scope/windowとLABO評価状態が一致したevidenceだけを引用する方式は、適用除外と未評価の理由を保てるため、後者を候補とする。 | 一致feedback、別task/scope、stale、単独feedback、比較不能を投入しproposalの適用理由・除外・未評価・再評価条件をLABO evidenceと照合する。 | 配置の改善率、恒久順位、資格を定義しない。評価状態・根拠traceのcandidate測定。 |
+| `NFR-INTELLIGENCE-077-01` | `HELIXINTELLIGENCE-L2-077`／選択receiptとnon-write | 候補：selected qualified receiptのidentity/revision/owner/origin trace 100%、unknown補完・直接write 0件。 | qualified internal/UILまたはexternal/TER receiptの選択例、unselected sourceのみ、stale/unqualified/unknown fieldを比較し、delta candidateのsource bindingとauthority不変を照合する。 | 将来consumer/route/runtimeを仮定せず、selection/non-writeのみを測る。 |

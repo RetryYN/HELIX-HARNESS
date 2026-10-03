@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial INT items 017/030-041/044-045 / adopted version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial INT items 017/030-041/044-045 + Stage 5 INT items 060/061/062/063/069/070/071/074/077 / adopted version_target 1.0 explicit items only
 owner: HELIX-INTELLIGENCE
 paired_l10: ../L10-verification/functional-verification.md
 
-本稿は固定L2/L11に根拠を置くStage 2a・2c部分範囲であり、機構全体のL3、実装、実行、採択・承認を意味しない。Stage 2cはPOの案B「支援・テスト生成を前倒し」に従い、作業前の指示・テスト候補と作業中の診断・相談を分ける。候補生成はassignment、相談実行、test実行、受入状態を作らない。親L2ごとにFR IDを分け、ACはL3正本に一度だけ定義し、L10は同じACを参照する。
+本稿はfrontmatterのscopeに示すStage 2a・2c、Stage 3、Stage 4/5対象の固定L2/L11に根拠を置く部分草稿であり、機構全体のL3、実装、実行、採択・承認を意味しない。Stage 2cはPOの案B「支援・テスト生成を前倒し」に従い、作業前の指示・テスト候補と作業中の診断・相談を分ける。候補生成はassignment、相談実行、test実行、受入状態を作らない。親L2ごとにFR IDを分け、ACはL3正本に一度だけ定義し、L10は同じACを参照する。
 
 
 ### `FR-INTELLIGENCE-L3-010` — `HELIXINTELLIGENCE-L2-010`
@@ -614,3 +614,95 @@ Product Core issueをproduct/revision/ownerへ候補として返し、requiremen
 | `HELIXINTELLIGENCE-L2-045` | `docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md#L89` row SHA `a023a9ee1eb8d502492ccd41f6cb13f6aa2575bad2757a2a45b220d7866b91ec`, decision full SHA `8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad`, candidate semantic digest `sha256:fafb172e9d475d0390bcd4b92e14774d01a00cdebb8c6f87cb167c2a57b62f29`; exact `MPR-RC-HELIXINTELLIGENCE-L2-045-002` (adopted, `1.0`, Stage 4) | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:343-351` raw span SHA `f86ab560f3ed08f3dbc524d45e73e9e3a545c8da251d1928b38474017a73c4d3`; full SHA `592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:280-280` raw span SHA `6260777fd0ad3e724f17d078a97fb3ad65b39dbd0cd708dc64b465519666af60`; full SHA `98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33` | `LEGACY-ASSET-9B6FC1ED349F96394497` `docs/design/helix/L3-requirements/bugbot-generation-requirements.md` 行18-70; file SHA-256 `3a2fe5f1090d86180806ef1ce4a75793ccb21d8be518a3f7d17c3bf914ce5a36`; 18-70:rawsha=d221c2eb47ff52f9bddd2e9ee4e4cef5d8d9f88d39ff67c6758393ff1f459911 | `LEGACY-ASSET-658FF8439F9F8E694710` `docs/test-design/helix/bugbot-generation-acceptance.md` 行31-41; file SHA-256 `9a76d66a85616d72fe6f96732eb529ffc31fa890c25f5adf9ab296f6469ff6b6`; 31-41:rawsha=`0eb8505f6837011f68a758323739f086567737629280b68eaf870f158c0ade9a` | 定型生成・正規操作の意味入力/導出/実測引用の分離、typed inputの欠落/未知処理、source/output/consumer版管理だけを隣接起点として再利用する。finding identity・severity・Product Core issue routeは旧sourceに直接記述されないため、現行のidentity/owner/backflow意味は固定L2/L11から再導出する。旧CI/merge動作は継承しない。 |
 
 旧起点の検索範囲は、旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/` の該当assetと、そのpairとして旧L3 headerが明記する `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/` の対応acceptance文書である。asset ID/full SHAは旧資産台帳と一致する。表に「直接oracleなし」としたものはその二範囲内のitem固有oracleが見つからなかった意味に限定し、旧HELIX全体に対応がないとは主張しない。
+
+## Stage 5 — INTELLIGENCE 1.0 部分草稿
+
+対象はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`を基準にしたG0 Stage 5採択親 `060/061/062/063/069/070/071/074/077`。下記はPO承認前のL3候補であり、候補本文から未採択親を追加せず、後続版やruntime/実運用を前倒ししない。各親のPO固定registration・L2/L11 raw pinと旧起点判断は本節末尾に記録する。
+
+### `FR-INTELLIGENCE-L3-060-01` — `HELIXINTELLIGENCE-L2-060`
+
+承認済み要求、HARNESS工程contract、current OS state、適用可能なBRAIN knowledgeから、依存順・根拠・stop condition・fallbackを持つplan candidateを作りOSへ渡す。ticket発行・assignment・進行はOSに残し、4.0動的workflowを1.0の前提にしない。
+
+- **`AC-INTELLIGENCE-L3-060-01` 正常**：承認済みgoal、A→B依存、独立C、source revision、明示stop/fallbackを入力し、BをAより前にせずCを独立taskとして表すplan candidateを出力する。OS ticket/assignmentは作らない。
+- **`AC-INTELLIGENCE-L3-060-02` 欠落・不整合**：未承認要求、stale source、循環依存、未充足prerequisiteを個別投入する。該当sourceへ戻すか候補を未確定にし、解消済み・実行可能としてOSへ渡さない。ticket化不能はOSへ返す。
+- **`AC-INTELLIGENCE-L3-060-03` 未見**：別held-out task graphとrisk条件でも宣言済み依存・stop/fallbackが充足する部分だけplan candidateに保ち、未知dependencyのみownerへ返す。4.0 workflowを補完しない。
+
+### `FR-INTELLIGENCE-L3-061-01` — `HELIXINTELLIGENCE-L2-061`
+
+同一task identity/scopeのLABO作業種別別水準・Worker実績を参照し、根拠と未評価を分けた配置proposalをOSへhandoffする。LABOは評価材料、INTELLIGENCEはproposal、OSは指定とassignmentを所有する。価格・名称・benchmarkだけで配置を決めず、提案を実割当扱いしない。
+
+- **`AC-INTELLIGENCE-L3-061-01` 正常**：task identity、class、scope、LABO水準の適用source/revisionとWorker実績が一致する候補を提示し、適合理由・除外・未評価を示す。receiptはLABO評価、INTELLIGENCE proposal、OS assignmentごとに独立する。
+- **`AC-INTELLIGENCE-L3-061-02` 欠落・反例**：price/nameのみ、別taskの評価、stale/未評価Bench水準を個別投入し、qualified/assignment済みを出さない。不足はscope/evidenceに応じLABO、INTELLIGENCE、OSへ戻す。
+- **`AC-INTELLIGENCE-L3-061-03` 未見**：未見task classでも既知のLABO compatibility範囲に含まれれば同条件のcandidateを作り、未評価範囲だけ未評価として残す。適用scopeが不明ならLABOへ戻す。
+
+### `FR-INTELLIGENCE-L3-062-01` — `HELIXINTELLIGENCE-L2-062`
+
+INTELLIGENCEは診断と対象revision/scopeに結び付くrepair candidateを作り、SECURITY permission/isolationは実行段階、Worker限定実行、HARNESS verification、OS acceptanceはそれぞれ後続stageとして同一target revision/scopeへ接続する。candidate形成時に将来のWorker result・verification・acceptanceを要求しない。terminal repair completionだけは四stageの個別証拠を要し、どの段階も他段階を代替しない。candidateからpermission・実行・検証・検収を生成しない。
+
+- **`AC-INTELLIGENCE-L3-062-01` 正常**：candidate形成fixtureでは診断根拠とtarget revision/scopeだけからproposalを出し、将来のWorker/HARNESS/OS receiptを要求しない。別のterminal fixtureでは有効permission/isolation、割当済みWorker結果、固定HARNESS obligation/verification、OS acceptanceを同一target/scope/revisionへ結び、四receiptとactor/ownerを分け、terminal完了は全段階の証拠が揃う場合だけ示す。
+- **`AC-INTELLIGENCE-L3-062-02` 各段階の失敗**：permission欠落/失効、Worker result不一致、HARNESS obligation未達、OS受入不在を個別に投入し、該当SECURITY/Worker/HARNESS/OSへ戻す。中間successや重複receiptで後段完了にしない。
+- **`AC-INTELLIGENCE-L3-062-03` 未見・版境界**：未見receipt版は既存契約compatibility内ならstage別に追跡し、互換性不明/範囲外はそのstageだけ保留する。各ownerのsource revisionと未完義務を維持する。
+
+### `FR-INTELLIGENCE-L3-063-01` — `HELIXINTELLIGENCE-L2-063`
+
+LABOの過去評価、BRAIN汎用知識、INTELLIGENCEの今回判断、OS実行結果、HARNESS工程contractをowner・scope・時点別に結ぶ自己改善loopの候補を作る。効果評価はLABO、知識正本はBRAIN、実行はOS、工程contractはHARNESSに残す。INTELLIGENCE単独で効果や知識を確定しない。
+
+- **`AC-INTELLIGENCE-L3-063-01` 正常**：過去episodeのLABO評価とcurrent判断を別source/revisionとして結び、OS実行・HARNESS工程証拠と今回判断への適用範囲を追跡する。candidateから恒久改善やBRAIN writeを起こさない。
+- **`AC-INTELLIGENCE-L3-063-02` 欠落・反例**：LABO評価なし、BRAIN source不明、OS未完了、HARNESS contract mismatchを個別投入する。評価不足はLABO、知識不明はBRAIN、実行未完はOS、contract不一致はHARNESSへ戻す。
+- **`AC-INTELLIGENCE-L3-063-03` 未見・遅着**：遅着/重複のhistorical outcomeを元episode/revisionへ結び、current judgmentを上書きしない。効果状態不明はunknownのままLABO/BRAINへ返す。
+
+### `FR-INTELLIGENCE-L3-069-01` — `HELIXINTELLIGENCE-L2-069`
+
+有効なL2-033 CORE/HARNESS input receipt、明示model/schema/rule/unitsとscenarioを用いた有限設計modelの条件付き計算候補を作る。仮想結果・仮定・trace・unknownを分離し、実測、Worker実行、設計正本を変更しない。L2-033 input receiptのみを計算前提とし、L2-070送達、L2-040 handoff、LABO-024受領は計算開始条件にも完了条件にも含めない。
+
+- **`AC-INTELLIGENCE-L3-069-01` 正常**：L11の有限queue/graph/numeric fixtureにsource-bound node/edge/rule/unitを与え、queue例はarrival 5/10 jobs・service cap 8 jobs/stepでserved 5/8・final queue 0/2となる。DB断例はDB dependencyのあるorder processingだけをblockedとし、明示されたretry_queue移送を行い、非依存reportingは不変、recovery未定義ならblocked/unknownのままとする。Worker fixtureはload 18 jobs、per-worker 3 jobs/min、shared DB ceiling 8 jobs/min、worker cost 0.20 credits/worker-min、DB cost 0.10 credits/minを使い、2 workers: throughput 6 jobs/min・elapsed 3 min・cost 1.50 credits、4 workers: throughput 8 jobs/min・elapsed 2.25 min・cost 2.025 creditsとなる独立算術と照合する。これらはsimulation fixtureで、実Worker数・環境を変更しない。
+- **`AC-INTELLIGENCE-L3-069-02` 欠落・不整合**：unknown schema/edge、unit不一致、source revision conflict、未定義recoveryを個別投入し、該当範囲だけunknown/unsupported/blockedとする。recoveryや費用を0として補完しない。
+- **`AC-INTELLIGENCE-L3-069-03` 未見**：held-out finite modelでも宣言済み構造/rule内だけ計算し、未対応domain/edgeは局所unknownに保つ。小規模fixtureの結果から汎用適格性を主張しない。
+
+### `FR-INTELLIGENCE-L3-070-01` — `HELIXINTELLIGENCE-L2-070`
+
+既存L2-033 CORE/HARNESS input receipt、L2-069 calculation result、L2-040 result handoff、LABO-024 consumer receiptを別段階としてsource/revision/scenario identityで結ぶ。段階receiptは順番に記録し、仮想結果を実測へ読み替えず、L2-033 payload/schemaを重複定義しない。
+
+- **`AC-INTELLIGENCE-L3-070-01` 正常**：同一source revision/scenarioのinput→calculation→send→consumer receiptを順に与え、各receiptのowner/版/scopeとsimulation status/assumption/unknownを往復traceする。
+- **`AC-INTELLIGENCE-L3-070-02` 欠落・反例**：入力契約不備、L2-040 send欠落、LABO-024 receipt不在、別revision/duplicate/out-of-order receiptを個別投入する。後段receiptで前段を補ったり、未受領をhandoff済みとしない。既存owner/contractへ戻す。
+- **`AC-INTELLIGENCE-L3-070-03` 未見**：compatibility範囲の未見receipt版は同じ段階モデルで扱い、unknown consumer fieldやscope mismatchだけ未受領/unknownとして返す。共通schema例から他sourceへ互換性を外挿しない。
+
+### `FR-INTELLIGENCE-L3-071-01` — `HELIXINTELLIGENCE-L2-071`
+
+L2-033 inputから同一model revisionのbaseline/scenario条件を固定し、L2-069有限計算とL2-070段階送達を組み合わせた比較candidateを作る。条件変更、state/impact propagation、数値化できる差、未解決source/coefficientsを分けてLABOへsource-bound resultを渡す。単体計算・connectionの成功だけでcomposite成立としない。
+
+- **`AC-INTELLIGENCE-L3-071-01` 正常**：L11のbaseline/scenario fixture（arrival/service limit・仮想Worker/DB条件と単位を固定）を独立finite-model oracleと照合し、各variantのstate/throughput/time/costとbaseline差を示す。順序は033 input→069 calculation→040 send→LABO-024 consumer receive（070 connection）である。予測結果はsimulationのまま、後続actual receiptは別段階とする。
+- **`AC-INTELLIGENCE-L3-071-02` 欠落・反例**：model revision、unit/rate/source、baseline、scenario change、stop condition、後段receiptを個別に欠落/不一致化する。影響するscenarioのみholdし、recoveryやcostを捏造せず、未定義はunknown。別scenarioの有効結果はscopeを保って残す。
+- **`AC-INTELLIGENCE-L3-071-03` 未見**：held-out finite modelの明示rule内は結果/traceを返し、未見edge/domainはunsupported/unknown、実測未取得は未比較とする。通常scenarioに期待値oracleを要求せず、期待値指定の検証operationでは独立oracleを使う。
+
+### `FR-INTELLIGENCE-L3-074-01` — `HELIXINTELLIGENCE-L2-074`
+
+LABOが評価済みとした返却reason・再発行後検証結果を同scope/task class/domain/source revisionの次回L2-010 placement proposalに限って根拠として引用する。少数feedbackからworker資格、因果的な能力差、model変更を確定せず、ticket発行・assignment・dispatchはOSへ残す。
+
+- **`AC-INTELLIGENCE-L3-074-01` 正常**：同task class/scope/revision/windowのLABO評価済みfeedbackを既存L2-010実績へ引用し、適用理由・除外・未評価・再評価条件付きproposalをOSへ渡す。LABO評価、proposal、OS decision receiptを分ける。
+- **`AC-INTELLIGENCE-L3-074-02` 欠落・反例**：未評価/比較不能/stale/別scope/task class、single feedbackによる恒久昇格、直接ticket/dispatchを個別に与え、不適用根拠をLABOへ、task属性不足をOSへ戻す。proposalを未確定とし既定Workerで補わない。
+- **`AC-INTELLIGENCE-L3-074-03` 未見**：同じreason classでも別scopeのfeedbackを与え、適用できるevidenceのみをproposalへ結ぶ。適用可能性不明はunknownとしてLABOへ戻し、実効改善を主張しない。
+
+### `FR-INTELLIGENCE-L3-077-01` — `HELIXINTELLIGENCE-L2-077`
+
+既存source ownerがqualifiedと示すinternal/UILまたはexternal/TER receiptを選択したoperationでだけdelta candidateを作り、source identity/revision/owner/originとunknownを保つ。source qualification、UIL/TER observation、Future Synthesis intake/invalidation、route/assignment、Requirement/Design/Release/merge stateの変更を再実装せず、delta candidateから直接変更しない。
+
+- **`AC-INTELLIGENCE-L3-077-01` 正常**：一つのselected qualified receiptをsource-bound delta candidateへ結びorigin typeとownerを保つ。候補受入だけでは正本/authorityを変更しない。
+- **`AC-INTELLIGENCE-L3-077-02` 欠落・反例**：receipt unavailable/stale/unqualified、owner不明、unknown値を0/neutral/unchanged/observedへ補完する4変異、別receiptへの暗黙fallback、Requirement/Design/Release/Assignment/merge authority/stateへの各direct writeを5変異として個別投入し、unknown/incompleteとしてselected source ownerへ戻す。
+- **`AC-INTELLIGENCE-L3-077-03` 未見・依存区分**：HARNESS-023の常時/operation時/selected-source/参照のみ4区分に沿ってfixtureを分ける。未選択source不在を推論せず、履歴candidateをcurrent authorityにしない。正式consumer/routeが固定親で未定ならunknownのまま保つ。
+
+### Stage 5 親pin・旧起点crosswalk
+
+固定基準はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`。decision rowだけをPO承認根拠とし、後続register metadataを承認継承に使わない。L2/L11のraw bytes spanは物理行末LFを含む。
+
+| 親 | PO固定decision row / registration | L2 raw span | L11 raw span | 旧L3/test起点と差分判断 |
+|---|---|---|---|---|
+| `HELIXINTELLIGENCE-L2-060` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L90`; row SHA `bfd7f1dac8a59844ca5a1ed985145a4b4b358e808cc90b8619a9a2f9ee34f1a4`; `MPR-RC-HELIXINTELLIGENCE-L2-060-002`; semantic `e7dbfd930278c7db5b7fe1517a2121c367c463f38e771128b62fb4e1a4658da7` | `intelligence-requirements.md:354–359` `616f688fcd389e14d4c9574f173aee76103a93ae300c99dbf2b19bc44ded8ce1` | `intelligence-acceptance.md:114` `4377bad7f7af3225c62057768392d331e3904253ee21776cf995e06850429053` | `LEGACY-ASSET-50CA1C554747F12266D3` resident-lane orchestration (L3 lines 189–260; test-design `LEGACY-ASSET-437A6A68F9A9E0AE1B9E`, lines 17–55): plan/dependency/OS-owner separation as adjacent source; old lane/lease/scheduler not copied. |
+| `HELIXINTELLIGENCE-L2-061` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L91`; row SHA `6ab8f7c1b8dd6c4cf55ca73678dc9c1e24e9d19319dd9315fb00c51956e4b2e8`; `MPR-RC-HELIXINTELLIGENCE-L2-061-002`; semantic `fb3261b81242e21fea77c59c13b533c44cb0c4c3fcdf916054515efd02b69522` | `intelligence-requirements.md:360–365` `861843e4eef3fa6be5f1220bded6a1e7df995d28e9d8e3577802f0657465bc95` | `intelligence-acceptance.md:115` `74a9c747c8373032002c0382319aabbbec5d708a5906386e93b37b97177e35ca` | `LEGACY-ASSET-28FB139B26CD61CC51EE` HELIX-Bench L3 lines 19–84 and `LEGACY-ASSET-A952A3A175EB82A4781B` paired test lines 24–41: same-scope evaluation evidence/missing-denominator handling; metric thresholds not inherited. |
+| `HELIXINTELLIGENCE-L2-062` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L92`; row SHA `3c509402befbe1d5f802f02015097fdf5abbe7bcd4ca0dc8c191dcb38185d8c1`; `MPR-RC-HELIXINTELLIGENCE-L2-062-002`; semantic `cf783691063f4a69a03e49dcbbd5cc7261287769a89e354a702d3a4c36aa2c07` | `intelligence-requirements.md:366–371` `41c7894dc8e464612b3bce0431bfcb5a338fea6909cff4684f748581b11fab61` | `intelligence-acceptance.md:116` `63560dd278d51636275c3aa14f5812d321aa8c173d897ee659673e42c608b45f` | `LEGACY-ASSET-B62E49D2E156232B8C63` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md` lines 30–121, SHA `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`; paired test `LEGACY-ASSET-170112AB2FA2FFDBFEE9` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md` lines 18–29, SHA `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`. Adjacent bounded-repair candidate `LEGACY-ASSET-D881AF6AFD277B1DE934` requirements lines 40–58 (file SHA `81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb`) and `LEGACY-ASSET-901CD182B52024593E41` acceptance lines 22–25 (file SHA `cd2fdd3dcfaa98935db0fef6b876d6cdb7133b11b8c8877363c3d0138c4b8cbc`) are historical approved-pending-canonical candidates; retain only bounded stage/evidence separation as an adjacent source. Current four-owner stages/permissions derive from fixed L2; legacy runtime/enum/admission and candidate authority are not copied. |
+| `HELIXINTELLIGENCE-L2-063` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L93`; row SHA `5c9e2c8ee936c03ca07da95429c51d1dc0b3797d0bd63c0178d723eca35819e2`; `MPR-RC-HELIXINTELLIGENCE-L2-063-002`; semantic `e42cc8cc09309964ce33d5436b81d99a5ab6cc366488490233246577bfe8a886` | `intelligence-requirements.md:372–377` `3f5f9ff269ce97c43d41b9ce735972da511b93e3dd30b1e9f5e422e49796a01e` | `intelligence-acceptance.md:117` `ea91bdc4c858c3085267a103d33eca7219fb19ba41a548ce967be332411e4346` | `LEGACY-ASSET-C4B746501A6562E3F8B4` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md` line 61 (`UTH-FR-030`, full SHA `c0978eae37f6c7c8e113191404c0fd76328818e438b0ea5b3cf98ebd489a6639`); paired test `LEGACY-ASSET-443B76CD7B3E0F552263` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/predecessor-harness-mechanism-hardening-acceptance.md` line 63 (`UTH-AC-022`, full SHA `d352ba205db85aee1f5cb0f5bcf11fb86f1cb3e59b68b3aba3728b54bb6c416a`). Reuse only finding→repair→verification→before/after metric→recipe/recurrence as an adjacent loop shape. Current LABO/BRAIN/OS/HARNESS division is re-derived from fixed L2; old hardening/admission rules are not transferred. |
+| `HELIXINTELLIGENCE-L2-069` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L99`; row SHA `9a4ba877cd82170cd255042eb5b39e3e3007d66c83edbada14b18c2efc9c1f18`; `MPR-RC-HELIXINTELLIGENCE-L2-069-002`; semantic `546b17514223224850532dd338dbee40b7519b02e4489fff1e85cb298d0c7e70` | `intelligence-requirements.md:513–527` `430855f5510abac7d4ea7b79e8b79d2779ebab7c9c7267a1678c04d7d4e9751f` | `intelligence-acceptance.md:215–228` `deff3b787f64863c6beed6171ebd05951095e8827c34ba950a3d3b39d74f3c18` | G17 old-source search is recorded in L2 source section: no matching legacy finite design-model conditional calculator found in searched old L3/candidate scope; `pre-merge simulation` is governance projection only. Conditional finite model is re-derived from Concept/L1; no old runtime/CLI transferred. |
+| `HELIXINTELLIGENCE-L2-070` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L100`; row SHA `af588892e35cf2cc02af9c4ce8132aaee25b379c3a665058e62167cfb3611bd0`; `MPR-RC-HELIXINTELLIGENCE-L2-070-002`; semantic `1bd3f9bac8a82792ee168ebbccafaf1ada71c50a4ad1d90936a4c9434f9615e0` | `intelligence-requirements.md:528–543` `c4f9d367ea51f3eb09b6338fd2d83b4bf133f536c513fc622d3f29e8b0dfe50a` | `intelligence-acceptance.md:229–238` `97d4ba81eeb1496f2a32beab2b364ae5499d71d5ede90b25aa12ed1995ed6235` | L2's old-source search for 069/071 is the bounded negative inventory; retain 033 input / 040 output / LABO-024 consumer as separate current stages, and do not invent a new schema or connector. |
+| `HELIXINTELLIGENCE-L2-071` | `helix-intelligence-requirements-po-decision-2026-09-28.md#L101`; row SHA `28f4f1266d2812dc3c8e274a7f1ccae93d4f3b5052f4112612f14e5ac6bc9d57`; `MPR-RC-HELIXINTELLIGENCE-L2-071-002`; semantic `106a4cb174c1cc12731708e56429f27b567ead98a5ec16205217e7b89718f9f6` | `intelligence-requirements.md:544–560` `bcbf5160b8d535bdf4fad0ff5d7a3dbaea6ff83e6729ef593ed90f40e9099446` | `intelligence-acceptance.md:239–288` `314c5ec5a7b8a47cdc5d2cbf240dcd886753ea7ec67f644f11e505253cb01d4f` | L2 records no matching legacy finite conditional calculation/composite comparison under its bounded old-source search; preserve fixed finite fixture/oracle; do not transfer governance-projection implementation or invent generic simulator guarantees. |
+| `HELIXINTELLIGENCE-L2-074` | `po-decision-2026-09-29-57candidates.md#L87`; row SHA `d05c4087dd4c2e47c8743d972eba99c060958f02e12384cb821369c733295a94`; `MPR-RC-HELIXINTELLIGENCE-L2-074-002`; semantic `5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c` | `intelligence-requirements.md:609–617` `d7a6e7f91e32e0cf1c0f8b59872d11ecfbef65e9d1dcf1c8bd7ae9c86a5cddad` | `intelligence-acceptance.md:328–336` `ad1c1d594251da8f8f3b1488972e8f4af66e659ef74d4ba5ee8b92e2c030638f` | 意味の入力contextは現行POゴール `scaffold/review-handoff/local/codex-goals-2026-09-28-ops-loop.md:66–72`（local ignored sourceのためrepository commitなし。full SHA-256 `5bbeffbb2a46a57a8a0c9b681befb809261838ab86aa9e92622a321cd6e7dd9e`; 各raw行SHA: 66 `3b3634d882793a04536928c3c18ef17616e42e0d5d081aef8c97dab76a0133cf`, 67 `01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b`, 68 `f18ec2885fc590469683909187f624a6a9c7136c50a7c23f88ba8018b83e3b0b`, 69 `b336de7a7a59a49973dfcea20eb076cf903105f2393013e064a84f242a3784a9`, 70 `f78f6d0d9ed09bf75227f9cf0b3291318d0e9a1105dabcf8514f83410e0d74b6`, 71 `b0e22e7fa8823eacc6b4ebc212c460bcaeca62663f787d35f38e33c9aed0d374`, 72 `f65fa112f29869288d6dcefe690574b89699c05f3209bcdde267a35e3285968c`); 旧HELIX sourceとは区別する。近接起点の `LEGACY-ASSET-28FB139B26CD61CC51EE` Bench requirements 行21–148/full SHA `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` と `LEGACY-ASSET-A952A3A175EB82A4781B` acceptance 行19–46/full SHA `6b5a72da16fe56130350b6e8bfc2606cb8c90015ff73f34ffb3b93625a0c185` は評価scope/feedback近接資料として確認したが、返却理由を次回発行・配置案へ反映する恒久学習loopは含まない。固定L2-074に沿い、L2-010配置案の責務内で再導出した候補とし、自動学習・恒久的な資格認定・assignmentは継承しない。 |
+| `HELIXINTELLIGENCE-L2-077` | `po-decision-2026-10-03-later35.md#L53`; row SHA `6e19738ff3adf6e45c17f6a088fd4a5dbf61d56f516c6213cb39ea9be08b1c1a`; `MPR-RC-HELIXINTELLIGENCE-L2-077-001`; semantic `885656dd2bce4e4846623517c64f001797c82907dd7cd239572d2db6117d344e` | `intelligence-requirements.md:635–645` `80250f22590510dab5a2cb84e43edc184f6c82cebdb6f8ea3d3bc435e0162d38` | `intelligence-acceptance.md:352–397` `45927dae532a9f88b310884757b936dee0f918dbfc82b3ae9354b20d2f965649` | `LEGACY-ASSET-EB3700B0088F311C2295` AAFD-R-05/R-08 and `LEGACY-ASSET-CAC0C64EB7540180B1FE` AC-005/008/negative oracle as exact L2-listed source; preserve qualified receipt/origin/unknown/non-write meaning only, not UIL/TER adapters, schema, runtime or routing. |
