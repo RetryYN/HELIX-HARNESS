@@ -1,4 +1,4 @@
-# HELIX-OS L10 業務検証設計（部分草稿の適用範囲記録）
+# HELIX-OS L10 業務検証設計（1.0対象親36件の草稿・適用範囲記録）
 
 status: draft_for_l3_review
 approval: not_approved
@@ -76,7 +76,7 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | CASE-OS-L10-BIZ-048 | HELIXOS-L2-048 / FR-OS-L3-048 AC-01..03 | pending/resolvedの根拠と閉じたticket履歴を分ける。 | resolution率 |
 | CASE-OS-L10-BIZ-052 | HELIXOS-L2-052 / FR-OS-L3-052 AC-01..03 | cleanup適格性と後続PR最新base照合を別状態で観測する。 | issue close/生産性 |
 
-## Stage 5: business検証の適用分類（OS-025/026）
+## Stage 5: business検証の適用分類（OS-025/026/031/047）
 
 | case ID | 親L2 | business oracle |
 |---|---|---|

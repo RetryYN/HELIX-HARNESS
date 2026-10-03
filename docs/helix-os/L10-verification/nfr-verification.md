@@ -1,4 +1,4 @@
-# HELIX-OS L10 非機能検証設計（部分草稿）
+# HELIX-OS L10 非機能検証設計（1.0対象親36件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved

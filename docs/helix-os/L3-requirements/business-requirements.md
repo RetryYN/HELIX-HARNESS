@@ -1,4 +1,4 @@
-# HELIX-OS L3 業務要件（部分草稿の適用範囲記録）
+# HELIX-OS L3 業務要件（1.0対象親36件の草稿・適用範囲記録）
 
 status: draft_for_l3_review
 approval: not_approved
@@ -84,9 +84,9 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | `HELIXOS-L2-048` | 機能要件のみ。 | pending/resolution stateの根拠を照合し、registrationやclosed finding数をKPIにしない。 |
 | `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |
 
-## Stage 5: business適用分類（OS-025/026、部分草稿）
+## Stage 5: business適用分類（OS-025/026/031/047）
 
-この二親から独立した事業価値/KPI/金額閾値を追加しない。機能状態を事業価値や利用者acceptanceへ読み替えず、判断は固定L2/L1のownerに残す。
+この4親から独立した事業価値/KPI/金額閾値を追加しない。機能状態を事業価値や利用者acceptanceへ読み替えず、判断は固定L2/L1のownerに残す。
 
 | 親L2 | 扱い | L10観測・境界 |
 |---|---|---|
