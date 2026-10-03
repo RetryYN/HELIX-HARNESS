@@ -4,39 +4,39 @@
   "authority_effect": "none",
   "decision_status": "recorded",
   "base_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
-  "scope": "Correct the existing source-holding path pointer and current metadata consumers under the append-only revision contract. No candidate meaning, status, authority, owner, version, source set, PO disposition or L2/L11 text is changed.",
+  "scope": "既存のappend-only訂正revision契約に従い、source holdingのpath参照と現行metadata consumerを訂正する。候補の意味・状態・authority・owner・版・source集合・PO判断・L2/L11本文は変更しない。",
   "source_basis": [
     {
       "asset": "HIL-FR-53",
       "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
       "source_lines": "143",
       "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
-      "relevant_rule": "path-independent immutable asset identity; semantic change is a new revision; rename/move/split/merge/supersede preserve history, authority, oracle and typed edges"
+      "relevant_rule": "pathに依存しない不変のasset identityを保つ。意味変更は新しいrevisionとし、rename／move／split／merge／supersede後も履歴・authority・oracle・型付きedgeを保持する。"
     },
     {
       "asset": "HIL-NFR-21",
       "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
       "source_lines": "201",
       "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
-      "relevant_rule": "append-only original records; disposition does not delete, hide or terminate the original"
+      "relevant_rule": "原記録はappend-onlyとし、dispositionによって原記録を削除・不可視化・終端化しない。"
     },
     {
       "asset": "repository-structure.md",
       "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
       "source_lines": "99-100",
       "source_file_sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
-      "relevant_rule": "legacy target directory organization / placement boundary"
+      "relevant_rule": "旧台帳の配置先を整理する対象。"
     },
     {
-      "asset": "PO governance migration layout decision",
+      "asset": "POによるgovernance legacy-migration配置判断",
       "source_path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
       "source_file_sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376",
-      "relevant_rule": "move-only under docs/governance/legacy-migration by type; preserve contents/IDs/state/digests/authority; follow current references; historical records stay historical"
+      "relevant_rule": "docs/governance/legacy-migration/の下へ種類別に移動する。内容・ID・状態・digest・authorityを保ち、現行参照を追従させ、時点記録は時点の内容として保持する。"
     },
     {
-      "asset": "PR #2289 review follow-up R2289-02",
+      "asset": "PR #2289 R2289-02の指摘記録",
       "source": "https://github.com/RetryYN/HELIX-HARNESS/pull/2289",
-      "review_finding": "MPR-SH-CANDIDATE-003 source_atom_set_ref used the old docs/governance root path; byte-identical source exists under docs/governance/legacy-migration/candidate; correction revision should preserve bytes and digest."
+      "review_finding": "MPR-SH-CANDIDATE-003のsource_atom_set_refがdocs/governance直下の旧pathを指していた。byteが同一のsourceはdocs/governance/legacy-migration/candidate/にあるため、訂正revisionではsource bytesとdigestを維持する。"
     }
   ],
   "register_invariants": {
@@ -2696,11 +2696,11 @@
       "SCF-B-0099",
       "SCF-B-0121"
     ],
-    "semantic_consumer_oracle": "For each of the 19 stale bindings, read the whole binding. Compared schema, identity, state, reason, role, obligations, connections, operations, artifacts, verification (oracles and negative cases), replacement (including role_target), created/authority and captured evidence; no semantic field changed. Only current register sha256, explanatory upstream note, and updated date were refreshed."
+    "semantic_consumer_oracle": "staleとなった19件のbindingを各全文で確認した。schema、identity、state、reason、role、obligations、connections、operations、artifacts、verification（oraclesとnegative cases）、replacement（role_targetを含む）、created／authority、参照evidenceを比較し、意味に関わるfieldに変更がないことを確認した。更新したのは現行registerのsha256、確認内容を記録したupstream note、updated dateのみ。"
   },
   "validation": {
     "append_validator": "python3 docs/governance/tools/verify_management_register_append.py 633bf12",
-    "append_validator_result": "PASS exact byte prefix; 250 appended rows, unique IDs, final LF",
+    "append_validator_result": "PASS：元の714行のbyte prefixが一致し、250行を一意IDで追記し、末尾LFを確認。",
     "scfctl": {
       "baseline_validate": "bindings=143 fail=0",
       "after_validate": "bindings=143 fail=0",
@@ -3735,7 +3735,8 @@
           "after_exit": 0,
           "exit_unchanged": true
         }
-      ]
+      ],
+      "scope": "trackedのscaffold/*/validate.py 137件を実行。出力を記録し、archive内testやCIは実行していない。"
     }
   },
   "change_boundary": {
