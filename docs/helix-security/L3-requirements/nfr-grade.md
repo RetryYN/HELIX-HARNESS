@@ -1,4 +1,4 @@
-# HELIX-SECURITY L3 NFR候補（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
+# HELIX-SECURITY L3 NFR候補（1.0採択親31件の草稿）
 
 > 状態: 全体的なtimeout/latency/retention数値は固定されていない。以下はfixed L2/L11から直接導ける境界値と、比較・測定可能な技術候補であり、実装値やPO承認値ではない。parameterごとのPO判断は求めない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 

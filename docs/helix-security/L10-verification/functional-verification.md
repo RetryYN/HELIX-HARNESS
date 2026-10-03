@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
+# HELIX-SECURITY L10 総合検証（1.0採択親31件の草稿）
 
 > 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はSECURITYのStage 1 19件、Stage 2cの031、Stage 3の029/030/032/034/035、Stage 4の021/022/023/024/026、Stage 5の027の31親を対象とする。
 
@@ -344,3 +344,15 @@
 | `SECURITY-CASE-027-02` | `SECURITY-AC-027-02` | 各経路の各fieldを一つずつ欠落・異版化し、deny/holdを保存成功へ写す反例を与える。 | 欠落対象を保留/拒否し成功保存へ変換0、他経路の正しい証拠は保全。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
 | `SECURITY-CASE-027-03` | `SECURITY-AC-027-03` | 三経路に異なるsink接続契約を与え、LABO評価/OS登録の全経路必須化、受渡しから学習完了生成を試す。 | 固有ownerの条件を保ち新しい一律工程や学習完了生成0。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
 | `SECURITY-CASE-027-04` | `SECURITY-AC-027-04` | 未見だが条件を満たすsink revisionと、一経路だけ適用性unknownの対照を与える。 | 成立部分を同じ契約で判定、unknown経路があれば構成体成立を主張しない。 観測不足は該当source/SECURITY/sink ownerへ返し未評価を維持。 |
+
+## 選択接続の未見正常・局所未評価の対照
+
+次の各対照は既存ACの追加fixtureであり、新しいACや上流要求を作らない。
+
+| 対象AC | 未見正常入力 | 局所unknown対照／判定 |
+|---|---|---|
+| `SECURITY-AC-021-01..03` | 未見の外部source契約版が既存適用条件を満たし、source/revision・分類・受領traceが一致する。 | 分類根拠だけ欠落した情報と対比し、正常情報は同じ受領契約で照合、欠落情報だけ保留。外部本文をauthorityにしない。 |
+| `SECURITY-AC-022-01..03` | 未見のtask/operation組合せで有効tuple、OS assignment、Worker適用観測が同一対象に揃う。 | 実適用観測だけunknownの対象と比較し、正常対象は既存契約で照合、unknownを判断successで補完しない。 |
+| `SECURITY-AC-023-01..04` | 未見capability差分を持つ候補で各段階の同一対象条件・結果が確認できる。 | HARNESS検証だけ未完の候補と比較し、未完は昇格へ渡さず、未見性自体は失敗理由にしない。 |
+| `SECURITY-AC-024-01..03` | 未見environmentの既存適用可能contractに対しpolicy、実資源、Worker観測が一致する。 | 実資源観測だけunknownの対照を置き、正常資源だけを照合可能とし、別環境の証拠流用0。 |
+| `SECURITY-AC-026-01..03` | 未見eventでも既存決定ruleでGuard判定でき、必要な判断材料の出所が確認できる。 | 意味判断材料だけunknownなら対象材料を保留し、決定Guardの正常な判断は保持。後続Bot稼働を追加必須にしない。 |

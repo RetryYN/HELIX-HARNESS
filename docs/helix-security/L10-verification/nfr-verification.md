@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 NFR候補検証（Stage 1・Stage 2c・Stage 3・Stage 4・Stage 5部分草稿）
+# HELIX-SECURITY L10 NFR候補検証（1.0採択親31件の草稿）
 
 [L3 NFR候補](../L3-requirements/nfr-grade.md)の各candidate IDを個別に測る。下記値は根拠付き候補であり、実装値・PO承認値ではない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
