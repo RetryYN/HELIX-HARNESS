@@ -28147,7 +28147,17 @@
       "current_relocated_binding_bytes": 31873,
       "current_relocated_binding_sha256": "4e7cc967247d7b0b7c3544732730878bbdfb7d548f3f488b90380e668b72283e",
       "meaning": "inventoryのdigestは移動直前に固定した比較値。生成時commitとは主張しない。現行Bindingはscfctlが別途schema/path/pin検査する。"
-    }
+    },
+    "historical_reason_fields_changed": 0,
+    "current_binding_pin_corrections": [
+      {
+        "binding": "SCF-B-0054",
+        "upstream_path": "scaffold/bindings/SCF-B-0037.json",
+        "old_sha256": "50269edf0241d5eb6b7e2523124f1fe2f8700d1fd4e46d40e4f9c847772753dc",
+        "new_sha256": "eadc0a96416cd60d8bd6e2b3588c07eca979c3ee0e213ad1c2282a8daf0197dc",
+        "reason": "SCF-B-0037の履歴reasonをbase bytesへ戻した後、現行Binding blob SHAを追随"
+      }
+    ]
   },
   "source_references": {
     "repository_structure": {

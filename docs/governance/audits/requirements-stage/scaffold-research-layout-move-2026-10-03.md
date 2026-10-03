@@ -12,7 +12,7 @@
 
 ## locator・Bindingの追随
 
-現行のphysical readerだけを新pathへ追随させ、履歴capture、固定source snapshot、JSON/JSONLの過去locatorは保持した。repo-root算出は、実際に `__file__` またはbundle directoryを起点とする式だけを新しい深さに合わせ、repository rootの解決結果が移動前後で同じであることを静的に確認した。Binding 143件の意味field（role、obligations、state、consumer、oracle、negative controls、replacementを含む）はbaseと照合して不変。差分はcurrent pathと対応するcurrent SHA/byte pin、および既存説明内のpath locatorに限る。更新したvalidator自身のcurrent SHA pinは次のとおり。
+現行のphysical readerだけを新pathへ追随させ、履歴capture、固定source snapshot、JSON/JSONLの過去locatorは保持した。repo-root算出は、実際に `__file__` またはbundle directoryを起点とする式だけを新しい深さに合わせ、repository rootの解決結果が移動前後で同じことを静的に確認した。Binding 143件の意味field（role、obligations、state、consumer、oracle、negative controls、replacementを含む）はbaseと照合して不変。Bindingの旧時点説明・reason中に残る履歴path tokenはbase bytesのまま保持し、差分はcurrent path locatorと対応するcurrent SHA/byte pinだけにした。更新したvalidator自身のcurrent SHA pinは次のとおり。
 
 | Binding | current validator path | SHA-256（旧 → 新） |
 | --- | --- | --- |
