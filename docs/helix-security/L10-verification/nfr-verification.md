@@ -1,4 +1,4 @@
-# HELIX-SECURITY L10 NFR候補検証（Stage 1 草稿）
+# HELIX-SECURITY L10 NFR候補検証（Stage 1・Stage 2c・Stage 3部分草稿）
 
 [L3 NFR候補](../L3-requirements/nfr-grade.md)の各candidate IDを個別に測る。下記値は根拠付き候補であり、実装値・PO承認値ではない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
@@ -22,3 +22,15 @@
 | `CASE-NFR-SECURITY-031-03` | `SEC-NFR-031-03` | receiptなしで開始するproposal fixtureに、Worker/INFRASTRUCTUREが返す適用観測を正常・欠落・false・driftで与え、同一tupleのpost-run receiptと別assignment/runtime/target receiptも比較する。 | 実行前receipt要求0、適用観測のpolicy条件との一致を照合し、欠落/非適用/driftは未完へ返す。同一tupleの後続receiptは結合し、異tuple流用・receipt単独の昇格0。 | 適用観測やreceipt tupleを観測できないfixtureは未評価。quota/retention閾値は測らない。 |
 
 計測は合成fixtureに限定し、実runtimeや実secretを使わない。結果はL3承認や追加runtime使用許可を生成しない。
+
+## Stage 3 — 技術候補の測定case
+
+| NFR case ID | L3候補 | 測定・対照 | 候補oracle／未評価 |
+|---|---|---|---|
+| `CASE-NFR-SECURITY-029-01` | `SEC-NFR-029-01` | functional CASE-029-01..03の同一tupleと各適用証拠、read-only/networkなし、証拠流用を比較して欠落相殺・採用生成件数を計数する。 | 候補0件。証拠未観測/適用性unknownは未評価として型別ownerへ返す。provider訓練停止をローカル成功率へ換算しない。 |
+| `CASE-NFR-SECURITY-030-01` | `SEC-NFR-030-01` | CASE-030-01..03で独立条件欠落と正常反復を対照にし、誤昇格・新規都度approve要求を計数する。 | 候補0件。意味上のrisk/owner/監視不明は未評価。総合点で不足を相殺しない。 |
+| `CASE-NFR-SECURITY-032-01` | `SEC-NFR-032-01` | CASE-032-01..02の主/追加各marker/flag、policy適用状態を個別に比較する。 | 上書き・非適用時新規許否候補0。policy/適用観測なしはunknown。035のswitch能力はこの測定から生成しない。 |
+| `CASE-NFR-SECURITY-034-01` | `SEC-NFR-034-01` | CASE-034-01..03でprofile/revision/capability/egress/authorityを一項目ずつ変え、scoped credential-useと未知正常profileを対照にする。 | 流用・write-probe誤認・正常credential-use追加deny候補0。能力/供給意味の未完は未closure。 |
+| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..03で全三終端と次run、allowlist能力、deny設定能力/適用を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。 |
+
+値は根拠付き候補であり、実測達成・L3承認・実runtime使用許可を表さない。fixtureは合成入力と観測契約の設計に限り、秘密値や実runtimeを使った測定は行っていない。
