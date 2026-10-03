@@ -193,9 +193,10 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 
 ### HARNESS-L2-026（FR-HARNESS-L3-026）
 
-- CASE-HARNESS-L10-026-01（AC-HARNESS-L3-026-01）: 承認済L3、Template、CORE contract、選択Patternが同一scope/revisionで揃う正常fixtureと未見の要求組合せ。親要求→artifact→oracleのtraceが閉じ、未見組合せも各relationを保持する。
-- CASE-HARNESS-L10-026-02（AC-HARNESS-L3-026-02）: CORE contract、選択Pattern、source revisionを個別に欠落/stale/mismatchとする。CORE欠落はhold、未選択Patternは未適用、staleは再照合として分離する。
-- CASE-HARNESS-L10-026-03（AC-HARNESS-L3-026-03）: 2つの選択Patternに両立しない制約を与える。競合箇所、影響要求、根拠、代替候補を出し、いずれかを無根拠に採用しない。
+- CASE-HARNESS-L10-026-01（AC-HARNESS-L3-026-01）: 009/010/011/022、CORE、BRAIN connector、Template、承認済L3/対象revision/scopeを入力し、014内部unitとしてL4/L5/L6とL9/L8/L7各出力対を照合する。014完了receiptは未発行とする。oracleは全出力対と全traceが成立し、receipt不存在を理由にholdしないこと。
+- CASE-HARNESS-L10-026-02（AC-HARNESS-L3-026-02）: 009、010、011、022、CORE、BRAIN connector、Template、L4、L5、L6、L9、L8、L7の各常時入力/出力を別個のmutationとして一つずつ欠落またはstaleにする。期待結果は該当義務のhold/uncovered、他義務を維持、欠落義務の相殺0。
+- CASE-HARNESS-L10-026-03（AC-HARNESS-L3-026-03）: UI対象ではscreen contract/prototype/非UI合意/oracleの各一つを欠落させholdを確認する。非UI対象の並行fixtureではそれらを与えなくても合格。個別Patternを選択した場合はそのidentity/version/compatibility/required inputの各欠落を独立に検出し、未選択Patternは未観測とする。競合Pattern fixtureは両constraintと代替を併記し、一方を黙って優先しない。
+- CASE-HARNESS-L10-026-04（AC-HARNESS-L3-026-04）: 026交換前後の014 input/output version、scope、compatibility、paired acceptanceをそれぞれmissing/stale/mismatchとする。どれも014提供をholdし、旧新contract混在は不合格。全一致fixtureのみ候補を通す。
 
 ### HARNESS-L2-027（FR-HARNESS-L3-027）
 

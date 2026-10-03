@@ -419,13 +419,16 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 
 ### FR-HARNESS-L3-026 — 設計artifact間のtrace（親 HARNESS-L2-026）
 
-入力は承認済L3、選択されたDesign Template revision、CORE契約、選択済みPattern契約である。CORE契約は常時必要、個々のPattern契約は選択時だけ必要とする。設計出力はL4/L5/L6の要求から画面・flow・state、API/command、permission/actor、domain data/DB invariant、oracleまでの対応を持つ。競合するPattern制約は根拠、影響、代替候補と共に示し、要件を創作・黙って解消しない。Template/Patternの未選択・unknownは欠落と区別する。
+026はHARNESS-L2-014が選択する設計サービスの内部unit/packであり、第二の利用者向けserviceではない。入力は承認済みL3/対象revision/scopeとする。常時依存はHARNESS-L2-009設計義務、Design Template対応契約、HARNESS-L2-010 pack contract、HARNESS-L2-011 call contract、HARNESS-L2-022 paired verification contract、およびCOREとBRAIN connector各契約のidentity/version/compatibilityである。026は014の完了receiptを入力前提とせず、宣言されたL3と設計入力から構成できる。出力は要求からscreen/flow/state、API/command、permission/actor、domain data/DB invariant、oracleまでtraceされたL4/L5/L6と、対応するL9/L8/L7の対の設計であり、対応義務は省略しない。
+
+個別BRAIN Patternはその知識を使う時だけ選択依存であり、BRAIN connector契約そのものは常時必須である。UIを扱う操作だけでprototype/非UI合意、screen contractと該当oracleを依存に含める。非UI操作にUI証拠を強制しない。競合Pattern制約は根拠、影響、代替候補と共に示し、解消を創作しない。026 pack交換時は014とのinput/output contract version、scope、compatibility、paired acceptanceを再照合し、不一致/staleなら014設計提供をholdする。
 
 **受入条件**
 
-- AC-HARNESS-L3-026-01: 承認済L3、Template、CORE契約、選択Patternの各revisionとscopeを結び、各親要求から該当設計artifactとoracleへのtraceを出す。正常入力では同じsource setを辿れる。
-- AC-HARNESS-L3-026-02: CORE契約欠落、選択Pattern欠落、stale revision、要求未対応を一つずつ変異する。必須欠落はhold、未選択Patternは未適用、要求未対応はuncoveredとして区別し、代替要求を追加しない。
-- AC-HARNESS-L3-026-03: 相互に競合する選択Patternを与え、競合箇所・影響する要求・両代替とsourceを列挙する。勝手な優先順位、採否、承認を出さない。
+- AC-HARNESS-L3-026-01: 正常fixtureは009/010/011/022、CORE contract、BRAIN connector contract、template contract、承認済L3、対象revision/scopeを区別して結び、014内部unitとしてL4/L5/L6とL9/L8/L7の対応成果をすべて持つ。014完了receiptが未発行でも候補を構成できる。
+- AC-HARNESS-L3-026-02: 各常時義務（009/010/011/022、CORE、BRAIN connector、template、各出力対のいずれか）を一つずつ欠落・stale・version不一致にする。該当必須義務がhold/uncoveredとなり、他義務で相殺しない。014 receipt欠落だけを理由にholdしてはならない。
+- AC-HARNESS-L3-026-03: UI操作と非UI操作、Pattern選択と未選択を対にする。UI操作ではprototype/非UI合意、screen contract、該当oracleを照合し、非UIでは要求しない。選択Patternだけidentity/version/compatibility/applicability/required inputを照合し、未選択Patternは未観測のままにする。競合する選択Patternは影響・根拠・代替を示す。
+- AC-HARNESS-L3-026-04: 026交換fixtureでは014 input/output version、scope、compatibility receipt、paired acceptanceを一つずつ欠落/stale/mismatchとする。014側提供をholdし、旧新contract混在や誤適合を成立扱いしない。要求や採否の変更を作らない。
 
 旧Design Registryと旧pillar L3のartifact/requirement trace形式を部分再利用する。sourceの完全なpath・行・hashと再利用範囲は下記source mapに記す。旧設計意味、旧Pattern選択規則、旧runtimeは再利用しない。
 
