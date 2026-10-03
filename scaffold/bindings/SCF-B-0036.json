@@ -9,32 +9,32 @@
   "reason": "outside-67 first15の旧L1 path 4件について、pre-isolation blob、旧承認L1の固定revisionと現行未承認L1、product boundary、decision、`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl` の13 live holding exact関係を静的に照合する。HARNESS／OSはpartial、旧固定BASEではWeb／Web-OSはexact substantive relationとして行アンカーを保持するが、要求disposition contractに従いsource_holding登録をsemantic dispositionの前提として保存残差を未解決に留める。",
   "upstream": [
     {
-      "path": "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+      "path": "scaffold/research/pre-isolation-outside-l1-semantic/inventory.json",
       "sha256": "1d53164b55afab7d44a7f84d6f7cedf98970c1944ad235883080eff47a47b045",
       "note": "4旧L1 blob、現行L1 SHA、line anchors、historical 13 holding scan [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/pre-isolation-outside-l1-semantic/inventory.json` SHA 12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e -> 7bfec7ab3e5b4205eb547607828647157ee65cb7ba35664b7e1be496a226273f. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 R2301-01/02/03 correction: current upstream pin follows reviewed OS-038-002 candidate or PHCAP-20 validator; fixed research input snapshots and adopted revision remain unchanged; authority unaffected.]"
     },
     {
-      "path": "scaffold/pre-isolation-outside-l1-semantic/README.md",
+      "path": "scaffold/research/pre-isolation-outside-l1-semantic/README.md",
       "sha256": "3dae7187fe8a285186d7df61680aa2d8449ed2df9b8014cd1e708ce34cccb1c1",
       "note": "HARNESS／OS partial、Web／Web-OS exact、historical snapshot由来source_holding先行境界"
     },
     {
-      "path": "scaffold/pre-isolation-outside-l1-semantic/generate.py",
-      "sha256": "c4ac3e5c8636f9b9e25346cc7b77d16fc6a17c6d5f926448240ccccae34598f1",
+      "path": "scaffold/research/pre-isolation-outside-l1-semantic/generate.py",
+      "sha256": "5212e91534dbf1e8744587088dbf728270120ad03af3f47b727df97b9ea77fc3",
       "note": "Git objectとhistorical register snapshot由来sourceのread-only evidence生成"
     },
     {
-      "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
-      "sha256": "5349a06f22102f2a41eed289d277821ffce71966ba9b231e19a0193d071683c9",
+      "path": "scaffold/research/pre-isolation-outside-l1-semantic/validate.py",
+      "sha256": "9cf05b5c22d42eb039bf0b33e5c232ed04fe0f464a3561c8d655d5861952ade4",
       "note": "approved SHA、line anchor、historical 13 holding atom setの独立検査と固定digest"
     },
     {
-      "path": "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py",
+      "path": "scaffold/research/pre-isolation-outside-l1-semantic/selfcheck.py",
       "sha256": "ad29a7731514b7a0d019da7e30044c38bdbe28baec9f1ff45d1637a4b2ad2375",
       "note": "inventory改変13件（current register／14 holding置換を含む）、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-first15/inventory.json",
       "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
       "note": "outside-67 first15の旧L1 pathとhistorical 13 snapshot由来pre-isolation blob台帳"
     },
@@ -116,9 +116,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-outside-l1-semantic/generate.py",
-      "python3 scaffold/pre-isolation-outside-l1-semantic/validate.py",
-      "python3 scaffold/pre-isolation-outside-l1-semantic/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-outside-l1-semantic/generate.py",
+      "python3 scaffold/research/pre-isolation-outside-l1-semantic/validate.py",
+      "python3 scaffold/research/pre-isolation-outside-l1-semantic/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -133,11 +133,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-outside-l1-semantic/generate.py",
-    "scaffold/pre-isolation-outside-l1-semantic/README.md",
-    "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
-    "scaffold/pre-isolation-outside-l1-semantic/validate.py",
-    "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py",
+    "scaffold/research/pre-isolation-outside-l1-semantic/generate.py",
+    "scaffold/research/pre-isolation-outside-l1-semantic/README.md",
+    "scaffold/research/pre-isolation-outside-l1-semantic/inventory.json",
+    "scaffold/research/pre-isolation-outside-l1-semantic/validate.py",
+    "scaffold/research/pre-isolation-outside-l1-semantic/selfcheck.py",
     "scaffold/bindings/SCF-B-0036.json"
   ],
   "verification": {

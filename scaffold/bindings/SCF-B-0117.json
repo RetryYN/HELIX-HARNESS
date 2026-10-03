@@ -72,13 +72,13 @@
   },
   "artifacts": [
     "scaffold/bindings/SCF-B-0117.json",
-    "scaffold/legacy-runtime-product-classification-0117/README.md",
-    "scaffold/legacy-runtime-product-classification-0117/PR-DRAFT.md",
-    "scaffold/legacy-runtime-product-classification-0117/generate.py",
-    "scaffold/legacy-runtime-product-classification-0117/validate.py",
-    "scaffold/legacy-runtime-product-classification-0117/selfcheck.py",
-    "scaffold/legacy-runtime-product-classification-0117/inventory.json",
-    "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl"
+    "scaffold/research/legacy-runtime-product-classification-0117/README.md",
+    "scaffold/research/legacy-runtime-product-classification-0117/PR-DRAFT.md",
+    "scaffold/research/legacy-runtime-product-classification-0117/generate.py",
+    "scaffold/research/legacy-runtime-product-classification-0117/validate.py",
+    "scaffold/research/legacy-runtime-product-classification-0117/selfcheck.py",
+    "scaffold/research/legacy-runtime-product-classification-0117/inventory.json",
+    "scaffold/research/legacy-runtime-product-classification-0117/classification-research.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",

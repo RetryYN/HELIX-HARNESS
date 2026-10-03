@@ -1,11 +1,11 @@
 {
   "artifacts": [
-    "scaffold/legacy-ir-routing-correction-impact-0101/README.md",
-    "scaffold/legacy-ir-routing-correction-impact-0101/generate.py",
-    "scaffold/legacy-ir-routing-correction-impact-0101/impact.jsonl",
-    "scaffold/legacy-ir-routing-correction-impact-0101/inventory.json",
-    "scaffold/legacy-ir-routing-correction-impact-0101/validate.py",
-    "scaffold/legacy-ir-routing-correction-impact-0101/selfcheck.py",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/README.md",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/generate.py",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/impact.jsonl",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/inventory.json",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/validate.py",
+    "scaffold/research/legacy-ir-routing-correction-impact-0101/selfcheck.py",
     "scaffold/bindings/SCF-B-0103.json"
   ],
   "connections": {
@@ -41,9 +41,9 @@
   ],
   "operations": {
     "allowed": [
-      "python3 scaffold/legacy-ir-routing-correction-impact-0101/generate.py",
-      "python3 scaffold/legacy-ir-routing-correction-impact-0101/validate.py",
-      "python3 scaffold/legacy-ir-routing-correction-impact-0101/selfcheck.py",
+      "python3 scaffold/research/legacy-ir-routing-correction-impact-0101/generate.py",
+      "python3 scaffold/research/legacy-ir-routing-correction-impact-0101/validate.py",
+      "python3 scaffold/research/legacy-ir-routing-correction-impact-0101/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",

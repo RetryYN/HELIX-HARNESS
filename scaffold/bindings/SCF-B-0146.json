@@ -9,47 +9,47 @@
   "reason": "既存9 evidence partitionの218件を固定BASEのGit object bytesから静的に再集計し、unit／asset／semantic edgeの対応と直接証拠の有無を追跡する研究bundleが必要。candidateの存在やPASSから正式な実装・failure・縮退・未実装・受入・authorityを生成しない。",
   "upstream": [
     {
-      "path": "scaffold/fr-implementation-evidence-0109/evidence.jsonl",
+      "path": "scaffold/research/fr-implementation-evidence-0109/evidence.jsonl",
       "sha256": "a5d6442826859accdc6a001268413331667bdfd8074cf46e70bced986ef4c78f",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/fr-implementation-evidence-0110/evidence.jsonl",
+      "path": "scaffold/research/fr-implementation-evidence-0110/evidence.jsonl",
       "sha256": "1c164f748c573cc83b5a14ee84027cd1751dc5bb5ca5b28dfb830e2ae8e659b4",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/fr-implementation-evidence-0111/evidence.jsonl",
+      "path": "scaffold/research/fr-implementation-evidence-0111/evidence.jsonl",
       "sha256": "9b47f363afb3b98cefcf6666a2467e4bdf4bff663e2e48c60319f41b193357a9",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/br-implementation-evidence-0102/evidence.jsonl",
+      "path": "scaffold/research/br-implementation-evidence-0102/evidence.jsonl",
       "sha256": "1a81b23f3cc6e7b57448d73fc468dff95d3ec1ce84fb9e80ba5798b490ab0474",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/br-implementation-evidence-0104/evidence.jsonl",
+      "path": "scaffold/research/br-implementation-evidence-0104/evidence.jsonl",
       "sha256": "56ca74fb8746b550a8939280a9086b57ee118bbbd762bac7c481c51db51be904",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/br-implementation-evidence-0106/evidence.jsonl",
+      "path": "scaffold/research/br-implementation-evidence-0106/evidence.jsonl",
       "sha256": "dd24941d8070f35d6617be7ad17af0b7e7ca2f91528e14bc77c8cebff6e1392e",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/nfr-implementation-evidence-0113/evidence.jsonl",
+      "path": "scaffold/research/nfr-implementation-evidence-0113/evidence.jsonl",
       "sha256": "03470d2e3dad9fa0efe49e4fc1bd6db658e64dd8433b9018f978e955fb4abe7a",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/nfr-implementation-evidence-0114/evidence.jsonl",
+      "path": "scaffold/research/nfr-implementation-evidence-0114/evidence.jsonl",
       "sha256": "da7de0f66904bd02f1beb7055ad55693639c269992d262aec1b812c63badded9",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
     {
-      "path": "scaffold/tr-implementation-evidence-0112/evidence.jsonl",
+      "path": "scaffold/research/tr-implementation-evidence-0112/evidence.jsonl",
       "sha256": "ebc930862742b49eea4042450eb048529259886ec16d3cca38fc0360120b5aa7",
       "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
     },
@@ -95,7 +95,7 @@
     },
     {
       "path": "scaffold/README.md",
-      "sha256": "be1e196dc5d65bfff642754e50fe604537e7085ca686675b609578a95c1dc1e6",
+      "sha256": "b9d7a8ecbafaf781d3a3db5226275c27035696430ccfdbe57707da45128b033b",
       "note": "Scaffold Binding lifecycleと操作境界"
     },
     {
@@ -114,7 +114,7 @@
       "note": "focused-investigationは旧archive blobを静的read-only参照のみ。旧archiveを実行しない。"
     },
     {
-      "path": "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
+      "path": "scaffold/research/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
       "sha256": "36ca9a4913e6352ba1c32596f8d1493f6d38ca7173ea6cde503fad51f17eefdf",
       "note": "指定7要求IDの静的調査記録。canonical JSONL bytes pinned by validate.py."
     }
@@ -167,16 +167,16 @@
   },
   "artifacts": [
     "scaffold/bindings/SCF-B-0146.json",
-    "scaffold/legacy-evidence-crosswalk-0146/README.md",
-    "scaffold/legacy-evidence-crosswalk-0146/PR-DRAFT.md",
-    "scaffold/legacy-evidence-crosswalk-0146/build.py",
-    "scaffold/legacy-evidence-crosswalk-0146/common.py",
-    "scaffold/legacy-evidence-crosswalk-0146/evidence.jsonl",
-    "scaffold/legacy-evidence-crosswalk-0146/inventory.json",
-    "scaffold/legacy-evidence-crosswalk-0146/selfcheck.py",
-    "scaffold/legacy-evidence-crosswalk-0146/source-transfer-manifest.json",
-    "scaffold/legacy-evidence-crosswalk-0146/validate.py",
-    "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl"
+    "scaffold/research/legacy-evidence-crosswalk-0146/README.md",
+    "scaffold/research/legacy-evidence-crosswalk-0146/PR-DRAFT.md",
+    "scaffold/research/legacy-evidence-crosswalk-0146/build.py",
+    "scaffold/research/legacy-evidence-crosswalk-0146/common.py",
+    "scaffold/research/legacy-evidence-crosswalk-0146/evidence.jsonl",
+    "scaffold/research/legacy-evidence-crosswalk-0146/inventory.json",
+    "scaffold/research/legacy-evidence-crosswalk-0146/selfcheck.py",
+    "scaffold/research/legacy-evidence-crosswalk-0146/source-transfer-manifest.json",
+    "scaffold/research/legacy-evidence-crosswalk-0146/validate.py",
+    "scaffold/research/legacy-evidence-crosswalk-0146/focused-investigation.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",

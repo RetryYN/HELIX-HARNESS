@@ -9,12 +9,12 @@
   "reason": "PHCAP-02 current evidenceはHELIX-OS、PHCAP-03はHELIX-HARNESS／HELIX-OSに限定される。32件の仮登録はsource_holding／unassigned_cross_productでrequirement_candidate 0件、153件のrouting候補は四製品評価を持つがphase joinとlegacy implementation／failure／consumer evidenceを持たない。PHCAP-02 42件、PHCAP-03 161件のphase candidateと代表7旧assetをsource digest／exact anchor／execution false／consumer pendingで静的に保持し、4製品責務、phase、旧implemented／degraded／unimplementedの断定を保留する。",
   "upstream": [
     {
-      "path": "scaffold/phcap02-03-registration-classification-audit/inventory.json",
+      "path": "scaffold/research/phcap02-03-registration-classification-audit/inventory.json",
       "sha256": "44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb",
       "note": "PHCAP-02/03 phase／product／legacy evidence gap inventory [2026-09-25 full-binding read-after/rebind: scaffold/phcap02-03-registration-classification-audit/inventory.json 44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb→574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09. このBindingは『PHCAP-02/03 要求登録・分類 四製品／phase／旧実装 evidence gap候補』であり、role=PHCAP-02/03の要求登録・分類、四製品routing、phase join、旧実装／failure／consumer evidenceの欠落をresearch premiseとして保持する。確認したobligations=PHCAP-02/03 current evidence productsを固定し、四製品routing候補をphase authorityへ昇格させない; 32 source_holding、0 requirement_candidate、153 four-product evaluations、phase field不在を同じrevisionで照合する。inventory参照 scaffold/phcap02-03-registration-classification-audit/inventory.json を574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09から44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebbへ更新した。PHCAP-02/03のcurrent evidence products・四製品routing候補は同じinventoryで保持。base.worktreeは外部migration pathへ復元済みで、phase authority／ownerは生成しない。 verification scope=schema_interface／deterministic_behavior／source_revision_stale／negative_case／forbidden_write_scope、replacement status=pending／target=PHCAP-02/03の正式な四製品product／phase／implementation evidence登録とL2/L11下流導出（承認後）を保持し、本文改訂が触れる意味差分は意味不一致記録に残す。 ]"
     },
     {
-      "path": "scaffold/phcap02-03-registration-classification-audit/README.md",
+      "path": "scaffold/research/phcap02-03-registration-classification-audit/README.md",
       "sha256": "156cea8e56d6543847b498eb29c238c243cac77a1624d994c454a9c9fe593dbe",
       "note": "scope、67 path overlap、静的境界"
     },
@@ -49,7 +49,7 @@
       "note": "selected asset decision match 0"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-67/report.json",
       "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
       "note": "67 pathの隣接／直接phase join 0 audit"
     },
@@ -106,9 +106,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/phcap02-03-registration-classification-audit/generate.py",
-      "python3 scaffold/phcap02-03-registration-classification-audit/validate.py",
-      "python3 scaffold/phcap02-03-registration-classification-audit/selfcheck.py",
+      "python3 scaffold/research/phcap02-03-registration-classification-audit/generate.py",
+      "python3 scaffold/research/phcap02-03-registration-classification-audit/validate.py",
+      "python3 scaffold/research/phcap02-03-registration-classification-audit/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -123,11 +123,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/phcap02-03-registration-classification-audit/generate.py",
-    "scaffold/phcap02-03-registration-classification-audit/README.md",
-    "scaffold/phcap02-03-registration-classification-audit/inventory.json",
-    "scaffold/phcap02-03-registration-classification-audit/validate.py",
-    "scaffold/phcap02-03-registration-classification-audit/selfcheck.py",
+    "scaffold/research/phcap02-03-registration-classification-audit/generate.py",
+    "scaffold/research/phcap02-03-registration-classification-audit/README.md",
+    "scaffold/research/phcap02-03-registration-classification-audit/inventory.json",
+    "scaffold/research/phcap02-03-registration-classification-audit/validate.py",
+    "scaffold/research/phcap02-03-registration-classification-audit/selfcheck.py",
     "scaffold/bindings/SCF-B-0034.json"
   ],
   "verification": {

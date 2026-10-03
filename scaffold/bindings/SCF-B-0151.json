@@ -25,7 +25,7 @@
     },
     {
       "path": "archive/reference-sources/README.md",
-      "sha256": "9a3acb9ba122893148edf3845a3bc13b2bf5a2513780d1169033b3e10e2b9120",
+      "sha256": "6e97a88413fd2e5b45aeb7707b8a665437f816d03eaebea7a0ec868cf85dbc52",
       "note": "ZIP同定、2版差分、read-only境界 [2026-09-29 system-design-ops-playbook ZIPの追加 read-after: README.mdは収録物の表に`system-design-ops-playbook-2026-09-29.zip`の1行と「system-design-ops-playbookの扱い」節を加えただけで、ハイブリッド設計ドキュメント2版の同定・差分・read-only境界・旧HELIXとの違いの記述は不変。本bindingのrole・obligations・connections・replacement・artifactは、追加したZIPとSCF-B-0152に依存しないことをbinding全体で確認した。前receipt=f84432f477fa9daebc87345fd5fe43ae65c0c3533c6bc25a31a52d9a5a5589ba; 現receipt=9a3acb9ba122893148edf3845a3bc13b2bf5a2513780d1169033b3e10e2b9120; このBindingの採否・authorityは変更しない。]"
     },
     {
@@ -83,7 +83,7 @@
     ]
   },
   "artifacts": [
-    "scaffold/design-pattern-inventory-20260925/README.md",
+    "scaffold/research/design-pattern-inventory-20260925/README.md",
     "scaffold/bindings/SCF-B-0151.json"
   ],
   "verification": {

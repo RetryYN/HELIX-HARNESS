@@ -44,28 +44,28 @@
       "note": "12 path候補と検証契約の入力 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-batch/README.md",
+      "path": "scaffold/research/pre-isolation-batch/README.md",
       "sha256": "280371a920b94cd4c9e1e218ae3045439badecfbff4718647eff82e69e8d0a8e",
       "note": "12 path候補と検証契約の入力"
     },
     {
-      "path": "scaffold/pre-isolation-batch/rdp001-preiso-batch-12path.json",
+      "path": "scaffold/research/pre-isolation-batch/rdp001-preiso-batch-12path.json",
       "sha256": "94450996c9e7e403c28d3361252cb46b9fbb7f1097432fc86df286b551ab07d6",
       "note": "12 path候補と検証契約の入力"
     },
     {
-      "path": "scaffold/pre-isolation-batch/rdp001-preiso-batch-semantic-diff-inventory.json",
+      "path": "scaffold/research/pre-isolation-batch/rdp001-preiso-batch-semantic-diff-inventory.json",
       "sha256": "42ecad50dad2ffd17aa0c58ce6f5be42a365b50a1ebcf2aec5fdea0dc1ab2af5",
       "note": "12 path候補と検証契約の入力"
     },
     {
-      "path": "scaffold/pre-isolation-batch/validate.py",
-      "sha256": "d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de",
+      "path": "scaffold/research/pre-isolation-batch/validate.py",
+      "sha256": "863e83afb864b3d1460ae7f0e8d6d306393dbda7ed186544a6e7cf45b578846f",
       "note": "12 path候補と検証契約の入力 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-batch/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2adb8d3d76564fae9768039e4c870153cc9b3fdefeabb662b302b60cef4d01e4; 現receipt=d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-batch/selfcheck.py",
-      "sha256": "9182d1f1efb22197defb04595e937da4a4284983b34284231c459b4ca8a883fa",
+      "path": "scaffold/research/pre-isolation-batch/selfcheck.py",
+      "sha256": "497bd38e972059c3ffdd642e0e8ad94646b78a7278c70e4a035d97222fbddee3",
       "note": "12 path候補と検証契約の入力"
     }
   ],
@@ -100,8 +100,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-batch/validate.py",
-      "python3 scaffold/pre-isolation-batch/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-batch/validate.py",
+      "python3 scaffold/research/pre-isolation-batch/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
       "git diff --check"
     ],
@@ -114,11 +114,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-batch/README.md",
-    "scaffold/pre-isolation-batch/rdp001-preiso-batch-12path.json",
-    "scaffold/pre-isolation-batch/rdp001-preiso-batch-semantic-diff-inventory.json",
-    "scaffold/pre-isolation-batch/validate.py",
-    "scaffold/pre-isolation-batch/selfcheck.py"
+    "scaffold/research/pre-isolation-batch/README.md",
+    "scaffold/research/pre-isolation-batch/rdp001-preiso-batch-12path.json",
+    "scaffold/research/pre-isolation-batch/rdp001-preiso-batch-semantic-diff-inventory.json",
+    "scaffold/research/pre-isolation-batch/validate.py",
+    "scaffold/research/pre-isolation-batch/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -130,8 +130,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation-batch/validate.py（holding／Git object／hunk denominator／asset／phase／分類）",
-      "scaffold/pre-isolation-batch/selfcheck.py（digest／phase／owner／authority／hunk／atom boundary否定例）",
+      "scaffold/research/pre-isolation-batch/validate.py（holding／Git object／hunk denominator／asset／phase／分類）",
+      "scaffold/research/pre-isolation-batch/selfcheck.py（digest／phase／owner／authority／hunk／atom boundary否定例）",
       "scaffold/tools/scfctl.py stale（upstream revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],

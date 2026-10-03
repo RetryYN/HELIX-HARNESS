@@ -9,32 +9,32 @@
   "reason": "PR #1978 source setのoutside-67 global rows 31–48をfirst15およびrows 16–30と区別し、governance/crosswalk pathのcandidate product／phase、pre-isolation／archive blob関係、親d272時点の13 live source holdingへのexact path／blob／SHA関係をread-onlyで固定する。18件すべて13 holdingへの完全一致がなく、implementation、degradation、semantic inclusion、semantic disposition、authority、要求採否、successorは未解決のまま保持する。後続baseのholding変更で歴史的13 holding分母を上書きしない。",
   "upstream": [
     {
-      "path": "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-31-48/inventory.json",
       "sha256": "a2f481b540097116ca2e0366f7c216517d09064c79e8e321c6d6f4f166a002d9",
       "note": "rows 31–48の18 path、親d272固定、13 live holding exact relation、unknown境界 [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/pre-isolation-outside-holding-31-48/inventory.json` SHA a2f481b540097116ca2e0366f7c216517d09064c79e8e321c6d6f4f166a002d9 -> 021f52fcef1a456ae728c8c191fc883dffa1d522951893c7b158cd8e027eb9c7. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-31-48/README.md",
+      "path": "scaffold/research/pre-isolation-outside-holding-31-48/README.md",
       "sha256": "d09250b78d0d91566ac982e442e410a1b3abb37dc08700c76c716d509bddd925",
       "note": "selection、physical findings、implementation/degradation/semantic-inclusion unknown境界"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-31-48/generate.py",
-      "sha256": "05746c0da2431420020e15c12d439ab48123b5c980facb1e54b9ed6483ae6d00",
+      "path": "scaffold/research/pre-isolation-outside-holding-31-48/generate.py",
+      "sha256": "f10cdd6b76735521625756b4a45e5350c80facaf7a1ccb1bafc4f5bf3ed46f2a",
       "note": "Git object／source set／13 holdingからのdeterministic evidence生成 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-outside-holding-31-48/generate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=4f11e10f2882dc9348235fc70901546da95da87421e2a302d4c3fea58bf3f972; 現receipt=05746c0da2431420020e15c12d439ab48123b5c980facb1e54b9ed6483ae6d00; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
-      "sha256": "978a53fe717eb85835adc3febb07059f12ffb1f30e42ced52e9eaec38d6f0045",
+      "path": "scaffold/research/pre-isolation-outside-holding-31-48/validate.py",
+      "sha256": "de6182cfc4efa867c74d4e40041a30a7b55710faac77d92a63a71a612afd1146",
       "note": "generator非依存のselection、Git object、digest、recursive keyset、13 holding exact relation validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-outside-holding-31-48/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=a0bf212587c98c1495b25b2a290bdb8423df3ad1990a8978030561a3bab26ee4; 現receipt=978a53fe717eb85835adc3febb07059f12ffb1f30e42ced52e9eaec38d6f0045; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-31-48/selfcheck.py",
+      "path": "scaffold/research/pre-isolation-outside-holding-31-48/selfcheck.py",
       "sha256": "789b438d9666f466a3ebdfa43e68bf9f9df7bea2f7ed7ba210ef84c4710fa7d0",
       "note": "authority／adoption／physical relation／unknown境界／exact text／recursive keysetの23 negative cases"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-67/report.json",
       "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
       "note": "outside-67 67 path分母とpath-based product／phase候補"
     },
@@ -89,9 +89,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-outside-holding-31-48/generate.py",
-      "python3 scaffold/pre-isolation-outside-holding-31-48/validate.py",
-      "python3 scaffold/pre-isolation-outside-holding-31-48/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-31-48/generate.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-31-48/validate.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-31-48/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -107,11 +107,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-outside-holding-31-48/README.md",
-    "scaffold/pre-isolation-outside-holding-31-48/generate.py",
-    "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
-    "scaffold/pre-isolation-outside-holding-31-48/validate.py",
-    "scaffold/pre-isolation-outside-holding-31-48/selfcheck.py",
+    "scaffold/research/pre-isolation-outside-holding-31-48/README.md",
+    "scaffold/research/pre-isolation-outside-holding-31-48/generate.py",
+    "scaffold/research/pre-isolation-outside-holding-31-48/inventory.json",
+    "scaffold/research/pre-isolation-outside-holding-31-48/validate.py",
+    "scaffold/research/pre-isolation-outside-holding-31-48/selfcheck.py",
     "scaffold/bindings/SCF-B-0043.json"
   ],
   "verification": {

@@ -9,7 +9,7 @@
   "reason": "L2D-S1-01 packet v2で未評価・atom展開未了の333 source revision recordについて、Git object、旧原文、asset disposition、現行source path、語彙上のfailure・consumer信号をread-onlyで再計算する候補が必要である。atom化、意味等価review、product routing、要求採否、実装完了は未成立なのでscaffoldに束縛する。",
   "upstream": [
     {
-      "path": "scaffold/rdp001-unassessed-atom-audit/report.json",
+      "path": "scaffold/research/rdp001-unassessed-atom-audit/report.json",
       "sha256": "a34a0e0bbd4e4c9b25de974f0c54205132d1f149c0ff6fed6e98de3770f597a6",
       "note": "監査候補の分母・digest・findings-only結果"
     },
@@ -72,14 +72,14 @@
     "dependencies": [
       "Python 3標準library",
       "読み取り専用Git object照合",
-      "scaffold/rdp001-unassessed-atom-audit/report.json"
+      "scaffold/research/rdp001-unassessed-atom-audit/report.json"
     ],
     "boundary": "このbindingとreport・validator・selfcheckはscaffold内だけに置く。docs/governanceとGit objectはread-onlyで読む。候補validatorとselfcheckは旧archive内workflow、CLI、hook、adapter、test、CIを実行せず、GitHub、Issue、DB、memory、現行sourceへ書き込まない。候補のPR共有は別の明示された作成通路で扱う。"
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-unassessed-atom-audit/validate.py",
-      "python3 -B scaffold/rdp001-unassessed-atom-audit/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-unassessed-atom-audit/validate.py",
+      "python3 -B scaffold/research/rdp001-unassessed-atom-audit/selfcheck.py",
       "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
       "git show／git rev-parse／git cat-fileによるread-only object照合"
     ],
@@ -92,10 +92,10 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-unassessed-atom-audit/report.json",
-    "scaffold/rdp001-unassessed-atom-audit/README.md",
-    "scaffold/rdp001-unassessed-atom-audit/validate.py",
-    "scaffold/rdp001-unassessed-atom-audit/selfcheck.py",
+    "scaffold/research/rdp001-unassessed-atom-audit/report.json",
+    "scaffold/research/rdp001-unassessed-atom-audit/README.md",
+    "scaffold/research/rdp001-unassessed-atom-audit/validate.py",
+    "scaffold/research/rdp001-unassessed-atom-audit/selfcheck.py",
     "scaffold/bindings/SCF-B-0027.json"
   ],
   "verification": {

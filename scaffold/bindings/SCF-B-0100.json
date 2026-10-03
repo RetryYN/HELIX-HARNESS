@@ -118,9 +118,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/legacy-ir-target-routing-0100/generate.py",
-      "python3 scaffold/legacy-ir-target-routing-0100/validate.py",
-      "python3 scaffold/legacy-ir-target-routing-0100/selfcheck.py",
+      "python3 scaffold/research/legacy-ir-target-routing-0100/generate.py",
+      "python3 scaffold/research/legacy-ir-target-routing-0100/validate.py",
+      "python3 scaffold/research/legacy-ir-target-routing-0100/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -135,12 +135,12 @@
     ]
   },
   "artifacts": [
-    "scaffold/legacy-ir-target-routing-0100/README.md",
-    "scaffold/legacy-ir-target-routing-0100/generate.py",
-    "scaffold/legacy-ir-target-routing-0100/inventory.json",
-    "scaffold/legacy-ir-target-routing-0100/research.jsonl",
-    "scaffold/legacy-ir-target-routing-0100/validate.py",
-    "scaffold/legacy-ir-target-routing-0100/selfcheck.py"
+    "scaffold/research/legacy-ir-target-routing-0100/README.md",
+    "scaffold/research/legacy-ir-target-routing-0100/generate.py",
+    "scaffold/research/legacy-ir-target-routing-0100/inventory.json",
+    "scaffold/research/legacy-ir-target-routing-0100/research.jsonl",
+    "scaffold/research/legacy-ir-target-routing-0100/validate.py",
+    "scaffold/research/legacy-ir-target-routing-0100/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",

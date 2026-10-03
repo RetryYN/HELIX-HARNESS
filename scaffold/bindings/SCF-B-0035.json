@@ -9,17 +9,17 @@
   "reason": "outside-67 reportの四製品ディレクトリ配下pathから先頭15件を選び、pre-isolation／archive blobと13 live source holdingのexact path／blob／SHA関係を静的に照合する。15件すべて13 holdingへの完全一致がなく、新holding必要性は未解決候補として保持する。path由来product／phase、implementation unknown、authority、要求採否、successor、consumer closureは確定しない。",
   "upstream": [
     {
-      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-first15/inventory.json",
       "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
       "note": "15 path、13 live holding exact relation、blob／SHA／current state"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
+      "path": "scaffold/research/pre-isolation-outside-holding-first15/README.md",
       "sha256": "9fc83be825db547b30841eb232aec35dc51e48f48a77d8d642715bc8140f68aa",
       "note": "selection、13 holding不包含、unknown boundary"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-67/report.json",
       "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
       "note": "outside-67 67 path分母と選定順序"
     },
@@ -137,9 +137,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-outside-holding-first15/generate.py",
-      "python3 scaffold/pre-isolation-outside-holding-first15/validate.py",
-      "python3 scaffold/pre-isolation-outside-holding-first15/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-first15/generate.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-first15/validate.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-first15/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -154,11 +154,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-outside-holding-first15/generate.py",
-    "scaffold/pre-isolation-outside-holding-first15/README.md",
-    "scaffold/pre-isolation-outside-holding-first15/inventory.json",
-    "scaffold/pre-isolation-outside-holding-first15/validate.py",
-    "scaffold/pre-isolation-outside-holding-first15/selfcheck.py",
+    "scaffold/research/pre-isolation-outside-holding-first15/generate.py",
+    "scaffold/research/pre-isolation-outside-holding-first15/README.md",
+    "scaffold/research/pre-isolation-outside-holding-first15/inventory.json",
+    "scaffold/research/pre-isolation-outside-holding-first15/validate.py",
+    "scaffold/research/pre-isolation-outside-holding-first15/selfcheck.py",
     "scaffold/bindings/SCF-B-0035.json"
   ],
   "verification": {

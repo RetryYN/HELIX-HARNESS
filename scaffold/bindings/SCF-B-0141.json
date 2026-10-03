@@ -256,95 +256,95 @@
       "note": "[2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave36.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523; 現receipt=fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
       "sha256": "25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
       "sha256": "df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
       "sha256": "c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
       "sha256": "c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
       "sha256": "03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
       "sha256": "95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
       "sha256": "293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
       "sha256": "2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
       "sha256": "aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
       "sha256": "ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
       "sha256": "853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
       "sha256": "5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
       "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
       "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
     },
     {
-      "path": "scaffold/legacy-asset-product-classification-0107/inventory.json",
+      "path": "scaffold/research/legacy-asset-product-classification-0107/inventory.json",
       "sha256": "0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393"
     },
     {
-      "path": "scaffold/legacy-lint-product-classification-0108/inventory.json",
+      "path": "scaffold/research/legacy-lint-product-classification-0108/inventory.json",
       "sha256": "66f46326fa5344921365252bbec17058b3dddb97733674373758215d1e76a267"
     },
     {
-      "path": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+      "path": "scaffold/research/legacy-runtime-product-classification-0117/inventory.json",
       "sha256": "6451b00b8ba68fdfa7960a3593c73d168f1d9be64d64d7275b0c5e12fe22f496"
     },
     {
-      "path": "scaffold/legacy-schema-product-classification-0120/inventory.json",
+      "path": "scaffold/research/legacy-schema-product-classification-0120/inventory.json",
       "sha256": "aede25f1bf82e42d999fc5f64db1d25854bc7495e414134ffb3104b2af2eb091"
     },
     {
-      "path": "scaffold/legacy-source-product-classification-0123/inventory.json",
+      "path": "scaffold/research/legacy-source-product-classification-0123/inventory.json",
       "sha256": "e5ed5144572a60919d4b929395bca50077825cb0f3c66a200ae8dd66871122c4"
     },
     {
-      "path": "scaffold/legacy-state-db-product-classification-0127/inventory.json",
+      "path": "scaffold/research/legacy-state-db-product-classification-0127/inventory.json",
       "sha256": "8c3b31bb74e5b947224c61b5ad4cb1a2578fbebaf65a06c0374105f8123d3c5d"
     },
     {
-      "path": "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json",
+      "path": "scaffold/research/legacy-lint-candidate-product-classification-0128/inventory.json",
       "sha256": "be2d6f05f4748183c88eef767814fcb275d025d2cf7d1257a7ca7ea086cbb485"
     },
     {
-      "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
+      "path": "scaffold/research/legacy-runtime-residual-product-classification-0133/inventory.json",
       "sha256": "f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
     },
     {
-      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "path": "scaffold/research/legacy-implementation-residual-0126/classification-research.jsonl",
       "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
     }
   ],
@@ -387,13 +387,13 @@
   },
   "artifacts": [
     "scaffold/bindings/SCF-B-0141.json",
-    "scaffold/legacy-config-product-classification-0141/README.md",
-    "scaffold/legacy-config-product-classification-0141/PR-DRAFT.md",
-    "scaffold/legacy-config-product-classification-0141/generate.py",
-    "scaffold/legacy-config-product-classification-0141/validate.py",
-    "scaffold/legacy-config-product-classification-0141/selfcheck.py",
-    "scaffold/legacy-config-product-classification-0141/inventory.json",
-    "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"
+    "scaffold/research/legacy-config-product-classification-0141/README.md",
+    "scaffold/research/legacy-config-product-classification-0141/PR-DRAFT.md",
+    "scaffold/research/legacy-config-product-classification-0141/generate.py",
+    "scaffold/research/legacy-config-product-classification-0141/validate.py",
+    "scaffold/research/legacy-config-product-classification-0141/selfcheck.py",
+    "scaffold/research/legacy-config-product-classification-0141/inventory.json",
+    "scaffold/research/legacy-config-product-classification-0141/classification-research.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",

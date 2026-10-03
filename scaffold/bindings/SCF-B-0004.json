@@ -29,38 +29,38 @@
       "note": "HARNESS L1候補の製品境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 本文ece3e268の内容をPOが採用し、1.0土台7項目の追記を指示。追記後revisionは未確認。前receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96; 現receipt=0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758; このBindingの採否・authorityは変更しない。] [2026-09-26 main合流と名前の表記・未確定注記の反映 read-after: product-intent.mdは、59行のHELIX-Intelligence→HELIX-INTELLIGENCEの機構名の表記の統一（Intelligence→INTELLIGENCE、機構のSecurity→SECURITY、ヘリックスコア→HELIX-HARNESS-CORE。POの発言の引用内は不変）だけを受けた。行数・他の行・HARNESSの責務の意味は不変。本bindingのrole・obligations・connections・replacement・artifactは、機構名の綴り（Intelligence／Security／ヘリックスコア）にも、2.0の外の情報やBRAINの学習が未確定であることにも依存しないことをbinding全体で確認した。前receipt=0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758; 現receipt=e9b3755f303bef4366812ad23f82d5706cf0d0a17d9344614695719bc4c3bffd; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: HARNESS L1は、対象外の段落のINTELLIGENCEの担当を「稼働中の判断は1.0から、モデルの学習は3.0から」へ改め、OSはPM・周辺機構はPMOの1文を加えた。行数は不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=e9b3755f303bef4366812ad23f82d5706cf0d0a17d9344614695719bc4c3bffd; 現receipt=238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation/README.md",
+      "path": "scaffold/research/pre-isolation/README.md",
       "sha256": "2eb0edc559225248079d184a5e2790f032d682a0e775bd414500579d0f8951ee",
       "note": "候補束のscopeと停止条件"
     },
     {
-      "path": "scaffold/pre-isolation/rdp001-revision-coherence-6path.json",
+      "path": "scaffold/research/pre-isolation/rdp001-revision-coherence-6path.json",
       "sha256": "949039379b6f75e56de63a23ed4e28dfe23bf7afcef3fdd01dd636aa3f4f492a",
       "note": "6経路のrevision／provenance候補manifest"
     },
     {
-      "path": "scaffold/pre-isolation/validate.py",
-      "sha256": "6183b6836650097d523a5f38c222940aa75824ef81c11e58e42dc61dd65136dd",
+      "path": "scaffold/research/pre-isolation/validate.py",
+      "sha256": "e6b4829f28e87a602029dbc77dfcdc43d69d14b19846b43e3881ef5d14cd726b",
       "note": "read-only静的coherence確認"
     },
     {
-      "path": "scaffold/pre-isolation/selfcheck.py",
-      "sha256": "e8c5d439957d4560128837405dbaee6dc96773f69f1a706831ddb27a4b11e614",
+      "path": "scaffold/research/pre-isolation/selfcheck.py",
+      "sha256": "44aeef50d4175a3410916e0dbc3a564e8eb5104eaacc68d417f514e659e5bcf7",
       "note": "provenance driftとsnapshot path driftの否定例"
     },
     {
-      "path": "scaffold/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
+      "path": "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
       "sha256": "5bfa1b061faa16343a9017e3ebabadec88c3dda4b1d09f49f795662aca50519c",
       "note": "6 sourceの9 changed fragment分類、exact span、owner候補、8 retained negative"
     },
     {
-      "path": "scaffold/pre-isolation/validate-semantic-diff.py",
-      "sha256": "f072659c97cd974910e82c9d68ae832e62065ae89ea60dbd8e3cb30b5c6e501a",
+      "path": "scaffold/research/pre-isolation/validate-semantic-diff.py",
+      "sha256": "63ade45d3f12a2237920cb216985d5d9ced3703149b1ac2eeeef3455a02cdfe3",
       "note": "semantic diffのGit blob span／SHA-256／分類数／negative静的確認"
     },
     {
-      "path": "scaffold/pre-isolation/selfcheck-semantic-diff.py",
-      "sha256": "e9dd3648b0dea129a5969713e4c8d2b6ace8bc6ee209a25115cdc54a815ce40c",
+      "path": "scaffold/research/pre-isolation/selfcheck-semantic-diff.py",
+      "sha256": "e203ae45a0936d537d1d41e7c175c35afb9a081ce91e09958b35951ca007a709",
       "note": "fragment digest、分類集計、retained negative spanの否定例"
     }
   ],
@@ -94,10 +94,10 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation/validate.py",
-      "python3 scaffold/pre-isolation/selfcheck.py",
-      "python3 scaffold/pre-isolation/validate-semantic-diff.py",
-      "python3 scaffold/pre-isolation/selfcheck-semantic-diff.py",
+      "python3 scaffold/research/pre-isolation/validate.py",
+      "python3 scaffold/research/pre-isolation/selfcheck.py",
+      "python3 scaffold/research/pre-isolation/validate-semantic-diff.py",
+      "python3 scaffold/research/pre-isolation/selfcheck-semantic-diff.py",
       "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
     ],
     "forbidden": [
@@ -109,13 +109,13 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation/README.md",
-    "scaffold/pre-isolation/rdp001-revision-coherence-6path.json",
-    "scaffold/pre-isolation/validate.py",
-    "scaffold/pre-isolation/selfcheck.py",
-    "scaffold/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
-    "scaffold/pre-isolation/validate-semantic-diff.py",
-    "scaffold/pre-isolation/selfcheck-semantic-diff.py"
+    "scaffold/research/pre-isolation/README.md",
+    "scaffold/research/pre-isolation/rdp001-revision-coherence-6path.json",
+    "scaffold/research/pre-isolation/validate.py",
+    "scaffold/research/pre-isolation/selfcheck.py",
+    "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
+    "scaffold/research/pre-isolation/validate-semantic-diff.py",
+    "scaffold/research/pre-isolation/selfcheck-semantic-diff.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -127,10 +127,10 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation/validate.py（holding field、既知Git blob bytes、revision、digest、consumer field、provenance、product boundary）",
-      "scaffold/pre-isolation/selfcheck.py（consumer digest declaration drift、archive snapshot path drift）",
-      "scaffold/pre-isolation/validate-semantic-diff.py（scope、6 source、9 fragment、exact span／SHA-256、分類数、negative ID／owner／phase）",
-      "scaffold/pre-isolation/selfcheck-semantic-diff.py（fragment digest、分類集計、scope／owner／phase／negative ID drift）",
+      "scaffold/research/pre-isolation/validate.py（holding field、既知Git blob bytes、revision、digest、consumer field、provenance、product boundary）",
+      "scaffold/research/pre-isolation/selfcheck.py（consumer digest declaration drift、archive snapshot path drift）",
+      "scaffold/research/pre-isolation/validate-semantic-diff.py（scope、6 source、9 fragment、exact span／SHA-256、分類数、negative ID／owner／phase）",
+      "scaffold/research/pre-isolation/selfcheck-semantic-diff.py（fragment digest、分類集計、scope／owner／phase／negative ID drift）",
       "scaffold/tools/scfctl.py stale（上流revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],

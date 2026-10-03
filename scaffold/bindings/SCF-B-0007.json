@@ -44,28 +44,28 @@
       "note": "source span、候補分類、owner、未決、禁止遷移のreview契約 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-next/README.md",
+      "path": "scaffold/research/pre-isolation-next/README.md",
       "sha256": "75420a00b1b05a902f76efdfb078e1e87e6f04489a20007264076d541a658466",
       "note": "selected scope、全体分母、hunk分類とsemantic atom未完境界、旧asset／phase未確認、停止条件"
     },
     {
-      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
+      "path": "scaffold/research/pre-isolation-next/rdp001-preiso-next-6path.json",
       "sha256": "bd41dc0f88eef13f3c61735c89c9c97482b5913f3c639911581be76966d54399",
       "note": "6 selected pathのholding／asset／phase／revision候補manifest"
     },
     {
-      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+      "path": "scaffold/research/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
       "sha256": "aec34d9f26b74f8ddac72318efe793afd079a102fcbe0929f8c9872e293e67e7",
       "note": "24 hunk-level fragmentのexact span、分類、owner候補、15 review-only subunit、compound hold、未解決意味、negative"
     },
     {
-      "path": "scaffold/pre-isolation-next/validate.py",
-      "sha256": "bc6b6808a84d3740ba0f14a45a089620f38e793ff2aa9070e5226bbdcae207bf",
+      "path": "scaffold/research/pre-isolation-next/validate.py",
+      "sha256": "4ed17681e4b6c35d7fe4787c2ae44947095f7efb81cb4b7415702d4ec7576c8b",
       "note": "read-only Git object、台帳、diff denominator／hunk、hunk分類とsemantic atom境界、phase、negative validator"
     },
     {
-      "path": "scaffold/pre-isolation-next/selfcheck.py",
-      "sha256": "c68020aaebd5b289710d74868caa28991884efd597b67068a8c4740c98e5bd25",
+      "path": "scaffold/research/pre-isolation-next/selfcheck.py",
+      "sha256": "24b1496254143c36185b3a88b21b2bb5e3b70f07035f941c42f10a9f53d69a56",
       "note": "digest、phase、owner、authority、旧実行、hunk、分類、semantic atom境界・subunit grounding改変の否定例"
     }
   ],
@@ -100,8 +100,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-next/validate.py",
-      "python3 scaffold/pre-isolation-next/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-next/validate.py",
+      "python3 scaffold/research/pre-isolation-next/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
     ],
     "forbidden": [
@@ -113,11 +113,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-next/README.md",
-    "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
-    "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
-    "scaffold/pre-isolation-next/validate.py",
-    "scaffold/pre-isolation-next/selfcheck.py"
+    "scaffold/research/pre-isolation-next/README.md",
+    "scaffold/research/pre-isolation-next/rdp001-preiso-next-6path.json",
+    "scaffold/research/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+    "scaffold/research/pre-isolation-next/validate.py",
+    "scaffold/research/pre-isolation-next/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -129,8 +129,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation-next/validate.py（holding／asset／phase、Git object、archive bytes、全体分母、24 hunk、分類、owner、negative）",
-      "scaffold/pre-isolation-next/selfcheck.py（digest、phase implementation、owner collapse、authority、旧実行、hunk、分類の否定例）",
+      "scaffold/research/pre-isolation-next/validate.py（holding／asset／phase、Git object、archive bytes、全体分母、24 hunk、分類、owner、negative）",
+      "scaffold/research/pre-isolation-next/selfcheck.py（digest、phase implementation、owner collapse、authority、旧実行、hunk、分類の否定例）",
       "scaffold/tools/scfctl.py stale（上流ledger／product boundary／contract revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],

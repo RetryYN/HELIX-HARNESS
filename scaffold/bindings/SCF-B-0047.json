@@ -9,22 +9,22 @@
   "reason": "PHCAP-01の旧Concept v4.1と旧4対象L1の承認recordを履歴のexact SHAで参照し、現行Conceptはdocs/concept/helix-concept.mdへ付け替えたが、L2／L11採否、L3／L10、実装、受入、release、deploymentは成立していない。旧asset 45件のphase／product候補を再集計し、代表8件のarchive source／ledger／decision／failure／consumer状態と、四製品unit／connection候補を静的に束ねる。旧source preservation decisionはsource保持履歴でありtarget product adoptionではない。authority、owner、successor、縮退／未実装、runtime、外部作用は生成しない。 四対象unit／connectionは当時の調査scopeであり、現行Conceptの9機構＋1共通部品（2026-09-26 PO判断でRunner／Sandboxの共通部品を廃止し、実行主体をWorkerへ統一。同日のPO判断でHELIX-INFRASTRUCTUREを機構に加えた）や製品属性の確定分類ではない。",
   "upstream": [
     {
-      "path": "scaffold/phcap01-concept-l1-research/README.md",
+      "path": "scaffold/research/phcap01-concept-l1-research/README.md",
       "sha256": "ffa4b9ae06c3fa66f8ec9c34955ae0f423efcf01171fb1f6882ee8b74ae8a454",
       "note": "PHCAP-01 static research scope and L2/L11 boundary [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=c7ebf1c79e9c7148197191c0bc60385f4ef5f586f4fbd1fddfba526249431f56; 現receipt=ffa4b9ae06c3fa66f8ec9c34955ae0f423efcf01171fb1f6882ee8b74ae8a454]"
     },
     {
-      "path": "scaffold/phcap01-concept-l1-research/inventory.json",
+      "path": "scaffold/research/phcap01-concept-l1-research/inventory.json",
       "sha256": "4616896f01ab96742218ab5c8f5891ee59efc098d41525d1b4b0a5f9f739da57",
       "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca; 現receipt=2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380; 現receipt=d074dde348c0dae85b1faac8df4528652985f3c05a3e91021d1db1e8e70780f9; authority・admissionは不変。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: phcap01-concept-l1-researchのpinは、HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）に伴い、phase_record.current_refsのWeb・Web-OS L1のpath 2件とledger_provenanceのPhase Capability InventoryのSHAだけを更新した（意味fieldと条件は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=d074dde348c0dae85b1faac8df4528652985f3c05a3e91021d1db1e8e70780f9; 現receipt=a24d3e7cc9f24fa7a020ead71787cdd7ce112839b914ea3913e0f20e4a0dddb0; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap01-concept-l1-researchの研究用pin（inventory.json）は、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳を指すpin・provenanceのpath field（台帳本文は不変のためSHAは不変）と、リンク先だけが変わった現行文書のSHA・行SHAだけを更新した（validatorの条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=a24d3e7cc9f24fa7a020ead71787cdd7ce112839b914ea3913e0f20e4a0dddb0; 現receipt=f2f2bd69b31aa93ce748ce3b4818b4654f51fcf132c53551cf81c106647797e3; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/phcap01-concept-l1-research/validate.py",
-      "sha256": "459c493d2f56abceeaa0f4ae033c7d926612785659a1b4f2d257b00438524494",
+      "path": "scaffold/research/phcap01-concept-l1-research/validate.py",
+      "sha256": "04a3f4383358cb2d7bb010c40c53b4ef64b09216827b22d7f688532fcd4c1fe8",
       "note": "current／archive／ledger／decision static validator [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=1976c377461526e7c919f89b6eea3996b5df8ca58d2fdb0a5df562e978761624; 現receipt=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798] [2026-09-24 historical four-target output wording read-after; old=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798; new=1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4] [2026-09-24 historical receipt terminology read-after: 1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4 -> 815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328; validation semantics preserved] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328; 現receipt=b926f6f0c8cd292fd4c389c3fee51ec8ee5671f67d78f5f34c5e880858378c92; authority・admissionは不変。] [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=b926f6f0c8cd292fd4c389c3fee51ec8ee5671f67d78f5f34c5e880858378c92; 現receipt=63ee43dc2b4c56001008ff9d698f001b768b3107ccda69cdd3f69f94db3c260b; 採否・authorityは不変。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: phcap01-concept-l1-research/validate.pyは、HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）に伴い、validatorのコードは、移動対象を指すpath定数と、それに連動するPhase Capability InventoryのSHA定数だけを新しいpath・現行SHAへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。変えた定数はEXPECTED_PHASE_REFSのWeb・Web-OS L1の2行とledger_provenanceのphase_inventoryのSHA 1行。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=63ee43dc2b4c56001008ff9d698f001b768b3107ccda69cdd3f69f94db3c260b; 現receipt=5b950abe473046ec9d6f31c0eb3789c1b0384375dd3b3bd008972a38f44d0c6e; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: phcap01のvalidatorは、現行ファイルのmarker確認だけが移動先を読むよう旧path→新pathの対応表RELOCATED_PATHS（2件）を加えた（承認commitでのgit showは旧pathのまま、確かめる条件は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=5b950abe473046ec9d6f31c0eb3789c1b0384375dd3b3bd008972a38f44d0c6e; 現receipt=b5cc4379a3cedcbac3315450fea0ebb2786e6a15ce1c3dff0a84d3049f86d52f; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap01-concept-l1-research/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=b5cc4379a3cedcbac3315450fea0ebb2786e6a15ce1c3dff0a84d3049f86d52f; 現receipt=4f4c258fd732c611c213d6b4aa8feb0d0a8b26f2686b3ad10d1b3d2f67073f26; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/phcap01-concept-l1-research/selfcheck.py",
+      "path": "scaffold/research/phcap01-concept-l1-research/selfcheck.py",
       "sha256": "82c2d9b12ecec4b2afe01545f4a6b0ce79822fcf82fafd44efada0b7da7da4aa",
       "note": "baseline/no-op plus 43 expected-error negative cases [2026-09-24 historical receipt terminology read-after: 7f96fd8da290e154135251f01e62aae6f972372c28247b775d1d8245aa90f8bd -> 82c2d9b12ecec4b2afe01545f4a6b0ce79822fcf82fafd44efada0b7da7da4aa; validation semantics preserved]"
     },
@@ -113,8 +113,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/phcap01-concept-l1-research/validate.py",
-      "python3 -B scaffold/phcap01-concept-l1-research/selfcheck.py",
+      "python3 -B scaffold/research/phcap01-concept-l1-research/validate.py",
+      "python3 -B scaffold/research/phcap01-concept-l1-research/selfcheck.py",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "python3 -B scaffold/tools/scfctl.py residuals",
@@ -129,10 +129,10 @@
     ]
   },
   "artifacts": [
-    "scaffold/phcap01-concept-l1-research/README.md",
-    "scaffold/phcap01-concept-l1-research/inventory.json",
-    "scaffold/phcap01-concept-l1-research/validate.py",
-    "scaffold/phcap01-concept-l1-research/selfcheck.py",
+    "scaffold/research/phcap01-concept-l1-research/README.md",
+    "scaffold/research/phcap01-concept-l1-research/inventory.json",
+    "scaffold/research/phcap01-concept-l1-research/validate.py",
+    "scaffold/research/phcap01-concept-l1-research/selfcheck.py",
     "scaffold/bindings/SCF-B-0047.json"
   ],
   "verification": {
