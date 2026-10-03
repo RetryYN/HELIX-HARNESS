@@ -97,14 +97,14 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
     source = lane(data, runtime, session, now)
     target_runtime = "claude" if runtime == "codex" else "codex"
     target = data["lanes"].get(target_runtime)
-    p.require(target and target["expires"] > now, "宛先レーン未登録・期限切れ")
+    # leaseが切れた登録済みsessionへも積む。同じsessionの次のhook activityがleaseを更新して受け取る。
+    p.require(target, "宛先レーン未登録")
     p.require(request["route"] == "vscode_gui_mailbox", "GUI経路のrequestが必要")
     p.require(1 <= ttl <= 7200, "TTL範囲は1..7200秒")
+    # 向きはレーンではなくPRごとの作成側・review側で決める。packetが作成側とreview側を別runtimeに限る。
     if kind == "review_request":
-        p.require(source["lane"] == "execution" and target["lane"] == "review_merge", "review依頼のレーンが逆")
         p.require(runtime == request["author"] and response is None, "review依頼のruntime/応答不正")
     elif kind == "review_response":
-        p.require(source["lane"] == "review_merge" and target["lane"] == "execution", "指摘返却のレーンが逆")
         p.require(runtime == request["reviewer"], "reviewer不一致")
         p.validate_response(response, request)
     else:
@@ -347,7 +347,9 @@ def main():
                 del data["lanes"][args.runtime]
             elif args.command == "send":
                 message = send(data, args.runtime, args.session, args.id, args.kind, request, response, args.ttl, now)
-                print(json.dumps(dict(event_id=message["payload"]["event_id"], digest=message["digest"], status=message["status"])))
+                target = data["lanes"]["claude" if args.runtime == "codex" else "codex"]
+                print(json.dumps(dict(event_id=message["payload"]["event_id"], digest=message["digest"], status=message["status"],
+                                      receiver_lease_active=target["expires"] > now)))
             elif args.command == "ack": ack(data, args.id, args.runtime, args.session, args.digest, args.nonce, now)
             elif args.command == "inspect":
                 lane(data, args.runtime, args.session, now)

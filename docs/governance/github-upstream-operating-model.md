@@ -198,8 +198,8 @@ merge admissionの必須条件にしない。
 
 - **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。同じruntimeが両レーンを兼ねない。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。
 - **セッション開始時**：各GUIは自分のセッションがレーンに登録済みで、leaseが有効かを`status`で確かめる。失効していれば同じセッションを`bind`し直す。別セッションへの付替えは、利用者の指示またはセッションの交代のときに限る。
-- **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。
-- **配送不成立の扱い**：宛先のleaseが失効している、宛先のhookがGUIで信頼・読込されていない、ACKが返らない場合は配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。
+- **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。通知の向きはレーンではなくそのPRの作成側（packetの`author`）とreview側（`reviewer`）で決まり、どちらのレーンが作成したPRでも同じ経路を使う。
+- **配送不成立の扱い**：宛先のleaseが失効していても、登録済みのセッションへは通知を積み、そのセッションの次の動作で届く。`send`の出力`receiver_lease_active`がfalseのとき、宛先のhookがGUIで信頼・読込されていないとき、ACKが返らないときは、配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。
 - **指示の同期**：両runtimeの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。
 - **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、両GUIが実際に通知を受けてACKを返したことで行う。
 
@@ -210,10 +210,15 @@ SHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）の
 Codex側にも同じ待受と指示の同期を置くことである。変更の理由は、旧runtimeを起動しない現行の境界の下で、旧世代と同じく
 取次ぎなしで回すためである。新しい承認手続きは加えていない。
 
+通知の向きをPRごとの作成側・review側で決める点は、上記`CLAUDE.md`の「GitHub 自走運用」（AI-Aが作成・blocker修正・push、AI-Bがread-only収束review・merge判断）と、同じファイルの正規コマンド（`helix codex --role <role> --task "..."`と`helix claude --role <role> --task "..."`の両方向の委譲）を旧sourceとする。
+- **保持する点**：作成役とreview役をruntimeに固定せず、どちらのruntimeが作成しても、もう一方が独立にreviewしてmergeまで回すこと。
+- **変更する点**：委譲のために相手のproviderを起動するのではなく、既存GUIセッション間の通知箱で届けること。作成側とreview側が別runtimeであることは、レーンの向きではなくpacketの`author`と`reviewer`で確かめる。
+- **変更の理由**：レーンの向きで固定すると、`review_merge`のレーンが作成したPRで依頼も指摘も届かず、自走が止まるためである。新しい承認手続きは加えていない。
+
 ### レーンの交代と、両レーンが作成したPR
 
 - 作成側かどうかはPRのcommitで判断する。commitを作ったレーンは、そのPRの作成側である。
-- POの指示で`review_merge`のレーンが作成側を担う場合、review依頼はPR commentで行う。通知箱は`execution`から`review_merge`への依頼だけを受け付け、逆向きは拒否するためである（#2424、2026-09-30）。この場合は`execution`のレーンがreviewとmergeを担う。
+- POの指示で`review_merge`のレーンが作成側を担う場合も、review依頼はPR commentに記録したうえで、通知箱から`review_request`を送る。この場合は`execution`のレーンがreviewとmergeを担い、指摘は`review_response`で返す。以前の通知箱は`execution`から`review_merge`への依頼だけを受け付けていたため、#2424と#2562ではPR commentだけで依頼し、相手が気づくまで止まった。
 - 一つのPRに両レーンのcommitがある場合、各レーンは相手が作ったcommitだけを独立reviewとして扱い、自分のcommitをreviewしたことにしない。両レーンが作成側を含むため、merge担当はPOに確かめ、その選択をPR commentに原文で残す。#2424では、POが「Codexがmerge (Recommended)」（元の分担に戻し、Claudeが作成・Codexがreviewしてmerge）を選んだ（2026-10-04）。
 
 ### 作業branchとworktreeの片付け
