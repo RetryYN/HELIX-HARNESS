@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial items 017/030-033 / adopted version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial INT items 017/030-041/044-045 / adopted version_target 1.0 explicit items only
 owner: HELIX-INTELLIGENCE
 paired_l10: ../L10-verification/functional-verification.md
 
@@ -372,7 +372,7 @@ POが採択した`MPR-RC-HELIXINTELLIGENCE-L2-078-001`のR-06/R-07/R-09/R-10/R-1
 
 ## Stage 4 — INTELLIGENCE 1.0 部分草稿
 
-Stage 4 rosterから採択済み・`version_target: 1.0`の22 identityだけを対象とし、このcheckpointでは017/030–033の5親を収載する。順序stageはG0の採択順序案であり、ここで版・要求意味・ownerを決定しない。以下はPO承認前草稿である。各親の固定L2/L11 identity/revision、decision row、旧source起点と再利用判断は末尾crosswalkに固定した。
+Stage 4 rosterのうち採択済み・`version_target: 1.0`であるINTELLIGENCE 15 identityを対象とする。最初のcheckpointではINT 017/030–033の5親を収載し、続く追補で残り10親を扱う。順序stageはG0の採択順序案であり、ここで版・要求意味・ownerを決定しない。以下はPO承認前草稿である。各親の固定L2/L11 identity/revision、decision row、旧source起点と再利用判断は末尾crosswalkに固定した。
 
 ### `FR-INTELLIGENCE-L3-017-01` — `HELIXINTELLIGENCE-L2-017`
 
@@ -382,9 +382,13 @@ SECURITY permission、Worker execution、HARNESS verification、OS acceptanceの
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-017-01` 正常成立**：4子のidentity/revision/scope/actor-or-target/receiptを含む正常fixtureでは境界別の状態を保ち、実行時点の有効permissionを結ぶ。後日失効した同permissionでも過去実行は証拠として保持し、次の操作ではcurrent permissionを再照合する。
+- **`AC-INTELLIGENCE-L3-017-01` 正常成立**：4子のidentity/revision/scope/actor-or-target/receiptを含む正常fixtureでは境界別の状態を保ち、四子すべての証拠が揃った場合だけ統合修復結果を完了にする。実行時点の有効permissionと後日のrevocationを分け、後日の失効で過去証拠を消さず、次操作時はcurrent permissionを再照合する。HARNESS obligation欠落のWorker successをOS検収へ昇格しない。
 - **`AC-INTELLIGENCE-L3-017-02` 個別変異と失敗戻し先**：4子の一つずつを欠落・stale・scope違いにし、実行時点ですでにrevoked/expiredだったpermissionも投入する。該当段階を未完にしてSECURITY/Worker/HARNESS/OS該当ownerへ戻し、他段階は保つ。戻し先はSECURITY / Worker / HARNESS / OSであり、別sourceやauthorityを代替しない。
 - **`AC-INTELLIGENCE-L3-017-03` 未見正常と局所unknown**：未見段階順序でも対象scope・各receiptと実行時点permissionを照合する。後日失効したpermissionは過去証拠として維持し、実行時authorityを確認できない段階だけ保留する。
+
+#### HELIXINTELLIGENCE-L2-030〜033 共通接続依存
+
+各対象sourceはその機構の専用CONNECT admitted contractを通して読み、HARNESS-L2-010/011の共通pack identity・契約版・scope・compatibilityも照合する。source join単独では接続成立にしない。契約の交換時は新旧版の互換・対象scope・対の受入を再照合し、不一致またはstaleなら該当handoffを保留して既存rollback条件を適用する。各接続のsource/semantic ownerは移さない。
 
 ### `FR-INTELLIGENCE-L3-030-01` — `HELIXINTELLIGENCE-L2-030`
 
@@ -394,9 +398,9 @@ HARNESS requirement/designの正本revision、contract evidenceをSituation Mode
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-030-01` 正常成立**：requirementとdesignそれぞれのexact revision・owner・contract evidenceと、宣言済みcompatibility relationを入力し、異なるsource identityのまま保つ。
-- **`AC-INTELLIGENCE-L3-030-02` 個別変異と失敗戻し先**：片側stale、同名field意味衝突、contract evidence欠落を個別投入し、HARNESS ownerへ不一致sourceだけ戻す。戻し先はHARNESS requirement/design ownerであり、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-030-03` 未見正常と局所unknown**：未見HARNESS revisionが明示compatibilityに入る時はその辺を追跡し、宣言外version pairはunknownのままにする。
+- **`AC-INTELLIGENCE-L3-030-01` 正常成立**：requirementとdesignそれぞれのexact revision・owner・contract evidenceに加え、各専用CONNECT admitted contractとHARNESS-L2-010/011のpack版・scope・compatibilityが有効な入力で、それぞれ異なるsource identityのまま保つ。contract/pack交換時は互換性を再照合する。
+- **`AC-INTELLIGENCE-L3-030-02` 個別変異と失敗戻し先**：片側stale、同名field意味衝突、contract evidence欠落、CONNECT admitted contractまたはHARNESS-L2-010/011 packのstale・互換不一致を個別投入し、該当source/contract ownerへ戻してhandoffを保留する。戻し先はHARNESS requirement/design ownerであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-030-03` 未見正常と局所unknown**：未見HARNESS revisionが専用CONNECT admitted contractとHARNESS-L2-010/011 pack双方の宣言済みcompatibilityに入る時だけ追跡する。いずれか未照合/範囲外ならhandoffを保留し、既存rollback条件を適用する。
 
 ### `FR-INTELLIGENCE-L3-031-01` — `HELIXINTELLIGENCE-L2-031`
 
@@ -406,9 +410,9 @@ OS ticket・state・dependencyをsource revision付きread-only observationと�
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-031-01` 正常成立**：OS ticket T-17のstate revision 8とdependency一覧を入力し、Situation Modelがそのrevisionを表示してOS sourceは不変に保つ。
-- **`AC-INTELLIGENCE-L3-031-02` 個別変異と失敗戻し先**：revision 8を読み込んだ後にrevision 7の遅延eventを投入し、current stateを巻き戻さずstale observationとしてOSへ返す。OS sourceへのwriteがあれば不合格。戻し先はOSであり、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-031-03` 未見正常と局所unknown**：未見state eventでもOS contract revisionが宣言済みならsource order/epochに従う。order未定義部分だけunknown。
+- **`AC-INTELLIGENCE-L3-031-01` 正常成立**：OS ticket T-17のstate revision 8とdependency一覧を入力し、OS専用CONNECT admitted contractおよびHARNESS-L2-010/011 packで宣言された状態・event定義に従ってSituation Modelへ渡す。Situation Modelはsource revisionを表示し、OS sourceは不変に保つ。
+- **`AC-INTELLIGENCE-L3-031-02` 個別変異と失敗戻し先**：revision 8を読み込んだ後にrevision 7の遅延eventを投入する対と、OS専用CONNECT/HARNESS common packがstaleまたは互換不一致の対を入力する。戻し先はOSであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-031-03` 未見正常と局所unknown**：未見state value/eventでも、OS専用CONNECT admitted contractとHARNESS-L2-010/011 packの互換契約内で意味・遷移が定義されていれば、その定義どおりSituation Modelへ渡す。契約外または定義不明の種類だけOSへ照会してunknownとし、revision宣言だけでは受領成立にしない。
 
 ### `FR-INTELLIGENCE-L3-032-01` — `HELIXINTELLIGENCE-L2-032`
 
@@ -418,9 +422,9 @@ BRAIN Pattern/Unit/Part applicability、required input、relation、counterexamp
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-032-01` 正常成立**：同名でもidentity/revisionが異なるPatternを別々に保持し、選択Patternの必須input・relation・反例と適用scopeをsource-boundで返す。
-- **`AC-INTELLIGENCE-L3-032-02` 個別変異と失敗戻し先**：counterexampleを一致scopeで投入したら適用候補を拒否/未解決とし、BRAIN source本文を書き換えない。戻し先はBRAINであり、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-032-03` 未見正常と局所unknown**：未見knowledge revisionもcompatibilityが宣言され必要fieldがある範囲だけ扱い、特定できないedgeをunknownにする。
+- **`AC-INTELLIGENCE-L3-032-01` 正常成立**：現在scopeでcounterexampleが成立せず適用条件を満たすselected Patternについて、適用理由・Pattern identity/revision、required input・relation・counterexampleとscopeをsource-boundで返す。同名Patternはidentity/revisionで別々に保持する。専用BRAIN CONNECT admitted contractおよびHARNESS-L2-010/011 pack compatibilityも有効である。
+- **`AC-INTELLIGENCE-L3-032-02` 個別変異と失敗戻し先**：現在scopeで成立するcounterexampleは適用候補を棄却し、BRAINへ根拠を返す。counterexample根拠自体がunknownの場合に限り適用性をunknownにする。専用CONNECT/common pack stale・互換不一致はhandoff保留と既存rollback条件を適用し、知識正本は変更しない。戻し先はBRAINであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-032-03` 未見正常と局所unknown**：未見knowledge revisionは専用BRAIN CONNECT admitted contractとHARNESS-L2-010/011 pack双方の宣言済みcompatibilityに入り、条件・required input・反例を照合できる時だけ扱う。現在scopeで成立する反例がないと確認できた未見Patternは、適用理由とPattern identity/revisionを付けたcandidateにできる。反例根拠が不明な範囲だけunknownとする。
 
 ### `FR-INTELLIGENCE-L3-033-01` — `HELIXINTELLIGENCE-L2-033`
 
@@ -430,9 +434,9 @@ Product Core requirementとHARNESS verification obligationのsource/revisionを�
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-033-01` 正常成立**：Product Core requirementとHARNESS verification obligationが異なるowner/revision/source spanで与えられ、競合語義を融合せず各々へtraceする。
-- **`AC-INTELLIGENCE-L3-033-02` 個別変異と失敗戻し先**：unsupported schema、欠落owner、同名fieldのmeaning差を入力し、混合・暗黙mappingせず該当ownerへ戻す。戻し先はProduct Core / HARNESSであり、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-033-03` 未見正常と局所unknown**：未見schema extensionで既知fieldは保持し、未知field mappingのみunknownにする。
+- **`AC-INTELLIGENCE-L3-033-01` 正常成立**：Product CoreとHARNESSの各専用CONNECT admitted contractおよびHARNESS-L2-010/011 pack compatibilityを照合し、requirementとverification obligationを異なるowner/revision/source spanのままtraceする。
+- **`AC-INTELLIGENCE-L3-033-02` 個別変異と失敗戻し先**：unsupported schema、欠落owner、同名fieldのmeaning差、CONNECT admitted contractまたはHARNESS-L2-010/011 packのcompatibility不一致を個別投入し、sourceを混合せず該当ownerへ返してhandoffを保留する。戻し先はProduct Core / HARNESSであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-033-03` 未見正常と局所unknown**：未見schema versionが両専用CONNECT admitted contractとHARNESS-L2-010/011 packの宣言契約で読み取り可能な場合のみ受領する。非対応/契約不明versionは既知fieldの部分解析ができても全sourceの受領成立にせず、unsupportedとしてsource ownerへ返す。
 
 ## Stage 4 固定親・旧source crosswalk（item単位）
 

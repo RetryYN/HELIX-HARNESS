@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: version_target 1.0 explicit items drafted through Stage 4 partial items 017/030-033
+scope: version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -64,9 +64,9 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 | case ID | NFR候補ID | 親L2 | 入力／比較 | 測定oracle | 限界 |
 |---|---|---|---|---|---|
 | `CASE-INTELLIGENCE-L10-NFR-017-01` | `NFR-INTELLIGENCE-017-01` | `HELIXINTELLIGENCE-L2-017` | 子別identity、target revision/scope、各receipt、permission actor/action/実行時刻/revocation時刻をすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
-| `CASE-INTELLIGENCE-L10-NFR-030-01` | `NFR-INTELLIGENCE-030-01` | `HELIXINTELLIGENCE-L2-030` | requirement revision, design revision, contract evidence, compatibility relationをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
-| `CASE-INTELLIGENCE-L10-NFR-031-01` | `NFR-INTELLIGENCE-031-01` | `HELIXINTELLIGENCE-L2-031` | ticket id, event/source revision, state time/order, dependency identityをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
-| `CASE-INTELLIGENCE-L10-NFR-032-01` | `NFR-INTELLIGENCE-032-01` | `HELIXINTELLIGENCE-L2-032` | Pattern/Unit/Part identity+revision, required input, applicability, counterexample locatorをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
-| `CASE-INTELLIGENCE-L10-NFR-033-01` | `NFR-INTELLIGENCE-033-01` | `HELIXINTELLIGENCE-L2-033` | source identity/revision, owner, exact source span, field meaning, verification obligation linkをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
+| `CASE-INTELLIGENCE-L10-NFR-030-01` | `NFR-INTELLIGENCE-030-01` | `HELIXINTELLIGENCE-L2-030` | requirement/design revision, dedicated CONNECT admitted contract revision, HARNESS-L2-010/011 pack version/scope/compatibility, contract evidenceをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
+| `CASE-INTELLIGENCE-L10-NFR-031-01` | `NFR-INTELLIGENCE-031-01` | `HELIXINTELLIGENCE-L2-031` | ticket id, event/source revision, OS CONNECT admitted contract, HARNESS-L2-010/011 pack compatibility, state time/order, dependency identityをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
+| `CASE-INTELLIGENCE-L10-NFR-032-01` | `NFR-INTELLIGENCE-032-01` | `HELIXINTELLIGENCE-L2-032` | Pattern/Unit/Part identity+revision, BRAIN CONNECT admitted contract, HARNESS-L2-010/011 pack compatibility, required input, applicability, counterexample locatorをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
+| `CASE-INTELLIGENCE-L10-NFR-033-01` | `NFR-INTELLIGENCE-033-01` | `HELIXINTELLIGENCE-L2-033` | each CONNECT admitted contract, HARNESS-L2-010/011 pack compatibility, source identity/revision, owner, exact source span, field meaning, verification obligation linkをすべて含む正例と、各fieldを単独欠落・stale・scope誤結合したfixture。 | relation coverageと誤結合数を別々に数え、positiveのsource identityへ完全一致した時だけcandidateを成立扱いにする。 | 性能実測とは主張しない。親contractで必要なfieldの不一致を相殺・補完したら不合格。観測不能は未評価。 |
 
 候補値は未承認であり、動作・性能を実行計測した結果ではない。機能要件caseは[functional verification Stage 4](functional-verification.md)を参照する。
