@@ -1,6 +1,6 @@
-# HELIX-SECURITY L10 総合検証（Stage 1 草稿）
+# HELIX-SECURITY L10 総合検証（Stage 1・Stage 2c部分草稿）
 
-> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はG0確定のStage 1 34件全体ではなく、CONNECT 5件と合わせた部分sliceのSECURITY 19件を対象とする。
+> 状態: L10総合検証設計草稿。実行結果や合格証拠ではない。archive内test/runtime/CIは使わない。本書はG0確定のStage 1 34件全体ではなく、CONNECT 5件と合わせたStage 1部分sliceのSECURITY 19件、およびStage 2cのHELIXSECURITY-L2-031を対象とする。
 
 ## 検証共通契約
 
@@ -29,6 +29,7 @@
 | `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | 1.0 |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
 | `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01` | 1.0 |
+| `HELIXSECURITY-L2-031` | `SECURITY-FR-031-01..04` | `SECURITY-AC-031-01..04` | `SECURITY-CASE-031-01..04` | Stage 2c / 1.0 |
 
 ## 句別被覆と責務分解（L3/AC/L10）
 
@@ -252,4 +253,38 @@
 5. **update → artifact**: `SECURITY-AC-010-01/011-01/012-01/013-01/028-01`のcandidateを同じdescriptor/artifact chainでたどり、capability drift/provenance/identity mismatchをacceptにしない。共通pack exchange/rollbackはHARNESS ownerの検証へ残す。
 6. **persistence judgement separation**: `SECURITY-AC-014-01`は3 target classへのSECURITY判断のみを返す。L2-027の機構横断handoff、LABO評価、BRAIN登録/保存は別検証としてこのsliceで成功扱いしない。
 
-総合passは本スコープ19 ACと上記境界シナリオが全て成立し、authority・owner・1.0/1.x境界が一貫すること。未観測/unknownをpassにせず、旧HELIX regressionは後続横断検証として別途残す。
+総合passはStage 1部分scopeの19 AC、Stage 2cの031に対応する4 AC、および上記境界シナリオがそれぞれのscopeで成立し、authority・owner・1.0/1.x境界が一貫すること。未観測/unknownをpassにせず、旧HELIX regressionは後続横断検証として別途残す。
+
+## Stage 2c — HELIXSECURITY-L2-031対検証設計
+
+固定L2 revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`、L2全文SHA-256 `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5`、fixed section `427–446` / SHA `db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765`。対L11全文SHA-256 `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556`、section `104–115` / SHA `3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7`。以下は合成fixtureのみの未実行設計。
+
+### SECURITY-CASE-031-01 — 適用scopeと既存authority
+
+- **L3 AC**：`SECURITY-AC-031-01`
+- **正常**：L2-029の追加runtime scope内で有効な既存operation authority、OS assignment、runtime/config、target/scopeを一致させる。既存条件下で同一taskを反復し、毎回の新しい人確認なしに同じpolicy判断へ進むことを確認する。
+- **negative／対照**：authority/assignment/scopeの一項目をdriftさせた追加runtime caseはdeny/unknown。primary Worker、追加runtimeなし、別scopeは031の対象外で不必要に停止されない。
+- **oracleと戻し先**：有効既存条件だけでallow/constrain、欠落/不一致は既存ownerへ理由付きで返す。authority意味不足はSECURITY、assignment不足はOSへ返す。
+
+### SECURITY-CASE-031-02 — isolated copyとcanonical境界
+
+- **L3 AC**：`SECURITY-AC-031-02`
+- **正常**：manifest/digest付きの最小合成payloadを別個のassignment-bound copyへ払い出し、許可範囲のproposal/限定diffを返す。
+- **negative**：canonical repository、要求、authority、ticket/assignment、workflow、evidence/receipt storeへのread/writeを個別に試行し拒否・停止を確認する。出力から要求/authority/acceptance/merge/promote状態を変更する試行も拒否する。
+- **oracleと戻し先**：copy内の通常提案は可能、canonical direct accessとauthority化は0件。実隔離適用はWorker environment/INFRASTRUCTURE、assignmentはOS、policyはSECURITYへ返す。
+
+### SECURITY-CASE-031-03 — classificationとcredential非到達
+
+- **L3 AC**：`SECURITY-AC-031-03`
+- **正常**：L2-029の許可class/opt-out条件と既存operation authorityが整った合成taskを与え、非公開scoped credential-use capabilityをraw valueなしで使う場合は新たな一律拒否がないことを確認する。
+- **negative**：raw secret marker、secret/機密task、unknown class、secret値のcontext/env/payload/artifact/receipt露出を個別に投入し、遮断/unknownと値露出0を確認する。opt-out完了だけで禁止classが許可される対照も拒否する。
+- **oracleと戻し先**：L2-005/006/007/008/029の既存条件を再利用し、この要件でclassやoperation permissionを増やさない。classification/policyはSECURITY、実資源適用はWorker environment/INFRASTRUCTUREへ返す。
+
+### SECURITY-CASE-031-04 — receiptの実行後生成
+
+- **L3 AC**：`SECURITY-AC-031-04`
+- **正常**：開始前のpolicy/assignment/runtime/config/payload/scopeだけを与えてproposalを出し、後から同一tupleのWorker/INFRASTRUCTURE観測とOS result/diff receiptを入力する。HARNESS既存oracleの再検証状態はreceiptと別に観測する。
+- **negative**：開始前receipt必須化、receiptだけでaccepted/canonical/authority stateへ遷移、別assignment receiptの流用を個別に試す。
+- **oracleと戻し先**：実行開始時に結果receiptは不要、後続receiptは同じ対象へ結び、単体で昇格を作らない。OS/INFRASTRUCTURE/HARNESSの不足ownerを区別して返す。
+
+この設計はprimary Workerへの適用拡張、毎作業の人間承認、実runtime/secret/canonical stateへのアクセスを要求しない。

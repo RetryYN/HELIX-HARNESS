@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023
+scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023, HARNESS-L2-030, HARNESS-L2-031, HARNESS-L2-032
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -32,3 +32,13 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | L10 case ID | NFR候補ID | 入力／比較 | oracle／測定 | 失敗・未評価 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-022-01` | `NFR-C-HARNESS-022-01` | 同一revision/scopeでProvisional→Integrated→Verified→Acceptedの段階別証拠を与え、各必要evidenceを一つずつ欠落させる。 | 各遷移で必要条件を満たす場合だけ進み、誤昇格0件。L10 pass単独、L11記録なしはAcceptedにしない。 | scope/revisionやoracleが固定できないfixtureは未評価。実測をしておらず値は候補。 |
+
+## Stage 2c — HARNESS-L2-030／031／032 NFR測定case
+
+| L10 case ID | NFR候補 | 入力／観測 | 合格材料 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-030-01` | `NFR-C-HARNESS-030-01` | 同一要件/design/oracle/source版/scopeから独立生成したcaseを比較。contractが明示する非意味metadataは別集計する。 | 意味差分0。metadata除外は宣言contractに明記された分だけ。 | 未宣言正規化、期待値創作、根拠不明入力は不合格または未評価。 |
+| `CASE-HARNESS-L10-NFR-031-01` | `NFR-C-HARNESS-031-01` | 合成元failure identity、複数reduction stage、oracle同一/不同/未返却receipt、secret markerを投入する。 | identityを全段階に追跡、different oracleを同一扱い0、raw marker露出0。 | receipt前確認済みclaim、元failure消去、markerの値記録は不合格。 |
+| `CASE-HARNESS-L10-NFR-032-01` | `NFR-C-HARNESS-032-01` | 選択consumerの適合packetとfieldごとの不一致packetを比較し、receiptと後続execution resultを分離する。 | packet対応不一致0、初回receipt不要、受渡しからpassを作る件数0。 | consumer/schema不明は未評価、別consumerへのfallbackは不合格。 |
+
+候補値の測定は合成fixtureで行う設計であり、実測・実行・承認ではない。

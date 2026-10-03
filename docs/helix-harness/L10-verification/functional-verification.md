@@ -2,11 +2,11 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 1 + Stage 2a / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 / version_class 1.0
+scope: Stage 1 + Stage 2a + Stage 2c partial / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023, HARNESS-L2-030, HARNESS-L2-031, HARNESS-L2-032 / version_class 1.0
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
-本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義した13個のACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
+本書は[対のL3機能要件](../L3-requirements/functional-requirements.md)が定義したStage 1・2aおよびStage 2c部分scopeのACを、固定revision・宣言scopeでシステムとして照合する設計である。これは実施結果ではなく、L3承認、実装、実行、releaseまたは利用者acceptanceを生成しない。L3にないACや新しい要求を本書から追加しない。
 
 ## 照合対象revision
 
@@ -53,3 +53,20 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 | `CASE-HARNESS-L10-022-01` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-01` | 同一revision/scopeの段階証拠を用意し、各stageに対応するpair/oracle/result/evidenceを段階ごとに与える。 | Integrated/Verified/Acceptedが別状態で観測され、AcceptedにはL11 content oracleと利用者受入recordがともに結び付く。 | 欠落証拠、wrong revision/scope、L11 recordなしは当該状態へ昇格しない。 |
 | `CASE-HARNESS-L10-022-02` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-02` | 下位passのみ、CI green、artifact存在のみ、固有義務差分未照合、L10 passのみ、L11失敗/別revisionのnegative fixtureを個別投入。 | いずれも未充足段階で止まり、誤昇格0件。 | status投影やtrace存在をoracleの代用にした場合は不合格。 |
 | `CASE-HARNESS-L10-022-03` | `FR-HARNESS-L3-022` | `AC-HARNESS-L3-022-03` | 外部持込の同一条件positiveと、revision/pair/oracle/result/evidenceを一つずつ欠いたfixture、意味不一致fixtureを与える。 | 正常入力は満たすstageまで評価し、不足は段階を進めず、意味変更が要る差分はbackflow先を示す。 | 外部CI green/artifact存在だけは未評価。意味差を右側変更で隠せば不合格。 |
+
+## Stage 2c — HARNESS-L2-030／031／032の対検証設計
+
+対象固定revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全文SHA-256は `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a`。各L10 caseは[Stage 2c L3要件](../L3-requirements/functional-requirements.md)の同じAC IDを参照し、未実行の合成fixture設計である。
+
+| L10 case ID | L3 FR / AC | fixtureと観測 | 合格oracle | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-030-01` | `FR-HARNESS-L3-030` / `AC-HARNESS-L3-030-01` | 同一requirement・014設計・022 oracle・revision/scope/source版を結んだfixtureを与え、生成caseのtraceと条件を2回比較する。 | 全caseに根拠locatorがあり、同一入力で意味・条件が再現する。 | source不明は未観測のまま。欠落traceや意味差は不合格。 |
+| `CASE-HARNESS-L10-030-02` | 同上 / `AC-HARNESS-L3-030-02` | oracle定義済みnormal/boundary caseと、未定義permission・取消・状態結果の反例を個別に与える。 | 定義済み分だけ候補化し、oracleがない期待値は拒否またはunknownで保持する。 | 無根拠期待値、case countでの相殺は不合格。 |
+| `CASE-HARNESS-L10-030-03` | 同上 / `AC-HARNESS-L3-030-03` | 選択済みexternal contractの応答・failure・副作用だけを持つdoubleを生成し、未選択providerと実service接続の試行を対照にする。 | doubleが選択contractに限られ、実service呼出しなし。生成を実行済みとしない。 | 未選択provider推測、実接続、全面同等claimは不合格。 |
+| `CASE-HARNESS-L10-031-01` | `FR-HARNESS-L3-031` / `AC-HARNESS-L3-031-01` | 合成secret markerを含む許可済みbounded input、未許可入力、scope不明入力を別々に与え、出力先でmarker有無とpermission stateを観測する。 | 許可入力のみsanitized candidateに進み、secret marker露出0。unknownは保留。 | 未許可処理または露出は不合格。 |
+| `CASE-HARNESS-L10-031-02` | 同上 / `AC-HARNESS-L3-031-02` | 元failureと縮小候補を同一oracle・revisionで選択executorへ順に渡し、後続receiptを同一/異なるfailure/未返却に分ける。 | 同一oracle violationのreceiptが得られた段階だけconfirmed reproductionとする。 | 別failureやreceipt前のconfirmed表示は不合格。未返却は未完。 |
+| `CASE-HARNESS-L10-031-03` | 同上 / `AC-HARNESS-L3-031-03` | 修正後resultなしでcandidateを生成するfixtureと、別revisionの後段pass/fail receipt fixtureを分ける。 | 前者はcandidateのみ、後者は別証拠として結ばれ元failureを保持する。 | candidate生成に後段passを要求、または元failureを上書きすれば不合格。 |
+| `CASE-HARNESS-L10-032-01` | `FR-HARNESS-L3-032` / `AC-HARNESS-L3-032-01` | 宣言されたOS-020および利用者CI schema/versionのpositive、互換範囲外schema、target HEAD/scope/oracleの各不一致を別fixtureにする。 | positiveだけを適合packetとして出し全識別子・版・scopeを保持。 | mismatchを成功扱い、別consumerへ暗黙fallbackは不合格。 |
+| `CASE-HARNESS-L10-032-02` | 同上 / `AC-HARNESS-L3-032-02` | receiptなしで初回packetを作り、受渡しreceiptと別途返るexecutor resultを観測。ticket/passが付加される反例を与える。 | 初回packetが成立し、receiptは受渡しだけ、実行結果は選択executorの出力として分離。 | receiptを前提化、受渡しからpass/ticket/acceptance生成は不合格。 |
+
+この検証設計は生成・packet化・receiptの存在を実行成功やL3承認に読み替えない。実際のexecutor実行、外部通信、実credential/dataの利用を含まない。

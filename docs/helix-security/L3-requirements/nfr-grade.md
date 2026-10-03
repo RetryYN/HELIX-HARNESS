@@ -14,3 +14,13 @@
 | `SEC-NFR-008` / `SECURITY-AC-009-01`, `SECURITY-AC-010-01`, `SECURITY-AC-013-01` | evidence retention | 保存期間は固定候補値なし。minimum evidenceはsource identity/revision、decision reason、recipient/owner stateで、raw secret値は常に0件。 | `HELIXSECURITY-L2-005/009/010/013/033`。sourceにretention期間なし。 | 必要なdecision traceが定めたverification windowで参照できるか測定し、window自体はownerが宣言したときだけ適用する。 |
 
 候補境界は測定可能だが、未指定の性能値を普遍閾値にしない。1.x/Web sink保護を1.0へ前倒しせず、scanner/registry/providerや必須Botを追加しない。
+
+## Stage 2c — HELIXSECURITY-L2-031の技術候補
+
+| 候補ID | 候補値・条件 | 根拠と比較案 | L10測定／限界 |
+|---|---|---|---|
+| `SEC-NFR-031-01` | 追加runtimeによるcanonical repository/stateの直接read/write、proposal由来のauthority/acceptance/merge/promote生成は **0件**。 | L2-031のisolated copy・proposal-only境界を件数化する。copy内の提案を一律拒否する比較案は許可されたproposal作成まで狭めるため不採用。 | CASE-NFR-SECURITY-031-01でallowed-copy operationとdirect canonical attemptを対照し、許可範囲のproposal可・canonical effect 0を観測。主Workerは母集団へ含めない。 |
+| `SEC-NFR-031-02` | raw credential/secret markerのruntime context/env/payload/artifact/receipt露出 **0件**。既存authority下のcredential-use capabilityに対する「credential利用だけ」を理由とした追加deny **0件**。 | L2-005/029/031と採択L11から、raw value非到達と有効な既存capabilityの範囲内利用を同時に観測する候補。全credential-use denyはP0採択意味に反し、無条件allowは既存scope条件を落とすため不採用。 | 合成markerを非出力のmatcherで走査し、値をログしない。existing authority/scope positiveと各条件drift negativeを比較。新規permissionを作らず、秘密/機密task classは既存L2-029で遮断。 |
+| `SEC-NFR-031-03` | 実行前にresult/diff/完了receiptを要求する件数 **0**、別assignment/runtime/config/target/scopeのreceipt流用 **0**。 | L2/L11はresult receiptを実行後の観測・OS記録として置き、事前条件としない。 | CASE-NFR-SECURITY-031-02でreceiptなしのproposal開始と同一tupleのpost-run receiptを照合。数量閾値・retention・quota制限はこの親から導かない。 |
+
+これらはL3候補であり、実測値・承認値・実装方式を指定しない。既存policy/assignment条件、対象範囲、owner、version_targetを変えない。

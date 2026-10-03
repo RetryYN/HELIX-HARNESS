@@ -2,10 +2,10 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 only
+scope: Stage 1 + Stage 2a + Stage 2c partial / HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023, HARNESS-L2-030, HARNESS-L2-031, HARNESS-L2-032
 paired_l10: ../L10-verification/business-verification.md
 
-このStage 1とStage 2aの部分草稿では、対象4件から独立した業務基準・価値閾値・事業判断を追加しない。各固定L2はpack境界、呼出しcontract、条件別依存closureを定める技術的なsystem contractであり、別の業務ownerや業務stateを割り当てていない。よって、この文書は「HELIX-HARNESSにbusiness requirementsがない」とする全体判断ではなく、この4親から意味を追加しないための適用範囲記録である。
+このStage 1・Stage 2aとStage 2cの部分草稿では、対象7件から独立した業務基準・価値閾値・事業判断を追加しない。各固定L2はpack境界、呼出しcontract、条件別依存closureを定める技術的なsystem contractであり、別の業務ownerや業務stateを割り当てていない。よって、この文書は「HELIX-HARNESSにbusiness requirementsがない」とする全体判断ではなく、この7親から意味を追加しないための適用範囲記録である。
 
 | 親L2 | business要件への扱い | 境界 |
 |---|---|---|
@@ -13,6 +13,9 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-011` | 独立したbusiness requirementを導出しない | 呼出し側の保存・表示・業務上の完了判断をHARNESSへ移さない。権限はSECURITYが所有する。 |
 | `HARNESS-L2-023` | 独立したbusiness requirementを導出しない | 条件別dependency classificationから新しい利用方針やownerを作らない。 |
 | `HARNESS-L2-022` | 独立したbusiness requirementを導出しない | 段階別検証・利用者受入の意味は固定L2/L11と機能ACに残し、別の事業価値基準を追加しない。 |
+| `HARNESS-L2-030` | 独立したbusiness requirementを導出しない | case生成は共有技術能力であり、実行・受入・品質判断を所有しない。 |
+| `HARNESS-L2-031` | 独立したbusiness requirementを導出しない | 許可入力のreduction/regression候補は業務上の障害優先度・完了判定を新設しない。 |
+| `HARNESS-L2-032` | 独立したbusiness requirementを導出しない | packet受渡しはexecutorの実行や業務完了を意味しない。 |
 
 ## 旧business資産との照合
 

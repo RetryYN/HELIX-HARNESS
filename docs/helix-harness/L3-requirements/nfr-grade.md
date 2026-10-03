@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023 / version_class 1.0
+scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023, HARNESS-L2-030, HARNESS-L2-031, HARNESS-L2-032 / version_class 1.0
 paired_l10: ../L10-verification/nfr-verification.md
 
 これは4つの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、数値値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
@@ -58,3 +58,13 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 | NFR候補ID／親 | 候補値 | 根拠・比較案 | L10測定・適用限界 |
 |---|---|---|---|
 | `NFR-C-HARNESS-022-01` / `HARNESS-L2-022` | 段階間の誤昇格0件。各昇格は同一revision/scopeの当該stage証拠一式を要し、L10 passのみからAcceptedへ進む件数0。 | 4状態と3遷移を個別に確認する固定L2を観測可能にした候補。単一green/progressへの縮約は不採択。 | L10で段階別positiveと必要evidenceを一つ欠いたnegativeを比較し、誤昇格件数を数える。利用者受入やreleaseの実施は対象外。実測値ではなく候補。 |
+
+## Stage 2c — HARNESS-L2-030／031／032技術候補
+
+| 候補ID／親 | 候補値・条件 | 根拠と比較案 | 適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-030-01` / `HARNESS-L2-030` | 固定入力・source版・scopeから生成したcase意味の予期しない差分 **0件**。 | L2-030の再現可能な生成条件を試験可能にする候補。比較案としてbytes digestだけの比較と、contractで非意味metadataを明示除外した意味比較を区別する。contractが除外項目を宣言しない限りbytes差は差分である。 | 生成物の実行・品質・coverage充足を測らない。旧生成値/閾値を根拠にしない。 |
+| `NFR-C-HARNESS-031-01` / `HARNESS-L2-031` | original failure identityの欠落、別oracle failureとの誤同一視、raw secret/PII露出 **各0件**。 | 元failure保持・同一oracle確認・sanitizationを個別に測れる完全性候補。case生成件数や縮小率を合否値にする案はfailure意味を測らないため採らない。 | 最小ケースのサイズ、再現時間、成功率の未指定閾値は追加しない。 |
+| `NFR-C-HARNESS-032-01` / `HARNESS-L2-032` | packet内のcase/oracle/source-version/target-revision/scope/consumer-schema対応不一致 **0件**。 | L2-032のartifact意図と選択consumerとの結合をidentity単位で観測可能にする候補。受渡しreceiptからexecution passを導く比較案は責務境界を壊すため不採用。 | 対象は選択した宣言済みconsumer/versionだけ。実行結果・CI成功・consumer availability SLOは測らない。 |
+
+旧NFRの測定値・閾値を流用せず、比較対象と計測範囲を限定する。
