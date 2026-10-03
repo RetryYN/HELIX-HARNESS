@@ -1,13 +1,13 @@
 {
   "artifacts": [
     "scaffold/bindings/SCF-B-0147.json",
-    "scaffold/legacy-execution-ticket-product-classification-0147/README.md",
-    "scaffold/legacy-execution-ticket-product-classification-0147/PR-DRAFT.md",
-    "scaffold/legacy-execution-ticket-product-classification-0147/generate.py",
-    "scaffold/legacy-execution-ticket-product-classification-0147/inventory.json",
-    "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
-    "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
-    "scaffold/legacy-execution-ticket-product-classification-0147/selfcheck.py"
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/README.md",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/PR-DRAFT.md",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/generate.py",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/inventory.json",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/validate.py",
+    "scaffold/research/legacy-execution-ticket-product-classification-0147/selfcheck.py"
   ],
   "connections": {
     "boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority",

@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "PHCAP-15 Deploy第六12旧assetのsource／decision／failure／consumer evidenceと四製品候補のsemantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "PHCAP-15 pool 78件から既レビュー6束（#2001 7件、#2004 12件、SCF-B-0037 3件、SCF-B-0059 third12 12件、SCF-B-0060 next12 12件、SCF-B-0063 fifth12 12件）の58件を除外し、残分母20件から第六12件を選択する。改善backlog、plan、test-design、requirement snapshot、implementation sourceを横断し、source SHAと24 exact spanを静的に保持する。4A7Aのappend-only decision 2件、copy/read-after 1件、consumer refs 2件は履歴として保持するが、current authority、phase admission、product owner、implementation、degradation、failure outcome、consumer closure、acceptance、release、deploymentは未解決のまま残す。残り8件は未レビュー分母として固定する。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/phcap15-deploy-sixth12-research/inventory.json deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3 -> ec4fe5f0c17347d29a5a8fb7898a562fa1fc79b37aaeecd91c4ec55552b691cd). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
+  "reason": "PHCAP-15 pool 78件から既レビュー6束（#2001 7件、#2004 12件、SCF-B-0037 3件、SCF-B-0059 third12 12件、SCF-B-0060 next12 12件、SCF-B-0063 fifth12 12件）の58件を除外し、残分母20件から第六12件を選択する。改善backlog、plan、test-design、requirement snapshot、implementation sourceを横断し、source SHAと24 exact spanを静的に保持する。4A7Aのappend-only decision 2件、copy/read-after 1件、consumer refs 2件は履歴として保持するが、current authority、phase admission、product owner、implementation、degradation、failure outcome、consumer closure、acceptance、release、deploymentは未解決のまま残す。残り8件は未レビュー分母として固定する。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/research/phcap15-deploy-sixth12-research/inventory.json deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3 -> ec4fe5f0c17347d29a5a8fb7898a562fa1fc79b37aaeecd91c4ec55552b691cd). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
@@ -59,22 +59,22 @@
       "note": "Web-OS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c; 現receipt=31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/helix-web-os/L1-planning/system-intent.mdから新path=helix-web/docs/helix-web-os/L1-planning/system-intent.mdへ更新した（POの指示で、HELIX-Web・Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/へ移した）。本文の意味・分類（Visionレベルの材料）・authority状態は不変で、変わったbytesは、文書内の相対リンクを新しい深さに合わせた部分と、front matterにある対の文書・親L1のpath（pair_artifact・parent_l1_candidate、ある場合）を新しいpathへ改めた部分だけである。本bindingのrole・obligations・connections・replacement・artifactは、Web・Web-OSの文書の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249; 現receipt=19a399519538917b0a2a3cd201ebb222981ad245e98a02eafed3ff19111d339b; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: WEB-OS L1（Vision材料）は、HELIX-Web製品群 要求原案（2026-09-26のPO提示、docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md）により、題名と本文のHELIX-Web-OSの名前をHELIX-WEB-OSへ改めた（POの発言の引用、ID、機械参照の値は不変。行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）をbinding全体で確認した。前receipt=19a399519538917b0a2a3cd201ebb222981ad245e98a02eafed3ff19111d339b; 現receipt=f702ed0044b284d8c9b560c63f611ae54912141f91ff85f8b39bdd0d63512ef1; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/phcap15-deploy-sixth12-research/README.md",
+      "path": "scaffold/research/phcap15-deploy-sixth12-research/README.md",
       "sha256": "11f54eb6390109d931bd2471e41d41e7f0f80fb94a7876e1b3b687dabdaec5ff",
       "note": "sixth12 pool, exclusions, denominator and unknown boundary"
     },
     {
-      "path": "scaffold/phcap15-deploy-sixth12-research/inventory.json",
+      "path": "scaffold/research/phcap15-deploy-sixth12-research/inventory.json",
       "sha256": "beae61c3790687119e68b924ee20a36292c4f57bc6e27c142863b44c1218844f",
       "note": "pool/exclusion/selection/source/decision/failure/consumer inventory [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/phcap15-deploy-sixth12-research/inventory.json` SHA 40e8e7c3e4e7d70c970e3397b78694a316c51efdaaef0caeb183de4d696d682c -> 74dc932c17b58d2a3d274ab1964c8d8552e08f2981dfabce7a1d57f8fe5a8211. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 R2301-01/02/03 correction: current upstream pin follows reviewed OS-038-002 candidate or PHCAP-20 validator; fixed research input snapshots and adopted revision remain unchanged; authority unaffected.] [2026-09-29 current-pin read-after: scaffold/phcap15-deploy-sixth12-research/inventory.json follows current candidate/register bytes; previous=05c6308b1987b2c53e500baf9337b9678a51c1142334c75bab3c49bfce7417e3; current=deeacd1c2c36e77e09b1befae02884487c75c4e214f236bb0301bd8df55844b3; binding role/obligations/connections/operations/verification/replacement and authority unchanged.]"
     },
     {
-      "path": "scaffold/phcap15-deploy-sixth12-research/validate.py",
-      "sha256": "c0a0e14401a6c89b7cdb5b09f43499cc8c8f4d02aff68db73cb4099b7a6c10dd",
+      "path": "scaffold/research/phcap15-deploy-sixth12-research/validate.py",
+      "sha256": "d92a77de760cab269cb86ae04ee9a03476639d952cf59ee7899befa9b7a92fc8",
       "note": "static denominator/digest/span/status/keyset validator"
     },
     {
-      "path": "scaffold/phcap15-deploy-sixth12-research/selfcheck.py",
+      "path": "scaffold/research/phcap15-deploy-sixth12-research/selfcheck.py",
       "sha256": "f8fc4427f64d3c3e1f783de1dad88478ff5944d65844bf8b082d05a8c73fb5fc",
       "note": "authority/scope/source/status/failure/consumer negative checks"
     }
@@ -108,8 +108,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/phcap15-deploy-sixth12-research/validate.py",
-      "python3 -B scaffold/phcap15-deploy-sixth12-research/selfcheck.py",
+      "python3 -B scaffold/research/phcap15-deploy-sixth12-research/validate.py",
+      "python3 -B scaffold/research/phcap15-deploy-sixth12-research/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -124,10 +124,10 @@
     ]
   },
   "artifacts": [
-    "scaffold/phcap15-deploy-sixth12-research/README.md",
-    "scaffold/phcap15-deploy-sixth12-research/inventory.json",
-    "scaffold/phcap15-deploy-sixth12-research/validate.py",
-    "scaffold/phcap15-deploy-sixth12-research/selfcheck.py",
+    "scaffold/research/phcap15-deploy-sixth12-research/README.md",
+    "scaffold/research/phcap15-deploy-sixth12-research/inventory.json",
+    "scaffold/research/phcap15-deploy-sixth12-research/validate.py",
+    "scaffold/research/phcap15-deploy-sixth12-research/selfcheck.py",
     "scaffold/bindings/SCF-B-0065.json"
   ],
   "verification": {

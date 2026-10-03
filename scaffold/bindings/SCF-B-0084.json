@@ -10,21 +10,21 @@
   "upstream": [
     {
       "path": "scaffold/bindings/SCF-B-0081.json",
-      "sha256": "fb7139957a8b2494b490f52b8c2332e7980586b7df8b22e61c929248eaeb945b",
+      "sha256": "4f6827550a5411d682cabb6432ee69836ffc83f10b95548470e5e1ccb1c04294",
       "note": "parent Scaffold binding; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c; 現receipt=b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認の発見事項の反映（owner・語・読込順・旧対応の記録） read-after: 上流binding SCF-B-0081は、統合確認の発見事項の反映（HARNESS L2／L11、OS L2、Web L2、start-hereと研究用pinの更新）に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらず、変更した文言（ticket導出コアの主語、学習・評価・Benchのowner、CIの規則と組み立ての分担、管理から推進へ渡す項目、Workerの位置づけ、start-hereの読込順と人間判断の範囲）と、OS L2の行番号・HARNESS L11の52行以降の行番号を前提にしないこと。前receipt=b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf; 現receipt=c8f8e17e6930866324f6d7c53488f70c3348d4b4897c4679e8132a31411bf64d; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: 上流binding SCF-B-0081は、HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（Web・Web-OS文書のpath更新、リンク先の更新、研究用pinの更新）に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらず、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないこと。前receipt=c8f8e17e6930866324f6d7c53488f70c3348d4b4897c4679e8132a31411bf64d; 現receipt=28209da16f379ca6b5a05cf46276d32f6ae38323856dc17f8f4836d99ae03833; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: 上流binding SCF-B-0081は、HELIX-Web製品群 要求原案の反映（名前の書き換えHELIX-Web-OS→HELIX-WEB-OS、Conceptへの構成の反映、研究用pinの更新）に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらず、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）。前receipt=28209da16f379ca6b5a05cf46276d32f6ae38323856dc17f8f4836d99ae03833; 現receipt=435adb8406e1f73bdd79517403a273998bccde1c52d197e69e9d2e13a988a1d4; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: 上流binding SCF-B-0081は、旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（台帳のpath更新、リンク先の更新、研究用pinとvalidatorのpath定数の更新）に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらず、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないこと。前receipt=435adb8406e1f73bdd79517403a273998bccde1c52d197e69e9d2e13a988a1d4; 現receipt=fb7139957a8b2494b490f52b8c2332e7980586b7df8b22e61c929248eaeb945b; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
       "sha256": "0b55229cb18f2495798cf80ba2f8d49d240ab8dfe8de190aaa85a3bb5c97a835",
       "note": "prior selected/unprocessed denominator and static source metadata"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/semantic-atoms.jsonl",
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/semantic-atoms.jsonl",
       "sha256": "6a6fdbec06e4c7ad41a9ecbf83cfe1c6420f9c5cbefb1f370c10c2bdc3be2078",
       "note": "prior atom IDs and source-line exclusion set; no semantic adoption"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
+      "path": "scaffold/research/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
       "sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
       "note": "static Vision parent span source; no semantic adoption"
     },
@@ -66,8 +66,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
-      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0084/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "python3 -B scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -82,12 +82,12 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/README.md",
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/inventory.json",
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/semantic-atoms.jsonl",
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/legacy-links.jsonl",
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
-    "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/selfcheck.py"
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/README.md",
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/inventory.json",
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/semantic-atoms.jsonl",
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/legacy-links.jsonl",
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+    "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",

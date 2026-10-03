@@ -33,7 +33,7 @@ POはハイブリッド設計ドキュメントについて「これをHELIXコ�
 
 ### system-design-ops-playbookの扱い
 
-- POの依頼は「このスキルを設計テンプレに変換してフォルダ削除まで進めておくれ」である。変換結果（seed候補）は`scaffold/design-template-seed-sdop-20260929/`に置き、[SCF-B-0152](../../scaffold/bindings/SCF-B-0152.json)で束縛した。
+- POの依頼は「このスキルを設計テンプレに変換してフォルダ削除まで進めておくれ」である。変換結果（seed候補）は`scaffold/research/design-template-seed-sdop-20260929/`に置き、[SCF-B-0152](../../scaffold/bindings/SCF-B-0152.json)で束縛した。
 - 本ZIPは変換の出典として保存する。中身のコード・設定例は実行しない。
 
 ## 見つからなかったもの

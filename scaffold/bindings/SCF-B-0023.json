@@ -9,7 +9,7 @@
   "reason": "baseline→pre-isolationのGit diff 400 pathのうち、既存pathの333-record holding外にあるstatus Aの67 pathについて、archive/root、旧asset catalog、現行mainの保存状態を静的に記録する。正式保存先、authority、意味atom、製品責務、実装、完了は未確定のため、未使用registeredで保持する。",
   "upstream": [
     {
-      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-67/report.json",
       "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
       "note": "67 path audit report"
     },
@@ -67,8 +67,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-outside-holding-67/validate.py",
-      "python3 scaffold/pre-isolation-outside-holding-67/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-67/validate.py",
+      "python3 scaffold/research/pre-isolation-outside-holding-67/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -83,10 +83,10 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-outside-holding-67/README.md",
-    "scaffold/pre-isolation-outside-holding-67/report.json",
-    "scaffold/pre-isolation-outside-holding-67/validate.py",
-    "scaffold/pre-isolation-outside-holding-67/selfcheck.py"
+    "scaffold/research/pre-isolation-outside-holding-67/README.md",
+    "scaffold/research/pre-isolation-outside-holding-67/report.json",
+    "scaffold/research/pre-isolation-outside-holding-67/validate.py",
+    "scaffold/research/pre-isolation-outside-holding-67/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -98,8 +98,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation-outside-holding-67/validate.py（67 status A、Git blob OID、archive/root・catalog、main状態、product／phase数）",
-      "scaffold/pre-isolation-outside-holding-67/selfcheck.py（分母、Git blob、archive/root、main不在、分類、Binding state、authorityの7否定変異）",
+      "scaffold/research/pre-isolation-outside-holding-67/validate.py（67 status A、Git blob OID、archive/root・catalog、main状態、product／phase数）",
+      "scaffold/research/pre-isolation-outside-holding-67/selfcheck.py（分母、Git blob、archive/root、main不在、分類、Binding state、authorityの7否定変異）",
       "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema・digest・残余確認）",
       "git diff --check（候補文書の静的整形）"
     ],

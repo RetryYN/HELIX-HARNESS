@@ -9,37 +9,37 @@
   "reason": "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定し、path由来の四製品／phase候補、pre-isolation／archive blob、歴史的13 live holdingのexact path／blob／SHA relationを保存する。実装、failure／degraded／unimplemented、semantic inclusion、authority、要求identity、successorはunknownまたは未開始に留める。",
   "upstream": [
     {
-      "path": "scaffold/outside67-global-49-67/README.md",
+      "path": "scaffold/research/outside67-global-49-67/README.md",
       "sha256": "f8c33c01e6b7b90f8b2509a5b9c2b9a963cb4a34bb20899f0dea07e71c4d5b6f",
       "note": "対象範囲・unknown境界・static-only契約"
     },
     {
-      "path": "scaffold/outside67-global-49-67/generate.py",
-      "sha256": "d099a8699e4fda6c9ecf9404f30d7307c386a05cf7c2655706a0f036fbee0e52",
+      "path": "scaffold/research/outside67-global-49-67/generate.py",
+      "sha256": "1acb2334cfa6e29a28d64919e9ab29f3206ec7083bdec25a69fd957247abe8ac",
       "note": "fixed report／Git object／13 holdingからの再生成 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: outside67-global-49-67/generate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=58bbc804afa3f0b503e5be409f1353c9ccfe4184067eb45b6961b59e89b20f79; 現receipt=d099a8699e4fda6c9ecf9404f30d7307c386a05cf7c2655706a0f036fbee0e52; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/outside67-global-49-67/validate.py",
-      "sha256": "9a72056840d7acc684d063c722387497734a19fc65835c530b62ab04faeb9453",
+      "path": "scaffold/research/outside67-global-49-67/validate.py",
+      "sha256": "3c0b74ca6a473733460ab18d610c92f81af375de481b5449f9bdfa03b2d0a17d",
       "note": "generator非依存のexact relation、findings／prohibited text、recursive keyset validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: outside67-global-49-67/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=724c5e1bc59551b33cf0a260daac1de5cf1a1414e87b09fa7c60ba29919b2e3f; 現receipt=9a72056840d7acc684d063c722387497734a19fc65835c530b62ab04faeb9453; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/outside67-global-49-67/selfcheck.py",
+      "path": "scaffold/research/outside67-global-49-67/selfcheck.py",
       "sha256": "38620dc79afe26513c9f560c4e89b3dc9417051d7348c1e37f52a345b4b3c3fa",
       "note": "19否定自己検査（exact code／no-op guard含む）"
     },
     {
-      "path": "scaffold/outside67-global-49-67/inventory.json",
+      "path": "scaffold/research/outside67-global-49-67/inventory.json",
       "sha256": "01b33bd2ab541068aabd6a34e4418e0b3ea33b2cc713877cafa4f2fc5734a87e",
       "note": "19件の分類集計・13 holding snapshot・unknown境界 [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/outside67-global-49-67/inventory.json` SHA 01b33bd2ab541068aabd6a34e4418e0b3ea33b2cc713877cafa4f2fc5734a87e -> c61ab00785dc788164a0f477250b63a1242d75f0b64cc88b43a4ec626a1d90ce. Scaffold role, obligations and authority remain unchanged.]"
     },
     {
-      "path": "scaffold/outside67-global-49-67/source-items.jsonl",
+      "path": "scaffold/research/outside67-global-49-67/source-items.jsonl",
       "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04",
       "note": "49–67各pathのblob／SHA／holding relation"
     },
     {
-      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "path": "scaffold/research/pre-isolation-outside-holding-67/report.json",
       "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
       "note": "PR #1978 outside-67 67 path source set"
     },
@@ -81,9 +81,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/outside67-global-49-67/generate.py",
-      "python3 scaffold/outside67-global-49-67/validate.py",
-      "python3 scaffold/outside67-global-49-67/selfcheck.py",
+      "python3 scaffold/research/outside67-global-49-67/generate.py",
+      "python3 scaffold/research/outside67-global-49-67/validate.py",
+      "python3 scaffold/research/outside67-global-49-67/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -99,12 +99,12 @@
     ]
   },
   "artifacts": [
-    "scaffold/outside67-global-49-67/README.md",
-    "scaffold/outside67-global-49-67/generate.py",
-    "scaffold/outside67-global-49-67/validate.py",
-    "scaffold/outside67-global-49-67/selfcheck.py",
-    "scaffold/outside67-global-49-67/inventory.json",
-    "scaffold/outside67-global-49-67/source-items.jsonl",
+    "scaffold/research/outside67-global-49-67/README.md",
+    "scaffold/research/outside67-global-49-67/generate.py",
+    "scaffold/research/outside67-global-49-67/validate.py",
+    "scaffold/research/outside67-global-49-67/selfcheck.py",
+    "scaffold/research/outside67-global-49-67/inventory.json",
+    "scaffold/research/outside67-global-49-67/source-items.jsonl",
     "scaffold/bindings/SCF-B-0044.json"
   ],
   "verification": {

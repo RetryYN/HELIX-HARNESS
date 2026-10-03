@@ -1,13 +1,13 @@
 {
   "artifacts": [
     "scaffold/bindings/SCF-B-0133.json",
-    "scaffold/legacy-runtime-residual-product-classification-0133/README.md",
-    "scaffold/legacy-runtime-residual-product-classification-0133/PR-DRAFT.md",
-    "scaffold/legacy-runtime-residual-product-classification-0133/generate.py",
-    "scaffold/legacy-runtime-residual-product-classification-0133/validate.py",
-    "scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py",
-    "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
-    "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl"
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/README.md",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/PR-DRAFT.md",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/generate.py",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/validate.py",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/selfcheck.py",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/inventory.json",
+    "scaffold/research/legacy-runtime-residual-product-classification-0133/classification-research.jsonl"
   ],
   "connections": {
     "boundary": "research evidence only; no formal product or implementation authority",

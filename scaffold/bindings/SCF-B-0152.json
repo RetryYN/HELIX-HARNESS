@@ -74,15 +74,15 @@
     ]
   },
   "artifacts": [
-    "scaffold/design-template-seed-sdop-20260929/README.md",
-    "scaffold/design-template-seed-sdop-20260929/os-decision-facilitation-input.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
-    "scaffold/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
+    "scaffold/research/design-template-seed-sdop-20260929/README.md",
+    "scaffold/research/design-template-seed-sdop-20260929/os-decision-facilitation-input.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-001-logging.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-002-nonfunctional.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-003-maintainability-runbook.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-004-logic-design.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-005-dependencies.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-006-aws-foundation.md",
+    "scaffold/research/design-template-seed-sdop-20260929/templates/DT-SDOP-007-design-review-quickcheck.md",
     "scaffold/bindings/SCF-B-0152.json"
   ],
   "verification": {

@@ -26,6 +26,7 @@ replacement_issue: GitHub Issue #1866（仮組み→本実装差し替え台帳�
 | `tools/scfctl.py` | 検査・一覧・置換確認・残留検出・撤去遷移・自己検査 | `scaffold/`配下だけ。`retire`はbinding fileのstateだけを書く |
 | `checks/cases/*.json` | L11受入候補を写した否定例・肯定例 | 追加は候補のL11項目と対応づける |
 | `evidence/` | 自己検査の結果（証拠種別`scaffold`）。正式な検証結果と混ぜない | 各仮組みの検証記録と`scfctl selftest --record`が書く |
+| `research/` | 仮の研究・監査候補bundle。候補資料と現行research validatorを束ねる。要求採否・実装・正式監査recordを生成しない | Bindingの仮artifact pathと研究検証用資料 |
 
 ## 使い方
 

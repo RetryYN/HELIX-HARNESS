@@ -135,12 +135,12 @@
   },
   "artifacts": [
     "scaffold/bindings/SCF-B-0127.json",
-    "scaffold/legacy-state-db-product-classification-0127/README.md",
-    "scaffold/legacy-state-db-product-classification-0127/PR-DRAFT.md",
-    "scaffold/legacy-state-db-product-classification-0127/generate.py",
-    "scaffold/legacy-state-db-product-classification-0127/validate.py",
-    "scaffold/legacy-state-db-product-classification-0127/selfcheck.py",
-    "scaffold/legacy-state-db-product-classification-0127/inventory.json",
-    "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl"
+    "scaffold/research/legacy-state-db-product-classification-0127/README.md",
+    "scaffold/research/legacy-state-db-product-classification-0127/PR-DRAFT.md",
+    "scaffold/research/legacy-state-db-product-classification-0127/generate.py",
+    "scaffold/research/legacy-state-db-product-classification-0127/validate.py",
+    "scaffold/research/legacy-state-db-product-classification-0127/selfcheck.py",
+    "scaffold/research/legacy-state-db-product-classification-0127/inventory.json",
+    "scaffold/research/legacy-state-db-product-classification-0127/classification-research.jsonl"
   ]
 }

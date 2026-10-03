@@ -35,7 +35,7 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 | 旧IRから分解した要求unitの直接工程候補 | 188 / 218（86.2%） | 残る30件は直接PHCAP機構の根拠を原文から特定できず未解決 |
 | 要求unit単位の旧実装・縮退判定 | 0 / 218（0%） | 全件の直接asset意味linkとconsumer closureが未確認 |
 
-工程候補が未解決の30 unitは、[既存の研究分類](../../scaffold/phase-status-taxonomy-0105/README.md)で横断条件らしさのレビュー保留20件、追加sourceまたは人間判断待ち10件に分けている。両方とも正式工程は未確定であり、工程非適用も立証していない。
+工程候補が未解決の30 unitは、[既存の研究分類](../../scaffold/research/phase-status-taxonomy-0105/README.md)で横断条件らしさのレビュー保留20件、追加sourceまたは人間判断待ち10件に分けている。両方とも正式工程は未確定であり、工程非適用も立証していない。
 
 IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。system contract 24件とrefinement contract 14件も補助sourceであり、要求件数へ加算しない。製品候補は[IR台帳](legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl)、[confirmed原文ID台帳](legacy-migration/identity/legacy-confirmed-identity-product-routing-candidates.jsonl)、[system contract候補台帳](legacy-migration/requirement/legacy-system-contract-product-routing-candidates.jsonl)、[refinement contract候補台帳](legacy-migration/requirement/legacy-refinement-product-routing-candidates.jsonl)に記録する。両contractの元台帳は`relation_status: unmapped`のままで、候補分類は採否、接続成立、successor割当を意味しない。受入72件とsystem test24件は各親system contractへ3件・1件ずつ結び付くため、親の製品候補を参照できるが、個別の製品ownerや実行済み状態を推定しない。工程・実装状態は[218 unitのcrosswalk](legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
 

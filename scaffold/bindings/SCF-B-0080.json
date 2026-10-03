@@ -49,22 +49,22 @@
       "note": "static source or ledger input; no semantic adoption, authority, implementation, degradation, failure, consumer closure, or decision closure"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-source-0080/inventory.json",
+      "path": "scaffold/research/rdp001-web-webos-vision-source-0080/inventory.json",
       "sha256": "b1a0851a9ccca47ec73f558f4a1136b669daefd46563421c83a792e54d2c65b5",
       "note": "static source or ledger input; no semantic adoption, authority, implementation, degradation, failure, consumer closure, or decision closure"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
+      "path": "scaffold/research/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
       "sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
       "note": "static source or ledger input; no semantic adoption, authority, implementation, degradation, failure, consumer closure, or decision closure"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-source-0080/source-relations.jsonl",
+      "path": "scaffold/research/rdp001-web-webos-vision-source-0080/source-relations.jsonl",
       "sha256": "37b106a1d63395e8581a1e56347169d6088e70dc60f6e347e595047936f830e1",
       "note": "static source or ledger input; no semantic adoption, authority, implementation, degradation, failure, consumer closure, or decision closure"
     },
     {
-      "path": "scaffold/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
+      "path": "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
       "sha256": "cfcb9172ee0d528daea0385f6262b6a7b18e5c6bfb03beee8c9db531e06c82ae",
       "note": "static source or ledger input; no semantic adoption, authority, implementation, degradation, failure, consumer closure, or decision closure"
     }
@@ -95,8 +95,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-web-webos-vision-source-0080/validate.py",
-      "python3 -B scaffold/rdp001-web-webos-vision-source-0080/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-web-webos-vision-source-0080/validate.py",
+      "python3 -B scaffold/research/rdp001-web-webos-vision-source-0080/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -111,27 +111,27 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-web-webos-vision-source-0080/README.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/inventory.json",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_current_HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_current_HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_evidence_HELIX_EXISTING_HIERARCHY_AND_TRANSITIONS_v0.1.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_vision_HELIX_VISION_v0.1.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_harness_L13-post-deploy_post-deploy-evidence-boundary.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L13-post-deploy_post-deploy-evidence-boundary.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L3-requirements_release-module-bundle-composition-requirements.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L5-detail_product-data-connector.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L6-function-design_product-data-connector.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L13-00-post-deploy-verification-master.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L3-68-release-module-bundle-composition.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L7-102-web-dashboard-phase-b.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/selfcheck.py",
-    "scaffold/rdp001-web-webos-vision-source-0080/source-relations.jsonl",
-    "scaffold/rdp001-web-webos-vision-source-0080/source-snapshots/current-web-l2.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/source-snapshots/current-webos-l2.md",
-    "scaffold/rdp001-web-webos-vision-source-0080/validate.py",
-    "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl"
+    "scaffold/research/rdp001-web-webos-vision-source-0080/README.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/inventory.json",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_current_HELIX_DEVELOPMENT_PACKAGE_CATALOG_v0.6.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_current_HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_evidence_HELIX_EXISTING_HIERARCHY_AND_TRANSITIONS_v0.1.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_archive_intake_2026-09-06-concept-vision_vision_HELIX_VISION_v0.1.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_harness_L13-post-deploy_post-deploy-evidence-boundary.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L13-post-deploy_post-deploy-evidence-boundary.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L3-requirements_release-module-bundle-composition-requirements.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L5-detail_product-data-connector.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_design_helix_L6-function-design_product-data-connector.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L13-00-post-deploy-verification-master.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L3-68-release-module-bundle-composition.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/legacy-sources/docs_plans_PLAN-L7-102-web-dashboard-phase-b.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/selfcheck.py",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/source-relations.jsonl",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/source-snapshots/current-web-l2.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/source-snapshots/current-webos-l2.md",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/validate.py",
+    "scaffold/research/rdp001-web-webos-vision-source-0080/vision-spans.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",

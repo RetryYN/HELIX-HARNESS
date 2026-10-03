@@ -34,82 +34,82 @@
       "note": "phase/product candidate pools; not direct evidence [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonlから新path=docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; 現receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/README.md",
+      "path": "scaffold/research/legacy-semantic-review-wave49/README.md",
       "sha256": "0560f0b37f4c77a0639a3660ae16ca95cc459aa2f900b0da550f845f27696152",
       "note": "prior Wave49 bounded scope"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/plan.json",
+      "path": "scaffold/research/legacy-semantic-review-wave49/plan.json",
       "sha256": "e5ab3a0f2ca022a488cf911186e187646ace2d2aa3f1b821a8a5814e7d088bfd",
       "note": "prior Wave49 count contract"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/inventory.json",
+      "path": "scaffold/research/legacy-semantic-review-wave49/inventory.json",
       "sha256": "dfff252a420ac0069ec82722f8d01d84bf16964ab147d21ec8c98a2875e45d68",
       "note": "prior Wave49 inspected asset inventory"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/generate.py",
-      "sha256": "d21a8aaffdada393857b6e36c52695753a4132c9564760a9f8ddd01d513f5412",
+      "path": "scaffold/research/legacy-semantic-review-wave49/generate.py",
+      "sha256": "06ed89c5d02a21c503b0ec4f28fec439675d82c6bb0a133a49fe53ac90f88bd9",
       "note": "prior Wave49 deterministic generator"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/validate.py",
-      "sha256": "6db80d5cc410d8df69b824802a4a49ca01ab757353bb591562c5c0cfd68a9360",
+      "path": "scaffold/research/legacy-semantic-review-wave49/validate.py",
+      "sha256": "bae7d4d04b1022d785f86e3cb4ffa0a30231280cdc237ca9457aadd410ceceec",
       "note": "prior Wave49 reciprocal shared-source validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave49/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=9b7725a366a31062dc988c04f614519cbb621ac7b822928e14aa519b92358f8c; 現receipt=86cfc151de26ebc134e159133befc2f81c08f3ba4a3265592d2dcd697f210786; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/selfcheck.py",
+      "path": "scaffold/research/legacy-semantic-review-wave49/selfcheck.py",
       "sha256": "e3bedee83bfe06a857a9ba44721960f58927152f07a7c574c1299a63fe7ddef1",
       "note": "prior Wave49 negative mutation suite"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
       "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356",
       "note": "prior Wave49 source-role ledger"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.json",
+      "path": "scaffold/research/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.json",
       "sha256": "e073528ee93ac16eda8fc23d7cca3fbfb284cb5e47332b945bbfb0bae3c64d7f",
       "note": "prior Wave49 receipts and cumulative counts [2026-09-25 Goal5 static rebind: wave49 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=ba315824038686077b64561a03c670335726a6a6dea3b88cdc75d36ff954a30c; current=1936ae4abcc3e1643f6a15503725d2ce731af194f450e2c1736c5ae0266a0a16] [2026-09-25 Concept改訂 read-after: Concept改訂に伴い生成器を順に再実行し、product-boundary input digestと先行wave meta lineage digestのみ更新（ledger JSONLと候補・保留fieldは不変）。本bindingは1.0機構一覧、BRAIN・Intelligence・CONNECTの責務記述に依存しないことをbinding全体で確認した。前receipt=1936ae4abcc3e1643f6a15503725d2ce731af194f450e2c1736c5ae0266a0a16; 現receipt=84f9b82445aa1dc10cea2e41d0b0aa799594941679c04ceea3e06912661c4705; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂（開発方式の定義・product-boundary修正） read-after: product-boundary.md 56行の修正に伴い生成器を順に再実行し、product-boundary input digestと先行wave meta lineage digestのみ更新（ledger JSONLと候補・保留fieldは不変）。本bindingはproduct-boundary.md 56行のIntelligenceへの接続記述に依存しないことをbinding全体で確認した。前receipt=84f9b82445aa1dc10cea2e41d0b0aa799594941679c04ceea3e06912661c4705; 現receipt=2660e9d1cb72af07c9f620cf7e7d75b3e48042a2e8a6c231d7f1b65d0e509e2f; このBindingの採否・authorityは変更しない。] [2026-09-26 main合流と名前の表記・未確定注記の反映 read-after: scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.jsonは、generate.pyで再生成し、inputsのproduct-boundary.md・product-intent.md・system-intent.mdのdigestと、それを含む先行waveのmeta digest（prior batchのmeta_sha256）の連鎖だけが変わった。ledger（jsonl）・semantic review結果・validator条件は不変。本bindingのrole・obligations・connections・replacement・artifactは、機構名の綴り（Intelligence／Security／ヘリックスコア）にも、2.0の外の情報やBRAINの学習が未確定であることにも依存しないことをbinding全体で確認した。前receipt=2660e9d1cb72af07c9f620cf7e7d75b3e48042a2e8a6c231d7f1b65d0e509e2f; 現receipt=9069657dc254377a031bc86d3da861163a1736ebbea9863d4c39be20aafca3cc; このBindingの採否・authorityは変更しない。] [2026-09-26 Workerへの実行主体の統一 read-after: scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.jsonは、inputsのdocs/concept/product-boundary.mdのdigestを、2026-09-26 PO判断（8機構と1共通部品、Runner／Sandboxの廃止、レーンとWorkerの別置き）を反映した現行本文のSHAへ付け替えた。あわせて、同じ付替えを受けた先行waveのmeta（legacy-semantic-review-wave37、legacy-semantic-review-wave38、legacy-semantic-review-wave39、legacy-semantic-review-wave40、legacy-semantic-review-wave41、legacy-semantic-review-wave42、legacy-semantic-review-wave43、legacy-semantic-review-wave44、legacy-semantic-review-wave45、legacy-semantic-review-wave46、legacy-semantic-review-wave47、legacy-semantic-review-wave48）のinputs digestとprior_review_batchesのmeta_sha256を現行SHAへ連鎖して付け替えた。semantic review本体・判定・authorityは不変。本bindingのrole・obligations・connections・operations・artifacts・replacement・owner_candidate・reasonは、HELIXサブエージェント・Runner・Sandboxを独立した実行主体や共通部品とすること、エージェントレーンを実行主体とすること、Conceptの共通部品の数、HELIXOS-L2-004の実行担当がRunner／Sandboxであることのいずれも前提にしないことをbinding全体で確認した。前receipt=9069657dc254377a031bc86d3da861163a1736ebbea9863d4c39be20aafca3cc; 現receipt=84cfe22f33053ebfb6455b6913c96fd288fea75bc0efbf833df32beef5898769; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave49のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1）だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=84cfe22f33053ebfb6455b6913c96fd288fea75bc0efbf833df32beef5898769; 現receipt=4b25e71f54d233d86461fda0d43a6e90a9a79586a763898e76d9c3b4f683063a; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave49のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1と、前のwaveのmeta.json）だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=4b25e71f54d233d86461fda0d43a6e90a9a79586a763898e76d9c3b4f683063a; 現receipt=0859836b5cb83783ad61154f706062b20dcbc77bc2d444f408ebec1a4e1a8f95; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave49のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1と、前のwaveのmeta.json）とprior_review_batchesの前のwaveのmeta_sha256だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=0859836b5cb83783ad61154f706062b20dcbc77bc2d444f408ebec1a4e1a8f95; 現receipt=7e8e93affcb3ae26bb3905820de28feb4667e67f78996e6515801479562f0c75; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: wave49のmetaは、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、inputsとprior_fixed_input_digestsの製品責務境界・Phase Capability Inventory・移動したWeb・Web-OS文書のdigestとpath、および先行waveのmetaのdigest連鎖だけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=7e8e93affcb3ae26bb3905820de28feb4667e67f78996e6515801479562f0c75; 現receipt=ae47998a56beb8761013434d5c4df765e4c07a9e9c617c24d01624e268bd8e76; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: wave49のmetaは、HELIX-Web製品群 要求原案（2026-09-26のPO提示、docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md）により上流文書の名前の書き換え（HELIX-Web-OS→HELIX-WEB-OS）に伴い、input digestと前waveのmetaのdigest連鎖だけを更新した。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）をbinding全体で確認した。前receipt=ae47998a56beb8761013434d5c4df765e4c07a9e9c617c24d01624e268bd8e76; 現receipt=146c7da7bf45d98c6f3a45259c82f666f03215abbcae4b8a2581138d50ac35c6; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-INFRASTRUCTUREのConceptへの配置と版 read-after: legacy-semantic-review-wave49のmetaは、入力文書（product-boundary、OS L1）と前のwaveのmetaのdigestだけを現行へ更新した（意味fieldと条件は不変）。本bindingのrole・obligations・connections・replacement・artifactは、機構の数（8→9）、機構の表のHELIX-INFRASTRUCTUREの行、1.0の機構の列挙、「実行基盤」の語、OS L1・OS L2の該当の一文、作業入口の案内、研究用pinのSHA・行番号に依存しないことをbinding全体で確認した。前receipt=146c7da7bf45d98c6f3a45259c82f666f03215abbcae4b8a2581138d50ac35c6; 現receipt=db8ae72d9a3d92a83663d4665e39f534a800d261ff5360c8a281e45e16caaa5e; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave49のmetaは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、inputs等に記録した移動した台帳のpath（本文不変のためdigestは不変）と、先行waveのmetaのdigest連鎖だけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=146c7da7bf45d98c6f3a45259c82f666f03215abbcae4b8a2581138d50ac35c6; 現receipt=3df51ceeeaec9544259c23594dd215406bcd4e39c717d601bcb591da08db88d4; このBindingの採否・authorityは変更しない。] [2026-09-26 #2154のmerge後のmainとの統合 read-after: scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.jsonは、#2154（main 745b7bf35、HELIX-INFRASTRUCTUREのConceptへの配置）の変更と、本branchで移した旧HELIXからの移行台帳のpath・リンク先・研究用pinの表記、R2155-01のgenerator追従をmergeした結果である。両側で変わった派生digest（wave 37〜50のmetaの連鎖、研究用pinが指すbindingのSHA、binding receipt）だけをmerge後の実ファイルから計算し直した（本文・行範囲・意味field・validatorの条件は不変）。採否・authorityを変更しない。]"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/README.md",
+      "path": "scaffold/research/legacy-semantic-review-wave50/README.md",
       "sha256": "5cf15a2295ee5840f262fe80809507275b7c99749e8a44901f52c2a6b83cd31c",
       "note": "Wave50 bounded scope and latest-main rebaseline boundary"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/plan.json",
+      "path": "scaffold/research/legacy-semantic-review-wave50/plan.json",
       "sha256": "1bbbee4fa1606947b8f148e22d5f68b5a1157d5d72386883a2e6c69d3f4815af",
       "note": "Wave50 selection and count contract"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/inventory.json",
+      "path": "scaffold/research/legacy-semantic-review-wave50/inventory.json",
       "sha256": "8deac7ff7f734d11d34b62345b11c377f68829702ae79e05f425aa1ca5793732",
       "note": "Wave50 inspected asset inventory"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/generate.py",
-      "sha256": "8535e1413fb58307558e2b5fc985ecf069f1d1e93745899500d99e54077bfda6",
+      "path": "scaffold/research/legacy-semantic-review-wave50/generate.py",
+      "sha256": "aeb4b67aa6423c0a987c1b42494d9de665e98b5edc1062ea2727549df9658cae",
       "note": "Wave50 deterministic static generator"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/validate.py",
-      "sha256": "4ba680c3e0410a6a0f2c2a6676c21b0541e168baa3627894e04bb7ff85556af9",
+      "path": "scaffold/research/legacy-semantic-review-wave50/validate.py",
+      "sha256": "70136fce89cf4771adf2bd373997109719ca0bdd08cfda3526a7a30ed6f8969b",
       "note": "Wave50 fail-closed validator with latest-main rebaseline gate [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave50/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=e4b2c1786896a84d3ba200438e73176b125797089ebd7feed2d2c1b94cd357d2; 現receipt=a30dcab6b3e29926553b8809b62b237cb79a14b4bac87b75edd1f462cb7bb77e; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/selfcheck.py",
+      "path": "scaffold/research/legacy-semantic-review-wave50/selfcheck.py",
       "sha256": "374a6be9774b2379ab79d9278b011b4d08ded81fe5a8acff15fe0a623b6d5dde",
       "note": "Wave50 validator negative mutation suite"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "path": "scaffold/research/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
       "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5",
       "note": "Wave50 exact source-role ledger"
     },
     {
-      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json",
+      "path": "scaffold/research/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json",
       "sha256": "c1fbc911dfff74616e02a59f6219ddeb3f2d562424c55b4ef1f2b12f964788c2",
       "note": "Wave50 receipts and cumulative counts [2026-09-25 Goal5 static rebind: wave50 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=e62712988c2c006a0fb31c7231d83b9cba25882d533404e02b6ee0d659971016; current=36ffccf576c08cd7e9871371ad489b23a566a9a9a474d9003f7a9319bba2b76a] [2026-09-25 Concept改訂 read-after: Concept改訂に伴い生成器を順に再実行し、product-boundary input digestと先行wave meta lineage digestのみ更新（ledger JSONLと候補・保留fieldは不変）。本bindingは1.0機構一覧、BRAIN・Intelligence・CONNECTの責務記述に依存しないことをbinding全体で確認した。前receipt=36ffccf576c08cd7e9871371ad489b23a566a9a9a474d9003f7a9319bba2b76a; 現receipt=eff9a22ac5e169be8c0c64b9efc1119af745fcdaca91c022cd696c16ddc6a438; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂（開発方式の定義・product-boundary修正） read-after: product-boundary.md 56行の修正に伴い生成器を順に再実行し、product-boundary input digestと先行wave meta lineage digestのみ更新（ledger JSONLと候補・保留fieldは不変）。本bindingはproduct-boundary.md 56行のIntelligenceへの接続記述に依存しないことをbinding全体で確認した。前receipt=eff9a22ac5e169be8c0c64b9efc1119af745fcdaca91c022cd696c16ddc6a438; 現receipt=5b83cc1eb7764b41bebf80ce07fe5b4cb4f650e8417a23b7d1299a9ffb87d554; このBindingの採否・authorityは変更しない。] [2026-09-26 main合流と名前の表記・未確定注記の反映 read-after: scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.jsonは、generate.pyで再生成し、inputsのproduct-boundary.md・product-intent.md・system-intent.mdのdigestと、それを含む先行waveのmeta digest（prior batchのmeta_sha256）の連鎖だけが変わった。ledger（jsonl）・semantic review結果・validator条件は不変。本bindingのrole・obligations・connections・replacement・artifactは、機構名の綴り（Intelligence／Security／ヘリックスコア）にも、2.0の外の情報やBRAINの学習が未確定であることにも依存しないことをbinding全体で確認した。前receipt=5b83cc1eb7764b41bebf80ce07fe5b4cb4f650e8417a23b7d1299a9ffb87d554; 現receipt=73543a5173083f09fefb9d577135248366493be85b1a227950338c553701634b; このBindingの採否・authorityは変更しない。] [2026-09-26 Workerへの実行主体の統一 read-after: scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.jsonは、inputsのdocs/concept/product-boundary.mdのdigestを、2026-09-26 PO判断（8機構と1共通部品、Runner／Sandboxの廃止、レーンとWorkerの別置き）を反映した現行本文のSHAへ付け替えた。あわせて、同じ付替えを受けた先行waveのmeta（legacy-semantic-review-wave37、legacy-semantic-review-wave38、legacy-semantic-review-wave39、legacy-semantic-review-wave40、legacy-semantic-review-wave41、legacy-semantic-review-wave42、legacy-semantic-review-wave43、legacy-semantic-review-wave44、legacy-semantic-review-wave45、legacy-semantic-review-wave46、legacy-semantic-review-wave47、legacy-semantic-review-wave48、legacy-semantic-review-wave49）のinputs digestとprior_review_batchesのmeta_sha256を現行SHAへ連鎖して付け替えた。semantic review本体・判定・authorityは不変。本bindingのrole・obligations・connections・operations・artifacts・replacement・owner_candidate・reasonは、HELIXサブエージェント・Runner・Sandboxを独立した実行主体や共通部品とすること、エージェントレーンを実行主体とすること、Conceptの共通部品の数、HELIXOS-L2-004の実行担当がRunner／Sandboxであることのいずれも前提にしないことをbinding全体で確認した。前receipt=73543a5173083f09fefb9d577135248366493be85b1a227950338c553701634b; 現receipt=408614330004953b5a100c39f8e92e931af79ef78fdbb170c6b46b51e2d529eb; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave50のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1）だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=408614330004953b5a100c39f8e92e931af79ef78fdbb170c6b46b51e2d529eb; 現receipt=f71c8993a0e2caf2e18770c16316c7c22172b9f662690adfde3aa5ac293cb22b; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave50のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1と、前のwaveのmeta.json）だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=f71c8993a0e2caf2e18770c16316c7c22172b9f662690adfde3aa5ac293cb22b; 現receipt=eeae9c2ecfcc977d9558e6f0ebabac2126de573c88671cbbc2595b4f6c7bc46a; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: legacy-semantic-review-wave50のmeta.jsonは、上の文書改訂に伴い、inputsのdigest（product-boundary、HARNESS L1、OS L1と、前のwaveのmeta.json）とprior_review_batchesの前のwaveのmeta_sha256だけを現行へ更新した。validatorの条件と意味fieldは不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=eeae9c2ecfcc977d9558e6f0ebabac2126de573c88671cbbc2595b4f6c7bc46a; 現receipt=477eda90ff7c8e9afca7e04b737ea1f99592c6cebc756326c2e842aeeadaa05d; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: wave50のmetaは、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、inputsとprior_fixed_input_digestsの製品責務境界・Phase Capability Inventory・移動したWeb・Web-OS文書のdigestとpath、および先行waveのmetaのdigest連鎖だけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=477eda90ff7c8e9afca7e04b737ea1f99592c6cebc756326c2e842aeeadaa05d; 現receipt=f5fb7ae8d9d42fadaf071ebf3fe790318ce708c4c653baec1596dcd82999da30; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: wave50のmetaは、HELIX-Web製品群 要求原案（2026-09-26のPO提示、docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md）により上流文書の名前の書き換え（HELIX-Web-OS→HELIX-WEB-OS）に伴い、input digestと前waveのmetaのdigest連鎖だけを更新した。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）をbinding全体で確認した。前receipt=f5fb7ae8d9d42fadaf071ebf3fe790318ce708c4c653baec1596dcd82999da30; 現receipt=656d0579b1b6cf91857fb4589f536586d6d75ec7d29b1c175cf34b273d82eb5c; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-INFRASTRUCTUREのConceptへの配置と版 read-after: legacy-semantic-review-wave50のmetaは、入力文書（product-boundary、OS L1）と前のwaveのmetaのdigestだけを現行へ更新した（意味fieldと条件は不変）。本bindingのrole・obligations・connections・replacement・artifactは、機構の数（8→9）、機構の表のHELIX-INFRASTRUCTUREの行、1.0の機構の列挙、「実行基盤」の語、OS L1・OS L2の該当の一文、作業入口の案内、研究用pinのSHA・行番号に依存しないことをbinding全体で確認した。前receipt=656d0579b1b6cf91857fb4589f536586d6d75ec7d29b1c175cf34b273d82eb5c; 現receipt=e82dd5770632d04cc7660cc14c9d4572d3e29c4494b4b41f9d1f4fa2e06fdbc7; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave50のmetaは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、inputs等に記録した移動した台帳のpath（本文不変のためdigestは不変）と、先行waveのmetaのdigest連鎖だけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=656d0579b1b6cf91857fb4589f536586d6d75ec7d29b1c175cf34b273d82eb5c; 現receipt=daf519a31f03cea494046dba25b3d1068d4f03de77866b3d4770bd8d8838b0bf; このBindingの採否・authorityは変更しない。] [2026-09-26 #2154のmerge後のmainとの統合 read-after: scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.jsonは、#2154（main 745b7bf35、HELIX-INFRASTRUCTUREのConceptへの配置）の変更と、本branchで移した旧HELIXからの移行台帳のpath・リンク先・研究用pinの表記、R2155-01のgenerator追従をmergeした結果である。両側で変わった派生digest（wave 37〜50のmetaの連鎖、研究用pinが指すbindingのSHA、binding receipt）だけをmerge後の実ファイルから計算し直した（本文・行範囲・意味field・validatorの条件は不変）。採否・authorityを変更しない。]"
     }
@@ -142,9 +142,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/legacy-semantic-review-wave50/generate.py",
-      "python3 -B scaffold/legacy-semantic-review-wave50/validate.py",
-      "python3 -B scaffold/legacy-semantic-review-wave50/selfcheck.py",
+      "python3 -B scaffold/research/legacy-semantic-review-wave50/generate.py",
+      "python3 -B scaffold/research/legacy-semantic-review-wave50/validate.py",
+      "python3 -B scaffold/research/legacy-semantic-review-wave50/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -159,14 +159,14 @@
     ]
   },
   "artifacts": [
-    "scaffold/legacy-semantic-review-wave50/README.md",
-    "scaffold/legacy-semantic-review-wave50/plan.json",
-    "scaffold/legacy-semantic-review-wave50/inventory.json",
-    "scaffold/legacy-semantic-review-wave50/generate.py",
-    "scaffold/legacy-semantic-review-wave50/validate.py",
-    "scaffold/legacy-semantic-review-wave50/selfcheck.py",
-    "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
-    "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json"
+    "scaffold/research/legacy-semantic-review-wave50/README.md",
+    "scaffold/research/legacy-semantic-review-wave50/plan.json",
+    "scaffold/research/legacy-semantic-review-wave50/inventory.json",
+    "scaffold/research/legacy-semantic-review-wave50/generate.py",
+    "scaffold/research/legacy-semantic-review-wave50/validate.py",
+    "scaffold/research/legacy-semantic-review-wave50/selfcheck.py",
+    "scaffold/research/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+    "scaffold/research/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

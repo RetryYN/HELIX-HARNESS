@@ -9,7 +9,7 @@
   "reason": "MPR-SH-DELEGATED-DOC-003は114 file blobを保持するが、file blobを単一要求atomへ扱わずに要求意味・旧原文・legacy状態を文書単位で整理する必要がある。現行mainで既処理18文書を除いた残り96件の先頭8件を静的に照合し、scaffoldへ束縛する。",
   "upstream": [
     {
-      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+      "path": "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json",
       "sha256": "870f88c0cd5e427ef4032d8921699f78ea1da2906747cc7852a00bf5c3e8b39f",
       "note": "未処理先頭8文書の分母、旧原文、候補意味、legacy状態"
     },
@@ -67,14 +67,14 @@
     "dependencies": [
       "Python 3標準library",
       "読み取り専用Git object照合",
-      "scaffold/rdp001-delegated-doc003-unprocessed8/report.json"
+      "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json"
     ],
     "boundary": "scaffold内だけにreport、validator、selfcheck、bindingを置く。source register・asset catalog・Git object・archiveはread-onlyで読む。旧archive内のworkflow、CLI、hook、adapter、source、test、CI、runtimeは実行しない。"
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
-      "python3 -B scaffold/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "python3 -B scaffold/research/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
       "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
       "git show／git rev-parse／git cat-fileによるread-only object照合"
     ],
@@ -87,10 +87,10 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
-    "scaffold/rdp001-delegated-doc003-unprocessed8/README.md",
-    "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
-    "scaffold/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
+    "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json",
+    "scaffold/research/rdp001-delegated-doc003-unprocessed8/README.md",
+    "scaffold/research/rdp001-delegated-doc003-unprocessed8/validate.py",
+    "scaffold/research/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
     "scaffold/bindings/SCF-B-0029.json"
   ],
   "verification": {

@@ -76,8 +76,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/rdp001-rul-osp-04/validate.py",
-      "python3 scaffold/rdp001-rul-osp-04/selfcheck.py",
+      "python3 scaffold/research/rdp001-rul-osp-04/validate.py",
+      "python3 scaffold/research/rdp001-rul-osp-04/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
     ],
     "forbidden": [
@@ -89,11 +89,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-rul-osp-04/README.md",
-    "scaffold/rdp001-rul-osp-04/manifest.json",
-    "scaffold/rdp001-rul-osp-04/atom-candidates.jsonl",
-    "scaffold/rdp001-rul-osp-04/validate.py",
-    "scaffold/rdp001-rul-osp-04/selfcheck.py"
+    "scaffold/research/rdp001-rul-osp-04/README.md",
+    "scaffold/research/rdp001-rul-osp-04/manifest.json",
+    "scaffold/research/rdp001-rul-osp-04/atom-candidates.jsonl",
+    "scaffold/research/rdp001-rul-osp-04/validate.py",
+    "scaffold/research/rdp001-rul-osp-04/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -105,8 +105,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/rdp001-rul-osp-04/validate.py（台帳／S1-01 accounting／legacy asset／archive source の件数・digest・relation closure）",
-      "scaffold/rdp001-rul-osp-04/selfcheck.py（relation swap、source span drift、asset digest drift、5/22 merge、authority claim、atom loss）",
+      "scaffold/research/rdp001-rul-osp-04/validate.py（台帳／S1-01 accounting／legacy asset／archive source の件数・digest・relation closure）",
+      "scaffold/research/rdp001-rul-osp-04/selfcheck.py（relation swap、source span drift、asset digest drift、5/22 merge、authority claim、atom loss）",
       "scaffold/tools/scfctl.py stale（上流台帳 revision の変化検出）",
       "git diff --check（候補 artifact の静的整形）"
     ],

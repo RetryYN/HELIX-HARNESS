@@ -9,7 +9,7 @@
   "reason": "DELEGATED-DOC-001の126行file blobをVDH-FR、旧HBR対応、L1-L12配置、Hybrid、完了式、metadataへ分解し、旧4対象境界と現行Conceptの機構・製品属性と旧implementation／degraded／phase状態を静的に束ねる必要がある。仮分類は採否・successor・authority・実装を生成しない。",
   "upstream": [
     {
-      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+      "path": "scaffold/research/rdp001-delegated-doc003-unprocessed8/report.json",
       "sha256": "870f88c0cd5e427ef4032d8921699f78ea1da2906747cc7852a00bf5c3e8b39f",
       "note": "merge済みPR #1964とWave24を含むorigin/main exact HEAD 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c のDOC-001選定、126行訂正、旧blob digest、語彙出現数"
     },
@@ -64,9 +64,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-delegated-doc001-atom-030/build.py",
-      "python3 -B scaffold/rdp001-delegated-doc001-atom-030/validate.py",
-      "python3 -B scaffold/rdp001-delegated-doc001-atom-030/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-delegated-doc001-atom-030/build.py",
+      "python3 -B scaffold/research/rdp001-delegated-doc001-atom-030/validate.py",
+      "python3 -B scaffold/research/rdp001-delegated-doc001-atom-030/selfcheck.py",
       "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
       "git show／git rev-parse／git cat-fileによるread-only object照合"
     ],
@@ -79,11 +79,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-delegated-doc001-atom-030/inventory.json",
-    "scaffold/rdp001-delegated-doc001-atom-030/README.md",
-    "scaffold/rdp001-delegated-doc001-atom-030/build.py",
-    "scaffold/rdp001-delegated-doc001-atom-030/validate.py",
-    "scaffold/rdp001-delegated-doc001-atom-030/selfcheck.py",
+    "scaffold/research/rdp001-delegated-doc001-atom-030/inventory.json",
+    "scaffold/research/rdp001-delegated-doc001-atom-030/README.md",
+    "scaffold/research/rdp001-delegated-doc001-atom-030/build.py",
+    "scaffold/research/rdp001-delegated-doc001-atom-030/validate.py",
+    "scaffold/research/rdp001-delegated-doc001-atom-030/selfcheck.py",
     "scaffold/bindings/SCF-B-0032.json"
   ],
   "verification": {

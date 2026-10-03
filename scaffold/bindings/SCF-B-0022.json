@@ -74,8 +74,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-requirement-next4/validate.py",
-      "python3 scaffold/pre-isolation-requirement-next4/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-requirement-next4/validate.py",
+      "python3 scaffold/research/pre-isolation-requirement-next4/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate|stale|residuals",
       "git diff --check"
     ],
@@ -88,11 +88,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-requirement-next4/README.md",
-    "scaffold/pre-isolation-requirement-next4/rdp001-preiso-requirement-next4.json",
-    "scaffold/pre-isolation-requirement-next4/rdp001-preiso-requirement-next4-semantic-diff-inventory.json",
-    "scaffold/pre-isolation-requirement-next4/validate.py",
-    "scaffold/pre-isolation-requirement-next4/selfcheck.py"
+    "scaffold/research/pre-isolation-requirement-next4/README.md",
+    "scaffold/research/pre-isolation-requirement-next4/rdp001-preiso-requirement-next4.json",
+    "scaffold/research/pre-isolation-requirement-next4/rdp001-preiso-requirement-next4-semantic-diff-inventory.json",
+    "scaffold/research/pre-isolation-requirement-next4/validate.py",
+    "scaffold/research/pre-isolation-requirement-next4/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -104,8 +104,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation-requirement-next4/validate.py（holding、先行144 ID、Git object、全体／selected hunk、exact span／digest、metadata-only除外、asset／phase、atom hold）",
-      "scaffold/pre-isolation-requirement-next4/selfcheck.py（baseline、hunk、prior overlap、metadata-only、atom、archive execution、closureの7否定変異）",
+      "scaffold/research/pre-isolation-requirement-next4/validate.py（holding、先行144 ID、Git object、全体／selected hunk、exact span／digest、metadata-only除外、asset／phase、atom hold）",
+      "scaffold/research/pre-isolation-requirement-next4/selfcheck.py（baseline、hunk、prior overlap、metadata-only、atom、archive execution、closureの7否定変異）",
       "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema・digest・残余確認）",
       "git diff --check（候補文書の静的整形）"
     ],

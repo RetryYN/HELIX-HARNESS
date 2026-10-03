@@ -144,12 +144,12 @@
   },
   "artifacts": [
     "scaffold/bindings/SCF-B-0128.json",
-    "scaffold/legacy-lint-candidate-product-classification-0128/README.md",
-    "scaffold/legacy-lint-candidate-product-classification-0128/PR-DRAFT.md",
-    "scaffold/legacy-lint-candidate-product-classification-0128/generate.py",
-    "scaffold/legacy-lint-candidate-product-classification-0128/validate.py",
-    "scaffold/legacy-lint-candidate-product-classification-0128/selfcheck.py",
-    "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json",
-    "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl"
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/README.md",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/PR-DRAFT.md",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/generate.py",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/validate.py",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/selfcheck.py",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/inventory.json",
+    "scaffold/research/legacy-lint-candidate-product-classification-0128/classification-research.jsonl"
   ]
 }

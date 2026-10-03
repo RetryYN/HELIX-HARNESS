@@ -59,37 +59,37 @@
       "note": "source-line atomization and unresolved boundary [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
+      "path": "scaffold/research/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
       "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94",
       "note": "PATH-011 prior atoms reused by ID/digest"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/inventory.json",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/inventory.json",
       "sha256": "cc5e8ba755ec24bc4516d9749eecc6d5b789d11a2280edbe1d37deac649fb2b1",
       "note": "selected denominator, three-category accounting and SCF-B-0099 identity [2026-09-29 OS-038-002 transitive current-pin refresh: updated changed current input `scaffold/rdp001-outside67-path011-015-atomization-099/inventory.json` SHA cc5e8ba755ec24bc4516d9749eecc6d5b789d11a2280edbe1d37deac649fb2b1 -> 6a1189a0fdb2cfda688fb16f9764e49d34ec2712c718ae36e0b8e17c7b0a97df. Scaffold role, obligations and authority remain unchanged.] [2026-09-29 SHA refresh: current source pin was refreshed after append-only unadopted DAC-FR-003 candidate and reference-only current-research digest updates; this Binding's role, obligations, scope, and authority remain unchanged. cc5e8ba755ec24bc4516d9749eecc6d5b789d11a2280edbe1d37deac649fb2b1 -> f7e2d02e555e18e8a667966bc1f47d78201884d5e4b316ea38f3a727386ad16b] [2026-09-29 fixed-BASE read-after pin correction: inventory scope retains the exact management-register digest at its declared BASE; later live-main candidate append is outside this historical input. f7e2d02e555e18e8a667966bc1f47d78201884d5e4b316ea38f3a727386ad16b -> cc5e8ba755ec24bc4516d9749eecc6d5b789d11a2280edbe1d37deac649fb2b1]"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/generate.py",
-      "sha256": "d01321fe7283e4ffc2ee786a6b181af594a938cd43a4689fdd28588ede3ef029",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/generate.py",
+      "sha256": "82d8d357110619eec53fe26b38af766251963ea14491f964fd112b95580c7ebf",
       "note": "deterministic static materializer [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=645aa6cb06e8ca017fe4cc85940b414bad700a25f77dada457231aa7649719f1; 現receipt=d01321fe7283e4ffc2ee786a6b181af594a938cd43a4689fdd28588ede3ef029; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
-      "sha256": "77c1c1ed96b9ed489333a57d6bd5e9a3074f3ff76ee0f7bfebf8396270b837d7",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/validate.py",
+      "sha256": "3d427bfbb4e096be4b3b41143b70b3c66f3f371d4b6175c4340ed1e44162c761",
       "note": "fixed-base ancestor, source, atom, ledger and boundary validator"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
       "sha256": "ab21c6c67816efb25ad2be249b00a8875c3e896a6e4e3d3ccc23774a6c3245ed",
       "note": "independent two-sided line coverage audit"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
       "sha256": "7b9694db7f49d7c6cfa489a3455ef0ea84585cce3b0b67de59dae6bedd4ac0ec",
       "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift"
     },
     {
-      "path": "scaffold/rdp001-outside67-path011-015-atomization-099/source_classification.py",
+      "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/source_classification.py",
       "sha256": "3e298a446aedd4ee6a8f81fb3270f47f357dc66b2e45cc2161d975cad595e6e7",
       "note": "shared frontmatter classification and PRE/ARCH diff derivation"
     }
@@ -122,10 +122,10 @@
   },
   "operations": {
     "allowed": [
-      "python3 -B scaffold/rdp001-outside67-path011-015-atomization-099/generate.py",
-      "python3 -B scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
-      "python3 -B scaffold/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
-      "python3 -B scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
+      "python3 -B scaffold/research/rdp001-outside67-path011-015-atomization-099/generate.py",
+      "python3 -B scaffold/research/rdp001-outside67-path011-015-atomization-099/validate.py",
+      "python3 -B scaffold/research/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
+      "python3 -B scaffold/research/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -140,32 +140,32 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-outside67-path011-015-atomization-099/README.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/method.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/premise.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/status.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/generate.py",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/inventory.json",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/selected-source-items.jsonl",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/semantic-atoms.jsonl",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/reused-atom-references.jsonl",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/line-coverage.jsonl",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/legacy-evidence.jsonl",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-diffs.json",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source_classification.py",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/pre-isolation.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/archive-revision.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-012/archive-revision.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-013/pre-isolation.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-013/archive-revision.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-014/pre-isolation.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-014/archive-revision.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-015/pre-isolation.md",
-    "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-015/archive-revision.md"
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/README.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/method.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/premise.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/status.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/generate.py",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/validate.py",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/inventory.json",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/selected-source-items.jsonl",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/semantic-atoms.jsonl",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/reused-atom-references.jsonl",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/line-coverage.jsonl",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/legacy-evidence.jsonl",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-diffs.json",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source_classification.py",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/pre-isolation.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/archive-revision.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-012/archive-revision.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-013/pre-isolation.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-013/archive-revision.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-014/pre-isolation.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-014/archive-revision.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-015/pre-isolation.md",
+    "scaffold/research/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-015/archive-revision.md"
   ],
   "verification": {
     "evidence_kind": "scaffold",

@@ -74,32 +74,32 @@
       "note": "read-after digest and consumer observations"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/README.md",
+      "path": "scaffold/research/rdp001-reqatom-first5/README.md",
       "sha256": "a06f9a4d148bf3305e8025f79df077ed9e401acb282b974a8fb3422cffa14706",
       "note": "scope, product denominator, unknowns, verification contract"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/generate.py",
-      "sha256": "294431aadcd5bb5351556d8171aa6fb9d1fec120b0d509bb527c746929be60e7",
+      "path": "scaffold/research/rdp001-reqatom-first5/generate.py",
+      "sha256": "fe75cd89cc94681a2da46af2d2e77cf4f3b3f954af4ce5546f35252784ea78db",
       "note": "deterministic source-linked proposal generator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-reqatom-first5/generate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行の台帳を読むpath定数（atom化review queue、semantic line台帳）と生成するprovenanceのpathだけを新しいpathへ改めた（selfcheckの生成器否定例が現行の台帳を読むため。生成規則・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=4c807ce057d0635095620731de2e47802fdcf7850d1fd85e1040ccdf478c6d8d; 現receipt=294431aadcd5bb5351556d8171aa6fb9d1fec120b0d509bb527c746929be60e7; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/proposals.jsonl",
+      "path": "scaffold/research/rdp001-reqatom-first5/proposals.jsonl",
       "sha256": "14504164ab5b5fd980105e49aa2a541d70c9443abc1bd61bb5417da3651bc583",
       "note": "five review unit proposals"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/inventory.json",
+      "path": "scaffold/research/rdp001-reqatom-first5/inventory.json",
       "sha256": "a6ea5e12898cf3de408588d71680eb94313b4eaa824b30033875b1148eceb24b",
       "note": "input and four-product denominator manifest [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-reqatom-first5の研究用pin（inventory.json）は、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳を指すprovenanceのpath field（queue_path、semantic_line_ledger_path。台帳本文は不変のためSHAは不変）だけを更新した（validatorの条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=ea4e715fe63649abc258057e42a15bdc72af38213a2696f73cca5bef63b49bb6; 現receipt=a6ea5e12898cf3de408588d71680eb94313b4eaa824b30033875b1148eceb24b; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/validate.py",
-      "sha256": "dfc42ca3d67130218386e569a4dfd872c96afff9df37674e2a8fc33defb23b7e",
+      "path": "scaffold/research/rdp001-reqatom-first5/validate.py",
+      "sha256": "e559718cdfc44a9ff1744c532ff661e4cadadec5539934d8250ff863edaceffe",
       "note": "independent static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-reqatom-first5/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=89cbcfff8b3fc2464f674fe305bdeed02382fb9e5c3f125677e5b6732ef773e5; 現receipt=dfc42ca3d67130218386e569a4dfd872c96afff9df37674e2a8fc33defb23b7e; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/rdp001-reqatom-first5/selfcheck.py",
+      "path": "scaffold/research/rdp001-reqatom-first5/selfcheck.py",
       "sha256": "a90b10826aef77a8b8e0bb4a2184ddd93b386459d9bf7ec2c570d37839ef8bdb",
       "note": "fourteen meaningful negative self-checks including refreshed proposal digest"
     }
@@ -134,9 +134,9 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/rdp001-reqatom-first5/generate.py",
-      "python3 scaffold/rdp001-reqatom-first5/validate.py",
-      "python3 scaffold/rdp001-reqatom-first5/selfcheck.py",
+      "python3 scaffold/research/rdp001-reqatom-first5/generate.py",
+      "python3 scaffold/research/rdp001-reqatom-first5/validate.py",
+      "python3 scaffold/research/rdp001-reqatom-first5/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -152,12 +152,12 @@
     ]
   },
   "artifacts": [
-    "scaffold/rdp001-reqatom-first5/README.md",
-    "scaffold/rdp001-reqatom-first5/generate.py",
-    "scaffold/rdp001-reqatom-first5/proposals.jsonl",
-    "scaffold/rdp001-reqatom-first5/inventory.json",
-    "scaffold/rdp001-reqatom-first5/validate.py",
-    "scaffold/rdp001-reqatom-first5/selfcheck.py",
+    "scaffold/research/rdp001-reqatom-first5/README.md",
+    "scaffold/research/rdp001-reqatom-first5/generate.py",
+    "scaffold/research/rdp001-reqatom-first5/proposals.jsonl",
+    "scaffold/research/rdp001-reqatom-first5/inventory.json",
+    "scaffold/research/rdp001-reqatom-first5/validate.py",
+    "scaffold/research/rdp001-reqatom-first5/selfcheck.py",
     "scaffold/bindings/SCF-B-0049.json"
   ],
   "verification": {
