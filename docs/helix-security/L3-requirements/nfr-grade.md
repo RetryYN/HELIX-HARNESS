@@ -3,7 +3,7 @@
 > 状態: 全体的なtimeout/latency/retention数値は固定されていない。以下はfixed L2/L11から直接導ける境界値と、比較・測定可能な技術候補であり、実装値やPO承認値ではない。parameterごとのPO判断は求めない。要求の意味・scope・owner・versionを変える場合だけL2/POへ戻す。
 
 | 候補ID / AC | 候補parameter | 候補値・比較 | 根拠 | L10で観測するもの |
-|---|---|---|---|
+|---|---|---|---|---|
 | `SEC-NFR-001` / `SECURITY-AC-005-01` | raw secret exposure | context/log/artifact/Tool result/Worker payloadへのraw secret値露出は0件。 | `HELIXSECURITY-L2-005`および採択済SECURITY-L2-033 P0訂正。 | 識別可能な合成secret markerを全出力先で検索し、0件であることを確認。値そのものは証拠へ書かない。 |
 | `SEC-NFR-002` / `SECURITY-AC-008-01` | operation authority tuple | actor/target/operation/revision/environment/scope/expiryの7要素すべて一致した場合のみ適用。欠落・不一致の許可は0件。 | `HELIXSECURITY-L2-008`のtuple各項目。 | 7要素を個別にdriftさせ、各negativeでallow 0件、exact tuple positiveで対象operationだけを許可する。 |
 | `SEC-NFR-003` / `SECURITY-AC-016-01` | classification completeness | fixed L2の6分類を6/6識別し、unknownをpublic/allowにした件数0。 | `HELIXSECURITY-L2-015/016`とL11の1.0境界。 | 6分類を一つずつfixtureし、missing/unknownを分離。Web sink enforcement完了率を1.0に混入しない。 |
