@@ -717,12 +717,12 @@ BRAIN unit candidateとして、generalized problem typeとPattern/Unit/Part ide
 
 **出力・責務**: 設計知識のdomain/subdomain candidateと意味・sourceを返す。
 
-**否定・戻し先**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 全項目を候補として保持でき、resource状態を推測しない。
+**否定・戻し先**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。実resource状態との混同はInfrastructure Runtime ownerへ、分類意味が重複/不明ならcandidateのままL1-001へ戻す。追加・分割・統合・退役の各操作で既存relation利用者のreferenceを保持し、resource状態を推測しない。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-001-AC-01 — 正常**: 設計知識のdomain/subdomain candidateと意味・sourceを返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-001-AC-02 — 否定・境界**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 全項目を候補として保持でき、resource状態を推測しない。
+- **BRAIN-INFRA-001-AC-02 — 否定・境界**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 全項目を候補として保持でき、resource状態を推測しない。 失敗時戻し先: 実resource状態との混同はInfrastructure Runtime ownerへ、分類意味はL1-001へ戻す。
 
 ### 固定親句の被覆
 
@@ -730,16 +730,16 @@ BRAIN unit candidateとして、generalized problem typeとPattern/Unit/Part ide
 |---|---|---|---|
 | Input/source: 候補Domain/Subdomain identity・意味・parent・source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-001-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 設計知識のdomain/subdomain candidateと意味・sourceを返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-001-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 失敗時戻し先: 実resource状態との混同はInfrastructure Runtime ownerへ、分類意味はL1-001へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 初期例にないsource付きSubdomain案と別の追加/統合履歴を伏せて投入し、open-listでidentity/referenceを保てるか確認。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-001-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 全項目を候補として保持でき、resource状態を推測しない。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 実resource状態との混同はInfrastructure Runtime ownerへ、分類意味はL1-001へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-001; 常時 BRAIN L2-001の分類・変更境界。PO束ね条件 Infrastructure PO原文 INFRA-001。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-001-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-001-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-001-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-001-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。Infrastructure domain/subdomainは知識分類であり実資源inventoryではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。Infrastructure domain/subdomainは知識分類であり実資源inventoryではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -762,12 +762,12 @@ Availability→Active/Passive→Primary/Standby/Health Detection/Failover、お�
 
 **出力・責務**: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。
 
-**否定・戻し先**: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 構造不明はunknown/holdとし、知識ownerへ戻す。
+**否定・戻し先**: Domain→Pattern→Design Unit→Partのlevel/type/parentが欠ける、入れ替わる、またはprovider-specific settingだけの候補は確定しない。一般性のない設定はimplementation knowledge候補へ分離し、階層・分類意味はL1-002へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-002-AC-01 — 正常**: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-002-AC-02 — 否定・境界**: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 構造不明はunknown/holdとし、知識ownerへ戻す。
+- **BRAIN-INFRA-002-AC-02 — 否定・境界**: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 構造不明はunknown/holdとし、知識ownerへ戻す。 失敗時戻し先: 一般性のないprovider-specific設定はimplementation knowledge候補へ分離し、階層・分類意味はL1-002へ戻す。
 
 ### 固定親句の被覆
 
@@ -775,20 +775,21 @@ Availability→Active/Passive→Primary/Standby/Health Detection/Failover、お�
 |---|---|---|---|
 | Input/source: Pattern candidate・抽象kind・provider example/source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-002-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-002-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 失敗時戻し先: 一般性のないprovider-specific設定はimplementation knowledge候補へ分離し、階層・分類意味はL1-002へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見のprovider implementation exampleを抽象pattern hierarchyへつなぎ、抽象kindとimplementation identityを維持。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-002-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 構造不明はunknown/holdとし、知識ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 一般性のないprovider-specific設定はimplementation knowledge候補へ分離し、階層・分類意味はL1-002へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-002; 常時 BRAIN L2-002/INFRA-001。INFRA-002の例の階層型とprovider implementation distinction。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-002-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-002-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-002-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-002-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-部分類例のみ。階層的pattern概念は再導出し、旧UI pattern hierarchyをprovider/infra schemaに転用しない。 起点asset: `LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-603D0E8D8193914F4AC0`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+部分類例のみ。階層的pattern概念は再導出し、旧UI pattern hierarchyをprovider/infra schemaに転用しない。 起点asset: `LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-603D0E8D8193914F4AC0`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
 | `LEGACY-ASSET-7453222BF98E95199D46` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/ui-domain-pattern-profile.md:35–85` | `c451807ea2ed2303fe8eefac0b2258f67829e6708c302879f0026d816fd14678` | `311e708e950ff459e7bf4daf7fe25d2105f3e69d8c3d4261cd1a5a7c832156c7` | Pattern contractと製品境界の類例。UI固有schemaやprofile semanticsは継承しない。 |
+
 | `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
 
 ## BRAIN-INFRA-003-FR-01 — `HELIXBRAIN-L2-INFRA-003`
@@ -807,12 +808,12 @@ Pattern descriptorはproblem、workload assumptions、expected load、availabili
 
 **出力・責務**: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。
 
-**否定・戻し先**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 未指定値はunknownとして不足input ownerへ返す。
+**否定・戻し先**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。要求値は製品COREへ、欠落評価はLABOへ、descriptor fieldの意味はL1-003へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-003-AC-01 — 正常**: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-003-AC-02 — 否定・境界**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 未指定値はunknownとして不足input ownerへ返す。
+- **BRAIN-INFRA-003-AC-02 — 否定・境界**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 未指定値はunknownとして不足input ownerへ返す。 失敗時戻し先: 要求値は製品COREへ、欠落評価はLABOへ、descriptor fieldの意味はL1-003へ戻す。
 
 ### 固定親句の被覆
 
@@ -820,21 +821,22 @@ Pattern descriptorはproblem、workload assumptions、expected load、availabili
 |---|---|---|---|
 | Input/source: Pattern candidate/contextと親L2列挙field | `FR-01 / AC-01` | `L10-BRAIN-INFRA-003-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-003-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 失敗時戻し先: 要求値は製品COREへ、欠落評価はLABOへ、descriptor fieldの意味はL1-003へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未知workloadを持つ伏せたPatternを投げ、required inputがunknownのまま適用可能としない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-003-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 未指定値はunknownとして不足input ownerへ返す。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 要求値は製品COREへ、欠落評価はLABOへ、descriptor fieldの意味はL1-003へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-002。列挙全descriptor fieldと欠落時unknown。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-003-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-003-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-003-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-003-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。親のapplicability descriptor項目を各々扱う。旧contract形式のみ類例。技術値は後の要件起草で根拠・比較・計測と候補表示が可能。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。親のapplicability descriptor項目を各々扱う。旧contract形式のみ類例。技術値は後の要件起草で根拠・比較・計測と候補表示が可能。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
 | `LEGACY-ASSET-335176749F6322C3CD8D` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:41–43` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` | `b75a90583c2e87f9f8bb2ddbae123e70d2ef8a5591b507d70ee62acd40444fb8` | semantic identity、Pattern contract、製品固有意味分離の隣接意味。旧UI/Design-HARNESS権限・実装は移植しない。 |
 | `LEGACY-ASSET-7453222BF98E95199D46` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/ui-domain-pattern-profile.md:35–85` | `c451807ea2ed2303fe8eefac0b2258f67829e6708c302879f0026d816fd14678` | `311e708e950ff459e7bf4daf7fe25d2105f3e69d8c3d4261cd1a5a7c832156c7` | Pattern contractと製品境界の類例。UI固有schemaやprofile semanticsは継承しない。 |
+
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 
@@ -854,12 +856,12 @@ Availability、Performance、Capacity、Reliability、Recoverability、Security�
 
 **出力・責務**: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。
 
-**否定・戻し先**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 product valueは要求ownerへ戻しBRAINは推定値を作らない。
+**否定・戻し先**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-004-AC-01 — 正常**: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-004-AC-02 — 否定・境界**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 product valueは要求ownerへ戻しBRAINは推定値を作らない。
+- **BRAIN-INFRA-004-AC-02 — 否定・境界**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。 失敗時戻し先: 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。
 
 ### 固定親句の被覆
 
@@ -867,19 +869,20 @@ Availability、Performance、Capacity、Reliability、Recoverability、Security�
 |---|---|---|---|
 | Input/source: product-supplied NFR/context・Pattern候補・required input | `FR-01 / AC-01` | `L10-BRAIN-INFRA-004-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-004-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 失敗時戻し先: 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 伏せた別NFR特性またはinput不足を加え、既知relationと未知mappingを区分する。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-004-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: product valueは要求ownerへ戻しBRAINは推定値を作らない。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 要求値と設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-003/005; 常時 BRAIN L2-003/005/022。列挙10 NFR特性relationとunknown input。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-004-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-004-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-004-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-004-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。NFR→related pattern/required inputs relationは旧L3に直接一致なし。BRAINは製品値を決めない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。NFR→related pattern/required inputs relationは旧L3に直接一致なし。BRAINは製品値を決めない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
+
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
@@ -900,12 +903,12 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 
 **出力・責務**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。
 
-**否定・戻し先**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 不足情報を提示しfailure source/evaluation ownerへ戻す。
+**否定・戻し先**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-005-AC-01 — 正常**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 不足情報を提示しfailure source/evaluation ownerへ戻す。
+- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 失敗時戻し先: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。
 
 ### 固定親句の被覆
 
@@ -913,18 +916,19 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 |---|---|---|---|
 | Input/source: failure condition/sourceと親L2の6要素 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 失敗時戻し先: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見failure categoryと不完全oracleを投入し、known fieldsから残りを推測しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-005-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 不足情報を提示しfailure source/evaluation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-010; 常時 BRAIN L2-010/INFRA-003。全failure exampleとoracle field。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-005-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-005-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-005-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-005-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。expected failure/detection/impact/containment/recovery/residual riskの条件構造。旧rollbackや運用手順を移植しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-879D95C07B789C9502CF`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。expected failure/detection/impact/containment/recovery/residual riskの条件構造。旧rollbackや運用手順を移植しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-879D95C07B789C9502CF`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+
 |---|---|---|---|---|
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
@@ -946,12 +950,12 @@ Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback�
 
 **出力・責務**: recovery pattern candidate・適用条件・必要input・failure relationを提示する。
 
-**否定・戻し先**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。
+**否定・戻し先**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-006-AC-01 — 正常**: recovery pattern candidate・適用条件・必要input・failure relationを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-006-AC-02 — 否定・境界**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。
+- **BRAIN-INFRA-006-AC-02 — 否定・境界**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。 失敗時戻し先: 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。
 
 ### 固定親句の被覆
 
@@ -959,16 +963,16 @@ Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback�
 |---|---|---|---|
 | Input/source: pattern/source/condition・requested operation distinction | `FR-01 / AC-01` | `L10-BRAIN-INFRA-006-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: recovery pattern candidate・適用条件・必要input・failure relationを提示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-006-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 失敗時戻し先: 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 伏せたfailure conditionへrecovery候補を渡し、意味不定はunknown、Backup itemの完成待ちを要求しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-006-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-002/010; 常時 BRAIN L2-002/INFRA-005。INFRA-010 Backup/Restoreと相互参照してよいが成立前提にしない。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-006-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-006-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-006-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-006-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。Recovery knowledge patternのみ。TERのrollbackはtransaction/reconciliation文脈の隣接例であり回復技術catalogの根拠ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。Recovery knowledge patternのみ。TERのrollbackはtransaction/reconciliation文脈の隣接例であり回復技術catalogの根拠ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -992,12 +996,12 @@ Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Updat
 
 **出力・責務**: deployment pattern候補の比較情報・根拠・未確定inputを提示する。
 
-**否定・戻し先**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 deployment/release ownerへ戻す。
+**否定・戻し先**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-007-AC-01 — 正常**: deployment pattern候補の比較情報・根拠・未確定inputを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-007-AC-02 — 否定・境界**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 deployment/release ownerへ戻す。
+- **BRAIN-INFRA-007-AC-02 — 否定・境界**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。 失敗時戻し先: 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。
 
 ### 固定親句の被覆
 
@@ -1005,16 +1009,16 @@ Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Updat
 |---|---|---|---|
 | Input/source: architecture problem・pattern candidates・criteria/source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-007-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: deployment pattern候補の比較情報・根拠・未確定inputを提示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-007-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 失敗時戻し先: 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未知のdeployment methodを比較候補に加え、評価軸が不明な部分をunknownとして保持し、実actionなし。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-007-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: deployment/release ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-004; 常時 BRAIN L2-004/INFRA-003/INFRA-006。6 deployment方式・比較軸、実action禁止。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-007-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-007-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-007-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-007-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。deployment architecture比較知識。distribution/release、外部環境変更、実deploy権限の意味は持ち込まない。 起点asset: `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`、`LEGACY-ASSET-7F8960532611D89D03E1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。deployment architecture比較知識。distribution/release、外部環境変更、実deploy権限の意味は持ち込まない。 起点asset: `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`、`LEGACY-ASSET-7F8960532611D89D03E1`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1038,12 +1042,12 @@ Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、R
 
 **出力・責務**: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。
 
-**否定・戻し先**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。
+**否定・戻し先**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 workload値・SLOは製品要求へ、構造評価はLABOへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-008-AC-01 — 正常**: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-008-AC-02 — 否定・境界**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。
+- **BRAIN-INFRA-008-AC-02 — 否定・境界**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 workload値・SLOは製品要求へ、構造評価はLABOへ戻す。 失敗時戻し先: workload値・SLOは製品要求へ、構造評価はLABOへ戻す。
 
 ### 固定親句の被覆
 
@@ -1051,16 +1055,16 @@ Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、R
 |---|---|---|---|
 | Input/source: workload/capacity source・pattern・condition | `FR-01 / AC-01` | `L10-BRAIN-INFRA-008-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-008-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 失敗時戻し先: workload値・SLOは製品要求へ、構造評価はLABOへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: holdout workload/bottleneck組合せを使い、threshold不足をapplicableへ変換せずunknownのままにする。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-008-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: workload値・SLOは製品要求へ、構造評価はLABOへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-003/INFRA-004。列挙8 patternと6 descriptor axes。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-008-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-008-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-008-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-008-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。scaling/capacityのtrigger/bottleneck/limits/state/synchronization/saturationを知識として扱う。実loadや運用実行ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。scaling/capacityのtrigger/bottleneck/limits/state/synchronization/saturationを知識として扱う。実loadや運用実行ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1084,12 +1088,12 @@ Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、E
 
 **出力・責務**: 設計対象・観測点と必要inputをcandidateとして返す。
 
-**否定・戻し先**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 収集値や機密は適切なdata/operation ownerへ戻す。
+**否定・戻し先**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-009-AC-01 — 正常**: 設計対象・観測点と必要inputをcandidateとして返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-009-AC-02 — 否定・境界**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 収集値や機密は適切なdata/operation ownerへ戻す。
+- **BRAIN-INFRA-009-AC-02 — 否定・境界**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。 失敗時戻し先: runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。
 
 ### 固定親句の被覆
 
@@ -1097,16 +1101,16 @@ Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、E
 |---|---|---|---|
 | Input/source: observability pattern・source・設計対象 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-009-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 設計対象・観測点と必要inputをcandidateとして返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-009-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 失敗時戻し先: runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 伏せたfailure signal/design targetを投入し、point designは候補にできてもlive valuesは取得/保存しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-009-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 収集値や機密は適切なdata/operation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-003/INFRA-005。各観測pointからpattern/failure trace。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-009-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-009-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-009-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-009-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。観測点の設計知識であり実log/metric値保管とは区別。旧evidence/provenanceの記録形のみ類例。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。観測点の設計知識であり実log/metric値保管とは区別。旧evidence/provenanceの記録形のみ類例。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1130,12 +1134,12 @@ Backup strategy、retention pattern、replication、restore pattern、recovery v
 
 **出力・責務**: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。
 
-**否定・戻し先**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 未指定のactual targetはproduct requirement ownerへ戻す。
+**否定・戻し先**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-010-AC-01 — 正常**: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-010-AC-02 — 否定・境界**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 未指定のactual targetはproduct requirement ownerへ戻す。
+- **BRAIN-INFRA-010-AC-02 — 否定・境界**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。 失敗時戻し先: 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。
 
 ### 固定親句の被覆
 
@@ -1143,16 +1147,16 @@ Backup strategy、retention pattern、replication、restore pattern、recovery v
 |---|---|---|---|
 | Input/source: product target source/revision・recovery patterns | `FR-01 / AC-01` | `L10-BRAIN-INFRA-010-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-010-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 失敗時戻し先: 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見restore conditionを加え、verification欠落/target source missingをrecoverability proof扱いしない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-010-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 未指定のactual targetはproduct requirement ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-003/010; 常時 BRAIN L2-005/INFRA-006。Backup/Restore/recoverability relation。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-010-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-010-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-010-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-010-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。backup/restore/recoverability関係。実際のRTO/RPOは製品要求側。旧rollbackをbackup/restore要件へ拡張しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。backup/restore/recoverability関係。実際のRTO/RPOは製品要求側。旧rollbackをbackup/restore要件へ拡張しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1176,12 +1180,12 @@ fixed/variable cost tendency、idle resource cost、scaling cost、redundancy co
 
 **出力・責務**: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。
 
-**否定・戻し先**: provider/time/source/contextを外して単価を一般化する入力は不成立。 価格source/context不明はunknownとして提供元へ戻す。
+**否定・戻し先**: provider/time/source/contextを外して単価を一般化する入力は不成立。 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-011-AC-01 — 正常**: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-011-AC-02 — 否定・境界**: provider/time/source/contextを外して単価を一般化する入力は不成立。 価格source/context不明はunknownとして提供元へ戻す。
+- **BRAIN-INFRA-011-AC-02 — 否定・境界**: provider/time/source/contextを外して単価を一般化する入力は不成立。 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。 失敗時戻し先: 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。
 
 ### 固定親句の被覆
 
@@ -1189,16 +1193,17 @@ fixed/variable cost tendency、idle resource cost、scaling cost、redundancy co
 |---|---|---|---|
 | Input/source: cost characteristic・provider/source/time/effective context | `FR-01 / AC-01` | `L10-BRAIN-INFRA-011-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-011-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: provider/time/source/contextを外して単価を一般化する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: provider/time/source/contextを外して単価を一般化する入力は不成立。 失敗時戻し先: 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 新しい時点/provider price sourceを伏せ、abstract cost relationとtime-bound price factを混同しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-011-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 価格source/context不明はunknownとして提供元へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-004; 常時 BRAIN L2-004/INFRA-003。source/time-dependent price handling。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-011-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-011-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-011-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-011-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。cost特性・tradeoffは扱うがprovider/time依存priceを定数化しない。旧costを候補評価軸の隣接としてのみ扱う。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。cost特性・tradeoffは扱うがprovider/time依存priceを定数化しない。旧costを候補評価軸の隣接としてのみ扱う。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1221,12 +1226,12 @@ Object Storageの抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementati
 
 **出力・責務**: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。
 
-**否定・戻し先**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility根拠は検証ownerへ戻す。
+**否定・戻し先**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-012-AC-01 — 正常**: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-012-AC-02 — 否定・境界**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility根拠は検証ownerへ戻す。
+- **BRAIN-INFRA-012-AC-02 — 否定・境界**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。 失敗時戻し先: compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。
 
 ### 固定親句の被覆
 
@@ -1234,16 +1239,17 @@ Object Storageの抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementati
 |---|---|---|---|
 | Input/source: provider-neutral pattern・implementation identity・compatibility source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-012-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-012-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 失敗時戻し先: compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見provider exampleのcompatibility evidenceなし状態を渡し、identityは抽象軸を維持し適合はunknown。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-012-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: compatibility根拠は検証ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-005/011; 常時 BRAIN L2-005/011/INFRA-002。抽象Patternとimplementation例を別identity軸にする。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-012-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-012-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-012-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-012-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。provider-neutral patternとimplementation identityを分離し、互換性unknownを維持。旧provider inventoryをpattern identityにしない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。provider-neutral patternとimplementation identityを分離し、互換性unknownを維持。旧provider inventoryをpattern identityにしない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1267,12 +1273,12 @@ Local machine、VPS、Dedicated server、Cloud、GPU node、Distributed worker n
 
 **出力・責務**: resource/capability concept identity、meaning、relationをabstract levelで返す。
 
-**否定・戻し先**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。
+**否定・戻し先**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-013-AC-01 — 正常**: resource/capability concept identity、meaning、relationをabstract levelで返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-013-AC-02 — 否定・境界**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。
+- **BRAIN-INFRA-013-AC-02 — 否定・境界**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。 失敗時戻し先: 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。
 
 ### 固定親句の被覆
 
@@ -1280,16 +1286,17 @@ Local machine、VPS、Dedicated server、Cloud、GPU node、Distributed worker n
 |---|---|---|---|
 | Input/source: abstract resource/capability identity/meaning | `FR-01 / AC-01` | `L10-BRAIN-INFRA-013-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: resource/capability concept identity、meaning、relationをabstract levelで返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-013-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 失敗時戻し先: 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見実行基盤型をabstract modelへ投入し、Cloud前提や実resource discoveryなしでcandidateに留める。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-013-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-001/002; 常時 BRAIN L2-001/002/INFRA-012/024。abstract resource/capability、live state/authorityなし。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-013-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-013-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-013-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-013-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。common abstract resource/capabilityは知識モデル。credential/state/operation authorityは対象外。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+再導出。common abstract resource/capabilityは知識モデル。credential/state/operation authorityは対象外。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1312,12 +1319,12 @@ Web→Load Balancer→Application→Database→Backup、およびApplication→Q
 
 **出力・責務**: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。
 
-**否定・戻し先**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 意味不明は候補で停止しBRAIN relation ownerへ戻す。
+**否定・戻し先**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-014-AC-01 — 正常**: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-014-AC-02 — 否定・境界**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 意味不明は候補で停止しBRAIN relation ownerへ戻す。
+- **BRAIN-INFRA-014-AC-02 — 否定・境界**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。 失敗時戻し先: topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。
 
 ### 固定親句の被覆
 
@@ -1325,16 +1332,17 @@ Web→Load Balancer→Application→Database→Backup、およびApplication→Q
 |---|---|---|---|
 | Input/source: topology design candidate・node/edge identity・source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-014-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-014-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 失敗時戻し先: topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 伏せた別component topologyとunknown endpoint relationを投入し、未確定endpointをruntimeで解決しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-014-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 意味不明は候補で停止しBRAIN relation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-005; 常時 BRAIN L2-005/INFRA-001/002。typed endpoint relation graph。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-014-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-014-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-014-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-014-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-部分類例＋再導出。typed topology graph endpoint/semanticsは設計関係で、runtime topology/stateではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+部分類例＋再導出。typed topology graph endpoint/semanticsは設計関係で、runtime topology/stateではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1358,12 +1366,12 @@ API→Network→Latency / Availability、Data→Storage / Database→Backup / Re
 
 **出力・責務**: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。
 
-**否定・戻し先**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 causal evidence不足はunknownでsource ownerへ戻す。
+**否定・戻し先**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 関係先Domainの責務ownerへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-015-AC-01 — 正常**: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-015-AC-02 — 否定・境界**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 causal evidence不足はunknownでsource ownerへ戻す。
+- **BRAIN-INFRA-015-AC-02 — 否定・境界**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 関係先Domainの責務ownerへ戻す。 失敗時戻し先: 関係先Domainの責務ownerへ戻す。
 
 ### 固定親句の被覆
 
@@ -1371,16 +1379,16 @@ API→Network→Latency / Availability、Data→Storage / Database→Backup / Re
 |---|---|---|---|
 | Input/source: cross-domain source/evidence・relation claim | `FR-01 / AC-01` | `L10-BRAIN-INFRA-015-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-015-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 失敗時戻し先: 関係先Domainの責務ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 未見Security/UX cross-domain claimで根拠不足を含め、may-affect以上を因果確定しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-015-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: causal evidence不足はunknownでsource ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 関係先Domainの責務ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-005; 常時 BRAIN L2-005と各Domain identity/source。cross-domain scope/evidence。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-015-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-015-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-015-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-015-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。cross-domain relationはaffects/constrains/may affectと根拠を区別し、因果を推定しない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。cross-domain relationはaffects/constrains/may affectと根拠を区別し、因果を推定しない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1404,12 +1412,12 @@ Single Point of Failure、Shared mutable production state、Unbounded Retry、Un
 
 **出力・責務**: negative patternと成立範囲、反例、代替、sourceを候補として返す。
 
-**否定・戻し先**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 評価scope不明はLABO/該当要求ownerへ戻す。
+**否定・戻し先**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-016-AC-01 — 正常**: negative patternと成立範囲、反例、代替、sourceを候補として返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-016-AC-02 — 否定・境界**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 評価scope不明はLABO/該当要求ownerへ戻す。
+- **BRAIN-INFRA-016-AC-02 — 否定・境界**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。 失敗時戻し先: 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。
 
 ### 固定親句の被覆
 
@@ -1417,16 +1425,17 @@ Single Point of Failure、Shared mutable production state、Unbounded Retry、Un
 |---|---|---|---|
 | Input/source: anti-pattern/failure/source/context/alternative | `FR-01 / AC-01` | `L10-BRAIN-INFRA-016-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: negative patternと成立範囲、反例、代替、sourceを候補として返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-016-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 失敗時戻し先: 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: 別contextのheld-out conditionとcounterexampleを渡し、anti-patternを全scope banへしない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-016-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 評価scope不明はLABO/該当要求ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-010; 常時 BRAIN L2-010/INFRA-005/006/009。各列挙条件/兆候/代替。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-016-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-016-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-016-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-016-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。条件付きantipatternを表す。旧failure例を普遍禁止や一律gateにしない。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-879D95C07B789C9502CF`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+再導出。条件付きantipatternを表す。旧failure例を普遍禁止や一律gateにしない。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-879D95C07B789C9502CF`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -1451,12 +1460,12 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 
 **出力・責務**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。
 
-**否定・戻し先**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。
+**否定・戻し先**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-017-AC-01 — 正常**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-017-AC-02 — 否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。
+- **BRAIN-INFRA-017-AC-02 — 否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 失敗時戻し先: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
 
 ### 固定親句の被覆
 
@@ -1464,16 +1473,16 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 |---|---|---|---|
 | Input/source: maturity claim・evidence/source・scope/version | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 失敗時戻し先: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: held-out scope/versionのevidenceと単一内部成功を用い、claim範囲を超えるmaturityを付けない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | stop reasonとparent ownerを観測 |
+| Owner/backflow: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-007/008; 常時 BRAIN L2-007/008/020/025。evidence/scope/versionとproject-use state分離。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-017-C01,C02` | dependency identity/sourceと戻し先を照合 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C01,C02` | release/implementation authorizationと混同しない |
-| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-017-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-017-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。maturityとevidenceを関連付け、単一内部成功を普遍的成熟度にしない。旧registry lifecycleは成熟度意味と別。 起点asset: `LEGACY-ASSET-5CBA32E9DB5B0FE05589`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。maturityとevidenceを関連付け、単一内部成功を普遍的成熟度にしない。旧registry lifecycleは成熟度意味と別。 起点asset: `LEGACY-ASSET-5CBA32E9DB5B0FE05589`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
