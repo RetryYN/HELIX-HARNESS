@@ -1,8 +1,8 @@
-# HELIX-INTELLIGENCE L10 業務検証設計（部分草稿の適用範囲記録）
+# HELIX-INTELLIGENCE L10 業務検証設計（1.0対象親50件の草稿・適用範囲記録）
 
 status: draft_for_l3_review
 approval: not_approved
-scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
+scope: adopted version_target 1.0 explicit INT items drafted through Stage 4 items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 

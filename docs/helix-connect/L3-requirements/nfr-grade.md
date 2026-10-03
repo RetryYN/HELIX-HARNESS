@@ -1,4 +1,4 @@
-# HELIX-CONNECT L3 NFR候補（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
+# HELIX-CONNECT L3 NFR候補（1.0対象親9件の草稿）
 
 > 状態: 全体的なretry/latency/retention数値は固定されていない。以下はfixed L2/L11から直接読める境界値、または比較・測定可能な技術候補であり、実装値やPO承認値ではない。各parameterについて個別PO判断は求めない。意味・scope・owner・versionを変える必要が生じた場合だけL2へ戻す。
 

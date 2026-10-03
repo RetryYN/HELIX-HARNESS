@@ -1,8 +1,8 @@
-# HELIX-INTELLIGENCE L3 機能要件（部分草稿）
+# HELIX-INTELLIGENCE L3 機能要件（1.0対象親50件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial INT items 017/030-041/044-045 + Stage 5 INT items 060/061/062/063/069/070/071/074/077 / adopted version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 INT items 017/030-041/044-045 + Stage 5 INT items 060/061/062/063/069/070/071/074/077 / adopted version_target 1.0 explicit items only
 owner: HELIX-INTELLIGENCE
 paired_l10: ../L10-verification/functional-verification.md
 

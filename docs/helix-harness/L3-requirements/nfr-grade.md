@@ -1,4 +1,4 @@
-# HELIX-HARNESS L3 非機能要件候補（部分草稿）
+# HELIX-HARNESS L3 非機能要件候補（1.0対象親39件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved

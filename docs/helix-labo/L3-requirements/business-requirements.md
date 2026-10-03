@@ -1,10 +1,10 @@
-# HELIX-LABO L3 業務要件（部分草稿）
+# HELIX-LABO L3 業務要件（1.0対象親57件の草稿）
 
 **状態：部分草稿・未承認。** Stage 1/2a/2b割当36 identity、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のHELIXLABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071について、この文書へ独立して配置できる機構業務成果の要求は、固定L2/L11 sourceから別個のbusiness outcomeとして確認できなかった。050/063の改善循環・再発候補、059–071の比較・評価結果は固定親の機能契約そのものであり、別のbusiness owner/outcomeを作らない。機能behaviorをbusiness-detailという旧ファイル名だけで分類しない。要求本文・分類・ownerの意味を変えず、対象identityの動作・ACは対の`functional-requirements.md`と`../L10-verification/functional-verification.md`に置く。
 
 旧HELIX `business-detail.md` は、現行の業務要件候補を探す旧起点として参照した。次の旧BR-21等はHARNESS利用dashboardと集計batchの業務条件であり、本体機構の現行LABO/BRAIN/INFRASTRUCTURE業務責務へ直接一致しない。したがって移植・複製せず、LABO-001の部分source失敗時に有効sourceを保持するfailure類型のみfunctional ACへ再導出した。
 
-今回対象の親L2 identity: `HELIXLABO-L2-001`〜`HELIXLABO-L2-030`, `HELIXLABO-L2-034`, `HELIXLABO-L2-035`, `HELIXLABO-L2-036`〜`HELIXLABO-L2-041`, `HELIXLABO-L2-052`, `HELIXLABO-L2-054`〜`HELIXLABO-L2-058`, `HELIXLABO-L2-063`〜`HELIXLABO-L2-071`.
+今回対象の親L2 identity: `HELIXLABO-L2-001`〜`HELIXLABO-L2-030`, `HELIXLABO-L2-034`, `HELIXLABO-L2-035`, `HELIXLABO-L2-036`〜`HELIXLABO-L2-041`, `HELIXLABO-L2-050`, `HELIXLABO-L2-052`, `HELIXLABO-L2-054`〜`HELIXLABO-L2-061`, `HELIXLABO-L2-063`〜`HELIXLABO-L2-071`.
 
 必要な業務成果条件が後続の承認済みL2から導かれる場合は本書へ追加する。今回、業務分類の新設やL2意味変更は行わない。Stage 2bの002–030、034、035、058はLABO内の分析・評価・入力接続/境界候補であり、固定親に独立した別の業務outcomeはない。実験実行はOS割当Worker、登録/routingはOS、変更判断はtarget ownerに残す。必要な業務outcomeが親から確認された場合のみ後続追補する。
 

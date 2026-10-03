@@ -1,6 +1,6 @@
-# HELIX-LABO L10 機能総合検証（部分草稿）
+# HELIX-LABO L10 機能総合検証（1.0対象親57件の草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2bの31件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 

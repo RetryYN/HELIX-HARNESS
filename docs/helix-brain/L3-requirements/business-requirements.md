@@ -1,4 +1,4 @@
-# HELIX-BRAIN L3 業務要件（部分草稿）
+# HELIX-BRAIN L3 業務要件（1.0対象親40件の草稿）
 
 **状態：部分草稿・未承認。** Stage 1の3 identityおよび今回のStage 2b 28 identity、Stage 4の7 identity、Stage 5の2 identityについて、この文書へ独立して配置できる機構業務成果は、固定L2/L11 sourceから確認できなかった。機能behaviorをbusiness-detailという旧ファイル名だけで分類しない。要求本文・分類・ownerの意味を変えず、対象各itemの動作・ACは`functional-requirements.md`の対応節に置く。
 

@@ -1,4 +1,4 @@
-# HELIX-INFRASTRUCTURE L3 機能要件（部分草稿・Stage 5追補）
+# HELIX-INFRASTRUCTURE L3 機能要件（1.0対象親12件の草稿）
 
 **状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2b、Stage 4およびStage 5の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 

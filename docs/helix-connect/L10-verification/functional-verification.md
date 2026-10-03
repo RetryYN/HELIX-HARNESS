@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
+# HELIX-CONNECT L10 総合検証（1.0対象親9件の草稿）
 
 > 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、Stage 2aのCONNECT-L2-006、Stage 4のCONNECT-L2-008/009、本Stage 5でCONNECT-L2-007を追補する。
 

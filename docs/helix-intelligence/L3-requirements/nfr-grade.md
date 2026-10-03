@@ -1,8 +1,8 @@
-# HELIX-INTELLIGENCE L3 非機能要件候補（部分草稿）
+# HELIX-INTELLIGENCE L3 非機能要件候補（1.0対象親50件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved
-scope: version_target 1.0 explicit INT items drafted through Stage 4 partial items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
+scope: version_target 1.0 explicit INT items drafted through Stage 4 items 017/030-041/044-045 and Stage 5 items 060/061/062/063/069/070/071/074/077
 paired_l10: ../L10-verification/nfr-verification.md
 
 以下は固定L2/L11から導出した候補値であり、承認済み閾値や実測ではない。候補ごとに比較案とL10測定を示す。要件意味・scope・owner・版を変更する必要がある場合だけ上流へ戻す。

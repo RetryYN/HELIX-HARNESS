@@ -1,4 +1,4 @@
-# HELIX-INFRASTRUCTURE L10 機能総合検証（部分草稿）
+# HELIX-INFRASTRUCTURE L10 機能総合検証（1.0対象親12件の草稿）
 
 **状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1・Stage 2a・Stage 2b・Stage 4・Stage 5 assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 

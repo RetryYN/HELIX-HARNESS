@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 NFR候補検証（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
+# HELIX-CONNECT L10 NFR候補検証（1.0対象親9件の草稿）
 
 本書は[L3 NFR候補](../L3-requirements/nfr-grade.md)の各候補を同じIDで測定する。未指定値は根拠付き候補として比較し、実装値やPO承認値を仮定しない。意味・scope・owner・version変更が必要な場合だけL2/POへ戻す。
 

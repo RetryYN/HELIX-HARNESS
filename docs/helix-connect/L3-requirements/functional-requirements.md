@@ -1,10 +1,10 @@
-# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a・Stage 4・Stage 5 部分草稿）
+# HELIX-CONNECT L3 機能要件（1.0対象親9件の草稿）
 
 > 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。Stage 2aは`HELIXCONNECT-L2-006`、Stage 4は`HELIXCONNECT-L2-008/009`、本Stage 5追補は`HELIXCONNECT-L2-007`を追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
 
 ## 適用・責務境界
 
-対象はStage 1のHELIXCONNECT-L2-001〜005、Stage 2aのHELIXCONNECT-L2-006、Stage 4のHELIXCONNECT-L2-008/009（各固定L2が明示するversion_target 1.0）。registration、revision compatibility、技術送受信、再送、trace、片側交換をFRごとに追跡する。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。Stage 2aは片側交換の一接続だけを扱い、後続L2-007の複数辺compositeを前倒ししない。
+対象はStage 1のHELIXCONNECT-L2-001〜005、Stage 2aのHELIXCONNECT-L2-006、Stage 4のHELIXCONNECT-L2-008/009、Stage 5のHELIXCONNECT-L2-007（各固定L2が明示するversion_target 1.0）。registration、revision compatibility、技術送受信、再送、trace、片側交換をFRごとに追跡する。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。Stage 2aは片側交換の一接続だけを扱い、後続L2-007の複数辺compositeを前倒ししない。
 
 ## 旧L3構造の保持点
 

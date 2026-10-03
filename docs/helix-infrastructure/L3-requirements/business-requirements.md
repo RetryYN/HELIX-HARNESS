@@ -1,4 +1,4 @@
-# HELIX-INFRASTRUCTURE L3 業務要件（部分草稿）
+# HELIX-INFRASTRUCTURE L3 業務要件（1.0対象親12件の草稿）
 
 **状態：部分草稿・未承認。** 今回対象のStage 1/2a/2b 9 identity、Stage 4 2 identity、Stage 5 HELIXINFRASTRUCTURE-L2-011のうち、この文書へ独立して配置できる機構業務成果の要求は、固定L2/L11 sourceから別個の業務outcomeとして確認できなかった。機能behaviorをbusiness-detailという旧ファイル名だけで分類しない。要求本文・分類・ownerの意味を変えず、対象identityの動作・ACは対の`../L3-requirements/functional-requirements.md`に置く。
 

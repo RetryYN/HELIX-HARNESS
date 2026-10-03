@@ -1,4 +1,4 @@
-# HELIX-INFRASTRUCTURE L10 業務総合検証（部分草稿）
+# HELIX-INFRASTRUCTURE L10 業務総合検証（1.0対象親12件の草稿）
 
 **状態：部分草稿・未承認・未実行。** 今回対象のStage 1/2a/2b 9 identity、Stage 4 2 identityおよびStage 5 L2-011に対応して、承認済みL2/L11から独立した業務成果条件は確認されなかった。旧business-detailの画面/dashboard ACは現行対象への直接一致がないため、新しい業務要件を追加せず、独立business oracleも作らない。機能動作とそのL10 oracleは`../L3-requirements/functional-requirements.md`／`functional-verification.md`の同一AC traceに置く。
 

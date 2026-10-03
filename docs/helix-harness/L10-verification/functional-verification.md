@@ -1,4 +1,4 @@
-# HELIX-HARNESS L10 機能総合検証設計（部分草稿）
+# HELIX-HARNESS L10 機能総合検証設計（1.0対象親39件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved

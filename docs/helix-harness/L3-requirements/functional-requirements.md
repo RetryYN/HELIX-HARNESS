@@ -1,4 +1,4 @@
-# HELIX-HARNESS L3 機能要件（部分草稿）
+# HELIX-HARNESS L3 機能要件（1.0対象親39件の草稿）
 
 status: draft_for_l3_review
 approval: not_approved

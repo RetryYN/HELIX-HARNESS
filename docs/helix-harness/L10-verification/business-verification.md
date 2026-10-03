@@ -1,4 +1,4 @@
-# HELIX-HARNESS L10 業務検証設計（部分草稿の適用範囲記録）
+# HELIX-HARNESS L10 業務検証設計（1.0対象親39件の草稿・適用範囲記録）
 
 status: draft_for_l3_review
 approval: not_approved
