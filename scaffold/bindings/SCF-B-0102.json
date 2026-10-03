@@ -372,9 +372,9 @@
       "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
     },
     {
-      "note": "static input; digest and semantic role only; no execution or authority effect [2026-09-26 GUIレーン運転の整備 read-after: scaffold/review-handoff/README.mdは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。] [2026-10-04 read-after: 「配送状態・再開」に、statusが期限超過の未ACKをexpiredと表示する（保存値は書き換えない）旨を追記した。通知の配送・ACK・lease規則は不変。本bindingのrole・obligations・artifactは変更しない。]",
+      "note": "static input; digest and semantic role only; no execution or authority effect [2026-09-26 GUIレーン運転の整備 read-after: scaffold/review-handoff/README.mdは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。] [2026-10-04 read-after: 「配送状態・再開」に、statusが期限超過の未ACKをexpiredと表示する（保存値は書き換えない）旨を追記した。通知の配送・ACK・lease規則は不変。本bindingのrole・obligations・artifactは変更しない。] [2026-10-04 通知の向き read-after: 冒頭と「依頼と指摘返却」の3・5を、PRの作成側→review側の向きとlease失効中の登録済みsessionへの配送に合わせて改めた。packetによる別runtime限定・期限切れ通知の拒否・ACK規則は不変。本bindingのrole・obligations・artifactは変更しない。]",
       "path": "scaffold/review-handoff/README.md",
-      "sha256": "b9d4310ad1cf8ea0c10f13c1f86e3e86cf8ee62d508f3cd06989787431646d2c"
+      "sha256": "a14b439312f15b78e715e35d459b72450f3d9e88f96f77428168ba93ade59686"
     }
   ],
   "verification": {
