@@ -1,0 +1,2629 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-621-660-2026-10-01",
+  "created_against_commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+  "authority_effect": "none",
+  "fixed_F6_execution_ticket_family_relation": "583–660位の旧`execution-ticket-acceptance.md`は、固定F6のHELIX-OS L2 `docs/helix-os/L2-requirements/governance-requirements.md:536–561`が名指しする旧`execution-ticket-requests.md`（HXT-RQ-01〜07をHELIXOS-L2-004/005/007/009へ接続）と同じExecution Ticket familyに属する。HELIX-OS L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:256–267`が名指しするのは旧`execution-ticket-validation.md`で、HXT-RQ-01〜07の受入は全件未実行である。固定F6はこの旧acceptanceファイルを直接名指ししない。したがってfamily関係は残すが、選択した各HXT-AC/HXB-AC行の個別binding、successor、closureを生まない。",
+  "prior_completed_complement_slice": {
+    "ranks": "581-620",
+    "commit": "e08923d87fd52b64aa9c3fc0064032007df0f216",
+    "last_id": "LEGACY-CAND-LINE-001128",
+    "json_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-581-620-2026-10-01.json",
+    "json_sha256": "2f91f2627985bf6703e962d5b832508a12ceecfc3124e1550a971a27b9970593",
+    "md_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-581-620-2026-10-01.md",
+    "md_sha256": "0a25fe92865d32c7432a75c27db637b909295c11d241826c2a1447dea13d4bb7"
+  },
+  "purpose": "Semantic audit of numeric-ID ranks 621–660 in the independently reconstructed 2,710-row effective-explanation marker-negative complement.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "positive_marker_unique_id_count": 255,
+    "marker_negative_complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      621,
+      660
+    ],
+    "selected_count": 40,
+    "first_selected_id": "LEGACY-CAND-LINE-001129",
+    "last_selected_id": "LEGACY-CAND-LINE-001178",
+    "selected_ids_sha256": "3b91c64670082640d2d55355151602a1e8e5064a7878ea0154889ea7ad6805a5",
+    "reconstruction_inputs": [
+      {
+        "role": "#2353 baseline",
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+        "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+      },
+      {
+        "role": "#2356 exact-ID classification overlay",
+        "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+        "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+        "row_count": 9
+      },
+      {
+        "role": "#2360 exact-ID classification overlay",
+        "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+        "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+        "row_count": 7
+      },
+      {
+        "role": "#2363 exact-ID classification overlay",
+        "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+        "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+        "row_count": 16
+      },
+      {
+        "role": "#2366 exact-ID classification overlay",
+        "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+        "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+        "row_count": 14
+      },
+      {
+        "role": "#2367 exact-ID classification overlay",
+        "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+        "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+        "row_count": 51
+      },
+      {
+        "role": "#2368 exact-ID classification overlay",
+        "commit": "f89f71e0371440e9e10636499192c2311872b024",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+        "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+        "row_count": 47
+      },
+      {
+        "role": "#2369 exact-ID classification overlay",
+        "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+        "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+        "row_count": 2
+      },
+      {
+        "role": "#2381 exact-ID classification overlay",
+        "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+        "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+        "row_count": 10
+      }
+    ],
+    "nonreplacement_overlay_2369": {
+      "source_ids": [
+        "LEGACY-CAND-LINE-000841",
+        "LEGACY-CAND-LINE-000857"
+      ],
+      "effective_change": "condition +2; explanation -2",
+      "classification_only_no_row_replacement": true
+    },
+    "selected_ids_intersection_with_any_classification_overlay": 0,
+    "selected_ids_sha256_join": "UTF-8 source IDs joined by LF with a final LF"
+  },
+  "prior_marker_semantic_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33",
+      "role": "positive marker semantic review ranks 1-20",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f",
+      "role": "positive marker semantic review slice ranks 21-40",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc",
+      "role": "positive marker semantic review slice ranks 41-60",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+      "role": "positive marker semantic review slice ranks 61-80",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+      "role": "positive marker semantic review slice ranks 81-100",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+      "role": "positive marker semantic review slice ranks 101-120",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+      "role": "positive marker semantic review slice ranks 121-140",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+      "role": "positive marker semantic review slice ranks 141-160",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+      "role": "positive marker semantic review slice ranks 161-180",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97",
+      "role": "positive marker semantic review slice ranks 181-200",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d",
+      "role": "positive marker semantic review slice ranks 201-220",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793",
+      "role": "positive marker semantic review slice ranks 221-240",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135",
+      "role": "positive marker semantic review slice ranks 241-255",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b"
+    }
+  ],
+  "source_ledgers": [
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "row_count": 4755
+    },
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "row_count": 4020
+    }
+  ],
+  "fixed_F6_pairs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "comparison_pairs_at_audit_head": [
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "decision_records": [
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    }
+  ],
+  "current_relation_files": [
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "role": "bounded F6 pair comparison at audit HEAD",
+      "commit": "420164de98585fa495e7f4eaacd016981a2df26b",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "rows": [
+    {
+      "rank": 621,
+      "source_id": "LEGACY-CAND-LINE-001129",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 67,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "bd23302da69fc8aef3334e061bde2db9a4354d914d9be0a69512671324cbbefc",
+      "physical_line_bytes_sha256": "e1ec04d7a4e88b50477d2fc83bb94451c9f9cbce60eea03633c28c78f7ba7018",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1129,
+        "entry_sha256": "99c05c9922da543995c00b36562e2f06e7a9ae99ea48064321155cc16f713efc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 66,
+          "text": "| HXT-AC-038 | Issue ID一致だけでTicket同一性を成立させない | HXT-FR-011,017 |"
+        },
+        {
+          "line": 67,
+          "text": "| HXT-AC-039 | behavior contract一致だけでTicket同一性を成立させない | HXT-FR-011 |"
+        },
+        {
+          "line": 68,
+          "text": "| HXT-AC-040 | Assignment終了やmeasurement追補後もTicket contractは不変 | HXT-FR-005,013 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-039 | behavior contract一致だけでTicket同一性を成立させない | HXT-FR-011 |",
+      "semantic_category": "Ticket同一性の識別",
+      "semantic_reading": "HXT-AC-039は、behavior contractが一致するだけではTicketの同一性を成立させない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-010のticket/workflowやOS-L2-004の実行証拠は関連するが、旧HXT-AC-039が扱う「behavior contract一致だけでは同一Ticketにならない」という同一性oracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 622,
+      "source_id": "LEGACY-CAND-LINE-001130",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 68,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "0e8fc4e5eb077491ac02d52738dffffe434f0a20f70f282c4a40aa88aa6a7d58",
+      "physical_line_bytes_sha256": "6c258f588484c0205b20963b46d3a696aa6640501e4c94b27f901ba63b376590",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1130,
+        "entry_sha256": "bd9f44bfffd5f372410dc22c24a80102afeab9d5ee38f2e85bb528f0f8e6d9d4"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 67,
+          "text": "| HXT-AC-039 | behavior contract一致だけでTicket同一性を成立させない | HXT-FR-011 |"
+        },
+        {
+          "line": 68,
+          "text": "| HXT-AC-040 | Assignment終了やmeasurement追補後もTicket contractは不変 | HXT-FR-005,013 |"
+        },
+        {
+          "line": 69,
+          "text": "| HXT-AC-041 | 旧Ticket revisionのclosure receiptを新revisionの完了証拠として流用しない | HXT-FR-015,016 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-040 | Assignment終了やmeasurement追補後もTicket contractは不変 | HXT-FR-005,013 |",
+      "semantic_category": "Ticket contractの不変性",
+      "semantic_reading": "HXT-AC-040は、Assignment終了後やmeasurement情報の追補後もTicket contractを変更しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004はAssignmentとWorker実行を扱うが、Assignment終了・measurement追補後のTicket contract不変性を同じ条件として定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 623,
+      "source_id": "LEGACY-CAND-LINE-001131",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 69,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "9c805679ad133efd8592f5530eb618fe29c06951a31f5b8979936ca3d9aadaf9",
+      "physical_line_bytes_sha256": "59543cb77aef09f3c69954787e488e645d5f95798cd417efb330e3f0192ca8de",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1131,
+        "entry_sha256": "c86659606ca711814fe63b0ca70394e33daebe6b4cd5d4c7236ed8288b78df53"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 68,
+          "text": "| HXT-AC-040 | Assignment終了やmeasurement追補後もTicket contractは不変 | HXT-FR-005,013 |"
+        },
+        {
+          "line": 69,
+          "text": "| HXT-AC-041 | 旧Ticket revisionのclosure receiptを新revisionの完了証拠として流用しない | HXT-FR-015,016 |"
+        },
+        {
+          "line": 70,
+          "text": "| HXT-AC-042 | stale reviewer receiptを拒否する | HXT-FR-015 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-041 | 旧Ticket revisionのclosure receiptを新revisionの完了証拠として流用しない | HXT-FR-015,016 |",
+      "semantic_category": "revision別closure receipt",
+      "semantic_reading": "HXT-AC-041は、旧Ticket revisionのclosure receiptを、新revisionの完了証拠に流用しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007の要求revisionから証拠を辿る条件は隣接する。旧revision receiptを新revisionのTicket完了へ転用しないというこの検査の個別bindingはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 624,
+      "source_id": "LEGACY-CAND-LINE-001134",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 72,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "eeafed7bf9f829022ec3df4b11639e278f204f2a6497bae69e8f1d5b795b465c",
+      "physical_line_bytes_sha256": "0457ea054800d06f3776e113ec0476fce5f5036ce173d75e081003a622e4ac4e",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1134,
+        "entry_sha256": "a84cf17637734b2f5d300e6276410fad2fc85dc1f79d2a0f8d98d839a5e89b64"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 71,
+          "text": "| HXT-AC-043 | worker/reviewerの独立性をidentity/session/context/provenanceで検査し、共有汚染を拒否する | HXT-FR-015,022 |"
+        },
+        {
+          "line": 72,
+          "text": "| HXT-AC-044 | GitHub pagination不完了を全数convergedとして扱わない | HXT-FR-017 |"
+        },
+        {
+          "line": 73,
+          "text": "| HXT-AC-045 | DB read model取得不能を契機に別projectionや記憶を意味authorityへ昇格しない | HXT-FR-019 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-044 | GitHub pagination不完了を全数convergedとして扱わない | HXT-FR-017 |",
+      "semantic_category": "pagination完了の判定",
+      "semantic_reading": "HXT-AC-044は、GitHub paginationが完了していない場合、全件がconvergedしたとは扱わない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-002は欠落・未検証状態を区別し、OS-L2-007は証拠traceを扱うが、GitHub paginationの完了数を全件convergenceへ結ぶoracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 625,
+      "source_id": "LEGACY-CAND-LINE-001135",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 73,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "db412b2b193e5e11b4ceb464d3acf78635231c314fde5aaacfeb2c3d39986a12",
+      "physical_line_bytes_sha256": "c912bfe1059a79b12a089ead70ed8cad5e120662359e7d940f07ecd0baf44f5a",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1135,
+        "entry_sha256": "4a3dd990cb3613e83a1b395d92a897f81062beb35c35547261d075693b51d0c9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 72,
+          "text": "| HXT-AC-044 | GitHub pagination不完了を全数convergedとして扱わない | HXT-FR-017 |"
+        },
+        {
+          "line": 73,
+          "text": "| HXT-AC-045 | DB read model取得不能を契機に別projectionや記憶を意味authorityへ昇格しない | HXT-FR-019 |"
+        },
+        {
+          "line": 74,
+          "text": "| HXT-AC-046 | scope expansionを必要な独立review/authority receiptなしで認めない | HXT-FR-006,010 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-045 | DB read model取得不能を契機に別projectionや記憶を意味authorityへ昇格しない | HXT-FR-019 |",
+      "semantic_category": "read model停止時のauthority境界",
+      "semantic_reading": "HXT-AC-045は、DB read modelを取得できないことを理由に、別のprojectionや記憶を意味authorityへ昇格させない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007はprojectionされたlog/evidenceのtraceを扱うが、DB read model停止時に別projectionや記憶を意味authorityへ代用しないという当該fallback条件を定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 626,
+      "source_id": "LEGACY-CAND-LINE-001136",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 74,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "c86c9c71c7002ff6e73d7277a143409f4ad8872571592faea07368e9193ca693",
+      "physical_line_bytes_sha256": "e37857f3d5da5284a17dcf66c4e47d88d7d6ee80775679ff25c8ce447de5d4e7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1136,
+        "entry_sha256": "a638c51ee225dd9381a67316fe4ec29664f18bbd5694612b3397eccb139f480d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 73,
+          "text": "| HXT-AC-045 | DB read model取得不能を契機に別projectionや記憶を意味authorityへ昇格しない | HXT-FR-019 |"
+        },
+        {
+          "line": 74,
+          "text": "| HXT-AC-046 | scope expansionを必要な独立review/authority receiptなしで認めない | HXT-FR-006,010 |"
+        },
+        {
+          "line": 75,
+          "text": "| HXT-AC-047 | destructive操作を普通のlow-risk作業へ隠して実行できない | HXT-FR-022 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-046 | scope expansionを必要な独立review/authority receiptなしで認めない | HXT-FR-006,010 |",
+      "semantic_category": "scope拡張の統制",
+      "semantic_reading": "HXT-AC-046は、scope拡張には必要な独立reviewとauthority receiptを求め、それらなしでは認めない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004/010にはassignment、scopeと判断先に関する関連条件があるが、scope拡張に別個のindependent review receiptとauthority receiptの両方を必須とする同一oracleはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 627,
+      "source_id": "LEGACY-CAND-LINE-001138",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 76,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "161446a118e5a49d030f009548e21dd2e33a201cc7d3264b5a82fbe7148cc07d",
+      "physical_line_bytes_sha256": "07b1e615732649fbd3abdf34fb5704754b747304cea8172c30323ee94f928b06",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1138,
+        "entry_sha256": "1f004e8541927821d4eafe24f1375e15ce2d1ae84ec247b9b6b9b81c272631a7"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 75,
+          "text": "| HXT-AC-047 | destructive操作を普通のlow-risk作業へ隠して実行できない | HXT-FR-022 |"
+        },
+        {
+          "line": 76,
+          "text": "| HXT-AC-048 | Release配置未解決のTicketを自動Release対象にしない。ただし配置不要の診断作業は別扱い | HXT-FR-023 |"
+        },
+        {
+          "line": 77,
+          "text": "| HXT-AC-049 | Ticket compiler policy変更でaffected契約を再検証し、影響なし/変更ありを証拠付きで区別する | HXT-FR-003,016 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-048 | Release配置未解決のTicketを自動Release対象にしない。ただし配置不要の診断作業は別扱い | HXT-FR-023 |",
+      "semantic_category": "Release配置未解決時の扱い",
+      "semantic_reading": "HXT-AC-048は、Release配置が未解決のTicketを自動Release対象にしない。ただし配置が不要な診断作業は別に扱う。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。HARNESS-L2-006とHELIXOS-L2-006は提供・release状態を扱う。旧HXT-AC-048のunresolved placementを理由に自動Releaseしないgateと診断作業の例外は固定pairに含まれず、近接だけで採択しない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 628,
+      "source_id": "LEGACY-CAND-LINE-001139",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 77,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "0518f61ff1685ed41094c01e8b263fc2b1b3b07cfeb351340bf1ba8c1a4ee080",
+      "physical_line_bytes_sha256": "7d2feec5658b76532b34420719bf63fc05a1d8958c281b1ef7e459f1edbd4ab0",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1139,
+        "entry_sha256": "c8c368bf0e52bfa3211823368eb1ff01dda303be86254d3716ff586b17730906"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 76,
+          "text": "| HXT-AC-048 | Release配置未解決のTicketを自動Release対象にしない。ただし配置不要の診断作業は別扱い | HXT-FR-023 |"
+        },
+        {
+          "line": 77,
+          "text": "| HXT-AC-049 | Ticket compiler policy変更でaffected契約を再検証し、影響なし/変更ありを証拠付きで区別する | HXT-FR-003,016 |"
+        },
+        {
+          "line": 78,
+          "text": "| HXT-AC-050 | sourceとconsumerで同じcontract/schemaを検証し、未導入capabilityを稼働済みとしない | HXT-FR-021,025 |"
+        }
+      ],
+      "source_excerpt": "| HXT-AC-049 | Ticket compiler policy変更でaffected契約を再検証し、影響なし/変更ありを証拠付きで区別する | HXT-FR-003,016 |",
+      "semantic_category": "Ticket compiler policy変更時の再検証",
+      "semantic_reading": "HXT-AC-049は、Ticket compiler policyが変わった場合、影響を受けるcontractを再検証し、影響なしと変更ありを証拠付きで区別する。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。HARNESS-L2-022のverification contractとOS-L2-010のworkflow組立は関連するが、Ticket compiler policy変更のimpact analysisと影響なし／変更ありの証拠を要求するoracleは定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 629,
+      "source_id": "LEGACY-CAND-LINE-001140",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 78,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "5cacf7ef234243ae0c0e9926471bdf64a1a4754d0ed20ee0907ec4b9f18ebbfe",
+      "physical_line_bytes_sha256": "59f67169e5078ce92e82faf01907eab804fd19f0a93e67ab0bc04ab2297bb11f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1140,
+        "entry_sha256": "6abaabea5573fee5d3bf3e335cd5d3557502dab8c3063f218d2f6f77d1bfec7d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 77,
+          "text": "| HXT-AC-049 | Ticket compiler policy変更でaffected契約を再検証し、影響なし/変更ありを証拠付きで区別する | HXT-FR-003,016 |"
+        },
+        {
+          "line": 78,
+          "text": "| HXT-AC-050 | sourceとconsumerで同じcontract/schemaを検証し、未導入capabilityを稼働済みとしない | HXT-FR-021,025 |"
+        },
+        {
+          "line": 79,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "| HXT-AC-050 | sourceとconsumerで同じcontract/schemaを検証し、未導入capabilityを稼働済みとしない | HXT-FR-021,025 |",
+      "semantic_category": "sourceとconsumerの契約照合",
+      "semantic_reading": "HXT-AC-050は、sourceとconsumerが同じcontract/schemaを検証し、未導入capabilityを稼働済みとして扱わない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。HARNESS-L2-022は利用者側でも使えるverification/acceptance contractを扱うが、source-consumer間の同一schema検査と未導入capabilityのactive表示拒否を一組の条件として定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 630,
+      "source_id": "LEGACY-CAND-LINE-001142",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 82,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "c6fb1645791bbbfc649a08b0b7a3e9d7150f6582312c656db928a1c6702ce754",
+      "physical_line_bytes_sha256": "418079edecf7a5bf8df2b6f056898fc25d1bd78316cf6cd1d9a4f597ffa4c3df",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1142,
+        "entry_sha256": "aad1254e0acb93d3ee0506b2bdbd63e4a05b1ad1833bcde40edfd1ffcc56d0cd"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 81,
+          "text": ""
+        },
+        {
+          "line": 82,
+          "text": "| ID | 検査内容 | 対応FR |"
+        },
+        {
+          "line": 83,
+          "text": "|---|---|---|"
+        }
+      ],
+      "source_excerpt": "| ID | 検査内容 | 対応FR |",
+      "semantic_category": "受入検査表の見出し",
+      "semantic_reading": "ID・検査内容・対応FRの列を示す表見出しであり、独立した検査条件ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。このsource lineは検査表の列名にあたる。HARNESS-L2-022等の受入候補にある個別oracleとも対応付けず、採択・successorを主張しない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 631,
+      "source_id": "LEGACY-CAND-LINE-001146",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 86,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "4e3a7736de8b34635b64c85ae1f58052853237a447d9b6d526cc0ad371414ccf",
+      "physical_line_bytes_sha256": "8628b4db2348da879eed9e5daa9ba32f35959bd91bbe326301ca503453da87ca",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1146,
+        "entry_sha256": "73c44f9059d05a2b9d63234adafb7c605d5b0899464585a30a58fff62dd59490"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 85,
+          "text": "| HXB-AC-002 | 未割当/起動前拒否をintake母数に残し、存在しないAttemptや成功を作らない | HXB-FR-001 |"
+        },
+        {
+          "line": 86,
+          "text": "| HXB-AC-003 | 重複/順不同eventと再起動を投入し、checkpointから一度だけ集計効果を適用する | HXB-FR-002 |"
+        },
+        {
+          "line": 87,
+          "text": "| HXB-AC-004 | 同一event ID別payload・sequence gapを検出し、未修復状態をconvergedにしない | HXB-FR-002 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-003 | 重複/順不同eventと再起動を投入し、checkpointから一度だけ集計効果を適用する | HXB-FR-002 |",
+      "semantic_category": "event再処理の重複防止",
+      "semantic_reading": "HXB-AC-003は、重複または順不同のeventと再起動を試し、checkpointから集計への効果を一度だけ適用する。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の中断・状態継続とOS-L2-007の証拠記録は関連する。旧HXB-AC-003のduplicate/out-of-order eventをcheckpointから一度だけ集計する効果は固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 632,
+      "source_id": "LEGACY-CAND-LINE-001147",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 87,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "f75a72ac6a8936a28539b6fa322e2bb117f97673ed612cfec630eb39fe0575a3",
+      "physical_line_bytes_sha256": "a0840c3b590e41b9b8c94984123e11e06c50d782cf5650f87c9aeea50affa22f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1147,
+        "entry_sha256": "4f8d1904a089ffc4efe915702b7ce731bdbbd9fcce29640e4dc16a3d870382bb"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 86,
+          "text": "| HXB-AC-003 | 重複/順不同eventと再起動を投入し、checkpointから一度だけ集計効果を適用する | HXB-FR-002 |"
+        },
+        {
+          "line": 87,
+          "text": "| HXB-AC-004 | 同一event ID別payload・sequence gapを検出し、未修復状態をconvergedにしない | HXB-FR-002 |"
+        },
+        {
+          "line": 88,
+          "text": "| HXB-AC-005 | subject Ticketと評価作業Ticketを別refで保持し、評価終了が本線closeを変えない | HXB-FR-003 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-004 | 同一event ID別payload・sequence gapを検出し、未修復状態をconvergedにしない | HXB-FR-002 |",
+      "semantic_category": "event IDとsequence gapの整合",
+      "semantic_reading": "HXB-AC-004は、同一event IDに異なるpayloadがある場合やsequence gapを検出し、未修復の状態をconvergedにしない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007/009のtrace・状態継続は関連するが、event ID別payload conflictとsequence gapを検出してconvergedを拒否する同一条件までは定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 633,
+      "source_id": "LEGACY-CAND-LINE-001148",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 88,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "ff199cef6d388f962ca788e94da4d718a6a47770c4acba2d0f626e41ded39fdb",
+      "physical_line_bytes_sha256": "f2ad213f6335eeb3ff3cda8e6427bd89c38ba1b6811a560e9e44f6ca87fac951",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1148,
+        "entry_sha256": "e9d32819b7b058dc956d7458f2c396b1589c00bd56225bb2068cd67b0a3f7a42"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 87,
+          "text": "| HXB-AC-004 | 同一event ID別payload・sequence gapを検出し、未修復状態をconvergedにしない | HXB-FR-002 |"
+        },
+        {
+          "line": 88,
+          "text": "| HXB-AC-005 | subject Ticketと評価作業Ticketを別refで保持し、評価終了が本線closeを変えない | HXB-FR-003 |"
+        },
+        {
+          "line": 89,
+          "text": "| HXB-AC-006 | 同じmodelでもtreatment/replicate/Attemptを区別し、resolved version不明を明示する | HXB-FR-003 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-005 | subject Ticketと評価作業Ticketを別refで保持し、評価終了が本線closeを変えない | HXB-FR-003 |",
+      "semantic_category": "subject Ticketと評価Ticketの分離",
+      "semantic_reading": "HXB-AC-005は、subject Ticketと評価作業Ticketを別refで保持し、評価の終了で本線Ticketのclose状態を変えない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-005の結果を候補・ticketへ辿る条件は関連するが、subject Ticketと評価用Ticketを別refにし、評価終了と本線closeを分離する契約は固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 634,
+      "source_id": "LEGACY-CAND-LINE-001149",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 89,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "72095440521eb2fc4c7bde3f0a64e1da55ef3389d5e848d79e6c3fc83afd3680",
+      "physical_line_bytes_sha256": "dde1fab5e09a0bdd018def73754523fe71362eb0cc9af41e8c1f4149a6f1f47d",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1149,
+        "entry_sha256": "cd0dd200a218abd8fc2e035b757699e707a594aa2cd9db84080589bc2f382124"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 88,
+          "text": "| HXB-AC-005 | subject Ticketと評価作業Ticketを別refで保持し、評価終了が本線closeを変えない | HXB-FR-003 |"
+        },
+        {
+          "line": 89,
+          "text": "| HXB-AC-006 | 同じmodelでもtreatment/replicate/Attemptを区別し、resolved version不明を明示する | HXB-FR-003 |"
+        },
+        {
+          "line": 90,
+          "text": "| HXB-AC-007 | admit時点で観測obligationが存在し、将来の結果/CI/reviewを事前捏造しない | HXB-FR-004 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-006 | 同じmodelでもtreatment/replicate/Attemptを区別し、resolved version不明を明示する | HXB-FR-003 |",
+      "semantic_category": "評価条件とAttemptの識別",
+      "semantic_reading": "HXB-AC-006は、同じmodelを使う場合もtreatment、replicate、Attemptを区別し、解決済みversionが不明な場合はその不明状態を示す。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004はWorker/provider/modelと実行provenanceを辿るが、同一model内のtreatment/replicate/Attemptを区別する実験schemaや未解決version表示は定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 635,
+      "source_id": "LEGACY-CAND-LINE-001150",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 90,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "a394eed3b5c3486f031fd0f46d6f194a9388204b5ecedcb2e5042f8780910e8e",
+      "physical_line_bytes_sha256": "9c308d86818b4406dcdd1897114ecc13558d8381164044f8faad8ee7dfe4e7e0",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1150,
+        "entry_sha256": "0e37af189d1515f9e2f0d407fbfb81e6b45bddebfab8c5882804792dace8da98"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 89,
+          "text": "| HXB-AC-006 | 同じmodelでもtreatment/replicate/Attemptを区別し、resolved version不明を明示する | HXB-FR-003 |"
+        },
+        {
+          "line": 90,
+          "text": "| HXB-AC-007 | admit時点で観測obligationが存在し、将来の結果/CI/reviewを事前捏造しない | HXB-FR-004 |"
+        },
+        {
+          "line": 91,
+          "text": "| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-007 | admit時点で観測obligationが存在し、将来の結果/CI/reviewを事前捏造しない | HXB-FR-004 |",
+      "semantic_category": "admit時点での観測義務",
+      "semantic_reading": "HXB-AC-007は、admit時点で観測義務が存在し、将来の結果・CI・reviewを事前に捏造しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-008/010はticket由来の検証義務を扱う一方、admit時点の観測義務と将来result/CI/reviewの事前捏造拒否をこの旧ACと同じoracleにはしていない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 636,
+      "source_id": "LEGACY-CAND-LINE-001152",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 92,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "6a83106bcae95f6c800688d59cb55a416ccab7f6e0e753de480d69f1e518aa55",
+      "physical_line_bytes_sha256": "02719c58b487f18b1e0156def14facb9a58ca87e2ae8b4e05923003e510af883",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1152,
+        "entry_sha256": "16263c0146787aa5b9cfff69110f1b3157085965a4b3bc465eeea76cd1077c91"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 91,
+          "text": "| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |"
+        },
+        {
+          "line": 92,
+          "text": "| HXB-AC-009 | 既存5カテゴリ/12指標exact setを保持し、補助telemetryの追加が旧score意味を変えない | HXB-FR-005 |"
+        },
+        {
+          "line": 93,
+          "text": "| HXB-AC-010 | 同じraw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない | HXB-FR-005 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-009 | 既存5カテゴリ/12指標exact setを保持し、補助telemetryの追加が旧score意味を変えない | HXB-FR-005 |",
+      "semantic_category": "既存score指標の保持",
+      "semantic_reading": "HXB-AC-009は、既存の5カテゴリ・12指標のexact setを保持し、補助telemetryを加えても旧scoreの意味を変えない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。HARNESS-L2-031はlog/inputから回帰候補を作る範囲で関連するが、既存5カテゴリ・12指標の固定score意味と補助telemetryの非干渉は採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 637,
+      "source_id": "LEGACY-CAND-LINE-001154",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 94,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "f097a55e339f11967d695049e0f59631f9a18a5bf2fad6166cd8fe991db09af9",
+      "physical_line_bytes_sha256": "3721319d20a7996436647171fde17d8e18a9d5d932e9eef1b44cf2e1cab9acbf",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1154,
+        "entry_sha256": "4c49a81b46a65c7e8a22955db7982451a9ec682794581afc12b623edf0c71604"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 93,
+          "text": "| HXB-AC-010 | 同じraw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない | HXB-FR-005 |"
+        },
+        {
+          "line": 94,
+          "text": "| HXB-AC-011 | 実請求/配賦/API相当推計を分離し、未知費用を0円にしない | HXB-FR-006 |"
+        },
+        {
+          "line": 95,
+          "text": "| HXB-AC-012 | accepted change=0やbaselineなしで成功あたり費用/削減率を成功値へ変換しない | HXB-FR-006 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-011 | 実請求/配賦/API相当推計を分離し、未知費用を0円にしない | HXB-FR-006 |",
+      "semantic_category": "費用データの区別",
+      "semantic_reading": "HXB-AC-011は、実請求、配賦、API相当の推計を分け、未知の費用を0円として扱わない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。固定HARNESS/OS pairにはこの旧行が区別する実請求・配賦・API相当推計のcost schemaやunknown費用の扱いを定める採択predicateはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 638,
+      "source_id": "LEGACY-CAND-LINE-001155",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 95,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "28c6ac9d2f95c29e7fe0326317373d8f766516c263b0b7b2d2bb65efc816af5f",
+      "physical_line_bytes_sha256": "32314f2b870906be026b78e3d3daa0ec8f78bdbfb9ebc942911f600fef3efec7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1155,
+        "entry_sha256": "37c894882f0470f4546b9f11b9c2b66a5dc783ce1bc152d0b70f065038b93858"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 94,
+          "text": "| HXB-AC-011 | 実請求/配賦/API相当推計を分離し、未知費用を0円にしない | HXB-FR-006 |"
+        },
+        {
+          "line": 95,
+          "text": "| HXB-AC-012 | accepted change=0やbaselineなしで成功あたり費用/削減率を成功値へ変換しない | HXB-FR-006 |"
+        },
+        {
+          "line": 96,
+          "text": "| HXB-AC-013 | 後日finding/rollbackを帰属根拠付き追補へし、元closure/receiptを改ざんしない | HXB-FR-007 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-012 | accepted change=0やbaselineなしで成功あたり費用/削減率を成功値へ変換しない | HXB-FR-006 |",
+      "semantic_category": "費用・削減率の成功値判定",
+      "semantic_reading": "HXB-AC-012は、accepted changeが0、またはbaselineがない場合、成功あたり費用や削減率を成功値にしない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-005等の改善結果評価は話題として近いが、accepted change=0またはbaseline欠落時の費用率・削減率を成功値にしない具体oracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 639,
+      "source_id": "LEGACY-CAND-LINE-001156",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 96,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "0f415ab1e5f481b9880e9ac402260d9ef613839cacd4fa9afd565164913fd095",
+      "physical_line_bytes_sha256": "186fd527748fea12548f328efd3a2c20fa7b94d296d38f42f0df6260577ee2e3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1156,
+        "entry_sha256": "0f422b167d2e9028689139fde53a3c12e10acae22748634f74bc2d6e66b8e873"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 95,
+          "text": "| HXB-AC-012 | accepted change=0やbaselineなしで成功あたり費用/削減率を成功値へ変換しない | HXB-FR-006 |"
+        },
+        {
+          "line": 96,
+          "text": "| HXB-AC-013 | 後日finding/rollbackを帰属根拠付き追補へし、元closure/receiptを改ざんしない | HXB-FR-007 |"
+        },
+        {
+          "line": 97,
+          "text": "| HXB-AC-014 | 観測窓未満・未追跡・打切りを0 defectsにせず、通常closeを長期待ちにしない | HXB-FR-007 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-013 | 後日finding/rollbackを帰属根拠付き追補へし、元closure/receiptを改ざんしない | HXB-FR-007 |",
+      "semantic_category": "後日findingの追補とreceipt保全",
+      "semantic_reading": "HXB-AC-013は、後日findingやrollbackを根拠と帰属を付けて追補し、元のclosureやreceiptを改ざんしない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007のtraceable evidenceとOS-L2-009の未完義務継承は関連するが、後日finding/rollbackを追補し元closure/receiptを不変に保つこのticket検査の個別bindingはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 640,
+      "source_id": "LEGACY-CAND-LINE-001157",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 97,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "a4aa7f6fa73a58c22aba05d2648c44c78957726808e72b4b75a3668e7b4e7e8b",
+      "physical_line_bytes_sha256": "f9fb03451ee791b8979ecfba467df5d37d407f21576e83e1cc0b824a8a83f0f4",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1157,
+        "entry_sha256": "0248e7e16541302105a3d6eb09be1aeb341981ea49a9e0f2036d1acdd14dbd13"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 96,
+          "text": "| HXB-AC-013 | 後日finding/rollbackを帰属根拠付き追補へし、元closure/receiptを改ざんしない | HXB-FR-007 |"
+        },
+        {
+          "line": 97,
+          "text": "| HXB-AC-014 | 観測窓未満・未追跡・打切りを0 defectsにせず、通常closeを長期待ちにしない | HXB-FR-007 |"
+        },
+        {
+          "line": 98,
+          "text": "| HXB-AC-015 | 異なるfixture/base/protocol/scorerを同一formal cohortへ混入させない | HXB-FR-008 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-014 | 観測窓未満・未追跡・打切りを0 defectsにせず、通常closeを長期待ちにしない | HXB-FR-007 |",
+      "semantic_category": "観測期間と欠測の扱い",
+      "semantic_reading": "HXB-AC-014は、観測期間に満たない、未追跡、または打切りの状態をdefect 0件に変換せず、通常closeを長期待ちにしない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-002/009は未検証・未完・中断の状態を区別するが、観測window未満／未追跡／打切りを0 defectsとせず通常closeを保つmeasurement oracleは定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 641,
+      "source_id": "LEGACY-CAND-LINE-001158",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 98,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "752a89b38b23013c1fc08669cfc9fab70a38aa8f6fcab3d29562efd4f7dc4214",
+      "physical_line_bytes_sha256": "366a06b5d12208b1e56aaa812a34410653413de3c3876a3888d174e6a2b86a46",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1158,
+        "entry_sha256": "4400e6310804a296e117da3082643af6de65ffabcf3f768501e00d2e55c1a307"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 97,
+          "text": "| HXB-AC-014 | 観測窓未満・未追跡・打切りを0 defectsにせず、通常closeを長期待ちにしない | HXB-FR-007 |"
+        },
+        {
+          "line": 98,
+          "text": "| HXB-AC-015 | 異なるfixture/base/protocol/scorerを同一formal cohortへ混入させない | HXB-FR-008 |"
+        },
+        {
+          "line": 99,
+          "text": "| HXB-AC-016 | 複数Ticketの事前定義cohort集計と同一Ticket比較を区別し、live相関を因果改善としない | HXB-FR-008 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-015 | 異なるfixture/base/protocol/scorerを同一formal cohortへ混入させない | HXB-FR-008 |",
+      "semantic_category": "formal cohortの同質性",
+      "semantic_reading": "HXB-AC-015は、異なるfixture、base、protocol、scorerを同じformal cohortへ混在させない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。固定F6 pairのexplicit candidate setにはprotocolやscorerを揃えたformal cohortの比較条件がなく、異なるfixture/base等を混在させない旧ACへ直接のcrosswalkはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 642,
+      "source_id": "LEGACY-CAND-LINE-001159",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 99,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "b87fd7f651925d08f11e7c1d9f4ada9e5a3425300a4f560e509dd71c712ad516",
+      "physical_line_bytes_sha256": "5c5da1f86244b66c84d5d2ea1b18e1bf439685cc1f9cd0c29352911d82026e8b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1159,
+        "entry_sha256": "d12dcec1912af96f57017b1d045035c9a02676bc14bb0c4da5e4bf791e2a917b"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 98,
+          "text": "| HXB-AC-015 | 異なるfixture/base/protocol/scorerを同一formal cohortへ混入させない | HXB-FR-008 |"
+        },
+        {
+          "line": 99,
+          "text": "| HXB-AC-016 | 複数Ticketの事前定義cohort集計と同一Ticket比較を区別し、live相関を因果改善としない | HXB-FR-008 |"
+        },
+        {
+          "line": 100,
+          "text": "| HXB-AC-017 | no_harness群にも安全sandbox/共通evaluatorを適用し、HELIX固有task-lensは注入しない | HXB-FR-009 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-016 | 複数Ticketの事前定義cohort集計と同一Ticket比較を区別し、live相関を因果改善としない | HXB-FR-008 |",
+      "semantic_category": "cohort集計と因果推論の区別",
+      "semantic_reading": "HXB-AC-016は、複数Ticketの事前定義cohort集計と同一Ticket比較を区別し、live相関を因果的な改善とみなさない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-005の改善候補・評価経路は関連するが、事前定義cohortと同一Ticket比較を分け、live相関から因果を導かない統計評価条件は固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 643,
+      "source_id": "LEGACY-CAND-LINE-001160",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 100,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "7ba5b679aaaf116243bebfb47eae3da6e336774f6c456ec045e8304d2eba8695",
+      "physical_line_bytes_sha256": "ef91ce84ebec8a77500a203a7ff49048ba912e730525271971b9f2b437cea3f2",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1160,
+        "entry_sha256": "e0a93f58c0f04919c052a463b90e7d60eed8655a38bb65dc022a29e2fc2cdc33"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 99,
+          "text": "| HXB-AC-016 | 複数Ticketの事前定義cohort集計と同一Ticket比較を区別し、live相関を因果改善としない | HXB-FR-008 |"
+        },
+        {
+          "line": 100,
+          "text": "| HXB-AC-017 | no_harness群にも安全sandbox/共通evaluatorを適用し、HELIX固有task-lensは注入しない | HXB-FR-009 |"
+        },
+        {
+          "line": 101,
+          "text": "| HXB-AC-018 | profile/component変更factorを記録し、結果確認後のscorer/oracle変更で旧結果を再利用しない | HXB-FR-009 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-017 | no_harness群にも安全sandbox/共通evaluatorを適用し、HELIX固有task-lensは注入しない | HXB-FR-009 |",
+      "semantic_category": "no_harness群の評価境界",
+      "semantic_reading": "HXB-AC-017は、no_harness群にも安全sandboxと共通evaluatorを適用し、HELIX固有task-lensを注入しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。固定HARNESS/OS pairはこの旧行のno_harness比較群、共通evaluator、HELIX固有task-lens除外の構成を定めていない。security境界やsandbox語の近さを同一predicateと扱わない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 644,
+      "source_id": "LEGACY-CAND-LINE-001161",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 101,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "de1ca0691f65bb1f483331852c38724a2b1396e4918a7b37b864687375ef5cec",
+      "physical_line_bytes_sha256": "db070d990be54b9ec0cfd375f8d8c1ef4df6332eda386ffcf4545c5ba64f5fe9",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1161,
+        "entry_sha256": "3fc530ab1798c2824a783965f4a204b4cc318b2264122bfdb2242ce0ebb1cfd6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 100,
+          "text": "| HXB-AC-017 | no_harness群にも安全sandbox/共通evaluatorを適用し、HELIX固有task-lensは注入しない | HXB-FR-009 |"
+        },
+        {
+          "line": 101,
+          "text": "| HXB-AC-018 | profile/component変更factorを記録し、結果確認後のscorer/oracle変更で旧結果を再利用しない | HXB-FR-009 |"
+        },
+        {
+          "line": 102,
+          "text": "| HXB-AC-019 | 同一worker/modelの正当なreplicateを上位評価でき、worker identity偽装を必要としない | HXB-FR-010 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-018 | profile/component変更factorを記録し、結果確認後のscorer/oracle変更で旧結果を再利用しない | HXB-FR-009 |",
+      "semantic_category": "評価設定変更の記録",
+      "semantic_reading": "HXB-AC-018は、profile/componentの変更要因を記録し、結果確認後にscorer/oracleを変更して旧結果を再利用しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007が記録provenanceを要求する点は関連するが、profile/component変更要因と結果確認後のscorer/oracle変更時の旧結果再利用禁止を同じ評価条件として採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 645,
+      "source_id": "LEGACY-CAND-LINE-001162",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 102,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "e2ec98438e97fcd8589f2800e3faf5ba147b45f3eb65ec32053a9177bffef3f8",
+      "physical_line_bytes_sha256": "4061e565603b15115ab17d652cac9bdecce3172f7e875cfdc8c5aeea23470159",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1162,
+        "entry_sha256": "4cc5c65d32ee9ab1e6911b4ccfa228a67100920ccbbb50385c264daa96cfa08b"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 101,
+          "text": "| HXB-AC-018 | profile/component変更factorを記録し、結果確認後のscorer/oracle変更で旧結果を再利用しない | HXB-FR-009 |"
+        },
+        {
+          "line": 102,
+          "text": "| HXB-AC-019 | 同一worker/modelの正当なreplicateを上位評価でき、worker identity偽装を必要としない | HXB-FR-010 |"
+        },
+        {
+          "line": 103,
+          "text": "| HXB-AC-020 | 既存worker/judge独立性と下位provenance検査を維持し、同一output複製で標本数を増やせない | HXB-FR-010 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-019 | 同一worker/modelの正当なreplicateを上位評価でき、worker identity偽装を必要としない | HXB-FR-010 |",
+      "semantic_category": "同一worker/modelの正当な反復",
+      "semantic_reading": "HXB-AC-019は、同一worker/modelの正当なreplicateを上位評価に使えるようにし、そのためにworker identityを偽装する必要をなくす。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004はWorker/model identityと実行証拠を辿るため関連するが、正当な同一identity replicateの上位統計評価やidentity偽装不要という実験条件は定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 646,
+      "source_id": "LEGACY-CAND-LINE-001163",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 103,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "ff61d4038b2619048338511ab222116bb8e9cb52f9ea0d2f2fa95141793c0788",
+      "physical_line_bytes_sha256": "d4dde462cba5ef5819b4570d5cdbf5cf2183f53346bce8cfa1c3b111aab3b56b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1163,
+        "entry_sha256": "672dac7598b0ca6553e8ee4f4a85845d370d01e8d6d2dea0cfbdc423aada38bc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 102,
+          "text": "| HXB-AC-019 | 同一worker/modelの正当なreplicateを上位評価でき、worker identity偽装を必要としない | HXB-FR-010 |"
+        },
+        {
+          "line": 103,
+          "text": "| HXB-AC-020 | 既存worker/judge独立性と下位provenance検査を維持し、同一output複製で標本数を増やせない | HXB-FR-010 |"
+        },
+        {
+          "line": 104,
+          "text": "| HXB-AC-021 | shadow workerから本線patch/正解review/shared memory/他群cache/hidden oracleが読めない | HXB-FR-011 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-020 | 既存worker/judge独立性と下位provenance検査を維持し、同一output複製で標本数を増やせない | HXB-FR-010 |",
+      "semantic_category": "worker/judge独立性と標本数",
+      "semantic_reading": "HXB-AC-020は、既存のworker/judge独立性と下位provenance検査を維持し、同じoutputの複製で標本数を水増しできないようにする。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004の独立review・実行者provenanceは関連するが、worker/judge分離と同一output重複による標本水増しをまとめて拒否する評価oracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 647,
+      "source_id": "LEGACY-CAND-LINE-001164",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 104,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "71f9cf73a2a6c92f6dba3f2639e5609569886f8ff225fa260fb2fa529366027e",
+      "physical_line_bytes_sha256": "1ce757f3035d703572b8efdda0c813ea81580792be79447bac71965a7e7e4ff7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1164,
+        "entry_sha256": "ee528353a737fcc5ae598267e749141b7ed8b3a4fab2ea1e2aea8637cc7657ff"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 103,
+          "text": "| HXB-AC-020 | 既存worker/judge独立性と下位provenance検査を維持し、同一output複製で標本数を増やせない | HXB-FR-010 |"
+        },
+        {
+          "line": 104,
+          "text": "| HXB-AC-021 | shadow workerから本線patch/正解review/shared memory/他群cache/hidden oracleが読めない | HXB-FR-011 |"
+        },
+        {
+          "line": 105,
+          "text": "| HXB-AC-022 | shadow不適格・snapshot不可・機密対象を理由付きで除外し、選別した対象を全体代表と偽らない | HXB-FR-011 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-021 | shadow workerから本線patch/正解review/shared memory/他群cache/hidden oracleが読めない | HXB-FR-011 |",
+      "semantic_category": "shadow workerの情報隔離",
+      "semantic_reading": "HXB-AC-021は、shadow workerが本線patch、正解review、shared memory、別群cache、hidden oracleを読めないようにする。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004は作業後の一時資格情報や実行環境の残留を扱うが、shadow workerからpatch/review/cache/hidden oracleへのread accessを個別に遮断するこのACは採択されていない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 648,
+      "source_id": "LEGACY-CAND-LINE-001165",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 105,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "83ceaa70eebc1dfe216e0b15c615bc66a76820876259da463047c165212ea7ee",
+      "physical_line_bytes_sha256": "bc0c87959d4f548bad018edffc5baad5abe831967ce66702d2afb0bf2984413f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1165,
+        "entry_sha256": "3a180c4a5e0982aaded160d214188b6f8e2db481294b89375e5bcb9f1c2c7ed0"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 104,
+          "text": "| HXB-AC-021 | shadow workerから本線patch/正解review/shared memory/他群cache/hidden oracleが読めない | HXB-FR-011 |"
+        },
+        {
+          "line": 105,
+          "text": "| HXB-AC-022 | shadow不適格・snapshot不可・機密対象を理由付きで除外し、選別した対象を全体代表と偽らない | HXB-FR-011 |"
+        },
+        {
+          "line": 106,
+          "text": "| HXB-AC-023 | 同じtrigger/subject/windowの再配信でMeasurementRequestが重複生成されない | HXB-FR-012 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-022 | shadow不適格・snapshot不可・機密対象を理由付きで除外し、選別した対象を全体代表と偽らない | HXB-FR-011 |",
+      "semantic_category": "shadow対象の除外理由と代表性",
+      "semantic_reading": "HXB-AC-022は、shadowに不適格な対象、snapshotを取得できない対象、機密対象を理由付きで除外し、選んだ対象を全体の代表と偽らない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-002の欠落・未検証識別は関連するが、shadow subjectの除外理由と選択対象の母集団代表性を区別する評価sampling条件は定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 649,
+      "source_id": "LEGACY-CAND-LINE-001166",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 106,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "9cd89c4a45ce18ddcc42db1e53cc42aec2a5b982003b00d1aabfe50449c13e26",
+      "physical_line_bytes_sha256": "6c709600c921c3d0b5f4c73995549dedb3f89d5e776d91dc63021ed0bab90d54",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1166,
+        "entry_sha256": "bb8ad1c2cdc38a0f41101d3e0df6079b632136aeece5962a9a4d9113cd79b99e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 105,
+          "text": "| HXB-AC-022 | shadow不適格・snapshot不可・機密対象を理由付きで除外し、選別した対象を全体代表と偽らない | HXB-FR-011 |"
+        },
+        {
+          "line": 106,
+          "text": "| HXB-AC-023 | 同じtrigger/subject/windowの再配信でMeasurementRequestが重複生成されない | HXB-FR-012 |"
+        },
+        {
+          "line": 107,
+          "text": "| HXB-AC-024 | measurement完了→再測定の無限増殖をcause/depth/dedupeで止める | HXB-FR-012 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-023 | 同じtrigger/subject/windowの再配信でMeasurementRequestが重複生成されない | HXB-FR-012 |",
+      "semantic_category": "MeasurementRequestの重複抑止",
+      "semantic_reading": "HXB-AC-023は、同じtrigger、subject、windowで再配信された場合、MeasurementRequestを重複生成しない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の状態継続・重複実行防止は関連するが、同じtrigger/subject/windowに対する再配信からMeasurementRequestを一件だけ作るdedupe keyは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 650,
+      "source_id": "LEGACY-CAND-LINE-001167",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 107,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "f3a1cd618c1a320d11cdedf3fac49eaf70ca1fdd42e9bb7e6f719222f8bb14c9",
+      "physical_line_bytes_sha256": "6cf1f6fc4a0e1b2489aeb9f2f8857d1061d4640c96cffdda7ef47eccebebd23b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1167,
+        "entry_sha256": "3615a38b05f241aca924815a70a9c8e08f4d01c7fddc3496464e35761b94ef7d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 106,
+          "text": "| HXB-AC-023 | 同じtrigger/subject/windowの再配信でMeasurementRequestが重複生成されない | HXB-FR-012 |"
+        },
+        {
+          "line": 107,
+          "text": "| HXB-AC-024 | measurement完了→再測定の無限増殖をcause/depth/dedupeで止める | HXB-FR-012 |"
+        },
+        {
+          "line": 108,
+          "text": "| HXB-AC-025 | 有限予算を予約してから追加実験を起動し、retryを含む累積上限で停止する | HXB-FR-013 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-024 | measurement完了→再測定の無限増殖をcause/depth/dedupeで止める | HXB-FR-012 |",
+      "semantic_category": "再測定の有限化",
+      "semantic_reading": "HXB-AC-024は、measurement完了後の再測定が無限に増えないよう、cause、depth、dedupeで抑止する。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009は中断後の再開・予算継承を扱うが、remeasurementをcause/depth/dedupeで有限化する旧評価workflowは定めない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 651,
+      "source_id": "LEGACY-CAND-LINE-001169",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 109,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "51ccf694965c2dac3e41d323d6c323545db42bbebfdb2bb9fb2e6f56f663fe59",
+      "physical_line_bytes_sha256": "168c83b8ec8464b80a4d432f9989ceb8e2ccf49f78d9e11137ece06cc006a5c1",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1169,
+        "entry_sha256": "0f3eeef68277af96da7109d8acd99687edaf8ab6af3aca409a153edcc65b1179"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 108,
+          "text": "| HXB-AC-025 | 有限予算を予約してから追加実験を起動し、retryを含む累積上限で停止する | HXB-FR-013 |"
+        },
+        {
+          "line": 109,
+          "text": "| HXB-AC-026 | 実験backlogでも本線capacity/review在庫を奪い尽くさず、期限切れ再実行を無限catch-upしない | HXB-FR-013 |"
+        },
+        {
+          "line": 110,
+          "text": "| HXB-AC-027 | 空read modelから全measurementを再構築し、mode/version/as-ofを分けて一致する | HXB-FR-014 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-026 | 実験backlogでも本線capacity/review在庫を奪い尽くさず、期限切れ再実行を無限catch-upしない | HXB-FR-013 |",
+      "semantic_category": "実験backlogと本線資源の分離",
+      "semantic_reading": "HXB-AC-026は、実験backlogが本線のcapacityやreview在庫を奪い尽くさず、期限切れrunの再実行を無限にcatch-upしないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004のassignment/resource統制は近接するが、実験backlogから本線capacity/review inventoryを守り、期限切れcatch-upを制限するこの評価基準は固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 652,
+      "source_id": "LEGACY-CAND-LINE-001170",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 110,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "58b98ffc38ab4e23d0fd2b2a08c45f06b8344a4c3cbb3bf959263fbcc1baa928",
+      "physical_line_bytes_sha256": "4a372e9e465be3e5cf5ab0358d5fc71cff81fa69e94c6983887159c9fb01a423",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1170,
+        "entry_sha256": "0db806c3a07df1560632660e4f7cc703abd790f0df3f8dea9a8eedad11f4aec9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 109,
+          "text": "| HXB-AC-026 | 実験backlogでも本線capacity/review在庫を奪い尽くさず、期限切れ再実行を無限catch-upしない | HXB-FR-013 |"
+        },
+        {
+          "line": 110,
+          "text": "| HXB-AC-027 | 空read modelから全measurementを再構築し、mode/version/as-ofを分けて一致する | HXB-FR-014 |"
+        },
+        {
+          "line": 111,
+          "text": "| HXB-AC-028 | 再採点は新receiptとし、旧score/input set/発行者provenanceを上書きしない | HXB-FR-014 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-027 | 空read modelから全measurementを再構築し、mode/version/as-ofを分けて一致する | HXB-FR-014 |",
+      "semantic_category": "measurement read modelの再構築",
+      "semantic_reading": "HXB-AC-027は、空のread modelから全measurementを再構築し、mode・version・as-ofを分けて結果を一致させることを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の状態復旧・継続記録は関連するが、空measurement read modelを全件再構築しmode/version/as-ofを一致させる独立oracleは固定pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 653,
+      "source_id": "LEGACY-CAND-LINE-001171",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 111,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "a269cef8a71f15b6bc8ba9e3b22293ee52d8998e751b6acca1da54ea4703083f",
+      "physical_line_bytes_sha256": "59b9f8c7964f12e19de8a4ab3a172de84b48fbd95d7bab1210bc30f53c8e6d5e",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1171,
+        "entry_sha256": "6beb1fae42eb081eb8e31c07030e5902e339246767f530bfd5a20ea8b5c3686e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 110,
+          "text": "| HXB-AC-027 | 空read modelから全measurementを再構築し、mode/version/as-ofを分けて一致する | HXB-FR-014 |"
+        },
+        {
+          "line": 111,
+          "text": "| HXB-AC-028 | 再採点は新receiptとし、旧score/input set/発行者provenanceを上書きしない | HXB-FR-014 |"
+        },
+        {
+          "line": 112,
+          "text": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-028 | 再採点は新receiptとし、旧score/input set/発行者provenanceを上書きしない | HXB-FR-014 |",
+      "semantic_category": "再採点receiptの不変性",
+      "semantic_reading": "HXB-AC-028は、再採点を新しいreceiptとして記録し、以前のscore・input set・発行者provenanceを上書きしないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007は要求から検証証拠までのtraceを求めるが、rescoreを新receiptとし旧score/input set/issuer provenanceを不変に保つ具体schemaは採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 654,
+      "source_id": "LEGACY-CAND-LINE-001172",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 112,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "a6073309e309cc6d6f757a2f54367503fabe40726d67972d888da08db2162d58",
+      "physical_line_bytes_sha256": "4cd16ec88657db1d8c0fd5968ee68e7f639fa386b988ebca861ddc2e00f12397",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1172,
+        "entry_sha256": "d3ea28581834f37f663272b77551c5047898b7424859022428a54feca9fc0222"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 111,
+          "text": "| HXB-AC-028 | 再採点は新receiptとし、旧score/input set/発行者provenanceを上書きしない | HXB-FR-014 |"
+        },
+        {
+          "line": 112,
+          "text": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |"
+        },
+        {
+          "line": 113,
+          "text": "| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |",
+      "semantic_category": "資格評価の鮮度と適用範囲",
+      "semantic_reading": "HXB-AC-029は、鮮度や適用task・risk・profileに合わないscoreを、registryのcurrent qualificationに使わないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004にはモデル適格性の確認と未評価表示があり関連するが、古い・task/risk/profile不適合なscoreをcurrent qualificationにしない旧bench oracleのrow-level bindingやsuccessorはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 655,
+      "source_id": "LEGACY-CAND-LINE-001173",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 113,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "9673dd48e2fa9cedbee994ce82de5736779b8a7dda0d612b7d4a1364187ab832",
+      "physical_line_bytes_sha256": "68c5c351ded0178405f68c1b82aa651744cbc487989bf27f01e6483f1f6a1e39",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1173,
+        "entry_sha256": "f7c727425ad6878e6ca391888c3216898793995538b03f0f40630eb7d7b468e8"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 112,
+          "text": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |"
+        },
+        {
+          "line": 113,
+          "text": "| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |"
+        },
+        {
+          "line": 114,
+          "text": "| HXB-AC-031 | 分析sink停止中もdurable journal正常なら本線継続でき、復旧後に欠損なく追い付く | HXB-FR-016 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |",
+      "semantic_category": "Bench評価と割当authorityの分離",
+      "semantic_reading": "HXB-AC-030は、Benchの結果だけで配車や権限を変えず、既存policyから委任された範囲の評価・提案は人間の都度指示なしに処理することを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004もBench水準だけでassignmentを決めずOSが適格性を確認する境界を含む。関連はその範囲に限られ、旧HXB-AC-030全体の採択や旧policyのsuccessorを示さない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 656,
+      "source_id": "LEGACY-CAND-LINE-001174",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 114,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "e079bb40351f93362ea36f8ec74e4cafbb33bdea5d98158219a323edad45bbe6",
+      "physical_line_bytes_sha256": "761f488571a765ba27a7a9999da1c20441e57ca4bcc2c62e3c44d4e350ce7306",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1174,
+        "entry_sha256": "bfbefddf7d910920d8fb03be292bdd4f9e7ce886af713e4382e52ff25f27c866"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 113,
+          "text": "| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |"
+        },
+        {
+          "line": 114,
+          "text": "| HXB-AC-031 | 分析sink停止中もdurable journal正常なら本線継続でき、復旧後に欠損なく追い付く | HXB-FR-016 |"
+        },
+        {
+          "line": 115,
+          "text": "| HXB-AC-032 | audit/lease記録不能は影響scopeの新規操作を停止し、外部結果不明を盲目的retryしない | HXB-FR-016 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-031 | 分析sink停止中もdurable journal正常なら本線継続でき、復旧後に欠損なく追い付く | HXB-FR-016 |",
+      "semantic_category": "分析sink停止時の本線継続",
+      "semantic_reading": "HXB-AC-031は、分析sinkが停止してもdurable journalが正常なら本線を継続し、復旧後に欠損なく追いつくことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-009の中断・状態継続は関連するが、分析sinkとdurable journalを分離してsink停止中の本線継続と復旧後の無欠損追いつきを保証する同一failure oracleはない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 657,
+      "source_id": "LEGACY-CAND-LINE-001175",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 115,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "ea1c345150ae32c07ca145c97f341061b26303262bb2404d63699726fb33648c",
+      "physical_line_bytes_sha256": "01eccc57c5b15ced6549c4655897a35022c7c53b1463de58f67e88cc6e82e593",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1175,
+        "entry_sha256": "a039b005af4cc972be5b967e345e28643012de0f2919fd796e55ea0e8a40f957"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 114,
+          "text": "| HXB-AC-031 | 分析sink停止中もdurable journal正常なら本線継続でき、復旧後に欠損なく追い付く | HXB-FR-016 |"
+        },
+        {
+          "line": 115,
+          "text": "| HXB-AC-032 | audit/lease記録不能は影響scopeの新規操作を停止し、外部結果不明を盲目的retryしない | HXB-FR-016 |"
+        },
+        {
+          "line": 116,
+          "text": "| HXB-AC-033 | secret/PIIを通常metricへ残さず、artifact中の指示でcollector/judge policyが変わらない | HXB-FR-017 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-032 | audit/lease記録不能は影響scopeの新規操作を停止し、外部結果不明を盲目的retryしない | HXB-FR-016 |",
+      "semantic_category": "audit/lease記録不能時の停止",
+      "semantic_reading": "HXB-AC-032は、audit/leaseを記録できない場合に影響scopeの新規操作を止め、外部結果が不明な操作を盲目的にretryしないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004/007の操作・証拠traceは関連するものの、audit/lease記録不能時のscope停止と外部結果不明時の盲目的retry禁止を一体で定める旧ACは採択していない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 658,
+      "source_id": "LEGACY-CAND-LINE-001176",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 116,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "e807984beb3c12070e48454f2959758a03e4af0faf4a941c9f79d3a53d2ee1b8",
+      "physical_line_bytes_sha256": "24924964f69dae353d7a6e19246c88b3a9f4c9db6b21c84324a65a25902ff1b7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1176,
+        "entry_sha256": "8772a62effbba6d0f475bbeef047788c432619a3734cc7d28a0492cf6f7f503f"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 115,
+          "text": "| HXB-AC-032 | audit/lease記録不能は影響scopeの新規操作を停止し、外部結果不明を盲目的retryしない | HXB-FR-016 |"
+        },
+        {
+          "line": 116,
+          "text": "| HXB-AC-033 | secret/PIIを通常metricへ残さず、artifact中の指示でcollector/judge policyが変わらない | HXB-FR-017 |"
+        },
+        {
+          "line": 117,
+          "text": "| HXB-AC-034 | hidden oracleがworker filesystemからアクセス不能であり、formal/shadowに本番権限がない | HXB-FR-017 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-033 | secret/PIIを通常metricへ残さず、artifact中の指示でcollector/judge policyが変わらない | HXB-FR-017 |",
+      "semantic_category": "機密情報とartifact指示の隔離",
+      "semantic_reading": "HXB-AC-033は、secret/PIIを通常metricへ残さず、artifact内の指示でcollector/judge policyを変えないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-007のevidence/log境界は関連するが、secret/PIIを通常metricから排除し、artifact内指示によるcollector/judge policy改変を拒否する条件は固定HARNESS/OS pairにない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 659,
+      "source_id": "LEGACY-CAND-LINE-001177",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 117,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "69e510a4d9ccce863235482141e6c17ee1900be3e035f0b1a84648949f3149f8",
+      "physical_line_bytes_sha256": "f5bc2bc4e486dd628db7b98c87ca6b7a1c5d3690f0ee4a411c394cd5507009a7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1177,
+        "entry_sha256": "f9524871a7b9328e8638d6a0d6967f9516a66c3b5113d2abd62acf70db0fdd32"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 116,
+          "text": "| HXB-AC-033 | secret/PIIを通常metricへ残さず、artifact中の指示でcollector/judge policyが変わらない | HXB-FR-017 |"
+        },
+        {
+          "line": 117,
+          "text": "| HXB-AC-034 | hidden oracleがworker filesystemからアクセス不能であり、formal/shadowに本番権限がない | HXB-FR-017 |"
+        },
+        {
+          "line": 118,
+          "text": "| HXB-AC-035 | Ticket未採用の既存Bench snapshotをlegacy_subjectで計測でき、新Ticketへ偽装しない | HXB-FR-018 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-034 | hidden oracleがworker filesystemからアクセス不能であり、formal/shadowに本番権限がない | HXB-FR-017 |",
+      "semantic_category": "hidden oracleと本番権限の隔離",
+      "semantic_reading": "HXB-AC-034は、worker filesystemからhidden oracleへアクセスできず、formal/shadow workerに本番権限がないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-004は一時credentialや実行環境の残留を扱うが、worker filesystemからhidden oracleへのread accessとformal/shadow本番権限を遮断するこのACは個別採択されていない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    },
+    {
+      "rank": 660,
+      "source_id": "LEGACY-CAND-LINE-001178",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "source_line": 118,
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "9ff103737c645c7fc128e74b5cbaa491418c9e195f01ad30ad2a369df013928c",
+      "physical_line_bytes_sha256": "dfa5a6deb3066d0615d9318acbf5dd6cabec4bfce7ac841145ce789f339217d3",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1178,
+        "entry_sha256": "38b38d539707440c0589217d71c44d173e07cf46ab1be9e59d3ab9fb749a94e5"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 810,
+          "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "product_target": "unresolved",
+          "upstream_ids": [],
+          "pair_ids": [],
+          "implementation_status": "unknown"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 117,
+          "text": "| HXB-AC-034 | hidden oracleがworker filesystemからアクセス不能であり、formal/shadowに本番権限がない | HXB-FR-017 |"
+        },
+        {
+          "line": 118,
+          "text": "| HXB-AC-035 | Ticket未採用の既存Bench snapshotをlegacy_subjectで計測でき、新Ticketへ偽装しない | HXB-FR-018 |"
+        },
+        {
+          "line": 119,
+          "text": "| HXB-AC-036 | consumerで未実装/停止中observerをactive表示せず、schema/policy driftを検出する | HXB-FR-018 |"
+        }
+      ],
+      "source_excerpt": "| HXB-AC-035 | Ticket未採用の既存Bench snapshotをlegacy_subjectで計測でき、新Ticketへ偽装しない | HXB-FR-018 |",
+      "semantic_category": "未採用Ticket subjectの識別",
+      "semantic_reading": "HXB-AC-035は、Ticketとして未採用の既存Bench snapshotをlegacy_subjectとして計測でき、新しいTicketに偽装しないことを求める。",
+      "marker_negative_normative_or_authority_condition": true,
+      "current_relation_and_limit": "固定F6 pairのHARNESS-L2-022/031（verification・acceptance、log/inputからの再現）、HELIXOS-L2-004/007/009/010（Worker実行・evidence trace・中断継続・ticket/workflow）を関連比較する。OS-L2-001/007は要求source identityと証拠traceを扱うため関連するが、Ticket未採用の既存Bench snapshotをlegacy_subjectとして測る識別子契約はない。 PO判断の明示候補集合に旧source行の個別bindingはなく、類似性は採択・successor・実行・closureを示さない。"
+    }
+  ],
+  "summary": {
+    "selected_count": 40,
+    "marker_negative_normative_or_authority_condition_count": 39,
+    "noncondition_structure_or_header_count": 1,
+    "successor_assignment_count": 0,
+    "authority_effect": "none",
+    "semantic_categories_japanese": true,
+    "semantic_readings_japanese": true
+  },
+  "limitations": [
+    "The semantic reading is limited to each exact selected source line and local neighboring context; another line in the same table is an independent row and is not imported into this row.",
+    "Ranks were rederived from all 4,755 #2353 rows, all eight ordered overlays including #2369’s exact +2 condition / -2 explanation delta, and the full 255-ID positive set (aggregate ranks 1–20 plus review slices 21–255).",
+    "Fixed F6 pairs and PO decisions provide bounded comparison context only. Similarity does not establish row-level adoption, exact crosswalk, successor, acceptance execution, or Stage 5 closure."
+  ],
+  "static_validation": {
+    "source_row_population": 4755,
+    "effective_explanation_rows": 2965,
+    "prior_marker_positive_unique_ids": 255,
+    "marker_negative_complement_rows": 2710,
+    "selected_rank_start": 621,
+    "selected_rank_end": 660,
+    "selected_count": 40,
+    "selected_ids_unique": true,
+    "numeric_suffix_strictly_ascending": true,
+    "first_selected_id": "LEGACY-CAND-LINE-001129",
+    "last_selected_id": "LEGACY-CAND-LINE-001178",
+    "source_line_ledger_exact_join_count": 40,
+    "asset_ledger_source_path_join_count": 40,
+    "archive_file_hash_verified_count": 40,
+    "source_line_hash_verified_count": 40,
+    "physical_line_bytes_hash_verified_count": 40,
+    "source_authority_preserved_count": 40,
+    "meaning_change_false_count": 40,
+    "successor_assignment_count": 0,
+    "old_runtime_cli_hook_test_ci_executed": false,
+    "source_acceptance_id_reading_alignment_count": 39,
+    "adjacent_row_semantic_shift_count": 0,
+    "header_rows_noncondition_count": 1,
+    "selected_ids_intersection_with_classification_overlays": 0
+  }
+}

@@ -1,0 +1,1570 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "V13-EFFECTIVE-RANKS111-131-CONDITION-AUDIT-2026-10-01",
+  "created_against_commit": "4a50e2d3f2272a36bae89ea38df6cdd6954dbd41",
+  "authority_effect": "none",
+  "purpose": "fixed source-qualified 131-pool positions111–131の21 source identityについて、旧原文・固定F6の限定関係・残差と後発PO decisionのexact identity scopeを時点を分けて記録する。",
+  "scope": {
+    "pool_size": 131,
+    "positions": [
+      111,
+      131
+    ],
+    "record_count": 21,
+    "identity_basis": "corrected crosswalk pool positions joined by full source tuple to exact queue tuples; raw ID token is insufficient",
+    "not_a_full_step5_closure": true
+  },
+  "queue_pin": {
+    "path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "rows_total": 303,
+    "eligibility_rule": "primary_residual AND unresolved_for_closure_work"
+  },
+  "crosswalk_pool_pin": {
+    "path": "docs/governance/audits/requirements-stage/v13-effective-legacy40-rank-reuse-crosswalk-2026-10-01.json",
+    "commit": "4a50e2d3f2272a36bae89ea38df6cdd6954dbd41",
+    "sha256": "1b9669ee715a6b5f2d1a82c77285a56451fd25ec249236f1d12ef2f78d65c01e",
+    "positions": [
+      111,
+      131
+    ],
+    "source_item_ids": [
+      "REQSRC-SUP-00477",
+      "REQSRC-SUP-00478",
+      "REQSRC-SUP-00479",
+      "REQSRC-SUP-00482",
+      "REQSRC-SUP-00483",
+      "REQSRC-SUP-00496",
+      "REQSRC-SUP-00500",
+      "REQSRC-SUP-00501",
+      "REQSRC-SUP-00502",
+      "REQSRC-SUP-00503",
+      "REQSRC-SUP-00504",
+      "REQSRC-SUP-00505",
+      "REQSRC-SUP-00508",
+      "REQSRC-SUP-00510",
+      "REQSRC-SUP-00511",
+      "REQSRC-SUP-00512",
+      "REQSRC-SUP-00513",
+      "REQSRC-SUP-00516",
+      "REQSRC-SUP-00517",
+      "REQSRC-SUP-00520",
+      "REQSRC-SUP-00521"
+    ]
+  },
+  "source_and_asset_pins": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+    "archive_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "archive_manifest_path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+    "archive_manifest_sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "manifest_entry": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406  docs/governance/helix-harness-requirements_v1.3.md",
+    "source_snapshot_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+    "source_snapshot_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+    "asset_ledger_line": 956,
+    "asset_ledger_line_sha256": "a6d52de16ee4aa8ecb37ed092fb4c2beda22ec89d1d036b3028414a753375dde",
+    "asset_ledger_revision": 3,
+    "source_disposition": "source_snapshot_preservation",
+    "source_authority_state": "source_status_not_declared",
+    "carry_forward_state": "preserved_pending_rehome",
+    "decision_status": "pending_human_confirmation"
+  },
+  "fixed_f6_pair": {
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "l2_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+    "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "l11_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+    "note": "immutable comparison baseline; later decisions are separately pinned and do not rewrite F6."
+  },
+  "later_po_decisions": {
+    "D-HARNESS-2026-09-28": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "commit": "03b1969b26a30e9e2b68149bff2e10c5bfe78110",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "scope": "固定F6対象と明示候補のexact revisionに限定。",
+      "relevant_identities": {
+        "HARNESS-L2-002": "adopted in fixed F6 set",
+        "HARNESS-L2-003": "adopted in fixed F6 set",
+        "HARNESS-L2-010": "adopted in fixed F6 set",
+        "HARNESS-L2-013": "adopted in fixed F6 set",
+        "HARNESS-L2-021": "adopted in fixed F6 set",
+        "HARNESS-L2-022": "adopted in fixed F6 set",
+        "HARNESS-L2-024": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-024-001",
+          "section_sha256": "b3ff17f9e58c735f08a5431cf51457b5f32187d4edcce3c32ab141cae7db35c6"
+        }
+      }
+    },
+    "D-OS-2026-09-28": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "commit": "51e170f8a1e412f201173e8e7116a82538d451e0",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "source_revision": "635f6c9296592473d0f6fb667d436a1f5f80afb7",
+      "scope": "明示16 identityのexact revisionをversion_target/条件を保持して採択。",
+      "relevant_identities": {
+        "HELIXOS-L2-021": {
+          "disposition": "adopted",
+          "version_target": "1.0",
+          "registration_id": "MPR-RC-HELIXOS-L2-021-002"
+        }
+      }
+    },
+    "D-57-2026-09-29": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "commit": "7581e0fc5f2a790eb5bf6f163e70d4b900ff4a45",
+      "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "source_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+      "scope": "採否はexplicit candidate identity/revision/L2-L11 section digestに限定。",
+      "relevant_identities": {
+        "HARNESS-L2-034": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "l2_section_sha256": "dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+          "decision_line": 39
+        },
+        "HARNESS-L2-035": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-035-002",
+          "l2_section_sha256": "4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+          "decision_line": 40
+        },
+        "HARNESS-L2-036": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-036-002",
+          "l2_section_sha256": "7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb",
+          "decision_line": 41
+        },
+        "HARNESS-L2-038": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-038-001",
+          "l2_section_sha256": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+          "decision_line": 43
+        },
+        "HARNESS-L2-039": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "l2_section_sha256": "e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "decision_line": 44
+        },
+        "HARNESS-L2-040": {
+          "disposition": "adopted",
+          "registration_id": "MPR-RC-HARNESS-L2-040-002",
+          "l2_section_sha256": "c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+          "decision_line": 45
+        },
+        "HARNESS-L2-047": {
+          "disposition": "conditional_adoption_A_HARNESS_owns_contract_generation_norm",
+          "registration_id": "MPR-RC-HARNESS-L2-047-001",
+          "l2_section_sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+          "decision_line": 52
+        },
+        "HELIXOS-L2-030": {
+          "disposition": "held",
+          "registration_id": "MPR-RC-HELIXOS-L2-030-003",
+          "l2_section_sha256": "4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5",
+          "decision_line": 53
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "rank": 111,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00477",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 617,
+        "source_line_sha256": "sha256:3bb5fb3976828d7adc9b514a5c06aa74656ebc85cf233448c18220814514c561",
+        "source_text": "signalはcase-driven routeまたは選択済みdevelopment style内のchange intakeを起動する。",
+        "condition_cluster_id": "V13-COND-L0617",
+        "source_section_group": 30,
+        "source_section_label": "§9.2 signal routing・615–633"
+      },
+      "source_context_lines": [
+        {
+          "line": 616,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 617,
+          "text": "signalはcase-driven routeまたは選択済みdevelopment style内のchange intakeを起動する。",
+          "sha256": "3bb5fb3976828d7adc9b514a5c06aa74656ebc85cf233448c18220814514c561"
+        },
+        {
+          "line": 618,
+          "text": "signalだけでdevelopment styleをProduction Scrumへ変更してはならない。",
+          "sha256": "a0afb22ddfbdb072fad63a61307c8dd76566f9304c426853ec3c5d7d0f2c7123"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-013",
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 separates development style, requirement formation, and human confirmation; this is only a general relation to signal intake."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 separates development style, requirement formation, and human confirmation; this is only a general relation to signal intake.",
+        "residual": "Exact mapping of each signal to case-driven route or selected-style change intake, with source-row L2/L11 binding, is not established.",
+        "counterexample": "Treat generic requirement formation/change intake as a source-bound successor."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 112,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00478",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 618,
+        "source_line_sha256": "sha256:a0afb22ddfbdb072fad63a61307c8dd76566f9304c426853ec3c5d7d0f2c7123",
+        "source_text": "signalだけでdevelopment styleをProduction Scrumへ変更してはならない。",
+        "condition_cluster_id": "V13-COND-L0618",
+        "source_section_group": 30,
+        "source_section_label": "§9.2 signal routing・615–633"
+      },
+      "source_context_lines": [
+        {
+          "line": 617,
+          "text": "signalはcase-driven routeまたは選択済みdevelopment style内のchange intakeを起動する。",
+          "sha256": "3bb5fb3976828d7adc9b514a5c06aa74656ebc85cf233448c18220814514c561"
+        },
+        {
+          "line": 618,
+          "text": "signalだけでdevelopment styleをProduction Scrumへ変更してはならない。",
+          "sha256": "a0afb22ddfbdb072fad63a61307c8dd76566f9304c426853ec3c5d7d0f2c7123"
+        },
+        {
+          "line": 619,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-003"
+        ],
+        "relation": "F6 selects development style by release unit and defines freeze/backflow boundaries."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 selects development style by release unit and defines freeze/backflow boundaries.",
+        "residual": "The rule that a signal alone cannot change style to Production Scrum and its applicability record are not source-bound.",
+        "counterexample": "Infer the no-auto-style-switch condition from generic style selection."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 113,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00479",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 620,
+        "source_line_sha256": "sha256:8cb25c3a0fb124b25a9b0701893fdeef87b3b07222481aa991701d5180759e68",
+        "source_text": "| signal | mode / routing target | 補足 |",
+        "condition_cluster_id": "V13-COND-L0620",
+        "source_section_group": 30,
+        "source_section_label": "§9.2 signal routing・615–633"
+      },
+      "source_context_lines": [
+        {
+          "line": 619,
+          "text": "",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 620,
+          "text": "| signal | mode / routing target | 補足 |",
+          "sha256": "8cb25c3a0fb124b25a9b0701893fdeef87b3b07222481aa991701d5180759e68"
+        },
+        {
+          "line": 621,
+          "text": "|---|---|---|",
+          "sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-013"
+        ],
+        "relation": "F6 distinguishes development style from ticket type and defines requirement formation. Source line 620 is the signal/route/notes table header; adjacent rows are not merged into its tuple."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 distinguishes development style from ticket type and defines requirement formation. Source line 620 is the signal/route/notes table header; adjacent rows are not merged into its tuple.",
+        "residual": "No source-specific pair establishes the table schema or complete signal-to-mode/target mapping.",
+        "counterexample": "Merge adjacent signal rules into this header row and call the complete route table adopted."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 114,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00482",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 623,
+        "source_line_sha256": "sha256:074039b2e5fb673369eab6a81f110d837c6b03ecddff1fbba9692d6cc7f9e015",
+        "source_text": "| `debt_degradation` / `code_smell` / `structural` | Refactor | 外部挙動を保つ |",
+        "condition_cluster_id": "V13-COND-L0623",
+        "source_section_group": 30,
+        "source_section_label": "§9.2 signal routing・615–633"
+      },
+      "source_context_lines": [
+        {
+          "line": 622,
+          "text": "| `drift` | Reverse | `drift_type=schema/contract`を正規化する |",
+          "sha256": "814918b57af469c942a1706824ca193143915dfbcbc0fa5a710c944c4878ef3c"
+        },
+        {
+          "line": 623,
+          "text": "| `debt_degradation` / `code_smell` / `structural` | Refactor | 外部挙動を保つ |",
+          "sha256": "074039b2e5fb673369eab6a81f110d837c6b03ecddff1fbba9692d6cc7f9e015"
+        },
+        {
+          "line": 624,
+          "text": "| `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgradeはpreflight必須 |",
+          "sha256": "abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-021"
+        ],
+        "relation": "F6 includes behavior-preserving Refactor, semantic Backflow, and operations feedback."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 includes behavior-preserving Refactor, semantic Backflow, and operations feedback.",
+        "residual": "Exact debt_degradation/code_smell/structural signal routing and its per-row oracle are not established.",
+        "counterexample": "Equate general Refactor boundaries with all signal-specific routes."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 115,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00483",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 624,
+        "source_line_sha256": "sha256:abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140",
+        "source_text": "| `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgradeはpreflight必須 |",
+        "condition_cluster_id": "V13-COND-L0624",
+        "source_section_group": 30,
+        "source_section_label": "§9.2 signal routing・615–633"
+      },
+      "source_context_lines": [
+        {
+          "line": 623,
+          "text": "| `debt_degradation` / `code_smell` / `structural` | Refactor | 外部挙動を保つ |",
+          "sha256": "074039b2e5fb673369eab6a81f110d837c6b03ecddff1fbba9692d6cc7f9e015"
+        },
+        {
+          "line": 624,
+          "text": "| `dependency_outdated` / `upgrade` / `config_drift` | Retrofit | upgradeはpreflight必須 |",
+          "sha256": "abe6948306eff0bd417364df922710b962f944be6c61f33edc9f50a24e03e140"
+        },
+        {
+          "line": 625,
+          "text": "| `agent_runaway` / `context_exhaustion` / `regression_dev` / `runaway` / `forced_stop` | Recovery | `runaway`は`agent_runaway`へ正規化する |",
+          "sha256": "990098b215599ad7e20ba8a2ab69131971a7ed611598f4e2d5736c6a802e8f90"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-010"
+        ],
+        "relation": "F6 covers pack boundaries, stage verification, and changes that preserve meaning."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 covers pack boundaries, stage verification, and changes that preserve meaning.",
+        "residual": "No source-specific pair routes dependency_outdated/upgrade/config_drift to Retrofit or requires its preflight.",
+        "counterexample": "Treat general change/upgrade wording as adopted Retrofit-preflight behavior or execution evidence."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 116,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00496",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 639,
+        "source_line_sha256": "sha256:a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e",
+        "source_text": "- V-model、Production Scrum、V設計＋Scrum実装Hybridのdevelopment styleがexactly oneで選択され、Discovery／PoCのcase-driven model activationは別fieldで判定される。",
+        "condition_cluster_id": "V13-AC-639",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 638,
+          "text": "- L1〜L12の全layerと6組のV pairがexactly onceで定義される。",
+          "sha256": "ea52d5575644eca9b588d14692440d91b2f020f520c92726fbace6af84d9ed9c"
+        },
+        {
+          "line": 639,
+          "text": "- V-model、Production Scrum、V設計＋Scrum実装Hybridのdevelopment styleがexactly oneで選択され、Discovery／PoCのcase-driven model activationは別fieldで判定される。",
+          "sha256": "a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e"
+        },
+        {
+          "line": 640,
+          "text": "- 非UI案件のL2が証拠付きN/Aとなり、暗黙欠落にならない。",
+          "sha256": "335c891e0ca8bcde4f1d59c3648c6124312cabf385a5a4c88744ddefd194dd0f"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "partial",
+        "comparison_status_as_recorded": "partial",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:639 sha256:a1246b2d13e88149de79871a952cb1c9749e5ff9b5f74891a2a3679daddb277e",
+          "docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md:49-65 sha256:fb16449af47b30f151445d0c6b3ee16117c47b23a86baedb2434a0e6602a6f95",
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L2-requirements/product-requirements.md:101-103 (HARNESS-L2-002)",
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc:docs/helix-harness/L11-acceptance/product-acceptance.md:22,34-35,37 (HARNESS-L2-002/003)"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002"
+        ],
+        "relation": "F6 L2-002 separates development styles from ticket driving and keeps Discovery/PoC outside style phases."
+      },
+      "later_related_requirement_identities": [],
+      "later_po_context_refs": [],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 L2-002 separates development styles from ticket driving and keeps Discovery/PoC outside style phases.",
+        "residual": "Exactly-one style selection plus separate Discovery/PoC activation has no source-row-specific L11 oracle.",
+        "counterexample": "Infer closure of this acceptance row from adoption of the general styles requirement."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 117,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00500",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 643,
+        "source_line_sha256": "sha256:fd6047e6a45f3805d97d13c1f09b72ad71c93c7e95843d407b0b0aac64767b6f",
+        "source_text": "- Scrum Reverse findingがRedesign/Design Refactor/Performance Refactor/Retrofitのexactly oneへrouteされる。",
+        "condition_cluster_id": "V13-AC-643",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 642,
+          "text": "- Production Scrumの各release-ready sliceにSR0〜SR4 receiptがある。",
+          "sha256": "ed547cb528d489ae1ca8b4313889f926b00977fc49569e781195d5a1a8de5d7f"
+        },
+        {
+          "line": 643,
+          "text": "- Scrum Reverse findingがRedesign/Design Refactor/Performance Refactor/Retrofitのexactly oneへrouteされる。",
+          "sha256": "fd6047e6a45f3805d97d13c1f09b72ad71c93c7e95843d407b0b0aac64767b6f"
+        },
+        {
+          "line": 644,
+          "text": "- 必須NFRごとにverification/measurement contractとcurrent evidenceがあり、未測定・stale・閾値未達でcompletionを拒否する。",
+          "sha256": "9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-003",
+          "HARNESS-L2-021"
+        ],
+        "relation": "F6 has Refactor and semantic Backflow boundaries and stage conditions."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 has Refactor and semantic Backflow boundaries and stage conditions.",
+        "residual": "The exactly-one routing among Redesign, Design Refactor, Performance Refactor, and Retrofit is not established by a source-bound pair/oracle.",
+        "counterexample": "Treat generic Refactor/Backflow as adoption of all four classifications."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 118,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00501",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 644,
+        "source_line_sha256": "sha256:9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f",
+        "source_text": "- 必須NFRごとにverification/measurement contractとcurrent evidenceがあり、未測定・stale・閾値未達でcompletionを拒否する。",
+        "condition_cluster_id": "V13-AC-644",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 643,
+          "text": "- Scrum Reverse findingがRedesign/Design Refactor/Performance Refactor/Retrofitのexactly oneへrouteされる。",
+          "sha256": "fd6047e6a45f3805d97d13c1f09b72ad71c93c7e95843d407b0b0aac64767b6f"
+        },
+        {
+          "line": 644,
+          "text": "- 必須NFRごとにverification/measurement contractとcurrent evidenceがあり、未測定・stale・閾値未達でcompletionを拒否する。",
+          "sha256": "9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f"
+        },
+        {
+          "line": 645,
+          "text": "- 全workflow transitionがFR、AC、test scenario、source transition、L1〜L12 pairへ追跡でき、未解決分岐をfreezeへ算入しない。",
+          "sha256": "a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-022",
+          "HARNESS-L2-021"
+        ],
+        "relation": "F6 covers verification/acceptance and operations feedback; later L2-034 adoption concerns measurement contracts at its exact scope."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-034"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 covers verification/acceptance and operations feedback; later L2-034 adoption concerns measurement contracts at its exact scope.",
+        "residual": "No exact source binding joins every required NFR to current measurement and all unmeasured/stale/hard-limit rejection cases.",
+        "counterexample": "Expand L2-034 adoption or generic verification into closure of this whole old source row."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 119,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00502",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 645,
+        "source_line_sha256": "sha256:a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758",
+        "source_text": "- 全workflow transitionがFR、AC、test scenario、source transition、L1〜L12 pairへ追跡でき、未解決分岐をfreezeへ算入しない。",
+        "condition_cluster_id": "V13-AC-645",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 644,
+          "text": "- 必須NFRごとにverification/measurement contractとcurrent evidenceがあり、未測定・stale・閾値未達でcompletionを拒否する。",
+          "sha256": "9af66b9203d37bb7c3eb01cbd14e87f57b1fe0ae9dee54208459dfa2bf6d091f"
+        },
+        {
+          "line": 645,
+          "text": "- 全workflow transitionがFR、AC、test scenario、source transition、L1〜L12 pairへ追跡でき、未解決分岐をfreezeへ算入しない。",
+          "sha256": "a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758"
+        },
+        {
+          "line": 646,
+          "text": "- AI判断はproposalとcommit authorityが分離され、候補、根拠、confidence、fallback、dead-letter、再評価trigger、測定oracleが欠ければ実行を許可しない。",
+          "sha256": "be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-021",
+          "HARNESS-L2-022"
+        ],
+        "relation": "F6 has end-to-end trace and stage evidence; later L2-040 adopts typed layer-ledger catalog at its exact scope."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-040",
+        "HARNESS-L2-035"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 has end-to-end trace and stage evidence; later L2-040 adopts typed layer-ledger catalog at its exact scope.",
+        "residual": "Complete mapping of all workflow transitions to FR/AC/tests/source transitions/L1–L12 pairs and rejection of unresolved branches is not shown.",
+        "counterexample": "Treat ledger-catalog adoption as closure of this source row’s transition/oracle obligations."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 120,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00503",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 646,
+        "source_line_sha256": "sha256:be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559",
+        "source_text": "- AI判断はproposalとcommit authorityが分離され、候補、根拠、confidence、fallback、dead-letter、再評価trigger、測定oracleが欠ければ実行を許可しない。",
+        "condition_cluster_id": "V13-AC-646",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 645,
+          "text": "- 全workflow transitionがFR、AC、test scenario、source transition、L1〜L12 pairへ追跡でき、未解決分岐をfreezeへ算入しない。",
+          "sha256": "a3ea485f2cf9c040c26fc0dda054c7bd72f980af85c472edd5c1e479f9533758"
+        },
+        {
+          "line": 646,
+          "text": "- AI判断はproposalとcommit authorityが分離され、候補、根拠、confidence、fallback、dead-letter、再評価trigger、測定oracleが欠ければ実行を許可しない。",
+          "sha256": "be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559"
+        },
+        {
+          "line": 647,
+          "text": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+          "sha256": "6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-013",
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 prohibits turning AI output into approved requirements or authority and separates candidate/unknown formation states."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-035"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 prohibits turning AI output into approved requirements or authority and separates candidate/unknown formation states.",
+        "residual": "The full missing-input refusal oracle (confidence, fallback, dead-letter, re-evaluation trigger, measurement oracle) has no exact source-bound pair.",
+        "counterexample": "Equate the no-auto-approval boundary with the complete execution-refusal oracle set."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 121,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00504",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 647,
+        "source_line_sha256": "sha256:6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e",
+        "source_text": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+        "condition_cluster_id": "V13-AC-647",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 646,
+          "text": "- AI判断はproposalとcommit authorityが分離され、候補、根拠、confidence、fallback、dead-letter、再評価trigger、測定oracleが欠ければ実行を許可しない。",
+          "sha256": "be12f0babe2579af9376a3b2840da046b584cf47a02a20bdf62d42999caed559"
+        },
+        {
+          "line": 647,
+          "text": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+          "sha256": "6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e"
+        },
+        {
+          "line": 648,
+          "text": "- workflow/switching/routing/allocationのschema composition gapとZIP example不整合を解消するまでengine activationを許可しない。",
+          "sha256": "bf985f4e39d2a4bf090cfc0dd2e938d57b50ad39ead8be11d5058718047e3512"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-003"
+        ],
+        "relation": "F6 distinguishes styles and stage freeze/backflow."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 distinguishes styles and stage freeze/backflow.",
+        "residual": "No complete source-bound pair maps Full V workflow, Scrum slice delta, and SR0–SR4 backfill together.",
+        "counterexample": "Infer retention of the old whole workflow from adoption of V-model or Scrum generally."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 122,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00505",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 648,
+        "source_line_sha256": "sha256:bf985f4e39d2a4bf090cfc0dd2e938d57b50ad39ead8be11d5058718047e3512",
+        "source_text": "- workflow/switching/routing/allocationのschema composition gapとZIP example不整合を解消するまでengine activationを許可しない。",
+        "condition_cluster_id": "V13-AC-648",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 647,
+          "text": "- Full Vはsystem workflow全体、Production Scrumはslice deltaとSR0〜SR4 backfillの両方を保持する。",
+          "sha256": "6c616a3fb85f5affae79a701b3ac2accf0975373d3540e8738bdd2b3c0a9d41e"
+        },
+        {
+          "line": 648,
+          "text": "- workflow/switching/routing/allocationのschema composition gapとZIP example不整合を解消するまでengine activationを許可しない。",
+          "sha256": "bf985f4e39d2a4bf090cfc0dd2e938d57b50ad39ead8be11d5058718047e3512"
+        },
+        {
+          "line": 649,
+          "text": "- Vision Designの三契約とsemantic IDがL1〜L12の正規6 V-pairへ閉じ、UI対象でprototype agreement、screen ledger、UI profile、frontend binding、mission/oracle、UX evidenceの欠落を許可しない。",
+          "sha256": "9ac328b71367de66eca5a7fcd94fc7b80f767907edbb8b970603c7113d39e3b9"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [],
+        "relation": "No fixed F6 pair is identified for the workflow/switching/routing/allocation schema-composition gap, ZIP example mismatch, or the associated engine-activation gate."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-040"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "gap",
+        "relation": "No fixed F6 pair is identified for the workflow/switching/routing/allocation schema-composition gap, ZIP example mismatch, or the associated engine-activation gate.",
+        "residual": "A source-linked adopted pair/oracle for schema compatibility, ZIP mismatch resolution, and activation blocking is absent.",
+        "counterexample": "Read a generic freeze boundary or layer catalog as resolving these schema gaps or authorizing activation."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 123,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00508",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 651,
+        "source_line_sha256": "sha256:2e191701a131af14c49f9e853363e86d6994f0bfd688cd60a1a6d2c7672a1b89",
+        "source_text": "- Scrum UI sliceはSR0〜SR4でsystem visionと設計資産へbackfillされ、AI自己承認、別layer／別文書体系、無断の機能拡張を拒否する。",
+        "condition_cluster_id": "V13-AC-651",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 650,
+          "text": "- `implemented`と`ux_verified`を独立判定し、real-data、responsive、motion、accessibility、performance、continuity、人間評価のcurrent evidenceが無ければUX完成を拒否する。",
+          "sha256": "c9587a6500b2a47d8827b8e9e2c966b9b79e63a1d1b01263f32b7dd8ff978f01"
+        },
+        {
+          "line": 651,
+          "text": "- Scrum UI sliceはSR0〜SR4でsystem visionと設計資産へbackfillされ、AI自己承認、別layer／別文書体系、無断の機能拡張を拒否する。",
+          "sha256": "2e191701a131af14c49f9e853363e86d6994f0bfd688cd60a1a6d2c7672a1b89"
+        },
+        {
+          "line": 652,
+          "text": "- `HR-FR-HYB-001..010`が各CLI、hook、DB table、gate、acceptanceへtraceされ、野良実装が0件になる。",
+          "sha256": "f94808f3be5585211bc92e137a145fa314d661b1cb9ecdb7f7a8e1ca4ae2f9a9"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 L2-024 covers prototype agreement and UI/non-UI applicability. Later L2-039 adoption is limited to its exact Experience/UI/Frontend scope."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 L2-024 covers prototype agreement and UI/non-UI applicability. Later L2-039 adoption is limited to its exact Experience/UI/Frontend scope.",
+        "residual": "The SR0–SR4 UI-slice backfill and all self-approval/separate-system/no-extension boundaries are not bound to this source row.",
+        "counterexample": "Extend L2-039 adoption to the entire source row or its full SR0–SR4 workflow."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 124,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00510",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 653,
+        "source_line_sha256": "sha256:517f59435920f9897525185e2619f546f15e021710c91b0eecfb25fe46932781",
+        "source_text": "- closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。",
+        "condition_cluster_id": "V13-COND-L0653",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 652,
+          "text": "- `HR-FR-HYB-001..010`が各CLI、hook、DB table、gate、acceptanceへtraceされ、野良実装が0件になる。",
+          "sha256": "f94808f3be5585211bc92e137a145fa314d661b1cb9ecdb7f7a8e1ca4ae2f9a9"
+        },
+        {
+          "line": 653,
+          "text": "- closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。",
+          "sha256": "517f59435920f9897525185e2619f546f15e021710c91b0eecfb25fe46932781"
+        },
+        {
+          "line": 654,
+          "text": "- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。",
+          "sha256": "73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [],
+        "relation": "No fixed F6 pair directly defines reversible close_ready eligibility with typed evidence and exclusion of irreversible/incomplete work."
+      },
+      "later_related_requirement_identities": [],
+      "later_po_context_refs": [],
+      "finding": {
+        "state": "gap",
+        "relation": "No fixed F6 pair directly defines reversible close_ready eligibility with typed evidence and exclusion of irreversible/incomplete work.",
+        "residual": "A source-bound pair for automated closure eligibility, reversibility oracle, and unfinished-output exclusion is not identified.",
+        "counterexample": "Equate general stage completion/acceptance with automatic close eligibility."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 125,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00511",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 654,
+        "source_line_sha256": "sha256:73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b",
+        "source_text": "- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。",
+        "condition_cluster_id": "V13-AC-654",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 653,
+          "text": "- closure自走はtyped evidence条件を全て満たす可逆`close_ready`だけを対象とし、未完了成果や不可逆対象を閉じない。",
+          "sha256": "517f59435920f9897525185e2619f546f15e021710c91b0eecfb25fe46932781"
+        },
+        {
+          "line": 654,
+          "text": "- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。",
+          "sha256": "73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b"
+        },
+        {
+          "line": 655,
+          "text": "- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。",
+          "sha256": "76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "HARNESS-L2-006",
+          "OS-L2-021 (adopted, version_target 1.0)",
+          "OS-L2-030 (unadopted proposal)",
+          "REG-05"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-010"
+        ],
+        "relation": "F6 L2-010 covers pack dependencies, reproducible artifacts, update/rollback boundaries. OS-L2-021 was adopted for exact 1.0 scope; OS-L2-030 was later held."
+      },
+      "later_related_requirement_identities": [
+        "HELIXOS-L2-021",
+        "HELIXOS-L2-030"
+      ],
+      "later_po_context_refs": [
+        "D-OS-2026-09-28",
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 L2-010 covers pack dependencies, reproducible artifacts, update/rollback boundaries. OS-L2-021 was adopted for exact 1.0 scope; OS-L2-030 was later held.",
+        "residual": "No pair binds the full manifest set, README/LICENSE/attribution, Linux/Windows smoke, same-artifact promotion, monitoring/rollback, and remote-approval requirements to this row.",
+        "counterexample": "Extend OS-L2-021 to the whole old distribution specification, or read OS-L2-030 hold as rejection of every package condition."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 126,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00512",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 655,
+        "source_line_sha256": "sha256:76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb",
+        "source_text": "- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。",
+        "condition_cluster_id": "V13-AC-655",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 654,
+          "text": "- distribution packageは自己適用を除いたmanifest exact set、README／LICENSE／attribution、Linux／Windows consumer smoke、canary→preview→stable同一artifact promotion、rollback／monitoringを満たし、remote actionはapproval境界で停止する。",
+          "sha256": "73aa2c133c430ed99c1b7f13db892976e4d3f6f505a673c9d8445c591d046c3b"
+        },
+        {
+          "line": 655,
+          "text": "- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。",
+          "sha256": "76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb"
+        },
+        {
+          "line": 656,
+          "text": "- 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。",
+          "sha256": "fa9a984e1b0e8a8aaba1d6e1e806d227360d372e5d5640d2acaf3c980660ce12"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-013",
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 separates requirement formation, human approval waiting, and missing/unknown candidate inputs."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-035"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 separates requirement formation, human approval waiting, and missing/unknown candidate inputs.",
+        "residual": "Atomic Canonicalization while retaining Proposal, and fail-close on partial write/authority/oracle loss, are not tied to an adopted pair for this row.",
+        "counterexample": "Infer atomic-write guarantees and every failure oracle from the approval-wait boundary."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 127,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00513",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 656,
+        "source_line_sha256": "sha256:fa9a984e1b0e8a8aaba1d6e1e806d227360d372e5d5640d2acaf3c980660ce12",
+        "source_text": "- 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。",
+        "condition_cluster_id": "V13-AC-656",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 655,
+          "text": "- Authoring AdmissionはProposalを保持したままatomic Canonicalizationを行い、部分write、authority不明、oracle消失を拒否する。",
+          "sha256": "76b546315a2e5c74800175772c430ef03484591f665cd66ed978315d51b360bb"
+        },
+        {
+          "line": 656,
+          "text": "- 全NFRがregistryとcurrent measurementへ結合し、baseline不明、stale、hard limit超過をgreenにしない。",
+          "sha256": "fa9a984e1b0e8a8aaba1d6e1e806d227360d372e5d5640d2acaf3c980660ce12"
+        },
+        {
+          "line": 657,
+          "text": "- Design HARNESSの実装済み／設計済み／UX検証済み状態を分離し、screenからacceptanceまでのtrace欠落を拒否する。",
+          "sha256": "18a694b64315a4b2b7725e1c6f637d1b45501f0090fd5de1cc3e98e07739df8c"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-022",
+          "HARNESS-L2-021"
+        ],
+        "relation": "F6 covers verification/acceptance and observation feedback; later L2-034 adoption covers its exact measurement-contract scope."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-034"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 covers verification/acceptance and observation feedback; later L2-034 adoption covers its exact measurement-contract scope.",
+        "residual": "Full NFR-registry/current-measurement join and every unknown/stale/hard-limit not-green condition are not source-bound.",
+        "counterexample": "Expand L2-034 adoption into successor or closure of the whole old registry row."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 128,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00516",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 659,
+        "source_line_sha256": "sha256:019d6b87b79600d353f08f3f7816c6bd4959cec23ed381e8e14215949b1209da",
+        "source_text": "  prototypeの要求正本化、generated Markdown直接編集、JSON／Markdown dual authorityを拒否する。",
+        "condition_cluster_id": "V13-AC-659",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 658,
+          "text": "- L1 Markdown、L2 discovery event/candidate、L3 strict JSON authorityを分離し、質問回答やhuman agreementの捏造、",
+          "sha256": "d38d73df53f785ae7c5d8beb03b05531b88288eb76f33dcd10291020c4b8e175"
+        },
+        {
+          "line": 659,
+          "text": "  prototypeの要求正本化、generated Markdown直接編集、JSON／Markdown dual authorityを拒否する。",
+          "sha256": "019d6b87b79600d353f08f3f7816c6bd4959cec23ed381e8e14215949b1209da"
+        },
+        {
+          "line": 660,
+          "text": "- 3 development styleが同じRequirement Discovery Loop／L3 compile／freezeを通り、Discovery／PoCと",
+          "sha256": "3d3cd4531b139917febbde47d86fc736b9a2c82d60b7d4c3738f3e48338315b2"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 covers prototype agreement and surface applicability; later L2-039 adopts a bounded Experience/UI/Frontend scope."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 covers prototype agreement and surface applicability; later L2-039 adopts a bounded Experience/UI/Frontend scope.",
+        "residual": "UI mission/oracle, implemented vs ux_verified, Markdown projection/read-only, and JSON authority are not all bound to this source row.",
+        "counterexample": "Expand L2-039’s adopted scope to all UI authority, generated Markdown, and the whole L1–L12 source condition."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 129,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00517",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 660,
+        "source_line_sha256": "sha256:3d3cd4531b139917febbde47d86fc736b9a2c82d60b7d4c3738f3e48338315b2",
+        "source_text": "- 3 development styleが同じRequirement Discovery Loop／L3 compile／freezeを通り、Discovery／PoCと",
+        "condition_cluster_id": "V13-AC-660",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 659,
+          "text": "  prototypeの要求正本化、generated Markdown直接編集、JSON／Markdown dual authorityを拒否する。",
+          "sha256": "019d6b87b79600d353f08f3f7816c6bd4959cec23ed381e8e14215949b1209da"
+        },
+        {
+          "line": 660,
+          "text": "- 3 development styleが同じRequirement Discovery Loop／L3 compile／freezeを通り、Discovery／PoCと",
+          "sha256": "3d3cd4531b139917febbde47d86fc736b9a2c82d60b7d4c3738f3e48338315b2"
+        },
+        {
+          "line": 661,
+          "text": "  Design HARNESSをstyleへ混在させない。",
+          "sha256": "ce2acb851871ab40ec9b62e54e5285928a9bd9d029b2660c3f49093f2a5d0a30"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-024"
+        ],
+        "relation": "F6 distinguishes styles and Discovery/requirement formation; later L2-038/039 cover selected Reverse/Experience scopes."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-038",
+        "HARNESS-L2-039"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "partial",
+        "relation": "F6 distinguishes styles and Discovery/requirement formation; later L2-038/039 cover selected Reverse/Experience scopes.",
+        "residual": "One common Discovery Loop/L3 compile/freeze across all styles and separation of Discovery/PoC are not closed as one source-bound pair.",
+        "counterexample": "Combine multiple adopted candidates into a successor for the entire old integrated loop."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 130,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00520",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 663,
+        "source_line_sha256": "sha256:30b32ad0ce70cc83549b1fbfdaea5fccbe94f829763b21bc23cda0433af44f49",
+        "source_text": "- GitHub episodeとDB closureが同一HEADへ収束する。",
+        "condition_cluster_id": "V13-AC-663",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 662,
+          "text": "- legacy artifactはexact mappingでき、未分類・多対多曖昧が0件になる。",
+          "sha256": "71688c699797fcbd3a05115635b94af410ac78e6664b7b57ce5641ab20e1eb4d"
+        },
+        {
+          "line": 663,
+          "text": "- GitHub episodeとDB closureが同一HEADへ収束する。",
+          "sha256": "30b32ad0ce70cc83549b1fbfdaea5fccbe94f829763b21bc23cda0433af44f49"
+        },
+        {
+          "line": 664,
+          "text": "- authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。",
+          "sha256": "28d72ac447b6a96d973662566c8af0ac9aed7ba996e937f9b0d308182d7df798"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [],
+        "relation": "No fixed F6 L2/L11 pair directly establishes GitHub episode and DB closure convergence on the same HEAD. Later L2-036/040 scopes do not establish this condition."
+      },
+      "later_related_requirement_identities": [
+        "HARNESS-L2-036",
+        "HARNESS-L2-040"
+      ],
+      "later_po_context_refs": [
+        "D-57-2026-09-29"
+      ],
+      "finding": {
+        "state": "gap",
+        "relation": "No fixed F6 L2/L11 pair directly establishes GitHub episode and DB closure convergence on the same HEAD. Later L2-036/040 scopes do not establish this condition.",
+        "residual": "An exact GitHub-event/DB-state join and same-HEAD convergence oracle bound to this source identity is absent.",
+        "counterexample": "Treat generic trace/catalog/verification as a same-HEAD convergence oracle."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    },
+    {
+      "rank": 131,
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00521",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 664,
+        "source_line_sha256": "sha256:28d72ac447b6a96d973662566c8af0ac9aed7ba996e937f9b0d308182d7df798",
+        "source_text": "- authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。",
+        "condition_cluster_id": "V13-AC-664",
+        "source_section_group": 31,
+        "source_section_label": "§10 aggregated acceptance・635–664"
+      },
+      "source_context_lines": [
+        {
+          "line": 663,
+          "text": "- GitHub episodeとDB closureが同一HEADへ収束する。",
+          "sha256": "30b32ad0ce70cc83549b1fbfdaea5fccbe94f829763b21bc23cda0433af44f49"
+        },
+        {
+          "line": 664,
+          "text": "- authority文書が本書を参照し、L0〜L14をcurrent canonicalと表示しない。",
+          "sha256": "28d72ac447b6a96d973662566c8af0ac9aed7ba996e937f9b0d308182d7df798"
+        }
+      ],
+      "queue_snapshot": {
+        "priority": "primary_residual",
+        "queue_state": "unresolved_for_closure_work",
+        "condition_status_as_recorded": "unresolved",
+        "comparison_status_as_recorded": "unresolved",
+        "unresolved_residual_as_recorded": true,
+        "comparison_refs_as_recorded": [
+          "current_review section route",
+          "relevant fixed L2/L11; candidate IDs remain unadopted"
+        ],
+        "snapshot_note": "Queue baseline transcription only. Candidate disposition is stated separately from later exact PO decision; baseline wording is not asserted as current state."
+      },
+      "fixed_f6_relations": {
+        "requirement_identities": [],
+        "relation": "No fixed F6 pair is identified for the authority-document self-reference or prohibition on presenting L0–L14 as current canonical levels."
+      },
+      "later_related_requirement_identities": [],
+      "later_po_context_refs": [],
+      "finding": {
+        "state": "gap",
+        "relation": "No fixed F6 pair is identified for the authority-document self-reference or prohibition on presenting L0–L14 as current canonical levels.",
+        "residual": "A source-bound acceptance condition and negative oracle for these document claims are not identified.",
+        "counterexample": "Infer the specific self-reference and level-label restriction from the existence of governance documents or a layer ledger."
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none"
+    }
+  ],
+  "status_counts": {
+    "partial": 17,
+    "gap": 4,
+    "unknown": 0
+  },
+  "claim_boundary": [
+    "This is a 21-source-identity comparison slice, not full Step5 closure of the 131-pool or all v1.3 conditions.",
+    "Later adoption/hold/conditional adoption applies only to exact decision identity/revision/scope; it does not bind, replace, close, or retire these old source rows.",
+    "Generic F6 pair presence and semantic proximity do not assign a formal successor or close an old source condition.",
+    "Queue baseline state strings are retained as input snapshot, not current candidate disposition; later PO states are separate.",
+    "No L3 approval, implementation, execution, distribution, release, or acceptance-run claim."
+  ],
+  "static_validation": {
+    "rank111_131_contiguous_unique": true,
+    "source_ids_unique": true,
+    "source_identity_tuples_join_to_fixed_pool_and_queue": true,
+    "archive_source_line_text_sha_recomputed": true,
+    "archive_manifest_snapshot_asset_ledger_pins_recomputed": true,
+    "fixed_f6_l2_l11_files_sha_pinned": true,
+    "later_po_decision_files_and_identity_pins_recorded": true,
+    "partial_gap_counts_recomputed": true,
+    "formal_successor_assignments": 0,
+    "source_conditions_closed": 0,
+    "authority_effects": [
+      "none"
+    ],
+    "archive_runtime_cli_test_ci_executed": false
+  }
+}

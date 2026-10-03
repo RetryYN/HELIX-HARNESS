@@ -1,0 +1,392 @@
+{
+  "MPR_append": {
+    "H088_preexisting": false,
+    "OS131_registered_or_reserved": false,
+    "base_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+    "existing_OS123_registration_id": "MPR-RC-HELIXOS-L2-123-001",
+    "new_registration_id": "MPR-RC-HARNESS-L2-088-001",
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "prefix_line_count": 702,
+    "prefix_preserved_byte_for_byte": true,
+    "prefix_sha256": "918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
+    "candidate_registration_line": 703,
+    "current_main_at_registration": "771e40a8a87881e9703fe939fc9fe01d76de7635"
+  },
+  "adjacent_candidate_scope": {
+    "HARNESS-L2-067": {
+      "registration": {
+        "authority_effect": "none",
+        "line": 651,
+        "management_state": "registered_proposal",
+        "registration_id": "MPR-RC-HARNESS-L2-067-001"
+      },
+      "scope": "HIL-FR-37 atomization candidate, not FR16 identity."
+    },
+    "HARNESS-L2-081": {
+      "registration": {
+        "authority_effect": "none",
+        "line": 675,
+        "management_state": "registered_proposal",
+        "registration_id": "MPR-RC-HARNESS-L2-081-001"
+      },
+      "scope": "HIL-NFR-12 all source entries and judgement trace; not FR16 identity."
+    },
+    "HARNESS-L2-082": {
+      "registration": {
+        "authority_effect": "none",
+        "line": 677,
+        "management_state": "registered_proposal",
+        "registration_id": "MPR-RC-HARNESS-L2-082-001"
+      },
+      "scope": "HIL-NFR-22 stale all child receipts; not imported to FR16."
+    },
+    "HELIXOS-L2-131": {
+      "registered_or_reserved": false,
+      "registration": null
+    },
+    "HELIXOS-L2/L11-123": {
+      "FR16_successor_or_adoption": false,
+      "L11_full_sha256": "6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
+      "L11_line_range": [
+        1119,
+        1137
+      ],
+      "L11_section_sha256": "7f7131426421fde996fed2c380184696304536aa2d1e5c117a5fd57e737f9bfd",
+      "L2_full_sha256": "7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
+      "L2_line_range": [
+        1525,
+        1538
+      ],
+      "L2_section_sha256": "66881747d87d799a8fcec031674d7b6ca54df0f19fffa29c2f34d30cf8e10afc",
+      "identity": "HIL-BR-14, separate candidate",
+      "registration": {
+        "authority_effect": "none",
+        "line": 668,
+        "management_state": "registered_proposal",
+        "registration_id": "MPR-RC-HELIXOS-L2-123-001"
+      }
+    }
+  },
+  "adopted_dependency_context": {
+    "HARNESS-L2-010": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_line": {
+        "line": 39,
+        "line_sha256_including_LF": "b0590b4b97d8f4cbb91d4afe25ec420cc2296936adc4ce5d313af09bdd443672",
+        "text": "| HARNESS-L2-010 | MPR-RC-HARNESS-L2-010-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |"
+      },
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "lines": [
+        340,
+        351
+      ],
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "section_sha256": "9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+      "selector": "### HARNESS-L2-010 through next same-or-higher heading"
+    },
+    "HARNESS-L2-011": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_line": {
+        "line": 40,
+        "line_sha256_including_LF": "0483eac110645b76fafa213b1a85ad7e3b4e286fa9630f6434c6d38713abc540",
+        "text": "| HARNESS-L2-011 | MPR-RC-HARNESS-L2-011-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |"
+      },
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "lines": [
+        352,
+        362
+      ],
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "section_sha256": "30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+      "selector": "### HARNESS-L2-011 through next same-or-higher heading"
+    },
+    "HARNESS-L2-023": {
+      "boundary": "Adopted four-class rule applies to fixture only; 088 remains candidate.",
+      "decision_file": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_line_18": {
+        "line": 18,
+        "line_sha256_including_LF": "e71eadb369dc081938d5fb39b3b6a7d7fbd5a7976ba0a8d2830f67de07047212",
+        "text": "> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。"
+      },
+      "decision_line_52": {
+        "line": 52,
+        "line_sha256_including_LF": "f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+        "text": "| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |"
+      },
+      "fixed_L11_section_sha256": "f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+      "fixed_L2_section_sha256": "32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    }
+  },
+  "base_commit": "df0f3438f3229bbc2ebe26e2e14c3d811a33fd23",
+  "candidate": {
+    "authority_effect": "none",
+    "identity": "HARNESS-L2-088",
+    "management_state": "registered_proposal",
+    "product_target": "HELIX-HARNESS",
+    "registration_id": "MPR-RC-HARNESS-L2-088-001",
+    "requirement_kind": "unit",
+    "version_target": null
+  },
+  "candidate_pair": {
+    "L11": {
+      "full_file_sha256": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
+      "line_range": [
+        1278,
+        1310
+      ],
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "section_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+      "selector": "HARNESS-L2-088既存節+EOF scope解釈追補 composite"
+    },
+    "L2": {
+      "full_file_sha256": "sha256:42de66c13198bb8a96dc009283bcaa33fe6aceaf49f806fdaf87584b1032df61",
+      "line_range": [
+        1500,
+        1521
+      ],
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "section_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+      "selector": "HARNESS-L2-088既存節+EOF scope解釈追補 composite"
+    },
+    "section_digest_rule": "candidate_pair_partsに列挙した順序付き2-part composite bytes"
+  },
+  "execution_boundary": {
+    "adoption_claim": false,
+    "external_acquisition": false,
+    "fixture_execution": false,
+    "old_runtime_test_CI": false
+  },
+  "limitations": [
+    "ZIP/ref applicability details not defined in source remain unknown.",
+    "No formal successor, adoption, source-owner transfer, complete old consumer closure, implementation or external operation is claimed.",
+    "No fixed count, new namespace, authority process, schema, or acquisition authorization is created."
+  ],
+  "receipt_id": "HIL-FR-16-HARNESS-L2-088-COVERAGE-2026-10-03-r1",
+  "responsibility_boundary": {
+    "HARNESS_L1_fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "HARNESS_L1_rows": [
+      "001",
+      "003",
+      "004",
+      "008"
+    ],
+    "HARNESS_L1_sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "PO_options": [
+      "A: HARNESS functional comparison/disposition; OS existing authority/provenance (recommended candidate).",
+      "B: retain source holding without semantic owner allocation.",
+      "C: PO specifies another boundary and holds omitted conditions."
+    ],
+    "boundary": "OS retains source identity/authority/provenance and state records. HARNESS candidate owns function comparison and disposition oracle. Proposal only; no source owner/successor transfer.",
+    "concept_commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+    "concept_sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "historical_OS_routing": "PRC-HIL-FR-16-001 and infinity-functional-target-crosswalk.md line 25 remain historical routing candidates, no authority and no successor assignment.",
+    "historical_OS_routing_correction": {
+      "correction_id": "PRC-CORR-HIL-FR-16-001",
+      "registration_id": "PRC-HIL-FR-16-001",
+      "state": "proposed_pending_po_review",
+      "adoption_inherited_from_HARNESS088": false,
+      "authority_effect": "none",
+      "formal_owner_transfer": false
+    }
+  },
+  "source_atom_set": {
+    "atom_ids": [
+      "HIL-FR-16"
+    ],
+    "count": 1,
+    "digest": "sha256:d7c98e1bc4df764334807641ab5fe8836b6cb10c816207252121c471239dc022",
+    "digest_rule": "SHA-256 UTF-8 bytes: HIL-FR-16 SP semantic digest without sha256: prefix LF",
+    "record_semantic_digest": "sha256:3971c202a570c068ed744264a7c81925f25799fda5ba0ab14e407d5fc71c369e",
+    "source_atom_file_sha256": "d5c1bf396f5493cd0ca5cbd6da4f629593779ab080e909cc64bf6aba6d12d8ff",
+    "source_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_ledger_path": "docs/governance/audits/requirement-registration/hil-fr16-asset-inventory-source-atoms-2026-10-03.jsonl",
+    "source_ledger_sha256": "d5c1bf396f5493cd0ca5cbd6da4f629593779ab080e909cc64bf6aba6d12d8ff",
+    "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-16",
+    "source_record_bytes_sha256": "257812c7c151c5d33ced510db714818441754b6c2b56b4a290183d005d938fc8",
+    "source_statement": "Asset Inventoryは現行HELIX、ZIP、前身repository exact 2件のA/B二重観測で一致した全advertised `refs/heads/*`、`refs/tags/*`、`refs/pull/*/{head,merge}`を機能単位で比較し、adopt/harden/redesign/rejectを記録する。symbolic `HEAD`とannotated tagの`^{}`はref分母に数えず、target/peel証拠として保持する。 | 完全性台帳、authority receipt、未判断0判定",
+    "statement_semantic_digest": "sha256:3f8059576753f54ac5cbc51a29d19afcc1189f6aee6403196ff3ac7540b0c574"
+  },
+  "source_condition_mapping": [
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2全source scope、L11 full-scope合成tuple。ZIP全entryを保持しGit refの存在を仮定せず適用性不明はunknown。",
+      "id": "FR16-C1",
+      "source_clause": "現行HELIX、ZIP、前身repository exact 2件"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "各source全scope A/B一致。L11正常例と一側差異の独立負例。",
+      "id": "FR16-C2",
+      "source_clause": "A/B二重観測一致"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2 namespace明記、該当全refを分母に含む。漏れ/A-B mismatchを独立負例化。",
+      "id": "FR16-C3",
+      "source_clause": "all advertised refs: refs/heads/*, refs/tags/*, refs/pull/*/head, refs/pull/*/merge"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2個別機能・disposition・根拠対応。L11 four mock atomsと個別欠落/aggregate-only負例。",
+      "id": "FR16-C4",
+      "source_clause": "function-level comparison and adopt/harden/redesign/reject per function"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2/L11とも分母外と証拠保持を示す。誤加算、peel証拠欠落を別oracleにする。",
+      "id": "FR16-C5",
+      "source_clause": "symbolic HEAD and annotated tag ^{} excluded from ref denominator, but keep target/peel evidence"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2 ledger/receipt/全scope相互照合。L11正常とundecided・ledger/receipt差の独立負例。",
+      "id": "FR16-C6",
+      "source_clause": "completeness ledger, authority receipt, zero undecided"
+    },
+    {
+      "atom": "HIL-FR-16",
+      "candidate_mapping": "L2固定数を置かず、L11 countsをsynthetic fixture valuesと明記。",
+      "id": "FR16-C7",
+      "source_clause": "No fixed observation-time denominator"
+    }
+  ],
+  "source_context": {
+    "HAT": "designed_not_implemented; not run",
+    "HR09_HAC09a_b_c_HAT09": "shared consumers/context, no extra source atoms",
+    "HST-CASE-011-09": "line 374 pins in source ledger; design-defined/not-implemented context; not run",
+    "HST-CASE-011-10": "FR21 stale context only, not imported into FR16",
+    "ledger_ref": "docs/governance/audits/requirement-registration/hil-fr16-asset-inventory-source-atoms-2026-10-03.jsonl",
+    "legacy_L1_line_106": "same statement corroboration, not second atom; raw row hash is in source ledger",
+    "routing_correction": {
+      "authority_effect": "none",
+      "counted_as_source_atom": false,
+      "correction_id": "PRC-CORR-HIL-FR-16-001",
+      "correction_state": "proposed_pending_po_review",
+      "file_sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df",
+      "locator": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-corrections.jsonl:4",
+      "line_sha256_including_LF": "46c8a6bca897c6d3b536abc7aefaf7464f00fd11c3b5e58fb3d59842b5a6090b",
+      "meaning_change_applied": false,
+      "proposed_product_targets_after": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "proposed_routing_candidate_after": "split_required",
+      "role": "historical correction proposal context only; neither authority nor owner transfer",
+      "source_ledger_evidence_id": "PRC-CORR-FR-16-CONTEXT",
+      "text": "既存資産を機能単位で比較しadopt／harden／redesign／rejectを判断する規範はフルリバース（HARNESSが外部へ提供する変換機構）の一部であり、観測・記録の運転はOSである"
+    }
+  },
+  "source_holding": "MPR-SH-IR-003#HIL-FR-16 remains preserved_pending_rehome; successor_requirement_ids stays empty.",
+  "status": "候補のscope解釈を追補。FR16原文条件は保持し、PO判断は未決。採択・authorityなし。 旧OS routing訂正行は提案contextとしてのみ固定し、HARNESS-L2-088の採択から訂正提案の採択・owner移管を導かない。",
+  "latest_main_comparison": {
+    "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+    "register_prefix_line_count": 702,
+    "register_prefix_sha256": "sha256:918cc3d057a8ee7736bc0c8fc33ebc7d637e15dfa364826e36b2197fb5eeda8e",
+    "register_prefix_preserved_byte_for_byte": true,
+    "candidate_registration_id": "MPR-RC-HARNESS-L2-088-001",
+    "candidate_registration_line": 703,
+    "candidate_l2_section_lines": [
+      1500,
+      1521
+    ],
+    "candidate_l11_section_lines": [
+      1278,
+      1310
+    ],
+    "candidate_l2_composite_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+    "candidate_l11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+    "candidate_pair_composite_sha256": "sha256:3ce8866aa9455fa4323b7dc87bab44bc1b36fbb3215ab4f038acbc39a0fa45db",
+    "candidate_l2_full_file_sha256": "sha256:8aa2cb4d0db102f3341dccf0dc82ebd7a31ee0f7ce738c8e5ab4457184fe32a8",
+    "candidate_l11_full_file_sha256": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
+    "candidate_l2_section_lines_label": "L2既存候補節から末尾追補までの連続範囲。個別part境界はcandidate_pair_partsに記録。",
+    "candidate_l11_section_lines_label": "L11既存候補節から末尾追補までの連続範囲。個別part境界はcandidate_pair_partsに記録。"
+  },
+  "scope_interpretation_decision_material": {
+    "status": "unresolved; no option selected",
+    "source_basis": {
+      "identity": "HIL-FR-16",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-16",
+      "meaning": "原文は今回のAsset Inventoryに現行HELIX、ZIP、前身repository exact 2件を列挙するが、比較能力をこの旧資産引継ぎだけに限るか、案件ごとに選択するsource集合へ再利用できる一般能力とするかは定めていない。"
+    },
+    "options": [
+      {
+        "option": "A: 今回の旧資産引継ぎのみ",
+        "meaning": "列挙された現行HELIX、ZIP、exact 2 predecessorは、このHIL-FR-16比較だけへ適用する。任意のHARNESS案件で再利用できるsource選択能力は、この候補から導かない。",
+        "impact": "FR16の列挙scopeを保つが、一般利用の範囲は候補外に残る。"
+      },
+      {
+        "option": "B: 案件ごとの選択sourceを扱える比較能力",
+        "meaning": "比較能力は案件ごとに選択されたsource scopeを扱う候補とする。このFR16候補とfixtureでは旧原文にある現行HELIX、ZIP、exact 2 predecessorを固定対象として保持する。",
+        "impact": "exact 2 predecessorをすべてのHARNESS案件に一律必須としない再利用解釈を示す。ただし一般化はFR16単独から確定しない。"
+      }
+    ],
+    "recommendation": "Bを候補解釈として推奨する。HIL-FR-16が明示する全sourceを保持しつつ、根拠のない全案件共通のexact-2条件を避けるためである。これはPO判断ではない。",
+    "decision_boundary": "候補本文、fixture、receipt、MPRはA/Bを選択しない。原文source scope、source atom、FR16の全条件は保持する。採択、formal successor、source取得、実行許可を生成しない。"
+  },
+  "candidate_digest_rule": "各sideのcomposite bytesは、順序付きpartを各々末尾空行を除いてUTF-8/LF/末尾LF一つへ正規化し、part間をLF一つで連結した実本文bytesである。pair digestはSHA-256(L2 composite本文bytes + NUL byte + L11 composite本文bytes)。side SHA値のバイナリ表現を連結する計算ではない。",
+  "candidate_semantic_digest": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+  "candidate_pair_parts": {
+    "rule": "各sideは既存HARNESS-L2/L11-088候補節と文末scope解釈追補で構成する。各partの末尾空行を除き、LF改行と末尾LF一つへ正規化して、part間を追加LF一つで区切る。既存本文と既存行位置は不変。",
+    "L2": [
+      {
+        "order": 1,
+        "selector": "### HARNESS-L2-088 全source authorityから機能単位の採否記録までを閉じる候補（未採択）（次の同位以上の見出し直前まで）",
+        "lines": [
+          1500,
+          1511
+        ],
+        "sha256": "sha256:7fd0e4ff72ee2bacb4d117e65b591596708af7bab603c97e74aac624c99d098b"
+      },
+      {
+        "order": 2,
+        "selector": "### HARNESS-L2-088 scope解釈のPO選択肢（未決材料）（次の同位以上の見出し直前まで。現在EOFまで）",
+        "lines": [
+          1512,
+          1521
+        ],
+        "sha256": "sha256:42830ea75a20fb3ce71c2e77bd69e8f68ec79a7d6243a2b81d5525eed4462a0a"
+      }
+    ],
+    "L11": [
+      {
+        "order": 1,
+        "selector": "### HARNESS-L2-088 全source authorityから機能単位の採否記録を検査する受入候補（未採択・未実行）（次の同位以上の見出し直前まで）",
+        "lines": [
+          1278,
+          1302
+        ],
+        "sha256": "sha256:52b64e970594554810a594bd2e5ef22fd8b7b771c5241f9b6cfd139c31fed4ea"
+      },
+      {
+        "order": 2,
+        "selector": "### HARNESS-L2-088 scope解釈の受入境界（PO未決）（次の同位以上の見出し直前まで。現在EOFまで）",
+        "lines": [
+          1303,
+          1310
+        ],
+        "sha256": "sha256:b6469cb77bbee91d7a9325bd1444a800fe0da84055342119f44692b7ec878f9d"
+      }
+    ],
+    "L2_composite_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+    "L11_composite_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f"
+  },
+  "candidate_pair_composite_sha256": "sha256:3ce8866aa9455fa4323b7dc87bab44bc1b36fbb3215ab4f038acbc39a0fa45db",
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:42de66c13198bb8a96dc009283bcaa33fe6aceaf49f806fdaf87584b1032df61",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984"
+  },
+  "candidate_l2_section_sha256": "sha256:f8f4842fda5287dd86e41d539d51b386828ccafd404ece4c33d4f2ec5933f36e",
+  "candidate_l11_section_sha256": "sha256:b0cbc3c8d32ea886e5aeb1e179b6f10f9c0ff2edce51265331232a3f7506647f",
+  "candidate_l2_full_file_sha256": "sha256:42de66c13198bb8a96dc009283bcaa33fe6aceaf49f806fdaf87584b1032df61",
+  "candidate_l11_full_file_sha256": "sha256:c8e174171af8aa43d3d0289bad87d57b9c0693810deabd912d7ab7a038861984",
+  "candidate_l2_section_lines": [
+    1500,
+    1521
+  ],
+  "candidate_l11_section_lines": [
+    1278,
+    1310
+  ]
+}

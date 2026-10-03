@@ -1,0 +1,297 @@
+{
+  "requirement_identity": "HARNESS-L2-072",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-072-001",
+  "candidate_status": "unadopted_proposal",
+  "product_target": "HELIX-HARNESS",
+  "base_commit": "a93fec99f8c10aafb7e1b54a24ea9d1ba55bac20",
+  "source_atom_set": {
+    "source_holding_refs": [
+      "MPR-SH-SEMANTIC-LINE-003",
+      "MPR-SH-IR-003#HIL-FR-48",
+      "MPR-SH-IR-003#HIL-FR-49"
+    ],
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "source_file": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    "legacy_ir": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    "source_lines": {
+      "path": "docs/governance/audits/requirement-registration/hil-fr48-49-stale-snapshot-source-lines-2026-10-02.jsonl",
+      "sha256": "sha256:20f31f6c8c7bfc43b029e89b43a30a34131c394b0484480e41b55f17b92ebdd9",
+      "count": 2
+    },
+    "source_atom_ids": [
+      "FR48-STALE-REVISION-L0138",
+      "FR49-DIFFERENT-SNAPSHOT-L0139"
+    ],
+    "source_atom_set_digest": "sha256:f59a238612715da4ed31312afa43b6a957ce45e7b1d866e950cc967842f66edf",
+    "scope": "Only HIL-FR-48 line 138 “stale revision” and HIL-FR-49 line 139 “異なるsnapshot” slices. The two full physical source rows are pinned, but their other clauses are not counted as candidate atoms. The previously selected 8 atoms from HARNESS-055/056 remain distinct and unchanged. NFR-29 is supporting context/oracle identity only. Unselected line/IR conditions remain in MPR-SH-SEMANTIC-LINE-003 and MPR-SH-IR-003.",
+    "carry_forward_status": {
+      "HIL-FR-48": "preserved_pending_rehome; successor_requirement_ids=[]",
+      "HIL-FR-49": "preserved_pending_rehome; successor_requirement_ids=[]"
+    },
+    "supporting_contracts": {
+      "HIL-FR-48": "HR-FR-HIL-18; HAC-HIL-18a/b/c; HAT-HIL-18",
+      "HIL-FR-49": "HR-FR-HIL-18; HAC-HIL-18a/b/c; HAT-HIL-18"
+    },
+    "consumer_oracles": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "cases": [
+        {
+          "case_id": "HST-CASE-031-01",
+          "line": 301,
+          "line_sha256_without_lf": "sha256:8988bed53a1ef973f2b6a2bfc6973668f9d5a3f3868c151a02cf1d34e2e9ef5c",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-04",
+          "line": 304,
+          "line_sha256_without_lf": "sha256:f72396e38c30d681c7f2134d44eed56497fd4e141680ce522db99013b24d87a4",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-07",
+          "line": 307,
+          "line_sha256_without_lf": "sha256:585ffba4ac01ea449971044a2e70834584cc0a06aad71bcfbd0127658f0401d5",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-031-09",
+          "line": 399,
+          "line_sha256_without_lf": "sha256:84ce6f3e0fc79bf682d4a8efaafe84042d3aa8875358c58949b108c71ed8477a",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-032-01",
+          "line": 309,
+          "line_sha256_without_lf": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-032-12",
+          "line": 320,
+          "line_sha256_without_lf": "sha256:ac2dfc4afd1d9698c2a99a52d9be21c5489b53f97a22dc33aef79c92a591cab7",
+          "execution_state": "design-defined / not-implemented"
+        },
+        {
+          "case_id": "HST-CASE-032-14",
+          "line": 400,
+          "line_sha256_without_lf": "sha256:ff6f45121dde209de5c9d8357e7cba1fe9d44de164ac134bef61658aafcfb7f5",
+          "execution_state": "design-defined / not-implemented"
+        }
+      ]
+    },
+    "supporting_consumer_contracts": {
+      "HR-FR-HIL-18": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-18",
+        "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "semantic_digest": "sha256:2de222b9677b4d2e61e1cb887c70afa7cae998392feadb717e5508ec23f87d50",
+        "status": "specified",
+        "behavior": "canonical L1–L12 ledgerと層外L0 charter anchorをversion管理しtemplate obligationを抽出、上下隣接edge、正規5 V-pair、L6↔L7 TDD closureを同一revision/snapshot/oracleで閉じ、refactorも全pairを保存する",
+        "failure_and_evidence": "type/抽出/TBD/aggregate、片edge、revision/oracle不一致、pair破壊 / ledger、addition、pair、execution、refactor receipt"
+      },
+      "HAC-HIL-18a": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-18a",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:49f500052603b9397c3649555b6e5a569306944774a0e4fed620bd6959d76ccc",
+        "status": "specified",
+        "polarity": "positive",
+        "statement": "canonical L1–L12抽出、層外L0 anchor、全pair current"
+      },
+      "HAC-HIL-18b": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-18b",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:caa9482f7787dbae9b95526a48c39f5aacf3a26e5b0c8456c7cd8ab854d0553c",
+        "status": "specified",
+        "polarity": "negative",
+        "statement": "任一atom/edge/oracle欠落でexit拒否"
+      },
+      "HAC-HIL-18c": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-18c",
+        "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "semantic_digest": "sha256:23b0c699f10230622534a7a761c98d7fd665074b14b4b015f38a6861414a2c89",
+        "status": "specified",
+        "polarity": "boundary",
+        "statement": "pair保存だけRefactor、他はRedesign/Retrofit"
+      },
+      "HAT-HIL-18": {
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-18",
+        "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "semantic_digest": "sha256:06c3a0ebbaee90df8165d424951e6f4673619858a9470c277fb8b95b14d66bfe",
+        "status": "designed_not_implemented"
+      }
+    },
+    "consumer_scope_note": "HR-FR-HIL-18 bundles HIL-FR-46 through HIL-FR-50 and HIL-NFR-29; HAC/HAT-18 likewise cover broader pair/refactor behavior. They are contextual consumers only, not additional input atoms or proof of execution. HAT-HIL-18 status is designed_not_implemented.",
+    "source_atom_digest_rule": "Sort by atom_id; concatenate UTF-8 atom_id + SPACE + legacy identity.statement.semantic_digest without sha256: prefix + LF; SHA-256. The atom IDs identify the selected spans; full row and IR record digests are separately pinned.",
+    "asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "file_sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "line": 424,
+      "line_sha256_without_lf": "sha256:14487c02147a27add1aca4402692eebcf4767f7097b09e77ba9542ddbe3d54b9",
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "product_target": "unresolved",
+      "carry_forward_state": "preserved_pending_rehome",
+      "executability_status": "non_executable_or_data_only_not_invoked"
+    }
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "full_file_sha256": "sha256:96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
+      "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot不成立候補（HARNESS-CORE unit、未採択）",
+      "start_line": 1325,
+      "end_line": 1333,
+      "sha256": "84e1f111a4dff5a821197f9102685b6e92fde5e9759dfe73530fea8b39ff3461"
+    },
+    "l11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "full_file_sha256": "sha256:a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3",
+      "heading": "### HARNESS-L2-072 選択pairのstale revision・異snapshot結果受入候補（未実行）",
+      "start_line": 1035,
+      "end_line": 1044,
+      "sha256": "a545a10ba59c0f1fa18c06b736153b7c99744efc9e451e9d61edd7c346039914"
+    },
+    "candidate_semantic_digest_rule": "L2 selected candidate section SHA-256; L11 is paired independently by exact section digest."
+  },
+  "parent_l1": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "fixed_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "fixed_revision": "58cbdb8e799a18b6cfb2e3e9188fa3b694898474"
+    },
+    "planning": {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "fixed_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "full_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "selected_parent_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004"
+      ]
+    }
+  },
+  "adopted_pair_boundary": {
+    "decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "full_file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "rows": {
+        "HARNESS-L2-055": "row40 adopted selected atoms only",
+        "HARNESS-L2-056": "row41 adopted selected atoms only",
+        "HARNESS-L2-063": "row48 adopted exact pair; row72 limits it to three selected conditions"
+      }
+    },
+    "exact_pair_digests": {
+      "HARNESS-L2-055": {
+        "l2": "9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+        "l11": "f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a"
+      },
+      "HARNESS-L2-056": {
+        "l2": "993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0",
+        "l11": "9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047"
+      },
+      "HARNESS-L2-063": {
+        "l2": "f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+        "l11": "fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233"
+      }
+    },
+    "selected_partition_receipt": {
+      "path": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-outcome-coverage-receipt-2026-09-29.json",
+      "sha256": "sha256:c17aaaa42e516c153f8a06c11907c9d7c6b34fb92a2a6d6cd7ab39f139c4f3a7",
+      "note": "8 earlier selected atoms only; its source_collection_scope expressly excluded stale and different-snapshot atoms. Historical receipt is evidence of partition, not current authority for 055/056 adoption."
+    },
+    "nonmutation": "055/056/063 adopted candidate bodies, their selected atom sets, and the existing 2026-09-30 decision are unmodified.",
+    "source_target_assessment": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md",
+      "file_sha256": "sha256:c61aeff2e0839054f24b68296d5c48b5e99c8329a0ba776e52b8c3f0e192b71b",
+      "source_rows": {
+        "HIL-FR-48": {
+          "line": 57,
+          "line_sha256_without_lf": "sha256:b0119d237a495fcd6107440e8f2555092f561d4d40ec2c08443a58a9389da68b",
+          "target_assessment": "HARNESS／OS"
+        },
+        "HIL-FR-49": {
+          "line": 58,
+          "line_sha256_without_lf": "sha256:32b19271c881360465262760d85e50497a04898c8629062838ada82d5dee2ab0",
+          "target_assessment": "HARNESS／OS"
+        }
+      },
+      "meaning_boundary": "MPR candidate target is HELIX-HARNESS as reserved for this limited candidate only; legacy target/owner assessment remains unresolved and neither source IR identity receives formal successor assignment."
+    }
+  },
+  "condition_crosswalk": [
+    {
+      "atom_id": "FR48-STALE-REVISION-L0138",
+      "source_condition": "Reject stale revision (HIL-FR-48 line 138).",
+      "candidate_destination": "072 L2 stale-revision boundary; L11 FR48 normal/current control, and stale endpoint negative.",
+      "negative_oracle_refs": [
+        "HST-CASE-031-04 line 304",
+        "HST-CASE-031-07 line 307"
+      ],
+      "positive_oracle_ref": "HST-CASE-031-01 line 301",
+      "scope_limit": "031-04/07 are HIL-NFR-29 failure references, not added source atoms; 031-09 is the design-only FR48 summary oracle."
+    },
+    {
+      "atom_id": "FR49-DIFFERENT-SNAPSHOT-L0139",
+      "source_condition": "Reject different snapshot between design and verification (HIL-FR-49 line 139).",
+      "candidate_destination": "072 L2 explicit separate snapshot-identity comparison; L11 same-snapshot positive control and different-snapshot negative while labels/revisions/authority/oracle identity remain fixed.",
+      "negative_oracle_ref": "HST-CASE-032-12 line 320",
+      "positive_oracle_ref": "HST-CASE-032-01 line 309",
+      "scope_limit": "032-12 is HIL-NFR-29 failure reference; 032-14 line 400 is supporting design-only missing/same snapshot summary, not additional source atom. Same displayed revision label is not snapshot-equality evidence."
+    }
+  ],
+  "source_collection_scope": "Two selected condition slices only. HR-FR-HIL-18, HAC-HIL-18a/b/c, HAT-HIL-18, NFR-29 and HST cases are supporting context/oracle references, not extra atoms. HR/HAC/HAT bundle broader HIL-FR-46..50/NFR-29 behavior; HAT-HIL-18 is designed_not_implemented. No formal successor assignment for either legacy IR identity or closure of all FR48/49, HAC/HAT, NFR-29, or full legacy source.",
+  "coverage_result": "no_loss_limited_to_two_selected_source_condition_slices",
+  "carried_atom_refs": [
+    "FR48-STALE-REVISION-L0138",
+    "FR49-DIFFERENT-SNAPSHOT-L0139"
+  ],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SEMANTIC-LINE-003#all other semantic-line conditions stay held",
+    "MPR-SH-IR-003#HIL-FR-48 and HIL-FR-49 remain preserved_pending_rehome; successor_requirement_ids empty"
+  ],
+  "unaccounted_atom_refs": [],
+  "human_decision_disposition_refs": [],
+  "authority_effect": "none",
+  "po_disposition_packet": {
+    "choice_a": "Adopt the two selected conditions as the bounded 072 pair-result candidate (recommended; candidate remains unadopted until PO decision).",
+    "choice_b": "Keep FR48 and FR49 conditions split into separate candidate identities before adoption.",
+    "choice_c": "Leave both conditions in source holding without adopting this candidate.",
+    "impact": "A applies only to explicit selected pair/scope inputs, preserves current 055/056 scope, and does not assign a formal successor to either full IR row or assert whole-source closure. B adds identity and review separation. C leaves the explicit stale/snapshot guarantees absent from current adopted pair conditions.",
+    "recommendation_basis": "The legacy source puts both rejection conditions in the two adjacent gate requirements and the existing selected atom partition excluded exactly these conditions; a single bounded candidate connects the separate vertical and horizontal pair findings without re-opening selected 055/056."
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Neither selected legacy statement nor fixed parent L1 supplies a version_target; this unadopted candidate does not infer one or imply 1.0 inclusion."
+  },
+  "no_claims": [
+    "candidate adoption or L2 agreement",
+    "formal successor assignment for full HIL-FR-48/HIL-FR-49 IR rows",
+    "source holding closure",
+    "old runtime/test/CI execution",
+    "new runtime/test/CI execution",
+    "implementation or execution permission",
+    "full six-pair or all-adjacent-pair scope",
+    "NFR-29 full-condition closure"
+  ],
+  "verification": {
+    "source_line_and_case_hashes_recomputed": true,
+    "candidate_sections_parse_and_hash": true,
+    "existing_055_056_063_exact_pair_pins_read": true,
+    "legacy_runtime_test_ci_run": false,
+    "new_generation_runtime_test_ci_run": false,
+    "common_8_gates_run_by_worker": false,
+    "137_run_by_worker": false
+  },
+  "root_integration_note": "Current candidate full-file and line locators refreshed after latest main b6aed5a4 integration; source evidence base a93, two selected atoms, all semantic section digests and adopted055/056/063 are unchanged."
+}

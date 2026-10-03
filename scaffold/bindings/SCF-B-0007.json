@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
-      "note": "HARNESS／HELIX-OSの責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂 read-after: 2026-09-25 PO判断（docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md、PR #2140）で7行の1.0機構一覧にIntelligenceを加えて3.0での追加を削除し、BRAINをHELIX全体の汎用の構造、Intelligenceを稼働時の判断と知識・モデル改善へ改め、83・87行の判断・知識・モデル改善の接続先をIntelligenceへ変更。本bindingは7・83・87行の1.0機構一覧とBRAIN・Intelligenceの責務記述に依存しないことをbinding全体で確認した。前receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; 現receipt=b793953d98187cc1d41bb8e91fb13f9c20ebc7fc53fa676989c1fa14b1f8d215; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂（開発方式の定義・product-boundary修正） read-after: 56行のHELIX-OS行で、接続先の記述を「知識・モデル改善は3.0のIntelligence」から「稼働中の判断と知識・モデル改善はIntelligence」へ修正し、7・83・87行（前回read-after済み）と整合させた。OSの所有責務の列挙は不変。本bindingは56行のIntelligenceへの接続記述と7・83・87行の1.0機構一覧・BRAIN・Intelligenceの責務記述に依存しないことをbinding全体で確認した。前receipt=b793953d98187cc1d41bb8e91fb13f9c20ebc7fc53fa676989c1fa14b1f8d215; 現receipt=f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6; このBindingの採否・authorityは変更しない。] [2026-09-26 main合流と名前の表記・未確定注記の反映 read-after: product-boundary.mdは、main（PR #2140・#2142）との合流後の内容に対し、5・7・56・83・87行の機構名の表記の統一（Intelligence→INTELLIGENCE、機構のSecurity→SECURITY、ヘリックスコア→HELIX-HARNESS-CORE。POの発言の引用内は不変）だけを受けた。行数・他の行・責務表の意味・authority状態は不変。本bindingのrole・obligations・connections・replacement・artifactは、機構名の綴り（Intelligence／Security／ヘリックスコア）にも、2.0の外の情報やBRAINの学習が未確定であることにも依存しないことをbinding全体で確認した。前receipt=f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6; 現receipt=f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1; このBindingの採否・authorityは変更しない。] [2026-09-26 Workerへの実行主体の統一 read-after: product-boundary.mdは、7行の「8機構と2共通部品」を「8機構と1共通部品」へ改め、1.0の列挙からRunner／Sandboxを除き、役割を割り当てるレーンと、レーンの主がSubagentとして呼び出して作業させるWorkerは機構や共通部品とは別に置く旨と2026-09-26 PO判断への参照を加え、87行の「OS・SECURITY・Runner／Sandbox」を「OS・SECURITY・Worker」へ置き換えただけを受けた。行数（106行）・他の行・責務表・authority状態は不変。本bindingのrole・obligations・connections・operations・artifacts・replacement・owner_candidate・reasonは、HELIXサブエージェント・Runner・Sandboxを独立した実行主体や共通部品とすること、エージェントレーンを実行主体とすること、Conceptの共通部品の数、HELIXOS-L2-004の実行担当がRunner／Sandboxであることのいずれも前提にしないことをbinding全体で確認した。前receipt=f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1; 現receipt=077907763209117f84c0d2a63f61d29ab83cf0b25eef194a02acae08107f709c; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: product-boundary.mdは、44-45行の改善loopの主語を「OSはPMとしてLABOの改善の提案を登録・振り分け・ticket化して回し、評価と提案はLABOがPMOとして担う」へ改めた。行数は不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=077907763209117f84c0d2a63f61d29ab83cf0b25eef194a02acae08107f709c; 現receipt=0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: 製品責務境界は、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、HELIX-WebとHELIX-Web-OSの行のリンク先だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2; 現receipt=1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: 製品責務境界は、HELIX-Web製品群 要求原案（2026-09-26のPO提示、docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md）により、冒頭の段落にHELIX-Webが製品の総称でありWEB-HARNESSの7製品・WEB-HARNESS-CORE・WEB-CONNECTORを含みCOREとWEB-OSを製品として数えないことを加え、HELIX-Web-OSの名前をHELIX-WEB-OSへ改めた（POの発言の引用、ID、機械参照の値は不変。行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）をbinding全体で確認した。前receipt=1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15; 現receipt=ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-INFRASTRUCTUREのConceptへの配置と版 read-after: product-boundary.mdは、7行の「8機構と1共通部品」を「9機構と1共通部品」へ改め、1.0の列挙にINFRASTRUCTUREを加え、HELIX-INFRASTRUCTUREが非製品の機構であることと判断記録へのリンクを足した。本bindingのrole・obligations・connections・replacement・artifactは、機構の数（8→9）、機構の表のHELIX-INFRASTRUCTUREの行、1.0の機構の列挙、「実行基盤」の語、OS L1・OS L2の該当の一文、作業入口の案内、研究用pinのSHA・行番号に依存しないことをbinding全体で確認した。前receipt=ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe; 現receipt=21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f; このBindingの採否・authorityは変更しない。]"
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139",
+      "note": "HARNESS／HELIX-OSの責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂 read-after: 2026-09-25 PO判断（docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md、PR #2140）で7行の1.0機構一覧にIntelligenceを加えて3.0での追加を削除し、BRAINをHELIX全体の汎用の構造、Intelligenceを稼働時の判断と知識・モデル改善へ改め、83・87行の判断・知識・モデル改善の接続先をIntelligenceへ変更。本bindingは7・83・87行の1.0機構一覧とBRAIN・Intelligenceの責務記述に依存しないことをbinding全体で確認した。前receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; 現receipt=b793953d98187cc1d41bb8e91fb13f9c20ebc7fc53fa676989c1fa14b1f8d215; このBindingの採否・authorityは変更しない。] [2026-09-25 Concept改訂（開発方式の定義・product-boundary修正） read-after: 56行のHELIX-OS行で、接続先の記述を「知識・モデル改善は3.0のIntelligence」から「稼働中の判断と知識・モデル改善はIntelligence」へ修正し、7・83・87行（前回read-after済み）と整合させた。OSの所有責務の列挙は不変。本bindingは56行のIntelligenceへの接続記述と7・83・87行の1.0機構一覧・BRAIN・Intelligenceの責務記述に依存しないことをbinding全体で確認した。前receipt=b793953d98187cc1d41bb8e91fb13f9c20ebc7fc53fa676989c1fa14b1f8d215; 現receipt=f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6; このBindingの採否・authorityは変更しない。] [2026-09-26 main合流と名前の表記・未確定注記の反映 read-after: product-boundary.mdは、main（PR #2140・#2142）との合流後の内容に対し、5・7・56・83・87行の機構名の表記の統一（Intelligence→INTELLIGENCE、機構のSecurity→SECURITY、ヘリックスコア→HELIX-HARNESS-CORE。POの発言の引用内は不変）だけを受けた。行数・他の行・責務表の意味・authority状態は不変。本bindingのrole・obligations・connections・replacement・artifactは、機構名の綴り（Intelligence／Security／ヘリックスコア）にも、2.0の外の情報やBRAINの学習が未確定であることにも依存しないことをbinding全体で確認した。前receipt=f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6; 現receipt=f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1; このBindingの採否・authorityは変更しない。] [2026-09-26 Workerへの実行主体の統一 read-after: product-boundary.mdは、7行の「8機構と2共通部品」を「8機構と1共通部品」へ改め、1.0の列挙からRunner／Sandboxを除き、役割を割り当てるレーンと、レーンの主がSubagentとして呼び出して作業させるWorkerは機構や共通部品とは別に置く旨と2026-09-26 PO判断への参照を加え、87行の「OS・SECURITY・Runner／Sandbox」を「OS・SECURITY・Worker」へ置き換えただけを受けた。行数（106行）・他の行・責務表・authority状態は不変。本bindingのrole・obligations・connections・operations・artifacts・replacement・owner_candidate・reasonは、HELIXサブエージェント・Runner・Sandboxを独立した実行主体や共通部品とすること、エージェントレーンを実行主体とすること、Conceptの共通部品の数、HELIXOS-L2-004の実行担当がRunner／Sandboxであることのいずれも前提にしないことをbinding全体で確認した。前receipt=f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1; 現receipt=077907763209117f84c0d2a63f61d29ab83cf0b25eef194a02acae08107f709c; このBindingの採否・authorityは変更しない。] [2026-09-26 統合確認へのPO回答の反映（Workerの指定の三段・レーンの役割「作成」・OSはPM／周辺機構はPMO・1.0と4.0の境目） read-after: product-boundary.mdは、44-45行の改善loopの主語を「OSはPMとしてLABOの改善の提案を登録・振り分け・ticket化して回し、評価と提案はLABOがPMOとして担う」へ改めた。行数は不変。本bindingのrole・obligations・connections・replacement・artifactは、変更した文言（Workerの指定の三段と未評価の印、レーンの役割の名前、OSはPM・周辺機構はPMOの整理、改善loopの主語、1.0と4.0の組み立ての境目、ticketの種類の案）と、OS L1・L2・L11の行番号を前提にしないことをbinding全体で確認した。前receipt=077907763209117f84c0d2a63f61d29ab83cf0b25eef194a02acae08107f709c; 現receipt=0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: 製品責務境界は、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、HELIX-WebとHELIX-Web-OSの行のリンク先だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2; 現receipt=1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-Web製品群 要求原案の反映（PO提示） read-after: 製品責務境界は、HELIX-Web製品群 要求原案（2026-09-26のPO提示、docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md）により、冒頭の段落にHELIX-Webが製品の総称でありWEB-HARNESSの7製品・WEB-HARNESS-CORE・WEB-CONNECTORを含みCOREとWEB-OSを製品として数えないことを加え、HELIX-Web-OSの名前をHELIX-WEB-OSへ改めた（POの発言の引用、ID、機械参照の値は不変。行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web-OSという表示名、HELIX-Webの製品群としての構成（WEB-HARNESSの7製品・CORE・CONNECTOR。要求候補・未採択）、Web提供系の要求候補の置き場所に依存しないこと（Binding内の`HELIX-Web-OS`は機械参照の対象identityとして不変）をbinding全体で確認した。前receipt=1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15; 現receipt=ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe; このBindingの採否・authorityは変更しない。] [2026-09-26 HELIX-INFRASTRUCTUREのConceptへの配置と版 read-after: product-boundary.mdは、7行の「8機構と1共通部品」を「9機構と1共通部品」へ改め、1.0の列挙にINFRASTRUCTUREを加え、HELIX-INFRASTRUCTUREが非製品の機構であることと判断記録へのリンクを足した。本bindingのrole・obligations・connections・replacement・artifactは、機構の数（8→9）、機構の表のHELIX-INFRASTRUCTUREの行、1.0の機構の列挙、「実行基盤」の語、OS L1・OS L2の該当の一文、作業入口の案内、研究用pinのSHA・行番号に依存しないことをbinding全体で確認した。前receipt=ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe; 現receipt=21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f; このBindingの採否・authorityは変更しない。] [2026-10-03 Web docs/配置統合 read-after（PO判断記録 docs/governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md）: current path docs/concept/product-boundary.md (unchanged); current upstream SHA-256 21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f → 61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139. 現行locatorまたは文書内リンク・path記述の追随のみを反映し、要求意味、ID、classification、authority、版、承認状態とBindingのrole・obligations・connections・replacement・artifactは変更しない。2026-09-26の配置判断とreceiptは当時の履歴として保持する。このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
@@ -44,28 +44,28 @@
       "note": "source span、候補分類、owner、未決、禁止遷移のreview契約 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "scaffold/pre-isolation-next/README.md",
+      "path": "scaffold/research/pre-isolation-next/README.md",
       "sha256": "75420a00b1b05a902f76efdfb078e1e87e6f04489a20007264076d541a658466",
       "note": "selected scope、全体分母、hunk分類とsemantic atom未完境界、旧asset／phase未確認、停止条件"
     },
     {
-      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
+      "path": "scaffold/research/pre-isolation-next/rdp001-preiso-next-6path.json",
       "sha256": "bd41dc0f88eef13f3c61735c89c9c97482b5913f3c639911581be76966d54399",
       "note": "6 selected pathのholding／asset／phase／revision候補manifest"
     },
     {
-      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+      "path": "scaffold/research/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
       "sha256": "aec34d9f26b74f8ddac72318efe793afd079a102fcbe0929f8c9872e293e67e7",
       "note": "24 hunk-level fragmentのexact span、分類、owner候補、15 review-only subunit、compound hold、未解決意味、negative"
     },
     {
-      "path": "scaffold/pre-isolation-next/validate.py",
-      "sha256": "bc6b6808a84d3740ba0f14a45a089620f38e793ff2aa9070e5226bbdcae207bf",
+      "path": "scaffold/research/pre-isolation-next/validate.py",
+      "sha256": "4ed17681e4b6c35d7fe4787c2ae44947095f7efb81cb4b7415702d4ec7576c8b",
       "note": "read-only Git object、台帳、diff denominator／hunk、hunk分類とsemantic atom境界、phase、negative validator"
     },
     {
-      "path": "scaffold/pre-isolation-next/selfcheck.py",
-      "sha256": "c68020aaebd5b289710d74868caa28991884efd597b67068a8c4740c98e5bd25",
+      "path": "scaffold/research/pre-isolation-next/selfcheck.py",
+      "sha256": "24b1496254143c36185b3a88b21b2bb5e3b70f07035f941c42f10a9f53d69a56",
       "note": "digest、phase、owner、authority、旧実行、hunk、分類、semantic atom境界・subunit grounding改変の否定例"
     }
   ],
@@ -100,8 +100,8 @@
   },
   "operations": {
     "allowed": [
-      "python3 scaffold/pre-isolation-next/validate.py",
-      "python3 scaffold/pre-isolation-next/selfcheck.py",
+      "python3 scaffold/research/pre-isolation-next/validate.py",
+      "python3 scaffold/research/pre-isolation-next/selfcheck.py",
       "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
     ],
     "forbidden": [
@@ -113,11 +113,11 @@
     ]
   },
   "artifacts": [
-    "scaffold/pre-isolation-next/README.md",
-    "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
-    "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
-    "scaffold/pre-isolation-next/validate.py",
-    "scaffold/pre-isolation-next/selfcheck.py"
+    "scaffold/research/pre-isolation-next/README.md",
+    "scaffold/research/pre-isolation-next/rdp001-preiso-next-6path.json",
+    "scaffold/research/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+    "scaffold/research/pre-isolation-next/validate.py",
+    "scaffold/research/pre-isolation-next/selfcheck.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -129,8 +129,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "scaffold/pre-isolation-next/validate.py（holding／asset／phase、Git object、archive bytes、全体分母、24 hunk、分類、owner、negative）",
-      "scaffold/pre-isolation-next/selfcheck.py（digest、phase implementation、owner collapse、authority、旧実行、hunk、分類の否定例）",
+      "scaffold/research/pre-isolation-next/validate.py（holding／asset／phase、Git object、archive bytes、全体分母、24 hunk、分類、owner、negative）",
+      "scaffold/research/pre-isolation-next/selfcheck.py（digest、phase implementation、owner collapse、authority、旧実行、hunk、分類の否定例）",
       "scaffold/tools/scfctl.py stale（上流ledger／product boundary／contract revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],

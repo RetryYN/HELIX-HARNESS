@@ -294,7 +294,7 @@ HELIX-Webは、Web提供系の製品の総称である（2026-09-26のPO原案�
 - Web提供系の運転は、HELIX-Webの外の機構HELIX-WEB-OSが担う。HELIX-WEB-OSは製品ではなく、本体のHELIX-OSと状態・権限を共有しない。
 - 機構の数は、HELIX-Web（製品群）とHELIX-WEB-OSをそれぞれ1つと数える。上の9つの機構と1つの共通部品の数は変わらない。
 - Web由来の実績の集計と評価は、HELIX本体のLABOに内蔵するHELIX-Benchが担う。Web専用の評価の機構を別に置かない。
-- 各対象の要求は、2026-09-26のPO原案を要求候補（未採択）として、repository直下の`helix-web/`の対象ごとの`candidates/`に置く。
+- 各対象の要求は、2026-09-26のPO原案を要求候補（未採択）として、`docs/`以下の対象ごとの`candidates/`に置く（2026-10-03のPO配置判断：[判断記録](../governance/decisions/helix-web-docs-consolidation-po-decisions-2026-10-03.md)）。
 
 ## 4. 原則
 

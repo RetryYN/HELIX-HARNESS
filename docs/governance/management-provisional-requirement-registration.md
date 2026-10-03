@@ -147,3 +147,46 @@ G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECT�
 ## confirmed175 DAC-FR-007 ratchet限定候補の仮登録（2026-09-29）
 
 `MPR-RC-HARNESS-L2-062-001`は旧DAC-FR-007 line 54一atomだけをHARNESS-L2/L11-062未採択候補へ対応する。source-lines／coverage receiptは`docs/governance/audits/requirement-registration/dac-fr-007-ratchet-source-lines-2026-09-29.jsonl`と`dac-fr-007-ratchet-coverage-receipt-2026-09-29.json`。`no_loss`は当該atomの限定candidate mappingであり、formal successor、source owner移管、baseline authority/revision/scope、分類規則・閾値・更新条件、採択、runtimeまたは条件closureを意味しない。`MPR-SH-CONFIRMED-003`を変更せず保持する。近接する採択済みHELIXOS-L2-037（57候補判断）は別の運転引継ぎ要求で、ratchet条件を定義しない。
+
+
+## CIG-AC-001 event identity negative oracle限定候補（2026-10-02）
+
+`MPR-RC-HELIXOS-L2-117-001`は、旧candidateのCIG-AC-001 line 14一atomだけをHELIXOS-L2/L11-117の未採択候補pairへ対応する。source-lines／coverage receiptは`docs/governance/audits/requirement-registration/ci-event-identity-negative-oracle-source-lines-2026-10-02.jsonl`と`ci-event-identity-negative-oracle-coverage-receipt-2026-10-02.json`。`no_loss`は一source atomの限定候補mappingを示す。採択済みOS-008/020に対する個別facet欠落・改変oracleの採択、旧source owner/適用scopeの確定、formal successor、runtime受入、source holding全体のclosureを示さない。既存NCI-OS-003/004候補の汎用binding条件やunadopted statusから採択を推定せず、PO選択肢A/Bと推奨はreceiptへ束縛する。`MPR-SH-CANDIDATE-003`を生存させる。
+
+## IR153 HIL-FR-42 / HIL-FR-45限定候補（2026-10-02）
+
+`HARNESS-L2-077`／`HARNESS-L2-078`はそれぞれ旧HIL-FR-42 line 132とHIL-FR-45 line 135の一atomだけを未採択候補pairへ対応する。source-linesと各coverage receiptをMPR行が固定する。`no_loss`は当該一atomの候補入力対応だけを示す。`MPR-SH-IR-003`は生存し、旧要求の正式successor、owner移管、対象scope/version、全HR/HIL condition closure、PO採択、L3承認、実装・実行を主張しない。旧runtime/schema/test/CIは移植または実行しない。
+
+## HIL-BR-12 intake/style接続候補（2026-10-02）
+
+`MPR-RC-HELIXOS-L2-121-001`は`management-provisional-requirement-register.jsonl`へ追記した`registered_proposal`である。選択atomは旧IR `requirements.json#/HIL-BR-12`（asset `LEGACY-ASSET-A60CF91DD2AF6693E6F9`）一件であり、旧L1 line 64（asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）は同じstatementのcorroborationで別atomではない。source-linesとcoverage receiptは`docs/governance/audits/requirement-registration/hil-br12-intake-style-source-lines-2026-10-02.jsonl`および`helixos-l2-121-hil-br12-coverage-receipt-2026-10-02.json`。`no_loss`はこの一atomを四facet候補へ対応したことだけを示す。2026-09-28 OS decisionの固定L2-001〜029/paired L11は合意済みで、本候補はその対象revision外かつ未採択である。HARNESS-L2-023の依存意味はHELIX-HARNESS 9/28 exact decision revisionで採択済みと確認し、そのMPR frontmatter/register stateをauthority根拠にしない。`MPR-SH-IR-003#HIL-BR-12`は生存し、formal successor、owner/scope/version、旧HR/HAC/HAT全体closure、L3承認、runtime/test/CI実行を主張しない。旧sourceは読取専用で実行しない。
+
+## 2026-10-02 HELIXOS-L2-122 仮登録
+
+旧HIL-NFR-01の一IR atomに対する未採択OS connection候補を `MPR-RC-HELIXOS-L2-122-001` として追記した。候補はdelivery、Issue contract、job、PR headの各既存identityとowner効果を因果・既存receiptで結び、同一operationの重複効果、異payload conflict、部分失敗後の継続、unknown時の保留を扱う。LABO／INTELLIGENCE／BRAINの知識責務は移さず、採択済みOS 007/009/019およびHARNESS 023の範囲を超える保証を採択済みとは主張しない。source holding、formal successor、要求採否は未解決のまま維持する。詳細は [coverage receipt](audits/requirement-registration/helixos-l2-122-hil-nfr-01-idempotency-coverage-receipt-2026-10-02.json) を参照。
+
+## 2026-10-02 HELIXOS-L2-123 仮登録
+
+旧HIL-BR-14のIR identity statement一件を対象とする未採択候補を`MPR-RC-HELIXOS-L2-123-001`として追記した。source scopeはZIP、指定された前身repository exact 2件のcurrent advertised heads/tags/pull ref authority、現行HELIX source、atomic behavior分解と採否からrequirement/design/test/Gateへのtrace、およびauthority receiptから動的に導くref・unique tree entry・ref-entry edge分母である。source countは一IR atomだけで、L1 line 66は同じ文面のcorroboration、HR-FR-HIL-09/HAC-HIL-09a,b,c/HAT-HIL-09はconsumer/oracle contextであり追加atomではない。HATは未実装で実行していない。
+
+候補はsource authority・receipt・traceのOS接続を提案し、各ownerの意味判断を移さない。採択済みOS L2-002/005/007は一般のtracking/provenance経路として参照したが、BR14固有のexact-two-repository ref authorityとreceipt-derived分母・全traceを被覆済みとは扱わない。HARNESS-L2-067は未採択の部分的なsource-atomization候補である。候補は外部remote操作、旧runtime/test/CI、全source closure、formal successorを主張しない。詳細は[source ledger](audits/requirement-registration/hil-br14-source-lines-2026-10-02.jsonl)と[coverage receipt](audits/requirement-registration/helixos-l2-123-hil-br14-coverage-receipt-2026-10-02.json)を参照。
+
+## 2026-10-02 HELIXOS-L2-124 仮登録
+
+旧HIL-NFR-08のIR identity atom一件を対象とする未採択候補を`MPR-RC-HELIXOS-L2-124-001`として追記した。sourceはPR監査、Issue Gate、agent registry、memory compaction、ZIP detectorの五roleそれぞれにfailure codeとprovenanceを要求し、proseだけの合格を禁じる。source atomは旧IR一件だけで、旧L1 line 188は同一文面のcorroboration、HR-FR-HIL-09/HAC-HIL-09a,b,c/HAT-HIL-09およびHST例はconsumer/oracle contextであり追加atomではない。HATは設計のみで実行していない。
+
+現行採択pairはdecision revisionとexact section digestで照合した。OS-033の採択条件をZIP detectorに再利用し、新たな採択として重複させない。035/058/034/101のPR intake・分類・disposition、059/102のIssue intake、047のcapability contract、019のcontinuity等は隣接条件として範囲を限定し、五role全部のfailure-result保証へ一般化しない。候補は残差の静的接続を提案するだけで、実機能、旧runtime/test/CI、source closure、formal successor、実行済み受入を主張しない。詳細は[source ledger](audits/requirement-registration/hil-nfr-08-function-evidence-source-lines-2026-10-02.jsonl)、[coverage receipt](audits/requirement-registration/helixos-l2-124-hil-nfr-08-function-evidence-coverage-receipt-2026-10-02.json)、[L2 candidate](../helix-os/L2-requirements/governance-requirements.md#helixos-l2-124)、[L11 candidate](../helix-os/L11-acceptance/governance-acceptance.md#helixos-l11-124)を参照。
+
+
+OS-122の採択関係を `MPR-RC-HELIXOS-L2-122-002` として訂正追補した。035は57-candidate decision row 58、HARNESS-059とOS-102はlive26 rows 44/55/70で採択済みであり、それぞれの限定scopeと122の未採択scopeを区別する。既存001行とreceiptは時点記録として保持し、source atom・候補意味・scopeは変えていない。最新の根拠は [訂正receipt r2](audits/requirement-registration/helixos-l2-122-hil-nfr-01-idempotency-coverage-receipt-2026-10-02-r2.json) とregister 002である。
+
+## 2026-10-02 HELIXOS-L2-126 仮登録
+
+旧HIL-NFR-18のIR identity atom一件を対象に、失効leaseとfencing token不一致時のtool call/artifact/completion拒否、およびcrash後の最後のdurable checkpointだけからの再開を、未採択候補`MPR-RC-HELIXOS-L2-126-001`として追補した。採択済みOS-009/018/019/032の一般停止・event/checkpoint保証、未採択115/118/120/125との範囲差を照合し、旧source atomとHAT/HST/IT-AGLC-006 line 40の未実行consumer contextを区別した。source holdingとformal successorは未解決、旧HATは設計のみで実行していない。候補本文、source ledger、decision/pair pins、正常・負・unknown oracle、選択肢は[coverage receipt](audits/requirement-registration/helixos-l2-126-hil-nfr18-fencing-checkpoint-coverage-receipt-2026-10-02.json)と[source ledger](audits/requirement-registration/hil-nfr18-fencing-checkpoint-source-lines-2026-10-02.jsonl)を参照。
+
+
+## HIL-NFR-34選択source stale facet候補（2026-10-03）
+
+`MPR-RC-HELIXINTELLIGENCE-L2-072-005`は、既採択INTELLIGENCE-L2-072-004の4つの選択partを不変に保ち、HIL-NFR-34全IR identityのうち、選択済みscope/requirement/template/skill/model catalog/allowlist依存のrevisionまたはdigest変更を該当candidate facetのstaleとして扱い、旧facetのcandidate/shadow入力への再利用を止めて該当source ownerへ戻す条件だけをL2/L11末尾へ候補追補する。候補は未採択で、runtime gate、OS dispatch拒否、SECURITY authority、旧要求全体のsuccessor/closureを主張しない。
+
+source ledgerは`audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl`、coverage receiptは`audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r1.json`。whole IR HIL-NFR-34は一atom、旧L1 line 214は同一文のcorroboration、HR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21は共有consumer/oracle contextであり追加atomではない。no_lossはsource条件を候補facetまたは生存source holdingへ割り当てた意味に限定し、残余条件を`MPR-SH-IR-003#HIL-NFR-34`へ保留する。PO選択肢A/Bはreceiptに原文、影響、推奨とともに記録した。

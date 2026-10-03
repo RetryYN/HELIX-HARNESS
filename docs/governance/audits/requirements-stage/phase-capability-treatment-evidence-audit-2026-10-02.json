@@ -1,0 +1,1968 @@
+{
+  "schema": "phase-capability-treatment-evidence-audit/v1",
+  "audit_date": "2026-10-02",
+  "authority_effect": "none",
+  "base_revision": "360eec2d11dd2b838206b6096c7226aaefb8252c",
+  "scope": "Inventory treatment entries PHCAP-02..20 (19 rows), using existing bounded audits and receipts, current L2/L11 and PO records. No full legacy asset rescan.",
+  "inventory_pin": {
+    "path": "docs/governance/phase-capability-inventory.json",
+    "sha256": "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
+    "markdown_path": "docs/governance/phase-capability-inventory.md",
+    "markdown_sha256": "2a49a7eb85b4a7397c325b84cf38984603a37014a415c4921363592208aa05dc",
+    "snapshot_revision": "e784fa68702af4b7c57911b866b48fe7df094f88"
+  },
+  "adopted_revision_basis": {
+    "decision_base": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "meaning": "PO decision records fix the adopted L2/L11 bytes. At audit base, current pair files are append-only descendants of those bytes (git diff from decision base: additions only, zero deletions). Current full-file SHA pins are read-after references; they do not themselves create authority.",
+    "current_document_full_sha256": {
+      "HELIXOS-L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f"
+      },
+      "HELIXOS-L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34"
+      },
+      "HARNESS-L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e"
+      },
+      "HARNESS-L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3"
+      },
+      "LABO-L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+      },
+      "LABO-L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+      },
+      "INTELLIGENCE-L2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "sha256": "11dd5c5dc6ee075e8920de13b80736c6b574f587acecfd1fad03f9fcdf8707d7"
+      },
+      "INTELLIGENCE-L11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "sha256": "1deef1335fbbf9eab7468a590e31d7de3004dda09d8cb53e447c2c876cb9ddf5"
+      },
+      "SECURITY-L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "sha256": "d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5"
+      },
+      "SECURITY-L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "sha256": "e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556"
+      }
+    },
+    "po_decision_full_sha256": {
+      "HELIXOS": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "HARNESS": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "LABO": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      "INTELLIGENCE": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      "SECURITY": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+      },
+      "2026-09-24": {
+        "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+        "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+      },
+      "2026-09-26-web-relocation": {
+        "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+        "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e"
+      },
+      "2026-09-29-57candidates": {
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+      }
+    },
+    "fixed_adopted_document_sha256_at_decision_base": {
+      "HELIXOS-L2": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "HELIXOS-L11": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "HARNESS-L2": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "HARNESS-L11": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "LABO-L2": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "LABO-L11": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "INTELLIGENCE-L2": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "INTELLIGENCE-L11": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "SECURITY-L2": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "SECURITY-L11": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+    },
+    "additional_decisions": [
+      {
+        "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d",
+        "scope": "2026-09-26 responsibility split referenced by PHCAP-19 audit"
+      }
+    ]
+  },
+  "existing_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.md",
+      "sha256": "3737beab6551b639774518d26c306828c99dbef386293c0f3c1471134bd848f3",
+      "result": "18 records: 16 relevant partial, PHCAP-08/15 unknown primary, 0 phase-specific execution closures"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/phcap19-semantic-recovery-audit-2026-09-28.md",
+      "sha256": "9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8",
+      "result": "loop-level requirement meaning adopted; old UIL detailed atoms partial/unresolved; implementation false"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/phcap19-condition-crosswalk-2026-09-28.md",
+      "sha256": "99b88815908f3779d3f35a49fca9944b97840be9f61180c9a583ff95ea4ab4ff",
+      "result": "condition categories and refs, bounded"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/phcap17-incident-production-write-authority-decision-2026-09-28.md",
+      "sha256": "480b29e23669c7eff6d30f00ece2b8d56441c957cb44ae6df48a4e812d690ac2",
+      "result": "legacy RB08-182 three-role decision unresolved"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+      "sha256": "2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+      "result": "source preservation only, no semantic successor"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/phcap17-incident-episode-coverage-receipt-2026-09-29.json",
+      "sha256": "ae20e40388e05db595d3e2f596e2afc185f6bdc176d5f5ea8d154263b1660d8c",
+      "result": "candidate 105 limited subset, no authority"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/phcap20-loop-continuation-coverage-receipt-2026-10-02.json",
+      "sha256": "dc35df21a990ec70081875ca50ddc3b20191f0ba029f3e66d67363beaef633f3",
+      "result": "candidate 114 limited subset, no adoption"
+    }
+  ],
+  "population_count": 19,
+  "rows": [
+    {
+      "phase": "PHCAP-02",
+      "inventory_phase": "requirement_registration",
+      "inventory_treatment": "degraded_to_candidate_and_static_registry",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-3DED4B36AC6A8AD9A68C",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md",
+          "lines": [
+            "16-23",
+            "27-50"
+          ],
+          "source_sha256": "58daba2ec78e51651a7d4e46d1b900115273c55ba7a0dd772dee221caaf18ce4"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4DF51DE06C57917FEA9C",
+          "path": "archive/legacy-generation-2026-09-14/root/tests/requirement-intake-lifecycle.test.ts",
+          "lines": [
+            "30-47"
+          ],
+          "source_sha256": "0b2feae2467127f58e550241bc802d36b4b6487a772e2ccd610c07bc915ec817"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007"
+          ],
+          "lines": [
+            54,
+            55,
+            60
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-008"
+          ],
+          "lines": [
+            59
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-013"
+          ],
+          "lines": [
+            21,
+            22,
+            27,
+            33
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "採択OS `HELIXOS-L2-001/002/007`（[L2本文](../../../helix-os/L2-requirements/governance-requirements.md#L44)、旧source registration・因果・revision・証拠）と対のOS L11 `L2-001/002/007/013` (L11: 40–44、source atom / `registered_source_holding` / `registered_proposal` / wrong product / stale / digest不一致を拒否)。HARNESS `L2-008`も意味抽出・構造化とOS登録の責務境界（[HARNESS L2](../../../helix-harness/L2-requirements/product-requirements.md#L59)）。**条件を部分回復**。",
+      "unproven_or_changed_conditions": "#257の旧lifecycle cutover fenceは現行候補register・153 routingへ自動対応しない。source holdingは現行継続条件だが、PHCAP-02固定revision/product/atom joinとpersistent resume contract、旧fence consumer closureはunknown。phase inventoryの`implemented_with_tests`は選択assetのimplementation unknown / old execution falseを上書きしない。",
+      "additional_evidence": [
+        {
+          "path": "docs/governance/audits/requirements-stage/phcap02-requirement-registration-status-delta-2026-09-28.md",
+          "sha256": "7feab4fa1ff89c1ef2715f3c5040f4dc153628e654250190562bf74654b4d620",
+          "finding": "later OS/HARNESS adoption corrects missing formal L2/L11 status; not phase recovery; old cutover fence, persistent resume, atom/product join remain unknown"
+        }
+      ],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-03",
+      "inventory_phase": "requirement_classification",
+      "inventory_treatment": "degraded_to_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-90ECC62DFFEDE09800F0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/requirement-refinement-authority.md",
+          "lines": [
+            "15-29",
+            "85-107"
+          ],
+          "source_sha256": "b421963155fcc5e503b144282e254fc860550c5360943482f09af7db7fb3a21f"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-8D1C0205DFCCE5C0359D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/requirement-refinement-authority.md",
+          "lines": [
+            "62-68"
+          ],
+          "source_sha256": "dfeede5606665c9e4e94d95df8bae0a4c0c1a6acece26228db066cdffab97dc0"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-41F787DD7C89B20A3732",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-translation-obligation.md",
+          "lines": [
+            "29-33"
+          ],
+          "source_sha256": "b4e99bb1ccba1c3bf090e8e40ea286efee68abbaf6a93575f1d21ca5492cf901"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-008"
+          ],
+          "lines": [
+            59
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-013"
+          ],
+          "lines": [
+            54,
+            55,
+            60,
+            50
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-013"
+          ],
+          "lines": [
+            21,
+            22,
+            27,
+            33
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "採択HARNESS `L2-008` (product-requirements.md:59) が意味処理・semantic diff・質問・単体/接続/構成体の分類を所有し、OS `L2-001/002/007/013` が原event・分類projection・人の訂正/採否・後続見逃しを不変原記録に結ぶ。OS L11:43–44はschemaを後付けしても原eventを変えない、digest・atom・product欠落/staleを拒否。**分類・write境界は部分回復**。",
+      "unproven_or_changed_conditions": "旧Requirement Engine/authority rootのexact wire schema、`commitRequirementTranslationBundle`等の技術契約、4製品評価までのphase joinは旧実装形を継承しない。HARNESS meaning core / OS classification projectionへの責務分割は明示されるが、source atom単位の全条件・consumer closureは残る。PHCAP-03候補scopeにWeb追加を導かない。",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-04",
+      "inventory_phase": "requirement_adoption_l2",
+      "inventory_treatment": "degraded_to_unapproved_routing_containers",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+          "lines": [],
+          "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+          "lines": [],
+          "source_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D6339A02201B20481C3F",
+          "path": "archive/legacy-generation-2026-09-14/root/src/requirements/requirement-authority.ts",
+          "lines": [],
+          "source_sha256": "b2f972af035072121e4b016f35f6efb570bf32d6ba6dea72ae463210219432f9",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-F17ABDB90E1340D09746",
+          "path": "archive/legacy-generation-2026-09-14/root/src/requirements/requirement-discovery.ts",
+          "lines": [],
+          "source_sha256": "0ebcbb0869525ad40cc68409a14946292d804b318f6bc4ab99daa1fa3a0cba2b",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-001",
+            "HARNESS-L2-002",
+            "HARNESS-L2-003",
+            "HARNESS-L2-004",
+            "HARNESS-L2-005",
+            "HARNESS-L2-006",
+            "HARNESS-L2-007",
+            "HARNESS-L2-008",
+            "HARNESS-L2-009",
+            "HARNESS-L2-010",
+            "HARNESS-L2-022"
+          ],
+          "lines": [
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            324,
+            336
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-003",
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-006",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-008",
+            "HELIXOS-L2-009",
+            "HELIXOS-L2-010",
+            "HELIXOS-L2-011"
+          ],
+          "lines": [
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-013"
+          ],
+          "lines": [
+            21,
+            22,
+            27,
+            33
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/governance/new-generation-start-here.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "採択対象は8機構の固定L2/L11一式（[PO decision state](../../new-generation-start-here.md#本体8機構の現在の判断状態2026-09-28)）。HARNESS L2:52–59、OS L2:44–55 defines requirement/trace/decision and phase responsibility. OS L11:40–44 checks candidate revision, source atom completeness, HARNESS no-loss receipt, holdback atoms, and human-decision atoms. **L2 authority contract is fixed for those 8 documents, but not all old IR atoms/successors.**",
+      "unproven_or_changed_conditions": "Requirement carry-forward status remains 153 IR; 65 split-required and all-successor mappings were not completed by the PHCAP inventory. 8-document agreement cannot be read as every old requirement mapped or as the adoption of Web/Web-OS L2 (their L1/L2/L11 were moved out of requirement scope). Old source-level approved/confirmed state does not transfer to new bytes.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-05",
+      "inventory_phase": "acceptance_l11",
+      "inventory_treatment": "degraded_to_draft",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L11-uat/uat-evidence-boundary.md",
+          "lines": [],
+          "source_sha256": "6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-acceptance/acceptance-evidence-index.md",
+          "lines": [],
+          "source_sha256": "248c18aa717a7348436d11814e7c26e6c73bbfae00789fa445ac6a79ae1b24f3",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-2CA9EFB00A24A7346674",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/vmodel-docgen-fit-acceptance.md",
+          "lines": [],
+          "source_sha256": "bc93dab8e75f4fd9363991b06e0bb39b05352ad4bc8d5467961eff9cf4bccfd1",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Each adopted L2 has its corresponding fixed L11 in 8 PO-confirmed module pairs (HARNESS L11 exact legacy transfer map, [L11](../../../helix-harness/L11-acceptance/product-acceptance.md#L88); OS L11 core and negative rows, [L11](../../../helix-os/L11-acceptance/governance-acceptance.md#L24)). **The requirement/acceptance pair is adopted at document level**; the L11 oracle is still unexecuted.",
+      "unproven_or_changed_conditions": "No phase-wide L11 execution/acceptance receipts; historical acceptance tests do not prove current oracle or pass. Web/Web-OS draft acceptances were not adopted with these 8 decisions.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-06",
+      "inventory_phase": "design_l3",
+      "inventory_treatment": "degraded_to_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+          "lines": [],
+          "source_sha256": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": [],
+          "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-EBEF9C2559936172AD8F",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-registry.md",
+          "lines": [],
+          "source_sha256": "e57a1a119c4013a2282e31be8a6ebd1b898a158f3a581bd470f83f1850e4e4ed",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D8A9E08B9BDD62096AEF",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-artifact-source-digest.md",
+          "lines": [],
+          "source_sha256": "c9a415cdeb998543fc725bfff37b9a6a74978266cde6f74362815cb095ee892f",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-009",
+            "HARNESS-L2-022"
+          ],
+          "lines": [
+            60,
+            336
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007"
+          ],
+          "lines": [
+            54,
+            55,
+            60
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-001",
+            "HELIXOS-L2-002",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-013"
+          ],
+          "lines": [
+            21,
+            22,
+            27,
+            33
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-009` (product-requirements.md:60–67) derives design obligations from versioned template and sends missing inputs upstream; `L2-022` holds verification/acceptance oracle contract. OS `L2-001/002/007` records the exact selected template/version, application, N/A, finding/backflow (OS requirements opening sections and L11 rows 40–44). **Design semantics/obligation conditions partly recovered as L2; no L3 design freeze.**",
+      "unproven_or_changed_conditions": "L3/L10 per-product pair and current registry/lint implementation remain unadopted/unbuilt. Web/Web-OS have only adjacent Vision material; current direct PHCAP-06 evidence was HARNESS/OS. Versioned JSON/template as old implementation form is not automatically reused; current template registry owner split (BRAIN knowledge, HARNESS application obligation, OS project record) is a re-derived boundary.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-07",
+      "inventory_phase": "verification_l10",
+      "inventory_treatment": "not_reimplemented_formally",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L8-integration/integration-evidence-index.md",
+          "lines": [],
+          "source_sha256": "98b2936b0e10524baab67e503d270e2e2d07be2ce60db4613a865686cb8ed288",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L9-system/system-evidence-index.md",
+          "lines": [],
+          "source_sha256": "d71782ae07db0868c596b158f9ba630ed05ff80c1e66f3dae89b19a3f94cbf5d",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-merge-admission-system-test-design.md",
+          "lines": [],
+          "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L10-ux/ux-evidence-boundary.md",
+          "lines": [],
+          "source_sha256": "92caa47dcd181fc790dec462820b063a1c8a6ed9c0b86410306ead9cb13e3f71",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L11-uat/uat-evidence-boundary.md",
+          "lines": [
+            "14-32"
+          ],
+          "source_sha256": "6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-004",
+            "HARNESS-L2-005",
+            "HARNESS-L2-022"
+          ],
+          "lines": [
+            55,
+            56,
+            336
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-008",
+            "HELIXOS-L2-020"
+          ],
+          "lines": [
+            61,
+            692
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-008"
+          ],
+          "lines": [
+            28
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-Web / HELIX-WEB-OS verification and runtime oracle: requirement stage is out of scope; no adopted target L2/L11 successor identified."
+        }
+      ],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-004/005/022` (product-requirements.md:55–56, 60) specifies trace, expected failure, oracle/evidence, CI obligation; OS `L2-008/020` owns profile assembly/operation and execution tracking (governance-requirements.md:52; OS L11:28,51–54). **L10 conditions are requirements; no formal L10 engine/oracle/CI exists.**",
+      "unproven_or_changed_conditions": "PHCAP-07 Web/Web-OS has no direct adopted evidence; their L10, oracle registry, profiles and runtime receipts are true unknown / out of this L2/L11 adoption. New-gen CI is unbuilt; old test designs and old CI remain unexecuted.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-08",
+      "inventory_phase": "wbs",
+      "inventory_treatment": "semantic_equivalence_unresolved",
+      "proof_assessment": "unresolved_primary_no_current_successor",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-D27D4A1511BFD43623A9",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/lifecycle-stage-completion-goals.md",
+          "lines": [],
+          "source_sha256": "21ba24bf781048f1cb03a20172c8049a6112690cda3d0d0f7dd0ba3cb0bd7406",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-78D55762187C612C93C4",
+          "path": "archive/legacy-generation-2026-09-14/root/src/state-db/current-location.ts",
+          "lines": [],
+          "source_sha256": "9581b309d4b21dea83e2e1203cba70af4e855a005ce85b1b4c8a46b87e909e84",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/plan-descent-baseline.json",
+          "lines": [],
+          "source_sha256": "50afda44a67952468f011e06c734a3536c3321f737d71c2b65814d88fab6aa8d",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-010"
+          ],
+          "lines": [
+            324
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-010",
+            "HELIXOS-L2-017"
+          ],
+          "lines": [
+            63,
+            662
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-010` defines pack/unit/connection/composite boundaries; OS `L2-010/017` defines dynamic workflow/ticket graph and operation (OS requirements: `L2-010` introductory row; detailed `L2-017` at :662). These are adjacent mechanisms only. **No current exact WBS successor is identified.**",
+      "unproven_or_changed_conditions": "True unknown: whether old plan/current-location/roadmap/state functions semantically equal WBS and which capabilities are carried. Do not map WBS→ticket graph by name. `semantic_equivalence_unresolved` remains the right status; no requirement meaning or owner decision from path proximity.",
+      "additional_evidence": [
+        {
+          "path": "docs/governance/audits/requirement-registration/phcap08-stage-exit-coverage-receipt-2026-09-29.json",
+          "sha256": "2c0111eaf28b5d653f2a99efd6ede1f5f380c29f4bec17e554cb7a195cb3e3a4",
+          "finding": "25 source atoms preserved, zero direct candidate carry, 25 pending holding; no WBS equivalence/successor"
+        }
+      ],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-09",
+      "inventory_phase": "ticket_generation",
+      "inventory_treatment": "degraded_to_rederived_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "lines": [],
+          "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+          "lines": [
+            "3-88"
+          ],
+          "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-06C7FAF2A0981A4778AC",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-88-execution-ticket-bench-authority.md",
+          "lines": [],
+          "source_sha256": "28d20ad86f1c1d35184ebedf6b51e9129192e9b7107584ab2b0761e56ad7ad02",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-002",
+            "HARNESS-L2-003",
+            "HARNESS-L2-008"
+          ],
+          "lines": [
+            53,
+            54,
+            59
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-010",
+            "HELIXOS-L2-017"
+          ],
+          "lines": [
+            63,
+            662
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-010"
+          ],
+          "lines": [
+            30
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted OS `L2-010` gives ticket/workflow responsibility and dynamic assembly; `L2-017` is the ticket/workflow unit; corresponding OS L11 rows 46, 48–49, 278–286 distinguish source, actor, ticket type and Backflow (governance-acceptance.md:46,48–49,278). HARNESS `L2-002/003/008` supplies process/meaning rules. **Meaning re-derived into OS operation + HARNESS rules, not old PLAN compiler reuse.**",
+      "unproven_or_changed_conditions": "Ticket graph issuer/runtime, GitHub projection, end-to-end ticket create/close execution are not implemented here. Old Execution Ticket candidate was not promoted byte-for-byte; phase-level product/unit split and closure remain unresolved beyond adopted 1.0 ticket IDs.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-10",
+      "inventory_phase": "worker_execution",
+      "inventory_treatment": "degraded_to_requirement_and_limited_bootstrap",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+          "lines": [
+            "1-20"
+          ],
+          "source_sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-25EB3B29EA909B050987",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-lifecycle-receipt.md",
+          "lines": [
+            "1-25"
+          ],
+          "source_sha256": "275fe7149c80d6abbc85aa59b50bfc4c00e1f55bfd783b6cd092557cd8c21ccc"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-6DA5F7026F38B4C091AF",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-output-admission.md",
+          "lines": [
+            "1-20"
+          ],
+          "source_sha256": "5d53ef37025ed42e042f3ddcde6b2a43fab3095ccba5889f9557e0cf302512b4"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-018",
+            "HELIXOS-L2-019"
+          ],
+          "lines": [
+            57,
+            672,
+            682
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-009"
+          ],
+          "lines": [
+            24,
+            29
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted OS `L2-004` (governance-requirements.md:47) and `L2-018/019` (:672–692); OS L11 `L2-004` row 24 binds Worker/provider/model/ticket/requirement revision, authority, constraints, output evidence, independent review and ephemeral credential cleanup; `L2-009` row 29 binds interruptions/constraints/no duplicate execution. SECURITY L2/L11 adopted permissions apply per selected operation. **Lifecycle/authority/evidence/recovery guarantees partly recover at requirement level.**",
+      "unproven_or_changed_conditions": "Inventory bootstrap decision does not establish lease existence, `SCF-B-0004`, executor, operation-change permission or runtime. Old descriptor/runtime/receipt formats are not current implementation. Current exact provider backend, sandbox, process state persistence, and consumer read-after remain L3/implementation work.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-11",
+      "inventory_phase": "ci_test",
+      "inventory_treatment": "degraded_to_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+          "lines": [],
+          "source_sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+          "lines": [],
+          "source_sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+          "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+          "lines": [],
+          "source_sha256": "7c18b3f208886c443957f4cdbf919de77da233e6759007b8501624c054e7d099",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            56
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-008",
+            "HELIXOS-L2-020"
+          ],
+          "lines": [
+            61,
+            692
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-008"
+          ],
+          "lines": [
+            28
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-005` (product-requirements.md:56 and :108–110; L11:46–53) and OS `L2-008/020` (OS L2:52, :692; OS L11:28, 51–54) recover derived test duties, dynamic CI, exact revision/evidence, failure/retry/stale, no old-CI fallback. **Explicit meaning change:** HARNESS L2-005 retains impact-specific coverage, recorded skips, and early high-risk evidence; shifts selection from changed-file impact to ticket/change/pair/risk; omitted verification is recovered in successor ticket rather than merge-immediate full suite/nightly; no fixed full-suite/nightly default.",
+      "unproven_or_changed_conditions": "Current new-gen CI, runner/profile, CI Binding and oracle are unbuilt. No CI execution receipt; no old/new parity or dual-green requirement. Old concrete workflow/shards are not current capabilities.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-12",
+      "inventory_phase": "review_convergence",
+      "inventory_treatment": "degraded_to_operating_contract_and_gui_scaffold",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md",
+          "lines": [],
+          "source_sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-cross-review-admission.md",
+          "lines": [
+            "13-31"
+          ],
+          "source_sha256": "c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+          "lines": [
+            "8-20"
+          ],
+          "source_sha256": "4607470ce4ac335e7b0598bfd2b5c1df022683af05ba39babab0646893d7dd21"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            56
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-008"
+          ],
+          "lines": [
+            57,
+            60,
+            61
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-008"
+          ],
+          "lines": [
+            24,
+            27,
+            28
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-005` plus OS `L2-004/007/008`; current [GitHub operating model](../../github-upstream-operating-model.md) requires independent review of exact base/content HEAD and PR-comment findings. GUI mailbox is delivery only and cannot produce approval/admission; review does not itself generate the finding fix. **Operational guarantee re-derived; not a current canonical receipt implementation.**",
+      "unproven_or_changed_conditions": "Old canonical receipt/PLAN binding, provider-neutral schema, delivery/restart/automated convergence and logical DB receipt are unadopted/unknown. Current operating lane records finding comment, not old typed receipt v4/DB convergence. No inference from reviewer name, message or CI green.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-13",
+      "inventory_phase": "merge_admission",
+      "inventory_treatment": "degraded_to_manual_operating_contract",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+          "lines": [
+            "20-37"
+          ],
+          "source_sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            54,
+            56
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-011"
+          ],
+          "lines": [
+            57,
+            60,
+            64
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            23,
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-004",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-011"
+          ],
+          "lines": [
+            24,
+            27,
+            31
+          ],
+          "statuses": []
+        },
+        {
+          "path": "AGENTS.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        },
+        {
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Current [AGENTS](../../../../AGENTS.md) / [GitHub upstream operating model](../../../governance/github-upstream-operating-model.md) and adopted HARNESS L2-003/005 + OS L2-004/007/011 establish exact HEAD/base read, independent review, blocker 0, current merge admission, `scfctl stale=0`, explicit `gh pr merge --merge`, read-after; no added human approval or extra delivery receipt comment, no GitHub auto-merge. **Same-head independent review and stale/block rules are kept; admission mechanism is re-derived.**",
+      "unproven_or_changed_conditions": "Old canonical receipt plus DB convergence is not current gate/schema; current CI and canonical receipt remain unbuilt. New-gen `scfctl stale=0` is a distinct current gate; it does not prove old DB parity. This is an explicit operating-model difference, not proof old runtime conditions were all ported.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-14",
+      "inventory_phase": "release",
+      "inventory_treatment": "degraded_to_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "lines": [
+            "20-34"
+          ],
+          "source_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "lines": [
+            "20-33"
+          ],
+          "source_sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-006",
+            "HARNESS-L2-007"
+          ],
+          "lines": [
+            54,
+            57,
+            58
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-006",
+            "HELIXOS-L2-021"
+          ],
+          "lines": [
+            59,
+            702
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-006"
+          ],
+          "lines": [
+            26
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-006"
+          ],
+          "lines": [
+            26
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-Web / HELIX-WEB-OS release: outside the adopted eight-target L2/L11 set; retained as later vision/version scope."
+        }
+      ],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-006/007` (HARNESS L2:57–58) specifies services 1–7, provided version, dependencies and release status/Version 1 evidence; OS `L2-006` (OS L2:49; candidate detail `L2-021` at :702) and L11:26/81 separates install/update/recovery and product release handoff. `L2-003` defines Release Port evidence/rollback/deployment conditions. **Core provision/update/rollback boundary is recovered at L2; exact old release composition not.**",
+      "unproven_or_changed_conditions": "Old `Module/Bundle` enum and DevOS packaging implementation are not automatically adopted. Exact product-specific artifact manifest, promotion actor separation and clean consumer smoke remain L3/L10 or later candidate. Web/Web-OS release scope is outside adopted 8-target L2/L11 and stays 1.x/vision.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-15",
+      "inventory_phase": "deploy",
+      "inventory_treatment": "degraded_to_draft",
+      "proof_assessment": "partial_os_release_boundary; webos_deployment_unresolved_out_of_requirement_stage",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-54330A68064B58B22259",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
+          "lines": [
+            "16-42",
+            "13-00"
+          ],
+          "source_sha256": "14ec3141c84e122085843b2b5a2ae0a0c83fe257694a76dcc0eb6ab9f5b365d8"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-189702B332643A3BFDAF",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L13-00-post-deploy-verification-master.md",
+          "lines": [],
+          "source_sha256": "968a2da7ed628f2c69ab4e696327b4dd9e88a61aee99453c210c858a4eaf914a",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-006"
+          ],
+          "lines": [
+            54,
+            57
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-006"
+          ],
+          "lines": [
+            59
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-WEB-OS deployment: out of adopted requirement stage; deployment authority, tenant/runtime boundary and production receipt have no adopted L2/L11 successor."
+        }
+      ],
+      "existing_audit_condition_excerpt": "HARNESS `L2-003/006` and OS `L2-006` establish Release Port and providing HARNESS version into projects; current Web-OS L1/L2/L11 were reclassified out of requirement stage by 2026-09-24 PO decision. **The local product-update boundary is fixed; PHCAP-15 Web-OS deployment is not an adopted requirement.**",
+      "unproven_or_changed_conditions": "Deployment authority, tenant/runtime boundary, production post-deploy operation and receipt remain true unknown / 1.x Web-OS material. No current adopted WebOS L2/L11 successor; no release smoke or production-deploy success can be inferred from old L13 design/plan.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-16",
+      "inventory_phase": "operations_monitoring",
+      "inventory_treatment": "degraded_to_draft_and_crosswalk",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+          "lines": [
+            "23-31",
+            "100-112"
+          ],
+          "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            54,
+            56
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-009"
+          ],
+          "lines": [
+            58,
+            60,
+            62
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-005"
+          ],
+          "lines": [
+            23,
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-009"
+          ],
+          "lines": [
+            25,
+            27,
+            29
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-WEB-OS service operation: out of adopted L2/L11 scope; product SLO/RTO/RPO and operator details are not established by HELIX-OS rows."
+        }
+      ],
+      "existing_audit_condition_excerpt": "Adopted OS `L2-005/007/009` and L11:139–144 distinguish observation/evidence/incident/recovery and reject missing/stale evidence as healthy/completed; HARNESS L2-003/005 and L11:101–104 keep product quality/backup/restore/rollback/permanent fix separate. **OS project operation/evidence/continuity is partly recovered.**",
+      "unproven_or_changed_conditions": "OS project operations vs Web-OS deployed service operations remain separate. Web-OS is 1.x, not adopted; product SLO, RTO/RPO, retention, environment and operator specifics are not fixed by general OS rows. Old telemetry implementation/test execution and consumer read-after unknown.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-17",
+      "inventory_phase": "incident",
+      "inventory_treatment": "degraded_and_incomplete",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+          "lines": [
+            "1-20"
+          ],
+          "source_sha256": "bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+          "lines": [
+            "1-78"
+          ],
+          "source_sha256": "f5ba60755a67d7aff8a38eb2fd4212a17fa3c9186a63ce4763843f25a458e402"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+          "lines": [],
+          "source_sha256": "d557803078abd240241793e76afc398e28c660999b69809d78bed3a87ab04306",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-004"
+          ],
+          "lines": [
+            54,
+            55
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-009"
+          ],
+          "lines": [
+            58,
+            60,
+            62
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-007",
+            "HELIXOS-L2-009"
+          ],
+          "lines": [
+            25,
+            27,
+            29
+          ],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-WEB-OS service incident contract: out of adopted L2/L11 scope; no current incident-phase successor identified."
+        }
+      ],
+      "existing_audit_condition_excerpt": "Adopted OS `L2-005/007/009` + L11:139–144 retain incident/observation/rollback/recovery evidence, no healthy/root-cause/completion from stale/missing source; HARNESS `L2-003/004` returns design/requirement changes by Backflow. **Generic operational failure/recovery conditions partly recovered, incident phase contract not.**",
+      "unproven_or_changed_conditions": "Current direct PHCAP-17 evidence is OS only; HARNESS direct incident contract is absent; Web-OS service incidents are out-of-stage. Severity, incident identity, escalation/runbook owner, postmortem and exact incident closure are unknown. Old 3-party signoff cannot be silently substituted for current SECURITY authorization: approval scope has to come from current authority/operation boundary; any changed mandatory human signoff is a meaning change needing decision.",
+      "additional_evidence": [
+        {
+          "path": "docs/governance/audits/requirements-stage/phcap17-incident-production-write-authority-decision-2026-09-28.md",
+          "sha256": "480b29e23669c7eff6d30f00ece2b8d56441c957cb44ae6df48a4e812d690ac2",
+          "finding": "Security L2-008 + OS incident type do not encode old three-role quorum; A/B/C pending"
+        },
+        {
+          "path": "docs/governance/audits/requirement-registration/phcap17-incident-episode-coverage-receipt-2026-09-29.json",
+          "sha256": "ae20e40388e05db595d3e2f596e2afc185f6bdc176d5f5ea8d154263b1660d8c",
+          "finding": "candidate 105 covers two selected line-43 spans only; authority_effect none; not phase/full incident closure"
+        }
+      ],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-18",
+      "inventory_phase": "refactor",
+      "inventory_treatment": "degraded_to_candidate",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+          "lines": [
+            "16-35"
+          ],
+          "source_sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "lines": [
+            "20-50"
+          ],
+          "source_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "lines": [
+            "20-55"
+          ],
+          "source_sha256": "626e177f61cbb8170b0d557241f75fcf2958a5f64d41fc1078f4ef5607c3086e"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-004",
+            "HARNESS-L2-008",
+            "HARNESS-L2-009",
+            "HARNESS-L2-016"
+          ],
+          "lines": [
+            54,
+            55,
+            59,
+            60,
+            330
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-010",
+            "HELIXOS-L2-017"
+          ],
+          "lines": [
+            63,
+            662
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HARNESS-L2-003",
+            "HARNESS-L2-004",
+            "HARNESS-L2-008",
+            "HARNESS-L2-009",
+            "HARNESS-L2-016"
+          ],
+          "lines": [
+            23,
+            24,
+            28,
+            29,
+            211
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-010"
+          ],
+          "lines": [
+            30
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [
+        {
+          "scope": "out_of_stage",
+          "note": "HELIX-Web / HELIX-WEB-OS refactor route: out of adopted L2/L11 scope; no direct target-specific evidence identified."
+        }
+      ],
+      "existing_audit_condition_excerpt": "Adopted HARNESS `L2-003/004/008/009` (L2:54–62) says meaning-preserving refactor can occur on right side; contract/boundary/requirement/value change returns to relevant upstream; affected/unknown relation and pair/oracle are rechecked. `HARNESS-L2-016` (L2:395) identifies refactor as a capability unit; OS ticket types/Backflow in L2-010/017 + L11:48–49 carry findings. **Core semantic-preservation/reroute behavior fixed; old RF0 admission thresholds are not.**",
+      "unproven_or_changed_conditions": "The exact old shadow trigger policy, thresholds, automatic candidate grouping and DB transaction semantics are not adopted. `PHCAP-18` current direct evidence only HARNESS/OS; Web/Web-OS design/backflow route is unknown. Old `refactor-candidates.ts` output is not current oracle.",
+      "additional_evidence": [],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    },
+    {
+      "phase": "PHCAP-19",
+      "inventory_phase": "learning_improvement",
+      "inventory_treatment": "degraded_to_draft",
+      "proof_assessment": "partial_current_requirement_semantics; not full old-condition treatment",
+      "existing_audit_refs": [
+        {
+          "path": "docs/governance/audits/requirements-stage/phcap19-semantic-recovery-audit-2026-09-28.md",
+          "sha256": "9da2368a5b85f2449bd8f77c84c52bd1f227b8be289a95fbcadaa3d80949a8e8",
+          "scope": "UIL-R-01..15 condition crosswalk; loop-level adopted meaning; old details partial/unresolved; no implementation recovery"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/phcap19-condition-crosswalk-2026-09-28.md",
+          "sha256": "99b88815908f3779d3f35a49fca9944b97840be9f61180c9a583ff95ea4ab4ff",
+          "scope": "current refs and condition categories, bounded"
+        }
+      ],
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "lines": "31-40,43-200,202-243",
+          "sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "lines": "72-224",
+          "sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-C544D3D166699301485D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+          "lines": "18-73",
+          "sha256": "e83a626e133f5a5aa213ff2bd6ae0f1c819d0bb7a00679d8982884596b4ff645"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+          "lines": "18-46",
+          "sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943"
+        }
+      ],
+      "current_l2_l11_refs": [
+        "HELIXOS-L2-005/022 + paired L11-022",
+        "HELIXLABO-L2-001/002/006/008/010/019/050 + paired L11",
+        "INTELLIGENCE-L2-063 + paired L11 (bounded owner-bound handoff only)"
+      ],
+      "current_authority_refs": [
+        "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+        "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md"
+      ],
+      "unproven_conditions": "UIL-R-01..15細部のphase全原子closure、実装と受入実行は未証明。LABO-L2-063は未採択candidate。INTELLIGENCE-L2-063は別identityの限定採択。旧memory/Learning authorityの移動は明示判断済み。",
+      "treatment_acceptance": "高位要求意味と責務変更はPO記録済み。旧phase全体の縮退受容、実装回復は記録されていない。"
+    },
+    {
+      "phase": "PHCAP-20",
+      "inventory_phase": "memory",
+      "inventory_treatment": "degraded_to_draft",
+      "proof_assessment": "partial_current_l2_l11_semantics_with_residuals",
+      "existing_condition_audit": {
+        "path": "docs/governance/audits/requirements-stage/phcap18-condition-recovery-audit-2026-09-28.json",
+        "sha256": "5943b01f893f9d880ad3f83a10783d9442c2e49b7c0b05ff00828b4d68344210",
+        "scope": "PHCAP-02..18 excluding 19, plus PHCAP-20; 16 adopted-relevant-partial, PHCAP-08/15 unknown primary; no phase-specific execution closure"
+      },
+      "legacy_condition_anchors": [
+        {
+          "asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md",
+          "lines": [
+            "20-59"
+          ],
+          "source_sha256": "9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "lines": [],
+          "source_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+          "line_pin_status": "not_recorded_in_existing_bounded_audit; no line range inferred"
+        }
+      ],
+      "current_l2_l11_refs": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXOS-L2-005",
+            "HELIXOS-L2-009",
+            "HELIXOS-L2-019"
+          ],
+          "lines": [
+            58,
+            62,
+            682
+          ],
+          "statuses": [
+            "requirement_row",
+            "candidate_or_version_target_detail"
+          ]
+        },
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "layer_or_scope": "L2",
+          "ids": [
+            "HELIXLABO-L2-006",
+            "HELIXLABO-L2-008",
+            "HELIXLABO-L2-010"
+          ],
+          "lines": [
+            34,
+            36,
+            38
+          ],
+          "statuses": [
+            "requirement_row"
+          ]
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "L11",
+          "ids": [
+            "HELIXOS-L2-009",
+            "HELIXOS-L2-005"
+          ],
+          "lines": [
+            29,
+            25
+          ],
+          "statuses": []
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "layer_or_scope": "document",
+          "ids": [],
+          "lines": [],
+          "statuses": []
+        }
+      ],
+      "out_of_stage_or_scope_notes": [],
+      "existing_audit_condition_excerpt": "Adopted OS `L2-009` (OS L2:52; continuity/recovery), `L2-019` (candidate-detail at :682) and paired L11:29 plus **L11 “memory responsibility change”** section lines 162–175: no provider-native memory, user settings cannot enter shared authority; requested/long-term knowledge trace to canonical sources. OS `L2-005` and LABO adopted `L2` learning/evaluation split carry improvement proposals to LABO. **Continuity and memory boundaries partly fixed.**",
+      "unproven_or_changed_conditions": "**Explicit meaning change:** 2026-09-24 PO decision relocates long-term learning/knowledge evaluation from old HARNESS memory/promotion to LABO; do not revive legacy Learning/Skill authority or provider memory. Exact four-predicate resume/stop function, retention/purge, takeover lifecycle, old harness.db/jsonl projections, recovery and consumer closure are not fully adopted. Learning-vs-memory atom split remains a true unresolved edge.",
+      "additional_evidence": [
+        {
+          "path": "docs/governance/audits/requirement-registration/phcap20-loop-continuation-coverage-receipt-2026-10-02.json",
+          "sha256": "dc35df21a990ec70081875ca50ddc3b20191f0ba029f3e66d67363beaef633f3",
+          "finding": "candidate 114 covers lines 26-27 only; exact four-predicate eligibility remains unresolved; candidate adoption not inherited; 040/041 do not close it"
+        }
+      ],
+      "treatment_acceptance": "phase-wide recorded degradation acceptance not found; fixed requirement semantics / explicit re-derivation recorded where named; residual legacy conditions remain held or unknown; inventory label alone is not acceptance."
+    }
+  ],
+  "summary": {
+    "partial_current_requirement_semantics": 17,
+    "primary_unresolved": 2,
+    "phase_wide_recorded_degradation_acceptance_found": 0,
+    "full_phase_recovery_or_execution_claimed": 0,
+    "claim_unaddressed_zero": false
+  },
+  "unproven_and_next_requirements": [
+    {
+      "phase": "PHCAP-08",
+      "unproven": "Old WBS successor/equivalence with PLAN/current-location/roadmap/state. Receipt holds 25 source atoms and carries zero directly.",
+      "next": "Condition-level compare old WBS functions to candidate mechanisms; retain true unknown. Any change in scope/meaning goes to existing authority as a concrete choice."
+    },
+    {
+      "phase": "PHCAP-15",
+      "unproven": "Web-OS deploy/post-deploy authority, tenant/runtime boundary and adopted L2/L11 successor. OS release and HARNESS Release Port are not Web-OS deployment successor.",
+      "next": "Keep outside current requirement stage unless source-backed scope is chosen. If proposing current requirements, retain deployment authority/runtime/receipt conditions and do not claim adoption."
+    },
+    {
+      "phase": "PHCAP-17",
+      "unproven": "Old RB08-182 production write three-role approval; incident severity/identity/owner/postmortem/full closure. SECURITY-008 does not replace old quorum. Candidate105 only two line-43 spans.",
+      "next": "Faithful L2/L11 candidate drafting and independent review of the remaining incident conditions may proceed while preserving unresolved scope and meaning. Keep adoption or any meaning change for the old three-role condition pending the already-recorded PO options A/B/C; do not make that decision a prerequisite for drafting or review."
+    },
+    {
+      "phase": "PHCAP-20",
+      "unproven": "Old HR-BR-07 exact conjunction running/window/lastVerdict!=pass/iteration<max; candidate114 only lines26-27. Retention/purge/takeover/projection remain partial.",
+      "next": "Faithful candidate drafting and independent review may continue with the four source predicates and their unresolved applicability explicit. Hold application/adoption of the selected-operation, per-operation, or pending interpretation to the existing receipt A/B/C decision. Do not import old numeric values or equate 040 retry bound with general iteration cap."
+    },
+    {
+      "phase": "PHCAP-02..07,09..14,16,18,19",
+      "unproven": "Existing crosswalk leaves residual old atoms and downstream realization; it is not phase-wide source closure or formal L3/L10/runtime/acceptance execution.",
+      "next": "Use only explicit condition-level residuals in the bounded audits; do not turn implementation-not-built or old schema mismatch into missing L2 requirement."
+    }
+  ],
+  "validation": {
+    "legacy_runtime_cli_test_ci_executed": false,
+    "tracked_source_files_modified": false,
+    "authority_effect": "none"
+  }
+}

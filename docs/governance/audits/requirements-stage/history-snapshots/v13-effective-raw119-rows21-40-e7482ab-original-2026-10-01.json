@@ -1,0 +1,1368 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "V13-EFFECTIVE-NEXT20-ROWS21-40-CONDITION-2026-10-01",
+  "created_against_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "authority_effect": "none",
+  "purpose": "119件のeffective unreviewed候補列における真のposition 21–40を、旧source condition単位で固定F6 L2/L11と比較し、隣接条件と残差を記録する。",
+  "fixed_comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "claim_boundary": {
+    "conditions_compared": 20,
+    "formal_successor_assignments": 0,
+    "source_conditions_closed": 0,
+    "acceptance_execution_claimed": false,
+    "implementation_claimed": false,
+    "full_source_no_loss_claimed": false,
+    "authority_effect": "none",
+    "population_uncompared_total_claimed": false,
+    "remaining_closure_count_claimed": false
+  },
+  "selection": {
+    "baseline_queue_path": "docs/governance/audits/requirements-stage/v13-condition-closure-work-queue-2026-09-30.json",
+    "baseline_queue_sha256": "a61ec098a6bd714fcbbb706d0d9afb4e7f2777b114bf23c8056fc130e30f60d9",
+    "baseline_source_audit_path": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json",
+    "baseline_source_audit_sha256": "cd765545e584c50b423d652674ac54a3240aced24a321c0caa6bc2dd881ad863",
+    "queue_scope_counts": {
+      "condition_rows": 303,
+      "primary_residual_and_unresolved_at_baseline": 255
+    },
+    "focused_audit_join": {
+      "method": "固定queueのpriority=primary_residualかつqueue_state=unresolved_for_closure_workから、created_against_revision時点の32個の個別focused audit JSONとのsource item/exact source identity一致を除外。残る119件をsource physical line昇順、同値ならsource_item_id昇順で整列。1始まりposition 21–40を取得。base queue/baseline auditはindividual coverage hitに数えない。",
+      "focused_audit_files": [
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+          "sha256": "0a0f41022929d4e546b0e2f2a8cf3afe7d77e84a3fc0512a216a8e963949025f"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-condition-audit-2026-10-01.json",
+          "sha256": "8b50b9e3d9c1b5df663aacfdf35978f5cbf93209a58d1faaf296ab03abf3cc7b"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br02-br05-condition-audit-2026-09-30.json",
+          "sha256": "8e1a9a5c2a56b222a2f03b20591b40c1126421899e3fb6b979f1d6fde0e2f79b"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br07-ux01-ux03-condition-audit-2026-09-30.json",
+          "sha256": "a2d0c855e35ccad17c037d7e14cedd796479d2252d713c43aa56a80f9068495c"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br21-22-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "021cb514ea26d94b0bc24ce4643707732bf52ed99e162c8bc9e4cd5cd9ccf58d"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-nfr-three-condition-audit-2026-09-30.json",
+          "sha256": "372b7c8a6d992d621dc4f90378caf1828aa4d02bb2940bf23e6c8459556f69ca"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-19-fixed-l2l11-condition-audit-2026-10-01.json",
+          "sha256": "8f05e6837934976d9dcc27349400244932230e9f331bf03db64b45cbcbec339d"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+          "sha256": "4ee325ddb47b56298156aaf68b882650f0b81b0fb9574022c01b966b2ccb00d4"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-28-34-condition-audit-2026-09-30.json",
+          "sha256": "135a193deafabebfad0e31a040213d533071eef1217fd0ce76a26b7f6a7a468e"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-36-fixed-l2l11-condition-audit-2026-10-01.json",
+          "sha256": "126036fa85c5f7c06b4ddafff7c5e97119d2663164d2f966a19fe1198058b7f1"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+          "sha256": "3e5a6708426ad720e84ca28551177a18d5728b5e2e2e32deb200c7ad5d69f012"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p3-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "8a8e5cf5bc49256f91a21b5750900cc3cb31a579ca802ef41a29bc251f27569f"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+          "sha256": "70e2e6f94fe23fdeb91a518dd108a02b7f6c14999115634f2eb53d4d572de2ae"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-br-01-10-condition-audit-2026-09-30.json",
+          "sha256": "cf1529da8d5fd5ec819094b203b58bdd283693d1551ab972992ed5dab1effd30"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+          "sha256": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-screen-pm02-pm06-condition-audit-2026-09-30.json",
+          "sha256": "76ac6f74ee0f8380f5adf0c4326124c5f5aa5804879b82c286405e7326fb83e2"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-three-lane-seven-condition-audit-2026-09-30.json",
+          "sha256": "22ce41ef506e65bbfa841448c71fdebbef506bc120e069d5e4d585453e568483"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/legacy-v13-harness-l2-039-authority-status-overlay-2026-09-30.json",
+          "sha256": "9a3daf5009f9d34ba555b5cd5a5e113c1d3b49855c00627ff31471311a467c98"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-development-style-11-condition-audit-2026-09-30.json",
+          "sha256": "ce2aa162b917c281f78e27ccb5a67f04da484d2648b932aae753cfb25036cf75"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-execution-policy-registry-seven-condition-audit-2026-09-30.json",
+          "sha256": "b1fc593b9b373ad8ed83cfde210e1f193e62ba4a2b95349f46847828650a25a8"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-forward-reverse-391-396-condition-audit-2026-09-30.json",
+          "sha256": "8a57a8154fd5cbbe23550e36111e9fa94a29bbd427ab38f338776e2897676cc2"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-github-autonomous-17-condition-audit-2026-09-30.json",
+          "sha256": "5e5675572666cd3b587116bca2bd65f3d885f37586481b8529967f58456cd9c9"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-layer-chain-12-condition-audit-2026-09-30.json",
+          "sha256": "5632328d290657af5dbd4e0c6e2a72d2f8bbe156f7337a48622edc489e4333d2"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-package-consumer-17-condition-audit-2026-09-30.json",
+          "sha256": "87c20af7de2fddd9893fd5badd6e7910b049bbfc1ec6849a4fabda39f0c01b6a"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-package-consumer-residual-11-condition-audit-2026-09-30.json",
+          "sha256": "8012ab21555d78c1236b941c0c7d99728dccf429d2dcedb84c54f557e587b9e1"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-policy-lines-167-171-condition-audit-2026-09-30.json",
+          "sha256": "3be27e97d0d250fbc386b33d1d3062606f5a76e4d4aa28382ba813f07d7e33d7"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-policy-resolver-seven-condition-audit-2026-09-30.json",
+          "sha256": "a358b6fe6461ca57a1fda10ac81404f8f25bbcd0a4f3cf93e43d39fa3d3502d4"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-security-broker-physical-identity-19-condition-audit-2026-09-30.json",
+          "sha256": "79ce122cafa093b79363ffcb537356c38a726bca856814e64a05e6e1d48139da"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/v13-signal-routing-484-492-condition-audit-2026-10-01.json",
+          "sha256": "9fc7fcb8295430418634b2e0a1160d38c5305c7aecfb611225dc1024fcbccd13"
+        }
+      ],
+      "matched_queue_row_id_count": 154,
+      "selected_source_item_ids": [
+        "REQSRC-SUP-00077",
+        "REQSRC-SUP-00081",
+        "REQSRC-SUP-00097",
+        "REQSRC-SUP-00105",
+        "REQSRC-SUP-00108",
+        "REQSRC-SUP-00112",
+        "REQSRC-SUP-00114",
+        "REQSRC-SUP-00146",
+        "REQSRC-SUP-00147",
+        "REQSRC-SUP-00150",
+        "REQSRC-SUP-00151",
+        "REQSRC-SUP-00153",
+        "REQSRC-SUP-00154",
+        "REQSRC-SUP-00155",
+        "REQSRC-SUP-00161",
+        "REQSRC-SUP-00163",
+        "REQSRC-SUP-00165",
+        "REQSRC-SUP-00167",
+        "REQSRC-SUP-00170",
+        "REQSRC-SUP-00171"
+      ],
+      "source_id_hit_is_not_semantic_coverage": true,
+      "no_focused_audit_identity_hit_candidate_count": 119,
+      "count_interpretation": "119は255件のprimary residual/unresolved行から、32個のfocused auditに対するsource-qualified exact identity hit 136件を除いた候補数。identity参照は意味比較・coverageを証明せず、hitがないことも他所での意味比較がない証明ではない。未比較母集団の総数やclosure件数ではない。"
+    },
+    "baseline_queue_file_commit": "71659afc419c6378643652671775468d86ba4a3b",
+    "baseline_queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+    "baseline_queue_audit_base_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+    "baseline_source_audit_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+    "candidate_pool_reconstruction": {
+      "queue_rows_total": 303,
+      "eligible_primary_residual_rows": 255,
+      "exact_identity_hits_in_32_focused_audits": 136,
+      "effective_unreviewed_candidates": 119,
+      "sort_key": [
+        "source physical line ascending",
+        "source_item_id ascending"
+      ],
+      "selected_positions": [
+        21,
+        40
+      ],
+      "selected_ids_in_order": [
+        "REQSRC-SUP-00077",
+        "REQSRC-SUP-00081",
+        "REQSRC-SUP-00097",
+        "REQSRC-SUP-00105",
+        "REQSRC-SUP-00108",
+        "REQSRC-SUP-00112",
+        "REQSRC-SUP-00114",
+        "REQSRC-SUP-00146",
+        "REQSRC-SUP-00147",
+        "REQSRC-SUP-00150",
+        "REQSRC-SUP-00151",
+        "REQSRC-SUP-00153",
+        "REQSRC-SUP-00154",
+        "REQSRC-SUP-00155",
+        "REQSRC-SUP-00161",
+        "REQSRC-SUP-00163",
+        "REQSRC-SUP-00165",
+        "REQSRC-SUP-00167",
+        "REQSRC-SUP-00170",
+        "REQSRC-SUP-00171"
+      ],
+      "prior_first20_bundle": {
+        "commit": "0c08cffe4d47f499214d952b1e6b055dba22bcf6",
+        "artifacts": [
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-effective-next10-condition-audit-2026-10-01.json",
+            "sha256": "cad2863a7310ffa74d46bdb78cdc6f534210299750592ce87991a93b41b8b255"
+          },
+          {
+            "path": "docs/governance/audits/requirements-stage/v13-effective-next10-rows11-20-condition-audit-2026-10-01.json",
+            "sha256": "806d12c95e809b17ad64d57a2be58ea046c955bdfdbd989b11da71083ec1cbfa"
+          }
+        ]
+      },
+      "lineage": {
+        "queue_file_commit": "71659afc419c6378643652671775468d86ba4a3b",
+        "queue_lineage_basis_commit": "2bf484b1a84af346feaf8cf7b72e59f3889e6333",
+        "distinction": "queue file introduction commit and its embedded population lineage basis are different facts; neither is this audit commit."
+      }
+    }
+  },
+  "source_pins": {
+    "archive_requirement_source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+      "asset_ledger_line": 956,
+      "asset_ledger_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "asset_revision": 3,
+      "disposition": "source_snapshot_preservation",
+      "target_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    "old_consumers_read_only": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+        "sha256": "41b38c068e91a767f964ce5ce5d7d5568c1984b3b122b808f9eff61e5a0af401",
+        "read_ranges": [
+          "authority/runtime headings",
+          "§6.8.6 lines 1249-1271: progress/state DB source versus projection"
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+        "sha256": "efc06fe53652b8a7635f8f025b64d922d1612def338dab749b9c26c1a3676951",
+        "read_ranges": [
+          "lines 29-35: post-cutover authority order and legacy L0-L14 as compatibility input",
+          "lines 65-77: compatibility removal and authority drift conditions"
+        ]
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md",
+        "sha256": "59120aa9b044b4edf2387959ced5ad4020d230b747cc5406ac6d03281f1f9b83",
+        "read_ranges": [
+          "lines 15-26: requirements as meaning authority; registry mirror/compatibility role",
+          "lines 60-78: style selection, source identity and current pair compatibility"
+        ]
+      }
+    ]
+  },
+  "comparison_authority": {
+    "adopted_decision": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "scope": "HARNESS L1 revision and exact L2/L11; 24 explicit candidates adopted. This is not L3 approval, implementation permission, acceptance, or full legacy closure.",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae"
+    },
+    "fixed_pair_files": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    ],
+    "later_or_prior_decisions_relevant": [
+      {
+        "path": "docs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md",
+        "sha256": "fb16449af47b30f151445d0c6b3ee16117c47b23a86baedb2434a0e6602a6f95",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "effect": "2026-09-25 PO判断で旧3方式のexactly-one意味を4方式の合成可能へ変更。固定F6は方式未選択と適用条件不成立のfail-close、共通L1–L3・人間の要件承認等を保持する。このauditでは特にsource row REQSRC-SUP-00105の旧parent style enumを現行parent styleと同一視しない際の文脈として参照。"
+      }
+    ]
+  },
+  "status_counts": {
+    "partial": 7,
+    "unknown": 1,
+    "gap": 12
+  },
+  "conditions": [
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00077",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 102,
+        "source_line_sha256": "sha256:6410ee034dc29f92ad47d40149e59102a06c891dfa043129afaff1fffe4da6f0",
+        "source_text": "`SCRUM_REVERSE`は `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry` の5段階とする。SR4 receiptなしにsliceをrelease-readyにしない。Reverseが作るのは実装の説明書ではなく、次の変更を拘束できる要求・要件・基本設計・詳細設計・test/verification/measurement contractである。",
+        "condition_cluster_id": "V13-COND-L0102",
+        "source_section_group": 7,
+        "source_section_label": "§4.1 Scrum Reverse・92–108"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002／003",
+          "HARNESS-L2-002／003"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "Scrum Reverseの段階とreceiptは採択済みpairにあるが、旧sourceが記すSR0〜SR4の具体的contract、旧SR0〜SR4状態機械、reverse output contract全部の行単位対応は確認できない。",
+        "residual": [
+          "旧sourceの詳細なReverse出力・状態機械条件とcurrent pairのexact clause crosswalk。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 105,
+            "line_sha256": "sha256:19ef8fab3e2dc5415b55d244f60fc3f29fc832dd6636a0223666e1603e57c607",
+            "relationship": "SR0–SR4とSR4 receipt、release-ready境界の隣接条件",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 39,
+            "line_sha256": "sha256:f2db3ac1446a019598715d4e5be4312eaabaa4da6ce4099212a7c1d5b608c210",
+            "relationship": "スクラムで進める部分のSR0–SR4、SR4 receipt境界",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 102,
+            "line_sha256": "sha256:6410ee034dc29f92ad47d40149e59102a06c891dfa043129afaff1fffe4da6f0",
+            "text": "`SCRUM_REVERSE`は `SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry` の5段階とする。SR4 receiptなしにsliceをrelease-readyにしない。Reverseが作るのは実装の説明書ではなく、次の変更を拘束できる要求・要件・基本設計・詳細設計・test/verification/measurement contractである。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00081",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 107,
+        "source_line_sha256": "sha256:58faca77338462e4f086790d18f7e61135a0d0af6ce766aa8de67b7dfb28d91a",
+        "source_text": "正本FR＝`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`（SRV-FR-101〜112）、",
+        "condition_cluster_id": "V13-COND-L0107",
+        "source_section_group": 7,
+        "source_section_label": "§4.1 Scrum Reverse・92–108"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002／003",
+          "HARNESS-L2-002／003"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "entity関連の要件とsource保全は採択pairに記載されるが、旧sourceで参照する正本FR群・対応confirmed文書の全条件が一つずつ採択されたとは示されない。",
+        "residual": [
+          "参照先FR/SRV各行、宣言oracle、confirmed親文書・受入文書とのsource-condition単位対応。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 105,
+            "line_sha256": "sha256:19ef8fab3e2dc5415b55d244f60fc3f29fc832dd6636a0223666e1603e57c607",
+            "relationship": "entity要件およびsource文書のholding境界",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 40,
+            "line_sha256": "sha256:1039b46ae5af14f03ec6654de18613b50f45f0be58d8c401a43a3ecb50f196e4",
+            "relationship": "4 entityの縮退拒否・source条件",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 107,
+            "line_sha256": "sha256:58faca77338462e4f086790d18f7e61135a0d0af6ce766aa8de67b7dfb28d91a",
+            "text": "正本FR＝`docs/design/helix/L3-requirements/scrum-reverse-entity-model.md`（SRV-FR-101〜112）、"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00097",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 129,
+        "source_line_sha256": "sha256:6d876a5a9a98a8da8008cc56d5b73f5d1bfe5f06c31891ef89c1d489c57215a2",
+        "source_text": "compatibility inventoryの成功でcurrent projectionの欠落、drift、invalidを相殺してはならない。",
+        "condition_cluster_id": "V13-COND-L0129",
+        "source_section_group": 9,
+        "source_section_label": "§4.2.1 workflow registry・121–151"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-002"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "方式の選択、fail-closeは近接するが、旧compatibility inventory成功がcurrent projectionの欠落・drift・invalidを相殺しないという二つのsurface間の不変条件までは明示されない。",
+        "residual": [
+          "compatibility inventoryとcurrent projection/registryの分離、欠落・drift・invalidを独立に扱うexact oracle。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 100,
+            "line_sha256": "sha256:7c94885350f99f133b23e4520954f46f061ad48ddbf6e36b5ad86e47f3c9311d",
+            "relationship": "方式選択と共通条件",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 35,
+            "line_sha256": "sha256:0d2f2adb71884aecd9e6b5977cc37e1cd25ba5aa08da5843b465ff1b5fd185d4",
+            "relationship": "未選択・不成立のfail-close",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 129,
+            "line_sha256": "sha256:6d876a5a9a98a8da8008cc56d5b73f5d1bfe5f06c31891ef89c1d489c57215a2",
+            "text": "compatibility inventoryの成功でcurrent projectionの欠落、drift、invalidを相殺してはならない。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00105",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 139,
+        "source_line_sha256": "sha256:b17ada62e03f90dd026f735b083cb531ee3bb40822feeb77bfede00aacd7c5c9",
+        "source_text": "  `V_DESIGN_SCRUM_IMPLEMENTATION`とし、`SCRUM_REVERSE_SR0_SR4` state machineを持つ",
+        "condition_cluster_id": "V13-COND-L0139",
+        "source_section_group": 9,
+        "source_section_label": "§4.2.1 workflow registry・121–151"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002／003"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "SR0〜SR4のScrum条件を保持するが、旧sourceの親enum `V_DESIGN_SCRUM_IMPLEMENTATION` を固定するものではない。現行PO判断は合成可能な4方式であり、Scrum ReverseはScrumで進める部分に適用する。",
+        "residual": [
+          "旧parent development-style enumを固定しない前提での移行条件・旧source固有意味の明示的照合。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 105,
+            "line_sha256": "sha256:19ef8fab3e2dc5415b55d244f60fc3f29fc832dd6636a0223666e1603e57c607",
+            "relationship": "Scrum Reverseをスクラム工程部分へ適用",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 139,
+            "line_sha256": "sha256:b17ada62e03f90dd026f735b083cb531ee3bb40822feeb77bfede00aacd7c5c9",
+            "text": "  `V_DESIGN_SCRUM_IMPLEMENTATION`とし、`SCRUM_REVERSE_SR0_SR4` state machineを持つ"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00108",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 142,
+        "source_line_sha256": "sha256:69c2a5f0416d91446dce51ed37ce162c11d657408eac046396b4d9bf2543b9ff",
+        "source_text": "- execution mode: `STANDALONE`、`CLAUDE_ONLY`、`CODEX_ONLY`、`HYBRID`",
+        "condition_cluster_id": "V13-COND-L0142",
+        "source_section_group": 9,
+        "source_section_label": "§4.2.1 workflow registry・121–151"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "unknown",
+        "route": "unresolved_scope",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "旧sourceのexecution mode列挙（STANDALONE等）に対応するHARNESS F6 L2/L11上のcurrent owner/scopeはこの固定pairから特定できない。これを4つのproduct development styleと同一視しない。",
+        "residual": [
+          "execution modeの意味・owner・適用範囲をcurrent adopted L2/L11のどこへ置くかはunknown。"
+        ],
+        "counterexample": "別概念の方式enumをexecution modeのownerと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 142,
+            "line_sha256": "sha256:69c2a5f0416d91446dce51ed37ce162c11d657408eac046396b4d9bf2543b9ff",
+            "text": "- execution mode: `STANDALONE`、`CLAUDE_ONLY`、`CODEX_ONLY`、`HYBRID`"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00112",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 147,
+        "source_line_sha256": "sha256:fdddba824470aef47981ee905fb0326d17a18b045c99fcbdf06a03c59264af18",
+        "source_text": "推測でroute identityを付与しない。曖昧入力はfail-closeする。旧`mode`／`model`／旧catalog routeは",
+        "condition_cluster_id": "V13-COND-L0147",
+        "source_section_group": 9,
+        "source_section_label": "§4.2.1 workflow registry・121–151"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-002"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "fail-closeの近接条件はあるが、route identityを推測しない入力境界、ambiguous inputのfail-close、旧mode/model/catalog routeの取扱いを閉じていない。",
+        "residual": [
+          "route identity推測禁止、曖昧入力、旧route移行のexact source-level条件。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 102,
+            "line_sha256": "sha256:42b28836560cec23b2dab17121aee9f248aa604245a8593e3238bf1c34f30448",
+            "relationship": "方式未選択・適用条件不成立のfail-close",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 35,
+            "line_sha256": "sha256:0d2f2adb71884aecd9e6b5977cc37e1cd25ba5aa08da5843b465ff1b5fd185d4",
+            "relationship": "fail-close oracle",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 147,
+            "line_sha256": "sha256:fdddba824470aef47981ee905fb0326d17a18b045c99fcbdf06a03c59264af18",
+            "text": "推測でroute identityを付与しない。曖昧入力はfail-closeする。旧`mode`／`model`／旧catalog routeは"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00114",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 149,
+        "source_line_sha256": "sha256:737fadb31bc0e8995af774cf3ca6924fe2c13ac9ceb9f7f722c4382daac7e35c",
+        "source_text": "DB authority、生成文書、PR契約へ再出力しない。全surfaceを無条件に`catalog_route_id`へ統一せず、",
+        "condition_cluster_id": "V13-COND-L0149",
+        "source_section_group": 9,
+        "source_section_label": "§4.2.1 workflow registry・121–151"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "固定F6 pairに、旧routeをDB authority・生成文書・PR契約へ再出力しない、または全surfaceを無条件にcatalog_route_idへ統一しないというexact conditionは見当たらない。",
+        "residual": [
+          "legacy route identifierのsurface別出力制約と非統一条件。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 149,
+            "line_sha256": "sha256:737fadb31bc0e8995af774cf3ca6924fe2c13ac9ceb9f7f722c4382daac7e35c",
+            "text": "DB authority、生成文書、PR契約へ再出力しない。全surfaceを無条件に`catalog_route_id`へ統一せず、"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00146",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 190,
+        "source_line_sha256": "sha256:fd2893d0fd5b039cc78d1b5d5b8fabeb06fb82b260fa2fd943b89bea7ae7370f",
+        "source_text": "boolean setとする。signalから条件、development style、execution formを推測しない。",
+        "condition_cluster_id": "V13-COND-L0190",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "fixed L2/L11にはboolean signal setからconditions/development style/execution formを推測しないtyped-input contractは見当たらない。",
+        "residual": [
+          "typed signal/condition/style/execution-form境界。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 190,
+            "line_sha256": "sha256:fd2893d0fd5b039cc78d1b5d5b8fabeb06fb82b260fa2fd943b89bea7ae7370f",
+            "text": "boolean setとする。signalから条件、development style、execution formを推測しない。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00147",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 192,
+        "source_line_sha256": "sha256:14f2862d4146912c9ea3597db2f98d5f8ae8a54ca86feccd74a0ac2b0c13795b",
+        "source_text": "出力receiptはclassification registry version、policy registry version、requirements／classification",
+        "condition_cluster_id": "V13-COND-L0192",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "fixed pairにregistry versionと要求／classification decisionのversioned receipt schemaは見当たらない。",
+        "residual": [
+          "classification/policy registry version、requirements/classification decision linkageを含むreceipt contract。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 192,
+            "line_sha256": "sha256:14f2862d4146912c9ea3597db2f98d5f8ae8a54ca86feccd74a0ac2b0c13795b",
+            "text": "出力receiptはclassification registry version、policy registry version、requirements／classification"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00150",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 195,
+        "source_line_sha256": "sha256:9d0ce131d42fc8b7383e72f65bdfd90c2b7b56c32e2bbe687fd431d46cc10b7c",
+        "source_text": "返す。登録済みcommandの`program`／`argv`は実行境界内部でcommand IDを再検証するために使い、routing",
+        "condition_cluster_id": "V13-COND-L0195",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "fixed pairには登録済command IDからprogram/argvを実行境界内で再検証する実行contractの採択行を確認できない。",
+        "residual": [
+          "command IDとprogram/argvの再検証境界。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 195,
+            "line_sha256": "sha256:9d0ce131d42fc8b7383e72f65bdfd90c2b7b56c32e2bbe687fd431d46cc10b7c",
+            "text": "返す。登録済みcommandの`program`／`argv`は実行境界内部でcommand IDを再検証するために使い、routing"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00151",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 196,
+        "source_line_sha256": "sha256:99bbc3f869d92ee67bc47e10970d5d90646c66a140966ceca08000fc5b98f989",
+        "source_text": "receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalog_route_id`／`route_class`／旧route",
+        "condition_cluster_id": "V13-COND-L0196",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "旧route/model invocationをreceiptへraw valueとして出力しないcontractの採択行は確認できない。",
+        "residual": [
+          "receiptから除外する旧mode/model/catalog/route値。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 196,
+            "line_sha256": "sha256:99bbc3f869d92ee67bc47e10970d5d90646c66a140966ceca08000fc5b98f989",
+            "text": "receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalog_route_id`／`route_class`／旧route"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00153",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 199,
+        "source_line_sha256": "sha256:5cc06ff4b53d64ac032b97c0b0568affad76afb578868ce35c5298f6fb9b0250",
+        "source_text": "dispositionは`resolved`、`classification_unknown`、`classification_decision_required`、",
+        "condition_cluster_id": "V13-COND-L0199",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "旧sourceのexact disposition語彙を定義する採択pairの行は見当たらない。",
+        "residual": [
+          "disposition enumのexact set。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 199,
+            "line_sha256": "sha256:5cc06ff4b53d64ac032b97c0b0568affad76afb578868ce35c5298f6fb9b0250",
+            "text": "dispositionは`resolved`、`classification_unknown`、`classification_decision_required`、"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00154",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 200,
+        "source_line_sha256": "sha256:8be7a2dba730b811be9fc425c4bd359f8e1e88682e82faca17a2102ee0b46740",
+        "source_text": "`classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。",
+        "condition_cluster_id": "V13-COND-L0200",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "旧sourceのclassification/policy ambiguous等のexact setを定義する採択pairの行は見当たらない。",
+        "residual": [
+          "classification/policy outcome enumのexact set。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 200,
+            "line_sha256": "sha256:8be7a2dba730b811be9fc425c4bd359f8e1e88682e82faca17a2102ee0b46740",
+            "text": "`classification_ambiguous`、`policy_unsupported`、`policy_ambiguous`、`approval_required`のexact setとする。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00155",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 201,
+        "source_line_sha256": "sha256:555145f953db107db0529f9745ce75dc86c0efd30118f9c5a352c5af3c87ef27",
+        "source_text": "dispositionとprocess exitは次のexact mappingとし、consumerが名称類似でexit classを推測してはならない。",
+        "condition_cluster_id": "V13-COND-L0201",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "dispositionとprocess exitのexact mappingを定義する採択pairの行は見当たらない。",
+        "residual": [
+          "exit-class mappingとconsumerが類似名称で推定しない条件。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 201,
+            "line_sha256": "sha256:555145f953db107db0529f9745ce75dc86c0efd30118f9c5a352c5af3c87ef27",
+            "text": "dispositionとprocess exitは次のexact mappingとし、consumerが名称類似でexit classを推測してはならない。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00161",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 208,
+        "source_line_sha256": "sha256:4015fa6eac84043ccc317efece12752bdc33985f21696829f78f1547dcae39ad",
+        "source_text": "| `approval_required` | `blocked` | 1 |",
+        "condition_cluster_id": "V13-COND-L0208",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "approval_requiredからblocked/exit1へのmappingを定義する採択pairの行は見当たらない。",
+        "residual": [
+          "approval dispositionとexit mapping。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 208,
+            "line_sha256": "sha256:4015fa6eac84043ccc317efece12752bdc33985f21696829f78f1547dcae39ad",
+            "text": "| `approval_required` | `blocked` | 1 |"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00163",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 210,
+        "source_line_sha256": "sha256:df20ce5b71b549ad0ae03b751f993dbdf86b08a905e236b08dcbc491a3cd4be3",
+        "source_text": "| `classification_decision_required` | `unresolved` | 2 |",
+        "condition_cluster_id": "V13-COND-L0210",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "classification_decision_requiredからunresolved/exit2へのmappingを定義する採択pairの行は見当たらない。",
+        "residual": [
+          "classification decision dispositionとexit mapping。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 210,
+            "line_sha256": "sha256:df20ce5b71b549ad0ae03b751f993dbdf86b08a905e236b08dcbc491a3cd4be3",
+            "text": "| `classification_decision_required` | `unresolved` | 2 |"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00165",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 213,
+        "source_line_sha256": "sha256:9b30e1bcdba5ae2a758f6b3863b7c53c82757f6f08afbc5e317e53d85d15655a",
+        "source_text": "`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで",
+        "condition_cluster_id": "V13-COND-L0213",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002／003",
+          "HARNESS-L2-002／003"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "要求の意味に関わる人の判断境界はF6にあるが、承認receiptを同一HEADとpolicy digestへ束縛するaction bindingの機械的条件までは表していない。",
+        "residual": [
+          "同一HEAD/policy digest binding、承認receipt有効性とactionの結び付け。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 103,
+            "line_sha256": "sha256:676d697fd3b43cca750d46d4c2dc31f7d990230586adbfabbb5828e5a02335af",
+            "relationship": "要求の意味に関わる裁定は人の判断",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002／003",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 37,
+            "line_sha256": "sha256:3ae048ff3ca77b259b4d575dff8d78d32686fcba7fec2e84e8b4b4f618959aa6",
+            "relationship": "Decide前の合意・意味変更境界",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 213,
+            "line_sha256": "sha256:9b30e1bcdba5ae2a758f6b3863b7c53c82757f6f08afbc5e317e53d85d15655a",
+            "text": "`approval_policy: action_binding`は承認receiptが同一HEAD・同一policy digestへ束縛されるまで"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00167",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 215,
+        "source_line_sha256": "sha256:a484c618300e2686cba4b69d74044911b2682140ebf9e1b9806f84e4bcd83e34",
+        "source_text": "current consumer自体は受理しない。",
+        "condition_cluster_id": "V13-COND-L0215",
+        "source_section_group": 11,
+        "source_section_label": "§4.2.3 router・185–215"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "current consumerが当該形式を受理しないという境界を定義する採択pairの行は見当たらない。",
+        "residual": [
+          "consumer acceptance boundary。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 215,
+            "line_sha256": "sha256:a484c618300e2686cba4b69d74044911b2682140ebf9e1b9806f84e4bcd83e34",
+            "text": "current consumer自体は受理しない。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00170",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 220,
+        "source_line_sha256": "sha256:89059e3905c61b3d13e0d7dcc9b81f5757a8fc1be2179119ed8f2ef9f7b4f252",
+        "source_text": "exact contractから一方向変換する。実装内の独自表、名称類似、旧15-route inventoryから変換先を推測しない。",
+        "condition_cluster_id": "V13-COND-L0220",
+        "source_section_group": 12,
+        "source_section_label": "§4.2.4 legacy adapter・217–243"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "partial",
+        "route": "adopted_scope_or_semantic_parent",
+        "targets": [
+          "HARNESS-L2-002",
+          "HARNESS-L2-002"
+        ],
+        "retained": "固定F6 pair内の隣接条件との関係を示す。",
+        "delta": "方式条件を推測で省略しない趣旨は近接するが、旧exact contractからtokenの一方向変換を行い、名称類似や旧inventoryから推測しないというtyped conversion contractは閉じていない。",
+        "residual": [
+          "source tokenからcurrent typed identityへのexact one-way conversion set。"
+        ],
+        "counterexample": "隣接条件があることだけを根拠に旧source exact clauseまで採択済み／閉鎖済みと扱う。",
+        "target_refs": [
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "line": 102,
+            "line_sha256": "sha256:42b28836560cec23b2dab17121aee9f248aa604245a8593e3238bf1c34f30448",
+            "relationship": "方式の適用条件・fail-close",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          },
+          {
+            "requirement_id": "HARNESS-L2-002",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "line": 35,
+            "line_sha256": "sha256:0d2f2adb71884aecd9e6b5977cc37e1cd25ba5aa08da5843b465ff1b5fd185d4",
+            "relationship": "不成立組合せ拒否",
+            "comparison_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+          }
+        ]
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 220,
+            "line_sha256": "sha256:89059e3905c61b3d13e0d7dcc9b81f5757a8fc1be2179119ed8f2ef9f7b4f252",
+            "text": "exact contractから一方向変換する。実装内の独自表、名称類似、旧15-route inventoryから変換先を推測しない。"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    },
+    {
+      "source_identity": {
+        "source_item_id": "REQSRC-SUP-00171",
+        "source_revision": "archive/legacy-generation-2026-09-14",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "source_line": 221,
+        "source_line_sha256": "sha256:b6aa4c8c4fd305b0f0b04cc90f930792e20c2abcb9a22219dce42132ecbd89f5",
+        "source_text": "変換可能なtokenとcurrent typed identityは次のexact setとする。tokenはtrim、小文字化、`_`から`-`への",
+        "condition_cluster_id": "V13-COND-L0221",
+        "source_section_group": 12,
+        "source_section_label": "§4.2.4 legacy adapter・217–243"
+      },
+      "baseline_condition_status": "partial",
+      "baseline_queue_state": "unresolved_for_closure_work",
+      "previous_focused_identity_audit_refs": [],
+      "finding": {
+        "state": "gap",
+        "route": "gap",
+        "targets": [],
+        "retained": "固定F6 pair内に直接対応する採択条件を確認できない。",
+        "delta": "旧tokenのtrim/lowercase/_→-正規化とcurrent typed identityのexact setを固定する採択pairの行は見当たらない。",
+        "residual": [
+          "許可token、正規化規則、current typed identity set。"
+        ],
+        "counterexample": "source conditionをF6 pairが採択済みと推定する。",
+        "target_refs": []
+      },
+      "formal_successor_assigned": false,
+      "source_condition_closed": false,
+      "authority_effect": "none",
+      "source_clause_context": {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "comparison_context_lines": [
+          {
+            "line": 221,
+            "line_sha256": "sha256:b6aa4c8c4fd305b0f0b04cc90f930792e20c2abcb9a22219dce42132ecbd89f5",
+            "text": "変換可能なtokenとcurrent typed identityは次のexact setとする。tokenはtrim、小文字化、`_`から`-`への"
+          }
+        ],
+        "context_reason": "source row is cited by exact source item ID, physical line, line digest, and archived file digest.",
+        "source_row_identity_unchanged": true
+      }
+    }
+  ],
+  "static_validation": {
+    "source_archive_sha256_checked": true,
+    "source_rows_exact_text_and_line_sha_checked": true,
+    "queue_exact_identity_and_selection_rejoin_checked": true,
+    "119_candidate_order_and_selected_slice_checked": true,
+    "focused_audit_file_hashes_pinned": true,
+    "fixed_l2_l11_bytes_hash_checked_at_f6": true,
+    "fixed_target_line_hashes_checked": true,
+    "decision_pins_hash_checked": true,
+    "archive_runtime_cli_test_ci_executed": false,
+    "queue_file_commit_and_path_verified": true,
+    "queue_lineage_basis_distinct_from_file_commit": true,
+    "wrong_rank_neighbor_artifact_reused": false
+  }
+}

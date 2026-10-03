@@ -1,0 +1,2402 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-261-300-2026-10-01",
+  "created_against_commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 261–300 in the 2,710-row effective-explanation marker-negative complement.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      261,
+      300
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000430",
+      "LEGACY-CAND-LINE-000431",
+      "LEGACY-CAND-LINE-000433",
+      "LEGACY-CAND-LINE-000434",
+      "LEGACY-CAND-LINE-000436",
+      "LEGACY-CAND-LINE-000437",
+      "LEGACY-CAND-LINE-000438",
+      "LEGACY-CAND-LINE-000439",
+      "LEGACY-CAND-LINE-000443",
+      "LEGACY-CAND-LINE-000444",
+      "LEGACY-CAND-LINE-000445",
+      "LEGACY-CAND-LINE-000446",
+      "LEGACY-CAND-LINE-000447",
+      "LEGACY-CAND-LINE-000448",
+      "LEGACY-CAND-LINE-000450",
+      "LEGACY-CAND-LINE-000451",
+      "LEGACY-CAND-LINE-000452",
+      "LEGACY-CAND-LINE-000453",
+      "LEGACY-CAND-LINE-000455",
+      "LEGACY-CAND-LINE-000458",
+      "LEGACY-CAND-LINE-000459",
+      "LEGACY-CAND-LINE-000460",
+      "LEGACY-CAND-LINE-000461",
+      "LEGACY-CAND-LINE-000462",
+      "LEGACY-CAND-LINE-000463",
+      "LEGACY-CAND-LINE-000466",
+      "LEGACY-CAND-LINE-000469",
+      "LEGACY-CAND-LINE-000476",
+      "LEGACY-CAND-LINE-000477",
+      "LEGACY-CAND-LINE-000480",
+      "LEGACY-CAND-LINE-000481",
+      "LEGACY-CAND-LINE-000482",
+      "LEGACY-CAND-LINE-000483",
+      "LEGACY-CAND-LINE-000484",
+      "LEGACY-CAND-LINE-000485",
+      "LEGACY-CAND-LINE-000489",
+      "LEGACY-CAND-LINE-000490",
+      "LEGACY-CAND-LINE-000493",
+      "LEGACY-CAND-LINE-000495",
+      "LEGACY-CAND-LINE-000503"
+    ],
+    "selected_ids_sha256": "dcb2f0e7305e96a3d8c46d9acf8b65fb54b5b9616fa3d29b02be8177a0d43ff4",
+    "prior_161_180_match_verified": true
+  },
+  "pinned_inputs": [
+    {
+      "role": "#2353 baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2381 overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "prior_marker_semantic_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+    }
+  ],
+  "source_ledgers": [
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "row_count": 4755
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pairs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "comparison_pairs_at_audit_head": [
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "decision_records": [
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    }
+  ],
+  "current_relation_files": [
+    {
+      "commit": "cfe90f400613935d1dd2c8c99d30b10e9d15e9a7",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
+    }
+  ],
+  "rows": [
+    {
+      "rank": 261,
+      "source_id": "LEGACY-CAND-LINE-000430",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 3,
+      "semantic_category": "historical source boundary",
+      "semantic_reading": "保存文書をhistorical input-onlyと位置付ける。要求・承認・実行権限の正本ではない。",
+      "current_relation_and_limit": "旧source境界の説明で、現行authorityは生じない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "a9f3eba53fdcef5572e875a1dc1056f8fb61a9051c37072973428af97d0d9830",
+      "physical_line_bytes_sha256": "86a8bb684096d10eb4a339e5225cdc06cb411093aa48317a5df1ac6d12f05b50",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 430,
+        "entry_sha256": "fe1443fcaf80642fbd19b12ccd8869f45c7a9251decc5fa6738d56d1b17fb85f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": ""
+        },
+        {
+          "line": 3,
+          "text": "本書はhistorical input-only。要求・承認・実行権限の正本ではない。"
+        },
+        {
+          "line": 4,
+          "text": "Aの追跡は#1639、Bの追跡は#1642。候補の受入・承認・IR取込・runtime完成は別状態である。"
+        }
+      ],
+      "source_excerpt": "本書はhistorical input-only。要求・承認・実行権限の正本ではない。"
+    },
+    {
+      "rank": 262,
+      "source_id": "LEGACY-CAND-LINE-000431",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 4,
+      "semantic_category": "tracking/provenance metadata",
+      "semantic_reading": "Issue追跡先と候補受入・承認・IR取込・runtime完成を別状態として記録する。Issue番号はdecision receiptではない。",
+      "current_relation_and_limit": "個別row bindingや現行採択はない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "b273b4c81c4560fdb9628845eb8179c19b96654723c526a102016ba424e334cd",
+      "physical_line_bytes_sha256": "8b158e101bb115996a1d28703d546e887fa3391aed7ecfb3cf7a6f2bfaa1c962",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 431,
+        "entry_sha256": "b5ccf9f4274d1fc4d31cee9efa9d2c4b97340c531819fa8f698c770b3de1a101",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "本書はhistorical input-only。要求・承認・実行権限の正本ではない。"
+        },
+        {
+          "line": 4,
+          "text": "Aの追跡は#1639、Bの追跡は#1642。候補の受入・承認・IR取込・runtime完成は別状態である。"
+        },
+        {
+          "line": 5,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "Aの追跡は#1639、Bの追跡は#1642。候補の受入・承認・IR取込・runtime完成は別状態である。"
+    },
+    {
+      "rank": 263,
+      "source_id": "LEGACY-CAND-LINE-000433",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 8,
+      "semantic_category": "archive restoration procedure",
+      "semantic_reading": "メモリ内復元検査の実行位置を説明する旧手順。",
+      "current_relation_and_limit": "現行要求でも旧検査の実行許可でもない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "ef9a57e87f6e85119632ad294c217273023127be5304a07f5fba13a7b8637295",
+      "physical_line_bytes_sha256": "542e31154fd6441d7561d998b80ffec85404d2f224fbda0a72873a4bc31408a3",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 433,
+        "entry_sha256": "4f28431976566dfb419a1b3c8c00e9cefa1db3de5177bb117afe92c3a3824e01",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 7,
+          "text": ""
+        },
+        {
+          "line": 8,
+          "text": "repository rootから次を実行する。復元はメモリ内だけで行い、ファイルは作成しない。"
+        },
+        {
+          "line": 9,
+          "text": "原文bytesを検査するものであり、要求の採用・承認・実装完了を検査するものではない。"
+        }
+      ],
+      "source_excerpt": "repository rootから次を実行する。復元はメモリ内だけで行い、ファイルは作成しない。"
+    },
+    {
+      "rank": 264,
+      "source_id": "LEGACY-CAND-LINE-000434",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 9,
+      "semantic_category": "restoration check scope",
+      "semantic_reading": "原文bytes検査と要求採用・承認・完了を区別するsource説明。",
+      "current_relation_and_limit": "現行受入を生成しない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "db79a5757106a5e67260f8caf041dd1f8245697c5523343cf10ba563c272a510",
+      "physical_line_bytes_sha256": "8e6174fce396fc57edfd242e04c7744008fdfe7c80079f21dcc17db022d57053",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 434,
+        "entry_sha256": "f05f3041cc05d6da86d873d5d32733f5ab54d6db87ed59cfe8325403e8dceaf0",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 8,
+          "text": "repository rootから次を実行する。復元はメモリ内だけで行い、ファイルは作成しない。"
+        },
+        {
+          "line": 9,
+          "text": "原文bytesを検査するものであり、要求の採用・承認・実装完了を検査するものではない。"
+        },
+        {
+          "line": 10,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "原文bytesを検査するものであり、要求の採用・承認・実装完了を検査するものではない。"
+    },
+    {
+      "rank": 265,
+      "source_id": "LEGACY-CAND-LINE-000436",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 12,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "旧snapshot再構成コードのimport行。意味要求ではない。",
+      "current_relation_and_limit": "archive codeは参照のみ、未実行。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "1c43a9108b269e1dc27e9351ce94e6ec713b2971d9b15be3d8038f5549785998",
+      "physical_line_bytes_sha256": "dd4c6cd9b95b415ba566680748fc0b088710c861581f666a923b4416a1f2fbcc",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 436,
+        "entry_sha256": "bcef90ac4346ae0feefbb691683c289ba5b739c0bac67f0974d8f36a00b26aac",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": "```sh"
+        },
+        {
+          "line": 12,
+          "text": "node --input-type=module <<'JS'"
+        },
+        {
+          "line": 13,
+          "text": "import { readFileSync } from 'node:fs';"
+        }
+      ],
+      "source_excerpt": "node --input-type=module <<'JS'"
+    },
+    {
+      "rank": 266,
+      "source_id": "LEGACY-CAND-LINE-000437",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 13,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "旧snapshot digest helperのimport行。",
+      "current_relation_and_limit": "現行検証器・consumer bindingはない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "acdb187297667b502b21af95a1d232ab0b1e8950445003ecaa44631d7d1588b6",
+      "physical_line_bytes_sha256": "64adc6e9ca168ca5d2aa0ec3b027b597df54b5d137f9f788543900b856b6e286",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 437,
+        "entry_sha256": "b21597963978ee0505c3262802764a8157b71b376db87a702e033c3d0d78a638",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 12,
+          "text": "node --input-type=module <<'JS'"
+        },
+        {
+          "line": 13,
+          "text": "import { readFileSync } from 'node:fs';"
+        },
+        {
+          "line": 14,
+          "text": "import { createHash } from 'node:crypto';"
+        }
+      ],
+      "source_excerpt": "import { readFileSync } from 'node:fs';"
+    },
+    {
+      "rank": 267,
+      "source_id": "LEGACY-CAND-LINE-000438",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 14,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "保存blob読み取り処理のコード行。",
+      "current_relation_and_limit": "旧runtimeは未実行。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "9d196a1875159c508cfac6bfb2060ff64a56d5d38cb28623767e3b75870fba67",
+      "physical_line_bytes_sha256": "e99a245dd6a438bcaeb012ed910aa7f585bb1ff757109782eaf29f82ac478a8b",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 438,
+        "entry_sha256": "6905e946e0b1f6d2a843e74fa76ad1451f6b9d71690ddfe047a9f7791341d4f8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 13,
+          "text": "import { readFileSync } from 'node:fs';"
+        },
+        {
+          "line": 14,
+          "text": "import { createHash } from 'node:crypto';"
+        },
+        {
+          "line": 15,
+          "text": "const text = readFileSync('docs/governance/candidates/bugbot-intake-source.md', 'utf8');"
+        }
+      ],
+      "source_excerpt": "import { createHash } from 'node:crypto';"
+    },
+    {
+      "rank": 268,
+      "source_id": "LEGACY-CAND-LINE-000439",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 15,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "単一source blockを取得するコード行。",
+      "current_relation_and_limit": "現行pair oracleではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "7054c129ab29eaee58b4ea0afb13cb33872872f78117856d1554a1822860ff1a",
+      "physical_line_bytes_sha256": "0aff48a834043223f0d8d6ea88a0564233e0ec17aa896e8205c93f7c06bdbd3b",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 439,
+        "entry_sha256": "5c01a70cd4bbcb9f34c83dda719f1236ba9399080cf4abeb8a97fa6f8a381810",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 14,
+          "text": "import { createHash } from 'node:crypto';"
+        },
+        {
+          "line": 15,
+          "text": "const text = readFileSync('docs/governance/candidates/bugbot-intake-source.md', 'utf8');"
+        },
+        {
+          "line": 16,
+          "text": "const blocks = [...text.matchAll(/^```base64\\n([A-Za-z0-9+/=\\n]+)\\n```$/gm)];"
+        }
+      ],
+      "source_excerpt": "const text = readFileSync('docs/governance/candidates/bugbot-intake-source.md', 'utf8');"
+    },
+    {
+      "rank": 269,
+      "source_id": "LEGACY-CAND-LINE-000443",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 19,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "復元bytesのdigest算出コード。",
+      "current_relation_and_limit": "実行証拠ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "f7834d8b5325602902b861b4d0ee41e8dcecbcd7c77ab5775b34f258aadf806f",
+      "physical_line_bytes_sha256": "eb2a276c4844aa9209a0237e819a44043cd213e16f34e55807e4bb455e499e5b",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 443,
+        "entry_sha256": "1fdeed814abe2a1313296b6a516ca85e83c44a3e0e26218c08b95d5d37fe920a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 18,
+          "text": "const bytes = Buffer.from(blocks[0][1], 'base64');"
+        },
+        {
+          "line": 19,
+          "text": "const digest = createHash('sha256').update(bytes).digest('hex');"
+        },
+        {
+          "line": 20,
+          "text": "if (bytes.length !== 8033 || digest !== 'c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a') {"
+        }
+      ],
+      "source_excerpt": "const digest = createHash('sha256').update(bytes).digest('hex');"
+    },
+    {
+      "rank": 270,
+      "source_id": "LEGACY-CAND-LINE-000444",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 20,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "length/digest比較コード。",
+      "current_relation_and_limit": "現行受入oracleとして採用されていない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "dcfc5ff97a4eaff2c1e1b77c3f2ba377fab97ab1846596a0b6073b79074bd8a9",
+      "physical_line_bytes_sha256": "779d78532b40fbb18859a17924373caff28f1ba0ad18729e2246f2b03423fb39",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 444,
+        "entry_sha256": "5206fc5ed3405fc4f1db681bf1b8a800e97034d7fe17e420142ae747a8b290dc",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 19,
+          "text": "const digest = createHash('sha256').update(bytes).digest('hex');"
+        },
+        {
+          "line": 20,
+          "text": "if (bytes.length !== 8033 || digest !== 'c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a') {"
+        },
+        {
+          "line": 21,
+          "text": "  throw new Error('source_digest_mismatch');"
+        }
+      ],
+      "source_excerpt": "if (bytes.length !== 8033 || digest !== 'c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a') {"
+    },
+    {
+      "rank": 271,
+      "source_id": "LEGACY-CAND-LINE-000445",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 21,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "digest mismatch exceptionの負経路コード。",
+      "current_relation_and_limit": "旧negative testは実行していない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "888df283e13957a0050c39662e6913ae38bf585597eaa438bbb60a4e2407526f",
+      "physical_line_bytes_sha256": "3b09bd615e1d4fef47e85866dbeb7439c21c8bdda0c9dadb6393aab346a7b984",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 445,
+        "entry_sha256": "927fda15bf9bbfd8ddb2a9176dbdf18684bffc010f5d018b9e6fc3d42ae0e1bc",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 20,
+          "text": "if (bytes.length !== 8033 || digest !== 'c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a') {"
+        },
+        {
+          "line": 21,
+          "text": "  throw new Error('source_digest_mismatch');"
+        },
+        {
+          "line": 22,
+          "text": "}"
+        }
+      ],
+      "source_excerpt": "  throw new Error('source_digest_mismatch');"
+    },
+    {
+      "rank": 272,
+      "source_id": "LEGACY-CAND-LINE-000446",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 22,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "コードblock構文の閉じ括弧。独立要件ではない。",
+      "current_relation_and_limit": "なし。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "d10b36aa74a59bcf4a88185837f658afaf3646eff2bb16c3928d0e9335e945d2",
+      "physical_line_bytes_sha256": "412ca345ccf75bf9c0806bce695be8de808b79984251a7a54d202cf6101dd451",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 446,
+        "entry_sha256": "d8c9e1e2970e7378592a535d4dc41aaf032db358ec9152eb42c7cadb46081d05",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 21,
+          "text": "  throw new Error('source_digest_mismatch');"
+        },
+        {
+          "line": 22,
+          "text": "}"
+        },
+        {
+          "line": 23,
+          "text": "console.log(JSON.stringify({ bytes: bytes.length, digest }));"
+        }
+      ],
+      "source_excerpt": "}"
+    },
+    {
+      "rank": 273,
+      "source_id": "LEGACY-CAND-LINE-000447",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 23,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "旧復元検査の出力コード。",
+      "current_relation_and_limit": "旧出力を現行receiptにしない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "0ea35f8a5ac02a2a0656bb932c9e91420183f49e4f5009a0955222b915deced7",
+      "physical_line_bytes_sha256": "8577982a1b7d3f4d309c874d70d74ded87b06dfea97464ea8e2df5f4c5b0c892",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 447,
+        "entry_sha256": "87f762d40a5cb01043fcb9d1791b94b298040020569c33be6cff7cad3015af54",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 22,
+          "text": "}"
+        },
+        {
+          "line": 23,
+          "text": "console.log(JSON.stringify({ bytes: bytes.length, digest }));"
+        },
+        {
+          "line": 24,
+          "text": "JS"
+        }
+      ],
+      "source_excerpt": "console.log(JSON.stringify({ bytes: bytes.length, digest }));"
+    },
+    {
+      "rank": 274,
+      "source_id": "LEGACY-CAND-LINE-000448",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 24,
+      "semantic_category": "embedded source-check code",
+      "semantic_reading": "script終端の構文行。",
+      "current_relation_and_limit": "なし。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "0917e7be3804e62203f60be0902c426d650f58cf241e464c080c7a0de61c9118",
+      "physical_line_bytes_sha256": "f02e54e94a275a8c46d8feefd59862bb7eb2092338fd374078f2bec300479f04",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 448,
+        "entry_sha256": "598972e11b2eaf8218d3c3871394967bb90a0b9273865f05273cb52c20f9c430",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 23,
+          "text": "console.log(JSON.stringify({ bytes: bytes.length, digest }));"
+        },
+        {
+          "line": 24,
+          "text": "JS"
+        },
+        {
+          "line": 25,
+          "text": "```"
+        }
+      ],
+      "source_excerpt": "JS"
+    },
+    {
+      "rank": 275,
+      "source_id": "LEGACY-CAND-LINE-000450",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 27,
+      "semantic_category": "source snapshot metadata",
+      "semantic_reading": "原稿名とdigestを導入するprovenance行。",
+      "current_relation_and_limit": "採択・正本化ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "1bd366918578a1a03318239c944c4b08287886f3275bdf31525fc7a1f5b36b71",
+      "physical_line_bytes_sha256": "9a69098af5574720d34cb364db0fc9a01060ce690f37e660513cdcce52a05b82",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 450,
+        "entry_sha256": "1bd6c54241198dd81e9f1296213f863084fc6c428c45597b2fa2a1dcc70f9702",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 26,
+          "text": ""
+        },
+        {
+          "line": 27,
+          "text": "原稿名: `01_REQUIREMENTS_DIRECTIVE.md`。原稿bytesのSHA-256:"
+        },
+        {
+          "line": 28,
+          "text": "`c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。"
+        }
+      ],
+      "source_excerpt": "原稿名: `01_REQUIREMENTS_DIRECTIVE.md`。原稿bytesのSHA-256:"
+    },
+    {
+      "rank": 276,
+      "source_id": "LEGACY-CAND-LINE-000451",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 28,
+      "semantic_category": "source snapshot digest",
+      "semantic_reading": "対象bytesのSHA-256記録。",
+      "current_relation_and_limit": "Issue本文やdecision scopeとは区別する。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "807e9e04f4d35064e769bf29efde2e498f11d092f5980905fb5f56acb19ab201",
+      "physical_line_bytes_sha256": "2f924f7513e531bba23465dfe186b897811d0cdd6c411904480c17ae9db8ea5d",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 451,
+        "entry_sha256": "947924d722b04ccb3f23ae8f4614634ad7b835f9d3f339d36d2a082e1c5246e3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 27,
+          "text": "原稿名: `01_REQUIREMENTS_DIRECTIVE.md`。原稿bytesのSHA-256:"
+        },
+        {
+          "line": 28,
+          "text": "`c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。"
+        },
+        {
+          "line": 29,
+          "text": "以下のBase64を復号したbytesが対象。文字コード・改行・行末空白を正規化しない。"
+        }
+      ],
+      "source_excerpt": "`c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。"
+    },
+    {
+      "rank": 277,
+      "source_id": "LEGACY-CAND-LINE-000452",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 29,
+      "semantic_category": "source snapshot rules",
+      "semantic_reading": "復号bytesを改変せず扱うsnapshot説明。",
+      "current_relation_and_limit": "現行設計条件へ昇格しない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "085f3db75c5756bf9a5071cff0698626100a77bc2565599fc78eb92ad5893dbe",
+      "physical_line_bytes_sha256": "4e4827eb602fe38bf5529027d7887a6b01b501469c90155dc903848810b5c4f8",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 452,
+        "entry_sha256": "06264213d92f90fbda9af0de7c79a1ee6dc90ea717b08c97cf5d5ce1f93a1a49",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 28,
+          "text": "`c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。"
+        },
+        {
+          "line": 29,
+          "text": "以下のBase64を復号したbytesが対象。文字コード・改行・行末空白を正規化しない。"
+        },
+        {
+          "line": 30,
+          "text": "Issue #1639本文全体のhashではない。本文追記によってIssue表示のbytesは異なる。"
+        }
+      ],
+      "source_excerpt": "以下のBase64を復号したbytesが対象。文字コード・改行・行末空白を正規化しない。"
+    },
+    {
+      "rank": 278,
+      "source_id": "LEGACY-CAND-LINE-000453",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 30,
+      "semantic_category": "Issue/body distinction",
+      "semantic_reading": "hash対象がIssue全体ではないというprovenance説明。",
+      "current_relation_and_limit": "Issue stateから要求意味を導かない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "f498cd3edc4766efd5c081af8595266fbc2a2b2136451fab988ab722b5eca650",
+      "physical_line_bytes_sha256": "c56c043abfebb0e77e5aa68375c57dfe24b6b0498dabb05c474041476900ccae",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 453,
+        "entry_sha256": "5dcb8f839ec5f9c3ceddb7c4f018451a489e3f42aeb45355a2e232304f543fbe",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 29,
+          "text": "以下のBase64を復号したbytesが対象。文字コード・改行・行末空白を正規化しない。"
+        },
+        {
+          "line": 30,
+          "text": "Issue #1639本文全体のhashではない。本文追記によってIssue表示のbytesは異なる。"
+        },
+        {
+          "line": 31,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "Issue #1639本文全体のhashではない。本文追記によってIssue表示のbytesは異なる。"
+    },
+    {
+      "rank": 279,
+      "source_id": "LEGACY-CAND-LINE-000455",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/bugbot-intake-source.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "source_line": 33,
+      "semantic_category": "embedded base64 snapshot",
+      "semantic_reading": "保存payloadの行で、要求文章ではない。",
+      "current_relation_and_limit": "payloadは復号・実行せず、line/file digestで固定。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "8cc8ab54cd1e70b964473919c22815acf2feec92a0a2d9ed165e914b206723d9",
+      "source_line_sha256": "bb3279a056939f3482eeffa71366abf28589a421ea0ef93eef6299150848ace2",
+      "physical_line_bytes_sha256": "138ed7aa113ae3788e998e150a42028d529a39b8b9e523e0208f0e9d44309c9a",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 455,
+        "entry_sha256": "5c898cf41dc6d0287be8108f4fb1aecf7006d9a79d066259ed7c2733f3b8904a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F619177632B88B92DDBF",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 796,
+          "entry_sha256": "fb1271764fb32da3ff6b6df350650aa7d823956fcd8860df8d69bb73c1b0f891",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 32,
+          "text": "```base64"
+        },
+        {
+          "line": 33,
+          "text": "IyBIRUxJWCDmjIfnpLrmm7gg4oCUIOWumuWei+aIkOaenOeJqeOBruapn+aisOeUn+aIkOOBqOimj+WJh+mAuOiEseOBrumZkOWumuS/ruW+qQoK5a++6LGh77yaUmV0cnlZTi9IRUxJWC1IQVJORVNT772c5paH5pu454mI77yaMS4w772cMjAyNi0wOS0wOCBKU1QgIArnhaflkIhtYWlu77ya"
+        },
+        {
+          "line": 34,
+          "text": "```"
+        }
+      ],
+      "source_excerpt": "IyBIRUxJWCDmjIfnpLrmm7gg4oCUIOWumuWei+aIkOaenOeJqeOBruapn+aisOeUn+aIkOOBqOimj+WJh+mAuOiEseOBrumZkOWumuS/ruW+qQoK5a++6LGh77yaUmV0cnlZTi9IRUxJWC1IQVJORVNT772c5paH5pu454mI77yaMS4w772c"
+    },
+    {
+      "rank": 280,
+      "source_id": "LEGACY-CAND-LINE-000458",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 2,
+      "semantic_category": "candidate title metadata",
+      "semantic_reading": "CI event concurrency L10 acceptance candidateのtitle。",
+      "current_relation_and_limit": "title・旧layerは現行採択ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "b2bcba6197269faa62ea4ec268817d5d983c5c71ccf50a47ffa0be3b6840c94b",
+      "physical_line_bytes_sha256": "75d767e2f94cf1cc6c6eef5e547f9fb9fcf6d2a776e9bdf46216cafbbe2b7fdb",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 458,
+        "entry_sha256": "039b2e64af3cc36f20ae0d0995ac7f95e35e0259c60158343fdc51e0cfbdb260",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation L10受入差分候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        }
+      ],
+      "source_excerpt": "title: \"CI event-class concurrency generation L10受入差分候補\""
+    },
+    {
+      "rank": 281,
+      "source_id": "LEGACY-CAND-LINE-000459",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 3,
+      "semantic_category": "candidate status metadata",
+      "semantic_reading": "draft_candidateの自己記録。",
+      "current_relation_and_limit": "approval/retire/canonical promotionを生成しない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+      "physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 459,
+        "entry_sha256": "595ffa50f3f7d20ff42c3794f030e7780864e74b7e489fc94ce32b3abb78c873",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation L10受入差分候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L10"
+        }
+      ],
+      "source_excerpt": "status: draft_candidate"
+    },
+    {
+      "rank": 282,
+      "source_id": "LEGACY-CAND-LINE-000460",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 4,
+      "semantic_category": "candidate layer metadata",
+      "semantic_reading": "candidate内canonical L10 label。",
+      "current_relation_and_limit": "現行layer mappingではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "56e1e4cccf5db48e542a8e148104530b26b9c57bb656f74cdedb93737e87f110",
+      "physical_line_bytes_sha256": "35450f19574f316204bf77c990ed4766f5db9ca86bf947b5dbfbc3c60ddc0fd1",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 460,
+        "entry_sha256": "1ddd2e69350fc2c3d6ef73aa469b06adeddea985f6c49ace8de6919688a8d7df",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L10"
+        },
+        {
+          "line": 5,
+          "text": "paired_requirement_layer: L3"
+        }
+      ],
+      "source_excerpt": "canonical_layer: L10"
+    },
+    {
+      "rank": 283,
+      "source_id": "LEGACY-CAND-LINE-000461",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 5,
+      "semantic_category": "candidate pair metadata",
+      "semantic_reading": "candidate内paired L3 label。",
+      "current_relation_and_limit": "現行L2/L11 pair採択を示さない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "0437b3b97a599e3c5860de8135f3282fb9b68de1918b94ff7ae77f384c89aa03",
+      "physical_line_bytes_sha256": "e0b420976c100f5569637e6e73789a736a5c5ef86d7e483c5a83ebd8103194fe",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 461,
+        "entry_sha256": "5fd4459163edc84816a840c6814835695ff68895f4c73555c831ee03e67912fb",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 4,
+          "text": "canonical_layer: L10"
+        },
+        {
+          "line": 5,
+          "text": "paired_requirement_layer: L3"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        }
+      ],
+      "source_excerpt": "paired_requirement_layer: L3"
+    },
+    {
+      "rank": 284,
+      "source_id": "LEGACY-CAND-LINE-000462",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 6,
+      "semantic_category": "candidate plan pointer",
+      "semantic_reading": "旧PLAN IDへの参照。",
+      "current_relation_and_limit": "作業許可・承認・完了ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "5d5b84da0c825dca9a18dc5c0c0ec5f94cd11aa9542f1e3bc08b2273ffdd2b6b",
+      "physical_line_bytes_sha256": "154efdfe4322198780e29131dead0279f027ca4539cdbc671a11b0f65cad1797",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 462,
+        "entry_sha256": "596fc868785ebbceeb1a514bb429292c81c65c46a0b09c11779b8e27efb27f37",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 5,
+          "text": "paired_requirement_layer: L3"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+        }
+      ],
+      "source_excerpt": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+    },
+    {
+      "rank": 285,
+      "source_id": "LEGACY-CAND-LINE-000463",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 7,
+      "semantic_category": "candidate artifact pointer",
+      "semantic_reading": "要求candidate pathへの参照。",
+      "current_relation_and_limit": "pointerからadoptionを生成しない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "c3a1ada00997d0f0a4dc639b2f1b77fac724504f6847e0e6220f2525a0050ca9",
+      "physical_line_bytes_sha256": "a8aac9ad29f1ccaf1d804c60f2421f5fd2dcd9ea9ba1c7f84418ac6d113d684d",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 463,
+        "entry_sha256": "af2417ea5a54033a3ae1b38fff78c2cc78fefd679e2fa6940741d0324f4eea5c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+        },
+        {
+          "line": 8,
+          "text": "---"
+        }
+      ],
+      "source_excerpt": "pair_artifact: docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+    },
+    {
+      "rank": 286,
+      "source_id": "LEGACY-CAND-LINE-000466",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 12,
+      "semantic_category": "table header",
+      "semantic_reading": "acceptance tableの列名header。oracleではない。",
+      "current_relation_and_limit": "source rowは構造上の列見出し。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "2a69c6317ca832f0f2d1b5546261c75322db13f88932aec4e220b45d6584039f",
+      "physical_line_bytes_sha256": "d2e3709a64b329e9ea7c0d739b730c8ab6ae8cfd6189034a043a1340d90d0eaf",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 466,
+        "entry_sha256": "f33fc5e0886a8ab364e9fa77902dc81cc5b421fdda88b6a1a5d64661f776e353",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": ""
+        },
+        {
+          "line": 12,
+          "text": "| AC ID | 対応要件 | fixture／mutation | 合格条件 |"
+        },
+        {
+          "line": 13,
+          "text": "|---|---|---|---|"
+        }
+      ],
+      "source_excerpt": "| AC ID | 対応要件 | fixture／mutation | 合格条件 |"
+    },
+    {
+      "rank": 287,
+      "source_id": "LEGACY-CAND-LINE-000469",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 15,
+      "semantic_category": "acceptance candidate oracle",
+      "semantic_reading": "CIG-AC-002のcandidate scenario。event class間の独立性と同PR stale replacementを検査する規範的候補内容。",
+      "current_relation_and_limit": "F6 L11にrow-specific adopted bindingなし。新世代CIは未構築。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "2c93be036a00daef72addee32a408aa4ddba241e578843b1781a971fbb6a7bcc",
+      "physical_line_bytes_sha256": "a2949c4e18d96cf941db8471b8481669a2db15563ba535643b04ae10167e958e",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 469,
+        "entry_sha256": "280952f1d1574094fdbc99ee473807ebd8497ba274b031c7cc773e4d44f8317c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 14,
+          "text": "| `CIG-AC-001` | `CIG-R-01` | event class、PR ID、HEAD、run ID、attemptを一件ずつ欠落・改変する | generation identityが決定的に一致し、不正入力を個別拒否する |"
+        },
+        {
+          "line": 15,
+          "text": "| `CIG-AC-002` | `CIG-R-02` | same-HEAD main push中にschedule／manualを開始し、PR A/Bを同時更新する | main、schedule、manual、別PRが相互cancelせず、同一PR stale HEADだけがboundedに置換される |"
+        },
+        {
+          "line": 16,
+          "text": "| `CIG-AC-003` | `CIG-R-02` | scheduleを連続起動し、queue上限とTTLを超える | older scheduleだけを置換し、無制限並走・silent dropを拒否する |"
+        }
+      ],
+      "source_excerpt": "| `CIG-AC-002` | `CIG-R-02` | same-HEAD main push中にschedule／manualを開始し、PR A/Bを同時更新する | main、schedule、manual、別PRが相互cancelせず、同一PR stale HEADだけがboundedに置換される |"
+    },
+    {
+      "rank": 288,
+      "source_id": "LEGACY-CAND-LINE-000476",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2360",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 24,
+      "semantic_category": "candidate scope accounting",
+      "semantic_reading": "CIG-R-01..04の候補内件数宣言。",
+      "current_relation_and_limit": "候補内件数はcurrent source closure/adoptionではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "f3a6695b665bea71103a8a4ccee1629d5361b36616ff4209bc942bd012bf811b",
+      "physical_line_bytes_sha256": "27f3b4aa1bfee5d71760eb1a3002d943eeb860763c18b674e3a9dbb533f063ba",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 476,
+        "entry_sha256": "061d99c98ea0c3a14e7fe898cc30f8934ae62b8ccf6de804d156d16dc1aaf30c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 23,
+          "text": ""
+        },
+        {
+          "line": 24,
+          "text": "- supporting requirements: `CIG-R-01..04` exact 4件。"
+        },
+        {
+          "line": 25,
+          "text": "- acceptance: `CIG-AC-001..007` exact 7件。"
+        }
+      ],
+      "source_excerpt": "- supporting requirements: `CIG-R-01..04` exact 4件。"
+    },
+    {
+      "rank": 289,
+      "source_id": "LEGACY-CAND-LINE-000477",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2360",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "source_line": 25,
+      "semantic_category": "candidate scope accounting",
+      "semantic_reading": "CIG-AC-001..007の候補内件数宣言。",
+      "current_relation_and_limit": "実行済みoracleや受入ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "8ee2102ac11ad3c280f018f089a749f33f472dae9fdc4541b225665a325f176f",
+      "physical_line_bytes_sha256": "5749f0b5273a0c03a32011d49215680fc313e571604cc31b781de734cdf8f8c8",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 477,
+        "entry_sha256": "19a757c0dcd8faa0edb38a80c61b195a175952716735759d6953e9fbf253b516",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 797,
+          "entry_sha256": "6eab245831324d8655255b5dab21b52769afc41e242437f8f6767edf3a759292",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 24,
+          "text": "- supporting requirements: `CIG-R-01..04` exact 4件。"
+        },
+        {
+          "line": 25,
+          "text": "- acceptance: `CIG-AC-001..007` exact 7件。"
+        },
+        {
+          "line": 26,
+          "text": "- runtime実装、DB migration、live rehearsalはcanonical promotion後の別PLANで検証する。"
+        }
+      ],
+      "source_excerpt": "- acceptance: `CIG-AC-001..007` exact 7件。"
+    },
+    {
+      "rank": 290,
+      "source_id": "LEGACY-CAND-LINE-000480",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 2,
+      "semantic_category": "candidate title metadata",
+      "semantic_reading": "CI event concurrency requirements candidate title。",
+      "current_relation_and_limit": "titleから現行要求identityを割り当てない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "8e0110e48e25b8e35908a15edd8083875d95d3092d27d500871fa51d0de45fec",
+      "physical_line_bytes_sha256": "1f43ce0a9b9952436097bb71d877e6257eb67486979a61d37a32e97de05349f4",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 480,
+        "entry_sha256": "1955f14a650ad69abd2e14bbbf134b3b9ffb49f2f1f6f6bc0d0755ee861c9858",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation 要求候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        }
+      ],
+      "source_excerpt": "title: \"CI event-class concurrency generation 要求候補\""
+    },
+    {
+      "rank": 291,
+      "source_id": "LEGACY-CAND-LINE-000481",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 3,
+      "semantic_category": "candidate status metadata",
+      "semantic_reading": "draft_candidate status。",
+      "current_relation_and_limit": "draftは拒否/retireやcanonicalizationを意味しない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+      "physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 481,
+        "entry_sha256": "1cf6085b838b552c89b6f7fdfd6efe84f54bcbcae0c515d3134544c32782e846",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": "title: \"CI event-class concurrency generation 要求候補\""
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L1"
+        }
+      ],
+      "source_excerpt": "status: draft_candidate"
+    },
+    {
+      "rank": 292,
+      "source_id": "LEGACY-CAND-LINE-000482",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 4,
+      "semantic_category": "candidate layer metadata",
+      "semantic_reading": "candidate内canonical L1 label。",
+      "current_relation_and_limit": "旧layer番号を現行へ直写ししない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "bf78c5504cd357a1d289d0b7994ac567d91624ad7b454717b1a9a1ae7714dbc0",
+      "physical_line_bytes_sha256": "75c2c0b34c0e7f07705a14815545588b5d2c30eb4c425cb4cdd402715a9c549b",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 482,
+        "entry_sha256": "762fda5fb599af90ffdf8106ddbd20e37d1b300fef6b17db371a273383729733",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L1"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L12"
+        }
+      ],
+      "source_excerpt": "canonical_layer: L1"
+    },
+    {
+      "rank": 293,
+      "source_id": "LEGACY-CAND-LINE-000483",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 5,
+      "semantic_category": "candidate pair metadata",
+      "semantic_reading": "candidate内canonical L12 label。",
+      "current_relation_and_limit": "現行pair agreementではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+      "physical_line_bytes_sha256": "7258d9a5bdcb368768eea7c8ea5d3b871828a1249d58f85cf2f1d34eb1bce95a",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 483,
+        "entry_sha256": "b938b0b499aef5fd81de49502a22bdd7da635876714daf445f3700b5edc2a5f4",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 4,
+          "text": "canonical_layer: L1"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        }
+      ],
+      "source_excerpt": "canonical_pair: L12"
+    },
+    {
+      "rank": 294,
+      "source_id": "LEGACY-CAND-LINE-000484",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 6,
+      "semantic_category": "candidate plan pointer",
+      "semantic_reading": "L3作業plan参照。",
+      "current_relation_and_limit": "plan IDは承認・実施許可ではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "5d5b84da0c825dca9a18dc5c0c0ec5f94cd11aa9542f1e3bc08b2273ffdd2b6b",
+      "physical_line_bytes_sha256": "154efdfe4322198780e29131dead0279f027ca4539cdbc671a11b0f65cad1797",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 484,
+        "entry_sha256": "00f4f195cec247c947243ce64441bc64725d376dff3146aa9920282af9c55c19",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 5,
+          "text": "canonical_pair: L12"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "source_issue: 1336"
+        }
+      ],
+      "source_excerpt": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+    },
+    {
+      "rank": 295,
+      "source_id": "LEGACY-CAND-LINE-000485",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 7,
+      "semantic_category": "Issue provenance pointer",
+      "semantic_reading": "source Issue number。",
+      "current_relation_and_limit": "Issue ID/stateはdecisionではない。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "d60a77f012d2246e28bae959c91297add6023449b3831886580fff4f46726fef",
+      "physical_line_bytes_sha256": "9e21512730cf9ee8c7df1993f7a6c880b626dd2a0c9f59ef76981fa88fde885d",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 485,
+        "entry_sha256": "3b12ba4df96560ea51e3c364ccef1fd6fb551747579e346d33e9334b8dd9d0b8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-93-ci-event-concurrency-generation"
+        },
+        {
+          "line": 7,
+          "text": "source_issue: 1336"
+        },
+        {
+          "line": 8,
+          "text": "---"
+        }
+      ],
+      "source_excerpt": "source_issue: 1336"
+    },
+    {
+      "rank": 296,
+      "source_id": "LEGACY-CAND-LINE-000489",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 14,
+      "semantic_category": "candidate user requirement",
+      "semantic_reading": "複数CI event classの証明義務を単一ref runへ縮約しない目的文。marker regexは該当しないが候補上の規範内容。",
+      "current_relation_and_limit": "F6の一般CI境界と近接するがrow-specific pair adoption receiptなし。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "1d18d4fb32eb3f192b105484797317d93748edf8822e2a4af5cc320859918ad4",
+      "physical_line_bytes_sha256": "bddf9358bcd8c4e8df030b614f70f2b8ba58609d42eb458f5fd70b970e507b1b",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 489,
+        "entry_sha256": "e9cba4ee50d1574bb09bc8f205ac4ae91f4050c0450d2b5da86d40bf69e50de1",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 13,
+          "text": ""
+        },
+        {
+          "line": 14,
+          "text": "main merge後の検収、定期監査、手動監査、PR検証を同じ`github.ref`だけで一つの実行世代へ畳み込まず、"
+        },
+        {
+          "line": 15,
+          "text": "それぞれの証明義務を失わずに待ち時間と重複実行を制御できなければならない。"
+        }
+      ],
+      "source_excerpt": "main merge後の検収、定期監査、手動監査、PR検証を同じ`github.ref`だけで一つの実行世代へ畳み込まず、"
+    },
+    {
+      "rank": 297,
+      "source_id": "LEGACY-CAND-LINE-000490",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 15,
+      "semantic_category": "candidate user requirement",
+      "semantic_reading": "証明義務を保持してwait time/duplicate runsを制御する要求文。「できなければならない」はscreen regex対象外だが規範的候補。",
+      "current_relation_and_limit": "OS 2026-09-28明示採用集合に含めず、row adoptionなし。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "3767f7295d7d8920f19307ed09fa3c122d9dd44ab70586a409a83de7b380c44d",
+      "physical_line_bytes_sha256": "4a4c0cc6116c2332ce304f2cc4c0512fdffc83caff4b1d8e46f0e719d60d66ac",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 490,
+        "entry_sha256": "7fd5912fbdbbe46a337e02af058bafbe39f5eb1228e88592d50fabd85e7b8959",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 14,
+          "text": "main merge後の検収、定期監査、手動監査、PR検証を同じ`github.ref`だけで一つの実行世代へ畳み込まず、"
+        },
+        {
+          "line": 15,
+          "text": "それぞれの証明義務を失わずに待ち時間と重複実行を制御できなければならない。"
+        },
+        {
+          "line": 16,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "それぞれの証明義務を失わずに待ち時間と重複実行を制御できなければならない。"
+    },
+    {
+      "rank": 298,
+      "source_id": "LEGACY-CAND-LINE-000493",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 20,
+      "semantic_category": "table header",
+      "semantic_reading": "business-requirement tableの列名header。独立要求atomではない。",
+      "current_relation_and_limit": "構造上のheader。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "9aef48c0da1568394934fd629c62d82262ff3a5e946f6efb9a349e441cc58ec4",
+      "physical_line_bytes_sha256": "6cab831483c5fbe53df42b9c89e61db164de7a77495f03ee0e813ff4092b50e0",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 493,
+        "entry_sha256": "a6e7aa3ad4cce5cfef8c40e5d978537558317e4bf8f07fcf3f454560be53facb",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 19,
+          "text": ""
+        },
+        {
+          "line": 20,
+          "text": "| BR ID | 利用者要求 | 分解先 |"
+        },
+        {
+          "line": 21,
+          "text": "|---|---|---|"
+        }
+      ],
+      "source_excerpt": "| BR ID | 利用者要求 | 分解先 |"
+    },
+    {
+      "rank": 299,
+      "source_id": "LEGACY-CAND-LINE-000495",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 22,
+      "semantic_category": "business requirement candidate",
+      "semantic_reading": "CIG-BR-01の候補利用者要求。event classesを別の証明義務として扱う。",
+      "current_relation_and_limit": "新世代CI候補にtopic relationはあるがこの旧rowのsource-specific adoptionはない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "7459b8b1c60cc8e664b74940df9eb72e3083716311eb073657f3d11c6ec78d01",
+      "physical_line_bytes_sha256": "983b2c0678f9d4427f85d5a9bd85b84ee44d86aa9a5df4d3eda1e9835ce98b6e",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 495,
+        "entry_sha256": "299192832c7fa4eda71bf4106f35126427ba2baa9906503137c420bf221a0f14",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 21,
+          "text": "|---|---|---|"
+        },
+        {
+          "line": 22,
+          "text": "| `CIG-BR-01` | main・定期・手動・PR検証をevent classごとに独立した証明義務として扱える | `CIG-R-01`, `CIG-R-02` |"
+        },
+        {
+          "line": 23,
+          "text": "| `CIG-BR-02` | current mainの検収を失わず、stale世代だけを有界に置換できる | `CIG-R-02`, `CIG-R-03` |"
+        }
+      ],
+      "source_excerpt": "| `CIG-BR-01` | main・定期・手動・PR検証をevent classごとに独立した証明義務として扱える | `CIG-R-01`, `CIG-R-02` |"
+    },
+    {
+      "rank": 300,
+      "source_id": "LEGACY-CAND-LINE-000503",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected overlay intersects row)",
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requests.md",
+      "source_line": 33,
+      "semantic_category": "candidate authority boundary",
+      "semantic_reading": "Issue起点の要求候補であり、承認・canonical promotion・runtime enablement・cancel authorityを与えないと明示する。",
+      "current_relation_and_limit": "現行Issue/CI authority境界に意味上近いが、このrowのindividual adoption/execution authorityではない。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "7117dfb59c0c0529f3434c32d50a23684efca8db22c6a6629d1dc859347e06dc",
+      "source_line_sha256": "f1c08b460d498b9355224aae449f1260ec804022211f92d0512915445a81520d",
+      "physical_line_bytes_sha256": "fa794c580ae4a03751a41ff25b69ce187b422ad1b67c6c7ee1a86fe8e20455a5",
+      "source_line_ledger_entry": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 503,
+        "entry_sha256": "02ad24cd8b294c4ee10190967791a78eff129bc86f6d1e03acc477c236948503",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-8B78505C1E059419875F",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 798,
+          "entry_sha256": "d91faec5e6d943321ec752e009778d99046d0aee9a1f2506563a846ea84af8d5",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 32,
+          "text": ""
+        },
+        {
+          "line": 33,
+          "text": "本書はIssue #1336を要求候補へ整理したものであり、承認、canonical promotion、runtime有効化、GitHub上の"
+        },
+        {
+          "line": 34,
+          "text": "cancel権限を与えない。"
+        }
+      ],
+      "source_excerpt": "本書はIssue #1336を要求候補へ整理したものであり、承認、canonical promotion、runtime有効化、GitHub上の"
+    }
+  ],
+  "summary": {
+    "row_count": 40,
+    "provenance_code_metadata_structure_rows": 34,
+    "marker_negative_normative_candidate_rows": 6,
+    "row_specific_current_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "successor_ids": 0,
+    "closure": 0,
+    "authority_effect": "none"
+  },
+  "limitations": [
+    "Rank result is limited to pinned baseline, overlays, and 255 prior positive-screen rows.",
+    "F6 and decisions are compared at exact pinned file revisions; no full-source closure claim.",
+    "Archive code/payload and legacy runtime, test, CI were not executed."
+  ]
+}

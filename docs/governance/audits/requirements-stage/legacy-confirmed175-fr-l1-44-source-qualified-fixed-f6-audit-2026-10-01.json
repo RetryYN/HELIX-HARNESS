@@ -1,0 +1,1881 @@
+{
+  "schema_version": "legacy-confirmed175-fr-l1-44-fixed-f6-condition-audit.v1",
+  "audit_id": "legacy-confirmed175-fr-l1-44-source-qualified-fixed-f6-audit-2026-10-01",
+  "audit_mode": "read_only_static_source_to_fixed_l2_l11_condition_comparison",
+  "created_against_revision": "a3eae9cb8bdd2f57d7a79b8efa4910841d49f202",
+  "origin_main_revision": "a3eae9cb8bdd2f57d7a79b8efa4910841d49f202",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "population": "confirmed175",
+  "scope": {
+    "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-44",
+    "count": 1,
+    "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+  },
+  "source": {
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+    "archive_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "holding_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+    "holding_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+    "line": 75,
+    "line_sha256": "6978d5198a63eeae9930e71f6a131dcaf86b7377a75853893a2044f223db9a0f",
+    "line_text": "| **FR-L1-44** | 途中導入 onboarding workflow (既存プロジェクトへの harness baseline 確立) | PO directed (2026-05-28) | 既存コード/docs/PLAN 資産一覧、`.helix/` 未初期化状態 | `.helix/` 初期 baseline、既存資産 → state import レポート、onboarding 完了 gate 証跡。FR-L1-14 の前段 context、FR-L1-07 初回 import 引継ぎ、FR-L1-26 段階移行と組合せ | P1 | GD-01 (Onboarding) |",
+    "source_status": "confirmed",
+    "carry_forward_state": "preserved_pending_rehome",
+    "successor_requirement_ids": [],
+    "requirement_change_authority": "explicit_human_decision_only",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_row_sha256": "ddf5bcb28787c2ce6a17bd0dc2a45691c277e8478612ea904139b3f413e6942f",
+    "asset_ledger_decision_status": "pending_human_confirmation",
+    "asset_ledger_approval_revision": null
+  },
+  "comparison_basis": {
+    "queue_path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+    "queue_file_sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
+    "queue_record_status": "not_individually_compared",
+    "queue_evidence_artifacts": [],
+    "prior_fixed_target_ref": [
+      {
+        "target_id": "HARNESS-L2-019",
+        "authority_status": "po_fixed_candidate_adopted",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "document_paths": [
+          "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "docs/helix-harness/L2-requirements/product-requirements.md"
+        ],
+        "basis_ref": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json#current_target_registry.HARNESS-L2-019"
+      }
+    ],
+    "queue_open_residual_note": "No genuine identity-specific fixed L2/L11 condition-comparison artifact was found in the inventoried set. Full-audit status remains existing crosswalk reports rederived/retained; atom-by-atom carry-forward remains unassigned. 固定main上の既存照合: HARNESS-L2-019 `product-requirements.md:419–427` とL11 `product-acceptance.md:214`が既存要件・コード・PoCの持込み、どのリリース単位からでも入ること、変換結果と変換不能/由来不明部分の一覧、unknown維持を明示する。Full Reverseの要件・設計・検証traceへの変換は保持される。旧`.helix`初期化やstate importの特定方式・完了gateは継承しない。",
+    "classification": "個別比較として数えるのはsource-qualified identityの条件atomとfixed f6 L2/L11 bytesの照合。名前参照・関連記述だけでは閉包としない。"
+  },
+  "duplicate_check": {
+    "result": "no prior exact identity-specific fixed-f6 condition audit found",
+    "search_scope": "docs/governance/audits/requirements-stage/*.md and *.json, exact source-qualified identity search; related mentions classified by artifact role",
+    "related_artifacts": [
+      "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+      "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+      "docs/governance/audits/requirements-stage/legacy-source-origin-reg06-population-audit-2026-09-28.json"
+    ],
+    "exact_named_artifacts": []
+  },
+  "legacy_consumer_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "line_pins": [
+        {
+          "line": 48,
+          "line_sha256": "59799431ea84c70f029071a3976c1c96d04992cd11737950bc0928e06ddf14a5",
+          "text": "| FR-07 | FR-L1-07 | HM-04 / HM-03 | 全 mode | all | hook 発火失敗時の手動再実行 (運用者) |"
+        },
+        {
+          "line": 55,
+          "line_sha256": "a55250fdbe115ff60520a9352beb6146f0e70280c5db2348b09d268b2fdcfd9c",
+          "text": "| FR-14 | FR-L1-14 | PM-02 / HM-07 | Reverse | reverse / all | R4 routing 先選定 (L1/L3/L4/L5/gap-only) (TL) / promotion strategy (PO/TL) |"
+        },
+        {
+          "line": 63,
+          "line_sha256": "de249ea68a510ea01cfce78d43389e4645ab3f281d0603ea59b0b908ea6c39c8",
+          "text": "| FR-26 | FR-L1-26 (workflow core、A-50) | PM-02 (Retrofit) | Retrofit (主) | all | retrofit-matrix 承認 (TL) / 段階 rollback 判断 (PO) |"
+        },
+        {
+          "line": 223,
+          "line_sha256": "cd91eb67ebc1aaaa0744ce2052c717b84da08c954bbec3b5485b46ae238c7aad",
+          "text": "- **L1 上流**: FR-L1-07"
+        },
+        {
+          "line": 408,
+          "line_sha256": "8e0321cac224fe9dc7ceb0706e9a39923382e5d918bcd01324033d3b7c2ed398",
+          "text": "- **L1 上流**: FR-L1-14 (onboarding context = FR-L1-44 前段)"
+        },
+        {
+          "line": 615,
+          "line_sha256": "001430399fb242f62e80e2ec93f1baef8c52959a14bd8be3fa5430017a865493",
+          "text": "- **L1 上流**: FR-L1-26"
+        },
+        {
+          "line": 767,
+          "line_sha256": "38785832ece224c13f52c6619d9bb4fa9d6051ebc9c8b6b4e78ca06cce260830",
+          "text": "| FR-L1-44 (onboarding) | PLAN-L4-NN-onboarding | 既存 repo への harness baseline 確立、`.helix/` 初期 baseline |"
+        },
+        {
+          "line": 897,
+          "line_sha256": "9f0e38dcf0ac63fb3fdf7361972dcc333d1b8ef10da56c3b352800f7ab33ff0b",
+          "text": "| **BR-TTV-01** | Aha moment + TTV ≤ 15 分 (FR-L1-44 連携) | Phase A→B 橋渡し | sample repo + migration tool + 教育資料 + CI template = whole product |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "file_sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35",
+      "line_pins": [
+        {
+          "line": 359,
+          "line_sha256": "5743afe9d0bd0e6f4d4d6ce6dd1ffe935dd8fefb449186e2077e5beab6af53f5",
+          "text": "| FR-L1-44 (onboarding) | 既存 repo へ harness baseline 確立 | PLAN-L4-NN-onboarding | cli(setup) |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "file_sha256": "da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a",
+      "line_pins": [
+        {
+          "line": 213,
+          "line_sha256": "1da3f764fff0cca720ab8ad8668ad7c772f904ab7f51c8cf40e890b318e019ce",
+          "text": "| FR-L1-37 / FR-L1-39 / FR-L1-41 / FR-L1-44 | model recommendation、task classification、drive detection、onboarding の module boundaries |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "file_sha256": "477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf",
+      "line_pins": [
+        {
+          "line": 80,
+          "line_sha256": "8dda3aabfde535d1ce5853293c84e468b798dbcf4cd457d550f174800107f513",
+          "text": "| FR-L1-44 | docs/design/harness/L6-function-design/setup-solo-team.md | `planSetup` と onboarding baseline contract は existing project 向けの harness state を確立する。 | U-FR-L1-44 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/setup-solo-team.md",
+      "file_sha256": "1775142f6a182be663d1c05b5fe3b9df66b9a6b11296eca9158f9717f2991b5b",
+      "line_pins": [
+        {
+          "line": 21,
+          "line_sha256": "13b2728676abe9e13cc558e048825e81be378e8f4aad3545b59eeb6f7d56684b",
+          "text": "# HELIX — L6 機能設計: helix setup solo/team (参加規模検出 + 提案/確認/記録 + GitHub 設定出し分け)"
+        },
+        {
+          "line": 23,
+          "line_sha256": "92ec3ac2bbf5945b5687f2cb6bc43a6389286e9588ce44d23aeb861fd1cae0da",
+          "text": "## §1 概要"
+        },
+        {
+          "line": 25,
+          "line_sha256": "8559533499a3e894caeec2368c5d78644fbd15bc7be3f3a6e92b5afbb9db3222",
+          "text": "`helix setup` を、**利用者の参加規模に応じて GitHub 設定を solo (Phase 0-A) / team (Phase 0-B) で出し分ける** runtime 機能として設計する。(1) repo の owner 種別・collaborator 数・既存 CODEOWNERS/branch-protection を gh 経由で**検出**し、(2) solo/team を理由つきで**提案** → 人間確認 → 確定 phase を `.helix/state/setup.json` に**記録**し、(3) phase 別の GitHub 設定 (workflow / ISSUE・PR テンプレ / commitlint / CODEOWNERS / branch-protection) を生成する。`helix status` の mode 検出と同じ「**検出して提案する**」思想を solo/team 軸に拡張する。"
+        },
+        {
+          "line": 31,
+          "line_sha256": "c4524fcff091900a64e3bb62487dfc7e994dde6d0ba0ee23b3d1896b426ff598",
+          "text": "## §2 機能設計 (L6 粒度)"
+        },
+        {
+          "line": 39,
+          "line_sha256": "631faced71e27c331756194887556a4ad7d2d4db7382f8ded45a9bc0cb7eca39",
+          "text": "| **確定** (`runSetup` orchestration) | フラグ > 対話確認 (推奨提示) > 安全フォールバック で phase 確定 → `.helix/state/setup.json` 記録 | 非対話 + フラグ無し → solo |"
+        },
+        {
+          "line": 62,
+          "line_sha256": "28aecf6152e04aff056206f3aec7d54abb726ae6515299cae2a15c82a0f72b2c",
+          "text": "interface SetupState {                              // .helix/state/setup.json (確定値 SSoT)"
+        },
+        {
+          "line": 97,
+          "line_sha256": "13d172f7200efa611c2f4a7fae4b23dc23d694e10bca1e67a5828d10d71ec5b3",
+          "text": "| `recordSetupState` | `(state: SetupState, deps: { fs: FsWriter }) => void` | — | `.helix/state/setup.json` を**上書き** (単一ファイル = 確定値 SSoT。再実行・phase 変更時は最新 state で上書きし append しない)。**`signals` は 4 フィールド (ownerType/collaborators/hasCodeowners/hasBranchProtection) のみへ strip** (それ以外を破棄 = 認証情報混入経路を遮断) |"
+        },
+        {
+          "line": 297,
+          "line_sha256": "8615fa73facc367ce0bf9e6a7f53866c010e3d28907eb1e5d1e9c5b38978fa06",
+          "text": "- 確定 phase: `.helix/state/setup.json` (gitignored runtime state、確定値の SSoT。毎回再推測しない安定化)。HELIX project setup の completion 境界は `.helix/state/project-setup.json` に分離し、setup ready と whole-program completion を後続コマンドで混同しない。"
+        },
+        {
+          "line": 329,
+          "line_sha256": "7f5d3b29486be1ca609748a477191d0495bbb809471fe5dd9b20f4b8f80fa49c",
+          "text": "| 確定の所在 | 実行時に毎回検出 | `.helix/state/setup.json` に**記録**して安定化 |"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md",
+      "file_sha256": "ce4e02cc0846ecca5031d7998bfc7b165b35c9d03b3d8c9b1c6024e70928c320",
+      "line_pins": [
+        {
+          "line": 42,
+          "line_sha256": "7c599a24bd8b06116fbc1df01f1cfc90525fbdf740c2ff0e9f16738672c04d08",
+          "text": "# PLAN-L7-66: 既存 repo onboarding fallback template と root README"
+        },
+        {
+          "line": 44,
+          "line_sha256": "e5572c8e40dee81e32ffa20785a4fa7f09aea112f507a22a427211601dc1c4d9",
+          "text": "## 目的"
+        },
+        {
+          "line": 48,
+          "line_sha256": "e2cce07570aad50d762ab6bc362e74c1a12e1c7c8e9022597af72bc1781a62e6",
+          "text": "## スコープ"
+        },
+        {
+          "line": 54,
+          "line_sha256": "c75d8094fbeca55d7fe3b534f2b0722ea67b84beb12e6d0f37240dd5c7a7a566",
+          "text": "## 検証"
+        },
+        {
+          "line": 58,
+          "line_sha256": "cc2e3195b20df8ca81cd608d2b3d9bb7d18e14c665fa21fe8fe10fc8705759ee",
+          "text": "## DoD"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-251-setup-idempotent-import-report.md",
+      "file_sha256": "243cad23019fae3cff52f93f5cea19751d05467799706cf5b3afe6a89229e30f",
+      "line_pins": [
+        {
+          "line": 3,
+          "line_sha256": "9d3ec3b1d1d489110ce5c48c2e6d1d8b0f4f6977643d178c43b8b9f9f0d840b4",
+          "text": "title: \"PLAN-L7-251: setup import report の idempotent rerun 分類\""
+        },
+        {
+          "line": 11,
+          "line_sha256": "ed46ba6bc6150b5dd2cbaaa506fba35ec29286afbf5e3b1c76bde23092ce7df1",
+          "text": "backprop_decision_reason: \"HELIX project setup の brownfield import report 内で、consumer-owned conflict と同一 generated artifact rerun を分類し直す限定修正。L1/L3 の要求意味は変えない。\""
+        },
+        {
+          "line": 18,
+          "line_sha256": "f25d66f841594a6a07d4437e2fcf420cb5ec5b55fff630273c8d911d9229d257",
+          "text": "    slot_label: \"TL - setup idempotent import report\""
+        },
+        {
+          "line": 43,
+          "line_sha256": "df4bde52264b87ab3f005578d30a4417b734154fcbe69dcd8c8450721efc2370",
+          "text": "    scope: \"実 consumer repo smoke で、fresh setup 後の再実行が brownfield conflict と誤判定される regression を検出した。consumer-owned non-mergeable path は review route のまま維持し、同一 generated artifact rerun は identicalManagedPaths として ready / skipped=[] / written=0 になることを unit と temp consumer smoke で確認した。\""
+        },
+        {
+          "line": 105,
+          "line_sha256": "d09ed3b0b83042a0840cb63c4ee2c1f2cfdf8322b40f49a97ef67bc8a4f01a36",
+          "text": "# PLAN-L7-251: setup import report の idempotent rerun 分類"
+        },
+        {
+          "line": 107,
+          "line_sha256": "e5572c8e40dee81e32ffa20785a4fa7f09aea112f507a22a427211601dc1c4d9",
+          "text": "## 目的"
+        },
+        {
+          "line": 110,
+          "line_sha256": "a6783fec2958b70921774464ddedb452d36a6cf25ec0300e5938f26f17d6d3a5",
+          "text": "生成済みの `.vscode/tasks.json` や `.helix/teams/default-hybrid.yaml` まで brownfield conflict として"
+        },
+        {
+          "line": 121,
+          "line_sha256": "e5d7ff84c1bae4c28383d2489f13daf5171e616102731e2f198619882e9788a9",
+          "text": "- `runHelixProjectSetup` は emit 前に同一 path を分類し、import report に渡す。"
+        },
+        {
+          "line": 139,
+          "line_sha256": "c7835dd453c94da132e7a512bee18d56b47ac6cfd9f5d22dc27cdd7751986656",
+          "text": "- consumer-owned `.vscode/tasks.json` を置いた brownfield conflict は従来どおり `review_import_report` になる。"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/setup/index.ts",
+      "file_sha256": "8dd12e217c44ebb4c64629e2c816702c036ed2267836718a6b84d3c8fed05b55",
+      "line_pins": [
+        {
+          "line": 711,
+          "line_sha256": "c92b261777b7c0013f438069427db582ce64ff4fa5deb55f49d8c0e8e23d0ef4",
+          "text": "export interface HelixProjectImportReport {"
+        },
+        {
+          "line": 834,
+          "line_sha256": "e70bf654b232ebbdb711b9a3de4b4cf814e82ca5884e1e030d3215d3b0b9a35c",
+          "text": "  stateBaselinePaths: [\".helix/memory\", \".helix/evidence\", \".helix/teams\"];"
+        },
+        {
+          "line": 1253,
+          "line_sha256": "71bfb7496bbeb4b79746196f0f03c7cc83f3e2682c9a309a24b7738951c37e49",
+          "text": "const PROJECT_DOCTOR_BASELINE: HelixProjectDoctorBaseline = {"
+        },
+        {
+          "line": 1267,
+          "line_sha256": "caa5b4d68145ee07edf2fe569fb65b07d63d1095792cf458d11c2cf237d81fcd",
+          "text": "  stateBaselinePaths: [\".helix/memory\", \".helix/evidence\", \".helix/teams\"],"
+        },
+        {
+          "line": 1377,
+          "line_sha256": "6f63062d0cf28181a7471caa0f18d5ab8b008e11080b58d8865bd6c0ab113b6c",
+          "text": "export function planSetup("
+        },
+        {
+          "line": 1408,
+          "line_sha256": "642b4197d5befc21408f86155be860abdc30fe334489218f58604688fe61419e",
+          "text": "  const base = planSetup(phase, opts);"
+        },
+        {
+          "line": 2054,
+          "line_sha256": "29c61115ba952c709b6c27b9bfe42d00af388389c7e3f4439b0678d3bde61de5",
+          "text": "  const baselinePaths = ["
+        },
+        {
+          "line": 2246,
+          "line_sha256": "89083034a60cbe71a216e3a4cda160d1e94fd35d86607cb13edaf605e0c2328c",
+          "text": "      ok: baselinePaths.every(hasPath),"
+        },
+        {
+          "line": 2249,
+          "line_sha256": "28a2f9f648286c0d20a376c4556fb431883c171a05e440193bded3ffb37c2add",
+          "text": "      evidence: baselinePaths.join(\", \"),"
+        },
+        {
+          "line": 2527,
+          "line_sha256": "6250f098fde0a7bced618bc95e44bda6a1f0639ef744bf7f0e104352ee36bde9",
+          "text": "          \"import report 解消後に `helix setup project --dry-run` を再実行する\","
+        },
+        {
+          "line": 2595,
+          "line_sha256": "4e14bd51db321ca16f89b5545b27cd0600fdd7a621fbfe6616eca73ff9a66112",
+          "text": "        \"returns the import report, VSCode tasks, local baseline paths, command availability, and PLAN-M-02 cutover blocker without writing files\","
+        },
+        {
+          "line": 2929,
+          "line_sha256": "427f565f438d6b1bc3de538a6493c7639e342264073932d9dae8d32c4cedc904",
+          "text": "  const plan = planSetup(phase, { teams: args.teams, dryRun: args.dryRun });"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "line_pins": [
+        {
+          "line": 32,
+          "line_sha256": "9b06132336e8e48706ab01bc044a722ad7e83e89cec12da7aadc870d12e12067",
+          "text": "| **NFR-16** | **onboarding 互換性** — 既存プロジェクトへの途中導入時、既存 docs / コード / state の不整合を block せず段階移行 | FR-L1-44 連動。既存資産を harness state に段階的に取り込み、初回 import でプロジェクトを止めない |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "line_pins": [
+        {
+          "line": 158,
+          "line_sha256": "1259544e566bb46fb0b10fd872ed4b8b46013406f07be54519ff3747480b0ad5",
+          "text": "| **onboarding bootstrap** | 既存プロジェクトを harness state に取り込む初回 import (FR-L1-44)。Reverse R0-R4 を前段 context として利用 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "file_sha256": "abf13d130476bf46450339bacd1517651a8a7ebf21d2c40be63c86b9e7aa1322",
+      "line_pins": [
+        {
+          "line": 136,
+          "line_sha256": "8754ab4bfe779833fd8ed2a282dfe8026b0f8ec6321d8c2973cb2b3544b1afde",
+          "text": "| FR-L1-44 | 途中導入 onboarding workflow (既存リポジトリへ HELIX を段階導入する際、baseline PLAN を自動生成し skip_sub_doc で欠損 sub-doc を機械強制回避しつつ段階整備する) | PO directed 2026-05-28 / retrofit-workflow | 既存 repo 構成・有無 sub-doc 一覧 | baseline PLAN セット・skip_sub_doc 設定・onboarding 進捗ダッシュボード | P1 |"
+        },
+        {
+          "line": 152,
+          "line_sha256": "b5d076470113c7124d27a47ae94d01219fe5688d32351c63bc89555ac03a3a0b",
+          "text": "| PO directed (2026-05-28) | FR-L1-37 / FR-L1-39 / FR-L1-40 / FR-L1-41 / FR-L1-42 / FR-L1-44 / NFR-16 / BR-21 | PO 判断 + Step 1 sub-doc 詳細化 session。HELIX-workflows に対応 doc なし、HELIX 固有追加 |"
+        },
+        {
+          "line": 185,
+          "line_sha256": "249a6cad4a41ad1d95cc0c5f7534047c72d4be20c0a05daa56f3fd9da5d056f9",
+          "text": "| **A-29** | **新規 FR-L1-44 (途中導入 onboarding workflow)** (P1。論点2 採用 = baseline 段階作成 + skip_sub_doc 機械強制) | functional-requirements.md §1 / 本 ledger §6 |"
+        },
+        {
+          "line": 187,
+          "line_sha256": "08771360e2ec963ad0214ed90abf0f4b4853b8738579b91bbc3c742fb4fc112b",
+          "text": "| **A-31** | **新規 NFR-16「onboarding 互換性」** (FR-L1-44 連動、P2。NFR 件数 14 件確定) | nfr.md §1 |"
+        },
+        {
+          "line": 188,
+          "line_sha256": "ec8ea1ede0b194c1eddc3124d250b55114d22ea97a78596ac064ce6350e5aa29",
+          "text": "| **A-32** | **drive 別 state 区画 (FR-L1-40) + AI provider 引継ぎ (FR-L1-42) technical 追記** (9 mode 統一合流原則段落 + onboarding bootstrap 行追加) | technical-requirements.md §4-§7 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6279F4C46313824541B1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+      "file_sha256": "166facc23aa9f44329ddefbb8bfff40bad45dd7541e01c2c403825b12c20fc96",
+      "line_pins": [
+        {
+          "line": 74,
+          "line_sha256": "144bdfc37e2ec5e76f760569501581d652d788588e5eccfda0656961361dc690",
+          "text": "| **OT-23** | FR-L1-44 (途中導入 onboarding workflow) | 既存リポジトリ (helix 未導入) に対して `helix onboarding` を実行し、baseline PLAN セットが生成され、欠損 sub-doc が skip_sub_doc で段階整備モードに設定されることを確認 | baseline PLAN が生成 / skip_sub_doc 設定が有効 / onboarding 進捗がダッシュボードで可視 |"
+        },
+        {
+          "line": 80,
+          "line_sha256": "5c96b849762f2d198bc2c21c4e9f75908065b845da6845968c7203c63f89dc42",
+          "text": "| **OT-29** | NFR-16 (onboarding 互換性) 段階導入 block 回避 | NFR-16 要件として、途中導入時に skip_sub_doc 設定が正しく機能し、未整備 sub-doc による gate fail-close が段階整備完了まで block 回避されることを確認 | skip_sub_doc 設定後に gate が段階整備モードで進行 / 完全整備後に通常 gate に切替 / block 回避ログが audit に記録 |"
+        },
+        {
+          "line": 129,
+          "line_sha256": "7c114a2db0e3e30ffef6426debbe19e4663fabb83f1234a8aa2e8629bc3f7b9d",
+          "text": "- FR-L1-44 (途中導入 onboarding workflow、新規 P1) → **OT-23** (baseline 作成シナリオ)。"
+        },
+        {
+          "line": 170,
+          "line_sha256": "466b055b1b360dca5c3a3cf3a906517a9e284b7168d227a52ba9b1efa5cf65bb",
+          "text": "- NFR-16 (onboarding 互換性、新規) → **OT-29** (段階導入 block 回避シナリオ確認)。**孤児 NFR = 0** (NFR-01〜17 計 15 件、全被覆)。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "line_pins": [
+        {
+          "line": 185,
+          "line_sha256": "df142c8325ad770e1e231e7f1a1e34f11f8e5196306343ba5b698b7d678b6019",
+          "text": "| **AT-NFR-16** | NFR-16 / AC-NFR-16 | onboarding skip_sub_doc 段階 → G1 段階通過 | vitest gate + onboarding test |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-1B92155F959D7905DD1E"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md",
+      "file_sha256": "740036c144d992c031ea7563b75356ade5cf7ac17b137b612c8110ea782f2398",
+      "line_pins": [
+        {
+          "line": 82,
+          "line_sha256": "1b8321827001570e9ab09659768210f6797a0aed06a0187762d7dc73f45d15af",
+          "text": "## FR-L1-44 onboarding note（onboarding 補足）"
+        },
+        {
+          "line": 84,
+          "line_sha256": "b0a5f3fa18a41d5922e74381ecdb1d7006e2d970fc8f770b603f8e192b065cd5",
+          "text": "既存 project を onboard する migration では、`helix setup` で `.helix/` を initialise し、"
+        },
+        {
+          "line": 85,
+          "line_sha256": "ffba9c6d6be4fa947c9e6c2866caf1ffe58a1c49b71916f1ecd835278f43c07e",
+          "text": "`helix status` で existing PLANs を baseline 化し、import を Phase 0 migration として扱う。"
+        },
+        {
+          "line": 86,
+          "line_sha256": "09603ea623c8ea88598240707421aac92c11ac77fe9c4d8d3245b390b67ca11a",
+          "text": "new work を始める前に、`harness.db` asset count が file-system count と一致することを検証する。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-BF64B4AE03DD092532C2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "line_pins": [
+        {
+          "line": 55,
+          "line_sha256": "17222607f0c9ea8f6f521f8e939e7a3c2a8bc4c2a5cf4706d4db85d6286c626b",
+          "text": "| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | 起草時の未定義評価は履歴であり、現在は要件v1.3 HR-FR-HYB-008／010と§4.6.1へ接続する。L2の利用要求として`helix setup project`による導入・更新を扱い、公開・tag・promotion・cutoverの承認を一般開発の自走へ転用しない |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "line_pins": [
+        {
+          "line": 34,
+          "line_sha256": "4dd34f69352d30ca1de072ee06b74079151be71ecc0e02a0843c382227ec0112",
+          "text": "| **NFR-16** | onboarding 互換性 (skip_sub_doc) | Lv2 | KPI D-09 ≥ 95% (handover 引継ぎ成功率、A-43 / A-44 ledger 整合) | `.helix/handover/` 引継ぎ成功 / 失敗ログ集計 | sprint 末 D-09 ≥ 95% |"
+        },
+        {
+          "line": 46,
+          "line_sha256": "968f5e56cc1673bbcd85c4a6ffe68b431bc08aeb6f6b54ab81ba445075b78748",
+          "text": "#### AC-NFR-16 (境界系)"
+        },
+        {
+          "line": 49,
+          "line_sha256": "d3a456f9fad0409c1874649c6248176e0ebd26bff6f474f3d796f038cd56cc95",
+          "text": "- **期待結果**: 未整備 sub-doc skip / 整備済 sub-doc のみ gate 評価 / G1 段階通過"
+        },
+        {
+          "line": 217,
+          "line_sha256": "8f9bfee6aabeb95fe88b540ccf2417eb57ec9a35f6f315e245ebb2eb92664ba0",
+          "text": "- **D-15 (SPACE Communication)** handover record 完全性 score を NFR-16 (onboarding 互換性) 拡張"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-DB669724249A14A665F0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "line_pins": [
+        {
+          "line": 261,
+          "line_sha256": "e359a30308b07ea2a414f612d1ab401cedb53437612ce768832e07281a1eb7dc",
+          "text": "| **(PdM marketing-innovation A-46)** **BR-TTV-01** Aha moment = 初回 doctor で drift 検出、TTV ≤ 15 分目標 (FR-L1-44 onboarding 連携) | Phase A→B 橋渡し | Wes Bush PLG、whole product = sample repo + migration tool + 教育資料 + CI template |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md",
+      "file_sha256": "1f8a42d15d2d93d5046dcfd4bf544b9614af2a1c7b27bc64ae3e1a86cf8e5bc6",
+      "line_pins": [
+        {
+          "line": 114,
+          "line_sha256": "b01c4225b740921b4df36abc5567b1d117e4d701f01e1cc18145a787a0f24edd",
+          "text": "| D-03 | onboarding 所要時間 ≤ 30 min | business §4 + NFR-16 | ✅ |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-F8249D4DEB6335597E5F"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md",
+      "file_sha256": "79b707ca7e57f1edb5eb553ad990f4a7a923a000f2d8afc28ce85bbbf724fae7",
+      "line_pins": [
+        {
+          "line": 97,
+          "line_sha256": "06dabb4509daba6a1f6096158c4909ba68a0fca3c6b1d450d81bd10b536c13cd",
+          "text": "| FR-L1-44 | 運用者ロール管理: PO/PM/TL/SE/PE の責務境界を runtime が validate する (BR-21 対応) | functional §1 / BR-21 | ✅ (PO 承認済 2026-05-28) |"
+        },
+        {
+          "line": 109,
+          "line_sha256": "edb8626ef182a6d50fc553f5379842e3950888661c52043573dee5ae0ce45dbe",
+          "text": "| FR-L1-20 拡張 | 運用者ロール表示を dashboard SCR-01 の表示要件に追加 (FR-L1-44 / BR-21 連動) | ✅ |"
+        },
+        {
+          "line": 123,
+          "line_sha256": "6153d3cfdd5a228802853346df8b1ee1e386b6251027134de209ba15985bfb93",
+          "text": "| シナリオ-8 | 運用者ロール変更: PO が PM → TL 委譲 → agent guard が validate (FR-L1-44 / BR-21) | functional §2 | ✅ (PO 承認済 2026-05-28) |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-4EDC25BCABF14A4BEEC2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md",
+      "file_sha256": "837ceee956ce4c686907f4acd091613fb8a1da28d91226b62ab4be25e9284458",
+      "line_pins": [
+        {
+          "line": 107,
+          "line_sha256": "a62647a0eb18149c4378ccce35591cd502d2c1772125ed4326cf72a4e917937a",
+          "text": "| U-技術-4e | 運用者ロール技術担保: agent guard subagent 許可リスト + bypass 条件 (HELIX_ALLOW_RAW_AGENT=1) を technical §1 に技術要求として明示 | technical §1 / BR-21 | ✅ (PO 承認済 2026-05-28。FR-L1-44 連動) |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-590EA4B9894E38D9D11E"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "line_pins": [
+        {
+          "line": 119,
+          "line_sha256": "13f37eb934321a2a9b99e22343c0d6a1605450d294896a825de4b2a227833f50",
+          "text": "| (対応 source reference doc なし) | FR-L1-44 (途中導入 onboarding workflow) は source reference側に対応 doc なし、HELIX 独自設計 (PO directed 2026-05-28) | FR-L1-44 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/setup.test.ts",
+      "file_sha256": "648b43dc9c5b2f899fc6597e181623da3bc5571a2c58b1eacfd213fd32089c99",
+      "line_pins": [
+        {
+          "line": 1925,
+          "line_sha256": "7cb35cd969926b7b8c1b880bec09ae9b5da5f45925fa54e5e7ba09bf3f4c2b64",
+          "text": "  it(\"U-SETUP-016: brownfield HELIX project setup emits an import report instead of hiding skipped conflicts\", () => {"
+        },
+        {
+          "line": 1958,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 1964,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 1986,
+          "line_sha256": "8aec48e5da29fefef24267aaba9afd08b61604f88ec05bc7417dd7cdca66f5e3",
+          "text": "        expect.stringContaining(\"importReport.skippedExistingPaths\"),"
+        },
+        {
+          "line": 1987,
+          "line_sha256": "b3d93e825fdc561cd9ad1214bdabfa1d5ce5cd8de06e61b78e4fe671dba58f52",
+          "text": "        \"import report 解消後に `helix setup project --dry-run` を再実行する\","
+        }
+      ],
+      "archive_kind": "test_source_read_only_not_executed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/cli-surface.test.ts",
+      "file_sha256": "bd0f5c239cb77b9ff71fe5e50bc8e5794a9505c87322b090145c7ed902241aaa",
+      "line_pins": [
+        {
+          "line": 2729,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 2736,
+          "line_sha256": "348a7ef33733302bac1e08892211a73bf6ca463dcea75c0dfa69ffdf96b07b5c",
+          "text": "          marker: \"skip_sub_doc\","
+        },
+        {
+          "line": 2862,
+          "line_sha256": "7c9eab3db7b68e6e5d6ec18c334cc9b3636ec3df33c26a57c1a8550a24302bb2",
+          "text": "    expect(text.stdout).toContain(\"skipSubDocs=\");"
+        },
+        {
+          "line": 2864,
+          "line_sha256": "076d5a065feffd725c1a7d74a5af4b5149fdff0c93f7e0f2e41d1db6b1ee4119",
+          "text": "      \"skip-sub-doc: docs/plans marker=skip_sub_doc route=consumer_doctor_profile reason=dogfood_sub_doc_not_required_for_consumer_setup gate=consumer_doctor\","
+        },
+        {
+          "line": 2867,
+          "line_sha256": "739269b9cef458b64ad11f2cf54eaacb04d11d256540e073f38c737628fc75a5",
+          "text": "      \"skip-sub-doc: .codex/hooks.json marker=skip_sub_doc route=review_import_report reason=consumer_owned_path_preserved_for_staged_migration gate=import_report_review\","
+        }
+      ],
+      "archive_kind": "test_source_read_only_not_executed"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "line_pins": [
+        {
+          "line": 240,
+          "line_sha256": "231c62b933bd28f53fc1c71fe2b8c4a357449a3d74e725e7aaa5f3f9b5e717ba",
+          "text": "| **GD-01** | ガイド/ドキュメント統合ビュー | 左サイドナビ切替による静的知識ベース提供 | UX-03 / FR-L1-29 / FR-L1-44 |"
+        },
+        {
+          "line": 246,
+          "line_sha256": "15aaa3084407b42acc845e2c7f38eca7967974e8c344a8bc875cb23cd7cce45d",
+          "text": "| **対応 BR/UX/FR-L1** | BR-08 / UX-03 / FR-L1-19 / FR-L1-27 / FR-L1-32 / FR-L1-44 |"
+        },
+        {
+          "line": 254,
+          "line_sha256": "7ba4347c09eacefd2de47a3198812f98ad05a9d1ae838e9497e20e41bbe9b23f",
+          "text": "| **Onboarding** | HELIX 使い方。初めての PLAN 起票 / 途中導入 FR-L1-44 連動 / 環境セットアップ手順 |"
+        },
+        {
+          "line": 477,
+          "line_sha256": "1896d491d781d5b329dd59902f5fe3c3ee6d66cab7fbfc801acd60f0717360b6",
+          "text": "| **FR-L1-44** (途中導入 onboarding) | GD-01 (Onboarding カテゴリ) | 使い方 doc 参照 |"
+        },
+        {
+          "line": 500,
+          "line_sha256": "e7be635f10ddb484480c67b437dee6b7d20290b95d5eaf9e92849ad776fa93cf",
+          "text": "| **GD-01** | BR-08 / UX-03 | FR-L1-19 / FR-L1-27 / FR-L1-32 / FR-L1-44 |"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md",
+      "file_sha256": "437dabe28a1c0a3a8d3ec24ccd4b7b8941cc286dc3650c2e97be3dbd1d34a2c0",
+      "line_pins": [
+        {
+          "line": 87,
+          "line_sha256": "9113e43fa7a8648f69dba327cf174a1fc826eafb7f3cb7c81c3cacb9d67eb40b",
+          "text": "- 上流 baton (functional): `docs/design/harness/L1-requirements/functional-requirements.md` (FR-L1-20 観測層 / FR-L1-29 画面設計 WF / FR-L1-30 フロントデザイン UX WF / FR-L1-33 資産棚卸 / FR-L1-34 穴管理 / FR-L1-35 整備状況可視化 / FR-L1-44 onboarding)"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-A1FC654415FA0AC86D70"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md",
+      "file_sha256": "f3c2e42c3e4cffbf32025bb696d5505ce48444f391b903e5a72b8a4b1fe48cc9",
+      "line_pins": [
+        {
+          "line": 99,
+          "line_sha256": "f2e43f166fa38eda32e910fda2c18f7ac586d8973dee35d04a3cc3d390bf9f94",
+          "text": "- 進捗: ✅ **core reframe 済**: business §1.1 WHY・§1.2 WHAT・BR-02（複数人→AI agent roster 責務境界、worker≠verifier）／nfr NFR-01（Windows 第一級→本人環境第一級 narrow）・NFR-07 成功条件②（複数人 team→solo+AI roster）を solo 化（doctor green）。**P0–P9 → net-new 要件 confirmed**: `docs/design/helix/L1-requirements/pillar-requirements.md`（HBR-P0/P1/P2/P3/P4/P6/P7/P8/P9 + HNFR-P3/P5/P8/AC、HELIX 名前空間で harness 件数非侵襲、P2/P7 は partial と trace）。**Codex runtime parity overlay 追加**: Codex hook/tool surface、codex-only fallback、hosted API hook 非強制 surface、共有 memory/provider handover を HBR-P2/P7/HNFR-AC の acceptance に明示。**Distribution/full setup overlay 追加**: 既存 harness L1 の GitHub-pull/tag-pin/FR-L1-44/setup 方針に接地しつつ、HELIX final end-state として tag/release pin から `helix setup`（rename 後 `helix setup` 相当）1 コマンドで hooks・Claude/Codex adapters・state/memory/handover・GitHub rules/checks baseline を bootstrap する要求を HBR-P6/P9 に明示。**functional/screen/technical の team 箇所 inventory→solo 差分修正済**（inventory-first: 5+3+5 hit を列挙 → 真の矛盾のみ修正: technical 開発者規模「2-5名+AIスロット3」→「1名(本人/PO)+AI roster, worker≠verifier」・ADR-005 team server→本人 server 読み替え／screen 案件横断 def「チーム全 project」→「本人の全 project」・BR-02 trace「複数人 gate」→「AI roster gate」・§6.1 ペルソナ solo 注記／functional multi-tenant carry を solo 対象外明示・「チーム共有 audit」→「本人/AI roster 共有」。§1.3 大域コンベンションで被覆済の単なる用語は非改変。doctor green、残存 team hit = solo 読み替え注記のみ）。**外部研究 delta 済**: pmo-tech-docs 委譲（2025–2026 ソース照合、recency 厳守）で P6（Rulesets gated-push + Merge Queue）/ P8（MicroVM sandbox + short-lived token + OWASP LLM06 escalation FR 化）/ HNFR-P3（external-truth grounding AC + source attribution）/ HNFR-P5（3 層 injection budget + anchored iterative handover + artifact-trail 専用記録）の delta を `pillar-requirements.md §2.5` に記録（verify-don't-blindly-adopt: 概念のみ採用候補、ツール/数値/出典は L3 一次検証、ADR-001 厳守）。"
+        }
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-F8B2A3885ED6B5886C45"
+    }
+  ],
+  "fixed_and_near_pairs": [
+    {
+      "id": "HARNESS-L2-019",
+      "relation": "fixed_comparison",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l2_lines": [
+        {
+          "line": 419,
+          "line_sha256": "b71e05b82d9ba22df34f471b04bdf935f5143dabd7e24f740cb869fb6570f843",
+          "text": "### HARNESS-L2-019 入口：フルリバース（単体）"
+        },
+        {
+          "line": 420,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "line": 421,
+          "line_sha256": "98bf4efe0517a9ed47b2ef6887f118d0bd955a551e9b62957655f8b1d921fdb9",
+          "text": "- **受け取るもの**：持ち込まれた既存の要件、コード、PoC。"
+        },
+        {
+          "line": 422,
+          "line_sha256": "6786b088877ed2c6bd0261dbf2412f8a2c7dd72fd1444c3e8dbb350d37db1e36",
+          "text": "- **提供するもの**：HELIXの形（要求・設計・検証の対とtrace）へ変換した成果と、変換できなかった部分・由来の不明な部分の一覧。"
+        },
+        {
+          "line": 423,
+          "line_sha256": "5907e9093e0ab5387cd572d53e40db8eecfdd07aff8f79d3524044ab9b10590b",
+          "text": "- **保証すること**：どのリリース単位からでも入れる。由来が不明、旧資産、設計traceの欠落のときの復旧の手段として全体のReverseを使い、変換の結果を承認済みの要求・設計にしない。変換できない部分をunknownとして残し、推定で埋めない。"
+        },
+        {
+          "line": 424,
+          "line_sha256": "6684e8e83047a339caee119ec931b01f3eb5f59368fe7b2c4f5e4904a5f289f9",
+          "text": "- **単独で成り立つための依存**：コアを使う。入った先のリリース単位を必須にしない。"
+        },
+        {
+          "line": 425,
+          "line_sha256": "f1bd172a25031ec9f527c8c81b8936dc83fd32f0cf5d8b87d33a46057950d9d0",
+          "text": "- 束ねる既存の条件：Conceptの「入口：フルリバース」、HARNESS-L2-003／004（Scoped Reverseと全体のReverse）。"
+        },
+        {
+          "line": 426,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        }
+      ],
+      "l2_section_sha256": "0f50a16bcb31791e5d27f784a0d97f8142f41559d957b12713e19f1ab80d7609",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "l11_lines": [
+        {
+          "line": 214,
+          "line_sha256": "5ea5e138c43ec73f080c8e4cc7e0032e01e2cdd8aff94ffe3f9288378419e376",
+          "text": "| HARNESS-L2-019 | 既存の要件・コード・PoCを持ち込み、どのリリース単位からでも入れ、変換の結果と、変換できなかった部分・由来の不明な部分の一覧が出る | 変換の結果を承認済みの要求・設計とする／変換できない部分を推定で埋める／入る先の単位を限る |"
+        }
+      ],
+      "l11_section_sha256": "272a6649b26e16d38a8679a36832e3aa621a46373b6beb73c9847969d5a1af89",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-019-001",
+        "file": "docs/governance/management-provisional-requirement-register.jsonl",
+        "row_sha256": "a5b71ac87f85f460bb12b379b5f1c70efe3ae56206ec9e3df1bc4657878aed70",
+        "management_state": "registered_proposal",
+        "authority_effect": "none",
+        "source_atom_count": 0,
+        "carried_atom_refs": [],
+        "unaccounted_atom_refs": [],
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    },
+    {
+      "id": "HARNESS-L2-003",
+      "relation": "near_pair",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l2_lines": [
+        {
+          "line": 54,
+          "line_sha256": "693deb038a91ee9ba358aecab588d889a9fa40ff67c5d697f880ee76ff18b3d0",
+          "text": "| HARNESS-L2-003 | 工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める | HBR-P0／P3、HNFR-P3、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md) | 必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない。成果物の状態を、前の状態の成立から推定しない。Releaseの条件を最初から持ち、終わりで初めて探さない |"
+        }
+      ],
+      "l2_section_sha256": "053434e10c236347f022cf389c5988c88bcc4901d3ee6f000b4d6209ca9c4c5e",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "l11_lines": [
+        {
+          "line": 23,
+          "line_sha256": "1ced8f2b5886a2c154bb809f169b8a01f27d9af38abb1697ac0cd96325dba9c5",
+          "text": "| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない。Vの谷より右側で、実物を対の設計と照合し、意味を保てる変更だけをRefactorし、意味が変わるものを対応する左の層へBackflowする。成果物の状態を前の状態から推定せず、Release Portの条件を開発の開始時から満たしていく |"
+        }
+      ],
+      "l11_section_sha256": "2a70492bcb59a69a9cdfbfb42e94357e6d0643197de8ca8857cac9307370d60c"
+    },
+    {
+      "id": "HARNESS-L2-004",
+      "relation": "near_pair",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l2_lines": [
+        {
+          "line": 55,
+          "line_sha256": "7b09279d1e75c221cdc85f551026a6110496c42770c4721ad42e74acdcdd6006",
+          "text": "| HARNESS-L2-004 | 要求から設計・テストへの対応と、変更時の再検証範囲を導出できる | HBR-P3／P9、2026-09-24 PO判断 | 上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない |"
+        }
+      ],
+      "l2_section_sha256": "a0bdbfc0c42286cb33eb6268d22c7a79f223c8e17478008b8e718df45e482108",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "l11_lines": [
+        {
+          "line": 24,
+          "line_sha256": "2d548b5f31549a87687144145601848ec08fdd46311b50c3a05145d234f6609a",
+          "text": "| HARNESS-L2-004 | 要求変更から影響する設計・テストと再検証の範囲が導出され、変更した条件の検証漏れを識別できる |"
+        }
+      ],
+      "l11_section_sha256": "89bc08f991cf39168eb745713fe8623f172f934975935b19f939211833199632"
+    },
+    {
+      "id": "HELIXOS-L2-006",
+      "relation": "near_pair",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "l2_lines": [
+        {
+          "line": 59,
+          "line_sha256": "f60359c5602849f71c08aedd59dadcb4e02a7613e59399d55c73f5382db7f1ac",
+          "text": "| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |"
+        }
+      ],
+      "l2_section_sha256": "2e9bbe7c052fffc692c517ef1902322a871f6f4b56095ee931b98b5d4d50f4d6",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "l11_lines": [
+        {
+          "line": 26,
+          "line_sha256": "0a64d5cc87650ae0df74a58984e01b6299e6e04993b2896bf3485f0b0ce57183",
+          "text": "| HELIXOS-L2-006 | サービス①〜⑦の単位で、リリースカンバン上の状態を見てfresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失、別artifactへの切替、選んでいないサービスの同時導入を拒否する |"
+        }
+      ],
+      "l11_section_sha256": "db70ad494b9652c53390be5cb8101fad91bdb3c5edba97c82663a2abb1137794"
+    },
+    {
+      "id": "HARNESS-L2-020",
+      "relation": "near_pair",
+      "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "l2_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l2_lines": [
+        {
+          "line": 427,
+          "line_sha256": "a91c1d8bef1519cf98f1f575f3528494132080509ab667bc53e85d8f95bd05a7",
+          "text": "### HARNESS-L2-020 リリース単位の受渡し（接続）"
+        },
+        {
+          "line": 428,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "line": 429,
+          "line_sha256": "3d11841a82838964471b30eef9c3de1efef71439be62455464c4c80f0005ff24",
+          "text": "利用者は、開発方式の枠にリリース単位を並べたとき、隣り合う単位の受渡しを接続要求として確かめられる。"
+        },
+        {
+          "line": 430,
+          "line_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "line": 431,
+          "line_sha256": "21b41afa7525457f5ab09418316a89e792dc48876314515d202d032ebbcf5a3f",
+          "text": "- **入力と出力**：前の単位の出力の契約と、次の単位の入力の契約を、契約の版とともに照合する。版が合わない受渡しを黙って読み替えない。"
+        },
+        {
+          "line": 432,
+          "line_sha256": "8c16a092556046e38439c00ede2e5f1577367b1c11baeb871359a207666c8205",
+          "text": "- **失敗時の戻し先**：受渡しで意味の差が見つかれば、下流で書き換えずにBackflowで意味が変わる最上流の層へ戻す（HARNESS-L2-003／004の戻し先の規則）。"
+        },
+        {
+          "line": 433,
+          "line_sha256": "bbf496b306c6cba0d6dbeef769b4e90721aed3daccb2efd676a86854b3700917",
+          "text": "- **未完の義務の引継ぎ**：省いた検査、未解決の事項、unknown、人の判断待ちを次の単位へ引き継ぎ、合流先で回収する。引き継いだことを完了にしない。"
+        }
+      ],
+      "l2_section_sha256": "f3b3600beef52f18a4bc6ce4a23a9b4a62b39a5cf6f9b0bd9dc42edd85388e78",
+      "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "l11_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "l11_lines": [
+        {
+          "line": 215,
+          "line_sha256": "3414e02e47295870c5f98bc76e4e87bcad400a0062fee2ddf240084c4e063489",
+          "text": "| HARNESS-L2-020 | 枠に並べた隣り合う単位で、出力と入力の契約を版とともに照合し、意味の差をBackflowで最上流の層へ戻し、省いた検査・未解決・unknown・人の判断待ちが次の単位へ引き継がれて合流先で回収される。前の単位を使わず外部の成果を持ち込んでも同じ照合を通る | 版の合わない受渡しを読み替える／④のProvisionalを⑥へ直接渡す／下流で上流の意味を書き換える／引き継いだ未完の義務を完了にする／単体の合格だけで接続の合格とする |"
+        }
+      ],
+      "l11_section_sha256": "4f46adcdb07a0f5a2cb2c0ac54e39a6a6856b9e908570e3826dc4ddaa9204a3d",
+      "registration": {
+        "registration_id": "MPR-RC-HARNESS-L2-020-001",
+        "file": "docs/governance/management-provisional-requirement-register.jsonl",
+        "row_sha256": "39aa9e03f29899d6e6eac4a0bac563ef250583440b7548aa09139e2146b33327",
+        "management_state": "registered_proposal",
+        "authority_effect": "none",
+        "source_atom_count": 0,
+        "carried_atom_refs": [],
+        "unaccounted_atom_refs": [],
+        "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    }
+  ],
+  "condition_comparison": [
+    {
+      "legacy_condition": "既存コード/docs/PLAN資産一覧を入力し、途中導入の対象資産を把握する",
+      "source_atom": "FR-L1-44 source line 75",
+      "fixed_pair": "HARNESS-L2-019",
+      "finding": "部分対応。L2-019は既存要件・コード・PoCの持込みを入力として、HELIXの要求・設計・検証の対とtraceへ変換する入口を置く。既存コード等の一覧を作る条件は近いが、docs/PLANを含む資産inventoryの完全性や列挙schemaは固定本文にない。L2-003/004は工程条件と変更trace、L2-020は単位間契約照合であり資産inventoryを定義しない。",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "legacy_condition": "`.helix/`未初期化状態から初期baselineを作る",
+      "source_atom": "FR-L1-44 source line 75",
+      "fixed_pair": "HARNESS-L2-019",
+      "finding": "差分。L2-019はどのrelease unitからでも入る入口を持つが、旧`.helix/`の初期化、state schema、初期値、非破壊作成条件を定義しない。OS-L2-006はfresh/既存repoへのサービス提供・更新・復旧を担うが、HARNESS state baselineとは同一でない。旧L6 setup設計の`.helix/state/setup.json`やGitHub設定分岐を新世代要件へ移さない。",
+      "status": "not_covered"
+    },
+    {
+      "legacy_condition": "既存資産からstateへimportし、そのreportを出す",
+      "source_atom": "FR-L1-44 source line 75",
+      "fixed_pair": "HARNESS-L2-019",
+      "finding": "部分対応。既存物をHELIXの要求・設計・検証traceへ変換し、変換不能・由来不明をunknownで返すことは保持される。特定 state store へのimport transaction、import report schema、資産単位の分類・衝突・重複・再実行の受入条件はHARNESS-L2-019/L11-019にない。HARNESS-L2-020の受渡しもreportの代替ではない。",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "legacy_condition": "onboarding完了gateの証跡",
+      "source_atom": "FR-L1-44 source line 75",
+      "fixed_pair": "HARNESS-L2-019",
+      "finding": "差分。L2-019はReverse変換の結果を承認済み要求・設計とせず、unknownを維持する。onboardingの完了gate、必要証跡、未解決資産時の完了不可条件は規定しない。HARNESS-L2-003の工程開始・凍結・差戻し・再開・完了とL11の未合意・未検証fail conditionsは一般工程条件として隣接するが、途中導入の完了判定へ具体化されていない。",
+      "status": "not_covered"
+    },
+    {
+      "legacy_condition": "FR-L1-14前段context、FR-L1-07初回import引継ぎ、FR-L1-26段階移行との組合せ",
+      "source_atom": "FR-L1-44 source line 75; consumers at legacy L3 lines 223, 408, 615",
+      "fixed_pair": "HARNESS-L2-019; near HARNESS-L2-003/004, HELIXOS-L2-006, HARNESS-L2-020",
+      "finding": "L3 consumerはReverseとRetrofitを別workflowとして展開し、L3 FR-14はonboarding contextをFR44の前段と呼ぶ。HARNESS-L2-019はReverse入口とunknown保持を明示し、003/004は工程・影響trace、OS-006はservice provision/update/restore、020はrelease単位受渡しを担う。分散した関連責務はあるが、FR44の資産一覧→baseline→state import report→onboarding gateの結合sequenceは固定pair一式から再構成できない。",
+      "status": "open_partial_correspondence"
+    }
+  ],
+  "later_adopted_pair_proximity_screen": {
+    "decisions": [
+      {
+        "decision_record_id": "HDEC-REQUIREMENTS-57-2026-09-29",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "decision_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "adopted_pair_count": 53,
+        "pairs": [
+          {
+            "identity": "HARNESS-L2-034",
+            "registration_id": "MPR-RC-HARNESS-L2-034-003",
+            "decision_row_line": 39,
+            "decision_row_sha256": "c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-035",
+            "registration_id": "MPR-RC-HARNESS-L2-035-002",
+            "decision_row_line": 40,
+            "decision_row_sha256": "db95fb03a091cd2d74a7bef953d37aacc6308de5363e157e760a07d1715c2e77",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-036",
+            "registration_id": "MPR-RC-HARNESS-L2-036-002",
+            "decision_row_line": 41,
+            "decision_row_sha256": "6d63fbaafbc3770d25a4274943cd0771009ed6567da1ed7f75eca1cf78271ac1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-037",
+            "registration_id": "MPR-RC-HARNESS-L2-037-002",
+            "decision_row_line": 42,
+            "decision_row_sha256": "8f3f0b6338f4c39ad1c380cff32fb888b1e6deb98b57e8fc421bd9d74c35b460",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-038",
+            "registration_id": "MPR-RC-HARNESS-L2-038-001",
+            "decision_row_line": 43,
+            "decision_row_sha256": "a5b640594b664d2a210ccbad1c145fa3890b30cab55b436ef675117d3a8b69db",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-039",
+            "registration_id": "MPR-RC-HARNESS-L2-039-003",
+            "decision_row_line": 44,
+            "decision_row_sha256": "36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-040",
+            "registration_id": "MPR-RC-HARNESS-L2-040-002",
+            "decision_row_line": 45,
+            "decision_row_sha256": "39892649f4052cc7dfc5b0a8ec8c78d484f0e2b0fee19a1206d7a64dc12d86b8",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-041",
+            "registration_id": "MPR-RC-HARNESS-L2-041-002",
+            "decision_row_line": 46,
+            "decision_row_sha256": "fa7480f5d52ce8d81564e5017fa178b4bf8c64b63968bb1e671a51baa3cdcb3d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-042",
+            "registration_id": "MPR-RC-HARNESS-L2-042-001",
+            "decision_row_line": 47,
+            "decision_row_sha256": "e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-043",
+            "registration_id": "MPR-RC-HARNESS-L2-043-002",
+            "decision_row_line": 48,
+            "decision_row_sha256": "18f0bfda60bb841dead7b7d2db20bfe2ce439d5a19e5e9050fe24bef0487406a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-044",
+            "registration_id": "MPR-RC-HARNESS-L2-044-002",
+            "decision_row_line": 49,
+            "decision_row_sha256": "cdee79d9f171d52bbfca96f5ba36439265fc1146006fcf8bf1c7615d958f2a2a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-046",
+            "registration_id": "MPR-RC-HARNESS-L2-046-001",
+            "decision_row_line": 51,
+            "decision_row_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-047",
+            "registration_id": "MPR-RC-HARNESS-L2-047-001",
+            "decision_row_line": 52,
+            "decision_row_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-031",
+            "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+            "decision_row_line": 54,
+            "decision_row_sha256": "534f6f3a0179d8c4b8d6fe2f301c55bd9f8468c341c1fb0ab38410cda2b35b9d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-032",
+            "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+            "decision_row_line": 55,
+            "decision_row_sha256": "878ad5a4eda88fbac3f6341ddbe58a613d386be06d668b12d6a90be4dc4b67c1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-033",
+            "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+            "decision_row_line": 56,
+            "decision_row_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-034",
+            "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+            "decision_row_line": 57,
+            "decision_row_sha256": "370bbd2d59d583ba6f3d17bb958508feffcb33887a15adc1cc13ca3f1f5268c7",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-035",
+            "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+            "decision_row_line": 58,
+            "decision_row_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-036",
+            "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+            "decision_row_line": 59,
+            "decision_row_sha256": "722b92aad6fe789587bf8d3b41cb28f9a2283cc1d422227773cd73a507162f2b",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-037",
+            "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+            "decision_row_line": 60,
+            "decision_row_sha256": "c85ed2e89aa6fd1172a2684de1c7c19285d0a6666e179e34a88bae9bfb110080",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "registration_id": "MPR-RC-HELIXOS-L2-038-001",
+            "decision_row_line": 61,
+            "decision_row_sha256": "9c4b9a4a075bc5ceeeaae222ef3aa401a1e2336d0932a7cfc923d9b12644a23b",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-040",
+            "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+            "decision_row_line": 63,
+            "decision_row_sha256": "863b15ab4b8102d7574efeffaa16ce6ef8a11958221bf36f62caeea848924fa4",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-041",
+            "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+            "decision_row_line": 64,
+            "decision_row_sha256": "88fcaa59d93c43d56af83aba7899c745a9adbab0e3448be8afe7b6fb2fecc999",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-042",
+            "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+            "decision_row_line": 65,
+            "decision_row_sha256": "80c4cb876936846e7a76da80da77b59fa80ac014a98d1e8f7924169bbf6185aa",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-043",
+            "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+            "decision_row_line": 66,
+            "decision_row_sha256": "addb08625038fa2124e6f3a158ad0d15047f82004b18e454ba2ca3a537c804ef",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-044",
+            "registration_id": "MPR-RC-HELIXOS-L2-044-001",
+            "decision_row_line": 67,
+            "decision_row_sha256": "6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-046",
+            "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+            "decision_row_line": 69,
+            "decision_row_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-047",
+            "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+            "decision_row_line": 70,
+            "decision_row_sha256": "530e2c7271f986be9027cb88170c7b41d5e6ab13e9c849af8f06da0f82131c55",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-048",
+            "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+            "decision_row_line": 71,
+            "decision_row_sha256": "13a002af8bab53747a824d73c3d5045face24f39dbccb4703ffd0cb301dc3890",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-049",
+            "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+            "decision_row_line": 72,
+            "decision_row_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-050",
+            "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+            "decision_row_line": 73,
+            "decision_row_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-051",
+            "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+            "decision_row_line": 74,
+            "decision_row_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-052",
+            "registration_id": "MPR-RC-HELIXOS-L2-052-001",
+            "decision_row_line": 75,
+            "decision_row_sha256": "32d23b8648dece8231c8291f2b4f16f992114756091fa560cddec413a1aef06c",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-061",
+            "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+            "decision_row_line": 76,
+            "decision_row_sha256": "acaa9114e8009108027c9b9ea43a1fe54a6c31adff1d5f9f31830c0be3bd6b42",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-062",
+            "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+            "decision_row_line": 77,
+            "decision_row_sha256": "36749f28c047b28caf0167d7e2a51498c4f8f2dbca4e45687bee59250b7dec1b",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-063",
+            "registration_id": "MPR-RC-HELIXLABO-L2-063-001",
+            "decision_row_line": 78,
+            "decision_row_sha256": "5196e60a105560e0797c9638b6b1d2f1dc83f457f94e9e1e38a1ddc3b0a9ec25",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-064",
+            "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+            "decision_row_line": 79,
+            "decision_row_sha256": "2b967f2151eabd4f2cf80d4689fc9f33fcf84ad9a879bf1cbac8d4eb2a97051a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-065",
+            "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+            "decision_row_line": 80,
+            "decision_row_sha256": "418faea57e0785c870054c9af72ccf6eed92bc08d8abdbd7f9c1ec5eb8204194",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-066",
+            "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+            "decision_row_line": 81,
+            "decision_row_sha256": "1c0b1f7d0869e91effb85cdecfa0eb361e6fda0ae06c920ea125a1110af63fc4",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-067",
+            "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+            "decision_row_line": 82,
+            "decision_row_sha256": "7c29e568fb190cbfb119bb1c1e685b0fb99db9fea5942440e4fb1b70a2e6312c",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-068",
+            "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+            "decision_row_line": 83,
+            "decision_row_sha256": "48c66f92ff0760af5b7fe216b4f903ebe0b71c96fef5effc8eb3ffca2abc117a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-069",
+            "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+            "decision_row_line": 84,
+            "decision_row_sha256": "2996d4b4a8ce9736503d164c18cfa750b8eef445dbc977979ac0537960c3c99d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-072",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+            "decision_row_line": 85,
+            "decision_row_sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-073",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+            "decision_row_line": 86,
+            "decision_row_sha256": "fc306f82be009d9ed41bba3801c45be1dcc304f6527ec95e852e0f849dce5455",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXINTELLIGENCE-L2-074",
+            "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
+            "decision_row_line": 87,
+            "decision_row_sha256": "0cdefdc0208005167b66d05ab66e2ad437aaef58a46f629d3ec9173e72fba381",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-029",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
+            "decision_row_line": 88,
+            "decision_row_sha256": "01007c723712719e494a605d82f5ef7af56dc74e05f49b2c6e5c7ad718a639b1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-030",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-030-001",
+            "decision_row_line": 89,
+            "decision_row_sha256": "3ee3598e28e1bd3873deef2185d3d4cb8d0dd2eac4b704fa8f4456dc85c8e519",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-031",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001",
+            "decision_row_line": 90,
+            "decision_row_sha256": "dccdce5340add287a23ef7df8576c1dd49e7d65e219798dc87022c9935c59a43",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-032",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+            "decision_row_line": 91,
+            "decision_row_sha256": "d668008ef2de562a11d0d1a594db7fdb3eadbcb84fd65aa7568c825e80241092",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-033",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-033-002",
+            "decision_row_line": 92,
+            "decision_row_sha256": "c0adc957901718d31960f3696cbf23ecc92df4a130aae379c96d8065145abf2c",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXSECURITY-L2-034",
+            "registration_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+            "decision_row_line": 93,
+            "decision_row_sha256": "ec02930f3e3c7d0108f9e6a81c4e5376b4ed6259ba9396cc3aa2fc0732bca489",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-008",
+            "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+            "decision_row_line": 94,
+            "decision_row_sha256": "0f5350230dd35d037de1a8b8f7366867f4677a5e8ee37d8856c3919a73b3f366",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXCONNECT-L2-009",
+            "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+            "decision_row_line": 95,
+            "decision_row_sha256": "d96c400c50e5a4520884a60f81efa742de87bb1adaa1520bf4d00f7886b0464b",
+            "fr44_proximity": "not_near"
+          }
+        ]
+      },
+      {
+        "decision_record_id": "HDEC-REQUIREMENTS-11-2026-09-29",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "decision_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "adopted_pair_count": 10,
+        "pairs": [
+          {
+            "identity": "HARNESS-L2-041",
+            "registration_id": "MPR-RC-HARNESS-L2-041-003",
+            "decision_row_line": 27,
+            "decision_row_sha256": "78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-048",
+            "registration_id": "MPR-RC-HARNESS-L2-048-001",
+            "decision_row_line": 28,
+            "decision_row_sha256": "9cbd95969aadc8f6c302d3ca6ae4f4b3c2271c1cef907e23bcfa8a8423adf280",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXBRAIN-L2-031",
+            "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+            "decision_row_line": 29,
+            "decision_row_sha256": "ecd9b0d8c2919b11ff0eaa02cf8c38877c33d56d49f4291c44613ab6eff4fce3",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-050",
+            "registration_id": "MPR-RC-HARNESS-L2-050-001",
+            "decision_row_line": 30,
+            "decision_row_sha256": "a727d0c66828509f604635e01c30929c6320fcc026aa85f7b2d5b0c7aa67744c",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-051",
+            "registration_id": "MPR-RC-HARNESS-L2-051-001",
+            "decision_row_line": 31,
+            "decision_row_sha256": "49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-052",
+            "registration_id": "MPR-RC-HARNESS-L2-052-001",
+            "decision_row_line": 32,
+            "decision_row_sha256": "601798cb431671fc38995d4b4db495b97a43ea818878ca54c882e46acbc3b2af",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-053",
+            "registration_id": "MPR-RC-HARNESS-L2-053-001",
+            "decision_row_line": 33,
+            "decision_row_sha256": "9712e5331aee79ecb6bca483f2d9f56ee4b298a327b41a369f35bc59c411d56a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-054",
+            "registration_id": "MPR-RC-HARNESS-L2-054-001",
+            "decision_row_line": 34,
+            "decision_row_sha256": "6fcf725b5e10fe294094a0e38a0092a7818fe17b9e2a606ce476fcc5badc5e9a",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-038",
+            "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+            "decision_row_line": 35,
+            "decision_row_sha256": "196e1750220ef4bdaf57b57f0ee955375b942e8afe91ee6d45c30ef04488a733",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-053",
+            "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+            "decision_row_line": 36,
+            "decision_row_sha256": "84c9e2fe5adfd0a93e8c3fd6dddec78d6d784b6375ea161f85ea2b3235dc4e14",
+            "fr44_proximity": "not_near"
+          }
+        ]
+      },
+      {
+        "decision_record_id": "HDEC-REQUIREMENTS-LIVE26-2026-09-30",
+        "decision_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "decision_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "adopted_pair_count": 25,
+        "pairs": [
+          {
+            "identity": "HARNESS-L2-049",
+            "registration_id": "MPR-RC-HARNESS-L2-049-003",
+            "decision_row_line": 39,
+            "decision_row_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-055",
+            "registration_id": "MPR-RC-HARNESS-L2-055-001",
+            "decision_row_line": 40,
+            "decision_row_sha256": "756279719a4bbf61adeac3df86871b7e5589c2860ffb1a0a3af2b41e8d3017a0",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-056",
+            "registration_id": "MPR-RC-HARNESS-L2-056-001",
+            "decision_row_line": 41,
+            "decision_row_sha256": "33f58252e53a1934cafad1ec7d84a05db8be8214d9112056dfb6722e700430e1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-057",
+            "registration_id": "MPR-RC-HARNESS-L2-057-001",
+            "decision_row_line": 42,
+            "decision_row_sha256": "ae8d179d379132fa771bc1fb349174a57efd9dfc5b896f51c3ca9f3261154360",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-058",
+            "registration_id": "MPR-RC-HARNESS-L2-058-002",
+            "decision_row_line": 43,
+            "decision_row_sha256": "8177aa9ef75d22552d4e1b74c6bfacdfdc65782e97f0a7b4088431c27cfac258",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-059",
+            "registration_id": "MPR-RC-HARNESS-L2-059-001",
+            "decision_row_line": 44,
+            "decision_row_sha256": "0bfd9f58757e294ed8dde1e772c5da3c07e91bb7d1956ee4a9a53c84f51e9159",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-060",
+            "registration_id": "MPR-RC-HARNESS-L2-060-001",
+            "decision_row_line": 45,
+            "decision_row_sha256": "6039db43c7e23bc51f865f3384af203936a83dfa91370df9b656df045c61500d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-062",
+            "registration_id": "MPR-RC-HARNESS-L2-062-001",
+            "decision_row_line": 47,
+            "decision_row_sha256": "81f6ede50a77dae5f3b39f67e12161a43b4015ff1d0adc6d5871bdda0aeed4cc",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HARNESS-L2-063",
+            "registration_id": "MPR-RC-HARNESS-L2-063-001",
+            "decision_row_line": 48,
+            "decision_row_sha256": "b91f3f327157edbc2f48364fab9c4b8763db2ba16554aed61a8dfda765cadb2e",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-070",
+            "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+            "decision_row_line": 49,
+            "decision_row_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXLABO-L2-071",
+            "registration_id": "MPR-RC-HELIXLABO-L2-071-001",
+            "decision_row_line": 50,
+            "decision_row_sha256": "f6219d5c62a527ebe42ea45ab38fe083546ae97f686e4cb486fef2e905d0b87f",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-034",
+            "registration_id": "MPR-RC-HELIXOS-L2-034-003",
+            "decision_row_line": 51,
+            "decision_row_sha256": "9e5008e562be198466fe57dcbdd9ccfffde23c5f2797e13f60af394cd93e6442",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-054",
+            "registration_id": "MPR-RC-HELIXOS-L2-054-001",
+            "decision_row_line": 52,
+            "decision_row_sha256": "63be074a8b79ad02f7e5305a036f21606b52212ab08b484812fb5295ab502992",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-055",
+            "registration_id": "MPR-RC-HELIXOS-L2-055-001",
+            "decision_row_line": 53,
+            "decision_row_sha256": "0dde862f0edf4ad3581016a562940d7ce715bcfb107278b808b273e2dbb8ae9f",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-101",
+            "registration_id": "MPR-RC-HELIXOS-L2-101-002",
+            "decision_row_line": 54,
+            "decision_row_sha256": "30543b99a6dda6ee7b825cc6879d5f1494e53799f91a8288f2fe152d77e2b6f1",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-102",
+            "registration_id": "MPR-RC-HELIXOS-L2-102-001",
+            "decision_row_line": 55,
+            "decision_row_sha256": "7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-103",
+            "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+            "decision_row_line": 56,
+            "decision_row_sha256": "4bed6104029f8073f0fe13d62b8c2a93df559e70111cdb2d678b35d234f9ce93",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-104",
+            "registration_id": "MPR-RC-HELIXOS-L2-104-001",
+            "decision_row_line": 57,
+            "decision_row_sha256": "dc707bd15cc15d94cea46ce4d37ff27edcc4612a8e6aeb605b26c7cca3446481",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-105",
+            "registration_id": "MPR-RC-HELIXOS-L2-105-001",
+            "decision_row_line": 58,
+            "decision_row_sha256": "cb2195ba6d60f69144dfcd5942bf92ba14ba03275011728dcb25f20d5617a460",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-106",
+            "registration_id": "MPR-RC-HELIXOS-L2-106-001",
+            "decision_row_line": 59,
+            "decision_row_sha256": "3c3835caae5e8df772d1aafe14cd8d90b9389b3464afbf0bc9fa0bc2246f55bd",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-107",
+            "registration_id": "MPR-RC-HELIXOS-L2-107-001",
+            "decision_row_line": 60,
+            "decision_row_sha256": "2eb2349e30777ab6d91769c3a8934f662b961cd13dcbfaf73c7f5cfaf8889555",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-108",
+            "registration_id": "MPR-RC-HELIXOS-L2-108-001",
+            "decision_row_line": 61,
+            "decision_row_sha256": "09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-109",
+            "registration_id": "MPR-RC-HELIXOS-L2-109-001",
+            "decision_row_line": 62,
+            "decision_row_sha256": "ce01ad8ff29f04e7ec8823a23003e77618ca5e1838d7a45ecef7f87ae4bb4534",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-110",
+            "registration_id": "MPR-RC-HELIXOS-L2-110-001",
+            "decision_row_line": 63,
+            "decision_row_sha256": "b3f91056524676a55b33eb61ff50b95f53266e771addbbfc6601414fea3c642b",
+            "fr44_proximity": "not_near"
+          },
+          {
+            "identity": "HELIXOS-L2-111",
+            "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+            "decision_row_line": 64,
+            "decision_row_sha256": "062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358",
+            "fr44_proximity": "not_near"
+          }
+        ]
+      }
+    ],
+    "adopted_pair_total": 88,
+    "decision_table_rows_total": 93,
+    "excluded_nonadopted_or_unregistered_rows": 5,
+    "screen_result": "後発の57候補、11候補、live26判断の採択registration-decision rows全88件をindex化しFR-L1-44のasset inventory、baseline creation、state import report、onboarding completion evidenceの条件への意味近接をscreen。FR44の旧条件を具体的に満たす近接pairは0件。採択表示、候補記述の単語共有、責務隣接をsuccessor・coverage・closureに変換しない。",
+    "limited_scope": "compact index uses decision rows from base main; fixed/near L2/L11 pair section and MPR pins use f6 exact bytes. Non-near rows are not treated as condition coverage.",
+    "scope_limit_after_consumer_review": "88件の後発採択registration-decision rowsのscreenは、source FR44のworkflow/import atomsとC05-C09およびC11のmigration/staged-gate/test-design consumer群への意味近接を対象とする。C10 HBR-P6/P9 full-distribution package overlayとC12 GD-01 static help/document projectionは別のpillar/screen identity scopeであり、このzero-near結論の対象外。したがって採択pairがdistribution packageまたはscreen UXに一切接続しない、という主張ではない。"
+  },
+  "non_claims": [
+    "旧sourceをretireせず、意味変更・successor割当・closureを行わない。",
+    "旧setup code・test・runtime・CLI・hook・CIを実行していない。archive上のPLANやコードに記録された過去のstatusを現行の動作証拠へ転用しない。",
+    "f6固定L2/L11の採択、実装、実行、L3承認、受入完了を主張しない。",
+    "HARNESS-L2-019はFR-L1-44の完全代替ではなく、他の近接pairも残差を閉じない。"
+  ],
+  "static_validation_expected": {
+    "source_line_sha256": "6978d5198a63eeae9930e71f6a131dcaf86b7377a75853893a2044f223db9a0f",
+    "pair_count": 5,
+    "later_adopted_pair_rows": 88,
+    "source_authority_effect": "none",
+    "formal_successor_assignments": 0,
+    "closure_claimed": false,
+    "additional_consumer_condition_count": 8,
+    "source_consumer_pin_files": 26,
+    "archive_consumer_fulltext_reviewed": true,
+    "later_adopted_pair_screen_scope": "functional FR44/import and C05-C09 plus C11; excludes distinct C10 package overlay and C12 GD-01 screen projection scopes"
+  },
+  "fixed_target_document_files": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": {
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": {
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    "docs/helix-os/L2-requirements/governance-requirements.md": {
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": {
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  },
+  "fixed_target_authority": [
+    {
+      "decision_record_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    {
+      "decision_record_id": "HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    }
+  ],
+  "additional_consumer_condition_comparison": [
+    {
+      "condition_id": "FR44-C05",
+      "classification": "direct_FR44_consumer_detail",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:136",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:74",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:129"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-6279F4C46313824541B1",
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F"
+      ],
+      "condition_atoms": [
+        "既存repoの構成とsub-doc有無を入力としてbaseline PLAN setを生成する",
+        "欠損sub-docにskip_sub_docを設定して段階整備へ入る",
+        "onboarding進捗をdashboardで見られる"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "HARNESS-L2-019は既存要件・コード・PoCをReverseしてtrace化しunknownを残すが、baseline PLAN set生成、skip_sub_doc機械設定、進捗dashboardを要求しない。HARNESS-L2-003/L11-003は一般工程のfreeze・差戻し・完了条件であり、このonboarding状態・例外条件を定義しない。未カバー。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C06",
+      "classification": "direct_FR44_consumer_detail",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md:158",
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:82-86"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+        "LEGACY-ASSET-BF64B4AE03DD092532C2"
+      ],
+      "condition_atoms": [
+        "既存projectの初回state importをonboarding bootstrapとして行う",
+        "Reverse R0-R4をimport前段contextとして利用する",
+        "helix setupで.helixを初期化し、helix statusでexisting PLANsをbaseline化する",
+        "importをPhase 0としてharness.db asset countとfilesystem countを照合してからnew workへ進む"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "L2-019は既存要件・コード・PoCをReverseへ入れるが、R0-R4 sequence、.helix初期化、PLAN baseline、Phase 0 import、DB/file count一致、new work開始条件を定めない。Reverse入口/unknown維持は部分接点、onboarding import closureは未カバー。",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C07",
+      "classification": "linked_NFR16_companion_not_identity_merge",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md:32",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:80",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md:185"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F",
+        "LEGACY-ASSET-1B92155F959D7905DD1E"
+      ],
+      "condition_atoms": [
+        "existing docs/code/state inconsistencies must not block onboarding",
+        "migration is staged",
+        "first import must not stop the project",
+        "skip_sub_doc permits gate progress in staged mode and logs the bypass",
+        "fully prepared sub-docs move to normal gate mode"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "これはFR44連動と明記された別のNFR identity NFR-16であり、FR44のsource identityへ統合しない。固定019のunknown保持は推定補完を避けるが、矛盾がある状態での進行、段階mode、skip例外、段階gate logを保証しない。一般的なL2-003は未検証・未合意進行を拒否するため、両条件をどう調停するかも固定本文にない。linked NFR16の条件として未カバー。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C08",
+      "classification": "direct_FR44_operational_test_oracle",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:74",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:80",
+        "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md:185"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-A2B0AAB7AAD10CBBD45F",
+        "LEGACY-ASSET-1B92155F959D7905DD1E"
+      ],
+      "condition_atoms": [
+        "OT-23 checks onboarding on a repository without HELIX, baseline PLAN set, missing sub-doc skip mode, dashboard progress",
+        "OT-29/AT-NFR-16 check stage-mode G1 passage and a recorded block-avoidance log"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019",
+        "HARNESS-L2-003/L11-003"
+      ],
+      "finding": "OT-23はFR44固有の利用シナリオ/結果oracleを詳細化する。OT-29/AT-NFR-16は別NFR16の段階gate oracle。固定L11-019は変換結果・unknown一覧を確認するが、いずれのbaseline/skip/dashboard/staged G1 log oracleも持たない。archive test-design記載を実行済み・passと扱わない。",
+      "status": "not_covered"
+    },
+    {
+      "condition_id": "FR44-C09",
+      "classification": "conditional_data_migration_process_consumer",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:27-80",
+        "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md:82-86"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-BF64B4AE03DD092532C2"
+      ],
+      "applies_if": "onboarding importが当該data/schema migration processとして起票・設計される場合",
+      "condition_atoms": [
+        "Phase 0 reads old/writes oldでbaselineをverify",
+        "各phase boundary前にcount/checksum/integration verification",
+        "before/after/field mapping/rollback design",
+        "count parity、spot-check、null/constraint zero、rollback restoration",
+        "idempotent rerun、row failureを識別しsilent skipせずsummaryまで継続",
+        "rollback triggerを記録してdeploy前にgateする"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "L2-019/L11-019はimport migrationのtransaction/integrity/idempotency/rollbackを定めない。skillの一般migration条件は適用条件つきの下流consumer evidenceとして保持し、FR44のL1 atomや既承認L2条件へ自動昇格しない。",
+      "status": "not_in_fixed_pair"
+    },
+    {
+      "condition_id": "FR44-C10",
+      "classification": "linked_HBRP6_package_setup_scope",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md:55",
+        "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md:188",
+        "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md:99"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-18F7940E7994634D39A1",
+        "LEGACY-ASSET-6279F4C46313824541B1",
+        "LEGACY-ASSET-F8B2A3885ED6B5886C45"
+      ],
+      "condition_atoms": [
+        "tag/release pinからone commandでrepo-local hooks, provider adapters, state/memory/evidence/feedback, GitHub rules/checksをbootstrapするというpillar-level package capability",
+        "solo-conversion overlay reiterates Distribution/full setup as one-command tag/release-pinned bootstrap, linked to existing FR-L1-44/setup and assigned to HBR-P6/P9"
+      ],
+      "fixed_comparison": [
+        "HELIXOS-L2-006/L11-006"
+      ],
+      "finding": "OS-006はサービス単位のrelease state、fresh/既存repoへの導入・更新・復旧を扱うが、tag/release pinからのfull project bootstrap packageや列挙されたrepo-local baseline一式を定めない。この広いHBR-P6条件はFR44のsource line自体へ統合せず、別のpillar/product-delivery scopeとして残す。 PLAN-L1-06 line 99 repeats this as a distribution/full-setup overlay grounded in FR44/setup but assigns the broader end-state to HBR-P6/P9; it is supporting lineage for the distinct package scope, not an expansion of the FR44 identity.",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C11",
+      "classification": "existing_implementation_and_test_consumer",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/tests/setup.test.ts:1925-1987",
+        "archive/legacy-generation-2026-09-14/root/tests/cli-surface.test.ts:2729-2867"
+      ],
+      "condition_atoms": [
+        "brownfield project setup surfaces import report instead of hiding skipped conflicts",
+        "skip_sub_doc review/stage routes and rerun guidance are observable"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "Archive tests include project-setup import-report and skip_sub_doc route assertions, which corroborate legacy implementation consumers but do not establish baseline PLAN set/dashboard/skip-gate acceptance required by FR44/OT-23. No archived tests were run and these assertions do not close fixed-pair coverage.",
+      "status": "open_partial_correspondence"
+    },
+    {
+      "condition_id": "FR44-C12",
+      "classification": "linked_GD01_screen_and_document_projection",
+      "legacy_sources": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:240",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:246",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:254",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:477",
+        "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:500",
+        "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md:87"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-3B905BB196962E2BE624",
+        "LEGACY-ASSET-A1FC654415FA0AC86D70"
+      ],
+      "condition_atoms": [
+        "GD-01 is a static knowledge-base/guide view",
+        "Onboarding guide category explains HELIX use, first PLAN creation, midway onboarding FR-L1-44, and environment setup",
+        "screen requirement maps FR-L1-44 to the GD-01 onboarding category and help-document reference"
+      ],
+      "fixed_comparison": [
+        "HARNESS-L2-019/L11-019"
+      ],
+      "finding": "これはFR44のimport/baseline workflowを画面で実行する契約ではなく、GD-01へ使い方・環境手順を投影する別のscreen/document consumerである。固定L2/L11-019は変換結果とunknown一覧を定めるが、GD-01、help content、表示・navigationを定めない。FR44機能atomへ統合せず、別のscreen-projection照合が必要。PLAN-L1-03 line 87はFR44をscreen-requirementsの上流batonとして列挙するだけで追加の受入条件を置かない。",
+      "status": "separate_screen_projection_uncompared"
+    }
+  ],
+  "archive_consumer_search": {
+    "search_scope": "archive/legacy-generation-2026-09-14/root/{docs,src,tests} の全文を対象に FR-L1-44, NFR-16 onboarding, OT-23, OT-29, onboarding bootstrap, helix onboarding, skip_sub_doc, baseline PLAN, 初回 import を検索。旧資産を読むのみ。",
+    "result": "FR-L1-44直接詳細はL1 functional row, technical bootstrap, v2 import ledger, OT-23, L3/L4/L6 consumer, migration skill note。NFR-16/OT-29/AT-NFR-16は明示リンクされた別NFR companion。src/testsにsource-qualified FR-L1-44の参照はない。setup sourceとsetup testsは既存実装・過去test-designであり実行証拠に使わない。 GD-01/Onboardingは別screen/document projection consumer、PLAN-L1-03 line 87はtrace batonのみ。PLAN-L1-06 line 99はHBR-P6/P9 package overlayで、FR44 operational identityへの統合対象外。",
+    "direct_and_linked_evidence_files": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/setup-solo-team.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-66-existing-repo-onboarding-readme.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-251-setup-idempotent-import-report.md",
+      "archive/legacy-generation-2026-09-14/root/src/setup/index.ts",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/data-migration.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-03-screen-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-06-helix-solo-conversion.md"
+    ],
+    "scoped_exclusions": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-02-functional-requirements.md:97,109,123",
+        "reason": "FR-L1-44をoperator role validation、dashboard role display、role-change scenarioとして使うが、FR source line 75の途中導入意味と異なるID衝突/古いplan記述。FR44条件へ採らない。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-04-technical-requirements.md:107",
+        "reason": "FR-L1-44連動と書かれたU-技術-4eはagent guard/operator role boundaryで、onboarding/import条件ではない。identity collisionとして除外。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:34,46-49,217; archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md:170",
+        "reason": "NFR-16の見出しはonboardingだがD-09 handover success ≥95%、handover logs、D-15 continuation completenessは別のmeasure/consumer。FR44のasset-import completion oracleに読み替えない。AC-NFR-16のstage skip oracle自体はNFR16 linked conditionとして別比較済み。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L1-01-business-requirements.md:114; archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:897; archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md:261",
+        "reason": "D-03 onboarding ≤30 min / BR-TTV-01 ≤15 min/sample repo migration tool/training/CI are separate business/marketing measures and are absent from exact FR-L1-44 row. Numeric SLA and whole-product conditions remain excluded, not inferred into fixed pair."
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:119",
+        "reason": "FR44 is marked HELIX custom design with no mapped source-reference document. This is origin provenance, not an additional functional atom."
+      }
+    ]
+  },
+  "method_and_limits": {
+    "legacy_consumer_review_extension": "NFR-16 linked condition, technical/bootstrap, v2 migration ledger A-29/A-31/A-32 and §6, OT-23/OT-29/AT-NFR-16, migration-process note, and HBR-P6 package setup were explicitly added. Conditions are classified as direct FR44 consumer detail, separately linked NFR/pillar, conditional downstream process, or excluded ID/measure conflation. No separate source-qualified identity or successor was generated. Screen-requirements GD-01/Onboarding rows and PLAN-L1-03 baton were pinned as separate static guide/document projection scope; PLAN-L1-06 line 99 was added to HBR-P6/P9 full-setup provenance. Later adopted pair proximity result excludes these distinct projection/package scopes and is explicitly bounded.",
+    "authority_effect": "none; preserve pending rehome and all unresolved source atoms."
+  }
+}

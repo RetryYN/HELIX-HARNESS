@@ -1,0 +1,979 @@
+{
+  "schema_version": "confirmed175-live-recount-correction-overlay.v1",
+  "audit_id": "confirmed175-live-recount-correction-overlay-2026-10-01",
+  "audit_mode": "read_only_static_strict_evidence_overlay",
+  "base_main_revision": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "source_recount_commit": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
+  "source_recount": {
+    "path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-2026-10-01.json",
+    "sha256": "f406d89f20c5f78a4984097b03735cd6737569a4e49688e2534d58d2971b8adb",
+    "historical_counts": {
+      "confirmed175_population": 175,
+      "queue_classified_individually_compared_with_valid_artifact_sha": 30,
+      "focused_identity_records_meeting_strict_pins": 90,
+      "overlap": 8,
+      "unique_identity_condition_comparison_evidence": 112,
+      "unconfirmed_under_this_evidence_threshold": 63,
+      "formal_successor_assignments": 0,
+      "source_atom_closure": 0,
+      "preserved_pending_rehome": 175
+    },
+    "pin_revision": "353e0535a943c415e4fa6fc9b93e89fb92654f5b",
+    "pin_kind": "public_in_branch_commit_path_content_sha256"
+  },
+  "strict_rule_source": {
+    "path": "docs/governance/audits/requirements-stage/confirmed175-live-recount-2026-10-01.json#evidence_threshold",
+    "note": "Do not combine source pin/residual from separate identity records; exact F6 L2 and L11 target file SHA values must be pinned for the identity target pair."
+  },
+  "correction": {
+    "additional_qualifying_unique_identities": 43,
+    "corrected_unique_identity_condition_comparison_evidence": 155,
+    "corrected_unconfirmed_under_same_threshold": 20,
+    "formal_successor_assignments": 0,
+    "source_atom_closure": 0,
+    "preserved_pending_rehome": 175,
+    "original_recount_rewritten": false
+  },
+  "summary": {
+    "identity_count_reviewed": 63,
+    "qualifying_additions": 43,
+    "fail_closed_remain_unconfirmed": 20,
+    "deduplication": "Source-qualified identity is key; strict63 is disjoint from the recount’s 112 counted identities."
+  },
+  "fr_l1_35_decision_distinction": {
+    "identity": "harness/L1-requirements/functional-requirements.md::FR-L1-35",
+    "strict_comparison_counted": true,
+    "later_po_status": "保留",
+    "held_candidate": "HELIXOS-L2-045 / L11-045",
+    "hold_conditions": "対象集合、version_target、HARNESSからOSへ所有を移す範囲",
+    "effect": "Count records residual evidence only; hold remains in force with no successor assignment or closure."
+  },
+  "notable_index_omissions": {
+    "artifact_index_omits_existing_identity_audits": true,
+    "qualifying_examples": [
+      "confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json"
+    ],
+    "nonqualifying_fr51_reason": "FR-L1-51 audit exists outside artifact_index, but source line SHA is in source.source_entries while comparison/residual is in condition_comparison; strict single-record evidence is absent, so add zero."
+  },
+  "non_claims": [
+    "No successor requirement or adoption was created.",
+    "No source atom was closed.",
+    "No acceptance, implementation, execution, or approval was inferred.",
+    "Later PO held/conditional states are separate and do not change comparison evidence count."
+  ],
+  "source_archive_pin_verification": {
+    "full_audit_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "verified_source_file_and_line_sha_for_all_63": true,
+    "method": "Recomputed each archive source file SHA-256 and numbered source-line SHA-256 against archive bytes."
+  },
+  "reviewed_identity_records": [
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-01",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 41,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "eea2c595f0f92bc8fbacd8c06e912db0438567da39979ecba646ca12302786fc",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source scope has a source pin, but no same-record identity-local F6 condition comparison/residual and exact target pair."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-06",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 46,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "922b879b38c92d8b9a0e6ff3ccd2e0f6b0f2dd6470dd5b54c4180f5ba750b033",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にsource_tupleのline SHA、condition residual、固定F6 comparisonを持ち、F6 L2/L11文書SHAをartifact内で固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::BR-08",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 48,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "45c182bcd3eb0eb9261eb2de58c12dca8c1a4e1de60f4d4c0263fa4ccc631c2f",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にsource_tupleのline SHA、condition residual、固定F6 comparisonを持ち、F6 L2/L11文書SHAをartifact内で固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-01",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 196,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "7a64579a7cf085b81d2d7306ea672943f0b222f144f61dac159502818d37ba31",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-02",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 197,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "bb5adc7a3bbb3bebf67cd03691f770b65e546c4f1d4849e394c0ef3c23d6f79a",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-03",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 198,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "01eba392cbe0511496b5a0fd51b05f01387669f39a48dda4914cb875c389dd76",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-04",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 199,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "b02f2f37342ef167a26a4cdfd213197641a026b642277e86964987278f6868bd",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-05",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 200,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "2dbedc2052c3e3fece7feeae67e88906681f77f05e09f1ed9904734179c93500",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-06",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 201,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "af85a9b45b798a26c57653d44c86e10b12c636d2b52d39363d6cde22f2be6d16",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/5",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-07",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 202,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "459333adac014e170188f49bfd6365e770381db86413410078654a4a9560300d",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/6",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-08",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 203,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "5995c913ddb84305c9045fd6bd2f32819b774704f40c20a7c5c0f87c5323fab6",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/7",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::D-09",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 204,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "9cd4358f9d4b13991945ccb88c72cec3f2203b0cf443671cb595269664847557",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/8",
+      "basis": "同一identity record内にarchive source line SHA、residual、fixed_2026_09_28_pair.source_revision=F6とidentity別pairのL2/L11 file SHAを持つ。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/business-requirements.md::UX-02",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_line": 56,
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_sha256": "de4ade69721a60cd79706e3f08a67c25e7c200a8e1accc02b5b8f92e4ce644f6",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にsource_tupleのline SHA、condition residual、固定F6 comparisonを持ち、F6 L2/L11文書SHAをartifact内で固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-05",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 36,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "4819bec0dd1da8aaa4f07260f6b3dcd43a58408b6f8e43d6693b89c1324ee6a1",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-frl1-03-05-17-18-22-condition-audit-2026-09-30.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "queue_fixed_target_refs is empty for this identity; generic F6 hashes and nearby references do not establish its fixed target pair."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-20",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 51,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "508f583208a248beb17fc65a2241aa46754a774605fd101be1049a3dba0ac05c",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にarchive source pin、fixed-target condition findings/residualがあり、auditがF6 revisionおよびL2/L11 document SHAを固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-21",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 52,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "b54119ad033bcb2f01c1977710d76249ab80a2789422ed02afa3c54d6ac3799b",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "line SHA is in source.source_entries, separate from condition_comparison record; strict single-record rule forbids joining them."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-23",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 54,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "920a9745ec190e871ab29af8463a9ab9cb991c43fbe723740d5b2f10dbe38b71",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "line SHA is in source.source_entries, separate from condition_comparison record; strict single-record rule forbids joining them."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-35",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 66,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "7bff35b2a785e51c8eeebeded9e93ac720efd2f9ca8315552e14d8d6ea66be90",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にsource_tupleのline SHA、condition residual、固定F6 comparisonを持ち、F6 L2/L11文書SHAをartifact内で固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-37",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 68,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "6457d029787992bbdc7359553c17900283a14ff470ecb85e4f2a42fd7fdce4bc",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にarchive source pin、fixed-target condition findings/residualがあり、auditがF6 revisionおよびL2/L11 document SHAを固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-38",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 69,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "76ca28f714bf37741a2ac6cdbbcae826fae07222afaedbc610ebcce0d3b922b0",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にarchive source pin、fixed-target condition findings/residualがあり、auditがF6 revisionおよびL2/L11 document SHAを固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-39",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 70,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "9d7e85603cc2929dd3185b2d51a1c97c377b2d6d270359237bde7f10b5f4df03",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にarchive source pin、fixed-target condition findings/residualがあり、auditがF6 revisionおよびL2/L11 document SHAを固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-40",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 71,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "7c810f2df4f4dba412bf597e609af7f9bdf874aa7d36065cb9b7acdcd9720d73",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source line pin rows and comparison are separated; no single identity-local record contains source pin plus residual."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-41",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 72,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "6cc9ffe3dce89cd8f7f2be3fab204d3122d2e3bd4df652d40cfc016fa4b5650f",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source line pin rows and comparison are separated; no single identity-local record contains source pin plus residual."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-42",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 73,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "0ad4fce3fed9a2435322ddce6dda027d2272ab6652e5d6d3b5f2ecbacb7f4db4",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source line pin rows and comparison are separated; no single identity-local record contains source pin plus residual."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-43",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 74,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "5b9244358b19838ad0de278c226cc5caf72880cf7e79bec471acc4e1282183b5",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にarchive source pin、fixed-target condition findings/residualがあり、auditがF6 revisionおよびL2/L11 document SHAを固定。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-44",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 75,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "6978d5198a63eeae9930e71f6a131dcaf86b7377a75853893a2044f223db9a0f",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-44-source-qualified-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "scope identity, line pin, and condition comparison are separate objects; fail-closed."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-51",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_line": 82,
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_sha256": "9f83dd9bd0baae0d6fca3e07f11fdc9756249875039a82aa77850a1c2a769e7a",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "line SHA is in source.source_entries, separate from condition_comparison record; strict single-record rule forbids joining them."
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/nfr.md::NFR-05",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "source_line": 49,
+      "source_file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "source_line_sha256": "28a0e534f141fd20db0e5e2dcf99b2c04f9e34a1ce17090fe29109b5e693490f",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-nfr-01-08-11-17-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にarchive source pin、residual/status、F6 revision、target別exact L2/L11 file SHA。"
+    },
+    {
+      "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::PM-01",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "source_line": 45,
+      "source_file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "source_line_sha256": "ee853b29e941eb1e61c8d43a0929a03fcceb47080a48357740b0ce4863055e68",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source_assets pin is separate from condition_comparison; no same-record identity-local source pin plus residual."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/bugbot-generation-requests.md::BBG-BR01",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/bugbot-generation-requests.md",
+      "source_line": 30,
+      "source_file_sha256": "043c17eaf4cc134b76169f8852cb2f3bfb14ede24bdc8efcf45f4c263d1aa063",
+      "source_line_sha256": "9fb698daf3523aae8234be36cdbd928cac0fa95bc495b6db98b6a7aae76f40b4",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "record_pointer": "/source_qualified_identities/0",
+      "basis": "同一identity record内にsource line SHA、condition comparison/residual; audit pins F6 revision and target-specific L2/L11 full-file SHA."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/bugbot-generation-requests.md::BBG-BR02",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/bugbot-generation-requests.md",
+      "source_line": 34,
+      "source_file_sha256": "043c17eaf4cc134b76169f8852cb2f3bfb14ede24bdc8efcf45f4c263d1aa063",
+      "source_line_sha256": "607fe54dc7363f52c29cfa65eb05117c6564d91ecc467e3b3defdd4070821ffb",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "record_pointer": "/source_qualified_identities/1",
+      "basis": "同一identity record内にsource line SHA、condition comparison/residual; audit pins F6 revision and target-specific L2/L11 full-file SHA."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-001",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 48,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "68a363a3d973eb25c14a153fc8fbb4937ede547080bb5cd526c6a40314fa5e4e",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source pin record is separate from identity-local condition/residual record; strict join prohibited."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-002",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 49,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "af0d437b6007d90e2ccd2e41d2793a5c2187ad6a0ee67aa6906bd63f8eacdc88",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source pin record is separate from identity-local condition/residual record; strict join prohibited."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-003",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 50,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "77e1d9bc1f98f2a1f1cf0094dd280fb83d001ffe8ee422f1c951da2d72898212",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source pin record is separate from identity-local condition/residual record; strict join prohibited."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-009",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 56,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "881e9a2aa919c8bb082c075f7ab2648bc78c7a185e6689af6042ca8dbe16a004",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-fr09-fr10-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "record has source pin/residual and F6 revision, but lacks exact fixed L2/L11 file SHA values for its identity target pair."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-FR-010",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 57,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "a60b7e32cea56eb79ae7839c89b34d49add9a777e5bbe5721cc9a738fd149046",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-fr09-fr10-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "record has source pin/residual and F6 revision, but lacks exact fixed L2/L11 file SHA values for its identity target pair."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-NFR-002",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 64,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "fa28c9426e876631ba56fae5df7c7e04313cd18e28f70c1693d928587f5f6c8f",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source pin record is separate from identity-local condition/residual record; strict join prohibited."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/document-authority-census-requests.md::DAC-NFR-003",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/document-authority-census-requests.md",
+      "source_line": 65,
+      "source_file_sha256": "81ac3006a11a087c069b196c1512b078ad5f19c1cff1da0ff34d8986ff2feb66",
+      "source_line_sha256": "da2668a3370782ec0a991942be7621a7b669e9bb5205444321bead88bf16b816",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source pin record is separate from identity-local condition/residual record; strict join prohibited."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P0",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 50,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "11650738b96e965057f81c6a28f2f6e5edcff00dcc57d700843873d3d9cf8ed8",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P1",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 51,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "3921d0439222afe55f9d61ab8f840ee09fc9cf6367fe6da630140885155a4808",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P2",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 52,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "a4bd9f6680e43e76415481ea8ea3b8055ef8a085cd8ca75e5535e177c8e2f2b3",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P4",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 54,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "507a74c0a159fafb2c3c889cb6750a13a83476c1fbb029c707053e03425b3283",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にarchive source line SHA、condition residual、F6 revisionとidentity別fixed L2/L11 target pins。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P6",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 55,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "17222607f0c9ea8f6f521f8e939e7a3c2a8bc4c2a5cf4706d4db85d6286c626b",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p6-package-distribution-fixed-f6-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "identity appears in population/aggregate condition matrix; no identity-specific record with line SHA and residual."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P7",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 56,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "8cee35a9fe4da175b8638bb9168360a6a0c96a2e77528acb3bf57f062acb85b2",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にarchive source line SHA、condition residual、F6 revisionとidentity別fixed L2/L11 target pins。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P8",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 57,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "8d9b48e204e0dc21727a161fe6f2eb356eb8d9daeb0ad709511583b8591da634",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にarchive source line SHA、condition residual、F6 revisionとidentity別fixed L2/L11 target pins。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HBR-P9",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 58,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "8641377b65b02eb7ad1f32c0ab179607ea7e08349aa770d5663397b550e50aa1",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にarchive source line SHA、condition residual、F6 revisionとidentity別fixed L2/L11 target pins。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HNFR-AC",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 67,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "c2022a1d2125cd5e258be719dae26d434da32b548963bccdd9934456ea2a71af",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HNFR-P3",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 64,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "ad3e10a5bb4102be39302049b915319015aaee0669672eb81dda6ebac69e06ad",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HNFR-P5",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 65,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "40dc812647d71110d6f19f84aacd0e1e78cc7ebb5f829ac8429dd1b6cf621e97",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/5",
+      "basis": "同一identity record内にarchive source line SHA、condition analysis/disposition residual、identity別F6 target comparisonとL2/L11文書pin。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/pillar-requirements.md::HNFR-P8",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line": 66,
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_sha256": "e9e180e6254288906cda85335b5fe62695e9c96ead0a2c3534ae3814c3d72803",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にarchive source line SHA、condition residual、F6 revisionとidentity別fixed L2/L11 target pins。"
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-1",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 253,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "7357cd36d6b6ff99332e6aee3d181d895bf7869dd300d54e369c30733733c1e3",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/0",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-10",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 262,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "9f32bbcef9b35092a0bb22f0af24eb404ca061f02f760a57be68cac063a19081",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/9",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-11",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 263,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "6ecb5c18a124cf5f7d783cf312ea436c14dd2db4839bb270e84cdbf2c6ca7555",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/10",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-2",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 254,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "7a27cb543c698a8b3d5fc6f7d4df0d53e595050a24bdd1f66a894c8cf7309c53",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/1",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-3",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 255,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "06b6e84173edb42a6a7629ecba2ae376139e8d521d4787f97a2558d0b1ef90ab",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/2",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-4",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 256,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "5854e7765e257ce4936cfa35dd19f8c6009d17aabc985903ce17dc5f3d025505",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/3",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-5",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 257,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "378d8a1bdcade63f992548985d584ba3a2c2147d75ccff0ccc2ebd9d4d1416d7",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/4",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-6",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 258,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "277d62fc7486e632e10e03022ba09561a486ff77ec8549468bcd4351e0c9498d",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/5",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-7",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 259,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "35ba3615525894ffc2f076ee0b16ce35c1b3a89bcb655125cd13c74a7961926b",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/6",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-8",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 260,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "0ec9d10f2491708ffc763a60058823d2eb050109f1dd497206286fa6f2f3bcbc",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/7",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/resident-lane-orchestration-requests.md::SR-9",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "source_line": 261,
+      "source_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "source_line_sha256": "69c92d7dd0c3226ed8aa7b75f9f7cbe86d8712644fda86dbef0f26d0509c4777",
+      "qualification": "meets_strict_additional_comparison",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "record_pointer": "/records/8",
+      "basis": "同一identity record内にsource_tuple(line SHA)、residual/fixed_target_findings; artifact pins F6 revision and mechanism L2/L11 document SHAs."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+      "source_line": 18,
+      "source_file_sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+      "source_line_sha256": "e6b2f97acf69f1987778213e7c4e9c6f2878d30878ffeddb046f3c827cdd66cd",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+      "record_pointer": "candidate identity/source and condition records inspected; no qualifying single record",
+      "fail_closed_reason": "source_assets pin is separate from condition_comparison; no same-record identity-local source pin plus residual."
+    },
+    {
+      "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-007",
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "source_line": 63,
+      "source_file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "source_line_sha256": "170537a10b1df263fd6af5265bc2ee88ae2a618f35203f768695ff828d37dba9",
+      "qualification": "remains_unconfirmed_fail_closed",
+      "audit_artifact": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "record_pointer": "condition comparison references HELIXINTELLIGENCE-L2-010; target pair pin checked at artifact level",
+      "fail_closed_reason": "The identity-local residual record compares HELIXINTELLIGENCE-L2-010 / L11-010 but the audit bytes do not contain the exact F6 HELIXINTELLIGENCE L2 and L11 file SHA values; other pinned mechanism pairs cannot substitute."
+    }
+  ],
+  "referenced_artifact_pins": [
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-five-residual-condition-audit-2026-09-30.json",
+      "sha256": "98e00a1c7b795b781d12ef7af1d74f757b23395ef13aeae63678fe9d0259d6af"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-frl1-03-05-17-18-22-condition-audit-2026-09-30.json",
+      "sha256": "53d88b64cc82c0ec6636bf9e5ebcaa70572e31f87c970b057c03ed7ea01dff8e"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-kpi-d01-d09-condition-audit-2026-09-30.json",
+      "sha256": "1ed27e2aeacc272798b7e81509245afe8dc4be7a9706ee135bb6353da6d769e9"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/confirmed175-nfr-01-08-11-17-condition-audit-2026-09-30.json",
+      "sha256": "dbb3b7fac4a157a52dcca7d0d65d5af5beb915f0f29eb75e454079538112ce41"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-bbg-br01-br02-condition-audit-2026-10-01.json",
+      "sha256": "0a0f41022929d4e546b0e2f2a8cf3afe7d77e84a3fc0512a216a8e963949025f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-br01-condition-audit-2026-10-01.json",
+      "sha256": "8b50b9e3d9c1b5df663aacfdf35978f5cbf93209a58d1faaf296ab03abf3cc7b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-cluster-a-fixed-l2l11-audit-2026-10-01.json",
+      "sha256": "a3e1c9622c35185b11a3c3ab14148421e5da5a264d210695f07965022a904895"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-dac-fr09-fr10-fixed-f6-audit-2026-10-01.json",
+      "sha256": "6a3c5d61dc419c3340f4305b6c4f4f1de685b17e999b78b510b40f3d100cacc4"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-20-37-38-39-43-condition-audit-2026-09-30.json",
+      "sha256": "4ee325ddb47b56298156aaf68b882650f0b81b0fb9574022c01b966b2ccb00d4"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-21-23-51-fixed-f6-audit-2026-10-01.json",
+      "sha256": "28211902e9f12c7a8d876fcc34581dc78ab6a96463e14aab4bcda9f92cb95e7f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-40-42-condition-audit-2026-10-01.json",
+      "sha256": "3e5a6708426ad720e84ca28551177a18d5728b5e2e2e32deb200c7ad5d69f012"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-fr-l1-44-source-qualified-fixed-f6-audit-2026-10-01.json",
+      "sha256": "01c56a800883b7363b9561b6cbded86051a469717027b36a3f8fa19fd67f8ef1"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p0-p1-p2-hnfr-ac-p3-p5-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "2293af1784a0817540ca3b547f0e5555382a3809903744e29b66b8b29ba5fefa"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p4-p7-p8-p9-hnfr-p8-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "c3503c22aa150af4ed336f47e6c6a45a0989c2c4b0b8c06cb537c68e60589fa0"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-hbr-p6-package-distribution-fixed-f6-audit-2026-10-01.json",
+      "sha256": "cfe4952db89850dc97b18fbbb0815dda55f12a7ddafd4cb528a33f99140845b3"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-pm01-sbr001-fixed-f6-condition-audit-2026-10-01.json",
+      "sha256": "70e2e6f94fe23fdeb91a518dd108a02b7f6c14999115634f2eb53d4d572de2ae"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-confirmed175-resident-lane-sr-1-11-condition-audit-2026-09-30.json",
+      "sha256": "39ded610617a795a4b62210df1bee0c82c3c134c8b6aa51ec65b548b070fd407"
+    }
+  ],
+  "queue_kind_reclassification": {
+    "rule_applied": "The queue branch admits only row_level_condition_comparison_to_fixed_L2_L11 or identity_row_condition_crosswalk_to_fixed_L2_L11. The three identity_specific_meaning_delta_against_fixed_L2_L11 rows are reclassified through the focused-record branch because each identity section has source line SHA, local residual, fixed F6 revision and that identity target pair file SHA pins in one artifact.",
+    "source_recount_historical_partition": {
+      "queue_rows_as_recorded": 30,
+      "focused_records_as_recorded": 90,
+      "overlap_as_recorded": 8,
+      "union": 112
+    },
+    "strict_partition_after_reclassification": {
+      "queue_qualifying": 27,
+      "focused_qualifying": 93,
+      "overlap": 8,
+      "union": 112,
+      "reclassified_identity_count": 3
+    },
+    "reclassified_identities": [
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-16",
+        "source_line_sha256": "c68d0f29aaf2ad024f3a0ea37892eb84b7ffb54568e0726299f4b648115ddc7a",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§1 Incident即releaseとbackfill",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-003",
+          "HARNESS-L11-003"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          }
+        ],
+        "identity_local_residual": "即releaseを現行Release Portと、緊急時にもV-pair/trace/検証/利用者受入を省略しないL11条件へどう接続するか、収束後backfillの範囲・時点。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 47,
+        "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+      },
+      {
+        "source_qualified_identity": "harness/L1-requirements/functional-requirements.md::FR-L1-45",
+        "source_line_sha256": "c88465a7d0f5f2f881791256b0d45ba182573df4e1919f13d80b20ba1e0505d7",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§3 4軸doc専用read-only review",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HARNESS-L2-005",
+          "HARNESS-L2-014",
+          "HARNESS-L11-005",
+          "HARNESS-L11-014",
+          "HELIXOS-L2-018",
+          "HELIXOS-L11-018"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+          }
+        ],
+        "identity_local_residual": "doc専任reviewerとPMOからの独立性、三発動場面の必須review、結果、品質oracleが固定pairにない。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+        "source_line": 76,
+        "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+      },
+      {
+        "source_qualified_identity": "helix/L1-requirements/three-lane-cloud-governance-requests.md::3L-BR-008",
+        "source_line_sha256": "d4d4e772fe334d81af99c5aa5856f07e0c2fd6d2107a01812264907941c9cfc0",
+        "artifact_path": "docs/governance/audits/requirements-stage/confirmed175-three-condition-meaning-delta-2026-09-28.md",
+        "artifact_sha256": "03ba7d15916b1be42cd26822ff4c42606fb4e381a6990b54ada2c7073f907439",
+        "record_pointer": "§2 GitHub監査資格の失効",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "target_ids": [
+          "HELIXLABO-L2-055",
+          "HELIXLABO-L2-059",
+          "HELIXOS-L2-018",
+          "HELIXSECURITY-L2-008"
+        ],
+        "fixed_pair_file_pins": [
+          {
+            "level": "L2",
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+          },
+          {
+            "level": "L2",
+            "path": "docs/helix-security/L2-requirements/security-requirements.md",
+            "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+          },
+          {
+            "level": "L11",
+            "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+            "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+          }
+        ],
+        "identity_local_residual": "GitHub audit task class、major-missの資格上の帰結、model revision変更時の再評価/失効が固定pairに明記されない。",
+        "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+        "source_line": 67,
+        "source_file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "source_semantic_line": 69,
+        "source_semantic_line_sha256": "cdb797e688296917ee4c54a9bf77ff12ac650ae56dc8dcf414f4e100c0e71969"
+      }
+    ],
+    "count_effect": "No new identity is added by this reclassification; it fixes the evidence channel for the same three identities. Strict union remains 112, so subsequent overlays remain 155→159→167→173."
+  }
+}

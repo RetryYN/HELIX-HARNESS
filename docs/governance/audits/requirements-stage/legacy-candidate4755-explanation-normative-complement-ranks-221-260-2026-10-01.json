@@ -1,0 +1,2528 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-audit.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-221-260-2026-10-01",
+  "created_against_commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+  "authority_effect": "none",
+  "scope": {
+    "rank_start": 221,
+    "rank_end": 260,
+    "row_count": 40,
+    "population_basis": "#2353 reconciliation.row_records 4755 rows plus ordered overlays #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381; exact effective explanation class; subtract complete screen marker pool 255; numeric source ID suffix order.",
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "ranked_source_id_sha256": "33f0605d035477590f7b13fbb7a752150a5503fe298f3decf829d46874047905",
+    "independent_reconstruction": true,
+    "rank_181_220_id_overlap_count": 0,
+    "preceding_rank_181_220_last_id": "LEGACY-CAND-LINE-000372",
+    "selected_first_id": "LEGACY-CAND-LINE-000373",
+    "selected_last_id": "LEGACY-CAND-LINE-000428"
+  },
+  "ranking_verification": {
+    "baseline_count": 4755,
+    "effective_class_count": 2965,
+    "marker_partitions": [
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+        "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+        "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+        "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+        "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+        "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+        "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+        "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+        "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+        "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+        "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135",
+        "rows_in_slice": 15
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+        "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+        "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b",
+        "rows_in_slice": 20
+      },
+      {
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+        "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8",
+        "rows_in_slice": 20
+      }
+    ],
+    "marker_partition_unique_count": 255,
+    "complement_count": 2710,
+    "reconstructed_complement_ranks_181_220": [
+      "LEGACY-CAND-LINE-000321",
+      "LEGACY-CAND-LINE-000322",
+      "LEGACY-CAND-LINE-000323",
+      "LEGACY-CAND-LINE-000324",
+      "LEGACY-CAND-LINE-000325",
+      "LEGACY-CAND-LINE-000326",
+      "LEGACY-CAND-LINE-000327",
+      "LEGACY-CAND-LINE-000330",
+      "LEGACY-CAND-LINE-000332",
+      "LEGACY-CAND-LINE-000335",
+      "LEGACY-CAND-LINE-000337",
+      "LEGACY-CAND-LINE-000338",
+      "LEGACY-CAND-LINE-000340",
+      "LEGACY-CAND-LINE-000341",
+      "LEGACY-CAND-LINE-000342",
+      "LEGACY-CAND-LINE-000343",
+      "LEGACY-CAND-LINE-000345",
+      "LEGACY-CAND-LINE-000346",
+      "LEGACY-CAND-LINE-000347",
+      "LEGACY-CAND-LINE-000348",
+      "LEGACY-CAND-LINE-000349",
+      "LEGACY-CAND-LINE-000350",
+      "LEGACY-CAND-LINE-000351",
+      "LEGACY-CAND-LINE-000352",
+      "LEGACY-CAND-LINE-000353",
+      "LEGACY-CAND-LINE-000357",
+      "LEGACY-CAND-LINE-000358",
+      "LEGACY-CAND-LINE-000359",
+      "LEGACY-CAND-LINE-000360",
+      "LEGACY-CAND-LINE-000361",
+      "LEGACY-CAND-LINE-000362",
+      "LEGACY-CAND-LINE-000363",
+      "LEGACY-CAND-LINE-000364",
+      "LEGACY-CAND-LINE-000365",
+      "LEGACY-CAND-LINE-000366",
+      "LEGACY-CAND-LINE-000367",
+      "LEGACY-CAND-LINE-000369",
+      "LEGACY-CAND-LINE-000370",
+      "LEGACY-CAND-LINE-000371",
+      "LEGACY-CAND-LINE-000372"
+    ],
+    "reconstructed_complement_ranks_221_260": [
+      "LEGACY-CAND-LINE-000373",
+      "LEGACY-CAND-LINE-000374",
+      "LEGACY-CAND-LINE-000375",
+      "LEGACY-CAND-LINE-000376",
+      "LEGACY-CAND-LINE-000377",
+      "LEGACY-CAND-LINE-000380",
+      "LEGACY-CAND-LINE-000381",
+      "LEGACY-CAND-LINE-000382",
+      "LEGACY-CAND-LINE-000383",
+      "LEGACY-CAND-LINE-000384",
+      "LEGACY-CAND-LINE-000386",
+      "LEGACY-CAND-LINE-000387",
+      "LEGACY-CAND-LINE-000388",
+      "LEGACY-CAND-LINE-000389",
+      "LEGACY-CAND-LINE-000390",
+      "LEGACY-CAND-LINE-000392",
+      "LEGACY-CAND-LINE-000393",
+      "LEGACY-CAND-LINE-000394",
+      "LEGACY-CAND-LINE-000397",
+      "LEGACY-CAND-LINE-000399",
+      "LEGACY-CAND-LINE-000400",
+      "LEGACY-CAND-LINE-000401",
+      "LEGACY-CAND-LINE-000402",
+      "LEGACY-CAND-LINE-000403",
+      "LEGACY-CAND-LINE-000404",
+      "LEGACY-CAND-LINE-000405",
+      "LEGACY-CAND-LINE-000407",
+      "LEGACY-CAND-LINE-000409",
+      "LEGACY-CAND-LINE-000410",
+      "LEGACY-CAND-LINE-000411",
+      "LEGACY-CAND-LINE-000412",
+      "LEGACY-CAND-LINE-000413",
+      "LEGACY-CAND-LINE-000417",
+      "LEGACY-CAND-LINE-000419",
+      "LEGACY-CAND-LINE-000420",
+      "LEGACY-CAND-LINE-000421",
+      "LEGACY-CAND-LINE-000422",
+      "LEGACY-CAND-LINE-000426",
+      "LEGACY-CAND-LINE-000427",
+      "LEGACY-CAND-LINE-000428"
+    ],
+    "prior_documented_slices_match": [
+      {
+        "ranks": "1-20",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-first20-2026-10-01.json",
+        "sha256": "b6a9889df3b67f6c48bd93fd26d6727362339c40b7494a8265c2fbc580d82001",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "21-40",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-21-40-2026-10-01.json",
+        "sha256": "5223f997468f99197e75f4e47274ebdde5fdc5a871a81dabe0c4b021a6a6e991",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "41-60",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-41-60-2026-10-01.json",
+        "sha256": "7745d788c10a66f3a55651392f5393f387d2fde5e6f1e62e53e29970c1b96ba3",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "61-80",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-61-80-2026-10-01.json",
+        "sha256": "106c87f3b52dfb7e76128c9e38a96df1c339b74fb0c87e45bba6c9d4ca6ef32b",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "81-100",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-81-100-2026-10-01.json",
+        "sha256": "84188cd40fb7c54ab6dab16feb7ef061eb99990084228aa5bb9c97b70bd799a4",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "101-120",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-101-120-2026-10-01.json",
+        "sha256": "4b41369835e8b36f486dff8d330332a97b68cbfd40ab29396923cab80a312272",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "121-140",
+        "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-121-140-2026-10-01.json",
+        "sha256": "8e3929f811ccb9ccab469c6146e22f5a04115703e5f8aa61b29c88a25a6137cb",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "141-160",
+        "commit": "a2bb13d4afcfb2ef7aea9d88892424afd971b23a",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-141-160-2026-10-01.json",
+        "sha256": "aa7d559b5aa34a45d451a36fda4ec829e43bfde5d0c5347438e475712f2ac9a5",
+        "matches_reconstruction": true,
+        "id_count": 20
+      },
+      {
+        "ranks": "161-180",
+        "commit": "4ac61e87c79ee58ff4b3d96787f2e5de78c895fe",
+        "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-161-180-2026-10-01.json",
+        "sha256": "94b4ac0c79f0a590019040873a1d13a8353b6814d58f1afcf155a1bec42af545",
+        "matches_reconstruction": true,
+        "id_count": 20
+      }
+    ],
+    "selected_ids_unique": true,
+    "selected_ids_not_in_prior_181_220": true
+  },
+  "pinned_inputs": [
+    {
+      "role": "full 4755 reconciliation.row_records baseline",
+      "ref": "#2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "ordered exact-ID classification overlay",
+      "ref": "#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "lexical marker regex, structure exclusions, top20 provenance",
+      "ref": "marker screen",
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+    },
+    {
+      "role": "candidate source-line carry-forward ledger",
+      "ref": "source-line ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy asset disposition ledger",
+      "ref": "asset ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "pinned_source_ledgers": [
+    {
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pair_file_pins": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "later_decision_and_receipt_pins": [
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-bounded-repair-source-crosswalk.md",
+      "sha256": "99ef22ebabc9432bb2092d7f29a01d2c3a1acd208875feb866dce4e5bd15ccae"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "commit": "dd605c7f472e43d97ad4b9110f77b85bbfddcd2e",
+      "path": "docs/governance/audits/source-rebaseline/github-open-issue-retirement-inventory.jsonl",
+      "sha256": "1e1333d82ea4a04cfd56b215bce7e53190a5205939004a46ff292d6091e34d8d",
+      "issue_1642_record_line_sha256": null
+    }
+  ],
+  "interpretation": {
+    "family_relation": "Current fixed Intelligence L2-015/L2-016/L2-017 and paired L11 carry selected bounded-repair boundaries; Intelligence candidate and source table explicitly keep BBR-R01..05 detailed conditions candidate-only. HARNESS retains after-repair verification; SECURITY, Worker, and OS retain their own operation permission, constrained execution, and acceptance responsibilities. This is a family-level comparison, not a row-specific adoption binding.",
+    "legacy_approval_receipt": "The old L3-PO-1642-001 pointer records approval scope in the historical candidate snapshot; the later 2026-09-25 placement decision moves execution control to an Intelligence candidate and keeps post-repair verification in HARNESS. The current Intelligence candidate remains awaiting human approval. The 2026-09-28 fixed pair decisions do not turn the URL/Issue pointer or these 40 rows into individual adopted bindings or acceptance execution.",
+    "asset_state": "All 40 rows remain historical_candidate / draft_candidate / preserved_pending_atomization with meaning_change_applied=false, successor_requirement_ids=[], decision_record=null. Both source assets remain Historical, unresolved, product_target=unresolved, authority_status=historical, with no upstream or pair IDs.",
+    "scope_limit": "The old text is read-only evidence. Lexical non-hit does not mean non-normative; metadata pointers are not current decisions. No acceptance, successor, full atom coverage, implementation/execution permission, retirement, closure, or authority effect is produced."
+  },
+  "rows": [
+    {
+      "rank": 221,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000373",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 6,
+      "exact_source_line_text": "approval_source_url: \"https://github.com/RetryYN/HELIX-HARNESS/issues/1642#issuecomment-5575191622\"",
+      "semantic_function": "provenance pointer",
+      "semantic_reading": "旧L3候補approval commentのURLを指すmetadata。URL文字列自体は承認receiptでも現行要求bindingでもない。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "行固有の現行pair bindingなし。旧receiptを認める場合も適用対象revision・L3 scopeに限定し、現行L2/L11採用へ拡張しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 373,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "c5cef5e7da2d86888980f4da9111b8cb0cde64489abcfe874945d1c3103c97fd",
+        "source_line_sha256": "sha256:81c7f0498c7b3bc397b6fa1d26c27d88aec8f7859ad0a004b7f0bcd00ea7f132",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "81c7f0498c7b3bc397b6fa1d26c27d88aec8f7859ad0a004b7f0bcd00ea7f132",
+        "physical_line_bytes_including_terminator_sha256": "ba2cfb118b05451a053e7c8186d7fcf39863e0f80aa546c1a538c7636e3cb020",
+        "baseline_2353_physical_line_bytes_sha256": "ba2cfb118b05451a053e7c8186d7fcf39863e0f80aa546c1a538c7636e3cb020"
+      }
+    },
+    {
+      "rank": 222,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000374",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 7,
+      "exact_source_line_text": "version: \"1.0\"",
+      "semantic_function": "version metadata",
+      "semantic_reading": "候補が主張する版番号。版表示は内容revisionのhashや現行承認ではない。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "現行version_targetや採用revisionを指定しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 374,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "c1e7de81538be7de7bb91ddd5a41b626965a87bd4da021b81cf061725ece359c",
+        "source_line_sha256": "sha256:8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "8878f2140aa69d1a5d1e7162cae938d4568edf7cc2db8f4c81d48d2db480cf77",
+        "physical_line_bytes_including_terminator_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01",
+        "baseline_2353_physical_line_bytes_sha256": "5e301f15a58ae7402e18c3af165d0a57a0af37252c4f74a289732dce70f00e01"
+      }
+    },
+    {
+      "rank": 223,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000375",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 8,
+      "exact_source_line_text": "candidate_layer: L3",
+      "semantic_function": "layer metadata",
+      "semantic_reading": "旧世代で自称するL3層。旧層番号は現行層への直接写像にならない。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "現行L1→L2/L11→L3順と固定decision scopeを優先。旧label単独のplacementなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 375,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "31dac834bcf0c63835efa413109f2a347d4568c6adc25275a99298e7279876e6",
+        "source_line_sha256": "sha256:897a63ae4f58020c8f6acd61ef66d66da13d5af53489bceb49cc0588ed24159a",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "897a63ae4f58020c8f6acd61ef66d66da13d5af53489bceb49cc0588ed24159a",
+        "physical_line_bytes_including_terminator_sha256": "2b034f6e4a02502e28adf384673777daa831ab01df8b7b81bdca35fb1fd2da24",
+        "baseline_2353_physical_line_bytes_sha256": "2b034f6e4a02502e28adf384673777daa831ab01df8b7b81bdca35fb1fd2da24"
+      }
+    },
+    {
+      "rank": 224,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000376",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 9,
+      "exact_source_line_text": "owner_issue: 1642",
+      "semantic_function": "issue pointer",
+      "semantic_reading": "追跡先Issue番号を記すidentity metadata。Issue stateは要求意味・承認を生成しない。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "#1642のlegacy projection記録に閉鎖情報はあるが、semantic disposition unresolved。現行adoptionのreceiptではない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 376,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "afb945c601211e1b49da937d444ac925efbd1b82b0c7cd7100b6c5d16cc59b98",
+        "source_line_sha256": "sha256:a4919a1ed6600f72f1f86afe7346191d92288f00a52eb9abf7bbcb4683178f8f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "a4919a1ed6600f72f1f86afe7346191d92288f00a52eb9abf7bbcb4683178f8f",
+        "physical_line_bytes_including_terminator_sha256": "deb75b42d510aa20112e6390c8faef905e5dc3365a4f6a46f2845ebac0859e4d",
+        "baseline_2353_physical_line_bytes_sha256": "deb75b42d510aa20112e6390c8faef905e5dc3365a4f6a46f2845ebac0859e4d"
+      }
+    },
+    {
+      "rank": 225,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000377",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 10,
+      "exact_source_line_text": "plan_id: PLAN-L3-1642-bugbot-bounded-repair",
+      "semantic_function": "plan pointer",
+      "semantic_reading": "専用旧planへのprovenance pointer。実施計画や承認状態そのものではない。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "current plan/successor/admissionを特定しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 377,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "581bc53641e820c83b05d1c8d8f6f0ea34189904e1df715e06cfc759a0918360",
+        "source_line_sha256": "sha256:8f47386819cf0ff33a8d6598fda133f3c94850d149134742ded0c56f46356446",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "8f47386819cf0ff33a8d6598fda133f3c94850d149134742ded0c56f46356446",
+        "physical_line_bytes_including_terminator_sha256": "eb80aca68bcfeae1ac818889bc55174e692fb197b3cbbca2f68cc6939117c788",
+        "baseline_2353_physical_line_bytes_sha256": "eb80aca68bcfeae1ac818889bc55174e692fb197b3cbbca2f68cc6939117c788"
+      }
+    },
+    {
+      "rank": 226,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000380",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 15,
+      "exact_source_line_text": "本書は追加契約候補であり、自動適用権限を発行しない。BBR IDは候補内ID。",
+      "semantic_function": "candidate scope disclaimer",
+      "semantic_reading": "追加契約候補であり自動適用権限は出さないという候補境界。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行Intelligence候補もawaiting human approval。L2-016の一般境界と近いが、当該行や旧BBR-R群の個別採択を意味しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 380,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "45ad631a71bdb20c020cb2075952a1568126c04c9682330e877811ccca3aa6fb",
+        "source_line_sha256": "sha256:2b94e85acd3a28402412d014f7ad127608ea4748cfc10fa395a5e3addd4b7ef8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "2b94e85acd3a28402412d014f7ad127608ea4748cfc10fa395a5e3addd4b7ef8",
+        "physical_line_bytes_including_terminator_sha256": "a97b868ada550df4f556a549f6800d4e512129118e42d1c503f7cea5b0bd9cbd",
+        "baseline_2353_physical_line_bytes_sha256": "a97b868ada550df4f556a549f6800d4e512129118e42d1c503f7cea5b0bd9cbd"
+      }
+    },
+    {
+      "rank": 227,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000381",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 16,
+      "exact_source_line_text": "L1/L10・専用PLANは同名候補に接続する。候補は`L3-PO-1642-001`で承認済み。",
+      "semantic_function": "legacy approval and linkage metadata",
+      "semantic_reading": "L1/L10/planへの参照と旧L3 approval receiptを記録する。receipt scopeとcanonical/current adoptionを区別する必要がある。",
+      "marker_negative_normative_concern": "候補statusと旧receipt pointerを含むmetadata。旧L3 scopeは記録するが、現在のL2/L11 authorityではない。",
+      "current_relation_and_residual": "2026-09-25の移管判断は修復実行責務をIntelligence候補へ置く配置判断。2026-09-28の固定pair決定は明示ID集合に限定され、URL pointerは個別pair bindingではない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 381,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "4eddf2223b28bc520fdb738755086b3ea863b6cd66a9b08d0e9876d785371143",
+        "source_line_sha256": "sha256:3baf7cf0b52b415a5f1ea85dde6f29b6414786c2e55879a73948356668605afe",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "3baf7cf0b52b415a5f1ea85dde6f29b6414786c2e55879a73948356668605afe",
+        "physical_line_bytes_including_terminator_sha256": "91d5ed3b62bde00a433c1c67a65aa312f25cf685b626acbdaf6c07b195c93954",
+        "baseline_2353_physical_line_bytes_sha256": "91d5ed3b62bde00a433c1c67a65aa312f25cf685b626acbdaf6c07b195c93954"
+      }
+    },
+    {
+      "rank": 228,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000382",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 17,
+      "exact_source_line_text": "canonical promotion・該当IR admission・実装・限定実証へ進行できるが、その成立は未完了。",
+      "semantic_function": "incomplete transition status",
+      "semantic_reading": "canonical promotion、IR admission、implementation、limited demonstrationが未完了と記録する。",
+      "marker_negative_normative_concern": "candidate progression/未完了を含む説明。候補当時の進行表現は現行実行許可ではない。",
+      "current_relation_and_residual": "「進行できる」は実行許可として現行へ継承しない。現行L3以降停止境界を維持。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 382,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ca0cc25bd11f1b1e0dc9a8a0b776c4bf20af395645119ad3377d858b44b509b4",
+        "source_line_sha256": "sha256:8bd83b72ded3d53a7a8437d8c3671244543949072857ad19c8384242bbf5e900",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "8bd83b72ded3d53a7a8437d8c3671244543949072857ad19c8384242bbf5e900",
+        "physical_line_bytes_including_terminator_sha256": "ccb38624f9f6a399cb80a6ae6681f9ec893ef58e687b6b11930e9651196201eb",
+        "baseline_2353_physical_line_bytes_sha256": "ccb38624f9f6a399cb80a6ae6681f9ec893ef58e687b6b11930e9651196201eb"
+      }
+    },
+    {
+      "rank": 229,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000383",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 18,
+      "exact_source_line_text": "既存GH-FR-011のCI自己修復権限内の機械化と、新しい適用対象・契機・権限差分を分ける。",
+      "semantic_function": "scope/authority distinction",
+      "semantic_reading": "既存GH-FR-011範囲内の機械化と、scope・trigger・write-set・side-effect・authorityを増やす差分を分離する複合条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行Intelligence L2-016は対象revision・actor・write-set等を境界化し、HARNESS/SECURITY/Worker/OS各ownerを分ける。ただし旧行のexact bindingなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 383,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "fa76f174e7fe3ddf1ad2a68ca3bb334509e156ddee5df8ee2cbd97ce2ad14d41",
+        "source_line_sha256": "sha256:2e638e8b58c0dc1a46e70a1c1f7df70f558bef8f3ae4b058919ccf169a5dcf99",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "2e638e8b58c0dc1a46e70a1c1f7df70f558bef8f3ae4b058919ccf169a5dcf99",
+        "physical_line_bytes_including_terminator_sha256": "62f0d2871d5ca4dd050b0f5142d4b2c22e4baa7c123c37545f462e74e385603f",
+        "baseline_2353_physical_line_bytes_sha256": "62f0d2871d5ca4dd050b0f5142d4b2c22e4baa7c123c37545f462e74e385603f"
+      }
+    },
+    {
+      "rank": 230,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000384",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 19,
+      "exact_source_line_text": "#1595は別途の自動修復を対象外としている。その承認をBへ継承しない。",
+      "semantic_function": "historical exclusion pointer",
+      "semantic_reading": "別Issue #1595の旧scopeをこの候補へ移さないという境界。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "Issue referenceのみで現在のauthorityや過去receiptを継承しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 384,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "1003aa54b2bca03bd74713c5a7280891a8af80ec1a7619fdd3afbd39d410b701",
+        "source_line_sha256": "sha256:ecf4cb84535bae62a47dae32ee3798c758ebba5cb4f7acf6c0f7e1b31939c672",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "ecf4cb84535bae62a47dae32ee3798c758ebba5cb4f7acf6c0f7e1b31939c672",
+        "physical_line_bytes_including_terminator_sha256": "3be2e7652f5f6041c8f2d82e19fbf25ca6bc4191eae16946fbce6f9e315cf289",
+        "baseline_2353_physical_line_bytes_sha256": "3be2e7652f5f6041c8f2d82e19fbf25ca6bc4191eae16946fbce6f9e315cf289"
+      }
+    },
+    {
+      "rank": 231,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000386",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 23,
+      "exact_source_line_text": "GH-FR-011はAI作成PRのCI失敗を同一episodeで修正する責務であり、登録済み修復器へ",
+      "semantic_function": "legacy existing-authority limit",
+      "semantic_reading": "GH-FR-011が同一episodeのAI作成PR CI失敗修正を担う範囲を記す一方、任意repairerのwrite権限とは区別する。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行の旧GH-FR-011/CI/DB/transaction非継承境界と整合するfamily意味。個別の旧行採択・新実行許可なし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 386,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "88e91c1005e64d485b3ebbbf4f7619a80cd2b7712213df56275aeb4369acbd7a",
+        "source_line_sha256": "sha256:efc2de3587fa0782472a6236780fd50784fa9229449c1f22b28c9be2421a93e6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "efc2de3587fa0782472a6236780fd50784fa9229449c1f22b28c9be2421a93e6",
+        "physical_line_bytes_including_terminator_sha256": "e965b581ee1965573f294aad9ef0b989470ee688a0e2d0c223f7262af64fdbe4",
+        "baseline_2353_physical_line_bytes_sha256": "e965b581ee1965573f294aad9ef0b989470ee688a0e2d0c223f7262af64fdbe4"
+      }
+    },
+    {
+      "rank": 232,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000387",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 24,
+      "exact_source_line_text": "任意の自動write権限を発行する契約ではない。対象PR・契機・episode・所有scope・既存操作権限の",
+      "semantic_function": "legacy contract scope",
+      "semantic_reading": "既存契約内の対象PR・契機・episode・ownership scope・operation authorityが全て揃う場合に限り既存経路を再利用する条件の継続行。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "既存operation authorityが基準という意味は比較対象になるが、旧CI/repairerを新世代実行経路へ継承しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 387,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "ee4801a4004b446d759847eb73fd63ab5523e803f7bb1b1bb624605bd37c9454",
+        "source_line_sha256": "sha256:39fd0b20ff85295a12329687e7d4b928cdb3b47c71e77628a9f2eb12695057af",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "39fd0b20ff85295a12329687e7d4b928cdb3b47c71e77628a9f2eb12695057af",
+        "physical_line_bytes_including_terminator_sha256": "6df7b0358f05eb39f214f33786285d5c5e5cd762ca2197262b6ddebe2713a377",
+        "baseline_2353_physical_line_bytes_sha256": "6df7b0358f05eb39f214f33786285d5c5e5cd762ca2197262b6ddebe2713a377"
+      }
+    },
+    {
+      "rank": 233,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000388",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 25,
+      "exact_source_line_text": "すべてが既存契約内なら、その検収済み経路を再利用する。修復器登録だけではこの充足を認めない。",
+      "semantic_function": "registration is insufficient",
+      "semantic_reading": "registrationだけでは既存契約充足を認めないという明示的条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行L2-016がcandidate/permission/applyを分ける。selected old-row binding/個別acceptanceなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 388,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9d036f7d3d5a02dd4e6f3b7c496a5dec60c6d9432f46c2b7d72e5f4e30ebad82",
+        "source_line_sha256": "sha256:111c4aa25850f6fa37c0ba59eb9ee68ab5cc772287a9bcbd2ac509504ec0514f",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "111c4aa25850f6fa37c0ba59eb9ee68ab5cc772287a9bcbd2ac509504ec0514f",
+        "physical_line_bytes_including_terminator_sha256": "a0b63cfaaafe020ab0e6b042a928e7b2602498c3f953c7ebfcce69e5178b581f",
+        "baseline_2353_physical_line_bytes_sha256": "a0b63cfaaafe020ab0e6b042a928e7b2602498c3f953c7ebfcce69e5178b581f"
+      }
+    },
+    {
+      "rank": 234,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000389",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 26,
+      "exact_source_line_text": "自動適用の対象・契機・write-set・副作用・権限が拡張される部分は追加差分としてL1/L3/L10へ戻す。",
+      "semantic_function": "upstream return condition",
+      "semantic_reading": "自動適用の対象等を拡張する差分をL1/L3/L10へ戻す。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧層/旧canonical工程を現行の層順へ機械的に置換しない。意味変更や対象decisionが要る場合にのみauthority modelを適用。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 389,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "aed2531f62f1ea83cf8b280b7cac7e7aa9badae3154b4fe2ceaa5fd5bb43ddab",
+        "source_line_sha256": "sha256:660c672eb55e7bc2ae983cb703419a9d803202e553d5b2c0bbfb9bf6ae212ff8",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "660c672eb55e7bc2ae983cb703419a9d803202e553d5b2c0bbfb9bf6ae212ff8",
+        "physical_line_bytes_including_terminator_sha256": "4b3f31eb43a5d4a23fc30c92b593dd80fc6bfc32762eeedbe49103f1fd5b211a",
+        "baseline_2353_physical_line_bytes_sha256": "4b3f31eb43a5d4a23fc30c92b593dd80fc6bfc32762eeedbe49103f1fd5b211a"
+      }
+    },
+    {
+      "rank": 235,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000390",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 27,
+      "exact_source_line_text": "不足が不明なら観測・proposalに留め、その不足を理由に既存の許可済み自己修復や調査を一律停止しない。",
+      "semantic_function": "non-blocking unknown handling",
+      "semantic_reading": "不足が不明なら観測/proposalに留め、既存許可済み修復や調査を一律停止しない条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行unknown境界と照合する意味上の候補。旧source row固有の採択なし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 390,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b45e1ab6e649199300dff18295ff9d084914e77a5839fe0729b34fe3ef1f2522",
+        "source_line_sha256": "sha256:2eae9ab2c95d4767bad4df7126bab5ca61671bfcb0cc6ec00e9bd13abb093c7e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "2eae9ab2c95d4767bad4df7126bab5ca61671bfcb0cc6ec00e9bd13abb093c7e",
+        "physical_line_bytes_including_terminator_sha256": "99d4ed7b824a0e2766beaf420f254a3d1cb167b039283cbdc68f9b4bc74fe796",
+        "baseline_2353_physical_line_bytes_sha256": "99d4ed7b824a0e2766beaf420f254a3d1cb167b039283cbdc68f9b4bc74fe796"
+      }
+    },
+    {
+      "rank": 236,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000392",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 31,
+      "exact_source_line_text": "作成・変更確定・push前、PR/CI、必要な全域監査の既存入口へ接続する。別daemonは作らない。",
+      "semantic_function": "inspection entry integration constraint",
+      "semantic_reading": "既存入口へ接続し別daemonを作らないという工程/設計条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧入口/daemon制約は現行architecture decisionへ継承されていない。要求atom候補として保全。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 392,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8cd43ebaa15786274940984101e2adc74d1e3b935be14ebb07e7051e845c65cd",
+        "source_line_sha256": "sha256:261a98470eeec04405e2053883c794a666d0441a54ce87996b4b9c4af5245c5c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "261a98470eeec04405e2053883c794a666d0441a54ce87996b4b9c4af5245c5c",
+        "physical_line_bytes_including_terminator_sha256": "18ea75d40507e0fe328f0bdcd4601605cf1eec44d427dfbbe0648b11a632249f",
+        "baseline_2353_physical_line_bytes_sha256": "18ea75d40507e0fe328f0bdcd4601605cf1eec44d427dfbbe0648b11a632249f"
+      }
+    },
+    {
+      "rank": 237,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000393",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 32,
+      "exact_source_line_text": "Policy版、HEAD、観測・期待状態、根拠、強制度、修復候補を返す。助言をHard化せず、",
+      "semantic_function": "inspection output contract",
+      "semantic_reading": "Policy版、HEAD、観測/期待、根拠、強制度、repair候補を出力するinterface要素の列挙。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行L2-016のinput/output境界と話題は近いが、このlegacy schema/outputの行固有bindingなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 393,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b3b3fcf23dbcb64afe3a4415560277caf2618070e780067aca508687e6b05a44",
+        "source_line_sha256": "sha256:b41d88328d6d410b091bdd226a914cecd2bfdf37ea7076ceb80ece8078be7d92",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "b41d88328d6d410b091bdd226a914cecd2bfdf37ea7076ceb80ece8078be7d92",
+        "physical_line_bytes_including_terminator_sha256": "2b392bf085793ba19193a5e51438aa335d23f113f9b9ed597e805caf7b1dc3ba",
+        "baseline_2353_physical_line_bytes_sha256": "2b392bf085793ba19193a5e51438aa335d23f113f9b9ed597e805caf7b1dc3ba"
+      }
+    },
+    {
+      "rank": 238,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000394",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 33,
+      "exact_source_line_text": "許可された途中編集やREDテストに完成条件を強制しない。",
+      "semantic_function": "enforcement boundary",
+      "semantic_reading": "助言をhard enforcementへ昇格せず、途中編集/RED testへ完成条件を押し付けない制約。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行の未承認・権限境界と比較できるが、legacy enforcement behaviorを採択していない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 394,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8404ec0928b7463738f65ee5f703cc4124efc69cb04957e063eb447c9860894a",
+        "source_line_sha256": "sha256:ed3aa77f629244c66fa40d91656ded9166ae2a63391246615c3dae20b879e2ab",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "ed3aa77f629244c66fa40d91656ded9166ae2a63391246615c3dae20b879e2ab",
+        "physical_line_bytes_including_terminator_sha256": "e8176142998c67af4fb2098cca83ef36b5b4058f074358d9a7809c7178be81f3",
+        "baseline_2353_physical_line_bytes_sha256": "e8176142998c67af4fb2098cca83ef36b5b4058f074358d9a7809c7178be81f3"
+      }
+    },
+    {
+      "rank": 239,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000397",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 38,
+      "exact_source_line_text": "承認不足・矛盾・取得不能・未知は追加観測・判断・待機へ送る。候補・許可・適用・検収を別状態にする。",
+      "semantic_function": "unknown and state separation",
+      "semantic_reading": "承認不足・矛盾・取得不能・unknownを観測/判断/待機へ送り、candidate/permission/apply/acceptanceを分ける。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行authority-state/Intelligence境界と意味上近い。旧row-specific adoption/acceptance proofなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 397,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "358d3433fbfa3834fee0e1bf0bdfc142b20d225c0aee63e7695b0090377aeaa3",
+        "source_line_sha256": "sha256:607cc10a59b22bac8fde5d0a9fe7425ad571d1e6daf42345ed8b8bfa26e22372",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "607cc10a59b22bac8fde5d0a9fe7425ad571d1e6daf42345ed8b8bfa26e22372",
+        "physical_line_bytes_including_terminator_sha256": "7670d1842c0d3fa6d8daf5782823758fc3e612b89003c46dfd4d3319a6eb62c6",
+        "baseline_2353_physical_line_bytes_sha256": "7670d1842c0d3fa6d8daf5782823758fc3e612b89003c46dfd4d3319a6eb62c6"
+      }
+    },
+    {
+      "rank": 240,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000399",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 42,
+      "exact_source_line_text": "既存操作契約へ修復ID/版、信頼済み実装、失敗コード、入力schema、事前条件、write-set、",
+      "semantic_function": "operation contract field set",
+      "semantic_reading": "repair ID/version、trusted implementation、failure code、input schema、precondition、write-setを既存operation contractへ束縛する列挙の続き。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行L2-016は同種scope factsを扱うが、旧field set全体やimplementation identityの完全coverageは確認しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 399,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "79594581453b198b7f0296a22324ab490197c69e7667ee58f31cfc3aa126bda0",
+        "source_line_sha256": "sha256:f0690cf4c343f68539710aef198ba2e48821a15a6a9b4dd0925c0b8413a5a2fb",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "f0690cf4c343f68539710aef198ba2e48821a15a6a9b4dd0925c0b8413a5a2fb",
+        "physical_line_bytes_including_terminator_sha256": "d508289551a845ac5b28a9e165b6305878b8bd156696ac8cd2d1d9d98ba00a1d",
+        "baseline_2353_physical_line_bytes_sha256": "d508289551a845ac5b28a9e165b6305878b8bd156696ac8cd2d1d9d98ba00a1d"
+      }
+    },
+    {
+      "rank": 241,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000400",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 43,
+      "exact_source_line_text": "副作用区分、予算・期限・再試行、事後検証、失敗処理を束縛する。登録・有効化は通常検収を通す。",
+      "semantic_function": "postcondition and authorization source",
+      "semantic_reading": "side effect/budget/deadline/retry/post-verification/failure handling、登録・有効化時の通常検収を要求する。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行pairは独立owner/stageを分ける。旧条件全体のrow-level successorやL11実施証拠なし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 400,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "3e4717851613f0e2012ac3f113c3bb8c340263ce1b827e7cad03c5fda140239d",
+        "source_line_sha256": "sha256:c57ca955a315c5d50ede44cb2f260b54ce8450f9b1499a64aa58409ae971ff9c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "c57ca955a315c5d50ede44cb2f260b54ce8450f9b1499a64aa58409ae971ff9c",
+        "physical_line_bytes_including_terminator_sha256": "2f66e325d8d4535bd2bb5b445e966029441493708eb1854f00795a46965bd4a9",
+        "baseline_2353_physical_line_bytes_sha256": "2f66e325d8d4535bd2bb5b445e966029441493708eb1854f00795a46965bd4a9"
+      }
+    },
+    {
+      "rank": 242,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000401",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 44,
+      "exact_source_line_text": "LLM confidenceや自己申告で許可しない。",
+      "semantic_function": "confidence is not authority",
+      "semantic_reading": "LLM confidenceやself-assertionをpermission sourceとしない規範的authority boundary。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行authority-stateとL2-016のcandidate/permission境界に近いが、当該old rowのexact crosswalkなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 401,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "c0438a0e5a6752d5d0467a2e78b5791f671a421a6ab5262deea3bc9dc3f4cee3",
+        "source_line_sha256": "sha256:391fbcc6c0f90bbe7a6930ffab0d1348b7b0f94379de9b059b20f344251d2f21",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "391fbcc6c0f90bbe7a6930ffab0d1348b7b0f94379de9b059b20f344251d2f21",
+        "physical_line_bytes_including_terminator_sha256": "5faa16641a54235c8be5c17a44871108549d2163cac085e82ce32e8870ac7005",
+        "baseline_2353_physical_line_bytes_sha256": "5faa16641a54235c8be5c17a44871108549d2163cac085e82ce32e8870ac7005"
+      }
+    },
+    {
+      "rank": 243,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000402",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 45,
+      "exact_source_line_text": "新しい自動適用権限は、対象修復ごとの契約・独立検証・実consumer検証がすべて成立した",
+      "semantic_function": "bounded permission prerequisites",
+      "semantic_reading": "修復毎のcontract・独立検証・実consumer検証成立後にのみ新しい自動適用を有効化する条件の継続行。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行L2-016/L2-017とHARNESS verification/OS acceptanceを分離する責務に比較可能。旧acceptance rowやconsumer実施は未確認。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 402,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "95fa0d518333be5f8a73082aff91fd24afaae4d64346716f2c1bdf8d4573f64d",
+        "source_line_sha256": "sha256:f9e80bec35be3178785d30e353c6acbd5bc7b0ecf5bc71827732f3166fead96b",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "f9e80bec35be3178785d30e353c6acbd5bc7b0ecf5bc71827732f3166fead96b",
+        "physical_line_bytes_including_terminator_sha256": "b65da91030dd46a4becbaad0162337aa7bc3cb8deb3e847f4a60fe11205395f2",
+        "baseline_2353_physical_line_bytes_sha256": "b65da91030dd46a4becbaad0162337aa7bc3cb8deb3e847f4a60fe11205395f2"
+      }
+    },
+    {
+      "rank": 244,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000403",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 46,
+      "exact_source_line_text": "修復ID/版・対象consumer・許可write-setの範囲だけ有効化する。要求承認のみ、修復器登録のみ、",
+      "semantic_function": "permission scope limit",
+      "semantic_reading": "許可をrepair ID/version・consumer・write-setへ限定する条件と包括権限禁止の続き。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行L2-016は包括write権限を生成しない。exact old-row adoptionはない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 403,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "80c588db5c2f816d2c2ef5b9ed7e1ed6a4fcb96938221ab7ab8911f92a7bb09b",
+        "source_line_sha256": "sha256:4015835efbf9c4251c42d1af63b3f5a7c675ee44ffd056021c0429af562fa16d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "4015835efbf9c4251c42d1af63b3f5a7c675ee44ffd056021c0429af562fa16d",
+        "physical_line_bytes_including_terminator_sha256": "420b1ad64116d34143fc15c12bcb76f2af726217693bb11cb03b4a298cbd7ee6",
+        "baseline_2353_physical_line_bytes_sha256": "420b1ad64116d34143fc15c12bcb76f2af726217693bb11cb03b4a298cbd7ee6"
+      }
+    },
+    {
+      "rank": 245,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000404",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 47,
+      "exact_source_line_text": "他修復の合格では包括的な自動書込み権限を付与しない。既存契約内の通常検収へ毎回の人間再承認を新設しない。",
+      "semantic_function": "no blanket authority or approval churn",
+      "semantic_reading": "requirements approval/registration/other repair successから包括writeを与えず、既存契約内検収へ毎回の人間再承認を加えない。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "authorityの負方向/既存許可の扱いを分ける。現行の既決許可境界を再解釈せず、旧行から新たな毎回承認/免除も作らない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 404,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "a7419bfda140565a3b99d522ef6c8d96047be24ec89364f9b58113a01b1e5f89",
+        "source_line_sha256": "sha256:4ed30da6aa1e4a6acb1f44878c8e0097cb6843b4f95df5299ebb53bef2752eb0",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "4ed30da6aa1e4a6acb1f44878c8e0097cb6843b4f95df5299ebb53bef2752eb0",
+        "physical_line_bytes_including_terminator_sha256": "553be42dfba874b0ef60c35557af66ab04a1c934b6338604e6c102e8998e36a2",
+        "baseline_2353_physical_line_bytes_sha256": "553be42dfba874b0ef60c35557af66ab04a1c934b6338604e6c102e8998e36a2"
+      }
+    },
+    {
+      "rank": 246,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000405",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 48,
+      "exact_source_line_text": "適用直前にHEAD・入力bytes・Policy・生成器・workspace所有権・lease/fenceを再照合する。",
+      "semantic_function": "pre-apply freshness check",
+      "semantic_reading": "適用直前のHEAD・入力bytes・Policy・generator・ownership・lease/fence照合条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "stale/ownership concurrencyは現行L2-016のscope境界と比較可能。旧lease/fence機構の再利用や行固有採択なし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 405,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9faf1f50e3ec8f0e3caf54a86c40b7ce88882bcad48f263e0f56245b182266f7",
+        "source_line_sha256": "sha256:740454f3356f91e74efcf7516af5a1562e0965f0783c515279c0e36fb555b5c3",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "740454f3356f91e74efcf7516af5a1562e0965f0783c515279c0e36fb555b5c3",
+        "physical_line_bytes_including_terminator_sha256": "76c86cfa32176e20cc79fc87f296be6f4b59db782b315ff031357c60f40ee8f2",
+        "baseline_2353_physical_line_bytes_sha256": "76c86cfa32176e20cc79fc87f296be6f4b59db782b315ff031357c60f40ee8f2"
+      }
+    },
+    {
+      "rank": 247,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000407",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 50,
+      "exact_source_line_text": "外部文章のcommand、候補PRが改変した修復器、未信頼入力を特権実行しない。",
+      "semantic_function": "untrusted execution prohibition",
+      "semantic_reading": "外部文章のcommand、候補PRが改変したrepairer、未信頼入力を特権実行しない禁止条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行SECURITY/Worker authority ownerと照合する意味上の候補。選択行のpair-specific bindingなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 407,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b9c039d203a1e209a03ef5868d92b025271cf4f76d4d5bbce6665cdfc3d9b4f0",
+        "source_line_sha256": "sha256:980f8c374d4256fee9fb37da0c821967da2021e8b3fcfdc5f7a3fd768a4c3321",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "980f8c374d4256fee9fb37da0c821967da2021e8b3fcfdc5f7a3fd768a4c3321",
+        "physical_line_bytes_including_terminator_sha256": "3b0e19757183f152b9a4e925e9cf1d6b2d2de54913c757439dc594f36b4a1688",
+        "baseline_2353_physical_line_bytes_sha256": "3b0e19757183f152b9a4e925e9cf1d6b2d2de54913c757439dc594f36b4a1688"
+      }
+    },
+    {
+      "rank": 248,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000409",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 54,
+      "exact_source_line_text": "再適用の差分ゼロ、findingの重複排除、episode累積の試行・予算を要求し、session変更でresetしない。",
+      "semantic_function": "convergence and episode budget",
+      "semantic_reading": "再適用diff-zero、finding重複排除、episode累積試行/予算を要求しsession切替でresetしない。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行候補はretry/budget/duplicateを扱うが旧のsession/episode countingを採択していない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 409,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "56e9c40032e5be7d32094971eb4963974e3013f42f4c9e2a2486af0faaf2e750",
+        "source_line_sha256": "sha256:9dc926ea36e192fecf17466c97f5d2e5f40cce9696b0573b85d8371bd52d9de9",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "9dc926ea36e192fecf17466c97f5d2e5f40cce9696b0573b85d8371bd52d9de9",
+        "physical_line_bytes_including_terminator_sha256": "24831dc73d24ad39ef16ff887047eef3ddbcf189cf16b101d410185c6edb8eca",
+        "baseline_2353_physical_line_bytes_sha256": "24831dc73d24ad39ef16ff887047eef3ddbcf189cf16b101d410185c6edb8eca"
+      }
+    },
+    {
+      "rank": 249,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000410",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 55,
+      "exact_source_line_text": "相互修復の循環・同一失敗再発・期限超過で停止して既存Recoveryへ返す。",
+      "semantic_function": "stop and recovery route",
+      "semantic_reading": "循環・同一failure再発・期限超過で停止しRecoveryへ戻す。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "停止/Recoveryの意味は比較可能。現行のowner・ticket・停止/復旧interfaceと個別対応していない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 410,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "f87d3b6d0c13f8a475221a02e2382e274bf979d24c105fa7980dd037d8c4d185",
+        "source_line_sha256": "sha256:91a71f725bd2d7a7b66de45c2f4580766d58937f63a220723bca5d20505a8b7e",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "91a71f725bd2d7a7b66de45c2f4580766d58937f63a220723bca5d20505a8b7e",
+        "physical_line_bytes_including_terminator_sha256": "2a4ce7f7657ebf7bb039e05c36830831cfc91ef0f821dc051d62f6647f087727",
+        "baseline_2353_physical_line_bytes_sha256": "2a4ce7f7657ebf7bb039e05c36830831cfc91ef0f821dc051d62f6647f087727"
+      }
+    },
+    {
+      "rank": 250,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000411",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 56,
+      "exact_source_line_text": "内部正常化後に候補を確定し、HEAD変更でstaleとなるCI/reviewを正規更新する。",
+      "semantic_function": "stale evidence renewal",
+      "semantic_reading": "内部正常化後候補確定とHEAD変更時のCI/review更新を述べる。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧CI/review更新方式は現行へ継承しない。現行stale/review admissionは独立のauthority/operating modelに従う。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 411,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "b890dd181453b61a73f65e40343621341d9e01102ae5b14c41d7253baf090465",
+        "source_line_sha256": "sha256:4297ba76bf2f5bce766f59bca3440239fbf09e77c1b553a19b94570a78bbdef1",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "4297ba76bf2f5bce766f59bca3440239fbf09e77c1b553a19b94570a78bbdef1",
+        "physical_line_bytes_including_terminator_sha256": "66f3fea93f8c21e9201c0fafeca7d89fddb51c03ca14bed5750f35e0577a3cea",
+        "baseline_2353_physical_line_bytes_sha256": "66f3fea93f8c21e9201c0fafeca7d89fddb51c03ca14bed5750f35e0577a3cea"
+      }
+    },
+    {
+      "rank": 251,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000412",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 57,
+      "exact_source_line_text": "修復成功で独立検収・merge許可を代替しない。途中失敗の差分・記録を保全し、不明な外部副作用を再試行しない。",
+      "semantic_function": "independent acceptance and side-effect boundary",
+      "semantic_reading": "repair successでindependent acceptance/merge permissionを代替せず、partial failureを保持しunknown side effectを再試行しない。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行pairはINTELLIGENCE結果・HARNESS検証・OS acceptanceを分離。旧row-specific oracleや実施receiptなし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 412,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "e8f820d98d379594c6e2d4c1281cb784c6e713887ab41c2ad3749fb1d091f632",
+        "source_line_sha256": "sha256:456b23e9ba1e817b8c3816dfa6303d2c86c52e065cef939522e919d83389b5cc",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "456b23e9ba1e817b8c3816dfa6303d2c86c52e065cef939522e919d83389b5cc",
+        "physical_line_bytes_including_terminator_sha256": "9496deac865d37e3e386513adc8cfefba329a1284d34d0ba75edfa46d71acf1e",
+        "baseline_2353_physical_line_bytes_sha256": "9496deac865d37e3e386513adc8cfefba329a1284d34d0ba75edfa46d71acf1e"
+      }
+    },
+    {
+      "rank": 252,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000413",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 58,
+      "exact_source_line_text": "全面rollback可能と仮定せず、失敗した修復がHelpや許可された調査まで塞がないようにする。",
+      "semantic_function": "partial failure and help continuity",
+      "semantic_reading": "全rollback可能と仮定せず、失敗がHelp/許可調査を塞がない条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "現行scope/partial-work境界と比較可能だが、old recovery flowの継承なし。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 413,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "0e6e38a0aecc700b05b303f4a24bb9c3fa881cca3f16a55ab1ef66c498c3a08f",
+        "source_line_sha256": "sha256:f9c7ff9eaeba3490bf87d344c683c29ef772ef4791b472a21097b65767a4adb6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "f9c7ff9eaeba3490bf87d344c683c29ef772ef4791b472a21097b65767a4adb6",
+        "physical_line_bytes_including_terminator_sha256": "b940de8648ca06cfd933bc6a5720b426771253daa8230e9c4dd4ee62ba3d64c5",
+        "baseline_2353_physical_line_bytes_sha256": "b940de8648ca06cfd933bc6a5720b426771253daa8230e9c4dd4ee62ba3d64c5"
+      }
+    },
+    {
+      "rank": 253,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000417",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 64,
+      "exact_source_line_text": "旧Policyで現行資産を巻き戻さず、矛盾は上流改訂へ送る。",
+      "semantic_function": "no rollback to old policy",
+      "semantic_reading": "旧Policyで現行資産を巻き戻さず矛盾を上流改訂へ返す条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "archive/current-generation boundaryと意味比較対象。旧Policyを実行/移行しない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 417,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "13c385b2b7201b0e32f13d6ac78fae5f92965c698ae7f91421acea597a0510b8",
+        "source_line_sha256": "sha256:8911393699ac40fd11b8b7ce3cdeac2e32e700eef68dd6c20fc0b45e64b9f002",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "8911393699ac40fd11b8b7ce3cdeac2e32e700eef68dd6c20fc0b45e64b9f002",
+        "physical_line_bytes_including_terminator_sha256": "d62825f325f06c13a62f24f1cbb39fb4b71e3bba3ec867fb4ecedb619ec3e32a",
+        "baseline_2353_physical_line_bytes_sha256": "d62825f325f06c13a62f24f1cbb39fb4b71e3bba3ec867fb4ecedb619ec3e32a"
+      }
+    },
+    {
+      "rank": 254,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000419",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 68,
+      "exact_source_line_text": "統制①が限定適用契約を担当し、書込みは既存Authoring/Recovery、状態は既存event/receipt/DB投影を使う。",
+      "semantic_function": "legacy implementation-stage architecture",
+      "semantic_reading": "旧案が統制・書込み・状態保存に使うとした実装部品とownerを記述する。要求上の候補案であり、技術選定の現行決定ではない。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧Authoring/Recovery/event/receipt/DBを現行へ継承しない。HELIX-OS/Intelligence/HARNESSの現行owner境界と個別照合が必要。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 419,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "7eab0c6570300fade849e53b2e0c9b92442062aebc4c9fef7cad01611579c51b",
+        "source_line_sha256": "sha256:8af406304fb5f4773c817ac88d430f82b2f3eb468a5d14431aaf89282642aee5",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "8af406304fb5f4773c817ac88d430f82b2f3eb468a5d14431aaf89282642aee5",
+        "physical_line_bytes_including_terminator_sha256": "06e4c9cc040d7c5384f7acf433b457835219455bc220f856df8050e909c23d79",
+        "baseline_2353_physical_line_bytes_sha256": "06e4c9cc040d7c5384f7acf433b457835219455bc220f856df8050e909c23d79"
+      }
+    },
+    {
+      "rank": 255,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000420",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 69,
+      "exact_source_line_text": "棚卸し→対象限定整形・再生成→PLAN/PR定型生成→実receipt引用→実証済み変換・worker返却の順で進める。",
+      "semantic_function": "legacy rollout sequence",
+      "semantic_reading": "棚卸しからreceipt・実証済み変換・worker返却へ進む旧段階投入案。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧PLAN/PR/receipt順を現行工程へ採用しない。source family referenceだけではsequence adoptionにならない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 420,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "dd9e5c8d0eff06af214c96cabec440992d0054ac1cf33974ab4d5148eb2afc45",
+        "source_line_sha256": "sha256:11cd1a85916137aae62b7ba65708503852b2e7e70acd8ba8e79b4c9d17d0996c",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "11cd1a85916137aae62b7ba65708503852b2e7e70acd8ba8e79b4c9d17d0996c",
+        "physical_line_bytes_including_terminator_sha256": "25c8cc837f0455820a6f21d7f7e6713d4e5fdd767f9bfd77a7248abd9e53908e",
+        "baseline_2353_physical_line_bytes_sha256": "25c8cc837f0455820a6f21d7f7e6713d4e5fdd767f9bfd77a7248abd9e53908e"
+      }
+    },
+    {
+      "rank": 256,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000421",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 70,
+      "exact_source_line_text": "#192/#1595/#1608全体の完了を一律前提にしない。CI #93、Cursor #1293と並行するが安全修復を押しのけない。",
+      "semantic_function": "legacy dependency non-gate",
+      "semantic_reading": "他Issue全体の完了を一律前提にせず関連作業と並行する旧候補工程条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "Issue番号と旧CI/Cursor関係は現行admissionやdependencyを決めない。行固有の現行後続条件は未対応。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 421,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "cbd2c13db0aa368f9870a259915da4b1987dc7e3264c63d02ab4f2e70da7cca9",
+        "source_line_sha256": "sha256:eeaa7cf1dfa8ba0b0aa405f7a25487f2a48f73adb2aa92a8a2d4be1b8ada4e1d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "eeaa7cf1dfa8ba0b0aa405f7a25487f2a48f73adb2aa92a8a2d4be1b8ada4e1d",
+        "physical_line_bytes_including_terminator_sha256": "8a32ebf35ee3e272a9ba1f99cba228fed23f44719b26a69ef0eefec90f08362c",
+        "baseline_2353_physical_line_bytes_sha256": "8a32ebf35ee3e272a9ba1f99cba228fed23f44719b26a69ef0eefec90f08362c"
+      }
+    },
+    {
+      "rank": 257,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000422",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 71,
+      "exact_source_line_text": "未定義の権限差分だけL1/L3/L10承認・正本化・該当#397 admission後に有効化する。",
+      "semantic_function": "authority activation condition",
+      "semantic_reading": "未定義の権限差分は承認・正本化・該当IR admission後に有効化するという候補工程条件。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧L1/L3/L10・#397経路を現行承認routeへ移さない。現行の上流authority順・対象revision decisionが支配する。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 422,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "9261abd9815a149585361d416e82e5d57a460d3f747a23cf72f6db89ba3555e8",
+        "source_line_sha256": "sha256:cbf7a46ad57977d88e22e0b75d2277ae82c274c875bcbe5c00f4e15eef2451f6",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "cbf7a46ad57977d88e22e0b75d2277ae82c274c875bcbe5c00f4e15eef2451f6",
+        "physical_line_bytes_including_terminator_sha256": "e38e04103411505ddcbd25681e3359e3159799284b535c95be71fbd2da7ca246",
+        "baseline_2353_physical_line_bytes_sha256": "e38e04103411505ddcbd25681e3359e3159799284b535c95be71fbd2da7ca246"
+      }
+    },
+    {
+      "rank": 258,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000426",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 76,
+      "exact_source_line_text": "旧入口移管・rollback証拠、CI・review・main read-afterを提出し、残義務削除で合格しない。",
+      "semantic_function": "migration evidence and acceptance boundary",
+      "semantic_reading": "旧入口移管、rollback evidence、CI/review/main read-afterの提出と未完義務削除の不合格条件を示す。",
+      "marker_negative_normative_concern": "はい：marker-negativeの規範・条件候補。screen非該当は非規範性を意味せず、周辺文脈と適用scopeを読む。",
+      "current_relation_and_residual": "旧入口とCI/read-after方式を現行へ継承しない。現行review/merge/acceptanceを各ownerで区別し、旧行個別採択・実施証拠はない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 426,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "c5b2c5477f0b8f4f694801f41b699903bda76b114d8d449cec91d7ec46fc896e",
+        "source_line_sha256": "sha256:a394d15db240ff8ef483c1e4449621d57c422088dda5b8a434bfb5baf27755ea",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "a394d15db240ff8ef483c1e4449621d57c422088dda5b8a434bfb5baf27755ea",
+        "physical_line_bytes_including_terminator_sha256": "57b8ee64fefb7b890506044a322978a60e761440cada6ecb54d012dee6db8dcb",
+        "baseline_2353_physical_line_bytes_sha256": "57b8ee64fefb7b890506044a322978a60e761440cada6ecb54d012dee6db8dcb"
+      }
+    },
+    {
+      "rank": 259,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000427",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 78,
+      "exact_source_line_text": "原文bytes: [commit固定の保全台帳](https://github.com/RetryYN/HELIX-HARNESS/blob/a2325edb8425f4e84421ef2fd1f07c6c6d668dd7/docs/governance/candidates/bugbot-intake-source.md)のBase64復号。SHA-256 `c97b9dd32b8327696d77ae3f86cebeae0e3a2545766d3e4bb2c0f484e6a4828a`。#1639は共有原稿の追跡、#1642はBの追跡先であり、追記後Issue本文のhashではない。",
+      "semantic_function": "historical source provenance",
+      "semantic_reading": "原文bytesの保全先・過去hashと旧Issue trackingの関係を説明するprovenance文。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "参照リンクと旧hashは現行正本・個別approval receiptを作らない。外部リンクは開かず、記載だけを照合。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 427,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "756d1c028920e0e02693555f4da3498fd389c753c59b478e6ef2981664dbb9f9",
+        "source_line_sha256": "sha256:33566230e74911308cb841950002529fd4d005bc3564880654141537ab88eb58",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "33566230e74911308cb841950002529fd4d005bc3564880654141537ab88eb58",
+        "physical_line_bytes_including_terminator_sha256": "e0403ef0ae623a65c48a1d271325b8ef871bb7f0852b4c45bb6c076a66ad8272",
+        "baseline_2353_physical_line_bytes_sha256": "e0403ef0ae623a65c48a1d271325b8ef871bb7f0852b4c45bb6c076a66ad8272"
+      }
+    },
+    {
+      "rank": 260,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000428",
+      "effective_classification": "explanation",
+      "source_path": "docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+      "physical_line_number": 79,
+      "exact_source_line_text": "別紙02/03/05は未提供。本文由来の受入観点は別紙03の18シナリオ確認の代替ではない。",
+      "semantic_function": "historical evidence limitation",
+      "semantic_reading": "別紙が未提供で本文からの受入観点が18 scenario検査の代替ではないという制限事項。",
+      "marker_negative_normative_concern": "いいえ：metadata / provenance / heading / scope limitation。参照・履歴・見出し・制限情報で、単独の現行製品predicateではない。",
+      "current_relation_and_residual": "未提供の別紙・旧scenario群の完全coverageを推定しない。現行L11の受入根拠にもならない。 source familyとの関係はあるが、選択行固有crosswalk・採択pair binding・全atom coverage・受入実施は確認していない。",
+      "source_line_ledger": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 428,
+        "whole_file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "entry_raw_line_sha256": "8e772869d36352a07b7e622047cb2a14b42d236530f221ba017c6d6013f8b41b",
+        "source_line_sha256": "sha256:9d73d7e8063abe6df14328b4b2469d7f92dc12dcf359f83dddbd1242ac447a5d",
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null
+      },
+      "asset_disposition": {
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 795,
+        "whole_file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_raw_line_sha256": "f98b564e946dc690c63807c82feae13145ff0895581e49442e7959404100b9ca",
+        "asset_id": "LEGACY-ASSET-D881AF6AFD277B1DE934",
+        "source_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "source_snapshot_pin": {
+        "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requirements.md",
+        "sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb"
+      },
+      "source_hashes": {
+        "archive_file_sha256": "81dc848cde93395e5cf5e49d5545856f482403d41c7eae75cae993a9c4229dbb",
+        "utf8_source_line_content_sha256": "9d73d7e8063abe6df14328b4b2469d7f92dc12dcf359f83dddbd1242ac447a5d",
+        "physical_line_bytes_including_terminator_sha256": "3427a17f4db36656ad7511e0ae86cf1fcd0fe40b3e864656867aef995239b99d",
+        "baseline_2353_physical_line_bytes_sha256": "3427a17f4db36656ad7511e0ae86cf1fcd0fe40b3e864656867aef995239b99d"
+      }
+    }
+  ],
+  "limitations": [
+    "The external GitHub URL in old front matter is treated as a pointer; its presence and projected issue state are not used to create a current decision.",
+    "F6 pair-file bytes are compared at their exact fixed revision and separately from the later current candidate text at the base commit.",
+    "No archive workflow, CLI, hook, adapter, runtime, test, or CI was executed."
+  ]
+}

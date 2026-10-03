@@ -1,0 +1,3935 @@
+{
+  "schema_version": "helix-legacy-candidate4755-normative-semantic-review-batch.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01",
+  "created_against_commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+  "authority_effect": "none",
+  "scope": {
+    "screen_commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0:docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "screen_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+    "screen_sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+    "screen_pool_size": 255,
+    "reviewed_rank_start": 41,
+    "reviewed_rank_end": 60,
+    "semantic_rows_reviewed": 20,
+    "archive_runtime_cli_hook_test_ci_executed": false,
+    "f6_relation_search_scope": [
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": [
+          399,
+          404,
+          405,
+          406,
+          407,
+          408,
+          409,
+          410,
+          411,
+          417
+        ]
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "lines": [
+          192,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203
+        ]
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": [
+          429,
+          443,
+          444,
+          445,
+          509
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "lines": [
+          187,
+          188,
+          195,
+          196
+        ]
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "lines": [
+          534,
+          536,
+          539,
+          781,
+          795
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "lines": [
+          52
+        ]
+      },
+      {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "lines": [
+          442
+        ]
+      },
+      {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "lines": [
+          207
+        ]
+      },
+      {
+        "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+        "lines": [
+          2,
+          3,
+          4,
+          10,
+          11,
+          12,
+          13,
+          14,
+          19
+        ]
+      }
+    ],
+    "searched_current_documents": [
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "docs/helix-harness/L2-requirements/product-requirements.md",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "docs/helix-os/candidates/next-generation-ci-requirements.md"
+    ]
+  },
+  "method": "Rebuilt all 4,755 #2353 row records and applied exact ordered #2356/#2360/#2363/#2366/#2367/#2368/#2369/#2381 classification overlays. Excluded Markdown headings/table headers; applied the screen regexes, tier precedence, hit-count and numeric source-ID tie-break exactly. The reconstructed explanation count and 255 marker pool match the screen. Top 20 matches the pinned screen queue and ranks 21–40 match the preceding bounded audit. Read every selected archive line plus local section/table context; joined each to line ledger and asset ledger. Compared only explicit F6 L2/L11 and candidate/source-family references in the listed files. Candidate-family/source relation, candidate-package pointer, selected-row crosswalk, adopted pair binding, and full source-atom coverage remain separate facts. No archive runtime, CLI, hook, test, CI, or executable was run.",
+  "ranking_reconstruction": {
+    "effective_explanation_rows": 2965,
+    "marker_pool_rows": 255,
+    "reconstructed_top20_exact_screen_match": true,
+    "ranks21_40_exact_prior_audit_match": true,
+    "previous_top20_commit": "0de781db58df7b0ff4b4676161312cdefebe2579",
+    "previous_top20_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+    "previous_top20_audit_sha256": "f2e9077287ade80747eeecf373b1e08d53e3d6c8622c2aecc1cb08d881aecaaa",
+    "previous_21_40_audit_path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+    "previous_21_40_audit_sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b",
+    "reconstructed_ranks_41_60": [
+      "LEGACY-CAND-LINE-000473",
+      "LEGACY-CAND-LINE-000524",
+      "LEGACY-CAND-LINE-000690",
+      "LEGACY-CAND-LINE-000788",
+      "LEGACY-CAND-LINE-000791",
+      "LEGACY-CAND-LINE-000792",
+      "LEGACY-CAND-LINE-000793",
+      "LEGACY-CAND-LINE-000794",
+      "LEGACY-CAND-LINE-000796",
+      "LEGACY-CAND-LINE-000833",
+      "LEGACY-CAND-LINE-000844",
+      "LEGACY-CAND-LINE-001008",
+      "LEGACY-CAND-LINE-001091",
+      "LEGACY-CAND-LINE-001110",
+      "LEGACY-CAND-LINE-001112",
+      "LEGACY-CAND-LINE-001144",
+      "LEGACY-CAND-LINE-001145",
+      "LEGACY-CAND-LINE-001153",
+      "LEGACY-CAND-LINE-001206",
+      "LEGACY-CAND-LINE-001284"
+    ],
+    "header_rows_excluded_from_screen": [
+      "LEGACY-CAND-LINE-001500",
+      "LEGACY-CAND-LINE-001514",
+      "LEGACY-CAND-LINE-001910"
+    ]
+  },
+  "interpretation_boundary": {
+    "legacy_assets": "All selected asset-ledger rows remain product_target=unresolved, upstream_ids=[], pair_ids=[], disposition=unresolved, authority_status=historical. Source-line ledger remains historical_candidate/draft_candidate and pending atomization.",
+    "current_authority": "F6 pair files are pinned at the fixed revision. Explicit candidate/family reference means only the stated family or candidate pointer is present. It does not prove the exact selected old row maps to an adopted current L2/L11 pair, that an oracle was adopted or executed, or that all atoms are covered. Absence is bounded to listed files/lines.",
+    "classification": "Mechanical effective_classification remains explanation for every selected row. Semantic group and normative_context are separate axes.",
+    "nonclaims": "No adoption, retirement, closure, successor, acceptance execution, implementation, authority effect, full-source coverage, or requirement-stage completion is claimed. No selected row has a proven adopted pair binding or selected-row crosswalk."
+  },
+  "summary": {
+    "exclusive_semantic_group_counts": {
+      "受入oracle": 14,
+      "複合要求条件": 2,
+      "歴史記述・語彙説明": 1,
+      "用語・概念説明": 1,
+      "移行・再利用方法規範": 1,
+      "受入方法論規範": 1
+    },
+    "exclusive_group_total": 20,
+    "normative_context_role_counts": {
+      "acceptance_expected_or_negative_behavior": 14,
+      "direct_requirement_condition": 2,
+      "lexical_only_false_positive": 2,
+      "acceptance_method_norm": 2
+    },
+    "normative_context_rows": 18,
+    "lexical_only_false_positive_rows": 2,
+    "standalone_requirement_conditions": 2,
+    "candidate_pointer_rows": 2,
+    "source_family_relation_rows": 16,
+    "explicit_selected_row_crosswalk_rows": 0,
+    "adopted_pair_binding_rows": 0,
+    "full_source_atom_coverage_established_rows": 0,
+    "adopted_retired_closed_count": 0
+  },
+  "pinned_inputs": [
+    {
+      "role": "mechanical_marker_screen",
+      "commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb"
+    },
+    {
+      "role": "full_row_records_baseline_2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "ordered_classification_overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    },
+    {
+      "role": "prior_top20_semantic_audit",
+      "commit": "0de781db58df7b0ff4b4676161312cdefebe2579",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "f2e9077287ade80747eeecf373b1e08d53e3d6c8622c2aecc1cb08d881aecaaa"
+    },
+    {
+      "role": "prior_ranks21_40_audit",
+      "commit": "709a31f51c7c0569513d02723a45199ca8de7f30",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "7498c57886474b0663e19655ab13f0a1a2f468492c87bb74b486c0c6a50f249b"
+    }
+  ],
+  "pinned_source_ledgers": [
+    {
+      "role": "effective_classification_recount_and_overlay_order",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932"
+    },
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "current_adopted_pair_pins": [
+    {
+      "pair": "OS",
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      }
+    },
+    {
+      "pair": "HARNESS",
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+      },
+      "L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+      }
+    },
+    {
+      "pair": "INTELLIGENCE",
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      "L2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+      },
+      "L11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+      }
+    }
+  ],
+  "current_relation_source_pins": [
+    {
+      "pin_id": "OS-L2-CLR",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 399,
+          "sha256": "a8bf5b43ac9f724215264d8ae230882df083dd354ce29935fa357af3df211b59",
+          "text": "CLR-BR-001はHELIXOS-L2-009の追加検討入力であり、状態保存はHELIXOS-L2-007、割当継承はHELIXOS-L2-004へ接続する。詳細CLR-R01..08とL10 oracleは未承認候補であり、"
+        },
+        {
+          "line": 404,
+          "sha256": "c3ac1f385bb0583874613e257a90d16a163e840896b37d64844e39be22a12821",
+          "text": "| CLR-R01 | 目的・受入・未解決意図・棄却理由・失敗仮説の未保存や不明を識別でき、重要情報が欠ける場合は切替を保留する |"
+        },
+        {
+          "line": 405,
+          "sha256": "864cf61335cec0a540417fcb0ec7de842da31ab0e0ec875ad72c4ddc2681380f",
+          "text": "| CLR-R02 | 要求・判断・成果・証拠は既存ownerへ保存し、checkpointから未commit差分・実行中処理・累積予算へ辿れる。未承認意図は承認済み要求にならない |"
+        },
+        {
+          "line": 406,
+          "sha256": "3291e6689be752f49adf1a9642c10d5db6f66fc3bfbf2855adf287f5e6f7e8ff",
+          "text": "| CLR-R03 | 保存・再取得・意味と版の対応を確認できた範囲だけを次回入力から外す。会話原本や監査証拠の削除と混同しない |"
+        },
+        {
+          "line": 407,
+          "sha256": "18c2791383f18d8251c5dc75ed95084a535c6188ed598d75b44f4c9c5dd29362",
+          "text": "| CLR-R04 | 継続・compact・新sessionの選択根拠と実provider能力を確認でき、非対応・観測不能を成功扱いしない |"
+        },
+        {
+          "line": 408,
+          "sha256": "5481395251ba9f8705a0a8b1351a764afda8f0c70acf62c77f8b93d4be34de9a",
+          "text": "| CLR-R05 | 切替前後で未完義務・担当履歴・予算・期限・retryを引き継ぎ、二重writer・二重副作用を防ぐ。session交代だけで独立review成立としない |"
+        },
+        {
+          "line": 409,
+          "sha256": "1083924b6e37b8b680e16f8d2407de8286f89da544975db704889849ded2619b",
+          "text": "| CLR-R06 | 最小restart packetでも必要情報を黙って切らず、不足時は分割取得または保留する。取消権限や他案件の情報を混入させない |"
+        },
+        {
+          "line": 410,
+          "sha256": "4fdc81c1abb47efd818b1a4f6caa2084e78a5ed72c8ebeb82f474188f3d4c7d5",
+          "text": "| CLR-R07 | 同一条件で3方式を比較し、意図保持・品質・見逃し・再試行・再取得・時間・総費用を確認できる。初期context減少だけを成功としない |"
+        },
+        {
+          "line": 411,
+          "sha256": "f99140f70768c304b5f994bb6763a83de2038b7169b1f9d84843ac271945be22",
+          "text": "| CLR-R08 | shadowから段階的に導入し、生成・保存・受信・利用・検証・運用有効化を別状態で確認する。既存continuation等を重複する第二正本を作らない |"
+        },
+        {
+          "line": 417,
+          "sha256": "978ec1c4fb36756beff65149d64450449778aefdb866155edc6fb3f005be21eb",
+          "text": "詳細は[CLR要件候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md)を参照する。"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L11-CLR",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "lines": [
+        {
+          "line": 192,
+          "sha256": "bc02dc0b9fb9072241f51ab1b620dded6ea2c1393ee75b5dfb45c457a4ad753c",
+          "text": "HELIXOS-L2-009／007／004に接続するCLR候補の受入案。全件未実行であり、採用revisionを確定してから評価する。"
+        },
+        {
+          "line": 196,
+          "sha256": "3b5eaa661e9772957ffb6c657537e5734d235db5e606768d0c3d783a6d0693d8",
+          "text": "| CLR-R01 | 未保存の意図・棄却理由・失敗仮説を与え、文書やdigestが存在するだけでは切替可能と表示されない |"
+        },
+        {
+          "line": 197,
+          "sha256": "0e7fe64fbb5dc48a78d128ba7d7b54e76a0174ab672ab9d71d96a5ff806cdc94",
+          "text": "| CLR-R02 | checkpointから未commit・未追跡差分、実行中処理、契約版、累積制約へ辿る。未承認意図を合意済みにしない |"
+        },
+        {
+          "line": 198,
+          "sha256": "ce544ffde29394d462e5ba8d4fb40d2058b409cedd27b33194ff9db5811b98cf",
+          "text": "| CLR-R03 | 保存後の再取得で版・意味・未完義務を確認できた範囲だけが入力から外れ、会話原本や監査証拠が削除されない |"
+        },
+        {
+          "line": 199,
+          "sha256": "57605bd09b2f1de2e2f9b4910d6146b2d7703963bdcab0105591bd5c8f12cd45",
+          "text": "| CLR-R04 | 継続・compact・新sessionの選択理由を確認し、provider非対応、hook未発火、観測不能を成功と誤表示しない |"
+        },
+        {
+          "line": 200,
+          "sha256": "6f5dd7cb0dbd15f9deb297c0389c2a488c988303d0b850a98b0ef87917fc2785",
+          "text": "| CLR-R05 | 切替順序と旧writer停止を確認する。実行中処理を再起動して二重実行せず、予算・期限・retry・未完義務を初期化しない |"
+        },
+        {
+          "line": 201,
+          "sha256": "42f085e2300b4658e2900bd78c079a3395597cabd22ce5b8a1ef2dacbe2cb555",
+          "text": "| CLR-R06 | packet上限超過時に不足を表示して分割取得または保留する。取消権限・他案件情報・secret・結論誘導を混入させない |"
+        },
+        {
+          "line": 202,
+          "sha256": "838332d148e29c8213009e428a0c53234e59855ef8a796a64ec7bd01afc331db",
+          "text": "| CLR-R07 | 同一条件で3方式の品質・意図保持・見逃し・再取得・総費用を比較でき、初期context減少だけで採用にならない |"
+        },
+        {
+          "line": 203,
+          "sha256": "fa38631f8163f09cfe9c41890f2ef5087ea05257af00603249fe54d656bbe690",
+          "text": "| CLR-R08 | shadowから運用有効化までの段階と未完条件を確認し、SkillやRule導出の完了で会話継続も完了扱いにしない |"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L2-DGH",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 429,
+          "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3",
+          "text": "[DGH](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md)をHELIXOS-L2-001／002／003／007へ対応づける。"
+        },
+        {
+          "line": 443,
+          "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff",
+          "text": "| DGH-BR-01 | 外部実例と既存資産を論点ごとに参照し、根拠付きDesign候補を比較できる |"
+        },
+        {
+          "line": 444,
+          "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258",
+          "text": "| DGH-BR-02 | 人間の反応とAI解釈を別に確認し、客観品質と主観的な受容を相殺せず影響scopeだけを再作業できる |"
+        },
+        {
+          "line": 445,
+          "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f",
+          "text": "| DGH-BR-03 | 反復で受容した軸を保持し、findingの解消・再発・未解決を比較して収束を確認できる |"
+        },
+        {
+          "line": 509,
+          "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba",
+          "text": "| DGH | [DGH要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requirements.md)：DG-R-01..04、HR-R-01..04、DC-R-01..04 | HELIXOS-L2-001／002／003／007 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "HARNESS-L2-DGH",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "lines": [
+        {
+          "line": 187,
+          "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2",
+          "text": "[DGH候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md)から工程条件を分離する。"
+        },
+        {
+          "line": 188,
+          "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67",
+          "text": "RFAは候補承認済み・正本化待ち、AVS／DGHはdraftであり、本書への記載で採用状態を変更しない。"
+        },
+        {
+          "line": 195,
+          "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c",
+          "text": "| HARNESS-L2-004 | RFA-BR-03、DGH-BR-02 | 変更の影響要求・設計・対検証を再確定し、影響しない有効作業を一律失効させない |"
+        },
+        {
+          "line": 196,
+          "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b",
+          "text": "| HARNESS-L2-003／005 | RFA-BR-01、DGH-BR-01／03 | 目的・前提・外部実例・既存資産・比較根拠と、受容済みの軸・未解決findingを確認する。客観品質と人間の受容を相殺せず、両者に必要な確認を残す |"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L2-EXEC-TICKET",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 534,
+          "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b",
+          "text": "## Execution Ticketと継続観測"
+        },
+        {
+          "line": 536,
+          "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba",
+          "text": "[既存L2候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md)の7要求をOSの対象別要求へ接続する。"
+        },
+        {
+          "line": 539,
+          "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a",
+          "text": "ticketは必要なWorkerを指定する。指定は三段で決める（[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。LABOがHELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できるかの水準を出す。INTELLIGENCEがその水準を材料に、ticketごとの配置の案を作る。OSの推進がその案を確かめて指定し、割り当てる。評価していないモデルには「未評価」の印を付け、評価済みと混同しない。Benchの水準やINTELLIGENCEの案だけで、scope、branch、assignment、merge authorityを変えない（旧HXB-FR-015 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:349-351`、旧RLO-FR-040 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666`の`provider_default_unbenchmarked`）。"
+        },
+        {
+          "line": 781,
+          "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584",
+          "text": "| `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | L18-185、L186-289、L376-508の旧ticket input/identity/dependency/admission/assignment/attempt/retry/review/evidence/lifecycle/projection/replay/security/release/management条件。 | 現行の保持箇所として、既存L2-004／007／008／009／010／011／014と、HXT-RQ／HXT-TYPE／HXT-FLOW／HXT-SYS／HXT-USEの現行本文を確認する根拠。旧候補IDを現行IDと同一視せず、旧runtime実装・DBを移さない。Worker/SECURITY/INFRASTRUCTURE/LABOの現行責務境界は現行L2本文による。 |"
+        },
+        {
+          "line": 795,
+          "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150",
+          "text": "| execution-ticket-requirements | 534〜609行（Execution Ticket、HXT-RQ-01〜07、HXT-TYPE-01〜21、HXT-FLOW-01〜09、HXT-SYS-01、HXT-USE-01） |"
+        }
+      ]
+    },
+    {
+      "pin_id": "HARNESS-L11-HXB",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "lines": [
+        {
+          "line": 52,
+          "sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98",
+          "text": "- HARNESS-L2-005：検査をすり抜けて合流の後に見つかった失敗を与え、失敗が閉じたticketへ証拠付きのrelationで接続され、元の完了の記録が書き換えられず、HELIX-LABOが原子CIやコネクタの契約が足りているかを評価して返すことを確認する。時間的な近さや同じpathだけで原因のticketを断定する構成を不成立とする（旧HXB-FR-007、`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319`）。"
+        }
+      ]
+    },
+    {
+      "pin_id": "INT-L2-HXB",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "lines": [
+        {
+          "line": 442,
+          "sha256": "1624626a343a6ec9edea89e7d86aef95d656f8ea5d1b7c95e036759f57f72ad5",
+          "text": "| LEGACY-ASSET-3A15E5645D2D2A59DFF5 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:349-351` SHA `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | HXB-FR-015: observed/scored/qualified/expiredと改善候補はBenchが返し、registry/admission ownerがtask/risk/profile/freshness/independence等を判断。Benchはmodel切替・権限拡大をしない | evidenceを提案・配置材料にし、最終配置/割当はINTELLIGENCE/OSの分担を保持 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "INT-L11-CLR",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "lines": [
+        {
+          "line": 207,
+          "sha256": "cac52e10cd68d938ab883d966347dbd1553f7256e9fcc39cbb67c8242c736fb2",
+          "text": "- **出力oracle**：selected source, assumption, observed fact, inference, uncertainty, alternative, return targetと、候補にしたtest caseが対象requirement/oracleへ追跡できる。AIDOC/CLR-R06 packet利用時にはsource authority/revisionと必要情報を維持し、secret/private reasoning/未承認結論をpacketへ注入しない。"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-CI-CANDIDATE",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+      "lines": [
+        {
+          "line": 2,
+          "sha256": "f6baadf81e0a33250f9ad1857185fde81f381b095957b6a9947359db526463c8",
+          "text": "title: \"新世代CIの上流要求候補\""
+        },
+        {
+          "line": 3,
+          "sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 4,
+          "sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681",
+          "text": "authority_status: awaiting_human_approval"
+        },
+        {
+          "line": 10,
+          "sha256": "72e648b2cf83144d5e2ea79143de3f2e933fcd394233215a4ee0cbfe811b8337",
+          "text": "derived_from:"
+        },
+        {
+          "line": 11,
+          "sha256": "8c58c7f15039bc6778f70baf026950f0e8e2fc8ab48ee097dabf371117ea3031",
+          "text": "  - docs/concept/helix-concept.md"
+        },
+        {
+          "line": 12,
+          "sha256": "a65c1e2c39d4481f19ff94488034a0d693423bc3c00d9a5e417647e47356af75",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requests.md"
+        },
+        {
+          "line": 13,
+          "sha256": "0e15f293e2d9e3fc4e4782722bd8c36fde7604ec70d48075048fb54fa529948e",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-requirements.md"
+        },
+        {
+          "line": 14,
+          "sha256": "a313a61e9181bce65e8d1a332b40d209f7e125642df3b7db11fabb08f0b25103",
+          "text": "  - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md"
+        },
+        {
+          "line": 19,
+          "sha256": "889b3b794b5110058c9101e8a03df9f36d31d025e1a79be8d61696da2281ffdb",
+          "text": "2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-OSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。"
+        }
+      ]
+    }
+  ],
+  "source_family_relation_boundary": "DGH/CLR/Execution Ticket/CIGのcandidate・source-family参照を別々に記録する。family/referenceは旧選択行の行別mapping・採択・受入実行ではない。",
+  "limitations": [
+    "順位screenは語句hitの抽出であり、意味採否やrequirements化ではない。",
+    "F6のsource/family/candidate relationから選択行固有の採択pair、oracle coverage、source全atomの移管を推定しない。",
+    "提示した不在は記載scopeに限り、repository全体の不在証明ではない。",
+    "旧archiveのworkflow/CLI/hook/adapter/source executable/test/CI/runtimeは実行していない。"
+  ],
+  "queue": [
+    {
+      "rank": 41,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000473",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+      "physical_line_number": 19,
+      "exact_source_line_text": "| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する。既存receiptの`run:<id>:attempt:<n>:<conclusion>`を再検証する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する。既存receipt identityは変更後も検証可能である |",
+      "source_file_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+      "source_line_sha256": "781d0698c5ef2a8f7e49f74b8e604648f03306fba3a3e7143f332730725b1123",
+      "physical_line_bytes_sha256_including_terminator": "4321ea52bd4dc39fb16dd89487f6ceea772cff4f49ee326030c23ee0487266da",
+      "baseline_2353_physical_line_bytes_sha256": "4321ea52bd4dc39fb16dd89487f6ceea772cff4f49ee326030c23ee0487266da",
+      "legacy_context": {
+        "section_heading": {
+          "line": 10,
+          "text": "# CI event-class concurrency generation L10受入差分候補"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 17,
+            "text": "| `CIG-AC-004` | `CIG-R-03` | older mainがまだcurrent、new generation未確保、handoff欠落、wrong SHA／attempt、raceを個別注入する | 全mutationでsupersedeをfail-closeし、条件成立時だけold mainを置換する |"
+          },
+          {
+            "line": 18,
+            "text": "| `CIG-AC-005` | `CIG-R-04` | cancelled runをpost-main、review、deferred successへ注入する | 全consumerが採用を拒否する |"
+          },
+          {
+            "line": 19,
+            "text": "| `CIG-AC-006` | `CIG-R-04` | same HEADのpush／schedule結果を相互流用し、generation digestをDB／doctor／aggregateの一面だけ改変する。既存receiptの`run:<id>:attempt:<n>:<conclusion>`を再検証する | obligation同値証明なしの流用を拒否し、全projectionがexact digestへ収束する。既存receipt identityは変更後も検証可能である |"
+          },
+          {
+            "line": 20,
+            "text": "| `CIG-AC-007` | `CIG-R-01..04` | bounded GitHub rehearsalまたは自然scheduleを実行する | run ID付きread-afterでcurrent main pushとscheduleが独立terminalになり、cancel／handoff receiptを再構築できる |"
+          },
+          {
+            "line": 21,
+            "text": ""
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 473,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-0B75B173425C200EA8CD",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 797,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "d0472675f331ed32dcf70061d2d3df39d6cfb00a935efda1f2994ee6856ea90d",
+        "source_path": "docs/governance/candidates/ci-event-concurrency-generation-acceptance.md",
+        "source_sha256": "7c7ba00bec6fbf50c65c4ee48a849eaef4f038229b99daa0bc19a519fbda70cc",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "CIG-AC-006。同一HEADのpush/schedule結果流用とprojection改変を否定し、既存receiptを再検証するnegative受入行。",
+        "standalone_requirement_condition": false,
+        "function": "CIG-AC-006。同一HEADのpush/schedule結果流用とprojection改変を否定し、既存receiptを再検証するnegative受入行。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000473"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "CIG acceptance sourceの行で、受入結果と負例を定める。CIG-R-04に束ねるAC行であり、独立の現行要求にはしない。"
+        },
+        "residual": "CIG acceptance fileはOSのdraft CI候補derived_fromに列挙される。F6のL2/L11採択pairとの行別crosswalkはない。",
+        "next": "OS候補packageがCIG acceptance sourceを参照するのみ。AC-006のreceipt/projection oracleの保持先、利用owner、行別L2/L11 mappingを照合する。",
+        "human_facing_summary": "CIG-AC-006。同一HEADのpush/schedule結果流用とprojection改変を否定し、既存receiptを再検証するnegative受入行。",
+        "human_facing_comparison": "CIG acceptance sourceの行で、受入結果と負例を定める。CIG-R-04に束ねるAC行であり、独立の現行要求にはしない。",
+        "human_facing_next_step": "OS候補packageがCIG acceptance sourceを参照するのみ。AC-006のreceipt/projection oracleの保持先、利用owner、行別L2/L11 mappingを照合する。",
+        "source_family_relation_found": false,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-CI-CANDIDATE",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "lines": [
+            {
+              "line": 2,
+              "sha256": "f6baadf81e0a33250f9ad1857185fde81f381b095957b6a9947359db526463c8"
+            },
+            {
+              "line": 3,
+              "sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73"
+            },
+            {
+              "line": 4,
+              "sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681"
+            },
+            {
+              "line": 10,
+              "sha256": "72e648b2cf83144d5e2ea79143de3f2e933fcd394233215a4ee0cbfe811b8337"
+            },
+            {
+              "line": 11,
+              "sha256": "8c58c7f15039bc6778f70baf026950f0e8e2fc8ab48ee097dabf371117ea3031"
+            },
+            {
+              "line": 12,
+              "sha256": "a65c1e2c39d4481f19ff94488034a0d693423bc3c00d9a5e417647e47356af75"
+            },
+            {
+              "line": 13,
+              "sha256": "0e15f293e2d9e3fc4e4782722bd8c36fde7604ec70d48075048fb54fa529948e"
+            },
+            {
+              "line": 14,
+              "sha256": "a313a61e9181bce65e8d1a332b40d209f7e125642df3b7db11fabb08f0b25103"
+            },
+            {
+              "line": 19,
+              "sha256": "889b3b794b5110058c9101e8a03df9f36d31d025e1a79be8d61696da2281ffdb"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": true
+    },
+    {
+      "rank": 42,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000524",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail-close"
+        }
+      ],
+      "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+      "physical_line_number": 24,
+      "exact_source_line_text": "生成する。payload不足、unknown event、wrong HEAD／attemptは暗黙補完せずfail-closeまたは明示DEGRADEDとする。",
+      "source_file_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+      "source_line_sha256": "0d942ba9038882efe5ea5fb77706d8bfca0a5f41348e78e5e097ebfb41100566",
+      "physical_line_bytes_sha256_including_terminator": "9a0f939674fd28b17f1bf8033d97d7ae254a08982d58824c42cb9e319bb780a3",
+      "baseline_2353_physical_line_bytes_sha256": "9a0f939674fd28b17f1bf8033d97d7ae254a08982d58824c42cb9e319bb780a3",
+      "legacy_context": {
+        "section_heading": {
+          "line": 18,
+          "text": "## CIG-R-01 型付きevent generation identity"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 22,
+            "text": "CI eventを最低限`pull_request`、`main_push`、`schedule`、`workflow_dispatch`へ分類し、repository、workflow、"
+          },
+          {
+            "line": 23,
+            "text": "event class、PR identity、ref、candidate/base/before HEAD、run ID、attemptからgeneration identityを決定的に"
+          },
+          {
+            "line": 24,
+            "text": "生成する。payload不足、unknown event、wrong HEAD／attemptは暗黙補完せずfail-closeまたは明示DEGRADEDとする。"
+          },
+          {
+            "line": 25,
+            "text": ""
+          },
+          {
+            "line": 26,
+            "text": "## CIG-R-02 非干渉と有界置換"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 524,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E722F4A81238A08CA0EB",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 799,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "da33124ed2b3f8d51ad5bd6a4891812cb394fe1275a7b8c8914a9e686a09f95d",
+        "source_path": "docs/governance/candidates/ci-event-concurrency-generation-requirements.md",
+        "source_sha256": "11d525cd3bb357c0d2c27c4a954b408c948e260650dd95174a9d2ab0df4dada6",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "複合要求条件",
+        "class_label": "CIG-R-01のidentity生成後、payload不足・unknown event・wrong HEAD/attemptの暗黙補完を避け、fail-closeまたは明示DEGRADEDへ送る条件。",
+        "standalone_requirement_condition": true,
+        "function": "CIG-R-01のidentity生成後、payload不足・unknown event・wrong HEAD/attemptの暗黙補完を避け、fail-closeまたは明示DEGRADEDへ送る条件。",
+        "normative_context": {
+          "present": true,
+          "role": "direct_requirement_condition"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000524"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "CIG-R-01の要求行に属する直接的な拒否・状態条件。上位文脈はevent identity生成だが、この行自体が保留動作条件を表す。"
+        },
+        "residual": "CIG requirements fileはOSのdraft CI候補derived_fromに列挙される。採択L2/L11との行別crosswalkはない。",
+        "next": "CIG-R-01の安全なunknown扱いとfail-close/DEGRADEDのどちらが選択されるか、候補receiptまたは生存登録へ追跡する。",
+        "human_facing_summary": "CIG-R-01のidentity生成後、payload不足・unknown event・wrong HEAD/attemptの暗黙補完を避け、fail-closeまたは明示DEGRADEDへ送る条件。",
+        "human_facing_comparison": "CIG-R-01の要求行に属する直接的な拒否・状態条件。上位文脈はevent identity生成だが、この行自体が保留動作条件を表す。",
+        "human_facing_next_step": "CIG-R-01の安全なunknown扱いとfail-close/DEGRADEDのどちらが選択されるか、候補receiptまたは生存登録へ追跡する。",
+        "source_family_relation_found": false,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-CI-CANDIDATE",
+          "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+          "lines": [
+            {
+              "line": 2,
+              "sha256": "f6baadf81e0a33250f9ad1857185fde81f381b095957b6a9947359db526463c8"
+            },
+            {
+              "line": 3,
+              "sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73"
+            },
+            {
+              "line": 4,
+              "sha256": "a823dc7cbf7e0f6e3f7b1c14654f39a27f6635702f3a8fc4120daf69a2474681"
+            },
+            {
+              "line": 10,
+              "sha256": "72e648b2cf83144d5e2ea79143de3f2e933fcd394233215a4ee0cbfe811b8337"
+            },
+            {
+              "line": 11,
+              "sha256": "8c58c7f15039bc6778f70baf026950f0e8e2fc8ab48ee097dabf371117ea3031"
+            },
+            {
+              "line": 12,
+              "sha256": "a65c1e2c39d4481f19ff94488034a0d693423bc3c00d9a5e417647e47356af75"
+            },
+            {
+              "line": 13,
+              "sha256": "0e15f293e2d9e3fc4e4782722bd8c36fde7604ec70d48075048fb54fa529948e"
+            },
+            {
+              "line": 14,
+              "sha256": "a313a61e9181bce65e8d1a332b40d209f7e125642df3b7db11fabb08f0b25103"
+            },
+            {
+              "line": 19,
+              "sha256": "889b3b794b5110058c9101e8a03df9f36d31d025e1a79be8d61696da2281ffdb"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": true
+    },
+    {
+      "rank": 43,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000690",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+      "physical_line_number": 17,
+      "exact_source_line_text": "未保存意図、不明な重要情報、壊れた参照、版混在を個別fixtureで検出し、自動切替を拒否して原状態を保全する。",
+      "source_file_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+      "source_line_sha256": "6d027fc198d19e97acc73174cd7dd90a78b1b9d91530b4ccc063c8ca169c95ad",
+      "physical_line_bytes_sha256_including_terminator": "1aaf9a5b4954b0cd22480e7901c60dc8de44e56022dc52cb55de86be0232b452",
+      "baseline_2353_physical_line_bytes_sha256": "1aaf9a5b4954b0cd22480e7901c60dc8de44e56022dc52cb55de86be0232b452",
+      "legacy_context": {
+        "section_heading": {
+          "line": 15,
+          "text": "## CLR-AC01 ↔ CLR-R01 再開必要情報"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 15,
+            "text": "## CLR-AC01 ↔ CLR-R01 再開必要情報"
+          },
+          {
+            "line": 16,
+            "text": ""
+          },
+          {
+            "line": 17,
+            "text": "未保存意図、不明な重要情報、壊れた参照、版混在を個別fixtureで検出し、自動切替を拒否して原状態を保全する。"
+          },
+          {
+            "line": 18,
+            "text": ""
+          },
+          {
+            "line": 19,
+            "text": "## CLR-AC02 ↔ CLR-R02 保存とread-after"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 690,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-9DB9A1AE4381B4837D96",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 802,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "fe33d0eed689fe55ea63d874729ff59e01971cd348e7ddd1999a42c34f351af0",
+        "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-acceptance.md",
+        "source_sha256": "2e81d0a3f639e7e40c768b31cf2292e78ecd7a91bbec5c7f24af283e6bf97a46",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "CLR-AC01の受入fixture。未保存/不明/壊れた参照/版混在で自動切替を拒み原状態を保全する期待結果。",
+        "standalone_requirement_condition": false,
+        "function": "CLR-AC01の受入fixture。未保存/不明/壊れた参照/版混在で自動切替を拒み原状態を保全する期待結果。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000690"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "会話寿命の利用者受入例。拒否結果と状態保全を示すが、独立の現行採択要求ではない。"
+        },
+        "residual": "OS L2はCLR-R01..08をL2-004/007/009に接続し、OS L11にCLR-R群の未実行受入案がある。旧選択AC-01への個別対応ではない。",
+        "next": "CLR-R群の候補保持とL11案を維持し、CLR-AC01の具体fixture・切替拒否・原状態保全のcase別保持先を追跡する。",
+        "human_facing_summary": "CLR-AC01の受入fixture。未保存/不明/壊れた参照/版混在で自動切替を拒み原状態を保全する期待結果。",
+        "human_facing_comparison": "会話寿命の利用者受入例。拒否結果と状態保全を示すが、独立の現行採択要求ではない。",
+        "human_facing_next_step": "CLR-R群の候補保持とL11案を維持し、CLR-AC01の具体fixture・切替拒否・原状態保全のcase別保持先を追跡する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-CLR",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 399,
+              "sha256": "a8bf5b43ac9f724215264d8ae230882df083dd354ce29935fa357af3df211b59"
+            },
+            {
+              "line": 404,
+              "sha256": "c3ac1f385bb0583874613e257a90d16a163e840896b37d64844e39be22a12821"
+            },
+            {
+              "line": 405,
+              "sha256": "864cf61335cec0a540417fcb0ec7de842da31ab0e0ec875ad72c4ddc2681380f"
+            },
+            {
+              "line": 406,
+              "sha256": "3291e6689be752f49adf1a9642c10d5db6f66fc3bfbf2855adf287f5e6f7e8ff"
+            },
+            {
+              "line": 407,
+              "sha256": "18c2791383f18d8251c5dc75ed95084a535c6188ed598d75b44f4c9c5dd29362"
+            },
+            {
+              "line": 408,
+              "sha256": "5481395251ba9f8705a0a8b1351a764afda8f0c70acf62c77f8b93d4be34de9a"
+            },
+            {
+              "line": 409,
+              "sha256": "1083924b6e37b8b680e16f8d2407de8286f89da544975db704889849ded2619b"
+            },
+            {
+              "line": 410,
+              "sha256": "4fdc81c1abb47efd818b1a4f6caa2084e78a5ed72c8ebeb82f474188f3d4c7d5"
+            },
+            {
+              "line": 411,
+              "sha256": "f99140f70768c304b5f994bb6763a83de2038b7169b1f9d84843ac271945be22"
+            },
+            {
+              "line": 417,
+              "sha256": "978ec1c4fb36756beff65149d64450449778aefdb866155edc6fb3f005be21eb"
+            }
+          ]
+        },
+        {
+          "pin_id": "OS-L11-CLR",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "lines": [
+            {
+              "line": 192,
+              "sha256": "bc02dc0b9fb9072241f51ab1b620dded6ea2c1393ee75b5dfb45c457a4ad753c"
+            },
+            {
+              "line": 196,
+              "sha256": "3b5eaa661e9772957ffb6c657537e5734d235db5e606768d0c3d783a6d0693d8"
+            },
+            {
+              "line": 197,
+              "sha256": "0e7fe64fbb5dc48a78d128ba7d7b54e76a0174ab672ab9d71d96a5ff806cdc94"
+            },
+            {
+              "line": 198,
+              "sha256": "ce544ffde29394d462e5ba8d4fb40d2058b409cedd27b33194ff9db5811b98cf"
+            },
+            {
+              "line": 199,
+              "sha256": "57605bd09b2f1de2e2f9b4910d6146b2d7703963bdcab0105591bd5c8f12cd45"
+            },
+            {
+              "line": 200,
+              "sha256": "6f5dd7cb0dbd15f9deb297c0389c2a488c988303d0b850a98b0ef87917fc2785"
+            },
+            {
+              "line": 201,
+              "sha256": "42f085e2300b4658e2900bd78c079a3395597cabd22ce5b8a1ef2dacbe2cb555"
+            },
+            {
+              "line": 202,
+              "sha256": "838332d148e29c8213009e428a0c53234e59855ef8a796a64ec7bd01afc331db"
+            },
+            {
+              "line": 203,
+              "sha256": "fa38631f8163f09cfe9c41890f2ef5087ea05257af00603249fe54d656bbe690"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 44,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000788",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 10,
+      "exact_source_line_text": "1 未知の重要前提が未調査なら該当Design Readyを拒否、根拠の有効再利用は許可。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "1e48910ae6c08b886097a6cd4c1528d952bbefacf26cfef1caabfed58ff78f0b",
+      "physical_line_bytes_sha256_including_terminator": "c1a65ecc55bddc9bc3ffa6e8ea50e4c569233db51117c1a698dbc4c8c73cf7b0",
+      "baseline_2353_physical_line_bytes_sha256": "c1a65ecc55bddc9bc3ffa6e8ea50e4c569233db51117c1a698dbc4c8c73cf7b0",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 8,
+            "text": ""
+          },
+          {
+            "line": 9,
+            "text": "## 受入（原稿10件、正負oracleへ展開）"
+          },
+          {
+            "line": 10,
+            "text": "1 未知の重要前提が未調査なら該当Design Readyを拒否、根拠の有効再利用は許可。"
+          },
+          {
+            "line": 11,
+            "text": "2 Evidenceから設計採用/非採用を追跡。"
+          },
+          {
+            "line": 12,
+            "text": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 788,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案1。未知の重要前提が未調査ならDesign Readyを拒否し、有効な根拠の再利用は許容する。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案1。未知の重要前提が未調査ならDesign Readyを拒否し、有効な根拠の再利用は許容する。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000788"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "原稿10件の正負oracleへ展開する受入番号の先頭項目。DGH-BR群/Design reviewのケースであり、新たな一般gateと読まない。"
+        },
+        "residual": "OS/ HARNESS L2はDGH request/requirement familyと工程条件を接続する。DGH-AC行固有のL2/L11 mappingはない。",
+        "next": "未知前提と根拠再利用の区別を保ち、候補acceptance atomと適用scope/ownerを特定する。",
+        "human_facing_summary": "DGH受入案1。未知の重要前提が未調査ならDesign Readyを拒否し、有効な根拠の再利用は許容する。",
+        "human_facing_comparison": "原稿10件の正負oracleへ展開する受入番号の先頭項目。DGH-BR群/Design reviewのケースであり、新たな一般gateと読まない。",
+        "human_facing_next_step": "未知前提と根拠再利用の区別を保ち、候補acceptance atomと適用scope/ownerを特定する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 45,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000791",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 13,
+      "exact_source_line_text": "4 communication failureだけならDesign再生成を要求しない。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "ed0c2a2d57a8ec0118448478cc48d6999335adffc0972b1062ef2da2d81feea3",
+      "physical_line_bytes_sha256_including_terminator": "ae0d6c6a567a01ddc4cd5ab058840c8908e040636ba4d06526b0bf62a9b846fe",
+      "baseline_2353_physical_line_bytes_sha256": "ae0d6c6a567a01ddc4cd5ab058840c8908e040636ba4d06526b0bf62a9b846fe",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 11,
+            "text": "2 Evidenceから設計採用/非採用を追跡。"
+          },
+          {
+            "line": 12,
+            "text": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+          },
+          {
+            "line": 13,
+            "text": "4 communication failureだけならDesign再生成を要求しない。"
+          },
+          {
+            "line": 14,
+            "text": "5 accepted axisの無根拠変更を拒否。"
+          },
+          {
+            "line": 15,
+            "text": "6 objective greenとhuman rejectを相殺しない。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 791,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案4。communication failureだけならDesign再生成を要求しない。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案4。communication failureだけならDesign再生成を要求しない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000791"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "特定failureを過剰修復条件にしない受入例。前後の候補oracle番号に属し、採択済み個別条件ではない。"
+        },
+        "residual": "OS/HARNESSのDGH family接続はあるが、このacceptance番号のL2/L11 mapはない。",
+        "next": "communication failureと設計意味差の区別、DGH candidate atomの保持先・利用ownerを行別に確認する。",
+        "human_facing_summary": "DGH受入案4。communication failureだけならDesign再生成を要求しない。",
+        "human_facing_comparison": "特定failureを過剰修復条件にしない受入例。前後の候補oracle番号に属し、採択済み個別条件ではない。",
+        "human_facing_next_step": "communication failureと設計意味差の区別、DGH candidate atomの保持先・利用ownerを行別に確認する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 46,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000792",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 14,
+      "exact_source_line_text": "5 accepted axisの無根拠変更を拒否。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "c35a7c58216880a0f41ef4d17b1309596ad0ab25bf38b4c0e437cebecc3cb5d7",
+      "physical_line_bytes_sha256_including_terminator": "5ed8eda79dc31ad4440d77f4ab95e90317c67157ab6f98957d7cf407b22fef0a",
+      "baseline_2353_physical_line_bytes_sha256": "5ed8eda79dc31ad4440d77f4ab95e90317c67157ab6f98957d7cf407b22fef0a",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 12,
+            "text": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+          },
+          {
+            "line": 13,
+            "text": "4 communication failureだけならDesign再生成を要求しない。"
+          },
+          {
+            "line": 14,
+            "text": "5 accepted axisの無根拠変更を拒否。"
+          },
+          {
+            "line": 15,
+            "text": "6 objective greenとhuman rejectを相殺しない。"
+          },
+          {
+            "line": 16,
+            "text": "7 原文改変/AI提案の人間承認偽装を拒否。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 792,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案5。accepted axisの根拠ない変更を拒否する。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案5。accepted axisの根拠ない変更を拒否する。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000792"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "人間が受け入れた軸の保持を試す受入oracle。旧candidate scopeの行であり、現行採択pairへ同一視しない。"
+        },
+        "residual": "OS/HARNESSのDGH family接続はあるが、accepted-axis caseのrow-specific mapはない。",
+        "next": "axis identity/revisionと拒否根拠を個別oracleに分解し、現行owner・candidate保持先を照合する。",
+        "human_facing_summary": "DGH受入案5。accepted axisの根拠ない変更を拒否する。",
+        "human_facing_comparison": "人間が受け入れた軸の保持を試す受入oracle。旧candidate scopeの行であり、現行採択pairへ同一視しない。",
+        "human_facing_next_step": "axis identity/revisionと拒否根拠を個別oracleに分解し、現行owner・candidate保持先を照合する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 47,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000793",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "reject"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 15,
+      "exact_source_line_text": "6 objective greenとhuman rejectを相殺しない。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "6cea1671baee184705568ed8a27e3dc2c31ad8315537a42cfb53e3cec160e5de",
+      "physical_line_bytes_sha256_including_terminator": "64143ee363a91a5a299d8053236752df173d5af7e85e1c612077914a8d65419d",
+      "baseline_2353_physical_line_bytes_sha256": "64143ee363a91a5a299d8053236752df173d5af7e85e1c612077914a8d65419d",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 13,
+            "text": "4 communication failureだけならDesign再生成を要求しない。"
+          },
+          {
+            "line": 14,
+            "text": "5 accepted axisの無根拠変更を拒否。"
+          },
+          {
+            "line": 15,
+            "text": "6 objective greenとhuman rejectを相殺しない。"
+          },
+          {
+            "line": 16,
+            "text": "7 原文改変/AI提案の人間承認偽装を拒否。"
+          },
+          {
+            "line": 17,
+            "text": "8 既存Registry/Applicability責務を重複実装しない。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 793,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案6。客観greenと人間rejectを相殺しない。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案6。客観greenと人間rejectを相殺しない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000793"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "客観品質と人の受容の分離を確かめるnegative oracle。family条件に近い意味はあるが、選出case自体の採択や被覆は示さない。"
+        },
+        "residual": "OS/HARNESS L2のDGH family条件に人間反応/客観品質の境界はある。AC-6のindividual accepted pair/L11 mappingはない。",
+        "next": "人のrejectと客観評価を別evidenceで保持し、case別のL11 oracle/consumerを照合する。",
+        "human_facing_summary": "DGH受入案6。客観greenと人間rejectを相殺しない。",
+        "human_facing_comparison": "客観品質と人の受容の分離を確かめるnegative oracle。family条件に近い意味はあるが、選出case自体の採択や被覆は示さない。",
+        "human_facing_next_step": "人のrejectと客観評価を別evidenceで保持し、case別のL11 oracle/consumerを照合する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 48,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000794",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 16,
+      "exact_source_line_text": "7 原文改変/AI提案の人間承認偽装を拒否。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "5c8896bb4b0bd86268beed47dcbca39ec4f2c5fe5474c3cda16d0171de1cbf5b",
+      "physical_line_bytes_sha256_including_terminator": "693b81daf8df615967eb3a0a6779991dcead6432ef5c2415498032612e79d593",
+      "baseline_2353_physical_line_bytes_sha256": "693b81daf8df615967eb3a0a6779991dcead6432ef5c2415498032612e79d593",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 14,
+            "text": "5 accepted axisの無根拠変更を拒否。"
+          },
+          {
+            "line": 15,
+            "text": "6 objective greenとhuman rejectを相殺しない。"
+          },
+          {
+            "line": 16,
+            "text": "7 原文改変/AI提案の人間承認偽装を拒否。"
+          },
+          {
+            "line": 17,
+            "text": "8 既存Registry/Applicability責務を重複実装しない。"
+          },
+          {
+            "line": 18,
+            "text": "9 wrong revision/authority/evidence、再発の偽装解消を個別拒否。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 794,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案7。原文改変またはAI提案を人間承認に偽装することを拒否する。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案7。原文改変またはAI提案を人間承認に偽装することを拒否する。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000794"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "受入状態と人間authorityの否定例。個別の旧候補受入caseとして保持する。"
+        },
+        "residual": "OS/HARNESS L2のDGH family relationのみ。AC-7を特定するL2/L11 pair bindingはない。",
+        "next": "原文とAI提案のprovenance、承認主体、source revisionについてcase単位のoracleを復元する。",
+        "human_facing_summary": "DGH受入案7。原文改変またはAI提案を人間承認に偽装することを拒否する。",
+        "human_facing_comparison": "受入状態と人間authorityの否定例。個別の旧候補受入caseとして保持する。",
+        "human_facing_next_step": "原文とAI提案のprovenance、承認主体、source revisionについてcase単位のoracleを復元する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 49,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000796",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "physical_line_number": 18,
+      "exact_source_line_text": "9 wrong revision/authority/evidence、再発の偽装解消を個別拒否。",
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "3bd81773e83485d06fca8c6e513b4c7513aa0d52e821ca58aa8d708bbcdd66e1",
+      "physical_line_bytes_sha256_including_terminator": "87bc07d4c6ddbc0786da0d6d46ab7733fb64aeb461e56d975f78ccad27fbcd4a",
+      "baseline_2353_physical_line_bytes_sha256": "87bc07d4c6ddbc0786da0d6d46ab7733fb64aeb461e56d975f78ccad27fbcd4a",
+      "legacy_context": {
+        "section_heading": {
+          "line": 9,
+          "text": "## 受入（原稿10件、正負oracleへ展開）"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 16,
+            "text": "7 原文改変/AI提案の人間承認偽装を拒否。"
+          },
+          {
+            "line": 17,
+            "text": "8 既存Registry/Applicability責務を重複実装しない。"
+          },
+          {
+            "line": 18,
+            "text": "9 wrong revision/authority/evidence、再発の偽装解消を個別拒否。"
+          },
+          {
+            "line": 19,
+            "text": "10 Full E2Eと将来Lite最小契約のdependency closure/consumer検証を分離。"
+          },
+          {
+            "line": 20,
+            "text": ""
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 796,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 805,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+        "source_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "DGH受入案9。wrong revision/authority/evidenceおよび再発を偽装して解消扱いする事例を個別拒否する。",
+        "standalone_requirement_condition": false,
+        "function": "DGH受入案9。wrong revision/authority/evidenceおよび再発を偽装して解消扱いする事例を個別拒否する。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000796"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "複数の異常クラスを個別fixtureにする受入oracle。全面的な解消判定条件への拡張はしない。"
+        },
+        "residual": "OS/HARNESS L2のDGH family relationはあるが、このnegative oracleの具体的L11 mappingは未確認。",
+        "next": "revision/authority/evidence不一致と再発偽装を別oracleとして保持し、case別ownerと受入利用先を確認する。",
+        "human_facing_summary": "DGH受入案9。wrong revision/authority/evidenceおよび再発を偽装して解消扱いする事例を個別拒否する。",
+        "human_facing_comparison": "複数の異常クラスを個別fixtureにする受入oracle。全面的な解消判定条件への拡張はしない。",
+        "human_facing_next_step": "revision/authority/evidence不一致と再発偽装を別oracleとして保持し、case別ownerと受入利用先を確認する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 50,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000833",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 20,
+      "exact_source_line_text": "過去の削除試行はforeign-edit guardが拒否した。",
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "30bd25652ed832ea3bebd8db6f745657f91c22b68349cddf7fcf3f0f9034242a",
+      "physical_line_bytes_sha256_including_terminator": "d332a4fb42a29284876cd571ef23815886249fecb158726b6fa4285c21fc817f",
+      "baseline_2353_physical_line_bytes_sha256": "d332a4fb42a29284876cd571ef23815886249fecb158726b6fa4285c21fc817f",
+      "legacy_context": {
+        "section_heading": {
+          "line": 15,
+          "text": "## 最適化"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 18,
+            "text": "前提の分類・人間反応・軸状態は別軸。人間の原文はproject-owned evidenceへ、memoryや個人profileへ入れない。"
+          },
+          {
+            "line": 19,
+            "text": "原文の完全一致版はremote commit e4f3a7fefの本台帳へ保全済み。以下は末尾空白だけ正規化した表示。"
+          },
+          {
+            "line": 20,
+            "text": "過去の削除試行はforeign-edit guardが拒否した。"
+          },
+          {
+            "line": 21,
+            "text": "2026-09-06、main保全本文との全文一致と要件/受入対応を再確認し、明示依頼の原稿を削除した。"
+          },
+          {
+            "line": 22,
+            "text": "対象・hash・照合範囲は[削除検証記録](../request-source-cleanup-2026-09-06.md)を参照する。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 833,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "歴史記述・語彙説明",
+        "class_label": "foreign-edit guardが過去の削除試行を拒否したという履歴記述。screenの「拒否」hitは過去の出来事を述べる語。",
+        "standalone_requirement_condition": false,
+        "function": "foreign-edit guardが過去の削除試行を拒否したという履歴記述。screenの「拒否」hitは過去の出来事を述べる語。",
+        "normative_context": {
+          "present": false,
+          "role": "lexical_only_false_positive"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000833"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "現在行為へ命令・受入条件を定めず、履歴事実の説明なのでnormative false positive。"
+        },
+        "residual": "同じDGH intake file/行を指すF6 crosswalkはない。近傍のDGH request/requirements family linkは行の移管ではない。",
+        "next": "要求差分・規範候補化は行わない。必要なら原文完全性の記録として扱い、過去のguard実行を現行結果にしない。",
+        "human_facing_summary": "foreign-edit guardが過去の削除試行を拒否したという履歴記述。screenの「拒否」hitは過去の出来事を述べる語。",
+        "human_facing_comparison": "現在行為へ命令・受入条件を定めず、履歴事実の説明なのでnormative false positive。",
+        "human_facing_next_step": "要求差分・規範候補化は行わない。必要なら原文完全性の記録として扱い、過去のguard実行を現行結果にしない。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 51,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000844",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 36,
+      "exact_source_line_text": "3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する",
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "2377bfd3bc7189ad46f6138f4387f22ad331173951865035f97b2f423340eda6",
+      "physical_line_bytes_sha256_including_terminator": "d43cec719cb2418bff1c72e2c96f074e878b577811efe40f1c73825e895e71de",
+      "baseline_2353_physical_line_bytes_sha256": "d43cec719cb2418bff1c72e2c96f074e878b577811efe40f1c73825e895e71de",
+      "legacy_context": {
+        "section_heading": {
+          "line": 29,
+          "text": "## 0. 目的"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 34,
+            "text": "1. **Design Grounding** — 良い設計判断をするための前提・外部知識を揃える"
+          },
+          {
+            "line": 35,
+            "text": "2. **Human Reaction Semantics** — 人間の「違う・使いにくい・ダサい・分かりにくい」を意味分類する"
+          },
+          {
+            "line": 36,
+            "text": "3. **Design Convergence** — 人間との反復で何が受容・拒否・未解決かを保持し、収束を判定する"
+          },
+          {
+            "line": 37,
+            "text": ""
+          },
+          {
+            "line": 38,
+            "text": "最終目的は「AIに良いデザインを一発生成させる」ことではない。"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 844,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "用語・概念説明",
+        "class_label": "Design Convergenceの定義として、人間との反復で受容・拒否・未解決を保持し収束を判定すると説明する。",
+        "standalone_requirement_condition": false,
+        "function": "Design Convergenceの定義として、人間との反復で受容・拒否・未解決を保持し収束を判定すると説明する。",
+        "normative_context": {
+          "present": false,
+          "role": "lexical_only_false_positive"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-000844"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "「拒否」は人間反応の状態名。命令・必須・条件を表さないためlexical false positive。"
+        },
+        "residual": "OS/HARNESSのDGH request/requirement family linkはあるが、定義行844の個別参照ではない。",
+        "next": "用語説明のまま保持する。normative markerを根拠に要求やacceptance atomを新設しない。",
+        "human_facing_summary": "Design Convergenceの定義として、人間との反復で受容・拒否・未解決を保持し収束を判定すると説明する。",
+        "human_facing_comparison": "「拒否」は人間反応の状態名。命令・必須・条件を表さないためlexical false positive。",
+        "human_facing_next_step": "用語説明のまま保持する。normative markerを根拠に要求やacceptance atomを新設しない。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 52,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001008",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-intake.md",
+      "physical_line_number": 262,
+      "exact_source_line_text": "大規模再設計や一括実装を禁止する。既存機構へ小さく接続し、各sliceで既存責務との重複・authority侵害・revision driftを独立検証すること。",
+      "source_file_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+      "source_line_sha256": "ef6e03f37d11ab47e2701d83a70e39169fac8672ce3ce47e32294c226fb5eab6",
+      "physical_line_bytes_sha256_including_terminator": "a4d31b28e6a382997573498f0580b59becd5b779ace2c73848a4035c3ac848e4",
+      "baseline_2353_physical_line_bytes_sha256": "a4d31b28e6a382997573498f0580b59becd5b779ace2c73848a4035c3ac848e4",
+      "legacy_context": {
+        "section_heading": {
+          "line": 249,
+          "text": "## 9. 実装順序"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 260,
+            "text": "10. Evidenceを確認してからcanonical requirement/version-up"
+          },
+          {
+            "line": 261,
+            "text": ""
+          },
+          {
+            "line": 262,
+            "text": "大規模再設計や一括実装を禁止する。既存機構へ小さく接続し、各sliceで既存責務との重複・authority侵害・revision driftを独立検証すること。"
+          },
+          {
+            "line": 263,
+            "text": ""
+          },
+          {
+            "line": 264,
+            "text": "````"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1008,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-A422448C3CACBCA75D0C",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 806,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "c3d5b7a8d3b85be330099a0624ad26f2fec97a7acc1477a56bd5703f235c3de6",
+        "source_path": "docs/governance/candidates/design-grounding-human-convergence-intake.md",
+        "source_sha256": "177def78bced15ffad9a5db7fc6ccf67a425d0d892be5892b085b8e1ed3c102c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "複合要求条件",
+        "class_label": "DGH intakeの実施境界。大規模再設計・一括実装を避け、既存機構へ小さく接続し各sliceで責務重複・authority侵害・revision driftを独立検証する。",
+        "standalone_requirement_condition": true,
+        "function": "DGH intakeの実施境界。大規模再設計・一括実装を避け、既存機構へ小さく接続し各sliceで責務重複・authority侵害・revision driftを独立検証する。",
+        "normative_context": {
+          "present": true,
+          "role": "direct_requirement_condition"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001008"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "禁止・接続範囲・slice検証条件をひとまとまりにする直接条件。行内で実施可能な制約が提示される。"
+        },
+        "residual": "OS/HARNESS L2はDGH source/engineering familyを接続するが、LEGACY-CAND-LINE-001008の個別採択pair・L11 mappingはない。",
+        "next": "小さい接続・各sliceの独立確認のmeaning atomを分け、既存DGH候補receipt/owner/現行L2の保持先へ照合する。",
+        "human_facing_summary": "DGH intakeの実施境界。大規模再設計・一括実装を避け、既存機構へ小さく接続し各sliceで責務重複・authority侵害・revision driftを独立検証する。",
+        "human_facing_comparison": "禁止・接続範囲・slice検証条件をひとまとまりにする直接条件。行内で実施可能な制約が提示される。",
+        "human_facing_next_step": "小さい接続・各sliceの独立確認のmeaning atomを分け、既存DGH候補receipt/owner/現行L2の保持先へ照合する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-DGH",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 429,
+              "sha256": "6ff6d61c39377a00e1544a6261320965bfb44bacd88819008bcf0d1f1f55d3b3"
+            },
+            {
+              "line": 443,
+              "sha256": "b7c498a6d87bd88da81c1c099bdff17dacacf3638627018a5b49274a3fcd1cff"
+            },
+            {
+              "line": 444,
+              "sha256": "6ea27eb162a540b41b5a8569e7fc9afd0aca9b00908fc5153173e1222f6d2258"
+            },
+            {
+              "line": 445,
+              "sha256": "302fd8e82605278ff62407305cc1d0c37a6043bbb63f5a96b571cb7116d7d55f"
+            },
+            {
+              "line": 509,
+              "sha256": "e0b485439360ae81b8d26a0e2a8ddd398f217dd2e362786be6fbdb37622448ba"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L2-DGH",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "lines": [
+            {
+              "line": 187,
+              "sha256": "8130da2b1988f2cf7afdfc3c054589eb7dd35a69d3c69260358c89c853c281e2"
+            },
+            {
+              "line": 188,
+              "sha256": "bcb626ec96d19a549ee60dcbe761e6300f5f332aaede4493ec877ef7972a1b67"
+            },
+            {
+              "line": 195,
+              "sha256": "ece1218b189bed89be2ceed63ef17ab338125b19eababffe1ad30b82b05e3e5c"
+            },
+            {
+              "line": 196,
+              "sha256": "d85c08b78cb768467b1a40d1c1d9e15a225115d4ecdbbedf9c55ebf46236e06b"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 53,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001091",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 29,
+      "exact_source_line_text": "| HXT-AC-001 | 切替済み通常変更経路でTicketなしを拒否し、provider/toolの変更実行0回を確認。bootstrap/read-only/実験は別profileで検査 | HXT-FR-001,004 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "5fc685b1ed4a64e281f320aa94388048a2aafc3fb10aba56f254098e97e67203",
+      "physical_line_bytes_sha256_including_terminator": "d24011058597d6fa678d17e5b87e9546c07a3359fc0a7993fb97a1427f268a9b",
+      "baseline_2353_physical_line_bytes_sha256": "d24011058597d6fa678d17e5b87e9546c07a3359fc0a7993fb97a1427f268a9b",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "### 12.1 Ticket既存受入50件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 27,
+            "text": "| ID | 検査内容 | 対応FR |"
+          },
+          {
+            "line": 28,
+            "text": "|---|---|---|"
+          },
+          {
+            "line": 29,
+            "text": "| HXT-AC-001 | 切替済み通常変更経路でTicketなしを拒否し、provider/toolの変更実行0回を確認。bootstrap/read-only/実験は別profileで検査 | HXT-FR-001,004 |"
+          },
+          {
+            "line": 30,
+            "text": "| HXT-AC-002 | freehand文字列だけでは変更権限を発行せず、候補化と通常admissionへ戻す | HXT-FR-002,004 |"
+          },
+          {
+            "line": 31,
+            "text": "| HXT-AC-003 | 同一確定入力のTicket compiler結果がbyte/digestとも一致する | HXT-FR-003,005 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1091,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXT-AC-001。通常変更経路でTicketなしなら拒否し、provider/tool変更実行0回を確かめる一方、bootstrap/read-only/experimentを別profileで扱う。",
+        "standalone_requirement_condition": false,
+        "function": "HXT-AC-001。通常変更経路でTicketなしなら拒否し、provider/tool変更実行0回を確かめる一方、bootstrap/read-only/experimentを別profileで扱う。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001091"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "複数profile境界を含むexecution-ticket acceptance case。選出AC番号の現行pair adoptionを示さない。"
+        },
+        "residual": "OS L2は旧execution-ticket requirements familyを現行ticket条件の根拠として記載し、OS L11に別のHXT-AC-015参照がある。AC-001の個別対応・採択はない。",
+        "next": "通常変更、bootstrap/read-only/experimentの境界別にsource atomと現在のticket admission/oracle保持先を照合する。",
+        "human_facing_summary": "HXT-AC-001。通常変更経路でTicketなしなら拒否し、provider/tool変更実行0回を確かめる一方、bootstrap/read-only/experimentを別profileで扱う。",
+        "human_facing_comparison": "複数profile境界を含むexecution-ticket acceptance case。選出AC番号の現行pair adoptionを示さない。",
+        "human_facing_next_step": "通常変更、bootstrap/read-only/experimentの境界別にsource atomと現在のticket admission/oracle保持先を照合する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 54,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001110",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 48,
+      "exact_source_line_text": "| HXT-AC-020 | affected source変更後は旧Ticket権限の不適合mergeを拒否。無関係更新では全件失効させない | HXT-FR-016 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "c0ec897b95a458ff0122987e576d660aff24524d7a63524b32f6a3304c459262",
+      "physical_line_bytes_sha256_including_terminator": "3c2183d014a32bf2b82f367670770283be8a605b021ed51e5d89d9e0ef7c3149",
+      "baseline_2353_physical_line_bytes_sha256": "3c2183d014a32bf2b82f367670770283be8a605b021ed51e5d89d9e0ef7c3149",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "### 12.1 Ticket既存受入50件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 46,
+            "text": "| HXT-AC-018 | GitHub projection driftを検出し、正本を黙って書き換えずreconcileする | HXT-FR-017 |"
+          },
+          {
+            "line": 47,
+            "text": "| HXT-AC-019 | 手入力進捗やLLM完了申告をclosure/scoreの証拠にしない | HXT-FR-018 |"
+          },
+          {
+            "line": 48,
+            "text": "| HXT-AC-020 | affected source変更後は旧Ticket権限の不適合mergeを拒否。無関係更新では全件失効させない | HXT-FR-016 |"
+          },
+          {
+            "line": 49,
+            "text": "| HXT-AC-021 | scope変更で同revisionを上書きできない | HXT-FR-005,010 |"
+          },
+          {
+            "line": 50,
+            "text": "| HXT-AC-022 | dependency cycle/missing/stale completionをfail-closeする | HXT-FR-007 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1110,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXT-AC-020。affected source変更後の不適合な旧Ticket権限を拒否し、無関係更新で全Ticketを失効させない。",
+        "standalone_requirement_condition": false,
+        "function": "HXT-AC-020。affected source変更後の不適合な旧Ticket権限を拒否し、無関係更新で全Ticketを失効させない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001110"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "affected scopeとunrelated updateのnegative/positive受入例。直接行specific pair bindingではない。"
+        },
+        "residual": "OS L2はexecution-ticket requirements source familyを現行ticket条件の保持根拠とする。AC-020固有のL2/L11 mapはない。",
+        "next": "affected sourceのfence/re-admissionと無関係更新の非波及を分け、旧caseの保持先・ownerを確認する。",
+        "human_facing_summary": "HXT-AC-020。affected source変更後の不適合な旧Ticket権限を拒否し、無関係更新で全Ticketを失効させない。",
+        "human_facing_comparison": "affected scopeとunrelated updateのnegative/positive受入例。直接行specific pair bindingではない。",
+        "human_facing_next_step": "affected sourceのfence/re-admissionと無関係更新の非波及を分け、旧caseの保持先・ownerを確認する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 55,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001112",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail-close"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 50,
+      "exact_source_line_text": "| HXT-AC-022 | dependency cycle/missing/stale completionをfail-closeする | HXT-FR-007 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "274b18ccc63ce4fae6dcc0c03780482962ed40a3f80cee5fe35c532106ae0907",
+      "physical_line_bytes_sha256_including_terminator": "6ab56d76d38d92243459894cc4ae1f4aa9dad5890a70ed27863bfcc896515b69",
+      "baseline_2353_physical_line_bytes_sha256": "6ab56d76d38d92243459894cc4ae1f4aa9dad5890a70ed27863bfcc896515b69",
+      "legacy_context": {
+        "section_heading": {
+          "line": 25,
+          "text": "### 12.1 Ticket既存受入50件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 48,
+            "text": "| HXT-AC-020 | affected source変更後は旧Ticket権限の不適合mergeを拒否。無関係更新では全件失効させない | HXT-FR-016 |"
+          },
+          {
+            "line": 49,
+            "text": "| HXT-AC-021 | scope変更で同revisionを上書きできない | HXT-FR-005,010 |"
+          },
+          {
+            "line": 50,
+            "text": "| HXT-AC-022 | dependency cycle/missing/stale completionをfail-closeする | HXT-FR-007 |"
+          },
+          {
+            "line": 51,
+            "text": "| HXT-AC-023 | split/integration/supersession lineageをreplayし、同じcurrent viewを得る | HXT-FR-007,019 |"
+          },
+          {
+            "line": 52,
+            "text": "| HXT-AC-024 | provider変更だけでは仕事のTicket digestが変化しない | HXT-FR-005,021 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1112,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXT-AC-022。dependency cycle/missing/stale completionをfail-closeする。",
+        "standalone_requirement_condition": false,
+        "function": "HXT-AC-022。dependency cycle/missing/stale completionをfail-closeする。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001112"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "dependency graph異常の受入oracle。現行一般dependency conditionへの自動充当はしない。"
+        },
+        "residual": "OS L2はexecution-ticket requirements familyを保持箇所として挙げる。AC-022固有のaccepted L2/L11 mapは未確認。",
+        "next": "cycle/missing/staleの各fixtureとfail-close evidenceを分け、candidate receiptと現行ownerを照合する。",
+        "human_facing_summary": "HXT-AC-022。dependency cycle/missing/stale completionをfail-closeする。",
+        "human_facing_comparison": "dependency graph異常の受入oracle。現行一般dependency conditionへの自動充当はしない。",
+        "human_facing_next_step": "cycle/missing/staleの各fixtureとfail-close evidenceを分け、candidate receiptと現行ownerを照合する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 56,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001144",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 84,
+      "exact_source_line_text": "| HXB-AC-001 | live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationは0回 | HXB-FR-001 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "96c76327d0bbd0a59297f5e4fd56b6c434415cc1b08570728fd5efa1335f0cf7",
+      "physical_line_bytes_sha256_including_terminator": "1d10fca6ff8162c621da8ce6ebd546163f137143d8fb33b78677e2795618fa37",
+      "baseline_2353_physical_line_bytes_sha256": "1d10fca6ff8162c621da8ce6ebd546163f137143d8fb33b78677e2795618fa37",
+      "legacy_context": {
+        "section_heading": {
+          "line": 80,
+          "text": "### 12.2 Bench接続追加受入40件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 82,
+            "text": "| ID | 検査内容 | 対応FR |"
+          },
+          {
+            "line": 83,
+            "text": "|---|---|---|"
+          },
+          {
+            "line": 84,
+            "text": "| HXB-AC-001 | live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationは0回 | HXB-FR-001 |"
+          },
+          {
+            "line": 85,
+            "text": "| HXB-AC-002 | 未割当/起動前拒否をintake母数に残し、存在しないAttemptや成功を作らない | HXB-FR-001 |"
+          },
+          {
+            "line": 86,
+            "text": "| HXB-AC-003 | 重複/順不同eventと再起動を投入し、checkpointから一度だけ集計効果を適用する | HXB-FR-002 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1144,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXB-AC-001。live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationをしない。",
+        "standalone_requirement_condition": false,
+        "function": "HXB-AC-001。live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationをしない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001144"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "consumer intake・分母保持を確かめるHXB acceptance case。現行の全Attempt採択・検収の証拠ではない。"
+        },
+        "residual": "OS/INTELLIGENCE L2とHARNESS L11にはHXB-FR requirement-family参照がある。HXB-AC-001そのもののpair mapはない。",
+        "next": "各outcomeと追加invocation=0の証拠を候補行として保持し、current consumer/ownerとのcase mappingを特定する。",
+        "human_facing_summary": "HXB-AC-001。live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationをしない。",
+        "human_facing_comparison": "consumer intake・分母保持を確かめるHXB acceptance case。現行の全Attempt採択・検収の証拠ではない。",
+        "human_facing_next_step": "各outcomeと追加invocation=0の証拠を候補行として保持し、current consumer/ownerとのcase mappingを特定する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L11-HXB",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "lines": [
+            {
+              "line": 52,
+              "sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98"
+            }
+          ]
+        },
+        {
+          "pin_id": "INT-L2-HXB",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 442,
+              "sha256": "1624626a343a6ec9edea89e7d86aef95d656f8ea5d1b7c95e036759f57f72ad5"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 57,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001145",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 85,
+      "exact_source_line_text": "| HXB-AC-002 | 未割当/起動前拒否をintake母数に残し、存在しないAttemptや成功を作らない | HXB-FR-001 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "21eae886393a0aa63736b35b04937111651d9f51ec12d9a71a38d446ebf9e024",
+      "physical_line_bytes_sha256_including_terminator": "67ddb8e6722d5f5de0c6cc254a015e01cf29e86b00f7d7a9e850aab1e980839a",
+      "baseline_2353_physical_line_bytes_sha256": "67ddb8e6722d5f5de0c6cc254a015e01cf29e86b00f7d7a9e850aab1e980839a",
+      "legacy_context": {
+        "section_heading": {
+          "line": 80,
+          "text": "### 12.2 Bench接続追加受入40件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 83,
+            "text": "|---|---|---|"
+          },
+          {
+            "line": 84,
+            "text": "| HXB-AC-001 | live consumerが全Attemptの成功/失敗/拒否/中断を取り込み、追加model invocationは0回 | HXB-FR-001 |"
+          },
+          {
+            "line": 85,
+            "text": "| HXB-AC-002 | 未割当/起動前拒否をintake母数に残し、存在しないAttemptや成功を作らない | HXB-FR-001 |"
+          },
+          {
+            "line": 86,
+            "text": "| HXB-AC-003 | 重複/順不同eventと再起動を投入し、checkpointから一度だけ集計効果を適用する | HXB-FR-002 |"
+          },
+          {
+            "line": 87,
+            "text": "| HXB-AC-004 | 同一event ID別payload・sequence gapを検出し、未修復状態をconvergedにしない | HXB-FR-002 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1145,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXB-AC-002。未割当・起動前拒否をintake母数に残し、存在しないAttempt/成功を作らない。",
+        "standalone_requirement_condition": false,
+        "function": "HXB-AC-002。未割当・起動前拒否をintake母数に残し、存在しないAttempt/成功を作らない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001145"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "欠測・pre-invocation拒否を母数へ含めるnegative/positive oracle。行specific adoption/coverageを示さない。"
+        },
+        "residual": "OS/INTELLIGENCE/HARNESSのHXB-FR-007/015 requirement-family references only。選出HXB-AC-002のL2/L11 mapなし。",
+        "next": "未割当・起動前拒否・非生成attemptの各atomに保持先と現行consumerを割り当てる必要が残る。",
+        "human_facing_summary": "HXB-AC-002。未割当・起動前拒否をintake母数に残し、存在しないAttempt/成功を作らない。",
+        "human_facing_comparison": "欠測・pre-invocation拒否を母数へ含めるnegative/positive oracle。行specific adoption/coverageを示さない。",
+        "human_facing_next_step": "未割当・起動前拒否・非生成attemptの各atomに保持先と現行consumerを割り当てる必要が残る。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L11-HXB",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "lines": [
+            {
+              "line": 52,
+              "sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98"
+            }
+          ]
+        },
+        {
+          "pin_id": "INT-L2-HXB",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 442,
+              "sha256": "1624626a343a6ec9edea89e7d86aef95d656f8ea5d1b7c95e036759f57f72ad5"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 58,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001153",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "fail"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "physical_line_number": 93,
+      "exact_source_line_text": "| HXB-AC-010 | 同じraw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない | HXB-FR-005 |",
+      "source_file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "source_line_sha256": "86172e5cbdd067bd41a474cdf943c8960820cc45e0444cf9fc414f1bc74d6b07",
+      "physical_line_bytes_sha256_including_terminator": "bc87d8f4873189a159373e33a40d8b334b36b9dc05c97e0349a4922f1efb0e62",
+      "baseline_2353_physical_line_bytes_sha256": "bc87d8f4873189a159373e33a40d8b334b36b9dc05c97e0349a4922f1efb0e62",
+      "legacy_context": {
+        "section_heading": {
+          "line": 80,
+          "text": "### 12.2 Bench接続追加受入40件"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 91,
+            "text": "| HXB-AC-008 | 本線closureと分析sinkの間に循環待ちがなく、遅着結果を追補できる | HXB-FR-004 |"
+          },
+          {
+            "line": 92,
+            "text": "| HXB-AC-009 | 既存5カテゴリ/12指標exact setを保持し、補助telemetryの追加が旧score意味を変えない | HXB-FR-005 |"
+          },
+          {
+            "line": 93,
+            "text": "| HXB-AC-010 | 同じraw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない | HXB-FR-005 |"
+          },
+          {
+            "line": 94,
+            "text": "| HXB-AC-011 | 実請求/配賦/API相当推計を分離し、未知費用を0円にしない | HXB-FR-006 |"
+          },
+          {
+            "line": 95,
+            "text": "| HXB-AC-012 | accepted change=0やbaselineなしで成功あたり費用/削減率を成功値へ変換しない | HXB-FR-006 |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1153,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 810,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "78cc8a65127f512c1ee96eeaf7e5fb5fbfb0ff72c847b0419a55afad943223a7",
+        "source_path": "docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入oracle",
+        "class_label": "HXB-AC-010。同一raw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない。",
+        "standalone_requirement_condition": false,
+        "function": "HXB-AC-010。同一raw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_expected_or_negative_behavior"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001153"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "benchmark集計方法を確認する受入oracle。旧metric setやcurrent acceptance completionへの直接転用はしない。"
+        },
+        "residual": "OS/INTELLIGENCE/HARNESSのHXB-FR family refs are requirements-level only; HXB-AC-010 specific pair binding not found.",
+        "next": "raw receipt, denominator, missingness, severity classを個別に保全し、未割当atomと利用先を追跡する。",
+        "human_facing_summary": "HXB-AC-010。同一raw receiptから分子/分母/欠測理由を再計算し、重大failureを平均で相殺しない。",
+        "human_facing_comparison": "benchmark集計方法を確認する受入oracle。旧metric setやcurrent acceptance completionへの直接転用はしない。",
+        "human_facing_next_step": "raw receipt, denominator, missingness, severity classを個別に保全し、未割当atomと利用先を追跡する。",
+        "source_family_relation_found": true,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": true,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [
+        {
+          "pin_id": "OS-L2-EXEC-TICKET",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "lines": [
+            {
+              "line": 534,
+              "sha256": "44d4e4bc6626a5373cb0e346d578ec640fa1a8c134d408a239c734d20214737b"
+            },
+            {
+              "line": 536,
+              "sha256": "6c063c61dfde6d79ab0c1882b684fbd9897fe354f0a12550d12d5a3377fb14ba"
+            },
+            {
+              "line": 539,
+              "sha256": "02dc7c295068bf6df9123781dd306c34f3e5d43d7c50fde6be72579ddddf416a"
+            },
+            {
+              "line": 781,
+              "sha256": "59e2bf3f0f6d8949805464d99cc5145849d80d399c8ad74ea7ff960bccfa8584"
+            },
+            {
+              "line": 795,
+              "sha256": "2c876753c1983aef8da101b04b4786582584d02cc1ca9686b591d44b4f331150"
+            }
+          ]
+        },
+        {
+          "pin_id": "HARNESS-L11-HXB",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "lines": [
+            {
+              "line": 52,
+              "sha256": "906816f85188e86dd237752cb3f103bc716babc6122a8bd2e8c6bd20e04c0d98"
+            }
+          ]
+        },
+        {
+          "pin_id": "INT-L2-HXB",
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "lines": [
+            {
+              "line": 442,
+              "sha256": "1624626a343a6ec9edea89e7d86aef95d656f8ea5d1b7c95e036759f57f72ad5"
+            }
+          ]
+        }
+      ],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 59,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001206",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "拒否"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+      "physical_line_number": 20,
+      "exact_source_line_text": "| UPLIFT | src/runtime/worker-blind-benchmark.ts、#225 | 同一provenance拒否／judge独立性を維持。反復は上位Experimentのidentityへ |",
+      "source_file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+      "source_line_sha256": "51e9ff78d82830273a12b99966eb5d54210bfe16a7752c3b55a29c59cedd4e04",
+      "physical_line_bytes_sha256_including_terminator": "ca66bd5b232ff648cbd34e40082ec5a9eed5996ba9d6621e511f4a45c8f3bf71",
+      "baseline_2353_physical_line_bytes_sha256": "ca66bd5b232ff648cbd34e40082ec5a9eed5996ba9d6621e511f4a45c8f3bf71",
+      "legacy_context": {
+        "section_heading": {
+          "line": 13,
+          "text": "## 責務単位の照合結果"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 18,
+            "text": "| REUSE | helix-bench-evaluation L3/L10、#251/#1295 | 5カテゴリ・12指標・4 profileは維持。PLANと文書状態はresolverで照合し、approvedと推測しない |"
+          },
+          {
+            "line": 19,
+            "text": "| REUSE | src/runtime/helix-bench-task-dataset.ts、#1294 | task snapshot15 fieldsを保持。Ticket一致だけで比較可能としない |"
+          },
+          {
+            "line": 20,
+            "text": "| UPLIFT | src/runtime/worker-blind-benchmark.ts、#225 | 同一provenance拒否／judge独立性を維持。反復は上位Experimentのidentityへ |"
+          },
+          {
+            "line": 21,
+            "text": "| GAP | #215/#499、#1295 | live intake・durable observation・checkpoint・coverageを既存event writerへ追加。別queueは作らない |"
+          },
+          {
+            "line": 22,
+            "text": "| REUSE | #861/#188/#214 | qualified evidenceをadvisoryとして渡す。Benchはdispatch／権限を変更しない |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1206,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E365F83763C0FB340328",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 811,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8d12ce3777e10f8d60d2a9baa834d662f17481c80db3e3aec1bbac2363850178",
+        "source_path": "docs/governance/candidates/execution-ticket-intake.md",
+        "source_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "移行・再利用方法規範",
+        "class_label": "Execution Ticket intakeのUPLIFT表。旧worker-blind benchmark sourceを再利用し、同一provenanceの拒否とjudge独立性を維持、反復identityは上位Experimentへ置く。",
+        "standalone_requirement_condition": false,
+        "function": "Execution Ticket intakeのUPLIFT表。旧worker-blind benchmark sourceを再利用し、同一provenanceの拒否とjudge独立性を維持、反復identityは上位Experimentへ置く。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_method_norm"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001206"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "実装元sourceの再利用と移行先の責務境界を定める方法論行。利用時の注意を含むが試験oracleではない。"
+        },
+        "residual": "F6の指定L2/L11 scopeにexecution-ticket-intake.mdまたはworker-blind-benchmark.tsの明示参照を確認できない。隣接HXB requirements relationだけではこの行のmappingにしない。",
+        "next": "UPLIFTが引き継ぐsource/result identityと上位Experimentの区分の保持先・ownerを独立に探索する。",
+        "human_facing_summary": "Execution Ticket intakeのUPLIFT表。旧worker-blind benchmark sourceを再利用し、同一provenanceの拒否とjudge独立性を維持、反復identityは上位Experimentへ置く。",
+        "human_facing_comparison": "実装元sourceの再利用と移行先の責務境界を定める方法論行。利用時の注意を含むが試験oracleではない。",
+        "human_facing_next_step": "UPLIFTが引き継ぐsource/result identityと上位Experimentの区分の保持先・ownerを独立に探索する。",
+        "source_family_relation_found": false,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [],
+      "candidate_package_pointer_only": false
+    },
+    {
+      "rank": 60,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-001284",
+      "screen_effective_classification": "explanation",
+      "priority_tier": 0,
+      "priority_tier_label": "prohibition-marker",
+      "matched_markers": [
+        {
+          "category": "prohibition",
+          "text": "禁止"
+        }
+      ],
+      "source_path": "docs/governance/candidates/execution-ticket-intake.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md",
+      "physical_line_number": 121,
+      "exact_source_line_text": "| E. Same-model qualification | profile/component manifest・同一モデル反復・独立採点 | 外側sandbox、汚染防止、cost/欠測、公平性を検収。Full有利な固定加点禁止 |",
+      "source_file_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+      "source_line_sha256": "555fc0eecb94492d06de31b3122ae456e9f3268158eb9ed66af8e68862f6ee5b",
+      "physical_line_bytes_sha256_including_terminator": "f25504e135d51c050c8d8208af74fa59b2f3bc3e2cc8bc4d6f0678315f6132d1",
+      "baseline_2353_physical_line_bytes_sha256": "f25504e135d51c050c8d8208af74fa59b2f3bc3e2cc8bc4d6f0678315f6132d1",
+      "legacy_context": {
+        "section_heading": {
+          "line": 111,
+          "text": "## 13. 導入・依存・リリース単位"
+        },
+        "nearby_physical_lines": [
+          {
+            "line": 119,
+            "text": "| C. Resident observation canary | durableイベント・outbox・consumer・最低限receipt・coverage | Ticket bindingのbounded canaryと同じ段階で観測可能にする。daemon/transport障害・replayを検収 |"
+          },
+          {
+            "line": 120,
+            "text": "| D. Existing formal runner bridge | #1295のrunner/scorerと共通task/experiment/receipt契約を接続 | Ticket未採用taskもlegacy bridgeで継続可能。通常Ticket移行完成を循環依存にしない |"
+          },
+          {
+            "line": 121,
+            "text": "| E. Same-model qualification | profile/component manifest・同一モデル反復・独立採点 | 外側sandbox、汚染防止、cost/欠測、公平性を検収。Full有利な固定加点禁止 |"
+          },
+          {
+            "line": 122,
+            "text": "| F. Bounded shadow / event triggers | eligibility・sampling・dedupe・予算・期限・backpressure | source scopeの明示認可と既存schedulerで実行。全Ticket再実行は非対象 |"
+          },
+          {
+            "line": 123,
+            "text": "| G. Advisory feedback / management | #861/#188/#1500/Releaseへの証拠・coverage・drift projection | 鮮度・適用範囲・責務境界を維持し、Benchから権限を直接書き換えない |"
+          }
+        ]
+      },
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 1284,
+        "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "candidate_fields": {
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-E365F83763C0FB340328",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 811,
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "entry_sha256": "8d12ce3777e10f8d60d2a9baa834d662f17481c80db3e3aec1bbac2363850178",
+        "source_path": "docs/governance/candidates/execution-ticket-intake.md",
+        "source_sha256": "951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "decision_record_ref": null
+      },
+      "semantic_review": {
+        "exclusive_group": "受入方法論規範",
+        "class_label": "Stage E Same-model qualificationの検収計画。manifest、同一model反復、独立採点、外側sandbox、汚染防止、cost/欠測、公平性を検収しFull固定加点を禁止する。",
+        "standalone_requirement_condition": false,
+        "function": "Stage E Same-model qualificationの検収計画。manifest、同一model反復、独立採点、外側sandbox、汚染防止、cost/欠測、公平性を検収しFull固定加点を禁止する。",
+        "normative_context": {
+          "present": true,
+          "role": "acceptance_method_norm"
+        },
+        "current_reference_evidence": {
+          "explicit_crosswalk_found": false,
+          "searched_identifiers": [
+            "LEGACY-CAND-LINE-001284"
+          ],
+          "fixed_pair_scope": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-INTELLIGENCE"
+          ],
+          "result": "複数段階の受入・検収の設計行。単一要求条件ではなく、candidate rollout methodである。"
+        },
+        "residual": "F6の指定L2/L11 scopeにexecution-ticket-intake.mdやSame-model qualification rowの個別参照を確認できない。HXB requirements family referenceをこの行の対応に拡張しない。",
+        "next": "qualification項目、独立採点、費用・欠測・公平性条件の各atomと受入方法の生存登録先を確認する。",
+        "human_facing_summary": "Stage E Same-model qualificationの検収計画。manifest、同一model反復、独立採点、外側sandbox、汚染防止、cost/欠測、公平性を検収しFull固定加点を禁止する。",
+        "human_facing_comparison": "複数段階の受入・検収の設計行。単一要求条件ではなく、candidate rollout methodである。",
+        "human_facing_next_step": "qualification項目、独立採点、費用・欠測・公平性条件の各atomと受入方法の生存登録先を確認する。",
+        "source_family_relation_found": false,
+        "row_specific_crosswalk_found": false,
+        "adopted_pair_binding_found": false,
+        "full_source_atom_coverage_established": false
+      },
+      "decision_status": {
+        "adopted": false,
+        "retired": false,
+        "closed": false,
+        "authority_effect": "none"
+      },
+      "source_family_relation_found": false,
+      "adopted_pair_binding_found": false,
+      "source_family_relation_evidence": [],
+      "candidate_package_pointer_only": false
+    }
+  ]
+}

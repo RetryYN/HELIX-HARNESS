@@ -1,0 +1,541 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-068-IR153-2026-10-03-r2-R3",
+  "receipt_state": "候補条件照合の証拠。002のローカル未採択訂正",
+  "authority_effect": "none",
+  "candidate_identity": "HARNESS-L2-068",
+  "candidate_registration_id": "MPR-RC-HARNESS-L2-068-002",
+  "supersedes_registration_id": "MPR-RC-HARNESS-L2-068-001",
+  "requirement_kind": "unit",
+  "candidate_semantic_digest": "sha256:b5c3502e3e296c8e5dceaff021ef3c1261fd2116873b679e482997a4a97595d0",
+  "candidate_digest_rule": "候補identityの既存L2節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
+  "candidate_l2_file_sha256": "sha256:e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
+  "candidate_l2_section_lines": [
+    1290,
+    1315
+  ],
+  "paired_acceptance_identity": "HARNESS-L2-068",
+  "paired_acceptance_digest": "sha256:27f329b968c7f09cdc5d815af82abb70e190d5086002e842ab75369ec8e3b711",
+  "l11_digest_rule": "対応L11の既存節について、見出しから次の同階層見出し直前までの正確なUTF-8 bytesを対象とする。末尾の空行を除きLFを一つ残してSHA-256を計算する。",
+  "candidate_l11_file_sha256": "sha256:b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba",
+  "candidate_l11_section_lines": [
+    1002,
+    1021
+  ],
+  "source_lines_ref": "docs/governance/audits/requirement-registration/hil-fr39-nfr24-candidate-source-atoms-2026-10-03.jsonl",
+  "source_atom_set_sha256": "sha256:c23f1add7f1f96826133b60de5f707859f05ab372a5e075d1ed5aa6c93db8883",
+  "source_atom_set_digest": "sha256:321301892a6231601db0f3746b706a538b83cb263a6f062d5c1ad2a293c8af89",
+  "source_atom_set_digest_rule": "atom_id昇順。atom_id + 半角空白 + source_statement_semantic_digest（sha256接頭辞なし）+ LFを連結しUTF-8 SHA-256。NFR IR identityと既存FR line atomはsource identityごとに一件。",
+  "source_collection_scope": "選択した旧functional source atomとnormative IR NFR全体のidentity atom。対応するL1行はcorroborationであり別atomにしない。HR/HAC/HATはconsumer/oracle contextのみ。両source atomはpreserved_pending_rehomeのまま保持する。",
+  "source_collection_atom_count": 2,
+  "candidate_input_atom_refs": [
+    "DESIGN-REFACTOR-HIL-FR-39-L0129",
+    "IR153-HIL-NFR-24-WHOLE-IDENTITY"
+  ],
+  "candidate_input_atom_count": 2,
+  "candidate_input_atom_set_digest": "sha256:321301892a6231601db0f3746b706a538b83cb263a6f062d5c1ad2a293c8af89",
+  "candidate_input_accounting_status": "Both selected source atoms map to this unadopted candidate only; no source holding release, formal successor, adoption, implementation, execution or whole-source closure is claimed.",
+  "atoms": [
+    {
+      "atom_id": "DESIGN-REFACTOR-HIL-FR-39-L0129",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 129,
+      "source_line_sha256_without_lf": "sha256:5281306e2b246783f356362255050a7588e3b0656a5a83b9efb557b21e1b3093",
+      "source_text": "| **HIL-FR-39** | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 | design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |",
+      "legacy_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39",
+      "legacy_ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "legacy_statement_semantic_digest": "sha256:91cbf666593f3585f2d859baf3578b9075d7a92e9b3d936d2c9c4cd47b4f60fc",
+      "legacy_record_semantic_digest": "sha256:d7334990a0450d40ed74b0dcbb16e7d57ad50a81faae98816135d548c5c7e409",
+      "carry_forward_ref": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-FR-39",
+      "carry_status": "preserved_pending_rehome",
+      "legacy_owner_assessment": "HELIX-HARNESS per routing/crosswalk; successor_requirement_ids empty",
+      "supporting_contract": "HR-FR-HIL-16",
+      "supporting_acceptance_ids": [
+        "HAC-HIL-16a",
+        "HAC-HIL-16b",
+        "HAC-HIL-16c"
+      ],
+      "supporting_test_id": "HAT-HIL-16",
+      "supporting_requirements": [
+        "HIL-BR-21",
+        "HIL-NFR-24",
+        "HIL-NFR-25"
+      ],
+      "relation": "旧FR-39を一つの規範source atomとして保持し、現用002ではNFR-24 whole-IR identityを第二の規範atomとして選択する。関連system contract/HAC/HATはconsumer/oracle contextであり追加atomやformal successorではない。",
+      "candidate_input": true,
+      "disposition": "candidate_scope_only; source holding remains live",
+      "source_record_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39",
+      "source_statement_semantic_digest": "91cbf666593f3585f2d859baf3578b9075d7a92e9b3d936d2c9c4cd47b4f60fc",
+      "source_classification": {
+        "source_class": "normative_requirement_identity",
+        "ir_kind": "functional",
+        "ir_status": "specified",
+        "ir_definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "authority_id": "RAS-HIL-16",
+        "primary_system_contract_id": "HR-FR-HIL-16",
+        "downstream_obligation_id": "DOWNSTREAM-HIL-FR-39",
+        "downstream_obligation_status": "pending_pair_descent",
+        "interpretation_limit": "source/oracle classification only; does not establish current adoption, formal successor, source closure, execution, or implementation"
+      },
+      "source_line_role": "canonical legacy functional-requirement source row; related NFR/HR/HAC/HAT records are context, not additional source atoms"
+    },
+    {
+      "atom_id": "IR153-HIL-NFR-24-WHOLE-IDENTITY",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-24",
+      "ir_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "ir_keyline": 5412,
+      "ir_keyline_sha256": "3ff65c1bf2fb4e08d388ad3e75c1476a29072cd908fddea9f52df01fd15ebf6b",
+      "revision": 1,
+      "record_semantic_digest": "6dda4aec0dd8832c332f65e0983ad66ac2a52139faaba1298a76d2f0236df620",
+      "source_text": "Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。",
+      "l1_corroboration": {
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 204,
+        "source_line_sha256_including_lf": "sha256:c84485956f221a91c80708cd144c3eb669842d8b8c622d8b2da8669d1ff659cb",
+        "source_line_sha256_without_lf": "sha256:f9d8dde0cc8f928e8bbefbc4a0ba024686da3989e41b358d7ada45cf328e2311",
+        "source_text": "| **HIL-NFR-24** | Design Refactorは「将来使えそう」「綺麗になる」という推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求し、誤った名称統一、抽象化、scope creepを拒否する。 |"
+      },
+      "consumer_ids": [
+        "HR-FR-HIL-16",
+        "HAC-HIL-16a",
+        "HAC-HIL-16b",
+        "HAC-HIL-16c",
+        "HAT-HIL-16"
+      ],
+      "candidate_input": true,
+      "disposition": "candidate_scope_only; source holding remains live",
+      "relation": "Correction revision 002 adds this exact whole-IR identity atom to the existing candidate pair. No formal successor, source-owner transfer, adoption, implementation, execution, or full downstream condition closure is claimed.",
+      "source_statement_semantic_digest": "72284f7840fb26841527f2520d29ff0b64b473e136211bc0fc6099ed5d89ac24",
+      "source_classification": {
+        "source_class": "normative_requirement_identity",
+        "ir_kind": "non_functional",
+        "ir_status": "specified",
+        "ir_definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "authority_id": "RAS-HIL-16",
+        "primary_system_contract_id": "HR-FR-HIL-16",
+        "downstream_obligation_id": "DOWNSTREAM-HIL-NFR-24",
+        "downstream_obligation_status": "pending_pair_descent",
+        "interpretation_limit": "source/oracle classification only; does not establish current adoption, formal successor, source closure, execution, or implementation"
+      },
+      "l1_corroboration_role": "same-statement corroboration of the canonical IR atom; not an additional source atom"
+    }
+  ],
+  "whole_ir_condition_mapping": [
+    {
+      "source_condition": "将来使えそう・綺麗になるという推測や名称の文字列類似だけでrename、共通層、base class、汎用object、設定surfaceを増やさない。",
+      "adopted_scope": [
+        "HARNESS-L2-048の選択されたrename安全条件",
+        "HARNESS-L2-016/042の選択されたbehavior/contract保存・consumer/oracle照合"
+      ],
+      "candidate_scope": "068の根拠のない追加・意味の異なる概念の誤統合・scope外拡張の拒否、対L11の文字列類似のみ/将来利用のみ独立負例。",
+      "remaining": "既採択の限定scopeはNFR24全体のclosureではない。"
+    },
+    {
+      "source_condition": "実在するsemantic similarity/name collision、重複・変更波及・責務混在の証拠、全consumer、最小変換、behavior invariant、退行時rollbackを要求する。",
+      "candidate_scope": "068元節の全consumer/behavior/rollback接続条件を保持し、最小変換の比較根拠と対L11の独立負例を追補。各groundのtransform別適用性はA/B/C未決として残す。",
+      "remaining": "transform-ground対応はPO未選択。選択groundの欠落を他groundで相殺しない。"
+    },
+    {
+      "source_condition": "誤った名称統一、抽象化、scope creepを拒否する。",
+      "candidate_scope": "068のsemantic signature比較と誤統合/根拠なし抽象化/選択scope外拡張の拒否、必要な既存reroute。",
+      "remaining": "候補起草から採択・formal successor・source closureは生成しない。"
+    }
+  ],
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "選択した候補入力atomは対応付け済み。条件全体のclosure、PO意味選択、formal successor、採択、実装、実行、source closureは主張しない。",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-004#HIL-FR-39",
+    "MPR-SH-IR-004#HIL-NFR-24"
+  ],
+  "human_decision_disposition_refs": [],
+  "parent_concept": {
+    "path": "docs/concept/helix-concept.md",
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+  },
+  "parent_l1": {
+    "path": "docs/helix-harness/L1-planning/product-intent.md",
+    "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "source_file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+    "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "selected_parent_ids": [
+      "HARNESS-L1-001",
+      "HARNESS-L1-003",
+      "HARNESS-L1-004",
+      "HARNESS-L1-008"
+    ]
+  },
+  "adopted_pair_comparison": {
+    "exact_pairs": {
+      "016": [
+        "3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+        "af638df15c01789c0b130047655bed93f24efa9f9913581870990e7fde7388e7"
+      ],
+      "042": [
+        "7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb",
+        "3ba00726800c61f1de165e48e6f62ea4359a368a50a9e9cd1517deb09df395f9"
+      ],
+      "048": [
+        "9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5",
+        "4a4d893e909d1ccc32b52cc96b22f82eaef6bffead7037677df561cd2617466d"
+      ],
+      "010": {
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "identity": "HARNESS-L2-010",
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "decision_row": 39,
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L205",
+        "l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+        "decision_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "011": {
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "identity": "HARNESS-L2-011",
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "decision_row": 40,
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L206",
+        "l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+        "decision_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      }
+    },
+    "decision_scope": "This candidate only consumes the adopted 010/011 contract pins as static selected-call fixture inputs. Candidate proposals and fixtures do not create or alter adoption.",
+    "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "decision_rows": {
+      "HARNESS-L2-010": {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "row": 39,
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L205",
+        "l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+      },
+      "HARNESS-L2-011": {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+        "row": 40,
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "l11_row_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md:L206",
+        "l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+      }
+    },
+    "decision_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+  },
+  "dependency_023_fixture_crosswalk": {
+    "always_required": {
+      "identity": "HARNESS-L2-010",
+      "owner": "fixture:HARNESS-CORE-contract-owner",
+      "contract_range": "fixture:010-contract@fixed-row-39",
+      "class": "always_required",
+      "condition": "candidate pack contract selected for the same scope/revision",
+      "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+      "compatibility_fixture": "fixture:010-contract-declaration",
+      "compatibility_role": "input/output/dependency contract declaration",
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l11_physical_row_line": 205,
+      "l11_physical_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+      "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    "operation_specific": {
+      "identity": "HARNESS-L2-011",
+      "owner": "fixture:HARNESS-CORE-compatibility-owner",
+      "contract_range": "fixture:011-compat@fixed-row-40",
+      "class": "operation_specific",
+      "condition": "operation=connect_existing_refactor selected",
+      "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+      "compatibility_fixture": "fixture:011-selected-call-compatibility",
+      "selected_call_contract": "Exact candidate identity + operation + source selection + scope/revision + both 010/011 contract revisions/ranges; compatibility evidence attaches to both ends of this same call.",
+      "compatible_pair": {
+        "010": {
+          "identity": "HARNESS-L2-010",
+          "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "decision_row": 39,
+          "fixture_revision": "fixture:010-contract@fixed-f6dad2a",
+          "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_l11_row_line": 205,
+          "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+          "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+        },
+        "011": {
+          "identity": "HARNESS-L2-011",
+          "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "decision_row": 40,
+          "fixture_revision": "fixture:011-compat@fixed-f6dad2a",
+          "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "fixed_l11_row_line": 206,
+          "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+          "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+        }
+      },
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l11_physical_row_line": 206,
+      "l11_physical_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+      "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    "selected_source": {
+      "identities": [
+        "HIL-FR-39",
+        "HIL-NFR-24"
+      ],
+      "owner": "fixture:source-owner-A",
+      "contract_range": "fixture:source-range-A",
+      "class": "selected_source",
+      "condition": "Each named source atom is explicitly selected for the same scope and revision",
+      "compatibility_fixture": "fixture:compat-selected-source-A",
+      "missing_selected_atom": "unknown/unaccounted; not absent, N/A or covered"
+    },
+    "reference_only": {
+      "identity": "HR-FR-HIL-16 + HAC-HIL-16a/b/c + HAT-HIL-16",
+      "owner": "fixture:historical-consumer-context",
+      "contract_range": "pinned legacy consumer/oracle record identities",
+      "class": "reference_only",
+      "compatibility": "not_applicable_for_execution",
+      "effect": "HR/HAC/HAT consumer/oracle context only. Normative HIL-FR-39 and HIL-NFR-24 source atoms are selected normative inputs, never reference_only."
+    },
+    "fixture_boundary": "fixture values are static acceptance inputs, not real service owners, contract revisions, capability availability, implementation, runtime, or candidate adoption.",
+    "selected_call_fixture": {
+      "candidate_identity": "HARNESS-L2-068",
+      "operation": "connect_existing_refactor",
+      "scope": "fixture:scope-S",
+      "revision": "fixture:target-revision-R",
+      "source_atoms": [
+        "DESIGN-REFACTOR-HIL-FR-39-L0129",
+        "IR153-HIL-NFR-24-WHOLE-IDENTITY"
+      ],
+      "010_contract": {
+        "identity": "HARNESS-L2-010",
+        "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+        "decision_row": 39,
+        "fixture_revision": "fixture:010-contract@fixed-row-39",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l11_row_line": 205,
+        "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+        "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39"
+      },
+      "011_contract": {
+        "identity": "HARNESS-L2-011",
+        "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "decision_row": 40,
+        "fixture_revision": "fixture:011-compat@fixed-row-40",
+        "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_l11_row_line": 206,
+        "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+        "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40"
+      },
+      "normal": "both selected contracts and compatibility evidence match the exact tuple for this same call",
+      "independent_negative_010": "keep 011 and every call input unchanged; alter only 010 contract revision/selection SHA; hold this call",
+      "independent_negative_011": "keep 010 and every call input unchanged; alter only 011 contract revision/range/selection SHA; hold this call",
+      "compatibility_string_only": "insufficient to infer either contract identity, revision, owner, range, or bilateral compatibility",
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "decision_rows": {
+        "HARNESS-L2-010": 39,
+        "HARNESS-L2-011": 40
+      }
+    },
+    "source_classification_boundary": "Normative selected source atoms: HIL-FR-39 and whole-IR HIL-NFR-24; L1 line 204 is same-statement corroboration only. HR/HAC/HAT are context only."
+  },
+  "po_decision_material": {
+    "source_meaning": "原文はHIL-NFR-24 whole normative IR identity。L1 line 204は対応行としてcorroboration。HR/HAC/HATはconsumer/oracle context。",
+    "ground_applicability_question": "source grounds (semantic similarity/name collision, duplicate, change propagation, responsibility mixing) are individually preserved; source does not unambiguously map each ground to each transform.",
+    "options": {
+      "A": "推奨提示：POがtransformごとに適用groundsを再導出し、選択された各groundを必須にする。非適用groundsは理由とscopeを記録する。",
+      "B": "すべての列挙groundをすべてのtransformに必須とする。",
+      "C": "どれか一つのgroundを満たせばすべてのtransformに十分とする。"
+    },
+    "recommendation": "Aを候補として提示するが未決。適用表のないtransformはunknown/未完。"
+  },
+  "version_target": {
+    "value": null,
+    "basis": "Source and fixed parent do not choose product version; do not infer 1.0."
+  },
+  "review_pins": {
+    "base_commit": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+    "source_ir_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_l1_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "source_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF / LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "source_holder": "MPR-SH-IR-004",
+    "nfr_l1_line": {
+      "line": 204,
+      "without_lf": "f9d8dde0cc8f928e8bbefbc4a0ba024686da3989e41b358d7ada45cf328e2311"
+    },
+    "source_nfr_statement_digest": "72284f7840fb26841527f2520d29ff0b64b473e136211bc0fc6099ed5d89ac24",
+    "previous_registration_001_immutable": "MPR row 652; original 001/r1 bytes retained unchanged; no nonexistent unreviewed interim revision retained.",
+    "decision_file_sha256": {
+      "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "docs/governance/decisions/po-decision-2026-09-29-57candidates.md": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "docs/governance/decisions/po-decision-2026-09-29-11candidates.md": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+      "docs/governance/decisions/po-decision-2026-09-30-live26.md": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145"
+    },
+    "fixed_parent_source_sha256": {
+      "concept": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "harness_l1": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    "current_main_at_registration": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+    "adopted_010_011_fixed_tuple": {
+      "fixed_pair_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "contracts": {
+        "HARNESS-L2-010": {
+          "identity": "HARNESS-L2-010",
+          "l2_section_sha256": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "fixed_l11_row_line": 205,
+          "fixed_l11_row_sha256_including_lf": "sha256:ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L39",
+          "fixture_revision": "fixture:010-contract@fixed-f6dad2a"
+        },
+        "HARNESS-L2-011": {
+          "identity": "HARNESS-L2-011",
+          "l2_section_sha256": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "fixed_l11_row_line": 206,
+          "fixed_l11_row_sha256_including_lf": "sha256:483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188",
+          "decision_row_locator": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:L40",
+          "fixture_revision": "fixture:011-compat@fixed-f6dad2a"
+        }
+      }
+    },
+    "source_audit_snapshot": {
+      "path": "docs/governance/audits/requirement-registration/hil-nfr24-27-source-condition-current-audit-2026-10-02.json",
+      "sha256": "b2903a20373fbcda44dea29bc39725ababc2d300b7b45f13b894bb98eca2354a",
+      "role": "2026-10-02時点のimmutable source audit contextのみ。現在の002候補sectionのpinまたは検証証拠ではない。",
+      "source_snapshot_revision": "d2370188b9f05d67fac700266131c5a81e06055a"
+    },
+    "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "decision_record_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "current_candidate_revision": "002。現行候補sectionと対L11 sectionのSHA-256をreceipt冒頭へ記録する。"
+  },
+  "no_claims": [
+    "candidate adoption",
+    "formal successor",
+    "source owner transfer",
+    "source holding release",
+    "whole-source closure",
+    "product version target",
+    "L3 approval",
+    "implementation",
+    "runtime/test/CI execution",
+    "acceptance",
+    "PO applicability choice"
+  ],
+  "correction_history": [
+    {
+      "supersedes_registration_id": "MPR-RC-HARNESS-L2-068-001",
+      "reason": "002は再現可能な001/r1だけをsupersedeする。元のsource atomと未採択状態を保ち、sourceで根拠付けられる不足条件と対L11の静的oracleだけを追加する。再現できない中間revisionは保持しない。採択、formal successor、source owner移管、source closureは主張しない。"
+    }
+  ],
+  "current_main_at_registration": "43d5ff7fdb00152b8b3f7aed2aa459ad8b0cb7b5",
+  "legacy_oracle_mapping": [
+    {
+      "case_id": "HST-CASE-025-07",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "line": 197,
+      "line_sha256_including_lf": "f99a3dad3c50060019d049ca207d9fdb283cb17874d6420c781ac645a6583d29",
+      "source_condition": "文字列類似だけが根拠。renameを承認する",
+      "candidate_destination": "068の名称類似のみ拒否条件",
+      "source_state": "design-defined / not-implemented; oracle context, not executed evidence"
+    },
+    {
+      "case_id": "HST-CASE-025-08",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "line": 198,
+      "line_sha256_including_lf": "baad3ba59166f0cd5956f9c8d925fb44e4f9b2424153caf331cefc6dc661e74a",
+      "source_condition": "consumer一件が未列挙。planをfenceする",
+      "candidate_destination": "068の全consumer閉包",
+      "source_state": "design-defined / not-implemented; oracle context, not executed evidence"
+    },
+    {
+      "case_id": "HST-CASE-025-09",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "line": 199,
+      "line_sha256_including_lf": "6c2cad99f4c1f10ab6d871df07e6164e6f907642877685451ac4ea8a37432e90",
+      "source_condition": "rollback targetが無い。planをfenceする",
+      "candidate_destination": "068のrollback/recovery basis",
+      "source_state": "design-defined / not-implemented; oracle context, not executed evidence"
+    },
+    {
+      "case_id": "HST-CASE-025-10",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+      "line": 200,
+      "line_sha256_including_lf": "5648b388b66f714c362fb1b7e851c451fad9fde893d503108b8082e09ddd5c3b",
+      "source_condition": "将来利用だけが根拠。汎用baseを追加する",
+      "candidate_destination": "068の推測だけによるsurface追加拒否",
+      "source_state": "design-defined / not-implemented; oracle context, not executed evidence"
+    }
+  ],
+  "source_routing_context": {
+    "quality_crosswalk_rows": [
+      {
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "line": 33,
+        "line_sha256_including_lf": "15181195c3ef92f5fa58eb14fb7b55eaafb9afe3f7810ca5b175710a68072a0e",
+        "source_text": "| HIL-NFR-24 | 1 | HARNESS／OS：意味保存refactorの条件と改善候補・証拠・実施管理 |",
+        "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+      },
+      {
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "line": 35,
+        "line_sha256_including_lf": "73770bb5f0b395c35cfa90d71fe2d3f1e7d8b0576a5f1fa3969e1093ecf3f226",
+        "source_text": "| HIL-NFR-26 | 1 | HARNESS／OS：設計義務の個別充足条件と消込管理 |",
+        "file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+      }
+    ],
+    "target_routing_rows": [
+      {
+        "path": "docs/governance/legacy-migration/ir/legacy-ir-target-routing-queue.jsonl",
+        "line": 126,
+        "line_sha256_including_lf": "83aefed7cb7253c0b30d6c8d39de809617718bbc8d2d5fd49f727be66a85e59a",
+        "requirement_id": "HIL-NFR-24",
+        "source_text": "{\"requirement_id\":\"HIL-NFR-24\",\"legacy_kind\":\"non_functional\",\"original_target_assessment\":\"HARNESS／OS：意味保存refactorの条件と改善候補・証拠・実施管理\",\"candidate_product_targets\":[\"HELIX-HARNESS\",\"HELIX-OS\"],\"target_resolution_status\":\"candidate_route_from_crosswalk\",\"meaning_change_decision_status\":\"not_requested_by_crosswalk\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[],\"carry_status\":\"preserved_pending_rehome\",\"crosswalk\":\"docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md\",\"statement_semantic_digest\":\"sha256:72284f7840fb26841527f2520d29ff0b64b473e136211bc0fc6099ed5d89ac24\",\"unresolved_reason\":null,\"decision_question_id\":null,\"rehome_wave\":\"W3-nonfunctional\",\"workflow_status\":\"queued_after_repository_foundation\",\"rehome_queue_partition_key\":\"W3-nonfunctional::harness-os-split\",\"requirement_pr_unit\":\"HIL-NFR-24\"}",
+        "file_sha256": "sha256:b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3"
+      }
+    ],
+    "interpretation": "旧crosswalk/Routing queueはHARNESS／OSまたはsplit_requiredと評価した配置史。現在のowner決定・採択ではない。"
+  },
+  "legacy_oracle_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+    "status": "design-defined / not-implemented; not executed"
+  },
+  "evidence_refs": [
+    "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+    "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+    "docs/governance/legacy-migration/ir/legacy-ir-target-routing-queue.jsonl",
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "docs/governance/audits/requirement-registration/hil-fr39-nfr24-candidate-coverage-receipt-2026-10-03-r2.json",
+    "docs/governance/audits/requirement-registration/hil-fr39-nfr24-candidate-source-atoms-2026-10-03.jsonl",
+    "docs/governance/audits/requirement-registration/hil-fr42-nfr26-candidate-source-atoms-2026-10-03.jsonl"
+  ],
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": "sha256:e7bc555844b5f2e3b12a658eedc4d4a832fd53eb62e0a3d11ff5d2bd25c5b492",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": "sha256:b029336f68aede1daa4a5b6fcbfd933ef7ac2682664b75ce10d1096dce8219ba"
+  },
+  "candidate_pair_section_sha256": {
+    "HARNESS-L2-068": "sha256:b5c3502e3e296c8e5dceaff021ef3c1261fd2116873b679e482997a4a97595d0",
+    "HARNESS-L11-068": "sha256:27f329b968c7f09cdc5d815af82abb70e190d5086002e842ab75369ec8e3b711"
+  },
+  "source_atom_set_file_sha256": "sha256:c23f1add7f1f96826133b60de5f707859f05ab372a5e075d1ed5aa6c93db8883",
+  "source_classification_boundary": {
+    "normative": "選択した旧functional source行とIR上のNFR identity atomは規範sourceとして保つ。",
+    "corroboration": "L1表の行は同じstatementに対応するがMarkdownの表記を持つためbyte-identicalではない。corroborationであり追加atomではない。",
+    "consumer_context": "HR/HAC/HATはconsumer/oracle contextであり、normative IR atomを置換・降格しない。"
+  },
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr39-nfr24-candidate-coverage-receipt-2026-10-03-r2.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

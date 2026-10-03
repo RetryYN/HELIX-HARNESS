@@ -1,0 +1,71 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-052-O6-2026-09-29-R2",
+  "authority_effect": "none",
+  "candidate_state": "registered_proposal only; no PO adoption",
+  "basis_commit": "5652f8be418ffc90c4a2bc6348b2046e73f30b10",
+  "candidate_digest_rule": "L2 section from `### ID` until next `###`; trim trailing blank lines and terminate with one UTF-8 LF.",
+  "source_atom_set_digest_rule": "SHA-256 over ordered UTF-8 lines `atom_id` + space + `sha256:`-prefixed `source_span_sha256`, joined by LF without trailing LF.",
+  "scope": "選択3 spanの2 carried・1 preserved_pendingを計上しno_loss。旧root CLAUDE.md:201とMIC:66の完全な旧source lineおよびline-local remainderはMPR-SH-OPS-LEGACY-L3-001に保全。MIC:66の旧CI/DB receiptはMPR-SH-OPS-LEGACY-L3-001に保全。旧candidate line43の未選択部分はMPR-SH-CANDIDATE-004に保全。旧source全体のclosureは主張しない。",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/ops-o6-source-lines-2026-09-29.jsonl",
+  "source_file_sha256": "sha256:31ea10e72ee2c5e3b058a495f8bca7fad4a88e125340e49931ecc6b0ce5cd3e7",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-052",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-009",
+        "HELIXOS-L1-010"
+      ],
+      "candidate_semantic_digest": "sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345",
+      "source_atom_set_digest": "sha256:6085a7429d563a5a341e7d4d3813a60d436064b6887c5518319156109cb4015e",
+      "source_atom_count": 3,
+      "source_collection_scope": "選択した3つの旧source sentence span。各spanの限定的意味は候補へ保持するが、旧source本文全体や全条件のsuccessorを主張しない。",
+      "coverage_result": "no_loss",
+      "atoms": [
+        {
+          "atom_id": "O6-DELETE-BRANCH-ON-MERGE",
+          "disposition": "preserved_pending",
+          "note": "旧repo設定の歴史記録。完全な旧source lineとremainderをMPR-SH-OPS-LEGACY-L3-001#O6-CLAUDE-L201に保全し、現行remote branch delete実施へ移管しない。",
+          "source_holding_ref": "MPR-SH-OPS-LEGACY-L3-001#O6-CLAUDE-L201"
+        },
+        {
+          "atom_id": "O6-CONFLICT-RETURN-TO-CREATOR",
+          "disposition": "carried",
+          "note": "conflict時の作成側返却とreviewerのbranch非編集を保持する。"
+        },
+        {
+          "atom_id": "O6-POST-MERGE-BASE-DRIFT",
+          "disposition": "carried",
+          "note": "先行merge後のbase drift再判定に限定してcarried。MIC 66行の未選択remainderはMPR-SH-OPS-LEGACY-L3-001#O6-MIC-L066、MIC:66の旧CI/DB receiptはMPR-SH-OPS-LEGACY-L3-001に保全。旧candidate line43の未選択部分はMPR-SH-CANDIDATE-004に保全。",
+          "source_line_remainder_holding_ref": "MPR-SH-OPS-LEGACY-L3-001#O6-MIC-L066"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/governance/github-upstream-operating-model.md#作成側とレビュー対応側の責務",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-010",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-035",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-046"
+      ],
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-CANDIDATE-004"
+      ]
+    }
+  ],
+  "unresolved_source_scope": [
+    "旧root CLAUDE.mdのrebase/stack協業規則は現行PR branchのauto-rebase根拠にしない。",
+    "旧sourceの他のbranch削除・workflow・runtime・CI・DB条件は本candidate inputに含めず、migration/closureを主張しない。",
+    "local branch/worktree cleanupの実装方式、receipt schema、remote deletion authorityは既存owner/authorityに委ね、本候補では新schemaや新approvalを定義しない。"
+  ],
+  "authority_boundary": "候補の登録・review・mergeはPO採択や操作authorityを生成しない。remote deletion authorityは対象repository/ref/delete作用を明示する別途有効な既存authorityが必要。",
+  "paired_acceptance_identity": "HELIXOS-L11-052",
+  "paired_acceptance_digest": "sha256:70b5bb6bd967cfc15e85221ed6c1b842fb6fc92318b735867661223bf64ac1e2",
+  "preserved_pending_registration_refs": [
+    "MPR-SH-OPS-LEGACY-L3-001",
+    "MPR-SH-CANDIDATE-004"
+  ],
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/ops-o6-coverage-receipt-2026-09-29.json",
+  "correction_reason": "R2289-02 metadata-only correction: current source-holding references follow MPR-SH-CANDIDATE-004; candidate content, selected atoms, candidate/source digests, counts, coverage, PO disposition and authority are unchanged."
+}

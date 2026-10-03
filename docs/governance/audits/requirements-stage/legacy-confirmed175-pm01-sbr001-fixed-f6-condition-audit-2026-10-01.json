@@ -1,0 +1,3141 @@
+{
+  "schema_version": "legacy-confirmed175-pm01-sbr001-fixed-f6-step5-audit.v1",
+  "audit_id": "legacy-confirmed175-pm01-sbr001-fixed-f6-step5-audit-2026-10-01",
+  "audit_mode": "read_only_static_condition_comparison",
+  "created_against_revision": "07f1ab56d55eea661f812185b718495de07d2e41",
+  "origin_main_revision": "07f1ab56d55eea661f812185b718495de07d2e41",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "authority_effect": "none",
+  "formal_successor_assignments": [],
+  "closure_claim": false,
+  "population": "confirmed175",
+  "scope": {
+    "source_qualified_identity_count": 2,
+    "identities": [
+      "harness/L1-requirements/screen-requirements.md::PM-01",
+      "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001"
+    ],
+    "distinct_source_assets": true,
+    "condition_rule": "PM-01 screen identity is compared with its separate screen details and old consumers; S-BR-001 value statement is compared with its separately linked L3 requirement and L10 acceptance consumers. No source or consumer conditions are merged across identities.",
+    "limits": [
+      "This audit does not close the source atoms within either identity.",
+      "The fixed f6 pair is a comparison snapshot, not a current mutable L2/L11 assertion.",
+      "Later adopted candidates are proximity evidence only, not successor assignments."
+    ]
+  },
+  "source_assets": [
+    {
+      "identity": "PM-01",
+      "source_qualified_identity": "harness/L1-requirements/screen-requirements.md::PM-01",
+      "asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+        "line": 45,
+        "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+        "line_text": "| **PM-01** | プロジェクト俯瞰ダッシュボード | 4 階層プルダウン (俯瞰 / 工程 / 割当 / 詳細) による案件横断可視化 | BR-06 / UX-02 / FR-L1-20 / FR-L1-08 |",
+        "line_sha256": "ee853b29e941eb1e61c8d43a0929a03fcceb47080a48357740b0ce4863055e68"
+      },
+      "holding_copy": {
+        "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+        "line": 45,
+        "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+        "line_text": "| **PM-01** | プロジェクト俯瞰ダッシュボード | 4 階層プルダウン (俯瞰 / 工程 / 割当 / 詳細) による案件横断可視化 | BR-06 / UX-02 / FR-L1-20 / FR-L1-08 |",
+        "line_sha256": "ee853b29e941eb1e61c8d43a0929a03fcceb47080a48357740b0ce4863055e68"
+      },
+      "ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 333,
+        "line_sha256": "0d8148f2ba0dde5c35e676b71847098f736ef844d7e5c0da82c47491da625f6e",
+        "asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+        "source_path": "docs/design/harness/L1-requirements/screen-requirements.md",
+        "source_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+        "disposition": "source_snapshot_preservation"
+      },
+      "carry_status": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "authority": "explicit_human_decision_only",
+      "exact_condition": "| **PM-01** | プロジェクト俯瞰ダッシュボード | 4 階層プルダウン (俯瞰 / 工程 / 割当 / 詳細) による案件横断可視化 | BR-06 / UX-02 / FR-L1-20 / FR-L1-08 |",
+      "condition_context": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+        "line_start": 52,
+        "line_end": 61,
+        "scope": "§1.PM.01 detail conditions; file/section SHA pinned in legacy_consumer_section_pins."
+      }
+    },
+    {
+      "identity": "S-BR-001",
+      "source_qualified_identity": "helix/L1-requirements/skill-mechanism-migration-requests.md::S-BR-001",
+      "asset_id": "LEGACY-ASSET-199C20B12AFBE32BF4ED",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+        "line": 18,
+        "file_sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+        "line_text": "## S-BR-001 利用者価値",
+        "line_sha256": "e6b2f97acf69f1987778213e7c4e9c6f2878d30878ffeddb046f3c827cdd66cd"
+      },
+      "holding_copy": {
+        "path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+        "line": 18,
+        "file_sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+        "line_text": "## S-BR-001 利用者価値",
+        "line_sha256": "e6b2f97acf69f1987778213e7c4e9c6f2878d30878ffeddb046f3c827cdd66cd"
+      },
+      "ledger": {
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "line": 427,
+        "line_sha256": "c981484488f51a6e83319f6e24793591aaeec9bb7db3636530c426c9cfbb36c8",
+        "asset_id": "LEGACY-ASSET-199C20B12AFBE32BF4ED",
+        "source_path": "docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+        "source_sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+        "disposition": "source_snapshot_preservation"
+      },
+      "carry_status": "preserved_pending_rehome",
+      "successor_requirement_ids": [],
+      "authority": "explicit_human_decision_only",
+      "exact_condition": "## S-BR-001 利用者価値",
+      "condition_context": {
+        "pins": [
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+            "line": 20,
+            "line_text": "専門知識・判断観点・手順を仕事に必要な範囲で取得し、旧資産の価値を保持しながらコンテキスト負担と重複を減らす。",
+            "line_sha256": "0ae35285d76227bf247f1b3e6857b3cd611137feac5fad5f3c10b75ecb2337a6"
+          },
+          {
+            "path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+            "line": 20,
+            "line_text": "専門知識・判断観点・手順を仕事に必要な範囲で取得し、旧資産の価値を保持しながらコンテキスト負担と重複を減らす。",
+            "line_sha256": "0ae35285d76227bf247f1b3e6857b3cd611137feac5fad5f3c10b75ecb2337a6"
+          }
+        ],
+        "meaning": "専門知識・判断観点・手順を仕事に必要な範囲で取得し、旧資産の価値を保持しながらコンテキスト負担と重複を減らす。"
+      }
+    }
+  ],
+  "holding_registration": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "line": 16,
+    "line_sha256": "3f1ce3bf82e84237e4c3da167274208bd5380de6144dcf705211da5e7637a071",
+    "registration_id": "MPR-SH-CONFIRMED-003",
+    "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "source_atom_count": 175,
+    "authority_effect": "none"
+  },
+  "comparison_basis": {
+    "full_audit_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-full-audit-2026-09-28.json",
+    "full_audit_sha256": "ca08a81d97e39e94aa02151c7cc4e48f621f9d30baccc1cf9b715331fed38f45",
+    "queue_path": "docs/governance/audits/requirements-stage/confirmed175-condition-comparison-queue-2026-09-30.json",
+    "queue_sha256": "2dbfb06c11ac42a940c0d6b5c188a76e685ea4c00e4d9af10b432198ad17b353",
+    "fixed_revision_basis": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_target_pins": [
+      {
+        "source_identity": "PM-01",
+        "target_id": "HELIXOS-L2-015",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line_start": 642,
+          "line_end": 651,
+          "section_sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line_start": 324,
+          "line_end": 330,
+          "section_sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52"
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "target_id": "HELIXOS-L2-016",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line_start": 652,
+          "line_end": 681,
+          "section_sha256": "26bef9f3c32ffd057e83196a00d8fef3e208837f5ffa1a85436b6d95d9e2452e"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line_start": 331,
+          "line_end": 351,
+          "section_sha256": "8395d60f52fbe31ade69e71ba7b8762b9f38baf1c6a21d2d6aeaead1a3e9ea44"
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "target_id": "HELIXOS-L2-019",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line_start": 682,
+          "line_end": 711,
+          "section_sha256": "1b2de8e977b16f8f6314d4f507f8e9a28f8d6e09b06d4d12079cf779954f8fe5"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line_start": 352,
+          "line_end": 372,
+          "section_sha256": "6fe919f20cd100476b3b4832f903f9b2b73240e3afc041c98e3c455e1786f4de"
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "target_id": "HELIXOS-L2-022",
+        "l2": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "line_start": 712,
+          "line_end": 741,
+          "section_sha256": "a799cfb1260283cb6f9387b06b7f9dff49980c091c360ede3b1b4c5bf74b7ce5"
+        },
+        "l11": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "line_start": 373,
+          "line_end": 392,
+          "section_sha256": "d2fd121d96da2812ceef5e0e0170fd195db1a00de55b3353fb23adb66c5ceacf"
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "target_id": "HELIXLABO-L2-050",
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "line_start": 296,
+          "line_end": 303,
+          "section_sha256": "197698d012ae6de78ca21620577bb15a0644b88f42293dd0c6efbb8963f33404"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "line_start": 98,
+          "line_end": 100,
+          "section_sha256": "e443dbd6898b3c37f30626f09e8889754efbea10fd8091d8a93e568a0e243b7b"
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "target_id": "HELIXLABO-L2-033",
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "line_start": 251,
+          "line_end": 265,
+          "section_sha256": "3da76eb5566cfc2ebd74f95bdef4847af32ba3029deb100b199950dd24d7de0c"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "line_start": 84,
+          "line_end": 84,
+          "section_sha256": "1da59e0ef05639fe9d5bd0bc46a28cffbcbd4bd0cc624a712cb233a7e91c277c"
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "target_id": "HELIXLABO-L2-051",
+        "l2": {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "line_start": 304,
+          "line_end": 316,
+          "section_sha256": "c1468d7cca24b00aa97f036318b94b174c5f1b0fa97350feeabaf465dcee61d4"
+        },
+        "l11": {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "line_start": 101,
+          "line_end": 101,
+          "section_sha256": "4cc7a2e6dc7e1d693085a6b5dbcdf748429575aa20ce456fa2714105f9e4c793"
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "target_id": "HELIXBRAIN-L2-026",
+        "l2": {
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+          "line_start": 474,
+          "line_end": 483,
+          "section_sha256": "e7eaf8d11d033fb790bbd33cae5c8efa60ccb7f9fb80200bd3328bc257b1d6ee"
+        },
+        "l11": {
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+          "line_start": 66,
+          "line_end": 66,
+          "section_sha256": "8a5835ffcfd2d9d9000d498f2c7af4a1a102bb3bc6ef8981a062683da30ea1a7"
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "target_id": "HELIXBRAIN-L2-027",
+        "l2": {
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "file_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+          "line_start": 484,
+          "line_end": 494,
+          "section_sha256": "3f18040d3e9dd4525ee0d46aadac9b89c1c47421edfdd39bcbceb5c4010a8013"
+        },
+        "l11": {
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "file_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+          "line_start": 67,
+          "line_end": 67,
+          "section_sha256": "862382411a8689c88205e3b6cf4326ab141c39d66b2911c77707eaee312c2309"
+        }
+      }
+    ],
+    "legacy_consumer_section_pins": [
+      {
+        "source_identity": "PM-01",
+        "pins": [
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+            "file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+            "line_start": 39,
+            "line_end": 61,
+            "section_sha256": "ed1f524dee3314198666bc24c4e333cf9c734e8f58b7beffdf113356bb73b799"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L2-screen/screen-flow.md",
+            "file_sha256": "ec4da6c66769475dbebfcb74bdb5e7f68c728a71b06ad4c3d7aa9d30c0b38fc1",
+            "line_start": 30,
+            "line_end": 70,
+            "section_sha256": "111e5c6541b7e5de7ce6859156abb0026ad84c7f42c79607fe3d6feb33e3a8bf"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L2-screen/ui-element.md",
+            "file_sha256": "46a762dfcd5289a9c775dd8c5297683043ad047a24945b067fcc96f192689c20",
+            "line_start": 48,
+            "line_end": 61,
+            "section_sha256": "080b86e025b0fee825eb341ee2a8e5dfdc11f076aec9f77ab1116873a9ed0346"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L2-screen/business-flow.md",
+            "file_sha256": "fb7c5b23952edc22f610f93f573e7c906ec80c8b77588d84d7cfd9a762f5939a",
+            "line_start": 34,
+            "line_end": 79,
+            "section_sha256": "fb4612c3e4d4c6ded3717483edb7b194932b161edcc76545bc424be4acd9e55b"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+            "file_sha256": "166facc23aa9f44329ddefbb8bfff40bad45dd7541e01c2c403825b12c20fc96",
+            "line_start": 37,
+            "line_end": 38,
+            "section_sha256": "0d63eeb7d9ba1671099e10a89005d680ab3d8253dc1066dbdc2d5abfc8cd46c9"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L1-operational-test-design.md",
+            "file_sha256": "166facc23aa9f44329ddefbb8bfff40bad45dd7541e01c2c403825b12c20fc96",
+            "line_start": 56,
+            "line_end": 57,
+            "section_sha256": "86e4c8eaa2a9afe9d20f1c3819297fb66bb90c866266c49e0cd9b909922caa39"
+          }
+        ]
+      },
+      {
+        "source_identity": "S-BR-001",
+        "pins": [
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/skill-mechanism-migration-requests.md",
+            "file_sha256": "ea6ac4da2e3396088f511288cd479a27612d53b5bfafa1370bfcf9235518719d",
+            "line_start": 18,
+            "line_end": 35,
+            "section_sha256": "90008150f8dd54adb3333a90f5af483554d5583f6e8f18bc24ec35d927a1d344"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/skill-mechanism-migration-requirements.md",
+            "file_sha256": "4b0d73bb7ad92a8377dd2ae72d58057c03d6e1fe732126c11059840d3d6533ab",
+            "line_start": 31,
+            "line_end": 85,
+            "section_sha256": "0676f60e34a8c0dea0c2c31acdd1485102a3f8a9fcd2ca82bfee4edd9c082124"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/skill-mechanism-migration-acceptance.md",
+            "file_sha256": "c88871437364de1ac2e03a62c5a8c189e0205bcbb04697b06641161f8b2457ac",
+            "line_start": 17,
+            "line_end": 55,
+            "section_sha256": "b51e96e9a80618eb2c253b4ca3f25f77e8581e8f8efe31546392c86b72b57990"
+          }
+        ]
+      }
+    ]
+  },
+  "condition_comparison": [
+    {
+      "identity": "PM-01",
+      "fixed_pair_assessment": "partial_related_semantics",
+      "fixed_targets": [
+        "HELIXOS-L2-015",
+        "HELIXOS-L2-016",
+        "HELIXOS-L2-019",
+        "HELIXOS-L2-022",
+        "HELIXLABO-L2-050"
+      ],
+      "preserved_meaning": "OS-015 (source identity/authority record), OS-016 (portfolio trace/state), OS-019 (evidence/continuity), and OS-022 (improvement-candidate registration/routing) offer adjacent record, state, and feedback semantics. LABO-050 is an internal improvement cycle with target-owner authority and post-change re-observation; it is only a weakly adjacent mapping. None requires a PM-01 dashboard, four-level selector, cross-project heat map, filtering, click-through, polling, or gate-fail presentation.",
+      "unresolved_screen_conditions": [
+        "4-level overview/process/assignment/detail selector and cross-project visibility",
+        "L1-L12 heat map with L0 charter anchor, assignment load/AI slot usage, expandable sub-doc details",
+        "phase/mode/status/drive filters, clicks to PM-02, and manual refresh trigger",
+        "30-second polling and gate-fail immediate update expectation",
+        "green/yellow/red/empty/loading display states and not-implemented historical consumer status"
+      ]
+    },
+    {
+      "identity": "S-BR-001",
+      "fixed_pair_assessment": "partial_owner_boundary_and_versioned_external_knowledge_path",
+      "fixed_targets": [
+        "HELIXLABO-L2-033",
+        "HELIXLABO-L2-051",
+        "HELIXBRAIN-L2-026",
+        "HELIXBRAIN-L2-027"
+      ],
+      "preserved_meaning": "Fixed pair records a 2.0 external-source path through provenance, LABO decomposition/comparison/experiment, and a BRAIN knowledge candidate boundary. It reflects a portion of source evaluation and owner separation. It does not define old skill inventory/disposition, preserving old skill value, typed selection/application, context-load/redundancy outcomes, dynamic supply, efficacy measures, staged migration, consumer transfer, rollback, or retirement. LABO 033/051 and BRAIN 026/027 are 2.0-scoped; they are not 1.0 prerequisites.",
+      "unresolved_skill_conditions": [
+        "current-head inventory of skill/agent/command supply, origin, distribution, triggers, and consumers",
+        "reuse existing classification/disposition for mixed responsibility assets; preserve unknowns",
+        "schema/lifecycle/typed target applicability and prohibition on skill-granted authority",
+        "needed-only acquisition and context management; keep memory/continuation separate",
+        "measurement distinguishing recommendation/injection/retrieval/outcome and provider/config/evidence",
+        "local staged transfer, old protection retained until receipt, current consumers and rollback evidence before retirement"
+      ]
+    }
+  ],
+  "later_adopted_decision_screen": {
+    "screen_source_path": "docs/governance/audits/requirements-stage/legacy-confirmed175-cn1-6-fixed-f6-condition-audit-2026-10-01.json",
+    "screen_source_sha256": "22eca23658171260d1ad489aa94d99b22ceaadb36245e40e2a854d5b6e1b7213",
+    "decision_cohorts": {
+      "57_record": {
+        "record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "decision_rows": 57,
+        "adopted_registration_decision_rows": 53
+      },
+      "11_record": {
+        "record_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "record_sha256": "sha256:6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "decision_rows": 11,
+        "adopted_registration_decision_rows": 10
+      },
+      "live26_record": {
+        "record_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "record_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "decision_rows": 26,
+        "adopted_registration_decision_rows": 25
+      }
+    },
+    "index_semantics": {
+      "count": 94,
+      "adopted_registration_decision_rows": 88,
+      "held_or_not_adopted_rows": 6,
+      "cohort_adopted_counts": {
+        "57": 53,
+        "11": 10,
+        "live26": 25
+      },
+      "cohort_held_counts": {
+        "57": 4,
+        "11": 1,
+        "live26": 1
+      },
+      "adopted_can_include_conditional_scope": true,
+      "conditional_scope_is_not_generalized": true
+    },
+    "full_compact_decision_index": {
+      "count": 94,
+      "cohort_counts": {
+        "57": {
+          "decision_rows": 57,
+          "adopted_registration_decision_rows": 53
+        },
+        "11": {
+          "decision_rows": 11,
+          "adopted_registration_decision_rows": 10
+        },
+        "live26": {
+          "decision_rows": 26,
+          "adopted_registration_decision_rows": 25
+        }
+      },
+      "decision_records": {
+        "57": {
+          "decision_record_path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "decision_record_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_rows": 57
+        },
+        "11": {
+          "decision_record_path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+          "decision_record_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+          "source_repository_revision": "5aa100319361b0cc86edd3c51815ec777d55410a",
+          "decision_rows": 11
+        },
+        "live26": {
+          "decision_record_path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "decision_record_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "source_repository_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "decision_rows": 26
+        }
+      },
+      "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "management_register_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "rows": [
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-034",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 39,
+            "line_sha256": "c006f41bb2b046673e74644d866dd309b3a0cfcb5d06b3ca6eb193d67b7d59e1"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-034-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 509,
+            "line_sha256": "c7ef1913b233272a63df8e728abac1e87dc32beb76e4f800c93222c248d7b787",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-035",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 40,
+            "line_sha256": "db95fb03a091cd2d74a7bef953d37aacc6308de5363e157e760a07d1715c2e77"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-035-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 530,
+            "line_sha256": "5b0b1672efcee5cf1dbd92bc7589e003fe3b33879994d407bdabf45d7a36d20f",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-036",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 41,
+            "line_sha256": "6d63fbaafbc3770d25a4274943cd0771009ed6567da1ed7f75eca1cf78271ac1"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-036-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 504,
+            "line_sha256": "9396f482a9cbd83d96aed156513111fea00b48c1e6ee5b1c449a72499e64f26b",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:7a18c20e22c0cf65e8edcd3b3ca7eca7996d72c0358c874591407d77dbba4bbb"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-037",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 42,
+            "line_sha256": "8f3f0b6338f4c39ad1c380cff32fb888b1e6deb98b57e8fc421bd9d74c35b460"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-037-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 508,
+            "line_sha256": "6dfa64e5fa2258dd0fc8be5a962ea806358648e6ff76eabdcfc55a9fbcf95d88",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-038",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 43,
+            "line_sha256": "a5b640594b664d2a210ccbad1c145fa3890b30cab55b436ef675117d3a8b69db"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-038-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 515,
+            "line_sha256": "43b4ad4c4825c32f336705ceaee944abe7b9679eb82e52aac75280575bd76076",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-039",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 44,
+            "line_sha256": "36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-039-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 545,
+            "line_sha256": "4e2a2832947c89c7dfabec5db15e8881c12d3916cd5475ac7daf1e58a0011518",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-040",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 45,
+            "line_sha256": "39892649f4052cc7dfc5b0a8ec8c78d484f0e2b0fee19a1206d7a64dc12d86b8"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-040-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 541,
+            "line_sha256": "35cee62a8a11abc726db5d976cb379a4f403c0cb741a6fa24fc02dd856edca37",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-041",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 46,
+            "line_sha256": "fa7480f5d52ce8d81564e5017fa178b4bf8c64b63968bb1e671a51baa3cdcb3d"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-041-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 542,
+            "line_sha256": "573d4cb009873219b78374532875e1b11fce8865bccc6fe1bd00ae7be40d5dc3",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-042",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 47,
+            "line_sha256": "e1fdf7ebc81a2c7d2775f7324f7bbcdac31e660921013e44672eecddef7d8698"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-042-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 544,
+            "line_sha256": "995b94e81327c009fd3e260519794daa1ff437010161e30b819a792103a832d1",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:7da6b3394cbc96bdf028a4738000554e1cf7a946595c4abf43504b24968f34eb"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-043",
+          "decision_status": "条件付き採択：Bルート、所属はHARNESS-CORE。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 48,
+            "line_sha256": "18f0bfda60bb841dead7b7d2db20bfe2ce439d5a19e5e9050fe24bef0487406a"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-043-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 548,
+            "line_sha256": "f26264bd7ddd4b5e613b1a1cef715c7dc98c6cdd773152daa79e6693e7b14388",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:da678d9181ebe76ae93084c27744d253c617ebe03b709d79f55b79d2abbc6666"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-044",
+          "decision_status": "条件付き採択：Bルート、名称はDesign Contract Portfolio。採択済み025/026へ無断追記しない。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 49,
+            "line_sha256": "cdee79d9f171d52bbfca96f5ba36439265fc1146006fcf8bf1c7615d958f2a2a"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-044-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 550,
+            "line_sha256": "fff7b7575f42b5ffea5dfcc4f7ff8a68a8b0d38b0b7704b51ff38a79d4b588d0",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:690f2bfa866c778be47459baa99139905260d3ca569739a4d4707c61096212f2"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-045",
+          "decision_status": "保留。解除条件：値の決定責務、単位、未設定・参照不能・超過時の扱いを確定。ticketごとの予算額決定は不要。",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 50,
+            "line_sha256": "68f6580d412b4cbb46763504d3bb396d11cc4b17bc80806cb5b4072e48ba050a"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-045-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 552,
+            "line_sha256": "ccdde91afb1e679bbd08a989fd8d35fbdcb42ad9fff663609b5c779ba351f199",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:ec7d0031733d13e1fb688de7374c1ad078ce335b3bb3ada48d005b8262410aeb"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-046",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 51,
+            "line_sha256": "8262b7450d8eb68154aa0123f8c829d7b882cd46450676a46de458030ee5ca25"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-046-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 559,
+            "line_sha256": "c7eb0b0f84143fd4524a9eee3c82e2d652c27dfd5cd17eccd5352f16a8db190d",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:47cc23b066cc970427a8b9193eda3be9cc06a43f19b7cb03e6f78a0116d6e01e"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HARNESS-L2-047",
+          "decision_status": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 52,
+            "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-047-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 572,
+            "line_sha256": "2d2adfaac8a928a3368e5da5998863f2937fd3f8976e34771e4885a3dfc9d294",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-030",
+          "decision_status": "保留。本体実行OSとconsumer利用先を分け、配布段階と切替条件を確定する。Windows即時却下やLinux限定を意味しない。",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 53,
+            "line_sha256": "23dae7896ab61ac16d7e7dc30f2e40154d5365fec02fac78c188e37bb0089cec"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-030-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 564,
+            "line_sha256": "f3b114301d714918567055d669d24f715b92cc405d731f2d70a42e4fcd6e5e02",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:4e51938b15f6d1217f50d1406df702d4346e3c02fd373f2a8cb6b4c5749f2af5"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-031",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 54,
+            "line_sha256": "534f6f3a0179d8c4b8d6fe2f301c55bd9f8468c341c1fb0ab38410cda2b35b9d"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-031-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 482,
+            "line_sha256": "d44023bf0a6279dd770029ea55a8a60abcabf70b78087749b57e85ea65f247d7",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-032",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 55,
+            "line_sha256": "878ad5a4eda88fbac3f6341ddbe58a613d386be06d668b12d6a90be4dc4b67c1"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 499,
+            "line_sha256": "4abc49701912e0937edd9b8fdd5e927a3490dc8b3ccdb990f08704f9428e5a8f",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-033",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 56,
+            "line_sha256": "54a81764fb7a3656fe51fc4028c57c714e034bcee10c7d4c3193ede2205ab5fd"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 500,
+            "line_sha256": "f99fd0ec160de7cab34063d08055456083ab8fc62f5186c33c401da3baa9faad",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-034",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 57,
+            "line_sha256": "370bbd2d59d583ba6f3d17bb958508feffcb33887a15adc1cc13ca3f1f5268c7"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-034-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 513,
+            "line_sha256": "87bcb4646edc9a8878d31ea00521324932276467f102a7c2d403ee3d7e56b173",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:b4b8a68a15eabdc3dcf40d069fdf262389a43eec1f8ce8647e66ca22e7b9a600"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-035",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 58,
+            "line_sha256": "86475e594d97ea452e6a1e41b7f7c8761a5d60ce4ab4f9062ce044ece6224222"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 517,
+            "line_sha256": "6f8a1bbfcaf1f141e28a6a801f4240565f5c3d784b5351a69026a04d75a50764",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-036",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 59,
+            "line_sha256": "722b92aad6fe789587bf8d3b41cb28f9a2283cc1d422227773cd73a507162f2b"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 524,
+            "line_sha256": "b8d5e7fada54b3593bb25f6cd3d42e16d9720c9d09f67863466ff508063d8799",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-037",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 60,
+            "line_sha256": "c85ed2e89aa6fd1172a2684de1c7c19285d0a6666e179e34a88bae9bfb110080"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 528,
+            "line_sha256": "4d1d6a8500bca33b26b16944d1c064d1e058cbc39eeb6fc5159669e32147f209",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-038",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 61,
+            "line_sha256": "9c4b9a4a075bc5ceeeaae222ef3aa401a1e2336d0932a7cfc923d9b12644a23b"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-038-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 543,
+            "line_sha256": "e5f9d5b863fca60be8abfb556d04164f08641df048ec0e3ad0efa4e7b42db513",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:603b5db48045408a85d116071a4ad0f8a470064cd073a05beb9bc118f386fd6c"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-039",
+          "decision_status": "保留。HARNESS-045と対に契約・版・予算条件を揃える。",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 62,
+            "line_sha256": "290d015ff61f19ccbbb3c87e9f114941c9d1e17d1ce3c3dcdc24a9d2c1534e3f"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-039-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 551,
+            "line_sha256": "bf7c1cde73862f6584a7b78104a8f374097f95eb306dd2c1b57dcc7a1e723bf8",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-040",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 63,
+            "line_sha256": "863b15ab4b8102d7574efeffaa16ce6ef8a11958221bf36f62caeea848924fa4"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 553,
+            "line_sha256": "a942f0638ad7f1d2d5bac30760c67f285f0144ff0ca4615f33a9a2f1af55798b",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-041",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 64,
+            "line_sha256": "88fcaa59d93c43d56af83aba7899c745a9adbab0e3448be8afe7b6fb2fecc999"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 556,
+            "line_sha256": "ae21c9108f017cc6ee9797e12fdd7d5d497d1f5e5c1cb180f19854b599e05209",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-042",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 65,
+            "line_sha256": "80c4cb876936846e7a76da80da77b59fa80ac014a98d1e8f7924169bbf6185aa"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 560,
+            "line_sha256": "8823feabdd10436644d231217ab3dea959e04442d0460b4ec989bb9fdafe9780",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-043",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 66,
+            "line_sha256": "addb08625038fa2124e6f3a158ad0d15047f82004b18e454ba2ca3a537c804ef"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 563,
+            "line_sha256": "630b71e525547739316b2b6d37d27ec679b413474f22dcc8d05c25eeed965ed0",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-044",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 67,
+            "line_sha256": "6f3334da6887e697a3df623ada6e7e84963870ea7d706759edfdda4bfbe96153"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-044-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 565,
+            "line_sha256": "b97166abc0822eac6e4bb9359744dce5d42a32140c2ad24f213751d024aa78ed",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:45ec39bee8dc441f040b0b571f2c62be900d9619eaa1facda5f9017f97678289"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-045",
+          "decision_status": "保留。対象集合、version_target、HARNESSからOSへの所有移動の有無を明記する。",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 68,
+            "line_sha256": "ff4835d942ea9793a751d1718bbfd40f81e9e8e97efeaf7017dfd9c29c51455e"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-045-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 567,
+            "line_sha256": "bc8d9bcb08a6901936bfac852bc677aed84964a98d85cb1bddde1683d038967d",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:87b2bc8fc6a5285ae300dff95ea46d461e754207bb71c5e5fb2729b34bcf1968"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-046",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 69,
+            "line_sha256": "30b808ddda1ac9fb69931bfcce1d2f31f03be9aa0f78a34bb71ce02189ccb03a"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-046-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 568,
+            "line_sha256": "f43ddcf18a0a0450c522d717bef23854e72f186f9de22a73a7f7303e9c970c17",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-047",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 70,
+            "line_sha256": "530e2c7271f986be9027cb88170c7b41d5e6ab13e9c849af8f06da0f82131c55"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-047-004",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 584,
+            "line_sha256": "5d02e1d16f524572a1625bbc3de2c4430e490ae03ee6da9777cd20968432b042",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-048",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 71,
+            "line_sha256": "13a002af8bab53747a824d73c3d5045face24f39dbccb4703ffd0cb301dc3890"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-048-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 576,
+            "line_sha256": "0803434e70e90f5bcb8272a76daecef3509d2c1b2bc344fe3128f73577f6f494",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:0cbd66b870d6b45f739c6759ed2b325d65e69cfbf3e72b6b5638f1e530c77622"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-049",
+          "decision_status": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 72,
+            "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 598,
+            "line_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-050",
+          "decision_status": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 73,
+            "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 599,
+            "line_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-051",
+          "decision_status": "条件付き採択：本構成でCursorを作成専用、Claude優先は適用可能な評価根拠のある要求・設計taskのみ。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 74,
+            "line_sha256": "b9cef971102d6f8ec1f03c1eca2d77fb40b8490b0968a66f535daa78f992f218"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 589,
+            "line_sha256": "c2f3e29ce0a9cb33c391213f95b99742ac61888ae539d2e8aeda3984305b60bb",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-052",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 75,
+            "line_sha256": "32d23b8648dece8231c8291f2b4f16f992114756091fa560cddec413a1aef06c"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-052-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 590,
+            "line_sha256": "c823d5d6d5c292d99a125507cc497639d7a53e77bc6ed338b25734a5ffdb8be7",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d9e839c319c54f826bb065ce065ca5a8af126a11abd8f15c9f3183964a4e5345"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-061",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 76,
+            "line_sha256": "acaa9114e8009108027c9b9ea43a1fe54a6c31adff1d5f9f31830c0be3bd6b42"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-061-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 477,
+            "line_sha256": "7ece2deeaae61f9859ad51011b20f933f2ad057826b3e4d5e25cdd22b180f9c7",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:f78b726f14dddee5af773d915b7d97b6d8cdef5ca14cf51034b0d4cd599f6a7f"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-062",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 77,
+            "line_sha256": "36749f28c047b28caf0167d7e2a51498c4f8f2dbca4e45687bee59250b7dec1b"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-062-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 484,
+            "line_sha256": "50f2bfb9c0928e8d14611213856907610966c764ae5b836674bda1f4c935e08b",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-063",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 78,
+            "line_sha256": "5196e60a105560e0797c9638b6b1d2f1dc83f457f94e9e1e38a1ddc3b0a9ec25"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-063-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 486,
+            "line_sha256": "aab570ca42ecceb1684ede9be5806b830a62c1761b0b044edef6168caea5c0d1",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-064",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 79,
+            "line_sha256": "2b967f2151eabd4f2cf80d4689fc9f33fcf84ad9a879bf1cbac8d4eb2a97051a"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-064-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 491,
+            "line_sha256": "4f09d1e055ee9de2f22f7ccf11a05c910aa5a03169eafab62c941cd9f20f4787",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e28da5b2f47c3d1327cc091003d14a7ab572a3282040b2ed7ec6614dae7079b8"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-065",
+          "decision_status": "条件付き採択：D1、067とは別指標で「最初のAttemptの結果」。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 80,
+            "line_sha256": "418faea57e0785c870054c9af72ccf6eed92bc08d8abdbd7f9c1ec5eb8204194"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-065-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 537,
+            "line_sha256": "21b7829a5fa5239dc84d0685424d9c9f82dde2f2302fe6dbbefe21a27d7f039c",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-066",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 81,
+            "line_sha256": "1c0b1f7d0869e91effb85cdecfa0eb361e6fda0ae06c920ea125a1110af63fc4"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 557,
+            "line_sha256": "b8337735687f04e76bdd7c17111d74ca13bc0992d874117fd040201f398d0402",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-067",
+          "decision_status": "条件付き採択：D1、「最初の適格candidateの結果」と同一Attempt内修正回数。065と換算・統合しない。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 82,
+            "line_sha256": "7c29e568fb190cbfb119bb1c1e685b0fb99db9fea5942440e4fb1b70a2e6312c"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-067-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 569,
+            "line_sha256": "192de3aab55f188bf95eaa5088eb24b784d7454c63feac8f61d7b8b1033f05dd",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-068",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 83,
+            "line_sha256": "48c66f92ff0760af5b7fe216b4f903ebe0b71c96fef5effc8eb3ffca2abc117a"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-068-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 570,
+            "line_sha256": "6b78b7fd196c2d55d13cfd193341152f132d8c6894a978034a6887c8777c16ef",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:7e3df32b0131722c88ae148c4cbfa9a1be20f81826099c0ceb29a674e07030e2"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXLABO-L2-069",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 84,
+            "line_sha256": "2996d4b4a8ce9736503d164c18cfa750b8eef445dbc977979ac0537960c3c99d"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-069-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 577,
+            "line_sha256": "57c7c8e53fd6cae8b0e91adf574d0a33c3a557fca749d1763c453c5b64f03803",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:605acfa9ec39bbdc0d964f3bf3c644122f1c081c202ddea48fe682ac31be5bc9"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXINTELLIGENCE-L2-072",
+          "decision_status": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 85,
+            "line_sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d"
+          },
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 535,
+            "line_sha256": "1d7b6c524c1b4b4c2f61238b7bbf98a0f6b3f9393020157919a46ff50e4f5a57",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXINTELLIGENCE-L2-073",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 86,
+            "line_sha256": "fc306f82be009d9ed41bba3801c45be1dcc304f6527ec95e852e0f849dce5455"
+          },
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-073-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 555,
+            "line_sha256": "fdc802c7d7f1e3284180239f53faa4e45e456e468eb95e2a4eba5ef2458d8065",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:4425189d3870de92165ebdbc790902317dc2799d89f760156ab17441662a2eb5"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXINTELLIGENCE-L2-074",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 87,
+            "line_sha256": "0cdefdc0208005167b66d05ab66e2ad437aaef58a46f629d3ec9173e72fba381"
+          },
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 587,
+            "line_sha256": "69e421063a5051fd75a0b6ab290bc1825be2735f08355d917912880eaee925da",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-029",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 88,
+            "line_sha256": "01007c723712719e494a605d82f5ef7af56dc74e05f49b2c6e5c7ad718a639b1"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 495,
+            "line_sha256": "4f515acda430d755d4a21e9247b43359d16b9459df061cea42f3d63e89ff9f16",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-030",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 89,
+            "line_sha256": "3ee3598e28e1bd3873deef2185d3d4cb8d0dd2eac4b704fa8f4456dc85c8e519"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-030-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 497,
+            "line_sha256": "004f416909dfea243f25f820838d3374e09191452cf1debd8584845b2889a38c",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-031",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 90,
+            "line_sha256": "dccdce5340add287a23ef7df8576c1dd49e7d65e219798dc87022c9935c59a43"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-031-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 501,
+            "line_sha256": "ef49dc95b6aade6f466fa29bbf4262126c1eda6be8b523f61183b5e5691759a1",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-032",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 91,
+            "line_sha256": "d668008ef2de562a11d0d1a594db7fdb3eadbcb84fd65aa7568c825e80241092"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 558,
+            "line_sha256": "c5488173f8102f23dde433cd04d5683c5229f6929d4c886cb8b9fc766e092535",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-033",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 92,
+            "line_sha256": "c0adc957901718d31960f3696cbf23ecc92df4a130aae379c96d8065145abf2c"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-033-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 571,
+            "line_sha256": "e95a89303f273a39811bd9aa67710bc080506da878596714bbfaebdc83b61802",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXSECURITY-L2-034",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 93,
+            "line_sha256": "ec02930f3e3c7d0108f9e6a81c4e5376b4ed6259ba9396cc3aa2fc0732bca489"
+          },
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 566,
+            "line_sha256": "0c1167ffbb59a602e639e85d43e615bb447c2c7a247607251861e1e82f5de3e8",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXCONNECT-L2-008",
+          "decision_status": "条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 94,
+            "line_sha256": "0f5350230dd35d037de1a8b8f7366867f4677a5e8ee37d8856c3919a73b3f366"
+          },
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-008-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 574,
+            "line_sha256": "9f27baa0a4e8ede5344e469bf545dc2de2573af5f9c85b1322350a482e6f85a1",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813"
+          }
+        },
+        {
+          "cohort": "57",
+          "identity": "HELIXCONNECT-L2-009",
+          "decision_status": "条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 95,
+            "line_sha256": "d96c400c50e5a4520884a60f81efa742de87bb1adaa1520bf4d00f7886b0464b"
+          },
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-009-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 600,
+            "line_sha256": "d46df22ee5e120933a7017b295edc75100a773e6db7d91ec885030aad924d589",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-041",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 27,
+            "line_sha256": "78a28b08cd764877da9821077da3ce3dfa623b5fac671d6c7f56fbda6c31045c"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-041-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 601,
+            "line_sha256": "716689ed510252b5a77953d52def4dcc9ee2d9ef23ec02ca2bd20fdc89b4f42f",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-048",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 28,
+            "line_sha256": "9cbd95969aadc8f6c302d3ca6ae4f4b3c2271c1cef907e23bcfa8a8423adf280"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-048-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 593,
+            "line_sha256": "41af92a37b87c8ed7a7d0b5c3b9cc631979d72e08e745e13a7fd0b2b387f4fce",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9328dccd943ac8f690d149673a5f05626465990f3197306a45d7b8cca27c34d5"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HELIXBRAIN-L2-031",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 29,
+            "line_sha256": "ecd9b0d8c2919b11ff0eaa02cf8c38877c33d56d49f4291c44613ab6eff4fce3"
+          },
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 594,
+            "line_sha256": "0266146f2a3f586bec4088e228d7b99785df390d0170a98b8161612dbeab0f88",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-050",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 30,
+            "line_sha256": "a727d0c66828509f604635e01c30929c6320fcc026aa85f7b2d5b0c7aa67744c"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-050-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 603,
+            "line_sha256": "fca15d79cd04b9ce1a02ba2b9971b918de3866d39e3f6fc41efdaf8c3b7f4e96",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:abeb498cf39f62ca8f34ded2c439502fb18215f1e376109147096ebaa69ce1b1"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-051",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 31,
+            "line_sha256": "49ee147e98f82a02a9f49328e94996e7bdaab00219ff7de044fc521129c23712"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-051-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 605,
+            "line_sha256": "d16650e12b2bacb3b0f0bef072ce6f353a0aeba9b7794eda588854a859491f53",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e023408a45afa40bb674aebf53fcc870d6c4d9f8da155ce282b9fe5b69818f9b"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-052",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 32,
+            "line_sha256": "601798cb431671fc38995d4b4db495b97a43ea818878ca54c882e46acbc3b2af"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-052-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 606,
+            "line_sha256": "f40e0bd0b0d601001eebcc78a9410124d6fd65e618bd770b26d07e55198cdb83",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d49f8cf116879f4283313f9c01ae7fb72bc9c528b5205cdbd45d06c46221d25c"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-053",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 33,
+            "line_sha256": "9712e5331aee79ecb6bca483f2d9f56ee4b298a327b41a369f35bc59c411d56a"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-053-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 608,
+            "line_sha256": "119e7f615d81b6afa70387809e5aa273070ca459c728035195b67799cece42c0",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:ebc78869f6d94668d9fed00d0a0415d068d85c0f61c0d98f01a9c4ec39710587"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-054",
+          "decision_status": "採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 34,
+            "line_sha256": "6fcf725b5e10fe294094a0e38a0092a7818fe17b9e2a606ce476fcc5badc5e9a"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-054-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 609,
+            "line_sha256": "a16146017db3c8b0c6bb4c56573389bf4da64a8789e0d0c26772b0d4b8a6fe17",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:b76b7b1adec804a25bd9333663aa9b0d074f68518764c2874c994bcdf6ead193"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HELIXOS-L2-038",
+          "decision_status": "依存先と併せて採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 35,
+            "line_sha256": "196e1750220ef4bdaf57b57f0ee955375b942e8afe91ee6d45c30ef04488a733"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 602,
+            "line_sha256": "41ff930e78fd24ca7fedfdf976a30c5afc9d787b52aae763900032b6334ceb77",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HELIXOS-L2-053",
+          "decision_status": "依存先と併せて採択",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 36,
+            "line_sha256": "84c9e2fe5adfd0a93e8c3fd6dddec78d6d784b6375ea161f85ea2b3235dc4e14"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-053-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 607,
+            "line_sha256": "607caa269a36ed662e888cf4868bf165e8c6386866e24786c94afe51455b2f56",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:fe880fc8392d9efc282294fff5305973df3b43270ef76263defef4a7ce9240bc"
+          }
+        },
+        {
+          "cohort": "11",
+          "identity": "HARNESS-L2-049",
+          "decision_status": "現revisionは未採択",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+            "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+            "line": 19,
+            "line_sha256": "4f7e28924520eb6c811d815d984ddf53490ab29a1c683022fd28bf7732f672a0"
+          },
+          "registration_id": null,
+          "mpr_pin": null
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-049",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 39,
+            "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-049-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 629,
+            "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-055",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 40,
+            "line_sha256": "756279719a4bbf61adeac3df86871b7e5589c2860ffb1a0a3af2b41e8d3017a0"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-055-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 610,
+            "line_sha256": "7ececa71e4a7bb030492ba3c3709f69c1a2740264e42278e4859614b83a5f3c3",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-056",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 41,
+            "line_sha256": "33f58252e53a1934cafad1ec7d84a05db8be8214d9112056dfb6722e700430e1"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-056-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 611,
+            "line_sha256": "949c36f360b6e73448b0b9631b928b5770885ee7564a9b45dbe665abccfed236",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-057",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 42,
+            "line_sha256": "ae8d179d379132fa771bc1fb349174a57efd9dfc5b896f51c3ca9f3261154360"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-057-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 612,
+            "line_sha256": "18b8f50e4ff47c738ef07509b7915ea68ddd85ac0f42c90a6d05eba0efcf4616",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:2c487f5408d31f0f982ab210be3df4d1d824bd75169b96bd1321cb0edd2a23ac"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-058",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 43,
+            "line_sha256": "8177aa9ef75d22552d4e1b74c6bfacdfdc65782e97f0a7b4088431c27cfac258"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-058-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 618,
+            "line_sha256": "08b7240268f58fc32c1e6ab0ee8c9ac3dfe5ef3fbf672e423aed815fdf850306",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c50e2183bb1186bb585fbb80b924d628be74aaaf363515f047c74ef906d71bc3"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-059",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 44,
+            "line_sha256": "0bfd9f58757e294ed8dde1e772c5da3c07e91bb7d1956ee4a9a53c84f51e9159"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-059-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 620,
+            "line_sha256": "5534980f116b982e4e343c62f5b0cff2179533168580f35d875f4a8df8a77f0d",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:9ebafbcc5b738dbaccaa53bfaff0b5843b0dd5fba30cc68beb51fe1dbe2e267f"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-060",
+          "decision_status": "案を選択して承認（3件）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 45,
+            "line_sha256": "6039db43c7e23bc51f865f3384af203936a83dfa91370df9b656df045c61500d"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-060-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 622,
+            "line_sha256": "f6c12b4f5b8f983c5fa71089d742b592bdb031cc705c8adad16ffccab84c8ce3",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:d4f0419f2095828ac041a28ca906f45d4dd79b5bfa83000097111f5d13235c30"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-061",
+          "decision_status": "保留（1件）",
+          "adopted_registration_decision": false,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 46,
+            "line_sha256": "ce08f287cb069c954582acc7f97e766b2153a0078c76af21142cac8d0f1a3163"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-061-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 625,
+            "line_sha256": "38447b4a473ddfb837ba6870b68033e430a9f9c6c81d7c2df182fba3f94ec9aa",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c44ffb80fec07ed6c0fe68e95bbd68358d87632b28d77caad96d28f231badb1a"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-062",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 47,
+            "line_sha256": "81f6ede50a77dae5f3b39f67e12161a43b4015ff1d0adc6d5871bdda0aeed4cc"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-062-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 631,
+            "line_sha256": "208b3c5c4a102a8791c93e17d6a7dba92849eea75d787a84439b9c9bd48bcb79",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:e795e90ec1de20b94d81bf31fb083e8c4001363f88f1528d9833a67a01865f44"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-063",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 48,
+            "line_sha256": "b91f3f327157edbc2f48364fab9c4b8763db2ba16554aed61a8dfda765cadb2e"
+          },
+          "registration_id": "MPR-RC-HARNESS-L2-063-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 638,
+            "line_sha256": "291a655f587b396632fcf0dd34b0e60fb12368829c645960afb431b8ef41e1e6",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXLABO-L2-070",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 49,
+            "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 626,
+            "line_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXLABO-L2-071",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 50,
+            "line_sha256": "f6219d5c62a527ebe42ea45ab38fe083546ae97f686e4cb486fef2e905d0b87f"
+          },
+          "registration_id": "MPR-RC-HELIXLABO-L2-071-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 637,
+            "line_sha256": "8b95d3187bc9c9ad8ddcec8301039e4a6ff667d498e884d0005d68d57009b735",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-034",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 51,
+            "line_sha256": "9e5008e562be198466fe57dcbdd9ccfffde23c5f2797e13f60af394cd93e6442"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-034-003",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 617,
+            "line_sha256": "54017211ab892bfd9d660df1edc3584b2be31b4224b38b8d3f6d8e21f5bdf0b6",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-054",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 52,
+            "line_sha256": "63be074a8b79ad02f7e5305a036f21606b52212ab08b484812fb5295ab502992"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-054-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 613,
+            "line_sha256": "86dcc0777864c942afdb027c97ace516afcca70976b133c9d552aca917952e74",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a9c1561ab310399fa27d5aca8bd9ebca8264176516357470157526df8c297eef"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-055",
+          "decision_status": "案を選択して承認（3件）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 53,
+            "line_sha256": "0dde862f0edf4ad3581016a562940d7ce715bcfb107278b808b273e2dbb8ae9f"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-055-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 614,
+            "line_sha256": "75a880c3508cb957b7008bea07087330a055fe901a10823c241b4960c0a46694",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:6d23a405ce2c0c6d56a65a4b02d9c39ead8533db3064058dcd7027b641fb9052"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-101",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 54,
+            "line_sha256": "30543b99a6dda6ee7b825cc6879d5f1494e53799f91a8288f2fe152d77e2b6f1"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-101-002",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 619,
+            "line_sha256": "544096a393c6a2569fc91dbe08695ac069a01be068d894184ed0e1dcfac25dc4",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:03ee1bbc860f879b9362eccc024f1cfa056b8cc3e364c16b4683ed18fe9598b5"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-102",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 55,
+            "line_sha256": "7787ddaf145fd6b0a6d929e2ca7e4e849de443a1db89c4c907814041d39b718d"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-102-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 621,
+            "line_sha256": "2ee7bbc3bc3088864ba50c8e7868ff6a5af5fa7f40dfd451a9e93a0a74f29b94",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:5d020c09b0e5686e01876e3c52d2ce10e8aded44a799a9f6374542d31de31218"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-103",
+          "decision_status": "案を選択して承認（3件）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 56,
+            "line_sha256": "4bed6104029f8073f0fe13d62b8c2a93df559e70111cdb2d678b35d234f9ce93"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-103-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 623,
+            "line_sha256": "043b9a771812af90828a50287c9accfc92730c5b84637fd2cd80580ece1ca2e9",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:6115a7190bad6a5ff449574a3150116dcdcd31e69f70e6a5b1625a59e171c7dc"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-104",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 57,
+            "line_sha256": "dc707bd15cc15d94cea46ce4d37ff27edcc4612a8e6aeb605b26c7cca3446481"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-104-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 624,
+            "line_sha256": "f0b6168471c7b610f0b5831d55adee7f8a71db4556c88cbfad7c243d38459f48",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-105",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 58,
+            "line_sha256": "cb2195ba6d60f69144dfcd5942bf92ba14ba03275011728dcb25f20d5617a460"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-105-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 628,
+            "line_sha256": "3732ecb6e64abe178ba717c9e01356247183220a20952df530ee7f8abc9be7a0",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:81e6de13e8876410f69cf586f8aba014765864664d11ec68305d0fede366ad4c"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-106",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 59,
+            "line_sha256": "3c3835caae5e8df772d1aafe14cd8d90b9389b3464afbf0bc9fa0bc2246f55bd"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-106-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 630,
+            "line_sha256": "14ee4a6f80a79e9133bffb48c7d6f4769a0671d814c50ad91dbf585060b274d6",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:b1f3d62a007f954a788602fbff45fa70d3b8bb4b2fec547113a0db30d9598fcc"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-107",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 60,
+            "line_sha256": "2eb2349e30777ab6d91769c3a8934f662b961cd13dcbfaf73c7f5cfaf8889555"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-107-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 632,
+            "line_sha256": "1d8093d925450f225078cae745e0329b9108b5991648df90e61e5abdf725f8b4",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:a84e0711dc74d36aa31d283b254ebbc29b34e45b51e17805c24253b8cac17caf"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-108",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 61,
+            "line_sha256": "09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-108-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 633,
+            "line_sha256": "b17c0a410e4946a49be41b3a948a815f889f8f85036fc34b1127bbb2a503ae2d",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-109",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 62,
+            "line_sha256": "ce01ad8ff29f04e7ec8823a23003e77618ca5e1838d7a45ecef7f87ae4bb4534"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-109-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 634,
+            "line_sha256": "b6dd19ced51c164f1fa8af1037120431598c273d3a921c540ba9fdc9e82d6373",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:29d7ec73b53e94e73e02f0303402ab40bf216dca36f9432280cc52b26fa96d80"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-110",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 63,
+            "line_sha256": "b3f91056524676a55b33eb61ff50b95f53266e771addbbfc6601414fea3c642b"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-110-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 635,
+            "line_sha256": "d2ed557a9d2d45319bcef70415e8d9796603fd6300a0905808f27a475d5df5c6",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:fe250f3cb0be2fdd417904f59041c4c39535f2060394f569b2c9bea8d86e43be"
+          }
+        },
+        {
+          "cohort": "live26",
+          "identity": "HELIXOS-L2-111",
+          "decision_status": "承認（通常採択22件に含む）",
+          "adopted_registration_decision": true,
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 64,
+            "line_sha256": "062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358"
+          },
+          "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+          "mpr_pin": {
+            "path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+            "line": 636,
+            "line_sha256": "8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+            "management_state": "registered_proposal",
+            "authority_effect": "none",
+            "candidate_semantic_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b"
+          }
+        }
+      ],
+      "index_semantics": "全94 decision rowをregistration単位で掲載し、うち88行の採択decisionを明示する。保留6行もdecision/MPR行をpinし、採択扱いしない。同じidentityでも別cohort/registration rowは重複排除しない。MPRはregistration/bodyのpinであり、decision statusやauthorityを生成しない。",
+      "adopted_count": 88
+    },
+    "selected_neighbor_records": [
+      {
+        "cohort": "57",
+        "identity": "HARNESS-L2-039",
+        "decision_status": "採択",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 44,
+          "line_sha256": "36ee00432206be7b72d281d7fa0222239130ec4025d8bed45810f1bc395625e5"
+        },
+        "registration_id": "MPR-RC-HARNESS-L2-039-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 545,
+          "line_sha256": "4e2a2832947c89c7dfabec5db15e8881c12d3916cd5475ac7daf1e58a0011518",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HELIXOS-L2-108",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 61,
+          "line_sha256": "09cbd2d7fc6002eba895087e06942f94e55d2bb78807c3e87c31cc8e1aa9a532"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-108-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 633,
+          "line_sha256": "b17c0a410e4946a49be41b3a948a815f889f8f85036fc34b1127bbb2a503ae2d",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:c02375c00cf35908f37dd50c82d017a42c987282535852e34b28797671670a0d"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HELIXOS-L2-109",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 62,
+          "line_sha256": "ce01ad8ff29f04e7ec8823a23003e77618ca5e1838d7a45ecef7f87ae4bb4534"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-109-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 634,
+          "line_sha256": "b6dd19ced51c164f1fa8af1037120431598c273d3a921c540ba9fdc9e82d6373",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:29d7ec73b53e94e73e02f0303402ab40bf216dca36f9432280cc52b26fa96d80"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXLABO-L2-063",
+        "decision_status": "採択",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 78,
+          "line_sha256": "5196e60a105560e0797c9638b6b1d2f1dc83f457f94e9e1e38a1ddc3b0a9ec25"
+        },
+        "registration_id": "MPR-RC-HELIXLABO-L2-063-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 486,
+          "line_sha256": "aab570ca42ecceb1684ede9be5806b830a62c1761b0b044edef6168caea5c0d1",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXINTELLIGENCE-L2-072",
+        "decision_status": "条件付き採択：B配置、1.0は候補生成とshadow評価まで。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 85,
+          "line_sha256": "62813222c8f4d80ab5bd0a8e31c22a6b02ba526970dcac3e9a65baea882c325d"
+        },
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-072-004",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 535,
+          "line_sha256": "1d7b6c524c1b4b4c2f61238b7bbf98a0f6b3f9393020157919a46ff50e4f5a57",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXINTELLIGENCE-L2-074",
+        "decision_status": "採択",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 87,
+          "line_sha256": "0cdefdc0208005167b66d05ab66e2ad437aaef58a46f629d3ec9173e72fba381"
+        },
+        "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-074-002",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 587,
+          "line_sha256": "69e421063a5051fd75a0b6ab290bc1825be2735f08355d917912880eaee925da",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:5605649ccd2e582bc795b6937792c4957230bf0045031fa58cf9ffa21871719c"
+        }
+      },
+      {
+        "cohort": "11",
+        "identity": "HELIXBRAIN-L2-031",
+        "decision_status": "採択",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+          "file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+          "line": 29,
+          "line_sha256": "ecd9b0d8c2919b11ff0eaa02cf8c38877c33d56d49f4291c44613ab6eff4fce3"
+        },
+        "registration_id": "MPR-RC-HELIXBRAIN-L2-031-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 594,
+          "line_sha256": "0266146f2a3f586bec4088e228d7b99785df390d0170a98b8161612dbeab0f88",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:65eb78860b59586c2d17c2a70a7134db8057a70f7025924bb00c9fa3a255e1ca"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXOS-L2-049",
+        "decision_status": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 72,
+          "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 598,
+          "line_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HELIXOS-L2-050",
+        "decision_status": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 73,
+          "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+        },
+        "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 599,
+          "line_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HARNESS-L2-049",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 39,
+          "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+        },
+        "registration_id": "MPR-RC-HARNESS-L2-049-003",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 629,
+          "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+        }
+      },
+      {
+        "cohort": "57",
+        "identity": "HARNESS-L2-047",
+        "decision_status": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 52,
+          "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+        },
+        "registration_id": "MPR-RC-HARNESS-L2-047-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 572,
+          "line_sha256": "2d2adfaac8a928a3368e5da5998863f2937fd3f8976e34771e4885a3dfc9d294",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        }
+      },
+      {
+        "cohort": "live26",
+        "identity": "HELIXLABO-L2-070",
+        "decision_status": "承認（通常採択22件に含む）",
+        "adopted_registration_decision": true,
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 49,
+          "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+        },
+        "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 626,
+          "line_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+        }
+      }
+    ],
+    "selected_neighbor_limits": {
+      "PM-01": [
+        "HARNESS-L2-039 is adopted UI/Experience/Frontend contract, but not the old PM-01 dashboard/detail acceptance.",
+        "HELIXOS-L2-108/109 are artifact-consumer and provenance chain projections, not screen behavior.",
+        "HELIXOS-L2-049 (57, conditional): worker utilization/capacity and required downstream verification assignment; proximity to allocation load only, not screen requirement.",
+        "HELIXOS-L2-050 (57, conditional): review capacity and merge-authority boundary; no PM-01 rendering or AI-slot display.",
+        "HARNESS-L2-049 (live26, approved registration -003): display-measurement oracle only. It measures an existing rendered prototype and does not specify dashboard construction or PM-01 display acceptance."
+      ],
+      "S-BR-001": [
+        "HELIXINTELLIGENCE-L2-072 is a conditional 1.0 judgment-pack candidate/shadow evaluation scope; it is not skill migration, retrieval, or lifecycle closure.",
+        "HELIXINTELLIGENCE-L2-074 is a feedback proposal input and does not establish old skill assets as accepted candidates.",
+        "HELIXBRAIN-L2-031 is a reusable knowledge candidate boundary, not full S-BR-001 or S-R migration/retirement.",
+        "HELIXLABO-L2-063 is recurrence-evaluation feedback to preventive candidates, not skill migration.",
+        "HARNESS-L2-047 (57, conditional A placement): task-level specialist Worker/context/budget contract; not inventory, skill migration, or retirement.",
+        "HELIXLABO-L2-070 (live26, approved registration -001): scoped general telemetry/Attempt scorecard with unknown retention; not skill-specific efficacy attribution or migration closure."
+      ]
+    },
+    "identity_specific_proximity_pins": [
+      {
+        "source_identity": "PM-01",
+        "candidate": "HELIXOS-L2-049",
+        "cohort": "57",
+        "decision_status": "条件付き採択：割当前に後段の検証義務・担当・capacityを確保する。割当先task自体のreview/merge完了は割当条件にしない（訂正L11 `HELIXOS-L2-049-003`）。",
+        "relation": "旧screenの「割当＝案件×担当負荷・AI slot使用率」におけるcapacity状態に接する。Worker稼働・割当前のcapacity観測の契約であり、dashboard/AI slot表示要件ではない。",
+        "bounded_candidate_scope": "条件付き採択。割当前に検証義務・担当・capacityを確保する。割当task自身のreview/merge完了は割当条件にしない。",
+        "non_successor_limit": "割当とcapacityに限り、PM-01の4階層selector、heat map、担当負荷/slot表示、polling、画面状態の後継または受入ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 72,
+          "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 598,
+          "line_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484",
+          "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "line_start": 1204,
+            "line_end": 1211,
+            "section_sha256": "e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "line_start": 813,
+            "line_end": 821,
+            "section_sha256": "d5a3a0c361a6d0056a8c608f5230a52d206c000d7ac81ff969aeaba30ad4d810",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-049",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 72,
+            "line_sha256": "f0856ae991e2b0917c4a5196b903cd7ba8a1b7026397235826c77abbbe1ab939"
+          }
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "candidate": "HELIXOS-L2-050",
+        "cohort": "57",
+        "decision_status": "条件付き採択：capacity増枠から新しいmerge権限を発生させない。既存review_merge担当は既存admission後にmergeできる。branch変更・Ready権限は与えない（訂正L11 `HELIXOS-L2-050-003`）。",
+        "relation": "旧screenの担当capacity表示に概念上接するが、対象は独立review capacity・authority境界である。",
+        "bounded_candidate_scope": "条件付き採択。review capacity増枠からmerge権限を発生させず、既存review_merge担当は既存admission後にmerge可能。branch変更・Ready権限を与えない。",
+        "non_successor_limit": "capacity/merge authorityの条件に限り、画面上のassignment、AI slot使用率、状態色またはPM-01描画挙動の後継ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 73,
+          "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 599,
+          "line_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f",
+          "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "file_sha256": "89d79c76a7d46c4e1c76cf88046eac5a22dfcddcd96726c75cf82f0ddd80bdb2",
+            "line_start": 1212,
+            "line_end": 1219,
+            "section_sha256": "fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "file_sha256": "7547b0ada257c2cbc65771c8c83aaec58f4405e85e095f9bdfae4d1b56f2a0fd",
+            "line_start": 822,
+            "line_end": 830,
+            "section_sha256": "cf4866f2d8beee83eda5389e3b98100cd37cbd609f7c797617b499c1381bfafb",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HELIXOS-L2-050",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 73,
+            "line_sha256": "d8c7710bdc66863227e96b419e9271a73a6dba695cf40fb447a44c102eabf78b"
+          }
+        }
+      },
+      {
+        "source_identity": "PM-01",
+        "candidate": "HARNESS-L2-049",
+        "cohort": "live26",
+        "decision_status": "承認（通常採択22件に含む）",
+        "relation": "旧PM-01の正常/警告/エラー/空/loadingなど画面state提示条件に測定の観点で近い。",
+        "bounded_candidate_scope": "承認された登録-003のscopeは、既に与えられたrenderable prototypeの表示計測oracle・検査精度・文言量評価。画面生成、Pattern選択、screen ID発行は含めない。L11はscreen ID/target revision/利用許可/profile/測定条件の揃った入力を独立測定対象として受け付ける。",
+        "non_successor_limit": "計測専用。PM-01 dashboard自身、4階層/heatmap、担当load/AI slot、30秒poll、gate fail時の表示即時性、描画stateのscreen acceptanceは規定しない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 39,
+          "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264",
+          "source_repository_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "decision_basis_revision": "81d1f35f9c5793c5312be4ae52526c96b609c254"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 629,
+          "line_sha256": "74d82b03c7580be677647d89037d353f40285fa6264eedeb8298c8509e1a0a88",
+          "registration_id": "MPR-RC-HARNESS-L2-049-003",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6",
+            "line_start": 1070,
+            "line_end": 1094,
+            "section_sha256": "a5df1f7bdca708046ec9ad68e1eea0974884da63205b8995ad45dcd8f0bbc116",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e",
+            "line_start": 802,
+            "line_end": 816,
+            "section_sha256": "f3fb47da21371084e9f8c7c7f7ca6dd945c8e98ae7c7b70597c3fc44e4e08ee7",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "live26",
+          "identity": "HARNESS-L2-049",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 39,
+            "line_sha256": "2c9037f2d9523da4fdc17b9679bd4cacff1f39e4290dfbb06b4c38180ba2b264"
+          }
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "candidate": "HARNESS-L2-047",
+        "cohort": "57",
+        "decision_status": "条件付き採択：A配置（HARNESSが契約生成規範を所有）。",
+        "relation": "旧S-R04の必要範囲だけの知識・判断観点供給およびS-R05のcontext負担に隣接する。",
+        "bounded_candidate_scope": "条件付き採択の配置A（HARNESS所有）に限る。task必要性の判断とruntime-neutralな専門Worker契約候補に最小context、budget等を含める。",
+        "non_successor_limit": "task単位の専門Worker判断/契約であり、skill asset inventory/disposition、typed skill適用、既存skillの移行・動的取得、old/new efficacy比較、consumer移管/retireを定めない。条件付きA配置は他owner配置や全skill移行へ一般化しない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+          "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+          "line": 52,
+          "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59",
+          "source_repository_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3",
+          "decision_basis_revision": "c18969c73306f6ed4cc4b93249583cd7e5d9ff68"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 572,
+          "line_sha256": "2d2adfaac8a928a3368e5da5998863f2937fd3f8976e34771e4885a3dfc9d294",
+          "registration_id": "MPR-RC-HARNESS-L2-047-001",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "file_sha256": "111cc0285e94bf0a1569627653ba1c578d5dcdf9dbedbbf168bb9acca3ae8d09",
+            "line_start": 1039,
+            "line_end": 1054,
+            "section_sha256": "733201471492a400db194369980f54499faa7f7860e1e1465c18589a43daa9b9",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          },
+          "l11": {
+            "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "file_sha256": "3c8831fc3e843791d9fa1901cf0060b90d1e41ad6a3a5ff4c33022fe9a9958c5",
+            "line_start": 773,
+            "line_end": 787,
+            "section_sha256": "8d92bb157dff9cffd87f72a43c2ce19977667a2fd928b5a3780f1f55912bdcb2",
+            "target_revision": "318ec4a04abb3c1cc17111b3d939f913facd5fd3"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "57",
+          "identity": "HARNESS-L2-047",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+            "file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+            "line": 52,
+            "line_sha256": "234adb61f9dfeab547dd06af598673d24f98505529ab1b913de686a76463fa59"
+          }
+        }
+      },
+      {
+        "source_identity": "S-BR-001",
+        "candidate": "HELIXLABO-L2-070",
+        "cohort": "live26",
+        "decision_status": "承認（通常採択22件に含む）",
+        "relation": "S-R06の利用と効果を分ける測定条件に隣接し、運用比較のmeasurement contractを提供する。",
+        "bounded_candidate_scope": "承認された登録-001のscope付き補助telemetry・Attempt scorecard。source/scope/revision/window/event receiptを結び、未検証値をunknownに保つ。",
+        "non_successor_limit": "一般的な補助telemetry/Attempt scorecardであり、skill-specific recommended/injected/retrieved/outcome attribution、provider/config別skill効果、旧skill inventoryやskill移管の受入・退役の後継ではない。",
+        "decision_pin": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+          "line": 49,
+          "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052",
+          "source_repository_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a",
+          "decision_basis_revision": "81d1f35f9c5793c5312be4ae52526c96b609c254"
+        },
+        "mpr_pin": {
+          "path": "docs/governance/management-provisional-requirement-register.jsonl",
+          "file_sha256": "ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+          "line": 626,
+          "line_sha256": "da3d0cca4f09b6f607621ac4acad9d4e34f745b8781c7037526d5c85d5d235ed",
+          "registration_id": "MPR-RC-HELIXLABO-L2-070-001",
+          "management_state": "registered_proposal",
+          "authority_effect": "none",
+          "candidate_semantic_digest": "sha256:07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533"
+        },
+        "pair_pins": {
+          "l2": {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "file_sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+            "line_start": 561,
+            "line_end": 575,
+            "section_sha256": "07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          },
+          "l11": {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "file_sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+            "line_start": 297,
+            "line_end": 308,
+            "section_sha256": "c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1",
+            "target_revision": "ea6f756f96a7370de78e412d737c7a7ed472114a"
+          }
+        },
+        "decision_row_index_ref": {
+          "cohort": "live26",
+          "identity": "HELIXLABO-L2-070",
+          "decision_pin": {
+            "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+            "file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+            "line": 49,
+            "line_sha256": "0cc2b7ac34f2a9dec7a072910ba43c90547a7cd8cdee9e337a8701412b8ca052"
+          }
+        }
+      }
+    ]
+  },
+  "residual_and_non_successor_boundaries": [
+    "The two confirmed identities have distinct source-qualified IDs, source documents, asset IDs, and consumers; no atom or condition is transferred between them.",
+    "PM-01 remains preserved_pending_rehome with no formal successor. S-BR-001 remains preserved_pending_rehome with no formal successor.",
+    "Adopted88/held6 is the disposition of 94 later candidate decision rows. It is not 88 successors, 6 retired old identities, or an old-source closure result.",
+    "Conditional adopted rows retain their written condition, owner, version and stage. Conditional status does not generalize to nearby legacy conditions.",
+    "No requirement meaning change, adoption, L3 approval, implementation permission, runtime activation, source retirement, or stage-exit authority is created."
+  ],
+  "non_claims": [
+    "No PM-01 or S-BR-001 formal successor assignment.",
+    "No old consumer closure or implementation/execution evidence.",
+    "No dashboard/UI behavior inferred from API, issue, trace, evidence, CI or requirement registration.",
+    "No skill source/provider configuration/runtime behavior assumed or measured.",
+    "No old CLI, hook, runtime, test, CI, or harness.db executed."
+  ],
+  "static_validation": {
+    "source_identity_rows": "pass:2 distinct source-qualified identities; identity/body line SHA equals carry-forward identity inventory and pinned detail source",
+    "source_asset_and_line_sha": "pass:archive source and holding copy whole-file/line pins; ledger asset ID match",
+    "fixed_l2_l11_target_pins": "pass:9 targets on f6dad2a33e24f000b87d7f09b8d40288257e74cc; file and section SHA verified",
+    "legacy_consumer_pins": "pass:9 old consumer path/range/file/section pins",
+    "later_decision_index": "pass:94 rows; 88 adopted registrations; 6 held/not adopted; cohort counts 53/10/25 adopted",
+    "json_parse": "pass",
+    "scfctl_validate": "pass:bindings=143 fail=0",
+    "git_diff_check": "pass",
+    "legacy_execution": "not_run",
+    "authority_effect": "none",
+    "identity_specific_proximity_pins": "pass:5 identity-scoped candidates; exact decision/MPR and 10 L2/L11 section pins verified at source revisions"
+  }
+}

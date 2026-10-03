@@ -1,0 +1,2406 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-81-100-2026-10-01",
+  "created_against_commit": "7c4716518de109e82999b996dd09b4b57944ecaa",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 81–100 in the 2,710-row complement. Lexical marker absence does not establish non-requirement status.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 full row_records",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "fully_screened_marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "screen_method": "Apply pinned case-insensitive marker regexes to exact source_line_text. Raw hit count 258. Structurally exclude 3 marker-hit Markdown table headers because the immediately following archive physical line is a Markdown delimiter row.",
+    "sort_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      81,
+      100
+    ],
+    "selected_count": 20,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000146",
+      "LEGACY-CAND-LINE-000147",
+      "LEGACY-CAND-LINE-000149",
+      "LEGACY-CAND-LINE-000150",
+      "LEGACY-CAND-LINE-000152",
+      "LEGACY-CAND-LINE-000153",
+      "LEGACY-CAND-LINE-000155",
+      "LEGACY-CAND-LINE-000158",
+      "LEGACY-CAND-LINE-000161",
+      "LEGACY-CAND-LINE-000164",
+      "LEGACY-CAND-LINE-000165",
+      "LEGACY-CAND-LINE-000167",
+      "LEGACY-CAND-LINE-000168",
+      "LEGACY-CAND-LINE-000170",
+      "LEGACY-CAND-LINE-000173",
+      "LEGACY-CAND-LINE-000174",
+      "LEGACY-CAND-LINE-000176",
+      "LEGACY-CAND-LINE-000177",
+      "LEGACY-CAND-LINE-000179",
+      "LEGACY-CAND-LINE-000182"
+    ],
+    "selected_ids_sha256": "8d32b26722edf4660258f238242f8b96df96a3996728819255309d8eb07bd429",
+    "prior_rank_overlap_count": 0,
+    "heading_and_table_header_rows_retained_in_complement": true,
+    "reconstruction_checks": {
+      "baseline_source_rows": 4755,
+      "all_baseline_ids_unique": true,
+      "overlay_joined_by_exact_source_id": true,
+      "overlay_rows_count": 156,
+      "overlay_sets_disjoint": true,
+      "overlay_ids_intersect_selected_rows": [],
+      "final_classification_counts": {
+        "condition_aggregate": 864,
+        "explanation": 2965,
+        "structure": 926
+      },
+      "effective_explanation_rows_recomputed": 2965,
+      "raw_marker_matches": 258,
+      "marker_header_exclusions": 3,
+      "marker_header_ids": [
+        "LEGACY-CAND-LINE-001500",
+        "LEGACY-CAND-LINE-001514",
+        "LEGACY-CAND-LINE-001910"
+      ],
+      "marker_unique_ids": 255,
+      "complement_rows": 2710,
+      "first20_complement_matches_prior_audit": true,
+      "ranks21_through40_match_prior_audit": true,
+      "ranks41_through60_match_prior_audit": true,
+      "ranks81_through100_recomputed_from_full_sorted_complement": true,
+      "rank61_through80_not_in_scope_of_this_record": true
+    }
+  },
+  "interpretation_boundary": {
+    "effective_classification": "All selected rows mechanically reconstruct as explanation. Semantic concerns are recorded without rewriting source classification.",
+    "source_authority": "Selected rows remain historical_candidate/draft_candidate/preserved_pending_atomization; no successor or individual decision is recorded.",
+    "current_relation": "Fixed F6 L2/L11 and PO decision references can establish family/thematic relations but not selected-row crosswalk, adopted-pair binding, complete atom coverage, or acceptance execution.",
+    "no_loss": "Each selected row pins exact archive bytes/context, source-line ledger entry and asset ledger entry; unmapped meaning atoms remain pending.",
+    "authority_effect": "none"
+  },
+  "pinned_inputs": [
+    {
+      "role": "full_row_records_baseline_2353",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c",
+      "git_blob_sha": "2b0e305c68da5610f354a802c7410363ede1261c"
+    },
+    {
+      "role": "ordered_classification_overlay_#2356",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164",
+      "git_blob_sha": "dc63bbecb141641fc2d7ee0063f85a2498656f46"
+    },
+    {
+      "role": "ordered_classification_overlay_#2360",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb",
+      "git_blob_sha": "7cc1dc2000fa015c1dc70740d553797e0e0212e2"
+    },
+    {
+      "role": "ordered_classification_overlay_#2363",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384",
+      "git_blob_sha": "cce740a8524e841f3fff82b58bf33e32c8b7078f"
+    },
+    {
+      "role": "ordered_classification_overlay_#2366",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6",
+      "git_blob_sha": "aed14db05a2e4b80e54eeef334051ce857252ef6"
+    },
+    {
+      "role": "ordered_classification_overlay_#2367",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d",
+      "git_blob_sha": "b9ea3d6c0d6565301246504a76af9b2d012b8159"
+    },
+    {
+      "role": "ordered_classification_overlay_#2368",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95",
+      "git_blob_sha": "c69efe80c47457c48e8f5b7555b1ac7cd7d8c295"
+    },
+    {
+      "role": "ordered_classification_overlay_#2369",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0",
+      "git_blob_sha": "63c2f8d02de7d21eecc2f2d1be8fea0d0f4a41b6"
+    },
+    {
+      "role": "ordered_classification_overlay_#2381",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e",
+      "git_blob_sha": "47d52add2120ccfe2f278130c42119e9bfcf8354"
+    },
+    {
+      "role": "effective_recount_and_overlay_order",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-effective-classification-recount-after-2381-2026-09-30.json",
+      "sha256": "92c713d6c74ecc138f43d2169b4387f511e31a0b26ba9ca538994c8df80a9932",
+      "git_blob_sha": "6c44b02dc1720c135e1d9525bf81567d338dee57"
+    },
+    {
+      "role": "corrected_normative_marker_screen",
+      "commit": "2fdc1dfef3ec81e96eb91a03a234592e328980e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-marker-screen-2026-10-01.json",
+      "sha256": "1f9b0b6e05bfb46d937dfbbb954e8f7aa956c440acd526cbad2487b82893efbb",
+      "git_blob_sha": "2671d48a68d18dcfec7c7e4781e97429821ddfe7"
+    },
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "git_blob_sha": "50dfb2ff47da1550e54dbd6e5d5239b5d3382dfc"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "git_blob_sha": "cfa4a48dff89fb4b4066d958c1513ba405c2a3dd"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "AGENTS.md",
+      "sha256": "96e0ae7e0c23d95481133c65103004422806503528628f2057ddd56926076302",
+      "git_blob_sha": "0767facac4bfa499af052f0dfd683da3171ead7e"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "CLAUDE.md",
+      "sha256": "aaad70a2b77dfe2db896ce8baeba3ce074534718f339bd04d48f9e25259b532f",
+      "git_blob_sha": "9ba7bfe8d3566f3b0f50b7b28bb82bb0281ad9c2"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "94ba0d22bf33338960db9c9fa1a61f438ec24e9b44643631c8bf1cdcf19bb154",
+      "git_blob_sha": "3fb2272a488075488f38e25bcfbdc2c9f403089d"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "812f423b4b9952666b0ef91e741fec62f54caa3c884124ec534abbbe70be4616",
+      "git_blob_sha": "fe6f069bc1cfacd53d197c526a7206c633d55f46"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/legacy-requirement-carry-forward-policy.md",
+      "sha256": "ae0fc042804f5b608b3284adfd146a114df98857fb10f600e248edca12380c8b",
+      "git_blob_sha": "a06f314a42e7a420d93b02fa8255dfed54bbb4ee"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/requirement-carry-forward-status.md",
+      "sha256": "034cbbe54defe5ed48518499183a4be9c623a243830254b40473ce42d2a710bb",
+      "git_blob_sha": "b19048c4f700dfcca31d7dc7248b27e920777433"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-inventory.md",
+      "sha256": "58bdcae95d51edeebff57169c1e67da11c6ed879830249c52a1e700bc09bb171",
+      "git_blob_sha": "923ed7022b3980decdf90dfec7eaec8f07e6c1b3"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "git_blob_sha": "073531b8fd0a4d59feebd0da1a3672028ab8db61"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "git_blob_sha": "e9f8b7652d9f2a958685845a005d878b9f4be149"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "git_blob_sha": "c15f44b345f0d444347c33b1a1c21346fe6ce89b"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "git_blob_sha": "0da51e05b88ebcbee60728db52913c64a85f6b91"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d",
+      "git_blob_sha": "02c9b0cd333c7dc866e0d600b45023496fbb2167"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "7467fad5256db9af823e7be860e21e52df58efb43ad4855c7127c2053106214d",
+      "git_blob_sha": "de075a589250064c0df5ae254d3d575e5efd7dfb"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a",
+      "git_blob_sha": "b7c532cb43a4d11e9d227adec23090fc4e416165"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "git_blob_sha": "c30870995516c7aed5fbff4a067e704ef3b4e544"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "git_blob_sha": "130aff68da6c72a9455a530c7799d5c9c678e78c"
+    },
+    {
+      "role": "current_relation_and_decision_scope",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb",
+      "git_blob_sha": "7eb4005cd2ce86a60a16c07b99ea8ebe44f2d112"
+    },
+    {
+      "role": "archive_source_file",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md"
+    },
+    {
+      "role": "archive_source_file",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md",
+      "sha256": "d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requests.md"
+    },
+    {
+      "role": "source_archives_revision",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "role": "candidate_source_line_carry_forward_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "role": "legacy_asset_disposition_ledger",
+      "commit": "50686b6762788574cb471967e8c24846d3dd56ae",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "role": "audit_starting_commit",
+      "commit": "8b3378a019d5b9e281b402c093bc0524129d20bf",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-21-40-2026-10-01.json",
+      "sha256": "b83e6b312869ea092fed071bbbbdf39016d82fe1c4341ad85e7dbdf58cc8eb48"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+    },
+    {
+      "role": "current_relation_source",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "role": "audit_starting_commit",
+      "commit": "7c4716518de109e82999b996dd09b4b57944ecaa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-41-60-2026-10-01.md",
+      "sha256": "72937bace83cd0e40b059d1f52f25b540ef14c78dee818b1383487729cf5ba75"
+    }
+  ],
+  "current_adopted_pair_pins": [
+    {
+      "pair": "OS",
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+      },
+      "L11": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+      },
+      "PO_decision_record": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "comparison_limit": "fixed pair thematic/current relation comparison only; no selected legacy row binding unless individually evidenced"
+    },
+    {
+      "pair": "INTELLIGENCE",
+      "fixed_pair_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2": {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260"
+      },
+      "L11": {
+        "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a"
+      },
+      "PO_decision_record": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      "comparison_limit": "fixed pair thematic/current relation comparison only; no selected legacy row binding unless individually evidenced"
+    }
+  ],
+  "current_relation_source_pins": [
+    {
+      "pin_id": "INT-L2-AAFD",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "lines": [
+        {
+          "line": 98,
+          "sha256": "11d8c11f3776876ae2e1fbfa441f3e49826914918aa6238a0dff843d315ff9d0",
+          "text": "入力はHELIX各機構のauthority・design・runtime・projection・責務・証拠。出力はauthority mismatch、design/runtime mismatch、stale assumption、missing evidence、invalid projection、responsibility leak、unsupported behavior、repeated failure、mechanism-boundary violation等の監査候補で、target HEAD/authority/producer/evidence/reproduction/falsificationへ辿れる。自由文だけでauthorityを変更しない。AAFDは既存candidateのまま接続し、UIL/TER/Future Synthesis等を再実装しない。version_target 1.0。"
+        },
+        {
+          "line": 100,
+          "sha256": "d0f305419372ea0455eb2309b05d0a71c20e51fdaf18bd260c9b3170c63ece2d",
+          "text": "- 親：HELIXINTELLIGENCE-L1-009。単独成立依存：各機構のadmitted authority/design/runtime/projection/responsibility/evidence sourceとexact HEAD。検証範囲：authority/design-runtime mismatch、stale assumption、missing evidence、invalid projection、responsibility leak、unsupported behavior、repeated failure、boundary violation audit finding。保証：各findingがHEAD/authority/producer/evidence/reproduction/falsificationへ辿れる。AAFD/UIL/TER/Future Synthesis ownerは保持する。失敗時戻し先：source/evidence不明は該当ownerへ再照合。AAFD candidateの詳細処理はcandidate ownerへ返す。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。"
+        },
+        {
+          "line": 433,
+          "sha256": "41fcaeccc7ff9ef8473e863267679b9537b867e04299c2fa067e085fddd9fcd8",
+          "text": "| HELIX-INTELLIGENCE候補 `audit-bounded-repair-requirements.md`（AAFD-BR-01..04、BBR） | AAFD proposalのHEAD/authority/producer/evidence/reproduction/falsification、内部UIL/外部TER区別、影響を受けるprojectionのみ再評価、同一corpusでmodel再比較。BBRのtarget revision/actor/write-set/side effect/budget/deadline/retry/impact/recovery、候補・許可・適用・検収分離、stale/競合/二重実行/循環/不明副作用停止、禁止修復、repair後のHARNESS検証 | candidateは未採択のまま参照。全AAFD-R/BBR-Rのcandidate-only条件を本L2へ自動昇格せず、HELIXINTELLIGENCE-L1-009/016/017に親付けした条件のみを下のIDへ整理 |"
+        },
+        {
+          "line": 434,
+          "sha256": "0148bda59eae224755b092f95b71897e2415f31caa8bc7c1052cd62307d22a02",
+          "text": "| LEGACY-ASSET-8247A056F30FF91E4B8D `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md:20-37` SHA `d78bbcc0ca184bfb87dc2bbc932291f97a58bf9f0fd703481489f15944be9b76` | AAFD-BR-01 exact HEAD/authority/producer/evidence/reproduction/falsifiability、02 internal/external owner、03 affected projection invalidation、04 same corpus/responsibility model comparison | 既存 UIL/TER/Future Synthesis ownerを維持し、agentic audit freedomから新route/DB/authorityを作らない |"
+        },
+        {
+          "line": 435,
+          "sha256": "ed8de66155f53dbfec6ed42dc56a51a3a01234d9b96f7ad1d4353b535f6c0720",
+          "text": "| LEGACY-ASSET-EB3700B0088F311C2295 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:23-110` SHA `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a` | AAFD-R-01..15: proposal identity/authority/duplicate/expiry, deterministic detector priority, qualified UIL/TER source receipts, deterministic delta/dedupe, unknown preservation, exact snapshot join, bounded projection invalidation, stale execution prevention, replay, model revision revalidation/receipt/nonpromotion | AAFDはold draft candidate L3である。HELIXINTELLIGENCE-L1-009の範囲を超えるfuture-state compiler/Future Synthesis/UIL runtimeは別ownerのcandidateとして維持し、ここで移管・再実装しない |"
+        },
+        {
+          "line": 448,
+          "sha256": "776c98ad16b64268ee4c7e5498fd5b3b50b80ff9abe4f29809ccfb6876f037f4",
+          "text": "2. AAFD/Bugbot candidateの採否・target-specific detailed contractはそれぞれ元candidateに残す。本L2は候補を圧縮して採択せず、HELIXINTELLIGENCE-L1-009/015-017で既に示された境界を対で受ける。"
+        }
+      ]
+    },
+    {
+      "pin_id": "INT-L11-AAFD",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "lines": [
+        {
+          "line": 123,
+          "sha256": "c8a384c8d128ed540baa5b24070b2fec118fd84c94a873de4de0e3d332f5964a",
+          "text": "- AAFD-BR-01..04、AAFD-R-01..15は元候補のまま保持し、自由文からauthorityを生成しない。UIL/TER/Future Synthesisのownerを分け、stale/unknown projectionをassignment/release/retireへ使わない。"
+        },
+        {
+          "line": 162,
+          "sha256": "e90c977fd70f96899c868b79182d0e8362dbed4aea490fdda11dacdf6df15616",
+          "text": "| HELIXINTELLIGENCE-L2-009 | 親: HELIXINTELLIGENCE-L1-009。単体（指定機構・HEAD・authority/evidenceを対象にした監査finding）。接続context: HELIXINTELLIGENCE-L2-041。1.0。 | **正常**: oracleで既知のauthority/design-runtime mismatchを置き、対象HEAD・producer・source・evidence・reproductionを該当箇所へ辿り、ownerを正しく示す。各findingを反証する条件とその証拠へのtraceもfixtureのfalsification oracleへ照合する。**誤り**: 別HEAD/sourceへ結びつける、根拠なしfinding、別findingの反証証拠を結ぶ、反証traceを欠く、またはfinding文からauthorityを変えると不合格。**未見**: 未公開の別mismatch類型でも、監査対象scope内のevidenceとowner routeがoracleと一致すること。証拠を取れない項目はunknownで戻し、AAFD等の既存owner機能を重複実装しない。 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "INT-AAFD-CANDIDATE",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/candidates/audit-bounded-repair-requirements.md",
+      "file_sha256": "c7cbeec9123ebcbc75ab7a6740bbe00244bd7c173fffe44ad3dec390ff76834a",
+      "lines": [
+        {
+          "line": 55,
+          "sha256": "a624e69c35df87fa0d1d744a6a22e81c3b600c26f0c45b5c8945e3f24cd4b85b",
+          "text": "## 全体監査に関する候補条件（AAFD）"
+        },
+        {
+          "line": 57,
+          "sha256": "849db37d3c8f6954a1efd8da22750370e5d966d65a81e27858249301704ba45d",
+          "text": "出典は[AAFD](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md)である。"
+        },
+        {
+          "line": 58,
+          "sha256": "66c633f791888893367adce7aba1830806ce5e3ac316ed75bfe66bb02f746ace",
+          "text": "移す前はHELIXOS-L2-005／007に接続していた。"
+        },
+        {
+          "line": 60,
+          "sha256": "f62b5713c77dd276d3395241baa36ab6d6707d7f36e22941cbca92c2a840a106",
+          "text": "| 出典 | 保持する具体条件 |"
+        },
+        {
+          "line": 62,
+          "sha256": "01f692c83a91bed12e21ba820816b57dbf78b325bab8aa92502c96b12a64e180",
+          "text": "| AAFD-BR-01 | 監査提案から対象HEAD・authority・producer・証拠・再現手順・反証条件へ辿れる。自由文だけをauthorityにしない |"
+        },
+        {
+          "line": 63,
+          "sha256": "2cdfe4c1886db5cda2e923813c0c1c5b0d6d243ddaa1590b6eef0bf9573877be",
+          "text": "| AAFD-BR-02 | 内部改善と外部環境変化の出所を保持し、既存UIL／TERからFuture Synthesisへ接続する |"
+        },
+        {
+          "line": 64,
+          "sha256": "f7fc6724294e2826ff2d185a6724e18ad67a738c29ffe1482f1a29dbdf3fc968",
+          "text": "| AAFD-BR-03 | 確定変更で影響する将来投影・前提・指令だけを失効・再合成し、古い投影で割当・公開・廃止を判断しない |"
+        },
+        {
+          "line": 65,
+          "sha256": "60ca24508c18f7de5e0e043bcc5bbc8e70e8a7a2ed03ddad9f930f1eb8ca623d",
+          "text": "| AAFD-BR-04 | モデル更新を同一corpus・責務scopeで比較し、所見の増減・誤検出・見逃し・再現性・費用・遅延を確認する。更新だけで適格化しない |"
+        },
+        {
+          "line": 67,
+          "sha256": "6c15c3aa74958bb69904d35702b9868ffd99857fd53fae39ee8d9fa94e7c2e5a",
+          "text": "AAFDの提案・差分・将来指令から要求・設計・提供・割当・mergeのauthorityを直接変更しない。"
+        },
+        {
+          "line": 70,
+          "sha256": "848479a253ebada425b8bd3952c75b7e41db2816c6c52fca9ac23b26e407edd0",
+          "text": "## L11受入候補"
+        },
+        {
+          "line": 72,
+          "sha256": "83a40ddfad9868a9e103e2bf8893681fce2068268bf43b60981c22d9925dfdfc",
+          "text": "全件未実行である。"
+        },
+        {
+          "line": 74,
+          "sha256": "fb2b0ddbc7dffd556a04488defb664b3f1cd12e1187da0b2002cd6ae6e988503",
+          "text": "限定修復の条件は、新世代で採用するrevision確定後に評価する。"
+        },
+        {
+          "line": 76,
+          "sha256": "2a5b200b2df93d8a0378ec24f83d45bf8219866bd99105209fc3cc3191fa0458",
+          "text": "- 候補、登録、許可、適用、検収を別々に確認し、旧GH-FR-011、修復器登録、他修復の成功からwrite権限を生成しない。"
+        },
+        {
+          "line": 78,
+          "sha256": "43a48fd7372e98249666f68a8a5e68d83587311727fde3e2c295f380b1d60bb1",
+          "text": "- 旧bugbot、既存CI、旧DB／transaction、main read-afterを与えても、新世代限定修復の実行・受入証拠にしない。"
+        },
+        {
+          "line": 80,
+          "sha256": "44d7bc562fc45f5ba8fc88960b371d36c932b1e9c3eedf90dcb04278416bfe7f",
+          "text": "AAFDは採用revision確定後に次を確認する。"
+        },
+        {
+          "line": 82,
+          "sha256": "445007705169647e75a22b7910e97a0a2209732e9f5a226c9ea12cc2bfcb2932",
+          "text": "- 監査提案からHEAD・根拠・出所・再現・反証へ辿り、内部改善と外部変化を区別できる。変更時に影響する将来投影だけが再評価される。"
+        },
+        {
+          "line": 83,
+          "sha256": "d1ff78937ceefb76405ec625aaa955f2cf068b3c4504d5aff3a2f3f45f86f281",
+          "text": "- 同じcorpusでモデル変更前後の所見・誤検出・見逃し・費用・遅延を比較でき、モデル更新だけでは適格にならない。"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L2-AAFD-TRANSFER",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+      "lines": [
+        {
+          "line": 382,
+          "sha256": "efbc8c9ab802d02f9e5554635ee1ef93ccc28cdf0f980d7512c6902dc8f480d6",
+          "text": "同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。"
+        },
+        {
+          "line": 503,
+          "sha256": "1a3e1ade3b2f2d2d1dc8a8eed1475e8c2e0f2b6f847588844de098768b37e50a",
+          "text": "| AAFD | [AAFD要件](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md)：AAFD-FR-001..004、AAFD-R-01..15 | HELIXOS-L2-005／007 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "OS-L11-AAFD-TRANSFER",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+      "lines": [
+        {
+          "line": 182,
+          "sha256": "57f3dbe34bcab9829c4b93bd2bed24a1148aac309f1a45981cab3f191bd070ec",
+          "text": "監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。"
+        }
+      ]
+    },
+    {
+      "pin_id": "DECISION-PLACEMENT-AAFD",
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "file_sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb",
+      "lines": [
+        {
+          "line": 40,
+          "sha256": "4764d9b4ebab1e25617b0d4fd533796c5d11120f25fd31b8ea82aa385f4ee023",
+          "text": "- 監査・学習・成果の出所の節は、監査（AAFD）をIntelligence、学習（RCLS）をLABOへ移し、成果の出所（PPS）はOSに残す。"
+        },
+        {
+          "line": 66,
+          "sha256": "1a3bdb4e940d6feebd8377ba41c768a7f4b88f359fb6b896b4a989d42e48b19a",
+          "text": "| 監査・学習・成果の出所の節のうち監査（AAFD）と、その受入条件 | [Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md) | 成果の出所（PPS）の節と受入条件 |"
+        }
+      ]
+    },
+    {
+      "pin_id": "DECISION-INTELLIGENCE-PO",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "lines": [
+        {
+          "line": 20,
+          "sha256": "667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971",
+          "text": "> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。"
+        },
+        {
+          "line": 23,
+          "sha256": "d95eb0eccad641d5eb42f4d4b7408db924fddbde92a78289cfb043a1a25bb2a0",
+          "text": "> 後続版・Web条件付き要求を1.0へ前倒しせず、旧sourceの未完引継ぎは保持する。判断記録を各PRへ反映し、必要な追随・独立レビュー・統合後確認を行った後、最後の横断整理へ進める。ただし、旧HELIXからデグレ検証は必要。"
+        },
+        {
+          "line": 31,
+          "sha256": "8fed0342e5ffc7656fa2bcc26bca4b5a71f4e81f1823cec19903b339a7e1badd",
+          "text": "POは確認packetが固定したL1対象revisionを確定し、提示されたL2と対のL11一式を採用した。対象本文はいずれもcommit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の固定blobである。"
+        },
+        {
+          "line": 37,
+          "sha256": "577df9b3c526b280a641d465b9cd4fe44cf096155bc03ee6ef1281576061e04c",
+          "text": "| HELIX-INTELLIGENCE L2 | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/helix-intelligence/L2-requirements/intelligence-requirements.md` | `40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260` |"
+        },
+        {
+          "line": 38,
+          "sha256": "24182c880f40b699c153afd5f3f9df09edbd2baa830fa247174bdca4c7dcdabb",
+          "text": "| HELIX-INTELLIGENCE L11 | `f6dad2a33e24f000b87d7f09b8d40288257e74cc` | `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md` | `4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a` |"
+        },
+        {
+          "line": 44,
+          "sha256": "63b5d5eeeebc29cda9ac2875fc9adcce4c3d8c740a954fbce8d4683a55a15e8d",
+          "text": "POは、確認packetに明示された全54件をL2本文と同identityのL11受入条件を一式として採用した。下表は採用identityと最新registration ID、候補表に載るkind／version_target／適用条件の対応であり、明示集合すべてを列挙する。採用状態は本記録と各最新registration IDの対応から読む。register行そのものは変更しない。"
+        }
+      ]
+    },
+    {
+      "pin_id": "DECISION-OS-PO-SCOPE",
+      "commit": "4785ab92162e9bb7fb433a0689cda4efb470bc58",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "lines": [
+        {
+          "line": 20,
+          "sha256": "667aab7ecacc33bedfee8b0d6637c6df10dd535085a48ea4d648032dd8e07971",
+          "text": "> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。"
+        },
+        {
+          "line": 27,
+          "sha256": "234806a9c2a22b5a6cc4bbc0ff5ae330ae21b67f678018c65f1c2f100ba21698",
+          "text": "POは固定main f6dad2a33e24f000b87d7f09b8d40288257e74cc上の以下のbytesを確認対象revisionとして確定し、L2本文 HELIXOS-L2-001〜HELIXOS-L2-029 と、それぞれに対になる固定L11受入本文一式に合意した。"
+        },
+        {
+          "line": 32,
+          "sha256": "e99f1134d4efcd73747a8a7a0ff653e3857b56adfa339975fb89803a2ffddc93",
+          "text": "| L2 | [docs/helix-os/L2-requirements/governance-requirements.md](../../helix-os/L2-requirements/governance-requirements.md) | c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf |"
+        },
+        {
+          "line": 46,
+          "sha256": "4fb7810a880eadf6d6ec0f27d8b828faddde3a98a267528fec5e5902dd75b0e4",
+          "text": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。"
+        },
+        {
+          "line": 56,
+          "sha256": "e73c9811034ab3807b38780586a03c4b939799d4b2c94c8016e9372914f13c55",
+          "text": "- 旧sourceの未完引継ぎ、既存holding、および旧要求に関する未解決atomは維持する。今回の採用から旧sourceの被覆完了、retire、holding解除、またはcoverage範囲拡張を導かない。"
+        },
+        {
+          "line": 57,
+          "sha256": "26c579d39aae445294fbdeb5ab28eea9d1cade6f516c3f3a213d805dc91a1e05",
+          "text": "- 旧HELIXからのデグレ検証は必須である。最終横断整理の前に、旧機能・要求・受入・運用保証を確定したL1/L2/L11と対応づけ、未対応の消失と弱まった受入、negative oracle、failure記録を検出する。旧runtime/test/CIを実行せず、本判断記録は検証完了を意味しない。"
+        },
+        {
+          "line": 58,
+          "sha256": "92b983216ed46e836acb9d4b3ce6336d47192dcba105d901346f63e2523bcb61",
+          "text": "- 実装順序について総合検証#2197のA/Bは未判断である。要件（L3）開始時の判断として残し、推奨を採択済みにしない。"
+        },
+        {
+          "line": 59,
+          "sha256": "df562111bc8b3cdaa5891748edd03e8e376da973e207cd9db27eb653e385d28a",
+          "text": "- 本L1確定とL2/L11合意は、L3要件承認、実装、実行、配布、release、不可逆な外部作用の許可を与えない。"
+        }
+      ]
+    }
+  ],
+  "source_family_relation_boundary": [
+    "2026-09-25 PO placement moved the audit-source family (AAFD) to HELIX-INTELLIGENCE candidate material; placement does not adopt each old source line.",
+    "2026-09-28 PO decision adopts the fixed INTELLIGENCE L2/L11 candidate set, including general audit boundary L2-009; it does not identify these old source-line IDs as adopted pairs.",
+    "AAFD candidate prose includes BR-01..04 and says its L11 acceptance candidates are all unexecuted. General L2-009 owner/authority boundaries and L2-011 same-scope model comparison are thematic relations, not row-level coverage.",
+    "No row-specific crosswalk, adopted_pair_binding, successor, acceptance execution, or closure is established by this audit."
+  ],
+  "summary": {
+    "rows": 20,
+    "possible_classification_issue_yes": 19,
+    "possible_classification_issue_maybe": 0,
+    "possible_classification_issue_no": 1,
+    "marker_negative_normative_or_authority_rows": 19,
+    "row_specific_current_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "successor_requirement_ids": 0,
+    "closures": 0,
+    "authority_effect": "none"
+  },
+  "limitations": [
+    "Source-line classification remains the effective #2381 proposal view; this semantic pass does not reclassify explanation rows.",
+    "The rows are fragments from one requirements document, so sentence/schema spans must be read with physical neighbors; no row alone proves full atom coverage.",
+    "F6 and later PO decisions are compared as fixed texts; later decisions are not projected backward into the F6 snapshot and do not create a row-specific legacy crosswalk.",
+    "The marker-negative group contains explicit no-write, qualification, stale/unknown, information-separation, and candidate-evidence boundaries; lexical screening alone did not find them.",
+    "No old archive workflow, CLI, hook, adapter, runtime, test, CI, or workflow was executed."
+  ],
+  "queue": [
+    {
+      "complement_rank": 81,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000146",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 52,
+      "exact_source_line_text": "`FutureStateDeltaV1`は`internal/UIL`または`external/TER`のqualified source receiptからだけ生成する。origin typeとownerを",
+      "neighboring_archive_context": [
+        {
+          "line": 50,
+          "text": "### AAFD-R-05 差分の起点"
+        },
+        {
+          "line": 51,
+          "text": ""
+        },
+        {
+          "line": 52,
+          "text": "`FutureStateDeltaV1`は`internal/UIL`または`external/TER`のqualified source receiptからだけ生成する。origin typeとownerを"
+        },
+        {
+          "line": 53,
+          "text": "別fieldで保持し、内部と外部を同じenum identityへ潰さない。"
+        },
+        {
+          "line": 54,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "d3fdfc30f645aa217100f69f2dd2882ae4439d8fa175087d958ff59eda1fc0af",
+      "physical_line_bytes_sha256_including_terminator": "724994537a441291d3a9180a8de23a0f85788ab1961d515289e09a9fea2efca0",
+      "baseline_2353_physical_line_bytes_sha256": "724994537a441291d3a9180a8de23a0f85788ab1961d515289e09a9fea2efca0",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 146,
+        "entry_line_sha256_including_terminator": "8bb927092e168f1cac7ba93c2db7f56231da5f8475b66fcdb34f2eccc6cd8a11",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000146",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 52,
+          "source_line_text": "`FutureStateDeltaV1`は`internal/UIL`または`external/TER`のqualified source receiptからだけ生成する。origin typeとownerを",
+          "source_line_sha256": "sha256:d3fdfc30f645aa217100f69f2dd2882ae4439d8fa175087d958ff59eda1fc0af",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件のsource/owner起点（R-05前半）",
+        "semantic_reading": "qualified UIL/TER receiptだけをdelta起点にする前半。次行と続くため、origin type/owner分離のpredicate全体として読む。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009がAAFD/UIL/TER/Future Synthesisの既存ownerを保つとするが、qualified receiptと起点制約の旧行別adopted-pair bindingなし。",
+        "remaining_no_loss_condition": "source receipt種別、qualification oracle、owner確認の旧行別対応と受入証拠。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 82,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000147",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 53,
+      "exact_source_line_text": "別fieldで保持し、内部と外部を同じenum identityへ潰さない。",
+      "neighboring_archive_context": [
+        {
+          "line": 51,
+          "text": ""
+        },
+        {
+          "line": 52,
+          "text": "`FutureStateDeltaV1`は`internal/UIL`または`external/TER`のqualified source receiptからだけ生成する。origin typeとownerを"
+        },
+        {
+          "line": 53,
+          "text": "別fieldで保持し、内部と外部を同じenum identityへ潰さない。"
+        },
+        {
+          "line": 54,
+          "text": ""
+        },
+        {
+          "line": 55,
+          "text": "### AAFD-R-06 差分schema"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "2df5960f40a365ff786edec039ef0ebf9e4f3dfa2705bcd289ec04881c2ef022",
+      "physical_line_bytes_sha256_including_terminator": "ea0e5afc1cea1e14a2293e7672d7e493229084104d68ace09ad46dc0bf3c62a1",
+      "baseline_2353_physical_line_bytes_sha256": "ea0e5afc1cea1e14a2293e7672d7e493229084104d68ace09ad46dc0bf3c62a1",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 147,
+        "entry_line_sha256_including_terminator": "3cc849fcb1e776274d7664bda35923585a21e361c82332539d67c0410be24124",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000147",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 53,
+          "source_line_text": "別fieldで保持し、内部と外部を同じenum identityへ潰さない。",
+          "source_line_sha256": "sha256:2df5960f40a365ff786edec039ef0ebf9e4f3dfa2705bcd289ec04881c2ef022",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件のsource/owner分離（R-05後半）",
+        "semantic_reading": "前行に続き、internal/externalを別fieldに保ち、同一enum identityへ潰さない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009のowner保持は近接するが、origin type/owner schemaの旧行別bindingや全atom対応はない。",
+        "remaining_no_loss_condition": "具体schema・互換性・現行consumerが未対応。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 83,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000149",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 57,
+      "exact_source_line_text": "deltaはstable ID、source receipt revision/digest、HEAD/authority/environment identity、affected responsibilities、changed",
+      "neighboring_archive_context": [
+        {
+          "line": 55,
+          "text": "### AAFD-R-06 差分schema"
+        },
+        {
+          "line": 56,
+          "text": ""
+        },
+        {
+          "line": 57,
+          "text": "deltaはstable ID、source receipt revision/digest、HEAD/authority/environment identity、affected responsibilities、changed"
+        },
+        {
+          "line": 58,
+          "text": "変更軸、変更前／観測後の状態、evidence／反証、confidence、unknown、無効化対象のprojection／future type／"
+        },
+        {
+          "line": 59,
+          "text": "仮定exact set、再合成要否、差分digestを持つ。"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "9f377f387d4f73ca691ef5827ace018bd37bd325c3250fdf970dc7f184ddad39",
+      "physical_line_bytes_sha256_including_terminator": "9182696e4360d4dcb3a154c0e3efefc9906c5fa1b4abe8478a6a463e63c14667",
+      "baseline_2353_physical_line_bytes_sha256": "9182696e4360d4dcb3a154c0e3efefc9906c5fa1b4abe8478a6a463e63c14667",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 149,
+        "entry_line_sha256_including_terminator": "6d99941db88b024b20038b25999df103b297c49857ee2eb45bc4eda6ba191709",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000149",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 57,
+          "source_line_text": "deltaはstable ID、source receipt revision/digest、HEAD/authority/environment identity、affected responsibilities、changed",
+          "source_line_sha256": "sha256:9f377f387d4f73ca691ef5827ace018bd37bd325c3250fdf970dc7f184ddad39",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "複合schema要求（R-06）",
+        "semantic_reading": "delta identity、receipt revision/digest、HEAD/authority/environment、責務、変更軸等のfield列挙の開始。後続行と1つのschema要求を形成する。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009のfinding traceabilityはHEAD/authority/producer/evidence等を含むが、AAFD delta schema全fieldのadopted-pair bindingではない。",
+        "remaining_no_loss_condition": "stable ID、receipt digest、affected responsibilityを別atomに保ち、全schemaのcoverageは未確認。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 84,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000150",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 58,
+      "exact_source_line_text": "変更軸、変更前／観測後の状態、evidence／反証、confidence、unknown、無効化対象のprojection／future type／",
+      "neighboring_archive_context": [
+        {
+          "line": 56,
+          "text": ""
+        },
+        {
+          "line": 57,
+          "text": "deltaはstable ID、source receipt revision/digest、HEAD/authority/environment identity、affected responsibilities、changed"
+        },
+        {
+          "line": 58,
+          "text": "変更軸、変更前／観測後の状態、evidence／反証、confidence、unknown、無効化対象のprojection／future type／"
+        },
+        {
+          "line": 59,
+          "text": "仮定exact set、再合成要否、差分digestを持つ。"
+        },
+        {
+          "line": 60,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "b0dfd0ed49416ea5baf6532739cdea2e09af7ae6630cd0e9554aae0748a051ef",
+      "physical_line_bytes_sha256_including_terminator": "ab19ea7687613ed9e6d70953348e150f5160e2052f6de2eea788206d02a7ed3b",
+      "baseline_2353_physical_line_bytes_sha256": "ab19ea7687613ed9e6d70953348e150f5160e2052f6de2eea788206d02a7ed3b",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 150,
+        "entry_line_sha256_including_terminator": "583bf8502cefa13cad322f1ebc2b564e43584d93b910268d15aa726dae372416",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000150",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 58,
+          "source_line_text": "変更軸、変更前／観測後の状態、evidence／反証、confidence、unknown、無効化対象のprojection／future type／",
+          "source_line_sha256": "sha256:b0dfd0ed49416ea5baf6532739cdea2e09af7ae6630cd0e9554aae0748a051ef",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "複合schema要求（R-06）",
+        "semantic_reading": "前行に続く状態/evidence/反証/confidence/unknown/invalidation target/exact set/resynthesis/digest fields。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009/L2-012のtrace/unknown境界は近接するが、このschemaのfull adoptionやconsumer bindingはない。",
+        "remaining_no_loss_condition": "fieldごとのtype、owner、compatibility、consumerが未対応。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 85,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000152",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 61,
+      "exact_source_line_text": "changed dimensionsはauthority、responsibility、runtime、provider、dependency、security、verification、capacity、cost、",
+      "neighboring_archive_context": [
+        {
+          "line": 59,
+          "text": "仮定exact set、再合成要否、差分digestを持つ。"
+        },
+        {
+          "line": 60,
+          "text": ""
+        },
+        {
+          "line": 61,
+          "text": "changed dimensionsはauthority、responsibility、runtime、provider、dependency、security、verification、capacity、cost、"
+        },
+        {
+          "line": 62,
+          "text": "migration、releaseを別fieldで保持する。"
+        },
+        {
+          "line": 63,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "1ff4e9184486b7da1b907863a275ad8438819afb122a229935fa788e66efea1a",
+      "physical_line_bytes_sha256_including_terminator": "89c50150f0074e7f6284c964e64cc5dfbff1c8ca50b6cccc696bcb5c8e097803",
+      "baseline_2353_physical_line_bytes_sha256": "89c50150f0074e7f6284c964e64cc5dfbff1c8ca50b6cccc696bcb5c8e097803",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 152,
+        "entry_line_sha256_including_terminator": "9c56e53e149e8b5c1b60eb2b06b3550c4b83bc0eef1e89ab4a3a22d62ef66307",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000152",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 61,
+          "source_line_text": "changed dimensionsはauthority、responsibility、runtime、provider、dependency、security、verification、capacity、cost、",
+          "source_line_sha256": "sha256:1ff4e9184486b7da1b907863a275ad8438819afb122a229935fa788e66efea1a",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "複合schema要求（R-06 changed dimensions）",
+        "semantic_reading": "authority/responsibility/runtime/provider/dependency/security/verification/capacity/cost等を別fieldにする列挙の前半。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009やL2-011に一部概念があるが、全dimensionの旧schema field別採択ではない。",
+        "remaining_no_loss_condition": "分類集合の完全性、field consumer、current compatibilityを確認する必要がある。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 86,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000153",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 62,
+      "exact_source_line_text": "migration、releaseを別fieldで保持する。",
+      "neighboring_archive_context": [
+        {
+          "line": 60,
+          "text": ""
+        },
+        {
+          "line": 61,
+          "text": "changed dimensionsはauthority、responsibility、runtime、provider、dependency、security、verification、capacity、cost、"
+        },
+        {
+          "line": 62,
+          "text": "migration、releaseを別fieldで保持する。"
+        },
+        {
+          "line": 63,
+          "text": ""
+        },
+        {
+          "line": 64,
+          "text": "### AAFD-R-07 Determinismとdedupe"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "1494d373541a1d3f9d8266fd358a4e0a7e51acbfcb9b53f666c955c65c8a4b50",
+      "physical_line_bytes_sha256_including_terminator": "809219f78538c35ea56f23397dec462011d3683071fddbeb842ec224e6a9de92",
+      "baseline_2353_physical_line_bytes_sha256": "809219f78538c35ea56f23397dec462011d3683071fddbeb842ec224e6a9de92",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 153,
+        "entry_line_sha256_including_terminator": "1d0b9d507c00ff1b19750268b4414e0ddabe7ba043f56d490e00f19eeac09ce9",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000153",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 62,
+          "source_line_text": "migration、releaseを別fieldで保持する。",
+          "source_line_sha256": "sha256:1494d373541a1d3f9d8266fd358a4e0a7e51acbfcb9b53f666c955c65c8a4b50",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "複合schema要求（R-06 changed dimensions）",
+        "semantic_reading": "前行のdimension列挙をmigration/releaseで閉じる。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009の責務・監査境界だけではrelease/migration別fieldの旧行別adoptionを示さない。",
+        "remaining_no_loss_condition": "各軸の重複・境界と現行ownerへの対応が未解決。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 87,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000155",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 66,
+      "exact_source_line_text": "同一source receipt、registry、policyから同一delta exact set/digestを生成する。stale revision、wrong HEAD、wrong authority、",
+      "neighboring_archive_context": [
+        {
+          "line": 64,
+          "text": "### AAFD-R-07 Determinismとdedupe"
+        },
+        {
+          "line": 65,
+          "text": ""
+        },
+        {
+          "line": 66,
+          "text": "同一source receipt、registry、policyから同一delta exact set/digestを生成する。stale revision、wrong HEAD、wrong authority、"
+        },
+        {
+          "line": 67,
+          "text": "missing receipt、duplicate changeを拒否し、at-least-once deliveryで別episodeを無限生成しない。"
+        },
+        {
+          "line": 68,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "565da489cfde091cee4c2617890747e567c017448eb5029f9078ff35ae44c1dc",
+      "physical_line_bytes_sha256_including_terminator": "94f05bce33c9bfa5080e784c1b2d8b92cbd156a82a2244a90c24467dcea8895c",
+      "baseline_2353_physical_line_bytes_sha256": "94f05bce33c9bfa5080e784c1b2d8b92cbd156a82a2244a90c24467dcea8895c",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 155,
+        "entry_line_sha256_including_terminator": "9c4a16e4ff39eaa7c54c51a49ed57a910693479d197f9f1089de34a86a5898a1",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000155",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 66,
+          "source_line_text": "同一source receipt、registry、policyから同一delta exact set/digestを生成する。stale revision、wrong HEAD、wrong authority、",
+          "source_line_sha256": "sha256:565da489cfde091cee4c2617890747e567c017448eb5029f9078ff35ae44c1dc",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／決定性・重複排除（R-07）",
+        "semantic_reading": "同一source/registry/policyからdelta exact set/digestを決定的に再現し、stale/wrong identity/missing receipt/duplicateを拒否する。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009 traceabilityとL2-012 unknown boundaryは関連するが、R-07のnegative casesとexact replay receiptを個別採択pairへ結ぶ証拠なし。",
+        "remaining_no_loss_condition": "各拒否case、at-least-once episode identity、exact digestの受入方法/consumerが未確定。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 88,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000158",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 71,
+      "exact_source_line_text": "unknownを0、neutral、unchanged、observedへ補完しない。deltaはRequirement、Design、Release、Assignment、mergeを直接変更しない。",
+      "neighboring_archive_context": [
+        {
+          "line": 69,
+          "text": "### AAFD-R-08 Unknownとauthority non-write"
+        },
+        {
+          "line": 70,
+          "text": ""
+        },
+        {
+          "line": 71,
+          "text": "unknownを0、neutral、unchanged、observedへ補完しない。deltaはRequirement、Design、Release、Assignment、mergeを直接変更しない。"
+        },
+        {
+          "line": 72,
+          "text": ""
+        },
+        {
+          "line": 73,
+          "text": "## AAFD-FR-003 Future Synthesisへの差分受入"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "aa90f17df7d6e3da02b83521285c9a87554366b34081829d2bbb82b4c6d1350d",
+      "physical_line_bytes_sha256_including_terminator": "5d127e016c16fc956cc260d97017596a71aec9d58b1e6b052e7407a6cd266833",
+      "baseline_2353_physical_line_bytes_sha256": "5d127e016c16fc956cc260d97017596a71aec9d58b1e6b052e7407a6cd266833",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 158,
+        "entry_line_sha256_including_terminator": "d5455965cc2ad847701b7b9630e2a82c55971a73c1b3e949ee512fd533125c54",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000158",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 71,
+          "source_line_text": "unknownを0、neutral、unchanged、observedへ補完しない。deltaはRequirement、Design、Release、Assignment、mergeを直接変更しない。",
+          "source_line_sha256": "sha256:aa90f17df7d6e3da02b83521285c9a87554366b34081829d2bbb82b4c6d1350d",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "authority non-writeのnegative condition（R-08）",
+        "semantic_reading": "unknownを既知値へ補わず、deltaからRequirement/Design/Release/Assignment/mergeを直接変更しない。marker-negativeでも明確なauthority条件。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009は自由文のみでauthority変更しない。意味的には近いが、AAFD row 000158の個別adopted-pair bindingはない。",
+        "remaining_no_loss_condition": "unknown stateのconsumerと各5出力へのroute/no-write証拠を個別照合する。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 89,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000161",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 77,
+      "exact_source_line_text": "intake adapterはdeltaのsource identityをF0 Current State Snapshotへexact joinし、snapshot revision/digestが一致しないdeltaを",
+      "neighboring_archive_context": [
+        {
+          "line": 75,
+          "text": "### AAFD-R-09 snapshotの厳密接合"
+        },
+        {
+          "line": 76,
+          "text": ""
+        },
+        {
+          "line": 77,
+          "text": "intake adapterはdeltaのsource identityをF0 Current State Snapshotへexact joinし、snapshot revision/digestが一致しないdeltaを"
+        },
+        {
+          "line": 78,
+          "text": "staleまたはreobservation requiredへ送る。"
+        },
+        {
+          "line": 79,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "e9e3a02c892a2d9cc91f1ea4672f633f48c40c71bfb6de96cf31aa9c5c012d06",
+      "physical_line_bytes_sha256_including_terminator": "8d0c6735875db50651c0f23b24f4a3e7e967e0e30649b29d8b7cad87d2ab9e21",
+      "baseline_2353_physical_line_bytes_sha256": "8d0c6735875db50651c0f23b24f4a3e7e967e0e30649b29d8b7cad87d2ab9e21",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 161,
+        "entry_line_sha256_including_terminator": "9f36dd1254f1d2ee157334bcbf3cb0be1d1b05b510994b8b63952bfad2b5c932",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000161",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 77,
+          "source_line_text": "intake adapterはdeltaのsource identityをF0 Current State Snapshotへexact joinし、snapshot revision/digestが一致しないdeltaを",
+          "source_line_sha256": "sha256:e9e3a02c892a2d9cc91f1ea4672f633f48c40c71bfb6de96cf31aa9c5c012d06",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件／exact snapshot join（R-09）",
+        "semantic_reading": "delta source identityをF0 snapshotへexact joinしrevision/digest不一致時にstale/reobservationへ返す条件。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "F6にAAFD/UIL/TER owner関係はあるが、F0 exact join・snapshot mismatchのL2/L11 row bindingなし。",
+        "remaining_no_loss_condition": "F0 identity、mismatch oracle、reobservation ownerを現行pairへ対応づける。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 90,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000164",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 82,
+      "exact_source_line_text": "affected Future Type、assumption、projection、directiveをexact setでstale化し、必要範囲だけ再投影する。構造変更が必要な場合は",
+      "neighboring_archive_context": [
+        {
+          "line": 80,
+          "text": "### AAFD-R-10 Invalidationとbounded resynthesis"
+        },
+        {
+          "line": 81,
+          "text": ""
+        },
+        {
+          "line": 82,
+          "text": "affected Future Type、assumption、projection、directiveをexact setでstale化し、必要範囲だけ再投影する。構造変更が必要な場合は"
+        },
+        {
+          "line": 83,
+          "text": "#1037へproposal-onlyでrouteし、whole-system plannerのcurrent write parkingを解除しない。"
+        },
+        {
+          "line": 84,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "336a05ee695ad7a1f66f1d1a91ac9109051e206b867dc96e3281578e71f70370",
+      "physical_line_bytes_sha256_including_terminator": "ab769ec46d6d820847463e59a99e4174aaeaedaf81332d05f44f221dbdc7fa3d",
+      "baseline_2353_physical_line_bytes_sha256": "ab769ec46d6d820847463e59a99e4174aaeaedaf81332d05f44f221dbdc7fa3d",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 164,
+        "entry_line_sha256_including_terminator": "8682e6794d44e7318db01cfaf437a2991624e70dcab7bf13626e4bda9b3d0047",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000164",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 82,
+          "source_line_text": "affected Future Type、assumption、projection、directiveをexact setでstale化し、必要範囲だけ再投影する。構造変更が必要な場合は",
+          "source_line_sha256": "sha256:336a05ee695ad7a1f66f1d1a91ac9109051e206b867dc96e3281578e71f70370",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件／bounded invalidation（R-10前半）",
+        "semantic_reading": "影響対象のFuture Type/assumption/projection/directiveだけをexact setでstale化し、必要範囲を再投影する。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009はstale assumption/invalid projectionを監査候補として扱う近接関係があるが、AAFD invalidation exact setの個別採択ではない。",
+        "remaining_no_loss_condition": "対象集合・再投影判定oracleと現行owner/consumerが未対応。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 91,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000165",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 83,
+      "exact_source_line_text": "#1037へproposal-onlyでrouteし、whole-system plannerのcurrent write parkingを解除しない。",
+      "neighboring_archive_context": [
+        {
+          "line": 81,
+          "text": ""
+        },
+        {
+          "line": 82,
+          "text": "affected Future Type、assumption、projection、directiveをexact setでstale化し、必要範囲だけ再投影する。構造変更が必要な場合は"
+        },
+        {
+          "line": 83,
+          "text": "#1037へproposal-onlyでrouteし、whole-system plannerのcurrent write parkingを解除しない。"
+        },
+        {
+          "line": 84,
+          "text": ""
+        },
+        {
+          "line": 85,
+          "text": "### AAFD-R-11 stale実行防止"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "a8d26ef03082e309257f807493be39d1ab171337fe3eaea4b9d3a6e74f9eb4a3",
+      "physical_line_bytes_sha256_including_terminator": "fa838d4b033cf907b6ac8f26bfa4a88a577f316b435424abadf51d5474620723",
+      "baseline_2353_physical_line_bytes_sha256": "fa838d4b033cf907b6ac8f26bfa4a88a577f316b435424abadf51d5474620723",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 165,
+        "entry_line_sha256_including_terminator": "bde36f90386db6a00ed677216738ba34e439b682a375cc4175f6a85c03abf960",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000165",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 83,
+          "source_line_text": "#1037へproposal-onlyでrouteし、whole-system plannerのcurrent write parkingを解除しない。",
+          "source_line_sha256": "sha256:a8d26ef03082e309257f807493be39d1ab171337fe3eaea4b9d3a6e74f9eb4a3",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "authority/route condition（R-10後半）",
+        "semantic_reading": "構造変更を#1037へproposal-onlyで送り、whole-system plannerのwrite parkingを解除しない。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009の一般authority境界は関係するが、旧Issue #1037 routeやplanner parkingの現行採用根拠はない。",
+        "remaining_no_loss_condition": "旧routeの現行対応、planner identity/write gateは未決。旧Issue stateからauthorityを生成しない。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 92,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000167",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 87,
+      "exact_source_line_text": "stale Future Directive、unresolved unknown、missing source receiptからassignment、release、retire、requirement/design writeを",
+      "neighboring_archive_context": [
+        {
+          "line": 85,
+          "text": "### AAFD-R-11 stale実行防止"
+        },
+        {
+          "line": 86,
+          "text": ""
+        },
+        {
+          "line": 87,
+          "text": "stale Future Directive、unresolved unknown、missing source receiptからassignment、release、retire、requirement/design writeを"
+        },
+        {
+          "line": 88,
+          "text": "発行しない。Future SynthesisはUIL／TERの観測・qualificationを再実装しない。"
+        },
+        {
+          "line": 89,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "f636c5b36e4bf974dd260cd3ac8ef12a050bdf9ebe4fe7fd1836d3e02042ded9",
+      "physical_line_bytes_sha256_including_terminator": "4fdbe90ceff5436d8dd02eb4b926e76f908d31261f9820fbb2e4fcef5b46cbf9",
+      "baseline_2353_physical_line_bytes_sha256": "4fdbe90ceff5436d8dd02eb4b926e76f908d31261f9820fbb2e4fcef5b46cbf9",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 167,
+        "entry_line_sha256_including_terminator": "f5c3a046c78a72aa5de612e3ed9277003f1d3f1d14eb3fbe04ba4eacdbf2a1d4",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000167",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 87,
+          "source_line_text": "stale Future Directive、unresolved unknown、missing source receiptからassignment、release、retire、requirement/design writeを",
+          "source_line_sha256": "sha256:f636c5b36e4bf974dd260cd3ac8ef12a050bdf9ebe4fe7fd1836d3e02042ded9",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "negative authority condition（R-11前半）",
+        "semantic_reading": "stale directive、unresolved unknown、missing receiptを入力とするassignment/release/retire/requirement/design write発行を禁止する前半。次行と一文。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "現行authority/state boundariesとL2-009/L2-012に近接する一般制約はあるが、旧R-11各入力×出力組のrow-specific adopted bindingなし。",
+        "remaining_no_loss_condition": "入力状態と禁止出力の全組合せを別atomとして保持し、近接条件でclosureを推定しない。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 93,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000168",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 88,
+      "exact_source_line_text": "発行しない。Future SynthesisはUIL／TERの観測・qualificationを再実装しない。",
+      "neighboring_archive_context": [
+        {
+          "line": 86,
+          "text": ""
+        },
+        {
+          "line": 87,
+          "text": "stale Future Directive、unresolved unknown、missing source receiptからassignment、release、retire、requirement/design writeを"
+        },
+        {
+          "line": 88,
+          "text": "発行しない。Future SynthesisはUIL／TERの観測・qualificationを再実装しない。"
+        },
+        {
+          "line": 89,
+          "text": ""
+        },
+        {
+          "line": 90,
+          "text": "### AAFD-R-12 再生"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "a09ea3634af3aed4f97ccee698203f5f6a8960ac0f9e1ef2efa7b5740d247b4e",
+      "physical_line_bytes_sha256_including_terminator": "abc5da87333451d54be101454351bd178fc667d0dcbea38987c9afc3e583edc0",
+      "baseline_2353_physical_line_bytes_sha256": "abc5da87333451d54be101454351bd178fc667d0dcbea38987c9afc3e583edc0",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 168,
+        "entry_line_sha256_including_terminator": "d3c540cfcbb3ec1d3e603a5ee4af97094c8b9dc1d4b87c46e88c30858d3b737e",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000168",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 88,
+          "source_line_text": "発行しない。Future SynthesisはUIL／TERの観測・qualificationを再実装しない。",
+          "source_line_sha256": "sha256:a09ea3634af3aed4f97ccee698203f5f6a8960ac0f9e1ef2efa7b5740d247b4e",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "negative authority condition／owner boundary（R-11後半）",
+        "semantic_reading": "前行の禁止文を閉じ、Future SynthesisがUIL/TERの観測・qualificationを再実装しないとする。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-009はAAFD/UIL/TER/Future Synthesis ownerを保ち、重複実装しないと明記する。これは概念的に近いが、旧R-11の全禁止出力/観測qualification全体の個別adoptionや受入証拠にはならない。",
+        "remaining_no_loss_condition": "owner保持の現行記述と旧sentence全体のsource-row mapping/full coverageを分けて記録する。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 94,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000170",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 92,
+      "exact_source_line_text": "repo authorityとevent journalからdelta、invalidation、intake projectionを再構築し、DB削除後も同じexact set/digestを返す。",
+      "neighboring_archive_context": [
+        {
+          "line": 90,
+          "text": "### AAFD-R-12 再生"
+        },
+        {
+          "line": 91,
+          "text": ""
+        },
+        {
+          "line": 92,
+          "text": "repo authorityとevent journalからdelta、invalidation、intake projectionを再構築し、DB削除後も同じexact set/digestを返す。"
+        },
+        {
+          "line": 93,
+          "text": ""
+        },
+        {
+          "line": 94,
+          "text": "## AAFD-FR-004 model revision監査benchmark"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "eb69211604eb83b2311403d8221f1e47246fb49a6d4953d27b24f45410b6620c",
+      "physical_line_bytes_sha256_including_terminator": "c3e0c0b1699cfe56f93ed07f25620574d2168ca66a3fa210f5455ad566f7b13f",
+      "baseline_2353_physical_line_bytes_sha256": "c3e0c0b1699cfe56f93ed07f25620574d2168ca66a3fa210f5455ad566f7b13f",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 170,
+        "entry_line_sha256_including_terminator": "bc4084dc48c37d4e6449bee11ffd9321199275041676509c93be2f82b6a34a83",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000170",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 92,
+          "source_line_text": "repo authorityとevent journalからdelta、invalidation、intake projectionを再構築し、DB削除後も同じexact set/digestを返す。",
+          "source_line_sha256": "sha256:eb69211604eb83b2311403d8221f1e47246fb49a6d4953d27b24f45410b6620c",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "受入oracle／event replay（R-12）",
+        "semantic_reading": "repo authority/event journalからdelta/invalidation/intake projectionを再構築し、DB削除後もexact set/digestを返す。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "F6採択pairにsource-family relationを越えたDB削除・順序条件・exact replay oracleのbindingなし。旧実装/DBや過去のgreenを受入にしない。",
+        "remaining_no_loss_condition": "journal identity/order, projection set/digest, database-deletion recoveryを全て別々に照合。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 95,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000173",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 98,
+      "exact_source_line_text": "provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionで",
+      "neighboring_archive_context": [
+        {
+          "line": 96,
+          "text": "### AAFD-R-13 TER発火条件"
+        },
+        {
+          "line": 97,
+          "text": ""
+        },
+        {
+          "line": 98,
+          "text": "provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionで"
+        },
+        {
+          "line": 99,
+          "text": "revalidationを開始する。model名の文字列変更だけでqualificationを継承しない。"
+        },
+        {
+          "line": 100,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "f1491b51052dc676a1168aefd9dba47c8838642d85c2ffe5fd29d94bace50c30",
+      "physical_line_bytes_sha256_including_terminator": "e23e7e72d1350b437504524a04a3a884a7882193c4fbe77f3e55c4279e125009",
+      "baseline_2353_physical_line_bytes_sha256": "e23e7e72d1350b437504524a04a3a884a7882193c4fbe77f3e55c4279e125009",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 173,
+        "entry_line_sha256_including_terminator": "9ffaa7f94175d2d34835927fb60921e3fd1d0d1d2e2ce00662c7e285e0b307a7",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000173",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 98,
+          "source_line_text": "provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionで",
+          "source_line_sha256": "sha256:f1491b51052dc676a1168aefd9dba47c8838642d85c2ffe5fd29d94bace50c30",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件／TER revalidation（R-13前半）",
+        "semantic_reading": "provider/model/runtime/version変更をTER eventとし、同一corpus/scope/policy/oracle revisionで再検証を始める前半。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-011は同一corpus/scopeのモデル比較を採択している。だがTER event、policy/oracle pin、revalidation startの旧行別pair bindingはない。",
+        "remaining_no_loss_condition": "比較要件の近接とTER trigger/revalidation receiptを同一視しない。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 96,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000174",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 99,
+      "exact_source_line_text": "revalidationを開始する。model名の文字列変更だけでqualificationを継承しない。",
+      "neighboring_archive_context": [
+        {
+          "line": 97,
+          "text": ""
+        },
+        {
+          "line": 98,
+          "text": "provider/model/runtime/version変更をTER eventとして記録し、同じaudit corpus、responsibility scope、policy、oracle revisionで"
+        },
+        {
+          "line": 99,
+          "text": "revalidationを開始する。model名の文字列変更だけでqualificationを継承しない。"
+        },
+        {
+          "line": 100,
+          "text": ""
+        },
+        {
+          "line": 101,
+          "text": "### AAFD-R-14 比較receipt"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "5537677382e26a908376684afe292df616e86900e40f2d61608d1013de828430",
+      "physical_line_bytes_sha256_including_terminator": "7de1034531bba6d522c45bab609da652cecbd17729813baf8ba898d4c138cd51",
+      "baseline_2353_physical_line_bytes_sha256": "7de1034531bba6d522c45bab609da652cecbd17729813baf8ba898d4c138cd51",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 174,
+        "entry_line_sha256_including_terminator": "2006fd23939ac1c98a4ed97032b7bb8d5dc2123f5e63f743590bf64cb7f787fb",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000174",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 99,
+          "source_line_text": "revalidationを開始する。model名の文字列変更だけでqualificationを継承しない。",
+          "source_line_sha256": "sha256:5537677382e26a908376684afe292df616e86900e40f2d61608d1013de828430",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "negative qualification condition（R-13後半）",
+        "semantic_reading": "model名の文字列変更だけでqualificationを継承しない。単独でも旧qualification non-inheritanceの意味を持つ。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-011は更新だけで優位としない/同条件比較を定めるが、TER qualification continuityの個別bindingはない。",
+        "remaining_no_loss_condition": "qualifier identity/revision、qualification state transition、revalidation outcome ownerが未対応。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 97,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000176",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 103,
+      "exact_source_line_text": "new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを",
+      "neighboring_archive_context": [
+        {
+          "line": 101,
+          "text": "### AAFD-R-14 比較receipt"
+        },
+        {
+          "line": 102,
+          "text": ""
+        },
+        {
+          "line": 103,
+          "text": "new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを"
+        },
+        {
+          "line": 104,
+          "text": "別metricで記録し、単一scoreへ潰さない。hidden oracleをworker contextへ渡さない。"
+        },
+        {
+          "line": 105,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "4c9d0f47b50e21bcff9274ddc92a415053ef8a9b12ef763626de19f44ce83703",
+      "physical_line_bytes_sha256_including_terminator": "b35d624f3d6eda1dab62854ef5da5a4a95e6d111c9e96c18674f222ab698c7b1",
+      "baseline_2353_physical_line_bytes_sha256": "b35d624f3d6eda1dab62854ef5da5a4a95e6d111c9e96c18674f222ab698c7b1",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 176,
+        "entry_line_sha256_including_terminator": "5c8d75541ed9486280545a7955ddb9302278df4f5c0ea1197c6df0f67627c85f",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000176",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 103,
+          "source_line_text": "new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを",
+          "source_line_sha256": "sha256:4c9d0f47b50e21bcff9274ddc92a415053ef8a9b12ef763626de19f44ce83703",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "要求条件／複合比較metric（R-14前半）",
+        "semantic_reading": "new/lost finding、FP/FN、duplicate、修復正確性、authority drift、再現成功、cost/latencyの独立metric列挙の前半。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-011はfinding/FP/miss/reproducibility/latency/costの同条件比較を採択済み。旧R-14とのrow-specific bindingはなく、duplicate/remediation correctness/authority driftは記載範囲外。",
+        "remaining_no_loss_condition": "metricごとの定義/denominator/scope、同一oracle、旧行を満たす全metric coverageが未確認。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 98,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000177",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 104,
+      "exact_source_line_text": "別metricで記録し、単一scoreへ潰さない。hidden oracleをworker contextへ渡さない。",
+      "neighboring_archive_context": [
+        {
+          "line": 102,
+          "text": ""
+        },
+        {
+          "line": 103,
+          "text": "new/lost finding、false positive/negative、duplicate、remediation correctness、authority drift、reproduction success、cost、latencyを"
+        },
+        {
+          "line": 104,
+          "text": "別metricで記録し、単一scoreへ潰さない。hidden oracleをworker contextへ渡さない。"
+        },
+        {
+          "line": 105,
+          "text": ""
+        },
+        {
+          "line": 106,
+          "text": "### AAFD-R-15 昇格境界"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "e5b93e6686946bd6d4fb1f1d57b8a62c071984b1598ddfdfb5f05e15014bd65c",
+      "physical_line_bytes_sha256_including_terminator": "6912fdfd2147c751fe27398e69a0adb478539397bdfae1e3d4f27ff73ccf5b43",
+      "baseline_2353_physical_line_bytes_sha256": "6912fdfd2147c751fe27398e69a0adb478539397bdfae1e3d4f27ff73ccf5b43",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 177,
+        "entry_line_sha256_including_terminator": "e3e36ee3ab40abad7e176232ef20fbe83c7a292080cfd9d4f735244e65b82dc4",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000177",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 104,
+          "source_line_text": "別metricで記録し、単一scoreへ潰さない。hidden oracleをworker contextへ渡さない。",
+          "source_line_sha256": "sha256:e5b93e6686946bd6d4fb1f1d57b8a62c071984b1598ddfdfb5f05e15014bd65c",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "negative evaluation condition（R-14後半）",
+        "semantic_reading": "metricを単一scoreへ統合せず、hidden oracleをworker contextへ渡さない。marker-negativeの情報隔離条件。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-011の同条件比較は近いが、single-score禁止/hidden-oracle confidentialityの個別adoptionや受入は確認できない。",
+        "remaining_no_loss_condition": "集約禁止とoracle secrecyを別atomにし、現行security/data boundary ownerを特定する。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 99,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000179",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 108,
+      "exact_source_line_text": "benchmark結果はLearning Systemへのcandidate evidenceであり、単一model revisionの結果からrule、provider routing、Requirement、",
+      "neighboring_archive_context": [
+        {
+          "line": 106,
+          "text": "### AAFD-R-15 昇格境界"
+        },
+        {
+          "line": 107,
+          "text": ""
+        },
+        {
+          "line": 108,
+          "text": "benchmark結果はLearning Systemへのcandidate evidenceであり、単一model revisionの結果からrule、provider routing、Requirement、"
+        },
+        {
+          "line": 109,
+          "text": "Designを自動変更しない。昇格は#1035/#1384の独立VERIFY、counterexample、expiry、human gateへ従う。"
+        },
+        {
+          "line": 110,
+          "text": ""
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "3ad50935f8a8cae20480f7c28656a98663b4e53a49a9a530d74c1bee6e557b9d",
+      "physical_line_bytes_sha256_including_terminator": "ed738477dc9deceacf86567a24c8ec77e77526c943aee2db4641e40b5d46b05b",
+      "baseline_2353_physical_line_bytes_sha256": "ed738477dc9deceacf86567a24c8ec77e77526c943aee2db4641e40b5d46b05b",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 179,
+        "entry_line_sha256_including_terminator": "a452abe5d364cb9d520a6cbaaa40fcd4f8f23677b3d1bd6ae7d94bb15f042458",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000179",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 108,
+          "source_line_text": "benchmark結果はLearning Systemへのcandidate evidenceであり、単一model revisionの結果からrule、provider routing、Requirement、",
+          "source_line_sha256": "sha256:3ad50935f8a8cae20480f7c28656a98663b4e53a49a9a530d74c1bee6e557b9d",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "authority/evaluation promotion boundary（R-15前半）",
+        "semantic_reading": "benchmarkはLearning System向けcandidate evidenceであり、単一model revisionからrule/provider routing/Requirement/Designを自動変更しない前半。",
+        "possible_classification_issue": "yes",
+        "current_F6_relation_and_limit": "L2-010/011はbenchmark/model-only rankingを抑え、L2-009はfinding-only authority変更を禁じる。ただしR-15の入力・四出力とlearning routeの旧行別bindingなし。",
+        "remaining_no_loss_condition": "candidate evidence/authority outputsを保持し、current adopted general boundariesを旧R-15の採用やsuccessorと誤記しない。"
+      },
+      "marker_negative_normative_or_authority_condition": true,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    },
+    {
+      "complement_rank": 100,
+      "candidate_source_line_id": "LEGACY-CAND-LINE-000182",
+      "effective_classification_after_ordered_overlays": "explanation",
+      "effective_classification_overlay": "#2353 baseline; no selected overlay ID intersects this row",
+      "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_line_number": 113,
+      "exact_source_line_text": "| Slice | 責務 |",
+      "neighboring_archive_context": [
+        {
+          "line": 111,
+          "text": "## 1. 原子的runtime slice"
+        },
+        {
+          "line": 112,
+          "text": ""
+        },
+        {
+          "line": 113,
+          "text": "| Slice | 責務 |"
+        },
+        {
+          "line": 114,
+          "text": "|---|---|"
+        },
+        {
+          "line": 115,
+          "text": "| AAP-01 | 提案schema／UIL source profile |"
+        }
+      ],
+      "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "source_line_sha256": "594bbb06a89de441aff8582658598318c013a0915ab8e38c529ee6f526d86d2a",
+      "physical_line_bytes_sha256_including_terminator": "78970fe19b45f31cd8e53b81c439cfcfed95b01045dd6a1b96f9d11744b54164",
+      "baseline_2353_physical_line_bytes_sha256": "78970fe19b45f31cd8e53b81c439cfcfed95b01045dd6a1b96f9d11744b54164",
+      "source_line_ledger": {
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "file_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+        "line": 182,
+        "entry_line_sha256_including_terminator": "88cc16cc1394bf92170239941f73755c39830e475952d217e5e2d4edbed65246",
+        "entry": {
+          "candidate_source_line_id": "LEGACY-CAND-LINE-000182",
+          "source_path": "docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+          "source_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+          "source_line": 113,
+          "source_line_text": "| Slice | 責務 |",
+          "source_line_sha256": "sha256:594bbb06a89de441aff8582658598318c013a0915ab8e38c529ee6f526d86d2a",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "atomization_status": "preserved_pending_atomization",
+          "meaning_change_applied": false,
+          "successor_requirement_ids": [],
+          "decision_record": null
+        }
+      },
+      "asset_ledger": {
+        "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+        "path": "docs/governance/legacy-asset-disposition.jsonl",
+        "file_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "line": 789,
+        "entry_line_sha256_including_terminator": "a7f51c873c0310fcffe0a30a03564040598baa49d06142cd40f288b5e81c2a60",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "decision_record_ref": null,
+        "upstream_ids": [],
+        "pair_ids": []
+      },
+      "semantic_review": {
+        "semantic_category": "構造説明／table header",
+        "semantic_reading": "`Slice | 責務`のMarkdown表header。後続の旧runtime slice一覧への構造境界で、単独要求predicateではない。",
+        "possible_classification_issue": "no",
+        "current_F6_relation_and_limit": "現行F6 decisionとの要求意味bindingはない。見出し/表headerを規範語screen外でも補集合内に残す算術に従う。",
+        "remaining_no_loss_condition": "隣接する旧runtime slice行をこのheaderだけから現行要求に昇格しない。"
+      },
+      "marker_negative_normative_or_authority_condition": false,
+      "row_specific_current_crosswalk_found": false,
+      "adopted_pair_binding_found": false,
+      "successor_requirement_ids": [],
+      "closure_established": false,
+      "authority_effect": "none"
+    }
+  ]
+}

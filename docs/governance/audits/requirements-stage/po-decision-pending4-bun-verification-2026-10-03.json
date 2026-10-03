@@ -1,0 +1,122 @@
+{
+  "authority_effect": "none",
+  "basis_main": "7294112e39d8309d4ec43201953bbd706a92b325",
+  "register_prefix_preserved": true,
+  "register_old_lines": 713,
+  "register_new_lines": 714,
+  "latest_candidates": 384,
+  "checks": [
+    {
+      "registration_id": "MPR-RC-HARNESS-L2-067-002",
+      "registration_line": 708,
+      "registration_line_sha256": "sha256:a4b3915a8b3a9d3b63e059804e93481ca5a5656052d691adc7bbacfdc9b0dc33",
+      "semantic_digest": "sha256:4ee1e8ec5374d7ea1d5cc3ea5f48abb353f371766421ffd61c6ab94e028a9373",
+      "receipt_ref": "docs/governance/audits/requirement-registration/hil-fr37-source-capability-atomization-coverage-receipt-2026-10-03-r2.json",
+      "receipt_sha256": "sha256:4140359a4e51754d6bf2dabade5d04fb95d8bbff668c07736d40cab3b70d53b7",
+      "checks": [
+        {
+          "side": "L2",
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "start_line": 1274,
+          "end_line": 1291,
+          "sha256": "sha256:4ee1e8ec5374d7ea1d5cc3ea5f48abb353f371766421ffd61c6ab94e028a9373",
+          "result": "PASS"
+        },
+        {
+          "side": "L11",
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "start_line": 993,
+          "end_line": 1003,
+          "sha256": "sha256:f21e31ec15355abb15da22d68396cc05584be92457b49cdc3a4a76523a2fa2c8",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "registration_id": "MPR-RC-HELIXOS-L2-125-002",
+      "registration_line": 711,
+      "registration_line_sha256": "sha256:62dc528e2087edf380b2d9a61eb197b1af506b403bfd36582dc0d5e4720ffb1c",
+      "semantic_digest": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json",
+      "receipt_sha256": "sha256:5a6079de61682fcb73ab7f4407fbe8e5065bd69d4799499a35c1ea81a9d90ed7",
+      "checks": [
+        {
+          "side": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_line": 1550,
+          "end_line": 1557,
+          "sha256": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
+          "result": "PASS"
+        },
+        {
+          "side": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_line": 1166,
+          "end_line": 1171,
+          "sha256": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "registration_id": "MPR-RC-HELIXOS-L2-131-002",
+      "registration_line": 710,
+      "registration_line_sha256": "sha256:7f1df2069da1961689ff2a34355bc2ec220d92c203a6dabe710f10d6adf78212",
+      "semantic_digest": "sha256:87981dfee01e17fd8cb999c8570a692a2968eb8b81ae3aad12da0dc5365a39cc",
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-131-hil-nfr34-operation-guard-coverage-receipt-2026-10-03-r2.json",
+      "receipt_sha256": "sha256:feb38fd3c6b16144de1baeb546a5875a1d54037d059cf5d905b377b56d6952bc",
+      "checks": [
+        {
+          "side": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_line": 1656,
+          "end_line": 1662,
+          "sha256": "sha256:87981dfee01e17fd8cb999c8570a692a2968eb8b81ae3aad12da0dc5365a39cc",
+          "result": "PASS"
+        },
+        {
+          "side": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_line": 1343,
+          "end_line": 1351,
+          "sha256": "sha256:50bc6f97c31430637d3b3028e9144362c6992f0c11d7f754dcbbcc64bb3fa1b1",
+          "result": "PASS"
+        }
+      ]
+    },
+    {
+      "registration_id": "MPR-RC-HELIXOS-L2-132-003",
+      "registration_line": 714,
+      "registration_line_sha256": "sha256:513bd62273f5ae6d0bb4bfaaf737bdc7f80e89e2ddc42aed91f82c7344fe6652",
+      "semantic_digest": "sha256:d6105ea7bfe423b58061fc934dc0fe754c540d439fe98089caae8737376bca75",
+      "receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+      "receipt_sha256": "sha256:e7e252b1ad8dca5c1bf32d34d845cf0e528ae6237a51c0412ee36e81777dc619",
+      "checks": [
+        {
+          "side": "L2",
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "start_line": 1663,
+          "end_line": 1670,
+          "sha256": "sha256:d6105ea7bfe423b58061fc934dc0fe754c540d439fe98089caae8737376bca75",
+          "result": "PASS"
+        },
+        {
+          "side": "L11",
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "start_line": 1352,
+          "end_line": 1361,
+          "sha256": "sha256:e8092f9ba881887ff7df6c0eb41c340c7892ff92d87f349d96edf8f3ee2056fb",
+          "result": "PASS"
+        }
+      ]
+    }
+  ],
+  "historical_os132_receipts_preserved": true,
+  "classification_after_record_admission": {
+    "adopted": 374,
+    "held": 5,
+    "nonadopted_latest_revision": 5,
+    "unrecorded": 0
+  },
+  "scope": "exact decision targets and bounded requirement-stage exit; no source holding release, L3 approval or execution"
+}

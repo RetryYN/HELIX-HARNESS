@@ -1,0 +1,125 @@
+{
+  "schema_version": "os132-br19-repository-migration-receipt.v1",
+  "receipt_id": "HELIXOS-L2-132-HIL-BR-19-REPRODUCIBILITY-2026-10-03-R4",
+  "status": "permanent_no_bun_candidate_source_mapping_no_loss_pending_adoption_record",
+  "authority_effect": "none",
+  "review_base_commit": "7294112e39d8309d4ec43201953bbd706a92b325",
+  "source_identity": {
+    "source_atom_count": 1,
+    "source_atom_ref": "IR153-HIL-BR-19-ACTIVE-SURFACE-MIGRATION",
+    "source_holding_ref": "MPR-SH-IR-004#HIL-BR-19",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-19/statement/text",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_statement": "Bun撤去はNodeでも一部動く状態ではなく、activeな開発・実行・検証・配布surfaceがBunなしで再現可能となった時点だけを完了とする。",
+    "source_statement_semantic_digest": "sha256:95d7e1242d77cdba8ed1447e36382caf4e23413b6d5a3d40241feffa5a6521d1",
+    "source_record_semantic_digest": "sha256:ed854b4f6fd1ed5e9cb24afaa4da73366582f00bf1a01ed9300ca676b7ccff2d",
+    "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "raw_l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "raw_l1_line": 71,
+    "raw_l1_full_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "raw_l1_line_sha256_excluding_lf": "sha256:a4b222e8ead41022fd779d22ee7fdce8b029511e2d4cfc34d38145f525871e3a",
+    "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-br19-os132-source-atoms-2026-10-03.jsonl",
+    "source_atom_set_digest": "sha256:a88d97743dca6e27bf2b4a35f90e66a4c154d71f5e0ce699ab7add927a0d74b2",
+    "source_atom_set_file_sha256": "sha256:09f1313e53f57ac463951990eeaa6301fde245ee304ac473bd28492e26dc30c7"
+  },
+  "parent_revisions": {
+    "concept_revision": "docs/concept/helix-concept.md@bca7592cf444b07292a1366e3b28e7de4d9f88cb",
+    "concept_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+    "planning_revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "planning_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "parent_l1_ids": [
+      "HELIXOS-L1-005",
+      "HELIXOS-L1-007"
+    ],
+    "planning_status": "fixed/adopted HELIX-OS L1"
+  },
+  "candidate_pair": {
+    "registration_id": "MPR-RC-HELIXOS-L2-132-003",
+    "l2_identity": "HELIXOS-L2-132",
+    "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-132",
+    "l2_section_sha256": "sha256:d6105ea7bfe423b58061fc934dc0fe754c540d439fe98089caae8737376bca75",
+    "l11_identity": "HELIXOS-L11-132",
+    "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L11-132",
+    "l11_section_sha256": "sha256:e8092f9ba881887ff7df6c0eb41c340c7892ff92d87f349d96edf8f3ee2056fb",
+    "section_digest_rule": "Exact candidate heading through before the next same-or-higher heading; trim trailing blank lines and terminate with one LF.",
+    "l2_full_file_sha256": "sha256:c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+    "l11_full_file_sha256": "sha256:40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+    "pair_digest_rule": "SHA-256 of UTF-8 `HELIXOS-L2-132 sha256:<L2 section digest> LF HELIXOS-L11-132 sha256:<L11 section digest> LF`.",
+    "pair_digest": "sha256:65ad961db971287000b0382df877cccc15d4e0ff52b0da52022751dad3bfe51d"
+  },
+  "meaning_scope": {
+    "migration_scope": "One repository migration in HELIX reconstruction corresponding to removal of the legacy HELIX Bun dependency. It does not generalize to arbitrary third-party repositories.",
+    "permanent_user_guarantee": "HELIX development, execution, validation and distribution surfaces will not use Bun going forward; new use and reintroduction are excluded, including on surfaces added or changed after the one-time migration.",
+    "retained_user_value": "Every active surface in the one migration must be reproducible without Bun before migration completion. A partial result is insufficient.",
+    "not_fixed_by_candidate": "Node.js or another runtime; command/API/lockfile/CI/package/distribution implementation; active surface inventory; tool-specific migration steps. Record concrete choices and evidence in the migration receipt.",
+    "owner_split": "HELIX-OS owns project-level target, migration scope and completion/result tracking. HARNESS owns its development/verification contract and the configuration/package contract used by target projects. Candidate does not move HARNESS implementation or package requirements into OS."
+  },
+  "existing_related_records": {
+    "repository_workbase_consolidation": "docs/governance/new-generation-workbase-consolidation.md operation NG-WORKBASE-CONSOLIDATION-20260917-001; completed workbase aggregation, explicitly excludes runtime reconstruction and requirement change. Related context; not same-meaning migration completion evidence.",
+    "repository_foundation": "docs/governance/repository-foundation-readiness.md PR #1797 foundation review. Related repository readiness; does not establish Bun-free active surfaces."
+  },
+  "source_accounting": {
+    "carried_atom_refs": [
+      "HIL-BR-19"
+    ],
+    "preserved_pending_registration_refs": [
+      "MPR-SH-IR-004#HIL-BR-19"
+    ],
+    "human_decision_disposition_refs": [],
+    "unaccounted_atom_refs": [],
+    "coverage_result": "no_loss",
+    "coverage_limit": "No loss of the one HIL-BR-19 source statement atom in the proposed user-facing scope. The candidate carries the all-active-surface migration completion condition and extends it to an ongoing HELIX-wide no-Bun/no-reintroduction guarantee. This does not claim migration execution, adoption, formal successor or implementation closure."
+  },
+  "human_decision": {
+    "status": "adoption_record_pending",
+    "question": "The received PO decision is preserved in docs/governance/audits/requirements-stage/po-decision-received-handoff-pending4-bun-2026-10-03.md and recorded in docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md. It directs registration 003 with the permanent no-Bun guarantee and adoption through the root PO decision record.",
+    "decision_boundary": "This proposal registration and receipt have authority_effect none. The root decision record is the adoption authority; no implementation, execution, distribution permission or overall requirement-stage completion is generated."
+  },
+  "technical_material_boundary": {
+    "old_runtime_or_language_details": "Keep Node/runtime choice, exact active-surface list, package scripts, CI and distribution implementation details in the source-linked migration execution receipt. The requirement retains the all-active-surface Bun-free completion condition and adds a permanent guarantee against Bun use or reintroduction on HELIX development, execution, validation and distribution surfaces.",
+    "no_legacy_execution": "Archive source, archive tests and old runtime are read-only evidence; none were executed."
+  },
+  "evidence_refs": [
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-19",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:71",
+    "docs/governance/legacy-asset-disposition.jsonl#LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "docs/governance/audits/requirements-stage/legacy-ir108-disposition-matrix-2026-09-28.json#/items/18",
+    "docs/governance/audits/requirement-registration/hil-br19-os132-source-atoms-2026-10-03.jsonl#IR153-HIL-BR-19-ACTIVE-SURFACE-MIGRATION",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-BR-19",
+    "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-005",
+    "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-007",
+    "docs/governance/new-generation-workbase-consolidation.md",
+    "docs/governance/repository-foundation-readiness.md",
+    "docs/governance/audits/requirements-stage/po-decision-received-handoff-pending4-bun-2026-10-03.md",
+    "docs/governance/decisions/po-decision-2026-10-03-pending4-bun.md"
+  ],
+  "historical_001_verbatim": {
+    "registration_id": "MPR-RC-HELIXOS-L2-132-001",
+    "registration_record_sha256": "sha256:68d59a14f57c926319757be4d119dc07c03d9de18622cefc023fc7ce0386dbb2",
+    "original_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03.json",
+    "original_receipt_sha256": "sha256:0eee155257bc873b995117c478c8a79f8071ba5137524ebbd6c1f13cc19cbebf",
+    "l2_candidate_section_verbatim": "### HELIXOS-L2-132 一回限りのrepository移行完了の再現性（HIL-BR-19候補、未採択）\n\n- **候補状態・親L1**：HELIX-OSの未採択候補。親は固定済みHELIXOS-L1-005（HARNESS構成の対象projectへの導入・更新・復旧と配布結果の追跡）およびHELIXOS-L1-007（HARNESS package運転、release準備、artifact受渡しの統制）。この候補はL1の意味を変えず、対象repositoryの一回限りの移行完了を扱う。\n- **利用者が求めること**：利用者は、選択したrepositoryの移行を完了とする前に、そのrepositoryで現在使う開発・実行・検証・配布の全surfaceがBunなしで再現可能になったことを確認できる。一部のsurfaceだけが動く状態を移行完了としない。\n- **適用範囲**：一つの明示されたrepository migrationを対象にする。対象のactive surface集合は当該移行のreceiptで確認する。historicalまたはinactiveと分類されたsurfaceを現在の完了判定へ混ぜない。対象やactive範囲が確定できない場合は完了を主張しない。\n- **機構の分担**：HELIX-OSは対象project、移行範囲、完了状態と配布結果を管理・追跡する。HARNESSはHARNESS自身の開発・検証基盤と、対象projectで使う構成の契約を持つ。本候補はHARNESSのpackage契約や対象製品の実装方式を置き換えない。\n- **旧sourceとの対応**：旧HIL-BR-19の「Nodeでも一部動く状態だけでは不十分」と、activeな開発・実行・検証・配布surfaceすべてがBunなしで再現できることを保持する。Node.jsを必須toolchainに指定せず、個別command、runtime/API、lockfile、CIまたは配布方式も要求本文へ固定しない。実際のsurface一覧と移行手順はsource-linked migration receiptに残す。\n- **限界**：候補の起草・仮登録はPO採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n",
+    "l2_candidate_section_sha256": "sha256:0ba9c71fb6fd02ac8dc8adea2761a8c11c367853760b7377ef3592ff0beb168b",
+    "l11_candidate_section_verbatim": "### HELIXOS-L11-132 一回限りのrepository移行完了の利用者確認候補（未採択・未実行）\n\n本節は未採択のHELIXOS-L2-132に対する利用者確認基準案であり、現行移行の合否や実行済み状態を示さない。\n\n- **対象とscope**：利用者は対象repositoryと、その移行時点でactiveとした開発・実行・検証・配布surfaceの一覧を照合する。historical/inactive扱いのsurfaceが、明示された根拠なしにactive集合から落とされていないことを確認する。\n- **完了として確認すること**：利用者は、列挙されたactive surfaceのそれぞれについて、Bunがなくてもそのsurfaceを再現できる根拠を確認する。全surfaceが揃った場合だけ、一回限りの移行を完了として受け入れられる。一部surfaceだけの成功では受け入れない。\n- **未完として確認すること**：開発CLIはBunなしで動くが検証または配布がBunに依存する、対象surfaceが未列挙、またはactive/historicalの分類が未確定である場合、利用者は移行完了を受け入れない。未解決の対象範囲と理由が見える状態にする。\n- **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureや実行証跡は移行receiptに記録する。個別方式や一時的な成功を本L11候補の追加条件へしない。\n- **採択境界**：この候補は利用者確認基準案であり、PO判断前の受入実行やsource retireを意味しない。\n",
+    "l11_candidate_section_sha256": "sha256:4097021852bb85e937b7aecad0757ca7b9864b8c791ae415f3b2e2ecaf179462",
+    "l2_full_file_sha256_at_001": "sha256:acc66faaeab25dd4d9a4e0bc09ff7a8826e76a58a3ae4bd25dd50266f62bcffb",
+    "l11_full_file_sha256_at_001": "sha256:857db1cdb11ce112993d4542299bdb3d9056cfd1e6dd98e18c8ad813e7997c99",
+    "preservation_note": "MPR-RC-HELIXOS-L2-132-001 and its r1 receipt remain historical, unpublished worktree proposal evidence. This r2 receipt stores the exact normalized candidate section text so its candidate bytes remain recoverable even though the initial worktree edit was never committed."
+  },
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r3.json",
+  "revision_correction_reason": "PO direction dated 2026-10-03: retain the one-time migration condition that all active development, execution, validation and distribution surfaces are reproducible without Bun, and add the user guarantee that HELIX development, execution, validation and distribution surfaces will not use or reintroduce Bun going forward. Do not specify Node.js or individual tools. Registration 002 and r1/r2 receipts remain immutable historical records.",
+  "historical_002_verbatim": {
+    "registration_id": "MPR-RC-HELIXOS-L2-132-002",
+    "registration_record_sha256": "sha256:93320a80fb3ef42ba32b4eac71b43d3bde4108b4eca8cf8fe9fd5c58d43d2584",
+    "original_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-132-hil-br19-migration-reproducibility-receipt-2026-10-03-r2.json",
+    "original_receipt_sha256": "sha256:cef54ea5ef28dc9865545ecbadaff244ba12308c980937816c6f0634ad7d499e",
+    "l2_candidate_section_verbatim": "### HELIXOS-L2-132 旧HELIXのBun依存撤去に対応するrepository移行の完了再現性（HIL-BR-19候補、未採択）\n\n- **候補状態・親L1**：HELIX-OSの未採択候補。親は固定済みHELIXOS-L1-005（HARNESS構成の対象projectへの導入・更新・復旧と配布結果の追跡）およびHELIXOS-L1-007（HARNESS package運転、release準備、artifact受渡しの統制）。\n- **利用者が求めること**：旧HELIXのBun依存撤去に対応する、HELIX再構築で扱うrepository移行を完了とする前に、その対象repositoryでactiveな開発・実行・検証・配布surfaceのすべてがBunなしで再現可能であることを確認できる。一部surfaceだけが動く状態を完了としない。\n- **適用範囲**：本候補は上記の旧HELIX Bun依存撤去に対応する一回のrepository移行に限る。任意の別repositoryへの一般化は含めない。対象repositoryとactive surfaceの一覧は移行receiptで特定し、historicalまたはinactiveとする範囲も根拠とともに記録する。対象やactive範囲が定まらない場合は完了を主張しない。\n- **機構の分担**：HELIX-OSは対象project、移行範囲、完了状態と配布結果を管理・追跡する。HARNESSはHARNESS自身の開発・検証基盤と、対象projectで使う構成の契約を持つ。本候補はHARNESSのpackage契約や対象製品の実装方式を置き換えない。\n- **旧sourceとの対応**：旧HIL-BR-19の意味を保持し、Nodeでも一部だけ動く状態を完了としない。Node.jsを必須toolchainに指定せず、個別command、runtime/API、lockfile、CIまたは配布方式も本文へ固定しない。activeな全surfaceの一覧と具体的な移行手順・根拠はsource-linked migration receiptに残す。\n- **限界**：候補の起草・仮登録はPO採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。\n",
+    "l2_candidate_section_sha256": "sha256:185e3b37374c38be25471dce3a6560ad11b29f4ca0575a404c4b8bccc26a0a10",
+    "l11_candidate_section_verbatim": "### HELIXOS-L11-132 旧HELIXのBun依存撤去に対応するrepository移行の利用者確認候補（未採択・未実行）\n\n本節は未採択のHELIXOS-L2-132に対する利用者確認基準案であり、現行移行の合否や実行済み状態を示さない。\n\n- **対象とscope**：利用者は、旧HELIXのBun依存撤去に対応するHELIX再構築の一回のrepository移行について、対象repositoryと移行時点でactiveとした開発・実行・検証・配布surfaceの一覧を照合する。任意の別repositoryへの一般化はこの候補に含まれない。historical/inactive扱いのsurfaceも、その分類根拠を確認できる。\n- **完了として確認すること**：列挙されたactive surfaceすべてについて、Bunなしで再現できる根拠を確認する。全surfaceが揃った場合だけ対象の一回限りの移行を完了として受け入れられる。一部surfaceだけの成功では受け入れない。\n- **未完として確認すること**：開発CLIはBunなしで動くが検証または配布がBunに依存する、対象surfaceが未列挙、またはactive/historicalの分類が未確定である場合、利用者は移行完了を受け入れず、未解決の範囲と理由を確認できる。\n- **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureや実行証跡は移行receiptに記録する。個別方式や一時的な成功を本候補へ追加しない。\n- **採択境界**：この候補は利用者確認基準案であり、PO判断前の受入実行やsource retireを意味しない。\n",
+    "l11_candidate_section_sha256": "sha256:4c8ce1d17dc697d1148d8fc0d972c5c1f1fd8dc2042386387719a36939ff2eb5",
+    "l2_full_file_sha256_at_002": "sha256:f11d956a60f3212864462e8d432d843d7b1f05aa03186ff547ac7cae8b0850e1",
+    "l11_full_file_sha256_at_002": "sha256:5618c15beaf6b65a027098f3208701783df970537d04ff34308658b9e8bd8418",
+    "preservation_note": "MPR-RC-HELIXOS-L2-132-002 and r2 remain immutable historical proposal evidence. Registration 003 and this r3 receipt supersede only the candidate revision and preserve the one-time migration completion condition while adding the permanent HELIX no-Bun/no-reintroduction guarantee."
+  },
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

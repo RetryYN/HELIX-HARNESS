@@ -1,0 +1,104 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-FIRSTPASS-ATTEMPT-REPAIR-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HELIXLABO-L2-067見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "acceptance_candidate_digest_rule": "L11の### HELIXLABO-L2-067見出しからEOFまでのUTF-8 bytes。",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + sha256:付きsource_line_sha256。末尾改行なし。",
+  "scope": "LEGACY-CAND-LINE-001656第3文を、first-eligible境界／repair-round visibility／総Attempt countの3 subatomへ分け、前2 subatomだけをHELIXLABO-L2/L11-067へcandidate-scopedで対応させる。総Attempt countは未選択subatomとしてMPR-SH-CANDIDATE-004へ保全し、本候補は算出しない。no_lossはcarriedした前2 subatomだけに限り、行の他部分、隣接行、旧candidate全文のcoverageを主張しない。065採択を前提とせず、065のfirst_pass/retry_countと採択済み059の意味を変更しない。source line全体、全candidate source、正式successor、PO採択、実験許可、実装/受入実行を主張しない。",
+  "source_boundary_review": {
+    "sentence_spans_source_lines": true,
+    "selected_source_line_ids": [
+      "LEGACY-CAND-LINE-001656"
+    ],
+    "selected_subatom_ids": [
+      "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3A-FIRST-ELIGIBLE",
+      "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3B-REPAIR-ROUNDS"
+    ],
+    "out_of_scope_source_line_ids": [
+      "LEGACY-CAND-LINE-001655",
+      "LEGACY-CAND-LINE-001657"
+    ],
+    "classification_false_negative_found": false,
+    "classification_note": "candidate source line inventoryに001656があり、source holding MPR-SH-CANDIDATE-004へ保全されsuccessor未割当。現行source-origin relationはOS-L2-014等への参照を記録するが、meaning coverageはunknownである。OS-L2-014のHELIX段階構成条件とLABO task/Attempt telemetryは責務粒度が異なる。HELIXLABO-L2-065は未採択でfirst_passを初回Attempt結果として定義するため、本candidateはfirst_eligible_candidate_resultとsame_attempt_repair_round_countを別名・別grainで出し、065の定義を変更または必須依存にしない。",
+    "source_line_remainder_disposition": "同じ第3文は3 subatomに分ける。first-eligible境界とrepair-round visibilityの前2 subatomだけを067へcarriedし、総Attempt countはS3CとしてMPR-SH-CANDIDATE-004にpendingで保全する。行内の列挙telemetry、silent-rename条件、隣接行、旧candidate全文も保全し、source line全体のcoverageを主張しない。",
+    "preserved_pending_subatom_ids": [
+      "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT-PENDING"
+    ]
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-067",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "version_target": "1.0",
+      "candidate_semantic_digest": "sha256:d39bc9f0a20fb6159bf701cf65d38213935d8d00a9e0189c1b81078bdb8d4784",
+      "acceptance_candidate_digest": "sha256:7a9adc0a54e009ca370033d5b2a88f8b53bf79a99ff146352169d055ff46d331",
+      "source_atom_set_digest": "sha256:bdf621f1ea49649d39c906cb993e4567612a685906c567e8aeb174423c5b6293",
+      "source_atom_count": 2,
+      "source_collection_scope": "LEGACY-CAND-LINE-001656第3文を3 subatomに分け、最初のeligible candidate境界とrepair-round visibilityの前2 subatomだけをselected/carriedする。複数Attemptの総Attempt countはpending subatomとしてMPR-SH-CANDIDATE-004に保全し、candidate inputに含めない。",
+      "atoms": [
+        {
+          "atom_id": "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3A-FIRST-ELIGIBLE",
+          "candidate_source_line_id": "LEGACY-CAND-LINE-001656",
+          "source_holding_registration_id": "MPR-SH-CANDIDATE-004",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 399,
+          "source_line_sha256": "sha256:58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+          "source_text_span": "First-passの「初回」は最初のeligible candidateとし、",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "inventory_atomization_status": "preserved_pending_atomization",
+          "disposition": "narrow_candidate_subatom",
+          "relation": "最初のeligible candidateをFirst-passの「初回」とする境界だけをHELIXLABO-L2/L11-067へcandidate-scopedで保持する。"
+        },
+        {
+          "atom_id": "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3B-REPAIR-ROUNDS",
+          "candidate_source_line_id": "LEGACY-CAND-LINE-001656",
+          "source_holding_registration_id": "MPR-SH-CANDIDATE-004",
+          "legacy_asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "source_file_sha256": "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "source_line": 399,
+          "source_line_sha256": "sha256:58be97d309362b845682602ae352b1954ed433fbc4b6552791f89be07d70db4f",
+          "source_text_span": "内部で何度も修正した後の提出を隠さないためAttempt/repair回数を併記する。",
+          "selected_semantic_fragment": "提出前の修復roundを隠さないためrepair roundsを可視化する部分",
+          "preserved_pending_semantic_fragment": "複数Attemptの総Attempt count",
+          "source_authority_state": "historical_candidate",
+          "target_authority_state": "draft_candidate",
+          "inventory_atomization_status": "preserved_pending_atomization",
+          "disposition": "narrow_candidate_subatom",
+          "relation": "source clauseのrepair-round visibilityだけをHELIXLABO-L2/L11-067へ保持する。総Attempt countは別のpending subatomとしてMPR-SH-CANDIDATE-004に保全し、本候補のcoverageに含めない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-005",
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-011",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-006",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-065",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-067",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-065",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-067",
+        "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "carried_atom_refs": [
+        "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3A-FIRST-ELIGIBLE",
+        "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3B-REPAIR-ROUNDS"
+      ],
+      "preserved_pending_atom_refs": [
+        "LEGACY-CAND-LINE-001656",
+        "LABO-FIRSTPASS-ATTEMPT-REPAIR-LEGACY-CAND-LINE-001656-S3C-ATTEMPT-COUNT-PENDING"
+      ]
+    }
+  ],
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/labo-firstpass-attempt-repair-coverage-receipt-2026-09-28.json",
+  "correction_reason": "R2289-02 metadata-only correction: current source-holding references follow MPR-SH-CANDIDATE-004; candidate content, selected atoms, candidate/source digests, counts, coverage, PO disposition and authority are unchanged."
+}

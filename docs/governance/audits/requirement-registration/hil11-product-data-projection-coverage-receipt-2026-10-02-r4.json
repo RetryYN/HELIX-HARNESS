@@ -1,0 +1,322 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-112-HIL11-PRODUCT-DATA-PROJECTION-2026-10-02-002-R4",
+  "receipt_state": "candidate_source_and_coverage_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-112",
+  "candidate_kind": "connection",
+  "l2_source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+  "l2_section_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
+  "l2_section_digest_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
+  "l11_source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+  "l11_section_digest": "sha256:a93d6a2590560fd93572cdae326430081c93dd53c9c3b68165fb621eb2ad5c8f",
+  "l11_section_digest_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended.",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
+  "source_atom_set_digest": "sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4",
+  "source_atom_set_digest_rule": "atom_id昇順。各atomの `atom_id SP source_semantic_digest（sha256:を除く） LF` をUTF-8で連結してSHA-256。source_semantic_digestは各選択identityのstatement.semantic_digestを使い、identity object全体のsemantic_digestは使わない。",
+  "source_atom_file_sha256": "sha256:8bde161da7a54a62d121179265acb1f7789d3c0d09411ad4ee94461f509caa8e",
+  "source_atom_count": 4,
+  "source_collection_scope": "MPR-SH-IR-004で保持する旧IRのHIL-BR-15/HIL-FR-23/HIL-FR-24/HIL-NFR-17の4 identityをsource atomとして選択。各旧L1 lineは同一identityへのcross-referenceであり別atomではない。補助contract/HAC/HATはoracle/contextで、追加requirement atomではない。",
+  "atoms": [
+    {
+      "atom_id": "HIL11-IR-BR15",
+      "requirement_identity": "HIL-BR-15",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-15/statement",
+      "source_semantic_digest": "sha256:5f5450b0a801f1f4c6650a0b4ddb87d5eee23400f2126332ed0038ed06f01115",
+      "cross_reference_line": 67,
+      "cross_reference_line_sha256": "sha256:880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "source_semantic_digest_kind": "selected requirement statement.semantic_digest",
+      "source_semantic_digest_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-15/statement/semantic_digest",
+      "source_text_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-15/statement/text",
+      "source_record_semantic_digest_kind": "selected requirement object root semantic_digest (separate from statement digest)"
+    },
+    {
+      "atom_id": "HIL11-IR-FR23",
+      "requirement_identity": "HIL-FR-23",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23/statement",
+      "source_semantic_digest": "sha256:641f78a72962e9343b37991cb298f1e64e0630659c312dc62c5515db81f5f5eb",
+      "cross_reference_line": 113,
+      "cross_reference_line_sha256": "sha256:85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "source_semantic_digest_kind": "selected requirement statement.semantic_digest",
+      "source_semantic_digest_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23/statement/semantic_digest",
+      "source_text_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23/statement/text",
+      "source_record_semantic_digest_kind": "selected requirement object root semantic_digest (separate from statement digest)"
+    },
+    {
+      "atom_id": "HIL11-IR-FR24",
+      "requirement_identity": "HIL-FR-24",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24/statement",
+      "source_semantic_digest": "sha256:b021ff425efe0ba75863b33302ec3c41146b5c995ad9cfae41af926e80d152d2",
+      "cross_reference_line": 114,
+      "cross_reference_line_sha256": "sha256:a61697f41088818ddbb852fe274453666708c8467ce3d60a538203140bbc91d4",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "source_semantic_digest_kind": "selected requirement statement.semantic_digest",
+      "source_semantic_digest_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24/statement/semantic_digest",
+      "source_text_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24/statement/text",
+      "source_record_semantic_digest_kind": "selected requirement object root semantic_digest (separate from statement digest)"
+    },
+    {
+      "atom_id": "HIL11-IR-NFR17",
+      "requirement_identity": "HIL-NFR-17",
+      "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-17/statement",
+      "source_semantic_digest": "sha256:476a1cc64e906c7341e251fc5396cefeab2bb0ce3bbcdb3e34d67c6c8600b8f7",
+      "cross_reference_line": 197,
+      "cross_reference_line_sha256": "sha256:186a5b69b53e453fec1351f40e72221a3fea749e727ba0668d842a512a9566f6",
+      "source_holding_registration_id": "MPR-SH-IR-004",
+      "source_semantic_digest_kind": "selected requirement statement.semantic_digest",
+      "source_semantic_digest_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-17/statement/semantic_digest",
+      "source_text_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-17/statement/text",
+      "source_record_semantic_digest_kind": "selected requirement object root semantic_digest (separate from statement digest)"
+    }
+  ],
+  "coverage_result": "no_loss_limited_to_four_selected_HIL11_IR_identity_atoms",
+  "condition_closure": "not_asserted",
+  "formal_successor_binding": "not_asserted",
+  "adoption_or_requirement_stage_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-IR-004#HIL-BR-15/HIL-FR-23/HIL-FR-24/HIL-NFR-17 remain preserved_pending_rehome; successor_requirement_ids empty and decision_record null",
+    "MPR-SH-CANDIDATE-004 remains live; legacy candidate source collection not closed",
+    "MPR-SH-SUPPLEMENTARY-004 remains live; HR-FR-HIL-11, HAC-HIL-11a/b/c, HAT-HIL-11 remain preserved_pending_rehome",
+    "HIL-11 HAT remains designed_not_implemented"
+  ],
+  "human_decision_disposition_refs": [],
+  "retained_existing_conditions": [
+    "OS L2-015/016 and 007/009 cover generic identity/revision/provenance/event/projection/durability/reconstruction conditions only",
+    "HARNESS L2-027 adopted static artifact observation; L2-038 adopted reverse-closure scope explicitly excludes Product Data ingestion",
+    "CONNECT accepted generic transport/compatibility; it does not define Product Data schema/cursor/snapshot/projection",
+    "SECURITY authority and existing source/consumer-owner semantics remain upstream inputs"
+  ],
+  "candidate_specific_residuals": [
+    "versioned source key/connector/schema/mapping read-registration linkage and digest-bound enable/disable receipt tied to existing operation authority",
+    "full/incremental snapshot, cursor/watermark monotonicity and idempotency",
+    "canonical entity and explicit consumer mapping lineage",
+    "tombstone, stale/freshness and schema-drift boundaries",
+    "redaction/minimization and negative oracle preventing current/watermark advancement",
+    "selected freshness SLA and retention policy references, with no new numeric values inferred",
+    "HIL-BR-15 six roles have separate selected-consumer mapping and failure/unknown fixture conditions; actual owner, consumer set, role applicability, schema, business mapping and adoption remain unresolved."
+  ],
+  "version_target": "2.0 candidate only; crosswalk placement proposal, not PO decision",
+  "evidence_refs": [
+    "docs/governance/audits/requirements-stage/hil11-auxiliary-product-data-projection-audit-2026-10-01.md",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl#HIL-BR-15,HIL-FR-23,HIL-FR-24,HIL-NFR-17",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl#REQSRC-LINE-00067,00113,00114,00197",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl#REQSRC-SUP-00552-00554, HAT-HIL-11",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-11",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-11a,HAC-HIL-11b,HAC-HIL-11c",
+    "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-11",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md:33-57,86-109,193-238",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md:27-57",
+    "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-112",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#HELIXOS-L2-112",
+    "docs/governance/audits/requirements-stage/hil11-product-data-projection-residual-candidate-record-2026-10-02.md"
+  ],
+  "candidate_base_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
+  "candidate_base_register_sha256": "sha256:11c97569e7737a80f8e83a1420b801602048d3cbd3f99dbe99ca2dea79088afe",
+  "parent_concept_revision": "docs/concept/helix-concept.md@1cd77015081b87d5bcde7d5e45ee4e0a227e02c2 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed bytes; candidate adoption not inherited)",
+  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e (HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28 fixed/adopted L1 target; this does not adopt HELIXOS-L2-112/L11)",
+  "registration_id": "MPR-RC-HELIXOS-L2-112-002",
+  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-112-001",
+  "carried_atom_refs": [
+    "HIL11-IR-BR15",
+    "HIL11-IR-FR23",
+    "HIL11-IR-FR24",
+    "HIL11-IR-NFR17"
+  ],
+  "parent_planning_current_main_check": "606bb1fa04eeb1512e665fb52a2a10c689056d64; docs/helix-os/L1-planning/system-intent.md SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e, byte-equal to the decision-fixed target at latest comparison base.",
+  "parent_planning_decision_record": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#対象revision",
+  "candidate_parent_adoption_status": "L1 parent target is adopted only for exact SHA-256 2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e under HDEC-HELIXOS-REQUIREMENTS-PO-2026-09-28; the new L2-112/L11 pair is not adopted.",
+  "candidate_parent_fixed_l1_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+  "review_corrections": [
+    "Pre-integration MPR-RC-HELIXOS-L2-112-001 initially carried a placeholder registration time; old -002 corrected it to the actual record time 2026-10-02T05:12:46+09:00 and added the residual-audit reference.",
+    "Old -003 normalized the candidate input to the four IR identities held by MPR-SH-IR-003; legacy L1 rows are cross-references to those same atoms, not additional atoms.",
+    "Old -004 recorded the exact adopted parent L1 decision pin and kept the new L2-112/L11 pair unadopted.",
+    "Old -005 added HIL-FR-23 contract/digest-bound enable/disable receipts, existing-authority and no-state-change negative oracles, plus HIL-NFR-17 selected freshness/retention policy references without invented numeric values.",
+    "Old -006 corrected source_atom_file_sha256 to the clarified source-lines bytes and distinguished each statement.semantic_digest from the IR record-root semantic digest. Four atom identities and values, source atom set digest, and L2/L11 section digests were unchanged.",
+    "Review F1 restored the 72d08eb-fixed OS L2 preamble identifying the parent Concept/L1 as unapproved, relation-table header, and human-judgment bullet to exact base bytes and removed the HELIXOS-L2-112 relation row; the new 112 section parent explanation remains.",
+    "Review F2 transferred PO options A and B, recommendation B, its rationale, and impacted requirements/boundaries from the PR body to the residual audit. No PO decision was generated.",
+    "Review F3 consolidated the unintegrated -001..-006 register history into one final -001 row with the actual record time and null supersedes reference. The prior corrections are preserved in this review_corrections list and the residual audit.",
+    "Final static check: candidate section boundaries are ### HELIXOS-L2-112 through EOF in L2 and ### HELIXOS-L2-112 through EOF in L11 (trailing blank lines removed, one LF). Current full-file SHA-256: OS L2 36f537c51929d49977df84204b72305199979120ceec9014b0c315a6f4d89ce5; OS L11 0cb24142b24c2ce27f32cfa29dd8c8da65f7d53d53da499b28fbf256ac917c1b. L2 section digest, L11 section digest, and four-atom source digest remain unchanged. The direct current bindings and PHCAP-14/16 inventory pins match the final OS L2 bytes. Historical pins are unchanged.",
+    "R2 adds the HIL-BR-15 six-role fanout condition and per-role missing/wrong-revision/owner/mapping oracles to the existing 112 candidate. It does not create a new source atom or HELIXOS-L2-123, decide actual consumer scope/owners, or adopt the candidate.",
+    "Current candidate section digest rules use each candidate heading through the next ### heading (or EOF), trailing LF bytes removed and one LF appended. Prior receipt -001 remains the historical initial revision.",
+    "Source atom set, four atom identities/digests, original source-lines ledger and old source bytes are unchanged; the supplemental source-condition ledger cross-references BR15 as the same atom.",
+    "Latest-main read-after updated from initial drafting base 26ce662 to cf159dff, preserving the historical local candidate snapshot at 51edcb3e. The main OS120/121 and 663-row register prefix are retained; only candidate 112 registration -002 is appended after that prefix.",
+    "Latest-main additions leave the 112 L2/L11 section digests unchanged; current full-file SHA values now bind the merged candidate bytes separately from the base full-file SHA values.",
+    "Final unshared r2 content localizes the human-facing audit to Japanese, gives concrete synthetic all-six-applicable and explicit non-applicable normal fixtures, and ties each independent edge and role-specific negative to a result. It creates no real consumer or owner selection.",
+    "Supplemental source-condition ledger wording now explicitly says it does not alter the existing four-atom input set. Original source statement, source-line bytes, source semantic digests, MPR-001 and receipt-001 are unchanged.",
+    "Latest comparison base is 3ce292e3711d4a954b4c6334b318590b374ba7b8. Its 664-row register prefix is exact; the final unshared tree contains only MPR-112-002 after that prefix. No separate MPR-003 is created.",
+    "Final unshared r2 candidate includes Japanese human-facing audit text, a concrete synthetic normal fixture with six independent consumer identities/revisions/mapping edges/lineage, a separate normal fixture with explicit owner-declared non-applicable roles, and role-specific missing-edge, wrong-revision and unknown-owner outcomes.",
+    "Supplemental source-condition ledger now says explicitly that it does not increment or alter the existing four-atom source set. Original BR15 source statement/line, atom set, MPR-001 and receipt-001 are unchanged.",
+    "Latest comparison base is 3ce292e3711d4a954b4c6334b318590b374ba7b8. Its 664-row register prefix is exact, followed by the sole unshared corrected MPR-112-002 row. No MPR-003 or receipt r3 is created.",
+    "Post-merge receipt correction: normalized current section digest rule descriptions to the canonical next same-level-or-higher Markdown heading boundary; the historical local snapshot wording and pins remain unchanged. Exact recomputation at current and historical snapshots preserves the recorded digests. Removed one duplicated BR15 residual description."
+  ],
+  "source_semantic_digest_definition": "各atomのsource_semantic_digestは、source_identityで特定したrequirements.json objectのstatement.semantic_digest。source_pointerは同じidentityのstatement objectを指し、source_semantic_digest_pointerはそのsemantic_digest field、source_text_pointerはstatement.text fieldを指す。",
+  "source_record_semantic_digest_definition": "source_record_semantic_digestはidentity root objectのsemantic_digestであり、statement.semantic_digestとは異なる別digest。",
+  "latest_registration_ref": "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HELIXOS-L2-112-002",
+  "supersedes_receipt_id": "MPR-RCPT-HELIXOS-L2-112-HIL11-PRODUCT-DATA-PROJECTION-2026-10-02-001",
+  "source_condition_ledger_ref": "docs/governance/audits/requirement-registration/hil11-br15-consumer-fanout-source-lines-2026-10-02.jsonl",
+  "source_condition_ledger_file_sha256": "sha256:938b9abec12996af63c4c4b56a86cdc61dc887aeb16c566607c5610f15cec4ea",
+  "br15_consumer_fanout": {
+    "source_atom": "HIL11-IR-BR15; source atom count and source atom set digest unchanged",
+    "roles": [
+      "design_decisions",
+      "coverage",
+      "impact",
+      "issue_routing",
+      "docgen",
+      "detector"
+    ],
+    "normal_oracle": "Each selected role has a distinct consumer identity/revision, owner-declared scope/canonical mapping, and source-to-projection lineage.",
+    "negative_oracles": [
+      "one omission per role",
+      "wrong selected consumer revision",
+      "missing/unknown owner or scope",
+      "missing mapping or lineage"
+    ],
+    "unselected_source": "unobserved/unknown; reference-only evidence does not count as supply",
+    "complete_claim": "Only explicit role dispositions can support a complete claim; unresolved roles remain partial/unknown.",
+    "not_decided": [
+      "actual source set",
+      "actual participating consumers",
+      "owner assignment",
+      "role applicability per source",
+      "schema or business mapping semantics",
+      "whether all six are mandatory for every source"
+    ],
+    "authority_effect": "none"
+  },
+  "human_decision_options": {
+    "A": "All six named roles are mandatory for every selected Product Data source; this fixes broader role applicability than a source-specific owner selection.",
+    "B_recommended": "For each selected source, source/consumer owners explicitly select role applicability and identity/revision; retain all six as independently accounted roles, and keep unresolved roles partial/unknown.",
+    "C": "Keep current selected-ref behavior without a role-by-role completeness claim; this leaves the BR15 supply condition absent from the candidate oracle.",
+    "recommendation": "B",
+    "reason": "Preserves each source-named role while avoiding invented consumer identities, ownership, or universal applicability.",
+    "affected_requirements": [
+      "HIL-BR-15",
+      "HIL-FR-23 source registration",
+      "HIL-FR-24 mapping",
+      "HIL-NFR-17 access/data-use boundary"
+    ],
+    "decision_status": "not decided by this candidate or receipt"
+  },
+  "current_bytes_read_after": {
+    "comparison_base_commit": "606bb1fa04eeb1512e665fb52a2a10c689056d64",
+    "candidate_l2_file": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "sha256:fb7c87ee05a15112af6849c3a759fa4b0c9deee7f5ababb8e925f7a31436c1fa",
+      "base_sha256": "sha256:37712c030b27c2cfb8c73960680026fecdb44464d93d4996ad82423cad04cb05",
+      "base_section_digest": "sha256:6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6",
+      "section_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
+      "section_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended."
+    },
+    "candidate_l11_file": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "sha256:c3ed3c30bf727f2054451d88a7d6f93f45d4ed96fa0ea8dfb9df658eb1a87b0a",
+      "base_sha256": "sha256:adb3043bc06e4e534730ac08ab47cdd56b6c2931ac859ac8f09fe16fd6fd5ff4",
+      "base_section_digest": "sha256:3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99",
+      "section_digest": "sha256:a93d6a2590560fd93572cdae326430081c93dd53c9c3b68165fb621eb2ad5c8f",
+      "section_rule": "UTF-8 bytes from the ### HELIXOS-L2-112 heading up to the next same-level or higher-level Markdown heading (or EOF), trailing LF bytes removed, exactly one LF appended."
+    },
+    "source_atom_file": {
+      "path": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
+      "sha256": "sha256:8bde161da7a54a62d121179265acb1f7789d3c0d09411ad4ee94461f509caa8e",
+      "digest": "sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4",
+      "atom_count": 4
+    },
+    "supplemental_source_condition_ledger": {
+      "path": "docs/governance/audits/requirement-registration/hil11-br15-consumer-fanout-source-lines-2026-10-02.jsonl",
+      "sha256": "sha256:938b9abec12996af63c4c4b56a86cdc61dc887aeb16c566607c5610f15cec4ea",
+      "same_atom": "HIL11-IR-BR15",
+      "atom_accounting": "does not increment or alter existing four-atom set"
+    },
+    "register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "base_prefix_rows": 665,
+      "base_prefix_sha256": "sha256:11c97569e7737a80f8e83a1420b801602048d3cbd3f99dbe99ca2dea79088afe",
+      "current_rows": 666,
+      "current_file_sha256": "sha256:0eaaebe840b3e281b6c05dc8bda01b636acb0d6164adaae8eade3e7ee31e1264",
+      "new_registration_id": "MPR-RC-HELIXOS-L2-112-002",
+      "supersedes": "MPR-RC-HELIXOS-L2-112-001",
+      "prefix_preserved": true,
+      "authority_effect": "none"
+    },
+    "parent_l1": {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#対象revision",
+      "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "matches_latest_main_bytes": true,
+      "does_not_adopt": "HELIXOS-L2-112/L11"
+    },
+    "latest_main_additions": "OS122 and INTELLIGENCE 078 remain in the latest-main body; the 665-row register prefix is preserved, followed by only MPR-RC-HELIXOS-L2-112-002. OS112 base section digests were read from exact 606bb1fa bytes above.",
+    "identity_123_check": "No HELIXOS-L2-123 registration exists in the latest-main prefix; not used because BR15 is within the existing HIL-BR-15 atom and OS112 candidate."
+  },
+  "initial_drafting_base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+  "initial_drafting_base_register_sha256": "sha256:7c5d03aec57d9126f1cf4fd59a3777308fcfa04ba398cd65bf72b4d5114dffe3",
+  "pre_latest_main_local_candidate_snapshot": {
+    "commit": "51edcb3e8f304cef4ee00f41dd935adca4bd6840",
+    "candidate_base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+    "current_bytes_read_after": {
+      "base_commit": "26ce66202f7a57230093701fc90abb2f9f1c355f",
+      "candidate_l2_file": {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "sha256": "sha256:921b34d308165f32f6aa5ca7b839655b10ffd447b99d986fe310945285a524eb",
+        "section_digest": "sha256:86574d236aeaeeba0b0ee5169b9165e5570e45a323bdb28058b888dff398b0d3",
+        "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended; exact base/current bytes are pinned in current_bytes_read_after."
+      },
+      "candidate_l11_file": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "sha256": "sha256:4dcc3feca9d8bd1f2d5f18f2c260eab530eccb9665dcc462cc5bab66416a1bd5",
+        "section_digest": "sha256:4f54c6ec5948b73eb692377f616024ff96e1d7a0c6b044955ae4b20ff0b585c9",
+        "section_rule": "UTF-8 bytes from ### HELIXOS-L2-112 heading up to the next ### section heading (or EOF), trailing LF bytes removed, exactly one LF appended; exact base/current bytes are pinned in current_bytes_read_after."
+      },
+      "source_atom_file": {
+        "path": "docs/governance/audits/requirement-registration/hil11-product-data-projection-source-lines-2026-10-02.jsonl",
+        "sha256": "sha256:8bde161da7a54a62d121179265acb1f7789d3c0d09411ad4ee94461f509caa8e",
+        "digest": "sha256:0ea93e048acc41d5c5bf22dede0085a1208cf29c786016a164c326131219f1d4",
+        "atom_count": 4
+      },
+      "supplemental_source_condition_ledger": {
+        "path": "docs/governance/audits/requirement-registration/hil11-br15-consumer-fanout-source-lines-2026-10-02.jsonl",
+        "sha256": "sha256:d97c506bea63dfc1d2fd51fc4559d7cbb88468bf5eb0a4e7cbd3d62b89588248",
+        "same_atom": "HIL11-IR-BR15"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "new_registration_id": "MPR-RC-HELIXOS-L2-112-002",
+        "supersedes": "MPR-RC-HELIXOS-L2-112-001",
+        "authority_effect": "none",
+        "prefix_preserved": true
+      },
+      "parent_l1": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md#対象revision",
+        "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "matches_base_bytes": true,
+        "does_not_adopt": "HELIXOS-L2-112/L11"
+      },
+      "identity_123_check": "No HELIXOS-L2-123 or MPR-RC-HELIXOS-L2-123 record existed at base; not used because BR15 remains inside existing atom/candidate 112."
+    },
+    "register_file_sha256_at_local_candidate_commit": "sha256:5a32f7d949fd6883f298d39d70f09ef3db05f71acf4a033b77b7cf2f481ebfe2",
+    "preservation_note": "Historical pre-latest-main local candidate snapshot; kept as a distinct prior comparison."
+  },
+  "candidate_semantic_digest": "sha256:ef06d3d78957a483d89249fe72b0c913fd08d78a60f9c42c2821988a0616f4a8",
+  "current_registration_ref": "docs/governance/management-provisional-requirement-register.jsonl#MPR-RC-HELIXOS-L2-112-002",
+  "decision_status": "not decided by this candidate or receipt",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02-r3.json",
+  "correction_reason": "R2289-02 metadata-only correction: current source-holding references follow MPR-SH-CANDIDATE-004; candidate content, selected atoms, candidate/source digests, counts, coverage, PO disposition and authority are unchanged.; L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

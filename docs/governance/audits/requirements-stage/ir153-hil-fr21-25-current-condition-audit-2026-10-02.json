@@ -1,0 +1,210 @@
+{
+  "audit_id": "IR153-HIL-FR-21-25-current-condition-audit-2026-10-02",
+  "audit_scope": "Five selected IR identities HIL-FR-21 through HIL-FR-25; not full HIL-09/10/11 or IR153 closure.",
+  "current_main_read_after": {
+    "base_commit": "68e1e3ad54d7d4e29762a39b8ef5c590cb789d9d",
+    "current_file_sha256": {
+      "docs/helix-os/L2-requirements/governance-requirements.md": "20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md": "e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34",
+      "docs/helix-harness/L2-requirements/product-requirements.md": "96a044491b0d8a8f45833a048753f89fc76966824a825982303ecc50e821ec2e",
+      "docs/helix-harness/L11-acceptance/product-acceptance.md": "a286d3f9e813571485ebb7b1a9dcdd7afae996180a3d2f6c6463d2ea98f96be3"
+    },
+    "adopted_decisions": [
+      {
+        "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "fixed_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "adopted_ids": [
+          "HELIXOS-L2-015",
+          "HELIXOS-L2-016"
+        ],
+        "fixed_file_sha256": {
+          "L2": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "L11": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+        },
+        "current_section_sha256": {
+          "L2-015": "f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "L2-016": "10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+          "L11-015": "79fabc2e1eed7f8ccf3e3ac1ea88c6d5fa0a1bb9cb392835912aa6b0ce04caa0",
+          "L11-016": "2dc46eb36e8ca552c079ade0dad329c2ca0c244f4c2493a06eec4f60647897a3"
+        },
+        "decision_scope": "The parent L1 bytes and enumerated pair were adopted; selected capabilities do not make HIL legacy source closure or HAT execution."
+      },
+      {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-43",
+        "adopted_id": "HARNESS-L2-038",
+        "MPR": "MPR-RC-HARNESS-L2-038-001",
+        "fixed_section_sha256": {
+          "L2": "dd5b5450801617bbd6cc1dfd2e522420399ec58fb7675a286221dd0d9415767c",
+          "L11": "dfa3b4c245af3987ee7738cc4a3aa758bb8f113b9d06079362d978ff63731297"
+        },
+        "current_section_sha256_matches": true,
+        "scope": "selected-scope content closure; not HIL-09 source capture"
+      },
+      {
+        "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-56",
+        "adopted_id": "HELIXOS-L2-033",
+        "MPR": "MPR-RC-HELIXOS-L2-033-001",
+        "fixed_section_sha256": {
+          "L2": "580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+          "L11": "1d30394888b3bded49f8e517d7e0888a25130e123df945adf69c7db5588571b1"
+        },
+        "current_section_sha256_matches": true,
+        "source_atom_count": 7,
+        "source_scope": "HIL-FR-25/26 and HR/AC/HAT-HIL-10 records; NFR-13 excluded"
+      },
+      {
+        "decision": "HELIXOS-L2-112",
+        "current_status": "unadopted candidate",
+        "MPR": "MPR-RC-HELIXOS-L2-112-001",
+        "register_line": 642,
+        "candidate_section_sha256": {
+          "L2": "6bfc4a3bef86e22a0ba044be7c8b1d5539b3f00e5445b76c9e690b7b02df0ba6",
+          "L11": "3796ec774e093ee96d93d729b781c0980bb9eabc9339099e1ccb0f78857c6d99"
+        },
+        "candidate_full_file_sha256": {
+          "L2": "20bc628a1b46ec9c31537d7b6f05d7535827daaf2e6ed6491544ecff04fb854f",
+          "L11": "e287f7ac2e82bbd7bca2a2ac1af6f263a5fe348fc6e70f29d7bc7c3c3e1d0c34"
+        },
+        "authority_effect": "none",
+        "source_atoms": [
+          "HIL-BR-15",
+          "HIL-FR-23",
+          "HIL-FR-24",
+          "HIL-NFR-17"
+        ],
+        "excluded_from_source_atoms": [
+          "HR-FR-HIL-11",
+          "HAC-HIL-11a/b/c",
+          "HAT-HIL-11 remain pending supplementary source; HAT designed_not_implemented"
+        ]
+      }
+    ],
+    "current_holding": "FR21-25 carry-forward rows 54-58 are preserved_pending_rehome; successor_requirement_ids=[], decision_record=null. Candidate/adopted pair does not alter that state.",
+    "not_claimed": [
+      "HIL-09 capture/replay execution",
+      "Product Data external read or runtime implementation",
+      "HAT pass",
+      "full FR21-25/source-family closure",
+      "formal successor/owner transfer/holding release",
+      "fixed old physical ZIP/Node/Python/database/CI implementation"
+    ],
+    "legacy_execution": "none; static document/source read only"
+  },
+  "conditions": [
+    {
+      "id": "HIL-FR-21",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 111,
+        "physical_line_sha256_excluding_lf": "844dee51d5ca37917ee497c78045c2633eef0b08d6427bfc7dfcd3a805efc40f",
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "requirements_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-21",
+        "requirements_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "record_semantic_digest": "sha256:a79bd082626d912c3b5409a05370d985f697d5a8541ffff232dd32cd43f33806",
+        "statement_semantic_digest": "sha256:f25bd0492adc5256b7159de126ae2e70568b08d4bd420d640fa5bd804eddcb3c",
+        "source_statement": "Source Snapshot Manifest: ZIP entry、前身repository exact 2件のidentity、namespace policy、advertisement A/B digest、全ref→peeled object→commit/tree→entry edge、sealed mirror receipt、現行HELIX symbol/doc/testを固定し、観測時刻、source/tree digest、取得器・抽出器versionを記録。ref/content/edge分母はreceiptから導出し、remote identity・advertisement・namespace・source集合が変われば既存snapshot、atomization、coverage receiptをstale化する。"
+      },
+      "condition_by_condition_current_comparison": "採択HARNESS-L2/L11-038 (fixed digests dd5b... / dfa3...)は選択source scope内の一意capability identity、manifest分母、双方向join、aggregate-only closure拒否を保持。採択OS-015/016はsource identity/revision/digest/authorityとunknown/stale traceを保持。いずれも指定ZIP+旧repo 2件のA/B advertisement、all refs/object/tree/entry edge、sealed mirror capture、receipt由来3分母、extractor drift stale cascadeを実データで成立させる契約/receiptではない。",
+      "exact_positive_negative_oracle": "正例: manifestが指定3 source class、全advertised refs/content/edges、A/Bとsealed receiptを一revisionで束縛し、分母がreceiptから導かれる。負例: remote identity/advertisement/namespace/source setまたはextractorが変わればsnapshot・atomization・coverageをstale化し、部分/重複/旧currentを成功扱いしない。HAC-HIL-09a/b/cとHAT-HIL-09は設計statusのみ。",
+      "residual_or_nonclosure": "FR21の個別 capture + HIL-09 input completeness/evidence は既存採択pairへ完全対応せず、current mainで採択済みHIL-09 exact capture receipt/acceptance evidenceは未確認。隣接038/015/016の一般保証はFR21具体的な収集成立と同一視しない。",
+      "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl; preserved_pending_rehome; successor_requirement_ids empty; decision_record null",
+      "legacy_supporting_contracts": {
+        "HR/HAC/HAT": "legacy requirements IR system_contracts.json; acceptance_cases.json; system_tests.json, each identity and conditions indexed in existing audit docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md (FR21/22), hil11-auxiliary-product-data-projection-audit-2026-10-01.md (FR23/24), hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md (FR25)",
+        "status": "specified/design-only; old HATs are designed_not_implemented; no old execution"
+      }
+    },
+    {
+      "id": "HIL-FR-22",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 112,
+        "physical_line_sha256_excluding_lf": "a25967dc2a741b6a422e72e8588a805b3fedb67a11ce3f6faf6231c37a159291",
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "requirements_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-22",
+        "requirements_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "record_semantic_digest": "sha256:05ec985410b6c7aaf1b3c49dc640401a94bf5c1a60e01459fad5d37dc89a64ce",
+        "statement_semantic_digest": "sha256:9d401a7bd016ded7263eeb3c0546e1bcd15a7fb8acca13fd78bfabd2a80021ac",
+        "source_statement": "各抽出capabilityへ一意ID、disposition (adopt/harden/redesign/reject/absorbed)、根拠、HIL要件、基本設計、test、detector/gateの双方向joinを要求し、未判断/根拠なきreject/孤立atom/複合ID一括合格があればpair-freeze拒否。"
+      },
+      "condition_by_condition_current_comparison": "採択HARNESS-038は選択されたmanifest内の個別capability内容閉包、disposition意味、要求・設計・検証対との双方向join、未説明/孤立/aggregate-onlyの失敗oracleを扱い、PO row 43採択の固定L2/L11 section digestと一致。採択OS-016は要求→作業/実装/検証state/traceとunknown/stale edgeを保持。OS-016は個別capability disposition ledgerを規定しない。",
+      "exact_positive_negative_oracle": "正例: 選択manifestの各atomにdecision rationaleと各downstream relationを明示して全方向から到達。負例: pending、根拠なしreject、orphan、multi-ID aggregate passのいずれかが1件でも残ればfreeze拒否。038の採択はsemantic closure条件、実行済みHIL09 ledger/receiptではない。",
+      "residual_or_nonclosure": "selected scope内容閉包部分はHARNESS-038へ保持される。一方FR22が明示する各source capabilityのdisposition列挙、根拠付きreject、全HIL requirement/design/test/detector/gateへの一つずつの双方向joinとpair-freeze拒否の実証はHIL09固有の実receiptとしては未確認。",
+      "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl; preserved_pending_rehome; successor_requirement_ids empty; decision_record null",
+      "legacy_supporting_contracts": {
+        "HR/HAC/HAT": "legacy requirements IR system_contracts.json; acceptance_cases.json; system_tests.json, each identity and conditions indexed in existing audit docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md (FR21/22), hil11-auxiliary-product-data-projection-audit-2026-10-01.md (FR23/24), hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md (FR25)",
+        "status": "specified/design-only; old HATs are designed_not_implemented; no old execution"
+      }
+    },
+    {
+      "id": "HIL-FR-23",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 113,
+        "physical_line_sha256_excluding_lf": "85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92",
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "requirements_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23",
+        "requirements_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "record_semantic_digest": "sha256:62ae71f77c2fb2ea851d2a907a551428d21666ed8ba106d45e8c0f25c4c741a6",
+        "statement_semantic_digest": "sha256:641f78a72962e9343b37991cb298f1e64e0630659c312dc62c5515db81f5f5eb",
+        "source_statement": "Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持し、credential値は保存しない。"
+      },
+      "condition_by_condition_current_comparison": "現行OS-L2-112/L11-112候補は、明示選択されたversioned read registration、source identity/type/key scope、connector/schema/mapping revision、credential reference、classification、read/write policy、sync mode、owner、enabled stateとenable/disable receipt、secret値の非保存を具体化する。FR23のselected IR atomを含むMPR-RC-HELIXOS-L2-112-001 source set/receiptに結ぶ。ただしcandidate sectionは明示未採択、MPR authority_effect:none。OS L1親の採択はL2-112の採択でない。",
+      "exact_positive_negative_oracle": "正例は選択scope/revision/policy/contract/digest/owner/enabled stateと既存操作authorityへの参照を束縛したregistry/enable-disable receipt、secret value 0。負例はcredential value保存、unknown/stale contract/policy/authority、digest不一致やscope外でenabled stateを変えない。112 L11は静的候補oracleのみ。",
+      "residual_or_nonclosure": "候補本文の記録shapeはFR23条件に対応するがPO採択、formal successor/owner transfer/product scope/consumer set、実connector操作または受入結果はない。採択OS-015等の一般 source/authority recordだけではProduct Data connector registry意味は成立しない。",
+      "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl; preserved_pending_rehome; successor_requirement_ids empty; decision_record null",
+      "legacy_supporting_contracts": {
+        "HR/HAC/HAT": "legacy requirements IR system_contracts.json; acceptance_cases.json; system_tests.json, each identity and conditions indexed in existing audit docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md (FR21/22), hil11-auxiliary-product-data-projection-audit-2026-10-01.md (FR23/24), hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md (FR25)",
+        "status": "specified/design-only; old HATs are designed_not_implemented; no old execution"
+      }
+    },
+    {
+      "id": "HIL-FR-24",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 114,
+        "physical_line_sha256_excluding_lf": "a61697f41088818ddbb852fe274453666708c8467ce3d60a538203140bbc91d4",
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "requirements_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24",
+        "requirements_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "record_semantic_digest": "sha256:3af36f1da4853db4827d338ec52d9346e434f8a78d283e7758085225416e5237",
+        "statement_semantic_digest": "sha256:b021ff425efe0ba75863b33302ec3c41146b5c995ad9cfae41af926e80d152d2",
+        "source_statement": "Product Data Ingestionがfull/incremental snapshotを冪等取得し、source record→canonical entity→requirement/design/Issue mapping、provenance、freshness、tombstone、schema driftをread projectionへ投影。snapshot/watermark/mapping edge/stale-drift findingを示す。"
+      },
+      "condition_by_condition_current_comparison": "現行OS-L2/L11-112未採択候補はselected source/scopeに限定してfull/incrementalを別modeとして扱い、source key・connector/schema/mapping revision・snapshot/cursor/watermark・canonical entity/selected consumer mapping edge・lineage/freshness/redactionをrevision束縛。same input idempotency、tombstoneとfull-missing/incremental-missing差、schema drift/partial/cursor regression時のcurrentを進めないoracleを記す。HARNESS-038は旧FR24 ingest/canonicalizationを明示的にscope外とするため代替ではない。",
+      "exact_positive_negative_oracle": "正例は同一選択scopeでのfull/incremental snapshotおよびcanonical mappingsを再送して二重効果なし。負例はschema drift、cursor逆行、partial result、unknown lineageでcurrent/watermarkを前進しない。explicit tombstoneは関連mapping stale、incremental単なる不出現は削除でない。未見source/consumer契約はunknownを保持。",
+      "residual_or_nonclosure": "候補は意味条件を静的に保持するが未採択で、formal successor/owner/product scope/consumer set/導入版は未決。実snapshot/watermark/mapping edge、external read、runtime/HAT合格は存在を主張しない。",
+      "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl; preserved_pending_rehome; successor_requirement_ids empty; decision_record null",
+      "legacy_supporting_contracts": {
+        "HR/HAC/HAT": "legacy requirements IR system_contracts.json; acceptance_cases.json; system_tests.json, each identity and conditions indexed in existing audit docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md (FR21/22), hil11-auxiliary-product-data-projection-audit-2026-10-01.md (FR23/24), hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md (FR25)",
+        "status": "specified/design-only; old HATs are designed_not_implemented; no old execution"
+      }
+    },
+    {
+      "id": "HIL-FR-25",
+      "source": {
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "line": 115,
+        "physical_line_sha256_excluding_lf": "c28b208b2be946d06c8b068c1e7ae13123e68be2630864af5a2f586edc4601d9",
+        "source_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "requirements_ir_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-25",
+        "requirements_ir_file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+        "record_semantic_digest": "sha256:8fb7a5e9383bca45038258881ac49ad0b2e37a35068493bbd06ac6ecbdf96ae0",
+        "statement_semantic_digest": "sha256:36c4ed5dec52d986c2fb907a3a77990ba8c37ca9f758659ea629bc5ad1a657f5",
+        "source_statement": "Hybrid Document Core Engine RegistryはZIP由来build、agent metadata、assignment、schedule、trace、impact等をversioned capabilityとして分離登録し、input snapshotごとrun/artifact/digest/exit statusを記録。"
+      },
+      "condition_by_condition_current_comparison": "採択OS-L2/L11-033 exact pair is adopted by PO-57 row56, MPR-RC-HELIXOS-L2-033-001 and pinned section digests 580778... / 1d303... . It individually registers selected engine and detector capabilities with owner/version/config/compatibility and snapshot/scope/revision, separates artifact from finding receipt, records run/artifact/output digest/exit status and replay result, rejects unknown/mismatch/partial/provenance gaps and quarantines differing reruns. Old ZIP implementation is not carried as physical requirement.",
+      "exact_positive_negative_oracle": "正例: selected engine capabilities using same input snapshot, version/config rerun deterministically; each run has artifact digest/exit status and provenance. Negative: unknown version/compatibility, snapshot mismatch, only subset rerun, artifact/finding collapsed, missing evidence, partial run or changed digest cannot be replay success. L11 exact pair preserves oracle; execution not asserted.",
+      "residual_or_nonclosure": "FR25 selected capability/versioned-run evidence is retained in adopted 033 within its selected scope. It does not establish runtime/test acceptance, all historical capabilities selected, or formal successor binding/source holding release. FR25 is in the 7-atom set; HIL-NFR-13 is explicitly outside that atom set and remains pending. Carry-forward row 58 remains successor_requirement_ids empty.",
+      "carry_forward": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl; preserved_pending_rehome; successor_requirement_ids empty; decision_record null",
+      "legacy_supporting_contracts": {
+        "HR/HAC/HAT": "legacy requirements IR system_contracts.json; acceptance_cases.json; system_tests.json, each identity and conditions indexed in existing audit docs/governance/audits/requirements-stage/hil09-auxiliary-source-receipt-condition-audit-2026-10-01.md (FR21/22), hil11-auxiliary-product-data-projection-audit-2026-10-01.md (FR23/24), hil10-auxiliary-engine-detector-replay-condition-audit-2026-10-01.md (FR25)",
+        "status": "specified/design-only; old HATs are designed_not_implemented; no old execution"
+      }
+    }
+  ],
+  "validation": {
+    "old_line_sha256_excludes_lf": true,
+    "section_digest_method": "from heading to next same-or-higher heading; trim trailing blank lines; one LF terminator",
+    "legacy_execution": "not run"
+  }
+}

@@ -1,0 +1,2449 @@
+{
+  "schema_version": "helix-legacy-candidate4755-explanation-normative-complement-semantic-review.v1",
+  "audit_id": "legacy-candidate4755-explanation-normative-complement-ranks-461-500-2026-10-01",
+  "created_against_commit": "176b6ec7f3a3087369300f29aa6fc70e998c80b1",
+  "authority_effect": "none",
+  "purpose": "Semantic audit of numeric-ID ranks 461–500 in the 2,710-row effective-explanation marker-negative complement.",
+  "pool_derivation": {
+    "baseline_ref": "#2353 reconciliation.row_records exact source_item_id join",
+    "ordered_classification_overlays": [
+      "#2356",
+      "#2360",
+      "#2363",
+      "#2366",
+      "#2367",
+      "#2368",
+      "#2369",
+      "#2381"
+    ],
+    "effective_explanation_count": 2965,
+    "marker_pool_count": 255,
+    "complement_count": 2710,
+    "equation": "2965 - 255 = 2710",
+    "rank_key": "numeric LEGACY-CAND-LINE suffix ascending",
+    "selected_ranks": [
+      461,
+      500
+    ],
+    "selected_count": 40,
+    "selected_ids": [
+      "LEGACY-CAND-LINE-000755",
+      "LEGACY-CAND-LINE-000756",
+      "LEGACY-CAND-LINE-000758",
+      "LEGACY-CAND-LINE-000759",
+      "LEGACY-CAND-LINE-000760",
+      "LEGACY-CAND-LINE-000762",
+      "LEGACY-CAND-LINE-000763",
+      "LEGACY-CAND-LINE-000764",
+      "LEGACY-CAND-LINE-000766",
+      "LEGACY-CAND-LINE-000768",
+      "LEGACY-CAND-LINE-000770",
+      "LEGACY-CAND-LINE-000772",
+      "LEGACY-CAND-LINE-000774",
+      "LEGACY-CAND-LINE-000775",
+      "LEGACY-CAND-LINE-000776",
+      "LEGACY-CAND-LINE-000778",
+      "LEGACY-CAND-LINE-000779",
+      "LEGACY-CAND-LINE-000781",
+      "LEGACY-CAND-LINE-000782",
+      "LEGACY-CAND-LINE-000783",
+      "LEGACY-CAND-LINE-000784",
+      "LEGACY-CAND-LINE-000785",
+      "LEGACY-CAND-LINE-000789",
+      "LEGACY-CAND-LINE-000790",
+      "LEGACY-CAND-LINE-000795",
+      "LEGACY-CAND-LINE-000797",
+      "LEGACY-CAND-LINE-000799",
+      "LEGACY-CAND-LINE-000800",
+      "LEGACY-CAND-LINE-000802",
+      "LEGACY-CAND-LINE-000804",
+      "LEGACY-CAND-LINE-000805",
+      "LEGACY-CAND-LINE-000806",
+      "LEGACY-CAND-LINE-000807",
+      "LEGACY-CAND-LINE-000808",
+      "LEGACY-CAND-LINE-000809",
+      "LEGACY-CAND-LINE-000811",
+      "LEGACY-CAND-LINE-000812",
+      "LEGACY-CAND-LINE-000813",
+      "LEGACY-CAND-LINE-000814",
+      "LEGACY-CAND-LINE-000815"
+    ],
+    "selected_ids_sha256": "0e66865a2a416f0f52cce648012ffba0f8fd0de46e7b25b8518f9b87282ab02e",
+    "prior_161_180_match_verified": true,
+    "prior_261_300_match_verified": true,
+    "prior_boundary_id": "LEGACY-CAND-LINE-000753",
+    "prior_boundary_pin_status": "committed ancestor pin included",
+    "rank_basis_note": "Ranks 461–500 continue the numeric source-ID order after pinned adjacent rank 460 ID LEGACY-CAND-LINE-000753; rank461=LEGACY-CAND-LINE-000755 and the two 40-row slices overlap in 0 IDs. marker pool rank8の000810を除外し、rank496–500は000811–000815と照合した。",
+    "prior_boundary_observation_source": "committed paired JSON for ranks 421–460 at 50d1e2e4cd61687d5cd5672f5296bd2a89d71986",
+    "prior_421_460_boundary_verified": true
+  },
+  "pinned_inputs": [
+    {
+      "role": "preceding_complement_ranks_421_460_for_rank_boundary",
+      "commit": "50d1e2e4cd61687d5cd5672f5296bd2a89d71986",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-421-460-2026-10-01.json",
+      "sha256": "3c08ea6d604a865cab98bf74a6e62a64ef927cd5dc9b69d4921335bd40474785"
+    },
+    {
+      "role": "preceding_complement_ranks_261_300_for_rank_boundary",
+      "commit": "0d9cdb34e7d7c69d82120cdab119b01038144c83",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-261-300-2026-10-01.json",
+      "sha256": "f02187118df01ab88c814e3d7e52b064d17fab0283714fb3c986aa6387f5c47c"
+    },
+    {
+      "role": "#2353 baseline",
+      "commit": "97672630b7de70fd4433827730c390cbabd90a99",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-cumulative-classification-route-recount-after-2347-2350-2352-2026-09-29.json",
+      "sha256": "2c025c878ce1b63d93531ee980b08c785ba9273d6db6f751cf3237ce31d6696c"
+    },
+    {
+      "role": "#2356 overlay",
+      "commit": "9ae894346ce13888947fb3d4f2e9aafc79fbdcfa",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-source-metadata-reclassification-2026-09-29.json",
+      "sha256": "726d03d543cf4d2876bded38c6e87d2054da8b7c81175033ea4a8a48e1405164"
+    },
+    {
+      "role": "#2360 overlay",
+      "commit": "5ca82b8ff4122a6f2141ed15e25420fafc01e4e0",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-seven-classification-reconciliation-2026-09-29.json",
+      "sha256": "4cedbd4504626c05e511e7e5c67ecb7462cccd82ae9377e29d8ca54b6d6047bb"
+    },
+    {
+      "role": "#2363 overlay",
+      "commit": "e7f5f54c86e45c2904c129cd24c94d589bafb4bd",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-next20-classification-reassessment-2026-09-29.json",
+      "sha256": "12986b5f2f014120cd2a7e674cf999527d6f659e06779d89fdfc87c16fc93384"
+    },
+    {
+      "role": "#2366 overlay",
+      "commit": "a9b36cd43866d30aaca7c1edc654a44a36e47eb3",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-two-family-classification-reassessment-2026-09-29.json",
+      "sha256": "d42792e8c50402353d6c66a941e00062b7288f267fcecfc0e2eabd7ae93ab8f6"
+    },
+    {
+      "role": "#2367 overlay",
+      "commit": "b438bf16a3e3e4f21cf4a9762ae59c7d7efccaf7",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-intake-classification-reassessment-2026-09-29.json",
+      "sha256": "c9b3eec4b150f2ab6b73f790b8feb1bcb8aab91c1b6a30a522f9ba65364a130d"
+    },
+    {
+      "role": "#2368 overlay",
+      "commit": "f89f71e0371440e9e10636499192c2311872b024",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-formation-intake-47-classification-proposal-2026-09-29.json",
+      "sha256": "512cf6bb34a5ee5856d0fa8d78af1177880d82a26e95effc36c3562763b62a95"
+    },
+    {
+      "role": "#2369 overlay",
+      "commit": "081b0b6612b802cfcb02b3cecda1559dd9a3ce13",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-design-grounding-000841-000857-nonreplacement-classification-proposal-2026-09-30.json",
+      "sha256": "5ed02b037f78ca25991b396e232e8b1ee754b0c91b056ed6640c9fb1c47cf0c0"
+    },
+    {
+      "role": "#2381 overlay",
+      "commit": "6e62f76986f19d14281cb2a96eca460c5430dcc6",
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate-requirements-authority-materialization-metadata10-classification-proposal-2026-09-30.json",
+      "sha256": "512f9ceafe935648d459d6b268ff4d3952f0e8264298213ad278256236b5f40e"
+    }
+  ],
+  "prior_marker_semantic_review_slices": [
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-2026-10-01.json",
+      "sha256": "3ea33ed390c354e84b81f1dd7956afdfab7bd00deb49969383b717bacf4acd33"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-101-120-2026-10-01.json",
+      "sha256": "29cc8bfecbebae44ba0b0473d4df8d561a92f72778ad13177f161e84d1267ecf"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-121-140-2026-10-01.json",
+      "sha256": "f5b88ec5da4727aee48c30311a0c10b47ff6b39fe7cf5adddcea6fa8380933ee"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-141-160-2026-10-01.json",
+      "sha256": "e40dbeaf5758a45a6eb39c96b5a8b5723780cfec15b21516103858f7659d8c4b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-161-180-2026-10-01.json",
+      "sha256": "9e81e0d3bd4366b01c982be3da542bb64e59750576134558ecdc9b75a22aa7a2"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-181-200-2026-10-01.json",
+      "sha256": "de845d732261122a04af5aeb168dbc9b7a55507d6c977b74c37d1c19ec645e97"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-201-220-2026-10-01.json",
+      "sha256": "d11d4a5fc5005fc1e555f1bc1cea68e375c7bad479349b5340bc9ce80923b19d"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-21-40-2026-10-01.json",
+      "sha256": "8d5059267a6ebe70366e670ac548d760dfd3259748012125201bd6539e1b5b2f"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-221-240-2026-10-01.json",
+      "sha256": "6241e2b37045431c84232e5289942e6df5ff7390e65235b3462e6541af807793"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-241-255-2026-10-01.json",
+      "sha256": "14e4fe6339ee5801a5d6e459ce988628e5928b721b94bcdace49d539aa5c2135"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-41-60-2026-10-01.json",
+      "sha256": "d94780d1daaf6882bfd101d0962c43730025c9348d62b89a3ac33b0d26c814fc"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-61-80-2026-10-01.json",
+      "sha256": "a772c56e8001bb899bc28543fa9b5e8c2f866350f7c2306126f793fc58cd638b"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-semantic-review-ranks-81-100-2026-10-01.json",
+      "sha256": "c762d66599bdd07d825aeb1dd5f43e8c8a0f8a2c0f70aaac08e368ad47ba1ff8"
+    }
+  ],
+  "source_ledgers": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "row_count": 4755
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "fixed_F6_pairs": [
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf"
+    },
+    {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680"
+    }
+  ],
+  "comparison_pairs_at_audit_head": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "a216403173175d9683737b1ab82f7e0ff1a1e85f31b1b155ad63ee3c00cc096e"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112"
+    }
+  ],
+  "decision_records": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md",
+      "sha256": "d2bd02399212b3912825203a9c9037060332a2b1d48a942197bc9cd53536b2cb"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md",
+      "sha256": "a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de"
+    }
+  ],
+  "current_relation_files": [
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d"
+    },
+    {
+      "commit": "927ada15cf90abc2d21cfd1fb3e45fed764ec780",
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78"
+    }
+  ],
+  "rows": [
+    {
+      "rank": 461,
+      "source_id": "LEGACY-CAND-LINE-000755",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 28,
+      "semantic_category": "会話継続条件",
+      "semantic_reading": "会話外に保存した情報、後続consumerからの再取得、意味・版・未完義務の対応、安全な切替えが確認済みのscopeだけを後続model inputから除く条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R03の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "18098c3324b0444836f5d1e22c722593fc67b6951d0e366f5721a2dd53c3c260",
+      "physical_line_bytes_sha256": "94e802e9e8193a7b7ee7cbb757238aac59545c40161d996330eda7d6b39e3113",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 755,
+        "entry_sha256": "f4bfbae0470055c567c37a04fc69d89adac0b1b33ad5ffb9798f9f81ab21e2a6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 27,
+          "text": ""
+        },
+        {
+          "line": 28,
+          "text": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを"
+        },
+        {
+          "line": 29,
+          "text": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。"
+        }
+      ],
+      "source_excerpt": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを"
+    },
+    {
+      "rank": 462,
+      "source_id": "LEGACY-CAND-LINE-000756",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 29,
+      "semantic_category": "source保全境界",
+      "semantic_reading": "inputからの除外は会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしないというsource保持条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R03の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "a993cb00dcab5b95b1518ffabf28a70a2cc72358ef332b9f3a8860d3258720af",
+      "physical_line_bytes_sha256": "be66d058ee8178689961bd78d6629505c945b1c5c2087bf96e28ab2c4e51d86d",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 756,
+        "entry_sha256": "2e137f20994b0bbd20bce1ee0d2b2a00ea2ba064d413220ace5f3774d1e58796"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 28,
+          "text": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを"
+        },
+        {
+          "line": 29,
+          "text": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。"
+        },
+        {
+          "line": 30,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。"
+    },
+    {
+      "rank": 463,
+      "source_id": "LEGACY-CAND-LINE-000758",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 33,
+      "semantic_category": "切替方式選択",
+      "semantic_reading": "task境界・compact反復・再読込不能・旧指示混入・切替費用を評価してsession継続、標準compact、新session再構成から選ぶ。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R04の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "4e68e75097ee6436b691cd8d64834dd7009ed615fd1a8243129a3ccb71a2629f",
+      "physical_line_bytes_sha256": "3f5f1ccdab7aae6c46e28b05e1cf0d457e4eeb54c17d775f2b2b27fc34a5a9cb",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 758,
+        "entry_sha256": "dca5cf67075d90ec48b3596484f9909b6229db9d8685e2c1d6e9f80f90bfb172"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 32,
+          "text": ""
+        },
+        {
+          "line": 33,
+          "text": "安全なtask／工程境界、圧縮反復、再読込不能、旧指示混入、切替費用を評価し、現session継続、標準compact、"
+        },
+        {
+          "line": 34,
+          "text": "新session再構成を選ぶ。provider固有のcompact／resume／fork／new sessionを実測能力へ束縛し、"
+        }
+      ],
+      "source_excerpt": "安全なtask／工程境界、圧縮反復、再読込不能、旧指示混入、切替費用を評価し、現session継続、標準compact、"
+    },
+    {
+      "rank": 464,
+      "source_id": "LEGACY-CAND-LINE-000759",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 34,
+      "semantic_category": "provider能力境界",
+      "semantic_reading": "provider固有機能を実測能力へ結び、未対応・hook未発火・観測不能を成功扱いしない条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R04の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "18193833085d6044976e979f2dfcd856eed3fc9d0a08d902ea665e9081fac099",
+      "physical_line_bytes_sha256": "51b69b379c818d41d1ccc781d8feb3d0e1327ccc9a6ec7acef9254b87e727a8b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 759,
+        "entry_sha256": "6af17335420a9fefe96d9097f100f86bb68c6b7f3c129c1df57e2d8914f3830e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 33,
+          "text": "安全なtask／工程境界、圧縮反復、再読込不能、旧指示混入、切替費用を評価し、現session継続、標準compact、"
+        },
+        {
+          "line": 34,
+          "text": "新session再構成を選ぶ。provider固有のcompact／resume／fork／new sessionを実測能力へ束縛し、"
+        },
+        {
+          "line": 35,
+          "text": "非対応・hook未発火・観測不能を成功扱いしない。"
+        }
+      ],
+      "source_excerpt": "新session再構成を選ぶ。provider固有のcompact／resume／fork／new sessionを実測能力へ束縛し、"
+    },
+    {
+      "rank": 465,
+      "source_id": "LEGACY-CAND-LINE-000760",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 35,
+      "semantic_category": "失敗扱い",
+      "semantic_reading": "非対応、hook未発火、観測不能を成功として扱わない負のoracle。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R04の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "278bec73b826755a50212f13b21651246b4d6dc34a64ac42d1731b8655ec19c8",
+      "physical_line_bytes_sha256": "0df41491f16278ea6af52bf0e9c67cf77d924f13993b8aa93306238a6f2eef58",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 760,
+        "entry_sha256": "c99e993ee6eee1434937319250bc4201a0966f4a6e5265c2480af6232e9fc7eb"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 34,
+          "text": "新session再構成を選ぶ。provider固有のcompact／resume／fork／new sessionを実測能力へ束縛し、"
+        },
+        {
+          "line": 35,
+          "text": "非対応・hook未発火・観測不能を成功扱いしない。"
+        },
+        {
+          "line": 36,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "非対応・hook未発火・観測不能を成功扱いしない。"
+    },
+    {
+      "rank": 466,
+      "source_id": "LEGACY-CAND-LINE-000762",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 39,
+      "semantic_category": "切替sequencing",
+      "semantic_reading": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順に切り替える条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R05の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "6c0085507621adf628beacfd25b63ef27c5898619e41ba0ee832bd33ad808ce5",
+      "physical_line_bytes_sha256": "57adfc86ea5927b2286c9057d756a1474fc7625af89ea55c2d9e5c9305871485",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 762,
+        "entry_sha256": "44466746008f9eadf69b43daeb74c5a5a1707d5d5dfea10d8e8b75fe74bed5c5"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 38,
+          "text": ""
+        },
+        {
+          "line": 39,
+          "text": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。"
+        },
+        {
+          "line": 40,
+          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、"
+        }
+      ],
+      "source_excerpt": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。"
+    },
+    {
+      "rank": 467,
+      "source_id": "LEGACY-CAND-LINE-000763",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 40,
+      "semantic_category": "state・二重副作用防止",
+      "semantic_reading": "切替時もassignment等の累積制約と未完義務を継承し、同一branchの二重writer・二重副作用を防ぐ。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R05の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "db6aa391c5eb25873b7e989171843393ad8c6354a8c894d6f7c0c297faf6a91b",
+      "physical_line_bytes_sha256": "00fadbd66f57d1e6f13c4f77af44c15ee42eeb5c8ac317f31c27713e1f0733a6",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 763,
+        "entry_sha256": "4d0219dcb65d26398beb7d4480768aab5905a88eef981b5f63f9bcf321af79bb"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 39,
+          "text": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。"
+        },
+        {
+          "line": 40,
+          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、"
+        },
+        {
+          "line": 41,
+          "text": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。"
+        }
+      ],
+      "source_excerpt": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、"
+    },
+    {
+      "rank": 468,
+      "source_id": "LEGACY-CAND-LINE-000764",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 41,
+      "semantic_category": "independent review境界",
+      "semantic_reading": "新sessionだけでは独立reviewerが成立した根拠にならないという負のoracle。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R05の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "55b5edf605de10878d6ceae9b7a45116d16cf8b4e8cb132ed6d9585359e7261d",
+      "physical_line_bytes_sha256": "0d63459fe8d1f0fbd9e111258becf26e633f8ea60f9e27a065317c47c77c2d68",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 764,
+        "entry_sha256": "913f9c8ef57fbbb57a991538b7898653b4fc1f616d3bdd5369c1a1778bae0600"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 40,
+          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、"
+        },
+        {
+          "line": 41,
+          "text": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。"
+        },
+        {
+          "line": 42,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。"
+    },
+    {
+      "rank": 469,
+      "source_id": "LEGACY-CAND-LINE-000766",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 45,
+      "semantic_category": "restart packet内容",
+      "semantic_reading": "目的・受入・許容境界、状態、未解決意図等を必要最小限で渡し、上限超過時も必須情報を黙って落とさない。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R06の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "311f352dc5028a228de2841b06d9dd92038763645dbbf501baa9bfb7791f3afa",
+      "physical_line_bytes_sha256": "87a3a9f6e4735ff237014ff9820adf32d59a2d322908d492b612de133234240a",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 766,
+        "entry_sha256": "c391fc0207873f449cd3f50f55d47bc6e2ca25137dd2800f0b15874ef98a1506"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 44,
+          "text": ""
+        },
+        {
+          "line": 45,
+          "text": "目的・受入・許容境界、対象状態、未解決意図・仮説、未完指摘、実行中処理、次候補と参照先を必要最小限で渡す。"
+        },
+        {
+          "line": 46,
+          "text": "上限超過時に必須情報を黙って切らず分割取得または切替保留へ送る。撤回claim、取消権限、secret、private reasoning、"
+        }
+      ],
+      "source_excerpt": "目的・受入・許容境界、対象状態、未解決意図・仮説、未完指摘、実行中処理、次候補と参照先を必要最小限で渡す。"
+    },
+    {
+      "rank": 470,
+      "source_id": "LEGACY-CAND-LINE-000768",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 47,
+      "semantic_category": "情報混入境界",
+      "semantic_reading": "撤回claim、取消権限、secret、private reasoning、他案件情報、作成側の結論誘導をpacketへ混入させない条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R06の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "cddc11edbb836c146a69531550dc4f273df7ec4810d3306f59b52b3a724f84a3",
+      "physical_line_bytes_sha256": "7173dbdece78bd21b3a7e526e46bfa877fa6ac8bb7eac4e50ad90cfb573ddc66",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 768,
+        "entry_sha256": "cf4f8703650422c42f266bda267cf6b3047c5748dfed7f2c17fdf634e77bc62f"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 46,
+          "text": "上限超過時に必須情報を黙って切らず分割取得または切替保留へ送る。撤回claim、取消権限、secret、private reasoning、"
+        },
+        {
+          "line": 47,
+          "text": "他案件情報、作成側の結論誘導を混入させない。"
+        },
+        {
+          "line": 48,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "他案件情報、作成側の結論誘導を混入させない。"
+    },
+    {
+      "rank": 471,
+      "source_id": "LEGACY-CAND-LINE-000770",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 51,
+      "semantic_category": "比較条件",
+      "semantic_reading": "long history、標準compact、external reconstructionを同一task/HEAD/要求/provider/model/設定で隔離比較する条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R07の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "9ea54bf695c6503fd084223e5f6baf7fab6bbcde707d2fc183c8cb471789a4c5",
+      "physical_line_bytes_sha256": "8f27fd9fc09e0292f21355efce8bfee1430152559f6b822f043fc5abb5cc57af",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 770,
+        "entry_sha256": "3ee7dda366b29b64cefb4814cf82cd92bef72d9e86d160ce7d548645eca30a68"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 50,
+          "text": ""
+        },
+        {
+          "line": 51,
+          "text": "同一task、HEAD、要求、provider／model／設定でlong history、標準compact、external reconstructionを隔離比較する。"
+        },
+        {
+          "line": 52,
+          "text": "意図・受入保持、成果品質、重大見逃し、失敗反復、再取得量、切替回数、token/cache、時間、保存・再構成を含む費用を"
+        }
+      ],
+      "source_excerpt": "同一task、HEAD、要求、provider／model／設定でlong history、標準compact、external reconstructionを隔離比較する。"
+    },
+    {
+      "rank": 472,
+      "source_id": "LEGACY-CAND-LINE-000772",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 53,
+      "semantic_category": "比較oracle・費用",
+      "semantic_reading": "品質、重大見逃し、失敗反復、再取得量、切替、token/cache、時間等を含め、初期context減少だけで採用しない。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R07の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "dd03fcb94958fce11fd5d35eb2288fba1cb0f1e979097198894a88c677a48816",
+      "physical_line_bytes_sha256": "b90817aa40a37f05dcc9233ff02cb159dfa9eefa88b499cce7765080be59149a",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 772,
+        "entry_sha256": "8fe7075b79311d8762fe20dae87c510145cfc0859d9447acbdb4a59a0c46a4ff"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 52,
+          "text": "意図・受入保持、成果品質、重大見逃し、失敗反復、再取得量、切替回数、token/cache、時間、保存・再構成を含む費用を"
+        },
+        {
+          "line": 53,
+          "text": "記録し、初期context減少だけで採用しない。結果はHELIX-Benchへ接続可能にする。"
+        },
+        {
+          "line": 54,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "記録し、初期context減少だけで採用しない。結果はHELIX-Benchへ接続可能にする。"
+    },
+    {
+      "rank": 473,
+      "source_id": "LEGACY-CAND-LINE-000774",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 57,
+      "semantic_category": "導入段階",
+      "semantic_reading": "shadowから無副作用復元、単一task、未commit差分、長期実行へ段階拡張する導入順。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R08の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "40b804cbe4aad450f6d18c12998f7b0052f317da500a2b678b24fc196a678702",
+      "physical_line_bytes_sha256": "65b298e9b3cc909a95add0253d4c527463f77e0a5f90c7798435b4f3b9a87d15",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 774,
+        "entry_sha256": "a988de4edf557fb5baae9a7ba03520d3e6e577114021690c037fc3e7e81b7cc6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 56,
+          "text": ""
+        },
+        {
+          "line": 57,
+          "text": "shadow再構成、無副作用復元、単一task境界、未commit・未追跡差分・長期実行の順に範囲を拡張する。既存continuation、memory、"
+        },
+        {
+          "line": 58,
+          "text": "supervisor、handover、provider capabilityを再利用し、新しいMemory DB、圧縮専用巨大Skill、別の配車・修復engineを作らない。"
+        }
+      ],
+      "source_excerpt": "shadow再構成、無副作用復元、単一task境界、未commit・未追跡差分・長期実行の順に範囲を拡張する。既存continuation、memory、"
+    },
+    {
+      "rank": 474,
+      "source_id": "LEGACY-CAND-LINE-000775",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 58,
+      "semantic_category": "再利用・新設抑止",
+      "semantic_reading": "既存continuation/memory/supervisor/handover/provider capabilityを再利用し、並行する別engineや巨大Skill等を新設しない条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R08の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "57ed8d3ed224512fc7bf5450d745291a099af6fd29daaaf4dea6b6dcf7682846",
+      "physical_line_bytes_sha256": "b27561b4a208c190160a5dfafad214465c378f7c3de8d0516665a16e3c98fb0b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 775,
+        "entry_sha256": "aac9621995b5fd49ac376f4519a4e04da8a76e1dfd7c06ba1c7f67356266e3cc"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 57,
+          "text": "shadow再構成、無副作用復元、単一task境界、未commit・未追跡差分・長期実行の順に範囲を拡張する。既存continuation、memory、"
+        },
+        {
+          "line": 58,
+          "text": "supervisor、handover、provider capabilityを再利用し、新しいMemory DB、圧縮専用巨大Skill、別の配車・修復engineを作らない。"
+        },
+        {
+          "line": 59,
+          "text": "Skill、Rule導出、会話寿命を別要求・別受入・別完了状態として維持する。"
+        }
+      ],
+      "source_excerpt": "supervisor、handover、provider capabilityを再利用し、新しいMemory DB、圧縮専用巨大Skill、別の配車・修復engineを作らない。"
+    },
+    {
+      "rank": 475,
+      "source_id": "LEGACY-CAND-LINE-000776",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 59,
+      "semantic_category": "要求identity分離",
+      "semantic_reading": "Skill、Rule導出、会話寿命を別要求・別受入・別完了状態として維持する条件。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR-R08の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "04b9198f7e53a47727f769f2281a286639be99a14075bf16ab1cd07e491d7ecd",
+      "physical_line_bytes_sha256": "4ba0598492540bcd40d177d4de3514519e32509f02bb0e4ec11544c12e335b22",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 776,
+        "entry_sha256": "ce26fdb27448a285ba540a2f240e8ef4d0903453cc4677c2e61835b176e23738"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 58,
+          "text": "supervisor、handover、provider capabilityを再利用し、新しいMemory DB、圧縮専用巨大Skill、別の配車・修復engineを作らない。"
+        },
+        {
+          "line": 59,
+          "text": "Skill、Rule導出、会話寿命を別要求・別受入・別完了状態として維持する。"
+        },
+        {
+          "line": 60,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "Skill、Rule導出、会話寿命を別要求・別受入・別完了状態として維持する。"
+    },
+    {
+      "rank": 476,
+      "source_id": "LEGACY-CAND-LINE-000778",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 63,
+      "semantic_category": "owner接続・候補authority",
+      "semantic_reading": "versioning/invalidation/propagation authorityを先に正本化し関連ownerへ接続する工程を示す。前段のsource行と合わせて、候補承認・昇格・IR admission・runtime・enablementを別状態に置く。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR導入順の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "38c68757e75711f5bcbdb29f3301fa98beae61d538086b96c0fac9a44058791a",
+      "physical_line_bytes_sha256": "1b90fb5af20642b3c834c31ddd5bf9fd947f3423350679580b4a34cb6f6cbff8",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 778,
+        "entry_sha256": "4731a40375432dbc855d3357df56f8a2e447ae46092923a2154c9dd5b23152a9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 62,
+          "text": ""
+        },
+        {
+          "line": 63,
+          "text": "#1608のversioning／invalidation／propagation authorityを先に正本化し、#1370、#873、#1448、#861、#1373の"
+        },
+        {
+          "line": 64,
+          "text": "既存ownerへ差分を接続する。候補承認、canonical昇格、#397 IR admission、runtime実装、operational enablementを別状態で追う。"
+        }
+      ],
+      "source_excerpt": "#1608のversioning／invalidation／propagation authorityを先に正本化し、#1370、#873、#1448、#861、#1373の"
+    },
+    {
+      "rank": 477,
+      "source_id": "LEGACY-CAND-LINE-000779",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "source_line": 64,
+      "semantic_category": "authority状態分離",
+      "semantic_reading": "候補承認、canonical昇格、IR admission、runtime実装、operational enablementを独立状態として追う。",
+      "current_relation_and_limit": "固定F6のHELIX-OS L2（docs/helix-os/L2-requirements/governance-requirements.md:398–418,506）はCLR要求候補とL10 oracleを名指しし、CLR-BR-001をHELIXOS-L2-009、状態保存を007、割当継承を004へ接続する。CLR導入順の保持条件として本行の候補意味を照合できる。ただし同L2はCLR-R01..08を未承認候補とし、2026-09-28 PO判断は明示16件に限定する。この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "source_line_sha256": "5f434a03dba33991bfb301ef5ba709c43d791cebb5eb39bd81761b9b78193e62",
+      "physical_line_bytes_sha256": "095d6d0b395ebfec074faf801b7536eab67da86ec84a657c32727f613734a1a0",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 779,
+        "entry_sha256": "916d92ac6a25b093ece4e1ca9901cb2e5bac78d12b7f7a5e15de14fbba3ae5c4"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-F849C0AE6C90DA0B53F8",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 804,
+          "entry_sha256": "4200c3498fd421d1c75851e81ad295db267f25e3b6b07da2fb03f39caedd1176",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 63,
+          "text": "#1608のversioning／invalidation／propagation authorityを先に正本化し、#1370、#873、#1448、#861、#1373の"
+        },
+        {
+          "line": 64,
+          "text": "既存ownerへ差分を接続する。候補承認、canonical昇格、#397 IR admission、runtime実装、operational enablementを別状態で追う。"
+        }
+      ],
+      "source_excerpt": "既存ownerへ差分を接続する。候補承認、canonical昇格、#397 IR admission、runtime実装、operational enablementを別状態で追う。"
+    },
+    {
+      "rank": 478,
+      "source_id": "LEGACY-CAND-LINE-000781",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 2,
+      "semantic_category": "候補metadata",
+      "semantic_reading": "`status: draft_candidate` metadata。source自身の未採択状態を示すだけで、現行authorityではない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73",
+      "physical_line_bytes_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 781,
+        "entry_sha256": "3ff7de9537eb2f49e78abddc37df995513a09e32fe0d6f0bf538504bd0e2be80"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 2,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 3,
+          "text": "canonical_layer: L10"
+        }
+      ],
+      "source_excerpt": "status: draft_candidate"
+    },
+    {
+      "rank": 479,
+      "source_id": "LEGACY-CAND-LINE-000782",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 3,
+      "semantic_category": "旧layer metadata",
+      "semantic_reading": "`canonical_layer: L10` は旧candidateの層表示であり、現行層の割当てではない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "56e1e4cccf5db48e542a8e148104530b26b9c57bb656f74cdedb93737e87f110",
+      "physical_line_bytes_sha256": "35450f19574f316204bf77c990ed4766f5db9ca86bf947b5dbfbc3c60ddc0fd1",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 782,
+        "entry_sha256": "1ffdef92cd69f79842ae943f598b431b521bb963d30087e0523a275ef0b5496d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 2,
+          "text": "status: draft_candidate"
+        },
+        {
+          "line": 3,
+          "text": "canonical_layer: L10"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L3"
+        }
+      ],
+      "source_excerpt": "canonical_layer: L10"
+    },
+    {
+      "rank": 480,
+      "source_id": "LEGACY-CAND-LINE-000783",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 4,
+      "semantic_category": "旧pair metadata",
+      "semantic_reading": "`canonical_pair: L3` は候補内の旧pair pointerで、現行L2/L11 decisionではない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "1cb752ea60b9beb017967757095bbbe59e626666bd648a716f3c56d015666c82",
+      "physical_line_bytes_sha256": "ac57734c3e1d631d1c55c08517270de48e83aa1170707d183c090dfc7a24a988",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 783,
+        "entry_sha256": "011462f64cfd6b1c8e94e1d17a28d3cd669990cd72b2ac6e6faadba3618355e5"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 3,
+          "text": "canonical_layer: L10"
+        },
+        {
+          "line": 4,
+          "text": "canonical_pair: L3"
+        },
+        {
+          "line": 5,
+          "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+        }
+      ],
+      "source_excerpt": "canonical_pair: L3"
+    },
+    {
+      "rank": 481,
+      "source_id": "LEGACY-CAND-LINE-000784",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 5,
+      "semantic_category": "plan pointer",
+      "semantic_reading": "PLAN-L3-91への候補plan参照。独立したrequirement atomや現在の作業許可を作らない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "c4c23457d94acd92e887a89fbbedbff182ea48ba41ab871d85ac0b62d217ed61",
+      "physical_line_bytes_sha256": "edf763ed14f7eb18d46ba88f6bf011dfdb61e3d60156d94ff617ed76c72ddb8b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 784,
+        "entry_sha256": "aa072c0f3c7a56f75b585bcf9a5de2bf173b99533d48f3251016b054bbd2b05d"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 4,
+          "text": "canonical_pair: L3"
+        },
+        {
+          "line": 5,
+          "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+        },
+        {
+          "line": 6,
+          "text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requirements.md"
+        }
+      ],
+      "source_excerpt": "plan: PLAN-L3-91-design-grounding-human-convergence"
+    },
+    {
+      "rank": 482,
+      "source_id": "LEGACY-CAND-LINE-000785",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 6,
+      "semantic_category": "parent pointer",
+      "semantic_reading": "candidate design documentへのparent pointer。現行採択pairやsuccessor relationではない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "9898cec66acbe65e13d6ecbd84f9b6222ebb23c30de16b1bd9f37dbee1757ed0",
+      "physical_line_bytes_sha256": "b0d07ccdf6fdde10015bdd3fb252ca518348798e06f87b585d8577a1e1c2d7ee",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 785,
+        "entry_sha256": "6b5eb78a47eda921f8d9349df185de91882c12ffb9a853de1052dea6b439c9ee"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 5,
+          "text": "plan: PLAN-L3-91-design-grounding-human-convergence"
+        },
+        {
+          "line": 6,
+          "text": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requirements.md"
+        },
+        {
+          "line": 7,
+          "text": "---"
+        }
+      ],
+      "source_excerpt": "parent_design: docs/governance/candidates/design-grounding-human-convergence-requirements.md"
+    },
+    {
+      "rank": 483,
+      "source_id": "LEGACY-CAND-LINE-000789",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 11,
+      "semantic_category": "受入項目2",
+      "semantic_reading": "Evidenceから設計の採用・非採用へ追跡できること。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "debeb45a4854b6446e484b49ab8ce4c299f934e80501600151f13ca6d200512a",
+      "physical_line_bytes_sha256": "5e60564619aecf931e364a74381f9d6cce393b1047531fa3df47b4a27f5af41b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 789,
+        "entry_sha256": "fa4db5f5bee20c7999044ad3fb308cae6dd9a03340d87713ca9fed435a2a4747"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 10,
+          "text": "1 未知の重要前提が未調査なら該当Design Readyを拒否、根拠の有効再利用は許可。"
+        },
+        {
+          "line": 11,
+          "text": "2 Evidenceから設計採用/非採用を追跡。"
+        },
+        {
+          "line": 12,
+          "text": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+        }
+      ],
+      "source_excerpt": "2 Evidenceから設計採用/非採用を追跡。"
+    },
+    {
+      "rank": 484,
+      "source_id": "LEGACY-CAND-LINE-000790",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 12,
+      "semantic_category": "受入項目3",
+      "semantic_reading": "ダサい・不明瞭・見せ方不足を別分類し、複数の分類と未解決状態を保持すること。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "918958cd9f0ac740d234017ba64c632e3a4f2cc9c76e227e2e9646f676d2a469",
+      "physical_line_bytes_sha256": "30d92cbec0cac3cfae0d99b05544da70bd92361cb161b0c43be742a6688663dc",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 790,
+        "entry_sha256": "330994ad718d9614ef4ccd2c80fb8eb876a15cf9cc5d0fa0de87414e467d94d6"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 11,
+          "text": "2 Evidenceから設計採用/非採用を追跡。"
+        },
+        {
+          "line": 12,
+          "text": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+        },
+        {
+          "line": 13,
+          "text": "4 communication failureだけならDesign再生成を要求しない。"
+        }
+      ],
+      "source_excerpt": "3 ダサい/不明瞭/見せ方不足を別分類し複数・未解決を保持。"
+    },
+    {
+      "rank": 485,
+      "source_id": "LEGACY-CAND-LINE-000795",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 17,
+      "semantic_category": "受入項目8",
+      "semantic_reading": "既存のRegistry／Applicability責務を重複実装しないこと。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "53265f1d8e1e7c276df77e840cb8fd22be1aa789950123ce4204e3f68b55ebd3",
+      "physical_line_bytes_sha256": "cc1126aee16556b8feb080fb40e622ac37947f017660ebfef33a1a1f337a8066",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 795,
+        "entry_sha256": "19058a1c4634aae42d7782d6c6e49018884231d73f3eba0478d6f4fdb5877b24"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 16,
+          "text": "7 原文改変/AI提案の人間承認偽装を拒否。"
+        },
+        {
+          "line": 17,
+          "text": "8 既存Registry/Applicability責務を重複実装しない。"
+        },
+        {
+          "line": 18,
+          "text": "9 wrong revision/authority/evidence、再発の偽装解消を個別拒否。"
+        }
+      ],
+      "source_excerpt": "8 既存Registry/Applicability責務を重複実装しない。"
+    },
+    {
+      "rank": 486,
+      "source_id": "LEGACY-CAND-LINE-000797",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 19,
+      "semantic_category": "受入oracle E2E/Lite",
+      "semantic_reading": "Full E2Eと将来Lite契約のdependency closure/consumer検証を分離する受入条件。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "2da31a4e2e325502f8efef37778a704a314f9bfff107316d6ad1d1be97f5e98a",
+      "physical_line_bytes_sha256": "be47ec8858f6aeced002ab7a8a8ed6c97c23fb2e38f8cf0c6d65dc87d3c04051",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 797,
+        "entry_sha256": "cf6615cc1277131cb8f59b1fbfae5b5da519aced5f7cfd1362b59e3d6e748502"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 18,
+          "text": "9 wrong revision/authority/evidence、再発の偽装解消を個別拒否。"
+        },
+        {
+          "line": 19,
+          "text": "10 Full E2Eと将来Lite最小契約のdependency closure/consumer検証を分離。"
+        },
+        {
+          "line": 20,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "10 Full E2Eと将来Lite最小契約のdependency closure/consumer検証を分離。"
+    },
+    {
+      "rank": 487,
+      "source_id": "LEGACY-CAND-LINE-000799",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 22,
+      "semantic_category": "候補導入順と依存範囲",
+      "semantic_reading": "censusから実project dogfoodまでの提案順を示す。共通要求への依存は使用slice単位とし、#1556全体完了を全Design作業の停止条件にしない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "f965a955b0e706cd28d052fe83ece704e4ea734ae23b00f33601c0a92c4e4da4",
+      "physical_line_bytes_sha256": "95a0372afab66d98e670ee26a177592605ed3b2695def6b5cabd5b80bf64da0f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 799,
+        "entry_sha256": "fe1cd16f6a5da49c2f19ffc348b8c55b3c441a80bc0e06adf41749ce3a864ad3"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 21,
+          "text": "## 導入と追跡"
+        },
+        {
+          "line": 22,
+          "text": "census→owner/contract map→L1/L3/L10候補・正本化→DG→HR→DC→既存接続→deterministic/mutation/staleテスト→実project dogfood。共通要求への依存は使用slice単位。#1556全体完了を全Design作業の停止条件にしない。"
+        },
+        {
+          "line": 23,
+          "text": "原稿全文はrepoの取込台帳へGit保全・一致検証後にroot原稿を削除する。実装/承認/削除未完了をIssueだけで完了扱いにしない。"
+        }
+      ],
+      "source_excerpt": "census→owner/contract map→L1/L3/L10候補・正本化→DG→HR→DC→既存接続→deterministic/mutation/staleテスト→実project dogfood。共通要求への依存は使用slice単位。#1556全体完了を全Design作業の停止条件にしない。"
+    },
+    {
+      "rank": 488,
+      "source_id": "LEGACY-CAND-LINE-000800",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 23,
+      "semantic_category": "Issue完了境界",
+      "semantic_reading": "実装/承認/削除未完了をIssueだけで完了扱いしないという完了主張の負のoracle。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "4f63251a381c5168bdd6213afd8e05581e3e160aaf37146ba1f0e1bca0fe9999",
+      "physical_line_bytes_sha256": "6e84107da4c7b3f8998992de19e5362ec97882b2bb07923708b07d31c1c5dab5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 800,
+        "entry_sha256": "32f668704601f62ef5cbe578fade9e86ff77cd641d391808f3873f90f1b8d98e"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 22,
+          "text": "census→owner/contract map→L1/L3/L10候補・正本化→DG→HR→DC→既存接続→deterministic/mutation/staleテスト→実project dogfood。共通要求への依存は使用slice単位。#1556全体完了を全Design作業の停止条件にしない。"
+        },
+        {
+          "line": 23,
+          "text": "原稿全文はrepoの取込台帳へGit保全・一致検証後にroot原稿を削除する。実装/承認/削除未完了をIssueだけで完了扱いにしない。"
+        },
+        {
+          "line": 24,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "原稿全文はrepoの取込台帳へGit保全・一致検証後にroot原稿を削除する。実装/承認/削除未完了をIssueだけで完了扱いにしない。"
+    },
+    {
+      "rank": 489,
+      "source_id": "LEGACY-CAND-LINE-000802",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 29,
+      "semantic_category": "表column header",
+      "semantic_reading": "要件、主受入、正例/反例の列見出し。行データを束ねる構造で独立atomではない。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": false,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "47a00e2bc571696fe64dd9a87a373410909b16288bf232ddd6771929e3752ea3",
+      "physical_line_bytes_sha256": "96749c884d81fe37eca218d8207dcc5dea30781a854f80c3979121084d9dd948",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 802,
+        "entry_sha256": "4441f16b0f3179c97dbc8112a5ca7a9f6a57f846c08efaac56a53fb35314c2d4"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 28,
+          "text": ""
+        },
+        {
+          "line": 29,
+          "text": "| 要件 | 主受入 | 正例 / 反例 |"
+        },
+        {
+          "line": 30,
+          "text": "|---|---|---|"
+        }
+      ],
+      "source_excerpt": "| 要件 | 主受入 | 正例 / 反例 |"
+    },
+    {
+      "rank": 490,
+      "source_id": "LEGACY-CAND-LINE-000804",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 31,
+      "semantic_category": "DG-R-01対応表",
+      "semantic_reading": "DG-R-01の主受入はAC1。正例は「根拠付き前提」、反例は「UNKNOWNをKNOWNへ無根拠変更」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "064e02df102ec1c392482608f230f3615203674e58bf62f19619e30ded29c107",
+      "physical_line_bytes_sha256": "93c7427c8cf88519892dcd65be7bd7719f26be706a129ad939434cb3d7e72c12",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 804,
+        "entry_sha256": "7064c812eaf97d058612f900e7b0507feb206fbcc39d33fb69d307a255fee0f7"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 30,
+          "text": "|---|---|---|"
+        },
+        {
+          "line": 31,
+          "text": "| DG-R-01 | AC1 | 根拠付き前提 / UNKNOWNをKNOWNへ無根拠変更 |"
+        },
+        {
+          "line": 32,
+          "text": "| DG-R-02 | AC1 | 論点別調査 / 件数充足で必要論点を省略 |"
+        }
+      ],
+      "source_excerpt": "| DG-R-01 | AC1 | 根拠付き前提 / UNKNOWNをKNOWNへ無根拠変更 |"
+    },
+    {
+      "rank": 491,
+      "source_id": "LEGACY-CAND-LINE-000805",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 32,
+      "semantic_category": "DG-R-02対応表",
+      "semantic_reading": "DG-R-02の主受入はAC1。正例は「論点別調査」、反例は「件数充足で必要論点を省略」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "27f9e3434a4c1eca4088339f87b25391141e6982424deb3b6348ac129ad319f7",
+      "physical_line_bytes_sha256": "8db78f1ae558cabf9e10c5ffb9859c8fc4cb88b9ee5f84689e470ad6be0dadd5",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 805,
+        "entry_sha256": "b298d0fab2a617a1592885eb3b83db1230d9ab952a07b6b4c24d15d72c580073"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 31,
+          "text": "| DG-R-01 | AC1 | 根拠付き前提 / UNKNOWNをKNOWNへ無根拠変更 |"
+        },
+        {
+          "line": 32,
+          "text": "| DG-R-02 | AC1 | 論点別調査 / 件数充足で必要論点を省略 |"
+        },
+        {
+          "line": 33,
+          "text": "| DG-R-03 | AC2 | 設計含意trace / URLのみ・stale証拠 |"
+        }
+      ],
+      "source_excerpt": "| DG-R-02 | AC1 | 論点別調査 / 件数充足で必要論点を省略 |"
+    },
+    {
+      "rank": 492,
+      "source_id": "LEGACY-CAND-LINE-000806",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 33,
+      "semantic_category": "DG-R-03対応表",
+      "semantic_reading": "DG-R-03の主受入はAC2。正例は「設計含意trace」、反例は「URLのみ・stale証拠」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "06f2a9bccdbbcd61b05714b073e2e626ef8cc988ab78117c168992bec7b684fe",
+      "physical_line_bytes_sha256": "6fcd5fcffa06551f62433b1490ae39ba134d05f5fe9b5b336b26040031885aa9",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 806,
+        "entry_sha256": "2a09f37dbdad179a4f532db297abd6101cbc8040d983eb1049ada1c41f32a2b9"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 32,
+          "text": "| DG-R-02 | AC1 | 論点別調査 / 件数充足で必要論点を省略 |"
+        },
+        {
+          "line": 33,
+          "text": "| DG-R-03 | AC2 | 設計含意trace / URLのみ・stale証拠 |"
+        },
+        {
+          "line": 34,
+          "text": "| DG-R-04 | AC8 | 共通契約projection / 同等責務の独立engine |"
+        }
+      ],
+      "source_excerpt": "| DG-R-03 | AC2 | 設計含意trace / URLのみ・stale証拠 |"
+    },
+    {
+      "rank": 493,
+      "source_id": "LEGACY-CAND-LINE-000807",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 34,
+      "semantic_category": "DG-R-04対応表",
+      "semantic_reading": "DG-R-04の主受入はAC8。正例は「共通契約projection」、反例は「同等責務の独立engine」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "a894e5c631a92703bf5c0347c6c34478cddf20d1779451d86901218bca6c8305",
+      "physical_line_bytes_sha256": "8e4927488ff06d9ee043c505cbd2b668ae6ac9040a93d1e663c12315b8562ad2",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 807,
+        "entry_sha256": "ab0d4e170cd1c332d092f5192e6645a2be3d5a94dfbd0e737c29fd86f770c70c"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 33,
+          "text": "| DG-R-03 | AC2 | 設計含意trace / URLのみ・stale証拠 |"
+        },
+        {
+          "line": 34,
+          "text": "| DG-R-04 | AC8 | 共通契約projection / 同等責務の独立engine |"
+        },
+        {
+          "line": 35,
+          "text": "| HR-R-01 | AC7 | 原文と解釈分離 / 原文上書き・memory流用 |"
+        }
+      ],
+      "source_excerpt": "| DG-R-04 | AC8 | 共通契約projection / 同等責務の独立engine |"
+    },
+    {
+      "rank": 494,
+      "source_id": "LEGACY-CAND-LINE-000808",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 35,
+      "semantic_category": "HR-R-01対応表",
+      "semantic_reading": "HR-R-01の主受入はAC7。正例は「原文と解釈分離」、反例は「原文上書き・memory流用」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "29d934e9eb14839eea2842ef183f92c1fae8a5eb91e8830cf44b9c1d368d5d31",
+      "physical_line_bytes_sha256": "3122fd9e7c60be7594f7093518e45d65423255de66ec09cffb26d487970b2444",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 808,
+        "entry_sha256": "fddabc4f20ce6c32c0f68edad0404d2fa518c10d0053777f8afd91e01bd54141"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 34,
+          "text": "| DG-R-04 | AC8 | 共通契約projection / 同等責務の独立engine |"
+        },
+        {
+          "line": 35,
+          "text": "| HR-R-01 | AC7 | 原文と解釈分離 / 原文上書き・memory流用 |"
+        },
+        {
+          "line": 36,
+          "text": "| HR-R-02 | AC3 | 複数分類・未解決 / 曖昧反応の単一断定 |"
+        }
+      ],
+      "source_excerpt": "| HR-R-01 | AC7 | 原文と解釈分離 / 原文上書き・memory流用 |"
+    },
+    {
+      "rank": 495,
+      "source_id": "LEGACY-CAND-LINE-000809",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 36,
+      "semantic_category": "HR-R-02対応表",
+      "semantic_reading": "HR-R-02の主受入はAC3。正例は「複数分類・未解決」、反例は「曖昧反応の単一断定」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "f125d032a47fb5655abbbf85e8a673c386335410576f1bafafe34ea0c92fcbf3",
+      "physical_line_bytes_sha256": "9512eaf65de6dfb8cf18e0de800f339fdcda666216d7b6a3285d17ede6bd7f57",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 809,
+        "entry_sha256": "ae82619f94e1c6ba601f9b38ea9fce2b161847bc5b1932266336e123236f8826"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 35,
+          "text": "| HR-R-01 | AC7 | 原文と解釈分離 / 原文上書き・memory流用 |"
+        },
+        {
+          "line": 36,
+          "text": "| HR-R-02 | AC3 | 複数分類・未解決 / 曖昧反応の単一断定 |"
+        },
+        {
+          "line": 37,
+          "text": "| HR-R-03 | AC6 | 客観greenと選好reject共存 / 客観greenで人間reject相殺 |"
+        }
+      ],
+      "source_excerpt": "| HR-R-02 | AC3 | 複数分類・未解決 / 曖昧反応の単一断定 |"
+    },
+    {
+      "rank": 496,
+      "source_id": "LEGACY-CAND-LINE-000811",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 38,
+      "semantic_category": "HR-R-04対応表",
+      "semantic_reading": "HR-R-04の主受入はAC4。正例は「表現のみの修正」、反例は「全Design再生成」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "e6fb8567d847f6569503f6629df603ab38830160dff583d14f1f413f4651c23c",
+      "physical_line_bytes_sha256": "f9f0557fad9540bc1ea9ea6cabd780b7b5c46a9f66a27a6f0f98bc7173fc754f",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 811,
+        "entry_sha256": "e68a35fce7a561bed706db0926abb0ad1dfa02596348686cb60a5cce1bbddda0"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 37,
+          "text": "| HR-R-03 | AC6 | 客観greenと選好reject共存 / 客観greenで人間reject相殺 |"
+        },
+        {
+          "line": 38,
+          "text": "| HR-R-04 | AC4 | 表現のみの修正 / 全Design再生成 |"
+        },
+        {
+          "line": 39,
+          "text": "| DC-R-01 | AC5 | stable軸とrevision / 軸リネームで受容履歴を消去 |"
+        }
+      ],
+      "source_excerpt": "| HR-R-04 | AC4 | 表現のみの修正 / 全Design再生成 |"
+    },
+    {
+      "rank": 497,
+      "source_id": "LEGACY-CAND-LINE-000812",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 39,
+      "semantic_category": "DC-R-01対応表",
+      "semantic_reading": "DC-R-01の主受入はAC5。正例は「stable軸とrevision」、反例は「軸リネームで受容履歴を消去」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "cbb214cc19460365d6e5d86842565955100b510a748f91e30b740500ab79c688",
+      "physical_line_bytes_sha256": "5533064091573a5c7ba721a2ccb9239b507a07cdc27c9238994bb5bd5b6a974b",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 812,
+        "entry_sha256": "ad631724909fe4143ad70ae34c526016f0f6ed0faa49b4d43d9573c2d86174bd"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 38,
+          "text": "| HR-R-04 | AC4 | 表現のみの修正 / 全Design再生成 |"
+        },
+        {
+          "line": 39,
+          "text": "| DC-R-01 | AC5 | stable軸とrevision / 軸リネームで受容履歴を消去 |"
+        },
+        {
+          "line": 40,
+          "text": "| DC-R-02 | AC5 | 有効根拠付き改版 / 新Evidenceを人間承認として偽装 |"
+        }
+      ],
+      "source_excerpt": "| DC-R-01 | AC5 | stable軸とrevision / 軸リネームで受容履歴を消去 |"
+    },
+    {
+      "rank": 498,
+      "source_id": "LEGACY-CAND-LINE-000813",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 40,
+      "semantic_category": "DC-R-02対応表",
+      "semantic_reading": "DC-R-02の主受入はAC5。正例は「有効根拠付き改版」、反例は「新Evidenceを人間承認として偽装」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "bfd15fd19204fdd4e56f8ac59a06d1bb6c30846f03c3bbe41617f354c97d6eda",
+      "physical_line_bytes_sha256": "fb2b756e97e1bb0f4309533b030a196932bb691d8fdf4b4f308090e10e4a9bc7",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 813,
+        "entry_sha256": "998195b5e96ee10fbe28336264bc073c6fedd4db9316aadd9ddada0454513fee"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 39,
+          "text": "| DC-R-01 | AC5 | stable軸とrevision / 軸リネームで受容履歴を消去 |"
+        },
+        {
+          "line": 40,
+          "text": "| DC-R-02 | AC5 | 有効根拠付き改版 / 新Evidenceを人間承認として偽装 |"
+        },
+        {
+          "line": 41,
+          "text": "| DC-R-03 | AC9 | 再発・別原因の系譜 / 新IDで再発を隠蔽 |"
+        }
+      ],
+      "source_excerpt": "| DC-R-02 | AC5 | 有効根拠付き改版 / 新Evidenceを人間承認として偽装 |"
+    },
+    {
+      "rank": 499,
+      "source_id": "LEGACY-CAND-LINE-000814",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 41,
+      "semantic_category": "DC-R-03対応表",
+      "semantic_reading": "DC-R-03の主受入はAC9。正例は「再発・別原因の系譜」、反例は「新IDで再発を隠蔽」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "1ca4add8c9a7ea9f9e151a7abeb0f5ea2e2e4ecdd8c25f4345d4d516e853f484",
+      "physical_line_bytes_sha256": "d4e8c66c3709f357976357abdeadf6cf34795bf408eef235c98496d3d23d69ee",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 814,
+        "entry_sha256": "e8fb286e71b715d245ea3212227f9054692558b1b7de5f738ba56bba5f70b2de"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 40,
+          "text": "| DC-R-02 | AC5 | 有効根拠付き改版 / 新Evidenceを人間承認として偽装 |"
+        },
+        {
+          "line": 41,
+          "text": "| DC-R-03 | AC9 | 再発・別原因の系譜 / 新IDで再発を隠蔽 |"
+        },
+        {
+          "line": 42,
+          "text": "| DC-R-04 | AC9 | 全条件の同版AND / 単一approve・wrong revisionで合格 |"
+        }
+      ],
+      "source_excerpt": "| DC-R-03 | AC9 | 再発・別原因の系譜 / 新IDで再発を隠蔽 |"
+    },
+    {
+      "rank": 500,
+      "source_id": "LEGACY-CAND-LINE-000815",
+      "effective_classification": "explanation",
+      "effective_overlay": "#2353 baseline (no later selected classification overlay intersects this row)",
+      "source_path": "docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-acceptance.md",
+      "source_line": 42,
+      "semantic_category": "DC-R-04対応表",
+      "semantic_reading": "DC-R-04の主受入はAC9。正例は「全条件の同版AND」、反例は「単一approve・wrong revisionで合格」。この行だけの対応。",
+      "current_relation_and_limit": "固定F6のHARNESS L2（docs/helix-harness/L2-requirements/product-requirements.md:187–196）はDGH-BR-01/02/03をHARNESS-L2-003/004/005へ、OS L2（docs/helix-os/L2-requirements/governance-requirements.md:429–443,506）はDGH要求候補familyをHELIXOS-L2-001/002/003/007へ接続する。本受入候補ファイル自体は直接名指しされず、family関係に留まる。候補は未採択で、この行の採択pair binding、formal successor、実行・closureは0。",
+      "marker_negative_normative_or_authority_condition": true,
+      "source_file_sha256": "43314566db788f14c13d85ab4483245c5d8447885434cb3b60d6cd3da12a9241",
+      "source_line_sha256": "46498db6c5a621cef95ec9d38521188111d386adb2d9554f164227c84b337176",
+      "physical_line_bytes_sha256": "30d793919d3e39d05b217185b3ea9f58d321b451f09f5174807828d8e3fabee1",
+      "source_line_ledger_entry": {
+        "source_authority_state": "historical_candidate",
+        "target_authority_state": "draft_candidate",
+        "atomization_status": "preserved_pending_atomization",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "decision_record": null,
+        "path": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+        "line": 815,
+        "entry_sha256": "86eb5b1580803ca233c901dc4d6ed31a288ddb6ed4fa0bf73f4436967d317615"
+      },
+      "asset_ledger_entries": [
+        {
+          "asset_id": "LEGACY-ASSET-FFACD176B1C7DF1A7973",
+          "path": "docs/governance/legacy-asset-disposition.jsonl",
+          "line": 805,
+          "entry_sha256": "f96326beb47f67a9180e268fd604b3a127fd884c33766ee0fd50094a981defdc",
+          "asset_class": "Historical",
+          "authority_status": "historical",
+          "disposition": "unresolved"
+        }
+      ],
+      "neighboring_context": [
+        {
+          "line": 41,
+          "text": "| DC-R-03 | AC9 | 再発・別原因の系譜 / 新IDで再発を隠蔽 |"
+        },
+        {
+          "line": 42,
+          "text": "| DC-R-04 | AC9 | 全条件の同版AND / 単一approve・wrong revisionで合格 |"
+        },
+        {
+          "line": 43,
+          "text": ""
+        }
+      ],
+      "source_excerpt": "| DC-R-04 | AC9 | 全条件の同版AND / 単一approve・wrong revisionで合格 |"
+    }
+  ],
+  "summary": {
+    "selected_rows": 40,
+    "marker_negative_normative_or_authority_condition_rows": 34,
+    "metadata_or_pointer_or_structural_rows": 6,
+    "source_line_ledger_joined_rows": 40,
+    "asset_ledger_joined_rows": 40,
+    "source_authority_state": "historical_candidate",
+    "target_authority_state": "draft_candidate",
+    "atomization_status": "preserved_pending_atomization",
+    "meaning_change_applied": false,
+    "successor_requirement_assignments": 0,
+    "row_specific_crosswalks": 0,
+    "adopted_pair_bindings": 0,
+    "acceptance_execution_or_source_closure_established": false
+  },
+  "limitations": [
+    "This slice records the exact selected rank/ID set and line-level semantic readings; no requirement adoption, successor assignment, acceptance execution, or source closure is asserted.",
+    "The preceding ranks 421–460 paired JSON is pinned as an ancestor and establishes the rank 460 ID 000753 boundary; this slice does not re-count that prior semantic audit.",
+    "The 2,710 complement and numeric rank equation depend on the pinned 2,965 effective-explanation pool and the 255 previously reviewed positive marker rows; no claim of complete legacy source atomization follows."
+  ],
+  "static_validation": {
+    "expected_rank_start": 461,
+    "expected_rank_end": 500,
+    "selected_count": 40,
+    "selected_ids_unique": true,
+    "numeric_suffix_strictly_ascending": true,
+    "first_selected_id": "LEGACY-CAND-LINE-000755",
+    "last_selected_id": "LEGACY-CAND-LINE-000815",
+    "source_line_ledger_exact_join_count": 40,
+    "asset_ledger_source_path_join_count": 40,
+    "archive_file_hash_verified_count": 40,
+    "source_line_hash_verified_count": 40,
+    "physical_line_bytes_hash_verified_count": 40,
+    "source_authority_preserved_count": 40,
+    "meaning_change_false_count": 40,
+    "successor_assignment_count": 0,
+    "old_runtime_cli_hook_test_ci_executed": false
+  }
+}
