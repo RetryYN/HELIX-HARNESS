@@ -42,11 +42,16 @@ def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
         return False
     source_keys = set(source)
     current_keys = set(current)
-    return (
-        source_keys <= current_keys
-        and current_keys - source_keys <= {"current_projection"}
-        and {key: current[key] for key in source_keys} == source
-    )
+    if not (source_keys <= current_keys and current_keys - source_keys <= {"current_projection"}):
+        return False
+    expected = json.loads(json.dumps(source))
+    for record in expected.get("records", []):
+        refs = record.get("current", {}).get("refs", [])
+        if isinstance(refs, list):
+            for index, path in enumerate(refs):
+                if isinstance(path, str) and path.startswith("helix-web/docs/"):
+                    refs[index] = path.replace("helix-web/docs/", "docs/", 1)
+    return {key: current[key] for key in source_keys} == expected
 ASSET_IDS = [
     "LEGACY-ASSET-189702B332643A3BFDAF",
     "LEGACY-ASSET-4618C7243C283228809A",

@@ -12,6 +12,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -27,6 +28,9 @@ CATALOG_PATH = "docs/governance/legacy-asset-phase-product-classification-bootst
 CROSSWALK_PATH = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DECOMPOSITION_PATH = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 REQ_RELATION_PATH = "docs/governance/legacy-ir-document-source-relation.jsonl"
+PHASE_INVENTORY_SOURCE_REVISION = "554aff0d3dd61e4e15bd261991af925d1e59baf7"
+PHASE_INVENTORY_SOURCE_PATH = "docs/governance/phase-capability-inventory.json"
+PHASE_INVENTORY_SOURCE_SHA256 = "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
@@ -132,6 +136,22 @@ def digest(data: bytes) -> str:
 
 def file_digest(path: Path) -> str:
     return digest(path.read_bytes())
+
+
+def fixed_phase_inventory_digest() -> str:
+    result = subprocess.run(
+        ["git", "show", f"{PHASE_INVENTORY_SOURCE_REVISION}:{PHASE_INVENTORY_SOURCE_PATH}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError("fixed Phase Capability Inventory source is unavailable")
+    actual = digest(result.stdout)
+    if actual != "sha256:" + PHASE_INVENTORY_SOURCE_SHA256:
+        raise RuntimeError("fixed Phase Capability Inventory source digest changed")
+    return actual
 
 
 def canonical(value: object) -> str:
@@ -340,7 +360,8 @@ def main() -> None:
         CROSSWALK_PATH: file_digest(ROOT / CROSSWALK_PATH),
         DECOMPOSITION_PATH: file_digest(ROOT / DECOMPOSITION_PATH),
         REQ_RELATION_PATH: file_digest(ROOT / REQ_RELATION_PATH),
-        "docs/governance/phase-capability-inventory.json": file_digest(ROOT / "docs/governance/phase-capability-inventory.json"),
+        # The historical input is read from its exact commit; current refs are a separate projection.
+        "docs/governance/phase-capability-inventory.json": fixed_phase_inventory_digest(),
         "docs/concept/product-boundary.md": file_digest(ROOT / "docs/concept/product-boundary.md"),
         "docs/helix-harness/L1-planning/product-intent.md": file_digest(ROOT / "docs/helix-harness/L1-planning/product-intent.md"),
         "docs/helix-os/L1-planning/system-intent.md": file_digest(ROOT / "docs/helix-os/L1-planning/system-intent.md"),

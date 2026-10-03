@@ -1,0 +1,700 @@
+{
+  "receipt_id": "DRAFT-RCPT-HARNESS-L2-086-V13-POLICY-167-171-DESIGN-BOTTOMUP-R2-2026-10-03-R3",
+  "authority_effect": "none",
+  "candidate_digest_rule": "For revision 002, selected bytes are each exact immutable revision-001 candidate section bytes plus its exact EOF supplement bytes; section and supplement hashes are recorded separately. Existing file prefixes remain byte-identical. Do not select or rewrite any intervening candidate section. All start_line/end_line locators use inclusive selected physical lines; the next heading is excluded.",
+  "source_atom_set_digest_rule": "Sort the 14 atom IDs and hash UTF-8 `atom_id SP digest LF` records. For original REQSRC-SUP-00127..00131 copied byte-for-byte from r1, digest is the unprefixed suffix of source_line_sha256; for added line atoms use atom_digest_value equal to source_line_sha256 suffix; for four section atoms use atom_digest_value equal to source_span_sha256 suffix (span includes terminal LF). This derives one value per atom without rewriting the original five ledger rows. The four design-bottomup span atoms are also partitioned against a separate 43-line source-holding inventory; their selected physical lines are not double-counted in the 14-atom candidate input.",
+  "scope": "Revision 002 selects 14 atoms only: the original five v1.3 lines 167–171 unchanged; design-bottomup §§1–4 exact spans; and existing carry-forward identities REQSRC-SUP-00133/00134/00184/00185/00186 (v1.3 lines 174–175 and 236–238). This does not claim full v1.3, all design-bottomup consumers, or MPR-SH-SUPPLEMENTARY-004 closure.",
+  "source_atom_set": {
+    "source_atom_file": "docs/governance/audits/requirement-registration/harness-v13-policy-086-source-atoms-2026-10-03-r2.jsonl",
+    "source_atom_file_sha256": "sha256:1b7e38bda66aa1091abf772a336054080b51612e763c12095f687372fb60ff77",
+    "source_atom_set_digest": "sha256:41b9362a6812b9d79a2e4ad834f4034402bd3aa035ffdfcf7a546cdf7b7ad787",
+    "source_atom_count": 14,
+    "source_holding": "MPR-SH-SUPPLEMENTARY-004 remains live; total original holding 655; only five pre-existing carry-forward atom identities newly mapped here; no full source closure.",
+    "legacy_asset_ids": [
+      "LEGACY-ASSET-02319C2481B9E01698D5",
+      "LEGACY-ASSET-AB1F4DB632A5A293FF5E"
+    ],
+    "source_paths": [
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md"
+    ],
+    "held_copy_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+    "source_file_sha256": {
+      "v1.3": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "design-bottomup": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c"
+    },
+    "atoms": [
+      {
+        "atom_id": "HARNESS086-DB-SEC-01",
+        "legacy_asset_id": "LEGACY-ASSET-AB1F4DB632A5A293FF5E",
+        "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+        "source_span_locator": "§1 目的と境界; physical lines 17-21",
+        "source_span_sha256": "sha256:3d3cb0220f1d7c927b39a9f097864e83b671a9df89ba8e67e23112dd452d5665",
+        "atom_digest_value": "3d3cb0220f1d7c927b39a9f097864e83b671a9df89ba8e67e23112dd452d5665",
+        "holding_line_inventory_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl",
+        "holding_atom_ids_for_span": [
+          "DBTM-LINE-017",
+          "DBTM-LINE-018",
+          "DBTM-LINE-019",
+          "DBTM-LINE-020",
+          "DBTM-LINE-021"
+        ]
+      },
+      {
+        "atom_id": "HARNESS086-DB-SEC-02",
+        "legacy_asset_id": "LEGACY-ASSET-AB1F4DB632A5A293FF5E",
+        "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+        "source_span_locator": "§2 経路; physical lines 23-31",
+        "source_span_sha256": "sha256:a9256712da3342be3f59346ca0da2cb1cc9b3f7476b0a086524d3308ba4afa36",
+        "atom_digest_value": "a9256712da3342be3f59346ca0da2cb1cc9b3f7476b0a086524d3308ba4afa36",
+        "holding_line_inventory_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl",
+        "holding_atom_ids_for_span": [
+          "DBTM-LINE-023",
+          "DBTM-LINE-024",
+          "DBTM-LINE-025",
+          "DBTM-LINE-026",
+          "DBTM-LINE-027",
+          "DBTM-LINE-028",
+          "DBTM-LINE-029",
+          "DBTM-LINE-030",
+          "DBTM-LINE-031"
+        ]
+      },
+      {
+        "atom_id": "HARNESS086-DB-SEC-03",
+        "legacy_asset_id": "LEGACY-ASSET-AB1F4DB632A5A293FF5E",
+        "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+        "source_span_locator": "§3 承認境界; physical lines 33-36",
+        "source_span_sha256": "sha256:d3a43f9d924a9a9c8df3062eb00f47372fa4c79b895411fd988917209c0136a6",
+        "atom_digest_value": "d3a43f9d924a9a9c8df3062eb00f47372fa4c79b895411fd988917209c0136a6",
+        "holding_line_inventory_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl",
+        "holding_atom_ids_for_span": [
+          "DBTM-LINE-033",
+          "DBTM-LINE-034",
+          "DBTM-LINE-035",
+          "DBTM-LINE-036"
+        ]
+      },
+      {
+        "atom_id": "HARNESS086-DB-SEC-04",
+        "legacy_asset_id": "LEGACY-ASSET-AB1F4DB632A5A293FF5E",
+        "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+        "source_span_locator": "§4 exit条件; physical lines 38-43",
+        "source_span_sha256": "sha256:ff4e862e2190ce6e7fe1b0fe27966e35aeb1b106baba0f1eee7b9beda0eb5a72",
+        "atom_digest_value": "ff4e862e2190ce6e7fe1b0fe27966e35aeb1b106baba0f1eee7b9beda0eb5a72",
+        "holding_line_inventory_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl",
+        "holding_atom_ids_for_span": [
+          "DBTM-LINE-038",
+          "DBTM-LINE-039",
+          "DBTM-LINE-040",
+          "DBTM-LINE-041",
+          "DBTM-LINE-042",
+          "DBTM-LINE-043"
+        ]
+      },
+      {
+        "atom_id": "REQSRC-SUP-00127",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 167,
+        "source_line_sha256": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+        "source_text": "- 旧`design-bottomup`は`SCREEN_DESIGN` specialist workflowへbackend-derived trigger／方向条件を与える",
+        "atom_digest_value": "b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00128",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 168,
+        "source_line_sha256": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001",
+        "source_text": "  compatibility inputである。同名workflow modelを新設しない。",
+        "atom_digest_value": "862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00129",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 169,
+        "source_line_sha256": "sha256:7dc52084a9aaf5ab0c7c5717fa8857a6a5f07f964d8c9981cc750d573355ae6e",
+        "source_text": "- 旧`operation_verification`／`verification`はL7〜L12 right-arm verification scopeとL12運用テストを",
+        "atom_digest_value": "7dc52084a9aaf5ab0c7c5717fa8857a6a5f07f964d8c9981cc750d573355ae6e"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00130",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 170,
+        "source_line_sha256": "sha256:a2dd6fe1aa27f954a7d6e30fc78102af23b10152c89de8c488434e264af1bda8",
+        "source_text": "  指すcompatibility inputである。同名workflow modelを新設せず、必要なNFR計測は",
+        "atom_digest_value": "a2dd6fe1aa27f954a7d6e30fc78102af23b10152c89de8c488434e264af1bda8"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00131",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 171,
+        "source_line_sha256": "sha256:7196e911d3b82adaa3c88733c95f92ef5ce293b1b868bfe6599ee0854724d0d7",
+        "source_text": "  `NFR_MEASUREMENT` capabilityへ接続する。",
+        "atom_digest_value": "7196e911d3b82adaa3c88733c95f92ef5ce293b1b868bfe6599ee0854724d0d7"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00133",
+        "source_item_id": "REQSRC-SUP-00133",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 174,
+        "source_line_sha256": "sha256:4d03c721822d7b1d215a490b40497b1750f12443ae5d430696f61760014a8c50",
+        "source_text": "execution policyの実体、command registry、generated projection、consumer移行は本分類境界を満たす",
+        "atom_digest_value": "4d03c721822d7b1d215a490b40497b1750f12443ae5d430696f61760014a8c50",
+        "existing_carry_forward_locator": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:133",
+        "existing_carry_forward_status": "preserved_pending_atomization in historical register; exact atom identity reused, no duplicate ID created"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00134",
+        "source_item_id": "REQSRC-SUP-00134",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 175,
+        "source_line_sha256": "sha256:48420267fd12aa05650518f8028ec06fe57c44956f89b6947b00d016d83d3084",
+        "source_text": "後続versionで追加する。未実装identityへのexecution要求はpolicyを推測せずunsupportedとしてfail-closeする。",
+        "atom_digest_value": "48420267fd12aa05650518f8028ec06fe57c44956f89b6947b00d016d83d3084",
+        "existing_carry_forward_locator": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:134",
+        "existing_carry_forward_status": "preserved_pending_atomization in historical register; exact atom identity reused, no duplicate ID created"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00184",
+        "source_item_id": "REQSRC-SUP-00184",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 236,
+        "source_line_sha256": "sha256:80ad036de8661306cb8cda0cbd723551eb0097ce309997db8ebce59bdcab305d",
+        "source_text": "`forward`、`scrum`、`design-bottomup`、`verification`は複数axis、条件、scopeを畳み込んだ曖昧入力なので、",
+        "atom_digest_value": "80ad036de8661306cb8cda0cbd723551eb0097ce309997db8ebce59bdcab305d",
+        "existing_carry_forward_locator": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:184",
+        "existing_carry_forward_status": "preserved_pending_atomization in historical register; exact atom identity reused, no duplicate ID created"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00185",
+        "source_item_id": "REQSRC-SUP-00185",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 237,
+        "source_line_sha256": "sha256:a11d27cc4ccfa1f25cd39e9dffe66ff3ee4da60663de2d88c5a82fec95dd95b3",
+        "source_text": "推測せず`ambiguous`／exit 1でfail-closeする。exact set外は`unsupported`／exit 1とし、Forward等へ",
+        "atom_digest_value": "a11d27cc4ccfa1f25cd39e9dffe66ff3ee4da60663de2d88c5a82fec95dd95b3",
+        "existing_carry_forward_locator": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:185",
+        "existing_carry_forward_status": "preserved_pending_atomization in historical register; exact atom identity reused, no duplicate ID created"
+      },
+      {
+        "atom_id": "REQSRC-SUP-00186",
+        "source_item_id": "REQSRC-SUP-00186",
+        "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+        "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "source_line": 238,
+        "source_line_sha256": "sha256:0b21bf9616695b995256b4740e99becce8ea881dd115ea448918cbaa3cd6672e",
+        "source_text": "fallbackしない。変換成功だけを`converted`／exit 0とする。",
+        "atom_digest_value": "0b21bf9616695b995256b4740e99becce8ea881dd115ea448918cbaa3cd6672e",
+        "existing_carry_forward_locator": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl:186",
+        "existing_carry_forward_status": "preserved_pending_atomization in historical register; exact atom identity reused, no duplicate ID created"
+      }
+    ],
+    "source_holding_registration_refs": [
+      "MPR-SH-DESIGN-BOTTOMUP-002#all-43-physical-lines"
+    ]
+  },
+  "current_candidate_pair": {
+    "L2": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "immutable_revision_001_section_sha256": "sha256:cef4bb68938fc082b87618b000fb32b1f428aa2d6322916b8926fb6ffcb037a2",
+      "revision_002_supplement_sha256": "sha256:79d045418eef00464074f5b451721452c094feeca2a1adee855366a46cee4f7c",
+      "composite_candidate_sha256": "sha256:1156537dc160a27de13dc9b9f3b5f829128010bfd31f39ac99ed7bf2e6d01094",
+      "full_file_sha256": "sha256:720d40ff9e49602168a59c8e596367dd7c8ced217d65ca8582bfca8e65431d5d",
+      "append_rule": "old full-file bytes preserved as prefix; supplement starts with two LF bytes from the old EOF location."
+    },
+    "L11": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "immutable_revision_001_section_sha256": "sha256:82cf498972d8f2bfcb5a396b82a67aabc466a9a3d0594caee587517457f32771",
+      "revision_002_supplement_sha256": "sha256:21fcbd6382b2c34ef8fb73c418ceb080999efc609230966d4c25716cb3dd297f",
+      "full_file_sha256": "sha256:2f31a62cbe4d5a9f3f2e143d7090b7c8cc8cdc2b3da592eca429db0cbdd62d50",
+      "append_rule": "old full-file bytes preserved as prefix; supplement starts with two LF bytes from the old EOF location."
+    },
+    "pair_digest_rule": "The revision-002 L2 semantic candidate digest is SHA-256 of immutable L2 revision-001 selected section bytes concatenated with the revision-002 L2 supplement bytes. L11 is an independent exact acceptance supplement pin; no claim that 086 L11 is an adopted requirement."
+  },
+  "source_atom_mapping": [
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00127",
+        "REQSRC-SUP-00128"
+      ],
+      "condition": "typed design-bottomup compatibility input supplies backend-derived trigger/direction to SCREEN_DESIGN; no same-named workflow model.",
+      "current_pair_reuse": "Adopted 039 covers the selected same-scope Experience/UI/Frontend relation, not backend-fact elicitation, FE requirement formation, screen mock/backfill, prototype/no-UI disposition, Discovery-if-uncertain or Add-feature routing.",
+      "candidate_scope": "Future-version functional requirement: pass typed backend/API/domain-event/permission/error and trigger/direction context into SCREEN_DESIGN; produce FE requirement/design candidates; connect stable FE requirement to L3 and applicable V-pairs; require UI prototype agreement or current no-UI receipt; do not claim completion from mock/backend rendering; uncertain user meaning returns to existing Discovery; implementation delta routes to existing Add-feature. Applicability is tri-state: same-scope/revision current no-UI receipt grounds N/A; UI=true applies the screen mock obligation; unknown remains unassessed."
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00129",
+        "REQSRC-SUP-00130"
+      ],
+      "condition": "typed operation_verification/verification compatibility input points to L7–L12 right-arm verification scope and L12 operation test; no same-named workflow model.",
+      "current_pair_reuse": "Existing 003/005/022 provide current stage, obligation, evidence and oracle responsibilities, but do not adopt the legacy typed input relation or expand its scope.",
+      "candidate_scope": "Future-version functional requirement: preserve the explicitly selected right-arm scope and L12 operation-test relation as distinct from a bare ambiguous alias, current workflow identity, execution result, or completion."
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00131"
+      ],
+      "condition": "necessary NFR measurement connects to NFR_MEASUREMENT capability.",
+      "current_pair_reuse": "Adopted 034 provides the exact current requirement/NFR measurement contract and completion oracle, not legacy capability identity, formal successor, route, owner, or measurement result.",
+      "candidate_scope": "Future-version functional requirement: when selected operation requires NFR measurement, connect the applicable NFR to adopted 034 contract and keep contract selection, execution and measurement evidence as separate states."
+    },
+    {
+      "source_atom_ids": [
+        "HARNESS086-DB-SEC-01"
+      ],
+      "condition": "design-bottomup §1; backend/API/domain-event/permission/failure-derived FE requirement/screen/interaction/state/content/analytics elicitation; design facts do not terminate at L7 implementation.",
+      "mapping_status": "existing candidate functionality retained; source evidence newly atomized in r2; no claim that five v1.3 lines alone implied this condition.",
+      "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+      "source_holding_partition_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl"
+    },
+    {
+      "source_atom_ids": [
+        "HARNESS086-DB-SEC-02"
+      ],
+      "condition": "design-bottomup §2; exact sequence, settled/uncertain meaning branch, UI prototype agreement/non-UI current no-UI receipt and noncompletion cases.",
+      "mapping_status": "existing candidate functionality retained; each branch is independently testable and grounded N/A differs from unknown.",
+      "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+      "source_holding_partition_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl"
+    },
+    {
+      "source_atom_ids": [
+        "HARNESS086-DB-SEC-03"
+      ],
+      "condition": "design-bottomup §3; AI autonomy and PO action boundary, while ordinary design PR/review/CI continues.",
+      "mapping_status": "existing candidate functionality retained; do not infer broader approval or stop-work requirements.",
+      "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+      "source_holding_partition_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl"
+    },
+    {
+      "source_atom_ids": [
+        "HARNESS086-DB-SEC-04"
+      ],
+      "condition": "design-bottomup §4; four independent exit conditions and routes.",
+      "mapping_status": "existing candidate functionality retained; each exit is separately checked; no mutual implication.",
+      "source_holding_registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+      "source_holding_partition_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl"
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00133",
+        "REQSRC-SUP-00134"
+      ],
+      "condition": "v1.3 lines174–175 later-version boundary, registry/projection/consumer migration deferred, unsupported/fail-close for execution request to unimplemented identity.",
+      "mapping_status": "existing pending carry-forward identity atomized; exact later version remains unspecified; no 1.0 addition or runtime implementation claim."
+    },
+    {
+      "source_atom_ids": [
+        "REQSRC-SUP-00184",
+        "REQSRC-SUP-00185",
+        "REQSRC-SUP-00186"
+      ],
+      "condition": "v1.3 lines236–238 bare-token ambiguity, ambiguous/unsupported status and exit, no fallback, converted-only success.",
+      "mapping_status": "existing pending carry-forward identity atomized; typed input and bare-token ambiguity remain distinct conditions."
+    }
+  ],
+  "source_internal_context": {
+    "former_context_lines_now_selected_as_normative_atoms": [
+      "v1.3 lines174–175",
+      "v1.3 lines236–238"
+    ],
+    "distinction": "They are selected normative source atoms in revision 002, not merely source-internal context. Section spans §§1–4 of design-bottomup.md are separately selected normative atoms. Runtime dependency classification is separate."
+  },
+  "legacy_consumer_evidence": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+      "file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+      "locator": "frontmatter, §§1–4; normative selected source atoms only for §§1–4",
+      "finding": "Source requirements mapped atom-by-atom above; other consumers/full source scope remain unclosed."
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/drive-route-system.md",
+      "file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950",
+      "locator": "§§1–5",
+      "finding": "legacy alias and typed axis boundary; raw design-bottomup/verification are ambiguous and fail-close"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md",
+      "file_sha256": "sha256:2d931cd3296fc0fb6ba33543af3edd37f1587dda972a29c8aed0094a516d7eab",
+      "locator": "U-WFLEG-003/U-WFLEG-005",
+      "finding": "bare ambiguous alias rejected; current output omits old mode/model/catalog route"
+    }
+  ],
+  "adopted_pair_pins": [
+    {
+      "identity": "HARNESS-L2-039",
+      "disposition": "adopted_exact_pair_revision",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": 44,
+      "L2_section_digest": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+      "L11_section_digest": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746",
+      "condition_scope": "Experience/UI/Frontend contract relation; no legacy route alias binding"
+    },
+    {
+      "identity": "HARNESS-L2-034",
+      "disposition": "adopted_exact_pair_revision",
+      "decision_record": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "decision_record_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "decision_row": 39,
+      "L2_section_digest": "sha256:dee3a5ca82c62195e1ae7322e05c1dc624c9633a2abb77aa0ff1e943ae8c6156",
+      "L11_section_digest": "sha256:391f640508944ba2f32b5751a2a9a17fbc9f89ef76f46953c1af68ba907a9fdf",
+      "condition_scope": "requirement/NFR metrics and completion oracle; no legacy capability identity binding"
+    }
+  ],
+  "coverage_result": "no_loss_limited_to_14_selected_atoms; the complete 43-line design-bottomup file is separately partitioned without loss: 24 selected lines map to the four existing span atoms and 19 unselected/frontmatter/separator lines remain in MPR-SH-DESIGN-BOTTOMUP-002. Other source/consumer closure remains unproven.",
+  "carried_atom_refs": [
+    "HARNESS086-DB-SEC-01",
+    "HARNESS086-DB-SEC-02",
+    "HARNESS086-DB-SEC-03",
+    "HARNESS086-DB-SEC-04",
+    "REQSRC-SUP-00127",
+    "REQSRC-SUP-00128",
+    "REQSRC-SUP-00129",
+    "REQSRC-SUP-00130",
+    "REQSRC-SUP-00131",
+    "REQSRC-SUP-00133",
+    "REQSRC-SUP-00134",
+    "REQSRC-SUP-00184",
+    "REQSRC-SUP-00185",
+    "REQSRC-SUP-00186"
+  ],
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-DESIGN-BOTTOMUP-002#unselected physical line atoms 1–16, 22, 32, 37 remain live; selected 17–43 lines map to the four existing candidate span atoms. Full-file snapshot contains all 43 lines.",
+    "MPR-SH-SUPPLEMENTARY-004 remains live as a 655-atom overinclusive holding; selected IDs do not close the remaining holding.",
+    "HARNESS-L2-079 remains an unadopted candidate; its artifact/walkthrough conditions are complementary to 086 and not adopted here.",
+    "Other v1.3 source lines and design-bottomup consumers outside selected spans are unassessed/unclosed."
+  ],
+  "authority_boundary": "Unadopted future-version functional candidate with static acceptance fixtures. Revision 002 expands explicit normative source selection but does not adopt the candidate, implement runtime behavior, create new gates, add version 1.0, retire legacy assets, or claim full source/consumer closure.",
+  "static_validation": {
+    "source_lines_exact_match": true,
+    "source_line_hashes_lf_excluded": true,
+    "coverage_receipt_does_not_claim_full_source_closure": true,
+    "candidate_pair_does_not_change_adopted_034_or_039": true,
+    "typed_functional_conditions_preserved": true,
+    "later_version_boundary_preserved": true,
+    "bare_token_ambiguity_preserved": true,
+    "old_consumer_flow_and_noncompletion_preserved": true,
+    "grounded_na_separated_from_unknown": true,
+    "023_four_dependency_classes_have_concrete_synthetic_tuples": true,
+    "source_atom_count_is_14": true,
+    "existing_five_atom_records_preserved_verbatim": true,
+    "additional_design_bottomup_spans_each_have_line_hashes_and_span_hashes": true,
+    "existing_v13_carry_forward_ids_reused_without_duplication": true,
+    "source_obligations_not_erased_by_runtime_reference_classification": true,
+    "design_bottomup_four_sections_mapped_without_derivation_from_five_lines": true,
+    "harness_079_unadopted_boundary_recorded": true,
+    "023_002_exact_adoption_scope_recorded": true,
+    "023_exact_decision_selected_pair_pinned": true,
+    "four_023_dependency_classes_retained_as_current_fixture_classes": true,
+    "reference_only_runtime_class_does_not_erase_normative_source_conditions": true,
+    "design_bottomup_file_all_43_physical_lines_atomized": true,
+    "design_bottomup_whole_file_partition_24_selected_19_held": true,
+    "design_bottomup_unselected_lines_have_live_source_holding": true,
+    "existing_four_design_section_atom_ids_preserved": true
+  },
+  "acceptance_fixture_classes": [
+    {
+      "dependency_class": "always_required",
+      "synthetic_fixture_tuple": {
+        "identity": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001",
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "固定Concept/L1のrevision pinと固定採択039 pair pin。",
+        "applicability": "固定した正常SCREEN_DESIGN callの選択scope。screen適用性がunknownなら未判定。"
+      },
+      "expected": "identity、scope、authority、適用するpair/oracleを確認する。候補登録からruntimeや実行ownerを生成しない。"
+    },
+    {
+      "dependency_class": "operation_only",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "operation": "SCREEN_DESIGN",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "identity": "HARNESS-L2/L11-039の固定採択pair",
+          "L2_section_sha256": "sha256:e2a71f7961a3e8c7c241c7d1ef3238382d5d709296db2fb7e57a9dd0cd9215a0",
+          "L11_section_sha256": "sha256:63177feef3ec82d4e0a4bb5a56c7cfefdbe3666f0eb18f0a5d2934cfd1211746"
+        },
+        "declared_version_range": "sourceに操作互換版範囲の宣言なし。fixtureはこのexact adopted pairのみを参照する。",
+        "compatibility_evidence": "同一scopeの要求・設計oracleと固定採択039 pair pin。",
+        "applicability": "選択operationはSCREEN_DESIGN、screen applicabilityはUI=true。"
+      },
+      "expected": "このoperationでbackend-derived contextとmock/prototype義務を評価し、無関係なoperationへ広げない。"
+    },
+    {
+      "dependency_class": "selected_input_source",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "input": "archive v1.3.14/design-bottomup",
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": {
+          "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "source_atoms": [
+            "REQSRC-SUP-00127",
+            "REQSRC-SUP-00128"
+          ],
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          }
+        },
+        "declared_version_range": "保持sourceのexact revision v1.3.14のみ。sourceにより広い互換版範囲は宣言されていない。",
+        "compatibility_evidence": {
+          "source_line_sha256": {
+            "REQSRC-SUP-00127": "sha256:b76192dfbb3cf417454e89b21fae3ed1a19ed02c7b97fcbbf94e51219afe9697",
+            "REQSRC-SUP-00128": "sha256:862bb94445be98099a88e6f3fff53a5caa80f6e05cdc2c0febd1fdf4baaed001"
+          },
+          "selected_scope_facts": "選択scopeのbackend/API/domain-event/permission/error facts"
+        },
+        "applicability": "typed inputがbackend-derived trigger、方向条件、screen scopeを選択した場合。UI=trueならscreen義務を適用し、同一scopeの根拠付きN/Aなら現行no-UI receiptへ接続し、unknownは未判定とする。"
+      },
+      "expected": "このfixtureでの条件に限り、実装済みregistry/rangeや全aliasの互換性を宣言しない。"
+    },
+    {
+      "dependency_class": "reference_only",
+      "synthetic_fixture_tuple": {
+        "identity": {
+          "references": [
+            "old design-bottomup.md",
+            "drive-route-system.md"
+          ],
+          "requirement": "HARNESS-L2-086@MPR-RC-HARNESS-L2-086-001"
+        },
+        "owner": {
+          "meaning": "HARNESS",
+          "execution": "unknown"
+        },
+        "contract_revision": "該当なし。参照資料は現行実行契約ではない。",
+        "reference_revision": {
+          "design-bottomup.md_file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+          "drive-route-system.md_file_sha256": "sha256:22c7980eccafffab84216b3ef250c374a719045dfca2f7d6ea8f08960243e950"
+        },
+        "declared_version_range": "該当なし。実行互換範囲は宣言しない。",
+        "compatibility_evidence": "exactな旧file revisionと記録済みlocatorはcontextだけを裏付ける。",
+        "applicability": "Use this class to decide whether an old runtime/tool/test/CLI is a current runtime dependency. The selected source sections/lines are normative source atoms separately; their requirement meaning remains in the acceptance scope."
+      },
+      "expected": "Legacy executable/runtime/test/CLI is not a current runtime dependency or pass evidence. This classification does not downgrade selected v1.3/design-bottomup source atoms or old consumer semantic obligations: those remain normative conditions and are checked by the 14-atom coverage mapping."
+    }
+  ],
+  "applicability_states": {
+    "ui_applicable": "UI=true: apply screen mock/prototype obligation.",
+    "grounded_not_applicable": "N/A only when a current no-UI receipt matches the same scope/revision; use non-UI path without requiring a screen mock.",
+    "unknown": "Return applicability as unassessed; do not infer UI=true, N/A, pass, or completion."
+  },
+  "acceptance_fixture_basis": "4つのHARNESS-L2-023依存区分を通して、正常なSCREEN_DESIGN callを固定する合成fixtureである。各tupleはidentity、owner、exactな契約/source revision、宣言された版範囲、互換根拠、適用条件を分離する。適用条件は版範囲ではない。このfixtureはruntime ownerやcompatibility registryを定めず、規範sourceや旧consumerの意味上の義務をruntime依存へ降格しない。 HARNESS-L2-023-002 is the adopted exact dependency taxonomy revision for classification only, per 2026-09-28 decision row 52; it does not adopt 086 or convert normative source into runtime evidence.",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/harness-v13-policy-167-171-coverage-receipt-2026-10-03-r2.json",
+  "supersedes_receipt_sha256": "sha256:11956094477ca54401153ee682c5ce5d1b50ed4a8db822dd391cc4aaa8d6ddea",
+  "dependency_taxonomy_authority": {
+    "requirement": "HARNESS-L2-023",
+    "adopted_revision": "MPR-RC-HARNESS-L2-023-002",
+    "decision_record": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+    "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+    "decision_row": 52,
+    "fixed_selected_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_pair": {
+      "L2": {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "start_line": 463,
+        "end_line": 497,
+        "section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03"
+      },
+      "L11": {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "start_line": 219,
+        "end_line": 233,
+        "section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47"
+      }
+    },
+    "application_scope": "Use the adopted exact HARNESS-L2-023-002 revision only for dependency-classification instructions. It does not adopt HARNESS-L2-086 or reclassify selected normative source atoms as reference-only."
+  },
+  "revision_002_condition_accounting": {
+    "design_bottomup": [
+      {
+        "section": "§1 目的と境界",
+        "source_atom_id": "HARNESS086-DB-SEC-01",
+        "condition_summary": "FE requirement elicitation from existing backend/API/domain-event/permission/failure contracts; screen, interaction, state, content, analytics obligations; design elicitation owns design facts and L7 implementation is not its endpoint.",
+        "treatment": "retained/reused in existing L2 candidate; separate acceptance oracle and no-loss evidence recorded here"
+      },
+      {
+        "section": "§2 経路",
+        "source_atom_id": "HARNESS086-DB-SEC-02",
+        "condition_summary": "Backend inventory → FE requirement extraction → screen mock → L3/L5/L6 backfill → Discovery when needed → Forward; settled meaning vs uncertain meaning; UI prototype agreement vs current no-UI receipt; L6-only/mock-only/backend-screen-only do not establish completion.",
+        "treatment": "retained/reused in existing L2 candidate; separate acceptance oracle and no-loss evidence recorded here"
+      },
+      {
+        "section": "§3 承認境界",
+        "source_atom_id": "HARNESS086-DB-SEC-03",
+        "condition_summary": "Inventory, requirement candidates, design and oracle drafts are autonomous AI work; PO decision is limited to action settling experience meaning at Discovery S4 or L2 prototype agreement and does not stop ordinary design PR/review/CI.",
+        "treatment": "retained/reused in existing L2 candidate; separate acceptance oracle and no-loss evidence recorded here"
+      },
+      {
+        "section": "§4 exit条件",
+        "source_atom_id": "HARNESS086-DB-SEC-04",
+        "condition_summary": "Four exit conditions: stable FE requirement ID connected to L3; screen mock+prototype agreement or current no-UI receipt; next steps for L2↔L11, L3↔L10, affected L5↔L8, L6↔L7; unresolved meaning to Discovery and implementation delta to Add-feature.",
+        "treatment": "retained/reused in existing L2 candidate; separate acceptance oracle and no-loss evidence recorded here"
+      }
+    ],
+    "v13_lines_174_175": {
+      "atom_ids": [
+        "REQSRC-SUP-00133",
+        "REQSRC-SUP-00134"
+      ],
+      "treatment": "future-version and unsupported/fail-close conditions explicitly retained; exact version unknown; no 1.0."
+    },
+    "v13_lines_236_238": {
+      "atom_ids": [
+        "REQSRC-SUP-00184",
+        "REQSRC-SUP-00185",
+        "REQSRC-SUP-00186"
+      ],
+      "treatment": "bare token ambiguity/exact set/fallback/status conditions explicitly retained."
+    },
+    "retained_existing_atoms": [
+      "REQSRC-SUP-00127",
+      "REQSRC-SUP-00128",
+      "REQSRC-SUP-00129",
+      "REQSRC-SUP-00130",
+      "REQSRC-SUP-00131"
+    ],
+    "not_inferred_from_five_lines": true,
+    "unrecovered_scope": "All other clauses, assets, and consumer requirements outside these selected spans/lines."
+  },
+  "harness_079_boundary": {
+    "identity": "HARNESS-L2-079",
+    "status": "unadopted candidate; do not infer adoption",
+    "L2_locator": "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-079",
+    "L11_locator": "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-079",
+    "complementary_conditions": "079 handles prototype artifact manifest/digest/start/trace, 9 state fixtures, fake-data boundary, and revision-bound walkthrough actor/observation/delta-or-no_delta/reflection/checkpoint. 086 handles FE requirement elicitation, screen applicability, agreement/no-UI, and backfill/routes. Shared prototype terms do not imply either candidate fulfills or adopts the other.",
+    "L2_exact_section": {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 1360,
+      "end_line": 1369,
+      "section_sha256": "sha256:c2a26d88e4b4bcb110e6c3e9767d8449920a652321a16700af2e98ea82721922",
+      "full_file_sha256": "sha256:720d40ff9e49602168a59c8e596367dd7c8ced217d65ca8582bfca8e65431d5d"
+    },
+    "L11_exact_section": {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 1080,
+      "end_line": 1092,
+      "section_sha256": "sha256:b265c6150e442886c7d770888fcb8389e2f3648d1ad53b500b21c29ef3056576",
+      "full_file_sha256": "sha256:2f31a62cbe4d5a9f3f2e143d7090b7c8cc8cdc2b3da592eca429db0cbdd62d50"
+    },
+    "legacy_source_atoms": {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "old_source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "old_source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "records": [
+        {
+          "requirement_id": "HIL-FR-18",
+          "exact_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-18",
+          "source_line_ledger": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
+          "source_line_ledger_sha256": "sha256:27138cc17c2024170c844f75c280ffc706ee2eee8e1950cfca518639ebf6a21f",
+          "source_line": 108,
+          "source_line_sha256": "sha256:19b365805022418001b4717576aa368dae4122d23b30fba4c4196c35333de074",
+          "statement_semantic_digest": "sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3",
+          "record_semantic_digest": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913",
+          "primary_contract": "HR-FR-HIL-15",
+          "acceptance_ids": [
+            "HAC-HIL-15a",
+            "HAC-HIL-15b",
+            "HAC-HIL-15c"
+          ],
+          "system_test": "HAT-HIL-15",
+          "downstream_status": "pending_pair_descent",
+          "source_line_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_line_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line_identity_role": "L1 corroborating line, not physical line within the IR record"
+        },
+        {
+          "requirement_id": "HIL-FR-19",
+          "exact_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-19",
+          "source_line_ledger": "docs/governance/audits/requirement-registration/hil-fr18-19-prototype-walkthrough-source-lines-2026-10-02.jsonl",
+          "source_line_ledger_sha256": "sha256:27138cc17c2024170c844f75c280ffc706ee2eee8e1950cfca518639ebf6a21f",
+          "source_line": 109,
+          "source_line_sha256": "sha256:edaa9d6668ebf049c6400ee4d43a253c47313862e5e3d638d1037c49fd7b91fc",
+          "statement_semantic_digest": "sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35",
+          "record_semantic_digest": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b",
+          "primary_contract": "HR-FR-HIL-15",
+          "acceptance_ids": [
+            "HAC-HIL-15a",
+            "HAC-HIL-15b",
+            "HAC-HIL-15c"
+          ],
+          "system_test": "HAT-HIL-15",
+          "downstream_status": "pending_pair_descent",
+          "source_line_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_line_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line_identity_role": "L1 corroborating line, not physical line within the IR record"
+        }
+      ],
+      "relation": "079 is a separate, unadopted candidate; its distinct source conditions are prototype artifact operation path and walkthrough evidence. Locator and record digests are from the held whole IR and existing source-line ledger.",
+      "corroborating_L1_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF"
+    }
+  },
+  "design_bottomup_source_holding": {
+    "registration_id": "MPR-SH-DESIGN-BOTTOMUP-002",
+    "registration_kind": "source_holding",
+    "source_atom_set_ref": "docs/governance/audits/requirement-registration/design-bottomup-whole-file-source-lines-2026-10-03.jsonl",
+    "source_atom_set_file_sha256": "sha256:151aafa6bc7ad87d1546e79e66cc402526416f2dba6d627dc837d5ab596b01ab",
+    "source_atom_set_digest": "sha256:4146562ac86c5e8d97b71217936cf3edbfff46dc7d1425e513523cc6ac9969cf",
+    "source_atom_count": 43,
+    "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/design-bottomup.md",
+    "source_file_sha256": "sha256:525f99ed44e85e4777dcc35157ae2972d110e1e1936b85ed6075f5c12316721c",
+    "legacy_asset_id": "LEGACY-ASSET-AB1F4DB632A5A293FF5E",
+    "atomization": "One atom per exact physical line, all 43 lines including blank separators; each atom stores text, LF-excluded line digest, and LF terminator. Concatenating exact line text plus LF reconstructs the exact source file bytes.",
+    "partition_rule": "Every whole-file line atom is assigned exactly once: lines17–21→HARNESS086-DB-SEC-01; 23–31→SEC-02; 33–36→SEC-03; 38–43→SEC-04; lines1–16,22,32,37 remain pending under the live source holding.",
+    "line_partition_counts": {
+      "whole_file_physical_lines": 43,
+      "selected_into_existing_candidate_spans": 24,
+      "pending_in_source_holding": 19
+    },
+    "pre_isolation_revision_check": {
+      "checked_inventory": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+      "result": "No matching source/archive path entry for this asset was found; no 333-path pre-isolation revision-pair comparison is applicable to this exact archive file path."
+    },
+    "relation_boundary": "Holding preserves the entire file source snapshot and is not a requirement count or candidate adoption. Selected span atoms remain the same four identities and are referenced to this full-file inventory; nonselected lines remain pending."
+  },
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

@@ -945,7 +945,7 @@
     {
       "ref_id": "CUR-OS-L2-REF",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
       "start_line": 210,
       "end_line": 217,
       "line_sha256": "efa5c7fd33704965b837a4965be264c5fd7c7117a2d5c5da4ee2184e20429338",
@@ -957,8 +957,8 @@
     },
     {
       "ref_id": "CUR-WEB-L2-BOUNDARY",
-      "path": "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
-      "sha256": "f5f69a92eb3c9e23f1c1d13995aa9ad708d1e55b26764a38582760335838fc1a",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "8ae5baedb071995190e8553d23dad3cb55a4bde1cb0110f0b0c464859762c27c",
       "start_line": 48,
       "end_line": 52,
       "line_sha256": "54699bbeebcf8c66d99e36961c18751a8608b3a0d4d6713ba5b0ecac433bff0f",
@@ -970,8 +970,8 @@
     },
     {
       "ref_id": "CUR-WEBOS-L2-BOUNDARY",
-      "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-      "sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
       "start_line": 35,
       "end_line": 40,
       "line_sha256": "48a80d5304ce0ee0cd5335549a91bc3de85323cf2516a9b778a79456a567cbca",
