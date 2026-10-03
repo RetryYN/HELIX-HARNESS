@@ -1,0 +1,83 @@
+{
+  "receipt_id": "MPR-RCPT-OS-V13-WORKER-OUTPUT-2026-09-28-R2",
+  "receipt_state": "candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧v1.3 §4.10 HR-FR-P2-08のarchive原source condition 1行のみを、HELIXOS-L2/L11-042の未採択追補候補へ局所対応させる。worker-output strict schema/digest defaultと、緩和時に対象・理由・期限・再検証receiptを要する条件の候補対応を記録する。v1.3全体、隣接P2-05/06/07、旧worker runtime/test/design、候補採択、source holding解除、coverage closureは主張しない。 同文のV13-BASE-6FAB-L0412は別の6fabd125基準revision・別holding MPR-SH-V13-BASELINE-001のatomとして記録し、archive atomと統合せず今回の候補入力にも算入しない。",
+  "candidate_identity": "HELIXOS-L2-042",
+  "requirement_kind": "unit_supplement",
+  "parent_l1_ids": [
+    "HELIXOS-L1-003"
+  ],
+  "existing_responsibility_route": {
+    "owner": "HELIX-OS（assignmentに結ぶWorker成果の適格判定と回収）",
+    "primary_existing_requirement": "HELIXOS-L2-004",
+    "supporting_existing_requirements": [
+      "HELIXOS-L2-007",
+      "HELIXOS-L2-019"
+    ],
+    "reason": "現行HELIXOS-L1-003は許可・予算・依存・独立検証の範囲でWorkerへ委譲し中断後も安全に再開する。採択済みHELIXOS-L2-004はWorkerの割当、成果形式、実行と成果回収を担い、L2-007/019は出典・revision・未完義務を保持するため、成果の適格／未検証状態のassignmentへの結合先はOSである。HARNESS-L2-005はtask/change/riskに応じたverification obligations/oracleを定める。SECURITY-L2-007は隔離実行制約、L2-008はoperation-specific authorityを定めるが、schema validity/result admissionのownerではない。",
+    "boundary": "OSはschema/digest policyまたはHARNESS oracleを発行・変更せず、SECURITY authorityを代替しない。HARNESS-L2-005がtask固有検証義務とoracleを担い、SECURITY-L2-007/008はWorker実行制約・操作authorityを担う。既存assignmentに検証結果と状態を束ねることのみをOS候補とする。"
+  },
+  "candidate_semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+  "paired_acceptance_identity": "HELIXOS-L2-042",
+  "paired_acceptance_digest": "sha256:0f23c0399f3b6c37094d4725563f80bb5e82d25e35b9ba7a1196c2106f76a4df",
+  "source_atom_set_digest": "sha256:0ee37b614a5febbb9189205989ecd965a04b5139304ac6725ee17fddee51c774",
+  "source_atom_count": 1,
+  "source_collection_scope": "既存source holding MPR-SH-SUPPLEMENTARY-004で保全中の655-item v1.3 supplementary source集合から、archive §4.10 HR-FR-P2-08 line 431のみを入力する。source itemはREQSRC-SUP-00333。 同文の6fabd125基準revision V13-BASE-6FAB-L0412（file SHA-256 1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1、412行、同一line SHA）はMPR-SH-V13-BASELINE-001で別途保持し、この1 atom入力へ算入せずarchive revisionへ統合しない。",
+  "atoms": [
+    {
+      "atom_id": "V13-ARCHIVE-L0431-HR-FR-P2-08",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "REQSRC-SUP-00333",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 431,
+      "source_line_sha256": "sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f",
+      "source_text": "| `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#V13-WORKER-HR-FR-P2-08",
+      "classification": "condition",
+      "classification_confidence": "high",
+      "condition_status": "unresolved",
+      "disposition": "candidate_rehome_draft",
+      "relation": "strict schema/digestを既定とする適格性条件、および緩和時に対象・理由・期限・再検証receiptを要する条件をOS Worker assignment成果形式・回収へ意味保持候補として割当てる。既存HARNESS検証oracleとSECURITY authorityへの依存を保ち、旧schema/runtime/receiptを移植しない。"
+    }
+  ],
+  "current_condition_refs": [
+    "docs/helix-os/L1-planning/system-intent.md:21,25,33",
+    "docs/helix-os/L2-requirements/governance-requirements.md:41,57,60,293,295,1143-1150",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md:24,27,748-760",
+    "docs/helix-harness/L1-planning/product-intent.md:34,48,59",
+    "docs/helix-harness/L2-requirements/product-requirements.md:44,56,118-120",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md:25,46-51",
+    "docs/helix-security/L1-planning/security-intent.md:52",
+    "docs/helix-security/L2-requirements/security-requirements.md:45-46,130-148,427-445,447-453",
+    "docs/helix-security/L11-acceptance/security-acceptance.md:31-32,104-122",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:44-60"
+  ],
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "decision_status": "pending_PO; candidate not adopted",
+  "open_boundary": "この草稿はassignmentへの成果検証状態の結合をOSへ置く。schema/oracle normative definitionはHARNESS既存契約が担い、security enforcement/authorityは既存SECURITY契約が担う。適用schemaまたは既存oracleがない場合に候補をどう適用するかは未採択で、既存task contractに照らしてunknownのまま扱う。",
+  "separately_preserved_revision_twins": [
+    {
+      "atom_id": "V13-BASE-6FAB-L0412",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 412,
+      "source_line_sha256": "sha256:53d8b2cd66448f9c5d4828b8fbe99d3bffed93b237fe86e0f515b3d1d7ad933f",
+      "source_text": "| `HR-FR-P2-08` | worker出力はstrict schema／digest検証を既定とし、緩和には対象、理由、期限、再検証receiptを要求する |",
+      "atom_relation": "V13-ARCHIVE-L0431-HR-FR-P2-08との同文twin。別baseline revision・別atomであり、今回の1 atom候補入力とsource_atom_set_digestには含めない",
+      "candidate_input": false,
+      "preserved_pending_registration_ref": "MPR-SH-V13-BASELINE-001"
+    }
+  ],
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/os-v13-worker-output-coverage-receipt-2026-09-28.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

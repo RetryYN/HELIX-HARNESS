@@ -1,0 +1,411 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-055-056-HIL-FR48-49-2026-09-29-R2",
+  "receipt_state": "candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_digest_rule": "各L2候補の### HARNESS-L2-NNN見出しから次の###見出しの直前まで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256（sha256: prefixなし）をcandidateごとatom_id順に改行連結。末尾改行なし。",
+  "scope": "HIL-FR-48 vertical adjacent-layer gate outcome and HIL-FR-49 canonical V-pair gate outcome/feedback only. NFR-29 stale/revision/snapshot cross-conditions remain in source holding. No algorithm/schema/runtime/test execution or formal successor/adoption claim.",
+  "candidate_identities": [
+    "HARNESS-L2-055",
+    "HARNESS-L2-056"
+  ],
+  "candidate_semantic_digests": {
+    "HARNESS-L2-055": "sha256:9f1e63176242d81d93a89a0c3823d3fbe689b8ebd0ae0de2f5a786b88e8787b5",
+    "HARNESS-L2-056": "sha256:993283110e6faba06d7811df397179743b22a3f666e8a2e002da91c794eeade0"
+  },
+  "paired_acceptance_digests": {
+    "HARNESS-L2-055": "sha256:f1b9332d75fc5e07158165b0dbb0d037983ab1df0219dc5e519ceef3583aa96a",
+    "HARNESS-L2-056": "sha256:9a8406bc5c2051eb0bed0bc57571f1e139c856d3559072dee8de3a019111a047"
+  },
+  "candidate_l2_file_sha256": "sha256:dc27c92f54e35a33a4095ffaee0642a9fc9186a2168de1578b06341b75f2b630",
+  "paired_acceptance_file_sha256": "sha256:9d38a5f1ebbd1a09a836c5d250e8ac44b13819e598c07e2cc723676813b358b4",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl",
+  "source_atom_count": 8,
+  "source_collection_scope": "MPR-SH-SEMANTIC-LINE-004のHIL-FR-48 line 138およびHIL-FR-49 line 139を意味spanへ非重複分解し、FR-48/49のHARNESS gate outcome候補へ割当てた8 atom。HIL-FR-48 stale revision、HIL-FR-49異snapshot、NFR-29 cross-condition、MPR-SH-IR-004のIR rows 81/82はcandidate atomに含めずholdingに保持。assertion 031-04/07/08、032-09/12もNFR-29 oracle参照として非計上。031-09/032-14 meta casesは対象外。",
+  "candidate_source_atom_set_digests": {
+    "HARNESS-L2-055": "sha256:85c6ec0ba4f29b7fdbbb03a55ba4c33c28075486db3b6b799ab175a0ce995781",
+    "HARNESS-L2-056": "sha256:bd48f1e083e34ec41a6cba58ca7745a6ac90d2c40026b930f9e4437483f9e5de"
+  },
+  "atoms": [
+    {
+      "atom_id": "FR48-ADJACENT-BIDIRECTIONAL-L0138",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 138,
+      "source_line_sha256": "sha256:e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+      "source_line_text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |",
+      "source_span_text": "隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播",
+      "source_span_start_char": 44,
+      "source_span_end_char": 138,
+      "source_requirement_id": "HIL-FR-48",
+      "candidate_identity": "HARNESS-L2-055",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "Vertical gate checks adjacent-layer obligations in both directions and identifies unresolved descent/backflow; acceptance cases are read-only oracle references.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 301,
+          "source_line_sha256": "sha256:8988bed53a1ef973f2b6a2bfc6973668f9d5a3f3868c151a02cf1d34e2e9ef5c",
+          "case_id": "HST-CASE-031-01"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 302,
+          "source_line_sha256": "sha256:a10c2a2aaee37e280ac826da8247848e62d72bc083df310385d3e6cbe4e0ad85",
+          "case_id": "HST-CASE-031-02"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 303,
+          "source_line_sha256": "sha256:056f604de9d574d188baa9f70bc2cc30ae47a6f2dbdc9eb8dbef6ab4dd29a6b9",
+          "case_id": "HST-CASE-031-03"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:49d1f634eefe71ad7a79be172439935c1ba75c7bb889e05746c5c98fe28e9329"
+    },
+    {
+      "atom_id": "FR48-GRANULARITY-L0138",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 138,
+      "source_line_sha256": "sha256:e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+      "source_line_text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |",
+      "source_span_text": "粒度不整合",
+      "source_span_start_char": 139,
+      "source_span_end_char": 144,
+      "source_requirement_id": "HIL-FR-48",
+      "candidate_identity": "HARNESS-L2-055",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "Granularity mismatch is a distinct vertical-gate finding condition.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 306,
+          "source_line_sha256": "sha256:ae65ae0282cb1a357af83e335a9ccce4e0a3e5d8fc54821301e70f1043577d62",
+          "case_id": "HST-CASE-031-06"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:49d1f634eefe71ad7a79be172439935c1ba75c7bb889e05746c5c98fe28e9329"
+    },
+    {
+      "atom_id": "FR48-AGGREGATE-PAIR-L0138",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 138,
+      "source_line_sha256": "sha256:e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+      "source_line_text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |",
+      "source_span_text": "aggregate一括pair",
+      "source_span_start_char": 160,
+      "source_span_end_char": 175,
+      "source_requirement_id": "HIL-FR-48",
+      "candidate_identity": "HARNESS-L2-055",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "An aggregate pair cannot stand in for individual obligation correspondence.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 306,
+          "source_line_sha256": "sha256:ae65ae0282cb1a357af83e335a9ccce4e0a3e5d8fc54821301e70f1043577d62",
+          "case_id": "HST-CASE-031-06"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:49d1f634eefe71ad7a79be172439935c1ba75c7bb889e05746c5c98fe28e9329"
+    },
+    {
+      "atom_id": "FR48-EDGE-RECEIPT-FINDING-L0138",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 138,
+      "source_line_sha256": "sha256:e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41",
+      "source_line_text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |",
+      "source_span_text": "vertical edge receipt、unresolved descent/backprop finding",
+      "source_span_start_char": 184,
+      "source_span_end_char": 241,
+      "source_requirement_id": "HIL-FR-48",
+      "candidate_identity": "HARNESS-L2-055",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "Observable gate outcome identifies current vertical coverage and unresolved descent/backflow.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 301,
+          "source_line_sha256": "sha256:8988bed53a1ef973f2b6a2bfc6973668f9d5a3f3868c151a02cf1d34e2e9ef5c",
+          "case_id": "HST-CASE-031-01"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 302,
+          "source_line_sha256": "sha256:a10c2a2aaee37e280ac826da8247848e62d72bc083df310385d3e6cbe4e0ad85",
+          "case_id": "HST-CASE-031-02"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 303,
+          "source_line_sha256": "sha256:056f604de9d574d188baa9f70bc2cc30ae47a6f2dbdc9eb8dbef6ab4dd29a6b9",
+          "case_id": "HST-CASE-031-03"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:49d1f634eefe71ad7a79be172439935c1ba75c7bb889e05746c5c98fe28e9329"
+    },
+    {
+      "atom_id": "FR49-CANONICAL-ATOMIC-VPAIRS-L0139",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 139,
+      "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+      "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+      "source_span_text": "canonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする",
+      "source_span_start_char": 41,
+      "source_span_end_char": 198,
+      "source_requirement_id": "HIL-FR-49",
+      "candidate_identity": "HARNESS-L2-056",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "The six canonical V-pairs join in both directions at atomic-oracle scope; each pair can be assessed independently.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 309,
+          "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+          "case_id": "HST-CASE-032-01"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 310,
+          "source_line_sha256": "sha256:e03d1d692e152bf047da1c36a5f31e0874922881e61a121f20b0749c70e85a2f",
+          "case_id": "HST-CASE-032-02"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 311,
+          "source_line_sha256": "sha256:7fe319d9e47761fd58cab8b775f93b8b55b2b5a39460740f2aa397122293035f",
+          "case_id": "HST-CASE-032-03"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 312,
+          "source_line_sha256": "sha256:52647bbc0acc28e28f8fa7964f6f30adc02605bd51f18c8030e9023dec682adc",
+          "case_id": "HST-CASE-032-04"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 313,
+          "source_line_sha256": "sha256:46e34cf34ff8be18008a46f8341bd73392e7a217b08618d94d9fcefa088a6eb3",
+          "case_id": "HST-CASE-032-05"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 314,
+          "source_line_sha256": "sha256:c3558d2d06d33f33be5d11e3df2d38069e7e5602c532138b1bf7c23f264ac435",
+          "case_id": "HST-CASE-032-06"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 315,
+          "source_line_sha256": "sha256:3434b317c06b0bec8e589991a337ed6a7f1ef3b37014eb5834479ea3d73fb090",
+          "case_id": "HST-CASE-032-07"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 318,
+          "source_line_sha256": "sha256:194644ad58ef955dda05901d89152c46ae36dc24a82c25a01842447bd80297a7",
+          "case_id": "HST-CASE-032-10"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+    },
+    {
+      "atom_id": "FR49-L12-FEEDBACK-DESTINATIONS-L0139",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 139,
+      "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+      "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+      "source_span_text": "L12運用feedbackはL1企画と層外L0 charterへ還流し",
+      "source_span_start_char": 199,
+      "source_span_end_char": 234,
+      "source_requirement_id": "HIL-FR-49",
+      "candidate_identity": "HARNESS-L2-056",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "L12 feedback has two distinct destinations: L1 planning and the external L0 charter anchor.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 309,
+          "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+          "case_id": "HST-CASE-032-01"
+        },
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 316,
+          "source_line_sha256": "sha256:3e24551a5ceb064c8a6978fcadb8cae6cb997299d9793c0fa389d78248cdf1c0",
+          "case_id": "HST-CASE-032-08"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+    },
+    {
+      "atom_id": "FR49-ONE-SIDED-EVIDENCE-MISSING-L0139",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 139,
+      "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+      "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+      "source_span_text": "設計義務と検証証拠の片側欠落",
+      "source_span_start_char": 235,
+      "source_span_end_char": 249,
+      "source_requirement_id": "HIL-FR-49",
+      "candidate_identity": "HARNESS-L2-056",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "A missing side of design obligation / verification evidence is not a complete pair.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 321,
+          "source_line_sha256": "sha256:8d5daf722c4d7decae19c410b2deed7373d6c198b4f1fb153fff070e459a6ac8",
+          "case_id": "HST-CASE-032-13"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+    },
+    {
+      "atom_id": "FR49-UNEXECUTED-ORACLE-L0139",
+      "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-004",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line": 139,
+      "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+      "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+      "source_span_text": "未実行oracleを拒否する",
+      "source_span_start_char": 262,
+      "source_span_end_char": 276,
+      "source_requirement_id": "HIL-FR-49",
+      "candidate_identity": "HARNESS-L2-056",
+      "disposition": "semantic_rederivation_candidate",
+      "relation": "Designed oracle without execution evidence does not yield a green pair result.",
+      "assertion_case_refs": [
+        {
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+          "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+          "source_line": 319,
+          "source_line_sha256": "sha256:39a3471273cdcda0795f3346dbc551532c57bcbddd036491a739169b5e244847",
+          "case_id": "HST-CASE-032-11"
+        }
+      ],
+      "human_decision_disposition_refs": [],
+      "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+    }
+  ],
+  "cross_candidate_partition": {
+    "partition_group_id": "HIL-FR-48-49-GATE-OUTCOME-PARTITION-2026-09-29",
+    "source_requirements": [
+      "HIL-FR-48",
+      "HIL-FR-49"
+    ],
+    "source_lines": [
+      {
+        "line": 138,
+        "line_sha256": "sha256:e12937bb604330b7c3d1ad13f23bb3e60969b888cd16a311405e7a993e360d41"
+      },
+      {
+        "line": 139,
+        "line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37"
+      }
+    ],
+    "candidate_routes": {
+      "FR48-ADJACENT-BIDIRECTIONAL-L0138": "HARNESS-L2-055",
+      "FR48-GRANULARITY-L0138": "HARNESS-L2-055",
+      "FR48-AGGREGATE-PAIR-L0138": "HARNESS-L2-055",
+      "FR48-EDGE-RECEIPT-FINDING-L0138": "HARNESS-L2-055",
+      "FR49-CANONICAL-ATOMIC-VPAIRS-L0139": "HARNESS-L2-056",
+      "FR49-L12-FEEDBACK-DESTINATIONS-L0139": "HARNESS-L2-056",
+      "FR49-ONE-SIDED-EVIDENCE-MISSING-L0139": "HARNESS-L2-056",
+      "FR49-UNEXECUTED-ORACLE-L0139": "HARNESS-L2-056"
+    },
+    "preserved_pending_conditions": [
+      "HIL-FR-48 stale revision (031-04), semantic revision mismatch (031-07), source snapshot mismatch (031-08) as NFR-29 cross-conditions",
+      "HIL-FR-49 reverse-only/forward-only asymmetry cross-condition (032-09), design/verification snapshot mismatch (032-12) as NFR-29 cross-conditions",
+      "MPR-SH-IR-004 HIL-FR-48/49 rows remain preserved_pending_rehome with no successor_assignment",
+      "Old assertion meta cases 031-09 and 032-14 are not requirement atoms."
+    ],
+    "partition_result": "8 selected semantic atoms routed exactly once to HARNESS-L2-055 or HARNESS-L2-056; NFR-29 cross-condition atoms are excluded from this input set and retained in source holding."
+  },
+  "current_condition_refs": [
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-055",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-055",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-056",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-056",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-040",
+    "docs/helix-harness/L11-acceptance/product-acceptance.md#HARNESS-L2-040",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-022",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-025",
+    "docs/helix-harness/L2-requirements/product-requirements.md#HARNESS-L2-026"
+  ],
+  "parent_concept_revision": "docs/concept/helix-concept.md@55a1e7092583070c94c27318fe8f6a66af10999e sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78 (fixed parent bytes; candidate adoption is not inherited)",
+  "parent_planning_revision": "docs/helix-harness/L1-planning/product-intent.md@55a1e7092583070c94c27318fe8f6a66af10999e sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f (fixed parent bytes; candidate adoption is not inherited)",
+  "coverage_result": "no_loss",
+  "condition_closure": "not_asserted",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-SEMANTIC-LINE-004#remaining semantic-line atoms and excluded NFR-29 cross-conditions",
+    "MPR-SH-IR-004#HIL-FR-48 and HIL-FR-49 IR rows; preserved_pending_rehome; successor_requirement_ids: []",
+    "docs/governance/audits/requirements-stage/hil-fr48-49-pair-gate-condition-audit-2026-09-29.md#NFR-29 cross-condition",
+    "docs/governance/audits/requirements-stage/hil-fr48-49-local-condition-boundary-audit-c258bfe-2026-09-29.md#condition boundary"
+  ],
+  "decision_status": "pending_PO; candidates are not included in the 2026-09-29 57-candidate decision and remain unadopted",
+  "open_boundary": "HARNESS owns user-visible gate outcome meaning; OS owns execution, registration, persistence, and operational state under separate contracts. Candidate drafts do not alter adopted L2/L11 sections, determine an algorithm/schema, claim formal successor assignment, or adopt requirements. NFR-29 revision/snapshot conditions remain separate.",
+  "legacy_source_revision": "legacy-generation-2026-09-14",
+  "legacy_source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+  "assertion_source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+  "assertion_cases_excluded": [
+    "HST-CASE-031-04",
+    "HST-CASE-031-07",
+    "HST-CASE-031-08",
+    "HST-CASE-032-09",
+    "HST-CASE-032-12",
+    "HST-CASE-031-09",
+    "HST-CASE-032-14"
+  ],
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-outcome-coverage-receipt-2026-09-29.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

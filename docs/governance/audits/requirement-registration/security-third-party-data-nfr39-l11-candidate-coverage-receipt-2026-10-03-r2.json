@@ -1,0 +1,525 @@
+{
+  "schema_version": "helix.requirement_candidate_coverage_receipt.v1",
+  "receipt_id": "MPR-RCPT-HELIXSECURITY-L2-029-003-NFR39-R2",
+  "candidate_registration_id": "MPR-RC-HELIXSECURITY-L2-029-003",
+  "candidate_status": "unadopted_proposal_revision_003",
+  "requirement_identity": "HELIXSECURITY-L2-029",
+  "product_target": "HELIX-SECURITY",
+  "authority_effect": "none",
+  "comparison_base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+  "registration_semantics": {
+    "supersedes_registration_id": "MPR-RC-HELIXSECURITY-L2-029-002",
+    "meaning": "003はcandidate record revisionとして002を後続する。PO decision 57 row 88が採択した対象revisionは002のまま維持し、003で取消・置換・再採択しない。003は未採択候補。",
+    "adopted_pair_decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 88,
+      "line_sha256_including_lf": "sha256:d130de6af75326ce48616172a3d089498735844fae0f31c710e8857196d32650",
+      "file_sha256": "sha256:c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "text": "| `HELIXSECURITY-L2-029` | 採択 | `MPR-RC-HELIXSECURITY-L2-029-002` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745` | `HELIXSECURITY-L2-029` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0` | `docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28-r2.json` |"
+    },
+    "primary_worker_scope_boundary": {
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "line": 112,
+      "line_sha256_including_lf": "sha256:0680cb7a3f6a5f7f0c9f9a0043c33a3a040a7035580c3f95bbaa1e41ba937383",
+      "text": "- **HELIXSECURITY-L2-029／031**：追加runtime向け制限を主Worker全体へ適用しない。",
+      "effect": "追加runtime向け制限を主Worker全体へ適用しない。未決の意味を候補が決めない。"
+    }
+  },
+  "candidate_pair": {
+    "digest_rule": "各partは末尾空行を除き、物理行をLFで連結し末尾LFを一つ付けてUTF-8化する。L11複数partは列挙順に一つの追加LFで連結しSHA-256。各selectorは見出しから次の同位以上の見出し直前まで。NFR-39追補は現在そのような後続見出しがないためEOFまでを含み、後日追加された同位以上見出し以降は含めない。",
+    "l2": [
+      {
+        "order": 1,
+        "name": "採択済HELIXSECURITY-L2-029 section",
+        "selector": "docs/helix-security/L2-requirements/security-requirements.md#heading:HELIXSECURITY-L2-029 through next same-or-higher heading",
+        "lines": [
+          405,
+          415
+        ],
+        "sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745"
+      }
+    ],
+    "l11": [
+      {
+        "order": 1,
+        "name": "採択済HELIXSECURITY-L2-029 L11 section",
+        "selector": "docs/helix-security/L11-acceptance/security-acceptance.md#heading:HELIXSECURITY-L2-029 through next same-or-higher heading",
+        "lines": [
+          89,
+          95
+        ],
+        "sha256": "sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0"
+      },
+      {
+        "order": 2,
+        "name": "未採択HIL-NFR-39末尾補足part",
+        "selector": "docs/helix-security/L11-acceptance/security-acceptance.md#heading:HELIXSECURITY-L2-029 ローカル強制証拠の型別受入候補 through next same-or-higher heading (currently EOF; later section excluded)",
+        "lines": [
+          169,
+          222
+        ],
+        "sha256": "sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288"
+      }
+    ],
+    "candidate_l2_composite_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+    "candidate_l11_composite_digest": "sha256:bad6c3ebc301cecf328777a9497ad17cfcc9df023b57a5e897db8f44437da210",
+    "candidate_pair_composite_digest": "sha256:3cd7d5826ea82bd3bc3004b4901bbd8e35b4aafddb8d14b58802f552edf3e072",
+    "fixed_adopted_parts_unchanged_by_candidate": true,
+    "fixed_adopted_parts": "decision 57 row 88 fixed 002 selected L2/L11 sections remain byte-identical at their pinned section hashes; only the unadopted EOF L11 supplement is appended.",
+    "l2_full_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "l11_full_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+    "parts": {
+      "digest_rule": "各partは見出し範囲から末尾空行を除き、物理行をLFで連結し末尾LFを一つ付けてUTF-8化する。複数partは列挙順に一つの追加LFで連結してSHA-256。selectorは見出しから次の同位以上見出し直前まで。追補partは現在EOFまでだが、将来追加された同位以上の見出し以降を含めない。candidate_l11_composite_digestは列挙したL11 part bytesを一つの追加LFで連結した値。candidate_pair_composite_digestはL2 part bytes、追加LF、順序どおりのL11 part bytesを連結した値。",
+      "l2": [
+        {
+          "order": 1,
+          "name": "採択済HELIXSECURITY-L2-029 section",
+          "selector": "docs/helix-security/L2-requirements/security-requirements.md#heading:HELIXSECURITY-L2-029 through next same-or-higher heading",
+          "lines": [
+            405,
+            415
+          ],
+          "sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745"
+        }
+      ],
+      "l11": [
+        {
+          "order": 1,
+          "name": "採択済HELIXSECURITY-L2-029 L11 section",
+          "selector": "docs/helix-security/L11-acceptance/security-acceptance.md#heading:HELIXSECURITY-L2-029 through next same-or-higher heading",
+          "lines": [
+            89,
+            95
+          ],
+          "sha256": "sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0"
+        },
+        {
+          "order": 2,
+          "name": "未採択HIL-NFR-39末尾補足part",
+          "selector": "docs/helix-security/L11-acceptance/security-acceptance.md#heading:HELIXSECURITY-L2-029 ローカル強制証拠の型別受入候補 through next same-or-higher heading (currently EOF; later section excluded)",
+          "lines": [
+            169,
+            222
+          ],
+          "sha256": "sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288"
+        }
+      ],
+      "l2_full_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "l11_full_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    }
+  },
+  "source_atom_set": {
+    "path": "docs/governance/audits/requirement-registration/third-party-data-source-lines-2026-09-28-r2.jsonl",
+    "file_sha256": "sha256:fde86f3f83a587929102292b6da62a9c74bc3e53b61b0c4a2e2001fa5dc3a76c",
+    "digest": "sha256:9ec98ccc95deca5b0d0dd8aee54df08129862506e9b40c6c1becb3c8da1378a6",
+    "count": 3,
+    "digest_rule": "Existing immutable source set digest from r2: ordered atom_id + SPACE + source_line_sha256 joined by LF, no terminal LF, UTF-8 SHA-256. It contains BR-32 line84, NFR-37 line217, NFR-39 line219; only NFR-39 local enforcement evidence is addressed by this supplement; NFR-37 remains as in adopted 002 and BR-32 residual remains held.",
+    "selected_atom_ids": [
+      "THIRD-PARTY-DATA-HIL-BR-32-L0084",
+      "THIRD-PARTY-DATA-HIL-NFR-37-L0217",
+      "THIRD-PARTY-DATA-HIL-NFR-39-L0219"
+    ],
+    "holdings": [
+      "MPR-SH-THIRD-PARTY-DATA-002",
+      "MPR-SH-IR-004#HIL-NFR-39"
+    ],
+    "source_closure": "partial/unproven; source owner, formal successor and whole HIL-BR-32/HR23/HAC23/HAT23 closure remain unresolved.",
+    "source_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-coverage-receipt-2026-09-28-r2.json",
+    "source_receipt_file_sha256": "sha256:7ffac8320140cb20c32d30c4154bb36c5ec2c8aa58ac17c5a4d38ca4f633a5cc",
+    "atom_dispositions": [
+      {
+        "atom_id": "THIRD-PARTY-DATA-HIL-BR-32-L0084",
+        "source_line": 84,
+        "disposition": "preserved_pending in MPR-SH-THIRD-PARTY-DATA-002; source conditions beyond target/runtime class remain outside this candidate and open"
+      },
+      {
+        "atom_id": "THIRD-PARTY-DATA-HIL-NFR-37-L0217",
+        "source_line": 217,
+        "disposition": "carried by adopted MPR-RC-HELIXSECURITY-L2-029-002; no new opt-out/classification text in 003"
+      },
+      {
+        "atom_id": "THIRD-PARTY-DATA-HIL-NFR-39-L0219",
+        "source_line": 219,
+        "disposition": "whole normative IR is the source identity; current candidate adds independent L11 oracle mapping for the four local evidence types only; not source-wide closure"
+      }
+    ]
+  },
+  "normative_ir_source": {
+    "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "json_pointer": "#/HIL-NFR-39",
+    "whole_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "requirement_id": "HIL-NFR-39",
+    "revision": 1,
+    "kind": "non_functional",
+    "statement": "ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。",
+    "statement_semantic_digest": "sha256:cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+    "record_semantic_digest": "sha256:c64f42507553e77ceeb363e98776a67a5e6285d1825be2fceeda939e963987b7",
+    "normative": true,
+    "meaning": "whole IR identity is normative source; source quote is preserved. This candidate maps only existing additional-runtime scope and does not close all application scope."
+  },
+  "l1_corroboration": {
+    "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+    "whole_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "line": 219,
+    "line_text": "| **HIL-NFR-39** | ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。 |",
+    "line_sha256_without_lf": "sha256:401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+    "line_sha256_including_lf": "sha256:faa2110a6666023373dd31ccd8e71e8cefd50c122a9e2a0f93ca369390fe4853",
+    "relation": "IR statementのcorroboration。source atom追加ではない。"
+  },
+  "legacy_product_placement_context": {
+    "role": "historical placement/classification corroboration only; these records are not additional normative requirement atoms and do not change the immutable three-atom source set.",
+    "crosswalk": {
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "line": 48,
+      "whole_file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+      "line_sha256_including_terminal_lf": "sha256:057ccfa09e413e2f503b96c3ff6dde8ea34d93f32e763f9780b261a01f12e6ae",
+      "line_digest_rule": "SHA-256 of the exact UTF-8 physical line bytes including its terminal LF.",
+      "raw_line_text": "| HIL-NFR-39 | 1 | OS：第三者runtimeの隔離・通信・FS検証。ベンダー宣言をローカル証明へ転用しない |"
+    },
+    "routing_bootstrap": {
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+      "line": 141,
+      "whole_file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "line_sha256_including_terminal_lf": "sha256:fe3bdfd1236825b71e0933f41b07dc27db7c9b2fb47d1e2b520b1c671094d6a1",
+      "line_digest_rule": "SHA-256 of the exact UTF-8 physical line bytes including its terminal LF.",
+      "record": {
+        "routing_registration_id": "PRC-HIL-NFR-39-001",
+        "source_holding_registration_id": "MPR-SH-IR-004",
+        "source_requirement_id": "HIL-NFR-39",
+        "source_legacy_revision": 1,
+        "source_statement_semantic_digest": "sha256:cf1a0879fbc1f7ca13a8fda0f6910ea0be3beedec24ec49e122f4e16d2212cfa",
+        "legacy_seed_targets": [
+          "HELIX-OS"
+        ],
+        "legacy_seed_assessment": "OS：第三者runtimeの隔離・通信・FS検証。ベンダー宣言をローカル証明へ転用しない",
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "routing_candidate": "single_product",
+        "routing_rationale": "vendor宣言ではなくlocal sandbox・egress・FS差分でsecurityを判定するOS責務である",
+        "classification_state": "proposed_four_product_reviewed",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_assignment_status": "unassigned",
+        "successor_requirement_ids": []
+      }
+    },
+    "scope_and_authority": "The routing row records a proposed OS placement with authority_effect=none, meaning_change_applied=false, and successor_assignment_status=unassigned. This is not an adopted successor or a transfer of source ownership. The candidate 003 addresses only the four NFR-39 local-evidence oracles within adopted 029 additional-runtime scope. Existing SECURITY-006/007 own their policy constraints and security enforcement, while OS routing/assignment remains an operational responsibility; the records establish a conditional responsibility mapping, not complete source migration, successorship, or closure.",
+    "source_atom_set_unchanged": true,
+    "authority_effect": "none"
+  },
+  "legacy_consumer_context": {
+    "records": [
+      {
+        "identity": "HR-FR-HIL-23",
+        "revision": 1,
+        "status": "specified",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "json_pointer": "#/HR-FR-HIL-23",
+        "whole_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "record_semantic_digest": "sha256:9f4d2db470aaa44878294d41641b87736f43c7dd87c35d650951b134c4465070",
+        "record": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-23",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-BR-32",
+            "HIL-FR-64",
+            "HIL-FR-65",
+            "HIL-FR-66",
+            "HIL-FR-67",
+            "HIL-FR-68",
+            "HIL-FR-69",
+            "HIL-NFR-37",
+            "HIL-NFR-38",
+            "HIL-NFR-39",
+            "HIL-NFR-40"
+          ],
+          "behavior": "第三者worker委譲をsandbox契約、環境浄化、最小払い出し、proposal再検証、audit付きで実行し、安全境界の充足をローカル強制機構だけで判定する",
+          "transition_contract": "sandbox template・分類ゲート・opt-out receiptあり → 隔離実行、検証済みproposal、完全なaudit chain",
+          "failure_and_evidence": "allowlist外egress、scope外diff、bypass常態化、機密委譲、vendor設定依拠 / sandbox digest、egress計測、FS diff、audit row",
+          "acceptance_ids": [
+            "HAC-HIL-23a",
+            "HAC-HIL-23b",
+            "HAC-HIL-23c"
+          ],
+          "system_test_id": "HAT-HIL-23",
+          "semantic_digest": "sha256:9f4d2db470aaa44878294d41641b87736f43c7dd87c35d650951b134c4465070"
+        },
+        "relation": "shared consumer/oracle context only; do not add a requirement atom or infer full HIL-NFR-39/HR-23 closure from this candidate"
+      },
+      {
+        "identity": "HAC-HIL-23a",
+        "revision": 1,
+        "status": "specified",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "json_pointer": "#/HAC-HIL-23a",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "record_semantic_digest": "sha256:efb74a9471f38c0fb3892ddde4651d8ff76151c275de476389e772f1f03ee442",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-23a",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-23",
+          "polarity": "positive",
+          "statement": "sandbox契約内で委譲が完走しproposalが再検証済み",
+          "system_test_id": "HAT-HIL-23",
+          "semantic_digest": "sha256:efb74a9471f38c0fb3892ddde4651d8ff76151c275de476389e772f1f03ee442"
+        },
+        "relation": "shared consumer/oracle context only; do not add a requirement atom or infer full HIL-NFR-39/HR-23 closure from this candidate"
+      },
+      {
+        "identity": "HAC-HIL-23b",
+        "revision": 1,
+        "status": "specified",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "json_pointer": "#/HAC-HIL-23b",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "record_semantic_digest": "sha256:137bb21711923bb2b8007420ac3cf97cd411e6a03167a028d52de81c54a49325",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-23b",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-23",
+          "polarity": "negative",
+          "statement": "allowlist外egress/scope外diff/機密委譲/bypass常態化を拒否",
+          "system_test_id": "HAT-HIL-23",
+          "semantic_digest": "sha256:137bb21711923bb2b8007420ac3cf97cd411e6a03167a028d52de81c54a49325"
+        },
+        "relation": "shared consumer/oracle context only; do not add a requirement atom or infer full HIL-NFR-39/HR-23 closure from this candidate"
+      },
+      {
+        "identity": "HAC-HIL-23c",
+        "revision": 1,
+        "status": "specified",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "json_pointer": "#/HAC-HIL-23c",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "record_semantic_digest": "sha256:1ff618cd61c60d4f9633a9bff43e337239881acd09b42e1ea7f5c9edabf87322",
+        "record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-23c",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-23",
+          "polarity": "boundary",
+          "statement": "quota枯渇・egress乖離でfail-close退避とquarantine",
+          "system_test_id": "HAT-HIL-23",
+          "semantic_digest": "sha256:1ff618cd61c60d4f9633a9bff43e337239881acd09b42e1ea7f5c9edabf87322"
+        },
+        "relation": "shared consumer/oracle context only; do not add a requirement atom or infer full HIL-NFR-39/HR-23 closure from this candidate"
+      },
+      {
+        "identity": "HAT-HIL-23",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "json_pointer": "#/HAT-HIL-23",
+        "whole_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "record_semantic_digest": "sha256:006bf237fbd5c99991cb59533e2ced2d86fe1f76e95bc79cfecae32105647a8c",
+        "record": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-23",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-23",
+          "acceptance_ids": [
+            "HAC-HIL-23a",
+            "HAC-HIL-23b",
+            "HAC-HIL-23c"
+          ],
+          "supporting_test_ids": [
+            "HOT-HIL-56"
+          ],
+          "scenario": "第三者workerの隔離委譲を検証",
+          "required_evidence": "sandbox、egress、payload、FS diff、audit receipt",
+          "negative_boundary": "機密漏洩、allowlist外通信、bypass残置、未検証proposal",
+          "semantic_digest": "sha256:006bf237fbd5c99991cb59533e2ced2d86fe1f76e95bc79cfecae32105647a8c"
+        },
+        "relation": "shared consumer/oracle context only; do not add a requirement atom or infer full HIL-NFR-39/HR-23 closure from this candidate"
+      }
+    ],
+    "context_boundary": "HR-FR-HIL-23 aggregates HIL-BR-32, HIL-FR-64..69 and HIL-NFR-37..40; HAC-HIL-23a/b/c define positive, negative and boundary scenarios; HAT-HIL-23 is designed_not_implemented. Preserve mapped conditions and owner-specific boundaries without making them all runtime dependencies or asserting execution."
+  },
+  "adopted_pair_context": {
+    "os_018": {
+      "identity": "HELIXOS-L2-018",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
+      "l2_selected_lines": [
+        672,
+        680
+      ],
+      "l2_section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
+      "l11_selected_lines": [
+        345,
+        350
+      ],
+      "l11_section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+      "role": "OS-018 owns assignment and incomplete-duty return; OS-020 records selected verification execution state/result. Neither replaces SECURITY policy, effective enforcement, or HARNESS acceptance oracle."
+    },
+    "os_020": {
+      "identity": "HELIXOS-L2-020",
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "sha256:7b2b4e5da52893c993b2199b3cd723e11fd20fa3de406b08e106c6a991200234",
+      "l2_selected_lines": [
+        692,
+        700
+      ],
+      "l2_section_sha256": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "sha256:6d882c95cbb6d40974650ae22b86775e955f2c21bafbede6fc5a578e8505467f",
+      "l11_selected_lines": [
+        359,
+        364
+      ],
+      "l11_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+      "role": "OS-018 owns assignment and incomplete-duty return; OS-020 records selected verification execution state/result. Neither replaces SECURITY policy, effective enforcement, or HARNESS acceptance oracle."
+    },
+    "helixsecurity_l2_006": {
+      "identity": "HELIXSECURITY-L2-006",
+      "owner": "SECURITY",
+      "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "l2_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "l2_selected_lines": [
+        120,
+        128
+      ],
+      "l2_section_sha256": "sha256:8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+      "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "l11_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "l11_selected_line": 30,
+      "l11_line_sha256_including_lf": "sha256:a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+      "l11_text": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |"
+    },
+    "helixsecurity_l2_007": {
+      "identity": "HELIXSECURITY-L2-007",
+      "owner": "SECURITY",
+      "l2_path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "l2_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "l2_selected_lines": [
+        130,
+        138
+      ],
+      "l2_section_sha256": "sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+      "l11_path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "l11_file_sha256": "sha256:e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "l11_selected_line": 31,
+      "l11_line_sha256_including_lf": "sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+      "l11_text": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+    },
+    "comparison_base_l2_file_sha256": "sha256:aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "comparison_base_l11_file_sha256": "sha256:9648b668c61318932e3c9498fb918cedeba6d0e63af408015841b1dd77d62d67",
+    "fixed_adopted_002_l2_section_sha256": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+    "fixed_adopted_002_l11_section_sha256": "sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0",
+    "comparison_base_638d_l2_full_file_sha256": "sha256:d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5",
+    "comparison_base_638d_l11_full_file_sha256": "sha256:e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556",
+    "f6_fixed_requirement_revision": {
+      "commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2_full_file_sha256": "sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+      "l11_full_file_sha256": "sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+      "l2_007_line_134_sha256": "sha256:6971e18b37b1286aac6d8f0d0ef90b474f61b126c63fb98f9c1bf7e59ee7197f",
+      "l11_007_line_31_sha256": "sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+      "l11_007_write_path_fixture_line_75_sha256": "sha256:e24348512c607a08ff620b26df47af5099336682831a227e92a7605bb655601a",
+      "meaning": "Fixed 1.0 adoption target; selected SEC-007 bytes above match current identical lines, and no adopted text is modified by this correction."
+    },
+    "os_020_selector_correction": {
+      "reason": "The prior unmerged receipt selected an incorrect line range and digest for the adopted OS-020 section. Recalculation from the exact HELIXOS-L2-020 heading through the next same-or-higher heading, trimming trailing blank lines and appending one LF, yields lines 359–364 and the digest below.",
+      "fixed_adopted_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "current_comparison_base_commit": "7a6c0710476c31c14f10d67343f606532345d6e6",
+      "selected_lines": [
+        359,
+        364
+      ],
+      "selected_section_sha256": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c",
+      "fixed_and_current_bytes_match": true,
+      "adopted_requirement_content_changed": false
+    }
+  },
+  "condition_mapping": [
+    {
+      "ir_phrase": "ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない",
+      "disposition": "already covered by adopted L2/L11-029 revision 002; not duplicated in this supplement"
+    },
+    {
+      "ir_phrase": "OS sandbox",
+      "candidate_oracle": "選択した追加runtimeのWorker実行には、SECURITY-007が要求する隔離環境をwrite有無にかかわらず適用し、そのeffective enforcementを同一tupleへ結ぶ。"
+    },
+    {
+      "ir_phrase": "network allowlist",
+      "candidate_oracle": "independent selected-destination allowlist/policy tuple; SECURITY-006"
+    },
+    {
+      "ir_phrase": "egress実測",
+      "candidate_oracle": "independent measured egress tuple compared with selected allowlist scope; SECURITY-006"
+    },
+    {
+      "ir_phrase": "FS差分検査",
+      "candidate_oracle": "independent selected-write-scope filesystem difference tuple; SECURITY-007"
+    }
+  ],
+  "fixture_coverage": {
+    "normal": "Same additional-runtime identity/version/config, operation, OS-018 assignment, target, data classification, policy revision and scope; all four evidence types are marked applicable; each has independent state/output and owner return. No real runtime executed.",
+    "independent_negatives": [
+      "sandbox適用がclaim-only: effective enforcement observationだけを欠かせ、runtime/policyの自己申告を残す。",
+      "allowlist scope不一致: selected destination・operation・target・egress measurementを正常tupleのまま固定し、allowlist evidenceの許可scopeだけを変更してそのdestinationを含めない。",
+      "egress測定unknown: egress measurementの状態だけをunknownにする。",
+      "FS差分scope外変更: 観測済みFS differenceへ選択write scope外のpathだけを含める。"
+    ],
+    "unseen": "Change runtime version/config, target revision or operation scope; prior evidence cannot be reused; missing new tuple evidence stays unknown/incomplete and returns to evidence owner.",
+    "owner_returns": {
+      "SECURITY": "policy, permission scope or allowed destination ambiguity",
+      "INFRASTRUCTURE": "effective enforcement, measurements or filesystem observation absent/unknown",
+      "HELIX-OS": "preserve assignment-bound incomplete duty and route/status; does not author policy",
+      "HARNESS": "evaluate oracle and candidate compliance claim; does not issue authority."
+    },
+    "not_repeated": "Vendor-only assertion, opt-out and classification negatives are already in adopted 029 and are not drafted again.",
+    "existing_condition_oracles_not_repeated": [
+      {
+        "condition": "allowlist欠落・未許可destination、および未許可network経路",
+        "existing_pair": "採択済みHELIXSECURITY-L2/L11-006およびL2/L11-007 network制約",
+        "candidate_treatment": "既存oracleに保持。本003のnegative表へ別caseとして追加しない。"
+      },
+      {
+        "condition": "egress実測値が選択allowlist外",
+        "existing_pair": "採択済みHELIXSECURITY-L2/L11-006 destination/egress条件",
+        "candidate_treatment": "既存oracleに保持。本003のnegative表へ重ねない。"
+      },
+      {
+        "condition": "read-onlyでのwrite禁止と対象scope不変",
+        "existing_pair": "採択済みHELIXSECURITY-L2/L11-007",
+        "candidate_treatment": "既存oracleを引用。新しい全file diff条件は追加しない。"
+      },
+      {
+        "condition": "provider-only claim、opt-out、分類・秘密/機密遮断",
+        "existing_pair": "採択済みHELIXSECURITY-L2/L11-029-002",
+        "candidate_treatment": "既存oracleに保持し、本003で再起草しない。"
+      }
+    ],
+    "source_and_consumer_residual": "HR-FR-HIL-23の共有条件、HAC-HIL-23a/b/cとHAT-HIL-23の関連ケースはrecord pins/consumer mappingで保持。quota, bypass, cleanup等の非対象条件は既存owner identityまたはsource holdingへ残し、本候補で閉じたとしない。"
+  },
+  "dependency_023": {
+    "常時必須": "選択operationのsource/target revision、追加runtime identity/version/config、OS-018 assignment、採択済みSECURITY-029のscope、SECURITY-007が要求する許可隔離環境での実行（read-only/writeの有無にかかわらず）とそのeffective enforcement、および当該operationに適用されるSECURITY-006/007条件。unknownなら成功claimを作らない。",
+    "特定操作時のみ必須": "network egressがあるoperationではallowlistとegress観測を照合する。write operationでは対象scopeのfilesystem differenceを検査する。read-only operationでは新しい一律filesystem-diff条件を追加せず、採択済みL11-007の禁止write適用と対象scope不変のoracleを使う。適用条件unknownはunknownのまま保持する。",
+    "選択した入力元に応じて必須": "選択runtime/config・source・target・scopeへ結ぶpolicyとeffective local evidence。",
+    "参照資料のみ": "旧runtime/CLIやHR/HAC/HATはruntime dependencyでない。 provider claimもlocal proofでない。",
+    "outside_partition": "Normative HIL-NFR-39 IR, L1 corroboration, source conditions, consumer oracles, and adopted security/OS obligations remain condition/source evidence; they are not downgraded to reference-only."
+  },
+  "authority_and_scope": {
+    "decision_57_primary_worker_exclusion_preserved": true,
+    "scope": "only operation using runtime selected outside primary Worker contract, in the already adopted 029 scope",
+    "po_boundary": "No PO decision is needed to retain the four source evidence types or map them to exact existing pairs. PO decision remains necessary before changing source meaning or extending 029 limits to primary Worker. Unknown applicability and source-wide closure remain held.",
+    "owner_distinction": "SECURITY owns policy, INFRASTRUCTURE effective application/measurement, OS assignment and outstanding duty, HARNESS requirement meaning/impact/pair/oracle; no cross-owner authority transfer.",
+    "security_007_applicability": "The adopted SECURITY-007 and adopted 029 L2 condition include effective isolated-environment enforcement for a selected additional-runtime Worker operation regardless of whether it writes. The candidate does not create a universal filesystem-diff rule for read-only operations; it cites the adopted L11-007 oracle for write prohibition and unchanged target scope."
+  },
+  "coverage_result": "partial_candidate_mapping; adopted 002 remains adopted; 003 is unadopted; no source-owner assignment, source closure, downstream implementation, or runtime execution is asserted.",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/security-third-party-data-nfr39-l11-candidate-coverage-receipt-2026-10-03-r1.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}
