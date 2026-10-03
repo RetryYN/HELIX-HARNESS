@@ -1550,7 +1550,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 ### HELIXOS-L2-125 Worker結果境界のfail-close（改訂候補002、未採択）
 
 - **状態と対象**：HELIX-OSの未採択要求候補。選択されたWorker operationの結果を、既存の適用契約とHARNESSの検証条件に沿って利用者へ届ける責務を対象とする。登録・確認は候補の採択、実装、実行許可を生まない。
-- **要求保証**：利用者は、一時的なbackpressureが起きても、それだけを理由に失敗扱いされず、既存契約の範囲で待機・再開して欠損のない完全な結果を既存の上限・期限内に受け取れる。結果が不正または不完全な場合は、有効な完了結果として扱われない。この保証は選択されたWorker operationに限り、通常作業や未選択sourceを停止対象に広げない。
+- **要求保証**：利用者は、一時的なbackpressureだけでは失敗とされず、既存契約の範囲で待機・再開して必要な結果が欠損なく揃えば既存の上限・期限内に完全な結果を受け取り、不正JSON、適用schemaとの不一致、上限超過、完了時点でのsequence欠落、Worker crash、既存期限超過またはtimeout、cancelまたはcancel後の遅着、親実行の消失により結果を確認できない状態、あるいは有効な完成結果と確認できないpartial resultが残る場合には成功・完成扱いされず、理由と未完義務を確認できる。この保証は選択されたWorker operationに限り、通常作業や未選択sourceを停止対象に広げない。
 - **配置と責務**：採択済みHELIXOS-L1-003の許可範囲内に置く。OSは既存のassignment、実行状態および成果回収の責務を使い、HARNESS-L2-005/022の検証義務・oracleに沿って結果を扱う。SECURITYの実行制約、INFRASTRUCTUREの資源制約、Worker成果の意味は各ownerに残す。新しい権限や承認条件を作らない。
 - **適用範囲**：この要求は、結果受領・回収が適用される選択operationだけに適用する。旧HIL-NFR-14の列挙条件と人が確認する結果先はcoverage receiptに対応づける。候補002はlater35の訂正指示を反映した未採択案であり、旧source、MPR-SH-IR-003の保持、旧候補001の記録は変更せず、formal successorやsource retirementを主張しない。
 - **原文・後続材料**：旧IR `requirements.json#/HIL-NFR-14` とL1 line 194、およびHR-FR-HIL-12/HAC-HIL-12a/b/c/HAT-HIL-12との対応を[改訂source ledger](../../governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl)と[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に固定する。機械的なfailure分類、依存closure、fixtureおよび内部記録の細部はreceiptの下流引継ぎ材料とし、この候補は後続PO判断を待つ。
@@ -1652,3 +1652,9 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-selection適用範囲だけを人の意味判断材料として明記する。OS側のsource identity・authority/provenance・decision/relation記録はHARNESS変換候補と同一のZIP scopeに従う。source scopeを独立に拡張せず、HARNESS-087のfield意味やadoption decisionをOSが生成しない。
 
 **ZIP適用scopeの意味選択（未決）**：source formatはいずれもZIPである。A) 旧引継ぎで特定されたlegacy ZIP資産一件についてのみOS projectionを行う。B) 案件ごとに明示選択されたZIPのidentity/revision/digestとHARNESS変換関係を記録する再利用可能な管理unitとする（HARNESS-087との整合を推奨候補とする）。Bはsource資産一件から選択案件への適用範囲を広げる意味差であり、owner、source取得、decision authority、selectionは生成しない。A/Bは未決であり、意味変更に必要な判断まではOS-130の既存candidate境界を保持する。非ZIP形式への拡張は含めない。
+
+### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）
+- **要求する利用者保証**：HELIX-OSがWorker operationで生成judgment packまたは専門agentを使う場合、利用者は、提案物がそれ自体で権限を得ず、対象operation・scope・選択された入力に結び付いた状態で扱われることを期待できる。選択済み入力の変更、監査状態の欠落、既存の許可範囲外の操作、作成主体による自己検証、制限のないagent増殖、または既存工程外の完了主張があるとき、影響するoperationの該当actionは進まず、理由と未解決条件が利用者に分かる形で残る。既存の別operationやpackを使わない通常作業には一律に広げない。
+- **適用範囲と既存責務**：対象は既存assignment/authorityの下でpackまたは専門agentを実際に使うと宣言した個別operationである。HELIXOS-L2-018/019のassignment・継続性と、既存SECURITY authorityを前提にし、新しい権限や人間承認を加えない。INTELLIGENCE-L2-072-004/005の採択はcandidate/shadowの限定scopeに留まり、本候補131やruntime処理を採択しない。
+- **利用条件別の依存範囲（採択済みHARNESS-L2-023の4分類）**：**常時必須**はoperationのticket/要求revision、scopeと既存authority。**特定操作時のみ必須**はpack/agentを使うoperationに限る本候補の保証。**選択した入力元に応じて必須**は実際に選択したpack、agent、依存入力とその生成時点の関係であり、未選択の入力の変更を選択済みのものへ広げない。**参照資料のみ**は歴史的なsource・consumer記録であり、その区分で旧要求条件を消去しない。必要な対象、適用条件、または入力の現行性が確かめられない場合は該当operationの保証成立を主張しない。4分類は要求意味と影響範囲を示し、内部処理形式を定めない。
+- **旧sourceと保全範囲**：本候補は旧IR `requirements.json#/HIL-NFR-34` の提案物非権威、snapshot/digestへの結合、scope/requirement/template/skill/model catalog/allowlistの変更時のstale、未監査・許可外tool・自己検証・無制限subagent・工程外completionを利用者保証として保持する。HR-FR-HIL-21 revision 1から版付きpack、必要最小team、独立verify、使用前のshadow review/runtime guardを追加の保証条件として保持する。旧sourceの全原文条件、配置判断の来歴、技術上の詳細、未回収範囲は監査receiptに対応づけ、要求本文で旧consumer全体のclosure、採択、実装、実行を主張しない。

@@ -1339,3 +1339,11 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 
 - **正常例**：宣言されたsynthetic ZIP sourceとHARNESS-087 transform revisionを同一scopeへ結び、source digest、既存decision record reference、requirement/design/test relationを記録する。source/transform identityが一致してもdecision欠落をunknownのまま保持する。
 - **scope選択材料（未決）**：A) legacy引継ぎで特定されたZIP一件だけを対象にする。B) 案件ごとに明示選択されたZIPを記録する再利用可能な管理unitへ広げる（HARNESS-087と整合する推奨候補）。両案ともZIPのみで、OSの判断権限や外部取得を増やさない。Bは適用案件とsource record範囲を変える。選択前は受入fixtureをowner assignmentやscope採択とみなさず、未見scopeを保持する。
+
+### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補
+- **候補と確認範囲**：本受入はHELIX-OSの未採択・未実行の利用者確認基準である。pack/agentを用いると明示された個別operationだけを対象とし、既存assignment・authorityの外へ拡張しない。旧runtime、旧test、CIの実行結果を根拠にしない。
+- **正常な結果を人が確認する例**：既存authority内のoperationについて、利用者はticket/要求revisionとscope、選択した入力と生成時点の関係、pack/agentが提案物であること、使用前の対応する独立確認、結果が既存のoperation範囲内であることを確認する。記録が揃っているだけでなく、表示された結果・未解決条件・理由が実際の対象と一致し、pack/agentに権限や完了決定が与えられていないことを確認できた場合に限り、そのoperationの限定scopeで受入可能とする。
+- **誤った結果を人が確認する例**：生成後に選択済み入力が変わったのに古い提案物を現在のものとして使う、pack/agentが許可や完了を自称する、既存許可外toolを使う、作成主体の自己確認だけを独立確認として示す、または有限なtask/member境界のないagent生成を続ける例を確認する。影響するactionが進んだ、理由・未完条件が利用者に示されない、または無関係な別operationまで一律に止めた場合は受入しない。HARNESS-L2-023の四区分に照らし、実際に選ばれた依存の変更だけが該当scopeへ影響し、未選択依存の変更が選択済み結果へ混入しないことも確認する。
+- **未見の結果を人が確認する例**：未見のpack/agent、入力owner、適用範囲、独立性、またはcompletion範囲が提示されたとき、利用者は正常扱いへの暗黙変換や別入力へのfallbackがないこと、未解決の条件と確認先が見えることを確認する。情報が得られない範囲は結論を保留し、別の正常例から一般化しない。
+- **依存4区分（要求意味・影響範囲）**：採択済みHARNESS-L2-023に従い、常時必須のticket/要求revision・scope・既存authority、pack/agentを使う操作に限る条件、実際に選択した入力だけへ及ぶ依存、歴史照合に限る参照資料を利用者が区別できることを確認する。四区分の具体identity、contract tuple、機械fixture、個別negativeは監査receiptに技術引継ぎとして保全する。参照資料分類で旧原文条件を消さず、fixtureの記載だけから実在owner、許可、実行成功、採択または全体closureを推定しない。
+- **sourceから利用者確認への対応**：旧HIL-NFR-34の全条件とHR-FR-HIL-21から選択した追加保証、未回収consumer/lifecycle条件、対応する技術材料はcoverage receiptのrevision 002に対応表として記録する。HAT-HIL-21は`designed_not_implemented`であり、実行結果や全体closureの証拠として扱わない。
