@@ -6292,7 +6292,10 @@
     {
       "path": "docs/governance/audits/requirements-stage/ir153-destination-projection-2026-10-03.json",
       "sha256": "e2f46833b276a3ba0125362b6784f0ae244fbdca79aef69eec61e18faef2a463",
-      "join_key": "source_id",
+      "join_key": {
+        "route": "source_identity",
+        "comparison": "source_id"
+      },
       "boundary": "行き先または採否の参照であり、要望全条件の保持証明ではない。採否訂正はclassification_correctionを優先。"
     },
     {
