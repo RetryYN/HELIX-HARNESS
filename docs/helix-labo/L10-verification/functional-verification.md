@@ -1,6 +1,6 @@
 # HELIX-LABO L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件、Stage 4のLABO-L2-036/037/038/039/040/041/052/054、およびStage 5のLABO-L2-050/059/060/061/063/064/065/066のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -1018,4 +1018,23 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | `CASE-LABO-L10-061-02` | `FR-LABO-L3-061` / `AC-LABO-L3-061-02` | 合成fixture上で15-fieldを1項ずつ欠落させ、各々独立にdigest drift、hidden answer漏出、future answer漏出、合成secret漏出、合成PII漏出、private review context漏出を変異する。別個の変異としてauthorをjudgeにする、identity名札だけ変えてcontextを共有、snapshot/oracle digest不一致、fixture/protocol/scorer version driftを試す。正常対照としてjudgeだけが固定oracleへ正当にアクセスするfixtureも与える。 | 各不一致・各漏出で該当比較を隔離し、重大漏洩/失敗を平均点で相殺せず、旧結果をcurrent evidenceへ再利用しない。judgeの正当なoracle accessをWorker漏出に数えない。記録するのはsource identityとreasonで、secret/PII/private contextの内容をauditへ複写しない。 |
 | `CASE-LABO-L10-061-03` | `FR-LABO-L3-061` / `AC-LABO-L3-061-03` | hidden oracle非選択scopeと、新taskの適用性を比較する。前者は別契約を特定し、独立judge/blind要件が適用外とする契約上の根拠を提示する正常対照を含める。根拠欠落・unknown applicability、以前未見のattachment/derived descriptionにanswerが漏れるfixture、worker可視範囲が不明なcontext-reference欠落も個別に与える。 | 独立judge要件の適用外は別契約の明示根拠がある場合だけ記録し、oracle非選択のみで解除しない。適用性unknownと可視範囲不明は未検証でownerへ戻す。未見source由来answer漏出は漏洩として隔離する。通常履歴全体へhidden taskを要求しない。 |
 
-各fixtureの数値候補は`../L3-requirements/nfr-grade.md`と同じ候補であり、L10 case自体は未実行。実装・runtime・実際のWorker起動を行わず、入力recordと期待stateを静的に照合する。
+### HELIXLABO-L2-063/064/065/066 — 再発評価・候補名遮蔽・scorecard・修復比較oracle
+
+以下はL3 Stage 5の同番号AC候補に1対1で対応する。固定L2/L11 basisはmain `633bf12`。旧source/test-design起点はL3文書のitem crosswalkに記録し、legacy test/runtimeは実行しない。
+
+| case ID | FR / AC | 入力・操作 | 期待oracle |
+|---|---|---|---|
+| `CASE-LABO-L10-063-01` | `FR-LABO-L3-063` / `AC-LABO-L3-063-01` | version/適用条件/独立検証receiptを持つ修復recipeと、同種episode、親指定threshold/母数/反例、LABO Feedback、OS登録、owner変更、再検証と運用後観測を同一系譜で与える。 | recipeを評価知識に保持し、親条件に基づく反復candidate/warningを出力しつつOS/ownerの各stateを混ぜない。 |
+| `CASE-LABO-L10-063-02` | `FR-LABO-L3-063` / `AC-LABO-L3-063-02` | 未検証案、重複resend、原因/条件混合、thresholdまたは母数欠落、頻出なのにcandidate/warning欠落、登録だけでclosureとする各独立mutationを与える。 | 各個別エラーを成功recipe、同種反復、予防完了へ昇格しない。該当義務だけを原因別owner（source/LABO/OS/target）へ返す。 |
+| `CASE-LABO-L10-063-03` | `FR-LABO-L3-063` / `AC-LABO-L3-063-03` | 新原因・改版recipeで同一適用性が確認できないfixtureと、旧成功recordのみの入力を与える。 | 頻出/現行有効性をunknownとして保持し、評価を未完にする。 |
+| `CASE-LABO-L10-064-01` | `FR-LABO-L3-064` / `AC-LABO-L3-064-01` | 選択比較pairでjudge-visible資料を検査し、元identity mappingはrecord側にだけ保持。fixture/rubric/judge version/sample/retryの事前固定条件が同一のpairを与える。 | 候補名がjudge資料に現れず、全5条件が固定一致する場合だけblind比較を成立候補として返す。 |
+| `CASE-LABO-L10-064-02` | `FR-LABO-L3-064` / `AC-LABO-L3-064-02` | 候補名直書き、添付metadata漏れ、judge視界不明を個別に与える。fixture/rubric/judge version/sample/retryの5条件はそれぞれ欠落・変更を別変異とし、さらにsmoke-only/平均相殺/assignment許可も独立に試す。 | 各対象pairは比較不成立。別pairへfindingを広げず、smoke結果をfull qualificationやassignmentへ読み替えない。 |
+| `CASE-LABO-L10-064-03` | `FR-LABO-L3-064` / `AC-LABO-L3-064-03` | 通常history記録と、新runtime版/新output形式のjudge-visible資料が不足する比較を対照にする。 | historyにblind比較を強制せず、新比較は可視範囲がunknownなら過去blind証拠を継承せずevaluation ownerへ戻す。 |
+| `CASE-LABO-L10-065-01` | `FR-LABO-L3-065` / `AC-LABO-L3-065-01` | 選択qualification scopeのmanifest/receipt、8軸各判定、machine smoke/blind full-benchを別記録する正常例と、独立task scorecardの6 fields及びfirst Attempt failure→retry successを与える。 | 8/8軸を同一fixture/oracle/rubric版へ結び、6/6 fieldはscope definitionとreceiptを持つ。retry成功をfirst_pass成功へ変えず、owner decisionを参照する。 |
+| `CASE-LABO-L10-065-02` | `FR-LABO-L3-065` / `AC-LABO-L3-065-02` | 8軸を各々欠落/版違い、manifest/digest、smokeのみ、visible leakを個別に変異する。scorecardは6 fields各欠落、適用外理由欠落、unknown→0、retry first-pass誤記、retry/rework cost欠落を個別に投入する。 | 該当scope/metricを未完・unknownとし、他軸成功で相殺しない。qualification/admissionをLABOから作らない。 |
+| `CASE-LABO-L10-065-03` | `FR-LABO-L3-065` / `AC-LABO-L3-065-03` | qualification未選択の通常Worker history、新runtime/task/fixture/rubric版、未定のdiff/lint measurement definitionを比較する。 | 通常historyはqualification bench不要。新scopeは既存資格を継承せず、定義欠落はunknown/owner返却。 |
+| `CASE-LABO-L10-066-01` | `FR-LABO-L3-066` / `AC-LABO-L3-066-01` | Aと候補の事前同一eligible case set、scope/revision/oracle/protocol/cutoff、両群のcase receiptを与え、各群の2 countを算出する。 | 両群のmisrepair_count/Nとunresolved_count/Nを別々に、分子/分母とcase-oracle receipt付きで示し、059費用比較も保つ。 |
+| `CASE-LABO-L10-066-02` | `FR-LABO-L3-066` / `AC-LABO-L3-066-02` | A/候補のcase集合またはoracle条件を変える、結果後にN変更、重複/unknown除外、oracle receiptなし、分子のみ、成功/安価さで隠すmutationを独立に与える。 | 比較不能/未評価を返し、unknownを0・除外・成功として数えない。 |
+| `CASE-LABO-L10-066-03` | `FR-LABO-L3-066` / `AC-LABO-L3-066-03` | A identity/versionまたは初見caseのoracle applicabilityが不明なfixtureを与える。 | Aやthresholdを推測せず該当比較のみunknownとしてownerへ戻し、他scopeは継続可能にする。 |
+
+各fixtureの候補値は`../L3-requirements/nfr-grade.md`と同じ提案であり、L10 case自体は未実行。実装・runtime・実際のWorker起動を行わず、入力recordと期待stateを静的に照合する。

@@ -70,7 +70,7 @@
 | `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptの全必須field一致100%候補、assignment/authority 0 | C01同scope受領、C02各field変異、C03 extrapolation/assignment、C04別unassessed class | 055/INTELLIGENCE/OS責務を分離し未評価状態を保持 |
 | `HELIXLABO-L2-052` | 選択targetの035/source/receipt identity・revision・scope・status・unassessed・owner relation coverage 100%候補、誤受領0 | summary/部分edge照合と全required tuple/owner別traceを比較し、C01正常受領、C02 schema/revision/scope/receipt独立欠落、C03 training/bot mutation、C04未見材料種別を測る | required relationを分母として出力fieldからcoverageとmissing/mismatch誤受領を算出。未選択sourceを分母/必須にせず、035 contract再定義0、training/model change/placementを1.0化しない |
 
-## Stage 5 — LABO-050/059/060/061 NFR case候補
+## Stage 5 — LABO-050/059/060/061/063/064/065/066 NFR case候補
 
 | case ID | NFR候補 | 入力・比較 | oracle／測定 |
 |---|---|---|---|
@@ -78,3 +78,7 @@
 | `CASE-LABO-L10-NFR-059-01` | `NFR-LABO-L3-059-01` | L10-059の選択群についてrequired tuple全一致と各field mutation、full receiptsとfirst-candidate-only cost集計を比較。 | 選択群のtuple coverage 100%候補、品質相殺・missing cost=0の誤り0。 |
 | `CASE-LABO-L10-NFR-060-01` | `NFR-LABO-L3-060-01` | 正常support-on/off条件とWorker/model/effort/oracleの単独差分、支援情報漏出、支援者reviewerへの誤割当を比較。 | 同一条件pairの誤比較0候補、漏出/支援者の独立review claim 0。 |
 | `CASE-LABO-L10-NFR-061-01` | `NFR-LABO-L3-061-01` | 選択taskの15-field完全fixture、各一項欠落、hidden answer/future answer/合成secret/合成PII/private review context漏洩と独立judge適用外の根拠付き/根拠なし対照を比較。 | 完全fixtureで15/15、選択hidden context漏洩0。別契約に明示根拠があるscopeだけblind要件を除外し、hidden oracle非選択だけを根拠にしない。 |
+| `CASE-LABO-L10-NFR-063-01` | `NFR-LABO-L3-063-01` | recipe identity/version/condition、repeat episode、independent verification、warning、OS registration、owner outcomeの欠落・resend重複・異条件混合を比較。 | 親required lineageのtrace 100%候補、重複episodeと無根拠頻出claim 0。threshold数値そのものは固定せず、親入力に適合しているか確認する。 |
+| `CASE-LABO-L10-NFR-064-01` | `NFR-LABO-L3-064-01` | 選択pairでvisible source全体を走査し、name exposureとfixture/rubric/judge version/sample/retryの各単独driftを投入。 | name exposure 0、5条件一致100%候補。非選択通常historyを分母へ入れない。 |
+| `CASE-LABO-L10-NFR-065-01` | `NFR-LABO-L3-065-01` | 選択資格scopeの8軸、task scorecard 6 fields、receipt/definitionの各欠落を個別に変異する。 | 8/8軸と適用scorecard field定義/結果のtrace候補を確認。未選択scopeや適用外fieldを誤って必須化しない。 |
+| `CASE-LABO-L10-NFR-066-01` | `NFR-LABO-L3-066-01` | 両群のeligible case N、case oracle status、判定receiptを照合し、post-hoc denominator edit、unknown drop/zero、duplicate exclusionを変異する。 | selected case status/receipt 100%候補、分母改変0。両指標を分け、unknownで比較を未評価にする。 |

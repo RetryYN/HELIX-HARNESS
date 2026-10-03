@@ -79,7 +79,7 @@
 | `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
 | `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage 100%候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionの有限条件行列 | 選択sourceだけclosureを要求。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
 
-## Stage 5 — LABO-L2-050/059/060/061 測定候補
+## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066 測定候補
 
 値はL3/L10対の測定候補でありPO決定済み閾値ではない。適用範囲は選択scopeと親契約の分母に限り、未選択のcohort/sourceや全通常履歴へ拡張しない。
 
@@ -89,5 +89,9 @@
 | `NFR-LABO-L3-059-01` / `HELIXLABO-L2-059` | 選択比較にrequiredなtask/scope/oracle/scorer/protocol/hardware/decision/evidence tuple一致率100%候補、品質不合格の価格・速度相殺0、missing costを0化0 | Bench R-04〜08とAC-005〜013、親の品質優先・priority/tolerance・費用内訳を測る。全費用receipt合算とfirst candidate単価だけの比較を対置する。未換算human timeは時間量と通貨を分離する。 | repeat/sample数、固定順位、human-time換算率は候補なし。必須品質と選択群の整合を保つ。 |
 | `NFR-LABO-L3-060-01` / `HELIXLABO-L2-060` | 支援on/off比較pairの同一Worker/model/provider/version/effort/oracle/task条件一致100%候補、支援漏出・支援者を独立reviewer扱い0 | 支援有無ラベルだけ比べる案と、同一設定tuple・実支援cost・reviewer identity/context/authorityの独立性を照合する案を比較し、後者を候補にする。L2-060はsupport availabilityだけを変える。L10-060の正常3者分離review→OS-L2-020同oracle rerunと各1条件差分を照合する。 | 支援経路の実行/割当、普遍的な効用差閾値はLABOの責務外。 |
 | `NFR-LABO-L3-061-01` / `HELIXLABO-L2-061` | 選択scopeのtask snapshot 15/15 field一致候補、選択hidden oracleの隔離違反0、historical resultのcurrent性能流用0 | HELIX-Bench R-04/R-08、AC-005/006/012/013、HIL-NFR-35に沿って全15fieldとdigest/revisionを照合し、public/hidden境界を個別変異する。1回の完全fixture照合と同一snapshotの再実行案を比較し、field fidelityは前者、再現性差分は後者で測る。 | hidden oracle非選択だけで独立judge契約を解除しない。別契約で適用外が明示されたscopeのみ除外する。標本/retry値は親契約の適用scope内でだけ提示し、全LABO-055履歴へ持ち込まない。 |
+| `NFR-LABO-L3-063-01` / `HELIXLABO-L2-063` | 選択されたrecipe/repeat finding/backlog/owner outcome間のrequired lineage coverage 100%候補、未根拠のfrequency claim 0 | 旧Pillar HAC-P4-02a/bとL2-063が要求する対象版・条件・検証証拠を全照合する案と成功件数だけ集計する案を比較し、episode identity/condition/owner traceを保つ案を候補にする。L10でresend、異条件混合、warning/registration欠落を測る。 | 反復threshold/母集団は親からの入力値を使い、新たな数値・期間を作らない。 |
+| `NFR-LABO-L3-064-01` / `HELIXLABO-L2-064` | 選択blind pairのcandidate-name exposure 0、fixture/rubric/judge version/sample/retryの5固定条件一致100%候補 | 名前欄だけ遮蔽する案と、judge-visible全資料＋record側identity mapping＋5条件のdigestを照合する案を比較し、後者でmetadata漏れと条件driftを個別に計測する。 | 比較未選択の通常historyは分母にしない。固定sample/retry値や適格性thresholdは作らない。 |
+| `NFR-LABO-L3-065-01` / `HELIXLABO-L2-065` | 選択資格scopeの8/8軸判定trace候補、および実task scorecardの6/6 field definition/result receipt coverage候補 | summary totalだけの案と、各軸・各fieldをscope/oracle/rubric/tool版/receiptへ結ぶ案を比較する。L10では8軸個別欠落、6 fieldsのunknown/適用外/初回とretry区別、費用receiptを測る。 | 通常Worker historyはqualification対象でない。diff/lintの未指定共通単位やfull-bench固定sample数を導入しない。 |
+| `NFR-LABO-L3-066-01` / `HELIXLABO-L2-066` | 選択比較のeligible case全件に対する両群oracle/status receipt trace 100%候補、unknown除外/0化による分母改変0 | raw success countと、事前固定Nにおける群別`misrepair_count/N`・`unresolved_count/N`を比較し、分子・分母・case証拠を追える後者を候補とする。 | 新しい許容misrepair率、試行数、Aの定義を設けない。oracle不能caseはunknown/比較不能にする。 |
 
 これらは提案値である。L3承認に個別parameter gateを追加しない。必要な測定値が固定親に指定されていない場合は、候補・比較理由・観測方法を同一のL3/L10 packageで示す。
