@@ -114,16 +114,16 @@
     "identity": "HELIXOS-L2/L11-125",
     "current_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
     "current_l2_heading_line": 1550,
-    "current_l2_section_sha256": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+    "current_l2_section_sha256": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
     "current_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
     "current_l11_heading_line": 1166,
     "current_l11_section_sha256": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
     "section_digest_rule": "UTF-8 bytes from exact ### candidate heading through before next same-or-higher ### heading; trailing empty lines trimmed, exactly one LF terminator.",
-    "current_l2_full_file_sha256": "sha256:ab0d4cfe07dc6904a68e1a818f757f448d151308a460fc0e1cb6e2db8c4482f2",
-    "current_l11_full_file_sha256": "sha256:dede568cba49f797a321db1dbee4a0702d36cc7d8fe44f0eb354a9fa9f909e44",
-    "current_candidate_semantic_digest": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+    "current_l2_full_file_sha256": "sha256:6db25915f9419f185f745ad36fd90dfe9704ef64b57e98414023c6e8640993c1",
+    "current_l11_full_file_sha256": "sha256:0ae37c85b281ea686e56cfbf1e518233f102725ea6885cab407b321fcf0eed0f",
+    "current_candidate_semantic_digest": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
     "current_pair_sections": {
-      "HELIXOS-L2-125": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+      "HELIXOS-L2-125": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
       "HELIXOS-L11-125": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f"
     },
     "current_pair_section_lines": {
@@ -135,7 +135,9 @@
         1166,
         1171
       ]
-    }
+    },
+    "current_candidate_pair_digest": "sha256:c6bc953fc1f28c1b04ba857dc99040002b3ee7f80cdd818e5bb0266ff625dcac",
+    "candidate_pair_digest_rule": "SHA-256 of canonical HELIXOS-L2-125 UTF-8 section bytes + one LF byte + canonical HELIXOS-L11-125 UTF-8 section bytes. Each section starts at its exact ### heading and ends before the next same-or-higher heading; trailing blank lines are removed and exactly one LF is appended."
   },
   "condition_map": [
     {
@@ -253,7 +255,7 @@
   "preservation_and_limits": {
     "old_001_row_receipt_source": "immutable and byte-preserved in this revision.",
     "old_normative_source": "HIL-NFR-14 source text/file and MPR-SH-IR-003 holding remain unchanged.",
-    "other_adopted_requirement_bodies": "not edited; only the two OS-125 sections, unpublished 002 row, and unpublished 2026-10-03 r2 source ledger/coverage receipt are revised.",
+    "other_adopted_requirement_bodies": "Relative to exact main fd760e32561024975da4838a4a9e51d53d6920da, no other adopted requirement body is changed by this OS125 correction. The existing OS131 candidate additions already present in that main revision are carried through unchanged; this correction updates only the OS125 L2/L11 pair, unpublished MPR-002 row, and the new r2 source ledger/coverage receipt.",
     "no_adoption_or_successor": "true",
     "legacy_runtime_test_ci_executed": false,
     "formal_successor_or_source_closure_claimed": false,
@@ -304,9 +306,9 @@
     }
   },
   "latest_main_recheck": {
-    "latest_main_commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
+    "latest_main_commit": "fd760e32561024975da4838a4a9e51d53d6920da",
     "comparison_basis_commit": "62d9eedca25a927916594a0a96690b2441437712",
-    "latest_main_MPR_full_file_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "latest_main_MPR_full_file_sha256": "sha256:cdf5f05be6e8636b14c1a68035e7f1261ab778eec7fe79afb6e8491a155f47a7",
     "MPR_62d9_prefix_bytes_match_latest_main": true,
     "latest_main_MPR_125_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
     "MPR_001_row_equal_to_original_62d9_pin": true,
@@ -314,10 +316,13 @@
     "latest_main_old_001_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
     "latest_main_L2_125_old_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
     "latest_main_L11_125_old_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
-    "latest_main_62d9_pair_files_byte_identical": true,
-    "latest_main_comparison_scope": "Current main 9f2555b8 is a separate recheck from historical 62d9 and 94f0 comparisons; preserves MPR 708-row raw prefix, existing HARNESS-067-002 and all historical 001 evidence.",
-    "MPR_base_prefix_line_count": 708,
-    "MPR_base_prefix_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
-    "MPR_base_prefix_bytes_match": true
+    "latest_main_62d9_pair_files_byte_identical": false,
+    "latest_main_comparison_scope": "Current main fd760e32561024975da4838a4a9e51d53d6920da includes the #2550 OS131 pair and 710 registered MPR rows. Its 707-row 62d9 MPR prefix and historical OS125-001 source/receipt/section bytes remain preserved; the OS125-125-002 candidate row is appended locally after the exact 710-row latest-main prefix. The unchanged 001 pair sections and changed full document bytes are recorded separately.",
+    "MPR_base_prefix_line_count": 710,
+    "MPR_base_prefix_sha256": "sha256:cdf5f05be6e8636b14c1a68035e7f1261ab778eec7fe79afb6e8491a155f47a7",
+    "MPR_base_prefix_bytes_match": true,
+    "latest_main_125_001_sections_byte_identical_to_original_001": true,
+    "MPR_710_row_prefix_contains_002": false,
+    "latest_main_125_sections_byte_identical_to_001": true
   }
 }

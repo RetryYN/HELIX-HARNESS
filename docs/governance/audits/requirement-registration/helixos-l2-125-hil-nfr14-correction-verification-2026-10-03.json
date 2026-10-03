@@ -2,13 +2,13 @@
   "schema_version": "os125-correction-static-proof.v3",
   "result": "PASS",
   "historical_draft_base": "62d9eedca25a927916594a0a96690b2441437712",
-  "latest_main_commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
+  "latest_main_commit": "fd760e32561024975da4838a4a9e51d53d6920da",
   "registration_id": "MPR-RC-HELIXOS-L2-125-002",
   "supersedes_registration_id": "MPR-RC-HELIXOS-L2-125-001",
   "latest_main_comparison": {
-    "latest_main_commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
+    "latest_main_commit": "fd760e32561024975da4838a4a9e51d53d6920da",
     "comparison_basis_commit": "62d9eedca25a927916594a0a96690b2441437712",
-    "latest_main_MPR_full_file_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "latest_main_MPR_full_file_sha256": "sha256:cdf5f05be6e8636b14c1a68035e7f1261ab778eec7fe79afb6e8491a155f47a7",
     "MPR_62d9_prefix_bytes_match_latest_main": true,
     "latest_main_MPR_125_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
     "MPR_001_row_equal_to_original_62d9_pin": true,
@@ -16,15 +16,17 @@
     "latest_main_old_001_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
     "latest_main_L2_125_old_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
     "latest_main_L11_125_old_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
-    "latest_main_62d9_pair_files_byte_identical": true,
-    "latest_main_comparison_scope": "Current main 9f2555b8 is a separate recheck from historical 62d9 and 94f0 comparisons; preserves MPR 708-row raw prefix, existing HARNESS-067-002 and all historical 001 evidence.",
-    "MPR_base_prefix_line_count": 708,
-    "MPR_base_prefix_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "latest_main_62d9_pair_files_byte_identical": false,
+    "latest_main_comparison_scope": "main fd760e32561024975da4838a4a9e51d53d6920da; exact 707-row 62d9 register prefix remains at the head, followed by later main rows through 710. OS125-001 historical source/receipt/section pins remain unchanged. Candidate 002 is the only locally appended row after the full 710-row main prefix.",
+    "MPR_base_prefix_line_count": 710,
+    "MPR_base_prefix_sha256": "sha256:cdf5f05be6e8636b14c1a68035e7f1261ab778eec7fe79afb6e8491a155f47a7",
     "MPR_base_prefix_bytes_match": true,
     "register_base_prefix_bytes_match_with_002_appended": true,
     "base_appended_rows": [
       "MPR-RC-HELIXOS-L2-125-002"
-    ]
+    ],
+    "latest_main_710_row_prefix_verified_from_git_bytes": true,
+    "latest_main_125002_row_present_in_base": false
   },
   "historical_001_immutability": {
     "MPR_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
@@ -36,22 +38,22 @@
     "old_L11_001_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
     "MPR_001_raw_row_byte_identical_current": true,
     "old_receipt_and_source_byte_identical_current": true,
-    "register_base_prefix_latest_main_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "register_base_prefix_latest_main_sha256": "sha256:cdf5f05be6e8636b14c1a68035e7f1261ab778eec7fe79afb6e8491a155f47a7",
     "current_register_exact_latest_main_prefix": true
   },
   "current_002_pins": {
-    "MPR_002_raw_row_sha256": "sha256:b2540787ae1399543aee035f8759f7e663294e0237e62ed004f0ca91da1b1a8a",
-    "candidate_semantic_digest": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
+    "MPR_002_raw_row_sha256": "sha256:64b4e1b0e086fea55ce5db6ddd8f21061d3f33d0a5fb052f28a168f8b37c0fce",
+    "candidate_semantic_digest": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
     "source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl",
     "source_ledger_sha256": "sha256:04d2c9b29b141059e6c0f6b8be6175ad6b54297dbf5eb908ac3b6d14eea7e549",
     "receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json",
-    "receipt_sha256": "sha256:2f812d21d677ceff99a9d31ccd768a437500613483c8d64d5b524814f08a07e7",
+    "receipt_sha256": "sha256:1acba9162e97332b9ba415092203f6248a6cab9a5f05d67b35e36edb7349c726",
     "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
-    "L2_section_sha256": "sha256:2a4a5552c7e55f4ebf040c7a5ab24f696862902fa82796afc818f5710da2ec4a",
-    "L2_full_file_sha256": "sha256:ab0d4cfe07dc6904a68e1a818f757f448d151308a460fc0e1cb6e2db8c4482f2",
+    "L2_section_sha256": "sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993",
+    "L2_full_file_sha256": "sha256:6db25915f9419f185f745ad36fd90dfe9704ef64b57e98414023c6e8640993c1",
     "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
     "L11_section_sha256": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
-    "L11_full_file_sha256": "sha256:dede568cba49f797a321db1dbee4a0702d36cc7d8fe44f0eb354a9fa9f909e44",
+    "L11_full_file_sha256": "sha256:0ae37c85b281ea686e56cfbf1e518233f102725ea6885cab407b321fcf0eed0f",
     "source_atom_count": 1,
     "coverage_result": "candidate_002_condition_map_retained; pending renewed PO decision and source meaning disposition",
     "L2_section_lines": [
@@ -63,12 +65,12 @@
       1171
     ],
     "paired_acceptance_digest": "sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f",
-    "candidate_pair_digest": "sha256:16129a04c3a67a11c31cb1dc6f9d2022949a82e8ec75f543abc211721738fce0"
+    "candidate_pair_digest": "sha256:c6bc953fc1f28c1b04ba857dc99040002b3ee7f80cdd818e5bb0266ff625dcac"
   },
   "source_and_acceptance_checks": {
     "legacy_IR_identity": "PASS: HIL-NFR-14 is one source statement atom; source text and digest agree with the archived IR statement.",
     "condition_count": 10,
-    "backpressure_lossless_wait_resume_is_normal": "L2 retains the user guarantee: pressure alone is not failure; loss-free complete result may arrive by waiting/resuming within existing limits and deadline.",
+    "backpressure_lossless_wait_resume_is_normal": "L2 explicitly guarantees a transient pressure event alone is not failure and loss-free wait/resume within existing bounds/deadline yields a complete result.",
     "backpressure_unresolved_loss_or_gap_is_negative": true,
     "other_failure_conditions_are_individually_mapped": true,
     "HST_CASE_007_09_means_queue_upper_bound_overflow_not_transient_pressure": true,
@@ -106,13 +108,14 @@
     "no_adoption_or_implementation_or_runtime_success_claimed": true
   },
   "static_validation": {
-    "MPR_append_checker_base": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "MPR_append_checker_base": "fd760e32561024975da4838a4a9e51d53d6920da",
     "MPR_001_historical_row_and_base_prefix_preserved": true,
     "section_and_receipt_MPR_pins_reconciled": true,
     "JSON_receipt_parse": "PASS",
     "git_diff_check": "PASS",
     "receipt_and_register_pins_reconciled": true,
     "latest_main_708_row_prefix_verified_from_git_bytes": true,
-    "MPR_001_row_and_001_receipt_source_immutability_verified_from_bytes": true
+    "MPR_001_row_and_001_receipt_source_immutability_verified_from_bytes": true,
+    "latest_main_710_row_prefix_verified_from_git_bytes": true
   }
 }
