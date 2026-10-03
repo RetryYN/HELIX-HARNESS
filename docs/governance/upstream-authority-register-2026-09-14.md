@@ -158,3 +158,8 @@ U0 archive-first隔離・母集団固定からU7意味移管・最終退役ま�
 ## 追加10件のPO判断参照（2026-10-03）
 
 [追加・改訂10件のPO判断記録](decisions/po-decision-2026-10-03-additions10.md)が固定するexact registration revisionとL2/L11本文だけを採択対象とする。対象は`HELIXOS-L2-001@MPR-RC-HELIXOS-L2-001-001`、`HELIXOS-L2-018@MPR-RC-HELIXOS-L2-018-002`、`HELIXSECURITY-L2-029@MPR-RC-HELIXSECURITY-L2-029-003`、`HELIXINTELLIGENCE-L2-072@MPR-RC-HELIXINTELLIGENCE-L2-072-005`、`HELIXOS-L2-129@MPR-RC-HELIXOS-L2-129-002`、`HELIXSECURITY-L2-035@MPR-RC-HELIXSECURITY-L2-035-001`、`HARNESS-L2-086@MPR-RC-HARNESS-L2-086-002`（後続版向け、1.0へ追加しない）、`HARNESS-L2-087@MPR-RC-HARNESS-L2-087-002`と`HELIXOS-L2-130@MPR-RC-HELIXOS-L2-130-002`（一組）、および`HARNESS-L2-088@MPR-RC-HARNESS-L2-088-001`である。MPR各行は`registered_proposal`／`authority_effect: none`のまま維持し、判断記録のみが対象revisionの採否authorityを持つ。既採択029-002と072-004は別revisionとして存続する。`PRC-CORR-HIL-FR-15-001`／`PRC-CORR-HIL-FR-16-001`の提案状態、旧source holding、同判断記録に明記した保留は変えない。
+
+
+## 要求整理末尾4件とBun恒久不使用の判断参照（2026-10-03）
+
+[PO判断記録](decisions/po-decision-2026-10-03-pending4-bun.md)が固定する `MPR-RC-HARNESS-L2-067-002`、`MPR-RC-HELIXOS-L2-125-002`、`MPR-RC-HELIXOS-L2-131-002`、`MPR-RC-HELIXOS-L2-132-003` のexact L2/L11だけを採択対象とする。OS132は一回移行の全active surfaceのBun非依存再現に加え、HELIXの開発・実行・検証・配布でのBun恒久不使用・再導入禁止を保持する。002は今回の採択対象外の履歴である。MPRは仮登録のまま、旧source holding・formal successor・L3以降の非許可境界と既決保留/不採択を維持する。
