@@ -1702,12 +1702,12 @@ Design Registryのtyped identity/edge/trace closureとtest-designのorphan/bidir
 
 ### 要件候補
 
-Visual Design HARNESSの課題・screen/flow製品scopeとLABO経由の利用/評価結果から、汎用Visual Design/UX Pattern/Unit/Part、適用条件、反例、required inputを候補として提供する。製品固有Visual Identity/screen/flow/tokenは製品Coreが所有し、Visual Design HARNESSの結果をLABOを経ずBRAIN汎用知識へ昇格しない。
+Visual Design HARNESSからの汎用知識の提供は、その既存受領contractに従って独立して成立する。利用・評価結果をBRAINへ戻す場合や知識を昇格する場合だけLABO評価経路を通し、未評価結果は未評価candidateまたは昇格停止として保持する。汎用Visual Design/UX Pattern/Unit/Part、適用条件、反例、required inputを候補として扱う。製品固有Visual Identity/screen/flow/tokenは製品Coreが所有する。
 
 ### 受入条件（AC候補）
 
-- **BRAIN-023-AC-01 — 正常**: Visual Design HARNESSの課題とLABO evaluation receiptが同scope/source revisionで揃い、汎用candidateと条件/反例/inputを分けた返却を観測する。 generic/product-specific boundary field separationとLABO provenance edgeを全件trace、固有field混入/direct promotion 0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入、またはLABOを飛ばしたHARNESS結果を昇格する変異を投入し、Product Core返却またはpromotion停止を確認する。 製品固有要素混入→該当Product Core。LABO routeがない結果はcandidate promotionを止め、LABOへ返す。
+- **BRAIN-023-AC-01 — 正常**: Visual Design HARNESSの汎用知識query/返却が既存受領contractだけで成立する例と、別の利用・評価結果に同scope/source revisionのLABO evaluation receiptが結び付く例を分けて観測する。汎用candidateと条件/反例/input、製品固有fieldを分離し、LABO receiptが必要な昇格ではprovenance edgeをtraceする。generic/product-specific境界fieldの対応率100%・誤混入/誤昇格0件を根拠付き候補値とする（未承認・未実測）。
+- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入する変異、ならびにLABOを飛ばした利用・評価結果の昇格変異を別々に投入する。製品固有要素は該当Product Coreへ返す。LABO経路のない結果は未評価candidateのまま保持して昇格を停止し、LABOへ戻す。単なる汎用知識提供までLABO receipt必須にしない。
 
 ### 固定親句の被覆
 
@@ -1722,7 +1722,7 @@ Visual Design HARNESSの課題・screen/flow製品scopeとLABO経由の利用/�
 
 ### 旧L3／対test-designからの再利用・再導出
 
-VDH Pattern Contract required/forbiddenとcommon/product value separationを限定再導出。UI profiles, screen ledger, token semantics, direct promotionは禁止して現行L2へ置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+VDH Pattern Contract required/forbiddenとcommon/product value separationを限定再導出。旧UI profile/ledger/tokenの製品固有値とruntimeは継承せず、汎用知識の提供と製品Core所有の境界を現行L2から再導出する。LABOを経ない利用・評価結果の直接昇格は拒否するが、既存contractによる汎用知識提供は独立して扱う。完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
 |---|---|---|---|---|
