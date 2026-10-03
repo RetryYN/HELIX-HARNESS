@@ -2,7 +2,14 @@
 
 PO候補一覧は[2026-10-03の固定snapshot](audits/requirements-stage/requirements-stage-closure-2026-10-03.md)にある。現在の基準mainは`7294112e39d8309d4ec43201953bbd706a92b325`（#2553統合後）。snapshot後の384候補のうち未記録だった4件は[末尾4件のPO判断](decisions/po-decision-2026-10-03-pending4-bun.md)で対象revisionを固定しました。OS132は003へ訂正し、HELIXの開発・実行・検証・配布でBunを今後も使わない保証を加えます。以下は本判断記録がmainへ統合された時点で有効となる分類です。固定snapshotのHARNESS-088保留表示は誤記であり、下記の判断記録に従って現在一覧を訂正します。
 
-8機構のMPR latest requirement-candidate identityは384件。MPR物理714行、履歴revision、legacy IR 153件とは分母を分ける。
+8機構のMPR latest requirement-candidate identityは384件。台帳の物理行は候補数を表さず、source holding・候補の履歴revision・参照訂正を含む。legacy IR 153件も別の母集団である。
+
+## 台帳行数と要求候補数の読み分け
+
+要求段階終了資料の「物理714行」は、終了基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7`での値として保存する。参照訂正後のmain `0c693b271bae23eb9c7cb7c65f79c9c155c18103`では台帳は1,075行であり、#2556の264行と#2557の97行は参照訂正の後継revision追記で、要求候補の追加ではない。
+
+#2559の訂正HEAD `70b04b870387a8ae6f5e736fc472b539943d693b`では、移動後locatorを指す`MPR-SH-OUTSIDE67-003`をさらに1行追記し、1,076行となる。この1行もsource holdingの参照訂正であり、要求の意味・採否を変更しない。3時点の台帳をidentityで照合した要求候補数はいずれも384件である。governance分割では同じholdingのsnapshot参照を`MPR-SH-OUTSIDE67-004`の後継1行で移動先へ訂正するため、本整理後は1,077行となる。これも候補追加ではなく、要求候補384件は変わらない。時点の終了資料は書き換えず、現在の行数と状態は[登録台帳](management-provisional-requirement-register.jsonl)を読む。
+
 
 | 機構 | latest候補 | 採択 | 保留 | 現revision不採択 | 判断未記録 |
 |---|---:|---:|---:|---:|---:|
