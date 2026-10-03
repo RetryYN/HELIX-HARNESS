@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4担当6件 explicit items only
 paired_l10: ../L10-verification/business-verification.md
 
 対象親から独立した業務価値基準、事業ownerまたは業務閾値を追加導出しない。これは機構全体に業務要件がないという主張ではなく、この部分scopeの限定である。業務意味は固定L2/L1のownerへ残し、機能条件を業務受入へ読み替えない。
@@ -19,6 +19,12 @@ paired_l10: ../L10-verification/business-verification.md
 | `HELIXOS-L2-027` | 独立business criterionを導出しない。機能ACを参照する。 | L2のowner・業務判断・利用者acceptanceを置換しない。 |
 | `HELIXOS-L2-028` | 独立business criterionを導出しない。機能ACを参照する。 | ticket owner・business decision・user acceptanceを置換しない。 |
 | `HELIXOS-L2-029` | 独立business criterionを導出しない。機能ACを参照する。 | completion/composite valueを別business acceptanceへ拡張しない。 |
+| `HELIXOS-L2-021` | 独立business criterionを導出しない。機能ACを参照する。 | project別配布成功を全製品完成やHELIX内部段階成立と同一視しない。 |
+| `HELIXOS-L2-022` | 独立business criterionを導出しない。機能ACを参照する。 | candidate件数や再観測だけを改善効果KPIへしない。 |
+| `HELIXOS-L2-024` | 独立business criterionを導出しない。機能ACを参照する。 | 許可scope内の受渡しを利用者acceptanceや評価成果と同一視しない。 |
+| `HELIXOS-L2-046` | 独立business criterionを導出しない。機能ACを参照する。 | 遷移候補からmerge成功率や新しいapproval制度を導かない。 |
+| `HELIXOS-L2-048` | 独立business criterionを導出しない。機能ACを参照する。 | finding registration/resolutionを改善効果のbusiness指標にしない。 |
+| `HELIXOS-L2-052` | 独立business criterionを導出しない。機能ACを参照する。 | cleanup/rechain完了をIssue/要求の完了や生産性KPIへ拡張しない。 |
 
 ## 親・旧source crosswalk（item単位）
 
@@ -64,3 +70,16 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | HELIXOS-L2-051 | 機能要件のみ。配車適性候補は新しいperformance評価ではない。 | LABO evidence、INTELLIGENCE proposal、SECURITY authority。FR-OS-L3-051 AC-01..03。 |
 
 独立business criterionを必要とする上流意味はここで補作せず対応するL2/L1 ownerへ戻す。HELIXOS-L2-039はH045とのhold scopeとして対象外のままである。
+
+## Stage 4：business分類（6件、部分草稿）
+
+この6件に独立したbusiness value、KPI、金額閾値は導出しない。各parentの業務判断は固定L2/L1 ownerに残し、機能ACに対するpaired L10でstateと責務境界のみを照合する。
+
+| 親L2 | business扱い | L10観測・境界 |
+|---|---|---|
+| `HELIXOS-L2-021` | 機能要件のみ。 | project構成配布を別判定に保ち、全製品/HELIX段階releaseの価値指標へしない。 |
+| `HELIXOS-L2-022` | 機能要件のみ。 | observation/candidate/ticket/effect evaluationを別状態とし、候補件数を改善成功にしない。 |
+| `HELIXOS-L2-024` | 機能要件のみ。 | 許可data handoff、LABO評価、OS routing、user acceptanceを分ける。 |
+| `HELIXOS-L2-046` | 機能要件のみ。 | 既存遷移の証拠照合を観測し、merge rateや新承認の基準を加えない。 |
+| `HELIXOS-L2-048` | 機能要件のみ。 | pending/resolution stateの根拠を照合し、registrationやclosed finding数をKPIにしない。 |
+| `HELIXOS-L2-052` | 機能要件のみ。 | local cleanupと後続PR再照合を分け、Issue/要求完了や生産性を主張しない。 |

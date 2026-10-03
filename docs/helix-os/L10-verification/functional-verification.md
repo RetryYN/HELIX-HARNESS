@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 4担当6件 / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -115,3 +115,28 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | CASE-OS-L10-051-01 | AC-OS-L3-051-01 | task class別evidence、INTELLIGENCE案、authority/capability、作成/review候補を入力。 | 条件適用内の役割別配置を対象revisionへ記録。異方向の適格配置も正常。 |
 | CASE-OS-L10-051-02 | AC-OS-L3-051-02 | 同一context両役割、Cursor reviewer、stale evidence、wrong scope/authority/headを個別変異。 | 不適切配置0。provider名差のみの独立性claim 0。 |
 | CASE-OS-L10-051-03 | AC-OS-L3-051-03 | evidence/availability/scopeをunknownにする。 | 未割当・戻し先記録。Claude優先/Cursor条件でunknownを迂回しない。 |
+
+## Stage 4 — HELIXOS-L2-021/022/024/046/048/052
+
+各caseは機能L3の同番号ACを同じIDで参照する。入力は合成fixtureで、旧test-design/runtimeは実行しない。要求意味・authority・実際のoperationを生成しない。
+
+| case ID | L3 FR | L3 AC | 入力fixture／観測 | 合格oracle | 反例・未評価 |
+|---|---|---|---|---|---|
+| `CASE-OS-L10-021-01` | `FR-OS-L3-021` | `AC-OS-L3-021-01` | 一つのproject/scope、選択component set、要求revision、source/artifact digest、適格性、必要安全依存、candidate/active版と復旧先を与える。 | 選択構成とoperation stateが正確に結び、未選択componentは含まれない。 | digest/component/scopeの欠落をunknownとして記録。 |
+| `CASE-OS-L10-021-02` | `FR-OS-L3-021` | `AC-OS-L3-021-02` | 適格な単一project構成と、他projectが未完了の並行fixtureを比較する。別にOS-L2-014段階identityを与える。 | 対象projectの限定operationは他project完成待ちなしに進み、021状態と014状態は分離する。 | 他製品gateまたは全OS stage成立への昇格は不合格。 |
+| `CASE-OS-L10-021-03` | `FR-OS-L3-021` | `AC-OS-L3-021-03` | component、artifact、digest、compatibility、authority、既存成果保護を各一つずつ欠落/変異。qualified prior版あり/なしを対照にする。 | 不成立は導入停止・owner差戻し。prior qualifiedまたは明示復旧先と未完義務を保持。 | 無断消去、未指定component包含、scope外操作を通せば不合格。 |
+| `CASE-OS-L10-022-01` | `FR-OS-L3-022` | `AC-OS-L3-022-01` | 同じtarget revision/scopeのsource eventからLABO評価、decision、ticket、change/verification、再観測までのcomplete fixtureを与える。 | eventから再観測まで因果traceが辿れ、LABO評価者とOS registrarは異なるrole/stateである。 | 各edge欠落またはrevision/scope不一致はtrace未完。 |
+| `CASE-OS-L10-022-02` | `FR-OS-L3-022` | `AC-OS-L3-022-02` | source event、LABO proposal、ticket updateのいずれか一つだけを変えるが既存decision receiptは固定する。 | candidate/registrationは残るが要求・設計・authority stateは変化しない。 | proposal/registration/ticketのみから採択を生成したら不合格。 |
+| `CASE-OS-L10-022-03` | `FR-OS-L3-022` | `AC-OS-L3-022-03` | source、target revision、scope、LABO evaluation, decision, return routeを独立に欠落/不一致にする。negativeと、適用可能な正当な棄却＋再評価条件付きfixtureを比較する。 | missing/conflict時は未解決、棄却理由と未完義務を保持しownerへ返す。棄却は別の正常terminalである。 | unknownをsuccess扱い、または棄却理由を消去すれば不合格。 |
+| `CASE-OS-L10-024-01` | `FR-OS-L3-024` | `AC-OS-L3-024-01` | 許可されたprojectの版/運用event、target revision、data class、permission/scope、LABO評価とfeedbackを投入する。 | LABOへ渡すrecordは選択target/scope内で、source/authority/evidenceを追跡可能。 | 無関係tenant/sourceを含むfixtureでは送信scope超過。 |
+| `CASE-OS-L10-024-02` | `FR-OS-L3-024` | `AC-OS-L3-024-02` | 提供完了のみ、LABO評価済、既存decision、採択後ticket、再検証済をそれぞれ別fixtureで観測する。 | 各stateとownerが独立し、提供からuser acceptanceやeffectivenessを導かない。 | 同じstatusへまとめる、OSによるLABO評価は不合格。 |
+| `CASE-OS-L10-024-03` | `FR-OS-L3-024` | `AC-OS-L3-024-03` | 有効permission positiveの後、permission拒否、data class不明、revision違い、overscope、evaluation mismatchを単独で変異。後続学習/推薦の不在を対照にする。 | 各不一致で該当send/adoptionを止め、対象範囲外送信0。後続能力なしでも許可済み観測接続は判定できる。 | 新たなdata authorityや学習依存を作れば不合格。 |
+| `CASE-OS-L10-046-01` | `FR-OS-L3-046` | `AC-OS-L3-046-01` | 既存authority、ticket/assignment、target/scope、content HEAD/base、HARNESS required verification/resultを固定し、dispatch→execute→Ready→merge admission候補を追う。 | 各遷移は同じ対象/scopeに結束し、必要な既存reviewとadmissionを参照する。 | 入力不足は未完とし、merge実行・新許可は生成しない。 |
+| `CASE-OS-L10-046-02` | `FR-OS-L3-046` | `AC-OS-L3-046-02` | authority失効、HEAD変更、base変更、scope変更、HARNESS適用contract変更を別々に与え、影響scopeと無関係scopeを併置する。 | 影響する遷移だけstale/未完、古い結果は再利用されない。 | 別scopeへstaleを一律波及、または影響範囲で旧receipt利用は不合格。 |
+| `CASE-OS-L10-046-03` | `FR-OS-L3-046` | `AC-OS-L3-046-03` | docs path免除、prototype mergeの実装許可化、required verification未実施、同ticket別HEAD結果を独立変異する。既存contractが除外する別scopeもpositive対照にする。 | 既存必須確認を省略せず、明示的に適用外の別scopeは一律停止しない。 | 新しいcheck/approvalの追加または既存required skipは不合格。 |
+| `CASE-OS-L10-048-01` | `FR-OS-L3-048` | `AC-OS-L3-048-01` | Worker返却findingとoracle不足findingを別々に投入し、identity、ticket/assignment、target HEAD/revision/scope、origin、理由、不足条件、resolution ruleを結ぶ。 | 両findingともLABOへ評価可能なscope-bound evidence付きcandidateが届く。 | 自由文だけ、wrong scope/revision、根拠消失は不合格。 |
+| `CASE-OS-L10-048-02` | `FR-OS-L3-048` | `AC-OS-L3-048-02` | valid current resolution evidenceの正常例と、prose-only、unacknowledged、stale/other-scope evidenceを比較。 | valid evidenceが既存L2-007条件を満たす場合のみresolution。LABO/INTELLIGENCEはticket/assignmentを生成しない。 | 未評価を解消扱い、新schema/status/thresholdの導入は不合格。 |
+| `CASE-OS-L10-048-03` | `FR-OS-L3-048` | `AC-OS-L3-048-03` | closed ticketへの後日findingで、same-path/near-timeだけの因果例と明示evidence relationの例を比較し、さらにsource unknown/staleを与える。 | original closureは不変。evidence relation時は追補assessment、因果unknown時はhold/owner return。 | 旧closure書換え、誤因果、unknownをdefect 0/success扱いすれば不合格。 |
+| `CASE-OS-L10-052-01` | `FR-OS-L3-052` | `AC-OS-L3-052-01` | merge/read-after済みPR-A、assignment所有・他利用なし・未完作業なしのlocal resourcesを与え、remote resourceと他assignment利用ありを対照にする。cleanupを再実行する。 | 適格localのみ冪等cleanup。remoteは明示delete authorityなしなら保持。 | ownership/利用/未完不明で削除したら不合格。 |
+| `CASE-OS-L10-052-02` | `FR-OS-L3-052` | `AC-OS-L3-052-02` | PR-A merge後のPR-Bについてcontent HEADを固定し、latest base、trial merge、stale、dependency、review bindingを再読する。 | pair一致かつstale=0の時だけ既存bindingを保つ。 | content HEADを書換えるtrial mergeまたは古いbaseだけでの判定は不合格。 |
+| `CASE-OS-L10-052-03` | `FR-OS-L3-052` | `AC-OS-L3-052-03` | conflict/base drift/dependency change/pair mismatchを各変異として作成側へ返す。作成側が新HEADを出す前後のreview receiptを比較する。 | reviewer/mergerは作成branchを変更せず、新HEADには独立review。旧receiptを使わない。 | reviewer-side修正、旧HEAD review再利用、mergeからticket/Issue完了生成は不合格。 |

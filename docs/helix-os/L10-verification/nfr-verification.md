@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 4担当6件 / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -75,3 +75,14 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認。無根拠dispatchと誤状態数。 |
 | CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | configured thresholdの1/2 bucket超過、15/60min窓、spike/downstream blockerを比較。誤増枠・backpressure漏れ。 |
 | CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | evidence age 7/30/90日、scope change、同名別providerのfixture。false-fitと不要stale判定。 |
+
+## Stage 4：NFR測定case（6件）
+
+| case ID | NFR候補ID | 入力／比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-OS-L10-NFR-021-01` | `NFR-OS-L3-021-01` | 適格選択構成のpositiveと、component/artifact/digest/scope/authorityの単一変異、他project未完の対照を用いる。 | 選択target内のbinding mismatch=0、scope外導入=0。 | source/適格性が不明なら未評価・owner返却。 |
+| `CASE-OS-L10-NFR-022-01` | `NFR-OS-L3-022-01` | source eventから再観測までの完全traceと各edge欠落、candidate件数だけのprojectionを比較する。 | 既知fixture上のedge trace 100%、candidate/eventからの誤authority変更0。 | LABO効果評価が未着ならその状態を未評価とし、OSで補わない。 |
+| `CASE-OS-L10-NFR-024-01` | `NFR-OS-L3-024-01` | permission/data class/target revision/scope/evaluation rangeを独立に変異する。 | 非許可data送信0、提供/評価/採否state混同0。 | 適用可能scopeまたは許可条件が不明なら未評価・差戻し。 |
+| `CASE-OS-L10-NFR-046-01` | `NFR-OS-L3-046-01` | authority/HEAD/base/scope/contract各一変異と無関係scope対照。 | required binding一致100%、変更後の古い証拠流用0、無関係scopeの誤stale0。 | 適用contractを特定できない遷移は未完として測定外へ理由付き分離。 |
+| `CASE-OS-L10-NFR-048-01` | `NFR-OS-L3-048-01` | existing resolution conditionを満たす完全evidence、各field欠落、stale/wrong scope/prose-only、closed-ticket追補を比較。 | false resolution=0、original closure上書き=0。 | resolution適格性不明の母数を成功分母に混ぜない。 |
+| `CASE-OS-L10-NFR-052-01` | `NFR-OS-L3-052-01` | owner/other-use/open-work/remote-authority、content HEAD/base/review pairを一つずつ変異し、cleanupを反復する。 | 不適格資源誤削除=0、stale後のold-review利用=0、eligible local cleanup再実行で副作用なし。 | ownership/未完/authority unknownは削除せず未評価へ。 |

@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 4担当6件 explicit items only
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -20,6 +20,12 @@ execution_status: designed_only_not_executed
 | `HELIXOS-L2-027` の業務基準 | business L3に独立criterionなしと記録し、機能ACだけが別L10で対応していること。 |
 | `HELIXOS-L2-028` の業務基準 | business L3に独立criterionなしと記録し、接続ACだけが機能L10で対応すること。 |
 | `HELIXOS-L2-029` の業務基準 | business L3に独立criterionなしと記録し、composite候補を利用者acceptanceへ読み替えないこと。 |
+| `HELIXOS-L2-021` の業務基準 | business L3に独立criterionなしと記録し、project別配布から全製品価値を導かないこと。 |
+| `HELIXOS-L2-022` の業務基準 | business L3に独立criterionなしと記録し、candidate件数から改善効果を導かないこと。 |
+| `HELIXOS-L2-024` の業務基準 | business L3に独立criterionなしと記録し、提供・LABO評価・user acceptanceを分けること。 |
+| `HELIXOS-L2-046` の業務基準 | business L3に独立criterionなしと記録し、既存遷移確認から新承認制度を作らないこと。 |
+| `HELIXOS-L2-048` の業務基準 | business L3に独立criterionなしと記録し、finding resolutionを改善効果と同一視しないこと。 |
+| `HELIXOS-L2-052` の業務基準 | business L3に独立criterionなしと記録し、cleanup/rechainからIssue/要求完了を作らないこと。 |
 
 ## 親・旧source crosswalk（item単位）
 
@@ -63,3 +69,9 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..03 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |
 | CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..03 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
 | CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..03 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |
+| CASE-OS-L10-BIZ-021 | HELIXOS-L2-021 / FR-OS-L3-021 AC-01..03 | project構成配布、HARNESS全体、HELIX段階releaseを別状態で照合する。 | 製品全体完成KPI |
+| CASE-OS-L10-BIZ-022 | HELIXOS-L2-022 / FR-OS-L3-022 AC-01..03 | candidate登録、既存判断、LABO評価、効果を別owner/stateで確認する。 | 改善件数目標 |
+| CASE-OS-L10-BIZ-024 | HELIXOS-L2-024 / FR-OS-L3-024 AC-01..03 | data-use許可範囲、LABO評価、利用者acceptanceを分ける。 | tenant横断利用価値 |
+| CASE-OS-L10-BIZ-046 | HELIXOS-L2-046 / FR-OS-L3-046 AC-01..03 | 遷移証拠を既存owner/契約の範囲で照合する。 | 新approval/merge rate |
+| CASE-OS-L10-BIZ-048 | HELIXOS-L2-048 / FR-OS-L3-048 AC-01..03 | pending/resolvedの根拠と閉じたticket履歴を分ける。 | resolution率 |
+| CASE-OS-L10-BIZ-052 | HELIXOS-L2-052 / FR-OS-L3-052 AC-01..03 | cleanup適格性と後続PR最新base照合を別状態で観測する。 | issue close/生産性 |
