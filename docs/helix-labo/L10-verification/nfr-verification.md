@@ -1,6 +1,6 @@
 # HELIX-LABO L10 非機能検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1/Stage 2a/Stage 2b基本エンジン契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
+**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1/Stage 2a/Stage 2bおよびStage 4接続契約の確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -56,3 +56,16 @@
 | `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/unknown; 2.0 external input | internal evidence scope、1.0/2.0 boundary |
 | `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed field omission; learning/tuning request | packet trace complete、unassessed retained、3.0+ execution 0 |
 | `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0 | selected-only dependency closure、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
+
+## Stage 4 — 接続・受渡し契約の測定
+
+| 親L2 | 候補値・比較 | 測定case | 判定oracle・適用限界 |
+|---|---|---|---|
+| `HELIXLABO-L2-036` | target/revision/connector/source provenance一致100%候補、direct mutation 0 | C01/C03正常・意味変更変異、C02個別missing/stale、C04未見正常 | target-scoped candidateとHARNESS owner boundaryを照合 |
+| `HELIXLABO-L2-037` | OS運転source field/target一致100%候補、ticket/state direct write 0 | C01列挙field入力、C02 ticket/revision/connector個別欠落、C03 owner mutation、C04別運転値 | OSがticket/routing/priority/stateを所有することを照合 |
+| `HELIXLABO-L2-038` | permission/scope/target一致100%候補、restricted/raw input leakage 0 | C01許可sanitized packet、C02 permission/contract/scope個別変異、C03 raw credential、C04既許可別source | SECURITYへreturnし権限を変えない。secret valueはfixtureへ記載しない |
+| `HELIXLABO-L2-039` | 許可Worker result identity/revision/route一致100%候補 | C01正常、C02 result/OS/SECURITY route個別欠落、C03 direct assignment、C04 stop/recovery正常 | 入力された許可結果を対象にし、assignment/executionはOS側 |
+| `HELIXLABO-L2-040` | connection identity/version/trace一致100%候補、mismatch success 0 | C01採択scope、C02 version/trace/identity独立変異、C03 contract write、C04別選択connection | CONNECTへ接続単位に返却。未選択connectorは要求しない |
+| `HELIXLABO-L2-041` | 選択Product Core target/version/connector一致100%候補、generic promotion 0 | C01単一正常target、C02 unknown/version/connector欠落、C03 cross-owner、C04別選択製品 | product meaningを該当Coreに返す。全Coreは常時必須ではない |
+| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptの全必須field一致100%候補、assignment/authority 0 | C01同scope受領、C02各field変異、C03 extrapolation/assignment、C04別unassessed class | 055/INTELLIGENCE/OS責務を分離し未評価状態を保持 |
+| `HELIXLABO-L2-052` | 035/source/receipt revision・scope・payload closure一致100%候補 | C01正常受領、C02 schema/revision/scope/receipt独立欠落、C03 training/bot mutation、C04未見材料種別 | 035 contract再定義0、training/model change/placementを1.0化しない |

@@ -1,6 +1,6 @@
 # HELIX-LABO L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2aおよびStage 2b基本エンジン9件のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1、Stage 2a、Stage 2b基本エンジン9件およびStage 4のLABO-L2-036/037/038/039/040/041/052/054のassigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -911,3 +911,73 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 - Parent/AC: `HELIXLABO-L2-058` / `LABO-058-AC-01`, `LABO-058-AC-02`。
 - Input fixture: Web/WEB-OSがunselectedの呼出し、既存source contractが採択済みでWebをexplicitly selectedする呼出し、外部取得2.0を1.0へ混ぜるattemptを分けて与える。
 - Observable oracle: unselected Webはrequired runtime dependencyにならず、selected時のみ既存採択contractを要求し、external 2.0 inputは1.0へ入らない。
+
+## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054 L10
+
+親の固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2本文full SHA-256は`f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、対L11 full SHA-256は`bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`。対応するPO decisionは`docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` SHA-256 `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`、行84–94。L10は旧test designを実行せず、各固定L2/L11と上記L3のACを測定可能にする。
+
+### L10-LABO-036 — HARNESS向けfeedback
+
+- Parent/AC: `HELIXLABO-L2-036` / `LABO-036-AC-01, LABO-036-AC-02`。旧類例: `LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)、隣接起点として限定利用。
+- **L10-LABO-036-C01 — 正常**：HARNESS対象revision/connector、V-model又はverification-contract issueに関する許可evidenceとsource参照を入力。期待値はscope付きcandidateをHARNESSへ返し、要求/contract revisionを変えず候補と実変更を区別する。
+- **L10-LABO-036-C02 — 個別不一致**：target revision missing、connector stale、source evidence missingを一つずつ投入。各々unknown/holdと原因を記録し、HARNESS ownerへ戻す。欠けていないsourceは破棄しない。
+- **L10-LABO-036-C03 — 境界変異**：candidate生成時に要求意味または工程contractを書き換え、実験結果を即時反映とする。いずれも該当candidateは不成立。意味差を明記した提案自体は許し、HARNESS側の判断材料として返す。
+- **L10-LABO-036-C04 — 未見正常**：別のops-maintenance/refactor問題だが対象revisionとconnectorが有効なfixture。未見のproblem subtypeだけを理由に拒否せず、同じscope traceでcandidateを返す。
+
+### L10-LABO-037 — OS運転feedback
+
+- Parent/AC: `HELIXLABO-L2-037` / `LABO-037-AC-01, LABO-037-AC-02`。旧類例とpinは`LABO-036`記載と同一。OS target routingの隣接類例であり、旧運用を実行・継承しない。
+- **L10-LABO-037-C01 — 正常**：ticket/WIP identity、worker placement、CI profile、検査・recovery等のうちfixtureで観測したfieldだけをsource/revision付きでOS candidateへ渡す。OSがticket/routingを保持する。
+- **L10-LABO-037-C02 — 欠落・stale**：ticket identity欠落、source revision stale、OS connector missingを独立に投入。該当candidateをholdしOSへ戻す。別の有効fieldを消さない。
+- **L10-LABO-037-C03 — owner boundary**：LABOがticket発行、worker assignment、priority/stateを直接更新、又はOS routingを迂回する変異を与える。期待値はOS-owned write 0、理由付きhold。提案を示すだけなら不成立としない。
+- **L10-LABO-037-C04 — 未見正常**：cost/orderに異なる値を持つがOS target/connectorは有効な通常fixture。値の既定値やticket操作を推測せずcandidateとして保持する。
+
+### L10-LABO-038 — SECURITY向けfeedback
+
+- Parent/AC: `HELIXLABO-L2-038` / `LABO-038-AC-01, LABO-038-AC-02`。旧類例とpinは`LABO-036`記載と同一。旧authority非書込のfailure型だけを類例として参照。
+- **L10-LABO-038-C01 — 正常**：許可されたsanitized evidence、target identity、SECURITY data-handling contractを与える。期待するcandidateは認可/隔離/credential/情報保護のscopeを示し、raw secret値を含まない。
+- **L10-LABO-038-C02 — 個別authority不一致**：permission unknown、target contract missing、data scope mismatchを一つずつ与える。対象candidateをholdしてSECURITYへ戻し、不足の種類を区別する。
+- **L10-LABO-038-C03 — restricted input**：restricted/raw credentialを通常packetへ混入する変異を与える。packetへの流出0、candidateはhold。credentialを含まない正常要約fixtureは同じ理由で拒否しない。
+- **L10-LABO-038-C04 — 未見正常**：既許可の隔離又はdata-handling観測を別source revisionで投入し、contractとtargetが適合する。未見field値を理由に権限を追加要求せず、source/scope付きcandidateを返す。
+
+### L10-LABO-039 — Worker実行結果feedback
+
+- Parent/AC: `HELIXLABO-L2-039` / `LABO-039-AC-01, LABO-039-AC-02`。旧類例とpinは`LABO-036`記載と同一。target routingの類例のみ利用。
+- **L10-LABO-039-C01 — 正常**：許可されたWorkerの実行/停止/復旧result identity・revisionとOS/SECURITY target routeを入力。candidateからWorker resultへ追跡可能で、assignmentは変更しない。
+- **L10-LABO-039-C02 — 個別routing欠落**：Worker result revision欠落、OS route欠落、SECURITY routeが必要な条件でそのroute欠落を個別に投入。該当caseだけ保留し既存ownerへ戻す。
+- **L10-LABO-039-C03 — assignment境界**：LABOがWorkerを直接再割当・再実行する変異を与える。新しいassignment/execution 0、提案はcandidateのままOSへ返る。
+- **L10-LABO-039-C04 — 未見正常**：異なるresult status（停止または復旧）が有効なsource identityとrouteを持つ。statusをsuccessへ正規化せず、与えられたstatusを保持する。
+
+### L10-LABO-040 — CONNECT接続feedback
+
+- Parent/AC: `HELIXLABO-L2-040` / `LABO-040-AC-01, LABO-040-AC-02`。旧類例とpinは`LABO-036`記載と同一。旧sourceに接続仕様の直接一致はなく、current connector scopeはL2から再導出。
+- **L10-LABO-040-C01 — 正常**：接続identity、採択済み対象scope/version、retry観測、traceとCONNECT connectorを与える。対象接続だけのcandidateをCONNECTへ返し、traceを保つ。
+- **L10-LABO-040-C02 — 個別version/trace failure**：connector version mismatch、trace missing、接続identity不一致を個別に投入。各々をunknown/holdでCONNECTへ戻し、別接続と混ぜない。
+- **L10-LABO-040-C03 — owner boundary**：candidate作成時にconnector contractを直接改変する変異。contract write 0、差分はcandidateとして区別しCONNECTへ返す。
+- **L10-LABO-040-C04 — 未見正常**：別の採択済み接続scopeで有効なversion/traceを与える。全未選択connectorの存在を要求せず、選択接続のcaseを評価する。
+
+### L10-LABO-041 — Product Core別feedback
+
+- Parent/AC: `HELIXLABO-L2-041` / `LABO-041-AC-01, LABO-041-AC-02`。旧類例とpinは`LABO-036`記載と同一。Product Core固有の現行scopeはL2から再導出。
+- **L10-LABO-041-C01 — 正常**：単一の選択Product Core identity/version/connectorとdomain/UX/requirement evidenceを与える。candidateは同じ製品targetとsourceに返る。
+- **L10-LABO-041-C02 — target failure**：target unknown、target version mismatch、個別connector missingを独立に投入。該当candidateをholdし対象product ownerへ返す。
+- **L10-LABO-041-C03 — cross-owner negative**：product-specific meaningをBRAINのgeneric knowledgeへ送る変異。generic promotion 0。複数製品のsourceを同じ正本へ混ぜない。
+- **L10-LABO-041-C04 — 未見正常**：別の明示選択済Product Coreとその有効contractを与える。未選択製品のconnectorを常時要求せず、そのtargetのscopeでのみ候補を返す。
+
+### L10-LABO-054 — Bench水準のINTELLIGENCE接続
+
+- Parent/AC: `HELIXLABO-L2-054` / `LABO-054-AC-01, LABO-054-AC-02`。旧起点は`LEGACY-ASSET-28FB139B26CD61CC51EE` (`helix-bench-evaluation.md:19–36,96–169`, SHA `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`) と `LEGACY-ASSET-A952A3A175EB82A4781B` (`helix-bench-evaluation-acceptance.md:28–41`, SHA `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`)。055水準/INTELLIGENCE接続とworker-admissionの責務分離だけ隣接類例。
+- **L10-LABO-054-C01 — 正常**：055からtask type/model class/level/basis/evaluation scope/unassessedを含むpayload、同じscopeのINTELLIGENCE receiptを渡す。期待値は全field同一でLABO→INTELLIGENCE→receiptを追跡し、INTELLIGENCEの配置案とOSの指定/割当を別状態に保つ。
+- **L10-LABO-054-C02 — 個別payload mismatch**：level、scope、basis、unassessed marker、task type/model classを一つずつ改変したfixture。個々の不一致を拒否し、元payloadのscopeを保って055再評価又はINTELLIGENCE接続へ返す。
+- **L10-LABO-054-C03 — authority/extrapolation negative**：未評価jobを過去のlevelで成功保証、LABOがworker/modelを割当、scoreからscope/branch/merge authorityを作る変異。各出力を不成立とし、候補水準をそのまま持つ。
+- **L10-LABO-054-C04 — 未見正常**：別task/model classについて055が評価範囲とunassessed状態を示した水準結果を同範囲で受領する。評価済みと偽らず受領し、未評価状態だけを理由に有効な受渡しを拒否しない。
+
+### L10-LABO-052 — 評価材料受け渡し循環
+
+- Parent/AC: `HELIXLABO-L2-052` / `LABO-052-AC-01, LABO-052-AC-02`。旧類例は`LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:13–16,31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)。旧testは設計類型のみ参照、実行しない。
+- **L10-LABO-052-C01 — 正常**：L2-035 payload、source provenance、同revision/scopeのINTELLIGENCE receiptを与える。sourceとreceiptのpayload identity/revision/scope/unassessedが一致し、受領まで辿れる。
+- **L10-LABO-052-C02 — 個別closure failure**：035 schema mismatch、source revision stale、scope mismatch、receipt missingをそれぞれ独立に投入。該当材料だけ未完として保留し、source/evidenceまたはLABO再評価へ戻す。
+- **L10-LABO-052-C03 — authority negative**：payload受渡しからcurrent judgment/prediction/placement/bot operationまたはtraining/model changeを生成するmutation。いずれも不成立。035 payload contractを052が再定義するmutationも不成立。
+- **L10-LABO-052-C04 — 未見正常**：新しい評価材料種別でも035の既定義payload contractとprovenanceを満たす場合、同じscope/source revisionで受領追跡を成立させる。未評価フィールドは保持し、別材料や未選択sourceを必須にしない。
+
+全caseは候補設計であり未実行である。成功条件は各親のidentity・scope・owner・receipt状態の観測で、旧test結果や文章上の宣言を合格証拠にしない。

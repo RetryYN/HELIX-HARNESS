@@ -17,6 +17,23 @@
 
 この表のcoverage/誤昇格0/誤帰属0/roundtrip完全性は親L2/L11の明示要素を漏れなく守る候補である。実測性能値の採否はテストfixtureとL4以降の実現可能性を踏まえ通常のL3承認へまとめて送る。個別parameter承認を要求しない。上流が指定する外部version/range/retention等があるときは当該source値を使い、新しい値を作らない。
 
+## Stage 4 — 接続・受渡し契約の測定候補
+
+これらはL2のsame-target/version/scope/receipt条件を測る候補であり、性能SLAや承認済み閾値ではない。旧UIL/Benchの値を継承しない。
+
+| 親L2 | 候補値・比較 | 根拠と測定 | 適用限界 |
+|---|---|---|---|
+| `HELIXLABO-L2-036` | target revision/connector/source provenanceの必要field一致100%候補、要求・contract直接書換え0 | L2/L11はscope付きHARNESS feedbackと意味書換え/即時変更の否定を示す。fieldごと欠落/改変するcaseと有効な未見正常sourceを比較する。 | latency、候補数、採択率は指定なし。 |
+| `HELIXLABO-L2-037` | OS運転evidenceの観測field/target一致100%候補、ticket/routing/stateのLABO直接write 0 | ticket/WIP/placement/priority等を個別に変異し、OS ownershipのままcandidateが戻るか観測。 | OS全fieldを毎caseに要求しない。各fixtureで実在するscopeのみを対象にする。 |
+| `HELIXLABO-L2-038` | authority/data scope/target一致100%候補、restricted/raw credentialの通常packet流入0 | permission unknown、scope mismatch、restricted inputを個別に投入しSECURITY returnと非流入を確認。 | 新data classification taxonomyやcredential scannerの性能閾値は追加しない。 |
+| `HELIXLABO-L2-039` | selected Worker result identity/revision/routing一致100%候補、LABO割当/実行0 | execution/stop/recovery resultとOS/SECURITY routeを組み、片field欠落/不一致を独立変異。 | 未選択Worker/sourceを全runの必須依存にしない。 |
+| `HELIXLABO-L2-040` | connection identity/採択scope/version/trace一致100%候補、mismatch成功昇格0 | 選択接続のcontract versionとretry/traceを別々に欠落・変異させてCONNECT returnを確認。 | 全CONNECT connectorの存在や具体retry回数/latencyは固定しない。 |
+| `HELIXLABO-L2-041` | 選択Product Core identity/version/connector/meaning provenance一致100%候補、製品意味の汎用化0 | 複数の選択/未選択target、version mismatch、product-to-BRAIN mutationを比較する。 | 全製品connectorを一律必須にしない。 |
+| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptのtask type/model class/level/basis/scope/unassessed一致100%候補、割当・authority生成0 | 必須fieldの各単独欠落/変異と併発を測り、異なる未評価jobを正常対照にする。 | legacy 12 metrics/5 categories/score cutoffは使わない。固定task数・水準閾値も追加しない。 |
+| `HELIXLABO-L2-052` | 035 payload/source revision/scope/receipt closure一致100%候補、異revision/範囲受領成功0 | 035 schema mismatch、revision stale、scope mismatch、receipt missingを独立/併発投入し、sourceまで往復照合。 | 035 payload schemaの複製、training/model change、bot・placement outcomeを測定対象にしない。 |
+
+比較案は99%一致を許す案と100%候補を並べる。少なくとも1つの取り違えを許容する案は親の同一revision/scope保証に反するため採らず、残りはscopeごとの入力fieldを個別欠落・変異する有限fixtureで測る。標本数・反復数・時間目標を親が指定していないため固定せず、必要性が後続測定で判明すれば根拠・比較・計測方法付き候補を同一のL3/L10承認パッケージへ加える。parameterごとの人間gateは設けない。
+
 
 ## Stage 2b 基本エンジンの測定候補（未承認）
 
