@@ -74,7 +74,7 @@
 
 | case ID | NFR候補 | 入力・比較 | oracle／測定 |
 |---|---|---|---|
-| `CASE-LABO-L10-NFR-050-01` | `NFR-LABO-L3-050-01` | L10-050-01 complete traceと、assignment/target revision/post-change observation/effect assessmentの各一つを欠落させたfixtureを比較。 | selected cycleのstage/receipt coverage 100%候補、後段完了の誤claim 0。 |
+| `CASE-LABO-L10-NFR-050-01` | `NFR-LABO-L3-050-01` | L10-050-01 complete traceと、assignment/target revision/post-change observation/effect assessmentの各一つを欠落させたfixtureを比較。 | 選択cycleで親がrequiredとするstage/receipt集合を分母に出力traceを照合しcoverage 100%候補、後段完了の誤claim 0。summary完了flagのみでは足りない未完義務・owner traceも測定する。 |
 | `CASE-LABO-L10-NFR-059-01` | `NFR-LABO-L3-059-01` | L10-059の選択群についてrequired tuple全一致と各field mutation、full receiptsとfirst-candidate-only cost集計を比較。 | 選択群のtuple coverage 100%候補、品質相殺・missing cost=0の誤り0。 |
 | `CASE-LABO-L10-NFR-060-01` | `NFR-LABO-L3-060-01` | 正常support-on/off条件とWorker/model/effort/oracleの単独差分、支援情報漏出、支援者reviewerへの誤割当を比較。 | 同一条件pairの誤比較0候補、漏出/支援者の独立review claim 0。 |
 | `CASE-LABO-L10-NFR-061-01` | `NFR-LABO-L3-061-01` | 選択taskの15-field完全fixture、各一項欠落、hidden answer/future answer/合成secret/合成PII/private review context漏洩と独立judge適用外の根拠付き/根拠なし対照を比較。 | 完全fixtureで15/15、選択hidden context漏洩0。別契約に明示根拠があるscopeだけblind要件を除外し、hidden oracle非選択だけを根拠にしない。 |
