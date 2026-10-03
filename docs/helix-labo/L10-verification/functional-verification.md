@@ -937,7 +937,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 - Parent/AC: `HELIXLABO-L2-038` / `LABO-038-AC-01, LABO-038-AC-02`。旧類例とpinは`LABO-036`記載と同一。旧authority非書込のfailure型だけを類例として参照。
 - **L10-LABO-038-C01 — 正常**：許可されたsanitized evidence、target identity、SECURITY data-handling contractを与える。期待するcandidateは認可/隔離/credential/情報保護のscopeを示し、raw secret値を含まない。
 - **L10-LABO-038-C02 — 個別authority不一致**：permission unknown、target contract missing、data scope mismatchを一つずつ与える。対象candidateをholdしてSECURITYへ戻し、不足の種類を区別する。
-- **L10-LABO-038-C03 — restricted input**：restricted/raw credentialを通常packetへ混入する変異を与える。packetへの流出0、candidateはhold。credentialを含まない正常要約fixtureは同じ理由で拒否しない。
+- **L10-LABO-038-C03 — 権限境界・sanitized変更提案**：二つの独立fixtureを与える。第一はLABOが現在のpermission/authorityを直接変更するmutationで、実変更0・candidateをSECURITYへ返す。第二は根拠とscopeを持つcredential非含有の変更差分candidateを提示し、現行authorityを不変のままSECURITYの判断材料へ送る。後者はcandidate提案として許容する。restricted/raw credentialを通常packetへ混入する別fixtureではpacket流出0、該当candidateはhold。
 - **L10-LABO-038-C04 — 未見正常**：既許可の隔離又はdata-handling観測を別source revisionで投入し、contractとtargetが適合する。未見field値を理由に権限を追加要求せず、source/scope付きcandidateを返す。
 
 ### L10-LABO-039 — Worker実行結果feedback
@@ -974,7 +974,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 ### L10-LABO-052 — 評価材料受け渡し循環
 
-- Parent/AC: `HELIXLABO-L2-052` / `LABO-052-AC-01, LABO-052-AC-02`。旧類例は`LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:13–16,31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)。旧testは設計類型のみ参照、実行しない。
+- Parent/AC: `HELIXLABO-L2-052` / `LABO-052-AC-01, LABO-052-AC-02`。旧類例は`LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)。旧testは設計類型のみ参照、実行しない。
 - **L10-LABO-052-C01 — 正常**：L2-035 payload、source provenance、同revision/scopeのINTELLIGENCE receiptを与える。sourceとreceiptのpayload identity/revision/scope/unassessedが一致し、受領まで辿れる。
 - **L10-LABO-052-C02 — 個別closure failure**：035 schema mismatch、source revision stale、scope mismatch、receipt missingをそれぞれ独立に投入。該当材料だけ未完として保留し、source/evidenceまたはLABO再評価へ戻す。
 - **L10-LABO-052-C03 — authority negative**：payload受渡しからcurrent judgment/prediction/placement/bot operationまたはtraining/model changeを生成するmutation。いずれも不成立。035 payload contractを052が再定義するmutationも不成立。

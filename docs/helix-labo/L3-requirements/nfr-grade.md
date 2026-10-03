@@ -25,14 +25,14 @@
 |---|---|---|---|
 | `HELIXLABO-L2-036` | target revision/connector/source provenanceの必要field一致100%候補、要求・contract直接書換え0 | L2/L11はscope付きHARNESS feedbackと意味書換え/即時変更の否定を示す。fieldごと欠落/改変するcaseと有効な未見正常sourceを比較する。 | latency、候補数、採択率は指定なし。 |
 | `HELIXLABO-L2-037` | OS運転evidenceの観測field/target一致100%候補、ticket/routing/stateのLABO直接write 0 | ticket/WIP/placement/priority等を個別に変異し、OS ownershipのままcandidateが戻るか観測。 | OS全fieldを毎caseに要求しない。各fixtureで実在するscopeのみを対象にする。 |
-| `HELIXLABO-L2-038` | authority/data scope/target一致100%候補、restricted/raw credentialの通常packet流入0 | permission unknown、scope mismatch、restricted inputを個別に投入しSECURITY returnと非流入を確認。 | 新data classification taxonomyやcredential scannerの性能閾値は追加しない。 |
+| `HELIXLABO-L2-038` | 選択targetのrequired permission/scope/identity/source revision/owner relation coverage 100%候補、誤受領・LABO直接authority変更・restricted/raw credentialの通常packet流入0 | 直接authority変更のnegativeと、sanitized change proposalをSECURITYへ渡すpositiveを分ける。permission unknown、scope mismatch、restricted inputも個別に測る。 | 実権限は変更せず、提案candidate自体は判断材料として許容する。新data classification taxonomyやcredential scannerの性能閾値は追加しない。 |
 | `HELIXLABO-L2-039` | selected Worker result identity/revision/routing一致100%候補、LABO割当/実行0 | execution/stop/recovery resultとOS/SECURITY routeを組み、片field欠落/不一致を独立変異。 | 未選択Worker/sourceを全runの必須依存にしない。 |
 | `HELIXLABO-L2-040` | connection identity/採択scope/version/trace一致100%候補、mismatch成功昇格0 | 選択接続のcontract versionとretry/traceを別々に欠落・変異させてCONNECT returnを確認。 | 全CONNECT connectorの存在や具体retry回数/latencyは固定しない。 |
 | `HELIXLABO-L2-041` | 選択Product Core identity/version/connector/meaning provenance一致100%候補、製品意味の汎用化0 | 複数の選択/未選択target、version mismatch、product-to-BRAIN mutationを比較する。 | 全製品connectorを一律必須にしない。 |
 | `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptのtask type/model class/level/basis/scope/unassessed一致100%候補、割当・authority生成0 | 必須fieldの各単独欠落/変異と併発を測り、異なる未評価jobを正常対照にする。 | legacy 12 metrics/5 categories/score cutoffは使わない。固定task数・水準閾値も追加しない。 |
-| `HELIXLABO-L2-052` | 035 payload/source revision/scope/receipt closure一致100%候補、異revision/範囲受領成功0 | 035 schema mismatch、revision stale、scope mismatch、receipt missingを独立/併発投入し、sourceまで往復照合。 | 035 payload schemaの複製、training/model change、bot・placement outcomeを測定対象にしない。 |
+| `HELIXLABO-L2-052` | 選択targetの035/source/receipt identity・revision・scope・status・unassessed・owner relation coverage 100%候補、誤受領0 | summary/部分edge照合と全required tuple/owner別traceを比較し、schema mismatch、revision stale、scope mismatch、receipt missingも個別/併発投入してsourceまで往復照合。 | 選択契約のrequired relationだけを分母にする。未選択sourceは必須にせず、035 payload schemaの複製、training/model change、bot・placement outcomeを測定対象にしない。 |
 
-比較案は99%一致を許す案と100%候補を並べる。少なくとも1つの取り違えを許容する案は親の同一revision/scope保証に反するため採らず、残りはscopeごとの入力fieldを個別欠落・変異する有限fixtureで測る。標本数・反復数・時間目標を親が指定していないため固定せず、必要性が後続測定で判明すれば根拠・比較・計測方法付き候補を同一のL3/L10承認パッケージへ加える。parameterごとの人間gateは設けない。
+比較案はsummaryまたは部分edgeの一致確認と、選択targetの全required tupleをsource/owner別に結ぶ照合を並べる。前者は簡易だが、一つの欠落edgeや誤受領を隠し得るため、後者を候補とする。各選択scopeで契約が要求するidentity・source revision・scope・status・receipt・owner relationを分母としてrequired-relation coverageを測り、欠落/不一致を受領成功した数とLABOからの直接authority変更数を別々に数える。目標候補はrelation coverage 100%、誤受領・直接変更0。99%比較は少なくとも一つのrelation欠落を許すため採らない。未選択target/sourceは分母や一律gateへ加えず、親にない標本数・反復数・時間目標も固定しない。必要性が後続測定で判明すれば根拠・比較・計測方法付き候補を同一のL3/L10承認パッケージに加える。parameterごとの人間gateは設けない。
 
 
 ## Stage 2b 基本エンジンの測定候補（未承認）

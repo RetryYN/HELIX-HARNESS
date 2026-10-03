@@ -154,7 +154,7 @@ ticket、WIP、worker placement、priority、CI profile、inspection/integration
 
 #### LABO-038-FR-01 — SECURITY向けauthority/data handling candidate
 
-認可、隔離、credential利用、情報保護に関する許可されたevidenceを、SECURITY data-handling/target contractとscope付きcandidateとして接続する。restricted dataは通常evidence packetへ流さず、LABOはpermission/authorityを変更しない。`LABO-038-AC-01`はcredentialを含まない許可要約、source revision、SECURITY target/contractを保ったcandidateを確認する。`LABO-038-AC-02`は権限変更要求、restricted/raw credential混入、target/scope不明をそれぞれholdし、SECURITYへ戻す。許可要約にrestricted fieldが存在しない正常fixtureは拒否理由にしない。
+認可、隔離、credential利用、情報保護に関する許可されたevidenceを、SECURITY data-handling/target contractとscope付きcandidateとして接続する。restricted dataは通常evidence packetへ流さず、LABOは実際のpermission/authorityを変更しない。`LABO-038-AC-01`はcredentialを含まない許可要約、source revision、SECURITY target/contractを保ったcandidateを確認する。`LABO-038-AC-02`はLABOによる直接の権限変更を不成立とし、変更案の提示自体はsanitizedな差分candidateとしてSECURITYの判断材料へ返す。restricted/raw credential混入、target/scope不明はholdし、SECURITYへ戻す。許可要約にrestricted fieldが存在しない正常fixtureは拒否理由にしない。
 
 #### LABO-039-FR-01 — Worker結果に関するtarget-routed candidate
 
