@@ -1,6 +1,6 @@
 # HELIX-BRAIN L10 非機能検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。Stage 1/Stage 2b契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
+**状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。Stage 1、Stage 2b、Stage 4 partial契約確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
@@ -45,3 +45,16 @@
 | `HELIXBRAIN-L2-INFRA-017` | field・source境界 | 6 maturity stateを異なるevidence/scope/version付きで別々に与え、single internal successとproject-use recordを含める。 + item別missing/unknown/invalid mutations | maturity value 6/6件をevidence/scope/versionに結び、単独成功による普遍mature化0件。unknown/unsupported claimを成功にしない。性能時間/容量SLAは本契約検証に不要。 |
 
 測定結果はfield完全性、owner境界、source revision、unknown/holdの処置などの観測値で記録する。このStage 2bのfield/source/owner境界検証では、対象behaviorの合否に性能時間・容量・保持期間の閾値を要しないため新設しない。別の技術値が要件上必要なら、上流に数値指定がなくてもL3候補として根拠・比較案・測定方法を添えて通常の承認パッケージに提示し、parameterごとの承認は求めない。旧値や参考測定値を自動継承・合否閾値へ昇格させない。
+
+
+## Stage 4 — connection候補のNFR測定case（未実行）
+
+| case ID | 親L2 | 測定対象・入力 | 測定oracle | 限界 |
+|---|---|---|---|---|
+| `CASE-BRAIN-L10-NFR-018-01` | `HELIXBRAIN-L2-018` | CORE候補intake: source/revision、原本と抽出候補の区別、製品固有relation、受取identityの完全例および各項目欠落/混入 | 候補receipt、隔離/CORE返却、raw original受領/誤promotion数を固定oracleへ照合する。 | 性能値ではなくfield/authority境界候補。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-019-01` | `HELIXBRAIN-L2-019` | Product Core query: 候補を二つ含む完全query、required input/condition/evidence/versionの個別欠落、意味/version競合 | 返却各項目のtrace、候補比較、推薦なし/戻し先、誤採用数を固定oracleへ照合する。 | 製品採用判断を測定・代行しない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-020-01` | `HELIXBRAIN-L2-020` | LABO評価候補: 対象revision一致・不一致、scope/method/result/failure/counterexample/unassessed rangeの各欠落 | 評価対象との結合、candidate保持、LABO返却、accepted/mature誤遷移数を固定oracleへ照合する。 | OS登録stateの判定は含まない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-021-01` | `HELIXBRAIN-L2-021` | INTELLIGENCE向け材料: scope/source/version付きquery、runtime結論要求、BRAIN変更要求、scope欠落 | 判断材料fieldのtrace、BRAIN mutation/runtime decision誤生成数、owner返却を固定oracleへ照合する。 | 稼働中判断品質や性能SLAではない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-022-01` | `HELIXBRAIN-L2-022` | HARNESS設計義務trace: Pattern input/dependencyからHARNESS-L2-009への完全/欠落/誤版forward/reverse fixture | 両方向edge coverage、orphan/wrong revision/product値誤決定数を固定oracleへ照合する。 | 製品設計の正しさを判定しない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-023-01` | `HELIXBRAIN-L2-023` | Visual Design知識境界: 汎用PatternとProduct-specific screen/flow/tokenの混在、LABO経由/未経由のresult | generic/product owner分離、LABO provenance、direct promotion数を固定oracleへ照合する。 | 画面UX品質を独立評価しない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-030-01` | `HELIXBRAIN-L2-030` | BRAIN-HARNESS connector: contract/compatibility/query/receipt/scope/receiverの完全例、stale・非互換・field定義欠落・join-only | contract group coverage、義務receipt・open state・forward/reverse trace、join-only acceptance/false completion数を固定oracleへ照合する。 | 設計義務充足とknowledge receiptを区別する。候補測定、未実行。 |

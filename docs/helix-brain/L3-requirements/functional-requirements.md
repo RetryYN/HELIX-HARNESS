@@ -1,6 +1,6 @@
 # HELIX-BRAIN L3 機能要件（部分草稿）
 
-**状態：部分草稿・未承認。** この文書は割当済みStage 1およびStage 2b項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書は割当済みStage 1、Stage 2bおよびStage 4部分項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -1501,6 +1501,271 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 | `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
 | `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+
+
+
+## Stage 4 — connection候補の部分草稿（未承認）
+
+対象はPO固定revisionで採択された1.0の7 identity `HELIXBRAIN-L2-018/019/020/021/022/023/030`（G0 Stage 4）だけである。保留・不採択候補を親にせず、後続版を1.0へ前倒ししない。下記はL2/L11に定めるconnection境界の要件候補で、接続実装やruntimeを決めない。
+
+## BRAIN-018-FR-01 — `HELIXBRAIN-L2-018`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L77`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L77), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-018-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:394–403` raw span SHA-256 `9dccc78beb510714efbeb09534aa18619abdfd672df1f9fd44088718a3b3dc4d`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:58–58` raw span SHA-256 `028fea2baa9ee9a199c8207ec22e0fd9344a525460ed1db29b5214cb730152b9`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-007/011、L2-007/011、HARNESS-CORE候補出力contract。
+
+### 要件候補
+
+製品HELIX-HARNESS-COREが原本を解体して抽出した汎用Pattern/Unit/Part候補だけを、候補source/provenance/revisionおよび製品固有要素との関係とともに受領する。raw originalは受け取らず、製品名・要求・画面・業務規則・利用者判断を汎用Patternとして確定/保存しない。receiptはcandidate intakeを示し、成立・成熟・採用を意味しない。原本の保持期限や破棄証拠を新設しない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-018-AC-01 — 正常**: CORE抽出candidateにsource/provenance、source revision、抽出候補と製品固有要素とのrelationを添え、raw originalを含めずreceiptを発行する。 列挙されたsource、revision、原本/抽出候補の区別、製品固有要素とのrelation、受取identityの5 relation coverage 100%とraw original受領/誤promotion 0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-018-AC-02 — 否定・境界**: raw original、製品固有screen/business rule/user decision、source/revision欠落、または受領だけでaccepted/matureとする変異を個別および併発で投入し、隔離/CORE返却、採用state不変を判定する。 由来または製品固有意味を分離できない候補は隔離し、製品Coreへ返す。採用判定はL2-025へ委ねる。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-018-FR-01` / `BRAIN-018-AC-01` | `L10-BRAIN-018-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: HELIX-HARNESS-CORE再利用候補intake | `BRAIN-018-FR-01` / `BRAIN-018-AC-01` | `L10-BRAIN-018-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-018-AC-02` | `L10-BRAIN-018-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-018-AC-01,BRAIN-018-AC-02` | `L10-BRAIN-018-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-018-FR-01` | `L10-BRAIN-018-C01,L10-BRAIN-018-C02` | L1-007/011、L2-007/011、HARNESS-CORE候補出力contract。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-018-C01,L10-BRAIN-018-C02,L10-BRAIN-018-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+旧System Synthesisのstable source identityと推測接続拒否の意味を隣接起点として再導出。完全一致再利用はなく、raw original除外、candidate-only、CORE ownerはPO固定L2から導出。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-F1F753F31DB8D874EF21` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md:42–67` | `69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79` | `bb4718ba90454dd16d3a1ecd3c3295d3da999f7f8dcf64199af820c366a9faf2` | 定型接続graph、source identity/revision/provenanceと候補・確定状態の分離を隣接起点として再導出。旧composition capabilityや実行authorityは移植しない。 |
+| `LEGACY-ASSET-BEAB5EE27CD04F5E866F` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/system-synthesis-acceptance.md:27–35` | `ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16` | `88ba206fda8fc988743331694258694393a9b990b8264892b667bd79f593b0c8` | identity/provenance欠落・推測接続拒否のoracle形式だけを再導出し、旧case/gateを持ち込まない。 |
+
+
+## BRAIN-019-FR-01 — `HELIXBRAIN-L2-019`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L78`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L78), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-019-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:404–413` raw span SHA-256 `e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:59–59` raw span SHA-256 `bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-003/004/012、L2-003/004/008/012、HARNESS-CORE受領contract。
+
+### 要件候補
+
+Product Coreの対象課題・required input・constraints・参照可能なBRAIN knowledge identity/versionに対し、candidate Pattern/Design Unit/Part、required input、適用条件、alternative、relation、trade-off、counterexample、根拠、maturity、exact knowledge versionを返し、複数成立候補を比較可能なまま保持する。候補の存在/maturityを製品採用へ変換しない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-019-AC-01 — 正常**: scopeとrequired inputがそろうqueryに、二つの候補、条件、alternatives, relation, tradeoff, counterexample, evidence, maturity, exact versionを別々に返し、採用選択なしを観測する。 全10 応答分類 (Pattern/Unit/Part, required input, conditions, alternative, relation, trade-off, counterexample, evidence, maturity, version)のtrace coverage 100%、根拠のない推薦/採用0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-019-AC-02 — 否定・境界**: required input欠落、version/meaning conflict、反例/根拠欠落を個別/併発で投入し、不足を照会・矛盾をownerへ戻し、unknownでは候補推薦を出さない。候補の一つを採用済みにしない。 不足inputはProduct Coreへ照会し、knowledge meaning/version矛盾はBRAIN L1-003/008または知識ownerへ返す。unknownは推薦なし。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-019-FR-01` / `BRAIN-019-AC-01` | `L10-BRAIN-019-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: Product Core知識query | `BRAIN-019-FR-01` / `BRAIN-019-AC-01` | `L10-BRAIN-019-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-019-AC-02` | `L10-BRAIN-019-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-019-AC-01,BRAIN-019-AC-02` | `L10-BRAIN-019-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-019-FR-01` | `L10-BRAIN-019-C01,L10-BRAIN-019-C02` | L1-003/004/012、L2-003/004/008/012、HARNESS-CORE受領contract。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-019-C01,L10-BRAIN-019-C02,L10-BRAIN-019-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+UWJのfacts/candidate/constraint/counterevidenceは隣接起点として再導出。旧interview schema/scoringと人承認gateは置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-5EE032D657C221184B00` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:43–54` | `e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b` | `04b90844a6a745018b0366b5019fbf687e3215d47a74097695d29711fb712889` | facts/candidate/condition/alternative/counterevidenceを含む提案の隣接意味を再導出。旧schema・採点・承認階層は置換。 |
+| `LEGACY-ASSET-6FFD7F4E58066D08B053` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:25–32` | `1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3` | `2a56a119a949c64b4344c37c9bf6c97d543c00edf027f6c3041de33fcf05c4fd` | 候補・根拠・未解決要素の欠落oracleを部分再利用し、旧workflow/testを実行しない。 |
+
+
+## BRAIN-020-FR-01 — `HELIXBRAIN-L2-020`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L79`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L79), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-020-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:414–423` raw span SHA-256 `28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:60–60` raw span SHA-256 `a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-007/009/010、L2-007/008/009/010、LABO evaluation contract。Infrastructure maturity扱い時のみL2-INFRA-017。
+
+### 要件候補
+
+LABOが結んだ対象revision・候補revision・scope・method・evidence・result・failure・counterexample・unassessed rangeを保持してBRAIN候補入力とsource/version/evaluation identityをreceiptで結ぶ。単一実績・AI生成・evaluation resultだけでestablished Patternとせず、scope/limitationを保持し、OS登録・振分けとBRAIN内独立検証後の採否/成熟を先取りしない。Infrastructure候補のmaturityを扱う場合だけINFRA-017 evidenceを同revisionへ結ぶ。
+
+### 受入条件（AC候補）
+
+- **BRAIN-020-AC-01 — 正常**: 候補revision一致のLABO評価receiptにscope/method/evidence/result/failure/counterexample/unassessed rangeを全て含め、evaluation identityとsource/versionを結びcandidate inputへ登録する。resultは未成熟candidateのまま。 8評価relation (target rev, candidate rev, scope, method, evidence, result, failure/counterexample, unassessed range)を完全traceし、対象不一致または部分評価からの誤昇格0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-020-AC-02 — 否定・境界**: 対象revision不一致、failure/counterexample/unassessed rangeいずれか欠落、評価resultだけの昇格を個別/併発で投入し、LABOへ返しOS state/BRAIN adoptionを変えない。 対象revision不一致/評価部分欠落はunknown candidateとして止めLABOへ返す。OS登録stateの正本はOS。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-020-FR-01` / `BRAIN-020-AC-01` | `L10-BRAIN-020-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: LABO評価結果の候補接続 | `BRAIN-020-FR-01` / `BRAIN-020-AC-01` | `L10-BRAIN-020-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-020-AC-02` | `L10-BRAIN-020-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-020-AC-01,BRAIN-020-AC-02` | `L10-BRAIN-020-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-020-FR-01` | `L10-BRAIN-020-C01,L10-BRAIN-020-C02` | L1-007/009/010、L2-007/008/009/010、LABO evaluation contract。Infrastructure maturity扱い時のみL2-INFRA-017。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-020-C01,L10-BRAIN-020-C02,L10-BRAIN-020-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+HELIX-Benchのscope/method/failure/欠測保持と自己申告score拒否の意味を部分再導出。旧benchmark値/runner/provider/admission/thresholdは置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-28FB139B26CD61CC51EE` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:37–74` | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `9713abaef57d82c85feea42de8189cb531ba8fdc0789bfa8a5409408fcfcc56f` | 対象snapshot・評価軸・失敗と欠測を保持する意味を再導出。旧benchmark値、runner、provider、admission判断は置換。 |
+| `LEGACY-ASSET-A952A3A175EB82A4781B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:21–39` | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` | `b26c073b9441042e8e47e7014a0c12eeca9bfe012262f69ca7da5861f378746a` | 対象revision・scope・failure/欠測・自己申告拒否のoracle形だけを再導出し、旧数値や件数を移さない。 |
+
+
+## BRAIN-021-FR-01 — `HELIXBRAIN-L2-021`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L80`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L80), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-021-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:424–433` raw span SHA-256 `439be1b0d6f2ab9cdb9c17ed3c3f3dab19c40885cd95d5800b8419b7815dfa1b`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:61–61` raw span SHA-256 `b2049bccaa192a54e930af64845a43a504e53b7a71a4a55650002bcdac60444f`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-003/004/012、L2-003/004/008/012、INTELLIGENCE query/response contract。
+
+### 要件候補
+
+INTELLIGENCEのquery/scopeへBRAIN knowledge identity/version、candidate、required input、条件、alternative、constraints、counterexample、evidenceを判断材料として返す。BRAINはruntime結論/選択を確定せず、INTELLIGENCEはBRAIN knowledgeを暗黙変更・昇格しない。推薦材料と稼働中判断を分離する。
+
+### 受入条件（AC候補）
+
+- **BRAIN-021-AC-01 — 正常**: 対象query scopeに一致した知識候補をsource/version・条件・根拠込みで返し、response statusをcandidate informationとして記録する。 返却のknowledge identity/version/candidate/input/conditions/alternative/constraint/counterexample/evidence全field coverage、BRAIN mutation/runtime conclusion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-021-AC-02 — 否定・境界**: runtime選択/結論を要求、BRAIN knowledge書換えを行う、scope/source versionが欠ける変異を投入し、決定・mutationなし、対象条件不足はINTELLIGENCE、意味/版不整合はBRAINへ返す。 対象条件不足はINTELLIGENCEへ返し、knowledge意味/版不整合はBRAIN L1またはknowledge ownerへ返す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-021-FR-01` / `BRAIN-021-AC-01` | `L10-BRAIN-021-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: INTELLIGENCE判断材料の受渡し | `BRAIN-021-FR-01` / `BRAIN-021-AC-01` | `L10-BRAIN-021-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-021-AC-02` | `L10-BRAIN-021-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-021-AC-01,BRAIN-021-AC-02` | `L10-BRAIN-021-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-021-FR-01` | `L10-BRAIN-021-C01,L10-BRAIN-021-C02` | L1-003/004/012、L2-003/004/008/012、INTELLIGENCE query/response contract。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-021-C01,L10-BRAIN-021-C02,L10-BRAIN-021-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+UWJ proposal-only、counterevidence、unresolvedと自己承認拒否は隣接起点。INTELLIGENCE runtime決定との現行分離はPO固定L2から再導出し旧workflow/gateを置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-5EE032D657C221184B00` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:53–60` | `e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b` | `ed972693c1c685d412cb9fa6facd8690255882fda29ac8bb96009bab0dc01fbc` | facts/candidate/constraint/counterevidence/unresolvedとproposal境界の隣接起点のみを再導出。INTELLIGENCE向け現authority境界はL2固定文から起草。 |
+| `LEGACY-ASSET-6FFD7F4E58066D08B053` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:25–32` | `1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3` | `2a56a119a949c64b4344c37c9bf6c97d543c00edf027f6c3041de33fcf05c4fd` | proposal欠落・自己承認の拒否oracleを限定参照し、旧workflow承認動作は置換。 |
+
+
+## BRAIN-022-FR-01 — `HELIXBRAIN-L2-022`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L81`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L81), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-022-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:434–443` raw span SHA-256 `590abf50787f50c3d1fd640e34e75bd337d52829aff9cea9474f2601f7ef4a42`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:62–62` raw span SHA-256 `0ce688f2e9115c2ae76f188a209862ed2a64088cdda85c930f4c828236f70258`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-003/005/012、L2-003/005/008、HARNESS-L2-009 contract。
+
+### 要件候補
+
+BRAIN Patternのrequired input・前提・constraint・関連Pattern・evidenceを受け、HARNESS-L2-009の設計義務へ対応づけた設計inputとPattern/Unit/Part・dependency relation・source knowledge identity/versionを返す。HARNESS-CORE/HARNESSが工程表・遷移図・実装優先順位を導く材料を提供するが、BRAINは製品要求値や設計選択、工程表/遷移図/優先順位を決めない。required input/dependencyを落とさず双方向traceする。
+
+### 受入条件（AC候補）
+
+- **BRAIN-022-AC-01 — 正常**: Pattern/Unit/Partのrequired inputとdependenciesをHARNESS-L2-009 obligationへforward traceし、obligationから同じsource knowledge revision/fieldへreverse traceする。 required input/dependencyからobligationへのforward edgeと逆edgeの完全性100%、orphan/wrong revision/product-value decisions 0件を候補にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-022-AC-02 — 否定・境界**: required input/dependencyの一つを落とす、逆trace先を別revisionへ結ぶ、BRAINが製品値/導出結果を決める変異で未完義務を維持し、各ownerへ返す。 意味関係不明→BRAIN L1-003/005。受取側設計義務の識別/受領欠落→HARNESS。欠落inputは完了扱いしない。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-022-FR-01` / `BRAIN-022-AC-01` | `L10-BRAIN-022-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: required inputからHARNESS設計義務へのtrace | `BRAIN-022-FR-01` / `BRAIN-022-AC-01` | `L10-BRAIN-022-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-022-AC-02` | `L10-BRAIN-022-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-022-AC-01,BRAIN-022-AC-02` | `L10-BRAIN-022-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-022-FR-01` | `L10-BRAIN-022-C01,L10-BRAIN-022-C02` | L1-003/005/012、L2-003/005/008、HARNESS-L2-009 contract。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-022-C01,L10-BRAIN-022-C02,L10-BRAIN-022-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+Design Registryのtyped identity/edge/trace closureとtest-designのorphan/bidirectional trace oracleを局所再導出。Registry runtime/IDsは置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:60–69` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `3ef129d29f2bf57fd7210e55c7ba1d14da251c72e781a945f39b4755ee503342` | 要求identityからtrace edgeへの結合意味を隣接再導出。旧registry family/catalog implementationは継承しない。 |
+| `LEGACY-ASSET-3F00F5BC5606801FD562` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-design-registry-unit-test-design.md:29–42` | `c7ed0988535906636c4cc93627814e35f408cbbad9051f779d7b39860ab5fe57` | `7bcc01887ba81d395d0bd71d48c457acb4b7662574c0f65dc33f3239d84af3b4` | 端点・edge・双方向traceの失敗oracle形を参照。L8 testやregistry runtimeは実行・移植しない。 |
+
+
+## BRAIN-023-FR-01 — `HELIXBRAIN-L2-023`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L82`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L82), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-023-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:444–453` raw span SHA-256 `63d27178ddfbf23ab2797099ae56de52515bebb2577e0e05e03e2a3620cb5c12`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:63–63` raw span SHA-256 `c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-006/007/009、L2-006/007/009/011/012、Visual Design HARNESS及びLABO connection contract。
+
+### 要件候補
+
+Visual Design HARNESSの課題・screen/flow製品scopeとLABO経由の利用/評価結果から、汎用Visual Design/UX Pattern/Unit/Part、適用条件、反例、required inputを候補として提供する。製品固有Visual Identity/screen/flow/tokenは製品Coreが所有し、Visual Design HARNESSの結果をLABOを経ずBRAIN汎用知識へ昇格しない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-023-AC-01 — 正常**: Visual Design HARNESSの課題とLABO evaluation receiptが同scope/source revisionで揃い、汎用candidateと条件/反例/inputを分けた返却を観測する。 generic/product-specific boundary field separationとLABO provenance edgeを全件trace、固有field混入/direct promotion 0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入、またはLABOを飛ばしたHARNESS結果を昇格する変異を投入し、Product Core返却またはpromotion停止を確認する。 製品固有要素混入→該当Product Core。LABO routeがない結果はcandidate promotionを止め、LABOへ返す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-023-FR-01` / `BRAIN-023-AC-01` | `L10-BRAIN-023-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: Visual Design HARNESSの汎用知識接続 | `BRAIN-023-FR-01` / `BRAIN-023-AC-01` | `L10-BRAIN-023-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-023-AC-02` | `L10-BRAIN-023-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-023-AC-01,BRAIN-023-AC-02` | `L10-BRAIN-023-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-023-FR-01` | `L10-BRAIN-023-C01,L10-BRAIN-023-C02` | L1-006/007/009、L2-006/007/009/011/012、Visual Design HARNESS及びLABO connection contract。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-023-C01,L10-BRAIN-023-C02,L10-BRAIN-023-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+VDH Pattern Contract required/forbiddenとcommon/product value separationを限定再導出。UI profiles, screen ledger, token semantics, direct promotionは禁止して現行L2へ置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-335176749F6322C3CD8D` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:39–47` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` | `21db2fb01827e87c2980bcc1cbc1da2ea04183c1438706900327863d9c883e6f` | Pattern Contractとproduct-specific値隔離の隣接意味を限定再導出。UI profile, screen ledger, design runtimeは移植しない。 |
+| `LEGACY-ASSET-879D95C07B789C9502CF` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:19–24` | `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191` | `65a760062b26e32501611779c272ee8008a8058318bfdce3afe90f92fd02d333` | semantic identity、Pattern constraint、source-to-evidence traceのoracle形式を限定再導出。Visual Design HARNESSの直接昇格系は採らない。 |
+
+
+## BRAIN-030-FR-01 — `HELIXBRAIN-L2-030`（Stage 4、候補）
+
+### 親revisionとauthority
+
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-030-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:575–586` raw span SHA-256 `a69172ac364108dd9d81f93ff86dd7673a47f993e81055a20e18bc3b2cdf12ee`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:97–114` raw span SHA-256 `bfb1d656431e49066bca208ecf52ffeff9d0bd88d7d85b939b185d66128115c4`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- 依存: L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。
+
+### 要件候補
+
+BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/version/compatibility、query/receipt schema、scope/correlation identity、HARNESS-L2-009 contractを常時照合する。選択された知識のみidentity/version/source/applicability/required input/relation/negative caseを照合し、HARNESS-L2-009義務材料receiptに未充足input/relationを保持する。Pattern/Unit/Part/input identityから受取義務identityへ、義務から同じ知識revision/fieldへ双方向traceする。知識receiptの受領は義務充足・接続完了・設計完成・実装準備を意味しない。製品固有API/state/permission/design conclusionを返さない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-030-AC-01 — 正常**: 二つの選択Patternとrelation/conflict、required fieldの既知値と一つの未決値をqueryし、知識receiptは受領可能だが対応義務はopen、設計完了/実装準備はfalseであること、双方向trace、contract範囲を照合する。 常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。 contract missing/unknown/stale→connection保留。selected knowledge field/meaning欠落/矛盾→BRAIN。receiver scope/schema/obligation mapping欠落→HARNESS。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input・版・範囲 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| 保証・出力: BRAIN knowledgeからHARNESSへの単一接続 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 全必須field・receipt・状態を維持 |
+| 否定条件・失敗時の戻し先 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 未見入力の境界 | `BRAIN-030-AC-01,BRAIN-030-AC-02` | `L10-BRAIN-030-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
+| 依存と版 | `BRAIN-030-FR-01` | `L10-BRAIN-030-C01,L10-BRAIN-030-C02` | L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。 版1.0 / Stage 4 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-030-C01,L10-BRAIN-030-C02,L10-BRAIN-030-C03` | 否定条件・停止・戻し先も個別照合 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+System Synthesis stable identity/provenance graphとpartial acceptance oracleを隣接意味として再導出。旧whole-system synthesis/CI completion/auto-authorityは置換。 完全一致移植はしない。旧runtime・schema・algorithm・CLI・testは実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲・判断 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-F1F753F31DB8D874EF21` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md:40–61` | `69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79` | `a530edfbe85a1deea9dd5670dadbcb8d34618aa00ef0e496f5e939f763884333` | stable identity/revision/provenance接続とproposal/authority分離を隣接起点として再導出。旧system synthesis能力やruntimeは実装しない。 |
+| `LEGACY-ASSET-BEAB5EE27CD04F5E866F` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/system-synthesis-acceptance.md:27–33` | `ed09b52fd9f0b0ed95e924730bc9132c375588520ad7041777188c726d994c16` | `c4642c513392285c6205790858c7aad1d9e6e4849c9872e202014dc301631af6` | exact identity・source-evidence欠落・単一成功の過剰昇格拒否のoracle形式を限定参照。旧合成engine/testは実行しない. |
+
 
 ## 未承認事項
 

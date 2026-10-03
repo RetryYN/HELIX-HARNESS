@@ -48,6 +48,22 @@
 | `HELIXBRAIN-L2-INFRA-016` — field・意味項目の完全性 | Anti-Pattern 11/11件のcondition/detection/alternative mapをfixtureで保持、普遍禁止への誤一般化0件 | `HELIXBRAIN-L2-INFRA-016`が列挙する入力と保証を正常fixtureに含め、ひとつずつmissing/unknown/contradictory mutationする。 | 実resource/operation/price/RTO/RPO/telemetryの値は、要件ownerのsourceにある値だけを扱う。 |
 | `HELIXBRAIN-L2-INFRA-017` — field・意味項目の完全性 | maturity value 6/6件をevidence/scope/versionに結び、単独成功による普遍mature化0件 | `HELIXBRAIN-L2-INFRA-017`が列挙する入力と保証を正常fixtureに含め、ひとつずつmissing/unknown/contradictory mutationする。 | 実resource/operation/price/RTO/RPO/telemetryの値は、要件ownerのsourceにある値だけを扱う。 |
 
+## Stage 4 — connection候補の機能的NFR（未承認）
+
+対象は固定PO revisionの7親 `HELIXBRAIN-L2-018/019/020/021/022/023/030`。Stage 1/2bと機構全体の完成を示さない。
+
+本Stageでは性能SLAを新設せず、親L2/L11が明示するconnection field・source trace・owner/state境界の完全性を候補測定する。coverage 100%・誤結合/誤昇格0件は候補値であり、承認済み閾値・実測結果ではない。必要な技術値を上流未指定だけで禁止せず、当該scopeで不要な理由を記録する。
+
+| 親L2／測定項目 | 候補値・比較 | 根拠と測定入力 | 判定材料・限界 |
+|---|---|---|---|
+| `HELIXBRAIN-L2-018` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: 自由形式receiptは軽量だが境界欠落を隠す。typed relation coverageは監査しやすいがfield増加を伴うため候補。 | 入力はHELIX-HARNESS-CORE再利用候補intake固有のnormal/欠落/stale/held-out fixture。列挙されたsource, revision, extraction-vs-original, product-specific relation, receiver identityの5 relation coverage 100%とraw original受領/誤promotion 0件を候補値にする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-019` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: 最初の一候補だけ返すと比較漏れを隠すため、複数候補のfield完全性を候補指標にする。 | 入力はProduct Core知識query固有のnormal/欠落/stale/held-out fixture。全10 response class (Pattern/Unit/Part, required input, conditions, alternative, relation, trade-off, counterexample, evidence, maturity, version)のtrace coverage 100%、根拠のない推薦/採用0件を候補値にする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-020` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: summary-onlyは小さいがfailure/unassessedを消す。個別relation測定は比較コストを増やすが欠落元を判別する。 | 入力はLABO評価結果の候補接続固有のnormal/欠落/stale/held-out fixture。8評価relation (target rev, candidate rev, scope, method, evidence, result, failure/counterexample, unassessed range)を完全traceし、対象不一致または部分評価からの誤昇格0件を候補値にする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-021` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: 単一summary responseは軽量だが判断材料欠落を見えにくくするためfield単位のcoverageを候補化。 | 入力はINTELLIGENCE判断材料の受渡し固有のnormal/欠落/stale/held-out fixture。返却のknowledge identity/version/candidate/input/conditions/alternative/constraint/counterexample/evidence全field coverage、BRAIN mutation/runtime conclusion 0件を候補とする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-022` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: forward-only traceは受渡しには安価だが誤結合を見逃す。bidirectional traceはより強い出所確認を与えるため候補。 | 入力はrequired inputからHARNESS設計義務へのtrace固有のnormal/欠落/stale/held-out fixture。required input/dependencyからobligationへのforward edgeと逆edgeの完全性100%、orphan/wrong revision/product-value decisions 0件を候補にする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-023` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: UI-specific exact schemaは強いがBRAIN scopeを狭め過ぎる。generic field/relation traceとowner separationを候補とする。 | 入力はVisual Design HARNESSの汎用知識接続固有のnormal/欠落/stale/held-out fixture。generic/product-specific boundary field separationとLABO provenance edgeを全件trace、固有field混入/direct promotion 0件を候補値にする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+| `HELIXBRAIN-L2-030` — relation/状態の完全性 | required source・scope・version・owner relation coverage 100%、誤結合/誤昇格0件を候補とする。比較: query受領のみを完了とみなす案は単純だが未充足義務を隠す。receipt/義務/設計完了を別stateで測る方式を候補とする。 | 入力はBRAIN knowledgeからHARNESSへの単一接続固有のnormal/欠落/stale/held-out fixture。常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 | L10は実行出力の親指定field/state/ownerを照合する。測定未実施、候補値でありperformance SLAではない。 |
+
 ## 測定・承認境界
 
 この表のcoverage/誤昇格0/誤帰属0/roundtrip完全性は親L2/L11の明示要素を漏れなく守る候補である。実測性能値の採否はテストfixtureとL4以降の実現可能性を踏まえ通常のL3承認へまとめて送る。個別parameter承認を要求しない。上流が指定する外部version/range/retention等があるときは当該source値を使い、新しい値を作らない。
