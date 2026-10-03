@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial items 017/030-033 and BRAIN-018 / adopted version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2c + Stage 3 + Stage 4 partial items 017/030-033 / adopted version_target 1.0 explicit items only
 owner: HELIX-INTELLIGENCE
 paired_l10: ../L10-verification/functional-verification.md
 
@@ -370,9 +370,9 @@ POが採択した`MPR-RC-HELIXINTELLIGENCE-L2-078-001`のR-06/R-07/R-09/R-10/R-1
 
 この部分草稿は、Stage 2aの010/066、Stage 2cの068/075、およびStage 3の採択済み22件を、各固定L2/L11の範囲で具体化する。Stage 3は001–009、011–016、018–020、067、072、073、078で、各PO固定revision・1.0対象とG0順序案の照合をcrosswalkに残す。068はPO案Bに沿う作業前の支援・test candidateと作業中診断を区別し、元Worker、OS、HARNESS、BRAIN、LABOの責務境界を保つ。075はPOが承認したexact revisionを親とし、Agentic Audit Probe proposalのidentity/evidenceと既存UIL qualificationへのhandoffを具体化する。候補と草稿は割当・test実行・verified/qualified・受入等のauthority stateを生成しない。各caseは正常、field欠落/不一致、scope外、stale/unknownを具体fixtureで照合する。
 
-## Stage 4 — INTELLIGENCE/BRAIN 1.0 部分草稿
+## Stage 4 — INTELLIGENCE 1.0 部分草稿
 
-Stage 4 rosterから採択済み・`version_target: 1.0`の22 identityだけを対象とし、このcheckpointでは017/030–033とBRAIN-018の5親を収載する。順序stageはG0の採択順序案であり、ここで版・要求意味・ownerを決定しない。以下はPO承認前草稿である。各親の固定L2/L11 identity/revision、decision row、旧source起点と再利用判断は末尾crosswalkに固定した。
+Stage 4 rosterから採択済み・`version_target: 1.0`の22 identityだけを対象とし、このcheckpointでは017/030–033の5親を収載する。順序stageはG0の採択順序案であり、ここで版・要求意味・ownerを決定しない。以下はPO承認前草稿である。各親の固定L2/L11 identity/revision、decision row、旧source起点と再利用判断は末尾crosswalkに固定した。
 
 ### `FR-INTELLIGENCE-L3-017-01` — `HELIXINTELLIGENCE-L2-017`
 

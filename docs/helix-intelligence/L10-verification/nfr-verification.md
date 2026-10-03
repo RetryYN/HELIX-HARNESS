@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: version_target 1.0 explicit items drafted through Stage 4 partial items 017/030-033 and BRAIN-018
+scope: version_target 1.0 explicit items drafted through Stage 4 partial items 017/030-033
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
