@@ -2,10 +2,10 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, HARNESS-L2-011, HARNESS-L2-022, HARNESS-L2-023, HARNESS-L2-030, HARNESS-L2-031, HARNESS-L2-032 / version_class 1.0
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, Stage 2c HARNESS-L2-030..032 / version_class 1.0
 paired_l10: ../L10-verification/nfr-verification.md
 
-これは4つの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、数値値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
+これは現在の部分scopeの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、候補値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
 
 ## 候補値
 
@@ -16,6 +16,15 @@ paired_l10: ../L10-verification/nfr-verification.md
 | `NFR-C-HARNESS-011-01` / `HARNESS-L2-011` | 同一logical operationのresumeは **同一冪等key**を保持し、同じkeyの重複送達による追加処理効果は **0件**（効果は高々1回）。 | 固定L2/L11が要求する停止・再開、記録済state、同じ冪等keyを候補へ結ぶ。retryごとに新keyを作る案は重複防止と再開同一性を弱めるため不採用比較案。 | 冪等keyの生成方式、保持期間、全runtime共通の実装方式は指定しない。処理authorityとdata scopeは既存ownerに従う。 |
 | `NFR-C-HARNESS-011-02` / `HARNESS-L2-011` | expiry経過後にsuccessと返るoperationは **0件**。dispatchおよび停止後resumeの各開始境界でexpiryを評価する。等号境界は既存contractに定義があればその値に従う。未定義の場合の比較候補は案A `now >= expiry`をexpired（有効区間 `[issued_at, expiry)`）、案B `now > expiry`をexpired（有効区間 `[issued_at, expiry]`）とする。 | expiry後をsuccessにしないL2/L11を観測する。等号で失効する案Aは期限ちょうどの曖昧な成功窓を作らない保守的候補であり、案Bは境界を含むため呼出し側とのtimestamp定義一致を要する。両案ともdispatchおよびresume開始時に評価し、直前／境界／直後fixtureで結果を比較する。 | TTLや時計skew許容値はL2にないため設定しない。expiry authorityは呼出し側／SECURITYに残し、HARNESSは延長しない。 |
 | `NFR-C-HARNESS-023-01` / `HARNESS-L2-023` | 同一pack revision・同一入力条件の繰返し評価で、closureと理由の差分は **0件**。 | L2/L11が要求する同一input/revisionの有効closure再現と理由一致に対応。下記12行の有限fixture行列を全件確認する案と、条件数増加時のpairwise案を比べ、この固定行列を候補とする。分類能力自身は全依存実装を要求せず、missing/unknown状態を分類できる。 | closure件数上限や処理時間はこの親から導かない。未選択sourceの存在／成功を補完しない。 |
+| `NFR-C-HARNESS-012-01` / `HARNESS-L2-012` | PrototypeとPoCの適用性判定を別欄・別resultで追跡し、片方の記録が他方を充足する件数 **0**。適用した工程の未backflow結果から要件化／production昇格する件数 **0**。 | 固定L2の独立判定・backflow・Decide前非昇格を直接数える候補。単一のcombined statusへ縮約する案と比較し、縮約案は一方のN/Aが他方へ漏れるため不採用とする。 | 適用頻度や試作完了時間のSLOは追加しない。 |
+| `NFR-C-HARNESS-013-01` / `HARNESS-L2-013` | 形成結果中、親にtraceされない追加要件・承認状態への自動昇格は **0件**。各指摘に入力箇所とbackflow先を持たせる。 | 固定L2の企画外追加検出、pair形成と未承認境界を観測する候補。全内容を機械的に承認可能とする案は人の承認境界と衝突するため不採用。 | 意味の妥当性を単一accuracy閾値へ還元しない。 |
+| `NFR-C-HARNESS-014-01` / `HARNESS-L2-014` | 各単体設計義務について対応するL3根拠とL9/L8/L7検証設計の欠落数 **0件**。Template適用不足・source不明の未表示数 **0件**。 | Templateに基づく設計義務とpaired verificationを親から追跡する完全性候補。単なる下位文書数の充足と比較し、件数だけでは義務を証明しないため不採用。 | template選択の性能や固定template数はこの親で定めない。 |
+| `NFR-C-HARNESS-015-01` / `HARNESS-L2-015` | 同一変更revision内でL6契約からRed/Green/refactor/原子CIへのtrace欠落 **0件**。Provisionalを超える不適格昇格 **0件**。 | 固定親の開発sequenceとProvisional境界を候補化する。CI green単独を合格材料とする案は明記された非保証を破るため不採用。 | CI時間・coverage割合・suite数は親の値でなく、根拠付き候補として測定する場合も要求値へ確定しない。 |
+| `NFR-C-HARNESS-016-01` / `HARNESS-L2-016` | performance比較候補: 事前baseline/workload/profile/統計条件下で対象metricの改善を測り、回帰oracle違反 **0件**。 | 固定親は測定入力を要求するが改善幅は固定しない。候補案Aは代表workloadの中央値をbaseline比で比較、案Bは分布全体と上側quantileも併記する。小標本・workload偏りに強いBを推奨候補とし、実測数・標本数・confidence intervalを報告してから閾値案を決める。 | 固定thresholdや旧IPA/旧runtime数値を流用しない。計測入力を揃えないPerformance Refactorは未評価。 |
+| `NFR-C-HARNESS-017-01` / `HARNESS-L2-017` | Release Port必須条件の未充足をeligibleにする件数 **0**、同一input/revisionからのartifact identity/digest不一致 **0**。 | 固定親のeligible条件、同一入力からの再現、未回収検査の停止を観測する候補。例外昇格案は条件を弱めるため不採用。 | release rateやdeployment durationを加えず、eligible候補を実配備へ読み替えない。 |
+| `NFR-C-HARNESS-018-01` / `HARNESS-L2-018` | designed/implemented/verified/observed/operated間の誤状態遷移 **0件**。各観測recordに対象revision・時点・要求ownerの欠落 **0件**。 | 固定親の状態分離と観測・再要求経路の完全性を測る候補。stage存在を後続stage証明とする案は明示的に不採用。 | 可用性、信頼性、性能、容量、費用、retention等の数値は製品ownerの要求があるときだけその範囲で測定する。 |
+| `NFR-C-HARNESS-019-01` / `HARNESS-L2-019` | 入力sourceの変換可能範囲・unknown・不整合の未分類数 **0件**。変換候補からの承認／release自動生成 **0件**。 | 逆方向形成のtrace保全とauthority非生成を候補化する。全部成功/全部拒否のbinary案より、変換可能部分とunknownを分ける候補が部分入力に忠実。 | 入力stageごとの時間・変換率を要求閾値化しない。 |
+| `NFR-C-HARNESS-020-01` / `HARNESS-L2-020` | handoff対象の全必須fieldと契約版の対応欠落 **0件**、不整合入力の暗黙受理 **0件**、handoffによるupstream state変更 **0件**。 | 固定親のproducer/consumer契約一致と状態非書換えを直接観測する。汎用warningだけ返す案は個別不整合を隠すため不採用。 | 関係のない隣接stageへの一律依存や、handoff成功率を新しい業務目標にしない。 |
 
 ## 4分類の有限fixture行列候補
 
