@@ -861,7 +861,7 @@ Availability、Performance、Capacity、Reliability、Recoverability、Security�
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-004-AC-01 — 正常**: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-004-AC-02 — 否定・境界**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。 失敗時戻し先: 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。
+- **BRAIN-INFRA-004-AC-02 — 否定・境界**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 欠落した要求値・設計義務はHARNESS／製品COREへ戻し、BRAINは閾値を創作しない。
 
 ### 固定親句の被覆
 
@@ -878,7 +878,7 @@ Availability、Performance、Capacity、Reliability、Recoverability、Security�
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。NFR→related pattern/required inputs relationは旧L3に直接一致なし。BRAINは製品値を決めない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。NFR→related pattern/required inputs relationは旧L3に直接一致なし。BRAINは製品値を決めない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。 追加起点はNIO-L3/L10候補とintakeの該当項であり、全てcandidate/unapprovedの旧候補である。項目別のtyped inputs/evidence/unknown/restore-state distinctionだけを意味照合し、NIO全体のoperational obligation/admission/owner設計は継承しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
@@ -886,6 +886,9 @@ Availability、Performance、Capacity、Reliability、Recoverability、Security�
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+| `LEGACY-ASSET-5D41345F55800F23AC38` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:7` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `6b7272555c6ee856b3e42cf4e0c3beb0f64665a8877c9e5397cecf0379365963` | NIO-L3-01 typed requirement inputs and unknown preservation; candidate/unapproved, semantic cross-check only. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:54–73` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `99abdeca3aa64241059acec904e9b5885ed2c8d6b0881b1fa8c1a43b55f5c19a` | NIO-CAND-01 typed target/environment/owner/evidence-state background; unapproved intake. |
+| `LEGACY-ASSET-5166C9AB5D52E9926082` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md:7–8` | `009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620` | `08ee8b1f2fdceef18ece1e372ec08dfab89f0b7246145c5c1b1b04f501a693d8` | NIO-L10-01/02 no invented thresholds and no healthy mapping from missing/stale evidence; candidate oracle only. |
 
 ## BRAIN-INFRA-005-FR-01 — `HELIXBRAIN-L2-INFRA-005`
 
@@ -908,7 +911,7 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-005-AC-01 — 正常**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 失敗時戻し先: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。
+- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。
 
 ### 固定親句の被覆
 
@@ -925,7 +928,7 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。expected failure/detection/impact/containment/recovery/residual riskの条件構造。旧rollbackや運用手順を移植しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-879D95C07B789C9502CF`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。expected failure/detection/impact/containment/recovery/residual riskの条件構造。旧rollbackや運用手順を移植しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-879D95C07B789C9502CF`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。 追加起点はNIO-L3/L10候補とintakeの該当項であり、全てcandidate/unapprovedの旧候補である。項目別のtyped inputs/evidence/unknown/restore-state distinctionだけを意味照合し、NIO全体のoperational obligation/admission/owner設計は継承しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 
@@ -933,6 +936,9 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-879D95C07B789C9502CF` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:10–30` | `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191` | `4ebd3c1ad8a9d3469fe76020a956a3656fa6fe45630f3f8124e00cc225eea89a` | contract/profile/isolation等の正常・拒否oracle形だけ。UI実装と旧self-approval/gateは移植しない。 |
+| `LEGACY-ASSET-5D41345F55800F23AC38` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:8` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `922d2577cdd46808d3d2f8d01bb0ac829d73a96ac4dd74be719c0862ce80b3e9` | NIO-L3-02 design-obligation applicability as candidate; no wholesale obligation graph or authority transfer. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:75–94` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `fb5b5201bc32e0a0738dcb9a9280b77d4013628489be5cc401e67029982ce990` | NIO-CAND-02 source/condition/counterexample and rule-candidate flow; no automatic validation or rule adoption. |
+| `LEGACY-ASSET-5166C9AB5D52E9926082` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md:8–8` | `009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620` | `1bf5aa9f1444209c1a59b9934d776baffe6c1f42492d9c487271379a237fe4b9` | NIO-L10-02 missing/stale evidence remains degraded/unknown/failure; candidate oracle only. |
 
 ## BRAIN-INFRA-006-FR-01 — `HELIXBRAIN-L2-INFRA-006`
 
@@ -955,7 +961,7 @@ Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback�
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-006-AC-01 — 正常**: recovery pattern candidate・適用条件・必要input・failure relationを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-006-AC-02 — 否定・境界**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。 失敗時戻し先: 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。
+- **BRAIN-INFRA-006-AC-02 — 否定・境界**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行・rollbackは製品またはRuntime ownerへ、recovery構造の意味はL1-010へ戻す。
 
 ### 固定親句の被覆
 
@@ -972,13 +978,16 @@ Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback�
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。Recovery knowledge patternのみ。TERのrollbackはtransaction/reconciliation文脈の隣接例であり回復技術catalogの根拠ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。Recovery knowledge patternのみ。TERのrollbackはtransaction/reconciliation文脈の隣接例であり回復技術catalogの根拠ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。 追加起点はNIO-L3/L10候補とintakeの該当項であり、全てcandidate/unapprovedの旧候補である。項目別のtyped inputs/evidence/unknown/restore-state distinctionだけを意味照合し、NIO全体のoperational obligation/admission/owner設計は継承しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+| `LEGACY-ASSET-5D41345F55800F23AC38` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:12` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `c0035f65772024d1d666e733ca4ad98ecaffef0ecd91fd7c0d7fb3ea8e2fac44` | NIO-L3-06 recovery procedure/fault evidence candidate; no operation execution permission transfer. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:162–183` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `48a62cc6a731fd1bc8c5f79ea3368ab7c9395fd2571ecfd084be31b2684be585` | NIO-CAND-06 incident/recovery distinction and terminal evidence; not execution authority. |
+| `LEGACY-ASSET-5166C9AB5D52E9926082` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md:10–11` | `009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620` | `abdc4c5376120a9da965ea5b33502771fbf7238002fa196d222717f04762c0b4` | NIO-L10-04/05 backup-name and rollback are not restore/recovery completion; candidate oracle only. |
 
 ## BRAIN-INFRA-007-FR-01 — `HELIXBRAIN-L2-INFRA-007`
 
@@ -1001,7 +1010,7 @@ Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Updat
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-007-AC-01 — 正常**: deployment pattern候補の比較情報・根拠・未確定inputを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-007-AC-02 — 否定・境界**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。 失敗時戻し先: 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。
+- **BRAIN-INFRA-007-AC-02 — 否定・境界**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 製品release semanticsはProduct Core／HARNESSへ、実進行はOS／Runtimeへ戻す。
 
 ### 固定親句の被覆
 
@@ -1047,7 +1056,7 @@ Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、R
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-008-AC-01 — 正常**: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-008-AC-02 — 否定・境界**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 workload値・SLOは製品要求へ、構造評価はLABOへ戻す。 失敗時戻し先: workload値・SLOは製品要求へ、構造評価はLABOへ戻す。
+- **BRAIN-INFRA-008-AC-02 — 否定・境界**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 workload値・SLOは製品要求へ、構造評価はLABOへ戻す。
 
 ### 固定親句の被覆
 
@@ -1093,7 +1102,7 @@ Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、E
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-009-AC-01 — 正常**: 設計対象・観測点と必要inputをcandidateとして返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-009-AC-02 — 否定・境界**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。 失敗時戻し先: runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。
+- **BRAIN-INFRA-009-AC-02 — 否定・境界**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 runtime evidenceはInfrastructure Runtime／LABO ownerへ、設計上の観測点不足はL1-003へ戻す。
 
 ### 固定親句の被覆
 
@@ -1110,13 +1119,16 @@ Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、E
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。観測点の設計知識であり実log/metric値保管とは区別。旧evidence/provenanceの記録形のみ類例。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。観測点の設計知識であり実log/metric値保管とは区別。旧evidence/provenanceの記録形のみ類例。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。 追加起点はNIO-L3/L10候補とintakeの該当項であり、全てcandidate/unapprovedの旧候補である。項目別のtyped inputs/evidence/unknown/restore-state distinctionだけを意味照合し、NIO全体のoperational obligation/admission/owner設計は継承しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+| `LEGACY-ASSET-5D41345F55800F23AC38` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:9` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `9174666dbd02a290fc26d2629a0fe3e8da79243b5a4b2ec1158258a4d3274ea4` | NIO-L3-03 measurement evidence fields candidate; no live telemetry storage or runtime owner transfer. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:140–160` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `d9311d8f2e319da3bc2b0cdbbeec6745bf7e98173a4cf18a2390c8902d990f28` | NIO-CAND-05 observability and collector-unknown conditions; candidate evidence design only. |
+| `LEGACY-ASSET-5166C9AB5D52E9926082` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md:8–8` | `009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620` | `1bf5aa9f1444209c1a59b9934d776baffe6c1f42492d9c487271379a237fe4b9` | NIO-L10-02 collector stop/missing/stale is not healthy; candidate oracle only. |
 
 ## BRAIN-INFRA-010-FR-01 — `HELIXBRAIN-L2-INFRA-010`
 
@@ -1139,7 +1151,7 @@ Backup strategy、retention pattern、replication、restore pattern、recovery v
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-010-AC-01 — 正常**: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-010-AC-02 — 否定・境界**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。 失敗時戻し先: 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。
+- **BRAIN-INFRA-010-AC-02 — 否定・境界**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 実際のbackup／restore実行とtarget値は製品／Runtimeへ、知識構造はL1-003／010へ戻す。
 
 ### 固定親句の被覆
 
@@ -1156,13 +1168,17 @@ Backup strategy、retention pattern、replication、restore pattern、recovery v
 
 ### 旧L3／対test-designからの再利用・再導出
 
-再導出。backup/restore/recoverability関係。実際のRTO/RPOは製品要求側。旧rollbackをbackup/restore要件へ拡張しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+再導出。backup/restore/recoverability関係。実際のRTO/RPOは製品要求側。旧rollbackをbackup/restore要件へ拡張しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを下表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。 追加起点はNIO-L3/L10候補とintakeの該当項であり、全てcandidate/unapprovedの旧候補である。項目別のtyped inputs/evidence/unknown/restore-state distinctionだけを意味照合し、NIO全体のoperational obligation/admission/owner設計は継承しない。
 
 | 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
 |---|---|---|---|---|
 | `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+| `LEGACY-ASSET-5D41345F55800F23AC38` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:15` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `b597885c64469f1adba640edf8e28d898df9134039850f37f0094848480d93a7` | NIO-L3-09 evidence-backed stage state and missing/stale distinction candidate; no stage gate transfer. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:118–136` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `acbcf22a3d045ee71cabad733742f2db10734f7c816e1bcf7d1bb51bedfda2af` | NIO-CAND-04 restore design/verification distinction; design obligations, not successful runtime evidence. |
+| `LEGACY-ASSET-E239B45CE3FFE8B34D2B` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:229–249` | `4d94b4b887a356fb9b17eaddc4df7a9c6e0eaed955d151c48a6efba667be7344` | `7718a8c095e033a1a65215bb8f7aa8205203d6af3a104ce4bb9958e088559869` | NIO-CAND-09 defined/designed/verified/operated evidence-state distinction; not new completion gate. |
+| `LEGACY-ASSET-5166C9AB5D52E9926082` | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md:10–11` | `009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620` | `abdc4c5376120a9da965ea5b33502771fbf7238002fa196d222717f04762c0b4` | NIO-L10-04/05 existence or rollback alone is not restore/recovery completion; candidate oracle only. |
 
 ## BRAIN-INFRA-011-FR-01 — `HELIXBRAIN-L2-INFRA-011`
 
@@ -1185,7 +1201,7 @@ fixed/variable cost tendency、idle resource cost、scaling cost、redundancy co
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-011-AC-01 — 正常**: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-011-AC-02 — 否定・境界**: provider/time/source/contextを外して単価を一般化する入力は不成立。 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。 失敗時戻し先: 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。
+- **BRAIN-INFRA-011-AC-02 — 否定・境界**: provider/time/source/contextを外して単価を一般化する入力は不成立。 具体価格・budgetはProduct Core／OS ownerへ、一般化cost characteristicはLABO評価へ戻す。
 
 ### 固定親句の被覆
 
@@ -1231,7 +1247,7 @@ Object Storageの抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementati
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-012-AC-01 — 正常**: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-012-AC-02 — 否定・境界**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。 失敗時戻し先: compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。
+- **BRAIN-INFRA-012-AC-02 — 否定・境界**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility conditionのownerまたは該当Patternへ戻し、根拠のない互換宣言をしない。
 
 ### 固定親句の被覆
 
@@ -1278,7 +1294,7 @@ Local machine、VPS、Dedicated server、Cloud、GPU node、Distributed worker n
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-013-AC-01 — 正常**: resource/capability concept identity、meaning、relationをabstract levelで返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-013-AC-02 — 否定・境界**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。 失敗時戻し先: 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。
+- **BRAIN-INFRA-013-AC-02 — 否定・境界**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 実環境identity/stateはInfrastructure Runtimeへ、security境界はSECURITYへ戻す。
 
 ### 固定親句の被覆
 
@@ -1324,7 +1340,7 @@ Web→Load Balancer→Application→Database→Backup、およびApplication→Q
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-014-AC-01 — 正常**: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-014-AC-02 — 否定・境界**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。 失敗時戻し先: topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。
+- **BRAIN-INFRA-014-AC-02 — 否定・境界**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 topology実状態はRuntimeへ、構造relationの意味はL1-005へ戻す。
 
 ### 固定親句の被覆
 
@@ -1371,7 +1387,7 @@ API→Network→Latency / Availability、Data→Storage / Database→Backup / Re
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-015-AC-01 — 正常**: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-015-AC-02 — 否定・境界**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 関係先Domainの責務ownerへ戻す。 失敗時戻し先: 関係先Domainの責務ownerへ戻す。
+- **BRAIN-INFRA-015-AC-02 — 否定・境界**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 関係先Domainの責務ownerへ戻す。
 
 ### 固定親句の被覆
 
@@ -1417,7 +1433,7 @@ Single Point of Failure、Shared mutable production state、Unbounded Retry、Un
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-016-AC-01 — 正常**: negative patternと成立範囲、反例、代替、sourceを候補として返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-016-AC-02 — 否定・境界**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。 失敗時戻し先: 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。
+- **BRAIN-INFRA-016-AC-02 — 否定・境界**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 検出証拠・適用状況が不明ならfindingをunknownとしてLABO評価へ戻す。
 
 ### 固定親句の被覆
 
@@ -1465,7 +1481,7 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-017-AC-01 — 正常**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-017-AC-02 — 否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 失敗時戻し先: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
+- **BRAIN-INFRA-017-AC-02 — 否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
 
 ### 固定親句の被覆
 
