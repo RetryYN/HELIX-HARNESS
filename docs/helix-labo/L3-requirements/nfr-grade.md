@@ -16,3 +16,22 @@
 ## 測定・承認境界
 
 この表のcoverage/誤昇格0/誤帰属0/roundtrip完全性は親L2/L11の明示要素を漏れなく守る候補である。実測性能値の採否はテストfixtureとL4以降の実現可能性を踏まえ通常のL3承認へまとめて送る。個別parameter承認を要求しない。上流が指定する外部version/range/retention等があるときは当該source値を使い、新しい値を作らない。
+
+
+## Stage 2b 基本エンジンの測定候補（未承認）
+
+以下はL2の明示保証を観測可能にする候補。固定性能SLAではなく、L3/L10一体で比較し通常承認へ提示する。旧Bench/RCLSの数値やtest countは継承しない。
+
+| 親L2 | 測定候補・比較 | 根拠／測定方法 | 適用限界 |
+|---|---|---|---|
+| `HELIXLABO-L2-002` | episode edge provenance coverage 100%候補、time/path-only causal claim 0 | 親がsource/revisionに結ぶepisode、時間だけでは因果断定しないと明記。relationごとsource参照を検査し、近接無関係mutationを投入。 | causal thresholdやtime windowは親未指定。決めずにsource evidence中心で測る。 |
+| `HELIXLABO-L2-003` | 親列挙8分類の区別率100%候補、unknown/contradiction消失0 | 8分類を有限fixtureに個別投入し、分類fieldと根拠の分離を照合。 | 分類頻度/重みは未指定で候補値を設けない。 |
+| `HELIXLABO-L2-004` | purpose/structure/behavior/assumption/constraint/guarantee/cost 7-field coverage 100%候補 | 親の列挙要素を一つずつmissing変異にして候補を停止/unknownへ戻せるか測る。 | 各方式の意味スコア/類似度閾値は未指定。 |
+| `HELIXLABO-L2-005` | action候補が許可語彙内、意味差/適用条件/owner trace completeness 100%候補 | 親列挙12 actionから各候補を作り、維持/変更fieldとsourceを再構成する。 | 各actionの優先順位/採択率は親未指定。 |
+| `HELIXLABO-L2-006` | 条件/assignment/oracle/source result coverage、cost欠測の非零扱い誤り0候補 | baseline/current/candidate/hybridで同一条件fixtureと個別欠落・中断を測定。 | 実験回数・統計的power・時間/cost SLAは未指定。比較候補は同一条件の1回以上と複数反復案（3/5回等）を並べ、分散/再現性・費用から測定設計で選ぶ。 |
+| `HELIXLABO-L2-007` | systemization候補について再現性、oracle、side effect、retry/rollback/idempotenceの5条件全件記録 | 条件別mutationで不成立の不足条件を特定。候補値として同一条件3反復を比較開始案、2回/5回案を安定性と費用で比較できる。 | 反復数は固定合否閾値でなく、親が必要とする比較可能性の測定候補。 |
+| `HELIXLABO-L2-008` | rule/versionからexception・FP・avoidance・cost・return condition・ownerへのtrace completeness 100%候補 | 各項目欠落を独立mutateしunknown/return状態を確認。 | 自動切替率や障害時間閾値を追加しない。 |
+| `HELIXLABO-L2-009` | 単一episodeの上位一般化0候補。repeated episodes案は独立3例を初期比較候補、2/5例と条件多様性を比較 | 親は一事例から一般化しないと明記。独立例数を2/3/5で比較し、範囲安定性・反例発見率・偽一般化・追加観測費用を測る。 | 3例はAI候補でありPO承認済値や固定閾値ではない。sample独立性/適用scope別に検証する。 |
+| `HELIXLABO-L2-010` | feedback 16 required fields coverage 100%候補、未根拠field補完0 | 正常fixtureで16/16とtarget-specificityを照合し、各field欠落mutationで差戻しを観察。 | confidenceの尺度/閾値と候補採択率は親未指定。 |
+
+候補数値は通常の対L10測定設計へまとめる。POへparameterごとに確認せず、数値がL2意味・scope・owner・versionを変える必要があると判明した場合だけL2へ戻す。
