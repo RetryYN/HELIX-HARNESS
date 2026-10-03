@@ -421,7 +421,7 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 
 026はHARNESS-L2-014が選択する設計サービスの内部unit/packであり、第二の利用者向けserviceではない。入力は承認済みL3/対象revision/scopeとする。常時依存はHARNESS-L2-009設計義務、Design Template対応契約、HARNESS-L2-010 pack contract、HARNESS-L2-011 call contract、HARNESS-L2-022 paired verification contract、およびCOREとBRAIN connector各契約のidentity/version/compatibilityである。026は014の完了receiptを入力前提とせず、宣言されたL3と設計入力から構成できる。出力は要求からscreen/flow/state、API/command、permission/actor、domain data/DB invariant、oracleまでtraceされたL4/L5/L6と、対応するL9/L8/L7の対の設計であり、対応義務は省略しない。
 
-個別BRAIN Patternはその知識を使う時だけ選択依存であり、BRAIN connector契約そのものは常時必須である。UIを扱う操作だけでprototype/非UI合意、screen contractと該当oracleを依存に含める。非UI操作にUI証拠を強制しない。競合Pattern制約は根拠、影響、代替候補と共に示し、解消を創作しない。026 pack交換時は014とのinput/output contract version、scope、compatibility、paired acceptanceを再照合し、不一致/staleなら014設計提供をholdする。
+個別BRAIN Patternはその知識を使う時だけ選択依存であり、BRAIN connector契約そのものは常時必須である。UIを扱う操作だけでprototype/非UI合意とscreen contractを依存に含める。個別oracleはUI/非UIを問わず各設計対象に適用される場合に必須とする。非UI操作にUI証拠を強制しない。競合Pattern制約は根拠、影響、代替候補と共に示し、解消を創作しない。026 pack交換時は014とのinput/output contract version、scope、compatibility、paired acceptanceを再照合し、不一致/staleなら014設計提供をholdする。
 
 **受入条件**
 
