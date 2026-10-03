@@ -72,7 +72,7 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 未ACKのclaimを自動で再表示せず、送信側が`retry --runtime RUNTIME --session SESSION --id EVENT_ID`した場合だけ再配送する。
 retry時は同じ宛先sessionを維持する。新claim nonceが発行され、古いnonceではACKできない。
 期限切れ・既受領の同じrequestを再依頼する場合は、現在のSHAを確認し、新しいrequest IDとevent IDでbuild/sendする。
-通知messageは期限付きで、期限切れを復活させない。レーンleaseは同じ登録済みsessionのhook activityで更新し、別sessionへの付替えは`bind`／`enroll`を要する。古い待受は新しい待受世代で無効化する。
+通知messageは期限付きで、期限切れを復活させない。保存値の`expired`は宛先sessionのclaim時に付くため、宛先sessionが交代した通知は`queued`のまま残る。`status`は保存値を書き換えず、期限を過ぎた未ACKの`queued`／`claimed`を`expired`と表示する。監視ではこの表示を使い、古いsession宛ての通知を処理対象にしない。レーンleaseは同じ登録済みsessionのhook activityで更新し、別sessionへの付替えは`bind`／`enroll`を要する。古い待受は新しい待受世代で無効化する。
 保存はfile lockとatomic replaceで直列化する。無変更のpollでは書込み・fsyncしない。observedは各runtime最大64件・2時間で、次のhook時に整理する。
 通知本文は128KiB以内。hook継続文へ相手の自由文を注入しない。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
 

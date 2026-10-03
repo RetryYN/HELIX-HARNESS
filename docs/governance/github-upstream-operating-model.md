@@ -210,6 +210,30 @@ SHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）の
 Codex側にも同じ待受と指示の同期を置くことである。変更の理由は、旧runtimeを起動しない現行の境界の下で、旧世代と同じく
 取次ぎなしで回すためである。新しい承認手続きは加えていない。
 
+### レーンの交代と、両レーンが作成したPR
+
+- 作成側かどうかはPRのcommitで判断する。commitを作ったレーンは、そのPRの作成側である。
+- POの指示で`review_merge`のレーンが作成側を担う場合、review依頼はPR commentで行う。通知箱は`execution`から`review_merge`への依頼だけを受け付け、逆向きは拒否するためである（#2424、2026-09-30）。この場合は`execution`のレーンがreviewとmergeを担う。
+- 一つのPRに両レーンのcommitがある場合、各レーンは相手が作ったcommitだけを独立reviewとして扱い、自分のcommitをreviewしたことにしない。両レーンが作成側を含むため、merge担当はPOに確かめ、その選択をPR commentに原文で残す。#2424では、POが「Codexがmerge (Recommended)」（元の分担に戻し、Claudeが作成・Codexがreviewしてmerge）を選んだ（2026-10-04）。
+
+### 作業branchとworktreeの片付け
+
+作業branchとworktreeは、内容を失わない範囲で片付ける。作業管理Issue #2093の運用を、ここで決まりとして定める。
+
+- **remoteのbranch**：mergeされたPRのbranchは、repositoryの`delete_branch_on_merge`で自動削除する。この設定は維持する。mergeされずにcloseされたPRのbranchは、`refs/pull/<番号>/head`で中身を辿れるため、削除してよい。`main`、`archive`、open PRのbranchは消さない。
+- **worktreeとローカルbranch**：次をすべて満たすものだけを、`git worktree remove`と`git branch -d`で片付ける。
+  - 未commitの変更がない。
+  - 先端のcommitが`origin/main`の祖先である。
+  - そのworktreeで動いているprocessがない。
+- **独自の内容を持つbranch**：`origin/main`にないcommitやファイル内容を持つbranchは、作ったレーンの判断なしに消さない。消すときは、事前に`git bundle`でバックアップを取る。ファイル内容がすべて`origin/main`にあることを確かめた場合に限り、`git branch -D`を使う。
+- **他レーンの作業**：他のレーンが作業中のworktreeや未commitの変更には触れない。
+- **記録**：片付けた件数、残した件数とその理由を#2093に記録する。片付けは作業領域の管理であり、要求・PR・Issueの完了やcloseを生成しない。
+
+旧sourceは上記`CLAUDE.md`の「GitHub 自走運用」（`repoのdelete-branch-on-merge設定は維持する`）と、同じファイルの「Hybrid 多ランタイム commit 協調」（191〜236行目。相手のruntimeのcommitを破棄・デグレさせない）である。
+- **保持する点**：merge後のbranch自動削除と、相手のruntimeの作業を失わないこと。
+- **変更する点**：旧`git-command-guard`とoverride markerを、ここに書いた条件（未commitの変更なし、mainの祖先、process不在、事前のbundle）に置き換えること。
+- **変更の理由**：旧runtimeを起動しない現行の境界の下で、同じ保護を手順として保つためである。新しい承認手続きは加えていない。
+
 ## 新世代CIへの接続
 
 新世代CIは、承認済み要求とfreeze済み設計・検証から必要oracleを導出できる段階で、HELIX-OSの
