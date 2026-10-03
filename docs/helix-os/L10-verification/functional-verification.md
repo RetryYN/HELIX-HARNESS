@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2c + Stage 4担当6件 / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -140,3 +140,18 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | `CASE-OS-L10-052-01` | `FR-OS-L3-052` | `AC-OS-L3-052-01` | merge/read-after済みPR-A、assignment所有・他利用なし・未完作業なしのlocal resourcesを与え、remote resourceと他assignment利用ありを対照にする。cleanupを再実行する。 | 適格localのみ冪等cleanup。remoteは明示delete authorityなしなら保持。 | ownership/利用/未完不明で削除したら不合格。 |
 | `CASE-OS-L10-052-02` | `FR-OS-L3-052` | `AC-OS-L3-052-02` | PR-A merge後のPR-Bについてcontent HEADを固定し、latest base、trial merge、stale、dependency、review bindingを再読する。base変更ありでpair一致/stale=0/依存維持の対照と、conflict/stale/依存変化/binding不一致を別々に与える。 | base-only changeで既存binding/stateを不必要に失効させず、対照条件がすべて維持される時は保持する。4種の実不一致は該当範囲を未完に戻す。 | base driftという理由だけで無条件return、または実不一致後にold bindingを使えば不合格。 |
 | `CASE-OS-L10-052-03` | `FR-OS-L3-052` | `AC-OS-L3-052-03` | 最新base再照合後にconflict/stale/dependency change/review-binding mismatchを各変異として作成側へ返す。対照としてbaseのみ変更されpair一致・stale=0・dependency維持も与える。作成側が新HEADを出す前後のreview receiptを比較する。 | 実不一致ではreviewer/mergerは作成branchを変更せず返却し、新HEADには独立review。対照は既存stateを保持する。 | reviewer-side修正、base-only return、old HEAD review再利用、mergeからticket/Issue完了生成は不合格。 |
+
+## Stage 5: HELIXOS-L2-025/026 機能総合検証（設計のみ・未実行）
+
+各caseは該当ACの入力・正常/反例/未見oracleを確認する静的fixture設計で、運転・受入・段階成立を主張しない。
+
+| case ID | 親L2 / AC | 入力・fixture | oracle／失敗時 |
+|---|---|---|---|
+| `CASE-OS-L10-025-01` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 複数projectの異なるtarget revision、HARNESS構成版、L2-015〜024該当identity/state/evidence、人判断/stop条件を完全入力。 | 要求authorityからoperation/returnまでowner・revision一致で辿れ、全input欠落を特定。不明またはstaleは未完/戻し先。 |
+| `CASE-OS-L10-025-02` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 7 HARNESS製品のunit fixtureを個別に実施し、一製品が未完でも別対象の初期配布/単体成立する対照と、1.0全体評価fixtureを入力。後者は各7unit・選択connection・composite oracleを別々に持つ。 | partial operationは全7完了待ちにせず、1.0全体claimは7unit+selected connection+compositeの全てを要求する。unit greenだけでcomposite passを返さない。 |
+| `CASE-OS-L10-025-03` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 2+異なるprojectのauthority→ticket→Worker→review/verification→delivery/operation→LABO evaluation→OS return traceと、同じevent countだが欠落edgeの対照。 | complete owner traceだけを構成体fixtureとして認める。count/green/proseで欠落edgeを補完したら不合格。 |
+| `CASE-OS-L10-025-04` | `HELIXOS-L2-025` / `AC-OS-L3-025-04` | unknown/stale/unauthorized/human-pendingを各一つずつ、2.0+機能混入、L1-011/012をOS-owned化するmutationと比較する。 | 各状態を別に出し、欠けたownerへ戻し未完保持。後続版前倒し/LABO移管逸脱を拒む。 |
+| `CASE-OS-L10-026-01` | `HELIXOS-L2-026` / `AC-OS-L3-026-01` | 採択要求authority/revision、目的/scope、許容人分担、候補packのidentity/version/input/output/owner/dependencies/security/verification/compatibility、environment、update/rollback、comparison basisを結束したnormal caseと各field個別missing/stale/wrong-revision mutation。 | normal caseの導出から同一input一式へ戻れる。1欠落毎に該当owner/sourceを示し、未知を空集合で補わない。 |
+| `CASE-OS-L10-026-02` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 非空かつ要求/契約/安全依存を閉じたcandidateと、空集合、安全依存欠落、未知owner、stale契約、未決境界pack、人工程欠落の各mutationを与える。 | 成立candidateはclosure済みのみ。各反例を不足・戻し先へ保持し、暗黙の人/安全代替を拒否。 |
+| `CASE-OS-L10-026-03` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 明示候補空間に対する代替構成複数案の比較、各pack除去の局所試験だけ、探索空間unknown、根拠不足の比較fixtureを対比。 | global min claimは候補空間根拠と代替比較がそろう時だけ。局所除去だけ/unknown空間は「最小候補／未立証」へ。依存closure stateは独立保持。 |
+| `CASE-OS-L10-026-04` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | candidate導出後に採択/実装/受入/tag状態が欠落または混入した例、1.0候補とlater-version packの境界例を入力。 | candidateはcandidateのまま、別owner authorityなしに下流状態を生成しない。後続版を前提にしたら不合格。 |

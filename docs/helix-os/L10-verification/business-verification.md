@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 4担当6件 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -75,3 +75,10 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | CASE-OS-L10-BIZ-046 | HELIXOS-L2-046 / FR-OS-L3-046 AC-01..03 | 遷移証拠を既存owner/契約の範囲で照合する。 | 新approval/merge rate |
 | CASE-OS-L10-BIZ-048 | HELIXOS-L2-048 / FR-OS-L3-048 AC-01..03 | pending/resolvedの根拠と閉じたticket履歴を分ける。 | resolution率 |
 | CASE-OS-L10-BIZ-052 | HELIXOS-L2-052 / FR-OS-L3-052 AC-01..03 | cleanup適格性と後続PR最新base照合を別状態で観測する。 | issue close/生産性 |
+
+## Stage 5: business検証の適用分類（OS-025/026）
+
+| case ID | 親L2 | business oracle |
+|---|---|---|
+| `CASE-OS-L10-BIZ-025` | `HELIXOS-L2-025` | 独立business value/KPIなし。複数projectの機能traceを事業成果や外販対象と読み替えない。 |
+| `CASE-OS-L10-BIZ-026` | `HELIXOS-L2-026` | 独立business value/KPIなし。導出結果や最小性を利用価値/リリース決定とみなさない。 |

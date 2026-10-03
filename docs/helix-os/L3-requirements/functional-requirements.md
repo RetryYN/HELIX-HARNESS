@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b + Stage 2c + Stage 3 + Stage 4担当6件 / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
 owner: HELIX-OS
 paired_l10: ../L10-verification/functional-verification.md
 
@@ -454,3 +454,60 @@ All legacy sources above are historical/candidate material, not current authorit
 | HELIXOS-L2-052 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:62-67` (MIC-R-02) | `3962e5a42fd9c578ccd1c56cda1b88ad01f0c3924172db2a246c4f62da252ecd` |
 | HELIXOS-L2-052 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:102-106` (MIC-R-06) | `9508c4439c191599853307e0096d8ec21eabbe3dd98abed165be38d61531e222` |
 | HELIXOS-L2-052 | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/management-integration-cell-acceptance.md:34` (MIC-AC-009) | `b0040719be4359264a00498413484fce9263752804206ee0fc601447c4730010` |
+
+## Stage 5: HELIXOS-L2-025/026 機能要件（部分草稿）
+
+### `FR-OS-L3-025` — `HELIXOS-L2-025`
+
+HELIX-OS自身と性質の異なる複数projectを対象に、採択済み要求revision、HARNESS構成版、L2-015〜024の対象identity/revision/state/evidence、既存の人判断と停止条件を一つの構成体traceへ結ぶ。要求authorityからticket、Worker、検収、提供・運用、LABO評価、OSへの還流までを追跡し、単体unit、選択されたconnection、構成体固有の端から端受入を独立したidentityと状態で示す。
+
+**責務／適用境界**：OSは既存契約とowner evidenceを束ねて統合状態・不足・戻し先を示す。各対象ownerは自分のunit/connection/resultを、HARNESSは工程・検証義務、LABOは評価、SECURITY/INFRASTRUCTUREは適用するauthority/資源条件を保持する。単体・connectionの成立は構成体passを自動生成しない。
+
+**受入条件**
+
+- **`AC-OS-L3-025-01` 入力とtrace結束**：対象identity/revision、選択HARNESS構成版、L2-015〜024の該当state/evidence、人の判断・停止条件を同じscopeへ束ねる。authority/source/owner/revisionの欠落・stale・不一致はunknownとして残す。
+- **`AC-OS-L3-025-02` 単体・接続・構成体の別判定**：HARNESSが提供する7製品の各unitを個別に照合し、選択構成のconnectionとOS構成体固有の端から端受入を別々に記録する。7 unitの全完成を個別の初期配布・単体成立の前提にしない一方、1.0全体到達を評価するfixtureでは7 unit、選択connection、構成体固有受入をすべて確認する。
+- **`AC-OS-L3-025-03` 複数projectの因果trace**：異なる複数projectについて、要求/authority→ticket/Worker→検収→提供/運用→LABO評価→OS還流をowner証拠でたどる。event数・文書数や単体greenだけからendpoint間の欠落を補完しない。
+- **`AC-OS-L3-025-04` unknown・未完・版境界**：未完、unknown、stale、未許可、人判断待ちを隠さず、欠けたunit/connection/sourceへ戻し未完義務を保持する。2.0/3.0/4.0/5.0の機能を1.0前提にせず、L1-011/012のLABO移管をOSへ戻さない。
+
+### `FR-OS-L3-026` — `HELIXOS-L2-026`
+
+目的・仕事範囲・許容された人の分担と候補pack境界を入力として、対象要求identity/revisionとauthority、packごとの入力/出力・契約版・所有・依存・安全条件・互換・検証範囲、環境/権限、更新/復旧条件、比較基準を同一対象へ束縛し、段階構成候補と不足を導出する。候補から採択済み要求、依存充足、実構成成立を推定しない。
+
+**責務／適用境界**：OSは導出能力と不足・戻し先を返す。HARNESSはpack/受入契約、各機構は自身の能力と依存、SECURITYは安全条件、INFRASTRUCTUREは資源/復旧、人は親契約で割り当てられた工程を所有する。出力構成の実行・復旧・運用受入はOS-L2-014の別判定である。
+
+**受入条件**
+
+- **`AC-OS-L3-026-01` 入力の同一revision結束**：目的/scope、要求authority/revision、候補pack境界、各候補の契約版/owner/依存/安全条件/検証・互換範囲、人の工程、環境/権限、更新/復旧条件、比較基準を固定し、導出結果から各入力まで逆引きできる。
+- **`AC-OS-L3-026-02` 依存・安全閉包と不足**：同一revisionで必要要求・契約・安全依存が閉じた非空集合だけを成立候補として示す。空集合、安全依存省略、境界/所有/版未決packの仮分割を成立扱いせず、欠落/conflict/stale/unknown/互換性不明は不足と戻し先に残す。必要な人の工程も暗黙に外さない。
+- **`AC-OS-L3-026-03` 代替比較と最小性の主張範囲**：目的・scope・許容分担・候補空間・適格性・比較基準を固定して成立する代替を比較する。各packを一つずつ除く試験だけから全候補空間の最小性を断定しない。探索範囲の根拠または代替比較が不足する場合は「最小候補／未立証」とし、既に確認した依存閉包とは別の結果にする。
+- **`AC-OS-L3-026-04` 状態と版の分離**：候補導出、個別要求採択、段階構成の受入、実装、tag/外部配布を別状態に保つ。候補ID/存在のみで採択・実装許可・段階成立を作らず、後続版機能を前段階の前提にしない。
+
+**旧HELIXとの対応**：Functional Release Slice候補にあった機能単位・依存閉包・明示的収載/除外・unknown fail-close・構成体受入の意味を再導出する。Slice/Module/Bundle/channel名、固定個数、schema、runtime、CLI、CI、公開/配布gateは現行identityや運転へ移植しない。現行の入力境界と段階候補の役割は採択済みOS-L2-026およびHARNESS-L2-010/011/022へ合わせる。
+
+### Stage 5 対応する旧source（全fileの物理行・LF込みSHA-256）
+
+| 親 | 分類と保持/再導出点 | 旧asset・source path:lines | source SHA-256 = 全行raw-span SHA-256 |
+|---|---|---|---|
+| 025/026 | 再利用する意味起点：独立機能単位、明示収載/除外、依存と安全閉包、unknownを成功扱いしない、構成体受入。旧channel/schema/具体runtimeは置換。 | `LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:1-224` | `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` |
+| 025/026 | 利用者側の要求範囲：機能独立昇格、明示的収載/除外、成熟度分離、追跡、rollback、安全閉包、組合せ受入。新しいrelease channelは再利用しない。 | `LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:1-82` | `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` |
+| 025/026 | paired acceptanceの正常/反例・全体と単体分離の形を再導出。旧acceptance IDsや旧runtime testは現L10へ同一視しない。 | `LEGACY-ASSET-67ADFAB856D954B3C5D2` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md:1-83` | `bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee` |
+
+
+
+### 025/026 旧source atomごとの対応判断
+
+| 現行親 | 旧atom・旧受入 | 処置 | 今回保持／再導出する意味と境界 |
+|---|---|---|---|
+| HELIXOS-L2-025 | FRS-BR-001/004/007/009、FRS-R-08/09/12/13/14/19/20/24、FRS-AC-019/021/022/025/026 | 意味を再導出 | 個別機能、connection、compositeを別々に測り、複数projectのauthorityから運用・評価還流までをowner evidenceで追う。旧 slice/channel単位・固定release gateは継承せず、親L2の7 HARNESS unit/selected connection/composite条件へ合わせる。 |
+| HELIXOS-L2-025 | FRS-FR-001..006のSlice/Module/Bundle schema、channel順、preview/rc/stable promotion、旧CI/consumer/DB replay、各旧runtime行為 | 置換／不採用 | 現行OS構成体にそのまま対応する責務・identityではない。各現行ownerと親L2のstate/evidenceを束ねるtraceへ置換し、実運転・配布・releaseを作らない。 |
+| HELIXOS-L2-026 | FRS-BR-001/002/005、FRS-R-02/06/08/14/20/23、FRS-AC-002/006/008/014/022/025 | 意味を再利用 | exact source/revision、明示収載/除外、依存・安全閉包、unknown/staleを成功扱いしない境界を再利用。pack候補を要求authorityや実機能の採択と同一視しない。 |
+| HELIXOS-L2-026 | FRS-R-19/20/24、FRS-AC-021/022/026 | 一部再導出 | 要求と依存に基づく構成/順序とcompositeの別判定を起点にする。現行固定親に沿って有限candidate alternativesと探索範囲を示し、全体最小性は比較空間が不明なら未立証とする。旧9群/17系統・Slice数は使わない。 |
+| 025/026 L10 | FRS-AC-001..026の正常/否定fixture設計 | oracle構造を再利用、条件は再導出 | 入力に対する独立positive/negative判定の形を使い、case内容を現行L2/L11へ再束縛。旧runtime、旧CLI/CI、green/実行済みacceptanceは実行せず、結果証拠として使わない。 |
+
+### Stage 5 固定親とPO採択revision（current file/physical-span pins）
+
+| 親 | L2 fixed source | L2 raw-span SHA-256 | L11 fixed source | L11 raw-span SHA-256 | PO採択registration / decision source / semantic digest |
+|---|---|---|---|---|---|
+| `HELIXOS-L2-025` | `docs/helix-os/L2-requirements/governance-requirements.md:742-751` (whole file SHA-256 `97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7`) | `b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1` | `docs/helix-os/L11-acceptance/governance-acceptance.md:394-400` (whole file SHA-256 `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`) | `d21d7708fe09cbee17d37ad66444d99631f16e2c8198924da9b608a1117eda18` | `MPR-RC-HELIXOS-L2-025-001`; `helix-os-requirements-po-decision-2026-09-28.md:48`; adopted, version_class 1.0; candidate semantic digest `sha256:b59cfc3d4801d71391c528214f2de573494b257f0783841141982963cf43ff8c` |
+| `HELIXOS-L2-026` | `docs/helix-os/L2-requirements/governance-requirements.md:807-823` | `5bb2dd228c7560908edb8253a0d3fdab0952d65d2b862332efe2276ccfd931d9` | `docs/helix-os/L11-acceptance/governance-acceptance.md:430-441` | `6f68d49c377871a5991e317b0b43af81b9dd69967cfcb4398662999fc56cb2c0` | `MPR-RC-HELIXOS-L2-026-003`; `helix-os-requirements-po-decision-2026-09-28.md:48`; adopted, version_class 1.0; candidate semantic digest `sha256:e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374` |

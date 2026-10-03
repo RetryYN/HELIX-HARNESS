@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 4担当6件 / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
 paired_l10: ../L10-verification/nfr-verification.md
 
 以下は固定L2/L11から導出した候補値であり、承認済み閾値や実測ではない。候補ごとに比較案とL10測定を示す。要件意味・scope・owner・版を変更する必要がある場合だけ上流へ戻す。
@@ -87,3 +87,12 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | `NFR-OS-L3-046-01` / 046 / AC-01..03 | dispatchからadmission候補までの必須binding field一致100%、変更影響後のstale証拠流用0件を候補とする。 | current exact pair照合と、HEAD/base/authorityを固定扱いする比較案を対比する。 | authority/HEAD/base/scope/contractの単一mutationを計測し、影響範囲だけstaleになることを確認。新規check/approvalや本番merge回数は測らない。 |
 | `NFR-OS-L3-048-01` / 048 / AC-01..03 | 既存条件未充足でのfalse resolution 0件、closed ticketの履歴上書き0件、未追跡/打切り/観測window未満からのdefect 0誤認0件を候補とする。 | evidence-backed resolutionとprose/time/path-only解決、完全観測とcensored observationを比較する。 | complete current evidence、各欠落/古いevidence、再発行後の同条件LABO評価、後日findingをfixture化。L2-007の十分条件は変更せず、改善効果のKPIを作らない。 |
 | `NFR-OS-L3-052-01` / 052 / AC-01..03 | 適格性未確認local/remote資源の誤削除0件、conflict/stale/依存変化/review binding不一致後の旧review流用0件、base-only適合状態の誤返却0件を候補とする。 | 最新baseで再照合して各実不一致で返却する案と、base変更だけで一律返却する案を比較する。 | 条件ごとにmutationしcleanup結果、remote authority、content HEAD不変、review bindingを測る。時間短縮/削除数を成果指標とせず、pair一致・stale=0・依存維持ではstateを保つ。 |
+
+## Stage 5: HELIXOS-L2-025/026 非機能候補（部分草稿）
+
+以下は構造的完全性を観測する技術候補であり、承認値ではない。必要性・測定条件・失敗時の未評価をL10と対にする。
+
+| NFR候補ID | 親 | 候補値・比較と根拠 | 適用・測定境界 |
+|---|---|---|---|
+| `NFR-OS-L3-025-01` | `HELIXOS-L2-025` | 有効な対象内authority/unit/connection/composite traceの必須edge coverage 100%、false completion 0。coverageを構成体単体の有無で代用する案は欠落edgeを隠すため不採択。 | 測定単位は選択されたfixtureと宣言scope。1.0全体受入では7 unit+選択connection+compositeを別計上し、個別unit提供の一律前提にしない。 |
+| `NFR-OS-L3-026-01` | `HELIXOS-L2-026` | 導出器が成立と報告した各candidateの必要依存・安全依存 closure coverage 100%、unknown/欠落依存のfalse-closed count 0を候補とする。exact-set再照合を集計pass率だけに畳む案は除外。 | 閉包/成立候補のみ評価対象。探索空間が未確定な時は最小性を未立証にし、closure計測と分離する。追加pack数など固定閾値を設けない。 |
