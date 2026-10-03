@@ -4,7 +4,7 @@
 
 ## 起点と作成方法
 
-旧HELIXのL3定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:13-21,101,148-168`（旧source whole SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`、`LEGACY-ASSET-F542125805B777D8A56A`）が示すFR+ACと対応検証の意味、およびfunctional-requirement／business-requirement／nfr-gradeの3区分を保持する。旧`docs/process/gates.md:41,64`が示すFRとACを対応させ、要件と検証設計の対が揃わなければ完了としない意味を保つ。旧工程名やruntime/sub-gate構成は持ち込まない。旧自律境界 `archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85` は人がL3を承認しAIが起草する責任分担の起点。対となる旧L10/test designは実行せず、failure classとtraceの考えだけを現行L2/L11へ再導出する。
+旧HELIXのL3定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:13-21,101,148-168`（旧source whole SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`、`LEGACY-ASSET-F542125805B777D8A56A`）が示すFR+ACと対応検証の意味、およびfunctional-requirement／business-requirement／nfr-gradeの3区分を保持する。旧`archive/legacy-generation-2026-09-14/root/docs/process/gates.md:41,64`（`LEGACY-ASSET-B30F3C82B6B0FDC0D2A8`、全文SHA-256 `dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08`）が示すFRとACを対応させ、要件と検証設計の対が揃わなければ完了としない意味を保つ。旧工程名やruntime/sub-gate構成は持ち込まない。旧自律境界 `archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`（`LEGACY-ASSET-6EBDB617A8104A7756D0`、全文SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）は人がL3を承認しAIが起草する責任分担の起点。対となる旧L10/test designは実行せず、failure classとtraceの考えだけを現行L2/L11へ再導出する。
 
 以下の各itemに現行PO承認対象のexact parent revisionと、旧assetのidentity/path/line/full SHA/raw span SHAを記録した。候補値は根拠と比較理由付きで示し、旧数値を自動継承しない。意味・scope・owner・version変更は含まない。
 
@@ -47,7 +47,7 @@
 
 ### 旧L3／対のテスト設計からの意味対応
 
-旧nfr-grade・pillar FR/NFRとHAT設計から測定可能性・正常/反例/境界を対にする骨格だけ再利用する。旧runtime/CLI、閾値、old physical topologyは移さない。現行L2/L11にあるidentity/environment/resource graphと明示attributeを再導出し、owner境界に合わせてCONNECT論理接続・INFRA物理pathを分ける。旧資産に現行HELIXのruntime resource topology全体との直接一致はない。
+旧nfr-grade・pillar FR/NFRとHAT設計から測定可能性・正常/反例/境界を対にする骨格だけ再利用する。旧runtime/CLI、閾値、old physical topologyは移さない。現行L2/L11にあるidentity/environment/resource graphと明示attributeを再導出し、owner境界に合わせてCONNECT論理接続・INFRA物理pathを分ける。直接一致は確認できず、旧L3 `technology-environment-reconciliation-requirements.md:32-70,72-94`および旧test design `technology-environment-reconciliation-acceptance.md:16-39`のsource/version drift観点を部分参照した。
 
 | 旧asset ID | 旧source path・行 | 旧source full SHA-256 | 旧span SHA-256 |
 |---|---|---|---|
@@ -92,7 +92,7 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 
 ### 旧L3／対のテスト設計からの意味対応
 
-旧L3/NFR gradeの測定・normal/negative/boundary構成だけ参照する。対象scopeのcontrol plane停止時に独立するbootstrap/recovery pathを定義する旧L3/AC直接一致は確認されていないため現行L2/L11から再導出する。旧Recovery CLI/command/runtime、閾値、旧authorityは置換・除外し、新たな万能管理pathにしない。
+旧L3/NFR gradeの測定・normal/negative/boundary構成だけ参照する。対象scopeのcontrol plane停止時に独立するbootstrap/recovery pathを定義する旧L3/AC直接一致は確認されていないため現行L2/L11から再導出する。確認範囲は旧`nfr-grade.md:19-68`、`pillar-functional-requirements.md:134-153,178-190`および`L3-pillar-acceptance-test-design.md:43-50,67-90,91-120`。旧Recovery CLI/command/runtime、閾値、旧authorityは置換・除外し、新たな万能管理pathにしない。
 
 | 旧asset ID | 旧source path・行 | 旧source full SHA-256 | 旧span SHA-256 |
 |---|---|---|---|
