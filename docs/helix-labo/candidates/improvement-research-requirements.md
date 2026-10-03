@@ -67,7 +67,7 @@ RCLSは採用revision確定後に次を確認する。
 ## HELIX-Web由来の実績に対する追加候補（2026-09-26）
 
 2026-09-26にPOが示した「HELIX-Web製品群 要求原案」の14節は、LABOに内蔵するHELIX-Benchへの追加を求める。原案は、独立した`helix-web-bench/`を作らず本書へ接続・追記するとしている。
-以下に、原文のID・種類・文言のまま載せる。出典は[原文のsnapshot](../../../helix-web/docs/helix-web/sources/helix-web-product-group-requirements-po-original-2026-09-26.md)の325〜351行であり、見出しの階層だけを一段下げた。
+以下に、原文のID・種類・文言のまま載せる。出典は[原文のsnapshot](../../helix-web/sources/helix-web-product-group-requirements-po-original-2026-09-26.md)の325〜351行であり、見出しの階層だけを一段下げた。
 原文の状態は「要求候補・未採択」である。本節は上の移した要求と同じく候補であり、要求の採用・承認・実装許可を生成しない（[判断記録](../../governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md)）。
 HELIX-Benchは、Conceptの機構の表のとおりLABOの中にあり、LABOと並ぶ機構にしない。
 

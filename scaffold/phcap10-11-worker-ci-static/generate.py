@@ -168,8 +168,8 @@ REFS = [
     ("CUR-OS-BOOTSTRAP", "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md", 72, 80, "direct_current_ref", "bootstrap does not establish executor or implementation"),
     ("CUR-CI-CANDIDATE-BOUNDARY", "docs/helix-os/candidates/next-generation-ci-requirements.md", 23, 34, "direct_current_ref", "new CI candidate and four-way responsibility split"),
     ("CUR-CI-CANDIDATE-REBUILD", "docs/helix-os/candidates/next-generation-ci-requirements.md", 63, 79, "direct_current_ref", "new CI reconstruction order and stop conditions"),
-    ("CUR-WEB-L2-BOUNDARY", "helix-web/docs/helix-web/L2-requirements/product-requirements.md", 48, 61, "adjacent_boundary_ref", "Web owns user-facing product boundary; CI/Worker remain elsewhere"),
-    ("CUR-WEBOS-L2-BOUNDARY", "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md", 35, 40, "adjacent_boundary_ref", "Web-OS service runtime and bounded OS export"),
+    ("CUR-WEB-L2-BOUNDARY", "docs/helix-web/L2-requirements/product-requirements.md", 48, 61, "adjacent_boundary_ref", "Web owns user-facing product boundary; CI/Worker remain elsewhere"),
+    ("CUR-WEBOS-L2-BOUNDARY", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", 35, 40, "adjacent_boundary_ref", "Web-OS service runtime and bounded OS export"),
 ]
 
 PHASE_RECORDS = None

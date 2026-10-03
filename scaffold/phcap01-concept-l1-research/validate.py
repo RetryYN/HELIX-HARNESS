@@ -43,11 +43,16 @@ def current_phase_inventory_preserves_source(source_bytes: bytes) -> bool:
         return False
     source_keys = set(source)
     current_keys = set(current)
-    return (
-        source_keys <= current_keys
-        and current_keys - source_keys <= {"current_projection"}
-        and {key: current[key] for key in source_keys} == source
-    )
+    if not (source_keys <= current_keys and current_keys - source_keys <= {"current_projection"}):
+        return False
+    expected = json.loads(json.dumps(source))
+    for record in expected.get("records", []):
+        refs = record.get("current", {}).get("refs", [])
+        if isinstance(refs, list):
+            for index, path in enumerate(refs):
+                if isinstance(path, str) and path.startswith("helix-web/docs/"):
+                    refs[index] = path.replace("helix-web/docs/", "docs/", 1)
+    return {key: current[key] for key in source_keys} == expected
 HISTORICAL_REF_COMMIT = "11a22679dc2bfce57d3294759531282445625001"
 CURRENT_CONCEPT = "docs/concept/helix-concept.md"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
@@ -69,11 +74,10 @@ HISTORICAL_REFS = {
     "CUR-WEB-L1": ("HELIX-Web", "docs/helix-web/L1-planning/product-intent.md", "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", 56, 17, 56, "d04b03ff393a107a6e438aa18a5ee64f6b6136743ad9fc3b554ce5d80b89535a"),
     "CUR-WEBOS-L1": ("HELIX-Web-OS", "docs/helix-web-os/L1-planning/system-intent.md", "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", 50, 12, 50, "d57646a08f42cb3096bcf7456498796ecaddc362acfb792269f673928c8d831f"),
 }
-# 2026-09-26: HELIX-Web and HELIX-Web-OS moved out of docs/ by PO instruction.
-# Historical refs keep the old path for Git reads; the current meaning check reads the moved file.
+# Historical approval refs keep their exact source path/revision. The current source is again under docs/ after the 2026-10-03 PO location decision.
 RELOCATED_PATHS = {
-    "docs/helix-web/L1-planning/product-intent.md": "helix-web/docs/helix-web/L1-planning/product-intent.md",
-    "docs/helix-web-os/L1-planning/system-intent.md": "helix-web/docs/helix-web-os/L1-planning/system-intent.md",
+    "docs/helix-web/L1-planning/product-intent.md": "docs/helix-web/L1-planning/product-intent.md",
+    "docs/helix-web-os/L1-planning/system-intent.md": "docs/helix-web-os/L1-planning/system-intent.md",
 }
 EXPECTED_PHASE_REFS = [
     "docs/concept/helix-concept.md",
@@ -81,8 +85,8 @@ EXPECTED_PHASE_REFS = [
     "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
     "docs/helix-harness/L1-planning/product-intent.md",
     "docs/helix-os/L1-planning/system-intent.md",
-    "helix-web/docs/helix-web/L1-planning/product-intent.md",
-    "helix-web/docs/helix-web-os/L1-planning/system-intent.md",
+    "docs/helix-web/L1-planning/product-intent.md",
+    "docs/helix-web-os/L1-planning/system-intent.md",
 ]
 EXPECTED_PRODUCT_MEANINGS = {
     "HELIX-HARNESS": {
