@@ -56,7 +56,7 @@ Stage 2a・L2-068の固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2
 
 ## Stage 4 — business scope分類
 
-このStage 4 checkpointの5親について独立したbusiness criterionを導出しない。固定L2/L11に明示された業務価値・事業owner判断・業務閾値はなく、以下は機能要件をbusiness acceptanceへ読み替えないための分類記録である。
+このStage 4 checkpointの10親について独立したbusiness criterionを導出しない。固定L2/L11に明示された業務価値・事業owner判断・業務閾値はなく、以下は機能要件をbusiness acceptanceへ読み替えないための分類記録である。
 
 | 親L2 | 扱い | 境界 |
 |---|---|---|

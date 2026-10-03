@@ -480,9 +480,9 @@ LABO evaluation, target scope, explicit unassessed state, failure/counterexample
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-035-01` 正常成立**：approved goal revision・dependency・plan/placement/diagnosis/review/repair rationaleをsource-boundにまとめたcandidate receiptをOSへ渡す。OSはticket化するかを別に判断し、candidateはticket/assignment/executionを作らない。
-- **`AC-INTELLIGENCE-L3-035-02` 個別変異と失敗戻し先**：未承認goal、dependency欠落、stale candidateを個別投入し、INTELLIGENCEへ差し戻してticket化しない。OSが独自に発行したticket/assignmentのownerはOSであり、本ACはそれを生成しない。戻し先は不完全/stale candidateのINTELLIGENCEであり、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-035-03` 未見正常と局所unknown**：未見task classにOS ticket mappingがない時も有効goal/dependencyとcandidate receiptは保持し、mappingだけunknownと記録する。独自ticketを作らずOSへ渡す。
+- **`AC-INTELLIGENCE-L3-035-01` 正常成立**：approved goal revision・dependency・stop condition・plan/placement/diagnosis/review/repair rationaleをsource-boundにまとめたcandidate receiptをOSへ渡す。停止条件のtriggerとfallbackを保持し、OSはticket化するかを別に判断する。candidateはticket/assignment/executionを作らない。
+- **`AC-INTELLIGENCE-L3-035-02` 個別変異と失敗戻し先**：未承認goal、dependency欠落、stop condition単独欠落、stale candidateを個別投入し、stop condition不明なら候補を未確定としてINTELLIGENCEへ戻し、実行可能ticket化しない。OSが独自に発行したticket/assignmentのownerはOSであり、本ACはそれを生成しない。戻し先は不完全/stale candidateのINTELLIGENCEであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-035-03` 未見正常と局所unknown**：未見task classにOS ticket mappingがない時も有効goal/dependency/stop conditionとcandidate receiptは保持し、mappingだけunknownと記録する。独自ticketを作らずOSへ渡す。
 
 ### `FR-INTELLIGENCE-L3-036-01` — `HELIXINTELLIGENCE-L2-036`
 
