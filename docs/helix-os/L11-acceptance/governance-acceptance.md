@@ -1349,12 +1349,13 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 - **sourceから利用者確認への対応**：旧HIL-NFR-34の全条件とHR-FR-HIL-21から選択した追加保証、未回収consumer/lifecycle条件、対応する技術材料はcoverage receiptのrevision 002に対応表として記録する。HAT-HIL-21は`designed_not_implemented`であり、実行結果や全体closureの証拠として扱わない。
 
 
-### HELIXOS-L11-132 旧HELIXのBun依存撤去に対応するrepository移行の利用者確認候補（未採択・未実行）
+### HELIXOS-L11-132 HELIXのBun恒久不使用と一回限りの移行完了の利用者確認候補（未採択・未実行）
 
-本節は未採択のHELIXOS-L2-132に対する利用者確認基準案であり、現行移行の合否や実行済み状態を示さない。
+本節はHELIXOS-L2-132に対する未採択の利用者確認基準案であり、現在の移行合否や実行済み状態を示さない。
 
-- **対象とscope**：利用者は、旧HELIXのBun依存撤去に対応するHELIX再構築の一回のrepository移行について、対象repositoryと移行時点でactiveとした開発・実行・検証・配布surfaceの一覧を照合する。任意の別repositoryへの一般化はこの候補に含まれない。historical/inactive扱いのsurfaceも、その分類根拠を確認できる。
-- **完了として確認すること**：列挙されたactive surfaceすべてについて、Bunなしで再現できる根拠を確認する。全surfaceが揃った場合だけ対象の一回限りの移行を完了として受け入れられる。一部surfaceだけの成功では受け入れない。
-- **未完として確認すること**：開発CLIはBunなしで動くが検証または配布がBunに依存する、対象surfaceが未列挙、またはactive/historicalの分類が未確定である場合、利用者は移行完了を受け入れず、未解決の範囲と理由を確認できる。
-- **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureや実行証跡は移行receiptに記録する。個別方式や一時的な成功を本候補へ追加しない。
-- **採択境界**：この候補は利用者確認基準案であり、PO判断前の受入実行やsource retireを意味しない。
+- **継続する保証**：利用者は、HELIXの開発・実行・検証・配布に用いる既存および新規surfaceでBunを使用せず、新たな使用や再導入をしない保証を確認する。この保証は一回のrepository移行完了後も継続し、今後追加・変更されるsurfaceにも適用する。
+- **一回限りの移行対象**：利用者は、旧HELIXのBun依存撤去に対応するHELIX再構築上の一回のrepository移行について、対象repositoryと移行時点でactiveとした開発・実行・検証・配布surfaceを照合する。historical/inactive扱いのsurfaceとその分類根拠も確認する。任意の第三者repository一般への規則には広げない。
+- **完了として確認すること**：列挙されたactive surfaceのそれぞれがBunなしで再現可能であり、HELIXの対象surfaceにBunの使用または再導入を含まないことを確認できた場合に限り、一回限りの移行を完了として受け入れる。一部surfaceだけの成功では受け入れない。
+- **未完として確認すること**：開発はBunなしで行えるが実行・検証・配布surfaceのいずれかがBunを使う／要求する場合、対象surfaceが未列挙の場合、またはactive/historicalの分類が未確定の場合、利用者は移行完了を受け入れない。継続保証に反する新規または再導入も適合としない。未解決の範囲と理由を確認できるようにする。
+- **確認材料の境界**：Node.jsの採用、個別tool/command、runtime/API、lockfile、CI、distribution手順、test fixtureおよび実行証跡はmigration receiptに記録する。個別方式を本候補で指定しない。
+- **採択境界**：本節と仮登録は採択内容を生成せず、受入実行、source retire、migration実施または実行・配布許可を意味しない。採択内容は対象revisionを固定したPO判断記録に従う。
