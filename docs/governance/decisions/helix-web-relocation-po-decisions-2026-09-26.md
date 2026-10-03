@@ -63,7 +63,7 @@ POの選択：「リポジトリ直下に helix-web/ を作る（推奨）」
 ## 参照の更新
 
 - 更新した：現在の意味を持ち更新され続ける文書と台帳（repository直下と`docs/`の`README.md`、製品責務境界、作業入口、OSの`README.md`とL2、旧Concept由来要求のcrosswalk、要求対応表の`source_location`、現行L2分類台帳の現在の`source_path`、Phase Capability Inventoryの`current.refs`）と、Scaffold Bindingの上流path。
-- 更新しない：判断記録、監査記録、source holding、snapshot、`scaffold/`配下の証拠と研究記録、要求対応表の`previous_l11_acceptance`、現行L2分類台帳の`previous_classification`、Phase Capability Inventoryの`current_evidence_snapshot`、[repository foundation readiness](../audits/source-rebaseline/repository-foundation-readiness.md)（PR #1797時点の判定記録）、[archive-first移行記録](../audits/source-rebaseline/archive-first-transition-record-2026-09-14.md)。これらの中の旧pathは当時の記録であり、上の対応表で新pathへ辿れる。
+- 更新しない：判断記録、監査記録、source holding、snapshot、`scaffold/`配下の証拠と研究記録、要求対応表の`previous_l11_acceptance`、現行L2分類台帳の`previous_classification`、Phase Capability Inventoryの`current_evidence_snapshot`、[repository foundation readiness](../repository-foundation-readiness.md)（PR #1797時点の判定記録）、[archive-first移行記録](../archive-first-transition-record-2026-09-14.md)。これらの中の旧pathは当時の記録であり、上の対応表で新pathへ辿れる。
 
 ## 研究用validatorへの影響
 
