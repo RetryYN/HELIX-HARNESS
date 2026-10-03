@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -80,3 +80,12 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | `CASE-HARNESS-L10-NFR-032-01` | `NFR-C-HARNESS-032-01` | 選択consumerの適合packetとfieldごとの不一致packetを比較し、handoff前のreceipt/resultなしでpacketを作る。handoff後のdelivery receiptとexecutor実行後のrun resultを順に与える。 | packet対応不一致0、handoff前のreceipt/result要求0、handoff receiptからrun result/passを作る件数0。 | consumer/schema不明は未評価、別consumerへのfallbackは不合格。 |
 
 候補値の測定は合成fixtureで行う設計であり、実測・実行・承認ではない。
+
+## Stage 4 NFR候補の測定設計
+
+| 候補 | 入力・測定 | 正常・反例と判定 | unknown/限界 |
+|---|---|---|---|
+| NFR-C-HARNESS-026-01 | 選択L3/Template/CORE/Patternとtrace graph | 親要求ごとにartifact/oracle edgeを数え、欠落0を候補とする。CORE欠落・競合隠蔽は不合格。 | 未選択Patternは適用外。全Template実装率は測らない。 |
+| NFR-C-HARNESS-027-01 | 静的source locator、revision/digest/scope、permission、出力observation | 全observationを正確なspanへ結び、誤source/実行アクセス0を候補とする。runtime・別revision混入は失敗。 | spanを特定できない観測はunknown。処理時間閾値は未指定。 |
+| NFR-C-HARNESS-028-01 | design/requirement exact revisionとaffected-set oracle | 親が列挙する全対象との対応欠落数、known/unknownの誤昇格数を測る。全件対応と誤昇格0が候補。 | 未確定の設計owner意味を補完しない。 |
+| NFR-C-HARNESS-029-01 | 選択operation、operation-specific dependencies、proposalとcustom logic trace | proposal根拠漏れ・custom logic消失・未選択依存の混入を個別計数し0を候補とする。 | 実装成功率やmigration timeを追加しない。 |

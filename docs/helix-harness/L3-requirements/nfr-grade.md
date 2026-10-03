@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054 / version_class 1.0
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029 / version_class 1.0
 paired_l10: ../L10-verification/nfr-verification.md
 
 これは現在の部分scopeの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、候補値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
@@ -91,3 +91,12 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 | `NFR-C-HARNESS-032-01` / `HARNESS-L2-032` | packet内のcase/oracle/source-version/target-revision/scope/consumer-schema対応不一致 **0件**。 | L2-032のartifact意図と選択consumerとの結合をidentity単位で観測可能にする候補。受渡しreceiptからexecution passを導く比較案は責務境界を壊すため不採用。 | 対象は選択した宣言済みconsumer/versionだけ。実行結果・CI成功・consumer availability SLOは測らない。 |
 
 旧NFRの測定値・閾値を流用せず、比較対象と計測範囲を限定する。
+
+## Stage 4 technical candidates
+
+| 候補ID／親 | 候補値・測定条件 | 根拠と比較 | 適用限界 |
+|---|---|---|---|
+| NFR-C-HARNESS-026-01 / HARNESS-L2-026 | 選択scopeの要求→設計artifact→oracle trace欠落0件、必須CORE contract欠落の誤確定0件 | L2列挙fieldを全件照合する案Aと、artifact単位sampling案Bを比較し、samplingは一つの未trace義務を隠すためAを候補とする。 | 対象は選択済み設計scope。Template数・生成時間SLOなし。 |
+| NFR-C-HARNESS-027-01 / HARNESS-L2-027 | 静的source spanへの未trace observation 0件、実行・実顧客dataへの誤アクセス0件 | 静的code/schema/API/configのsource/revision/digest/scopeを全観測と照合する。file-levelのみのtrace案は誤source混入を検出しにくいためspan trace案を比較候補にする。 | coverage分母は親が選択した静的scope。実行性能SLAは導かない。 |
+| NFR-C-HARNESS-028-01 / HARNESS-L2-028 | affected requirement/design exact setの欠落0件、unknownをknownとする誤分類0件 | 全affected setを列挙する案とtop-N表示案を比較し、top-Nでは親要求の未表示が残るため全件closureを候補とする。 | 意味変更の承認や自動変更は測定対象外。 |
+| NFR-C-HARNESS-029-01 / HARNESS-L2-029 | proposalの根拠/対象/custom logic保持対応欠落0件、未選択operation dependencyの誤必須化0件 | operation別closureで候補を分離する案と常時全依存案を比較し、固定親の条件付き依存を保持する前者を推奨。 | migration成功率、API品質SLA、実行時間は固定しない。必要な数値は根拠・比較・測定方法を備えた候補にできる。 |

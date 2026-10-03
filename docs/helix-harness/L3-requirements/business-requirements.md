@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029
 paired_l10: ../L10-verification/business-verification.md
 
 Stage 1、Stage 2a、Stage 2b、Stage 2cおよび対象Stage 3親について、対象親から独立した業務基準・価値閾値・事業判断を追加しない。単体工程親は既存ownerと工程契約を定めるが、ここで別の業務ownerや業務stateを割り当てない。これはHELIX-HARNESS全体の業務要件非適用を意味せず、現在の固定親から事業意味を追加しない範囲記録である。
@@ -45,3 +45,12 @@ Stage 1、Stage 2a、Stage 2b、Stage 2cおよび対象Stage 3親について、
 `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）を確認した。BR-21にあるbusiness評価・着手条件は今回の固定親に含まれず、別の事業意味として除外する。これは旧BR-21の全体dispositionや拒否ではなく、このL3部分scopeで再利用しない判断である。旧business fileの分類名や文面だけから新しいbusiness要件を起こさない。
 
 関連する機能・受入条件は[機能要件](functional-requirements.md)とそのACを正本にする。追加のbusiness criterionが採択済みL2から必要になった場合は、該当ownerと親revisionを確認したうえでこの正本へ追補し、L10に同じcriteriaの別ACを重複作成しない。
+
+## Stage 4の業務分類
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| HARNESS-L2-026 | 独立business requirementを導出しない | artifact traceとPattern競合の提示から製品価値・優先順位・承認を作らない。 |
+| HARNESS-L2-027 | 独立business requirementを導出しない | 静的source observationを実顧客dataや業務成果に読み替えない。 |
+| HARNESS-L2-028 | 独立business requirementを導出しない | 保存designとのtraceはbusiness decisionや要求変更を生成しない。 |
+| HARNESS-L2-029 | 独立business requirementを導出しない | proposalは実装、migration、release、顧客価値判断ではない。 |
