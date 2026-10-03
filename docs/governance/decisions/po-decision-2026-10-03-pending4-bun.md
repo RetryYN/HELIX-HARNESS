@@ -24,7 +24,6 @@ authority_effect: effective_when_this_record_is_admitted_to_main_for_only_explic
 | `HARNESS-L2-067` | `MPR-RC-HARNESS-L2-067-002` | `sha256:4ee1e8ec5374d7ea1d5cc3ea5f48abb353f371766421ffd61c6ab94e028a9373` | `sha256:f21e31ec15355abb15da22d68396cc05584be92457b49cdc3a4a76523a2fa2c8` | 責務分担A。選択した原資料の振る舞いの分解・意味・検証基準はHARNESS、識別・権限・保管・来歴はOS。原資料管理をHARNESSへ移さない。 |
 | `HELIXOS-L2-131` | `MPR-RC-HELIXOS-L2-131-002` | `sha256:87981dfee01e17fd8cb999c8570a692a2968eb8b81ae3aad12da0dc5365a39cc` | `sha256:50bc6f97c31430637d3b3028e9144362c6992f0c11d7f754dcbbcc64bb3fa1b1` | pack・agent使用を明示した操作だけ。提案物だけで権限を得ず、選択根拠・対象への結合と作成主体とは別の確認を保つ。新しい人間承認や無関係な通常作業の停止を増やさない。 |
 | `HELIXOS-L2-125` | `MPR-RC-HELIXOS-L2-125-002` | `sha256:c40e36c364626401c7b3a646e0fad5d2625a2c6dd710a6af3797647916fe0993` | `sha256:92114867a9ce5b4df19d51ca59c335bccd135a29837730f2736cd8acaf6fae0f` | 選択Worker操作の結果受領。一時backpressure単独では失敗にせず、既存上限・期限内に待機・再開して欠損のない結果を受け取る。不正・不完全・期限超過等を成功扱いしない。 |
-
 | `HELIXOS-L2-132` | `MPR-RC-HELIXOS-L2-132-003` | `sha256:d6105ea7bfe423b58061fc934dc0fe754c540d439fe98089caae8737376bca75` | `sha256:e8092f9ba881887ff7df6c0eb41c340c7892ff92d87f349d96edf8f3ee2056fb` | HELIXの開発・実行・検証・配布surfaceでBunを今後も使わず再導入しない。一回移行時はactive全surfaceのBunなし再現が揃った場合だけ完了。Node.js・個別toolは指定しない。 |
 
 ## 旧原文との意味差
