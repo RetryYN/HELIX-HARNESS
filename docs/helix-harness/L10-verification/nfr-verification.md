@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029; Stage 5 HARNESS-L2-021,025,033,035,037
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -89,3 +89,16 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | NFR-C-HARNESS-027-01 | 静的source locator、revision/digest/scope、permission、出力observation | 全observationを正確なspanへ結び、誤source/実行アクセス0を候補とする。runtime・別revision混入は失敗。 | spanを特定できない観測はunknown。処理時間閾値は未指定。 |
 | NFR-C-HARNESS-028-01 | design/requirement exact revisionとaffected-set oracle | 親が列挙する全対象との対応欠落数、known/unknownの誤昇格数を測る。全件対応と誤昇格0が候補。 | 未確定の設計owner意味を補完しない。 |
 | NFR-C-HARNESS-029-01 | 選択operation、operation-specific dependencies、proposalとcustom logic trace | proposal根拠漏れ・custom logic消失・未選択依存の混入を個別計数し0を候補とする。 | 実装成功率やmigration timeを追加しない。 |
+
+
+## Stage 5 NFR測定case
+
+| L10 case ID | NFR候補 | 入力／比較 | 合格材料 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-021-01` | `NFR-C-HARNESS-021-01` | 同一scopeの端から端relation一覧、統合version/update/rollback trace。全relation対sample案を比較。 | 適用義務の未trace数0、rollback先と版対応が明示。 | scope不明は未評価。 |
+| `CASE-HARNESS-L10-NFR-025-01` | `NFR-C-HARNESS-025-01` | cross-element design graphと適用oracle、1 edge/invariantを順次除くmutation。 | 欠落/conflict見逃し各0。Pattern未選択は未観測。 | UI証拠適用性はUI条件に従う。 |
+| `CASE-HARNESS-L10-NFR-033-01` | `NFR-C-HARNESS-033-01` | candidate/reproduction/regression stagesのreceiptを一つずつ欠落し、同一failure oracleを比較。 | 各段階の欠落が成立claimに隠れず、誤claim0。 | 未実行run resultは未評価。 |
+| `CASE-HARNESS-L10-NFR-035-01` | `NFR-C-HARNESS-035-01` | source→candidate→acceptance graph、self/cycle/unknown mutations。 | valid edges全件trace、循環を根拠成立に数えない。 | authority/予算unknownを未評価に保つ。 |
+| `CASE-HARNESS-L10-NFR-037-01` | `NFR-C-HARNESS-037-01` | 009-selected two-phase scope、両phase revision/L4/L9 receipt、片方欠落mutation。 | phase boundary/receipt欠落0、片phaseのみでmerge0。 | 009非適用は分母外、未見scopeは適用性unknown。 |
+
+計測は候補設計であり、実装実行や外部system性能の保証ではない。

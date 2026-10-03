@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029 / version_class 1.0
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029; Stage 5 HARNESS-L2-021,025,033,035,037 / version_class 1.0 where fixed by parent (HARNESS-L2-021 unassigned)
 paired_l10: ../L10-verification/nfr-verification.md
 
 これは現在の部分scopeの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、候補値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
@@ -100,3 +100,16 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 | NFR-C-HARNESS-027-01 / HARNESS-L2-027 | 静的source spanへの未trace observation 0件、実行・実顧客dataへの誤アクセス0件 | 静的code/schema/API/configのsource/revision/digest/scopeを全観測と照合する。file-levelのみのtrace案は誤source混入を検出しにくいためspan trace案を比較候補にする。 | coverage分母は親が選択した静的scope。実行性能SLAは導かない。 |
 | NFR-C-HARNESS-028-01 / HARNESS-L2-028 | affected requirement/design exact setの欠落0件、unknownをknownとする誤分類0件 | 全affected setを列挙する案とtop-N表示案を比較し、top-Nでは親要求の未表示が残るため全件closureを候補とする。 | 意味変更の承認や自動変更は測定対象外。 |
 | NFR-C-HARNESS-029-01 / HARNESS-L2-029 | proposalの根拠/対象/custom logic保持対応欠落0件、未選択operation dependencyの誤必須化0件 | operation別closureで候補を分離する案と常時全依存案を比較し、固定親の条件付き依存を保持する前者を推奨。 | migration成功率、API品質SLA、実行時間は固定しない。必要な数値は根拠・比較・測定方法を備えた候補にできる。 |
+
+
+## Stage 5 NFR候補
+
+| NFR候補ID／親 | 候補値・測定条件 | 根拠・比較案 | 適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-021-01` / HARNESS-L2-021 | 選択scopeの要求→設計→検証/受入→release→運用/feedback trace欠落0、統合版update/rollbackの対応欠落0。 | 全scope relationを列挙する案Aとsampled relation案Bを比較し、sampleでは構成体固有義務を隠すためAを候補にする。 | 対象は親が選択した一つの対象scope。共通性能・稼働率SLOを新設しない。 |
+| `NFR-C-HARNESS-025-01` / HARNESS-L2-025 | 要求/設計/適用oracleのrelation欠落と横断invariant conflict見逃しは各0を候補とする。 | 各設計elementを個別照合する案とunit greenを集約する案を比べ、集約ではcross-element conflictが消えるため個別relation案を候補化する。 | 未選択Patternは分母外。UI evidenceはUI scopeのみ。 |
+| `NFR-C-HARNESS-033-01` / HARNESS-L2-033 | 同一failure/oracle traceの欠落、回帰成立に必要な後段receiptの欠落を別々に測り、誤った成立claim各0。 | 生成candidateだけを数える案とstage-separated lineage案を比較し、後者は候補/再現/回帰成立を分離できる。 | 実行時間・reduction率・CI成功率は固定しない。 |
+| `NFR-C-HARNESS-035-01` / HARNESS-L2-035 | 上流source→candidate→acceptance contribution edge欠落0、循環を根拠成立へ数える件数0。 | graph completenessと単純ID存在数を比較し、ID数では導出根拠を示せないためedge検査を候補にする。 | confidenceやbudget数値は固定せず、必要なら根拠・比較・測定付き候補として提示する。 |
+| `NFR-C-HARNESS-037-01` / HARNESS-L2-037 | 適用scopeのPhase 1/2成果・各L9 receipt・phase境界trace欠落0、未実施phaseを合流済みにする件数0。 | 両phaseを一つに集約する案と別revision/receiptで追う案を比較し、集約はphase-specific gapを隠すため後者を候補とする。 | L2-009が非適用としたscopeは分母外。固定runtime SLAを追加しない。 |
+
+候補は合成fixtureの計測案であり、実測済み性能や新たな数値閾値ではない。必要な技術値は根拠・比較・測定条件を添えた候補として扱い、親が固定した意味を変更しない。

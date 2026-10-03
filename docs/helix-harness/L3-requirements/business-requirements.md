@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054; Stage 4 HARNESS-L2-026..029; Stage 5 HARNESS-L2-021,025,033,035,037
 paired_l10: ../L10-verification/business-verification.md
 
 Stage 1、Stage 2a、Stage 2b、Stage 2cおよび対象Stage 3親について、対象親から独立した業務基準・価値閾値・事業判断を追加しない。単体工程親は既存ownerと工程契約を定めるが、ここで別の業務ownerや業務stateを割り当てない。これはHELIX-HARNESS全体の業務要件非適用を意味せず、現在の固定親から事業意味を追加しない範囲記録である。
@@ -54,3 +54,16 @@ Stage 1、Stage 2a、Stage 2b、Stage 2cおよび対象Stage 3親について、
 | HARNESS-L2-027 | 独立business requirementを導出しない | 静的source observationを実顧客dataや業務成果に読み替えない。 |
 | HARNESS-L2-028 | 独立business requirementを導出しない | 保存designとのtraceはbusiness decisionや要求変更を生成しない。 |
 | HARNESS-L2-029 | 独立business requirementを導出しない | proposalは実装、migration、release、顧客価値判断ではない。 |
+
+
+## Stage 5の業務分類
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| HARNESS-L2-021 | 独立したbusiness requirementを導出しない | 端から端の技術traceと運用評価の受け口から事業成果・ROI・改善実行を推定しない。 |
+| HARNESS-L2-025 | 独立したbusiness requirementを導出しない | 設計整合とoracle coverageは業務価値や利用者受入を決めない。 |
+| HARNESS-L2-033 | 独立したbusiness requirementを導出しない | failure回帰traceは障害優先順位・business completionを決めない。 |
+| HARNESS-L2-035 | 独立したbusiness requirementを導出しない | candidate必要性の説明は投資・採否・予算承認の判断を生成しない。 |
+| HARNESS-L2-037 | 独立したbusiness requirementを導出しない | 二段設計workflowは業務目的・利用者価値を再選択しない。 |
+
+Stage 5に独立したbusiness criterionはない。各機能criterionはfunctional L3/L10の同一AC/caseで照合し、売上・費用・市場価値・利用者受入を技術oracleへ読み替えない。旧business-detailのBR-21は今回の固定親に含まれず、この部分scopeでは再利用しない。
