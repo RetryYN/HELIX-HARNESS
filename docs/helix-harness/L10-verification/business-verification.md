@@ -2,11 +2,13 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032 partial draft
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054 partial draft
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
-本部分scope（Stage 1・2aおよびStage 2cのHARNESS-L2-030/031/032）では独立したbusiness requirementを導出していないため、別のbusiness acceptance oracleを定義しない。機能contractの正常・反例・unknown／未観測の検証は[functional-verification.md](functional-verification.md)にある同一AC IDで行う。これを事業価値の検証や利用者受入へ読み替えない。
+本部分scope（Stage 1/2a/2b/2c/3）では独立したbusiness requirementを導出していないため、別のbusiness acceptance oracleを定義しない。機能contractの正常・反例・unknown／未観測の検証は[functional-verification.md](functional-verification.md)にある同一AC IDで行う。これを事業価値の検証や利用者受入へ読み替えない。
+
+Stage 3の親（034/036/038/039/040/041/042/043/044/046/047/049/054）についても独立したbusiness criterionは置かない。各functional ACの正常・反例・unknownを同じACで照合し、ROI・市場価値・採否へ読み替えない。
 
 | 状態 | 判定材料 |
 |---|---|

@@ -2,10 +2,10 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054
 paired_l10: ../L10-verification/business-verification.md
 
-Stage 1、Stage 2a、Stage 2bおよびStage 2cの部分草稿では、対象親から独立した業務基準・価値閾値・事業判断を追加しない。Stage 2bの単体工程親は既存ownerと工程契約を定めるが、ここで別の業務ownerや業務stateを割り当てない。これはHELIX-HARNESS全体の業務要件非適用を意味せず、現在の固定親から事業意味を追加しない範囲記録である。
+Stage 1、Stage 2a、Stage 2b、Stage 2cおよび対象Stage 3親について、対象親から独立した業務基準・価値閾値・事業判断を追加しない。単体工程親は既存ownerと工程契約を定めるが、ここで別の業務ownerや業務stateを割り当てない。これはHELIX-HARNESS全体の業務要件非適用を意味せず、現在の固定親から事業意味を追加しない範囲記録である。
 
 | 親L2 | business要件への扱い | 境界 |
 |---|---|---|
@@ -26,6 +26,19 @@ Stage 1、Stage 2a、Stage 2bおよびStage 2cの部分草稿では、対象親�
 | `HARNESS-L2-030` | 独立したbusiness requirementを導出しない | case生成は共有技術能力であり、実行・受入・品質判断を所有しない。 |
 | `HARNESS-L2-031` | 独立したbusiness requirementを導出しない | 許可入力のreduction/regression候補は業務上の障害優先度・完了判定を新設しない。 |
 | `HARNESS-L2-032` | 独立したbusiness requirementを導出しない | packet受渡しはexecutorの実行や業務完了を意味しない。 |
+| `HARNESS-L2-034` | 独立したbusiness requirementを導出しない | metric/完成判定契約は技術verification責務。収益・ROIの基準を作らない。 |
+| `HARNESS-L2-036` | 独立したbusiness requirementを導出しない | selected verification scopeの完全性から製品価値や全ticket一律policyを推定しない。 |
+| `HARNESS-L2-038` | 独立したbusiness requirementを導出しない | reverse content closureは選択scopeの意味traceであり、事業判断を新設しない。 |
+| `HARNESS-L2-039` | 独立したbusiness requirementを導出しない | Experience/UI relationから見た目の優先順位や市場価値を推定しない。 |
+| `HARNESS-L2-040` | 独立したbusiness requirementを導出しない | ledger catalogは組織の事業分類・投資優先順位を所有しない。 |
+| `HARNESS-L2-041` | 独立したbusiness requirementを導出しない | template obligation/gapは事業要望や採否を作らない。 |
+| `HARNESS-L2-042` | 独立したbusiness requirementを導出しない | refactor routeから費用対効果・事業継続判断を推定しない。 |
+| `HARNESS-L2-043` | 独立したbusiness requirementを導出しない | example adequacyは業務成功率・顧客価値のthresholdを持たない。 |
+| `HARNESS-L2-044` | 独立したbusiness requirementを導出しない | obligation portfolioは最小費用/投資判断のbusiness ownerを代替しない。 |
+| `HARNESS-L2-046` | 独立したbusiness requirementを導出しない | workflow/Scrum適用はPOが選択したstyle範囲を保持し、事業方式を再選択しない。 |
+| `HARNESS-L2-047` | 独立したbusiness requirementを導出しない | specialist benefit evidenceは調達・要員・ROI判断を生成しない。 |
+| `HARNESS-L2-049` | 独立したbusiness requirementを導出しない | prototype measurementからユーザー合意、market fit、製品価値を推測しない。 |
+| `HARNESS-L2-054` | 独立したbusiness requirementを導出しない | handoff candidateはassignment/実行開始を承認せず、事業責務をOSへ移さない。 |
 
 ## 旧business資産との照合
 

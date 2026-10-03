@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -38,6 +38,27 @@ case IDは `CASE-HARNESS-L10-NFR-<親番号>-<連番>` とし、親番号のtrac
 | `CASE-HARNESS-L10-NFR-024-01` | `NFR-C-HARNESS-024-01` | 同一engine/pack/target revision・scope・既回答で同じ質問順・理由・状態を反復比較し、score-only convergence fixtureと必須項目欠落fixtureを与える。 | 順序・理由・状態差分と必須不足の見逃し／誤った合意昇格を計数する。 | 入力revision、oracle、適用性根拠が不足すれば未評価。固定history件数・質問数・統計thresholdは新設しない。 |
 
 Expiry境界のfixtureでは、既存contractが定める比較規則を用いる。未定義なら候補A/Bの各々で直前・等号・直後のdispatch/resumeを比較し、期限切れsuccessが0件であることを測る。
+
+### Stage 3 NFR候補測定case
+
+各候補は固定parent由来の完全性/不正遷移を測る設計案であり、達成測定ではない。未確定技術閾値は比較候補と実測条件を残し、個別PO parameter gateを作らない。
+
+| L10 case ID | NFR候補 | 入力／比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-034-01` | `NFR-C-HARNESS-034-01` | 適用metricごとのcontract input/全fieldと、各field欠落fixtureを比較。 | metric identity/condition/baseline-target/N-A/sampling/probe/evidence/oracle/owner/layer/triggerのunmatched数を記録。 | unselected quality areaは分母に含めない。unknown applicabilityは未評価。 |
+| `CASE-HARNESS-L10-NFR-036-01` | `NFR-C-HARNESS-036-01` | selected profile設計観点とlocal/CI gate snapshotを対応づけ、gap/duplicate/mismatchを変異。 | unmatched required view、duplicate level, false same-condition passを各別count。 | profile/scope不明は未評価。全ticket実行率に読み替えない。 |
+| `CASE-HARNESS-L10-NFR-038-01` | `NFR-C-HARNESS-038-01` | selected source scopeの各適用obligation/endpointのforward・reverse relationと理由付きN/A。 | asymmetric relation/aggregate-only/unjustified N-A/no-finding countを測る。後段未作成はunresolvedとして別count。 | unknownをzeroにしない。全旧source一括走査なし。 |
+| `CASE-HARNESS-L10-NFR-039-01` | `NFR-C-HARNESS-039-01` | selected UI/Experience/Frontend relation, screen identity/acceptance pairとbefore-after revision。 | missing/stale/untraced relationを個別countし、未選択FE measurementを039の実測成果に含めない。 | applicability不明は未評価。旧inventory全数を母集団にしない。 |
+| `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchor契約候補と双方向edge fixture。 | 欠落layer/pair/anchor relationとone-sided edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionを測定しない。 |
+| `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | 同じactive template/extractor inputを反復し、1 obligation atom/gap対応を比較。 | atomic obligation coverageとsource/extractor semantic digest再現を測定。 | extractor/scope未固定は未評価。将来版L11や別extractorは混ぜない。 |
+| `CASE-HARNESS-L10-NFR-042-01` | `NFR-C-HARNESS-042-01` | candidate routeごとにsemantic, consumer, oracle, dependency evidenceをそろえ、feature additionを別episodeにする。 | successful candidateのevidence missing数と同一episode混載数をcount。 | unknown consumer/oracleは未評価; performance改善量はこのNFRの判定対象外。 |
+| `CASE-HARNESS-L10-NFR-043-01` | `NFR-C-HARNESS-043-01` | 適用rule/branchを確定したmatrixへpositive/boundary-negative例をひも付け、各例を個別削除。 | branch別pair coverage欠落を測る。単純例総数はoracleにしない。 | active branch denominatorが不明/staleなら未評価、0件と記録しない。 |
+| `CASE-HARNESS-L10-NFR-044-01` | `NFR-C-HARNESS-044-01` | obligation class/contract relationをscope内で全列挙しreuse/delta/new/N/Aを比較。 | uncovered classとsemantic duplicateを個別count、正当closure時のみ両方0。 | N/A根拠やclass meaning unknownなら未評価。document countだけで判定しない。 |
+| `CASE-HARNESS-L10-NFR-046-01` | `NFR-C-HARNESS-046-01` | workflow obligation/style/scope/reverse evidenceとScrum applicabilityを比較。 | unmapped applicable obligationと非Scrumへの誤ったScrum条件を別count。 | style/applicability不明は未評価。別styleをScrum扱いしない。 |
+| `CASE-HARNESS-L10-NFR-047-01` | `NFR-C-HARNESS-047-01` | muster candidate/role sufficient/unknownをcomparison rationaleとworker/verifier identityで測る。 | 根拠なしmuster、sufficientを無視したmuster、authority conflation各count。 | LABO comparison applicability欠如はunknownでありfailure/benefit 0へ丸めない。 |
+| `CASE-HARNESS-L10-NFR-049-01` | `NFR-C-HARNESS-049-01` | fixed L11-049のrenderable prototype scope/profile/device/view/viewportと、既知positive/negative fixture labels。 | per-check FP/FN、適用範囲、未評価領域を記録し、threshold案を比較。精度未評価pass件数0を確認。 | fixed threshold不在を人の毎回判断gateにしない。extra generation/Pattern/ID inputを要求しない。 |
+| `CASE-HARNESS-L10-NFR-054-01` | `NFR-C-HARNESS-054-01` | typed handoffと同一task/scope/revisionのOS assignment/profile identity、unknown axis変異。 | mismatchとunknown-as-successを別countし、未解決時にhandoff未完のままか確認。 | OS assignment未提示なら未評価。HARNESSの実行率へ読み替えない。 |
+
 
 ## 判定の限界
 

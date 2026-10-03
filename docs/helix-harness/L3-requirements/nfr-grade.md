@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032 / version_class 1.0
+scope: HARNESS-L2-010, 011, 022, 023 and Stage 2b HARNESS-L2-012..020, 024, Stage 2c HARNESS-L2-030..032; Stage 3 HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054 / version_class 1.0
 paired_l10: ../L10-verification/nfr-verification.md
 
 これは現在の部分scopeの採択済みL2親から再導出した測定可能な技術候補である。候補はL2の意味・範囲・owner・版を変更せず、候補値を個別にPOへ照会しない。候補のL3採否と実装は未確定であり、対応する総合検証方法は[L10 NFR検証](../L10-verification/nfr-verification.md)に記す。
@@ -26,6 +26,19 @@ paired_l10: ../L10-verification/nfr-verification.md
 | `NFR-C-HARNESS-019-01` / `HARNESS-L2-019` | 入力sourceの変換可能範囲・unknown・不整合の未分類数 **0件**。変換候補からの承認／release自動生成 **0件**。 | 逆方向形成のtrace保全とauthority非生成を候補化する。全部成功/全部拒否のbinary案より、変換可能部分とunknownを分ける候補が部分入力に忠実。 | 入力stageごとの時間・変換率を要求閾値化しない。 |
 | `NFR-C-HARNESS-020-01` / `HARNESS-L2-020` | handoff対象の全必須fieldと契約版の対応欠落 **0件**、不整合入力の暗黙受理 **0件**、handoffによるupstream state変更 **0件**。 | 固定親のproducer/consumer契約一致と状態非書換えを直接観測する。汎用warningだけ返す案は個別不整合を隠すため不採用。 | 関係のない隣接stageへの一律依存や、handoff成功率を新しい業務目標にしない。 |
 | `NFR-C-HARNESS-024-01` / `HARNESS-L2-024` | 同一engine/pack/target revision・scope・既回答から、質問順・理由・状態の差分 **0件**。候補スコア単独による必須不足の見逃し・人間合意への昇格 **0件**。 | 固定親が同じ入力から同じ質問順序・理由・状態を要求し、score・質問数・iteration数だけで収束しないことを観測する。固定質問数や数値weightを足す案は不採用。 | 意味評価を単一accuracy閾値へ還元しない。履歴の最低件数や質問件数SLOを設けない。適用Prototype／非UIの合意状態は別々に検査する。 |
+| `NFR-C-HARNESS-034-01` / `HARNESS-L2-034` | 適用metricについてidentity/condition/baseline/target(or N/A)/sampling/probe/evidence/oracle/owner/execution layerの対応欠落0件。 | L2-034が列挙するcontract fieldとfailure conditionに各々一対一でtraceする候補。旧NFR grade・KPI率の継承でなく、項目欠落を測る。 | 対象scopeに選択されたmetricのみ。baseline/target値自体を自動補完しない。 |
+| `NFR-C-HARNESS-036-01` / `HARNESS-L2-036` | selected profile内のunmatched required observation、duplicate level coverage、local/CI gate contract mismatchを個別集計し、誤ったsame-condition passは0件。 | 固定L2の抜け/重複・二面contract条件を直接観測する。全ticket全suite実行率を候補にしない。 | L2-005が選択したprofileとscopeに限定。実行回数SLOを追加しない。 |
+| `NFR-C-HARNESS-038-01` / `HARNESS-L2-038` | selected scope内の適用obligationの片方向relation、aggregate-only coverage、未根拠N/A/no-findingは0件を候補oracleとする。 | HIL-FR-22の両方向edgeとHIL-FR-35の段階内容閉包に根拠。後段未作成はunresolved obligationとして数え、失敗扱いと区別する。 | 全旧source走査率や全機構一括closure率にしない。 |
+| `NFR-C-HARNESS-039-01` / `HARNESS-L2-039` | 選択scopeのrequired Experience/UI/Frontend relation・target identityに対するuntraced/stale relation 0件。 | L2の三契約、screen-to-acceptance、pairwise/drift関係を照合する完全性候補。旧211 file inventoryを分母にしない。 | FE実測精度は049/036の選択scopeで扱い、039が実測結果を生成しない。 |
+| `NFR-C-HARNESS-040-01` / `HARNESS-L2-040` | canonical 12 layer、6 pair、独立L0 anchorの必要catalog relation欠落0件。片edgeを双方向成立へ数える件数0。 | HIL-FR-46のledger/pair/anchor契約から直接導出。 | 未作成ledgerはmissing obligationとして記録し、全ledgerの実装率やregistrationを主張しない。 |
+| `NFR-C-HARNESS-041-01` / `HARNESS-L2-041` | 同一active template/extractor revisionでsource obligation→個別atom-or-gap対応欠落0件、誤ったatomic semantic digest一致0件。 | L2-041と最新L11-041のatomic individual obligation・same input/extractor version semantic digest条件に対応する。 | 決まっていないextractor方式/件数/処理時間をthresholdにしない。 |
+| `NFR-C-HARNESS-042-01` / `HARNESS-L2-042` | successful Design Refactor candidateのうちsemantic/consumer/oracle/dependency evidence不足件数0、mixed feature episodeの成立件数0。 | L2-042のroute根拠と同一episode禁止を数える候補。 | refactor量、削減率、性能改善幅は要求しない。 |
+| `NFR-C-HARNESS-043-01` / `HARNESS-L2-043` | 各適用rule/branchでpositiveおよびboundary-negative例へのtrace欠落0件（coverage matrixの分母が確定したscopeに限る）。 | HIL-FR-55が各rule/branchの最小例対を要求し、risk追加を分析で限定している。 | 例の総数、未選択template、未確定分母に数値閾値を追加しない。 |
+| `NFR-C-HARNESS-044-01` / `HARNESS-L2-044` | selected obligation classのuncovered classとunexplained duplicate semantic contractを個別に表示。candidate closure時のuncovered/duplicateは各0件。 | HIL-FR-54のclass assignment・uncovered/duplicate findingに対応。 | minimum portfolioは意味上の重複判定で評価し、単純な文書件数最小化にしない。 |
+| `NFR-C-HARNESS-046-01` / `HARNESS-L2-046` | 適用workflow obligationのunmapped relation 0件を候補oracleとし、非Scrum scopeでScrum-only dutyを誤適用する件数0。 | L2-046 workflow全面性と選択条件付きScrum delta/backfillへ対応。 | Scrum非選択は欠落に数えず、style applicability不明は未評価。 |
+| `NFR-C-HARNESS-047-01` / `HARNESS-L2-047` | muster候補のうち適用比較根拠欠落0件、single-worker-sufficientを専門化した誤route0件、worker/verifier authority conflation 0件。 | HIL-BR-30/HIL-FR-60の測定利益・既存role十分性・分離条件に対応。 | 固定benefit score、worker count、provider/model quality thresholdを新設しない。 |
+| `NFR-C-HARNESS-049-01` / `HARNESS-L2-049` | known fixture集合でFP/FN count、scope別適用率、未評価範囲を測り、未評価検査をpass根拠に使う件数0。 | fixed L11-049が既知positive/negative fixtureによる精度評価と未評価warningを要求する。 | 検査適用性・誤検出/見逃しの実測を取り、precision/recall thresholdはfixed parentにないため候補比較に残す。prototype生成・Pattern/ID要件を足さない。 |
+| `NFR-C-HARNESS-054-01` / `HARNESS-L2-054` | handoffとOS assignmentのtask/scope/revision mismatch、未解決axisを成功扱いする件数各0。 | L2-054と固定L11のcontract/assignment identity対応から導出。 | assignment実行数/成功率やlifecycle方式をHARNESS NFRにしない。 |
 
 ## 4分類の有限fixture行列候補
 
