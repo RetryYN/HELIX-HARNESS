@@ -151,7 +151,7 @@ HARNESS-L2-010/011のBRAIN capability descriptorに含まれるidentity/kind、c
 
 ## Stage 2b: BRAIN shared-design knowledge requirements
 
-以下11件はmain633で採択されたStage 2b / 1.0 candidateである。固定親の意味を具体化した部分草稿で、通常のL3承認前。各項目の旧asset起点と限定利用は各節およびgrounding inventoryに記録する。
+以下28件（基本11件・Infrastructure 17件）はmain633で採択されたStage 2b / 1.0 candidateである。固定親の意味を具体化した部分草稿で、通常のL3承認前。各項目の旧asset起点と限定利用は各節およびgrounding inventoryに記録する。
 
 ## BRAIN-001-FR-01 — `HELIXBRAIN-L2-001`
 
@@ -695,6 +695,791 @@ BRAIN unit candidateとして、generalized problem typeとPattern/Unit/Part ide
 | `LEGACY-ASSET-FF7403E1E40E539FCE45` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L7-design-catalog-relation-projection-unit-test-design.md:21–32` | `f8277863f22243231009a02efb36acd933f78e3357f8ee0fe48971d22d93c8d6` | `db9ad2bcea2e39860b1a6efb5e60ed986a2d51e916b30be283416f57980fbec4` | typed relation/projection/stale sourceの類例としてのみ。L7 runtime/algorithmを移植しない。 |
 
 旧runtime・schema・algorithm・gateは移植しない。
+
+
+## Stage 2b: Infrastructure設計知識要件
+
+以下17件はmain633採択のStage 2b / version 1.0 candidateであり、部分草稿・通常L3承認前。実resource inventory、credentials、runtime state、operation/release authorizationを定義しない。
+
+## BRAIN-INFRA-001-FR-01 — `HELIXBRAIN-L2-INFRA-001`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-001`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L60), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-001-002` / semantic digest `sha256:9bd664fbf1d0b04f627fb4bc562a7ef63c19ac61813c12c5afe381481075ed60`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:220–229` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `fcddad5c8f225147186c49fa08da577ae04be86a89f84d112dccf18956e21d6b`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:41–41` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `b632016e7b0fb5e3c0ac0e3080f86283eac8e4bb39bee246d9e8373086f5e5a1`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+初期Infrastructure SubdomainとしてCompute、Network、Storage、Database Infrastructure、Cache、Queue / Messaging、Load Balancing、Service Discovery、Deployment、Scaling、Availability、Reliability、Backup / Restore、Disaster Recovery、Observability、Capacity、Cost Architecture、Infrastructure Security、Environment、Runtime / Execution Platformを識別可能にする。Subdomain集合は固定せず、追加/分割/統合/退役を扱う。実環境・provider account・実resourceはDomainでない。
+
+**入力**: 候補Domain/Subdomain identity・意味・parent・source。
+
+**出力・責務**: 設計知識のdomain/subdomain candidateと意味・sourceを返す。
+
+**否定・戻し先**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 全項目を候補として保持でき、resource状態を推測しない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-001-AC-01 — 正常**: 設計知識のdomain/subdomain candidateと意味・sourceを返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-001-AC-02 — 否定・境界**: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 全項目を候補として保持でき、resource状態を推測しない。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: 候補Domain/Subdomain identity・意味・parent・source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-001-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 設計知識のdomain/subdomain candidateと意味・sourceを返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-001-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: provider resource実在情報・credential・live inventoryをDomainとして確定しない。domain意味が重複/不明ならcandidateで止め、BRAIN L1 meaning ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 初期例にないsource付きSubdomain案と別の追加/統合履歴を伏せて投入し、open-listでidentity/referenceを保てるか確認。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-001-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 全項目を候補として保持でき、resource状態を推測しない。 | `AC-02` | `L10-BRAIN-INFRA-001-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-001; 常時 BRAIN L2-001の分類・変更境界。PO束ね条件 Infrastructure PO原文 INFRA-001。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-001-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-001-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-001-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。Infrastructure domain/subdomainは知識分類であり実資源inventoryではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+
+## BRAIN-INFRA-002-FR-01 — `HELIXBRAIN-L2-INFRA-002`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-002`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L61), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-002-002` / semantic digest `sha256:367891a1596fc2be0e2eac038d4f385e5163ae7d368fe29460f3a483863ae7f2`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:230–239` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `8aaa447b505de8ad93744994b01e5285fd496a7f11165912b14b83c9fdde7159`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:42–42` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `3e262257957673c43a631480d175578b3cf9feb50f31230299ce1d5cd9c880a8`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Availability→Active/Passive→Primary/Standby/Health Detection/Failover、およびDeployment→Blue-Green→Active/Candidate/Traffic Switch/RollbackをPattern hierarchyとして表現する。Cloud provider固有設定だけをPatternにしない。
+
+**入力**: Pattern candidate・抽象kind・provider example/source。
+
+**出力・責務**: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。
+
+**否定・戻し先**: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 構造不明はunknown/holdとし、知識ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-002-AC-01 — 正常**: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-002-AC-02 — 否定・境界**: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 構造不明はunknown/holdとし、知識ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: Pattern candidate・抽象kind・provider example/source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-002-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 抽象Patternの親子・適用範囲とprovider実装例の違いを示す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-002-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: provider-specific settingだけを抽象Patternとして登録する、kind/parent不明の候補を確定しない。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見のprovider implementation exampleを抽象pattern hierarchyへつなぎ、抽象kindとimplementation identityを維持。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-002-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 構造不明はunknown/holdとし、知識ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-002-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-002; 常時 BRAIN L2-002/INFRA-001。INFRA-002の例の階層型とprovider implementation distinction。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-002-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-002-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-002-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+部分類例のみ。階層的pattern概念は再導出し、旧UI pattern hierarchyをprovider/infra schemaに転用しない。 起点asset: `LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-603D0E8D8193914F4AC0`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7453222BF98E95199D46` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/ui-domain-pattern-profile.md:35–85` | `c451807ea2ed2303fe8eefac0b2258f67829e6708c302879f0026d816fd14678` | `311e708e950ff459e7bf4daf7fe25d2105f3e69d8c3d4261cd1a5a7c832156c7` | Pattern contractと製品境界の類例。UI固有schemaやprofile semanticsは継承しない。 |
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+
+## BRAIN-INFRA-003-FR-01 — `HELIXBRAIN-L2-INFRA-003`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-003`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L62), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-003-002` / semantic digest `sha256:4009bed040b56dae56d064690b489f9c71e3e3b4f54cec68d17f695c94be58f2`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:240–249` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `015454d12eb883ec17e4cd5752633486ebeb289378a7d00b24d2e8e2c6350f0b`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:43–43` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Pattern descriptorはproblem、workload assumptions、expected load、availability condition、consistency requirement、latency requirement、capacity condition、scaling condition、failure assumptions、recovery condition、data durability、network requirement、security constraint、operational complexity、cost characteristic、required observability、applicability、negative case、trade-off、evidenceを持つ。「一般的」だけではapplicabilityを導けず、input/condition欠落はunknownとする。
+
+**入力**: Pattern candidate/contextと親L2列挙field。
+
+**出力・責務**: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。
+
+**否定・戻し先**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 未指定値はunknownとして不足input ownerへ返す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-003-AC-01 — 正常**: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-003-AC-02 — 否定・境界**: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 未指定値はunknownとして不足input ownerへ返す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: Pattern candidate/contextと親L2列挙field | `FR-01 / AC-01` | `L10-BRAIN-INFRA-003-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: descriptor各fieldとsource/evidenceを扱い、required fieldが未入力ならapplicabilityをunknownにする。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-003-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: 数値や制約を推測して埋める、negative/failure/evidence欠落のまま一般適用するケースは停止する。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未知workloadを持つ伏せたPatternを投げ、required inputがunknownのまま適用可能としない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-003-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 未指定値はunknownとして不足input ownerへ返す。 | `AC-02` | `L10-BRAIN-INFRA-003-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-002。列挙全descriptor fieldと欠落時unknown。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-003-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-003-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-003-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。親のapplicability descriptor項目を各々扱う。旧contract形式のみ類例。技術値は後の要件起草で根拠・比較・計測と候補表示が可能。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7453222BF98E95199D46`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-335176749F6322C3CD8D` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:41–43` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` | `b75a90583c2e87f9f8bb2ddbae123e70d2ef8a5591b507d70ee62acd40444fb8` | semantic identity、Pattern contract、製品固有意味分離の隣接意味。旧UI/Design-HARNESS権限・実装は移植しない。 |
+| `LEGACY-ASSET-7453222BF98E95199D46` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/ui-domain-pattern-profile.md:35–85` | `c451807ea2ed2303fe8eefac0b2258f67829e6708c302879f0026d816fd14678` | `311e708e950ff459e7bf4daf7fe25d2105f3e69d8c3d4261cd1a5a7c832156c7` | Pattern contractと製品境界の類例。UI固有schemaやprofile semanticsは継承しない。 |
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+
+## BRAIN-INFRA-004-FR-01 — `HELIXBRAIN-L2-INFRA-004`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-004`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L63), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-004-002` / semantic digest `sha256:87d85b0d9999a9446560dd137911e6c75d29b74c468c2ca80d5c62d6a4d08d39`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:250–259` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `d11834af6cc5a20da98d97ada275cd8bcdc17ec930daa1e8ce03b3b2d904bb84`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:44–44` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `e78120ffe0c33badd64289c6b45c9d0b9010c23fc7b4f597be63deef04ccdbb0`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Availability、Performance、Capacity、Reliability、Recoverability、Security、Privacy、Observability、Maintainability、Costの各要求特性から関連Infrastructure Patternとrequired Design Inputへの意味relationを辿る。BRAIN自身は要求値を決めず、inputなしは要求/設計側へ戻す。
+
+**入力**: product-supplied NFR/context・Pattern候補・required input。
+
+**出力・責務**: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。
+
+**否定・戻し先**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 product valueは要求ownerへ戻しBRAINは推定値を作らない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-004-AC-01 — 正常**: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-004-AC-02 — 否定・境界**: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 product valueは要求ownerへ戻しBRAINは推定値を作らない。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: product-supplied NFR/context・Pattern候補・required input | `FR-01 / AC-01` | `L10-BRAIN-INFRA-004-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 各product NFR source/revisionから関連Pattern候補とrequired input、mapping rationaleを辿れる。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-004-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: NFR値なしにproduct targetを補う、mappingを確定可能なcause/choiceと誤認する、sourceなし関連を作る入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 伏せた別NFR特性またはinput不足を加え、既知relationと未知mappingを区分する。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-004-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: product valueは要求ownerへ戻しBRAINは推定値を作らない。 | `AC-02` | `L10-BRAIN-INFRA-004-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-003/005; 常時 BRAIN L2-003/005/022。列挙10 NFR特性relationとunknown input。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-004-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-004-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-004-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。NFR→related pattern/required inputs relationは旧L3に直接一致なし。BRAINは製品値を決めない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+
+## BRAIN-INFRA-005-FR-01 — `HELIXBRAIN-L2-INFRA-005`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-005`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L64), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-005-002` / semantic digest `sha256:8d75a00e618b3102fcb5953350a12071462f46bb247a3fc0bfacc50cff789dd3`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:260–269` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `6421070da28271408c2276ea905ad647f4917e0a42a36d9aec81bc306540ff90`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:45–45` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `027ec51b1800b025e0d7b8e4077316c8cadeea469e59638701e03548571833a8`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region / Zone Failure、Deployment Failure、Backup Failure、Restore Failure、Configuration Driftを、expected failure、detection、impact、containment、recovery、residual riskと結ぶ。構造fieldが欠けるものは完成扱いしない。
+
+**入力**: failure condition/sourceと親L2の6要素。
+
+**出力・責務**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。
+
+**否定・戻し先**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 不足情報を提示しfailure source/evaluation ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-005-AC-01 — 正常**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 不足情報を提示しfailure source/evaluation ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: failure condition/sourceと親L2の6要素 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見failure categoryと不完全oracleを投入し、known fieldsから残りを推測しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-005-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 不足情報を提示しfailure source/evaluation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-010; 常時 BRAIN L2-010/INFRA-003。全failure exampleとoracle field。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-005-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-005-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-005-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。expected failure/detection/impact/containment/recovery/residual riskの条件構造。旧rollbackや運用手順を移植しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-879D95C07B789C9502CF`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-879D95C07B789C9502CF` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:10–30` | `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191` | `4ebd3c1ad8a9d3469fe76020a956a3656fa6fe45630f3f8124e00cc225eea89a` | contract/profile/isolation等の正常・拒否oracle形だけ。UI実装と旧self-approval/gateは移植しない。 |
+
+## BRAIN-INFRA-006-FR-01 — `HELIXBRAIN-L2-INFRA-006`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-006`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L65), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-006-003` / semantic digest `sha256:3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:270–281` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:46–46` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `4d27eac75001098de566731352d2edf45c0f08c635044a26d1eaf83fab494d82`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback、Restore、Rebuild、Reconciliation、Disaster RecoveryのRecovery Patternを、failure conditionと適用条件へ結び付ける。予防策だけの「落ちない構成」と復旧を含む候補を区別し、実行成功を知識だけから推定しない。INFRA-010のBackup/Restore知識は別であり、本項目の成立の前提にしない。
+
+**入力**: pattern/source/condition・requested operation distinction。
+
+**出力・責務**: recovery pattern candidate・適用条件・必要input・failure relationを提示する。
+
+**否定・戻し先**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-006-AC-01 — 正常**: recovery pattern candidate・適用条件・必要input・failure relationを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-006-AC-02 — 否定・境界**: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: pattern/source/condition・requested operation distinction | `FR-01 / AC-01` | `L10-BRAIN-INFRA-006-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: recovery pattern candidate・適用条件・必要input・failure relationを提示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-006-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: BRAIN知識応答をrecovery実施・権限・完了statusと誤認しない。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 伏せたfailure conditionへrecovery候補を渡し、意味不定はunknown、Backup itemの完成待ちを要求しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-006-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 実行/permission要求は運用ownerへ戻しBRAINでは操作しない。 | `AC-02` | `L10-BRAIN-INFRA-006-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-002/010; 常時 BRAIN L2-002/INFRA-005。INFRA-010 Backup/Restoreと相互参照してよいが成立前提にしない。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-006-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-006-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-006-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。Recovery knowledge patternのみ。TERのrollbackはtransaction/reconciliation文脈の隣接例であり回復技術catalogの根拠ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+
+## BRAIN-INFRA-007-FR-01 — `HELIXBRAIN-L2-INFRA-007`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-007`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L66), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-007-003` / semantic digest `sha256:6139e9c45d889da03b67d37437c39f361592a6a19bb2651b46397c6ddce31684`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:282–291` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `79954786ae654f5969fcc002cfe57803966f0205f59305f90de56a7295ccb188`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:47–47` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `8bcf9023a543c1772d888fabce7b4df40fb23c46e419475a52284be9aef0d2b2`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Update、Staged Rolloutをblast radius、rollback characteristics、required duplication、availability impact、migration constraint、observability requirementで比較する。BRAIN自身はrelease/deploymentを進行しない。
+
+**入力**: architecture problem・pattern candidates・criteria/source。
+
+**出力・責務**: deployment pattern候補の比較情報・根拠・未確定inputを提示する。
+
+**否定・戻し先**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 deployment/release ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-007-AC-01 — 正常**: deployment pattern候補の比較情報・根拠・未確定inputを提示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-007-AC-02 — 否定・境界**: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 deployment/release ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: architecture problem・pattern candidates・criteria/source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-007-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: deployment pattern候補の比較情報・根拠・未確定inputを提示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-007-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: 実環境へdeploy/release、provider状態変更、製品のarchitecture採用確定を行う入力は拒否/owner返却。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未知のdeployment methodを比較候補に加え、評価軸が不明な部分をunknownとして保持し、実actionなし。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-007-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: deployment/release ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-007-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-004; 常時 BRAIN L2-004/INFRA-003/INFRA-006。6 deployment方式・比較軸、実action禁止。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-007-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-007-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-007-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。deployment architecture比較知識。distribution/release、外部環境変更、実deploy権限の意味は持ち込まない。 起点asset: `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`、`LEGACY-ASSET-7F8960532611D89D03E1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-EE5DBACC7F28F7D1F605` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:134–197` | `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544` | `747723b54908e79652e347ab529875943afc051fc9f9182d149481f01475e5a0` | FR/ACの親追跡・検証構造のみ。BRAIN具体意味の根拠にはしない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+
+## BRAIN-INFRA-008-FR-01 — `HELIXBRAIN-L2-INFRA-008`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-008`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L67), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-008-003` / semantic digest `sha256:6fbd7f1527b50a7c46cd201dbad52d7584616a7cb6f41cb2867cda550e1ad67a`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:292–301` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `fd25f8a5431b39e11266b4cf65f056706d6a27932fb0af9fb5cf4ff703055fe8`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:48–48` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `9c51887b271b926e70c837a48a05aa66e55f53ffb3f6337f53d613f4ae4de1f3`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、Read Replica、Cache、Worker Pool、Backpressure候補とtrigger、bottleneck、limit、statefulness、synchronization cost、expected saturation behaviorを結ぶ。特定load thresholdや規模を創作しない。
+
+**入力**: workload/capacity source・pattern・condition。
+
+**出力・責務**: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。
+
+**否定・戻し先**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-008-AC-01 — 正常**: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-008-AC-02 — 否定・境界**: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: workload/capacity source・pattern・condition | `FR-01 / AC-01` | `L10-BRAIN-INFRA-008-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 条件と観測要素に基づくcandidate patternを示し、specific thresholdのsourceを明示する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-008-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: scope不明のthresholdを作る、観測値からresource mutationを実行する、saturation conditionを一般化する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: holdout workload/bottleneck組合せを使い、threshold不足をapplicableへ変換せずunknownのままにする。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-008-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 未知thresholdはproduct ownerへ戻し、BRAINはunknownにする。 | `AC-02` | `L10-BRAIN-INFRA-008-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-003/INFRA-004。列挙8 patternと6 descriptor axes。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-008-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-008-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-008-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。scaling/capacityのtrigger/bottleneck/limits/state/synchronization/saturationを知識として扱う。実loadや運用実行ではない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-7E16E3B80335D8EC6F35` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md:17–39` | `869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60` | `e738afbdd787952d6ebbf6d2791fa444e3ddbce56e319793bccc5799fad11091` | typed edge/error/unknown検査形だけ。旧L5 integrationを実行・移植しない。 |
+
+## BRAIN-INFRA-009-FR-01 — `HELIXBRAIN-L2-INFRA-009`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-009`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L68), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-009-003` / semantic digest `sha256:0e2af1c81611096da7b50401d9c8f9342f585b89180fe1353fadda177c9d9ef9`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:302–311` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:49–49` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `841445aa41dff273200edc6259212d00314c2058b2f9d6166a69a8fc64dc8693`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、Error、Latency、Deployment state、Recovery stateの観測pointとmeaningをPattern候補へ結ぶ。構成を作っただけで成立とせず、actual logs/metricsはBRAINに保存しない。
+
+**入力**: observability pattern・source・設計対象。
+
+**出力・責務**: 設計対象・観測点と必要inputをcandidateとして返す。
+
+**否定・戻し先**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 収集値や機密は適切なdata/operation ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-009-AC-01 — 正常**: 設計対象・観測点と必要inputをcandidateとして返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-009-AC-02 — 否定・境界**: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 収集値や機密は適切なdata/operation ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: observability pattern・source・設計対象 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-009-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 設計対象・観測点と必要inputをcandidateとして返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-009-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: actual logs/metrics/secrets/user-dataを知識recordへ入れる、または観測設計をlive telemetryとして表す入力は停止。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 伏せたfailure signal/design targetを投入し、point designは候補にできてもlive valuesは取得/保存しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-009-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 収集値や機密は適切なdata/operation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-009-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-003; 常時 BRAIN L2-003/INFRA-003/INFRA-005。各観測pointからpattern/failure trace。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-009-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-009-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-009-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。観測点の設計知識であり実log/metric値保管とは区別。旧evidence/provenanceの記録形のみ類例。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+
+## BRAIN-INFRA-010-FR-01 — `HELIXBRAIN-L2-INFRA-010`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-010`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L69), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-010-002` / semantic digest `sha256:c1980982ae72265e879e460146c829aed253594de05f1a072f1913fe22264ddf`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:312–321` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:50–50` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `0d82dcad9c63929ef29003277754ad41eb50d85bb54d93193f0de5dfbf839687`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Backup strategy、retention pattern、replication、restore pattern、recovery validationを相互relationで結ぶ。Backup単独ではRecoverability Evidence Candidateとせず、Backup + Restore verification + required recovery conditionsを別candidateにする。actual RTO/RPOはproduct requirements owner。
+
+**入力**: product target source/revision・recovery patterns。
+
+**出力・責務**: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。
+
+**否定・戻し先**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 未指定のactual targetはproduct requirement ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-010-AC-01 — 正常**: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-010-AC-02 — 否定・境界**: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 未指定のactual targetはproduct requirement ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: product target source/revision・recovery patterns | `FR-01 / AC-01` | `L10-BRAIN-INFRA-010-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: recoverability knowledgeとproduct-supplied target/sourceを別fieldで関連づける。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-010-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: BRAINがRTO/RPOやbackup retentionを補完してproduct targetとして提示する、rollback類似をbackup guaranteeとみなす入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見restore conditionを加え、verification欠落/target source missingをrecoverability proof扱いしない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-010-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 未指定のactual targetはproduct requirement ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-010-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-003/010; 常時 BRAIN L2-005/INFRA-006。Backup/Restore/recoverability relation。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-010-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-010-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-010-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。backup/restore/recoverability関係。実際のRTO/RPOは製品要求側。旧rollbackをbackup/restore要件へ拡張しない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
+
+## BRAIN-INFRA-011-FR-01 — `HELIXBRAIN-L2-INFRA-011`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-011`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L70), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-011-002` / semantic digest `sha256:b54444968964df01a18e94c416d2c99fa2ad84a969c5714fccacb65913cea8a5`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:322–331` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `ca1ab62c895b7cea2e8f92d29609affb34f3fc0163697ea9d7f814d4a9f60855`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:51–51` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `865b51ab2c0cc7d3914201937ed583bfe61a13e1f5330038615fc71835fe048b`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+fixed/variable cost tendency、idle resource cost、scaling cost、redundancy cost、storage cost、network cost、operational costをtrade-offとして比較する。provider/time依存価格と抽象cost characteristicを区別する。
+
+**入力**: cost characteristic・provider/source/time/effective context。
+
+**出力・責務**: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。
+
+**否定・戻し先**: provider/time/source/contextを外して単価を一般化する入力は不成立。 価格source/context不明はunknownとして提供元へ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-011-AC-01 — 正常**: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-011-AC-02 — 否定・境界**: provider/time/source/contextを外して単価を一般化する入力は不成立。 価格source/context不明はunknownとして提供元へ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: cost characteristic・provider/source/time/effective context | `FR-01 / AC-01` | `L10-BRAIN-INFRA-011-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 候補比較にcost characteristicと前提/effective contextを含め、source更新可能性を保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-011-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: provider/time/source/contextを外して単価を一般化する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 新しい時点/provider price sourceを伏せ、abstract cost relationとtime-bound price factを混同しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-011-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 価格source/context不明はunknownとして提供元へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-011-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-004; 常時 BRAIN L2-004/INFRA-003。source/time-dependent price handling。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-011-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-011-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-011-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。cost特性・tradeoffは扱うがprovider/time依存priceを定数化しない。旧costを候補評価軸の隣接としてのみ扱う。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+
+## BRAIN-INFRA-012-FR-01 — `HELIXBRAIN-L2-INFRA-012`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-012`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L71), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-012-002` / semantic digest `sha256:3004b829636d79c4e4a50198df61e72d37839c99c3177bdf9b7daac0d1f91889`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:332–341` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:52–52` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `4b9c41a61d3d6b032bacec1a588fe17e14026957888fdbba196cb14d38a55b07`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Object Storageの抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementation exampleをimplements、compatible_with、constraint_of等でrelationする。provider固有事実にsource/versionを付け、compatibility未確認はunknownのままにする。
+
+**入力**: provider-neutral pattern・implementation identity・compatibility source。
+
+**出力・責務**: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。
+
+**否定・戻し先**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility根拠は検証ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-012-AC-01 — 正常**: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-012-AC-02 — 否定・境界**: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 compatibility根拠は検証ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: provider-neutral pattern・implementation identity・compatibility source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-012-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: 抽象Pattern候補とprovider-specific realization/exampleを別々に参照する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-012-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: provider exampleをuniversal pattern/compatible as trueとする、またはunknown compatibilityを適合扱いする入力は拒否。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見provider exampleのcompatibility evidenceなし状態を渡し、identityは抽象軸を維持し適合はunknown。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-012-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: compatibility根拠は検証ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-012-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-005/011; 常時 BRAIN L2-005/011/INFRA-002。抽象Patternとimplementation例を別identity軸にする。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-012-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-012-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-012-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。provider-neutral patternとimplementation identityを分離し、互換性unknownを維持。旧provider inventoryをpattern identityにしない。 起点asset: `LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-30FFE84409079C9B06D1`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+
+## BRAIN-INFRA-013-FR-01 — `HELIXBRAIN-L2-INFRA-013`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-013`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L72), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-013-003` / semantic digest `sha256:c80cb45639d03361769fe42b75d0917d7c58c2e4478ea327c2ce06053720601d`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:342–351` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `915285630ae5080ac424fe09f181239d97410b0e9c6442a75c15ad3c33e38173`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:53–53` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `87dab47321ea76f2ddd63ac283d420d153a7923e2d9960a80a2843424b009fb9`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Local machine、VPS、Dedicated server、Cloud、GPU node、Distributed worker node等をResource/Capability modelに結ぶprovider/environment-neutralな抽象知識を扱う。Cloudや特定computer構成を必須にしない。
+
+**入力**: abstract resource/capability identity/meaning。
+
+**出力・責務**: resource/capability concept identity、meaning、relationをabstract levelで返す。
+
+**否定・戻し先**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-013-AC-01 — 正常**: resource/capability concept identity、meaning、relationをabstract levelで返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-013-AC-02 — 否定・境界**: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: abstract resource/capability identity/meaning | `FR-01 / AC-01` | `L10-BRAIN-INFRA-013-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: resource/capability concept identity、meaning、relationをabstract levelで返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-013-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: credential/state/operation permission/live resource recordを抽象知識recordへ混入しない。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見実行基盤型をabstract modelへ投入し、Cloud前提や実resource discoveryなしでcandidateに留める。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-013-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: actual resource/authority requestはINFRASTRUCTURE/SECURITY/OS ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-013-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-001/002; 常時 BRAIN L2-001/002/INFRA-012/024。abstract resource/capability、live state/authorityなし。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-013-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-013-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-013-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。common abstract resource/capabilityは知識モデル。credential/state/operation authorityは対象外。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-5CBA32E9DB5B0FE05589`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+
+## BRAIN-INFRA-014-FR-01 — `HELIXBRAIN-L2-INFRA-014`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-014`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L73), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-014-003` / semantic digest `sha256:e3484392ff5b91fa1b8c697282d133a6425141c87a1d5cbe145c3d21ec172cbe`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:352–361` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `adc8d9d3b668980f2912b120e3d13889419670ed190ac7f78589d8f692d14479`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:54–54` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `6d45f4349873d7a7365ad23af8a0a7e24a99755f7ed8d9feb33c96248663d28e`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Web→Load Balancer→Application→Database→Backup、およびApplication→Queue→Worker等のtopologyを表し、depends_on、communicates_with、replicated_by、backed_up_by、monitored_by、failover_to、secured_by、deployed_on、scales_withを両endpoint identityと意味付きにする。component listだけではtopology成立としない。
+
+**入力**: topology design candidate・node/edge identity・source。
+
+**出力・責務**: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。
+
+**否定・戻し先**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 意味不明は候補で停止しBRAIN relation ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-014-AC-01 — 正常**: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-014-AC-02 — 否定・境界**: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 意味不明は候補で停止しBRAIN relation ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: topology design candidate・node/edge identity・source | `FR-01 / AC-01` | `L10-BRAIN-INFRA-014-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: nodes/edgesをsource・typed semanticsとともに識別し、unknown endpointを保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-014-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: endpoint欠落/name-only edge/unsupported causal link/runtime state claimを確定しない。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 伏せた別component topologyとunknown endpoint relationを投入し、未確定endpointをruntimeで解決しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-014-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 意味不明は候補で停止しBRAIN relation ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-014-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-005; 常時 BRAIN L2-005/INFRA-001/002。typed endpoint relation graph。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-014-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-014-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-014-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+部分類例＋再導出。typed topology graph endpoint/semanticsは設計関係で、runtime topology/stateではない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-7E16E3B80335D8EC6F35` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md:17–39` | `869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60` | `e738afbdd787952d6ebbf6d2791fa444e3ddbce56e319793bccc5799fad11091` | typed edge/error/unknown検査形だけ。旧L5 integrationを実行・移植しない。 |
+| `LEGACY-ASSET-FF7403E1E40E539FCE45` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L7-design-catalog-relation-projection-unit-test-design.md:21–32` | `f8277863f22243231009a02efb36acd933f78e3357f8ee0fe48971d22d93c8d6` | `db9ad2bcea2e39860b1a6efb5e60ed986a2d51e916b30be283416f57980fbec4` | typed relation/projection/stale sourceの類例としてのみ。L7 runtime/algorithmを移植しない。 |
+
+## BRAIN-INFRA-015-FR-01 — `HELIXBRAIN-L2-INFRA-015`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-015`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L74), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-015-002` / semantic digest `sha256:72fb876a117134621b30cba2884641d273bbd16351b2045bdf98abc2d5f75f49`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:362–371` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `11b9eff2eaac4b17aace22ac405581b9ceb7dab34b260320f246992b28f600af`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:55–55` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `58e16ddb2d0ad5943173c42620ce1efba738620f464f2131dd2df242f7b5232f`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+API→Network→Latency / Availability、Data→Storage / Database→Backup / Recovery、SecurityがNetwork / Runtime / Credentialを制約、Visual / UXがFrontend Delivery / CDN / Performanceに影響し得る例を、affects、constrains、may_affect等のscope付きrelationとして保持する。因果/constraintを無根拠に断定しない。
+
+**入力**: cross-domain source/evidence・relation claim。
+
+**出力・責務**: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。
+
+**否定・戻し先**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 causal evidence不足はunknownでsource ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-015-AC-01 — 正常**: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-015-AC-02 — 否定・境界**: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 causal evidence不足はunknownでsource ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: cross-domain source/evidence・relation claim | `FR-01 / AC-01` | `L10-BRAIN-INFRA-015-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: relation type・direction/scope・evidenceを保持して他Domain patternへtraceする。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-015-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: 相関やname similarityからcauseを断定する、scope/sourceのないeffectを確定する入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 未見Security/UX cross-domain claimで根拠不足を含め、may-affect以上を因果確定しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-015-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: causal evidence不足はunknownでsource ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-015-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-005; 常時 BRAIN L2-005と各Domain identity/source。cross-domain scope/evidence。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-015-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-015-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-015-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。cross-domain relationはaffects/constrains/may affectと根拠を区別し、因果を推定しない。 起点asset: `LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-7E16E3B80335D8EC6F35`、`LEGACY-ASSET-FF7403E1E40E539FCE45`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-7E16E3B80335D8EC6F35` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md:17–39` | `869d4494c8f5cfaea4d90f29392ee1a2c7c63cc2084712eb43e0c1d91cdeca60` | `e738afbdd787952d6ebbf6d2791fa444e3ddbce56e319793bccc5799fad11091` | typed edge/error/unknown検査形だけ。旧L5 integrationを実行・移植しない。 |
+| `LEGACY-ASSET-FF7403E1E40E539FCE45` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L7-design-catalog-relation-projection-unit-test-design.md:21–32` | `f8277863f22243231009a02efb36acd933f78e3357f8ee0fe48971d22d93c8d6` | `db9ad2bcea2e39860b1a6efb5e60ed986a2d51e916b30be283416f57980fbec4` | typed relation/projection/stale sourceの類例としてのみ。L7 runtime/algorithmを移植しない。 |
+
+## BRAIN-INFRA-016-FR-01 — `HELIXBRAIN-L2-INFRA-016`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-016`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L75), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-016-003` / semantic digest `sha256:a9b3694a104e24453025ca1bbefc2bdb0683078c5653ad1489a5c9c810ed1c8b`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:372–381` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `835303e5f143675783dbef7891d035b443472a05847cdaaecb199eb801c2b7c9`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:56–56` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `54fc593f9197339f43229875d327cf4e78ca084c7b146f44c4c16157fd8a026f`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+Single Point of Failure、Shared mutable production state、Unbounded Retry、Unbounded Queue、Missing Timeout、Backup Without Restore Test、Monitoring Without Action、Manual-only Recovery、Hidden Dependency、Undocumented Egress、Unbounded Resource Growthを、成立condition、failure manifestation、detection clue、safer alternativeへ結ぶ。例示を全状況の禁止へ一般化しない。
+
+**入力**: anti-pattern/failure/source/context/alternative。
+
+**出力・責務**: negative patternと成立範囲、反例、代替、sourceを候補として返す。
+
+**否定・戻し先**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 評価scope不明はLABO/該当要求ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-016-AC-01 — 正常**: negative patternと成立範囲、反例、代替、sourceを候補として返す。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-016-AC-02 — 否定・境界**: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 評価scope不明はLABO/該当要求ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: anti-pattern/failure/source/context/alternative | `FR-01 / AC-01` | `L10-BRAIN-INFRA-016-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: negative patternと成立範囲、反例、代替、sourceを候補として返す。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-016-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: condition削除、all-context prohibition、source/evidenceなしのrisk claimを確定しない。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: 別contextのheld-out conditionとcounterexampleを渡し、anti-patternを全scope banへしない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-016-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 評価scope不明はLABO/該当要求ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-016-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-010; 常時 BRAIN L2-010/INFRA-005/006/009。各列挙条件/兆候/代替。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-016-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-016-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-016-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。条件付きantipatternを表す。旧failure例を普遍禁止や一律gateにしない。 起点asset: `LEGACY-ASSET-335176749F6322C3CD8D`、`LEGACY-ASSET-7F8960532611D89D03E1`、`LEGACY-ASSET-879D95C07B789C9502CF`、`LEGACY-ASSET-30FFE84409079C9B06D1`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-335176749F6322C3CD8D` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:41–43` | `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d` | `b75a90583c2e87f9f8bb2ddbae123e70d2ef8a5591b507d70ee62acd40444fb8` | semantic identity、Pattern contract、製品固有意味分離の隣接意味。旧UI/Design-HARNESS権限・実装は移植しない。 |
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–69` | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `6b13fd9b425c11d0925cfc0299638083bef985c56c749bd0b2d0493234da0792` | 条件・比較・evidence・unknown・rollbackの隣接形。外部環境変更、provider/config authorityは移植しない。 |
+| `LEGACY-ASSET-879D95C07B789C9502CF` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:10–30` | `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191` | `4ebd3c1ad8a9d3469fe76020a956a3656fa6fe45630f3f8124e00cc225eea89a` | contract/profile/isolation等の正常・拒否oracle形だけ。UI実装と旧self-approval/gateは移植しない。 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:20–37` | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `57e7e0588d791b3c9f69618e678d5104e58cad90ca0fa086b302283865de0b6e` | unknown/stale/source/failureのoracle形の参考のみ。旧実行・rollback操作を移植しない。 |
+
+## BRAIN-INFRA-017-FR-01 — `HELIXBRAIN-L2-INFRA-017`
+
+### 親revisionとauthority
+
+- 親 `HELIXBRAIN-L2-INFRA-017`; PO decision [`helix-brain-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L76), revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision file SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`。main633 adopted registration `MPR-RC-HELIXBRAIN-L2-INFRA-017-002` / semantic digest `sha256:191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348`。後続metadataから承認を継承しない。
+- L2 `docs/helix-brain/L2-requirements/brain-requirements.md:382–391` (inclusive), file SHA `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03`, raw span SHA `d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795`。
+- L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:57–57` (inclusive), file SHA `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`, raw span SHA `9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420`。
+- Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
+### 要件候補
+
+experimental、observed、validated、mature、deprecated、retired等のmaturityと根拠relationを保持し、BRAIN versionとprojectでの利用版を区別する。内部Productで一度成功しただけでuniversal Patternに昇格しない。
+
+**入力**: maturity claim・evidence/source・scope/version。
+
+**出力・責務**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。
+
+**否定・戻し先**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。
+
+### 受入条件（AC候補）
+
+- **BRAIN-INFRA-017-AC-01 — 正常**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
+- **BRAIN-INFRA-017-AC-02 — 否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。
+
+### 固定親句の被覆
+
+| 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
+|---|---|---|---|
+| Input/source: maturity claim・evidence/source・scope/version | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 入力identity/source/revision/scopeを照合 |
+| Guarantee/output: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 親の指定field・状態・責務を観測 |
+| Negative/failure: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Held-out boundary: held-out scope/versionのevidenceと単一内部成功を用い、claim範囲を超えるmaturityを付けない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C03` | source/condition scope外をunknown/未評価に保つ |
+| Owner/backflow: 追加evidence/evaluationが必要な場合candidateを保ちLABO評価ownerへ戻す。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | stop reasonとparent ownerを観測 |
+| Dependencies/PO bundling: 親L1-007/008; 常時 BRAIN L2-007/008/020/025。evidence/scope/versionとproject-use state分離。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-017-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C01,C02` | release/implementation authorizationと混同しない |
+| L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | ``L10-BRAIN-INFRA-017-C01,C02`` | 正常・invalid conditionで行動oracleを検証 |
+
+### 旧L3／対test-designからの再利用・再導出
+
+再導出。maturityとevidenceを関連付け、単一内部成功を普遍的成熟度にしない。旧registry lifecycleは成熟度意味と別。 起点asset: `LEGACY-ASSET-5CBA32E9DB5B0FE05589`、`LEGACY-ASSET-603D0E8D8193914F4AC0`、`LEGACY-ASSET-44DD86E3DEC09E65EF51`。file path/line/full SHA/raw-span SHAを上表へ明記。旧schema・runtime・algorithm・CLI・旧gateを実行/移植しない。
+
+| 旧asset ID | 旧source path・行 | file SHA-256 | raw span SHA-256 | 使用範囲 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-5CBA32E9DB5B0FE05589` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/design-registry-requirement-family-authority.md:64–80` | `4f75f1fb5d285daaa582b2e4cbc016d8679d9e2364f60cc152dac3f5dece71ae` | `82d55c6cccad2872c3527ba3e868fa0367d826ae067f74e8dd8dfcb9a79efed6` | 識別子・source provenance・trace・状態分離の隣接形だけ。BRAIN知識モデル／登録実装には継承しない。 |
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:45–83` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` | `986ca8baec1dfd0ed53f3204dcc06895fb14a8b072a4d7893106b25f4254c5f7` | typed object/relationの形だけ。refactoring固有catalogや役割をBRAINへ流用しない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:32–90` | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228` | parent FR/AC→normal/negative/boundary oracleの表現形式のみ。旧gateは継承しない。 |
 
 ## 未承認事項
 
