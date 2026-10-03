@@ -269,9 +269,9 @@
     }
   },
   "latest_main_recheck": {
-    "latest_main_commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "latest_main_commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
     "comparison_basis_commit": "62d9eedca25a927916594a0a96690b2441437712",
-    "latest_main_MPR_full_file_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "latest_main_MPR_full_file_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
     "MPR_62d9_prefix_bytes_match_latest_main": true,
     "latest_main_MPR_125_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
     "MPR_001_row_equal_to_original_62d9_pin": true,
@@ -280,6 +280,9 @@
     "latest_main_L2_125_old_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
     "latest_main_L11_125_old_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
     "latest_main_62d9_pair_files_byte_identical": true,
-    "latest_main_comparison_scope": "MPR register, prior MPR-001 row, old receipt/source, OS L2/L11 target files. This is separate from the original 62d9 draft basis."
+    "latest_main_comparison_scope": "Current main 9f2555b8 is a separate recheck from historical 62d9 and 94f0 comparisons; preserves MPR 708-row raw prefix, existing HARNESS-067-002 and all historical 001 evidence.",
+    "MPR_base_prefix_line_count": 708,
+    "MPR_base_prefix_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "MPR_base_prefix_bytes_match": true
   }
 }
