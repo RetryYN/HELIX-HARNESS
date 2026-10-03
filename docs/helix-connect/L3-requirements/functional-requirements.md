@@ -1,10 +1,10 @@
-# HELIX-CONNECT L3 機能要件（Stage 1 草稿）
+# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a 部分草稿）
 
-> 状態: L3要件草稿。L3承認・実装方式確定・実装完了を表さない。G0確定のStage 1 34件中5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
+> 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。本追補はStage 2aの`HELIXCONNECT-L2-006`だけを追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
 
 ## 適用・責務境界
 
-対象はStage 1のHELIXCONNECT-L2-001〜005（version_target 1.0）。registration、revision compatibility、技術送受信、再送、traceを別FRにする。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。
+対象はStage 1のHELIXCONNECT-L2-001〜005とStage 2aのHELIXCONNECT-L2-006（各固定L2が明示するversion_target 1.0）。registration、revision compatibility、技術送受信、再送、trace、片側交換をFRごとに追跡する。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。Stage 2aは片側交換の一接続だけを扱い、後続L2-007の複数辺compositeを前倒ししない。
 
 ## 旧L3構造の保持点
 
@@ -101,3 +101,47 @@
 **L3 acceptance (`CONNECT-AC-005-01`)**：送受信・再送・stale・部分失敗を接続単位に順序追跡できる
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-005`。
+
+### CONNECT-FR-006-01 — 片側交換時の接続互換性
+
+#### 固定親revisionとauthority
+
+- 採択登録: `MPR-RC-HELIXCONNECT-L2-006-002`。基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の`docs/governance/management-provisional-requirement-register.jsonl:337`、row SHA-256 `7c942e87dab797a4edff23da53f97b0b75ba27eecfdb5504f03bc9ba193854c0`、candidate semantic digest `sha256:876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7`。
+- PO判断: `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md:48`。基準main633のdecision全文SHA-256 `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`はHELIXCONNECT-L2-001〜007を採択し、version_target 1.0と各適用条件を維持する。対象要求revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-connect/L2-requirements/connect-requirements.md` 115–125行、全文SHA-256 `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、inclusive raw-span SHA-256 `f5e21133232013d16d0306fd333c1c2e216c0163e3570f746242fd636b295db7`、heading「### HELIXCONNECT-L2-006 片側交換時の接続互換性（connection）」。
+- 固定L11親: `docs/helix-connect/L11-acceptance/connect-acceptance.md` line 37の一覧SHA-256とline 70の個別受入手順を固定L11全文SHA-256 `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`から読む。L11-006はconnection受入であり、片側交換4類型ごとの試験、固定側不変、互換時の再照合後送信、未完operation/ACK/attempt/期限/義務のhandoff、非互換等の送信0を要求する。
+- version candidate: `1.0`; sequence: `Stage 2a`; prerequisite identityはStage 2a assignment上なし。接続登録、両端の互換宣言、HARNESS-L2-010/011、該当SECURITY許可は固定L2の単独成立依存として保持する。
+
+#### 要件（候補）
+
+一つの登録済み接続で、送信側機構本体、送信側adapter/transport、受信側機構本体、受信側adapter/transportのいずれか一つを交換する。交換しない側の機構・契約revisionとL2列挙のartifact/dependency revision、scopeを固定し、交換側の旧新revision、交換scope、未完operation/義務/期限/attempt、交換・復旧権限を記録する。交換後の端点契約と接続契約の互換性を個別照合し、互換範囲内と確認したrevision組に限り、固定側を改変せず同一接続契約上で送受信する。変更前後のrevision、照合、送受信結果、handoff/rollback/recovery receiptを一連で辿れるようにする。
+
+非互換、unknown、stale、未登録revision、意味契約変更は通信停止とし、両側同時変更を片側交換成功へ読み替えない。再照合と再開条件が成立する前はretryせず、旧新revisionを同一operationに混ぜない。失敗時は未完operation/ACK/attempt/期限/義務とrecovery先をhandoffへ残し、意味契約差分は両端owner、技術互換差分はadapter owner、許可範囲はSECURITYへ戻す。
+
+#### 受入条件（AC候補）
+
+- **CONNECT-AC-006-01 — 正常・4類型追跡**：L11が列挙する4交換類型を別々に照合する。各ケースで固定側の機構・契約revisionと対象artifact/dependency revisionが交換前後で不変、交換側の新revisionが宣言互換範囲内、再照合がcurrentであり、同一接続契約上の通信だけが成立する。交換前後のrevision・互換receipt・送受信と未完operation/ACK/attempt/期限/義務をtraceし、交換前後を混在させず保持する。
+- **CONNECT-AC-006-02 — 否定・未見境界**：4類型それぞれに非互換revision、未登録revision、意味契約変更、staleまたはunknownの照合結果を与えた場合は通信attempt 0とする。固定側を変更済みと偽装せず、handoff/rollback/recovery先と残る義務を保持する。再照合・再開条件成立前にretryしない。
+
+#### 固定親句の被覆
+
+| 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
+|---|---|---|---|
+| 入力: 登録接続、固定側機構/契約/artifact/dependency revision、交換側旧新revision/scope、未完operation/義務/期限/attempt、交換/復旧権限・互換条件 | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 交換類型ごとの完全な入力とsource revision |
+| 保証: 片側を交換し、固定側を変えずに互換を個別照合、互換内なら同一契約上で通信 | `CONNECT-FR-006-01 / CONNECT-AC-006-01` | `CONNECT-CASE-006-01..04` | 4類型の固定側before/after一致、current互換receipt、同一contract送受信 |
+| 否定: 非互換/unknown/stale/意味契約変更では停止し、両側同時変更を成功扱いしない | `CONNECT-FR-006-01 / CONNECT-AC-006-02` | `CONNECT-CASE-006-05` | 各類型×4 invalidationの送信attempt 0、固定側不変 |
+| handoff/recovery: 未完operation/ACK/attempt/期限/義務を保持し、再照合・再開条件前にretryしない | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 未完state、handoff receipt、再開前retry 0 |
+| 依存/戻し先: 登録接続、両端互換宣言、HARNESS-L2-010/011、該当SECURITY許可; 意味差は両端owner、技術差はadapter owner、許可差はSECURITY | `CONNECT-FR-006-01 / CONNECT-AC-006-02` | `CONNECT-CASE-006-05` | dependency identityと未完義務/owner別返却 |
+
+#### 旧HELIX対応（項目別再利用区分）
+
+接続の片側交換と固定側を変えず同一契約で継続する直接一致の旧L3は、`docs/design/helix/L3-requirements/`内を探索した範囲では確認できない。旧technology-environment-reconciliationはrevision drift・根拠付き比較・unknown/stale fail-closeのfailure patternだけ部分再導出し、外部技術inventory/upgrade lifecycleを持ち込まない。distribution-package-releaseのartifact/version compatibilityは隣接例として比較し、package promotion/approval/OS固有挙動は再利用しない。4交換類型、固定側不変、handoff対象と接続固有の返却先は固定L2/L11から再導出する。
+
+| 旧asset ID | 旧source path・行 | 全文SHA-256 | 該当span SHA-256 (LF保持) | 対応と差分 |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md` 32–70, 72–94 | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477`; `afaad3aaa2f623b5979b658c32525c0552dce29b8591dc58e8b11b8b1ab684bf` | revision/source driftとfail-closeの類例だけ再導出。inventory/upgrade lifecycleは置換・除外。 |
+| `LEGACY-ASSET-9B7682EBDEA171005D45` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md` 24–83 | `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c` | `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e` | package/version compatibilityの隣接比較のみ。distribution/release authorityとpromotion規則は置換・除外。 |
+| `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md` 1–120 | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | artifact compatibility/revision driftのintegration oracle候補を限定参照。remote release test/runtimeは実行・移植しない。 |
+| `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` 32–90, 91–216 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228`; `066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4` | FR/ACとnormal/negative/boundary oracle対応の形式だけ参照。旧HAT/L12/runtimeは現行L10に移植しない。 |
+
+**対応L11 acceptance**：`HELIXCONNECT-L11-006`。

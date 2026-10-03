@@ -1,6 +1,6 @@
-# HELIX-CONNECT L10 総合検証（Stage 1 草稿）
+# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a 部分草稿）
 
-> 状態: L10総合検証設計の草稿。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。本書はG0確定のStage 1 34件全体ではなく、CONNECT-L2-001〜005の5件を対象とする。
+> 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、本追補はStage 2aのCONNECT-L2-006を追加する。
 
 ## 判定規約
 
@@ -15,6 +15,7 @@
 | `HELIXCONNECT-L2-003` | `CONNECT-FR-003-01` | `CONNECT-AC-003-01` | `CONNECT-CASE-003-01` | 1.0 |
 | `HELIXCONNECT-L2-004` | `CONNECT-FR-004-01` | `CONNECT-AC-004-01` | `CONNECT-CASE-004-01` | 1.0 |
 | `HELIXCONNECT-L2-005` | `CONNECT-FR-005-01` | `CONNECT-AC-005-01` | `CONNECT-CASE-005-01` | 1.0 |
+| `HELIXCONNECT-L2-006` | `CONNECT-FR-006-01` | `CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 1.0 |
 
 ## 句別被覆と責務分解（L3/AC/L10）
 
@@ -25,6 +26,7 @@
 | `HELIXCONNECT-L2-003` / `CONNECT-FR-003-01` / `CONNECT-AC-003-01` / `CONNECT-CASE-003-01` | connection/operation/contract revision/compatibility receiptに結ぶenvelopeを入力し、技術結果を返す | 未識別operation、contract外、revision違いを成功扱いしない | 契約差は両端owner、scopeはSECURITY、業務結果はreceiver business ownerへ返す | 契約=両端owner、authority=SECURITY、進行=OS、fixture=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-004` / `CONNECT-FR-004-01` / `CONNECT-AC-004-01` / `CONNECT-CASE-004-01` | retryable technical failure、同一ID/digest/revision、既存契約上限を入力しattempt/receiptとunfinishedを返す | 異digest、上限超過、business failure再送、新revision混載を拒否。重複効果0 | operation ownerへ未完義務/試行数、業務結果はbusiness owner、expiryはSECURITYへ | retry契約=connection owner、authority=SECURITY、実行=OS/CONNECT、証拠=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-005` / `CONNECT-FR-005-01` / `CONNECT-AC-005-01` / `CONNECT-CASE-005-01` | register/check/send/receipt/retry/stale/deny/terminal eventsを入力し順序traceと観測端点を返す | 欠落/順序曖昧/片端未観測はunknown、payload非保存だけでは失敗でない | trace欠落はoperation owner、data-use/authority不明はSECURITY/source ownerへ | event producer=接続端点、authority=SECURITY、状態=OS、証拠契約=HARNESS | 1.0 |
+| `HELIXCONNECT-L2-006` / `CONNECT-FR-006-01` / `CONNECT-AC-006-01,02` / `CONNECT-CASE-006-01..05` | 一接続の4交換類型ごとに固定側revisionと互換条件、未完義務を受けて交換後の同一契約通信または停止/handoffを返す | 固定側を変える、非互換/unknown/stale/未登録/意味契約変更で送信する、再照合前retry、義務欠落を拒否 | 意味差=両端owner、技術互換=adapter owner、許可=SECURITY、未完義務=connection operation owner | 接続契約=両端owner、更新/未完=HARNESS-L2-010/011、authority=SECURITY、進行=OS、検証証拠=HARNESS | 1.0 |
 
 ## Case catalog
 ### CONNECT-CASE-001-01 — `001` / 登録Identity
@@ -72,6 +74,33 @@
 - **責務・失敗時の戻し先**：connection operation eventと共通ログ/証拠の契約。本文payload保存を必須にしない。 failure時は、traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
 
+### CONNECT-CASE-006-01..05 — `006` / 片側交換
+
+- **固定親**: PO採択revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 `docs/helix-connect/L2-requirements/connect-requirements.md` 115–125行、全文SHA-256 `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、該当span SHA-256 `f5e21133232013d16d0306fd333c1c2e216c0163e3570f746242fd636b295db7`。対L11 `docs/helix-connect/L11-acceptance/connect-acceptance.md` line 37 summary SHA-256 `5bd8bae5f18be3e5b9e7e9539efc559220c816f69022093df5751a71b515f70c`、line 70 individual procedure SHA-256 `5781868b7fb4f5b885b8c4ef52fe3fa4c62dc8656232a3159b07abb227c790a7`、全文SHA-256 `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`。
+- **対応AC**: `CONNECT-AC-006-01`, `CONNECT-AC-006-02`。以下の4正常fixtureは独立実施し、negative matrixは各交換類型に交差適用する。
+
+#### 交換類型ごとの正常fixture
+
+- **CONNECT-CASE-006-01**（AC `CONNECT-AC-006-01`）: 送信側機構本体だけを交換する。送信側adapter/transport、受信側機構と契約、登録接続、HARNESS共有pack契約を交換前後revisionとして区別し、未完operation/ACK/attempt/期限/義務を入力する。**期待oracle**: 固定側機構・契約/artifact/dependency revisionが交換前後で一致し、新revisionが宣言範囲内とcurrent照合で確認された後のみ同一接続契約上の送受信が成立する。旧新revisionを混在せず未完義務をhandoffできる。
+- **CONNECT-CASE-006-02**（AC `CONNECT-AC-006-01`）: 送信側adapter/transportだけを交換し、送信側機構本体とその契約および受信側を固定する。**期待oracle**: 固定側不変を保ち、adapter/transport変更後の端点契約と接続契約を個別再照合し、互換確認後だけ送受信する。
+- **CONNECT-CASE-006-03**（AC `CONNECT-AC-006-01`）: 受信側機構本体だけを交換し、受信側adapter/transportと送信側を固定する。**期待oracle**: 固定側不変を保ち、受信側新revisionの契約を確認して同一接続契約で送受信する。
+- **CONNECT-CASE-006-04**（AC `CONNECT-AC-006-01`）: 受信側adapter/transportだけを交換し、受信側機構本体とその契約および送信側を固定する。**期待oracle**: 固定側不変を保ち、adapter/transport変更後の互換照合結果と送受信を同一接続identityにtraceする。
+
+各正常fixtureで、revision・互換照合・通信結果・handoff receiptを一続きの証拠から辿る。再照合と再開条件が成立するまではretryを0とし、継続時にも元operation identityと未完ACK/attempt/期限/義務を保つ。検証は宣言/receipt fixture内で行い、外部端点への送信、prototypeや実機の用意を要求しない。
+
+#### 否定・未見の組合せ
+
+- **CONNECT-CASE-006-05**（AC `CONNECT-AC-006-02`）: 前記4交換類型の各々に対し、(a)非互換revision、(b)未登録revision、(c)意味契約変更、(d)staleまたはunknownの照合結果を個別に投入する。全16 fixtureの期待oracleは通信attempt 0、固定側revision/契約/artifact/dependency不変、未完義務とrecovery先を保持すること。stale/unknownをcompatibleと読み替えず、両側更新による成功へ置換しない。authority/scope不明はSECURITYへ、意味差分は両端ownerへ、技術互換差分はadapter ownerへ返す。
+
+| 固定親 | L3/AC/case | 観測する状態・動作 |
+|---|---|---|
+| `HELIXCONNECT-L2-006` 入力/依存 | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02 / CONNECT-CASE-006-01..05` | 登録接続、固定側/交換側revision、scope、互換宣言、未完operation/ACK/attempt/期限/義務、HARNESS-L2-010/011、該当SECURITY許可 |
+| `HELIXCONNECT-L2-006` 互換時保証 | `CONNECT-FR-006-01 / CONNECT-AC-006-01 / CONNECT-CASE-006-01..04` | 4種類を個別に交換し、固定側不変、互換内のcurrent照合後のみ同一契約送信、前後revision/evidence trace |
+| `HELIXCONNECT-L2-006` 否定/戻し先 | `CONNECT-FR-006-01 / CONNECT-AC-006-02 / CONNECT-CASE-006-05` | 4類型×4 invalidationの16 fixtureで通信attempt 0、handoff/recovery ownerと残workを保持 |
+| `HELIXCONNECT-L2-006` 再開境界 | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02 / CONNECT-CASE-006-01..05` | 再照合/再開条件前retry 0、旧新revision混在0、未完義務の欠落0 |
+
+- **証拠**: fixture revision tuple、fixed-side before/after fingerprint、compatibility receipt、attempt/event順序、未完義務とowner別handoff。payload保存・実通信は要求しない。
+
 
 ## 横断シナリオと総合判定
 
@@ -79,4 +108,6 @@
 2. **retry → evidence**: `CONNECT-AC-004-01`で同一operation/digestの技術retryと異digest衝突を用意し、`CONNECT-AC-005-01`のordered traceから二重効果なし、停止、未完ownerを復元する。
 3. **unknown authority**: compatibilityがcompatibleでもSECURITY authority/data-useがunknown/expiredなら、送信eligibilityはwithheldでattemptなし。compatibility oracleをauthority oracleに流用しない。
 
-総合passは全5 ACが個別に成立し、横断シナリオでrevision/authority/retry/traceの連鎖が保たれること。任意項目の未観測、業務ownerの結果、未実施の旧デグレ検証をpassとして補完しない。
+4. **one-side replacement → handoff**: `CONNECT-CASE-006-01..04`を独立に行い、各々で固定側revision不変、互換照合後の同一契約通信、未完義務のhandoffを確認する。`CONNECT-CASE-006-05`は各交換類型に非互換/未登録/意味契約変更/stale-or-unknownを交差適用し、送信attempt 0を確認する。
+
+総合passは現在の6個のL3 AC候補が個別に成立し、横断シナリオでrevision/authority/retry/trace/片側交換の連鎖が保たれること。任意項目の未観測、業務ownerの結果、未実施の旧デグレ検証をpassとして補完しない。
