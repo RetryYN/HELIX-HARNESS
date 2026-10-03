@@ -1,0 +1,163 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-HIL17-RESIDUAL-2026-09-29-001-R2",
+  "receipt_state": "candidate_source_and_coverage_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HARNESS-L2-063",
+  "candidate_kind": "unit",
+  "l2_source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+  "l2_section_digest": "sha256:f0a1014c9514d70e8cbee63faca3ae6679c43240c89e095c4b484b161ed75b46",
+  "l11_source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+  "l11_section_digest": "sha256:fb545fc06feb1b032899cc24e8b579bb2032747a4e65f40ae354103b0bda2233",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/hr17-residual-source-atoms-2026-09-29.jsonl#HR-FR-HIL-17-RESIDUAL",
+  "source_atom_set_digest": "sha256:4eee79ed1c3f5200eae9cee1b852fe7ba6d475639cdb4168c073124e002cfdff",
+  "source_atom_count": 3,
+  "source_collection_scope": "HR-FR-HIL-17のbehavior/transition_contract/failure_and_evidence fieldから選んだ非重複3意味slice。HAC/HATはoracle referenceであり追加requirement atomではない。旧contractに列挙された11 requirement IDs、system contract全体、IR全体のno-loss/formal successorは主張しない。",
+  "atoms": [
+    {
+      "atom_id": "HR-FR-HIL-17-BEHAVIOR",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+      "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "source_pointer": "/HR-FR-HIL-17/behavior",
+      "source_excerpt": "原文をauthority付きatomic requirementへ翻訳し、design obligationとstable revision/edge/change receiptを正本化、template gapをshadow reviewへ送る",
+      "source_excerpt_sha256": "sha256:d774478ea8323007de5693355ad03ceea96b9755dadf5115d25d973cec3cfefc",
+      "selection_note": "このHR-FR-HIL-17 fieldの限定意味slice。親契約の全要件ID、全HAC/HAT、旧IR全体のclosureを主張しない。"
+    },
+    {
+      "atom_id": "HR-FR-HIL-17-TRANSITION",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+      "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "source_pointer": "/HR-FR-HIL-17/transition_contract",
+      "source_excerpt": "custodied source/authority、versioned template → active atomに全typed edge、未消込/ambiguity 0",
+      "source_excerpt_sha256": "sha256:efe7f970305d196f90fd1d3c3b4233b1d55cc586738f38f33ed45b73eeaa04df",
+      "selection_note": "このHR-FR-HIL-17 fieldの限定意味slice。親契約の全要件ID、全HAC/HAT、旧IR全体のclosureを主張しない。"
+    },
+    {
+      "atom_id": "HR-FR-HIL-17-FAILURE-EVIDENCE",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-004",
+      "legacy_asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "source_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "source_pointer": "/HR-FR-HIL-17/failure_and_evidence",
+      "source_excerpt": "原文消失、aggregate/TBD/偽N/A、self-promotion、stale伝播欠落 / revision、challenge、template、obligation、gap/review/change receipt",
+      "source_excerpt_sha256": "sha256:3793ad28812f53ac239edf5643e81c245796ab2c0529d0ea6282739bb119b9f2",
+      "selection_note": "このHR-FR-HIL-17 fieldの限定意味slice。親契約の全要件ID、全HAC/HAT、旧IR全体のclosureを主張しない。"
+    }
+  ],
+  "oracle_source_refs": [
+    {
+      "source_item_id": "REQSRC-SUP-00570",
+      "identity": "HAC-HIL-17a",
+      "pointer": "/HAC-HIL-17a",
+      "source_path": "docs/governance/requirements-source/requirements-ir/acceptance_cases.json",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "role": "positive oracle reference only"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00571",
+      "identity": "HAC-HIL-17b",
+      "pointer": "/HAC-HIL-17b",
+      "source_path": "docs/governance/requirements-source/requirements-ir/acceptance_cases.json",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "role": "negative oracle reference only"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00572",
+      "identity": "HAC-HIL-17c",
+      "pointer": "/HAC-HIL-17c",
+      "source_path": "docs/governance/requirements-source/requirements-ir/acceptance_cases.json",
+      "source_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "role": "boundary oracle reference only"
+    },
+    {
+      "source_item_id": "REQSRC-SUP-00648",
+      "identity": "HAT-HIL-17",
+      "pointer": "/HAT-HIL-17",
+      "source_path": "docs/governance/requirements-source/requirements-ir/system_tests.json",
+      "source_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "legacy_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "role": "supporting acceptance-oracle design reference; not executed"
+    }
+  ],
+  "adopted_current_contracts": [
+    {
+      "identity": "HARNESS-L2-009",
+      "status": "adopted as part of the exact L1/L2/L11 set in HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "decision_basis_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "l2_file_sha256": "sha256:aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "l11_file_sha256": "sha256:09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "scope": "template selection/application and required-input Backflow; does not close per-source atom-to-freeze edge/oracle receipt"
+    },
+    {
+      "identity": "HARNESS-L2-035",
+      "registration_id": "MPR-RC-HARNESS-L2-035-002",
+      "status": "adopted in HDEC-REQUIREMENTS-57-2026-09-29",
+      "l2_section_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "l11_section_digest": "sha256:65328061d5933e205a1ce1bf8689f19b1ab820623a2c637f13bb475477100670",
+      "additional_adopted_l11_oracle_digest": "sha256:5cd7416ba2260603c98458669c35ee5a16e9e2030b9ca7ef9416447676521ef7",
+      "scope": "upstream basis, candidate rationale, acceptance contribution and scope derivation; no atom/typed-edge/freeze closure"
+    },
+    {
+      "identity": "HARNESS-L2-040",
+      "registration_id": "MPR-RC-HARNESS-L2-040-002",
+      "status": "adopted in HDEC-REQUIREMENTS-57-2026-09-29",
+      "l2_section_digest": "sha256:c349606d7798e3f4eb5e6cb31e0618a83dcfa05f9fc888b0ce618f6d160757df",
+      "l11_section_digest": "sha256:366518f8e32ac4dda1e5f4ec88ef0cfed6bc363d597955ffffb1a82d706fc212",
+      "scope": "versioned layer/pair/row catalog contract including typed-edge inventory; no complete source-atom freeze receipt"
+    },
+    {
+      "identity": "HARNESS-L2-041",
+      "registration_id": "MPR-RC-HARNESS-L2-041-003",
+      "status": "adopted in HDEC-REQUIREMENTS-11-2026-09-29",
+      "l2_section_digest": "sha256:d68926cf1d569478e86228065e9f4f2177f33be19166f48fbb31a167eb266260",
+      "l11_section_digest": "sha256:11759276200a6707762e76eeeefd901443e691bd1b0ff51b55cd3b6551fed58b",
+      "scope": "selected active-template atom extraction and explicit gap reporting; no independent review/freeze closure"
+    }
+  ],
+  "coverage_partition": {
+    "coverage_result": "no_loss",
+    "carried_atom_refs": [
+      "HR-FR-HIL-17-BEHAVIOR",
+      "HR-FR-HIL-17-TRANSITION",
+      "HR-FR-HIL-17-FAILURE-EVIDENCE"
+    ],
+    "preserved_pending_registration_refs": [
+      "MPR-SH-SUPPLEMENTARY-004"
+    ],
+    "human_decision_disposition_refs": [],
+    "unaccounted_atom_refs": [],
+    "interpretation": "no_lossはこの候補入力3 sliceだけの局所partition。MPR-SH-SUPPLEMENTARY-004の655 item holdingを変更せず、HR-FR-HIL-17全体・11 requirement IDs・HAC/HAT全体へのformal successor割当を主張しない。"
+  },
+  "legacy_source_set_pins": {
+    "archive_source_hashes": {
+      "system_contracts.json": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "acceptance_cases.json": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "system_tests.json": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "refinement_contracts.json": "sha256:6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443"
+    },
+    "archive_and_governance_source_copy_bytes_verified_equal": true,
+    "refinement_contracts_scope": "既存14 refinement contractのJSON構造と対象IDを静的に読取。HR-FR-HIL-17のdirect successor revision or authority mappingは見つけていない。"
+  },
+  "review_basis": [
+    "docs/governance/audits/requirements-stage/legacy-auxiliary-contract-refinement-recheck-2026-09-28.md#HIL-17",
+    "docs/governance/audits/requirements-stage/legacy-system-acceptance-negative-oracle-audit-2026-09-28.md#HIL-17",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HARNESS-L2-035",
+    "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#HARNESS-L2-040",
+    "docs/governance/decisions/po-decision-2026-09-29-11candidates.md#HARNESS-L2-041",
+    "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#HARNESS-L2-009"
+  ],
+  "execution_state": "not_run; static source-to-current candidate coverage only",
+  "adoption_state": "unadopted candidate; no human decision or implementation authority generated",
+  "version_target": "unspecified; no target version inferred",
+  "scope_limit": "No full HR-FR-HIL-17 no-loss, formal successor assignment, whole-family closure, old test/runtime execution, implementation, or repeated human approval is claimed.",
+  "source_atom_set_digest_rule": "atom_id + 半角空白 + source_excerpt_sha256（sha256: prefixを含む）をatom順にLFで連結し、末尾LFなしでSHA-256。",
+  "source_atom_file_sha256": "sha256:6534d8207e46d3ec3c5958e5862bb44bf534338fdc3437e3ff0350646fadf522",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/hr17-residual-coverage-receipt-2026-09-29.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}

@@ -1,0 +1,219 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-113-3L-BR-007-2026-10-02-R2",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-113",
+  "candidate_kind": "connection",
+  "proposed_product_target": "HELIX-OS",
+  "proposed_target_is_not_current_owner": true,
+  "candidate_l2_section_digest": "sha256:ef74530043f7a7bebf2829fc2627bd6f78cd00c4a0d82c99b03da747b4209ed0",
+  "candidate_l2_file_sha256": "sha256:c7bea9a144398aa6a07fe80aba99b61ce7341c6a2d31e96d0cbdcc7fd320595c",
+  "candidate_l11_section_digest": "sha256:b1c8c6b10a26dd7540e759b3d9c058715ba968f6be0a6f0a962162e11e5c6f2c",
+  "candidate_l11_file_sha256": "sha256:1b2e0c8ddafccd56fa18285c245a14b35d9d7aeccfe621a1098f106cdc8ba9f1",
+  "candidate_source_lines_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
+  "candidate_source_lines_file_sha256": "sha256:dbc1f642b996a6923def8c8033323780a2ce46fef870cc84d8ddc38935e36506",
+  "source_holding_registration_id": "MPR-SH-CONFIRMED-004",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-source-lines-2026-10-02.jsonl",
+  "source_atom_set_digest": "sha256:34bae040e052fb93d112f42f7cf2a66b8730700d3a70a2b1a6c4329a139a11d2",
+  "source_atom_count": 1,
+  "source_collection_scope": "One confirmed175 identity atom anchored at old source identity line63; line65 body included. No adjacent 3L-BR-008 atom, old L3 requirement identities, L12 recognition rows, provider list, runtime or test behavior is added to the source atom input.",
+  "candidate_input_atom_refs": [
+    "CONFIRMED-3L-BR-007"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_scope_result": "no_loss_limited_to_single_confirmed_atom_candidate",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CONFIRMED-004#CONFIRMED-3L-BR-007: holding remains live; no current owner assignment, formal successor, adoption, execution, or source closure is asserted."
+  ],
+  "condition_mapping": [
+    {
+      "source_clause": "Deterministic rules are enforced by Node gate",
+      "candidate_ref": "HELIXOS-L2-113 guarantee; HELIXOS-L11-113 oracle keeps Node deny when semantic model says pass.",
+      "coverage": "candidate condition"
+    },
+    {
+      "source_clause": "Only semantic finding is delegated to an evaluated model",
+      "candidate_ref": "HELIXOS-L2-113 requires matching evaluation evidence identity/revision/scope; HELIXOS-L11-113 checks matching and missing/stale/unknown evidence.",
+      "coverage": "candidate condition"
+    },
+    {
+      "source_clause": "GitHub audit is not a fourth provider lane or separate Control Plane",
+      "candidate_ref": "HELIXOS-L2-113/L11-113 preserves existing HELIX boundaries and prohibits introducing another lane/control-plane identity.",
+      "coverage": "candidate condition"
+    }
+  ],
+  "related_existing_requirements_not_counted_as_successors": {
+    "HELIXINTELLIGENCE-L2-073": "adopted free-text detector/direct-projection boundary; partial adjacency only",
+    "HELIXINTELLIGENCE-L2-072": "conditionally adopted candidate-generation/shadow scope; not BR-007 owner or complete coverage",
+    "HELIXLABO-L2-071": "adopted task-class/model-revision qualification from BR-008; dependency reference only",
+    "HELIXOS-L2-018": "Worker assignment/execution boundary; adjacent only",
+    "HARNESS-L2-022": "verification/acceptance contract; adjacent only"
+  },
+  "current_po_decision_ref": null,
+  "human_decision_disposition_refs": [],
+  "formal_successor_status": "not_asserted",
+  "source_atom_closure": "not_asserted",
+  "source_owner_transfer": "not_asserted",
+  "candidate_version_target": "unset",
+  "static_acceptance_scope": [
+    "Normal: deterministic Node gate deny remains when semantic model says pass.",
+    "Normal: evaluated semantic finding with matching scope/model revision remains a finding without authority/lane/control-plane creation.",
+    "Negative: reject model override, unevaluated/mismatched revision or scope, fourth lane, separate Control Plane.",
+    "Unknown: missing/stale/unknown/conflict rule, source, evaluation, scope, or revision remains unresolved.",
+    "Out of scope: executing Node gate/model, actual GitHub/CI/PR activity, actual green, implementation, L3 approval, source retirement."
+  ],
+  "base_parent_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
+  "parent_concept_revision": "docs/concept/helix-concept.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept親。候補採択は継承しない）",
+  "parent_planning_revision": "docs/helix-os/L1-planning/system-intent.md@41b9d9a455df647115505e8f6e74bfd205481a8d sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e（固定HELIXOS-L1-001/008親。候補採択は継承しない）",
+  "source_status_preserved": "confirmed; preserved_pending_rehome",
+  "no_adoption_or_execution_claim": true,
+  "condition_body_hash_methods": {
+    "line": 65,
+    "lf_excluded_sha256": "sha256:ec3533b31742259ea0193d35ead202401de43365e9b6946851c9445446b812ed",
+    "lf_included_sha256": "sha256:d14d8aaa32559355be9a237e2c25538716b86f7696fb0144cb6709ff00a41699",
+    "prior_audit_interpretation": "The 2026-10-01 audit pin d14d… is the exact physical line digest including the trailing LF; it is valid under that method, not a source mismatch."
+  },
+  "candidate_creation_base_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
+  "latest_main_read_after": {
+    "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+    "file_pins": [
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "sha256_unchanged_from_creation_snapshot": true
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+        "sha256_unchanged_from_creation_snapshot": true
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+        "sha256_unchanged_from_creation_snapshot": true
+      },
+      {
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "sha256_unchanged_from_creation_snapshot": true
+      },
+      {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+        "sha256_unchanged_from_creation_snapshot": true
+      },
+      {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+        "line": 31,
+        "line_sha256_lf_excluded": "sha256:41ad1f0fc884b5d2d36e9c114c986f4e9f1f91c259e8345161674fc2b0797d76",
+        "fixed_l1_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "authority_effect": "effective_when_this_record_is_admitted_to_main",
+        "fixed_l1_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "fixed_revision_is_ancestor_of_latest_main": true,
+        "sha256_unchanged_from_creation_snapshot": true
+      }
+    ],
+    "decision_material_reference_pins": [
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+      },
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:78c32b598f449cf80d90e0e35eab6d39b94bd150abbfd543bc75bdb8be949ae6"
+      },
+      {
+        "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:14c6947262f7e7cc92e7200cafd301ebd49c4146c97f665f0548c6b2b2e9e16d"
+      },
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+        "file_sha256": "sha256:cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+      }
+    ],
+    "current_pair": {
+      "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "l2_file_sha256": "sha256:bde0dcc4640e7afcf73fbc431d01ee3082fe6fda79c8d1b93b9572507037e3bf",
+      "l2_section": "HELIXOS-L2-111",
+      "l2_section_digest": "sha256:265d5e7d1a8c06919b21691ddbf15354e51dbc204f310f07a448a7b33dc8173b",
+      "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "l11_file_sha256": "sha256:cd0e750cab9e694eed060a619d50527239e1b1291b9550cc0c95dbbd486c7112",
+      "l11_section": "HELIXOS-L11-111",
+      "l11_section_digest": "sha256:8efe5d58a4ebe0c4a7078aa7b311f3f2e1a7892b125b603d6a3e45ff4fc5ef14"
+    },
+    "po_decision": {
+      "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+      "row": 64,
+      "row_sha256_lf_excluded": "sha256:062bdedb7d8e9657eeb46da45543bd99793839c563efd94c9eaa7fff06df4358",
+      "file_sha256": "sha256:8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+      "scope": "Adopts the L2/L11-111 abstract three-input AND only; no current receipt IDs, issuers/owners, target version mapping, operational usability, actual issuance or actual green."
+    },
+    "management_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "file_sha256": "sha256:ada29e38e99bef16d1c68324129be1519723090cbcc910b50f4c5d47387c626a",
+      "line_count": 638,
+      "current_l2_111_registration": {
+        "line": 636,
+        "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+        "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+        "management_state": "registered_proposal",
+        "authority_effect": "none"
+      },
+      "l2_113_registration_present": false
+    },
+    "candidate_113_present_in_current_main_l2_l11": false,
+    "creation_snapshot_revision": "97826109918f1f9c7b24a3b91a6bb12aaba7b77d",
+    "creation_relevant_files_unchanged_in_latest_main": true,
+    "parent_l1_decision": {
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "revision": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+      "file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "line": 31,
+      "line_sha256_lf_excluded": "sha256:41ad1f0fc884b5d2d36e9c114c986f4e9f1f91c259e8345161674fc2b0797d76",
+      "fixed_l1_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l1_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "fixed_revision_is_ancestor_of_latest_main": true,
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    }
+  },
+  "current_main_state_note": "The exact HELIXOS-L2/L11-113 candidate and MPR-113 row are draft artifacts on this local branch, absent from latest main d31a4c8. Latest main contains only PO-adopted L2/L11-111; the candidate section digest below binds the local draft only.",
+  "latest_main_revision_read_after": "d31a4c8500d131001dc349bfbdfde82fb0b46839",
+  "current_pr_comparison_register_read_after": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "comparison_base_revision": "6f859fc03c9add36d84eb153cb1832b26768d6d1",
+    "origin_main_prefix_line_count": 642,
+    "origin_main_prefix_sha256": "sha256:4bd6edbf2d92758ab7280a7c4ff76c19fac5530374984f42a0e45b0a04f41358",
+    "current_pr_comparison_line_count": 643,
+    "current_pr_comparison_sha256": "sha256:98645c37df953bb9e376989da5055db49d200ba539c894ec97b4994ca8ac844f",
+    "retained_adopted_pair_registration": {
+      "line": 636,
+      "line_sha256_lf_excluded": "sha256:8fd6f2757862c5307faa28933eebab735697a1609af81c3791f4f8a322ace39a",
+      "registration_id": "MPR-RC-HELIXOS-L2-111-001",
+      "management_state": "registered_proposal",
+      "authority_effect": "none",
+      "target_authority_ref": "docs/governance/decisions/po-decision-2026-09-30-live26.md#row-64",
+      "target_authority_scope": "HELIXOS-L2/L11-111 abstract three-input AND only."
+    },
+    "only_local_suffix": {
+      "line": 643,
+      "registration_id": "MPR-RC-HELIXOS-L2-113-001",
+      "line_sha256_lf_excluded": "sha256:0bd586a0d1400f26f8d852b43a40b3e611f5eaca49393f534c72d4bdee19296e",
+      "management_state": "registered_proposal",
+      "authority_effect": "none"
+    }
+  },
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/three-lane-br-007-github-audit-coverage-receipt-2026-10-02.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}
