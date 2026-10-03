@@ -225,7 +225,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 - `L10-INFRA-011-C19`（AC `INFRA-011-AC-02`）: 18 item evidenceがそろうfixtureでunit outcomes、CORE/OS/SECURITY/Worker connections、compositeを別段階で照合する。全item・必要connectionが閉じた場合だけ構成体候補を成立とする。どれか一つのunit greenだけでは成立しない。
 - `L10-INFRA-011-C20`（AC `INFRA-011-AC-02`）: 一つのunit/connection/itemをmissing/unknown/stale/unauthorizedにし、別の成功結果とbackupだけでaggregate passにする変異を試す。compositeは未成立で、部分成功・未完義務・現行稼働版・適格rollback先を保持する。
 - `L10-INFRA-011-C21`（AC `INFRA-011-AC-02`）: HELIX自身のphase releaseへ収載するfixtureではOS-L2-014のstage identity/contract/evidenceを照合する。通常Infrastructure構成体の対照fixtureではその依存を要求しない。HELIX-WEB-OS顧客runtimeや後続version_targetを1.0 scopeに入れたら拒否する。
-- `L10-INFRA-011-C22`（AC `INFRA-011-AC-02`）: authorized read-only/no-change operation、許可update、OS停止中独立recoveryを別fixtureにする。read-onlyは適用scopeのwrite-setと対象resource before/afterを検査し、全state digest不変は要求しない。個々のread-only operationへbackup全件は課さず、compositeの18 item coverageから復旧itemを外さない。
+- `L10-INFRA-011-C22`（AC `INFRA-011-AC-02`）: authorized read-only/no-change operation、許可update、OS停止中独立recoveryを別fixtureにする。read-onlyは適用scopeのwrite-setと対象resource before/afterを検査し、全state digest不変は要求しない。個々のread-only operationへbackup全件は課さず、compositeの18 item coverageから復旧itemを外さない。許可updateでは当該actionへ適用される復旧義務を別に照合し、その義務がunknownのstate changeはholdする。OS停止中の限定recoveryを根拠に通常operationのticket/assignmentを免除する変異は拒否する。
 - `L10-INFRA-011-C23`（AC `INFRA-011-AC-01,02`）: source identity/scope/versionと親が定める18項目を保った、既知の構成とは異なるvalid topology fixtureを与える。oracleは要求field/evidence/ownerが適合する未見構成を許容し、特定の旧実装・製品構成を唯一例として要求しない。
 
 case集合の出力は各itemのinput/expected outcome/observed evidence/result、source/revision、owner、unknown/hold、未完義務、recovery/rollback先である。外部環境操作や実測結果は本設計に含まない。
