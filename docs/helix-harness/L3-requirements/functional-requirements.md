@@ -439,7 +439,7 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 **受入条件**
 
 - AC-HARNESS-L3-027-01: fixtureのcodeがstatus != draftなら409で終了し、amount > maxなら422でpersistに到達せず、draftかつamount <= maxならpersist後200を返す構造を持つ場合、source revision/digest/scopeとread permissionを結び、guard、副作用順、各応答を根拠spanごとのobservation candidateとして出す。019 result-boundaryがない単独実装receipt、保存design、要求承認は入力に要求しない。
-- AC-HARNESS-L3-027-02: status条件、amount/max条件、persist順序のいずれかを一つずつ欠落/逆転させる。sourceに書かれた挙動の候補は正確に変化し、拒否branchではpersistが起きない。候補を要求正しさやruntime実測と誤表示しない。
+- AC-HARNESS-L3-027-02: status条件、amount/max条件、persist順序のいずれかを一つずつ欠落/逆転させる。sourceに書かれた挙動の候補は実際の分岐とpersist到達/非到達に合わせて正確に変化する。原形の拒否branchはpersistへ到達しない。変更sourceで記述が変わった挙動を隠す/原形の期待で上書きしない。候補を要求正しさやruntime実測と誤表示しない。
 - AC-HARNESS-L3-027-03: 019 input contract/source type未選択、010/011 pack/call version不一致、source digest/scope/read permission missing/staleを独立に与える。必須入力はhold/unknown、未選択typeはunobservedとする。runtime、実顧客DB値、書込み、permission拡張は0。未対応構文・矛盾sourceはunsupported/conflictとして保持する。
 
 旧UWJ/HILのsource identityとfailure-classは近接類例に限り、static extraction semanticsは現行L2から再導出する。下記source mapに直接・隣接根拠と検索限界を記録する。

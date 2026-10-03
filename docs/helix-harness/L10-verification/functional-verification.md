@@ -195,14 +195,14 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 
 - CASE-HARNESS-L10-026-01（AC-HARNESS-L3-026-01）: 009/010/011/022、CORE、BRAIN connector、Template、承認済L3/対象revision/scopeを入力し、014内部unitとしてL4/L5/L6とL9/L8/L7各出力対を照合する。014完了receiptは未発行とする。oracleは全出力対と全traceが成立し、receipt不存在を理由にholdしないこと。
 - CASE-HARNESS-L10-026-02（AC-HARNESS-L3-026-02）: 009、010、011、022、CORE、BRAIN connector、Template、L4、L5、L6、L9、L8、L7の各常時入力/出力を別個のmutationとして一つずつ欠落またはstaleにする。期待結果は該当義務のhold/uncovered、他義務を維持、欠落義務の相殺0。
-- CASE-HARNESS-L10-026-03（AC-HARNESS-L3-026-03）: UI対象ではscreen contract/prototype/非UI合意/oracleの各一つを欠落させholdを確認する。非UI対象の並行fixtureではそれらを与えなくても合格。個別Patternを選択した場合はidentity/version/compatibility/applicability/required input/relation/counterexampleの各欠落を独立に検出し、未選択Patternは未観測とする。UIでない設計対象にも適用oracleを与え、これを欠落させるとholdする。UI artifactだけはUI選択時に必須。競合Pattern fixtureは両constraintと代替を併記し、各代替を固定不変条件oracleで検証する。
+- CASE-HARNESS-L10-026-03（AC-HARNESS-L3-026-03）: UI対象ではscreen contract/prototype/非UI合意のUI evidenceを各一つ欠落させholdを確認する。非UI対象にはUI-specific evidenceを要求しないが、各適用設計対象のapplicable oracleは必須。個別Patternを選択した場合はidentity/version/compatibility/applicability/required input/relation/counterexampleの各欠落を独立に検出し、未選択Patternは未観測とする。UIでない設計対象にも適用oracleを与え、これを欠落させるとholdする。UI artifactだけはUI選択時に必須。競合Pattern fixtureは両constraintと代替を併記し、各代替を固定不変条件oracleで検証する。
 - CASE-HARNESS-L10-026-04（AC-HARNESS-L3-026-04）: 026交換前後の014 input/output version、scope、compatibility、paired acceptanceをそれぞれmissing/stale/mismatchとする。どれも014提供をholdし、旧新contract混在は不合格。全一致fixtureのみ候補を通す。
 - CASE-HARNESS-L10-026-05（AC-HARNESS-L3-026-01,03）: approved requirement「承認後は申請を編集できない」をstate/API/command/actor/UI/DB設計と個別oracleに結ぶ正常fixtureを通す。反例fixtureでは (a) UIだけ編集不可だがAPIは更新を受理、(b) 権限のある別actorが迂回、(c) 同時更新でstate/DB不変条件が破れる、(d) Pattern代替が不変条件を破る、をそれぞれ独立に入力する。画面traceの存在で合格にせず、該当経路のoracleが違反を検出すること。親意味変更要求はL2-008へbackflow。
 
 ### HARNESS-L2-027（FR-HARNESS-L3-027）
 
 - CASE-HARNESS-L10-027-01（AC-HARNESS-L3-027-01）: 明示選択code sourceのstatic snapshotにstatus != draft → 409、amount > max → 422、otherwise persist(amount) → 200を置き、revision/digest/scope/read permissionを結ぶ。期待oracleは三分岐の順序とsource span、persist到達/非到達をcandidateとして記録し、runtime実測や要求正しさを主張しない。
-- CASE-HARNESS-L10-027-02（AC-HARNESS-L3-027-02）: status guard、amount comparison、persist orderingを一つずつ逆転/除去したsource variantと、原形を与える。抽出結果だけがそのsource変更に応じて変わり、拒否branchがpersistへ到達したら不合格。
+- CASE-HARNESS-L10-027-02（AC-HARNESS-L3-027-02）: status guard、amount comparison、persist orderingを一つずつ逆転/除去したsource variantと原形を与える。原形では拒否branchからpersistへ到達しない。各変更sourceでは実際に記述された分岐順とpersist到達/非到達をobservation candidateに正確に反映し、変更sourceの欠陥を隠す、または原形期待を変更sourceへ上書きした場合にだけ不合格とする。要求正しさやruntime実行結果を判定しない。
 - CASE-HARNESS-L10-027-03（AC-HARNESS-L3-027-03）: HARNESS-L2-019の対象/source-type/scope/version input contract、010 pack version、011 call revision/scope/receipt、source digest、read permissionのそれぞれを単独欠落/staleにする。該当入力hold、未選択source unobserved、019完了receiptやsaved designが無くてもvalid raw observationは成立。
 - CASE-HARNESS-L10-027-04（AC-HARNESS-L3-027-03）: unsupported config construct、同一scopeで矛盾する二source、runtime-only field、実顧客DB値を別fixtureで与える。unsupported/conflict/unknownを区別し、顧客DB・runtimeアクセスとwriteは0。
 
