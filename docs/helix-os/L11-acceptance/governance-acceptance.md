@@ -1361,24 +1361,9 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 - **scope選択材料（未決）**：A) legacy引継ぎで特定されたZIP一件だけを対象にする。B) 案件ごとに明示選択されたZIPを記録する再利用可能な管理unitへ広げる（HARNESS-087と整合する推奨候補）。両案ともZIPのみで、OSの判断権限や外部取得を増やさない。Bは適用案件とsource record範囲を変える。選択前は受入fixtureをowner assignmentやscope採択とみなさず、未見scopeを保持する。
 
 ### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補
-
-- **前提**：未採択・未実行の文書上fixtureである。既存operation authority/assignmentを与え、候補から新規権限・dispatchや人間承認を作らない。候補本文および本oracleは旧runtime・旧test・CIを起動しない。通常operationにこの条件を一律適用しない。
-- **正常 fixture**：既存authorityの対象operationで、版付きpackと必要最小の専門agent contract/teamが、対象ticket/requirement revision、scope、生成元snapshot、および実際に選択されたsource revision/digestへ結び付いている。対象revision/scope/packに対応するshadow reviewとruntime guardを使用前に確認し、独立verifyの担当は作成主体と分離する。選択Worker/tool/pathは既存authority内、自己検証なし、teamは必要最小の明示member/task集合、停止・budget条件と既存workflowのcompletion範囲が一致する。guardは該当operationの該当actionだけを進行可能とし、packやagentへ権限を与えず、新しいapprovalを要求しない。具体的な合成fixture値はcoverage receiptの技術証跡に保全し、要求本文はschemaやrevision形式を規定しない。生成工程全体、musterの全lifecycle、lifecycle receiptの充足はこの受入から推定しない。
-- **正常—通常operationの非適用**：pack/agentを選択しない通常operationに、generated artifactのguard義務を追加しない。assignment/authorityと既存の適用条件に従う。非適用結果から別条件の充足やruntime成功を推定しない。
-- **独立negative—提案物の自己権威化**：他の入力を正常に保ち、packまたはagentが提案状態からoperation/tool/completion authorityを自己宣言する例を与える。既存authorityの別証拠なしに受理したら不合格。
-- **独立negative—snapshot/digest不一致**：他の条件を正常に保ち、生成snapshot identity/digestと対象operationのbound sourceを一つだけ変える。旧facetをcurrentとして再利用したら不合格。scope、requirement、template、skill、model catalog、allowlistは一つずつ独立に変えるfixtureを設ける。各例の影響範囲は採択済み072-005の選択依存Bをcandidate/shadow境界で保持し、operation guard自体は未採択候補として、実際に選択・適用されたsourceの不一致を当該operationでstale/unknownと判定する。
-- **独立negative—shadow review欠落**：scope/revision/tool/authorityを正常に保ち、同一revision/scope/packのshadow reviewだけを欠かせる。未完を確認済みに読み替えてoperationを進めたら不合格。
-- **独立negative—runtime guard欠落**：shadow reviewと他条件を正常に保ち、同一operationのruntime guard resultだけを欠かせる。guard前に該当operation actionを進めたら不合格。
-- **独立negative—independent verify欠落**：shadow/guard/authorityを正常に保ち、選択した必要最小team contractのindependent verify担当/evidenceだけを欠かせる。未完を完了証拠として受け入れたら不合格。
-- **独立negative—許可外tool/path**：同一operation authorityから一つのtoolまたはpathを外し、生成agentがそれを使う例を与える。既存SECURITY authorityに含まれないactionを許可したら不合格。policy自体を候補が緩和したり新しい許可を追加したりしてはならない。
-- **独立negative—自己検証**：workerとverification actor/context/authority/routeを同一にした例を与える。本候補対象のpack/agent operationで作成側の自己確認をindependent verificationとして扱ったら不合格。この条件をpack/agentを使わないoperation全般へ拡大しない。
-- **独立negative—無制限subagent**：上限または停止条件を持たず再帰的に子agentを増やせる例を与える。明示された有限のtask/member境界がないまま生成が継続可能なら不合格。明示範囲内の有限な再帰委譲は、このnegativeだけを根拠に拒否しない。固定人数上限を新設しない。
-- **独立negative—必要最小teamを超える生成**：HR-FR-HIL-21の必要最小team条件を選択したoperationで、既存のtaskに不要なagentを追加した有限teamを与える。要求された必要task/memberを超えたteamを最小構成として受け入れたら不合格。固定人数上限は新設しない。
-- **独立negative—工程外completion authority**：同じ作業結果を保ったまま、agentが既存workflow外のticket/stage/phaseを完了扱いする例を与える。該当する既存operation authorityの範囲を越えたcompletionを受け入れたら不合格。
-- **unknown/未見**：未見のpack・agent contract、source owner不明、stale applicability、未定のtool/path、verification担当との独立性不明、completion scope不明、またはteam境界不明を入力する。未見という理由で正常とせず、影響を受けるoperationをunknown/未完に保ち、推測せず該当する既存source/authority ownerへ戻す。他の正常tupleは失敗条件を覆い隠さない。
-- **依存4区分 fixture**：正常例と同じ合成のpack/agent使用operationを対象にHARNESS-L2/L11-023の4区分を照合し、同一条件の再照合では同じ適用dependencyと理由を返す。具体的なtuple値はcoverage receiptの技術証跡に保全し、ここでは各区分の対象意味と判定境界を示す。
-  - 常時必須：固定採択済み`HELIXOS-L2-018` pair、対象ticket/assignment/既存authorityとoperation scope。task/revision/Worker/attemptが当該operationに適合することを確認する。
-  - 特定操作時のみ：この未採択候補pairの条件はpack/agent使用が明示されたoperationにだけ適用し、pack/agentを使わないoperationや候補起草へ拡張しない。候補pairを採択済みauthorityとして扱わない。
-  - 選択した入力元に応じて必須：実際に選択されたpack、agent contract、source dependencyのidentity/owner/revision/digest/applicabilityと生成時snapshotとのbindを確認する。選択sourceの不一致はそのfacetだけstale/unknownとして返す。
-  - 参照資料のみ：HR-FR-HIL-21 whole recordのうち、このcandidateが規範source条件として明示選択していない生成方式・muster/lifecycle等の残余条件、および旧HAC-HIL-21a/b/c、HAT-HIL-21、HOT-HIL-52/53のconsumer/oracle記録は、履歴sourceと未回収条件を照合する資料である。HR-FR-HIL-21から本candidateが選択した条件は参照資料だけの扱いにせず、本candidateの規範sourceとして別項・receiptへ保持する。archiveをruntime dependency、互換range、成功・実行証拠として使わないことは、選択済み規範条件を降格・消去する意味ではない。
-- **source mappingと限界**：旧IR HIL-NFR-34の原文一atomは候補のauthority非付与、snapshot/digest bind、六sourceカテゴリのstale、未監査pack・未許可tool・自己検証・無制限subagent・工程外completionのnegativeへ対応する。旧L1 line 214は同文corroboration。HR-FR-HIL-21 revision 1 whole recordからは版付きpack、必要最小team contract、独立verify、pack使用前のshadow review/runtime guardだけを追加source条件として対応づける。pack/teamの生成工程全体、musterの全lifecycle、receiptは未回収のままsource holdingへ残す。HAC-HIL-21a/b/cとHAT-HIL-21は旧consumer/oracleで、HAT-HIL-21は`designed_not_implemented`のため実行結果を主張しない。詳細は対L2 candidateのcoverage receiptにsource file SHA、物理line、record digest、選択条件、未回収条件、現在の対応pairを記録する。
+- **候補と確認範囲**：本受入はHELIX-OSの未採択・未実行の利用者確認基準である。pack/agentを用いると明示された個別operationだけを対象とし、既存assignment・authorityの外へ拡張しない。旧runtime、旧test、CIの実行結果を根拠にしない。
+- **正常な結果を人が確認する例**：既存authority内のoperationについて、利用者はticket/要求revisionとscope、選択した入力と生成時点の関係、pack/agentが提案物であること、使用前の対応する独立確認、結果が既存のoperation範囲内であることを確認する。記録が揃っているだけでなく、表示された結果・未解決条件・理由が実際の対象と一致し、pack/agentに権限や完了決定が与えられていないことを確認できた場合に限り、そのoperationの限定scopeで受入可能とする。
+- **誤った結果を人が確認する例**：生成後に選択済み入力が変わったのに古い提案物を現在のものとして使う、pack/agentが許可や完了を自称する、既存許可外toolを使う、作成主体の自己確認だけを独立確認として示す、または有限なtask/member境界のないagent生成を続ける例を確認する。影響するactionが進んだ、理由・未完条件が利用者に示されない、または無関係な別operationまで一律に止めた場合は受入しない。HARNESS-L2-023の四区分に照らし、実際に選ばれた依存の変更だけが該当scopeへ影響し、未選択依存の変更が選択済み結果へ混入しないことも確認する。
+- **未見の結果を人が確認する例**：未見のpack/agent、入力owner、適用範囲、独立性、またはcompletion範囲が提示されたとき、利用者は正常扱いへの暗黙変換や別入力へのfallbackがないこと、未解決の条件と確認先が見えることを確認する。情報が得られない範囲は結論を保留し、別の正常例から一般化しない。
+- **依存4区分（要求意味・影響範囲）**：採択済みHARNESS-L2-023に従い、常時必須のticket/要求revision・scope・既存authority、pack/agentを使う操作に限る条件、実際に選択した入力だけへ及ぶ依存、歴史照合に限る参照資料を利用者が区別できることを確認する。四区分の具体identity、contract tuple、機械fixture、個別negativeは監査receiptに技術引継ぎとして保全する。参照資料分類で旧原文条件を消さず、fixtureの記載だけから実在owner、許可、実行成功、採択または全体closureを推定しない。
+- **sourceから利用者確認への対応**：旧HIL-NFR-34の全条件とHR-FR-HIL-21から選択した追加保証、未回収consumer/lifecycle条件、対応する技術材料はcoverage receiptのrevision 002に対応表として記録する。HAT-HIL-21は`designed_not_implemented`であり、実行結果や全体closureの証拠として扱わない。

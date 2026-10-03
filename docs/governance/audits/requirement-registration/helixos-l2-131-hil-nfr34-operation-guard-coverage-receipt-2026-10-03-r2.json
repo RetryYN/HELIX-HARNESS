@@ -1,0 +1,136 @@
+{
+  "schema_version": "helix-requirement-candidate-coverage-receipt.v1",
+  "receipt_id": "HELIXOS-L2-131-HIL-NFR-34-COVERAGE-2026-10-03-r2",
+  "supersedes_receipt": "docs/governance/audits/requirement-registration/helixos-l2-131-hil-nfr34-operation-guard-coverage-receipt-2026-10-03.json",
+  "superseded_receipt_sha256": "sha256:410ae4fe29b06a7b3f3eaeff21e8f5ed3dbe38593ef436da628c8c05d70141d3",
+  "registration_id": "MPR-RC-HELIXOS-L2-131-002",
+  "status": "candidate_only_no_adoption_or_execution_claim",
+  "candidate_identity": "HELIXOS-L2-131",
+  "revision_purpose": "PO是正F1: L2を利用者保証・適用範囲・利用条件別依存意味へ、L11を利用者が正常/誤り/未見の結果を確認する基準へ整理。技術条件を削除せず本receiptとsuperseded receipt 001へ引継ぐ。",
+  "candidate_pair": {
+    "l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "l2_heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）",
+    "l2_section_sha256": "sha256:87981dfee01e17fd8cb999c8570a692a2968eb8b81ae3aad12da0dc5365a39cc",
+    "l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "l11_heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
+    "l11_section_sha256": "sha256:50bc6f97c31430637d3b3028e9144362c6992f0c11d7f754dcbbcc64bb3fa1b1",
+    "digest_rule": "Exact candidate heading through before next same-or-higher heading; trim trailing blank lines; UTF-8 with one LF.",
+    "adoption": "unadopted candidate; no L3 or downstream drafting/adoption generated",
+    "l2_start_line": 1660,
+    "l2_end_line_exclusive": 1665,
+    "l2_full_file_sha256": "sha256:31185eb239eb6cfbe43cd257908447b1cb0f458ce5d879efb19ca5460965d662",
+    "l11_start_line": 1363,
+    "l11_end_line_exclusive": 1370,
+    "l11_full_file_sha256": "sha256:f1db511c6df34c93fbf5901e3f5e7aea744ea8bb8c24e72a142596b3f4993679"
+  },
+  "source_scope": {
+    "normative_ir_atom": "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+    "legacy_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-34",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_locator_key_line": 5842,
+    "source_statement_line": 5851,
+    "source_statement_sha256_without_lf": "sha256:3f169d6b09d42c4a75b00c9fc5115cb20ffec46f95d14b4182c54a99c7f9c1b8",
+    "source_semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+    "exact_source_statement": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+    "l1_corroboration": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 214,
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "same_statement_not_additional_atom": true
+    },
+    "supplementary_record": {
+      "identity": "HR-FR-HIL-21@r1",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#HR-FR-HIL-21",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "record_semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058",
+      "line": 490
+    },
+    "placement_context": [
+      {
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "line": 43,
+        "source_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "meaning": "旧OS配置記録は判断権なしの候補文脈"
+      },
+      {
+        "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+        "line": 136,
+        "identity": "PRC-HIL-NFR-34-001",
+        "meaning": "OS配置候補・authority_effect=none・successor未割当"
+      }
+    ],
+    "source_atom_ledger": "docs/governance/audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl",
+    "source_atom_ledger_sha256": "sha256:1df49cc4f48505f654565edeec7acbef28b155adc1d149dd7e73f5c7c6840fd9"
+  },
+  "source_to_guarantee_to_human_review_to_technical_handoff": [
+    {
+      "source_condition": "generated judgment pack and specialist agent have no authority when proposed",
+      "requirement_guarantee": "L2 guarantees the pack/agent remains a proposal and cannot grant operation permission or completion authority to itself.",
+      "human_confirmation": "L11 normal example: inspect the actual operation result and confirm the proposal is bound to the declared ticket/revision/scope, and that no authority/completion decision is attributed to it.",
+      "technical_handoff": "Exact authority and identity fields, non-promotion conditions, independent verification actor fields and machine fixture details remain in receipt 001 sections selected_source_atoms, existing_pair_coverage, acceptance_fixture_basis, candidate_delta_mapping, and technical_details; retained as audit technique, not requirements authoring.",
+      "remaining_scope": "proposal status does not imply adoption or operation success"
+    },
+    {
+      "source_condition": "bind generated pack/agent to source snapshot and digest; changes to scope, requirement, template, skill, model catalog, or allowlist make selected material stale",
+      "requirement_guarantee": "L2 guarantees relation to the selected operation inputs and that a changed selected input cannot be silently represented by the prior proposal as current; effect is limited to affected operation/scope.",
+      "human_confirmation": "L11 normal/error/unseen examples: compare selected inputs and generation context; when selected input changes, confirm prior result is not reused and the affected action/reason are visible; confirm unselected input changes do not spill into selected scope.",
+      "technical_handoff": "Per-source identity, owner, revision/digest, applicability, stale facet mapping, synthetic tuples, exact dependency closure, and per-input mutation fixtures remain in receipt 001 source_atoms and technical evidence; receipt 002 records the handoff pointer without normatively requiring a schema.",
+      "remaining_scope": "unknown selection/applicability remains unresolved; no broad invalidation from unrelated inputs"
+    },
+    {
+      "source_condition": "fail-close unaudited pack, unauthorized tool, self-verification, unbounded subagent generation, or completion authority outside workflow",
+      "requirement_guarantee": "L2 retains all five safety guarantees, constrains response to affected operation action, and requires a visible reason/unresolved condition; no blanket stop for unrelated operation.",
+      "human_confirmation": "L11 error example: give a result containing one such condition and inspect whether that action advanced, whether its reason is visible, and whether unrelated operations remained in their existing state.",
+      "technical_handoff": "Detailed independent negatives, actor/route tuples, tool/path controls, bounded team construction, guard ordering, exact fixture format and machine assertions remain in receipt 001; they serve as technical handoff and do not define a new internal contract in L2.",
+      "remaining_scope": "selected HR conditions only; no new authorization, approval, dispatch, or fixed numeric limit"
+    },
+    {
+      "source_condition": "HR-FR-HIL-21: task/domain/risk-driven pack/team generation; versioned pack, minimal specialist team, shadow review, runtime guard, independent verify, muster lifecycle/receipt",
+      "requirement_guarantee": "Version identity, necessary team boundary, independent check, and pre-use review/guard are retained as trust conditions. Full generation method, muster lifecycle and receipt obligation remain explicit pending residuals, not silently dropped.",
+      "human_confirmation": "L11 normal result confirms the relevant proposal and independent result correspond to the selected operation; unseen result with unknown team/applicability/owner remains unresolved and names the existing confirmation owner when known.",
+      "technical_handoff": "Full source record and digest, selected versus held spans, detailed contract/guard ordering, member/task fixtures, old HAC/HAT/HOT oracle references, and residual partitions are preserved in receipt 001 and source ledger. HAT-HIL-21 remains designed_not_implemented.",
+      "remaining_scope": "HR-FR-HIL-21 whole-record closure is not claimed; HAC-HIL-21a/b/c and HAT-HIL-21 are consumer/oracle context"
+    },
+    {
+      "source_condition": "HARNESS-L2-023 adopted four dependency classes shape applicable dependency closure",
+      "requirement_guarantee": "L2 preserves always-required, operation-specific, selected-input, and reference-only classes as applicability/impact boundaries. Reference classification cannot erase a normative source condition.",
+      "human_confirmation": "L11 asks the user to distinguish selected dependencies from unselected inputs, scope-limited operation conditions, and historical references; verify that changes do not impact unrelated operations or disappear into reference-only classification.",
+      "technical_handoff": "Exact adopted decision row and pinned contract/section digests plus dependency-class tuples and repeatability/negative fixtures are retained in receipt 001; the candidate reuses accepted meaning without restating machine contract.",
+      "remaining_scope": "HARNESS-023 adoption does not adopt OS131 or runtime guard behavior"
+    }
+  ],
+  "technical_material_preserved": {
+    "authoritative_archive_conditions": "All exact archive records, source line digests, and consumer/oracle identities remain in superseded receipt 001 and source ledger; receipt 001 is unchanged.",
+    "machine_level_details": "Guard sequencing, explicit contract/schema fields, exact mock tuples, independent detailed negatives, selected-source individual mutation fixtures, and machine pass/fail assertions remain in receipt 001 as technical handoff.",
+    "consumer_residuals": "Task/domain/risk generation method, complete pack/team generation, full muster/lifecycle/receipt, HIL-BR-30 and HIL-FR-59/60 separate identities, HAC-HIL-21a/b/c and HAT-HIL-21 coverage remain open/preserved. HAT status is designed_not_implemented.",
+    "dependency_meaning": "HARNESS-L2-023 four categories retained in L2/L11 as requirement meaning and impact bounds; technical identities/tuples remain in receipt 001.",
+    "old_asset_locator_record": "Legacy source asset IDs and locations are listed under source_scope, source_atom_ledger, and old receipt 001 normative_source/source_corroboration_and_consumers."
+  },
+  "authority_and_residual_boundary": {
+    "source_holding": "MPR-SH-IR-003#HIL-NFR-34 remains preserved_pending_rehome.",
+    "successor_assignment": "none; no formal successor assignment or holding release.",
+    "meaning_change": "none; requirements remain candidates, no L3 or downstream requirement drafted.",
+    "placement": "old OS route is contextual proposal only; current OS candidate derived from adopted Concept/L1.",
+    "adoption_execution": "none; no source closure, runtime/CI/test execution, approval, or operation authority generated."
+  },
+  "unchanged_refs": {
+    "published_registration_001": "MPR-RC-HELIXOS-L2-131-001 remains unchanged at line 709 in management provisional register.",
+    "published_receipt_001": "docs/governance/audits/requirement-registration/helixos-l2-131-hil-nfr34-operation-guard-coverage-receipt-2026-10-03.json; SHA-256 410ae4fe29b06a7b3f3eaeff21e8f5ed3dbe38593ef436da628c8c05d70141d3",
+    "basis": "Existing exact source mapping and operation-level technical decomposition remain in published record; this receipt adds F1 user-guarantee and human-confirmation mapping only."
+  },
+  "candidate_parent": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+      "file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "state": "current parent text; candidate adoption is not inherited"
+    },
+    "planning": {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md; fixed/adopted L1-003 parent"
+    }
+  }
+}
