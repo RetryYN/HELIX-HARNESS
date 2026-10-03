@@ -67,3 +67,14 @@
 ## 測定・承認境界
 
 この表のcoverage/誤昇格0/誤帰属0/roundtrip完全性は親L2/L11の明示要素を漏れなく守る候補である。実測性能値の採否はテストfixtureとL4以降の実現可能性を踏まえ通常のL3承認へまとめて送る。個別parameter承認を要求しない。上流が指定する外部version/range/retention等があるときは当該source値を使い、新しい値を作らない。
+
+## Stage 5候補値（BRAIN-024/025）
+
+以下は親の明示する経路field・owner境界から導く候補measureであり、性能SLA、新しい昇格条件、承認gateではない。
+
+| 親L2／測定項目 | 候補値・比較 | 根拠と測定入力 | 判定材料・限界 |
+|---|---|---|---|
+| `HELIXBRAIN-L2-024` — flow separation | 設計knowledge→CORE/HARNESSとRuntime→LABO→L2-020→BRAIN candidateの2経路を2/2でdistinct identity/owner/scope/revision/receiptへtrace | 固定L2/L11の2種類の提供経路を別normal fixtureとして投入し、boundary receipt欠落・scope不一致を個別mutation | 経路crossing/直接Runtime flow 0を候補観測。runtime dataの中身や実利用価値は測らない |
+| `HELIXBRAIN-L2-024` — direct boundary leakage | direct read/write/learning、raw runtime field（state/account/credential/permission/log/metrics）受領・保存0 | 各field/接続方向を個別と組合せでdeny/hold fixtureにする | secret/raw valueをfixture outputに表示せず、Runtime owner保持を確認。現行L2以上のsecurity mechanismは設計しない |
+| `HELIXBRAIN-L2-025` — owner/state separation | proposal/evaluation/registration/independent verification/adoptionの5段階を5/5別owner/state/receiptで追跡 | 完全sequenceと各receipt欠落/owner誤割当/対象revision不一致mutation | 段階飛越、owner混同0を候補値とするが、外部validator数・独立性閾値は親未指定のため固定しない |
+| `HELIXBRAIN-L2-025` — false promotion | AIのみ・単一実績のみ・LABOのみ・OS ticketのみ・文書存在のみからaccepted/mature/adoptedへ誤遷移0 | 5種の単独根拠fixtureを個別投入、各入力にsource/revisionを保持 | 親が列挙する単独根拠の否定条件に基づく。別の実績件数や採択閾値は追加しない |

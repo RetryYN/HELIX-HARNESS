@@ -584,6 +584,27 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - 旧test-design起点: `LEGACY-ASSET-BEAB5EE27CD04F5E866F` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/system-synthesis-acceptance.md:27–33` raw span `c4642c513392285c6205790858c7aad1d9e6e4849c9872e202014dc301631af6`。failure oracleの考えだけを再導出し、旧test/runtimeを実行しない。
 
 
+## Stage 5 — BRAIN-024/025 総合検証candidate
+
+以下はstatic fixtureとoracleの設計であり、Runtime・LABO・OS・BRAIN変更処理は実行しない。固定L2/L11の意味と責務だけを観測し、L3 requirementや追加採否基準を生成しない。
+
+### HELIXBRAIN-L2-024 — flow分離（`BRAIN-024-FR-01`）
+
+- **`L10-BRAIN-024-C01` — 正常な設計知識flow**（`BRAIN-024-AC-01`）：対象Product Core、BRAIN Pattern/revision/scope、L2-019/022 boundary receipt、Core/HARNESS受領先を与える。期待oracleは設計知識の行先とsource/revisionを結び、Runtime実績/実状態を混ぜず、操作・writeを0にする。
+- **`L10-BRAIN-024-C02` — 正常な実績評価flow**（`BRAIN-024-AC-02`）：Runtime ownerが実績を所有するsource identity/revision/scope、LABO評価対象revision/結果、L2-020 candidate boundary receiptを順に与える。期待oracleはRuntime→LABO→BRAIN candidate traceを返し、BRAIN受領は評価candidateのsummary/provenanceに限られる。raw log/metricsや実状態は保持しない。
+- **`L10-BRAIN-024-C03` — direct-runtime/data boundary**（`BRAIN-024-AC-03`）：BRAINがInfrastructure Runtimeへ直接read/write/learningする入力、server/network/database state、provider account、credential、operation permission、raw log/metricsを各々/組合せで流入させる。期待oracleは受領・保存・学習を拒否/holdし、Runtime正本ownerへ戻す。secret/raw valueをfixture outputに再出力しない。
+- **`L10-BRAIN-024-C04` — 経路欠落・交差**（`BRAIN-024-AC-04`）：CORE route receipt、Runtime source identity、LABO evaluation、L2-020 candidate receipt、target revision/scopeを一つずつ欠落/stale/cross-scopeにする。該当するflowだけholdし、CORE設計flowでLABO結果を補う、または評価flowを直接Runtime factとする変異を拒否する。
+
+### HELIXBRAIN-L2-025 — 独立検証・採否flow（`BRAIN-025-FR-01`）
+
+- **`L10-BRAIN-025-C01` — 正常sequenceと未見candidate**（`BRAIN-025-AC-01`）：source/provenance付きで既存例にない候補、対象revision/scope、LABO評価結果、OS登録/routing receipt、BRAIN change candidate/独立検証結果、adoption stateを入力する。期待oracleはfive stagesをowner/receipt/stateごとに追跡し、十分な同一scope evidenceを持つ未見候補を単に未見であることを理由に拒否しない。
+- **`L10-BRAIN-025-C02` — 単独根拠によるpromotion拒否**（`BRAIN-025-AC-02`）：AI生成のみ、実績一件のみ、LABO評価のみ、OS ticketのみ、document existsのみを個別にcandidateの他の状態なしで与える。各ケースでaccepted/mature/adoptedは0。個々の証拠自体は元state/sourceに残す。
+- **`L10-BRAIN-025-C03` — verification findingとreturn owner**（`BRAIN-025-AC-03`）：独立検証finding/反例、unknown、stale/wrong target revisionを各々与える。期待oracleはowner付き未完義務を残し昇格を止め、source/evaluation→LABO、registration/routing→OS、意味→L1、change verification→BRAIN change ownerへ対応させる。
+- **`L10-BRAIN-025-C04` — scopeと条件付き依存**（`BRAIN-025-AC-04`）：product-specific meaningのgeneric promotion、意味を変えない技術差分への新approval要求、非Infrastructure候補へのINFRA-017一律要求を別々に試みる。製品固有意味の流入を拒否し、意味不変の技術差分には新gateを作らず、INFRA-017は実際にInfrastructure maturityをclaimするfixtureでだけ確認する。
+
+各caseのoracleは状態/owner/source/revision・scopeをfixture単位で記録する。旧RCLSのruntime、旧Infrastructure acceptance、実operationは実行しない。
+
+
 ## 結果記録上の制約
 
 実装前の静的な設計であり、fixture/期待出力の定義までを行う。実行、CI、旧test、旧runtimeによる合格主張は含まない。検証実装と実測は下流責務であり、ここでL4/L7を定義しない。
