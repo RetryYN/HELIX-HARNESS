@@ -1,0 +1,241 @@
+{
+  "schema": "l3-d0-governance-web-scaffold-layout-integration-audit/1",
+  "recorded_at": "2026-10-04",
+  "evidence_kind": "local candidate integration audit",
+  "base_commit": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+  "candidate_commit": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+  "candidate_not_formal_main_evidence": true,
+  "commit_sequence": [
+    {
+      "commit": "ff8442d5bf5e37d46f08372cd9f223817dea9540",
+      "change": "既存Governance監査・時点記録7件を適切なaudits配下へ移動"
+    },
+    {
+      "commit": "fe8a8a1729d2bf2422a6eece4dd312e3d857a61c",
+      "change": "Webとscaffold/research後のpath/root参照、reader、current Binding locatorをGovernance移動へ統合"
+    },
+    {
+      "commit": "cae64e0436c02ef1ced80143d3c91760e6877984",
+      "change": "2026-09-26の2 immutable decision recordをbase exact bytesへ復元"
+    },
+    {
+      "commit": "f571c303d17605048acb54258327dcf33dd93e80",
+      "source_commit": "ebbb0ba80e4b243e83043b97645dee8738b77e1b",
+      "change": "Web統合review修正を取り込み"
+    },
+    {
+      "commit": "5e1930c77e0e2df7be60ecd53104638bd458b959",
+      "source_commit": "0be4d9e12487eacd60c7abc63e01ae09fa159f1e",
+      "change": "3 current scaffold readersと関連bindingを閉包"
+    },
+    {
+      "commit": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+      "change": "L3/L10配置ガイド・入口link・current binding pin閉包を別commitで追加"
+    }
+  ],
+  "governance_root_file_count": 28,
+  "fixed_history_relocation": {
+    "record": "docs/governance/audits/source-rebaseline/governance-fixed-history-relocation-audit-2026-10-03.json",
+    "record_sha256": "5c83ae86034a701bbe1f4bc52be45c77dd66fc753dbeac9ec1d1d5cd9c50c1a1",
+    "record_base_commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
+    "moved_files": [
+      {
+        "from": "docs/governance/archive-first-transition-record-2026-09-14.md",
+        "to": "docs/governance/audits/source-rebaseline/archive-first-transition-record-2026-09-14.md",
+        "reason": "archive-first切替記録。既存source-rebaseline監査分類へ",
+        "sha256_before": "64819cd05132693b4527cbc79e623c472c70e66430dfa46dac2d5c204a0ea363",
+        "sha256_after": "be4d3140925eca4093963bd89b7417cccf89e8cd56adee9f0f666d490d18e76c",
+        "bytes_before": 6567,
+        "bytes_after": 6580,
+        "byte_identical": false,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。",
+        "link_token_changes": 4
+      },
+      {
+        "from": "docs/governance/github-codeql-default-setup-backup-2026-09-15.json",
+        "to": "docs/governance/audits/source-rebaseline/github-projection-backups/github-codeql-default-setup-backup-2026-09-15.json",
+        "reason": "archive-first記録が参照する外部GitHub security projection backup。既存projection-backupsへ",
+        "sha256_before": "4a84a3acd0d04297d43bd005d50bbb6a36e4f84ebab9f6c8fe6364b150a70dfb",
+        "sha256_after": "4a84a3acd0d04297d43bd005d50bbb6a36e4f84ebab9f6c8fe6364b150a70dfb",
+        "bytes_before": 1868,
+        "bytes_after": 1868,
+        "byte_identical": true,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
+      },
+      {
+        "from": "docs/governance/repository-foundation-readiness.md",
+        "to": "docs/governance/audits/source-rebaseline/repository-foundation-readiness.md",
+        "reason": "PR #1797時点のrepository foundation readiness記録。source-rebaselineへ",
+        "sha256_before": "512715edc1358f1e370e772a8c42aff012634b83ee9f64ee4e9562e27bc30451",
+        "sha256_after": "06664f038dce447ccf3cd88e623e664427305d980061500aef71b4ea267d0669",
+        "bytes_before": 7899,
+        "bytes_after": 7910,
+        "byte_identical": false,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。",
+        "link_token_changes": 7
+      },
+      {
+        "from": "docs/governance/new-generation-workbase-consolidation.md",
+        "to": "docs/governance/audits/source-rebaseline/new-generation-workbase-consolidation.md",
+        "reason": "完了済みworkbase operation contractとread-after。source-rebaselineへ",
+        "sha256_before": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+        "sha256_after": "280ab67bec3b0a259c352520812123b459a72a4d15ea660b5203464f5ae603aa",
+        "bytes_before": 10180,
+        "bytes_after": 10180,
+        "byte_identical": true,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
+      },
+      {
+        "from": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "to": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+        "reason": "3df81ad pre-append append-only register snapshot。requirements-stage history-snapshotsへ",
+        "sha256_before": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+        "sha256_after": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+        "bytes_before": 44986,
+        "bytes_after": 44986,
+        "byte_identical": true,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
+      },
+      {
+        "from": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "to": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-registration-pre-append-3df81ad.md",
+        "reason": "pre-append registration contract snapshot。requirements-stage history-snapshotsへ",
+        "sha256_before": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+        "sha256_after": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+        "bytes_before": 11063,
+        "bytes_after": 11063,
+        "byte_identical": true,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
+      },
+      {
+        "from": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "to": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md",
+        "reason": "pre-append disposition review program snapshot。requirements-stage history-snapshotsへ",
+        "sha256_before": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+        "sha256_after": "c763a07d897990823f299f98fb647bea8f30f1311a3e78bbfcbcf696fa959806",
+        "bytes_before": 10426,
+        "bytes_after": 10498,
+        "byte_identical": false,
+        "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。",
+        "link_token_changes": 8
+      }
+    ],
+    "move_count": 7,
+    "byte_identical_count": 4,
+    "markdown_link_only_move_count": 3,
+    "changed_move_markdown_link_tokens": 19,
+    "current_reference_docs": 13,
+    "current_reference_link_tokens": 39,
+    "reader_count": 18,
+    "old_capture_git_paths_preserved": true,
+    "old_record_not_rewritten_as_current_main_evidence": true
+  },
+  "immutable_september_decisions": [
+    {
+      "path": "docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md",
+      "source_repository_revision": "c0fc5110e8241e9686af8d31ce783dd72060a530",
+      "sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e",
+      "exact_base_bytes_restored": true,
+      "current_binding_upstream_consumers": 0,
+      "old_internal_hrefs_are_historical_locators": true
+    },
+    {
+      "path": "docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md",
+      "source_repository_revision": "a4f65a6ff669c20e08bb15cfac2ee4e14903e061",
+      "sha256": "f4b48c25125081bb223857e7f8de73323b8ca7d2bbde114c395e2c83a4508376",
+      "exact_base_bytes_restored": true,
+      "current_binding_upstream_consumers": 0,
+      "old_internal_hrefs_are_historical_locators": true
+    }
+  ],
+  "historic_href_resolution": "9/26 decision record内の固定hrefはcurrent locatorと区別する。対象を辿る場合は当時revision/exact本文と、Web decision内またはgovernance-fixed-history-relocation-auditの旧→新mapを用いる。固定本文のhrefを現行参照としてrewriteしない。",
+  "layout_decision": {
+    "document": "docs/governance/l3-l10-authoring-layout.md",
+    "sha256": "2efd32df126e46c7e77869de14edec7194581c79bcd34e480d28365c75da6738",
+    "entrypoint": "docs/governance/new-generation-start-here.md",
+    "entrypoint_sha256": "864274542beb009f331ebd7590a108c7c19cfde066c8552eba82fe1c3004b01f",
+    "mechanism_count": 8,
+    "canonical_document_count": 6,
+    "physical_directories_created": false,
+    "directories_created_with_first_l3_body": true,
+    "approval_gate_added": false,
+    "body_or_requirement_authority_created": false,
+    "web_future_content_advanced_to_1_0": false
+  },
+  "current_register": {
+    "path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "row_count": 1075,
+    "sha256": "520216521f09b7a9bc77a8c9b9a7d7a836f9ff457bfebcbd6560f17700eee5de",
+    "same_as_base": true
+  },
+  "bindings": {
+    "file_count": 143,
+    "ids_unchanged": true,
+    "all_non_upstream_fields_unchanged": true,
+    "unexpected_deltas": [],
+    "upstream_path_changes_vs_base": 13,
+    "upstream_sha_changes_vs_base": 101,
+    "layout_entry_sha_refs": 73,
+    "additional_transitive_binding_pins": 2,
+    "layout_document_current_binding_refs": 0,
+    "current_stale": 0
+  },
+  "validation": {
+    "static_validators": {
+      "baseline_head": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+      "baseline_count": 137,
+      "baseline_pass": 79,
+      "baseline_fail": 58,
+      "candidate_head": "f0dcd917ea26ce90cc7d628d9f8e0d0b799307f6",
+      "candidate_count": 137,
+      "candidate_pass": 82,
+      "candidate_fail": 55,
+      "timeouts_before": 0,
+      "timeouts_after": 0,
+      "exit_changes": [
+        {
+          "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+          "before_exit": 1,
+          "after_exit": 0
+        },
+        {
+          "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+          "before_exit": 1,
+          "after_exit": 0
+        },
+        {
+          "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+          "before_exit": 1,
+          "after_exit": 0
+        }
+      ],
+      "unchanged_failure_diagnostic_code_changes": [],
+      "failed_path_sets_equal_except_exit_changes": {
+        "before_only": [
+          "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+          "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+          "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py"
+        ],
+        "after_only": []
+      }
+    },
+    "scfctl_validate": "143 bindings; fail=0",
+    "scfctl_stale": "0",
+    "scfctl_residuals": "0",
+    "scfctl_selftest": "69 cases; fail=0",
+    "rulebook_check": "59 files; regen ok",
+    "govcheck": "ok; 7622 atoms; 57 requirements; 58 files",
+    "govcheck_selftest": "pass",
+    "markdown_links": {
+      "files": [
+        "docs/governance/l3-l10-authoring-layout.md",
+        "docs/governance/new-generation-start-here.md"
+      ],
+      "count": 78,
+      "missing": 0,
+      "immutable_history_hrefs_excluded": true
+    },
+    "git_diff_check": "pass"
+  },
+  "authority_effect": "本監査と配置ガイドは要求意味、L3承認、実装・実行・release許可を生成しない。"
+}
