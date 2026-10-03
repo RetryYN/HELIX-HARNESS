@@ -1,0 +1,741 @@
+{
+  "schema_version": "helix-requirement-candidate-coverage-receipt.v1",
+  "receipt_id": "HELIXOS-L2-131-HIL-NFR-34-COVERAGE-2026-10-03",
+  "registration_id": "MPR-RC-HELIXOS-L2-131-001",
+  "status": "candidate_only_no_adoption_or_execution_claim",
+  "candidate_identity": "HELIXOS-L2-131",
+  "candidate_parent": {
+    "concept": {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+      "file_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+      "state": "current parent text; candidate adoption is not inherited"
+    },
+    "planning": {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md; fixed/adopted L1-003 parent"
+    }
+  },
+  "normative_source": {
+    "atom_id": "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+    "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "source_holding": "MPR-SH-IR-003#HIL-NFR-34",
+    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "whole_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "locator": "#/HIL-NFR-34",
+    "locator_key_physical_line": 5842,
+    "statement_physical_line": 5851,
+    "statement_line_sha256_without_lf": "sha256:3f169d6b09d42c4a75b00c9fc5115cb20ffec46f95d14b4182c54a99c7f9c1b8",
+    "revision": 1,
+    "statement_semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+    "identity_semantic_digest": "sha256:bcf9d9a969abf7321dd827165c33f13ef27aa71e36f1fe27ab48acc27931b833",
+    "exact_statement": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+    "atom_count": 1,
+    "atom_set_digest": "sha256:163418625918b6681364732d05ae69281eb90a990b570e5b259d25345ad7ff4d",
+    "source_atom_ledger": {
+      "path": "docs/governance/audits/requirement-registration/hil-nfr34-int072-source-ledger-2026-10-03.jsonl",
+      "whole_file_sha256": "sha256:1df49cc4f48505f654565edeec7acbef28b155adc1d149dd7e73f5c7c6840fd9",
+      "atom_record_line": 5
+    }
+  },
+  "source_corroboration_and_consumers": {
+    "l1_corroboration": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "whole_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "physical_line": 214,
+      "line_sha256_without_lf": "sha256:caff7c98fbb388be37c8b72c135786905ac8512ee2ceca90a7c633aa46c220fc",
+      "same_statement_not_additional_atom": true
+    },
+    "records": [
+      {
+        "identity": "HR-FR-HIL-21",
+        "record_type": "selected_normative_source_record_for_guard_facets_and_shared_consumer_context_for_remaining_conditions",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+        "whole_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+        "locator": "#HR-FR-HIL-21",
+        "record_semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058",
+        "exact_record": {
+          "schema_version": "helix-system-contract.v1",
+          "system_contract_id": "HR-FR-HIL-21",
+          "revision": 1,
+          "status": "specified",
+          "requirement_ids": [
+            "HIL-BR-29",
+            "HIL-BR-30",
+            "HIL-FR-57",
+            "HIL-FR-58",
+            "HIL-FR-59",
+            "HIL-FR-60",
+            "HIL-NFR-34"
+          ],
+          "behavior": "taskの工程/domain/riskから判断packと最小専門agent contractを生成し、shadow reviewとruntime guard後だけmusterする",
+          "transition_contract": "task/skill/model catalog/allowlistあり → versioned pack、最小team、独立verify",
+          "failure_and_evidence": "self-promotion、未許可tool、過剰agent、自己検証、stale contract / pack、shadow、generation、muster/lifecycle receipt",
+          "acceptance_ids": [
+            "HAC-HIL-21a",
+            "HAC-HIL-21b",
+            "HAC-HIL-21c"
+          ],
+          "system_test_id": "HAT-HIL-21",
+          "semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058"
+        },
+        "status_note": "This whole record is selected as a supplementary source unit for explicitly mapped operation-guard conditions; remaining generation/muster/lifecycle conditions are held. It is not merely consumer background for this candidate; historical ledger classification remains unchanged.",
+        "selected_conditions_note": "Selected source conditions are listed under selected_source_atoms; remaining whole-record conditions stay consumer-context/pending.",
+        "locator_key_physical_line": 490,
+        "record_physical_line": 490,
+        "record_key_line_sha256_without_lf": "sha256:2356bdc4e3c3bd685a4ef5d9853378bb7b29b5c7e29e1291eac48edf47d2fb11",
+        "record_identity_line_sha256_without_lf": "sha256:6b5e38afcb8ba0b1ac8d6c3831a0bb796e758aa5262e9ec25957eb2e875c905d"
+      },
+      {
+        "identity": "HAC-HIL-21a",
+        "record_type": "shared_consumer_context",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "locator": "#HAC-HIL-21a",
+        "record_semantic_digest": "sha256:40c01565683dd56280b03021f13c67dac7b7ccaa9e41c1c7bbab7f3357088a5b",
+        "exact_record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-21a",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-21",
+          "polarity": "positive",
+          "statement": "適用packと必要最小teamを決定生成",
+          "system_test_id": "HAT-HIL-21",
+          "semantic_digest": "sha256:40c01565683dd56280b03021f13c67dac7b7ccaa9e41c1c7bbab7f3357088a5b"
+        },
+        "status_note": "Shared source consumer/oracle context only; does not become a normative source atom or a runtime dependency by this candidate."
+      },
+      {
+        "identity": "HAC-HIL-21b",
+        "record_type": "shared_consumer_context",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "locator": "#HAC-HIL-21b",
+        "record_semantic_digest": "sha256:2601666a46c17bb23a13b62ab57396dbb79832f867bd99dcfc74ec376e816096",
+        "exact_record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-21b",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-21",
+          "polarity": "negative",
+          "statement": "self-promotion/未許可/自己検証を拒否",
+          "system_test_id": "HAT-HIL-21",
+          "semantic_digest": "sha256:2601666a46c17bb23a13b62ab57396dbb79832f867bd99dcfc74ec376e816096"
+        },
+        "status_note": "Shared source consumer/oracle context only; does not become a normative source atom or a runtime dependency by this candidate."
+      },
+      {
+        "identity": "HAC-HIL-21c",
+        "record_type": "shared_consumer_context",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+        "whole_file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+        "locator": "#HAC-HIL-21c",
+        "record_semantic_digest": "sha256:d98991bc2e291ffd238b62502a5cd2dcca1b39ae7a048385b464ba6a50082b69",
+        "exact_record": {
+          "schema_version": "helix-acceptance-case.v1",
+          "acceptance_id": "HAC-HIL-21c",
+          "revision": 1,
+          "status": "specified",
+          "system_contract_id": "HR-FR-HIL-21",
+          "polarity": "boundary",
+          "statement": "catalog変更でstale化し再生成/retire",
+          "system_test_id": "HAT-HIL-21",
+          "semantic_digest": "sha256:d98991bc2e291ffd238b62502a5cd2dcca1b39ae7a048385b464ba6a50082b69"
+        },
+        "status_note": "Shared source consumer/oracle context only; does not become a normative source atom or a runtime dependency by this candidate."
+      },
+      {
+        "identity": "HAT-HIL-21",
+        "record_type": "shared_consumer_context",
+        "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+        "whole_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+        "locator": "#HAT-HIL-21",
+        "record_semantic_digest": "sha256:9b6d120f724bf289bf1ed9746c992d362d05f2fe00d72d17650e4a6aa9955926",
+        "exact_record": {
+          "schema_version": "helix-system-test.v1",
+          "system_test_id": "HAT-HIL-21",
+          "revision": 1,
+          "status": "designed_not_implemented",
+          "system_contract_id": "HR-FR-HIL-21",
+          "acceptance_ids": [
+            "HAC-HIL-21a",
+            "HAC-HIL-21b",
+            "HAC-HIL-21c"
+          ],
+          "supporting_test_ids": [
+            "HOT-HIL-52",
+            "HOT-HIL-53"
+          ],
+          "scenario": "判断packと専門agentを生成・muster",
+          "required_evidence": "pack、shadow、agent contract、guard/lifecycle receipt",
+          "negative_boundary": "self-promotion、過剰agent、未許可、自己検証",
+          "semantic_digest": "sha256:9b6d120f724bf289bf1ed9746c992d362d05f2fe00d72d17650e4a6aa9955926"
+        },
+        "status_note": "Shared source consumer/oracle context only; does not become a normative source atom or a runtime dependency by this candidate."
+      }
+    ],
+    "operational_test_consumers": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "whole_file_sha256": "sha256:4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576",
+      "HOT-HIL-52": "| **HOT-HIL-52** | HIL-BR-29, HIL-FR-57/58, HIL-NFR-34 | 工程/domain/riskが異なるtaskへ同一skillを強制し、候補判断packを自己評価だけでactive化する | 適用観点、反証、evidence、authorityを合成し、with/without shadowと別runtime reviewが無い候補をactive化しない |",
+      "HOT-HIL-53": "| **HOT-HIL-53** | HIL-BR-30, HIL-FR-59/60, HIL-NFR-34 | 単純task、security review、並列探索、blind verificationからagent teamを生成し、未許可tool、自己検証、過剰並列、stale contractを投入する | 単純taskは既存roleへ送り、必要taskだけ最小teamを生成し、委譲4点、context/tool/path/budget、分離、lease/fencing/retire欠落を拒否する |",
+      "classification": "consumer oracle only; never executed"
+    },
+    "system_test_context": {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "whole_file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "locator": "#HAT-HIL-21",
+      "record_semantic_digest": "sha256:9b6d120f724bf289bf1ed9746c992d362d05f2fe00d72d17650e4a6aa9955926",
+      "status": "designed_not_implemented; no runtime/test execution"
+    },
+    "route_context": [
+      {
+        "physical_line": 43,
+        "line_sha256_without_lf": "sha256:a404dd371c1adf8f1307c49337b8bbc53df93e52f6ea8d2d07fb0c7240f00a01",
+        "raw_line": "| HIL-NFR-34 | 1 | OS：pack・agent生成物の未承認状態、失効、権限・予算・独立性 |",
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "whole_file_sha256": "sha256:89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8",
+        "purpose": "legacy product routing crosswalk; non-authoritative"
+      },
+      {
+        "physical_line": 136,
+        "line_sha256_without_lf": "sha256:ef90636e5cdc0cec6d6d33ce09e95244fce0e8d1d6cbdc36774533064425c6f3",
+        "raw_line": "{\"routing_registration_id\":\"PRC-HIL-NFR-34-001\",\"source_holding_registration_id\":\"MPR-SH-IR-003\",\"source_requirement_id\":\"HIL-NFR-34\",\"source_legacy_revision\":1,\"source_statement_semantic_digest\":\"sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47\",\"classification_layer\":\"product_responsibility\",\"classification_revision\":1,\"classification_source\":\"manual_four_product_review\",\"evaluated_product_set\":[\"HELIX-HARNESS\",\"HELIX-OS\",\"HELIX-Web\",\"HELIX-Web-OS\"],\"legacy_seed_targets\":[\"HELIX-OS\"],\"legacy_seed_assessment\":\"OS：pack・agent生成物の未承認状態、失効、権限・予算・独立性\",\"candidate_product_targets\":[\"HELIX-OS\"],\"routing_candidate\":\"single_product\",\"routing_rationale\":\"生成pack／agentの非authority、snapshot binding、stale化、tool・subagent guardを管理するOS責務である\",\"product_evaluations\":[{\"product_target\":\"HELIX-HARNESS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"当該要求のprimary responsibilityを持たない\"},{\"product_target\":\"HELIX-OS\",\"assessment\":\"included\",\"rationale\":\"生成pack／agentの非authority、snapshot binding、stale化、tool・subagent guardを管理するOS責務である\"},{\"product_target\":\"HELIX-Web\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"},{\"product_target\":\"HELIX-Web-OS\",\"assessment\":\"excluded_with_reason\",\"rationale\":\"旧要求はHELIX内部の開発品質・安全・運転制約を対象とし、Web利用者体験またはWeb展開後service runtimeの固有非機能要求を含まない\"}],\"pending_product_targets\":[],\"classification_state\":\"proposed_four_product_reviewed\",\"authority_effect\":\"none\",\"meaning_change_applied\":false,\"successor_assignment_status\":\"unassigned\",\"successor_requirement_ids\":[]}",
+        "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+        "whole_file_sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+        "purpose": "legacy OS routing proposal; non-authoritative"
+      }
+    ],
+    "selected_record_classification": {
+      "HR-FR-HIL-21": "Whole source record selected for explicitly mapped guard conditions in this candidate; prior ledger row remains historically classified shared_consumer_context. This candidate-specific selection does not rewrite history."
+    }
+  },
+  "condition_mapping": [
+    {
+      "source_facet": "提案時の非権威",
+      "candidate_l2": "提案物の非権威とbind",
+      "acceptance": "正常 fixture; self-authority negative"
+    },
+    {
+      "source_facet": "生成元snapshot/digestへbind",
+      "candidate_l2": "提案物の非権威とbind",
+      "acceptance": "正常 fixture; snapshot/digest不一致 negative"
+    },
+    {
+      "source_facet": "scope/requirement/template/skill/model catalog/allowlist変更でstale",
+      "candidate_l2": "stale・再利用境界",
+      "acceptance": "各六sourceの独立変更fixture; selected dependency変更時にstale/unknown"
+    },
+    {
+      "source_facet": "未監査pack fail-close",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "未監査pack negative; 同scope/revision shadow・independent verification evidence不足で当該operation保留"
+    },
+    {
+      "source_facet": "未許可tool fail-close",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "existing SECURITY authority外のtool/path negative"
+    },
+    {
+      "source_facet": "self-verification fail-close",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "same worker/verifier negative; adopted OS-018 independent-review boundary reused"
+    },
+    {
+      "source_facet": "unlimited subagent generation fail-close",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "finite explicit team/task boundary; recursive unlisted child negative"
+    },
+    {
+      "source_facet": "out-of-process completion authority fail-close",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "existing workflow/authority外 stage completion negative"
+    },
+    {
+      "source_facet": "HR-FR-HIL-21 versioned pack and minimal specialist-agent contract/team",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "normal fixture; non-minimal team independent negative; source is selected only for operation guard",
+      "source_record": "HR-FR-HIL-21@r1"
+    },
+    {
+      "source_facet": "HR-FR-HIL-21 independent verify",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "normal fixture; self-verification negative; NFR-34 also independently prohibits self-verification",
+      "source_record": "HR-FR-HIL-21@r1"
+    },
+    {
+      "source_facet": "HR-FR-HIL-21 shadow review and runtime guard before muster",
+      "candidate_l2": "operation前のguard候補",
+      "acceptance": "normal fixture confirms same pack/scope/revision shadow and guard before use; missing-evidence negative",
+      "source_record": "HR-FR-HIL-21@r1"
+    },
+    {
+      "source_facet": "HR-FR-HIL-21 task/domain/risk generation method and full muster/lifecycle receipt",
+      "candidate_l2": "not claimed by HELIXOS-L2-131",
+      "acceptance": "preserved pending residual; no acceptance/closure claim in this candidate",
+      "source_record": "HR-FR-HIL-21@r1"
+    }
+  ],
+  "current_pair_comparison": {
+    "adopted_os_018": {
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_sections": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+          "start_line": 672,
+          "end_line_exclusive": 681,
+          "section_sha256": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+          "start_line": 345,
+          "end_line_exclusive": 351,
+          "section_sha256": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
+      ],
+      "coverage": "assignment/attempt, permitted progress/stop/handoff and independent reviewer separation; no generated pack/tool/subagent/completion authority binding condition"
+    },
+    "adopted_harness_023": {
+      "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#row-52",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_sections": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "heading": "### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）",
+          "start_line": 463,
+          "end_line_exclusive": 498,
+          "section_sha256": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "heading": "### HARNESS-L2-023 利用条件別の依存宣言の受入",
+          "start_line": 219,
+          "end_line_exclusive": 234,
+          "section_sha256": "sha256:f505c8e6a2887ac0cf757a78de6617f9a9ee3f9e36084fee70b8a11915815a47",
+          "target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+        }
+      ],
+      "coverage": "four dependency classes reused; not a pack execution policy"
+    },
+    "adopted_intelligence_072_004": {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#row-85",
+      "l2_pair_sha256": "sha256:02e8cd954584625a6f02a757e860aed71b0e5a173ba9c5c846c558c0339699e4",
+      "l11_pair_sha256": "sha256:381e9d205a6d9fdeb61ec453dfb0ea768c13af6200494544c42cdf67062d302a",
+      "limit": "conditional adoption B; 1.0 candidate generation and shadow evaluation only; does not adopt runtime guard/muster"
+    },
+    "adopted_security_029_031": {
+      "decision": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md#rows-88,90,112",
+      "limit": "029/031 additional-runtime conditions remain in their decided scope; no authority relaxation or extension to primary Worker"
+    },
+    "unadopted_os_129": {
+      "registration": "MPR-RC-HELIXOS-L2-129-001",
+      "limit": "quota/rate handling only; no substitution for NFR34"
+    },
+    "unadopted_harness_047": {
+      "registration": "MPR-RC-HARNESS-L2-047-001",
+      "limit": "specialist need/contract-generation candidate; not adopted authority or runtime execution proof"
+    },
+    "legacy_route_not_authority": {
+      "crosswalk": {
+        "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+        "line": 43,
+        "raw_sha256": "sha256:a404dd371c1adf8f1307c49337b8bbc53df93e52f6ea8d2d07fb0c7240f00a01"
+      },
+      "route": {
+        "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
+        "line": 136,
+        "raw_sha256": "sha256:ef90636e5cdc0cec6d6d33ce09e95244fce0e8d1d6cbdc36774533064425c6f3",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_assignment_status": "unassigned"
+      }
+    },
+    "source_holding": "MPR-SH-IR-003#HIL-NFR-34 remains preserved_pending_rehome; no formal successor assignment or source closure.",
+    "adopted_os_025": {
+      "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "adoption_basis": "fixed PO decision explicitly lists HELIXOS-L2-025 among all 16 adopted candidates; source row/list in decision, not MPR state metadata.",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_sections": [
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "heading": "### HELIXOS-L2-025 HELIX-OS統合運転（構成体候補）",
+          "start_line": 742,
+          "end_line_exclusive": 752,
+          "section_sha256": "sha256:b59cfc3d4801d71391c528214f2de573494b257f0783841141982963cf43ff8c"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "heading": "### HELIXOS-L2-025 HELIX-OS統合運転の受入",
+          "start_line": 394,
+          "end_line_exclusive": 401,
+          "section_sha256": "sha256:4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f"
+        }
+      ],
+      "latest_main_comparison": {
+        "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+        "sections_unchanged": true,
+        "same_section_sha256": true
+      },
+      "coverage": "OS integration/reconciliation through system/project lifecycle; does not name or guard generated judgment-pack/agent authority, snapshot binding, or finite team."
+    },
+    "adopted_harness_025": {
+      "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#row-54",
+      "decision_file_sha256": "sha256:c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "adoption_basis": "decision explicitly adopts all 24 candidates; row 54 identifies HARNESS-L2-025 and exact fixed receipt. Adoption is not inferred from registered_proposal state.",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_pair_sections": [
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "heading": "### HARNESS-L2-025 要求から整合した設計・対oracleを閉じる（composite candidate）",
+          "start_line": 544,
+          "end_line_exclusive": 555,
+          "section_sha256": "sha256:452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "heading": "### HARNESS-L2-025 composite（`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`）",
+          "start_line": 342,
+          "end_line_exclusive": 350,
+          "section_sha256": "sha256:1953d9eac34f694e0d317de37a47133546e7270eea5fbd30fe9b7433c8a3e82d"
+        }
+      ],
+      "latest_main_comparison": {
+        "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+        "sections_unchanged": true,
+        "same_section_sha256": true
+      },
+      "coverage": "HARNESS design composition and end-to-end design/oracle coherence; not Worker runtime generated-pack authority or tool/subagent guard."
+    },
+    "adopted_security_007_008": {
+      "decision": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "decision_file_sha256": "sha256:7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "adoption_basis": "fixed SECURITY PO record adopts its full explicit 28-candidate set; lines 45-46 identify 007/008. MPR registered_proposal metadata is not used as the adoption decision.",
+      "fixed_target_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_l2_sections": [
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "identity": "HELIXSECURITY-L2-007",
+          "heading": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）",
+          "start_line": 130,
+          "end_line_exclusive": 140,
+          "section_sha256": "sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504"
+        },
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "identity": "HELIXSECURITY-L2-008",
+          "heading": "### HELIXSECURITY-L2-008 操作ごとのauthority",
+          "start_line": 140,
+          "end_line_exclusive": 150,
+          "section_sha256": "sha256:6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c"
+        }
+      ],
+      "l11_acceptance_row_pins": [
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "physical_line": 31,
+          "identity": "HELIXSECURITY-L2-007",
+          "line_sha256_without_lf": "sha256:982d0033e8483b228cd8b3f645bea65ae979c07cc64f5c02986971092ac9b089"
+        },
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "physical_line": 32,
+          "identity": "HELIXSECURITY-L2-008",
+          "line_sha256_without_lf": "sha256:42b074eeb934dee84394e5602761373c484b493d58c29c2868c704d58b77a33b"
+        }
+      ],
+      "latest_main_comparison": {
+        "commit": "771e40a8a87881e9703fe939fc9fe01d76de7635",
+        "l2_sections_unchanged": true,
+        "l11_rows_unchanged": true
+      },
+      "coverage": "SECURITY execution-environment controls and per-operation authority are reused; no new tool permission, authority, agent-use permission, pack snapshot, shadow-review, or finite-team contract is supplied by these pairs."
+    },
+    "existing_harness_003": {
+      "status": "existing process requirement; not relied upon as generated pack/agent guard or as a new adoption decision",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "decision_history": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md; HARNESS-L2-003 is cited for process/freeze/return semantics, not this runtime operation guard.",
+      "coverage": "stage/process start, freeze, return/restart and completion conditions do not bind generated-pack snapshot, tool, subagent, or completion authority."
+    },
+    "adopted_intelligence_072_005": {
+      "registration": "MPR-RC-HELIXINTELLIGENCE-L2-072-005",
+      "decision": "docs/governance/decisions/po-decision-2026-10-03-additions10.md; exact adopted row for HELIXINTELLIGENCE-L2-072-005",
+      "coverage_receipt": "docs/governance/audits/requirement-registration/hil-nfr34-int072-candidate-coverage-receipt-2026-10-03-r1.json",
+      "limit": "selected-source stale facet B applies at candidate/shadow scope only. OS131 operation guard remains unadopted; this adoption does not authorize runtime operation, tool use, agent authority, self-verification, subagent growth, completion, or full muster."
+    }
+  },
+  "candidate_pair": {
+    "l2": {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界（未採択候補）",
+      "start_line": 1660,
+      "end_line_exclusive": 1680,
+      "section_sha256": "sha256:f372055757706c19e41e62282e5a7677b609a66ed50398a260c1331cd0876144"
+    },
+    "l11": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
+      "start_line": 1363,
+      "end_line_exclusive": 1385,
+      "section_sha256": "sha256:0935eae4158c4ce35d73d1017f8f0cd1722276b763d0836e70b6c0a98c0821df"
+    },
+    "pair_rule": "Exact selected heading to next same-or-higher heading or EOF; trailing blank lines trimmed; exactly one UTF-8 LF appended. Section boundaries and raw full-file digests are independently pinned.",
+    "full_file_sha256": {
+      "l2": "sha256:67b9319b9ad0ddf9d7800d55411045d10292c7345253f642edc3d3b68dd24e66",
+      "l11": "sha256:4bcf2d2a499178eeb3d36a557ecbd38f507447610b3139f1fda5f4edef691eda"
+    },
+    "authority_state": "registered_proposal; authority_effect:none; adoption not inherited from 072-005"
+  },
+  "human_decision_material": {
+    "reuse_existing_072_005_choice": true,
+    "source_wording": "scope/requirement/template/skill/model catalog/allowlist changes stale the generated artifact.",
+    "option_a": "all changes to the six listed source categories stale every applicable pack/agent artifact in the affected task scope; broader invalidation, closer to unqualified literal reading.",
+    "option_b": "only a source actually selected by that pack/agent operation (plus its exact scope/requirement bind) stales the affected facet; narrower and requires explicit selected-dependency applicability.",
+    "current_state": "072-005 choice B adopted for candidate/shadow stale facets by po-decision-2026-10-03-additions10.md; OS131 operation guard remains an unadopted proposal.",
+    "recommendation": "Preserve adopted selected-dependency B at candidate/shadow boundary. Proposed operation applicability remains subject to OS131 adoption; unknown selection holds only affected operation.",
+    "impact": "Choice changes which unrelated pack/agent facets must be re-evaluated after a catalog change. Neither choice creates tool authority, agent authority, OS dispatch permission, additional human approval, or whole-source closure.",
+    "decision_ref": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+    "decision_file_sha256": "sha256:a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad"
+  },
+  "acceptance_scope": {
+    "normal": "one existing authorized operation; unchanged bound sources; versioned pack and necessary minimum finite team contract; same-revision shadow review and runtime guard before use; independent verify; nonauthority maintained",
+    "negative_cases": [
+      "self authority",
+      "source/digest mismatch",
+      "unaudited pack",
+      "unauthorized tool/path",
+      "self-verification",
+      "unbounded child generation",
+      "out-of-workflow completion authority",
+      "finite but unnecessary extra team member beyond minimum"
+    ],
+    "unknown_case": "unknown owner, applicability, authority, independent verifier, or team boundary holds only affected operation; no fallback",
+    "execution": "static fixtures only; no old runtime, old test, CI, or real operation executed",
+    "uncovered_hr21_conditions": "task/domain/risk generation method, full muster lifecycle, generation/muster/lifecycle receipts; no closure claim"
+  },
+  "coverage_boundary": {
+    "coverage_result": "no_loss_limited_to_two_selected_source_units_with_HR21_three_set_condition_partition",
+    "candidate_covers": "all direct HIL-NFR-34 conditions as an unadopted operation-level candidate, plus selected operation-guard conditions from the whole HR-FR-HIL-21 record; existing pairs are reused only for their exact covered boundaries",
+    "not_covered_or_claimed": [
+      "full HR-FR-HIL-21/HAC/HAT closure",
+      "implementation/execution",
+      "formal successor/holding release",
+      "HARNESS-L2-047 adoption",
+      "security authority changes",
+      "OS131 operation-guard adoption beyond adopted 072-005 candidate/shadow choice B",
+      "HR-FR-HIL-21 generation method, pack/team generation, full muster/lifecycle and receipts, and HAC-HIL-21c rebuild/retire lifecycle"
+    ],
+    "preserved_pending_registration_refs": [
+      "MPR-SH-IR-003#HIL-NFR-34 remains held; no formal successor or holding release",
+      "HR-FR-HIL-21 generation/muster/lifecycle/rebuild-retire residuals remain pending under the source record",
+      "HAC-HIL-21a/b/c and HAT-HIL-21 do not represent full closure or execution",
+      "HIL-BR-29/30 and HIL-FR-57/58/59/60 remain distinct source obligations not imported by HR selection",
+      "MPR-RC-HELIXINTELLIGENCE-L2-072-005 choice B is adopted for candidate/shadow stale facets only; OS131 operation-guard scope remains unadopted."
+    ],
+    "source_atom_count_note": "One normative IR atom (HIL-NFR-34). HR-FR-HIL-21 is an additional selected source record for explicitly enumerated guard conditions, not counted as an IR atom.",
+    "source_unit_partition": "Two selected source units: one whole IR HIL-NFR-34 atom and one whole HR-FR-HIL-21 record. All HR behavior/transition/failure conditions are partitioned: in-scope guard conditions into L2/L11, adjacent adopted pairs only as exact contextual boundaries (none closes an entire HR condition), and generation/muster/rebuild-retire residuals held. No HR whole-record closure is claimed."
+  },
+  "static_validation": {
+    "checked": "old whole-record source locators/raw-line hashes; selected HR source conditions versus uncovered remainder; NFR-34 source mappings; L2/L11 exact section boundaries/digests/full-file hashes; existing authority/adoption references; MPR byte-prefix and one appended row",
+    "old_system_test_or_runtime": "not executed"
+  },
+  "selected_normative_source_conditions": {
+    "source_record_id": "HR-FR-HIL-21@r1",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+    "whole_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+    "locator": "#HR-FR-HIL-21",
+    "record_physical_line": 490,
+    "record_semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058",
+    "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+    "selected_facets": [
+      "版付きpack",
+      "必要最小team contract",
+      "独立verify",
+      "pack使用前のshadow reviewとruntime guard"
+    ],
+    "unselected_facets": [
+      "task/domain/riskからpack/teamを生成する工程全体",
+      "musterの全lifecycle",
+      "generation/muster/lifecycle receipt全体"
+    ],
+    "boundary": "The complete HR-FR-HIL-21 record is selected as a source unit. The disjoint three-set condition partition above assigns every behavior/transition/failure condition to candidate-selected, exact existing-pair contextual reuse (with no direct closure claim), or held/unrecovered.",
+    "record_key_line_sha256_without_lf": "sha256:2356bdc4e3c3bd685a4ef5d9853378bb7b29b5c7e29e1291eac48edf47d2fb11",
+    "record_identity_line_sha256_without_lf": "sha256:6b5e38afcb8ba0b1ac8d6c3831a0bb796e758aa5262e9ec25957eb2e875c905d",
+    "condition_partition": {
+      "candidate_selected": [
+        {
+          "source_record_field": "behavior: task phase/domain/risk → generated pack/team; shadow review and runtime guard before muster",
+          "selected_or_held": "shadow review + runtime guard before target operation uses the pack are selected; generation method and pack/team generation are held",
+          "mapping": "L2 operation guard; L11 same-pack/scope/revision normal and separate missing-shadow/missing-guard negatives"
+        },
+        {
+          "source_record_field": "transition_contract: task/skill/model catalog/allowlist → versioned pack, minimum team, independent verify",
+          "selected_or_held": "versioned pack binding, necessary minimum team contract, independent verify selected for this operation guard; source identity/revision/digest also maps to NFR-34",
+          "mapping": "L2 operation guard; L11 normal plus missing-verifier, self-verification, over-minimal-team and source-stale negatives"
+        },
+        {
+          "source_record_field": "failure_and_evidence: self-promotion, unauthorized tool, excessive agents, self-verification, stale contract/pack, shadow",
+          "selected_or_held": "all are mapped to this candidate guard; unauthorized action remains subject to existing SECURITY authority, and unbounded agent growth remains limited to no upper bound/stop condition",
+          "mapping": "L2 source binding/guard; independent L11 negatives"
+        },
+        {
+          "source_record_field": "failure_and_evidence: generation and muster/lifecycle receipt",
+          "selected_or_held": "held as uncovered generation/muster/lifecycle process and receipt residuals",
+          "mapping": "no L2/L11 acceptance claims those whole-process conditions"
+        }
+      ],
+      "already_covered_and_reused_from_adopted_pairs": {
+        "direct_HR21_source_facets_closed_by_existing_pair": [],
+        "reused_contextual_boundaries": [
+          {
+            "pair": "HELIXOS-L2-018 fixed adopted pair",
+            "exact_scope": "assignment/attempt, allowed-scope stop/handoff, independent reviewer separation",
+            "limit": "context reused only; does not itself satisfy HR-FR-HIL-21 generated-pack guard."
+          },
+          {
+            "pair": "HELIXSECURITY-L2-007/008 fixed adopted pairs",
+            "exact_scope": "Worker execution constraints and operation-specific authority",
+            "limit": "context reused only; does not itself provide pack source binding, shadow review, or team composition."
+          },
+          {
+            "pair": "HARNESS-L2-023 fixed adopted pair",
+            "exact_scope": "four dependency declaration classes",
+            "limit": "classification contract reused only; does not satisfy HR-FR-HIL-21 runtime behavior."
+          },
+          {
+            "pair": "HELIXOS-L2-025 and HARNESS-L2-025 fixed adopted pairs",
+            "exact_scope": "OS system integration and HARNESS design composition",
+            "limit": "adjacent system/design scope only; neither supplies the HR-FR-HIL-21 operation guard."
+          }
+        ],
+        "rule": "No whole HR-FR-HIL-21 condition is claimed complete solely by an adjacent existing pair. Reused pairs remain exact boundaries; direct HR condition coverage is either explicitly selected in this candidate or held below."
+      },
+      "held_unrecovered": [
+        {
+          "source_record_field": "behavior: task phase/domain/risk-driven generation method and generation of pack/team",
+          "reason": "This candidate guards use; it does not specify or close the generation process."
+        },
+        {
+          "source_record_field": "behavior: full muster lifecycle after shadow review/runtime guard",
+          "reason": "Only the pre-use shadow/runtime-guard facet is selected; end-to-end muster remains pending."
+        },
+        {
+          "source_record_field": "failure_and_evidence: generation/muster/lifecycle receipts",
+          "reason": "No full receipt lifecycle or execution proof is in scope."
+        },
+        {
+          "source_record_field": "HAC-HIL-21c: catalog change rebuild/retire lifecycle",
+          "reason": "NFR-34 stale rejection is mapped; rebuild/retire process is not claimed."
+        },
+        {
+          "source_record_field": "requirement_ids linked HIL-BR-29/30 and HIL-FR-57/58/59/60",
+          "reason": "Distinct source records and their conditions remain separately held/not imported."
+        }
+      ]
+    }
+  },
+  "candidate_pair_section_sha256": {
+    "HELIXOS-L2-131": "sha256:f372055757706c19e41e62282e5a7677b609a66ed50398a260c1331cd0876144",
+    "HELIXOS-L11-131": "sha256:0935eae4158c4ce35d73d1017f8f0cd1722276b763d0836e70b6c0a98c0821df"
+  },
+  "candidate_pair_full_file_sha256": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:67b9319b9ad0ddf9d7800d55411045d10292c7345253f642edc3d3b68dd24e66",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:4bcf2d2a499178eeb3d36a557ecbd38f507447610b3139f1fda5f4edef691eda"
+  },
+  "selected_source_units": [
+    {
+      "source_unit_id": "IR153-HIL-NFR-34-WHOLE-IDENTITY",
+      "source_kind": "whole_IR_requirement_atom",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "whole_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "locator": "#/HIL-NFR-34",
+      "semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47"
+    },
+    {
+      "source_unit_id": "HR-FR-HIL-21@r1",
+      "source_kind": "whole_supplementary_system_contract_record",
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "whole_file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "locator": "#HR-FR-HIL-21",
+      "physical_line": 490,
+      "record_semantic_digest": "sha256:d602aa54cd3416f713a802e70c76c3ed8c254845b3ff1a03187b83342d745058"
+    }
+  ],
+  "selected_source_unit_set": {
+    "count": 2,
+    "digest": "sha256:cc438c86e240e14c580edaeadf701ba651330aa9af1a711ed0ecd7e94a26e784",
+    "digest_rule": "source_unit_id昇順。各行をsource_unit_id + 半角空白 + source-declared semantic digestのsha256:を除いたhex + LFとしてUTF-8連結。末尾LFなし。",
+    "ir_requirement_atom_count": 1,
+    "supplementary_contract_record_count": 1
+  },
+  "selected_source_unit_count": 2,
+  "ir_requirement_atom_count": 1,
+  "supplementary_contract_record_count": 1,
+  "latest_main_comparison": {
+    "commit": "9f2555b8de7e7579745ba5d441cda18df1a13b2d",
+    "register_prefix_line_count": 708,
+    "register_prefix_sha256": "sha256:a6e9540198d52a17b725aacdb960c33fe1aa8658a295e3adb229d6ae3fa8e680",
+    "registration_line": 709,
+    "candidate_section_bytes_unchanged": false,
+    "source_and_selected_two_unit_set_unchanged": true,
+    "retained_latest_main_last_registration": "MPR-RC-HARNESS-L2-067-002"
+  },
+  "technical_fixture_evidence": {
+    "purpose": "L11の純合成fixture tuple値を受入本文から分けて保全する。これは技術的な例データであり、新schema、runtime field contract、authority、採択または実行証拠を定めない。",
+    "source_before_edit": {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "whole_file_sha256": "sha256:f717262bd482d534db8a99da745395aa063288f6734a91b94d6a2d70250e5aa4",
+      "candidate_heading": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent authority境界の受入候補",
+      "original_line_range_1based": [
+        1363,
+        1384
+      ],
+      "original_candidate_section_sha256": "sha256:b9ef25fb50af3014cbcd4c7431f739f6018abdebd036b62b73a8479b63e7d320",
+      "digest_rule": "候補headingから次の同位以上見出しまたはEOFまで、末尾空行を除去しUTF-8一つのLFで終える。"
+    },
+    "preserved_fixture_fragments": [
+      {
+        "original_lines_1based": [
+          1366,
+          1366
+        ],
+        "text_without_terminal_lf": "- **正常 fixture**：既存authorityの対象operationで使用する版付きpack `pack-P@r1`と必要最小の専門agent contract/team `agent-A@r1`が、ticket/requirement revision `req-R@r7`、scope `scope-S@r3`、snapshot `snap-Q@r2/digest=d-Q2`、選択されたsource revision/digestへ結び付く。同じ対象revision/scope/packに対するshadow reviewとruntime guardが使用前に確認でき、独立verifyの担当は作成主体と分離される。選択Worker/tool/pathは既存authority内、自己検証なし、有限の明示member/task集合、停止・budget条件と既存workflowのcompletion範囲が一致する。guardはそのoperationの該当actionのみ進行可能と返し、packやagent自身に権限を与えず、新しいapprovalを要求しない。fixture値はschemaやrevision形式を規定しない。生成工程全体、musterの全lifecycle、lifecycle receiptの充足はこのfixtureから推定しない。",
+        "line_sha256_without_lf": "sha256:15e5a7d1eee0beac0420e0ec67b59c3cd0d7b501f7adb739fd2ce4e7c3468901",
+        "use": "正常例のsynthetic pack/agent、ticket/revision、scope、snapshotとdigestの具体tuple。"
+      },
+      {
+        "original_lines_1based": [
+          1379,
+          1382
+        ],
+        "text_without_terminal_lf": "- **依存4区分 fixture**：同一の `operation=fixture:op-A@r1 / assignment=fixture:assignment-A@r2 / scope=fixture:scope-S@r3 / pack=fixture:pack-P@r1` を二度照合し、同じ有効dependencyと理由を返す。\n  - 常時必須：`HELIXOS-L2-018`の固定採択pair revision、fixtureの既存ticket/assignment/authority、operation scope。compatibility根拠は同じtask/revision/Worker/attemptであること。\n  - 特定操作時のみ：`HELIXOS-L2-131`の候補pairはpack/agentを使用するoperationでだけ適用する。候補pair自体は未採択と明記し、採択済みauthority扱いしない。\n  - 選択した入力元に応じて必須：fixtureで実選択されたpack、agent contract、source dependencyのidentity/owner/revision/digest/applicabilityとsnapshot bind。選択sourceを変更した場合はその同じfacetにstale/unknownを返す。",
+        "line_sha256_without_lf": "sha256:6cf43ee424da7b1a854c4cdb3df3ed35dcb5c40d76ceed4a26eacd9cbc56f712",
+        "use": "023四区分 fixtureのsynthetic operation/assignment/scope/pack tupleと欄別の具体fixture記法。"
+      }
+    ],
+    "acceptance_conditions_retained_in_l11": [
+      "normal applicable operation: existing authority only; bound generated artifact; same-scope/revision shadow review and runtime guard before use; independent verifier differs from creator; selected tool/path stays within authority; finite necessary team; only the affected action may proceed; artifact confers no authority and no new approval is introduced.",
+      "normal non-application: pack/agent未選択の通常operationに候補guardを課さない。",
+      "independent negatives retained: self-promotion; each selected-source/snapshot stale facet; missing shadow; missing runtime guard; missing independent verification; unauthorized tool/path; self-verification; unbounded subagents; excess team; out-of-workflow completion. Unknown/unseen keeps affected operation unknown/incomplete and returns to existing source/authority owner."
+    ],
+    "dependency_partition_retained_in_l11": [
+      "常時必須",
+      "特定操作時のみ",
+      "選択した入力元に応じて必須",
+      "参照資料のみ"
+    ],
+    "source_conditions_and_l2": "L2 section and source atoms are unchanged. This relocation removes only illustrative synthetic tuple values from L11 prose; it does not change candidate scope, owner return, stale/unknown behavior, source partition, or adopted authority."
+  }
+}
