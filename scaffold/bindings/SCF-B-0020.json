@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS上流管理（PHCAP-20のmemory／continuation境界研究。正式ownerは未解決）",
   "state": "active",
-  "reason": "PHCAP-20のinventory product_targetsと直接current evidenceはHELIX-OSだけである。旧L3／L5／L6／L7 implementation/testの5 assetを、source、台帳状態、判断履歴、failure／consumer候補、OS L1／L2／L11と照合する。HARNESS／Web／Web-OSはtargetへ昇格させず、工程・同意・bounded service exportの非対象connection候補として保持する。旧実装・test sourceや現行draft refからcurrent implementation、operation、pass、owner、採否を生成しない。 [2026-09-29 HARNESS-L2-049 現行pin更新: 後続L11候補により全体digestが変わったため追随した。本Bindingの参照対象PHCAP scope、role、obligations、verification、replacement、authorityは不変。候補採択を意味しない。] [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "PHCAP-20のinventory product_targetsと直接current evidenceはHELIX-OSだけである。旧L3／L5／L6／L7 implementation/testの5 assetを、source、台帳状態、判断履歴、failure／consumer候補、OS L1／L2／L11と照合する。HARNESS／Web／Web-OSはtargetへ昇格させず、工程・同意・bounded service exportの非対象connection候補として保持する。旧実装・test sourceや現行draft refからcurrent implementation、operation、pass、owner、採否を生成しない。 [2026-09-29 HARNESS-L2-049 現行pin更新: 後続L11候補により全体digestが変わったため追随した。本Bindingの参照対象PHCAP scope、role、obligations、verification、replacement、authorityは不変。候補採択を意味しない。] [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",

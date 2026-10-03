@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS／HELIX-HARNESSの旧要求30 unit phase候補と根拠不足を静的照合する研究（正式owner未解決）",
   "state": "registered",
-  "reason": "crosswalk bootstrapのphase_classification_status=unresolved 30 unit（HELIX-OS 24／HELIX-HARNESS 6）について、旧IR原文digest／anchor、Wave1–50のsemantic edge、PHCAP-20定義、四製品L1、旧asset台帳のsource／history／failure／consumerを束縛する。Wave edgeのcandidate_phase_targetsはasset検索候補、confirmed source edgeは要求source契約の静的照合として保持し、phase／product authority、successor、implementation、consumer closureを生成しない。30 unitはeligible direct phase 0、unresolved phase gap 30として残す。#1813は進捗参照だけであり、close／完了判断を生成しない。replacement.issue=0はDraft PR未割当sentinelである。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "crosswalk bootstrapのphase_classification_status=unresolved 30 unit（HELIX-OS 24／HELIX-HARNESS 6）について、旧IR原文digest／anchor、Wave1–50のsemantic edge、PHCAP-20定義、四製品L1、旧asset台帳のsource／history／failure／consumerを束縛する。Wave edgeのcandidate_phase_targetsはasset検索候補、confirmed source edgeは要求source契約の静的照合として保持し、phase／product authority、successor、implementation、consumer closureを生成しない。30 unitはeligible direct phase 0、unresolved phase gap 30として残す。#1813は進捗参照だけであり、close／完了判断を生成しない。replacement.issue=0はDraft PR未割当sentinelである。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",

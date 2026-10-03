@@ -50,7 +50,7 @@
   },
   "owner_candidate": "HIL-NFR-01〜20 product-unit implementation evidence semantic review（正式owner未解決）",
   "product": "HELIX-OS",
-  "reason": "HIL-NFR-01〜20の20 source IDから派生した31 product unitとWave1〜50 semantic reviewを対象に、旧source／asset／ledger／history／failure／consumerとcurrent contextを固定BASEの静的bytesで照合するresearch-only Scaffold。NFR全体60 unitのうち対象をNFR-01〜20へ固定し、NFR-21〜40を混入させない。asset source pathと各evidence refの原文pathを同一視せず、旧実装候補、旧failure／degradation、現行実装、現行受入を別partitionに保持し、unknownの理由をexact path／blob／line／digestへ結ぶ。代表assetとcatalog implementation_sourceは実装成立証拠へ昇格させず、旧世代と現行runtimeは実行しない。#1813の進捗参照用であり、要求採否・実装・受入・完了・successorを生成しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "HIL-NFR-01〜20の20 source IDから派生した31 product unitとWave1〜50 semantic reviewを対象に、旧source／asset／ledger／history／failure／consumerとcurrent contextを固定BASEの静的bytesで照合するresearch-only Scaffold。NFR全体60 unitのうち対象をNFR-01〜20へ固定し、NFR-21〜40を混入させない。asset source pathと各evidence refの原文pathを同一視せず、旧実装候補、旧failure／degradation、現行実装、現行受入を別partitionに保持し、unknownの理由をexact path／blob／line／digestへ結ぶ。代表assetとcatalog implementation_sourceは実装成立証拠へ昇格させず、旧世代と現行runtimeは実行しない。#1813の進捗参照用であり、要求採否・実装・受入・完了・successorを生成しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,

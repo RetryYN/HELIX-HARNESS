@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "held30 phase-gap cross-analysis（正式phase／product authority未解決）",
   "state": "registered",
-  "reason": "phase-status-taxonomy-0105のheld30（OS24／HARNESS6）を、固定BASEの旧IR原文・Wave1–50・RDP・PHCAP-20・四製品L1 decisionから静的に再集計する。4不足類型、direct phase evidence 0、formal phase 0、全20 PHCAP pendingを固定し、candidateとformal authorityを分離する。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "phase-status-taxonomy-0105のheld30（OS24／HARNESS6）を、固定BASEの旧IR原文・Wave1–50・RDP・PHCAP-20・四製品L1 decisionから静的に再集計する。4不足類型、direct phase evidence 0、formal phase 0、全20 PHCAP pendingを固定し、candidateとformal authorityを分離する。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",

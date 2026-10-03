@@ -49,7 +49,7 @@
   },
   "owner_candidate": "HIL-FR-01〜20 product-unit evidence partition research（正式owner未解決）",
   "product": "HELIX-OS",
-  "reason": "HIL-FR-01〜20の29 product unitについて、旧実装候補、縮退候補、failure関連記述、consumer参照を固定BASEの原文、Wave1〜50、旧asset ledger/history、PHCAP20、四製品L1から静的にpartitionするresearch-only Scaffold。候補と正式実装・authorityを分離し、#1813へ進捗参照のみを付す。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "HIL-FR-01〜20の29 product unitについて、旧実装候補、縮退候補、failure関連記述、consumer参照を固定BASEの原文、Wave1〜50、旧asset ledger/history、PHCAP20、四製品L1から静的にpartitionするresearch-only Scaffold。候補と正式実装・authorityを分離し、#1813へ進捗参照のみを付す。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,

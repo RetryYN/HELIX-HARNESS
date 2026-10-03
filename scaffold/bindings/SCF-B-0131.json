@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "direct phase evidence next 5 unit research（正式phase／product owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0105でheld30として保持した順序上の次5 unit（FR20／FR21／FR23／FR24／FR31）について、旧HELIX source／history／decision／failure／consumerと四製品L1、PHCAP-01〜20境界を静的に照合する。phase候補の根拠と不足をunit別に記録し、候補phase、taxonomy status別のreview pending、未実装／縮退／failureのunknown、consumer closure pending、human判断待ちを正式authorityへ昇格させず、正式crosswalk、phase／product authority、実装、consumer closure、successorは変更しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "SCF-B-0105でheld30として保持した順序上の次5 unit（FR20／FR21／FR23／FR24／FR31）について、旧HELIX source／history／decision／failure／consumerと四製品L1、PHCAP-01〜20境界を静的に照合する。phase候補の根拠と不足をunit別に記録し、候補phase、taxonomy status別のreview pending、未実装／縮退／failureのunknown、consumer closure pending、human判断待ちを正式authorityへ昇格させず、正式crosswalk、phase／product authority、実装、consumer closure、successorは変更しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",

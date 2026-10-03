@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "cross-cutting phase review 20 unit research（正式phase／product owner未解決）",
   "state": "registered",
-  "reason": "#2058のCROSS_CUTTING_PHASE_REVIEW_PENDING 20 unitについて、旧HELIX source／history／decision／failure／consumerをPHCAP-01〜20境界とともに静的に分離する。asset候補はphase authorityへ昇格せず、phase非適用も全境界未立証のため確定しない。正式crosswalk、phase／product authority、実装、consumer closure、successorは変更しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "#2058のCROSS_CUTTING_PHASE_REVIEW_PENDING 20 unitについて、旧HELIX source／history／decision／failure／consumerをPHCAP-01〜20境界とともに静的に分離する。asset候補はphase authorityへ昇格せず、phase非適用も全境界未立証のため確定しない。正式crosswalk、phase／product authority、実装、consumer closure、successorは変更しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",

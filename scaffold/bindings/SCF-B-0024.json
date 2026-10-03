@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS／HELIX-OS上流管理（PHCAP-18の製品境界・構造改善研究。正式ownerは未解決）",
   "state": "active",
-  "reason": "PHCAP-18の代表旧refactor asset、source／failure／consumer候補、asset／phase ledger状態、現行4製品境界候補を同一revisionに束ねる。直接current evidenceはHARNESS／OSに限定し、Web／Web-OSの直接ref欠落を未実装と推定しない。正式owner、要求採否、successor、current authority、実装、受入、releaseを生成しない。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/research/phcap18-refactor-research/inventory.json b7ff125e3095cee44e00f233ef0a8eeb544be84cde3a27ae861fd2357cb0f5ef -> 23af17417dacddc6e90106e6be98702e11692b6e11420f4114cf955a6ee14bb9). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
+  "reason": "PHCAP-18の代表旧refactor asset、source／failure／consumer候補、asset／phase ledger状態、現行4製品境界候補を同一revisionに束ねる。直接current evidenceはHARNESS／OSに限定し、Web／Web-OSの直接ref欠落を未実装と推定しない。正式owner、要求採否、successor、current authority、実装、受入、releaseを生成しない。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/phcap18-refactor-research/inventory.json b7ff125e3095cee44e00f233ef0a8eeb544be84cde3a27ae861fd2357cb0f5ef -> 23af17417dacddc6e90106e6be98702e11692b6e11420f4114cf955a6ee14bb9). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
   "upstream": [
     {
       "path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",

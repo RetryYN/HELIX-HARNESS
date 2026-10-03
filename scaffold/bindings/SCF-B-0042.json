@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "PHCAP-10／11 cross-product semantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "PHCAP-10／11のphase-level historical summaryとcurrent direct evidenceを、四製品単位のmissing／degraded／phase／implementation unknown境界へ展開するbounded static candidate。旧代表11assetのsource／ledger／failure／consumer候補を照合し、旧runtime／test／workflow／CIを実行せず、要求採否・authority・successor・implementation・acceptance・consumer closureを生成しない。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/research/phcap10-11-worker-ci-static/inventory.json 099ba258b6e6046816ec836f406c9885115ed4e4ad749fd6df24f62b27ea382d -> f75db015bc799881b26dd662439e6450bf1520297f0f45644bc052272fe94b81). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
+  "reason": "PHCAP-10／11のphase-level historical summaryとcurrent direct evidenceを、四製品単位のmissing／degraded／phase／implementation unknown境界へ展開するbounded static candidate。旧代表11assetのsource／ledger／failure／consumer候補を照合し、旧runtime／test／workflow／CIを実行せず、要求採否・authority・successor・implementation・acceptance・consumer closureを生成しない。 [2026-09-29 DAC-FR-010 current-pin cascade: upstream current inventory/binding SHA changed only after OS L2/L11 whole-file trailing-blank cleanup and current pin refresh (scaffold/phcap10-11-worker-ci-static/inventory.json 099ba258b6e6046816ec836f406c9885115ed4e4ad749fd6df24f62b27ea382d -> f75db015bc799881b26dd662439e6450bf1520297f0f45644bc052272fe94b81). Binding role, scope, obligations, verification, replacement and authority remain unchanged.]",
   "upstream": [
     {
       "path": "scaffold/research/phcap10-11-worker-ci-static/README.md",

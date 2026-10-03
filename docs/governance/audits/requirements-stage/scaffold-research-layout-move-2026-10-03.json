@@ -28156,6 +28156,13 @@
         "old_sha256": "50269edf0241d5eb6b7e2523124f1fe2f8700d1fd4e46d40e4f9c847772753dc",
         "new_sha256": "eadc0a96416cd60d8bd6e2b3588c07eca979c3ee0e213ad1c2282a8daf0197dc",
         "reason": "SCF-B-0037の履歴reasonをbase bytesへ戻した後、現行Binding blob SHAを追随"
+      },
+      {
+        "binding": "SCF-B-0067",
+        "upstream_path": "scaffold/bindings/SCF-B-0065.json",
+        "old_sha256": "81b0fcb7a4938b147cf1b675d83d6c2774ca5abe195fb85687fdda7dd57df7f9",
+        "new_sha256": "c6986aada4468a25747f2a1c1b3c8678a17f3efb3e16ac6b70c11ccaaf40ce19",
+        "reason": "SCF-B-0065の履歴reasonをbase bytesへ戻した後、現行Binding blob SHAを追随"
       }
     ]
   },

@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "30 unit phase status taxonomy and decision matrix research（正式phase／product owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0101の直接phase gap 30 unitについて、横断制約らしさのレビュー保留と、別source／human判断が必要な未解決を分離する。旧source、Wave edge、PHCAP-01〜20、四製品L1、asset source／history／failure／consumerは静的参照として保持し、正式crosswalk、phase／product authority、要求採否、successor、実装、consumer closureを変更しない。research-onlyであり未解決を解消したとの主張を生成しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/research/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
+  "reason": "SCF-B-0101の直接phase gap 30 unitについて、横断制約らしさのレビュー保留と、別source／human判断が必要な未解決を分離する。旧source、Wave edge、PHCAP-01〜20、四製品L1、asset source／history／failure／consumerは静的参照として保持し、正式crosswalk、phase／product authority、要求採否、successor、実装、consumer closureを変更しない。research-onlyであり未解決を解消したとの主張を生成しない。 [2026-09-29 HARNESS-L2-049 current-pin refresh: scaffold/phcap20-memory-research/inventory.jsonの現行HARNESS L11参照は049記述追加後も対象行・line digest不変のため全体digestを追随した。本Bindingのrole、obligations、verification、replacement、authorityは不変。候補採択を意味しない。]",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
