@@ -120,7 +120,7 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 
 ### `FR-OS-L3-029` — `HELIXOS-L2-029`
 
-案Bの順序に沿い、作業前のINTELLIGENCE-L2-068 test/instruction candidate、予定または有効な元Worker assignment/identity/model/provider/version/effort、元Workerの成果、HARNESS-L2-022 pair/oracleに結んだOS-L2-020実行・証拠、支援者から独立したreview、必要時のOS-L2-028 consultation receipt、失敗時の元Workerへの再作業を因果順で束ねるcomposite候補を扱う。事前candidateは予定assignment identity/scopeに結び、実Worker起動・実行はその時点の有効なOS assignmentを照合する。作業前candidateは失敗証拠やconsultを要求しない。Verified/Acceptedは各ownerの有効なreceiptが揃う範囲でのみ候補とし、OSは状態を作らず証拠を受け取り束ねる。
+案Bの順序に沿い、作業前のINTELLIGENCE-L2-068 test/instruction candidate、予定または有効な元Worker assignment/identity/model/provider/version/effort、元Workerの成果、HARNESS-L2-022 pair/oracleに結んだOS-L2-020実行・証拠、支援者から独立したreview、必要時のOS-L2-028 consultation receipt、失敗時の元Workerへの再作業を因果順で束ねるcomposite候補を扱う。事前candidateは予定assignment identity/scopeに結び、実Worker起動・実行はその時点の有効なOS assignmentを照合する。作業前candidateは失敗証拠やconsultを要求しない。Verifiedは各ownerの有効なreceiptに基づくcandidateとして、Acceptedは利用者acceptance receiptがある場合のみ記録する。OSはreview/acceptance receiptを生成せず、受領・対象revisionへの束縛・状態追跡を担う。
 
 **責務／依存境界**：OSはassignment・stage/evidence binding・停止/未完記録、HARNESSはpair/oracle/段階acceptance、INTELLIGENCEは支援案、元Workerは実装/修正、独立reviewerは修正後exact HEADの独立review、SECURITY/INFRASTRUCTUREはauthority/資源を所有する。consultなし経路ではOS-L2-028 receiptは不要。OS-L2-020は許可された検証運転を行い、CI greenのみで受入を作らない。
 
