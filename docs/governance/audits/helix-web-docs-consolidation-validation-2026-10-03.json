@@ -1,0 +1,1563 @@
+{
+  "schema": "helix-web-docs-consolidation-validation-audit/v1",
+  "tested_head": "1014ef9d0e39197dfa0e9d9cda77d58d3bc6c832",
+  "integrated_main": "148c03326f83d027dbeff27ef79f95ab3aeb4692",
+  "baseline_head": "148c03326f83d027dbeff27ef79f95ab3aeb4692",
+  "validator_count": 137,
+  "failure_validator_count": 55,
+  "baseline_failure_validator_count": 55,
+  "new_failing_validators": 0,
+  "failure_validator_count_unchanged": true,
+  "diagnostic_comparison": {
+    "method_ja": "各validatorのstdout/stderrからE_診断、FAIL行、Traceback/exception行を抽出し、checkout絶対pathを<REPO>へ正規化して同一validatorごとのmultiset差分を比較した。",
+    "added_diagnostic_lines": 19,
+    "removed_diagnostic_lines": 23,
+    "changed_validators": 11,
+    "changes": [
+      {
+        "validator": "scaffold/phcap04-05-requirement-acceptance-research/validate.py",
+        "added": [],
+        "removed": [
+          "E_REF_SHA:CUR-OS-L2"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap06-design-research/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_SHA:CUR-06-PHASE",
+          "E_CURRENT_SHA:CUR-06-OS-L2"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_SHA:OS-L2"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap10-11-worker-ci-static/validate.py",
+        "added": [],
+        "removed": [
+          "E_REF_SHA:CUR-OS-L2-WORKER-CI"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap12-13-review/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_REF_SHA:OS-L2"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap15-deploy-gap-research/validate.py",
+        "added": [
+          "E_CURRENT_DIGEST:docs/helix-web/L1-planning/product-intent.md",
+          "E_CURRENT_SPAN:docs/helix-web/L1-planning/product-intent.md",
+          "E_CURRENT_DIGEST:docs/helix-web-os/L1-planning/system-intent.md",
+          "E_CURRENT_SPAN:docs/helix-web-os/L1-planning/system-intent.md",
+          "E_CURRENT_DIGEST:docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "E_CURRENT_SPAN:docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "E_CURRENT_DIGEST:docs/helix-web-os/L11-acceptance/service-acceptance.md",
+          "E_CURRENT_SPAN:docs/helix-web-os/L11-acceptance/service-acceptance.md"
+        ],
+        "removed": [
+          "E_CURRENT_REF:docs/helix-web/L1-planning/product-intent.md",
+          "E_CURRENT_REF:docs/helix-web-os/L1-planning/system-intent.md",
+          "E_CURRENT_REF:docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "E_CURRENT_REF:docs/helix-web-os/L11-acceptance/service-acceptance.md"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap15-deploy-research/validate.py",
+        "added": [
+          "E_CURRENT_REF_TEXT:CUR-WEB-L1-BOUNDARY",
+          "E_CURRENT_REF_LINE_SHA:CUR-WEB-L1-BOUNDARY",
+          "E_CURRENT_REF_TEXT:CUR-WEB-L2-BOUNDARY",
+          "E_CURRENT_REF_LINE_SHA:CUR-WEB-L2-BOUNDARY",
+          "E_CURRENT_REF_TEXT:CUR-WEBOS-L1-DEPLOY",
+          "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L1-DEPLOY",
+          "E_CURRENT_REF_TEXT:CUR-WEBOS-L2-DEPLOY",
+          "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L2-DEPLOY",
+          "E_CURRENT_REF_TEXT:CUR-WEBOS-L11-UNEXECUTED",
+          "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L11-UNEXECUTED"
+        ],
+        "removed": [
+          "E_PHASE_SNAPSHOT",
+          "E_CURRENT_REF_SHA:CUR-OS-L2-DEPLOY-GOVERNANCE",
+          "E_CURRENT_REF_SHA:CUR-OS-L2-WEB-BOUNDARY",
+          "E_CURRENT_REF_MISSING:CUR-WEB-L1-BOUNDARY",
+          "E_CURRENT_REF_MISSING:CUR-WEB-L2-BOUNDARY",
+          "E_CURRENT_REF_MISSING:CUR-WEBOS-L1-DEPLOY",
+          "E_CURRENT_REF_MISSING:CUR-WEBOS-L2-DEPLOY",
+          "E_CURRENT_REF_MISSING:CUR-WEBOS-L11-UNEXECUTED"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap17-incident-research/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_SHA:CUR-OS-L2-01"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap18-refactor-research/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_SHA:CUR-OS-L2-REF"
+        ]
+      },
+      {
+        "validator": "scaffold/phcap19-learning-research/validate.py",
+        "added": [],
+        "removed": [
+          "E_CURRENT_SHA:CUR-OS-L2",
+          "E_CURRENT_SHA:CUR-OS-L2-WEB"
+        ]
+      },
+      {
+        "validator": "scaffold/rdp001-web-webos-vision-source-0080/validate.py",
+        "added": [
+          "FAIL E_CURRENT_SOURCE"
+        ],
+        "removed": [
+          "FAIL E_GIT_SOURCE:docs/helix-web/L2-requirements/product-requirements.md"
+        ]
+      }
+    ],
+    "interpretation_ja": "追加19診断行は、PHCAP15の9個の既存source span（各基準時missing 1行が現行text/spanまたはdigest/span 2行として見える）に対応する18行と、RDP001の既存source path/hash不一致がFAIL E_GIT_SOURCEからFAIL E_CURRENT_SOURCEへ変わった1行である。追加診断行は新しい要求意味上のfailureを示さない。PHCAP15は基準時点で既にvalidator failureであり、移動後に解決可能になったcurrent path上で保存済みsource locatorの古さが可視化された。RDP001では固定source SHAが元の固定revisionと一致し、基準148のcurrent path欠如が移動後current bytes mismatchへ変わった。いずれも既存状態の露呈として記録し、source body、line bounds、validator条件は修正していない。消失23行のうち9旧missingと1旧git-source failureはこの対応表に記録した。その他13行はcurrent source/file digestやphase/current referenceの既存pin不一致がcurrent pin closureで解消した。"
+  },
+  "latent_source_spans": [
+    {
+      "consumer": "phcap15-deploy-research",
+      "identity": "CUR-WEB-L1-BOUNDARY",
+      "path_at_base": "docs/helix-web/L1-planning/product-intent.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web/L1-planning/product-intent.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "29fe8cbd1a61896852bab6aa636f2bc1d2386b57e69fab1249678fd64a9d3ee6",
+      "current_source_sha256": "36ff3df63b2b5a6ddf09a56a892bdbec4b13c7edcddb68c6969fea6b6f1cf547",
+      "line_start": 45,
+      "line_end": 50,
+      "meaning": "Webは利用者体験を所有し、展開後deployment runtimeはWeb-OSが所有する境界候補",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_exact_text_sha256": "ba66984168ec760764c4357fb08e9d8b54b5de97d55796e964a6d2602cb5d393",
+      "stored_line_sha256": "ba66984168ec760764c4357fb08e9d8b54b5de97d55796e964a6d2602cb5d393",
+      "historical_actual_span_sha256": "103ddea9910bc657d250e20315266fdb0dc1bd4030e3b1b48375ffcbe072ee23",
+      "current_actual_span_sha256": "103ddea9910bc657d250e20315266fdb0dc1bd4030e3b1b48375ffcbe072ee23",
+      "historical_span_matches_stored_exact_text_plus_eol": false,
+      "current_span_matches_stored_exact_text_plus_eol": false,
+      "historical_span_matches_stored_line_sha": false,
+      "current_span_matches_stored_line_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_REF_TEXT:CUR-WEB-L1-BOUNDARY",
+        "E_CURRENT_REF_LINE_SHA:CUR-WEB-L1-BOUNDARY"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web/L1-planning/product-intent.md"
+    },
+    {
+      "consumer": "phcap15-deploy-research",
+      "identity": "CUR-WEB-L2-BOUNDARY",
+      "path_at_base": "docs/helix-web/L2-requirements/product-requirements.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "f5f69a92eb3c9e23f1c1d13995aa9ad708d1e55b26764a38582760335838fc1a",
+      "current_source_sha256": "8ae5baedb071995190e8553d23dad3cb55a4bde1cb0110f0b0c464859762c27c",
+      "line_start": 46,
+      "line_end": 50,
+      "meaning": "Web利用要求とWeb-OS deployment runtimeの責務分離候補",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_exact_text_sha256": "0631562e61aa463ae59b3758222027a00749574024615d4ab4f2e7cbb494bd79",
+      "stored_line_sha256": "0631562e61aa463ae59b3758222027a00749574024615d4ab4f2e7cbb494bd79",
+      "historical_actual_span_sha256": "e33fd14eab31256a650c39cf9fbd2cc4c4515117344e13897dc8884160a7d8d0",
+      "current_actual_span_sha256": "e33fd14eab31256a650c39cf9fbd2cc4c4515117344e13897dc8884160a7d8d0",
+      "historical_span_matches_stored_exact_text_plus_eol": false,
+      "current_span_matches_stored_exact_text_plus_eol": false,
+      "historical_span_matches_stored_line_sha": false,
+      "current_span_matches_stored_line_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_REF_TEXT:CUR-WEB-L2-BOUNDARY",
+        "E_CURRENT_REF_LINE_SHA:CUR-WEB-L2-BOUNDARY"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web/L2-requirements/product-requirements.md"
+    },
+    {
+      "consumer": "phcap15-deploy-research",
+      "identity": "CUR-WEBOS-L1-DEPLOY",
+      "path_at_base": "docs/helix-web-os/L1-planning/system-intent.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L1-planning/system-intent.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "f702ed0044b284d8c9b560c63f611ae54912141f91ff85f8b39bdd0d63512ef1",
+      "current_source_sha256": "b0e757237e4872b8ea09d400fecb6bea1d0ebbddd29bb44856f154869e314765",
+      "line_start": 14,
+      "line_end": 24,
+      "meaning": "Web-OSがtenant／job／service運転と配備・監視・更新・復旧を担う候補",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_exact_text_sha256": "d12e5c0377c1a88d9d6fd8808529076c86b26bb57f87fb92a56c25873aa2b609",
+      "stored_line_sha256": "d12e5c0377c1a88d9d6fd8808529076c86b26bb57f87fb92a56c25873aa2b609",
+      "historical_actual_span_sha256": "76fb35d6cd15b69f9950a680f3b30397a01a80d199ddcf39a5042d245e5e01be",
+      "current_actual_span_sha256": "fb5dff123132b179b1011a6f9ffc22c8e1def5af7c111a4c9b319ca3fb39f1fd",
+      "historical_span_matches_stored_exact_text_plus_eol": false,
+      "current_span_matches_stored_exact_text_plus_eol": false,
+      "historical_span_matches_stored_line_sha": false,
+      "current_span_matches_stored_line_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_REF_TEXT:CUR-WEBOS-L1-DEPLOY",
+        "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L1-DEPLOY"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L1-planning/system-intent.md"
+    },
+    {
+      "consumer": "phcap15-deploy-research",
+      "identity": "CUR-WEBOS-L2-DEPLOY",
+      "path_at_base": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
+      "current_source_sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
+      "line_start": 33,
+      "line_end": 38,
+      "meaning": "Web-OS deployment、monitoring、rollbackと許可log exportの要求候補",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_exact_text_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
+      "stored_line_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
+      "historical_actual_span_sha256": "6aec8de7137196a2510f78107c5f84e718a794ad51c7040a3d63f50939735381",
+      "current_actual_span_sha256": "6aec8de7137196a2510f78107c5f84e718a794ad51c7040a3d63f50939735381",
+      "historical_span_matches_stored_exact_text_plus_eol": false,
+      "current_span_matches_stored_exact_text_plus_eol": false,
+      "historical_span_matches_stored_line_sha": false,
+      "current_span_matches_stored_line_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_REF_TEXT:CUR-WEBOS-L2-DEPLOY",
+        "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L2-DEPLOY"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+    },
+    {
+      "consumer": "phcap15-deploy-research",
+      "identity": "CUR-WEBOS-L11-UNEXECUTED",
+      "path_at_base": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "4ff0e2c996d2af2cd08b4d4913357362a859a6f157df31138417db6e775bd96c",
+      "current_source_sha256": "aed5518f2b2f2d2e4c7085d70caf3c8cda8cd78e5d558c3fddc44239f6f46efc",
+      "line_start": 13,
+      "line_end": 24,
+      "meaning": "Web-OS受入は全件未実行で、deployment／rollbackの成功証拠は未成立",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_exact_text_sha256": "5c9ef389c634159046b148793c9dde847375bfa0f6bb605f4b736ca505fedbea",
+      "stored_line_sha256": "5c9ef389c634159046b148793c9dde847375bfa0f6bb605f4b736ca505fedbea",
+      "historical_actual_span_sha256": "485d41a54d230a8641008e7fab26cad0009b8a96a4af30c1b98dfb89ada7afc5",
+      "current_actual_span_sha256": "a783f4b7542bea9d4a7403e2ef8be3ab0005ae6f38d248b021a802acba83ef4e",
+      "historical_span_matches_stored_exact_text_plus_eol": false,
+      "current_span_matches_stored_exact_text_plus_eol": false,
+      "historical_span_matches_stored_line_sha": false,
+      "current_span_matches_stored_line_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_REF_TEXT:CUR-WEBOS-L11-UNEXECUTED",
+        "E_CURRENT_REF_LINE_SHA:CUR-WEBOS-L11-UNEXECUTED"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L11-acceptance/service-acceptance.md"
+    },
+    {
+      "consumer": "phcap15-deploy-gap-research",
+      "identity": "HELIX-Web:docs/helix-web/L1-planning/product-intent.md:24-49",
+      "path_at_base": "docs/helix-web/L1-planning/product-intent.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web/L1-planning/product-intent.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "29fe8cbd1a61896852bab6aa636f2bc1d2386b57e69fab1249678fd64a9d3ee6",
+      "current_source_sha256": "36ff3df63b2b5a6ddf09a56a892bdbec4b13c7edcddb68c6969fea6b6f1cf547",
+      "line_start": 24,
+      "line_end": 49,
+      "meaning": "利用者向けWeb体験の候補。展開後のtenant、service state、配備、監視、復旧はWeb-OSへ分離する候補。",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_span_sha256": "5fbf51cd3f1047420b3142547b84b21e3a8655e471b7cd89883ea904b31c0011",
+      "historical_actual_span_sha256": "da3e949ff1f141abe73dae0677c48ae5622131b5c1b3ee9ecfd7d3c6bd0788fe",
+      "current_actual_span_sha256": "da3e949ff1f141abe73dae0677c48ae5622131b5c1b3ee9ecfd7d3c6bd0788fe",
+      "historical_span_matches_stored_sha": false,
+      "current_span_matches_stored_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_DIGEST:docs/helix-web/L1-planning/product-intent.md",
+        "E_CURRENT_SPAN:docs/helix-web/L1-planning/product-intent.md"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web/L1-planning/product-intent.md"
+    },
+    {
+      "consumer": "phcap15-deploy-gap-research",
+      "identity": "HELIX-Web-OS:docs/helix-web-os/L1-planning/system-intent.md:14-49",
+      "path_at_base": "docs/helix-web-os/L1-planning/system-intent.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L1-planning/system-intent.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "f702ed0044b284d8c9b560c63f611ae54912141f91ff85f8b39bdd0d63512ef1",
+      "current_source_sha256": "b0e757237e4872b8ea09d400fecb6bea1d0ebbddd29bb44856f154869e314765",
+      "line_start": 14,
+      "line_end": 49,
+      "meaning": "Web展開先のtenant、service runtime、配備、監視、復旧の候補。HELIX-OSとはauthority、state、credential、writerを分離する候補。",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_span_sha256": "5cf1c2f9016286bff33e619770e0166f275ea1e77c34b2dbd9c52fa091316df1",
+      "historical_actual_span_sha256": "a66b6d6ddbc86d9eb114adbfe03b3987f97c995c9a1e598bb60e25fe0941f78c",
+      "current_actual_span_sha256": "cdd1bd7dcf90ab77f3f5769532f10c2baa467f000c36f1a28b18fa7a17c39f55",
+      "historical_span_matches_stored_sha": false,
+      "current_span_matches_stored_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_DIGEST:docs/helix-web-os/L1-planning/system-intent.md",
+        "E_CURRENT_SPAN:docs/helix-web-os/L1-planning/system-intent.md"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L1-planning/system-intent.md"
+    },
+    {
+      "consumer": "phcap15-deploy-gap-research",
+      "identity": "HELIX-Web-OS:docs/helix-web-os/L2-requirements/service-governance-requirements.md:33-38",
+      "path_at_base": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
+      "current_source_sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
+      "line_start": 33,
+      "line_end": 38,
+      "meaning": "Web展開先のtenant、service runtime、配備、監視、復旧の候補。HELIX-OSとはauthority、state、credential、writerを分離する候補。",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_span_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
+      "historical_actual_span_sha256": "6aec8de7137196a2510f78107c5f84e718a794ad51c7040a3d63f50939735381",
+      "current_actual_span_sha256": "6aec8de7137196a2510f78107c5f84e718a794ad51c7040a3d63f50939735381",
+      "historical_span_matches_stored_sha": false,
+      "current_span_matches_stored_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_DIGEST:docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "E_CURRENT_SPAN:docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+    },
+    {
+      "consumer": "phcap15-deploy-gap-research",
+      "identity": "HELIX-Web-OS:docs/helix-web-os/L11-acceptance/service-acceptance.md:22-24",
+      "path_at_base": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "base_current_path_exists": false,
+      "historical_source_path": "helix-web/docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "historical_source_exists": true,
+      "historical_source_sha256": "4ff0e2c996d2af2cd08b4d4913357362a859a6f157df31138417db6e775bd96c",
+      "current_source_sha256": "aed5518f2b2f2d2e4c7085d70caf3c8cda8cd78e5d558c3fddc44239f6f46efc",
+      "line_start": 22,
+      "line_end": 24,
+      "meaning": "Web展開先のtenant、service runtime、配備、監視、復旧の候補。HELIX-OSとはauthority、state、credential、writerを分離する候補。",
+      "identity_unchanged": true,
+      "line_bounds_unchanged": true,
+      "stored_span_sha256": "8a961da4fd8e27ac990be74228c20536a0dfb195bf0042e6a21c0099bafbfa69",
+      "historical_actual_span_sha256": "e4b493c80d928f1f2a42d0caf9cb33a090f5453a11b7f2d1badd9e51a7ed6b16",
+      "current_actual_span_sha256": "e4b493c80d928f1f2a42d0caf9cb33a090f5453a11b7f2d1badd9e51a7ed6b16",
+      "historical_span_matches_stored_sha": false,
+      "current_span_matches_stored_sha": false,
+      "historical_vs_current_span_equal_after_markdown_link_target_normalization": true,
+      "historical_vs_current_full_text_equal_after_markdown_link_target_normalization": true,
+      "new_diagnostic_pair": [
+        "E_CURRENT_DIGEST:docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "E_CURRENT_SPAN:docs/helix-web-os/L11-acceptance/service-acceptance.md"
+      ],
+      "replaces_base_missing_diagnostic": "E_CURRENT_REF:docs/helix-web-os/L11-acceptance/service-acceptance.md"
+    }
+  ],
+  "rdp001_current_source_capture": [
+    {
+      "inventory_field": "current_web_l2_sha256",
+      "current_path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "base148_current_path_missing": true,
+      "base148_old_path": "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
+      "base148_old_actual_sha256": "f5f69a92eb3c9e23f1c1d13995aa9ad708d1e55b26764a38582760335838fc1a",
+      "stored_sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "fixed_capture_revision": "ea771fb2c496d40fcc429877b0fcd8cff6999526",
+      "fixed_capture_sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "fixed_capture_matches_stored": true,
+      "moved_current_sha256": "8ae5baedb071995190e8553d23dad3cb55a4bde1cb0110f0b0c464859762c27c",
+      "source_relations_bytes_or_fields_modified": false
+    },
+    {
+      "inventory_field": "current_webos_l2_sha256",
+      "current_path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "base148_current_path_missing": true,
+      "base148_old_path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "base148_old_actual_sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
+      "stored_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "fixed_capture_revision": "ea771fb2c496d40fcc429877b0fcd8cff6999526",
+      "fixed_capture_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "fixed_capture_matches_stored": true,
+      "moved_current_sha256": "fc20446eb90bf3d89de941686a6d9c82889bf5bb753af7c0aa52946053a8cac5",
+      "source_relations_bytes_or_fields_modified": false
+    }
+  ],
+  "preserved_update_closure": {
+    "web_docs_moved": 31,
+    "destination_sha_mappings": 32,
+    "destination_sha_mapping_exact_bytes": "PASS 32/32",
+    "po_snapshot_delimiter_body_sha256": "a61feb6941412c5a7e6677b814a9d4568a79cf92c0da0951b74db3a6e43cddbf",
+    "po_snapshot_body_unchanged": true,
+    "decision_2026_09_26_sha256": "6f689d117a0bb87338d6c6cc8b7796013965afe2364fddcf2c0c99a8f7cf4d0e",
+    "decision_2026_09_26_bytes_unchanged": true,
+    "current_classification_source_path_only": 15,
+    "phase_inventory_current_refs_only": 9,
+    "wave38_50_current_prior_review_meta_pins_refreshed": 91,
+    "wave38_50_fixed_source_and_prior_input_digests_preserved": true,
+    "phase_record_snapshot_current_refs_refreshed": 5,
+    "current_counterpart_bytes_and_sha_pins_refreshed": 10,
+    "fixed_pre_isolation_archive_revision_captures_preserved": true,
+    "phase_capability_register_rows": 1075,
+    "register_fullbytes_identical_to_main148": true,
+    "binding_current_pins_full_closure": 600,
+    "binding_existing_notes_preserved_plus_current_read_after": true,
+    "final_post_span_binding_entries": 16,
+    "binding_semantic_role_obligations_authority_other_fields_changed": false,
+    "binding_existing_note_entries_preserved": 528
+  },
+  "scfctl": {
+    "validate_pass": 143,
+    "validate_fail": 0,
+    "stale": 0,
+    "residuals": 0
+  },
+  "other_checks": {
+    "git_diff_check": "PASS",
+    "current_web_link_check": "PASS; zero broken moved links (root independent check)",
+    "current_helix_web_docs_references": "zero stale current readers (root independent check)"
+  },
+  "validator_runs": [
+    {
+      "validator": "scaffold/br-implementation-evidence-0102/validate.py",
+      "validator_sha256": "188b9ebebc5a625ff4abd197ecb3e408bde997542e93fa5fe88d85c87871643a",
+      "exit_code": 0,
+      "output_sha256": "e79a29fbd2a0a572c1ddd9dceb76356c1c5045ea5331d69d553405633bf8c75f",
+      "stdout": "SCF-B-0102 validate: PASS (7 units, 21 review edges, 16 old assets; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/br-implementation-evidence-0104/validate.py",
+      "validator_sha256": "1282179fe77076e11ac6767c0a712e5acfca7a28314750ed17e4575664a768c0",
+      "exit_code": 0,
+      "output_sha256": "a70a7fce6bf6e46c25401fb3c41391778440880779d968ddcc4ca739bfc3e803",
+      "stdout": "SCF-B-0104 validate: PASS (23 units, 68 review edges, 47 old assets; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/br-implementation-evidence-0106/validate.py",
+      "validator_sha256": "b9ad46ad7a1ccee10a71d28811ceeb2a3a748e43a42b92a8a562f8de352677db",
+      "exit_code": 0,
+      "output_sha256": "bbcc17290c8102c2532540beedfb34244dafc7e529033ec57ced30971ed791d9",
+      "stdout": "SCF-B-0106 validate: PASS (19 units, 55 review edges, 38 old assets; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-002-013-004-029/validate.py",
+      "validator_sha256": "1f8db21acbe427d3dace401d4a6c76a218363937f012f215a1ae8075368b6dda",
+      "exit_code": 0,
+      "output_sha256": "c6df7d80a7923d603c26b54d9e001965f37cab2f101fdfccb6d09a22819192ff",
+      "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=344 atoms=53 edges=10 residual=104/766\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-003-028/validate.py",
+      "validator_sha256": "ded92867acb56c3645a0849fdf63fe5b674723e40da2edb0fd2221faa5952b97",
+      "exit_code": 1,
+      "output_sha256": "12444d8d98a09e9f2c0f2e0d618170fcadd930d8ba63ef7de5a426fdbf91b312",
+      "stdout": "FAIL: DELEGATED-DOC-003/028 + REF-0303/0759/0760 atom candidate\n- source holdingにIDがない: DELEGATED-DOC-003\n- source holdingにIDがない: DELEGATED-DOC-028\n- pair_acceptance_reference_auditが固定blob再計算結果と不一致: expected={'method': 'recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob', 'source_document_id': 'DELEGATED-DOC-003', 'source_defined_acceptance_ids': [], 'reference_document_id': 'DELEGATED-DOC-028', 'referenced_acceptance_ids': [], 'missing_from_pair': [], 'unresolved_decision_ids': [], 'admission': 'fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs'} actual={'method': 'recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob', 'source_document_id': 'DELEGATED-DOC-003', 'source_defined_acceptance_ids': ['GH-AC-001', 'GH-AC-002', 'GH-AC-003', 'GH-AC-004', 'GH-AC-005', 'GH-AC-006', 'GH-AC-007', 'GH-AC-008', 'GH-AC-009', 'GH-AC-010', 'GH-AC-011', 'GH-AC-012', 'GH-AC-013'], 'reference_document_id': 'DELEGATED-DOC-028', 'referenced_acceptance_ids': ['GH-AC-001', 'GH-AC-002', 'GH-AC-003', 'GH-AC-004', 'GH-AC-005', 'GH-AC-006', 'GH-AC-007', 'GH-AC-008', 'GH-AC-009', 'GH-AC-010', 'GH-AC-011', 'GH-AC-012', 'GH-AC-013', 'GH-AC-016', 'GH-AC-017', 'GH-AC-034'], 'missing_from_pair': ['GH-AC-016', 'GH-AC-017', 'GH-AC-034'], 'unresolved_decision_ids': ['RDP-UNRESOLVED-GH-AC-016', 'RDP-UNRESOLVED-GH-AC-017', 'RDP-UNRESOLVED-GH-AC-034'], 'admission': 'fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs'}\n- unresolved_decisionsのmissing AC ID集合が不一致: expected=[]\n- DELEGATED-DOC-003 asset／phase ledger record欠落\n- DELEGATED-DOC-028 asset／phase ledger record欠落\n- reference holdingにIDがない: DELEGATED-REF-0303\n- reference holdingにIDがない: DELEGATED-REF-0759\n- reference holdingにIDがない: DELEGATED-REF-0760\n- DELEGATED-DOC-003 composite line coverageに欠落または重複\n- DELEGATED-DOC-028 composite line coverageに欠落または重複\n- product boundary source digest不一致: docs/concept/product-boundary.md\n- product boundary source digest不一致: docs/helix-harness/L1-planning/product-intent.md\n- product boundary source digest不一致: docs/helix-os/L1-planning/system-intent.md\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-005-014-011-018/validate.py",
+      "validator_sha256": "f0e9ab89cfcebdb5ece07cadcd6c3b9e2ba08531fb9da1b7b66ebf9ec701cee9",
+      "exit_code": 0,
+      "output_sha256": "80bd87ed60dfea998e720f3b6b91646e8e79003ca0cee985ad99a014f21db33d",
+      "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=455 atoms=24 edges=4 residual=100/762\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-006-015/validate.py",
+      "validator_sha256": "196498e4b7d05f9e746e1e535543f7ec4777287abedc7dc50de194350b0c1bbe",
+      "exit_code": 0,
+      "output_sha256": "5ea263dcf89ca0a65c5adad2cbf034f0fa81a5303808ffba20ed2d664e850338",
+      "stdout": "PASS: DELEGATED-DOC-006/015 + REF-0308/0424/0425/0765 atom candidate\ndocuments=2; references=4; coverage_spans=8; semantic_atoms=11; source_lines=111; negative_conditions=7\ncandidate_target_counts={'HELIX-HARNESS': 2, 'HELIX-OS': 2, 'unresolved': 7}\nauthority_effect=none; atomization=unresolved; legacy_runtime_test_ci=forbidden; pair_missing_acceptance=[]\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-007-016-030-034/validate.py",
+      "validator_sha256": "c8c9d79eff176cc9db456471194dea4ba0b4cad1f9dacf8d62ad5f606474b88d",
+      "exit_code": 0,
+      "output_sha256": "604ae7092f4ec7f6d1f328efbf555cbceadbcc35ebab3691c4cdf92b9caded6e",
+      "stdout": "PASS RDP-001 delegated pairs: docs=4 lines=638 atoms=105 edges=4 residual=96/758 original_ids=240/240/0\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/delegated-doc-008-017/validate.py",
+      "validator_sha256": "57d98510220f07ef1d3759d54a9f82991c1fdfc84140c7eec51ee5d30216f36c",
+      "exit_code": 1,
+      "output_sha256": "f961867b6e37c86916cccfd3023c57ad29573bf615db135a831dc057dfcdb166",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/delegated-doc-008-017/validate.py\", line 344, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"<REPO>/scaffold/delegated-doc-008-017/validate.py\", line 156, in main\n    if prov.get(field) != digest(path): errors.append(f\"{label} ledger SHA-256不一致\")\n                          ^^^^^^^^^^^^\n  File \"<REPO>/scaffold/delegated-doc-008-017/validate.py\", line 63, in digest\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n                          ^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/delegated-requirement-document-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/fr-harness-first10-evidence-0132/validate.py",
+      "validator_sha256": "6eb80048694112a177d0668f65ad8f61ab812447d9721c4b6079b55b7d522592",
+      "exit_code": 0,
+      "output_sha256": "323124445dcbfd09f32ed3f79d635ab0271e5ce85e1a482ae55113e20958c140",
+      "stdout": "PASS SCF-B-0132: 10 existing HELIX-HARNESS units, 30 Wave edges, 22 unique old assets; all unit statuses remain unknown/candidate-only\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/fr-implementation-evidence-0109/validate.py",
+      "validator_sha256": "af13eee3b20de79b598889b272f21ade432ee449605d47a754a063f7fec61c81",
+      "exit_code": 0,
+      "output_sha256": "c9897118b1782834410e62a9ad56f5f32cb38b79685842a67c6fec2935bd5cc0",
+      "stdout": "SCF-B-0109 validate PASS\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/fr-implementation-evidence-0110/validate.py",
+      "validator_sha256": "9d9d62a5a538fb1a0673ab314dda9c57defaf788d573ff19eedfd61f5f4fbeec",
+      "exit_code": 0,
+      "output_sha256": "5fc104d3c619b78e16f6ca31df98b75e2d77910c1299dafa7d7296a88de10b7b",
+      "stdout": "SCF-B-0110 validate: PASS (27 units, 79 review edges, 50 old assets; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/fr-implementation-evidence-0111/validate.py",
+      "validator_sha256": "c34cc4860452b1ef0e1fd94bab2e03f7274de48f8b33a45bbcd342beb9ae088c",
+      "exit_code": 0,
+      "output_sha256": "3fd6b196bb622190b98b38d61761d72232cd4a0c053f7e9c82e919018c1ae134",
+      "stdout": "SCF-B-0111 validate: PASS (37 units, 111 review edges, 75 old assets; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/fr-os-first10-evidence-0129/validate.py",
+      "validator_sha256": "00481f6b6ec34cf9f16138309af15d08999b028d206bce9b38e8aca9bfc63105",
+      "exit_code": 0,
+      "output_sha256": "efcacd69f6367550405d5c5973014b1130dd4f2b7c0821d57ec4940ba5d14e01",
+      "stdout": "PASS SCF-B-0129: 10 existing HELIX-OS units, 30 Wave edges, 23 unique old assets; all unit statuses remain unknown/candidate-only\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/implementation-evidence-strength-0115/validate.py",
+      "validator_sha256": "1ad3c9960b64639b035d3b8fe83973402c82a6a78daa52004a6b6cb6f547be48",
+      "exit_code": 0,
+      "output_sha256": "d3c17bda44d0c809764ae327ca481013d1036f4a87f21b0425ab055939ecb7eb",
+      "stdout": "SCF-B-0115 validate: PASS (20 selected units; counts derived from fixed BASE; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-ai-instruction-product-classification-0145/validate.py",
+      "validator_sha256": "2baf090fb1fe15fd978f9f2e7669edc36a7600733d50967ce5a460489d7a70ec",
+      "exit_code": 1,
+      "output_sha256": "7ecc94947112acdc0bf7266e95b1bef864461e6a71798000a0a4a847f691b16b",
+      "stdout": "",
+      "stderr": "fatal: path 'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl' does not exist in 'HEAD'\nSCF-B-0145 validate FAIL E_BASE_SOURCE\n"
+    },
+    {
+      "validator": "scaffold/legacy-asset-product-classification-0107/validate.py",
+      "validator_sha256": "e83b3af811cd3ad6d6a917ce16d0a6a79471ec29f8920822edcd65e08012670d",
+      "exit_code": 0,
+      "output_sha256": "04024e076a9776c4168f1f37f132cf8fb2a186882dde1864a7c22354c7813ecf",
+      "stdout": "SCF-B-0107 validate: PASS records=64 edges=70 categories=direct:56 multi:5 insufficient:3\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-config-product-classification-0141/validate.py",
+      "validator_sha256": "de8e0aadd755b964808a0a628e9a3693775230926249a32cc65c1d6d028f4388",
+      "exit_code": 1,
+      "output_sha256": "7411bc4b2bd85d54ef8214524eaec5f5b19efe924b8d9de29b69c76c14be796b",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/legacy-config-product-classification-0141/validate.py\", line 452, in <module>\n    if __name__ == \"__main__\": verify()\n                               ^^^^^^^^\n  File \"<REPO>/scaffold/legacy-config-product-classification-0141/validate.py\", line 427, in verify\n    inv = local_json(INVENTORY); verify_inventory(inv); verify_inputs(inv); verify_binding_closure(inv)\n                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/legacy-config-product-classification-0141/validate.py\", line 380, in verify_binding_closure\n    if [x.get(\"path\") for x in upstream] != expected_paths or len({x.get(\"path\") for x in upstream}) != len(upstream): fail(\"E_BINDING_CLOSURE\", \"omission/extra/duplicate upstream\")\n                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/legacy-config-product-classification-0141/validate.py\", line 178, in fail\n    def fail(code: str, msg: str) -> None: raise AssertionError(f\"{code}: {msg}\")\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: E_BINDING_CLOSURE: omission/extra/duplicate upstream\n"
+    },
+    {
+      "validator": "scaffold/legacy-evidence-crosswalk-0146/validate.py",
+      "validator_sha256": "410828d49e2e90026c1afce59e74a35e6d6ad2292c2770ea781b0c7b47f24b95",
+      "exit_code": 0,
+      "output_sha256": "5f8d2c22fecc41b6a490b78c1713d72bdccf9f4b9afa3b51be4889175c38e5c4",
+      "stdout": "PASS legacy-evidence-crosswalk-0146: 218 records (217 product units/1 connection), 598 edges, 355 unique assets; all status boundaries match fixed BASE\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-execution-evidence-0118/validate.py",
+      "validator_sha256": "596e96b3654561d452fe3a15ced8ced71aa8d03a95f2cd620deafd630a0aeb2b",
+      "exit_code": 0,
+      "output_sha256": "4439e0a26775ea4d361d4de0d61aa240ed2bee1ba9e08dace2203a3fbb0fa1f0",
+      "stdout": "PASS SCF-B-0118: 28 asset-level receipt records; unit/requirement/acceptance bindings remain absent\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
+      "validator_sha256": "652f31431527adf65265d7d1038c0715e884a05b780a7bca28f45564795de6f9",
+      "exit_code": 1,
+      "output_sha256": "d903945a21a2206b11c851e286a67e5b52ab525c2f3fa19da9024aea8e499b73",
+      "stdout": "",
+      "stderr": "E_INVENTORY_BYTES: complete inventory pin mismatch\n"
+    },
+    {
+      "validator": "scaffold/legacy-implementation-residual-0126/validate.py",
+      "validator_sha256": "a215c7afc0c9c73135c2451906606ce98b31d7443b7e5cc99c65dfdcb49f85e9",
+      "exit_code": 1,
+      "output_sha256": "ddad4f1a644c7af91723e37a03037ac0845be5b3803a758439965b0453a22ef7",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/legacy-implementation-residual-0126/validate.py\", line 1454, in <module>\n    check()\n  File \"<REPO>/scaffold/legacy-implementation-residual-0126/validate.py\", line 1440, in check\n    if binding.get(\"id\") != BINDING_ID or not same_typed_value(binding.get(\"upstream\"), expected_binding): fail(\"E_BINDING_UPSTREAM\", \"path/raw SHA closure\")\n                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/legacy-implementation-residual-0126/validate.py\", line 702, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_UPSTREAM: path/raw SHA closure\n"
+    },
+    {
+      "validator": "scaffold/legacy-ir-routing-correction-impact-0101/validate.py",
+      "validator_sha256": "d2331cd81cbd94a30b44c304a8b723e2a95f650a27998607b032d23e6abd0784",
+      "exit_code": 0,
+      "output_sha256": "f1b4f47b57301736b2dad382e9f600d71addfd2e00cc388346984d573fc98cf4",
+      "stdout": "SCF-B-0103 validate: PASS records=7 current_units=218 projected_units=225 applied=false\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-ir-target-routing-0100/validate.py",
+      "validator_sha256": "212da50799aab29061321590996d60caae52fa9d5ff8ebae5c6ece9fd2ce9a12",
+      "exit_code": 0,
+      "output_sha256": "f194d2297f123109703803385c7bcc67b6e3ddac05ebaa3a54c8d3c50cca9f83",
+      "stdout": "SCF-B-0100 validate: PASS records=18 candidate_units=27 queue_unchanged=true\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-lint-candidate-product-classification-0128/validate.py",
+      "validator_sha256": "ee9991e5cbb12db1600797902933cfd8eeb68e51904b44aeef90e82dc2366700",
+      "exit_code": 0,
+      "output_sha256": "d56a1daaaf8291a988be3392a887c633494fa0da38ea92f014c6ee3b5b811366",
+      "stdout": "SCF-B-0128 validate: PASS records=51 categories={'direct_product_basis': 38, 'multi_product_conflict': 8, 'insufficient_basis': 5} target_wave_edges=24 overlap_0108=0\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-lint-product-classification-0108/validate.py",
+      "validator_sha256": "571a7bfb168e1e878c4f05424b13dfc9536d48f566506341abaaf55ea9ee72ed",
+      "exit_code": 0,
+      "output_sha256": "efcf437939eac7e99fe9c0f09ce1b67988edfbc2958e1b21fd119b8417e5e5f4",
+      "stdout": "SCF-B-0108 validate: PASS records=95 target_edges=17 categories={'direct_product_basis': 14, 'insufficient_basis': 81, 'multi_product_conflict': 0}\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-nonexec-evidence-0122/validate.py",
+      "validator_sha256": "b5817413728b1a12674d64b36bfd6349836223a61d880543a00f4f304123a5be",
+      "exit_code": 0,
+      "output_sha256": "e5e42a58b829e20a341f4e50592d6d856bf09e6f75b27dec474f710c0c10e818",
+      "stdout": "PASS SCF-B-0122: 29 non-executable requirement snapshots; old/current implementation, degradation/failure, consumer closure and acceptance remain separated/unknown\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-overlap-reconciliation-0144/validate.py",
+      "validator_sha256": "d1b6c54a58d0ff5a822504ada5633e4a6c98edee86ad0b7175038435c79c9166",
+      "exit_code": 1,
+      "output_sha256": "d42bff9fcba81eb0fd26c53d5684eece1d7d3fe863973c4d9217a94640493631",
+      "stdout": "",
+      "stderr": "E_BINDING binding upstream exact schema\n"
+    },
+    {
+      "validator": "scaffold/legacy-phase-gap-review-0101/validate.py",
+      "validator_sha256": "cdc1bba7831a98c849afbebd0d8d14fca267a343bcb9fcf21e06b9c95790de96",
+      "exit_code": 0,
+      "output_sha256": "293afbf00ae1bb855a4670041c6f028e544b8edcd0d56173faf8037c82904ba5",
+      "stdout": "PASS SCF-B-0101 validator: 30 units, source anchors, Wave1-50 edges, asset evidence, authority boundary\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-research-assets-product-classification-0142/validate.py",
+      "validator_sha256": "132fcd357b727e5a03e8f52af743dbfda960f46eba24435b0327b886f897b27e",
+      "exit_code": 1,
+      "output_sha256": "2b7fef631f53c60fb33b56ed1878e04bb3c3e70e486209fb8ccbb33b1014dfad",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/legacy-research-assets-product-classification-0142/validate.py\", line 775, in <module>\n    verify()\n  File \"<REPO>/scaffold/legacy-research-assets-product-classification-0142/validate.py\", line 732, in verify\n    fail(\"E_BINDING_CLOSURE\", \"upstream closure\")\n  File \"<REPO>/scaffold/legacy-research-assets-product-classification-0142/validate.py\", line 58, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_CLOSURE: upstream closure\n"
+    },
+    {
+      "validator": "scaffold/legacy-runtime-product-classification-0117/validate.py",
+      "validator_sha256": "67d9b481ddf4eb13cafc001caea0cbb87cf109f3d64aa147213f272687941198",
+      "exit_code": 0,
+      "output_sha256": "98b003b16f0bde10db4080cc11ffc2e008049e8a6f8cf59408dd70fb4d1ad4a4",
+      "stdout": "SCF-B-0117 validate: PASS records=73 target_edges=16 categories={'direct_product_basis': 54, 'insufficient_basis': 11, 'multi_product_conflict': 8}\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-runtime-residual-product-classification-0133/validate.py",
+      "validator_sha256": "83c369889ab7eec42c6d37f0232b75969c2c2f21c4d34236d59bcda7c7f79bc5",
+      "exit_code": 0,
+      "output_sha256": "f3a5d21d62af89fb0d719c5522e32eb965a05efac686565193a5abba0317d2af",
+      "stdout": "SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-schema-product-classification-0120/validate.py",
+      "validator_sha256": "365cbf9036529ab6b4a09483184d4dd788b414243b375c3d79cdd18f4a93d214",
+      "exit_code": 1,
+      "output_sha256": "3ccddfb39fb2729e416d68157d1aee07fa2cf8e8ad9ad82a0d80c41649ed0985",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/legacy-schema-product-classification-0120/validate.py\", line 648, in <module>\n    verify()\n  File \"<REPO>/scaffold/legacy-schema-product-classification-0120/validate.py\", line 569, in verify\n    verify_binding_input_closure(inventory)\n  File \"<REPO>/scaffold/legacy-schema-product-classification-0120/validate.py\", line 512, in verify_binding_input_closure\n    fail(\"E_BINDING_INPUT_SET\", \"Binding upstream must close over the 66 non-archive inventory inputs in order\")\n  File \"<REPO>/scaffold/legacy-schema-product-classification-0120/validate.py\", line 328, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_BINDING_INPUT_SET: Binding upstream must close over the 66 non-archive inventory inputs in order\n"
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave37/validate.py",
+      "validator_sha256": "b0eb038c615ebf5e1d9f8fae738d7654863cec1b980b0a7e42809b17d35e8fce",
+      "exit_code": 0,
+      "output_sha256": "8066159659d0655c452f3ed37573487bac9ef936224bd348ee5ddfd355c92cc1",
+      "stdout": "Wave37 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave38/validate.py",
+      "validator_sha256": "3ae1f8a0811e59958b3eff341233088e397ce62294a0f5584df7328926f59445",
+      "exit_code": 0,
+      "output_sha256": "026218a1114bc00ff2ecd6484880a8ac82124ae46adf3bf22980293da4270d6e",
+      "stdout": "Wave38 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave39/validate.py",
+      "validator_sha256": "8f5ec65933f08032db8e2018a8e10e81d48838bd7e1053a7b1f5b96484124baa",
+      "exit_code": 0,
+      "output_sha256": "bec102e077077e7f3b5fe0b1c285dcaa9a7d61a64e1e80ce970158fbb7664448",
+      "stdout": "Wave39 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave40/validate.py",
+      "validator_sha256": "e969a5ebcb1b29fd032aa05b94aa00e79538258442ca43501a701dc6083b2b94",
+      "exit_code": 0,
+      "output_sha256": "11a08242fc2dda8cdce81e37d34a84134a9aa0a2f4d961ad7b725b1e9ca9be0b",
+      "stdout": "Wave40 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave41/validate.py",
+      "validator_sha256": "1652f3d1fb49e224913b764a6bd0dd7670779f824cc12cecf0869a8e53d66661",
+      "exit_code": 0,
+      "output_sha256": "eb861dfd5255abefc31a8db25aa5030e199a785916ed2f3084ff0cb54b636afe",
+      "stdout": "Wave41 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave42/validate.py",
+      "validator_sha256": "7f32725ed2e88f69f0f1c9cb1882efc143a7d6822e3b0330a3154f171a267748",
+      "exit_code": 0,
+      "output_sha256": "3314e843de219933b7a9984d5219f0c21357e4292d309a58bf8203682ef6b894",
+      "stdout": "Wave42 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave43/validate.py",
+      "validator_sha256": "29d3edcc8e339b87a538e34c8c946fb6806f3d83a217ef90ed6a1fb202c69069",
+      "exit_code": 0,
+      "output_sha256": "3a248e915d02ec7b99eafa189858ccb6ecc0a18e2423525a604208ab70221a2f",
+      "stdout": "Wave43 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave44/validate.py",
+      "validator_sha256": "961f32516a21896b035999b7db7010b4b691809a3628abe6dd90dd1c956824a9",
+      "exit_code": 0,
+      "output_sha256": "188d0e5552a6cfbc9b00cca46b107e1bc18ec55b2e2caeb9da656d0a1977a6a7",
+      "stdout": "Wave44 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave45/validate.py",
+      "validator_sha256": "929f0cc97691e63e372e5ab2f0f7646f08695790eaa89f2585327d720dbfa94b",
+      "exit_code": 0,
+      "output_sha256": "325dad3cc40ad0178bb386fb2e846529ecd894df520b3f458e9318840e3d95a0",
+      "stdout": "Wave45 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave46/validate.py",
+      "validator_sha256": "b006e1c4966f02b9edec1c3d71a75e0556126fc247e292bfa4e5afc3c7c09a7a",
+      "exit_code": 0,
+      "output_sha256": "88bc28ca399f8a08c5f33cc46a92c01895424aadd972f818a4b8b076b5d5b5b3",
+      "stdout": "Wave46 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave47/validate.py",
+      "validator_sha256": "011420d53bf5a69d69e6c7351a16ce85e56fc64417251759347e0421d78b927e",
+      "exit_code": 0,
+      "output_sha256": "3f810fe07276e4d9b93097c99132e93eb2f3e4b271e8c0d6880b2f1f162d1fca",
+      "stdout": "Wave47 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave48/validate.py",
+      "validator_sha256": "0b7295a2ffe51d4cf11a603b4df834dd0ba964fb0b67f097e5d4b1e639f5c27d",
+      "exit_code": 0,
+      "output_sha256": "66477278435a9577c80acd8cb515f736ce93b6ee2f40ee6c646825ab9605aafc",
+      "stdout": "Wave48 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave49/validate.py",
+      "validator_sha256": "0bab28f5d54e9bbf8829eb41c6d997c5e8d81d3163c40f28b53250a96a4c0011",
+      "exit_code": 0,
+      "output_sha256": "89f1d492ad31f507c91fce065e386ae2d9d70050157fc8e8747b2cf4376d5e83",
+      "stdout": "Wave49 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-semantic-review-wave50/validate.py",
+      "validator_sha256": "e1a2d39f7a647001a5beb7bef6fa9f74e915c741bd150508f0c18d94f5c5b685",
+      "exit_code": 0,
+      "output_sha256": "7339fb9d6d799d0a3c9ad5c407cf01867551eb8132a1a44cef90f117b79b826e",
+      "stdout": "Wave50 static schema10 verification: PASS (source chain, boundary, lineage and negative mutations)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-source-product-classification-0123/validate.py",
+      "validator_sha256": "2cfc9fed4f026ca9eba61e4c06a3a3d2687bdb5052baec5f339b0fd56acca60a",
+      "exit_code": 1,
+      "output_sha256": "d45e7f55dc6e082503d4cdac588194c622e3d939e41c8eacd51601429d2204fe",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/legacy-source-product-classification-0123/validate.py\", line 949, in <module>\n    verify()\n  File \"<REPO>/scaffold/legacy-source-product-classification-0123/validate.py\", line 864, in verify\n    verify_binding_input_closure(inventory)\n  File \"<REPO>/scaffold/legacy-source-product-classification-0123/validate.py\", line 840, in verify_binding_input_closure\n    fail(\"E_INPUT_SET\", \"binding upstream does not close non-archive input_digests\")\n  File \"<REPO>/scaffold/legacy-source-product-classification-0123/validate.py\", line 614, in fail\n    raise AssertionError(f\"{code}: {message}\")\nAssertionError: E_INPUT_SET: binding upstream does not close non-archive input_digests\n"
+    },
+    {
+      "validator": "scaffold/legacy-state-db-product-classification-0127/validate.py",
+      "validator_sha256": "ff457d7adc196544087a7b4f917938d117b14d1375857fe857d28fe2c909d6b1",
+      "exit_code": 0,
+      "output_sha256": "4da7133de5cf0595df42e7cccabfa7f6c4b37c0c33f8bc682b1af65f2b18bf60",
+      "stdout": "SCF-B-0127 validate: PASS records=39 categories={'direct_product_basis': 28, 'multi_product_conflict': 10, 'insufficient_basis': 1} target_wave_edges=13\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-status-evidence-0125/validate.py",
+      "validator_sha256": "ebf30b25c9a04a188709ea5491af1829057e45e4c787f5738f5cae439f767b56",
+      "exit_code": 0,
+      "output_sha256": "42be21c44f0b667eef9d2a6e49b0e7e4e74f4769c1559e7dfbc78a2b0bfff510",
+      "stdout": "PASS SCF-B-0125: 13 asset-level status partitions; direct unit status remains unknown/pending\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
+      "validator_sha256": "5e95339a9f37e226d883fcd859342bf1c03b2b2bc47ec5298e253de01de77a9e",
+      "exit_code": 1,
+      "output_sha256": "15d78402bdbf58553edb9cdad0934e424391721525bf8fdb0791e63b3e45cd23",
+      "stdout": "SCF-B-0148 static validation failed:\n- E_BINDING: Binding non-upstream contract differs from code-pinned scaffold boundary\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py",
+      "validator_sha256": "fa481fc27ad0330ab801536a4aac9a50846c79b8b16626244e2a46a7bf7e8894",
+      "exit_code": 0,
+      "output_sha256": "bc2cd30a5c5d1c327990193d88457e03f4f549820298f8d63a6bbd2b72a6e636",
+      "stdout": "SCF-B-0150 static validation passed: 208 cohort, 52 exclusion, 156 residual, 13 disjoint source/pair records; no execution/authority promotion.\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/nfr-implementation-evidence-0113/validate.py",
+      "validator_sha256": "c8e8ad57cbb536f43064a402944bd2a498874b6e5aa4b59d765e8d25aa6410b3",
+      "exit_code": 0,
+      "output_sha256": "c0645898b18e55ed0fbc8e3e5bb0fa33715aa025c269b0b0f6a54ae6244f76a0",
+      "stdout": "SCF-B-0113 validate: PASS (31 units; counts derived from fixed BASE; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/nfr-implementation-evidence-0114/validate.py",
+      "validator_sha256": "05f7e34201cfbb3fca583dd0ece59e6e608020a42a6078701e5092c9a9c876e5",
+      "exit_code": 0,
+      "output_sha256": "7ab5d8f33bea98c98e81babc3a84893280c73d6ef634a624620c4b6f804dd197",
+      "stdout": "SCF-B-0114 validate: PASS (29 units; counts derived from fixed BASE; static-only)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/outside67-global-49-67/validate.py",
+      "validator_sha256": "9a72056840d7acc684d063c722387497734a19fc65835c530b62ab04faeb9453",
+      "exit_code": 0,
+      "output_sha256": "8cdb0f83461121c3cb538f7303c607c080c8bb35747074e1c25cc3d13fa21b3b",
+      "stdout": "PASS outside67 global 49-67 validator: 19 items / 13 historical live holdings / static-only\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-cross-20-review-0116/validate.py",
+      "validator_sha256": "5278ea90d009d119320f8c22dcd7357558074a97c3d1f553972c683e7739f899",
+      "exit_code": 0,
+      "output_sha256": "8f5396b0e513e96b89fdc69f153858fab7e9b9a299e8254252c8c19d5e58aa6d",
+      "stdout": "SCF-B-0116 validate PASS (20 units, 40 edges, 22 assets; phase/NA unresolved)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-direct-evidence-first5-0130/validate.py",
+      "validator_sha256": "e447ce4af1a0fb8abda18bdbab16f785b1d86c3343eca16590b6b75a62ab670f",
+      "exit_code": 0,
+      "output_sha256": "649911c60416dca3b2ce2273a3eab7e396893aaec752b51fffe9d73cbe377643",
+      "stdout": "SCF-B-0130 validate PASS (5 units, 13 edges, 9 assets; direct phase evidence unresolved)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-direct-evidence-next5-0131/validate.py",
+      "validator_sha256": "92e94c0f8dea42fe662addc57b65a0b05f9722bfecf2f54f31b9c9b802ef5264",
+      "exit_code": 0,
+      "output_sha256": "aa4b69abe7aa0ab1acfec5d4a63f23167597a6eb9ca63a2a4b38ec31b6cb2a2c",
+      "stdout": "SCF-B-0131 validate PASS (5 units, 15 edges, 11 assets; direct phase evidence unresolved)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-gap-cross-analysis-0134/validate.py",
+      "validator_sha256": "6b397f8b99fdbf8b5712018ed314afa3d387d1c17e7fff6df45e9086fa48da82",
+      "exit_code": 0,
+      "output_sha256": "5018d782354956cd4922b557e9a7d3be72a897465d4e67ea010be058feecf1dd",
+      "stdout": "SCF-B-0134 validate PASS (30 units, 66 edges, 38 assets; direct phase evidence 0; formal phase 0)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-source-human-review-0119/validate.py",
+      "validator_sha256": "28996672942b0bb601134b711efe7768082feef8842f7b6c841cef30c9ce1588",
+      "exit_code": 0,
+      "output_sha256": "5ccb8c886341eb4a375d29c788d2f7b7c5ac31f6b24b10a5ec44038735fa0a0f",
+      "stdout": "SCF-B-0119 validate PASS (10 units, 26 edges, 17 assets; source/human unresolved)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phase-status-taxonomy-0105/validate.py",
+      "validator_sha256": "247bb78517564868e1e3e94d2ec6a6cf34bb2868268fdca5068a196bc881b119",
+      "exit_code": 0,
+      "output_sha256": "96253a9f9dc530b0e1431c2d53aa922b6702a83eea7d83a0057249bd90f9cd70",
+      "stdout": "PASS SCF-B-0105 validator: 30 units, taxonomy matrix, anchors, Wave edges, assets, authority boundary\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap01-concept-l1-research/validate.py",
+      "validator_sha256": "459c493d2f56abceeaa0f4ae033c7d926612785659a1b4f2d257b00438524494",
+      "exit_code": 0,
+      "output_sha256": "f557bf36422db0a8de9ec86a074286ed9f3b967fef9ac9e4cac48fc75bcf7f6b",
+      "stdout": "PASS PHCAP-01 static research validator: historical four-target Concept/L1 receipts, 8 legacy assets, 45 phase candidates\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+      "validator_sha256": "afd7ae4656d397bae6ab87c2725ab7070531e7d9e48fc4d09d60e43fde9fa5a8",
+      "exit_code": 0,
+      "output_sha256": "f77a0c9ca0bfa8b55c98b97d150695f1d8844da92d13f3cc239c3e5f6026b24a",
+      "stdout": "PASS PHCAP-02/03 validator: static source/ledger/product/phase/evidence-gap checks\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap04-05-requirement-acceptance-research/validate.py",
+      "validator_sha256": "631ba48bc5326b5edbe39606d95765194c189daf3a5bcb26fb415f347af1c982",
+      "exit_code": 1,
+      "output_sha256": "8aa5d26025cfc6675c9c9d3d69526dcd3b4351dd51dad29bd441b0b611f71de0",
+      "stdout": "FAIL PHCAP-04/05 validator\nE_LEDGER_SHA:phase_inventory_path\nE_REF_SHA:CUR-HARNESS-L2\nE_REF_SHA:CUR-HARNESS-L11\nE_REF_SHA:CUR-OS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap06-design-research/validate.py",
+      "validator_sha256": "0e0b48eaff69d75c3af06b47251ad434056a140e536c46724a60ea65bd33b624",
+      "exit_code": 1,
+      "output_sha256": "7e5512b568ca521e299aae26e638d371c2f4e8a7170f030dd2ca802f3e38b737",
+      "stdout": "FAIL PHCAP-06 validator\nE_CURRENT_SHA:CUR-06-HARNESS-L2\nE_CURRENT_SHA:CUR-06-HARNESS-L11\nE_CURRENT_SHA:CUR-06-OS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap07-web-verification-l10/validate.py",
+      "validator_sha256": "00ab7e7fec0610dde911cf15b650d4927e57a136c2d9bf7d42504a6ca890d4b2",
+      "exit_code": 1,
+      "output_sha256": "86f069031fecf7319145cb097a1c2deb04c4a2eaacf25c5f7c979f77cfe3d860",
+      "stdout": "FAIL PHCAP-07 validator\nE_PHASE_INVENTORY_SHA\nE_CURRENT_REF_FILE_SHA:CUR-HARNESS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
+      "validator_sha256": "4d5b85bd72190a3bdb2830fc9b9ec22e8fdfc2133b279e0d2f2c62b713f4debd",
+      "exit_code": 1,
+      "output_sha256": "daed5bdaaffea02aefb3f53d87c93ce37040a98b509a5e7b3b0d1631335bab5d",
+      "stdout": "FAIL PHCAP-08/09 validator\nE_PROVENANCE_SHA:phase_inventory_sha256\nE_CURRENT_SHA:HARNESS-L2\nE_CURRENT_SHA:HARNESS-L11\nE_CURRENT_SHA:OS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap10-11-worker-ci-static/validate.py",
+      "validator_sha256": "c15100956aff0cb448bd2bcf9518057f038124edd7da0e8cab1060fc0b1c6e28",
+      "exit_code": 1,
+      "output_sha256": "f7836aee6f16e1b4d5026907edeba7c8edb0d27cc6a3b17d1821779c835f9339",
+      "stdout": "FAIL PHCAP-10/11 validator\nE_PHASE_INVENTORY_SHA\nE_REF_SHA:CUR-HARNESS-L2-CI\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap12-13-review/validate.py",
+      "validator_sha256": "61d59012004dcb829cb616973465f90ddf9df2f8e66ddb7d45acf77836a831d3",
+      "exit_code": 1,
+      "output_sha256": "9483fe3260039b75abd4cdf20d267c7ed2bff2338b86ab771cb36ffb51068f0c",
+      "stdout": "FAIL PHCAP-12/13 validator\nE_PROVENANCE_SHA:phase_inventory_path\nE_CURRENT_REF_SHA:HARNESS-L2\nE_CURRENT_REF_SHA:HARNESS-L11\nE_CURRENT_REF_SHA:OS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap14-release-research/validate.py",
+      "validator_sha256": "d69ba8f4d83ea182bb4fec150b232736b13867ec1081697707beb5e80d665d49",
+      "exit_code": 0,
+      "output_sha256": "22c28da8b90cfd29292dee11fdd0a5fd8b0cff0deab269069e415e8270a0797c",
+      "stdout": "PASS PHCAP-14 validator: static source/ledger/boundary/unknown checks\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap15-17-membership-edges/validate.py",
+      "validator_sha256": "726d880e69b7f396c85ce9559afe750b90b05dba7484e159ba113422f0984b96",
+      "exit_code": 0,
+      "output_sha256": "fce004172f49ebcf24f140c17599f25ab6cd99cca071ed8585b6489c1746a0b6",
+      "stdout": "PASS PHCAP-15/17 membership validator: assets=2 memberships=69 affirmative=0 negative=0 unknown=69 exact_requirement_id=0 exact_source_span=0\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap15-17-orphan-asset-links/validate.py",
+      "validator_sha256": "012726d60c751ac68f7b039f056b05688e421a62de0305a6e13d7411c6248c5e",
+      "exit_code": 1,
+      "output_sha256": "35a6f1f5600f3eaa0d8af84c135b52ce49b92cc48976ca51cb9ffc5c44defff4",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-17-orphan-asset-links/validate.py\", line 397, in <module>\n    errors = validate(json.loads(INV_PATH.read_text(encoding=\"utf-8\")))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-17-orphan-asset-links/validate.py\", line 287, in validate\n    rows = load_jsonl(ROOT / \"docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-17-orphan-asset-links/validate.py\", line 170, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-fifth12-research/validate.py",
+      "validator_sha256": "fd600bb452321854ba7b15710c3f3457f9a562d08a201d716946529599237a57",
+      "exit_code": 1,
+      "output_sha256": "f381580da3c18de97ad65f46aabebba76fa8a57924b153300b991be77929635d",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-fifth12-research/validate.py\", line 368, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-fifth12-research/validate.py\", line 292, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-fifth12-research/validate.py\", line 197, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-final8-research/validate.py",
+      "validator_sha256": "26ff3fd0d815f2b27c450238e699d404b0339cd9fad01d7b03a28597a29f2bec",
+      "exit_code": 1,
+      "output_sha256": "561a9a8af21dd8945bff83f4c6ec86d8064c7254470adcfca1ce25cc30427e08",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-final8-research/validate.py\", line 414, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-final8-research/validate.py\", line 338, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-final8-research/validate.py\", line 239, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-followup-research/validate.py",
+      "validator_sha256": "8a74072ab472d1d5a665bc5a2c5a7fbd9b3e9c0908bcaf0c27ba53a2d68441de",
+      "exit_code": 1,
+      "output_sha256": "8ccc2eff6392c0fd82e69217617653277c8d3f1142c316a8e00819ce3e5a4a46",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-followup-research/validate.py\", line 439, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-followup-research/validate.py\", line 227, in main\n    phase_rows = jsonl(expected_paths[\"phase_ledger\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-followup-research/validate.py\", line 153, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-gap-research/validate.py",
+      "validator_sha256": "d815fc47e20b6963af3099582380a53c6a1a5a3d20233d8ab6a623dd25c0dcef",
+      "exit_code": 1,
+      "output_sha256": "402ebdfb236feefce0d5b2ea98660218d108b16f379efb7c8fec3c97e6a49e6e",
+      "stdout": "",
+      "stderr": "E_PHASE_SOURCE:docs/governance/phase-capability-inventory.json\nE_CURRENT_DIGEST:docs/helix-harness/L1-planning/product-intent.md\nE_CURRENT_SPAN:docs/helix-harness/L1-planning/product-intent.md\nE_CURRENT_DIGEST:docs/concept/product-boundary.md\nE_CURRENT_SPAN:docs/concept/product-boundary.md\nE_CURRENT_DIGEST:docs/helix-os/L1-planning/system-intent.md\nE_CURRENT_SPAN:docs/helix-os/L1-planning/system-intent.md\nE_CURRENT_DIGEST:docs/helix-os/L2-requirements/governance-requirements.md\nE_CURRENT_SPAN:docs/helix-os/L2-requirements/governance-requirements.md\nE_CURRENT_DIGEST:docs/helix-web/L1-planning/product-intent.md\nE_CURRENT_SPAN:docs/helix-web/L1-planning/product-intent.md\nE_CURRENT_DIGEST:docs/helix-web-os/L1-planning/system-intent.md\nE_CURRENT_SPAN:docs/helix-web-os/L1-planning/system-intent.md\nE_CURRENT_DIGEST:docs/helix-web-os/L2-requirements/service-governance-requirements.md\nE_CURRENT_SPAN:docs/helix-web-os/L2-requirements/service-governance-requirements.md\nE_CURRENT_DIGEST:docs/helix-web-os/L11-acceptance/service-acceptance.md\nE_CURRENT_SPAN:docs/helix-web-os/L11-acceptance/service-acceptance.md\nE_LEDGER_READ:[Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\nPHCAP-15 deploy gap validation: FAIL (18 errors)\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-next12-research/validate.py",
+      "validator_sha256": "0504d458780344732e6e7aae3aa2e0a6d6d199fefa1491e08d71df9d7f179466",
+      "exit_code": 1,
+      "output_sha256": "a51228c566c87d7dda469f486067a9927dc646a387cac39002282e8f810f90c9",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-next12-research/validate.py\", line 331, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-next12-research/validate.py\", line 256, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-next12-research/validate.py\", line 163, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-pool12-research/validate.py",
+      "validator_sha256": "44f355833fc60ea7904bf5e01a9dcc7f95059bf1d509c6cb6351dbbe26d45765",
+      "exit_code": 1,
+      "output_sha256": "22f387ee014ec1982a2313c227c2e98c182e3aa30e1017bb719a41cd3c0a1b35",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-pool12-research/validate.py\", line 558, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-pool12-research/validate.py\", line 342, in main\n    phase_rows = jsonl(expected_paths[\"phase_ledger\"])\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-pool12-research/validate.py\", line 230, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-research/validate.py",
+      "validator_sha256": "7fcf8f0f3771a549df71d3d5ac90030db898f79961562641158375f2f4cf4463",
+      "exit_code": 1,
+      "output_sha256": "bdfbbc11acef1018a403f7d450901bf221e19459fffcaffd31635d9c60a1035a",
+      "stdout": "FAIL PHCAP-15 validator\nE_PHASE_INVENTORY_SHA\nE_LEDGER_SHA:phase_inventory_path\nE_LEDGER_MISSING:phase_ledger_path\nE_CURRENT_REF_SHA:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-HARNESS-L2-BOUNDARY\nE_CURRENT_REF_SHA:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_TEXT:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_LINE_SHA:CUR-HARNESS-L11-UNEXECUTED\nE_CURRENT_REF_TEXT:CUR-OS-L2-DEPLOY-GOVERNANCE\nE_CURRENT_REF_LINE_SHA:CUR-OS-L2-DEPLOY-GOVERNANCE\nE_CURRENT_REF_TEXT:CUR-OS-L2-WEB-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-OS-L2-WEB-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEB-L1-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-WEB-L1-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEB-L2-BOUNDARY\nE_CURRENT_REF_LINE_SHA:CUR-WEB-L2-BOUNDARY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L1-DEPLOY\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L1-DEPLOY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L2-DEPLOY\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L2-DEPLOY\nE_CURRENT_REF_TEXT:CUR-WEBOS-L11-UNEXECUTED\nE_CURRENT_REF_LINE_SHA:CUR-WEBOS-L11-UNEXECUTED\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-54330A68064B58B22259\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-1251704E0BE627232E00\nE_ASSET_PHASE_SNAPSHOT:LEGACY-ASSET-189702B332643A3BFDAF\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap15-deploy-sixth12-research/validate.py",
+      "validator_sha256": "c0a0e14401a6c89b7cdb5b09f43499cc8c8f4d02aff68db73cb4099b7a6c10dd",
+      "exit_code": 1,
+      "output_sha256": "38aa1cb2bda660f4ffcd838d94c122ab57d6849c9800eac4dd92ac2fd747469f",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/phcap15-deploy-sixth12-research/validate.py\", line 430, in <module>\n    problems = validate(payload)\n               ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-sixth12-research/validate.py\", line 354, in validate\n    pool_rows=jsonl(POOL_PATH); dispositions={r.get(\"asset_id\"):r for r in jsonl(DISPOSITION_PATH)}; classifications={r.get(\"asset_id\"):r for r in pool_rows}; decisions=jsonl(DECISIONS_PATH); copy_rows=jsonl(COPY_PATH)\n              ^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/phcap15-deploy-sixth12-research/validate.py\", line 257, in jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/phcap16-operations-monitoring/validate.py",
+      "validator_sha256": "86283c73b244a4e7407e6156080c0287a05b5b06c9fca1c5907c78d6ac7a3b50",
+      "exit_code": 0,
+      "output_sha256": "7d1c8691467caab5cc641793f17608badc3e05ff4e059bfeeec13889f16d6720",
+      "stdout": "PASS PHCAP-16 validator: static source/ledger/product-unit/edge/unknown checks\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap17-incident-research/validate.py",
+      "validator_sha256": "78a8b077dab9c551ca4d333c0345f6f7bc56c65d98af36884eb59024870242a4",
+      "exit_code": 1,
+      "output_sha256": "30e322a6af873880d829c332fae834ae4c926d350516092712a4dbe9a888d014",
+      "stdout": "FAIL PHCAP-17 validator\nE_CURRENT_SHA:CUR-HARNESS-L2-01\nE_CURRENT_SHA:CUR-HARNESS-L11-01\nE_CURRENT_SHA:CUR-OS-L11-01\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap18-refactor-research/validate.py",
+      "validator_sha256": "8f14242b0b41ae8097d5d46e638710c99eccda4240835830a80c3fba3cf562c6",
+      "exit_code": 1,
+      "output_sha256": "281d84be217712e379d5c8d1ea0181f42060494dadfdbdea3b1695e270977d1b",
+      "stdout": "FAIL PHCAP-18 validator\nE_CURRENT_SHA:CUR-HARNESS-L2-REF\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap19-learning-research/validate.py",
+      "validator_sha256": "4455b69d4c47bf9053fbd5187bb86f923eb8e93ff3b326e7c1e7a3968989bb90",
+      "exit_code": 1,
+      "output_sha256": "0399b2397a75007f059f09e743e24b83326f173a5f50d22552a704378a53d17b",
+      "stdout": "FAIL PHCAP-19 validator\nE_CURRENT_SHA:CUR-OS-L11\nE_CURRENT_SHA:CUR-HARNESS-L2\nE_CURRENT_SHA:CUR-HARNESS-L2-B\nE_CURRENT_SHA:CUR-HARNESS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/phcap20-memory-research/validate.py",
+      "validator_sha256": "d7ccbfcf5cab80fe338648aca3c390bca382e0082cf4dfa78d82f5fb42c90eac",
+      "exit_code": 1,
+      "output_sha256": "dea7e20c4b8a77fd27a3b2157cd49e5822ba77760b8b4f35b966301f84527025",
+      "stdout": "FAIL PHCAP-20 validator\nE_CURRENT_SHA:CUR-HARNESS-L2\nE_CURRENT_SHA:CUR-HARNESS-L11\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation/validate.py",
+      "validator_sha256": "6183b6836650097d523a5f38c222940aa75824ef81c11e58e42dc61dd65136dd",
+      "exit_code": 1,
+      "output_sha256": "35fd30d2206abc7bff3b626e5e9bfeb7291872b14683c69aaebe2f4e6558b221",
+      "stdout": "FAIL: RDP-001 PREISOLATION 6-path coherence\n- holding台帳を読めない: [Errno 2] No such file or directory: '<REPO>/docs/governance/pre-isolation-revision-delta-source-holding.jsonl'\n- holding台帳に欠落: PREISO-REV-000060\n- holding台帳に欠落: PREISO-REV-000026\n- holding台帳に欠落: PREISO-REV-000015\n- holding台帳に欠落: PREISO-REV-000001\n- holding台帳に欠落: PREISO-REV-000016\n- holding台帳に欠落: PREISO-REV-000002\n- holding台帳の必須6行が欠落: PREISO-REV-000001\n- holding台帳の必須6行が欠落: PREISO-REV-000002\n- holding台帳の必須6行が欠落: PREISO-REV-000015\n- holding台帳の必須6行が欠落: PREISO-REV-000016\n- holding台帳の必須6行が欠落: PREISO-REV-000026\n- holding台帳の必須6行が欠落: PREISO-REV-000060\n- product boundary source digest不一致: docs/concept/product-boundary.md\n- product boundary source digest不一致: docs/helix-harness/README.md\n- product boundary source digest不一致: docs/helix-harness/L1-planning/product-intent.md\n- registry provenance source digest value不一致: ('PREISO-REV-000015', 'PREISO-REV-000026', 'authority_source')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000015', 'PREISO-REV-000026', 'authority_source')\n- registry provenance source digest value不一致: ('PREISO-REV-000016', 'PREISO-REV-000026', 'authority_source')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000016', 'PREISO-REV-000026', 'authority_source')\n- registry provenance source digest value不一致: ('PREISO-REV-000001', 'PREISO-REV-000015', 'generated_from_registry')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000001', 'PREISO-REV-000015', 'generated_from_registry')\n- registry provenance source digest value不一致: ('PREISO-REV-000001', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000001', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance source digest value不一致: ('PREISO-REV-000016', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000016', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000016', 'generated_from_registry')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000016', 'generated_from_registry')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000015', 'classification_registry_input')\n- registry provenance source digest value不一致: ('PREISO-REV-000002', 'PREISO-REV-000026', 'requirements_source_digest')\n- registry provenance consumerのpre-isolation JSONが未取得: ('PREISO-REV-000002', 'PREISO-REV-000026', 'requirements_source_digest')\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-002-atomization/validate.py",
+      "validator_sha256": "7695bdc08e3037496b209a7f1ae7efc7ee5b8cf6a51b884104466e5e6feff394",
+      "exit_code": 0,
+      "output_sha256": "66346e2c3ba68f30abd5aa936c13e938fa09220c0105e458a3285594964389cc",
+      "stdout": "PASS: RDP-001 PREISOLATION-002 semantic atomization (read-only static check)\nGit denominator=400 files / 492 hunks; parent next60=60 files / 60 hunks; parent combined=144 files / 212 hunks; remaining=256 files / 280 hunks\nreview-only subunits=8; selected exact paths/hunks=8 / 8; semantic atoms=0; compound hunk holds=8; unresolved atomization=8\ndecision matches=0; legacy implementation=unknown; consumer closure=pending; authority_effect=none; old runtime/test/CI execution=false\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-batch/validate.py",
+      "validator_sha256": "d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de",
+      "exit_code": 0,
+      "output_sha256": "6375924ea2556565251c52e79fdfece8e28e1d538259d46a80742c2466b26b3f",
+      "stdout": "PASS: RDP-001 PREISOLATION batch 12-path candidate (read-only static check)\nscope=12 selected paths / 58 hunks; full denominator=400 files / 492 hunks; selected remainder=388 files / 434 hunks\ncombined selected with #1934 and SCF-B-0007=24 files / 91 hunks; combined remainder=376 files / 401 hunks\nhunk_classification_counts=requirement:25; constraint:21; provenance:11; generated_metadata:1; unresolved:0\nsemantic_atomization=not_started; semantic_atoms=0; compound_hunk_holds=58; review_only_subunits=8\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-next/validate.py",
+      "validator_sha256": "bc6b6808a84d3740ba0f14a45a089620f38e793ff2aa9070e5226bbdcae207bf",
+      "exit_code": 1,
+      "output_sha256": "0138e6f7b9593bff2767c14163827cada374a1307d222a87934196d2d631aed7",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/pre-isolation-next/validate.py\", line 491, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-next/validate.py\", line 273, in main\n    if prov.get(\"path\") != rel or prov.get(\"sha256\") != file_digest(path): fail(errors, f\"{key} digest不一致\")\n                                                        ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-next/validate.py\", line 135, in file_digest\n    return hashlib.sha256(path.read_bytes()).hexdigest()\n                          ^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/pre-isolation-revision-delta-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-16-30/validate.py",
+      "validator_sha256": "8e23faf9272259ea6e0c4a3af42ad84f467c2009bde306b9c99fb32049185b75",
+      "exit_code": 0,
+      "output_sha256": "b9220ddbc5aacca619ce8d72b9572e786418ab15a4ea1ab552381d9073a4fa50",
+      "stdout": "PASS outside-67 rows 16-30 validator: 15 paths / 13 live holdings / static blob relation\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
+      "validator_sha256": "978a53fe717eb85835adc3febb07059f12ffb1f30e42ced52e9eaec38d6f0045",
+      "exit_code": 0,
+      "output_sha256": "d2396b36fa1fbe185609466780aa5539af456bea45e84860ab51a46005fad2af",
+      "stdout": "PASS outside-67 rows 31-48 validator: 18 paths / 13 live holdings / static blob relation\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-67/validate.py",
+      "validator_sha256": "1bdd9a782a742797e955afd505b77093f204fd1c3a7abfbcc253ce3beccbdce4",
+      "exit_code": 0,
+      "output_sha256": "e7cccc96554a6728fada310c2ace567b124e4aa84f0d5d4195cace30b5853212",
+      "stdout": "PASS\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "validator_sha256": "d5fbbe9205176bb661401ae94ed54317f2112a873896ff1fab9f90f288f4d09c",
+      "exit_code": 1,
+      "output_sha256": "3e2576b1e5a1fe294dd36d4df661bade90958a89d4c60c479d69da60a8a14d47",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/pre-isolation-outside-holding-67-migration/validate.py\", line 307, in <module>\n    errors = validate(json.loads(INV.read_text(encoding=\"utf-8\")), json.loads(PROPOSAL.read_text(encoding=\"utf-8\")), json.loads(READ_AFTER.read_text(encoding=\"utf-8\")))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-outside-holding-67-migration/validate.py\", line 167, in validate\n    source_rows = load(SOURCE)\n                  ^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-outside-holding-67-migration/validate.py\", line 109, in load\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+      "validator_sha256": "c5d51ba5614ad40a562354eaac00e3b2811180e7145dbce955819f643728b515",
+      "exit_code": 0,
+      "output_sha256": "3a86039687cce5862832fdcc6eb581dadc627ac7dd36dac121eed1cb5fc28e7c",
+      "stdout": "PASS outside-67 source_holding proposal: 67 path pairs / 39 same / 28 changed / 13 holdings / append blocked\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-holding-first15/validate.py",
+      "validator_sha256": "68914fbaaa22ca76ff6770c91fa423cb6283d5fd9c0c6b11c9d9f55113c237a2",
+      "exit_code": 0,
+      "output_sha256": "db7401adf507afe9b6453ef6badda0353a2e0bc1e00dbce9abe7e97d60931bd8",
+      "stdout": "PASS outside-67 first-15 validator: 15 paths / 13 live holdings / static blob relation\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "validator_sha256": "5349a06f22102f2a41eed289d277821ffce71966ba9b231e19a0193d071683c9",
+      "exit_code": 1,
+      "output_sha256": "d4ba6c8d6923f51d40ee2eee04d3364dbba2c7be6be1c03a46e7c205417b2b33",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/pre-isolation-outside-l1-semantic/validate.py\", line 69, in <module>\n    EXPECTED = generator.build()\n               ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-outside-l1-semantic/generate.py\", line 267, in build\n    holdings = live_holdings(register)\n               ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-outside-l1-semantic/generate.py\", line 153, in live_holdings\n    records = load_jsonl(path)\n              ^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/pre-isolation-outside-l1-semantic/generate.py\", line 115, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/pre-isolation-requirement-next4/validate.py",
+      "validator_sha256": "2b448a8578ba38d8c86fd5f2a7b39a80866af76745f2a7ad72ddc277ff2866d2",
+      "exit_code": 0,
+      "output_sha256": "92445dd91c299615f435fbf6c64f1ebde2a75da3b11d914977e95258e66adfc1",
+      "stdout": "PASS: RDP-001 requirement-bearing next4 candidate (read-only static check)\nselected=4 files / 28 hunks; prior=144 files / 212 hunks; combined=148 files / 240 hunks; remaining full diff=252 files / 252 hunks\nsource holding remaining=185 metadata-only records; holding-external new-path diff=67 files / 67 hunks\nsemantic_atoms=0; compound_hunk_holds=28; requirement_or_verification_hunks=22; authority_or_status_hunks=6; old runtime/test/CI execution=False\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-research/validate.py",
+      "validator_sha256": "6b49e3ce1b948f28ed5547eb7f64c2e5d6e543824afe730599e0ffb4af7a951f",
+      "exit_code": 0,
+      "output_sha256": "75fad4abe71cd5b189fc2c2f496aad25d3bcf70128d88f3853e55c850f7f3ddb",
+      "stdout": "PASS: RDP-001 research-premise 20-path candidate (read-only static check)\nprior reviewed=24 files / 91 hunks; current selected=20 files / 21 hunks; combined selected=44 files / 112 hunks\nremaining after current selection=356 files / 380 hunks\nhunk_classification_counts=research_premise:21; unresolved:0; semantic_atoms=0; compound_hunk_holds=21; review_only_subunits=8\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-research-next40/validate.py",
+      "validator_sha256": "9bcfb7c35da52f7ae69cdd62d022341447ff884d2b56eb2b7c2d9b6d1c73b69c",
+      "exit_code": 0,
+      "output_sha256": "5fab78bc09ee234a2a74c223c68a62747e12c520098e01db5ae6b1aff54ea8fd",
+      "stdout": "PASS: RDP-001 research-premise next40-path candidate (read-only static check)\nintegrated prior=24 files / 91 hunks; PR1946 candidate origin=unmerged; latest rebaseline=integrated; selected scope=20 files / 21 hunks; before current selected=44 files / 112 hunks\ncurrent selected=40 files / 40 hunks; combined selected=84 files / 152 hunks; remaining=316 files / 340 hunks\nhunk_classification_counts=research_premise:40; unresolved:0; semantic_atoms=0; compound_hunk_holds=40; review_only_subunits=8; fully_unsubdivided=32\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/pre-isolation-research-next60/validate.py",
+      "validator_sha256": "4fd362cc7ad40e73810ca8698348a779c0ec88c04eca4766dea208b8f7724139",
+      "exit_code": 0,
+      "output_sha256": "e7ada76294147234456b580febac4168d7f7cd407ab4fc7c400524b3d43509f5",
+      "stdout": "PASS: RDP-001 research-premise next60-path candidate (read-only static check)\nintegrated prior=24 files / 91 hunks; PR1946 selected=20 files / 21 hunks; PR1949 lineage=selected-origin-unmerged/rebaseline-integrated, 40 files / 40 hunks; before current selected=84 files / 152 hunks\ncurrent selected=60 files / 60 hunks; combined selected=144 files / 212 hunks; remaining=256 files / 280 hunks\nhunk_classification_counts=research_premise:60; unresolved:0; semantic_atoms=0; compound_hunk_holds=60; review_only_subunits=8; fully_unsubdivided=52\nauthority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=False\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-delegated-doc001-atom-030/validate.py",
+      "validator_sha256": "8ec26442b9ad7f8dd3e20de2cc94ec01740b89e4c0730321de492292816d50b3",
+      "exit_code": 1,
+      "output_sha256": "d0b745f7c6c2cb622519081b154ecc90ecca4045a0b95f49bdda07c4d30af7ee",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/rdp001-delegated-doc001-atom-030/validate.py\", line 310, in <module>\n    raise SystemExit(main())\n                     ^^^^^^\n  File \"<REPO>/scaffold/rdp001-delegated-doc001-atom-030/validate.py\", line 299, in main\n    errors = check()\n             ^^^^^^^\n  File \"<REPO>/scaffold/rdp001-delegated-doc001-atom-030/validate.py\", line 151, in check\n    source_records = load_jsonl(source_holding_path)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/rdp001-delegated-doc001-atom-030/validate.py\", line 41, in load_jsonl\n    return [json.loads(line) for line in path.read_text(encoding=\"utf-8\").splitlines() if line.strip()]\n                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1029, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/delegated-requirement-document-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "validator_sha256": "c6c6913f8faa05e37946ccc0de6802d7f7f1beaee66b5976fbbce764f73d4bfc",
+      "exit_code": 0,
+      "output_sha256": "fb7ba9758e9e4f27a907548d556de29453857d7c10f47cdbf6eb47a8390312c1",
+      "stdout": "PASS RDP-001 DOC-002 semantic atom candidate: lines=133 atoms=49 residual=21 shared_relations=3 edges=2 products=4\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "validator_sha256": "3f053cd9e4a95320c03d3141ee73cf7484237c1e9a1117bdd43c8f3e7ba0ccea",
+      "exit_code": 0,
+      "output_sha256": "0bd15dfcfba318ce1155f9dfb7fa86c07d699a90d46271455059759a0304a5ef",
+      "stdout": "PASS rdp001-delegated-doc003-unprocessed8: selected=8 archive=8/8 current_absent=8\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-delegated-doc009-atom/validate.py",
+      "validator_sha256": "dc7e82cd4a6aac3328eadc9ef3bebd137119c10b1b8ec25a2a47e6ba060b9055",
+      "exit_code": 0,
+      "output_sha256": "368d047822dd90a9713e65d799b3e187f5e4342f4cc4d707cee1d6de836e3784",
+      "stdout": "PASS rdp001-delegated-doc009-atom: DOC-009 87 lines / 51 spans / 51 atoms; implementation=unknown\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+      "validator_sha256": "1667c61ca9213f10a1b8c6ac4c48a19c9e795dc047f4b31f2ebfb0ceac831d5b",
+      "exit_code": 1,
+      "output_sha256": "850503a92ea9b1285797affd4d6a8afef929b084761e9269f7dcbd1e5435db64",
+      "stdout": "FAIL outside67 candidate validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-boundary-followup-071/validate.py",
+      "validator_sha256": "2e46ed9658ce90c43432986b49bd8a0a6b838c58f41a59b030516bb8cd3bb851",
+      "exit_code": 1,
+      "output_sha256": "b648f92710de245acd8a05d49b8bbe5405c12b54d9e6da63036acd6939e1747c",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-boundary-followup-073/validate.py",
+      "validator_sha256": "f3dafde6f872af007b758ff29a2adc3da224c73422bcd4d33240e1b8dab8668c",
+      "exit_code": 1,
+      "output_sha256": "05c77dc4e7ccc260d4715e93464d67058815550f8fb44060a5940bb7d311ca31",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\nE_COUNTERPART_PROV:OUTSIDE67-PATH-060\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-boundary-followup-074/validate.py",
+      "validator_sha256": "3e7d5540eafaed88d84906aa3ddd1ef3e5f99488523b581e910e0498e8269e5b",
+      "exit_code": 1,
+      "output_sha256": "b648f92710de245acd8a05d49b8bbe5405c12b54d9e6da63036acd6939e1747c",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-concept-freeze-followup-087/validate.py",
+      "validator_sha256": "0a94f6424731797cfebdad9218f545132d808ea2adc7f8f6b771dc2b948b9e7b",
+      "exit_code": 1,
+      "output_sha256": "2fef347ea9f786d16795ba8301b0e1bd4ec3a5736f2cb56a455f4bb12bee9335",
+      "stdout": "FAIL outside67 concept/freeze follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-final-followup-092/validate.py",
+      "validator_sha256": "d7bb057008b5f0284642d8375d4bb21305fcc243fe6a845181d8f8e6805427d5",
+      "exit_code": 1,
+      "output_sha256": "1ec8059e4b36a8b844d4404d8d730a5b32d58e3d0a74d98b35f24afc80953d3f",
+      "stdout": "FAIL outside67 final follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-followup-069/validate.py",
+      "validator_sha256": "d82b235e4ed8ad4f9b9354fee5608a02b742ade0c704e705e3092d3a432a90ee",
+      "exit_code": 1,
+      "output_sha256": "b607ad00f0f7493f684cacd6a69853df300a7334f38c0935bf20a237c6445d9b",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/rdp001-outside67-followup-069/validate.py\", line 133, in <module>\n    if __name__=='__main__':sys.exit(main())\n                                     ^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-followup-069/validate.py\", line 130, in main\n    ap=argparse.ArgumentParser(); ap.add_argument('--root'); args=ap.parse_args(); errors=validate(args.root or Path(__file__).resolve().parents[2])\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-followup-069/validate.py\", line 58, in validate\n    fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))\n                                                      ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-followup-069/validate.py\", line 34, in sha\n    if isinstance(b,Path): b=b.read_bytes()\n                             ^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-governance-crosswalk-followup-079/validate.py",
+      "validator_sha256": "13f58b642fccd9e0cf1fb0eda5e651bbb8e86199a3c4a7d1a7557e878640220f",
+      "exit_code": 1,
+      "output_sha256": "b648f92710de245acd8a05d49b8bbe5405c12b54d9e6da63036acd6939e1747c",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py",
+      "validator_sha256": "1c7c7d8c130b627119c87dbbd313d0ab55de98d9385a556b723c81b344f399f3",
+      "exit_code": 1,
+      "output_sha256": "a88fe462ef7c2f167ad40b57a0a0ed428bad5235dc2654e27ed6795dc432dd84",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 141, in <module>\n    if __name__=='__main__':sys.exit(main())\n                                     ^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 138, in main\n    ap=argparse.ArgumentParser(); ap.add_argument('--root'); args=ap.parse_args(); errors=validate(args.root or Path(__file__).resolve().parents[2])\n                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 62, in validate\n    fail(e,'E_SCOPE_DIGEST',sc.get('holding_sha256')!=sha(root/HOLDING) or sc.get('management_register_sha256')!=sha(root/REGISTER))\n                                                      ^^^^^^^^^^^^^^^^^\n  File \"<REPO>/scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py\", line 38, in sha\n    if isinstance(b,Path): b=b.read_bytes()\n                             ^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1021, in read_bytes\n    with self.open(mode='rb') as f:\n         ^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/pathlib.py\", line 1015, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<REPO>/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl'\n"
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-governance-crosswalk-followup-085/validate.py",
+      "validator_sha256": "b3fb298f4e1f893ba8e1e0f1cc9ff2050b8d8803f9c0124c7b5c9c65662e8acb",
+      "exit_code": 1,
+      "output_sha256": "b648f92710de245acd8a05d49b8bbe5405c12b54d9e6da63036acd6939e1747c",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-path001-005-atomization-0095/validate.py",
+      "validator_sha256": "d82fa79df56521af9b0f78afb342a5db94829e7b4b9fab539aa219255ad8d2d1",
+      "exit_code": 0,
+      "output_sha256": "36e78768e4022759756cd2c4d36dc08c9e869a0964d964e3c506a7a43fc3e9e5",
+      "stdout": "PASS SCF-B-0095 validator: 5 source pairs / 863 archive lines / mutually-exclusive partition\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+      "validator_sha256": "9b691dcd9ff8817a093f8759c061a432ff80589b10fdee3c9b4e692756c4f403",
+      "exit_code": 1,
+      "output_sha256": "024afc0aaae88f5e474d13132252b9f850e62f7595b748b7e3a787971ac6667c",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/rdp001-outside67-path006-010-atomization-096/validate.py\", line 304, in <module>\n    validate()\n  File \"<REPO>/scaffold/rdp001-outside67-path006-010-atomization-096/validate.py\", line 291, in validate\n    validate_inventory(inv)\n  File \"<REPO>/scaffold/rdp001-outside67-path006-010-atomization-096/validate.py\", line 125, in validate_inventory\n    fail(\"E_LEDGER_DIGEST\")\n  File \"<REPO>/scaffold/rdp001-outside67-path006-010-atomization-096/validate.py\", line 56, in fail\n    raise AssertionError(code + ((\":\" + detail) if detail else \"\"))\nAssertionError: E_LEDGER_DIGEST\n"
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
+      "validator_sha256": "77c1c1ed96b9ed489333a57d6bd5e9a3074f3ff76ee0f7bfebf8396270b837d7",
+      "exit_code": 0,
+      "output_sha256": "b880cc3630e2638ccb126151e49b5642815b5a9642eaba3e8c00199272e9651a",
+      "stdout": "PASS validate: PATH-011..015 full pre/archive coverage, reused PATH-011 candidates, new atoms and three-category accounting\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-product-boundary-062/validate.py",
+      "validator_sha256": "59b283358d0e4854208fd299a3ce27267a6aa420c24927464a6c1d9bf76d93b7",
+      "exit_code": 1,
+      "output_sha256": "c35db505e60b39c41e3cdccdd91cdfcc3953dfe9cedf18b67eefb9b43bdd1c83",
+      "stdout": "FAIL outside67 product-boundary validator\nE_REGISTER_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-product-entry-followup-076/validate.py",
+      "validator_sha256": "7feec6ec128d9eb8a2b5f04d7746cd1af671cf3ba734f358c8af79a0b637bd10",
+      "exit_code": 1,
+      "output_sha256": "b648f92710de245acd8a05d49b8bbe5405c12b54d9e6da63036acd6939e1747c",
+      "stdout": "FAIL outside67 follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-residual-followup-090/validate.py",
+      "validator_sha256": "27a7d8b77893617c571de41cc7dfbc52fe10a06f0cb7b31f655df9ac816cec04",
+      "exit_code": 1,
+      "output_sha256": "d31c7869e3ff30822b51be3b4a884a46423bbae933c856ba7e5a447be5bda749",
+      "stdout": "FAIL outside67 residual follow-up validator\nE_SCOPE_DIGEST\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+      "validator_sha256": "0ab8268576acdad34c46dae17c2b19dcc269daca6698a05eeca9f762e892ab81",
+      "exit_code": 1,
+      "output_sha256": "5453f5484111e318b86fefe88f60b32dd765e1d77782f4164e919e4476f832dc",
+      "stdout": "E_INPUT_DIGEST: missing input: <REPO>/docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+      "validator_sha256": "970d010f9af88cf89cda52985ff2bbff995ed913db103beb4d3ca15bc2eecbce",
+      "exit_code": 1,
+      "output_sha256": "db57d276b0760635faecb3ad27365b10878e9396aaca3d259d6faaa30b1f21e4",
+      "stdout": "",
+      "stderr": "E_LEDGER_DIGEST\n"
+    },
+    {
+      "validator": "scaffold/rdp001-ref-subset-0021/validate.py",
+      "validator_sha256": "d9d4c7854b5bc2a188a03299558f44d1475d4e17c1b5545280d02358dbc0e179",
+      "exit_code": 0,
+      "output_sha256": "8ad7248f2d9dfe9f042aa370626d1edf468e8f7c969e1e86e8fd57ad06cc244a",
+      "stdout": "PASS RDP-001 reference subset: edges=24 source_lines=24 target_blobs=24 capture_main_residual=738 rebaseline_main_residual=734 docs_atomized=0\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-reqatom-0011-0030/validate.py",
+      "validator_sha256": "307c5943783574a82e90e683de063b163f5f6dda502b0ea97cf57cebf01754f6",
+      "exit_code": 0,
+      "output_sha256": "ab35a28ad49287b40219d31cc01ed28d5455234b8270a6659a9bc7a3c2f62167",
+      "stdout": "PASS REQATOM A1 0011--0030: units=20 input_lines=59 atomized_atoms=210 composite_unresolved=8\nPASS four-product denominator: HARNESS=149 OS=22 Web=0 Web-OS=0 unresolved=39\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-reqatom-0031-0050/validate.py",
+      "validator_sha256": "7a94fb78e2957f2e0d35b6f0d099f6a69d0637c3d8dbcbd17349a67bdbb96bd4",
+      "exit_code": 0,
+      "output_sha256": "9b0889ddf900ccf53bdd78557d8d9142679c2b89646e351a21db9b5a2e121abb",
+      "stdout": "PASS REQATOM A1 0031--0050: units=20 input_lines=101 atomized_atoms=98 composite_unresolved=9\nPASS four-product denominator: HARNESS=58 OS=26 Web=0 Web-OS=0 unresolved=14\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-reqatom-0051-0070/validate.py",
+      "validator_sha256": "fa6206f827f68ab5ed11f27311f1e53e513379a9b86de0bd40b900b42bf37db6",
+      "exit_code": 0,
+      "output_sha256": "07e89721b0984ee609593e8fc70391e0ea3b6dbe1410dca56ff97cd404f16a4b",
+      "stdout": "PASS REQATOM A1 0051--0070: units=20 input_lines=37 atomized_atoms=44 composite_unresolved=6\nPASS four-product denominator: HARNESS=13 OS=0 Web=0 Web-OS=0 unresolved=31\nPASS source/archive digest, asset decision/read-after, exact span/anchor closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-reqatom-first5/validate.py",
+      "validator_sha256": "dfc42ca3d67130218386e569a4dfd872c96afff9df37674e2a8fc33defb23b7e",
+      "exit_code": 0,
+      "output_sha256": "f3f6b7d10bb06c968f4e052cdbcf2e03f9aff6b07ecf4de9c7e3be325d1b6988",
+      "stdout": "PASS REQATOM A1 first five: units=5 input_lines=7 atoms=16\nPASS four-product denominator: HARNESS=12 OS=2 Web=0 Web-OS=0 unresolved_target=2\nPASS source／archive digest and semantic line closure; authority/successor/decision remain none\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-reqatom-next5/validate.py",
+      "validator_sha256": "4b43d601079ec437b95ac323b3cd38ea6a526e6f159ab0277b09b8c70e1bd201",
+      "exit_code": 0,
+      "output_sha256": "3a64238f787b6e00953e262af6e5ed552460132aa6b83fbd85280c517f48ed52",
+      "stdout": "PASS REQATOM A1 next five: units=5 input_lines=7 atoms=10\nPASS four-product denominator: HARNESS=5 OS=3 Web=0 Web-OS=0 unresolved_target=2\nPASS source/archive digest, asset decision/read-after, semantic line closure\nPASS authority/successor/implementation/degradation/phase remain unresolved\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-rul-osp-04/validate.py",
+      "validator_sha256": "649bda2c4cf62e81790746bceb70ad3201eda53318c10a8c7a410b81cfc7d03a",
+      "exit_code": 0,
+      "output_sha256": "f8e606bba839ffd141778fab976cc1a2b0dba7d062653012c208be6732351d51",
+      "stdout": "PASS RUL-OSP-04 atom candidate: primary=25 secondary_relation=22 union=47 source_files=26\nPASS S1-01 distinction: screened_atoms=10/25 secondary_links_from_other_primary=5; inventory secondary relation=22 (not merged)\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+      "validator_sha256": "4f6fd731a347c0d4e33d8c3a2020e20742fa193032271bde045da1ff06625e82",
+      "exit_code": 0,
+      "output_sha256": "47abecc49f595682c77e922311891c4a72b957982f514943c59812382c25993a",
+      "stdout": "PASS rdp001-unassessed-atom-audit: 333/333 holding records, Git object/archive/source disposition rechecked\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-asset-semantic-0124/validate.py",
+      "validator_sha256": "25044f0f924a30357bebd12b4a52c919527a2749dcf32eb7f7e5889651b7fcd9",
+      "exit_code": 1,
+      "output_sha256": "f1cbddf19acc811add558862b56ebe8580e7f8d6de5ac1dba5d460941186dcda",
+      "stdout": "E_INPUT_DIGEST: current input changed docs/concept/product-boundary.md\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
+      "validator_sha256": "6c7eb033289414d89a95812b80eadc1ed92c8f103dfe655f33904b1f78b73c60",
+      "exit_code": 1,
+      "output_sha256": "8aadc42b4d427900a9566b8710fdad2f80e8dc8185d278157854048a0bc8921d",
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"<REPO>/scaffold/rdp001-web-webos-vision-coverage-0091/validate.py\", line 339, in <module>\n    validate()\n  File \"<REPO>/scaffold/rdp001-web-webos-vision-coverage-0091/validate.py\", line 165, in validate\n    fail(\"E_INPUT_DIGEST\", path)\n  File \"<REPO>/scaffold/rdp001-web-webos-vision-coverage-0091/validate.py\", line 82, in fail\n    raise AssertionError(code + ((\":\" + detail) if detail else \"\"))\nAssertionError: E_INPUT_DIGEST:docs/concept/product-boundary.md\n"
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+      "validator_sha256": "93b8da85d697577f39f7026fd407f2156ee910314f0161eac183dc1f4b351edf",
+      "exit_code": 0,
+      "output_sha256": "0f2b6b67aa380a3680747e60f027405617d78731c41c4f2664a6d9a47842933f",
+      "stdout": "PASS validate: 16 source-bound candidates (9 atoms + 7 composites), 10/29 parent spans, 6 legacy links\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "validator_sha256": "129f1cc533ed4f1b45ad4c74d63f82aa94e5918f9d3436fe7aedeaa4546f4843",
+      "exit_code": 0,
+      "output_sha256": "1d4ecf18c2d86b90aeffa82f21e819f21b793c18645271281ee755557840dd97",
+      "stdout": "PASS validate: 10 next-span candidates (7 atoms + 3 composites), 10/19 unprocessed parent spans, prior overlap=0\n",
+      "stderr": ""
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+      "validator_sha256": "bddd04d2fb2f9a6aa2e980832eccda57cc59ae708415057afd54f378338c216e",
+      "exit_code": 1,
+      "output_sha256": "7c20089a8ec71a3f87c716b692d222bc683bab4f8c284f7dba1e6d5ba5d5e61c",
+      "stdout": "",
+      "stderr": "FAIL E_LINEAGE_DIGEST:scaffold/bindings/SCF-B-0080.json\n"
+    },
+    {
+      "validator": "scaffold/rdp001-web-webos-vision-source-0080/validate.py",
+      "validator_sha256": "32c268cee0b31ba9701d96cda8b6c0f1b222e43011fc167a7ef3784d9aa3f427",
+      "exit_code": 1,
+      "output_sha256": "58a84e1dc9365fec1486b8f474f505ef669409ba2136b6829bcbdaeb8cee8ea0",
+      "stdout": "",
+      "stderr": "FAIL E_CURRENT_SOURCE\n"
+    },
+    {
+      "validator": "scaffold/tr-implementation-evidence-0112/validate.py",
+      "validator_sha256": "12c6c331f857b5693256f85445fd50f7704bfceeaa0feebf41f9e05d86a51e52",
+      "exit_code": 0,
+      "output_sha256": "313e2680559375ed30f6777db94957bc0fbae88593726c003e3d6904e96147ef",
+      "stdout": "SCF-B-0112 validate: PASS (16 units; counts derived from fixed BASE; static-only)\n",
+      "stderr": ""
+    }
+  ],
+  "post_validation_change_scope": {
+    "tested_head": "1014ef9d0e39197dfa0e9d9cda77d58d3bc6c832",
+    "changes_after_test": [
+      "docs/governance/audits/helix-web-docs-consolidation-validation-2026-10-03.json",
+      "docs/governance/audits/helix-web-docs-consolidation-validation-2026-10-03.md"
+    ],
+    "change_class": "audit record only",
+    "validator_code_schema_main_entry_scaffold_inputs_binding_files_changed": false,
+    "basis": "The audit-only follow-up adds evidence for the already-frozen/tested tree; no test code, validator, scaffold input, main entry, or Binding bytes changed after tested_head."
+  },
+  "decision_record_sha256": "dd7d93f1330c387b2eb7ccb73a8064c45f0d30f087e0eb34d4ecdbab77f0966f",
+  "po_goal_source_sha256": "b5030366fe27022695c9a51883e7cfe11656bc8ffce90c932598b85e9e9a79c4"
+}
