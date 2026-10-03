@@ -75,6 +75,16 @@ class GuiChecks(unittest.TestCase):
         self.assertIsNone(g.claim(self.data, "claude", "claude-gui", self.now))
         self.assertEqual(m["status"], "expired")
 
+    def test_status_shows_expiry_without_claim(self):
+        # 宛先sessionが交代してclaimが来ない通知も、statusでは期限超過をexpiredと表示し、保存値は書き換えない。
+        m = self.send()
+        self.assertEqual(g.effective_status(m, self.now), "queued")
+        m["expires"] = self.now - 1
+        self.assertEqual(g.effective_status(m, self.now), "expired")
+        self.assertEqual(m["status"], "queued")
+        m["status"] = "acked"
+        self.assertEqual(g.effective_status(m, self.now), "acked")
+
     def test_rebind_and_role_conflict(self):
         with self.assertRaises(ValueError): g.bind(self.data,"claude","other","review_merge",60,self.now)
         with self.assertRaises(ValueError): g.bind(self.data,"claude","claude-gui","execution",60,self.now)

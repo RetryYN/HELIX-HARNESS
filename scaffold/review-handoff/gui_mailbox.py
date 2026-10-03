@@ -154,6 +154,13 @@ def claim(data, runtime, session, now):
     return None
 
 
+def effective_status(message, now):
+    # 期限切れの記録は宛先sessionのclaim時にしか付かない。statusは読取専用のまま、期限超過の未ACKをexpiredと表示する。
+    if message["status"] in ("queued", "claimed") and message["expires"] <= now:
+        return "expired"
+    return message["status"]
+
+
 def ack(data, event_id, runtime, session, digest, nonce, now):
     lane(data, runtime, session, now)
     message = data["messages"][event_id]
@@ -351,7 +358,7 @@ def main():
             elif args.command == "retry":
                 retry(data, args.runtime, args.session, args.id, now)
             elif args.command == "status":
-                print(json.dumps(dict(lanes=data["lanes"], enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=m["status"], expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}), ensure_ascii=False, indent=2))
+                print(json.dumps(dict(lanes=data["lanes"], enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}), ensure_ascii=False, indent=2))
     except (ValueError, TypeError, KeyError, OSError) as error:
         parser.exit(1, "scaffold GUI: 拒否: " + str(error) + "\n")
 
