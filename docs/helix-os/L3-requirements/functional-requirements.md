@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 owner: HELIX-OS
 paired_l10: ../L10-verification/functional-verification.md
 
@@ -512,3 +512,61 @@ HELIX-OS自身と性質の異なる複数projectを対象に、採択済み要�
 |---|---|---|---|---|---|
 | `HELIXOS-L2-025` | `docs/helix-os/L2-requirements/governance-requirements.md:742-751` (whole file SHA-256 `97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7`) | `b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1` | `docs/helix-os/L11-acceptance/governance-acceptance.md:394-400` (whole file SHA-256 `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`) | `d21d7708fe09cbee17d37ad66444d99631f16e2c8198924da9b608a1117eda18` | `MPR-RC-HELIXOS-L2-025-001`; `helix-os-requirements-po-decision-2026-09-28.md:48`; adopted, version_class 1.0; candidate semantic digest `sha256:b59cfc3d4801d71391c528214f2de573494b257f0783841141982963cf43ff8c` |
 | `HELIXOS-L2-026` | `docs/helix-os/L2-requirements/governance-requirements.md:807-823` | `5bb2dd228c7560908edb8253a0d3fdab0952d65d2b862332efe2276ccfd931d9` | `docs/helix-os/L11-acceptance/governance-acceptance.md:430-441` | `6f68d49c377871a5991e317b0b43af81b9dd69967cfcb4398662999fc56cb2c0` | `MPR-RC-HELIXOS-L2-026-003`; `helix-os-requirements-po-decision-2026-09-28.md:48`; adopted, version_class 1.0; candidate semantic digest `sha256:e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374` |
+
+## Stage 5 続き：HELIXOS-L2-031/047 機能要件（部分草稿）
+
+### `FR-OS-L3-031` — `HELIXOS-L2-031`
+
+対象ticket、source/base HEAD、HARNESS required verification obligationsのexact setとdigest、選択/非選択集合、CI profile、runner/OS/environment/toolchain/platform/lockfile/artifact locality、resource budget・exclusive state、cache・queue・variance・flake、時刻・exit/output digest・区間durationを同じrunへ束ね、正しさと性能の状態を別々に記録する。性能値は母集団・期間・除外理由・環境と共に集計し、標本不足や欠測を達成/0へ補完しない。性能予算を超えた場合は、同じepisodeと最初のterminal receiptへ結ぶ回収候補を既存OS ticket経路へ返す。回収は修正、独立review、同条件での再検証、改善前後のp50/p95、安全指標と非縮退の証拠が揃うまで未完として扱う。
+
+**責務／適用境界**：OSは既存ticket駆動検証運転・観測のbinding・stop/cancel・回収候補を所有する。HARNESSはrequired obligations/oracleと検証範囲を、SECURITY/INFRASTRUCTUREは適用するauthority/resourceを、LABOはすり抜けたfailureの独立評価を所有する。OSはHARNESS義務を減らさず、性能receiptからmerge/acceptanceや検証契約変更を生成しない。
+
+**受入条件**
+
+- **`AC-OS-L3-031-01` runと測定の結束**：同じtarget ticket/source/base HEAD、required obligation set/digest、profile、runner/environment/toolchain/platform/lockfile/artifact、cache、queue/resource、開始終了時刻、exit/output、各区間時間を照合する。内部runとGitHub Actions等外部runは別environment/receiptで集計する。
+- **`AC-OS-L3-031-02` 正しさと性能の分離**：同じrunでrequired obligation/oracleが不変かつ正しさ成立、性能予算だけ超過したcaseは、correctness evidenceを保ってperformance-unmetと回収候補を返す。correctness passからperformance pass、性能超過からcorrectness failureを捏造しない。
+- **`AC-OS-L3-031-03` 義務非縮退と回収trace**：最適化は義務を保ったまま順序/並列度/runner/artifact reuseのみを扱い、延期義務をorigin ticket/HEAD/obligation ID/first terminal receiptにexactly onceで結ぶ。要求対象の未完義務は後続ticketへ渡し、修正・独立review・同条件再検証・改善前後p50/p95・安全指標/非縮退証拠が揃うまで回収未完とする。夜間の一律Full回収を開始条件・fallback・回復根拠にしない。
+- **`AC-OS-L3-031-04` 安全な停止・未評価**：cost/quota/telemetryが不明・staleなら既存の安全な既定DAGを選べる場合だけfallbackし、既定計画も不明ならholdする。未開始job cancelは未実行義務をsuccessにせず、terminal receiptとoriginの追跡を保つ。escaped defect、mutation detection、flake、deferred expiry等安全測定を時間短縮で隠さない。
+
+- **`AC-OS-L3-031-05` 並列実行とfailure因果trace**：stateful資源を使う並列caseでlease/fenceを外し、またartifact HEAD/lockfile/toolchain/platform/digest/localityの各fieldを一つずつ変え、さらに後段failureからorigin selector/edge/first oracleへの因果traceを欠落させる。いずれも成立扱いせず、該当義務をholdする。
+
+### `FR-OS-L3-047` — `HELIXOS-L2-047`
+
+受け手からの返却を、固定されたrecipient、元ticket identity/meaning revision、元assignment、返却理由・対象条件・根拠source/revision/scopeを持つ独立した返却evidenceとして受け取り、OSが既存のtyped lineage/relationで元ticketへ因果結合する。受け手は元ticket本文を直接変えない。OSは返却evidenceを保持し、返却に対処するためticketの意味/契約を変える場合に限り、元revisionを保持したまま新ticket revisionを再発行する。既存契約が明示適格化しない限り、旧assignment、attempt/result、authorityは新revisionへ継承しない。
+
+**責務／参照境界**：OSだけが発行・再発行する。Ticketは作業指示であり、他Ticket/artifactへの参照を中に持たず、要求・design・code等artifactもTicketを要求根拠/実装部品として参照しない。根拠は要求・設計・契約の正本へ辿る。新field/schema/relationやgraphを追加しない。provider、actor、model、session、branch/worktree、lease、priority、progress、measurementのみの差は意味revisionを変えず、意味/scopeの変更は既存authority/Backflowへ戻す。
+
+**受入条件**
+
+- **`AC-OS-L3-047-01` 理由付き返却と元revision保持**：返却元はticket本文を編集せず、元ticket/revision/assignmentとの関係、返却理由、対象条件、根拠source/revision/scope、未完義務を返す。OSは元bytes/digestを保持し、evidenceのmissing/stale/wrong-scopeを未完へ戻す。
+- **`AC-OS-L3-047-02` 意味revisionと運用属性の区分**：返却evidenceを追記するだけならticket meaning revisionを変えない。返却に対処してticket意味/契約を変更する場合に限り、既存規則に従う新ticket revisionとtyped lineageを作る。provider/actor/model/session/branch/worktree/lease/priority/progress/measurementだけが変わる対照ではTicket meaning revision/digestを変えない。
+- **`AC-OS-L3-047-03` authority非継承と既存関係のみ**：新revisionは旧assignment/result/authorityを明示的適格化なしに再利用しない。欠落/方向違い/staleの既存typed relationは未完としてOSへ返し、新しいschema/relation型やTicket内参照で修復しない。
+- **`AC-OS-L3-047-04` Ticket非参照境界**：Ticket本文に他Ticket/artifact refを埋め込まず、成果物からTicketを唯一の根拠・部品として参照しない。要求・設計・契約の正本を根拠として示し、Issue/PR projectionの編集/close/mergeから意味変更や再発行を生成しない。
+
+### Stage 5 旧sourceの対応（031/047）
+
+| 親 | 旧asset・source path:行 | 分類と対応 |
+|---|---|---|
+| 031 | `LEGACY-ASSET-79B70809D0A1EE2D5392` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md:1-35`; full/raw SHA-256 `7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1` | GH-NFR-009/010/011とGH-AC-017/018を読み、実測・正しさ/性能分離・non-degradationを意味起点として再導出。GH-NFR-009 60秒/010 3分は旧environment/検証setの比較候補で、現行ticketの合否閾値へ自動継承しない。 |
+| 031 | `LEGACY-ASSET-58CBC57F44DFDD288961` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md:52-65`; full SHA-256 `52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756`, raw-span SHA-256 `1dddbe5d66439c470c22567d4785cf76dcd6ea44620dbcbc79eab9c50e3998ae` | GH-FR-025のimpact選択、main合流直後Full/nightly回収、同一episodeのRecoveryを歴史的要求として記録する。9/26判断による回収owner/時点の変更を後続paragraphに明示し、旧動作を現行仕様へ復活させない。 |
+| 031 | `LEGACY-ASSET-8B7FCC6ED4A9FDDFDEB5` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-ci-performance-system-test-design.md:1-28`; full/raw SHA-256 `8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232` | GH-T-017/018から同一run instrumentation、環境/receipt分離、個別non-degradation mutation、正しさ不変の超過caseを再導出。旧schedule/nightly testを現行動作へ移植しない。 |
+| 031 | `LEGACY-ASSET-DA012A9B04D5BE9419CE` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md:1-25,94-123`; full SHA-256 `65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb`; raw-span SHA-256 metadata `1-25` `660d415c19549c1d20c49f33ef2293f4684835c5a67b01744985568b008658f5`, requirement `94-123` `c1eb5c44f6267aea52c835c22ec26ef625fb2b5be5bccacc9b20dc4ec7f0f009` | CIS-R-10..15よりrequired obligation不変、resource/artifact binding、safe fallback、bounded cancel、origin receipt回収、failure backprop、安全測定を再利用。旧全件/nightly回収運転は後述のPO差分で置換。 |
+| 031 | `LEGACY-ASSET-8DE0535125B1E39C6FEA` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md:34-40`; full SHA-256 `f5dcd1910a4eef57c66e1c2c03fffe20e5c681ed9e9d043b9e8f15a211e65d9b`, raw-span SHA-256 `c3d4104955a0351d272ca7441af4fda675b86c24e171e3d9171b3f176f49e468` | CIS-AC-010..015のrequired-item omission、artifact mismatch、fallback/cancel、exactly-once、backprop、non-degradation negative oracleの構造を再導出。test本文の実行/旧CI greenを証拠にしない。 |
+| 047 | `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:101-109,190-214,222-230`; full SHA-256 `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b`; raw-span SHA-256: `101-109` `f08b6accb0d1c5f8d69ed82d347fbb0c831fbcc64cfbddc3187d720ad2ed3f2d`, `190-214` `613be742c6d0025f7d365cab68b30df14a6619764f9e5ddc2e86fcae4e507620`, `222-230` `8263fd69207d9c0f47c126bb3cb9b244a942e0d1a1500c07d8b6a8a71da3ec65` | Ticket immutable/revisioned、meaningとexecution attrs分離、provider/priority-only changeで改版しない、scope/recovery meaning changesにrevision/typed lineageを使う点を再利用。旧schema/path/runtime/DB/lease実装は移植しない。 |
+| 047 | `LEGACY-ASSET-BE8B151A0094B754FF20` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md:49,52,68-69`; full SHA-256 `fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d`; raw-span SHA-256: line49 `2d0324c8d4530b1e1dd68349c2c383bce4f34b6be82e117757a8582626af8f42`, line52 `1d8f0c33e028a761a602bcf67f9498d8ec43613264a938f747e9527faf919c19`, lines68-69 `6f1db6c0f61ecc0cc544d522d2064251aa3f088f4d3b86ee82114066c122edeb` | HXT-AC-021/024/040/041のscope overwrite/provider digest invariance/measurement immutability/old receipt rejection oracleを現行意味へ再導出。旧Ticket/Assignment runtime testは実行しない。 |
+
+### 031: POが変更した旧CI回収工程
+
+2026-09-26のPO判断（`docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md:41-55`、whole SHA-256 `650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea`、raw span SHA-256 `b0b43ff1e09e5d7a0a58c8f24a87c95b6a3b430b35a99e7b9f51b5d46082ccf3`）は、ticketとの関係から必要CI範囲を決め、省略義務を合流先ticketで回収し、夜間補完をやめてLABOが後日すり抜けfailureを評価することを決めている。旧GH-NFR-010のmain後Full/nightly補完を現行前提へ戻さない。保持点は必要義務を記録し未回収を消さないこと。変更点は省略分をmerge直後/夜間に一律回収する方式から、合流先ticketとLABOの既存責務へ移したこと。
+
+GH-FR-025（旧L3 `github-atomic-development-requirements.md:52-65`）はPR省略項目をmain合流直後のFull回帰で回収し、nightlyで欠落/失敗/driftを補完する系譜であり、confirmed statusのCI System Synthesis要件（同source `ci-system-synthesis-requirements.md:1-25` の`refines: GH-NFR-009/010/011`）もこの性能・回収要件を精緻化していた。9/26 PO判断は選択CI後の未完義務をticketへ結び、後続ticketで回収する運転へ変更した。したがって保持するのは省略義務の可視性・exactly-once回収・性能と正しさの分離、再導出/置換するのはmain直後Full/nightlyを一律の現行回収routeとする部分である。historical `confirmed` metadataは現行の新たな承認を意味しない。
+
+
+### Stage 5 続き：固定親・PO決定pin（031/047）
+
+| 親 | 固定L2 | 固定L11 | exact PO登録と決定記録 |
+|---|---|---|---|
+| 031 | `docs/helix-os/L2-requirements/governance-requirements.md` lines 900-912; whole SHA-256 `97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7`; raw span `51b88d4589e836781086bf3c6f847b68a2a7225486e361f407f5f5ba68256b6b` | `docs/helix-os/L11-acceptance/governance-acceptance.md` lines 500-512; whole SHA-256 `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`; raw span `945cfccc7638576ff6665ace97e5a2c39c3f67f4ecd95be5959a70c0a0f3462a` | `MPR-RC-HELIXOS-L2-031-001`, adopted / 1.0, `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L54`, semantic `a78fb330ca244dd067b1f13376d1c9245d0e96a43b716f0d53c3e4c2b7f36462`; decision whole SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`, row SHA-256 `6748fddcc4f82bd0f0f0fce3a1b0e9987bba989722cbd37e4e161bffec79415b` |
+| 047 | `docs/helix-os/L2-requirements/governance-requirements.md` lines 1185-1194; whole SHA-256 `97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7`; raw span `9afa3ef650768224d85fd336eaaf89baa3d7e5eb96c776bb812a66fd67cada9f` | `docs/helix-os/L11-acceptance/governance-acceptance.md` lines 802-811; whole SHA-256 `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`; raw span `2f0ca89554fc9d4618c1f763c4e0f567488bd221a6029cd3670c79c806b8a3ef` | `MPR-RC-HELIXOS-L2-047-004`, adopted / 1.0, `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L70`, semantic `e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377`; decision whole SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`, row SHA-256 `f03e66901529dfad317010ef922afdb5632e925cc07f000415a900ba2dfdc1ed` |
+
+031の運転境界は2026-09-26 decision `harness-v-valley-process-po-decisions-2026-09-26.md` lines 41-55（whole SHA-256 `650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea`; raw span `b0b43ff1e09e5d7a0a58c8f24a87c95b6a3b430b35a99e7b9f51b5d46082ccf3`）にも従う。

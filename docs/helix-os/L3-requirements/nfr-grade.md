@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 paired_l10: ../L10-verification/nfr-verification.md
 
 以下は固定L2/L11から導出した候補値であり、承認済み閾値や実測ではない。候補ごとに比較案とL10測定を示す。要件意味・scope・owner・版を変更する必要がある場合だけ上流へ戻す。
@@ -96,3 +96,11 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 |---|---|---|---|
 | `NFR-OS-L3-025-01` | `HELIXOS-L2-025` | 有効な対象内authority/unit/connection/composite traceの必須edge coverage 100%、false completion 0。coverageを構成体単体の有無で代用する案は欠落edgeを隠すため不採択。 | 測定単位は選択されたfixtureと宣言scope。1.0全体受入では7 unit+選択connection+compositeを別計上し、個別unit提供の一律前提にしない。 |
 | `NFR-OS-L3-026-01` | `HELIXOS-L2-026` | 導出器が成立と報告した各candidateの必要依存・安全依存 closure coverage 100%、unknown/欠落依存のfalse-closed count 0を候補とする。exact-set再照合を集計pass率だけに畳む案は除外。 | 閉包/成立候補のみ評価対象。探索空間が未確定な時は最小性を未立証にし、closure計測と分離する。追加pack数など固定閾値を設けない。 |
+
+## Stage 5 続き：HELIXOS-L2-031/047 非機能候補
+
+| NFR候補ID | 親 | 候補値・比較と根拠 | 測定／適用境界 |
+|---|---|---|---|
+| `NFR-OS-L3-031-01` | `HELIXOS-L2-031` | required obligation exact-set completeness 100%、wrong-HEAD/scope false pass 0、correctness stateとperformance stateの誤統合0を候補とする。task costだけを測る案は検証範囲を保証しないため不採択。 | ticket/profile単位でrequired/selected/deferred/terminal集合とfirst terminal linkを比較。 |
+| `NFR-OS-L3-031-02` | `HELIXOS-L2-031` | 旧比較候補: important checks p95 60秒（内部/外部は別環境）、Full p95 180秒。候補案Aは旧値を新環境の合否へ直適用、案Bは現行required-scope/runnerごとのp50/p95を同一条件で測りbudget適用可能性を照合する。案Bを推奨し、60/180秒は比較アンカーに保持して対象適合が測定されるまで達成閾値としない。標本不足やscope差を可視化できるため。60/180秒を変更または不採択にする必要が生じた場合は閾値の意味変更としてL2へ戻す。 | runごとにwall/runner/queue/segment duration、cold/warm、environment/toolchain/platform/artifact、population/window/exclusion reasonを記録。legacy 60/180秒の適用可能性は現行scope測定と比較する。 |
+| `NFR-OS-L3-047-01` | `HELIXOS-L2-047` | 返却に対処するticket意味/契約変更に対する新revision/typed lineage coverage 100%、元revision overwrite 0、運用属性だけでのmeaning revision 0、無資格のold assignment/result/authority継承0を候補とする。 | 返却reason/evidence/scope/source revisionとoperation attrsを変異し、正しいreissue/no-reissueを別集計。schema/relation数や改版総数に目標値を設けない。 |

@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/business-requirements.md
 execution_status: designed_only_not_executed
 
@@ -82,3 +82,5 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 |---|---|---|
 | `CASE-OS-L10-BIZ-025` | `HELIXOS-L2-025` | 独立business value/KPIなし。複数projectの機能traceを事業成果や外販対象と読み替えない。 |
 | `CASE-OS-L10-BIZ-026` | `HELIXOS-L2-026` | 独立business value/KPIなし。導出結果や最小性を利用価値/リリース決定とみなさない。 |
+| `CASE-OS-L10-BIZ-031` | `HELIXOS-L2-031` | 独立business KPIなし。性能値・回収を売上/生産性/merge価値と読み替えない。 |
+| `CASE-OS-L10-BIZ-047` | `HELIXOS-L2-047` | 独立business KPIなし。返却/再発行の件数から利用者価値を推定しない。 |

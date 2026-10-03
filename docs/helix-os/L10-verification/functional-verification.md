@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -156,3 +156,17 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | `CASE-OS-L10-026-03` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 明示候補空間に対する代替構成複数案の比較、各pack除去の局所試験だけ、探索空間unknown、根拠不足の比較fixtureを対比。 | global min claimは候補空間根拠と代替比較がそろう時だけ。局所除去だけ/unknown空間は「最小候補／未立証」へ。依存closure stateは独立保持。 |
 | `CASE-OS-L10-026-04` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | candidate導出後に採択/実装/受入/tag状態が欠落または混入した例、1.0候補とlater-version packの境界例を入力。 | candidateはcandidateのまま、別owner authorityなしに下流状態を生成しない。後続版を前提にしたら不合格。 |
 | `CASE-OS-L10-026-05` | `HELIXOS-L2-026` / `AC-OS-L3-026-05` | source traceだけに循環する依存graph、実行bootstrappingが自己依存するgraph、未release tree依存、後続/別段階依存を独立に入力。更新/復旧時も同じ対象の有効pack契約を与える。 | trace-only cycleはそれ自体を実行blockedにせずtrace関係を保持する。実行前提cycleや未release/後続/別段階依存は不足として返し、該当依存ownerへ戻す。 |
+
+## Stage 5 続き：OS-031/047 機能検証設計
+
+| case ID | 親L2／対応AC | 入力・fixture | oracle／不合格条件 |
+|---|---|---|---|
+| `CASE-OS-L10-031-01` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 同一ticket/source/base、required obligation集合とdigest、profile、内部runnerと外部Actionsの別environment/receipt、cache/resource/queue/instrumentationを持つfixtureを与える。HEAD/platform/lockfile/artifactが異なる対照も与える。 | 同一runの各fieldを厳密に結合し、異なるenvironmentの結果を相互に充当しない。不一致は成功でなく比較不能またはholdとする。 |
+| `CASE-OS-L10-031-02` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | 正しさがgreenで性能予算のみ超過するrun、性能内だが正しさに失敗するrun、oracle欠落runを比較する。 | 性能超過では正しさの証拠を保ち回収候補を作る。正しさ失敗はそのまま保持し、oracle欠落を性能回収成功にしない。 |
+| `CASE-OS-L10-031-03` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | required obligationの欠落、timeout延長、check省略、旧nightly/fullによる充当、延期receipt重複、後続ticketへの引継ぎに加え、回収証拠（修正/独立review/同条件再検証/改善前後p50・p95/安全・非縮退）の各欠落を個別に試す。 | 欠落・oracle弱化・重複リンクを不合格、回収証拠不足を未完とする。延期項目はoriginと一つの後続ticketへ結び、nightly一律補完を前提にしない。 |
+| `CASE-OS-L10-031-04` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | cost/quota不明、telemetry stale、安全な既定DAGの既知/未知、開始前cancel、terminal済job、mutation/escaped defectの劣化を与える。 | 既知の安全なDAGだけを選び、不明時はholdする。未実行義務をpassにせず、terminal originと安全指標を保持する。 |
+| `CASE-OS-L10-031-05` | `HELIXOS-L2-031` / `AC-OS-L3-031-05` | 有効なstateful資源lease/fence、artifact HEAD/lockfile/toolchain/platform/digest/locality一致、後段failureからorigin selector/edge/first oracleへの完全な因果traceの正常例を通す。対照としてこれら各属性を一つずつ欠落/不一致にする。 | 正常例だけ成立する。各欠落/不一致では並列実行・artifact再利用・回収を成立扱いにせず、該当義務をholdする。 |
+| `CASE-OS-L10-047-01` | `HELIXOS-L2-047` / `AC-OS-L3-047-01` | 元ticket revision bytes/digest、割当先からの有効返却、理由/条件/source revision/scope/未完義務を与える。返却根拠の欠落/stale/scope違いと、元ticketを直接編集する対照を試す。 | 有効返却は外部evidenceとOS relationとして保持し、元revisionは不変とする。不足や直接編集は未完のままOS/source ownerへ戻す。 |
+| `CASE-OS-L10-047-02` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | 返却evidenceの追記だけの場合と、返却に対処してticket意味/契約を変更する場合を分ける。さらにprovider/actor/model/session/branch/worktree/lease/priority/progress/measurementのみの変更を与える。 | evidence追記だけではrevisionを変えない。意味/契約変更時だけ既存再発行・relationへ結び、運用属性だけならmeaning revision/digestを維持する。 |
+| `CASE-OS-L10-047-03` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | 明示適格性のない新revisionと適格性が明示された対照、旧assignment/result/authority、欠落/stale/逆方向のtyped relationを与える。 | 暗黙継承を認めない。既存契約に明記された場合だけ再利用し、不正relationはholdする。新schema/relation fallbackを作らない。 |
+| `CASE-OS-L10-047-04` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | Ticket内の他Ticket/artifact参照、成果物がTicketを要求根拠/部品として要求する例、正本のrequirement/design/contract参照、Issue close/PR merge projectionを比較する。 | Ticketによる参照・authority生成を拒否し、根拠は上流正本へ結ぶ。projectionだけで再発行しない。 |

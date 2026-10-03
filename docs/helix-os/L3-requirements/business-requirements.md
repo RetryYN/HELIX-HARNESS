@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 paired_l10: ../L10-verification/business-verification.md
 
 対象親から独立した業務価値基準、事業ownerまたは業務閾値を追加導出しない。これは機構全体に業務要件がないという主張ではなく、この部分scopeの限定である。業務意味は固定L2/L1のownerへ残し、機能条件を業務受入へ読み替えない。
@@ -92,3 +92,5 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 |---|---|---|
 | `HELIXOS-L2-025` | 独立business criterionなし。機能統合受入のみ。 | 7製品unit、選択connection、OS構成体固有受入を分け、OSを外販製品とみなさない。 |
 | `HELIXOS-L2-026` | 独立business criterionなし。導出結果の適格性のみ。 | 候補set/最小性証拠は事業価値やrelease決定ではない。 |
+| `HELIXOS-L2-031` | 独立business value/KPIなし。correctnessと性能計測・回収の技術契約のみ。 | 実測値やRecovery件数を事業価値/生産性へ読み替えず、merge admissionを生成しない。 |
+| `HELIXOS-L2-047` | 独立business value/KPIなし。ticket返却理由とrevision lifecycleの機能契約のみ。 | 新revision数や返却数を業務成果とせず、利用者acceptanceへ読み替えない。 |

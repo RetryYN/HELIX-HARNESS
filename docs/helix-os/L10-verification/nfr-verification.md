@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026 draft) / version_target 1.0 explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 + Stage 4 + Stage 5(OS025/026/031/047 draft) / version_target 1.0 explicit items only
 paired_l3: ../L3-requirements/nfr-grade.md
 execution_status: designed_only_not_executed
 
@@ -97,3 +97,11 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 ## 旧NFR数値の適用限界
 
 旧sourceのGH-NFR-009 p95 60秒、GH-NFR-010 Full p95 3分は環境・検査集合に束縛された参考候補として保持し、025/026のNFR閾値へ転用しない。
+
+## Stage 5 続き：OS-031/047 NFR測定設計
+
+| case ID | NFR候補ID | 入力・比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | 同一runのticket/HEAD/obligation集合に、欠落・重複・延期linkと劣化oracleを個別に加える。 | exact-set完全性とfalse pass=0を経過時間とは別に測る。 | 分母不明・欠落を報告し、性能passで正しさ失敗を隠さない。 |
+| `CASE-OS-L10-NFR-031-02` | `NFR-OS-L3-031-02` | 現行scopeの代表的な内部/外部runを別々に測り、p50/p95と分布を旧比較値60秒/180秒に照らす。scope別budget案と旧値の一律転用案を比較する。 | environment/population/window/除外条件、wall/runner/queue/区間時間を保存し、条件が対応する範囲ごとに旧比較値の適用性を報告する。 | 標本不足/stale/比較不能はunknownとし、旧値を現行共通閾値にしない。60/180秒の変更・不採択が必要ならL2へ戻す。 |
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | ticket意味/契約変更を伴う返却、evidence追記だけの返却、意味を変えない運用属性変更、根拠欠落/stale/scope違いを各々与え、revision/bytes/digest/lineage/継承authorityを記録する。 | 適切な再発行、運用属性だけの誤再発行、元revision上書き、無資格継承を別々に数える。 | 適用性unknownは未解決のまま示し、ticket総数に閾値を置かない。 |
