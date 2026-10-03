@@ -153,6 +153,14 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 | `HARNESS-L2-031` | [判断L60](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L60)、`MPR-RC-HARNESS-L2-031-002` | 627–646、normalized SHA-256 `ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611` | 旧FR-16（454–476）は本番incidentのrouting/hotfix/postmortemであり、reduction生成の直接起点ではないため業務意味を再利用しない。FR-25（574–610）と旧AT-FR-25（121–125）は回帰candidateの振る舞い比較という隣接例に限って照合し、現L2-031の許可log/input、sanitization、oracle、外部副作用抑止、同一failure再現条件を再導出する。旧incident command、coverage threshold、legacy DB、旧runnerは採用しない。 |
 | `HARNESS-L2-032` | [判断L61](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md#L61)、`MPR-RC-HARNESS-L2-032-002` | 647–666、normalized SHA-256 `83967a4eb0b9671293bc0d6006652c0ca42648836e108f6093c01e55ff77c569` | 旧FR-02（95–115）はTDD順序でありartifact/oracle traceの直接起点ではない。ACの前提・操作・期待結果形式を参照し、case identity/oracle/consumer schema/版の意味は現L2-032から再導出する。FR-03（119–148）のpair traceと不在義務検出、およびFR-25（574–610）の回帰candidate比較は隣接例として照合する。旧CI、ticket、test実行・green判定を接続packへ持ち込まず置換する。 |
 
+### 3親に共通する依存と不足時の戻し先
+
+| 親 | 常時／選択時に必要な依存 | 不足・unknown・不一致時の処置とowner |
+|---|---|---|
+| `HARNESS-L2-030` | 常時、case生成packのidentity/version・依存契約（HARNESS-L2-010）と呼出しinput/scope/compatibility/receipt契約（HARNESS-L2-011）の採用済みrevisionを照合する。source利用権限と対象data class、target revision/scope、選択source/contractのidentity/versionも必要。 | 010 pack定義や011 call契約の不足・staleは該当契約ownerへ戻す。source利用権限/data class不明・不一致は該当sourceまたはSECURITY authority ownerへ戻し、そのcaseを保留する。 |
+| `HARNESS-L2-031` | 常時、031 pack/callについて030と同じ010/011のidentity/version・scope・receipt契約、入力取得利用権限、security/data-handling・sanitization条件、対象revision/scopeおよび外部副作用抑止条件を確認する。 | 010/011契約の不備は契約ownerへ、取得範囲はsource ownerへ、permission/data class/security条件はSECURITY authority ownerへ戻す。どれか不足・unknownなら機微inputを処理せずcandidate生成を保留する。 |
+| `HARNESS-L2-032` | HARNESS-L2-010/011と選択consumer（OS-020または利用者CI）の宣言schema/version/compatibility、必要runner capabilityと利用permissionを確認する。依存閉包は選択したconsumerに限る。 | 選択consumerまたは011 call契約の不足・版不一致は当該契約ownerへ、capability/permission不足は該当executor/permission ownerへ戻してhandoffを保留する。未選択consumer/sourceはunobservedのまま保持し必須依存にしない。 |
+
 旧L3構造の形式根拠は `LEGACY-ASSET-9A772391C7FB1298D45F`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md`、全文SHA `949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4`、lines 16–56）と旧L3定義 `LEGACY-ASSET-F542125805B777D8A56A`（`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md`、全文SHA `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`、lines 13–21, 101, 148–168）である。FR→AC対応とfunctional/business/NFR三分割の形を再利用し、旧gateは現行承認手続きへ移さない。旧test-design `LEGACY-ASSET-1B92155F959D7905DD1E` は受入oracleの参照に限り、実行していない。
 
 ### `FR-HARNESS-L3-030` — 検証caseとfixture候補の生成（親: `HARNESS-L2-030`）
@@ -164,6 +172,7 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 - **`AC-HARNESS-L3-030-01` 根拠とtrace**：各生成物が要件・対象revision/scope・L2-014設計・L2-022 oracle・選択source/contractのidentityと版へ追跡できる。同一固定入力と版を再評価しても、生成条件とcaseの意味を再現できる。欠けたsource identityは未観測として明示する。
 - **`AC-HARNESS-L3-030-02` oracle非創作**：選択されたoperationとその入力oracleで定義されたnormal/boundary/permission/cancellation/ordering familyだけを候補化する。特定operationの選択や仕様がない取消・権限familyを各runの必須caseにしない。選択されたfamily内で仕様のない期待応答、permission、state transitionを補う場合はその候補を拒否または未確定にし、coverage数やcase数で矛盾を相殺しない。
 - **`AC-HARNESS-L3-030-03` doubleの限定と非実行**：選択contractが定める応答・失敗・副作用条件に限るdoubleを生成し、実service接続を行わず、stubを実service全面同等と表示しない。生成物の存在を実行済み・合格と判定しない。
+- **`AC-HARNESS-L3-030-04` 共通依存の適合**：HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、caseのsource利用permissionとdata classが揃う場合だけ該当caseを確定する。いずれかの不足・unknown・不一致はcaseを保留し、010/011契約ownerまたはsource/SECURITY permission ownerへ理由付きで戻す。未選択sourceはunobservedとして必須依存にしない。
 
 ### `FR-HARNESS-L3-031` — 許可入力からの最小再現・回帰候補（親: `HARNESS-L2-031`）
 
@@ -174,6 +183,7 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 - **`AC-HARNESS-L3-031-01` 入力許可・副作用抑止とsanitization**：合成入力または同scopeの許可済み入力から、secret/PIIを露出しないsanitized candidateを作る。入力再生で外部call/状態変更を再発生させない。許可、target revision結合、副作用抑止、sanitizationのいずれかがunknownなら入力処理とcandidate確定を保留し、取得元/permissionまたはoperation ownerへ戻す。
 - **`AC-HARNESS-L3-031-02` oracleを保つ縮小とunknown保持**：縮小前failure identity、各reduction段階、固定oracle、scope/source version、再現に必要なenvironment条件を記録する。後続の032経由executor receiptが同一対象で同じobservable failureを確認したときだけその段階を再現候補として確認済みにする。別failure・failureなし・oracle不一致は同一再現として扱わない。root causeがunknownでも根拠のあるreductionは候補として記録できるが、原因を補完しない。environment条件が不足する場合は未確認とし、不足証拠と戻し先を示す。
 - **`AC-HARNESS-L3-031-03` 候補と後段resultの分離**：修正後result receiptなしでも回帰candidateを生成できるが、修正後passや回帰成立を主張しない。後段で別revisionを実行したresultを別証拠として結び、rerun greenで元failureを消去・skipしない。
+- **`AC-HARNESS-L3-031-04` 共通依存の適合**：HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、入力取得permission、対象data classおよびsecurity/data-handling条件が一致する範囲だけを処理する。どれかが欠落・unknown・不一致なら機微inputを処理せず保留し、該当契約、sourceまたはSECURITY permission ownerへ戻す。未選択source/executorはunobservedとして必須依存にしない。
 
 ### `FR-HARNESS-L3-032` — 検証artifactの選択executor向けpacket化（親: `HARNESS-L2-032`）
 
@@ -181,7 +191,7 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 
 **受入条件**
 
-- **`AC-HARNESS-L3-032-01` packet対応**：選択consumerの宣言schema/版へ適合し、case identity、oracle参照、source version、target revision/scope、必要runner capabilityおよびその利用permissionが一致するpacketを作る。schema、revision/scope、oracle、個々のrunner capability、permissionのunknown/mismatchはいずれも保留し、別consumerや別scopeへ暗黙fallbackしない。
+- **`AC-HARNESS-L3-032-01` packet対応**：HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、選択consumerの宣言schema/版へ適合し、case identity、oracle参照、source version、target revision/scope、必要runner capabilityおよびその利用permissionが一致するpacketを作る。schema、revision/scope、oracle、個々のrunner capability、permissionのunknown/mismatchはいずれも保留し、別consumerや別scopeへ暗黙fallbackしない。未選択consumer/sourceはunobservedとして記録し必須依存にしない。
 - **`AC-HARNESS-L3-032-02` 責務とreceiptの順序**：受渡し前に受渡しreceiptもrun resultも要求せずpacketを構成・送信できる。受渡しreceiptはhandoff後に渡した内容の事実だけを示し、run resultはexecutor実行後に返る。いずれもtest pass、HARNESS受入、OS ticket、完了を生成しない。隔離実行・結果は選択executorの責務であり、返却されたrun resultを別段階の入力／証拠として結ぶ。
 
 このStage 2c追補のversion targetは固定L2の `1.0` 候補のままとする。親scope、owner、採択状態は変更しない。
