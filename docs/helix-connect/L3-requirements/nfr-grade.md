@@ -1,4 +1,4 @@
-# HELIX-CONNECT L3 NFR候補（Stage 1・Stage 2a 部分草稿）
+# HELIX-CONNECT L3 NFR候補（Stage 1・Stage 2a・Stage 4 部分草稿）
 
 > 状態: 全体的なretry/latency/retention数値は固定されていない。以下はfixed L2/L11から直接読める境界値、または比較・測定可能な技術候補であり、実装値やPO承認値ではない。各parameterについて個別PO判断は求めない。意味・scope・owner・versionを変える必要が生じた場合だけL2へ戻す。
 
@@ -12,3 +12,10 @@
 | `CON-NFR-006` / `CONNECT-AC-006-01, CONNECT-AC-006-02` | 片側交換のbranch coverage、固定側不変、fail-close、未完義務trace | 4交換類型を各1 fixtureずつ照合する候補coverage 4/4。各類型に(a)非互換、(b)未登録、(c)意味契約変更、(d)stale、(e)unknownを個別に与える20 negative fixtureで通信attempt 0。fixed-side機構/契約/artifact/dependency revisionと未完義務の保持を各fixtureで比較する。 | L2-006/L11-006が4交換類型の独立実施、固定側を変更しない保証、invalid時の通信0、未完operation/ACK/attempt/期限/義務のhandoffを列挙する。4/4と20 fixtureはこの明示列挙を測定できる比較集合候補であり、汎用性能閾値・新PO gateではない。 | 全4正常fixtureで固定側revision/contractが前後一致し、交換後revision/照合/送受信をtrace可能。全20 negative fixtureでattempt 0、old/new revision混在0、未完義務欠落0候補。 |
 
 これらは観測可能な境界・比較候補であり、共通transport値、wire format、保存実装、業務完了条件を新設しない。
+
+## Stage 4 technical candidates
+
+| 候補ID／親 | 候補値・測定条件 | 根拠と比較 | 適用限界 |
+|---|---|---|---|
+| CON-NFR-008 / HELIXCONNECT-L2-008 | identity/revision/typed capability/probe descriptorのfield coverageは選択profileで全件、誤ったsafe/executable/send claimは0 | 固定親のfield列挙を全件照合する案とdescriptor件数だけ数える案を比較。後者は安全性を証明しないため不採用。 | probe latencyやMCP成功率は導かない。必要時は根拠・比較・測定付き候補にする。 |
+| CON-NFR-009 / HELIXCONNECT-L2-009 | 選択relation tupleのlineage/reason/endpoint/contract revision欠落0、unknownから追加attemptを生む件数0 | relation field完全性とattempt traceを測定し、aggregate success count案よりunknown漏れを検出できるfield単位案を候補にする。 | 新retry cap、feedback timeout、共通SLAは追加しない。技術値が必要なら根拠付き候補として提示する。 |

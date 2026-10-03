@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 NFR候補検証（Stage 1・Stage 2a 部分草稿）
+# HELIX-CONNECT L10 NFR候補検証（Stage 1・Stage 2a・Stage 4 部分草稿）
 
 本書は[L3 NFR候補](../L3-requirements/nfr-grade.md)の各候補を同じIDで測定する。未指定値は根拠付き候補として比較し、実装値やPO承認値を仮定しない。意味・scope・owner・version変更が必要な場合だけL2/POへ戻す。
 
@@ -10,3 +10,10 @@
 | `CON-NFR-004` / `CONNECT-AC-005-01` | 登録/照合/send/receipt/retry/stale/拒否/終端の各観測eventをoperation/revision/attemptでtraceと突合し、欠落数・順序不明数を測る。 | 観測済みeventのtrace欠落0。欠落/順序曖昧はunknownで業務完了0。raw payload保存は必須にしない。 | trace producer/operation ownerへ欠落eventを返し、SECURITY/data-use不明は該当ownerへ返す。 |
 | `CON-NFR-005` / `CONNECT-AC-005-01` | 接続contractの宣言値、または根拠・比較案・測定方法・判定境界を添えた技術候補を入力し、end-to-end latency区間/retention windowを実測する。 | 入力値の根拠・実測値・境界判定を記録する。候補は実装値・PO承認値ではなく、未指定を達成扱いしない。共通SLAを新設せず、必要な技術候補の起草も妨げない。 | 候補化に必要な入力が不足すればunknownとして接続contract ownerへ返す。要求の意味・scope・owner・versionを変える場合だけ該当L2/POへ戻す。 |
 | `CON-NFR-006` / `CONNECT-AC-006-01, CONNECT-AC-006-02` | 4交換類型を独立fixtureにし、各々でfixed-side機構/契約/artifact/dependency revisionのbefore/after、交換側revision、互換receipt、送受信event、未完operation/ACK/attempt/期限/義務を照合。さらに各類型に(a)非互換、(b)未登録、(c)意味契約変更、(d)stale、(e)unknownを個別適用する。 | 候補判定: 4/4の正常交換で固定側revision不変かつ同一契約通信を再構成可能。20/20否定fixtureで通信attempt 0、再照合/再開前retry 0、旧新revision混在0、handoff obligation欠落0。4/4と20/20はL2/L11の列挙case coverage由来の候補値で、新しいPO gateではない。 | 意味契約差分は両端owner、技術互換差分はadapter owner、許可差分はSECURITYへ戻し、未完義務とrecovery先を残す。 |
+
+## Stage 4 NFR候補測定
+
+| 候補 | 入力・測定 | 判定候補 | 限界 |
+|---|---|---|---|
+| CON-NFR-008 | 選択profile descriptor fieldとsource revisions | 全fieldを照合し、identity mismatchと誤safe/executable/send claimが0。descriptor数のみのcoverage案と比較する。 | 性能閾値・operation成功率を追加しない。 |
+| CON-NFR-009 | relation tuple、attempt trace、既存retry/budget policy revision | tuple欠落とpolicy外attemptを別々に数え、unknownからの追加attempt0を候補とする。 | policy値を発明しない。未指定の必要技術値は計測比較付き候補にできる。 |

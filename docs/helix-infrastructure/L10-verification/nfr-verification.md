@@ -18,3 +18,10 @@
 | `HELIXINFRASTRUCTURE-L2-007` | 4段階復旧trace・依存独立 | `L10-INFRA-007-C01..05` の完全/失敗/未知版/停止再開fixture | 4段階の実結果・入力版traceが4/4候補、元machine限定依存0、未完からsuccess0。backup/文書存在だけは不成立。時間SLAは実測・根拠候補を別に要する場合だけ追加する。 |
 
 測定結果はfield完全性、owner境界、source revision、unknown/holdの処置などの観測値で記録する。このStage 1/Stage 2a/Stage 2b契約検証では、対象behaviorの合否に性能時間・容量・保持期間の閾値を要しないため新設しない。別の技術値が要件上必要なら、上流に数値指定がなくてもL3候補として根拠・比較案・測定方法を添えて通常の承認パッケージに提示し、parameterごとの承認は求めない。旧値や参考測定値を自動継承・合否閾値へ昇格させない。
+
+## Stage 4 NFR候補測定
+
+| 候補 | 入力・測定 | 判定候補 | 限界 |
+|---|---|---|---|
+| NFR-INFRA-008-01 | approved design、target、actualを別々のrevision付きfixtureにする | mapping欠落とactualからdesignへの誤更新を個別測定し、双方0を候補とする。 | 物理deployment実行や可用性SLAを測らない。 |
+| NFR-INFRA-025-01 | Worker/resource/work reference tupleをresource move前後で観測する | identity/reference欠落、不一致、assignment/isolation誤推定を別々に数え、誤推定0を候補とする。 | 親にないcapacity値を固定しない。必要値は候補起草可。 |

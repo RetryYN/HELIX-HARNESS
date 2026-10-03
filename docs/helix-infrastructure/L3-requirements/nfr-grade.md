@@ -20,3 +20,10 @@
 ## 測定・承認境界
 
 この表のcoverage/誤昇格0/誤帰属0/roundtrip完全性は親L2/L11の明示要素を漏れなく守る候補である。実測性能値の採否はテストfixtureとL4以降の実現可能性を踏まえ通常のL3承認へまとめて送る。個別parameter承認を要求しない。上流が指定する外部version/range/retention等があるときは当該source値を使い、新しい値を作らない。
+
+## Stage 4 technical candidates
+
+| 候補ID／親 | 候補値・測定条件 | 根拠と比較 | 適用限界 |
+|---|---|---|---|
+| NFR-INFRA-008-01 / HELIXINFRASTRUCTURE-L2-008 | selected design/target/actual field間のtrace欠落0、actual→design誤書戻し0 | 三sourceを別々に追跡する案と実環境結果だけを見る案を比較し、後者は承認designとtargetのずれを隠すため前者を候補とする。 | 選択scopeのfieldだけ。deployment SLAは追加しない。 |
+| NFR-INFRA-025-01 / HELIXINFRASTRUCTURE-L2-025 | Worker/resource/work-reference tupleの欠落0、move前後のwork reference不一致0 | field単位でsource/revisionを追う案とmachine単位で集約する案を比較し、machine集約はWorker identityを失うため不採用。 | capacity閾値・autoscaling目標は指定しない。必要値は根拠・比較・測定付き候補とする。 |

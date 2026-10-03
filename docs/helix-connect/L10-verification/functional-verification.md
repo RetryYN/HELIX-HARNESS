@@ -1,4 +1,4 @@
-# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a 部分草稿）
+# HELIX-CONNECT L10 総合検証（Stage 1・Stage 2a・Stage 4 部分草稿）
 
 > 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、本追補はStage 2aのCONNECT-L2-006を追加する。
 
@@ -111,3 +111,21 @@
 4. **one-side replacement → handoff**: `CONNECT-CASE-006-01..04`を独立に行い、各々で固定側revision不変、互換照合後の同一契約通信、未完義務のhandoffを確認する。`CONNECT-CASE-006-05`は各交換類型に非互換/未登録/意味契約変更/stale/unknownを個別に交差適用し、計20 fixtureすべてで送信attempt 0を確認する。
 
 総合passはStage 1の5件とStage 2a L2-006の2件を合わせた7個のL3 AC候補が個別に成立し、横断シナリオでrevision/authority/retry/trace/片側交換の連鎖が保たれること。任意項目の未観測、業務ownerの結果、未実施の旧デグレ検証をpassとして補完しない。
+
+## Stage 4 — CONNECT-L2-008/009 L10 oracle
+
+固定L2/L11は633bf12の採択revision。probeやfeedbackのfixtureは静的な受入設計であり、実際のMCP接続・送信を行わない。
+
+### HELIXCONNECT-L2-008（CONNECT-FR-008-01）
+
+- CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: MCP profile identity/revision、configuration contract revision、typed operation/tool capability、read-only descriptorが揃うfixture。relationを再構成でき、operation spawnは0。
+- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各identity/revisionを一つずつmissing/stale/mismatchにする。古いcompatible結果を使わず、unknown/staleとprofile ownerへの戻し先を出す。
+- CONNECT-CASE-008-03（AC CONNECT-AC-008-03）: descriptorあり・permissionなし、安全判定なし・実行可能と主張する反例。executable/safe/send eligibilityをfalseまたはunknownに留め、SECURITYへauthority照合を戻す。
+
+### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
+
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: serial、parallel、direction、typed feedback relationの固定親が定めるnormal fixture、および未見の複合relationを与える。各relationをoperation lineage/reason/endpoint/contract revisionへ追跡する。
+- CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: first-send dependencyをunknownにするfixtureと、feedback endpoint/reason/contractを別々にunknownにするfixture。二種類のunknownを相互流用せず、owner別に保持する。
+- CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: existing retry/budget/termination policyの欠落/staleを与える。追加attemptは0、独自capなし、policy ownerへ戻る。正常fixtureでも既存policyを越えるattemptを作らない。
+
+全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。

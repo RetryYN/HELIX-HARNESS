@@ -1,10 +1,10 @@
-# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a 部分草稿）
+# HELIX-CONNECT L3 機能要件（Stage 1・Stage 2a・Stage 4 部分草稿）
 
 > 状態: L3要件草稿・未承認。L3承認・実装方式確定・実装完了を表さない。既存Stage 1ではG0確定34件中CONNECT 5件を対象とし、SECURITY 19件と合わせた24件の部分草稿である。本追補はStage 2aの`HELIXCONNECT-L2-006`だけを追加する。本文は現行の固定L2/L11だけを要件化し、未指定技術値は根拠付き候補として区別する。
 
 ## 適用・責務境界
 
-対象はStage 1のHELIXCONNECT-L2-001〜005とStage 2aのHELIXCONNECT-L2-006（各固定L2が明示するversion_target 1.0）。registration、revision compatibility、技術送受信、再送、trace、片側交換をFRごとに追跡する。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。Stage 2aは片側交換の一接続だけを扱い、後続L2-007の複数辺compositeを前倒ししない。
+対象はStage 1のHELIXCONNECT-L2-001〜005、Stage 2aのHELIXCONNECT-L2-006、Stage 4のHELIXCONNECT-L2-008/009（各固定L2が明示するversion_target 1.0）。registration、revision compatibility、技術送受信、再送、trace、片側交換をFRごとに追跡する。CONNECTはsource/consumer ownerの業務意味やSECURITYの送信authorityを決めず、通信登録/互換結果だけから送信許可を生成しない。通信時の既存SECURITY authority/data-use条件、HARNESS-L2-010/011のpack交換/未完義務、OS assignmentは各ownerの正本を参照する。本文に記す状態・receiptは要求出力の論理モデルであり、wire format・DB・transport・adapter・algorithmの確定ではない。Stage 2aは片側交換の一接続だけを扱い、後続L2-007の複数辺compositeを前倒ししない。
 
 ## 旧L3構造の保持点
 
@@ -145,3 +145,52 @@
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` 32–90, 91–216 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228`; `066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4` | FR/ACとnormal/negative/boundary oracle対応の形式だけ参照。旧HAT/L12/runtimeは現行L10に移植しない。 |
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-006`。
+
+## Stage 4 — CONNECT-L2-008/009（対の部分草稿）
+
+固定親はbase 633bf12の採択revisionと判断記録で固定する。旧MCP profile調査は具体的な接続契約の完全一致根拠ではなく、profile identityと技術traceの部分類例である。両親とも固定L2/L11から要件を再導出する。
+
+### CONNECT-FR-008-01 — MCP profile probe descriptor（親 HELIXCONNECT-L2-008）
+
+Probe descriptorはMCP profile identity/revision、configuration contract revision、typed operation/tool capability、read-only probe descriptorを記録する。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchはfail closedとし、staleはCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。
+
+**受入条件**
+
+- CONNECT-AC-008-01: profile、configuration contract、typed capability、read-only probe各identity/revisionを結び、正常なdescriptorが実行を開始しないことを確認する。
+- CONNECT-AC-008-02: profile/contract revisionを一つずつ欠落、stale、mismatchにする。該当profileをunknown/staleとして閉じ、古いcompatible記録へfallbackしない。
+- CONNECT-AC-008-03: descriptorの存在だけでpermission、安全、executableをtrueにする変異を拒否する。SECURITY authorityが無い場合もsend eligibilityを生成しない。
+
+旧MCP profile調査 LEGACY-ASSET-1E45495250B6F9793189 はprofile特性の部分類例、旧gap audit DC0AE3267D63F3525BAEは旧L3該当が見つからなかった証拠、旧U-MCPPROFILE test FAAFFA616A44F65911EB は設計形式の参照に限る（正しいIDはFAAFFA616A44F65911EB）。旧test・runtimeは実行しない。
+
+### CONNECT-FR-009-01 — typed feedback relation（親 HELIXCONNECT-L2-009）
+
+必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。send rightsは推定しない。既存retry/budget/termination policyを使用し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
+
+**受入条件**
+
+- CONNECT-AC-009-01: 固定parentが要求するdirection/topology/feedback relationをlineage、reason、endpoint、contract revisionへ結ぶ正常入力と、未見の複合入力を与える。指定されたrelationだけを再構成する。
+- CONNECT-AC-009-02: first-send依存を一つunknownにし、別fixtureではfeedback endpoint/reason/contractを一つunknownにする。状態と戻し先を別々に保持し、first-sendをfeedback待ちにせず、feedback欠落をsend authorityに昇格しない。
+- CONNECT-AC-009-03: retry/budget/termination policyを欠落・staleにする。新しいretryを試みず、そのpolicy ownerへ返す。独自上限やsend permissionを生成しない。
+
+旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。
+
+## Stage 4 fixed-parent and legacy source pins
+
+基準commitはmain 633bf12。PO decision rowが採択根拠でありregister metadataは承認を生成しない。固定spanはinclusive physical lines、raw SHAは行末を含むbytes。
+
+| 親 | PO判断／登録ID／row SHA | 固定L2 path・span・raw SHA・semantic digest | 固定L11 path・span・raw SHA | 基準commit／decision・L2・L11 full SHA |
+|---|---|---|---|---|
+| HELIXCONNECT-L2-008 | MPR-RC-HELIXCONNECT-L2-008-002 / docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L94 / 71dfba9e65926882b18cf9645aa5d302feadb4a0f2020ab63f2e7e2c22fa3732 | docs/helix-connect/L2-requirements/connect-requirements.md:274–284 / 4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813 / sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813 | docs/helix-connect/L11-acceptance/connect-acceptance.md:87–93 / 09dcbb00bee7d4a1680a16176d9f0bbe0c0d385a7d27a4fec61950f5c636b50e | 633bf12ea8f948db8ba3d6600179c4a9507377a7 / decision c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad / L2 94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1 / L11 aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9 |
+| HELIXCONNECT-L2-009 | MPR-RC-HELIXCONNECT-L2-009-002 / docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L95 / 765d6070ed419f678b00e0e7367d7a6048febb4002d04ced1baf1858cd3a4260 | docs/helix-connect/L2-requirements/connect-requirements.md:285–295 / d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f / sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f | docs/helix-connect/L11-acceptance/connect-acceptance.md:94–104 / 07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1 | 633bf12ea8f948db8ba3d6600179c4a9507377a7 / decision c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad / L2 94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1 / L11 aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9 |
+
+旧L3／paired test-designのitem別source map（asset IDはdisposition ledger照合済み。span raw bytesで再計算）：
+
+| 親 | old asset/path/lines | full SHA-256 | raw span SHA-256 | 対応分類 |
+|---|---|---|---|---|
+| HELIXCONNECT-L2-008 | LEGACY-ASSET-1E45495250B6F9793189 / archive/legacy-generation-2026-09-14/root/docs/research/mcp-external-verification-profile-research-2026-06-09.md:28–36 | 08801af5be5429204827c0ce2e0adcacaee74bf5fa72b07a9d1c403c16dc330b | 81dde9dea84226a83b9c557ab7e97eff5905dc70c8301f3ae7d8750f1af4c7fb | profile identity/source attributesの隣接類例だけ部分参照。probeのsafe/executable/permissionは再利用せず固定親から再導出。 |
+| HELIXCONNECT-L2-008 | LEGACY-ASSET-DC0AE3267D63F3525BAE / archive/legacy-generation-2026-09-14/root/docs/governance/hybrid-engine-requirements-extraction-gap-audit-2026-07-19.md:14–14 | 345928addace631d97f902b391fe6656581c1ff2caea1f94587149e008a98e70 | e7058b243f55074b242dcdcd0c847a353cf890dac5554cf08dfa9bc2ce25dff4 | 旧検索時点ではMCP profileのL1/L3直接hitなし。範囲限定の不在証拠であり、現行候補の承認根拠にしない。 |
+| HELIXCONNECT-L2-008 | LEGACY-ASSET-DC0AE3267D63F3525BAE / archive/legacy-generation-2026-09-14/root/docs/governance/hybrid-engine-requirements-extraction-gap-audit-2026-07-19.md:57–60 | 345928addace631d97f902b391fe6656581c1ff2caea1f94587149e008a98e70 | beafa3a86575ae1391dd9ff591000b31a3f3eea2c06c710196920ee1f9f70c3b | 同gap auditの検索scope/方法を記録。旧runtime/CLIは実行せず、現行probe descriptorをL2から再導出。 |
+| HELIXCONNECT-L2-009 | LEGACY-ASSET-5EE032D657C221184B00 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:50–50 | e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b | 9a90b00908df1d4ba84ad2719cf354575dd6797b34b4d03ed03956edbefb046c | UWJ-FR-006 loop terminal/feedback lifecycleの構造類例を部分参照。CONNECT typed relation/directionは固定親から再導出。 |
+| HELIXCONNECT-L2-009 | LEGACY-ASSET-6FFD7F4E58066D08B053 / archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:22–22 | 1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3 | c0955b863f781efd03adc6d48f82ddc950331efe185ddc7cf26f35107e8401b9 | UWJ-AC-006 required field欠落時のnegative oracle形式のみ参照。 |
+
+旧runtime、CLI、testを実行せず、採択済みL2/L11の要求意味を本Stage4の正本に再導出した。

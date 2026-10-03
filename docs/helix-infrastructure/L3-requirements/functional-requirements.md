@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L3 機能要件（部分草稿）
 
-**状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2bの割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2bとStage 4の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -347,3 +347,52 @@ INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとW
 | `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md` 16–39 | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85` | 002の観測/差異類例 |
 | `LEGACY-ASSET-9B7682EBDEA171005D45` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md` 24–83 | `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c` | `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e` | 007の版付き復旧/結果類例 |
 | `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md` 1–58 | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | 007の版付き復旧/結果類例 |
+
+## Stage 4 — INFRASTRUCTURE-L2-008/025（対の部分草稿）
+
+固定親はbase 633bf12の採択revisionで照合した。旧OPS/WCCは隣接責務の類例として項目別に部分再利用する。現行resource mappingは固定L2/L11から再導出し、旧資産が直接同じ意味を持つとは扱わない。
+
+### INFRA-008-FR-01 — approved designからdeployment targetへの対応
+
+入力はapproved HARNESS-CORE infrastructure designのexact revision/scopeと、deployment targetの別identity/revisionである。設計で宣言した対象とtargetのfield対応を導き、targetとobserved actualを独立sourceとして比較する。INFRASTRUCTUREは設計意味を所有・変更せず、actualからdesignへ書き戻さない。未承認・不一致・unknown designはholdとする。
+
+**受入条件**
+
+- INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。
+- INFRA-008-AC-02: design approval、target mapping、actual observationを個別に欠落/stale/不一致にする。該当比較だけをunknown/holdとし、actualをdesign/targetへ昇格しない。
+- INFRA-008-AC-03: actual driftを設計変更で消す変異、INFRAがdesign ownerとしてwriteする変異を拒否し、設計意味の不足をHARNESS-CORE ownerへ戻す。
+
+旧product lifecycle operations LEGACY-ASSET-17C4BF78919578FEBB18とpaired acceptance F46AB11BD14F2C0469F4はdeployment/release境界の類例を部分再利用する。静的な承認design→deployment targetのmappingは現行親から再導出する。
+
+### INFRA-025-FR-01 — Workerと実行資源の対応維持
+
+Worker identityと実際のexecution resource identity/capacity/stateを対応させ、resource移動時もticket/request/work referenceを保つ。Workerはmachineではない。Infrastructureはresource/stateを所有し、OSはticket/assignment、SECURITYはisolationを所有する。resource mappingは観測・追跡であり、自動scaling、placement optimizer、operation実行を含まない。
+
+**受入条件**
+
+- INFRA-025-AC-01: Worker identity、resource identity、capacity/state、ticket/request/work referenceをsource/revision付きで入力し、各参照を結ぶ。正常な再配置後も同一work referenceを保持する。
+- INFRA-025-AC-02: Worker/resource identity、capacity/state、またはwork referenceを一つずつmissing/stale/mismatchにする。未知の対応を推定せず、resource ownerまたはOS ticket ownerへ返す。
+- INFRA-025-AC-03: Workerとmachineを同一化する、resource状態からassignmentを作る、isolationを推定する、自動scale/placement/実行を行う変異を拒否する。
+
+旧WCC LEGACY-ASSET-9114D4E463E95B67DD0C とpaired acceptance C6ADB99F1353965C5449 はworker descriptor/role境界の類例として部分再利用する。INFRA resource identityとOS ticketの結合意味は固定親から再導出する。
+
+## Stage 4 fixed-parent and legacy source pins
+
+基準commitはmain 633bf12。PO decision rowが採択根拠でありregister metadataは承認を生成しない。固定spanはinclusive physical lines、raw SHAは行末を含むbytes。
+
+| 親 | PO判断／登録ID／row SHA | 固定L2 path・span・raw SHA・semantic digest | 固定L11 path・span・raw SHA | 基準commit／decision・L2・L11 full SHA |
+|---|---|---|---|---|
+| HELIXINFRASTRUCTURE-L2-008 | MPR-RC-HELIXINFRASTRUCTURE-L2-008-002 / docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48 / 4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49 | docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:104–113 / 841dc7e17255170394ce240dc10f263108e9e56b3c724de138eed92855812172 / sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925 | docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:106–115 / fac0236f782f4f888f8e5a923e20993edbda01d2912654021e2fa8e1af818bed | 633bf12ea8f948db8ba3d6600179c4a9507377a7 / decision 0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f / L2 569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b / L11 7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada |
+| HELIXINFRASTRUCTURE-L2-025 | MPR-RC-HELIXINFRASTRUCTURE-L2-025-002 / docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48 / 4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49 | docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287–296 / 57341fdb5ed91f80eba13c50345e47483818d40c4135d28c301e1d44369e3c59 / sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c | docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:290–298 / 199e879c05ce07661cabaabd7df55efa29697cc20b51bf55339d738558d52a88 | 633bf12ea8f948db8ba3d6600179c4a9507377a7 / decision 0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f / L2 569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b / L11 7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada |
+
+旧L3／paired test-designのitem別source map（asset IDはdisposition ledger照合済み。span raw bytesで再計算）：
+
+| 親 | old asset/path/lines | full SHA-256 | raw span SHA-256 | 対応分類 |
+|---|---|---|---|---|
+| HELIXINFRASTRUCTURE-L2-008 | LEGACY-ASSET-17C4BF78919578FEBB18 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:74–84 | ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0 | 9786e0423a3a973e4c4d8265b965ac72cdd00b9445bb9dbde272fe9cb4078166 | deployment target/receiptとrelease境界の隣接類例のみ部分参照。design→target static mapは現行固定親から再導出。 |
+| HELIXINFRASTRUCTURE-L2-008 | LEGACY-ASSET-23D3D9769B093AFDCC25 / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:62–70 | f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6 | 50e04feabdd91d74265cc8d0812b9a6c32fac1cfe6fa6e80c86afcb0e715367f | integratorとwriter/reviewer責務分離の類例を部分参照。現行INFRA design authorityは置換しない。 |
+| HELIXINFRASTRUCTURE-L2-008 | LEGACY-ASSET-F46AB11BD14F2C0469F4 / archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:20–36 | 19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58 | b39cba60ebbd8080776a96ab23433a3a5dc8f5734fedb0ff820d3b7ea48eb6c6 | deployment/release境界の受入形式のみ参照。旧test/runtimeは実行しない。 |
+| HELIXINFRASTRUCTURE-L2-025 | LEGACY-ASSET-9114D4E463E95B67DD0C / archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:48–66 | 773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290 | 63bb68435df91364aaa50763f5274cbac07862522af7fdf5513799dc17680e50 | worker descriptor/role/sandbox境界を隣接類例として部分再利用。resource-to-worker mappingとOS ticket ownerは固定親から再導出。 |
+| HELIXINFRASTRUCTURE-L2-025 | LEGACY-ASSET-C6ADB99F1353965C5449 / archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:32–36 | c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d | b0c57435523ab501bc3d36fd785525fdc6ac43da623d85d1973371c90e1c24c8 | identity/receipt/source mismatchのnegative oracle類例を参照のみ。旧testは実行しない。 |
+
+旧runtime、CLI、testを実行せず、採択済みL2/L11の要求意味を本Stage4の正本に再導出した。
