@@ -1,0 +1,64 @@
+{
+  "schema": "scaffold-reader-closure-audit/1",
+  "authority_effect": "none",
+  "baseline": "64be94b4cf90c2b06c4c9f28eb6b407689509403",
+  "web_fixed_binding_revision": "596089b85bd8c26ae95a97d973e10c5b91f4b7e9",
+  "recorded_binding_sha256": "5f2706fc90a02c339cec9c2617b22e13ecd4f62f4d27f9203794203020f13989",
+  "observed_before": [
+    {
+      "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "before": 0,
+      "after": 1,
+      "stdout": "",
+      "stderr": "E_B0010_BINDING_SHA\n"
+    },
+    {
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+      "before": 0,
+      "after": 1,
+      "stdout": "",
+      "stderr": "FAIL E_GIT_SOURCE:scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl\n"
+    },
+    {
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "before": 0,
+      "after": 1,
+      "stdout": "",
+      "stderr": "FAIL E_GIT_SOURCE:scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json\n"
+    }
+  ],
+  "targeted_runs": [
+    {
+      "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "before_sha256": "3da299dd9978d353fef16b35955c9705775fbd3b4be0de5090b8163ad23f9489",
+      "after_sha256": "3fa7c34166ed77f3bfe1155be9621663c8d9dbe843d80c395ee630ac2bd35bdc",
+      "exit": 0,
+      "stdout": "PASS RDP-001 DOC-002 semantic atom candidate: lines=133 atoms=49 residual=21 shared_relations=3 edges=2 products=4\n",
+      "stderr": ""
+    },
+    {
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+      "before_sha256": "e35bdcac0ea42266830fd240b2eb686120ddbfb4c08d09b4ee15c487b90cc5b9",
+      "after_sha256": "58f71296aff44ae01240b5c830a344797b868e35be004919484fa5b7cea09dd7",
+      "exit": 0,
+      "stdout": "PASS validate: 16 source-bound candidates (9 atoms + 7 composites), 10/29 parent spans, 6 legacy links\n",
+      "stderr": ""
+    },
+    {
+      "path": "scaffold/research/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "before_sha256": "9cea416ff2633e24146c446edccf851ce04fb2694f946c7f0a7e265491b89017",
+      "after_sha256": "7b12535f60d92118bbc5cbb9dcd52d030c54829e870829899bfbc558fe8c2e8e",
+      "exit": 0,
+      "stdout": "PASS validate: 10 next-span candidates (7 atoms + 3 composites), 10/19 unprocessed parent spans, prior overlap=0\n",
+      "stderr": ""
+    }
+  ],
+  "validation": {
+    "bindings": 143,
+    "fail": 0,
+    "stale": 0,
+    "residuals": 0,
+    "full_137_suite": "統合後に再検証する。3件のtargeted合格を全件合格へ拡張しない。"
+  },
+  "preservation": "inventory/source snapshot/JSONL/登録台帳/Binding意味とnoteを保持。SCF-B-0048 current validator SHAだけ再pin。固定Git sourceは旧pathのまま、HEAD物理readのみ研究移動先へ解決。"
+}

@@ -182,10 +182,12 @@ def check(candidate: dict | None = None, binding: dict | None = None) -> list[st
     for path_key in ("binding_path", "candidate_path"):
         req(relocated(ROOT / connection.get(path_key, "")).exists(), "E_B0010_PATH_" + path_key)
     if connection.get("binding_path"):
-        binding_ref = "7b3001ea516dd880964480ec1082936723a5dd37:" + str(connection.get("binding_path"))
-        binding_bytes = subprocess.run(["git", "show", binding_ref], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False).stdout
-        binding_read = subprocess.run(["git", "cat-file", "-e", binding_ref], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+        # Web配置統合時に記録されたBinding SHAを、そのexact revisionで検査する。
+        # 研究束移動後のcurrent Bindingへ固定inventoryを追随させない。
+        binding_ref = "596089b85bd8c26ae95a97d973e10c5b91f4b7e9:" + str(connection.get("binding_path"))
+        binding_read = subprocess.run(["git", "show", binding_ref], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
         req(binding_read.returncode == 0, "E_B0010_BINDING_REVISION")
+        binding_bytes = binding_read.stdout
         req(connection.get("binding_sha256") == digest(binding_bytes), "E_B0010_BINDING_SHA")
     if connection.get("candidate_path"):
         inv_path = relocated(ROOT / connection["candidate_path"]) / "inventory.json"

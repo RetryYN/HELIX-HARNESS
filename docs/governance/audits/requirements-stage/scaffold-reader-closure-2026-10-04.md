@@ -1,0 +1,11 @@
+# Scaffold移動後の読取閉包の補正（2026-10-04）
+
+基準はlocal統合 `64be94b4cf90c2b06c4c9f28eb6b407689509403`。Web候補596の137件は82成功/55既存失敗だったが、研究束移動後64beの初回一式実測は79成功/58失敗となり、移動由来の3件を検出した。以前の7b時点の検証をWeb統合後の合格証拠にはしない。
+
+DOC-002/048の固定inventoryが記録するSCF-B-0010 SHAはWeb候補596時点の `5f2706fc90a02c339cec9c2617b22e13ecd4f62f4d27f9203794203020f13989` だったが、validatorが7b時点のBindingを読んでいた。固定inventoryの値を変えず、読取revisionをexact Web候補596へ束縛し、git show成功を確認してからSHA照合する。現行Bindingの妥当性はscfctlで別に照合する。
+
+Web/Web-OS研究0081と0084は、HEADのGit本文を読む際に旧scaffold pathを使っていた。固定source・scopeの旧locatorを保持し、HEADの物理読取だけを対応する `scaffold/research/` のpathへ解決した。archive sourceや過去commitのpath、候補意味、残留分母は変更していない。
+
+旧起点は既存移動監査の旧repository-structure（LEGACY-ASSET-FDBA655B1CFF75DCDC0E、57–77/85–90/112–120行）と研究資産D3D07である。今回の補正は新しい規則・authorityや旧runtimeの移植ではなく、同じ現在の本文への読取閉包を保持するもの。元の研究束・固定inventoryとvalidatorの比較契約を読み、役割と固定証拠を保存した。
+
+対象3 validatorは補正後すべて成功した。Binding143件fail0、stale0、residuals0、diff検査合格。全137件の再検証はgovernance統合後に行うため、この記録では完了を主張しない。各validatorの旧・新SHA、before失敗とtargeted実測出力は同梱JSONに収めた。登録台帳と研究inventory/source snapshotは不変。SCF-B-0048のcurrent validator SHAのみ追随した。

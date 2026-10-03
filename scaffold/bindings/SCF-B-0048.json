@@ -85,7 +85,7 @@
     },
     {
       "path": "scaffold/research/rdp001-delegated-doc002-semantic-atom-048/validate.py",
-      "sha256": "3da299dd9978d353fef16b35955c9705775fbd3b4be0de5090b8163ad23f9489",
+      "sha256": "3fa7c34166ed77f3bfe1155be9621663c8d9dbe843d80c395ee630ac2bd35bdc",
       "note": "DOC-002 candidate artifact [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-delegated-doc002-semantic-atom-048/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=091c06ba7d18ea53940feb989f4e121c4570c94d070da52ce5f0aca9d2d76da9; 現receipt=c6c6913f8faa05e37946ccc0de6802d7f7f1beaee66b5976fbbce764f73d4bfc; このBindingの採否・authorityは変更しない。]"
     },
     {
