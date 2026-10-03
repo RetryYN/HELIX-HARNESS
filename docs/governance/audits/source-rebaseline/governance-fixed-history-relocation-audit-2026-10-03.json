@@ -3,7 +3,7 @@
   "base_commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
   "generation_head_before_commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
   "read_only_source_audit": true,
-  "purpose": "Move seven time-record/snapshot documents into existing audit workstream categories, preserve historic locators in append-only and fixed capture evidence, and keep current consumers on the moved bytes.",
+  "purpose": "時点記録・snapshotの7文書を既存audit分類へ移し、append-only記録と固定capture内の履歴locatorを保全しながら、現行consumerが移動後の実体を読むよう追随させる。",
   "file_moves": [
     {
       "from": "docs/governance/archive-first-transition-record-2026-09-14.md",
@@ -14,7 +14,7 @@
       "bytes_before": 6567,
       "bytes_after": 6580,
       "byte_identical": false,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/github-codeql-default-setup-backup-2026-09-15.json",
@@ -25,7 +25,7 @@
       "bytes_before": 1868,
       "bytes_after": 1868,
       "byte_identical": true,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/repository-foundation-readiness.md",
@@ -36,7 +36,7 @@
       "bytes_before": 7899,
       "bytes_after": 7910,
       "byte_identical": false,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/new-generation-workbase-consolidation.md",
@@ -47,7 +47,7 @@
       "bytes_before": 10180,
       "bytes_after": 10180,
       "byte_identical": true,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
@@ -58,7 +58,7 @@
       "bytes_before": 44986,
       "bytes_after": 44986,
       "byte_identical": true,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
@@ -69,7 +69,7 @@
       "bytes_before": 11063,
       "bytes_after": 11063,
       "byte_identical": true,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     },
     {
       "from": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
@@ -80,7 +80,7 @@
       "bytes_before": 10426,
       "bytes_after": 10498,
       "byte_identical": false,
-      "allowed_difference": "Markdown files change only Markdown relative-link target tokens; JSONL snapshot and JSON projection backup remain byte-identical"
+      "allowed_difference": "Markdown文書は相対リンク先tokenだけを変更し、JSONL snapshotとJSON projection backupは同一bytesを保つ。"
     }
   ],
   "markdown_link_rewrites": {
@@ -1962,9 +1962,9 @@
         "status": "registered"
       }
     ],
-    "path_and_sha_updates_only": "For moved sources, current upstream path/SHA updated. For every current binding whose upstream source changed due link-token-only edits or reader source edits, only the upstream SHA was recalculated. No binding role, obligations, authority, state, replacement, receipt text, or historic note changed.",
-    "stale_before": "74 bindings reported current-source stale after initial move/link changes; 98 direct SHA entries plus 2 transitive entries updated. A further 1 SHA change followed the previously broken link correction.",
-    "stale_after": "0"
+    "path_and_sha_updates_only": "移動文書を参照する13件のcurrent upstream path locatorと、それらを記録する78件の影響Binding fileでcurrent path/SHAを更新した。相対link tokenだけを直した文書やreader変更でcurrent upstream SHAが変わった場合もcurrent SHAのみ再計算した。role、obligations、authority、state、replacement、receipt本文、過去noteは変更していない。",
+    "stale_before": "初回の移動/link変更後にcurrent source staleと報告されたBindingは74件。direct SHA entry 98件とtransitive entry 2件を更新し、既存broken linkの訂正後にさらにSHAを1件更新した。",
+    "stale_after": "0件"
   },
   "legacy_provenance": {
     "repository_structure": {
@@ -1986,7 +1986,7 @@
       "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
       "sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
       "lines": "13-21,101,148-168",
-      "relevance": "3 subdoc + L3/verification pair freeze source; this audit does not decide L3/L10 paths"
+      "relevance": "3 subdocとL3/verificationのpair freezeに関する旧source。この監査ではL3/L10の置き場所を決めない。"
     },
     "rg14_009": {
       "path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
@@ -2134,36 +2134,18 @@
     ]
   },
   "existing_audit_classification": {
-    "kept": "The existing audit taxonomy remains workstream/phase based, including requirement-registration/, requirements-stage/, and source-rebaseline/.",
+    "kept": "既存audit分類はrequirement-registration/、requirements-stage/、source-rebaseline/等の工程・workstream別構成を維持する。",
     "new_child_directories": [
-      "docs/governance/audits/requirements-stage/history-snapshots/ (new)"
+      "docs/governance/audits/requirements-stage/history-snapshots/（新設）"
     ],
     "existing_children_used": [
-      "docs/governance/audits/source-rebaseline/github-projection-backups/ (existing)"
+      "docs/governance/audits/source-rebaseline/github-projection-backups/（既存）"
     ]
   },
   "legacy_asset_basis": {
     "governance_repository_structure_asset": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
     "HIL_FR_53_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
     "rule_atom_RG14_009_line": 7034
-  },
-  "scaffold_binding_inventory_comparison": {
-    "baseline_user_supplied": {
-      "total": 137,
-      "active": 82,
-      "registered": 55
-    },
-    "observed_at_4ef29ee": {
-      "total": 143,
-      "active": 28,
-      "registered": 115
-    },
-    "delta_current_minus_baseline": {
-      "total": 6,
-      "active": -54,
-      "registered": 60
-    },
-    "interpretation": "This is inventory state/count only; no binding state is promoted or retired by this move. The inventory file independently records 143 bindings (28 active, 115 registered), 0 formal replacement artifacts, and all 143 replacement_status=pending."
   },
   "fixed_scaffold_inventory_baseline": {
     "total": 143,
@@ -2172,16 +2154,56 @@
     "formal_artifact_count": 0,
     "replacement_pending": 143
   },
-  "web_location": "helix-web/ remains at repository root per PO decision on 2026-09-26; unchanged in this patch.",
-  "RG14_009_gate": "Do not create L3/L10 target directories before the first L3 document; the goal explicitly allows creating them simultaneously. No additional pre-directory gate inferred.",
-  "prohibited_changes": "No append-only management register, JSON snapshot, historic receipt, old source, symlink, alias contract, Scaffold Binding semantics/state, or approval mechanism was rewritten/created. The 7 registered bindings received only current upstream path/SHA rebaseline where applicable.",
+  "web_location": "2026-09-26のPO判断によりhelix-web/はrepository rootに置かれており、この配置は今回変更していない。",
+  "RG14_009_gate": "最初のL3文書より前にL3/L10のtarget directoryを作らない。ゴールは最初のL3文書と同時にdirectoryを作ることを許しているため、それ以前に追加のgateは設けない。",
+  "prohibited_changes": "append-onlyの管理register、JSON snapshot、過去receipt、旧source、symlink、alias契約、Scaffold Bindingの意味・state、承認機構は書き換え・新設していない。7文書の移動にともない、13件のcurrent upstream path locatorと78件の影響Binding fileに記録されたcurrent path/SHAのみを追随した。Bindingのrole、obligations、authority、state、replacement、receipt本文、過去noteは変更していない。",
   "validation": {
-    "markdown_local_links": "294 local links in changed/current-move Markdown files checked; broken=0; baseline same-source set had one pre-existing broken link (disposition snapshot line 61), corrected to the existing legacy-migration/ir/legacy-ir-rehome-wave-register.jsonl; no new broken link",
+    "markdown_local_links": "296 local links in changed/current-move Markdown files checked; broken=0. Base same-source set had one pre-existing broken link at requirement-disposition snapshot line 61; changed its link token to existing docs/governance/legacy-migration/ir/legacy-ir-rehome-wave-register.md; no new broken link.",
     "scfctl_validate": "143 bindings, fail=0",
     "scfctl_stale": "0",
     "scfctl_residuals": "0",
     "python_compileall": "18 current reader modules compiled; static syntax only, no legacy execution",
-    "git_diff_check": "pass"
+    "git_diff_check": "pass",
+    "research_validators": "tracked 137; baseline 82 pass/55 fail; after 82 pass/55 fail; exit changes 0; new failures 0; improvements 0. Per-validator before/after exit and output digests are in the adjacent comparison manifest."
   },
-  "authority_effect": "none"
+  "authority_effect": "none",
+  "binding_inventory_at_base_4ef29ee": {
+    "total": 143,
+    "active": 28,
+    "registered": 115,
+    "formal_artifact_count": 0,
+    "replacement_pending": 143,
+    "source": "scaffold binding inventory at base 4ef29ee; root confirms the #2555 snapshot has the same inventory state",
+    "interpretation": "137 is the tracked research validate.py count, not a Binding count. This move changes current upstream path/SHA pins only; no binding state transition is recorded."
+  },
+  "research_validator_comparison": {
+    "manifest_path": "docs/governance/audits/source-rebaseline/governance-fixed-history-relocation-validator-comparison-2026-10-03.json",
+    "tracked_count": 137,
+    "baseline_pass": 82,
+    "baseline_fail": 55,
+    "after_pass": 82,
+    "after_fail": 55,
+    "exit_changed_count": 0,
+    "new_fail_count": 0,
+    "improvement_count": 0,
+    "validation_scope": "現在trackedされているscaffold/*/validate.pyのみ。archive内runtime/test/CIは実行していない。",
+    "binding_inventory_separate": true,
+    "binding_inventory_at_base_4ef29ee": {
+      "total": 143,
+      "active": 28,
+      "registered": 115
+    },
+    "new_fail_count_definition": "新規failはbase exit=0から変更後exit!=0への遷移と定義。137件中0件。診断テキスト差分は別に記録する。",
+    "diagnostic_comparison_ref": "docs/governance/audits/source-rebaseline/governance-fixed-history-relocation-validator-diagnostics-2026-10-03.json",
+    "diagnostic_comparison_result": "隔離base 4ef29eeと変更後で同じ55件の既存failを比較。exit/code/exception/missing-pathの新規差分は0。今回の追随編集で生じたE_GENERATOR_PINは期待SHA更新により解消し、再実行でbaseと同じFileNotFoundErrorへ到達。旧root baselineにのみ現れないpre-isolation holding path診断は隔離baseと変更後で同一で、今回の7文書移動外の既存reader/path問題。詳細と旧root logのcapture限界はdiagnostics manifestに記録。",
+    "base4ef_isolated_manifest_ref": "docs/governance/audits/source-rebaseline/governance-fixed-history-relocation-validator-diagnostics-2026-10-03.json"
+  },
+  "preexisting_broken_link_correction": {
+    "source_at_base": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md:61",
+    "source_after_move": "docs/governance/audits/requirements-stage/history-snapshots/requirement-disposition-review-program-pre-append-3df81ad.md:61",
+    "old_link_token": "legacy-ir-rehome-wave-register.md",
+    "old_resolved_target": "docs/governance/legacy-ir-rehome-wave-register.md (missing at base)",
+    "corrected_resolved_target": "docs/governance/legacy-migration/ir/legacy-ir-rehome-wave-register.md",
+    "target_identity_evidence": "The target is titled 旧IR 153件の再配置wave台帳 and defines the W1–W4 IR rehome order referenced by the source sentence; target exists at base 4ef29ee. Only the Markdown link token changed."
+  }
 }

@@ -164,7 +164,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, set(scope.get("selected_legacy_asset_ids", [])) == SELECTED and len(scope.get("selected_legacy_asset_ids", [])) == 7, "E_SCOPE_ASSETS")
 
     source_files = {
-        "phase": PHASE, "routing": ROUTING, "register": REGISTER, "assets": ASSETS,
+        "phase": PHASE, "routing": ROUTING, "register": relocated(REGISTER), "assets": ASSETS,
         "phase_assets": PHASE_ASSETS, "decisions": DECISIONS,
     }
     for name, path in source_files.items():

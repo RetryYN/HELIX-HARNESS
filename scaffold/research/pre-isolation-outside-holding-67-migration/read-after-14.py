@@ -5,6 +5,19 @@ import hashlib
 import json
 from pathlib import Path
 
+RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+}
+
+
+def relocated(path: Path) -> Path:
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 ROOT = Path(__file__).resolve().parents[3]
 REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
 SNAPSHOT = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"

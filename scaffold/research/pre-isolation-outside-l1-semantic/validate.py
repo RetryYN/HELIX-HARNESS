@@ -50,7 +50,7 @@ EXPECTED_ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL_REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 EXPECTED_REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
 EXPECTED_INVENTORY_SHA = "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e"
-EXPECTED_GENERATOR_SHA = "5212e91534dbf1e8744587088dbf728270120ad03af3f47b727df97b9ea77fc3"
+EXPECTED_GENERATOR_SHA = "ddc4bfab42c911f4f8c60cdb9288928f2a64be01a9b549561cc584f49f8d5aa8"
 EXPECTED_CASES = {
     "HELIX-HARNESS": ("OUTSIDE67-L1-HARNESS", "docs/design/harness/L1-planning/product-intent.md", "docs/helix-harness/L1-planning/product-intent.md", "HDEC-HARNESS-L1-01", "partial_substantive_subset"),
     "HELIX-OS": ("OUTSIDE67-L1-OS", "docs/design/helix-os/L1-planning/system-intent.md", "docs/helix-os/L1-planning/system-intent.md", "HDEC-HELIXOS-L1-01", "partial_refined_boundary"),

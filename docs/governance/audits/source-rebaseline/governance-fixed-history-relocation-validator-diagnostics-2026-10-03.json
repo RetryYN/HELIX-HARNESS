@@ -1,0 +1,582 @@
+{
+  "schema": "scaffold-research-validator-diagnostic-comparison/v1",
+  "authority_effect": "none",
+  "baseline": {
+    "source": "/tmp/l3-d0-research-baseline.json",
+    "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "tracked_validator_count": 137,
+    "exit_failures": 55
+  },
+  "after": {
+    "source": "/tmp/l3-d0-current-validator-results.json plus retained rerun logs for one corrected diagnostic",
+    "observed_head": "0cccc19645b0d7a0849ede93bbe2e3ab0681fc93",
+    "tracked_validator_count": 137,
+    "exit_failures": 55
+  },
+  "scope": {
+    "compared_baseline_failures": 55,
+    "same_path_set": true,
+    "baseline_extra_untracked_validator": "scaffold/phcap12-13-review-research/validate.py (137 tracked validatorsに含まれないため比較対象外)",
+    "output_changed_after_root_normalization": 18,
+    "changed_output_paths": [
+      "scaffold/delegated-doc-003-028/validate.py",
+      "scaffold/delegated-doc-008-017/validate.py",
+      "scaffold/legacy-config-product-classification-0141/validate.py",
+      "scaffold/phcap15-17-orphan-asset-links/validate.py",
+      "scaffold/phcap15-deploy-fifth12-research/validate.py",
+      "scaffold/phcap15-deploy-final8-research/validate.py",
+      "scaffold/phcap15-deploy-followup-research/validate.py",
+      "scaffold/phcap15-deploy-gap-research/validate.py",
+      "scaffold/phcap15-deploy-next12-research/validate.py",
+      "scaffold/phcap15-deploy-pool12-research/validate.py",
+      "scaffold/phcap15-deploy-sixth12-research/validate.py",
+      "scaffold/pre-isolation-next/validate.py",
+      "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "scaffold/pre-isolation/validate.py",
+      "scaffold/rdp001-delegated-doc001-atom-030/validate.py",
+      "scaffold/rdp001-outside67-followup-069/validate.py",
+      "scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py"
+    ],
+    "same_path_set_for_tracked_137": true
+  },
+  "diagnostic_signals": {
+    "added_error_code_tokens": [],
+    "classification_of_E_PHASE_SOURCE": "Appears after-only as a token because baseline stderr begins with a truncated suffix ending in phase-capability-inventory.json. Current validator source maps this same missing path to E_PHASE_SOURCE; classified as formatting/capture visibility, not a new missing source.",
+    "added_exception_classes": [],
+    "added_missing_paths": [],
+    "pre_isolation_missing_path_assessment": {
+      "validator": "scaffold/pre-isolation/validate.py",
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "base_tree_has_old_path": false,
+      "base_tree_has_existing_migrated_path": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+      "isolated_base_diagnostic": "present",
+      "after_diagnostic": "same; exact path and error class after root normalization",
+      "original_root_baseline_diagnostic": "not present in captured output",
+      "assessment": "Isolated base and current diagnostics match exactly for this missing path, establishing it as a pre-existing tracked reader/path issue outside the seven moves. The root baseline log differs; its cause cannot be distinguished between non-versioned worktree availability and capture behavior."
+    }
+  },
+  "migration_caused_diagnostic_fixed": {
+    "validator": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+    "cause": "The move-following RELOCATED_PATHS edit changed generate.py bytes but left EXPECTED_GENERATOR_SHA pinned to the prior bytes.",
+    "generator_sha256": "603b8610f75390e68bd250f731a45223debacb705518d5222617f145b50e6c57",
+    "validator_pin_updated": true,
+    "rerun_exit": 1,
+    "rerun_result": "The E_GENERATOR_PIN diagnostic disappeared; execution reached the same baseline FileNotFoundError for docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl (root paths normalized).",
+    "unrelated_failure_not_repaired": true
+  },
+  "capture_limits": {
+    "after_full_logs_retained_for_all_137": "/tmp/l3-d0-current-validator-results.json; corrected validator output additionally retained in /tmp/l3-d0-diagnostic-pin-validator.stdout and .stderr",
+    "baseline_streams_have_truncated_prefixes": [
+      {
+        "path": "scaffold/phcap15-deploy-gap-research/validate.py",
+        "baseline_capture_prefix": "e/phase-capability-inventory.json",
+        "evidence": "The baseline first diagnostic is truncated; isolated base/current show the same E_PHASE_SOURCE code for this missing artifact."
+      },
+      {
+        "path": "scaffold/pre-isolation/validate.py",
+        "baseline_capture_prefix": "merのpre-isolation JSONが未取得...",
+        "evidence": "The captured baseline begins mid-message and omits the holding-path read diagnostic that is reproducible in both isolated base and current."
+      },
+      {
+        "path": "scaffold/delegated-doc-003-028/validate.py",
+        "baseline_capture_prefix": "...",
+        "evidence": "Baseline output begins in a diagnostic tail; exact text equality is not asserted."
+      }
+    ],
+    "comparison_method": "Root prefixes normalized; exact output equality used to identify changed streams; error-code, exception-class, and FileNotFoundError path sets compared. Baseline capture truncation makes absence of a token inconclusive. This is a diagnostic review, not semantic validator correctness evidence.",
+    "method_note": "Captured output is compared after root prefix normalization. For attribution to this PR, isolated tracked base 4ef29ee is the controlling comparison; the earlier root baseline is retained only as a distinct comparison with its capture/worktree limitation."
+  },
+  "new_fail_definition": "新規failは、baseのvalidator exit=0から変更後exit!=0へ遷移した件数と定義する。137件で該当0件。既存のexit!=0は55件。診断文言差分は別欄に記録し、新規fail数の定義には含めない。",
+  "base4ef": {
+    "commit": "4ef29ee37ee271d224b4f3e6c520b996075c66e3",
+    "worktree": "detached isolated worktree at /tmp/l3-d0-diagnostic-base-4ef29ee",
+    "count": 55,
+    "exit_failures": 55,
+    "result": "all same 55 validators exit 1, all tracked tree clean after execution",
+    "comparison_manifest": [
+      {
+        "path": "scaffold/delegated-doc-003-028/validate.py",
+        "exit": 1,
+        "stdout_sha256": "158e50aa0dfc6009851aca95180a7e524e6c2ddf96ba1e9be8918eafdd89337d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/delegated-doc-008-017/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "a369632224116bce95ae8c232e25ae03e8b8cf8b91b31e5a0730453a289ffe15",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-ai-instruction-product-classification-0145/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "bc2b752db3e25194e99939886c4774c7614b20f9c1bb4fac88838f9bfc20baf5",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-config-product-classification-0141/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "ec694433e4410e58342798e50b4b900fd5ae210a6ccf6a57b164d5d0c1cac1f2",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e84c969635f8ee0b08ebc9cf10797ddc01fc4345583c1ea01561815f3961fdef",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-implementation-residual-0126/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5f28d4e5527a9a19a3d0925b9e691b8daacba3ac610b17014cbb08e95ef106dd",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-overlap-reconciliation-0144/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "9ef6ed3bfc0e2244263394bd96b1dcb5760250757489de1fb76a901f484a66d4",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-research-assets-product-classification-0142/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "d9778a978561050648d750b8a1ea9569c98b785ba6d7c9fec1f26b18ba827502",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-schema-product-classification-0120/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "966d971d2ddd89626c6186ddb107c42ae5043f2a567fa0b68412e072d9d0b0ba",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-source-product-classification-0123/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "3116b8078831843016e07d8d96395bf1ec127544753afb48b42556e04c32bbce",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
+        "exit": 1,
+        "stdout_sha256": "6237039ca59fae2ac3c2ce4b27abc9374e601d6d5c7f483726c7f9aaa46033c4",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "cb0a2c629a15a79dd4a4c587ac2602a137fda4f8a98448b57f70158bebf1dac5",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap06-design-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "c5e7b1b7c72f9df07ed2a7ab832c2239f126dde17aaab31f8761b47b5595c3c2",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap07-web-verification-l10/validate.py",
+        "exit": 1,
+        "stdout_sha256": "13ef89b59e4edfe9fb0f8353f24a00a7c9fa303af9872ef48d1c0a3930aa3072",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
+        "exit": 1,
+        "stdout_sha256": "00f3fb8d48bb10091638cc8f17c82c11b7a846877d34ffe78fb23d7ccb09062e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap10-11-worker-ci-static/validate.py",
+        "exit": 1,
+        "stdout_sha256": "35efa976ea9c836c468c5bfe6e85ebbd8bbd8486507d6068acc41729886b1cae",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap12-13-review/validate.py",
+        "exit": 1,
+        "stdout_sha256": "797f6a8dd31355c5070058a268324e0fa7dd3356ad172337db3c2fbec56a565a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-17-orphan-asset-links/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "b070523e3244cc00b32b732b3629a9bde7c0ce140b884ce2295a381d9f174c5e",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-fifth12-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "02a4c678f34156809209aa5743ce5a0f07bdb5cde929cd6524ff32ef1f6667b2",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-final8-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "52adfd6c290fe16a46dfeba1f7abeb3818a69688f5c11a2dc24b0aab936a05f1",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-followup-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "6a5f9e45af165d57d44880e0ec53af6c29940adc1fe2fdbfdef22618480c0775",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-gap-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "694f3ace564b3fe2c2de0fb5a1e5b5367d92515ad7fe03e093fe74d7c03279a5",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-next12-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e5c9bc73609dba6c62107a9821c609ed77f3fe86d8f51c6b30e0b1e36c756ae3",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-pool12-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "5286516db11765147ddecbb454a487d453b4147fea2eb444fb6583bbec54d32d",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "3c7baa6a591f6852be0225036d425d53b6c48f0cf4fd4805d92055bc0d422249",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap15-deploy-sixth12-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e57e220f73dcbe0a859f5e31384b7497b87bb0220f96b41564e05a863ed4f251",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap17-incident-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "29571c8f718bbdb15cb1765c92d096059a80e9c1b832b25deff388d82fe7ca57",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap18-refactor-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "90ef34aae8f99c01c679153b05d2aafbf1a04aa0d18f3a7df9a2405b63574c45",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap19-learning-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "8dabf4e4708283c7046bdd33902c7993e88b2bd366439004c3b18b6f93340f39",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/phcap20-memory-research/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e59333c58ee7b7f2c8fdffb40ec672e50a76985802d4f61e3116545f310f2a7c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/pre-isolation-next/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "ce255a30b08ee719e3187c81971d4ae186b77f87cbe4db276a8b3a1ca624203f",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "40cc571e3166ed3fb0a4eb04d9eddaedb61fd37859cc30f717fab2a3de7979ef",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "42e6a5f59a8f2d9d61e8a7b63f5a56e661e9f907e17f29f5dd5eb2b9478ec3dd",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/pre-isolation/validate.py",
+        "exit": 1,
+        "stdout_sha256": "22ad9c664e2af09aeaf43d0f54c7a36c636ddbdf0c88610a0178524476b1671d",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-delegated-doc001-atom-030/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "f14d674a2a2454710fa566115255efef662ac32670a9aa1cabf01c754239bb4c",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+        "exit": 1,
+        "stdout_sha256": "9c21ed22ea5f40b1a5a17ea9570e45f5c61f51b9ccc7f895aed4c4a1931d4d2a",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-boundary-followup-071/validate.py",
+        "exit": 1,
+        "stdout_sha256": "4be54265668967b9e9ac77ba8f88ad92f384657e8ba20ad8684e206dbab7b610",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-boundary-followup-073/validate.py",
+        "exit": 1,
+        "stdout_sha256": "f0a020661e2500504d64eaaf3c1eb47553a3d279d7a9653496ae0124453b46d3",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-boundary-followup-074/validate.py",
+        "exit": 1,
+        "stdout_sha256": "4be54265668967b9e9ac77ba8f88ad92f384657e8ba20ad8684e206dbab7b610",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-concept-freeze-followup-087/validate.py",
+        "exit": 1,
+        "stdout_sha256": "ed7b3c51f4115c4b0df0c5b6465a746ce7f960ef01425845c7605241ddc5d2b6",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-final-followup-092/validate.py",
+        "exit": 1,
+        "stdout_sha256": "f27bb5d04442f19732002ef672997819c4a97660aab662b831e17c7a8c63237b",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-followup-069/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "c40251c61787839f6fd18ac9ed929800bd570c3f81096f506802e2e6cc824611",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-079/validate.py",
+        "exit": 1,
+        "stdout_sha256": "4be54265668967b9e9ac77ba8f88ad92f384657e8ba20ad8684e206dbab7b610",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-083/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "1ce68d90d272f3adcac0bcfe6272ead91a7ff596f0d2a5240f57ae65422e0669",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-governance-crosswalk-followup-085/validate.py",
+        "exit": 1,
+        "stdout_sha256": "4be54265668967b9e9ac77ba8f88ad92f384657e8ba20ad8684e206dbab7b610",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "0c74c8be65c711872cfc3dc86c61e64f0d2b6539536cd4cc80e070134cd220f5",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-product-boundary-062/validate.py",
+        "exit": 1,
+        "stdout_sha256": "c1f8c44dd81cb8e3eedf4e6365e49ce27c5d4a1f8baf6645b4c4cc4d0b74da20",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-product-entry-followup-076/validate.py",
+        "exit": 1,
+        "stdout_sha256": "4be54265668967b9e9ac77ba8f88ad92f384657e8ba20ad8684e206dbab7b610",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-residual-followup-090/validate.py",
+        "exit": 1,
+        "stdout_sha256": "8cea2f45a7d312de928f590b6f9c0d8bc4bed3ea4652538afaaa88226737c9a1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+        "exit": 1,
+        "stdout_sha256": "1bbca95a9fd80a5f361f64eb5f93b5e2af347a1f30b4ccb450d48ab0bbf72ed1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "4f61cfbc69a01bb6ec8be064880429d60f37c94538eadc9f4dd3369bea3207a9",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-web-webos-vision-asset-semantic-0124/validate.py",
+        "exit": 1,
+        "stdout_sha256": "1fb1b8fe01a463186cad79ea18e694d803b8383fc187a947beeb78487b052959",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "63e6f91b89818707095bd236e81f332669ba1033fe083908e8bda0c4b33eb432",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "cc0eacee5ca9265c23c238ab3d14056108c11a96651057eff96e2beaa086cd72",
+        "after_exit": 1,
+        "exit_unchanged": true
+      },
+      {
+        "path": "scaffold/rdp001-web-webos-vision-source-0080/validate.py",
+        "exit": 1,
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "4958039903aa0fd88cd3c3832117e087d0bdbb56521c685b067d8a42948b05d3",
+        "after_exit": 1,
+        "exit_unchanged": true
+      }
+    ]
+  },
+  "base4ef_vs_after": {
+    "compared_failure_count": 55,
+    "exit_changed_count": 0,
+    "output_changed_after_root_normalization": 2,
+    "output_changed_paths": [
+      "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "scaffold/pre-isolation-outside-l1-semantic/validate.py"
+    ],
+    "added_diagnostic_signals": {
+      "error_codes": [],
+      "exception_classes": [],
+      "missing_paths": []
+    },
+    "interpretation": "No new error-code token, exception class, or missing path in after vs base 4ef29ee. The only two normalized output differences are traceback line numbers shifted by the RELOCATED_PATHS helper insertion in the two reader modules; terminal FileNotFoundError and target path are identical."
+  },
+  "root_original_baseline_vs_base4ef": {
+    "source": "/tmp/l3-d0-research-baseline.json from the root worktree at commit 633bf12",
+    "compared_failure_count": 55,
+    "exit_changed_count": 0,
+    "output_changed_after_root_normalization": 18,
+    "after_only_diagnostic_tokens_vs_original_baseline": {
+      "output_changed_count": 18,
+      "after_only_code_tokens": [
+        {
+          "path": "scaffold/phcap15-deploy-gap-research/validate.py",
+          "values": [
+            "E_PHASE_SOURCE"
+          ]
+        }
+      ],
+      "after_only_exception_classes": [],
+      "after_only_missing_paths": [
+        {
+          "path": "scaffold/pre-isolation/validate.py",
+          "values": [
+            "<ROOT>/docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
+          ]
+        }
+      ]
+    },
+    "interpretation": "Root baseline captured partial/truncated first lines for multiple errors. E_PHASE_SOURCE is the current validator label for the same missing phase-capability-inventory.json already represented by the trailing fragment in the original log. pre-isolation-revision-delta-source-holding.jsonl is missing at the old path in both tracked base and after trees; the migrated file exists at legacy-migration/pre-isolation/... in both. The isolated base and current runs emit the same missing-path diagnostic, so it is a pre-existing reader/path issue rather than an effect of these seven moves; root baseline did not record it, indicating non-reproducible worktree-only source availability or capture limitation."
+  }
+}

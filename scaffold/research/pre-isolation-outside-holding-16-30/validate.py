@@ -64,7 +64,7 @@ BASE_ANCHOR_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
 # The historical-register correction is an uncommitted candidate layered on
 # the reviewed PR tip. Pin the candidate bytes explicitly while retaining the
 # immutable base object checks above.
-EXPECTED_GENERATOR_SHA256 = "b6daa43f4c62a7c8923e9478a18f12105e70e2d4e86b1d396b914333918c1d0a"
+EXPECTED_GENERATOR_SHA256 = "1511ef947a731c2829ffb5af4eae8f08bc808e144e47c55c9ff5e5a4c0880cb3"
 EXPECTED_INVENTORY_SHA256 = "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0"
 
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"

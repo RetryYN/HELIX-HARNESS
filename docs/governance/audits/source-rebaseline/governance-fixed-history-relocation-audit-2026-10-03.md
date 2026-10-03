@@ -20,7 +20,7 @@ current binding upstreamに限って移動path/SHAを更新し、リンクtoken�
 
 `docs/governance/`直下は34ファイルから27ファイルになった。残る27件は、現行rules/models/contracts 16件、append-only current registers 4件、current inventory/status 7件である。完全なfilename一覧と分類はJSONに記録した。10の既存folder（audits、candidates、crosswalks、decisions、feature-tickets、intake、legacy-migration、requirements-source、sources、tools）はすべて保持し、役割も変えていない。既存auditは工程・workstream別の分類を保ち、今回必要な`history-snapshots/`だけrequirements-stage内へ足した。
 
-比較用に依頼で示されたbaselineは137 bindings（active 82、registered 55）。4ef29ee時点のread-only inventoryは143 bindings（active 28、registered 115）で、差は合計+6、active -54、registered +60だった。この移動からbindingの採否・状態・authorityを生成せず、全143件のformal artifact countは0、replacement statusはpendingのままである。
+研究validatorとBinding inventoryは別の分母である。tracked `scaffold/*/validate.py` は137件で、既存baselineは82 pass／55 fail。本変更後も82 pass／55 failで、137件すべてのexit codeがbaselineと一致した。新規failは「base exit=0から変更後exit!=0への遷移」と定義し、0件である。診断差分を確認するため、同じ55件を隔離detached worktreeのbase `4ef29ee`でも再実行した。baseと変更後でexit/code/exception/missing-pathの新規差分は0件で、出力の差はreaderにRELOCATED_PATHSを加えた2件のtraceback行番号だけだった。今回のreader追随編集で一時発生した`E_GENERATOR_PIN`は、validatorの期待SHAを生成器の現SHAへ更新して解消し、再実行はbaseと同じ`FileNotFoundError`に到達した。旧root baselineでは`pre-isolation-revision-delta-source-holding.jsonl`の欠落が記録されていなかったが、tracked baseと変更後では同じ欠落が再現する。このpathは今回の7文書移動外で、現行treeにも既存のlegacy-migration位置に実体がある。詳細、55件のbase manifestと旧rootログのcapture限界は[validator diagnostic comparison](governance-fixed-history-relocation-validator-diagnostics-2026-10-03.json)に記録した。各pathのbefore/after exitとoutput digestは[validator comparison manifest](governance-fixed-history-relocation-validator-comparison-2026-10-03.json)に記録した。Binding inventoryは4ef29ee時点で143件（active 28、registered 115）、formal artifact count 0、replacement pending 143であり、rootの#2555 snapshotにも同じ状態が記録されている。137をBinding件数またはBinding状態の過去比較値として扱わない。今回、移動7文書に関係するcurrent upstream path locator 13件と、それらに影響するBinding file 78件のcurrent path/SHAのみを追随し、state・authorityを変更していない。
 
 ## 旧HELIXとの対応と配置境界
 
@@ -30,6 +30,6 @@ current binding upstreamに限って移動path/SHAを更新し、リンクtoken�
 
 ## 静的確認
 
-変更済みMarkdownと移動文書のローカルリンク294件を解決し、broken=0を確認した。baseの同一source setにはdisposition snapshot 61行目の既存broken link 1箇所（`legacy-ir-rehome-wave-register.md`）があり、既存の`legacy-migration/ir/legacy-ir-rehome-wave-register.jsonl`へlink tokenだけを直した。新規broken linkは0件。現行`scfctl validate`は143件すべて合格し、`stale=0`、`residuals=0`だった。変更した18のcurrent scaffold reader moduleはPython構文compileを通した。旧runtime/test/CIを実行していない。
+変更済みMarkdownと移動文書のローカルリンク296件を解決し、broken=0を確認した。baseの同一source setにはdisposition snapshot 61行目の既存broken link 1箇所（`legacy-ir-rehome-wave-register.md`）があり、既存の`docs/governance/legacy-migration/ir/legacy-ir-rehome-wave-register.md`へlink tokenだけを直した。移動前リンク先は存在せず、修正先は同文書が指す「旧IR 153件の再配置wave台帳」で、W1–W4再配置順を定義する実在ファイルである（titleと処理順を照合）。新規broken linkは0件。現行`scfctl validate`は143件すべて合格し、`stale=0`、`residuals=0`だった。変更した18のcurrent scaffold reader moduleはPython構文compileを通した。旧runtime/test/CIを実行していない。
 
 本記録と移動は要求意味、要求承認、実装許可、Scaffold replacement/retirementを生成しない。

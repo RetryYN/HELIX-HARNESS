@@ -13,22 +13,10 @@ from collections import Counter
 from pathlib import Path
 
 
-RELOCATED_PATHS = {
-    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-}
-
-
-def relocated(path):
-    text = str(path)
-    for old, new in RELOCATED_PATHS.items():
-        if old in text:
-            return type(path)(text.replace(old, new, 1))
-    return path
-
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "scaffold/rdp001-unassessed-atom-audit": "scaffold/research/rdp001-unassessed-atom-audit",
 }
 
@@ -221,7 +209,7 @@ def validate(report: dict | None = None) -> list[str]:
         "pre_isolation_audit": AUDIT_PATH,
         "issue_projection": PROJECTION_PATH,
     }.items():
-        expect(errors, report["digests"].get(key) == digest(path), f"report digest不一致: {key}")
+        expect(errors, report["digests"].get(key) == digest(relocated(path)), f"report digest不一致: {key}")
 
     base_count = pre_count = archive_count = different_count = old_count = current_count = 0
     byte_sizes: list[int] = []

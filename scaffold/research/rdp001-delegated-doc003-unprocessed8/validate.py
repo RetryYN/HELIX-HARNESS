@@ -11,22 +11,10 @@ import sys
 from collections import Counter
 from pathlib import Path
 
-RELOCATED_PATHS = {
-    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-}
-
-
-def relocated(path):
-    text = str(path)
-    for old, new in RELOCATED_PATHS.items():
-        if old in text:
-            return type(path)(text.replace(old, new, 1))
-    return path
-
-
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 RELOCATED_PATHS = {
+    "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "scaffold/rdp001-delegated-doc003-unprocessed8": "scaffold/research/rdp001-delegated-doc003-unprocessed8",
 }
 
@@ -289,7 +277,7 @@ def validate(report: dict | None = None) -> list[str]:
         "asset_decisions": DECISIONS_PATH, "mpr_register": REGISTER_PATH,
         "holding_screen": SCREEN_PATH,
     }.items():
-        expect(errors, report.get("digests", {}).get(key) == sha(path), f"digest不一致: {key}")
+        expect(errors, report.get("digests", {}).get(key) == sha(relocated(path)), f"digest不一致: {key}")
     try:
         binding = json.loads(BINDING_PATH.read_text(encoding="utf-8"))
     except Exception as exc:
