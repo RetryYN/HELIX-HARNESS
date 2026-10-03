@@ -1660,11 +1660,11 @@ revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-select
 - **旧sourceと保全範囲**：本候補は旧IR `requirements.json#/HIL-NFR-34` の提案物非権威、snapshot/digestへの結合、scope/requirement/template/skill/model catalog/allowlistの変更時のstale、未監査・許可外tool・自己検証・無制限subagent・工程外completionを利用者保証として保持する。HR-FR-HIL-21 revision 1から版付きpack、必要最小team、独立verify、使用前のshadow review/runtime guardを追加の保証条件として保持する。旧sourceの全原文条件、配置判断の来歴、技術上の詳細、未回収範囲は監査receiptに対応づけ、要求本文で旧consumer全体のclosure、採択、実装、実行を主張しない。
 
 
-### HELIXOS-L2-132 旧HELIXのBun依存撤去に対応するrepository移行の完了再現性（HIL-BR-19候補、未採択）
+### HELIXOS-L2-132 HELIXのBun恒久不使用と一回限りの移行完了の再現性（HIL-BR-19候補、未採択）
 
 - **候補状態・親L1**：HELIX-OSの未採択候補。親は固定済みHELIXOS-L1-005（HARNESS構成の対象projectへの導入・更新・復旧と配布結果の追跡）およびHELIXOS-L1-007（HARNESS package運転、release準備、artifact受渡しの統制）。
-- **利用者が求めること**：旧HELIXのBun依存撤去に対応する、HELIX再構築で扱うrepository移行を完了とする前に、その対象repositoryでactiveな開発・実行・検証・配布surfaceのすべてがBunなしで再現可能であることを確認できる。一部surfaceだけが動く状態を完了としない。
-- **適用範囲**：本候補は上記の旧HELIX Bun依存撤去に対応する一回のrepository移行に限る。任意の別repositoryへの一般化は含めない。対象repositoryとactive surfaceの一覧は移行receiptで特定し、historicalまたはinactiveとする範囲も根拠とともに記録する。対象やactive範囲が定まらない場合は完了を主張しない。
+- **利用者が求めること**：HELIXの開発・実行・検証・配布に用いるsurfaceでは、今後もBunを使用せず、新たな使用や再導入をしないことを保証する。加えて、旧HELIXのBun依存撤去に対応する一回のrepository移行では、対象repositoryのactiveな開発・実行・検証・配布surfaceすべてがBunなしで再現可能であることを確認できる。一部surfaceだけが再現できる状態を移行完了としない。
+- **適用範囲**：恒久不使用の保証は、HELIXの開発・実行・検証・配布に用いるsurfaceに適用し、新たに追加または変更するsurfaceにも継続して適用する。任意の第三者repository一般への規則にはしない。一回のrepository移行は旧HELIXのBun依存撤去に対応するHELIX再構築上の移行に限る。移行対象とactive surfaceの一覧をreceiptで特定し、historicalまたはinactiveとする範囲も根拠とともに記録する。対象やactive範囲が定まらない場合は移行完了を主張しない。
 - **機構の分担**：HELIX-OSは対象project、移行範囲、完了状態と配布結果を管理・追跡する。HARNESSはHARNESS自身の開発・検証基盤と、対象projectで使う構成の契約を持つ。本候補はHARNESSのpackage契約や対象製品の実装方式を置き換えない。
-- **旧sourceとの対応**：旧HIL-BR-19の意味を保持し、Nodeでも一部だけ動く状態を完了としない。Node.jsを必須toolchainに指定せず、個別command、runtime/API、lockfile、CIまたは配布方式も本文へ固定しない。activeな全surfaceの一覧と具体的な移行手順・根拠はsource-linked migration receiptに残す。
-- **限界**：候補の起草・仮登録はPO採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。
+- **旧sourceとの対応**：旧IRのHIL-BR-19（`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-19/statement/text`）と、同じ意味を記す旧L1原文（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:71`、`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）が求める、Nodeでも一部だけ動く状態を移行完了とせず、activeな開発・実行・検証・配布surfaceすべてがBunなしで再現可能であるという意味を保持する。これをHELIXの同surfaceに対する今後の不使用・再導入禁止へ明示する。Node.jsを必須toolchainに指定せず、個別command、runtime/API、lockfile、CIまたは配布方式も本文へ固定しない。active surface一覧、分類根拠、具体的な移行手順と技術証拠はsource-linked migration receiptに残す。
+- **限界**：候補の起草・仮登録はPO判断記録に代わる採択、要求successor割当、migration実施、実行・配布許可、完了判定を生成しない。
