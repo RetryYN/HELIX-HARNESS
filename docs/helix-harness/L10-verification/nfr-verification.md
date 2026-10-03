@@ -56,7 +56,7 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | `CASE-HARNESS-L10-NFR-044-01` | `NFR-C-HARNESS-044-01` | obligation class/contract relationをscope内で全列挙しreuse/delta/new/N/Aを比較。 | uncovered classとsemantic duplicateを個別count、正当closure時のみ両方0。 | N/A根拠やclass meaning unknownなら未評価。document countだけで判定しない。 |
 | `CASE-HARNESS-L10-NFR-046-01` | `NFR-C-HARNESS-046-01` | workflow obligation/style/scope/reverse evidenceとScrum applicabilityを比較。 | unmapped applicable obligationと非Scrumへの誤ったScrum条件を別count。 | style/applicability不明は未評価。別styleをScrum扱いしない。 |
 | `CASE-HARNESS-L10-NFR-047-01` | `NFR-C-HARNESS-047-01` | muster candidate/role sufficient/unknownをcomparison rationaleとworker/verifier identityで測る。 | 根拠なしmuster、sufficientを無視したmuster、authority conflation各count。 | LABO comparison applicability欠如はunknownでありfailure/benefit 0へ丸めない。 |
-| `CASE-HARNESS-L10-NFR-049-01` | `NFR-C-HARNESS-049-01` | fixed L11-049のrenderable prototype scope/profile/device/view/viewportと、既知positive/negative fixture labels。 | per-check FP/FN、適用範囲、未評価領域を記録し、threshold案を比較。精度未評価pass件数0を確認。 | fixed threshold不在を人の毎回判断gateにしない。extra generation/Pattern/ID inputを要求しない。 |
+| `CASE-HARNESS-L10-NFR-049-01` | `NFR-C-HARNESS-049-01` | fixed L11-049の最小入力、5 check別positive/negative fixture、期待分類を与える。 | 案Aは実測ごとにTP/FP/FN/TN、precision=TP/(TP+FP)、recall=TP/(TP+FN)、適用範囲/未評価を報告し、事前閾値なしでwarning/unknownを保つ。案Bはcalibration結果から候補閾値を置いて別holdoutを測る。両案で初回測定前に数値閾値を決めない。 | 分母0・適用不明・fixture不足は未評価。現草稿は親に合格閾値がないため案Aを推奨し、未評価をpassにしない。生成/Pattern/ID入力を追加必須にしない。 |
 | `CASE-HARNESS-L10-NFR-054-01` | `NFR-C-HARNESS-054-01` | typed handoffと同一task/scope/revisionのOS assignment/profile identity、unknown axis変異。 | mismatchとunknown-as-successを別countし、未解決時にhandoff未完のままか確認。 | OS assignment未提示なら未評価。HARNESSの実行率へ読み替えない。 |
 
 
