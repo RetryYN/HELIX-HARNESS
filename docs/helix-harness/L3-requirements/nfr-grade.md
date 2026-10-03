@@ -58,8 +58,6 @@ HARNESS-L2-011/L11は期限切れをsuccessにしないが、expiry時刻と比�
 
 時間予算、retry count、TTL、保持期間、closure上限、通信latencyの具体値は固定親および照合した旧sourceで根拠を得ていない。これらを曖昧なままにして検証を止めず、L3は親が定めたexpiry・retry contractを利用し、定量値が実現可能性判断に必要となる場合はL4設計へ根拠付き候補を渡す。候補選定で要求意味・scope・owner・version_targetが変わる場合だけL2へ戻す。
 
-| `NFR-C-HARNESS-024-01` / `HARNESS-L2-024` | 同一engine/pack/target revision・scope・既回答から、質問順・理由・状態の差分 **0件**。候補スコア単独による必須不足の見逃し・人間合意への昇格 **0件**。 | 固定親が同じ入力から同じ質問順序・理由・状態を要求し、score・質問数・iteration数だけで収束しないことを観測する。固定質問数や数値weightを足す案は不採用。 | 意味評価を単一accuracy閾値へ還元しない。履歴の最低件数や質問件数SLOを設けない。適用Prototype／非UIの合意状態は別々に検査する。 |
-
 ## 旧NFR資産との照合
 
 `LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`、行21–34・58–81）から、候補値・測定方法・判定材料を一組で書く骨格のみ再導出する。旧IPA grade、CLI／CI実行手順、server/OS条件、旧割合・timeout等の閾値は対象L2の根拠でないため再利用せず置換する。旧NFR-08の4-artifact trace率や閾値を現行pack値へ流用しない。
