@@ -41,3 +41,25 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 ## Stage 2b — HELIXOS-L2-014
 
 内部段階稼働の構成・再現・切戻しは独立business criterionを導出しない。段階成立を事業価値、Conceptの1.0達成、外部公開、HARNESS-L2-017製品releaseへ昇格させない。機能AC-OS-L3-014-01..04と同じpaired L10 oracleで責務分離を照合する。固定親・PO・旧sourceの項目別対応は機能要件の014 crosswalkを参照する。
+
+## Stage 3：business受入境界
+
+この15件はbusiness KPIを重複定義せず、functional L3 ACと同じ入力・scope・owner境界を照合する。
+
+| CASE ID | 親と参照AC | 観測・期待 | 対象外 |
+|---|---|---|---|
+| CASE-OS-L10-BIZ-032 | HELIXOS-L2-032 / FR-OS-L3-032 AC-01..03 | eligible/failure/unknownを分け、quarantineから全体greenを導かない。 | failure解消目標 |
+| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..03 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
+| CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..03 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
+| CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..03 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
+| CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..03 | preflight/plan/applyを別状態にする。 | Retrofit投資効果 |
+| CASE-OS-L10-BIZ-037 | HELIXOS-L2-037 / FR-OS-L3-037 AC-01..03 | 観測欠落/条件不成立/handoffを分ける。 | 負債金額化 |
+| CASE-OS-L10-BIZ-038 | HELIXOS-L2-038 / FR-OS-L3-038 AC-01..03 | snapshot/proposal appendとHARNESS採択を分ける。 | layer coverage目標 |
+| CASE-OS-L10-BIZ-040 | HELIXOS-L2-040 / FR-OS-L3-040 AC-01..03 | retry routeを回復済みと数えない。 | 旧ticket taxonomy |
+| CASE-OS-L10-BIZ-041 | HELIXOS-L2-041 / FR-OS-L3-041 AC-01..03 | source再取得とcoordination-only未完を分ける。 | resume KPI |
+| CASE-OS-L10-BIZ-042 | HELIXOS-L2-042 / FR-OS-L3-042 AC-01..03 | strict/relaxed検証と再検証結果を分ける。 | output accept率目標 |
+| CASE-OS-L10-BIZ-043 | HELIXOS-L2-043 / FR-OS-L3-043 AC-01..03 | request/call/resultのstatusを独立表示する。 | throughput KPI |
+| CASE-OS-L10-BIZ-044 | HELIXOS-L2-044 / FR-OS-L3-044 AC-01..03 | prose handoverとevidence-backed resolutionを分ける。 | finding closure KPI |
+| CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..03 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |
+| CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..03 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
+| CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..03 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |

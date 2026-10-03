@@ -52,3 +52,25 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | NFR候補ID | 親／候補 | 根拠と比較案 | L10測定／限界 |
 |---|---|---|---|
 | `NFR-OS-014-01` | `HELIXOS-L2-014` / 同一宣言構成の再構成差分0、rollback後の案件state/記録喪失0、段階成立からの1.0/公開/製品release誤昇格0。 | 固定014の再現・独立性・版分離から導出。A=tagだけの比較、B=pack/依存版・設定/data形式・環境・能力範囲・受入証拠・更新/rollback条件一式の比較としBを候補とする。旧FRS/工程stageは機能crosswalkの隣接起点のみで、旧promotion/CLI/CIは移植しない。 | CASE-OS-L10-014-01..04に従い、一入力欠落・別段階依存・安全依存欠落・state喪失を独立比較。宣言/環境/受入根拠が不明なら未評価。起動時間・復旧時間・段階数の固定値を追加しない。 |
+
+## Stage 3：非機能要件候補と技術値案
+
+以下は通常のL3候補であり、値ごとのPO承認gateではない。sourceが数値を指定しない点は旧値の無根拠流用を許さないが、比較可能な技術候補を起草することは妨げない。採用候補は設計・L10 fixtureで測定し、固定L2の意味・owner・版を変えない。
+
+| NFR ID / 親 / FR trace | 候補値・根拠 | 比較案と限界 | L10計測 |
+|---|---|---|---|
+| NFR-OS-L3-032-01 / 032 / AC-01..03 | identity/fingerprint/version/baseline/scope/oracleは完全一致、欠落許容0。L2のexact-known限定から導出。 | partial-matchを許すと既知条件境界を変えるため除外。 | 1 positive + 各field個別欠落/不一致、eligible誤り0。 |
+| NFR-OS-L3-033-01 / 033 / AC-01..03 | 最小candidateは同一snapshotのrun+rereun 2回、選択集合全件digest/fingerprint一致。determinismを比較する最低対。 | 3回runはflakiness検出力を上げるが計算費用増。L10は2回の受入対に加え3回stressを測定候補とする。 | 2-run一致率=100%のselected capability coverage、差異隠蔽0。 |
+| NFR-OS-L3-034-01 / 034 / AC-01..03 | disposition別必須証拠充足100%、必須証拠欠落時のterminalization 0。 | 全dispositionへ一律PO receiptを要求する案はL11のauthority差を広げるため不採択。 | 4 disposition familyでrequired evidence field mutation、誤terminal 0。 |
+| NFR-OS-L3-035-01 / 035 / AC-01..03 | 同一event identity/revisionのjob registration cardinality=1。3 delivery再送はtest fixture候補。 | 1回だけでは冪等性を測れず、10回は初期要件の根拠なし。3回は初回+重複二回の判別 fixtureに限定。 | 各event 3 delivery後もregistered job 1、job executionは測らない。 |
+| NFR-OS-L3-036-01 / 036 / AC-01..03 | 全Retrofit upgradeごとにplan確定前preflightとapply直前再照合のcoverage 100%。 | plan前だけではapply前driftを見逃す。通常operationへ拡張しない。 | 複数upgrade ticket fixtureで各upgrade両境界のcurrent source/authority照合、欠落0。 |
+| NFR-OS-L3-037-01 / 037 / AC-01..03 | 週次をUTCの連続7日bucketとする候補。週次要求を再現可能な境界へ落とす。 | rolling 7-dayは境界で同観測を重複評価しやすい。calendar-weekは端点変化の検査が必要。 | 週境界前後・missing bucket・stale sourceを2 bucketで測り、未観測をno-drift扱い0。 |
+| NFR-OS-L3-038-01 / 038 / AC-01..03 | source proposal IDあたりappend 1、snapshot digestの整合100%、非原子的finding時row増分0、非決定抽出時current update 0/snapshot不変、失敗時完了claim 0。 | retry回数の固定値は親にないため設定しない。 | same ID重送/途中失敗、041-003のatomicity findingとsame-input nondeterminism、candidate row増分・current ledger・snapshot/receiptを再照合。 |
+| NFR-OS-L3-040-01 / 040 / AC-01..03 | retry上限candidateは2回の自動retry後typed return。failureが続く場合にbounded recoveryを促す暫定候補。 | 1回は一過性failureに敏感、3回は無駄な反復を増やす可能性。全値ともsource未指定のAI候補であり、適用は既存policy値入力に結ぶ。 | transient/permanent failure fixtureで回復率・重複実行・return誤りを1/2/3比較。 |
+| NFR-OS-L3-041-01 / 041 / AC-01..03 | resumeごとにcanonical source/authority再取得100%、stale source継続0。 | cacheを信頼する案はsource driftを見落とす。 | resumed pathでsource digest/revision再照合、欠落時fail-safe。 |
+| NFR-OS-L3-042-01 / 042 / AC-01..03 | default strict schema/digest違反0件を昇格。緩和expiry候補は短いoperation window 24h、対象task/run scopeに限定。 | 4h/24h/72h比較。短期は再承認コスト、高長期はstale exposure。既存期限が指定されるoperationではそれを優先し、24hは候補値として扱う。 | strict failure、緩和期限境界直前/直後、対象外scope、再検証なしを比較。 |
+| NFR-OS-L3-043-01 / 043 / AC-01..03 | request/call/result因果trace completeness 100%、既存契約上request必須のoperationでrequestなしcallのauthorized count=0。request不要operationの許可済み実行は数値対象外とし、新requestを導入しない。 | event統合表示は件数を減らすが段階差を失うため採用しない。 | event ordering/correlation field欠落・逆転を注入し成功trace誤判定0。 |
+| NFR-OS-L3-044-01 / 044 / AC-01..03 | prose-only resolution=0、resolution receiptのsource/head/finding exact match=100%。 | text similarityで自動closeする案は親のhandover boundaryを緩めるため除外。 | prose-onlyとtyped receiptを比較し、stale head/missing evidence close 0。 |
+| NFR-OS-L3-049-01 / 049 / AC-01..03 | observation bucket 15min candidate、configured max/WIP/state countsは別軸。15minは短期状態遷移の視認候補で固定worker数でない。 | 1minはnoise/high overhead、60minは短い競合を隠す。15/60分fixtureで状態誤分類と観測負荷を比較。 | 同じtask traceを各windowでreplayしstate conservation、後段capacity確保なしのdispatch 0。 |
+| NFR-OS-L3-050-01 / 050 / AC-01..03 | capacity増枠は設定thresholdを2連続15min observation bucket超過するcandidateで抑制する。単発spikeによる拡大を避ける。 | 1 bucketは反応が速いがspikeに弱い、60minは遅い。threshold数値は運用設定値を入力しOSが発明しない。 | spike/持続queue/下流bottleneckの各fixture、増枠誤り・backpressure漏れを比較。 |
+| NFR-OS-L3-051-01 / 051 / AC-01..03 | task class/scopeに結ばれた適性evidenceのfreshness候補30日。 | 7日はfreshだが再計測負荷、90日はdriftを許しやすい。sourceにもっと短いexpiryがあればそちらを使う。 | 7/30/90日境界、scope変更、provider名だけ違うfixtureでstale/false-fitを測る。 |

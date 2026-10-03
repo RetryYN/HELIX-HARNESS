@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 2a + Stage 2b(OS014) + Stage 2c explicit items only
+scope: Stage 2a + Stage 2b(OS014) + Stage 2c + Stage 3 explicit items only
 paired_l10: ../L10-verification/business-verification.md
 
 対象親から独立した業務価値基準、事業ownerまたは業務閾値を追加導出しない。これは機構全体に業務要件がないという主張ではなく、この部分scopeの限定である。業務意味は固定L2/L1のownerへ残し、機能条件を業務受入へ読み替えない。
@@ -40,3 +40,27 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 ## Stage 2b — HELIXOS-L2-014
 
 内部段階稼働の構成・再現・切戻しは独立business criterionを導出しない。段階成立を事業価値、Conceptの1.0達成、外部公開、HARNESS-L2-017製品releaseへ昇格させない。機能AC-OS-L3-014-01..04と同じpaired L10 oracleで責務分離を照合する。固定親・PO・旧sourceの項目別対応は機能要件の014 crosswalkを参照する。
+
+## Stage 3：business分類（15件、部分草稿）
+
+この対象15件については、運用上の効果を別のbusiness acceptanceへ二重定義しない。採択済みL2の機能境界をfunctional FR/ACへtraceし、独立の事業owner・KPI・金額閾値を追加しない。実績評価はLABO、OSはregistration/state/handoffを担う。
+
+| 親L2 | 分類とbusiness扱い | owner境界・参照する機能AC |
+|---|---|---|
+| HELIXOS-L2-032 | 機能要件のみ。quarantineは受入価値や全体greenの指標ではない。 | HARNESS oracle / SECURITY policy authority。FR-OS-L3-032 AC-01..03。 |
+| HELIXOS-L2-033 | 機能要件のみ。再現receiptを品質合格KPIにしない。 | capability ownerが結果意味、OSがregistry/provenance。FR-OS-L3-033 AC-01..03。 |
+| HELIXOS-L2-034 | 機能要件のみ。disposition正当性やリスク受容をOSが評価しない。 | 元source/PO authority。FR-OS-L3-034 AC-01..03。 |
+| HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..03。 |
+| HELIXOS-L2-036 | 機能要件のみ。Retrofit成否の技術判定は各owner。 | OSはpreflight-plan/apply trace。FR-OS-L3-036 AC-01..03。 |
+| HELIXOS-L2-037 | 機能要件のみ。負債の価値・優先度はLABO/source owner。 | ticket登録はOS-L2-010。FR-OS-L3-037 AC-01..03。 |
+| HELIXOS-L2-038 | 機能要件のみ。snapshot/proposal appendは採択・coverage完了でない。 | HARNESS semantic contract owner。FR-OS-L3-038 AC-01..03。 |
+| HELIXOS-L2-040 | 機能要件のみ。retryを回復成功と数えない。 | 既存typed return owner。FR-OS-L3-040 AC-01..03。 |
+| HELIXOS-L2-041 | 機能要件のみ。resumeを未完義務解消と数えない。 | OS-L2-009、正本/authority owner。FR-OS-L3-041 AC-01..03。 |
+| HELIXOS-L2-042 | 機能要件のみ。output validationは独立acceptanceでない。 | Worker output contract owner、authorityはSECURITY。FR-OS-L3-042 AC-01..03。 |
+| HELIXOS-L2-043 | 機能要件のみ。request/call/result件数を承認・成功KPIにしない。 | operation authority owner。FR-OS-L3-043 AC-01..03。 |
+| HELIXOS-L2-044 | 機能要件のみ。prose handoverをresolution率へ算入しない。 | feedback/finding source owner。FR-OS-L3-044 AC-01..03。 |
+| HELIXOS-L2-049 | 機能要件のみ。configured pool・利用率をproductivity/throughputと同一視しない。 | INFRASTRUCTURE resource、LABO/INTELLIGENCE入力。FR-OS-L3-049 AC-01..03。 |
+| HELIXOS-L2-050 | 機能要件のみ。review capacity増枠はquality/merge acceptanceを意味しない。 | HARNESS independence/admission、OS queue/assignment。FR-OS-L3-050 AC-01..03。 |
+| HELIXOS-L2-051 | 機能要件のみ。配車適性候補は新しいperformance評価ではない。 | LABO evidence、INTELLIGENCE proposal、SECURITY authority。FR-OS-L3-051 AC-01..03。 |
+
+独立business criterionを必要とする上流意味はここで補作せず対応するL2/L1 ownerへ戻す。HELIXOS-L2-039はH045とのhold scopeとして対象外のままである。
