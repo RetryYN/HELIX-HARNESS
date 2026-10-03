@@ -1163,31 +1163,27 @@ fixtureにないlayer template field/applicability rule/obligation atomまたは
 - **PO判断材料**：A) 旧sourceどおり五roleを個別に維持し、各failure code/provenanceとprose-only PASS拒否を適用する（推奨、機能技術・ownerは固定しない）。B) role列挙を例示へ弱めて汎用evidenceだけで満たせるとする（意味変更）。C) 明示的に選択したrole subsetだけへ狭め、除外roleを未完holdingに残す（意味変更）。AとB/Cの差はsourceにある五つの個別role条件を合格対象として維持するかであり、影響はHELIXOS-L2-124と対応L11の対象role/条件 closureに限る。候補の作成・review前にこの判断を要求せず、A以外の採択・意味変更は既存authorityへ残す。
 - **限界**：source上version_targetなし。候補はコード体系、DB/API/runtime/tool identity、作成・close・promote等のoperation権限、実行stage gateを新設しない。OS-L2-124/L11-124は五roleの証拠接続候補であり、機能実装、runtime/CI成功、旧HR-FR-HIL-09全体のformal successorまたはclosureを主張しない。
 
-### HELIXOS-L11-125 Worker結果境界fail-closeの受入候補
+### HELIXOS-L11-125 Worker結果境界の受入候補（改訂002、未採択・未実行）
 
-- **状態**：未採択候補に対する未実行oracle。候補・fixture・静的確認は採択、実装、実行、成功を意味しない。
-- **対象入力**：同一の合成ticket/要求revision/scope、operation契約revision、assignment/attempt、選択result source、適用HARNESS oracle、OS結果記録境界を与える。size上限・期限・必要sequenceは入力契約のfixture値であり、製品標準値を定義しない。
-- **正常例**：fixture operation `op-A@r1`、要求`req-A@r1`、scope`scope-A`、assignment`assign-A`、attempt`attempt-1`、選択Worker `worker-A`、契約内の完全な結果と連続sequence、宣言上限内のpayload、期限内のterminal outcomeを与える。OSは同一attemptへの出所・完全性・状態・未完義務を結ぶ。HARNESS oracleが当該結果を受け入れた時だけそのoracleに対応する検収結果を記録する。fixture tokenは実ID・schema・providerを指定しない。
-- **個別negative cases**：各fixtureは単独で投入し、どのfailure classが拒否されたかを別々に判定する。
-  1. 不正JSONを与え、結果をparse/validation済み成功として記録しない。
-  2. valid JSONだが選択operation契約とschema/field条件が合わない結果を与え、同じく成功結果へ昇格しない。
-  3. declared maximumを超えるpayloadを与え、部分parse結果を正本化しない。
-  4. required sequenceを一つ欠落させ、後続sequenceだけで連続完了を主張しない。
-  5. Worker crashをterminal成功結果として扱わず、未完attemptと戻し先を記録する。
-  6. 期限超過後の結果を通常成功にせず、期限失効状態と未完義務を保持する。
-  7. cancel後に届いた結果を取消済みattemptの成功へ結びつけない。
-  8. backpressure状態のfixtureを与え、結果断片の欠落有無にかかわらず当該attemptをfail-closeし、受領済み断片を全結果へ昇格しない。
-  9. 親実行主体が消失したfixtureで、親のterminal/authorityを推測し結果を正本化しない。
-  10. partial resultのみ存在するfixtureで、別の明示された有効完成条件がないままcanonical successにしない。
-- **未見例**：未知のfailure code、未登録契約revision、適用可否不明なresult sourceを与える。候補oracleはunknown/pendingで保持し、成功・N/A・fallbackへ変換しない。具体的failure taxonomyやschemaの追加を暗黙推測しない。
-- **戻し先と証拠**：各negativeでattempt identity、要求revision、operation契約、欠落/不一致facet、状態、未完義務、再開/戻し先を追えることを確認する。failureを検知したという記録だけで、OS状態遷移やHARNESS受入の強制成立を推定しない。実行主体、契約owner、HARNESS oracle owner、SECURITY/INFRASTRUCTURE境界を分ける。
-- **依存区分・具体closure fixture**：同じfixture入力にはpack=`fixture:os-result-boundary`、pack revision=`fixture-os125-r1`、source revision=`fixture-source-r1`、HARNESS-L2-010 revision=`fixture-h010-r1`、L2-011 revision=`fixture-h011-r1`、operation=`receive-result`、target/scope=`fixture:req-A@r1/scope-A`、selected Worker source=`fixture:worker-A@r1`を与える。各dependency rowにはidentity・宣言owner・contract version・compatibility range・そのrangeに対する明示根拠・4分類・applicability conditionを含む。これらは受入用の合成tokenであり、実ownerや実registryを指定しない。
-  - 常時必須：`fixture:ticket-result-contract`（owner `fixture-owner:HARNESS`、contract `fixture-contract:oracle-r1`、range `fixture-range:oracle-r1`、根拠`fixture-compat:oracle-r1=true`、class=`always`、condition=`all receive-result operations`）。
-  - 特定操作時のみ必須：`fixture:terminal-state`（owner `fixture-owner:OS`、contract `fixture-contract:terminal-r1`、range `fixture-range:terminal-r1`、根拠`fixture-compat:terminal-r1=true`、class=`operation-only`、condition=`receive-result or resume`）。この正常fixtureでは適用される。
-  - 選択した入力元に応じて必須：`fixture:worker-A@r1`（owner `fixture-owner:worker-A`、contract `fixture-contract:worker-result-r1`、range `fixture-range:worker-result-r1`、根拠`fixture-compat:worker-result-r1=true`、class=`selected-source`、condition=`selected source is worker-A@r1`）。別source `fixture:worker-B@r1`は選択しないため`unobserved`とし、成功/不在/適格へ変換しない。A失敗時にBへfallbackしない。
-  - 参照資料のみ：`fixture:legacy-ipc-notes`（owner `fixture-owner:archive`、version `fixture-note-r1`、range `fixture-range:reference-only`、class=`reference-only`、condition=`background only`）。旧protocol/schema記述を実行依存やoracleへ昇格しない。
-  - **正常closure**：上記identity・owner・version/range・compatibility根拠・分類・condition、pack/source/010/011 revisionを再入力すると同じeffective closure/reasonを返し、対象操作のalways/operation/selected-source依存は閉じ、未選択sourceは未観測、参照資料はclosure外となる。
-  - **独立closure反例**：常時依存、operation-only依存、selected-source依存の各identity/owner/version range/compatibility根拠/class/applicability conditionのいずれか一つを個別に欠落・wrong/unknownにする。さらにpack/source/010/011 revisionを個別にmissing/stale/wrongにする。各fixtureで実行依存closureをunknown/pendingとし、他依存の成功で補完しない。選択sourceの失敗後にworker-Bへ切り替える例も個別拒否する。reference-only fixtureは別に扱う：classがreference-onlyと明示済みのまま説明文や参照元owner/version/range/evidenceが欠けるときは、その資料の参照/provenance状態だけをunknownとして記録し、実行依存closureを止めず、資料を実行依存へ昇格しない。class/applicability自体がunknownまたはauthority/oracle等の実行条件を含みreference-onlyと矛盾するなら、参照のみと決めつけず分類をunknownに保つ。
+- **確認対象**：選択されたWorker operationの結果、対象revision/scope、結果の完全性、適用される上限・期限、HARNESS oracleによる受入状態を確認する。ここに記すのは人が判断できる受入条件であり、実行済み証拠や採択を示さない。
+- **正常例**：結果が適用契約と対象scopeに合い、必要な内容・順序が揃い、既存の上限・期限を満たし、HARNESS oracleが受け入れる。一時的なbackpressureが起きても、既存契約の範囲で待機・再開し、欠損なく完全な結果へ戻れた場合は正常例とする。backpressureの発生だけでは失敗にしない。
+- **個別negative**：次の各条件を独立に確認し、該当する結果を正常完了・検証済み成功として扱わない。
+  1. 不正なJSONまたは結果表現。
+  2. 選択されたoperation契約との不一致。
+  3. 適用される上限の超過。
+  4. operationの完了時点で必要な結果sequenceまたは内容の欠落。
+  5. Worker crashにより結果が未完了。
+  6. 既存のoperation期限を超過した結果。
+  7. cancel後に届いた結果。
+  8. backpressure後も欠損またはsequence gapが解消せず、完全な結果を確認できない状態。
+  9. 親実行の消失により結果の状態・権限を確認できない状態。
+  10. partial resultだけがあり、有効な完成結果を確認できない状態。
+  各negativeでは結果の理由・対象・未完義務を保持し、部分結果を正本化しない。待機・再開を行う実装方式や上限値はこの受入候補で定めない。
+- **未見・unknown**：未登録の結果形式、適用契約、failure class、または完了状態を与えた場合はunknown/未完に留め、成功・空結果・非適用・別sourceへのfallbackへ変換しない。
+- **依存境界（HARNESS-L2/L11-023の採択済み4区分）**：このoperationで使う区分を次の意味で分類し、適用される実行依存だけでclosureを判定する。常時必須にはticket・要求revision・scope、選択operation契約、assignment/attemptと終了状態、選択されたHARNESS oracleおよびOS結果記録境界を含める。特定操作時のみ必須には結果受領・検収・待機再開など、そのoperationで実際に行う処理と、その処理が適用される条件を含める。選択入力元に応じて必須には当該operationが選んだWorker/result sourceとその契約・revisionを含め、未選択sourceは未観測のままにして失敗時にもfallbackしない。参照資料のみには背景の旧HR/HAC/HAT、旧protocol/schema資料を置き、現行operationの実行依存・oracle・権限の代替にしない。このreference-only分類は現行operationのruntime依存closureに限る。旧HR/HAC/HATを参照資料とすることから、HIL-NFR-14の規範条件や本候補で保持する対応条件を消去・降格しない。source条件とconsumer対応はreceiptに個別記録する。これらの区分はHARNESS-023に従う分類であり、新しいdependency schemaやfixture tokenを要求しない。
+- **依存closureの受入**：同一の選択入力と適用条件を再評価したとき、同じ依存closureと理由を得る。適用される常時必須、operation-only、selected-source依存のidentity、owner、contract/revision、適合根拠、分類またはapplicabilityが欠落・不明・stale・矛盾する場合は、そのoperationをunknown/未完として保留し、他の依存の成功で補完しない。参照資料のみと既知の資料について説明・provenance metadataだけが欠けた場合は参照状態だけをunknownとし、実行closureを停止しない。区分やapplicability自体が不明、または参照only指定が実行条件・authority・oracleと矛盾する場合は参照資料へ押し込まず分類をunknownに保つ。個々のidentity/version/compatibility証拠のfixture値は別の技術検討に残し、この受入条件で固定しない。
+- **既存条件との区別**：OS-L2/L11-018/019/020、HARNESS-L2/L11-005/022の一般的なassignment、continuity、検証oracleは各自の採択scopeのまま維持する。本候補の条件から他候補・他機構の採否やsource closureを推定しない。
+- **根拠と実施状態**：旧HIL-NFR-14、HR-FR-HIL-12、HAC-HIL-12a/b/c、HAT-HIL-12、HST-CASE-007-03..10および現行候補001との照合は[改訂coverage receipt](../../governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json)に記録する。HAT/HSTは設計資料であり実行しない。現行runtime/test/CIも実行しておらず、この受入候補は未採択・未実行である。
 
 ### HELIXOS-L11-126 失効後fencingとdurable checkpoint再開の受入候補（未採択・未実行）
 

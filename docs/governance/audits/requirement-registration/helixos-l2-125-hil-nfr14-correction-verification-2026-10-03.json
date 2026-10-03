@@ -1,0 +1,95 @@
+{
+  "schema_version": "os125-correction-static-proof.v3",
+  "result": "PASS",
+  "historical_draft_base": "62d9eedca25a927916594a0a96690b2441437712",
+  "latest_main_commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+  "registration_id": "MPR-RC-HELIXOS-L2-125-002",
+  "supersedes_registration_id": "MPR-RC-HELIXOS-L2-125-001",
+  "latest_main_comparison": {
+    "latest_main_commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "comparison_basis_commit": "62d9eedca25a927916594a0a96690b2441437712",
+    "latest_main_MPR_full_file_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "MPR_62d9_prefix_bytes_match_latest_main": true,
+    "latest_main_MPR_125_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
+    "MPR_001_row_equal_to_original_62d9_pin": true,
+    "latest_main_old_001_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+    "latest_main_old_001_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+    "latest_main_L2_125_old_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+    "latest_main_L11_125_old_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+    "latest_main_62d9_pair_files_byte_identical": true,
+    "latest_main_comparison_scope": "MPR register, prior MPR-001 row, old receipt/source, OS L2/L11 target files. This is separate from the original 62d9 draft basis."
+  },
+  "historical_001_immutability": {
+    "MPR_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
+    "old_receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-02.json",
+    "old_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+    "old_source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-02.jsonl",
+    "old_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+    "old_L2_001_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+    "old_L11_001_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+    "MPR_001_raw_row_byte_identical_current": true,
+    "old_receipt_and_source_byte_identical_current": true,
+    "register_base_prefix_latest_main_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "current_register_exact_latest_main_prefix": true
+  },
+  "current_002_pins": {
+    "MPR_002_raw_row_sha256": "sha256:74e7c2e209a1260be008140c9cc58898cb032963df97ff89a35d9ee3c2256277",
+    "candidate_semantic_digest": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-03-r2.jsonl",
+    "source_ledger_sha256": "sha256:8c30e5644867f1b055be633481e79c27b7614aaa5d046fa55afe78d292a980c2",
+    "receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-03-r2.json",
+    "receipt_sha256": "sha256:d30063033d52b858747f8ff1264b54f764ccda3c0280414ac4dce773f6532176",
+    "L2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "L2_section_sha256": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "L2_full_file_sha256": "sha256:7bf82065150cb324076fcce330e0d02ede6173c8cad4cd0217c4f38cce095c38",
+    "L11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "L11_section_sha256": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c",
+    "L11_full_file_sha256": "sha256:c5def27f178a17d26844352cc9eb15559914d495fae8e47c07ebe4562abd3e48",
+    "source_atom_count": 1,
+    "coverage_result": "pending_coverage"
+  },
+  "source_and_acceptance_checks": {
+    "legacy_IR_identity": "HIL-NFR-14 one source statement atom; original source text/digest unchanged",
+    "condition_count": 10,
+    "backpressure_lossless_wait_resume_is_normal": "may be normal only within existing contract/upper bound/deadline and complete result",
+    "backpressure_unresolved_loss_or_gap_is_negative": true,
+    "other_failure_conditions_are_individually_mapped": true,
+    "HST_CASE_007_09_means_queue_upper_bound_overflow_not_transient_pressure": true,
+    "HAT_and_HST_execution": "none; design material only",
+    "new_internal_fixture_values_in_L2_L11": false,
+    "existing_001_detailed_fixture_audit": {
+      "json_path": "docs/governance/audits/requirements-stage/hil-nfr13-15-source-condition-current-recheck-2026-10-02.json",
+      "sha256": "sha256:5ce140954c9ad742fdc0af616b1f5b4427e7c0011147e9e5e9af4084dc088bc2",
+      "preserved_as_audit_only": true
+    },
+    "023_four_dependency_categories_concretely_mapped_in_L11_and_receipt": true,
+    "023_normal_closure_and_independent_required_dependency_negatives_retained": true,
+    "reference_only_metadata_negative_does_not_stop_execution_closure": true,
+    "old_001_four_category_fixture_and_independent_negative_material_immutable_audit_pinned": true,
+    "old_001_four_category_fixture_and_independent_negative_material_immutable_source_pinned": true,
+    "old_001_technical_condition_crosswalk_separately_pinned": true,
+    "runtime_reference_classification_does_not_downgrade_source_or_consumer_conditions": true
+  },
+  "preservation_checks": {
+    "only_125_sections_changed_in_L2_L11": true,
+    "OS_018_019_020_L2_L11_sections_exactly_unchanged": {
+      "L2-L2-018": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+      "L2-L2-019": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+      "L2-L2-020": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+      "L11-L2-018": "sha256:77e8ef58e9774503379bb3a84a0218fa29dbad536e142122c7bee8e8bc0b1d53",
+      "L11-L2-019": "sha256:9e17211bf2f7f54a58e2be30e23335954d94e184573912ed4f3ac92246838351",
+      "L11-L2-020": "sha256:a9e5f9430836d409a7885b548fa8bff7a874184c024e74e28627cb9d7c59c88c"
+    },
+    "no_other_adopted_pair_body_changed": true,
+    "no_source_closure_or_formal_successor_claimed": true,
+    "no_adoption_or_implementation_or_runtime_success_claimed": true
+  },
+  "static_validation": {
+    "MPR_append_checker_base": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "MPR_001_historical_row_and_base_prefix_preserved": true,
+    "section_and_receipt_MPR_pins_reconciled": true,
+    "JSON_receipt_parse": "PASS",
+    "git_diff_check": "PASS",
+    "receipt_and_register_pins_reconciled": true
+  }
+}

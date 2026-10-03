@@ -1,0 +1,285 @@
+{
+  "schema_version": "os125-hil-nfr14-correction-receipt.v1",
+  "receipt_id": "HELIXOS-L2-125-HIL-NFR-14-COVERAGE-2026-10-03-R2",
+  "status": "corrected_candidate_002_pending_p0_decision",
+  "authority_effect": "none",
+  "review_base_commit": "62d9eedca25a927916594a0a96690b2441437712",
+  "correction_reason": "後発35件のPO判断はMPR-001を現行版で承認せず、欠損の有無を問わないbackpressure単独失敗を、欠損なし待機・再開と欠損／上限違反／期限超過に分ける修正を勧めた。旧MPR-001、旧receipt、旧source ledgerおよび旧source atomは変更せず、同一identityの002候補を作成した。採択・source meaning disposition・formal successorは未決。",
+  "registration_lineage": {
+    "new_registration_id": "MPR-RC-HELIXOS-L2-125-002",
+    "supersedes_registration_id": "MPR-RC-HELIXOS-L2-125-001",
+    "immutable_001_raw_register_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
+    "immutable_001_receipt_path": "docs/governance/audits/requirement-registration/helixos-l2-125-hil-nfr14-coverage-receipt-2026-10-02.json",
+    "immutable_001_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+    "immutable_001_source_ledger_path": "docs/governance/audits/requirement-registration/hil-nfr14-worker-result-boundary-source-lines-2026-10-02.jsonl",
+    "immutable_001_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+    "immutable_001_l2_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+    "immutable_001_l11_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+    "immutable_001_candidate_full_file_sha256": {
+      "docs/helix-os/L2-requirements/governance-requirements.md": "sha256:bdc41cd8738255dae40ba9a259cb16407119c8d2ff559969d79b095f88916fe4",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md": "sha256:3d453a599d4c32de3e98d8cf54fd7948a087010d39fdf1ac02798c25cfebafcc"
+    }
+  },
+  "source_identity": {
+    "source_atom_count": 1,
+    "source_atom_ref": "IR153-HIL-NFR-14-IPC-FAIL-CLOSE",
+    "source_holding_ref": "MPR-SH-IR-003#HIL-NFR-14",
+    "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-14/statement/text",
+    "source_file_sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "source_statement": "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。",
+    "source_statement_semantic_digest": "sha256:52fdf014fd081e0e7134b695d7bb4408868e1785f17f08c02d9479acd0e41ad0",
+    "source_record_semantic_digest": "sha256:0bdf83b1f2e10b40c05634dbf9d01147ca023d2fc905c1204a9161b9e5349f8e",
+    "raw_l1_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+    "raw_l1_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194",
+    "raw_l1_full_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+    "raw_l1_line_text": "| **HIL-NFR-14** | IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。 |",
+    "raw_l1_line_sha256_excluding_lf": "sha256:c46da658f329d70708ef64b39c6d1450144a3dd97b27cb8d53aada775e09c9f2",
+    "raw_l1_line_sha256_including_lf": "sha256:7a61ab7b054b3f41c879a0a1a1061bab7488f0ed8bec45fe5b87a5a0e967a4f6",
+    "atom_digest_rule": "SHA-256 of UTF-8 `HIL-NFR-14 ` + the source statement semantic digest without `sha256:` + LF; one IR identity only.",
+    "source_atom_set_digest": "sha256:b54b2f59a06a3942b58024203dc0c04ff94eeecf6e064f0987cd82b2a9b013fa",
+    "source_atom_set_file_sha256": "sha256:8c30e5644867f1b055be633481e79c27b7614aaa5d046fa55afe78d292a980c2",
+    "source_scope": "旧IRのHIL-NFR-14 statement identity一件。旧L1 line 194は同一意味のcorroborationで別atomではない。HR/HAC/HAT/HSTはconsumer/oracle contextで、追加atomとして数えない。隣接NFR13/15や旧実装・旧runtimeを入力にしない。"
+  },
+  "consumer_sources": {
+    "HR-FR-HIL-12": {
+      "asset_id": "LEGACY-ASSET-67761C517521603F844C",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json#/HR-FR-HIL-12",
+      "file_sha256": "sha256:2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "record_semantic_digest": "sha256:fe7373f829aaac4acd8a7497c5d27454961c36270d22d2213498b979591619ad",
+      "behavior": "NodeがPython workerをversioned JSON Lines IPCで監督し、検証済みresultだけをNode authorityでtransaction commitする",
+      "transition_contract": "compatible protocol、deadline/lease、authority map → terminal receipt一件、Node writeのみ",
+      "failure_and_evidence": "protocol/JSON/size/timeout/crash/backpressure/late/direct write / envelope、process、schema、transaction、projection report",
+      "role": "consumer context; Node/Python/JSON Lines/authority implementation is not imported."
+    },
+    "HAC-HIL-12a": {
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-12a",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "record_semantic_digest": "sha256:c06c8d4cdc734f3d51afe5a5723ffac4dca22eeb3491a6ca34c7b12fd0df44dc",
+      "statement": "正常resultを一回commit",
+      "polarity": "positive"
+    },
+    "HAC-HIL-12b": {
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-12b",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "record_semantic_digest": "sha256:3c67a537f859da4326a5701c1c363f0e67e8addca5f94ec2bc2c247962995d1f",
+      "statement": "IPC異常をterminal化しpartial 0",
+      "polarity": "negative"
+    },
+    "HAC-HIL-12c": {
+      "asset_id": "LEGACY-ASSET-4886CEF2A7AB5B7AA5C8",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json#/HAC-HIL-12c",
+      "file_sha256": "sha256:4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "record_semantic_digest": "sha256:69f181ab64badd08eae7149c940eb4c195fc77231ae3c83b1375a48ad14f0458",
+      "statement": "cancel/timeout後late/direct write拒否",
+      "polarity": "boundary"
+    },
+    "HAT-HIL-12": {
+      "asset_id": "LEGACY-ASSET-F7A988C2531DEAC3D23B",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json#/HAT-HIL-12",
+      "file_sha256": "sha256:7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "record_semantic_digest": "sha256:c8f63300ab35a338b8094e1146d569f310ed1ec42d7a681bd64d0e0f60140f64",
+      "status": "designed_not_implemented",
+      "role": "designed_not_implemented; read-only context, never executed."
+    },
+    "HST-CASE-007-09": {
+      "asset_id": "LEGACY-ASSET-3CDF4110625C2E6BA1CC",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md:74",
+      "file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+      "raw_line_sha256_excluding_lf": "sha256:4018cedbeb21b345ba41be2bf092c5aa842fca8e0b47aa9db01782f010fc68ec",
+      "raw_line_sha256_including_lf": "sha256:478a8198c8425c04ba1abff0fbc78e04548449a3523c1f8569fedc687adf8ade",
+      "exact_text": "| HST-CASE-007-09 | HST-HIL-007 | HIL-NFR-14 | supervisor read queueが上限 | progress messageを一件追加する | running | quarantined | overflow findingとresult commit 0件 | HIL_WORKER_BACKPRESSURE_EXCEEDED | FX-HST-007-09 | design-defined | not-implemented |",
+      "status": "design-defined / not-implemented; read only, not executed",
+      "relation": "At the read-queue upper bound an additional progress message creates an overflow finding and no result commit. This consumer supports an upper-bound/overflow negative and does not itself require failure on a transient backpressure event with a complete, loss-free result."
+    }
+  },
+  "po_instruction": {
+    "decision_record_path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+    "decision_record_sha256": "sha256:e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+    "decision_record_status": "later35 PO decision admitted in main 62d9; exact identity revision 001 explicitly not approved; this is an instruction to revise/re-present, not approval of 002.",
+    "withheld_identity_row": {
+      "physical_line": 59,
+      "exact_text": "| `HELIXOS-L2-125` | 現行版では承認しない | `MPR-RC-HELIXOS-L2-125-001` | `sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595` | `今回採択しない` |",
+      "raw_line_sha256_excluding_lf": "sha256:4733d2fc0bccb35a7b4aa3a722521124dad472d19f5bfa401f14fe7b3f3256cb"
+    },
+    "assessment": {
+      "physical_line": 133,
+      "exact_text": "OS-125\t受入条件が、欠損の有無にかかわらずbackpressure発生で失敗を求めている。欠損なく待機・再開できた場合と、欠損・上限違反・期限超過を分ける修正を勧める。不正・部分結果を成功へ昇格させない目的は維持する。",
+      "raw_line_sha256_excluding_lf": "sha256:0a719f47b65f5309b5044aa4d9c11814a175f33395f15bd33551c37f111de3fe"
+    },
+    "source_condition_preserved": "不正・部分結果を成功へ昇格させない目的は維持する。"
+  },
+  "candidate_pair": {
+    "identity": "HELIXOS-L2/L11-125",
+    "current_l2_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+    "current_l2_heading_line": 1550,
+    "current_l2_section_sha256": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "current_l11_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "current_l11_heading_line": 1166,
+    "current_l11_section_sha256": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c",
+    "section_digest_rule": "UTF-8 bytes from exact ### candidate heading through before next same-or-higher ### heading; trailing empty lines trimmed, exactly one LF terminator.",
+    "current_l2_full_file_sha256": "sha256:7bf82065150cb324076fcce330e0d02ede6173c8cad4cd0217c4f38cce095c38",
+    "current_l11_full_file_sha256": "sha256:c5def27f178a17d26844352cc9eb15559914d495fae8e47c07ebe4562abd3e48",
+    "current_candidate_semantic_digest": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+    "current_pair_sections": {
+      "HELIXOS-L2-125": "sha256:0986d8606969ffae803f29cc101ba30b330bca408cf2d300f5e19f851e78f4f9",
+      "HELIXOS-L11-125": "sha256:31e6dabb4c915de34c5d546e3a31aaa6c808850f3543f78fa8e4ef7c21d6f63c"
+    }
+  },
+  "condition_map": [
+    {
+      "source_condition": "不正JSON",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 1: do not accept as success."
+    },
+    {
+      "source_condition": "schema不一致",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 2: do not accept as success."
+    },
+    {
+      "source_condition": "oversize",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 3: applicable existing upper bound exceeded."
+    },
+    {
+      "source_condition": "sequence欠落",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 4: required content absent at completion; a transient wait is not itself absence."
+    },
+    {
+      "source_condition": "worker crash",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 5: incomplete attempt is not success."
+    },
+    {
+      "source_condition": "timeout",
+      "consumer_context": "HR12/HAC12c/HAT12",
+      "candidate_002": "L11-125 independent negative 6: existing operation deadline exceeded."
+    },
+    {
+      "source_condition": "cancel",
+      "consumer_context": "HR12/HAC12c/HAT12",
+      "candidate_002": "L11-125 independent negative 7: canceled attempt/late result not accepted."
+    },
+    {
+      "source_condition": "backpressure",
+      "consumer_context": "HR12/HAC12b/HAT12; HST-CASE-007-09 only covers queue-at-upper-bound overflow and no commit, not transient pressure without loss.",
+      "candidate_001_mapping": "fail regardless of whether result fragments are missing.",
+      "candidate_002_normal": "transient backpressure followed by a complete, loss-free wait/resume within existing contract limits/deadline may be normal.",
+      "candidate_002_negative": "only the unresolved loss/gap or other independently violated condition is a negative; partial result never promoted.",
+      "meaning_boundary": "The 002 interpretation follows the exact later35 correction direction; it remains a candidate for fresh PO decision. It does not edit the old source text, receipt, row, or holding."
+    },
+    {
+      "source_condition": "親process消失",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 9: do not infer valid parent state or success."
+    },
+    {
+      "source_condition": "partial result非昇格",
+      "consumer_context": "HR12/HAC12b/HAT12",
+      "candidate_002": "L11-125 independent negative 10: partial result alone is never canonical success."
+    }
+  ],
+  "human_decision_options": {
+    "question": "MPR-RC-HELIXOS-L2-125-002で示す、backpressure発生と結果欠損の区別をどう扱うか。旧001は後発35件のPO判断で不採択のまま。",
+    "A": {
+      "choice": "002の範囲を採用し、欠損なく既存契約内で待機・再開し完全結果に到達した場合は正常、未解消欠損・上限超過・期限超過・不正/partial結果は独立して非成功とする。",
+      "recommendation": "推奨。later35のOS-125保留解除条件をそのままcandidateに反映し、不正・部分結果の非昇格は維持する。",
+      "impact": "一時的backpressureのみで結果を失敗へ落とさず、欠損や境界違反をsuccessへしない。待機方式・再試行値・transportは定めない。"
+    },
+    "B": {
+      "choice": "002を採択せず、旧001とHIL-NFR-14を未採択/保留のまま保持する。",
+      "impact": "列挙failure conditionsの候補は残るが、backpressure単独発生と未解決欠損を分ける現行pair受入は未確定のままとなる."
+    },
+    "decision_boundary": "この記録はPO判断材料であり、A/Bの選択、candidate adoption、formal successor、source retirement、implementation/runtime successは生成しない."
+  },
+  "dependency_scope": {
+    "adopted_contract": "HARNESS-L2/L11-023; preserve its four existing classifications and their operation-specific meaning.",
+    "candidate_002_class_application": {
+      "always_required": "For the selected result operation: ticket/request revision/scope, operation contract, assignment/attempt and terminal state, applicable existing bound/deadline, selected HARNESS oracle, and OS result-record boundary.",
+      "operation_only": "Result receipt, validation, wait/resume, or other operation-specific processing is required only when that processing applies; its applicability condition is part of the closure.",
+      "selected_source": "The selected Worker/result source and its applicable contract/revision are required for that operation. An unselected source remains unobserved and is not a fallback after selected-source failure.",
+      "reference_only": "HR/HAC/HAT, historical protocol/schema material, and similar provenance context are not current runtime dependencies, oracle, or authority. If an already-classified reference-only item lacks explanatory/provenance metadata, only that reference state is unknown; operation closure continues. If classification/applicability is itself unknown or conflicts with execution/authority/oracle semantics, keep classification unknown rather than assuming reference-only.",
+      "normal_closure": "The same selected inputs and applicability conditions reproduce the same effective closure/reason, with all applicable execution dependencies present.",
+      "independent_negative_checks": "Independently remove or make stale/conflicting a required identity, owner, contract/revision, compatibility basis, category, or applicability condition for each applicable execution dependency; that operation is unknown/pending and cannot borrow success from another dependency. Independently vary reference-only explanatory metadata; it makes provenance unknown but does not stop execution closure. Do not fallback to an unselected source.",
+      "old_001_fixture_trace": "The exact historical four-category tuple and its positive/independent-negative closure cases are preserved by historical_001_fixture_source below. The separate 001 source-condition current-recheck audit maps the ten NFR14 conditions to consumers/candidate negatives, but does not replace the fixture section pin.",
+      "old_001_fixture_audit_path": "docs/helix-os/L11-acceptance/governance-acceptance.md at 94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891, lines 1166-1190; exact section digest is pinned above.",
+      "old_001_fixture_audit_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+      "historical_001_fixture_source": {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "source_commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+        "selector": "### HELIXOS-L11-125 Worker結果境界fail-closeの受入候補",
+        "physical_lines": [
+          1166,
+          1190
+        ],
+        "normalized_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+        "historical_fixture_categories": {
+          "always_required": "fixture:ticket-result-contract; selected operation inputs and applicable result boundary.",
+          "operation_only": "fixture:terminal-state; applies to receive-result or resume.",
+          "selected_source": "fixture:worker-A@r1; worker-B remains unobserved and is not fallback.",
+          "reference_only": "fixture:legacy-ipc-notes; background only, not execution closure."
+        },
+        "historical_positive": "Same pack/source/010/011 revisions and complete identity/owner/version-range/compatibility/applicability values reproduce the same effective closure and reason; required applicable rows close, unselected source stays unobserved, reference material stays outside closure.",
+        "historical_independent_negatives": "For each applicable execution dependency, independently omit or make wrong/unknown its identity, owner, version/range, compatibility basis, class, applicability, or applicable pack/source/010/011 revision; closure becomes unknown/pending without borrowing other dependency success. Selected-source failure followed by worker-B fallback is separately rejected. Missing explanatory metadata on a known reference-only row makes only reference provenance unknown and does not stop execution closure; unknown class/applicability or contradiction with execution/authority/oracle is not presumed reference-only.",
+        "status": "Exact historical candidate acceptance source and synthetic values are retained as read-only audit context; not executed, not adopted, and not reintroduced as L2/L11 schema."
+      }
+    },
+    "new_dependency_schema_or_fixture_values": "none in L2/L11-125 revision 002; technical compatibility test inputs stay in this audit receipt or immutable 001 audit material only.",
+    "unknown_handling": "Missing/unknown/stale/conflicting applicable execution dependency remains unknown/pending; no fallback to an unselected source. Missing metadata for a known reference-only item affects reference provenance only, not operation closure."
+  },
+  "preservation_and_limits": {
+    "old_001_row_receipt_source": "immutable and byte-preserved in this revision.",
+    "old_normative_source": "HIL-NFR-14 source text/file and MPR-SH-IR-003 holding remain unchanged.",
+    "other_adopted_requirement_bodies": "not edited; only the two OS-125 sections and append-only MPR register change.",
+    "no_adoption_or_successor": "true",
+    "legacy_runtime_test_ci_executed": false,
+    "formal_successor_or_source_closure_claimed": false,
+    "implementation_or_execution_claimed": false,
+    "old_001_detailed_fixture_audit_preservation": "The concrete four-category fixture and its positive/independent-negative closure oracles are pinned to the immutable 001 L11 section at 94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891 lines 1166-1190. The separate source-condition crosswalk remains pinned under technical_follow_up_material. The 002 receipt maps those old audit cases onto the revised operation-level acceptance without carrying synthetic identifiers into L2/L11."
+  },
+  "source_atom_set_digest": "sha256:b54b2f59a06a3942b58024203dc0c04ff94eeecf6e064f0987cd82b2a9b013fa",
+  "source_atom_count": 1,
+  "coverage_result": "pending_coverage_until_p0_resolves_the_backpressure_source_interpretation",
+  "source_atom_accounting": {
+    "candidate_input_atom": "HIL-NFR-14 one IR statement identity",
+    "carried_atom_refs": [
+      "HIL-NFR-14"
+    ],
+    "preserved_pending_registration_refs": [
+      "MPR-SH-IR-003#HIL-NFR-14"
+    ],
+    "unaccounted_atom_refs": [],
+    "scope_note": "The old source atom is preserved and mapped, but changed backpressure acceptance is not treated as an adopted source disposition; 002 is pending PO decision."
+  },
+  "technical_follow_up_material": {
+    "purpose": "For future L3 or implementation-stage requirement elaboration only after authorization; not an acceptance criterion or new L2/L11 schema.",
+    "inputs": "Use the original HR/HAC/HAT source records and existing HARNESS-023 dependency contract; do not infer threshold values, retry counts, transports, providers, or schema from this receipt.",
+    "runtime_execution": "not performed",
+    "source_note": "HST-CASE-007-09 is retained as read-only consumer context; its bounded overflow case does not override the later35 PO instruction or establish an unconditional transient-backpressure failure.",
+    "existing_001_detailed_fixture_audit": {
+      "json_path": "docs/governance/audits/requirements-stage/hil-nfr13-15-source-condition-current-recheck-2026-10-02.json",
+      "json_sha256": "sha256:5ce140954c9ad742fdc0af616b1f5b4427e7c0011147e9e5e9af4084dc088bc2",
+      "md_path": "docs/governance/audits/requirements-stage/hil-nfr13-15-source-condition-current-recheck-2026-10-02.md",
+      "md_sha256": "sha256:f26f5d090ca2932ed6cde9e4d9fc3367f862139b5a6fe4cae759cf8740e78d86",
+      "scope": "Retains the original ten-condition source-to-consumer/candidate crosswalk for audit traceability. The concrete four-category closure fixture and independent negatives are preserved separately in dependency_scope.candidate_002_class_application.historical_001_fixture_source.",
+      "execution_status": "static design material only; not executed"
+    }
+  },
+  "latest_main_recheck": {
+    "latest_main_commit": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
+    "comparison_basis_commit": "62d9eedca25a927916594a0a96690b2441437712",
+    "latest_main_MPR_full_file_sha256": "sha256:c10aff53eda8f8220b6af724365777636ad5bf723e32b2ad6f57905b91cfbab3",
+    "MPR_62d9_prefix_bytes_match_latest_main": true,
+    "latest_main_MPR_125_001_raw_row_sha256": "sha256:bcf33393a3ea19619508e13217f54a6b2a565daccabf549229e973044beec81a",
+    "MPR_001_row_equal_to_original_62d9_pin": true,
+    "latest_main_old_001_receipt_sha256": "sha256:dd043d9c83413f5f422af306cba8b054bd5d8f784ab067b2068a8c6a1a75dfd7",
+    "latest_main_old_001_source_ledger_sha256": "sha256:83880bbde3fe1c1effea457dee3355453481103caee3cbcdfdbab03afdb6c113",
+    "latest_main_L2_125_old_section_sha256": "sha256:fb8bdd8c3c105fc4151ee805e739c4df1e9932402818eec17266e323769c6595",
+    "latest_main_L11_125_old_section_sha256": "sha256:5d0b1f2263f8a8bc056dc46753671ceebec14e4fcb8f63d4b4c9b5835f7a46c3",
+    "latest_main_62d9_pair_files_byte_identical": true,
+    "latest_main_comparison_scope": "MPR register, prior MPR-001 row, old receipt/source, OS L2/L11 target files. This is separate from the original 62d9 draft basis."
+  }
+}
