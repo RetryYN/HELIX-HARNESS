@@ -45,9 +45,9 @@
     "base_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1",
     "base_rows": 714,
     "prefix_exact": true,
-    "current_bytes": 2896950,
-    "current_sha256": "ddcef08acd0fa2cade13ef1012cbbe26827ce4dcc32c02ed11ed4b0abc606548",
-    "appended_rows": 250,
+    "current_bytes": 2936566,
+    "current_sha256": "2ba83767d59e49d9c670c6911b8ea1eda4c7edb52b34b4049b5508c795679138",
+    "appended_rows": 264,
     "holding_correction": {
       "old_id": "MPR-SH-CANDIDATE-003",
       "new_id": "MPR-SH-CANDIDATE-004",
@@ -58,7 +58,7 @@
       "management_state": "registered_source_holding",
       "authority_effect": "none"
     },
-    "candidate_successor_count": 249,
+    "candidate_successor_count": 263,
     "candidate_registration_id_map": [
       {
         "requirement_identity": "HARNESS-L2-010",
@@ -188,7 +188,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-002",
@@ -198,7 +198,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-004",
@@ -208,7 +208,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-005",
@@ -218,7 +218,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-006",
@@ -228,7 +228,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-008",
@@ -238,7 +238,7 @@
         "source_atom_set_digest": "sha256:a7316f7565c34ff8ad7c654fb8f49800c61715eebf758c025ef72e2cd2d95b9b",
         "source_atom_count": 112,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-010",
@@ -248,7 +248,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-011",
@@ -258,7 +258,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-012",
@@ -268,7 +268,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-013",
@@ -278,7 +278,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-015",
@@ -288,7 +288,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-016",
@@ -298,7 +298,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-017",
@@ -308,7 +308,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-018",
@@ -318,7 +318,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-019",
@@ -328,7 +328,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-022",
@@ -338,7 +338,7 @@
         "source_atom_set_digest": "sha256:a7316f7565c34ff8ad7c654fb8f49800c61715eebf758c025ef72e2cd2d95b9b",
         "source_atom_count": 112,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-023",
@@ -348,7 +348,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-024",
@@ -358,7 +358,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-025",
@@ -368,7 +368,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-026",
@@ -378,7 +378,7 @@
         "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "source_atom_count": 0,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
-        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r3.json"
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r4.json"
       },
       {
         "requirement_identity": "HELIXSECURITY-L2-014",
@@ -2549,6 +2549,205 @@
         "source_atom_count": 4,
         "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02-r2.json",
         "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/hil11-product-data-projection-coverage-receipt-2026-10-02-r3.json"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-017",
+        "old_registration_id": "MPR-RC-HARNESS-L2-017-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-017-002",
+        "candidate_semantic_digest": "sha256:623b91b59a5cf09055e8604c3c84aebfe9428b86f950a0bcb2a9c1605d710d17",
+        "source_atom_set_digest": "sha256:142c78be807d0fb3e294a2dda54362f99d609f46e5c205f77f1159fddcfdc292",
+        "source_atom_count": 3,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "source_collection_scope",
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-021",
+        "old_registration_id": "MPR-RC-HARNESS-L2-021-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-021-002",
+        "candidate_semantic_digest": "sha256:c036a0a10beeb7c93587e3e71897c750c56c55a51df3850a1bb5ffb58dc446dc",
+        "source_atom_set_digest": "sha256:5c987aff04852b8ed45fc3d5996b863162dba9ec1c6bf83aec16a36c45ae0591",
+        "source_atom_count": 2,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "source_collection_scope",
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-022",
+        "old_registration_id": "MPR-RC-HARNESS-L2-022-004",
+        "new_registration_id": "MPR-RC-HARNESS-L2-022-005",
+        "candidate_semantic_digest": "sha256:88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+        "source_atom_set_digest": "sha256:5c987aff04852b8ed45fc3d5996b863162dba9ec1c6bf83aec16a36c45ae0591",
+        "source_atom_count": 2,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "source_collection_scope",
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HELIXLABO-L2-066",
+        "old_registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+        "new_registration_id": "MPR-RC-HELIXLABO-L2-066-002",
+        "candidate_semantic_digest": "sha256:d65780351792a4587966a7eb45c34359626200af5bdd8eb55e197b0a6f0db184",
+        "source_atom_set_digest": "sha256:125b5e3abc880685ab28ac2560aa7bc8226beaab29aa5c31cc0edc515ca784a5",
+        "source_atom_count": 1,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/labo-bugbot-misrepair-comparison-coverage-receipt-2026-09-28.json",
+        "metadata_fields_corrected": [
+          "source_collection_scope"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-015",
+        "old_registration_id": "MPR-RC-HARNESS-L2-015-004",
+        "new_registration_id": "MPR-RC-HARNESS-L2-015-005",
+        "candidate_semantic_digest": "sha256:d528e724da205072383a97c4dadf6ece9fb95f2ff2152eb5a5d1bd416029f601",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-016",
+        "old_registration_id": "MPR-RC-HARNESS-L2-016-004",
+        "new_registration_id": "MPR-RC-HARNESS-L2-016-005",
+        "candidate_semantic_digest": "sha256:3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-011",
+        "old_registration_id": "MPR-RC-HARNESS-L2-011-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-011-002",
+        "candidate_semantic_digest": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-012",
+        "old_registration_id": "MPR-RC-HARNESS-L2-012-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-012-002",
+        "candidate_semantic_digest": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-013",
+        "old_registration_id": "MPR-RC-HARNESS-L2-013-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-013-002",
+        "candidate_semantic_digest": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-018",
+        "old_registration_id": "MPR-RC-HARNESS-L2-018-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-018-002",
+        "candidate_semantic_digest": "sha256:3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-019",
+        "old_registration_id": "MPR-RC-HARNESS-L2-019-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-019-002",
+        "candidate_semantic_digest": "sha256:7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HARNESS-L2-020",
+        "old_registration_id": "MPR-RC-HARNESS-L2-020-001",
+        "new_registration_id": "MPR-RC-HARNESS-L2-020-002",
+        "candidate_semantic_digest": "sha256:d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d",
+        "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source_atom_count": 0,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HELIXOS-L2-046",
+        "old_registration_id": "MPR-RC-HELIXOS-L2-046-001",
+        "new_registration_id": "MPR-RC-HELIXOS-L2-046-002",
+        "candidate_semantic_digest": "sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+        "source_atom_set_digest": "sha256:76fd07fab7a49e856079337c3047987df4371bd6ddf80c20355c3d8fa5e4f0ba",
+        "source_atom_count": 1,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
+      },
+      {
+        "requirement_identity": "HELIXOS-L2-104",
+        "old_registration_id": "MPR-RC-HELIXOS-L2-104-001",
+        "new_registration_id": "MPR-RC-HELIXOS-L2-104-002",
+        "candidate_semantic_digest": "sha256:a6346a95c796b0d1c2e72e5f24e150767ced6329b9f6137a9547370e82ad502d",
+        "source_atom_set_digest": "sha256:b16d9f9532dd8ac5a6ec5752f8b665a94e18c457f8852ef9181c5efd1e044252",
+        "source_atom_count": 1,
+        "old_coverage_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json#HELIXOS-L2-104",
+        "new_coverage_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29-r2.json",
+        "metadata_fields_corrected": [
+          "coverage_receipt_ref"
+        ],
+        "authority_effect": "none"
       }
     ],
     "old_receipt_bytes_retained": true,
@@ -2560,9 +2759,151 @@
     "po_decision_or_l2_l11_file_changes": 0,
     "direct_live_field_updates": {
       "preserved_pending_registration_refs": 249,
-      "source_collection_scope_mentions": 9,
+      "source_collection_scope_mentions": 13,
       "evidence_refs_mentions": 4,
-      "coverage_receipt_ref_updates": 40
+      "coverage_receipt_ref_updates": 53
+    },
+    "review_followup_locator_corrections": {
+      "review_finding": "R2556-01",
+      "scope_locator_rows": [
+        {
+          "old_registration_id": "MPR-RC-HARNESS-L2-017-001",
+          "new_registration_id": "MPR-RC-HARNESS-L2-017-002",
+          "old_locator": "MPR-SH-CANDIDATE-003",
+          "new_locator": "MPR-SH-CANDIDATE-004"
+        },
+        {
+          "old_registration_id": "MPR-RC-HARNESS-L2-021-001",
+          "new_registration_id": "MPR-RC-HARNESS-L2-021-002",
+          "old_locator": "MPR-SH-CANDIDATE-003",
+          "new_locator": "MPR-SH-CANDIDATE-004"
+        },
+        {
+          "old_registration_id": "MPR-RC-HARNESS-L2-022-004",
+          "new_registration_id": "MPR-RC-HARNESS-L2-022-005",
+          "old_locator": "MPR-SH-CANDIDATE-003",
+          "new_locator": "MPR-SH-CANDIDATE-004"
+        },
+        {
+          "old_registration_id": "MPR-RC-HELIXLABO-L2-066-001",
+          "new_registration_id": "MPR-RC-HELIXLABO-L2-066-002",
+          "old_locator": "MPR-SH-CANDIDATE-003",
+          "new_locator": "MPR-SH-CANDIDATE-004"
+        }
+      ],
+      "shared_receipt_fanout": {
+        "old_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+        "new_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+        "current_registration_ids": [
+          "MPR-RC-HARNESS-L2-015-004",
+          "MPR-RC-HARNESS-L2-016-004",
+          "MPR-RC-HARNESS-L2-022-004"
+        ],
+        "successor_registration_ids": [
+          "MPR-RC-HARNESS-L2-015-005",
+          "MPR-RC-HARNESS-L2-016-005",
+          "MPR-RC-HARNESS-L2-022-005"
+        ],
+        "reason": "共有receipt本文に旧holding locatorがあるため、新receiptを作成して同じ旧receiptを参照する3件すべての現行coverage_receipt_refを追随させた。"
+      },
+      "selection_reason": "現行未supersede候補でsource_collection_scopeが003を名指しする4行を訂正。さらに共有receipt参照の015/016を含む3 current rowsを新receiptへ追随。OPSのL3 holdingとOS-051/047の過去誤り説明は歴史記録のため変更対象外。 さらにcurrent coverage receiptを走査し、旧harness receiptの未移管6 candidate、RFA-046、OS-104と共有fanoutを同じmetadata-only successor方式で追随。OS-051/047およびOPS holdingにある003は過去誤り・経緯の記録として保持。",
+      "additional_current_receipt_fanout": [
+        {
+          "old_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "new_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
+          "current_registration_ids": [
+            "MPR-RC-HARNESS-L2-011-001",
+            "MPR-RC-HARNESS-L2-012-001",
+            "MPR-RC-HARNESS-L2-013-001",
+            "MPR-RC-HARNESS-L2-017-001",
+            "MPR-RC-HARNESS-L2-018-001",
+            "MPR-RC-HARNESS-L2-019-001",
+            "MPR-RC-HARNESS-L2-020-001",
+            "MPR-RC-HARNESS-L2-021-001"
+          ],
+          "successor_registration_ids": [
+            "MPR-RC-HARNESS-L2-011-002",
+            "MPR-RC-HARNESS-L2-012-002",
+            "MPR-RC-HARNESS-L2-013-002",
+            "MPR-RC-HARNESS-L2-017-002",
+            "MPR-RC-HARNESS-L2-018-002",
+            "MPR-RC-HARNESS-L2-019-002",
+            "MPR-RC-HARNESS-L2-020-002",
+            "MPR-RC-HARNESS-L2-021-002"
+          ],
+          "reason": "同一receiptを参照する全current candidateがcoverage_receipt_refを現行revisionへ揃える。HARNESS-L2-010は既存249 successorで追随済み。"
+        },
+        {
+          "old_receipt_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+          "new_receipt_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28-r2.json",
+          "current_registration_ids": [
+            "MPR-RC-HELIXOS-L2-046-001"
+          ],
+          "successor_registration_ids": [
+            "MPR-RC-HELIXOS-L2-046-002"
+          ],
+          "reason": "RFA receiptのsource_holding_registration_id、scope、noteが現行holdingを003と記録しているため訂正。"
+        },
+        {
+          "old_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json",
+          "new_receipt_ref": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29-r2.json",
+          "current_registration_ids": [
+            "MPR-RC-HELIXOS-L2-104-001"
+          ],
+          "successor_registration_ids": [
+            "MPR-RC-HELIXOS-L2-104-002"
+          ],
+          "reason": "current receiptのsource_holdingが003を示すため訂正。"
+        }
+      ],
+      "current_locator_closure": {
+        "structured_and_meaningful_current_locator_scan": "全384件のcurrent candidate headの構造化locatorとsource-scope field、各167件のcurrent coverage receiptを走査。現在の保持元を示す未処理locatorはない。検出した5つの003文字列は下記の過去経緯・兄弟atom説明でありcurrent locatorではない。",
+        "excluded_historical_mentions": [
+          {
+            "registration_id": "MPR-RC-HARNESS-L2-014-003",
+            "receipt_ref": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json",
+            "field_paths": [
+              "candidates[3].source_collection_scope",
+              "candidates[3].atoms[1].relation"
+            ],
+            "occurrences": 2,
+            "reason": "HARNESS-L2-014自身のsource atom集合は空。該当箇所は共有receipt内のHARNESS-L2-022兄弟atomについての過去の関係説明で、014の現在保持元locatorではないため保持。"
+          },
+          {
+            "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+            "field_path": "correction_reason",
+            "occurrences": 1,
+            "reason": "以前の誤ったlocatorを使った経緯を記録する訂正理由で、現在の保持元を示すものではないため保持。"
+          },
+          {
+            "registration_id": "MPR-RC-HELIXOS-L2-047-005",
+            "field_path": "correction_reason",
+            "occurrences": 1,
+            "reason": "過去のcoverage訂正経緯に含まれるlocatorで、現在の保持元を示すものではないため保持。"
+          },
+          {
+            "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+            "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json",
+            "field_path": "unresolved_source_scope[4]",
+            "occurrences": 1,
+            "reason": "未解決scopeに残る過去の候補003記述で、現在の保持元locatorではないため保持。"
+          },
+          {
+            "registration_id": "MPR-RC-HELIXOS-L2-047-005",
+            "receipt_ref": "docs/governance/audits/requirement-registration/ops-o4-coverage-receipt-2026-09-29-r2.json",
+            "field_path": "unresolved_source_scope[4]",
+            "occurrences": 1,
+            "reason": "過去の候補scope説明として残す記述で、現在の保持元locatorとして扱わないため保持。"
+          }
+        ],
+        "excluded_historical_mention_count": 5,
+        "immutable_predecessor_reference": {
+          "current_record_id": "MPR-SH-CANDIDATE-004",
+          "field_path": "supersedes_registration_id",
+          "value": "MPR-SH-CANDIDATE-003",
+          "reason": "append-only訂正revisionの来歴リンクであり、current source locatorではない。旧003行とそのreceipt bytesは保持。"
+        }
+      }
     }
   },
   "receipt_revision_map": [
@@ -2585,7 +2926,7 @@
       "new_path": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27-r2.json",
       "old_sha256": "1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b",
       "new_sha256": "b3d2223d2ac918eac72cd5bea4a591c75957a3965040451935bb3da12aa71435",
-      "affected_current_candidate_registration_count": 1
+      "affected_current_candidate_registration_count": 9
     },
     {
       "old_path": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
@@ -2670,6 +3011,27 @@
       "old_sha256": "fd7972808eb68bbbc319a7d1101a1b8dcaa19fa0197c4b6585da74cfb22e656e",
       "new_sha256": "45dc8f0a5f67f37b78947cf0e0a0ef5c8e6e4dbd2ecfaa9d50e0ddfe36d94213",
       "affected_current_candidate_registration_count": 1
+    },
+    {
+      "old_path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+      "new_path": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27-r2.json",
+      "old_sha256": "d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5",
+      "new_sha256": "61109ea2098b1fe6552287489cf61e9a8bf79d585173ce05d3c710f636d32f0e",
+      "affected_current_candidate_registration_count": 3
+    },
+    {
+      "old_path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+      "new_path": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28-r2.json",
+      "old_sha256": "691bbe181787f65891d3728ba0c4069a2bb151701b400ef7192ff62ff8634128",
+      "new_sha256": "b50686a45fad81df0e9c98996fe67f62f49a28775ec55036234056669614cc06",
+      "affected_current_candidate_registration_count": 1
+    },
+    {
+      "old_path": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29.json",
+      "new_path": "docs/governance/audits/requirement-registration/legacy-candidate-line-000603-three-checks-coverage-receipt-2026-09-29-r2.json",
+      "old_sha256": "d94d59060139ff5d135cb0a50af68b88a1a45c321da378dbda604cc80bdb2611",
+      "new_sha256": "22ab1a20dd4f72691e2e202dd0633b2adacbf9b5ebb194afc126b11b12839b9d",
+      "affected_current_candidate_registration_count": 1
     }
   ],
   "consumer_refresh": {
@@ -2700,7 +3062,7 @@
   },
   "validation": {
     "append_validator": "python3 docs/governance/tools/verify_management_register_append.py 633bf12",
-    "append_validator_result": "PASS：元の714行のbyte prefixが一致し、250行を一意IDで追記し、末尾LFを確認。",
+    "append_validator_result": "PASS：元の714行のbyte prefixが一致し、264行を一意IDで追記し、末尾LFを確認。",
     "scfctl": {
       "baseline_validate": "bindings=143 fail=0",
       "after_validate": "bindings=143 fail=0",
@@ -3737,6 +4099,18 @@
         }
       ],
       "scope": "trackedのscaffold/*/validate.py 137件を実行。出力を記録し、archive内testやCIは実行していない。"
+    },
+    "receipt_reference_crosscheck": {
+      "candidate_successor_rows_checked": 263,
+      "receipt_revision_rows_checked": 18,
+      "current_candidate_receipt_pointers_to_revision_map": 53,
+      "mismatches_after": 0,
+      "shared_receipt_current_pointer_count": 3,
+      "additional_receipt_pointer_closure": {
+        "harness_l2_receipt_current_refs": 9,
+        "rfa_046": 1,
+        "helixos_104": 1
+      }
     }
   },
   "change_boundary": {

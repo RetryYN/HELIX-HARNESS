@@ -1,0 +1,97 @@
+{
+  "receipt_id": "DRAFT-RCPT-HELIXOS-L2-046-RFA-AC-16-2026-09-28-R2",
+  "receipt_state": "draft_unadopted_candidate_scope_recorded",
+  "authority_effect": "none",
+  "candidate_identity": "HELIXOS-L2-046",
+  "requirement_kind": "connection",
+  "candidate_semantic_digest": "sha256:c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d",
+  "candidate_l2_file_sha256": "sha256:39b52c81e38cd7301a0efaaf76fa3dd9da046df574b4236da8e6a3cdf4bb9387",
+  "paired_acceptance_identity": "HELIXOS-L2-046",
+  "paired_acceptance_digest": "sha256:3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0",
+  "l11_file_sha256": "sha256:dd91b61c131a32caa440d9ae8f3248fe900e7406fee85c07555452b0d4b77cef",
+  "source_lines_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-source-lines-2026-09-28.jsonl",
+  "source_collection_scope": "MPR-SH-CANDIDATE-004が保全するlegacy candidate line inventoryのうち、LEGACY-CAND-LINE-003612（旧RFA-AC-16 acceptance row）1行だけを入力する局所receipt。旧RFA候補全体、隣接row、旧engine/schema/runtime、旧source全体は対象外。",
+  "source_collection_atom_count": 1,
+  "source_collection_atom_set_digest_rule": "atom_id + 半角空白 + source_line_sha256（sha256: prefixを含む）をatom順に改行で連結。末尾改行なし。",
+  "source_collection_atom_set_digest": "sha256:76fd07fab7a49e856079337c3047987df4371bd6ddf80c20355c3d8fa5e4f0ba",
+  "candidate_input_atom_refs": [
+    "LEGACY-CAND-LINE-003612"
+  ],
+  "candidate_input_atom_count": 1,
+  "candidate_input_atom_set_digest": "sha256:76fd07fab7a49e856079337c3047987df4371bd6ddf80c20355c3d8fa5e4f0ba",
+  "candidate_input_accounting_status": "選択した一つのacceptance rowをHELIXOS-L2/L11-046候補へ対応づけた。candidate-input no_lossはこのrow一件のmappingに限り、source row全体または旧RFA source群のclosureを主張しない。",
+  "source_line_coverage_result": "partial; only LEGACY-CAND-LINE-003612 is in scope; remaining RFA conditions and source closure are not assessed",
+  "condition_closure": "not_asserted",
+  "candidate_input_coverage_result": "no_loss",
+  "unaccounted_atom_refs": [],
+  "preserved_pending_registration_refs": [],
+  "preserved_pending_atom_refs": [],
+  "atoms": [
+    {
+      "atom_id": "LEGACY-CAND-LINE-003612",
+      "source_holding_registration_id": "MPR-SH-CANDIDATE-004",
+      "legacy_asset_id": "LEGACY-ASSET-00C7DF9250F8A9A25B24",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+      "source_file_sha256": "sha256:c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86",
+      "source_line": 37,
+      "source_line_sha256": "sha256:bafb2bae38d5e4363a90e58405e44e1e4544e85adfaa2b318bef2425a873065c",
+      "source_text": "| RFA-AC-16 | RFA-GH-02 | dispatch/実行/ready/mergeが同authority/HEAD/scopeを照合。docs path免除・探索mergeの実装許可化・required skipを拒否 |",
+      "source_clause_kind": "acceptance_condition",
+      "disposition": "candidate_scope",
+      "candidate_input": true,
+      "relation": "This candidate covers the bounded dispatch/execution/Ready/merge authority, HEAD and scope continuity oracle and its listed bypass rejections only. Other RFA rows and full legacy condition closure remain outside this receipt."
+    }
+  ],
+  "candidate_scope_boundary": "One connection candidate checks continuity of existing authority, current subject/HEAD and scope across dispatch, execution, Ready and merge admission. It rejects path-only docs exemptions, treating exploratory/prototype merge as implementation permission, and skipping existing required verification. It defines no new approval, check list, CI, authority, or skip mechanism.",
+  "parent_l1": {
+    "identities": [
+      "HELIXOS-L1-009",
+      "HELIXOS-L1-010"
+    ],
+    "path": "docs/helix-os/L1-planning/system-intent.md",
+    "source_commit": "a690c59183c9e0a3bd4088cdd7dcc93455d31313",
+    "source_file_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+    "adoption_basis": "2026-09-28 OS PO decision fixes L1-009/010. Candidate makes no claim that its new L2/L11 connection is adopted."
+  },
+  "current_existing_boundary": {
+    "l2_refs": [
+      "HELIXOS-L2-004",
+      "HELIXOS-L2-007",
+      "HELIXOS-L2-008",
+      "HELIXOS-L2-010",
+      "HELIXOS-L2-011"
+    ],
+    "l11_ref": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "operating_model_ref": "docs/governance/github-upstream-operating-model.md",
+    "coverage_gap": "Operating model supplies PR review/Ready/exact-head/base/stale/merge admission controls, while existing OS L2/L11 separately cover assignment, evidence, CI operation and workflow/integration planning. No single existing adopted pair gives the bounded cross-transition dispatch-to-merge continuity and the three listed negative oracles; 046 composes references without replacing those responsibilities."
+  },
+  "po_decision_item": {
+    "status": "pending_PO_before_adoption_or_retirement",
+    "source_atoms": [
+      "LEGACY-CAND-LINE-003612"
+    ],
+    "question": "旧RFA-AC-16のdispatch/実行/Ready/merge間のauthority・HEAD・scope連続性と指定された三つの迂回拒否を、既存責務を変えない限定OS L2/L11-046 connection候補として採択するか。",
+    "choices": [
+      {
+        "choice": "A adopt_exact_bounded_candidate",
+        "meaning": "L2/L11-046の限定connectionを採択する。既存OS、HARNESS、SECURITY、GitHub運用契約の責務・判定条件を置換または追加しない。"
+      },
+      {
+        "choice": "B preserve_pending",
+        "meaning": "046を未採択で保留し、旧source holdingと選択atomを生存させる。"
+      },
+      {
+        "choice": "C retire_with_reason",
+        "meaning": "対象source revision、理由、影響を持つ人間decisionで選択条件を変更またはretireし、046を採択しない。"
+      }
+    ],
+    "current_recommendation": "A is recommended for the exact bounded connection candidate; this is not a PO choice or adoption."
+  },
+  "version_target": "1.0",
+  "semantic_successor_status": "not_confirmed_pending_PO",
+  "receipt_limits": "Records provenance and bounded candidate mapping only. It does not prove adopted successor, source closure, implementation, operation, acceptance execution, or merge permission.",
+  "source_holding_remains_live": true,
+  "source_holding_note": "MPR-SH-CANDIDATE-004 remains unchanged and live as the wider legacy candidate holding; the selected RFA-AC-16 row is mapped only to this candidate input. This does not close the holding or other source conditions.",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/helixos-rfa-scope-coverage-receipt-2026-09-28.json",
+  "correction_reason": "R2289-02 current-locator follow-up: 現行source holding参照をMPR-SH-CANDIDATE-004へ訂正。候補意味、選択atom、digest、count、採否状態、PO decision、authorityは不変。"
+}
