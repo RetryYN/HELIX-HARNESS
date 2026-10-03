@@ -1784,7 +1784,7 @@ BRAINは設計知識をL2-019/022の契約に従って製品HELIX-HARNESS-CORE/H
 - **BRAIN-024-AC-01 — 設計知識の正常flow**：L2-019/022境界と製品CORE/HARNESS宛先が結ばれ、設計Patternと対象scope/revisionが渡る。Runtime実績や直接Runtime接続のreceiptはこのflowに混ぜない。
 - **BRAIN-024-AC-02 — 実績の正常flow**：Runtime owner→LABO評価→L2-020 candidate接続を同一source/scope/revisionでtraceする。受領状態は評価candidateとして保持し、単独で汎用知識採用・maturity・Runtime成功事実へ昇格しない。
 - **BRAIN-024-AC-03 — 迂回・情報境界の拒否**：BRAIN↔Infrastructure Runtime直接read/write/learning、またはserver/network/database state、provider account、credential、operation permission、raw log/metricsの保存・受領を試みるfixtureは拒否またはholdする。BRAINはRuntime状態を正本化せず、Runtime ownerへ戻す。
-- **BRAIN-024-AC-04 — missing/stale/誤結合**：Infrastructure L2-009/010/012/017、BRAIN L2-019/020/022、およびCORE/Runtime/LABO契約のidentity/revisionを、適用する知識・flowとの対応ごとに個別にmissing/stale/wrong-scopeにする。該当flowだけunknown/holdとし、他flowや候補状態で相殺せず、対応ownerへ戻す。全知識の実装完了は要求しない。
+- **BRAIN-024-AC-04 — missing/stale/誤結合**：Infrastructure L2-009/010/012/017、BRAIN L2-019/020/022、およびCORE/Runtime/LABO契約のidentity/revisionを、適用する知識・flowとの対応ごとに個別にmissing/stale/wrong-scopeにする。owner boundary receipt、source identity、LABO評価、L2-020 candidate receipt、target revision/scopeの欠落・誤結合もそれぞれ照合する。該当flowだけunknown/holdとし、他flowや候補状態で相殺せず、対応ownerへ戻す。全知識の実装完了は要求しない。
 
 ### BRAIN-024 固定親句の被覆
 
