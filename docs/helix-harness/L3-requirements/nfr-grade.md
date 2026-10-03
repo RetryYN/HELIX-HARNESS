@@ -25,7 +25,7 @@ NFR-C-HARNESS-023-01の「全件」は、次の12個の明示fixtureを指す。
 |---|---|---|
 | D1 | 常時必須・依存が有効 | closureに含む |
 | D2 | 常時必須・依存missing | 該当利用を保留、missing理由を出す |
-| D3 | 常時必須・版stale／range不一致 | 該当利用を保留、stale理由を出す |
+| D3 | 常時必須・版stale／range不一致 | 該当利用を保留し、staleと互換range不一致を区別した理由を出す |
 | D4 | operation条件true・依存有効 | closureに含む |
 | D5 | operation条件false | 当該operationを含まない要求に限りclosure外、条件不成立を記録 |
 | D6 | operation条件unknown | falseへ読み替えず保留 |
