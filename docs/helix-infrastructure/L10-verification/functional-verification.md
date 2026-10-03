@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のAC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1およびStage 2a assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -50,3 +50,99 @@ unavailable nodeを含む依存関係；operationとtarget scope；別SECURITY a
 ## 結果記録上の制約
 
 実装前の静的な設計であり、fixture/期待出力の定義までを行う。実行、CI、旧test、旧runtimeによる合格主張は含まない。検証実装と実測は下流責務であり、ここでL4/L7を定義しない。
+
+
+## HELIXINFRASTRUCTURE-L2-003 — L10 oracle（対応 `INFRA-003-FR-01`）
+
+- 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 52–61行、全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、該当span SHA-256 `44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99`、heading「### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量」。
+- 固定L11親: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 54–63行、全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、該当span SHA-256 `064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db`、heading「### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量」。
+- 対応AC: `INFRA-003-AC-01`, `INFRA-003-AC-02`。ケースはowner境界を保つend-to-end evidenceと未完義務を観測する。
+
+### 検証fixtureとcase
+
+- **L10-INFRA-003-C01**（AC `INFRA-003-AC-01`）: 対象environmentのresource snapshotと起動要求の各dimensionに要求量未満でない観測値を与える。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性にsource/revisionと観測範囲を持たせる。期待oracle: demand/available値とruntime属性が同じresource identity・対象revisionに結びつき、不足のない結果材料をOS/INTELLIGENCEへ返す。モデル能力評価をInfrastructureから推定せず、Infrastructure自身がplacement/costを選ばない。
+- **L10-INFRA-003-C02**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: CPU/storage/network/model resourceのいずれかでavailable < requestedにする。期待oracle: capacity unavailableと不足dimensionを明示し、queue/delay等の未完状態を保持してdecision ownerへ返す。
+- **L10-INFRA-003-C03**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 同じfixtureの一属性をstale、欠落、計測不能、別environment identityに変える。期待oracle: sufficient/healthyを返さずunknownとsource/revision理由を保持する。
+- **L10-INFRA-003-C04**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 自動増減autoscalingまたは固定utilization/latency目標がなければ失格とするfixture。期待oracle:高度autoscalingと新しいSLAを1.0必須条件にせず、明示されたcapacity/dependencyだけ判定する。
+
+### 観測点とoracle
+
+L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量は各起動要求にある値をsourceとし、汎用GPU/CPU閾値は発明しない。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+
+
+## HELIXINFRASTRUCTURE-L2-004 — L10 oracle（対応 `INFRA-004-FR-01`）
+
+- 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 62–71行、全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、該当span SHA-256 `eec7bc7e7e6f7bb710fd2a191195c6fd656b81d78a8c8aff2bb76b26bca7a2a8`、heading「### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State」。
+- 固定L11親: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 64–73行、全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、該当span SHA-256 `c2a55878949b2659e2000c847df3aa263bbc69ad407b3097e694a1c138631013`、heading「### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State」。
+- 対応AC: `INFRA-004-AC-01`, `INFRA-004-AC-02`。ケースはowner境界を保つend-to-end evidenceと未完義務を観測する。
+
+### 検証fixtureとcase
+
+- **L10-INFRA-004-C01**（AC `INFRA-004-AC-01`）: L2列挙の8 runtime/incident stateをそれぞれsource/revision付きで入力する。期待oracle: 8状態を個別表示し、owner/sourceへtraceできる。
+- **L10-INFRA-004-C02**（AC `INFRA-004-AC-01`／`INFRA-004-AC-02`）: telemetry/collector欠測、古いsource revisionを投入する。期待oracle: unknown/unobservedまたはstaleとしてsource ownerへ戻り、healthy/currentへ変換しない。
+- **L10-INFRA-004-C03**（AC `INFRA-004-AC-01`／`INFRA-004-AC-02`）: approved incident definitionにないseverity/causeを加えて入力する。期待oracle:承認済みmeaningを参照し、未承認severity/causeを作らない。
+- **L10-INFRA-004-C04**（AC `INFRA-004-AC-01`／`INFRA-004-AC-02`）: L2-019 detailed freshness/confidence stateをfixtureから除く。期待oracle:この欠落だけで明示1.0の観測/incident state受入を落とさず、後続条件を先取りしない。
+
+### 観測点とoracle
+
+8状態とunknown/healthy区別、L2-019後続境界は固定L2/L11の列挙から取る。freshness時間やcollector-confidence数値はL2-019 scopeのため1.0へ作らない。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+
+
+## HELIXINFRASTRUCTURE-L2-005 — L10 oracle（対応 `INFRA-005-FR-01`）
+
+- 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 72–81行、全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、該当span SHA-256 `4d2e826d42920d60b234a0cd1f23be671829fb052e9235a46fc1a36426acff5f`、heading「### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback」。
+- 固定L11親: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 74–83行、全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、該当span SHA-256 `7a26bfaffee4f4b526deb40fb24536531672dceefc243f340c78a44c11d5d408`、heading「### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback」。
+- 対応AC: `INFRA-005-AC-01`, `INFRA-005-AC-02`。ケースはowner境界を保つend-to-end evidenceと未完義務を観測する。
+
+### 検証fixtureとcase
+
+- **L10-INFRA-005-C01**（AC `INFRA-005-AC-01`）: backup target/source revision/time/completeness/location/integrity/expiryとprocedureを与える。期待oracle:backup設定とbackup execution stateが別で、対象state ownerとsource revisionへ全fieldをtraceできる。
+- **L10-INFRA-005-C02**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: job successfulでもbackup completeness/integrity false、staleまたはtarget外revisionのfixture。期待oracle:backup存在/job成功だけからrestore可能とせず、failure/理由/変更前の適格stateを保持する。
+- **L10-INFRA-005-C03**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: compatible restore environmentで実restoreし、integrity、dependency reconnection、startup、verificationを全て照合する正常caseと、各条件を個別に欠落させるcase。期待oracle:実restore resultと検証結果を区別し、条件不足を成功にしない。
+- **L10-INFRA-005-C04**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: configuration/artifact/dependency/data compatibility不明またはrollback target/procedure不明のfixture。期待oracle:rollback適格性を保留し、previous eligible state/failure/未完義務をrecovery design owner/OSへ戻す。
+- **L10-INFRA-005-C05**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: 親に指定されない汎用RTO/retention-day/RPO閾値を判定に注入する。期待oracle:今回のoperation-scoped criteriaに不要な数値を必須gateにしない。別途数値scopeが要件上必要なら、根拠・比較・測定方法付きL3候補として示す。
+
+### 観測点とoracle
+
+このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。L2/L1で別の時間・期間要件が必要と分かったときは比較根拠・測定方法付きL3 candidateを提示する。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+
+
+## HELIXINFRASTRUCTURE-L2-009 — L10 oracle（対応 `INFRA-009-FR-01`）
+
+- 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 114–123行、全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、該当span SHA-256 `b27aee4ffe80a11d8259e5af0ee0e716907c66ba0d65faa0fe9c0216487a7c16`、heading「### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続」。
+- 固定L11親: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 116–125行、全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、該当span SHA-256 `db7eccb04c92d0cc674f4c2b0452b20ede329bd83bc09d46aaed99af2c61c9ea`、heading「### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続」。
+- 対応AC: `INFRA-009-AC-01`, `INFRA-009-AC-02`。ケースはowner境界を保つend-to-end evidenceと未完義務を観測する。
+
+### 検証fixtureとcase
+
+- **L10-INFRA-009-C01**（AC `INFRA-009-AC-01`）: stage releaseを使わない通常OS Work/Change ticketとInfrastructure resource/runtime revisionを相互参照する。期待oracle:両者の別owner SSoT・evidence・stop/resumeを保ったversioned connectionが成立する。
+- **L10-INFRA-009-C02**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: HELIXOS-L2-014 stage packへ収載するfixture。期待oracle: stage ID、contract/artifact/dependency version、runtime revisionは別identityとして同stage evidenceで関連付く。
+- **L10-INFRA-009-C03**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: target/revision mappingを欠落・不一致にし、OS ticketをresource stateの正本として提示する。期待oracle:unknown/hold、OSまたはInfrastructure ownerへ戻し、部分変更と未完operationを維持する。
+- **L10-INFRA-009-C04**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: 通常接続にstage pack完成、全7製品または後続L1-023を必須条件として注入する。期待oracle:通常接続を独立に判定し、これらを必須化しない。
+
+### 観測点とoracle
+
+L2/L11は通常接続とpack収載を分け、identityとscopeを明記。相互参照の列挙fieldを検査し、stage completenessを一律前提化しない。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+
+
+## HELIXINFRASTRUCTURE-L2-010 — L10 oracle（対応 `INFRA-010-FR-01`）
+
+- 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
+- 固定L2親: `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 126–135行、全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、該当span SHA-256 `550d8ffed768dd86e5604fe82ba94efba3bd1cb51a7ede68654ba524e3dec798`、heading「### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体」。
+- 固定L11親: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 128–137行、全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、該当span SHA-256 `15225795b3c03a72922512501bcf696cf13b66d3861a94d0806fa39dfd292cc7`、heading「### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体」。
+- 対応AC: `INFRA-010-AC-01`, `INFRA-010-AC-02`。ケースはowner境界を保つend-to-end evidenceと未完義務を観測する。
+
+### 検証fixtureとcase
+
+- **L10-INFRA-010-C01**（AC `INFRA-010-AC-01`）: 通常OS/Worker operationに有効SECURITY authorityを与え、target/action/revision/scope/expiryとOS assignment/result receipt、実際のbefore/after resource stateを照合する。期待oracle:許可範囲内のeffectだけをactual-state evidence付きで受け入れる。
+- **L10-INFRA-010-C02**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: read-only operationからupdate-admissionを省き、同時にtarget scopeのwrite-setを空、許可resource stateをbefore/afterで宣言する。期待oracle:valid ordinary authority下でread-onlyを認め、宣言scopeのwrite=0と前後値を確認する。
+- **L10-INFRA-010-C03**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: state updateでupdate-admission denied/unknown/mismatch、authority expired/target/revision/scope mismatch、または適用recovery obligation missingを個別に与える。期待oracle:変更前に停止しSECURITY/OSへ理由付き返却。credential raw valueを保存しない。
+- **L10-INFRA-010-C04**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: 独立bootstrap/recovery fixtureではOS/control plane停止、L2-006 pathと別SECURITY authority、OS ticket不在を与える。期待oracle:限定recovery actionのみ可能で、通常ticketの一般免除にはせず、OS復旧後にoperation/resultを同期する。
+
+### 観測点とoracle
+
+L2/L11はauthority field、条件付きadmission、read-only write set、限定recovery例外をそれぞれ明示。実scope/fixture単位で照合し旧risk enum/approval機構は持ち込まない。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。

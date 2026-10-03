@@ -1,6 +1,6 @@
 # HELIX-LABO L3 機能要件（部分草稿）
 
-**状態：部分草稿・未承認。** この文書はStage 1の割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書はStage 1およびStage 2aの割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -105,3 +105,118 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 ## 未承認事項
 
 各候補の採否は本L3と対のL10を一体として通常のPO L3承認へ渡す。パラメーターごとの承認質問は作らない。親L2の意味・scope・owner・versionに変更が必要だと判明した場合だけL2へ戻す。
+
+
+## LABO-055-FR-01 — HELIXLABO-L2-055 HELIX-Bench 作業水準生成
+
+### 親revisionとauthority
+
+- 採択登録: `MPR-RC-HELIXLABO-L2-055-002` (`docs/governance/management-provisional-requirement-register.jsonl` main633 line 451, row SHA `7e7d4868c33fd35b35741cae55d295e7ed6f1ad42df23cef5e10b4c718b1af88`); PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` line 58, SHA `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`.
+- 固定parent commit: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`; version candidate `1.0 explicit/current PO-targeted candidate`; sequence `Stage 2a`.
+- 固定L2親: `docs/helix-labo/L2-requirements/labo-requirements.md` 150–155行、全文SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、該当span SHA-256 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7`、heading「### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）」
+- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` 191–197行、全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、該当span SHA-256 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、heading「### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠」
+
+### 要件（候補）
+
+依存は許可されたLABO observation (L2-001/028)、Worker historyのtask type/model class identityと評価可能な実績（必要に応じL2-006）で、`version_target: 1.0`とする。許可されたWorker historyをtask class / model class / declared scopeごとに評価し、評価した出力にはeligible denominator、算入結果、欠測/失敗/拒否/停止/unknownの処置と算入・除外理由、metric/scorer-oracle revisionを結ぶ。定性的水準も適用条件・根拠・未評価部分を記録する。評価していないclassを未評価と表示し、結果確認後にdenominator/scopeを変えない。Benchは配置案、Worker/modelの選定・指定・割当て、authorityを作らない。
+
+### 受入条件（AC候補）
+
+- **LABO-055-AC-01 — 正常・追跡**：同一の許可snapshotとdeclared task/model class/scopeから評価結果を再構成できるよう、eligible denominator、各resultのdisposition、metric/scorer revisionと判定理由が揃う。qualitative outcomeでも根拠とunassessed subsetが追跡可能。
+- **LABO-055-AC-02 — 異常・境界**：failure/missing/unknownを理由なく分母から落とす、欠測費用を0扱いする、result確認後に母数・scopeを変える、根拠/採点版なしに水準を出す、major failuresを平均で相殺する、未評価を評価済みにする場合は不成立。scoreで配置/割当/権限を生成しない。
+
+### 固定親句の被覆
+
+| 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
+|---|---|---|---|
+| 入力: Worker history/task type/model class/evaluation result/source revision/scope | `LABO-055-FR-01 / LABO-055-AC-01` | `L10-LABO-055-C01,C03` | eligible record setとsource identity/revision |
+| 提供: task/model class別level、basis、period/applicability、evaluated/unassessed | `LABO-055-FR-01 / LABO-055-AC-01` | `L10-LABO-055-C01,C04` | outputと適用scope/basis |
+| 定量/定性根拠: denominator、included result、missing/failure disposition/reason、scorer/oracle revision | `LABO-055-FR-01 / LABO-055-AC-01,AC-02` | `L10-LABO-055-C01,C02,C04` | source receiptから出力再構成 |
+| 否定: omission/zero cost/post-hoc denominator/major failure average compensation | `LABO-055-FR-01 / LABO-055-AC-02` | `L10-LABO-055-C02` | disposition保持と水準非成立 |
+| 範囲・戻し先: unknown/unassessedを維持し履歴sourceへ戻す; placement/assignment/authorityはLABO外 | `LABO-055-FR-01 / LABO-055-AC-02` | `L10-LABO-055-C03,C04` | 未評価明示・owner分離 |
+| 依存・版: L2-001/028と評価可能なhistory source; version_target 1.0; accepted L2 scope only | `LABO-055-FR-01 / LABO-055-AC-01,AC-02` | `L10-LABO-055-C01,C04` | 将来数値規則/旧score protocolを移さない |
+
+### 旧L3／対のtest designからの意味対応
+
+旧`helix-bench-evaluation`から評価根拠・対象scope・failureを分けて記録する考えだけを再導出する。旧5 category／12 metrics、反復数、score protocol／weightsは移さない。
+
+| 起点 | 旧asset source・行 | 全文SHA-256 | 該当raw span SHA-256 (LF保持) |
+|---|---|---|---|
+| 旧L3 `LEGACY-ASSET-28FB139B26CD61CC51EE` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md` 21-34, 37-148 | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | 21–34行 SHA `e819394856de959eab1c952660e87c57f37f88f341c901db1dbd3df8cbd99f0c`、37–148行 SHA `643558f22760925dc85032d98c93eca1b96aa2b428466194cd120c603073de62` |
+| 旧test design `LEGACY-ASSET-A952A3A175EB82A4781B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md` 19-43 | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` | 19–43行 SHA `b4c77226040fb25106d983d81642f7bd1a12778399b79f86cceae0a1ee819c40` |
+
+
+## LABO-056-FR-01 — HELIXLABO-L2-056 初回Worker結果のBench観測取込
+
+### 親revisionとauthority
+
+- 採択登録: `MPR-RC-HELIXLABO-L2-056-003` (`docs/governance/management-provisional-requirement-register.jsonl` main633 line 452, row SHA `90466597333d23a63fd5e33a28f2f8b18dac5ed2053c93908a14838dcf5d0d03`); PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` line 96, SHA `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`.
+- 固定parent commit: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`; version candidate `1.0 explicit/current PO-targeted candidate`; sequence `Stage 2a`.
+- 固定L2親: `docs/helix-labo/L2-requirements/labo-requirements.md` 379–390行、全文SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、該当span SHA-256 `d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7`、heading「### HELIXLABO-L2-056 — 初回Worker結果のBench観測取込（単体候補、1.0）」
+- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` 138–147行、全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、該当span SHA-256 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、heading「### HELIXLABO-L2-056 初回Worker結果のBench観測取込」
+
+### 要件（候補）
+
+許可されたfirst Worker resultをticket/assignment/attempt, task/Worker/contract revision, request revision/scope, result state, verification/human-confirmation, data-use class, source receiptへ結び、Bench履歴に観測済みとして追加する。success/failure/rejected/interrupted/unknownを区別しsource authorityを変更しない。観測済みと評価済みを分け、評価済みを出す場合は採用oracle/基準revision・適用範囲・判定条件・比較条件・結果・失敗/反例/unknown・評価者・時点および判定receiptが揃う範囲に限る。
+
+### 受入条件（AC候補）
+
+- **LABO-056-AC-01 — 正常・追跡**：許可範囲の各結果statusをsource provenanceとともにobservationへ記録し、評価可能なoracleがない初回一件は観測済み・未評価のまま保持する。評価済みを付す場合はL2所定の根拠と評価receiptが全て辿れる。
+- **LABO-056-AC-02 — 異常・境界**：assignment/source/scope/classification/revision/verification/receiptの欠落、不一致、stale、重複、矛盾を暗黙補完/統合しない。single successやreceipt successだけでunknown taskを成功/qualified/evaluatedにしない。source canonical stateやassignment/worker eligibilityを書き換えない。
+
+### 固定親句の被覆
+
+| 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
+|---|---|---|---|
+| 入力: OS assignment/ticket/task, Worker/execution contract revision, requested revision/scope, attempt status, evidence/classification/receipt | `LABO-056-FR-01 / LABO-056-AC-01` | `L10-LABO-056-C01,C02,C03` | 列挙入力field・source receipt |
+| 提供: 初回resultをobservation historyへ追加; observation≠performance evaluation | `LABO-056-FR-01 / LABO-056-AC-01,AC-02` | `L10-LABO-056-C01,C02` | 観測状態と評価状態の分離 |
+| 保証: oracle/scope/revision/conditions/result/failure/unknown/evaluator/time/receiptに基づく範囲のみ評価済み | `LABO-056-FR-01 / LABO-056-AC-01` | `L10-LABO-056-C04` | 評価済み証跡trace |
+| 否定・戻し先: stale/duplicate/contradictory/missing evidence; OS/SECURITY/Workerまたは未評価維持 | `LABO-056-FR-01 / LABO-056-AC-02` | `L10-LABO-056-C03,C04` | 元記録維持・正しいowner返却 |
+| 範囲: 1.0 unit candidate、既存001/028/055とOS assignment、SECURITY data-use; 054は別edge | `LABO-056-FR-01 / LABO-056-AC-01,AC-02` | `L10-LABO-056-C01,C03` | 親の既存責任を重複しない |
+
+### 旧L3／対のtest designからの意味対応
+
+旧Bench評価のprovenance/evidenceとfailure classのみ再導出。score categories/sample count/weights/executorを持ち込まない。
+
+| 起点 | 旧asset source・行 | 全文SHA-256 | 該当raw span SHA-256 (LF保持) |
+|---|---|---|---|
+| 旧L3 `LEGACY-ASSET-28FB139B26CD61CC51EE` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md` 21-34, 37-148 | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | 21–34行 SHA `e819394856de959eab1c952660e87c57f37f88f341c901db1dbd3df8cbd99f0c`、37–148行 SHA `643558f22760925dc85032d98c93eca1b96aa2b428466194cd120c603073de62` |
+| 旧test design `LEGACY-ASSET-A952A3A175EB82A4781B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md` 19-43 | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` | 19–43行 SHA `b4c77226040fb25106d983d81642f7bd1a12778399b79f86cceae0a1ee819c40` |
+
+
+## LABO-057-FR-01 — HELIXLABO-L2-057 初回実行結果のBench受領接続
+
+### 親revisionとauthority
+
+- 採択登録: `MPR-RC-HELIXLABO-L2-057-002` (`docs/governance/management-provisional-requirement-register.jsonl` main633 line 347, row SHA `fccb53bbca7f001259db848bc491deeb0f0b5cb5e5906e9bb13dcaa4b0a83e17`); PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` line 97, SHA `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`.
+- 固定parent commit: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`; version candidate `1.0 explicit/current PO-targeted candidate`; sequence `Stage 2a`.
+- 固定L2親: `docs/helix-labo/L2-requirements/labo-requirements.md` 391–402行、全文SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、該当span SHA-256 `d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d`、heading「### HELIXLABO-L2-057 — 初回実行結果のBench受領接続（接続候補、1.0）」
+- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` 148–155行、全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、該当span SHA-256 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、heading「### HELIXLABO-L2-057 初回実行結果のBench受領接続」
+
+### 要件（候補）
+
+OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revision、scope、result state、verification/human-confirmation receipt、data-use classを同一identityのままLABO-L2-028へ接続し、LABO-056/055が履歴化・評価できるdelivery receiptを返す。採択済みCONNECT契約または親が認める明示的な人手receiptのどちらかでschema/revision/scope、acknowledgement、trace、重複抑止、stale停止、同一ID再送/未完保持を示す。HELIXOS-L2-027は任意provenance参照でdependencyにしない。接続は受領だけで、authority/result/evaluation/assignmentを生成・修正しない。
+
+### 受入条件（AC候補）
+
+- **LABO-057-AC-01 — 正常・追跡**：同一OS source identityのpayloadとLABO acceptance receiptがscope、state、revision、verification/data-use fieldsで一致し、accepted CONNECT契約または明示的な人手receiptの一方が必要な受渡し義務を証明する。受領は観測履歴の入力になり、evaluation/assignmentを作らない。
+- **LABO-057-AC-02 — 異常・境界**：ack/receipt不在、schema/version/scope mismatch、stale payload、duplicate retryを成功・新規実績として扱わない。受信側はresult stateやsource authorityを書き換えない。CONNECT contractがなく人手receiptもない場合は未受領/unknownのままOSへ返す。OS-027を必須dependencyにしない。
+
+### 固定親句の被覆
+
+| 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
+|---|---|---|---|
+| 入力・出力: OS accepted result/ticket/assignment/attempt→LABO-028 receipt | `LABO-057-FR-01 / LABO-057-AC-01` | `L10-LABO-057-C01,C02` | same source identity and result state |
+| 保証: revision/scope/verification/human confirmation/data-use classを保持しack/traceを返す | `LABO-057-FR-01 / LABO-057-AC-01` | `L10-LABO-057-C01,C02` | 送受信一致・明示receipt |
+| 重複/stale: same-ID retry deduplicated; stale stops; missing receipt stays unreceived | `LABO-057-FR-01 / LABO-057-AC-02` | `L10-LABO-057-C03,C04,C05` | 重複、新規record化0、stale insertion0 |
+| 責務: OS authority/resultを改変せずLABO observation/evaluation/assignmentを生成しない | `LABO-057-FR-01 / LABO-057-AC-02` | `L10-LABO-057-C01,C05` | owner別state |
+| 依存/版: OS-018/019/023, LABO-001/028/056, SECURITY data-use; OS-027 optional provenance only | `LABO-057-FR-01 / LABO-057-AC-01,AC-02` | `L10-LABO-057-C01,C02,C05` | 027をrequired edgeにしない |
+
+### 旧L3／対のtest designからの意味対応
+
+旧LABO receipt contract direct matchなし。L3-pillar acceptance designからFR/AC↔oracle trace形式とnegative/boundary caseの構成のみ部分参照。旧L12/HAT/CLIや新たなconnectorは作らない。
+
+| 起点 | 旧asset source・行 | 全文SHA-256 | 該当raw span SHA-256 (LF保持) |
+|---|---|---|---|
+| 旧L3 `LEGACY-ASSET-28FB139B26CD61CC51EE` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md` 21-34, 37-148 | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | 21–34行 SHA `e819394856de959eab1c952660e87c57f37f88f341c901db1dbd3df8cbd99f0c`、37–148行 SHA `643558f22760925dc85032d98c93eca1b96aa2b428466194cd120c603073de62` |
+| 旧test design `LEGACY-ASSET-44DD86E3DEC09E65EF51` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` 32-90, 91-216 | `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6` | 32–90行 SHA `0b6f167d1e4002f0f92a80294992ee3b785f676685402c1945b15d5f38ee0228`、91–216行 SHA `066ad9e1de61935f6a5c5a939a5e78a4348f29431a9737f187edb991b71d82e4` |
