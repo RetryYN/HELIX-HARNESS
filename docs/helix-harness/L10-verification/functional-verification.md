@@ -2,7 +2,7 @@
 
 status: draft_for_l3_review
 approval: not_approved
-scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020, 024) + Stage 2c(HARNESS-L2-030..032) + Stage 3(HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054) + Stage 4(HARNESS-L2-026..029) + Stage 5(HARNESS-L2-021,025,033,035,037) / version_class 1.0 where fixed by parent (HARNESS-L2-021 unassigned)
+scope: Stage 1 + Stage 2a + Stage 2b(HARNESS-L2-012..020, 024) + Stage 2c(HARNESS-L2-030..032) + Stage 3(HARNESS-L2-034,036,038,039,040,041,042,043,044,046,047,049,054) + Stage 4(HARNESS-L2-026..029) + Stage 5(HARNESS-L2-021,025,033,035,037) / version_class 1.0 draft scope per roster and PO adoption (021 has no item-level version_target; release inclusion undecided)
 paired_l3: ../L3-requirements/functional-requirements.md
 execution_status: designed_only_not_executed
 
@@ -236,6 +236,7 @@ case IDは `CASE-HARNESS-L10-<親番号>-<連番>`。AC IDはL3正本の `AC-HAR
 | `CASE-HARNESS-L10-033-01` | `AC-HARNESS-L3-033-01` | 022 oracle、対象revision、030または031の選択と、将来receiptなしの初期candidate入力。 | 選択unitから候補生成可能。修正後pass/回帰成立を前倒し表示しない。 | incidentでないcaseに031を要求したら不合格。 |
 | `CASE-HARNESS-L10-033-02` | `AC-HARNESS-L3-033-02` | 許可済みsynthetic incident、sanitized reduction段階、別failure/異oracle/未返却executor result変異。 | 元failure identityとoracleが一致する後段result時だけ再現確認。未確認・unknownを保つ。 | source permission不明は入力処理保留。 |
 | `CASE-HARNESS-L10-033-03` | `AC-HARNESS-L3-033-03` | consumer非選択/選択、032 delivery receipt、後続run resultを順に投入し各版/scopeを一つずつずらす。 | receiptとrun resultを別々に記録。選択consumerだけ接続照合し、failure後に032を選んでも無断再送なし。 | 032未選択をsuccessともfailureとも推定しない。 |
+| `CASE-HARNESS-L10-033-04` | `AC-HARNESS-L3-033-02` | 同一failure identity/oracleの修正前revisionでfailure、別修正後revisionでpassとなる候補組と、それぞれのresult receiptを与える。続けてbefore/after receipt欠落、別failure identity、oracle違い、revision不一致を個別変異する。 | 正常組だけ回帰成立を示し、修正前failと修正後passの両方をrevision・oracleへ結ぶ。各変異は成立をholdし、findingの内容を消さない。 | 後段receiptがまだない初期candidateは生成可能で、回帰成立を主張しない。 |
 | `CASE-HARNESS-L10-035-01` | `AC-HARNESS-L3-035-01` | 原指示、上流revision、候補、受入criteria、necessity/alternative/budget根拠を同revisionに揃える。必要とされるscope計測があれば根拠・比較・測定条件を記録する。 | 導出edge・寄与・owner・予算根拠を追跡し、unknownを0としない。固定親にないscope指標や閾値を必須化しない。 | ID存在だけでは根拠充足にならない。 |
 | `CASE-HARNESS-L10-035-02` | `AC-HARNESS-L3-035-02` | 自己根拠、候補間cycle、別source revision、criteria寄与なしの追加scopeを一つずつ変異。 | 各根拠欠落をspecific findingにし候補確定を保留。正常feedback履歴は導出cycleから区別。 | 上流意味変更の必要は既存L2判断へ戻す。 |
 | `CASE-HARNESS-L10-035-03` | `AC-HARNESS-L3-035-03` | 1.0候補と後続候補の両方に根拠を与え、片方だけ採る表示を比較。未採択のL11:678 scope計測追補は別資料として識別する。 | scope/version_targetごとの理由が残り、candidate生成からapprovalを生まない。未採択追補の追加指標を合格条件へ混ぜない。 | version根拠不明ならunknown。 |
