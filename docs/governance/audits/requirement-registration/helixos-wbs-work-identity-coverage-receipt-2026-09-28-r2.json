@@ -1,0 +1,109 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-WBS-WORK-IDENTITY-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、sha256:付きsource_line_sha256をatom順に改行で区切る。末尾改行なし。",
+  "scope": "HDEC-L2D-S0-02がapprove/splitしたcombined WBS候補のWBS-OS-002行1 atomを、同文のOS split候補行で照合し、HELIXOS-L2-039のOS管理側登録前identity/適格性条件へ接続した局所receipt。HARNESS WBS-HARNESS-001形状の規範定義・候補採否、旧PHCAP-08 WBS同等性、旧runtime/engine/test/CIは対象外。旧RA-199、RB06-278を含むarchive RUL-TKT-01/02/03/RUL-OSP-06 atomはcarryせず、生存source holdingに保留する。",
+  "acceptance_binding": {
+    "source_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+    "sha256": "sha256:864258b4f4052255ce6878ba7276299b9456ffe92aedb8fdf7cb2c70ada35f63",
+    "candidate_section_sha256": "sha256:3d9f396743c27cb79a1930b0a4332a46c982748728d9f3f0ae2ba75f3988458c",
+    "base_commit": "53c19540eef29ffa9aa23ca4d35806edd4279535",
+    "base_file_sha256": "sha256:bdd63357c761a2eb54b0d4b1aa66b3d8d16a6787b412428db58fe8b70044bed8",
+    "change_kind": "new_candidate_acceptance_append",
+    "candidate_section_boundaries": {
+      "start_line": 698,
+      "end_line": 722,
+      "start_heading_prefix": "### HELIXOS-L2-039 ",
+      "end_heading_prefix": "次の同階層候補見出し（###）"
+    }
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-039",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-009"
+      ],
+      "parent_l1_source": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:31",
+        "note": "親L1の採択は039の採択を含まない。"
+      },
+      "candidate_semantic_digest": "sha256:5a6926062caa7484a9d889a21a1d7f705508cd14f7d4d366df7ec6949cedc671",
+      "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-039",
+      "candidate_file_sha256": "sha256:5a2452d5f3ae41a6f3067a5b6d7107e2a1aff922bc3c3dd9a35f1840f2aa40a1",
+      "candidate_section_boundaries": {
+        "start_line": 1114,
+        "end_line": 1122,
+        "start_heading_prefix": "### HELIXOS-L2-039 ",
+        "end_heading_prefix": "次の見出し（見出しlevel問わず）"
+      },
+      "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-wbs-work-identity-source-lines-2026-09-28.jsonl#WBS-OS-002",
+      "source_atom_set_digest": "sha256:828e1bd350eed9cc4680f19ba2c03b0e0f1e02a3c96ff3bd00c5a7651214aafe",
+      "source_atom_count": 1,
+      "source_collection_scope": "WBS-OS-002のOS管理側1条件行。入力行はHDEC-L2D-S0-02の承認対象combined candidate revisionから採り、同文のOS split candidate rowを照合用provenanceとして併記。旧archiveのRUL-TKT-01 atom RA-199やRB06-278、他の旧rule atomはこの1 atomに含めずMPR-SH-LEGACY-RULE-005へ保留。",
+      "atoms": [
+        {
+          "atom_id": "WBS-OS-002",
+          "source_path": "docs/governance/candidates/wbs-ledger-requirements.md",
+          "source_commit": "6967ceef8dfe173839ab8fb130e1611af914e4fe",
+          "source_file_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+          "source_line": 52,
+          "source_line_sha256": "sha256:ab967d2dfb18d34902dfeed18bc08b46f3c09b56320ad97c94748c2d6a068655",
+          "source_text": "| WBS-OS-002 | HARNESSが定める作業単位の形（`WBS-HARNESS-001`）に適合しない作業を台帳に登録できない。作業は安定したidentity、親要求ID（親要求のkind＝unit／connection／compositeは親から引く）、対象product、作業の粒度（task／aggregate）、担当候補を持つ | 形に適合しない作業、親要求を持たない作業、依存が循環する作業、予算の無い作業を登録できない。同じ意味の作業を別identityで二重登録しない（`RUL-TKT-01`） |",
+          "split_candidate_reference": {
+            "path": "docs/helix-os/candidates/wbs-ledger-requirements.md",
+            "file_sha256": "sha256:b39cea19a06f65345cd738cc061aebbc0af5847214a25e3bf72a06f4d3302d0a",
+            "line": 59,
+            "source_line_sha256": "sha256:ab967d2dfb18d34902dfeed18bc08b46f3c09b56320ad97c94748c2d6a068655"
+          },
+          "disposition": "carried",
+          "relation": "OS側の作業identity・親要求/product/粒度/担当候補・依存/予算の登録前確認、WBS-HARNESS-001有効revisionへの適合確認、意味重複の登録拒否を039へ接続。HARNESS規範そのものは別責務。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "docs/helix-os/candidates/wbs-ledger-requirements.md",
+        "docs/helix-harness/candidates/wbs-ledger-requirements.md",
+        "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "preserved_pending_registration_refs": [
+        "MPR-SH-LEGACY-RULE-005"
+      ],
+      "legacy_atoms_not_carried": [
+        "RA-199",
+        "RB06-278",
+        "RUL-TKT-01 remaining atoms",
+        "RUL-TKT-02",
+        "RUL-TKT-03",
+        "RUL-OSP-06"
+      ],
+      "semantic_limit": "no_loss is limited to the single HDEC-approved WBS-OS-002 candidate row as scoped to OS registration eligibility. It does not assert preservation/retirement of the legacy rule atoms or equivalence to PHCAP-08."
+    }
+  ],
+  "human_decision_provenance": {
+    "decision_id": "HDEC-L2D-S0-02",
+    "decision_record": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
+    "decision_record_sha256": "sha256:899cc2affe05ae0c72fa873fe1c5dfe9f6bbe3a0e77089ef2e087ed63a4765cf",
+    "approved_candidate_path": "docs/governance/candidates/wbs-ledger-requirements.md",
+    "approved_candidate_sha256": "sha256:34711045caea9a6bac6fa1084b056e393593efe76099b7f124af4e17265a84f6",
+    "decision_lines": "39, 96-107, 193-208",
+    "interpretation": "HDEC approved the exact combined candidate row set and responsibility split, including the WBS-HARNESS-001 candidate meaning; it did not adopt HELIXOS-L2-039 or apply either WBS candidate to current L2/L11, and it did not disposition legacy rule atoms."
+  },
+  "legacy_source_boundary": {
+    "source_holding_registration_id": "MPR-SH-LEGACY-RULE-005",
+    "rule_inventory_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "rule_inventory_sha256": "sha256:97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+    "holding_path_relocation": "MPR-SH-LEGACY-RULE-004のsource_atom_set_refは移動前pathを保持する歴史行。docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md:191に現行pathへの本文不変移動と同一SHAが記録されている。本receiptは現行pathで実bytesを照合し、旧register行を上書きしない。",
+    "disposition": "RA-199, RB06-278 and all other archive rule atoms remain on hold; no legacy atom is carried or retired by this receipt.",
+    "phcap08_equivalence": "unknown"
+  },
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/helixos-wbs-work-identity-coverage-receipt-2026-09-28.json",
+  "correction_reason": "L3-D0 current locator correction: structured current source_holding references and current mapped source paths were refreshed; source text, source digests/counts, atom dispositions, decisions and historical correction context are unchanged."
+}
