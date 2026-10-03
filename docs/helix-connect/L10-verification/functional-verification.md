@@ -130,4 +130,4 @@
 - CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policyのmissing/staleを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
 - CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。累積attemptは単調に保持し、deadline/terminal確定まで新規retryを止め、停止理由と未完義務を残す。
 
-全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。自由文feedbackをfindingのまま保持し、resolution・ACK・承認・完了へ変換しないmutationは不合格とする。
+全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。自由文feedbackをfindingのまま保持し、resolution・ACK・承認・完了へ変換するmutationは不合格とする。
