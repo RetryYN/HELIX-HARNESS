@@ -1,0 +1,50 @@
+{
+  "kind": "immutable selected source snapshot; context only, not requirement or approval authority",
+  "source_path": "scaffold/review-handoff/local/codex-goals-2026-09-28-ops-loop.md",
+  "source_commit": null,
+  "source_commit_reason": "ignored local source",
+  "source_full_sha256": "5bbeffbb2a46a57a8a0c9b681befb809261838ab86aa9e92622a321cd6e7dd9e",
+  "selected_raw_rule": "original physical lines including line terminators",
+  "selected_span_sha256": "d754020fb86c3db400b28f2bbe0d395ba45b03f350421ca8308e73b62c5ac230",
+  "rows": [
+    {
+      "physical_line": 66,
+      "raw_text": "### O2 返却・未評価の理由から発行精度を学習する（検証不成立のフィードバックループを含む）\n",
+      "raw_sha256": "3b3634d882793a04536928c3c18ef17616e42e0d5d081aef8c97dab76a0133cf"
+    },
+    {
+      "physical_line": 67,
+      "raw_text": "\n",
+      "raw_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "physical_line": 68,
+      "raw_text": "- PO意図：返却を学習に回して発行の精度を上げる。CI側で検証が成立しないときは、何が必要だったかをフィードバックする。\n",
+      "raw_sha256": "f18ec2885fc590469683909187f624a6a9c7136c50a7c23f88ba8018b83e3b0b"
+    },
+    {
+      "physical_line": 69,
+      "raw_text": "- 現行採択：HARNESS `:60,121,383`、OS `:296,562,699`、LABO `labo-requirements.md:269`、INTELLIGENCE `intelligence-requirements.md:106`。\n",
+      "raw_sha256": "b336de7a7a59a49973dfcea20eb076cf903105f2393013e064a84f242a3784a9"
+    },
+    {
+      "physical_line": 70,
+      "raw_text": "- 関連する未採択：HARNESS-034（H `:703`）、HARNESS-036（H `:751,764`）、OS-040（OS `:1124-1132`）。これらと重複させない。関係はsource relationとして記録する。\n",
+      "raw_sha256": "f78f6d0d9ed09bf75227f9cf0b3291318d0e9a1105dabcf8514f83410e0d74b6"
+    },
+    {
+      "physical_line": 71,
+      "raw_text": "- 候補化する差：返却理由と「検証に不足した入力・oracle」を発行元へ集約する。LABOは返却率・理由分類・再発行後の成立率を観測する。INTELLIGENCEは次回の発行・配置案へ反映する。LABOは割当・起動をしない（既存境界）。\n",
+      "raw_sha256": "b0e22e7fa8823eacc6b4ebc212c460bcaeca62663f787d35f38e33c9aed0d374"
+    },
+    {
+      "physical_line": 72,
+      "raw_text": "- 主担当はOS・LABO・INTELLIGENCE。単体か接続かの区別を明示する。\n",
+      "raw_sha256": "f65fa112f29869288d6dcefe690574b89699c05f3209bcdde267a35e3285968c"
+    }
+  ],
+  "parent_scope": "HELIXINTELLIGENCE-L2-074 uses fixed adopted L2/L11 and existing PO decision for authority",
+  "recorded_at": "2026-10-04",
+  "記録範囲": "元のローカルPOゴールの66–72行をその時点のsource snapshotとして保存する。未採択等の表現は原文時点の記述であり、現在の採択状態を更新しない。",
+  "権威境界": "INTELLIGENCE-L2-074の要求・版・承認の正本は採択済み固定L2/L11と既存PO判断であり、この記録から承認や割当を生成しない。"
+}
