@@ -475,7 +475,9 @@
 ## 照合範囲
 
 - 9/28判断はfixed confirmation packetとlatest registration identity対応でjoin、後発判断はexact registration citationでjoin。rootはINFRASTRUCTURE 26件の固定L2/L11全体SHA一致とCONNECT 3件のfixed/current L2/paired L11 canonical bytes一致を独立検証した。proof file digestは同梱JSONに記録。
-- [IR153 source locator projection](ir153-destination-projection-2026-10-03.md) は別分母。153 distinct source identitiesを119/28/5/1に分類し、route missing 0。行き先は採択、formal successor、source意味coverageを証明せず、383/384 MPR候補へ加えない。
+- [IR153 source locator projection](ir153-destination-projection-2026-10-03.md) は別分母のlocator軸。153/153行にroute locatorがあり未割当は0件（projection分類は152 adopted-target route＋1新候補）。route presenceは意味coverage・source retirementを証明しない。
+- 別の要求粒度照合軸では、旧sourceから利用者要望・保証・人によるL11確認基準への劣化有無を照合した件数は **確認済み0/153件、未検収153/153件**。これはsource本文全体の条件coverageを再証明する作業ではなく、L3以下も対象外。未検収はfixed adoption pinの再照合を意味しない。
+- PO判断はmainの3候補にDraft branchのOS132-002を加えた4候補が残る。153件のrouteありを完了扱いせず、劣化照合とPO採否判断が残っている。
 - MPRのauthority metadata、PR/merge、coverage receiptだけから採否を生成しない.
 
 ## 共有Draftブランチの追補候補（main集計とは別）

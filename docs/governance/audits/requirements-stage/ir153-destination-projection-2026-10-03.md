@@ -14,6 +14,10 @@
 
 sourceによっては、採択済みtargetに加えて登録済み候補や不採択revisionも保持されています。それらは行ごとに別欄へ残し、primary routeの採択をsource全条件の解決とは扱いません。登録済み候補を持つsource rowは 6 件、不採択候補revisionの履歴を持つrowは 8 件（非排他的）です。
 
+## 要求粒度の劣化照合（行き先とは別軸）
+
+本projectionで旧要望と現行要求・利用者確認の対応を検収した件数は **0件、未検収153件** です。行き先未割当0件は要求の取りこぼし0件や要求ステージ完了を示しません。既存receipt・監査の意味対応根拠を再利用し、不足箇所だけ旧要望・利用者確認とtarget本文を照合します。システム挙動、AC、依存tuple、契約、閾値、fixture、WBSはL3以下の材料として扱い、L2/L11の欠落に数えません。未判断4候補の採否とこの要求粒度の照合は別の残件です。
+
 ## 採択targetの根拠と境界
 
 - current 383 candidate tableでは、当該target identityの`disposition == 採択`、decision locator、registration candidate pinを使用しています。保留・不採択・判断未記録はそれぞれ候補または履歴として保持します。
@@ -27,3 +31,5 @@ sourceによっては、採択済みtargetに加えて登録済み候補や不�
 153行のsource locatorは既存worklist `scaffold/review-handoff/local/requirements-source-closure-worklist-2026-10-03.json`（SHA-256 `sha256:03d21ba952c52351df0bd03d638a77832a77bb3471fac38e02b31f3dd2aa7d6b`、153 distinct IDs、latest join `94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891`）から継承しました。各JSON rowにIR locator、保存source path/line digest、carry-forward/routing/audit locator、target L2/L11 anchor、採否根拠または未確認状態を記録しています。
 
 詳細なrow/target単位の根拠は同名JSON `rows[].target_evidence_join` にあります。L2/L11 anchor locatorは既存target IDへの参照です。全153 sourceのmeaning coverageをこのprojectionで主張しません。
+
+各JSON rowは上のtracked locatorと採否join根拠を収録しており、行き先projectionの確認にlocal worklistは不要です。worklistのpath・digestは作成来歴だけを示します。原文からの要求粒度の意味照合を代替するものではありません。

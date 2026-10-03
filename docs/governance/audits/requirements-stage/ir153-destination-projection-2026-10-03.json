@@ -16,7 +16,8 @@
     "source_worklist_current_main": "fd760e32561024975da4838a4a9e51d53d6920da",
     "latest_join_snapshot": "94f0df8c8d69ba0c1ad8de6f7fcfb4fc02f1b891",
     "source_row_count": 153,
-    "note": "Reuse existing 153-row locator/routing join; do not treat the source-worklist historical bucket labels as current decisions. Apply only explicit current branch MPR corrections for HIL-NFR-14 and HIL-BR-19."
+    "note": "Reuse existing 153-row locator/routing join; do not treat the source-worklist historical bucket labels as current decisions. Apply only explicit current branch MPR corrections for HIL-NFR-14 and HIL-BR-19.",
+    "role": "Creator-side provenance only; not a required dependency for readers or recomputation."
   },
   "purpose": "Join each existing IR identity to already available source locators, historical audit rows, known route IDs, exact latest source-linked decisions, and current registered-candidate IDs. This is a source-route projection, not a new source-condition audit.",
   "counts": {
@@ -40,7 +41,8 @@
     "routing": "route_class reports where each source identity can be followed in existing audit/decision/candidate evidence or in the new BR19 candidate.",
     "adoption": "Per target, adopted only when current candidate table says 採択 with its PO decision locator, or when the exact fixed 2026-09-28 PO decision covers the base target and the named L2/L11 rows remain byte-identical. Other registered candidates, rejected revisions, mapped target IDs, formal successor and source-wide meaning coverage remain separate.",
     "formal_successor": "Existing source holding and formal successor status remain separate; a candidate mapping does not assign a formal successor.",
-    "meaning_coverage": "No row is promoted to whole-source condition proof by this locator/routing projection."
+    "meaning_coverage": "No row is promoted to whole-source condition proof by this locator/routing projection.",
+    "requirements_level_comparison": "0/153 accepted as compared in this projection; 153 remain unverified at the user-wish and user-confirmation level. This is distinct from locator assignment 153/153."
   },
   "historical_bucket_note": "2026-09-28 audit bucket labels and open_scope_question fields are historical-time annotations. They are not counted as current PO judgment residue unless an exact current decision/scope source confirms it.",
   "po_judgment_remaining_count": null,
@@ -52,7 +54,8 @@
     "Old audit labels, MPR registration, adoption decisions, formal successor assignment, and meaning coverage remain distinct axes.",
     "The 2026-09-28 audit historical bucket count is not a current work remaining count.",
     "No 4020-source survey or source-wide re-audit was performed.",
-    "Primary adopted route is justified only by the target-level current PO candidate row or named fixed L2/L11 pair comparison embedded per target; sibling source conditions are not inferred."
+    "Primary adopted route is justified only by the target-level current PO candidate row or named fixed L2/L11 pair comparison embedded per target; sibling source conditions are not inferred.",
+    "Each committed row is self-contained for this locator projection: archived IR/source path and digest, tracked carry-forward/routing/audit locators, current target/candidate identity, indexed tracked candidate evidence and embedded fixed-pair evidence are included. The gitignored source worklist is provenance only; neither its availability nor full worklist regeneration is required to inspect the committed joins."
   ],
   "rows": [
     {
@@ -37755,5 +37758,13 @@
     "unchanged_pair_count": 17,
     "different_or_unverified_count": 0,
     "scope": "Only source-worklist mapped HELIXOS/HARNESS base target IDs not in the 383-candidate table. Exact requirement rows and their paired L11 rows only; no source re-audit."
+  },
+  "requirements_level_comparison": {
+    "denominator": 153,
+    "confirmed": 0,
+    "not_accepted_as_compared": 153,
+    "scope": "Source user wishes, mechanism placement, meaning-changing scope and user confirmation only. L3+ behavior, AC enumeration, dependency tuples, contract, thresholds, fixture and WBS are not missing L2/L11 conditions.",
+    "status": "This locator projection does not accept any row as a completed requirements-level comparison. Reuse existing receipts/audits, and read original user wishes plus named targets only where evidence is insufficient.",
+    "boundary": "Route missing 0 is not requirements-stage completion. The four undecided candidates and the requirements-level comparison remain open."
   }
 }

@@ -1,6 +1,6 @@
 # 要求段階の現在状況
 
-2026-10-03時点のPO候補一覧は[監査snapshot](audits/requirements-stage/requirements-stage-closure-2026-10-03.md)にある。基準mainは`bf52f0b3d18059136539fb65d7f1ee3299f62c57`。採否joinとfixed-pair pin照合は確認済み。3件はPO判断未記録であり、要求段階の完了を示さない。
+2026-10-03時点のPO候補一覧は[監査snapshot](audits/requirements-stage/requirements-stage-closure-2026-10-03.md)にある。基準mainは`bf52f0b3d18059136539fb65d7f1ee3299f62c57`。採否joinとfixed-pair pin照合は確認済み。基準mainには判断未記録3件があり、Draft branchのOS132-002を加えると未決PO判断は4件です。要求段階の完了は示しません。
 
 8機構のMPR latest requirement-candidate identityは383件。MPR物理711行、履歴revision、legacy IR 153件とは分母を分ける。
 
@@ -29,4 +29,4 @@
 
 OSの `MPR-RC-HELIXOS-L2-132-002`（HIL-BR-19）は、旧HELIXのBun依存撤去に対応するHELIX再構築の一回のrepository migrationで、activeな開発・実行・検証・配布surfaceすべてがBunなしで再現可能になったことを利用者が確認してから完了とする要望。配置はHELIX-OS、親はL1-005/007。PO判断は未記録で、main基準383件とは別のDraft候補（branchはlatest候補384件・物理713行、未記録4件）。`-132-001`とr1 receiptは履歴として保持し、sourceはpending、runtime・command等はr2 migration receiptに引き継ぐ。
 
-IR153件の既存route locatorを結んだ[projection](audits/requirements-stage/ir153-destination-projection-2026-10-03.md)は別集団・別分母（153件、missing route 0）。route locatorは採択・formal successor・source意味coverageの証明ではありません。4件の未記録PO判断について、source原文・推奨・影響L2/L11・保留残件はsnapshotの判断材料表に記録しています。
+IR153件の[route locator projection](audits/requirements-stage/ir153-destination-projection-2026-10-03.md)では153/153行に行き先があり、未割当は0件です。これは参照先の有無だけを示します。旧sourceから利用者要望・保証・L11確認粒度への劣化照合は、確認済み0/153件、未検収153/153件です。この照合はsource本文全体の意味coverageを証明するものではなく、L3以下も対象外です。基準mainの3件とbranchのOS132-002を合わせた4件のPO判断も未決です。4候補の原文・推奨・影響L2/L11・保留残件はsnapshotの判断材料表にあります。

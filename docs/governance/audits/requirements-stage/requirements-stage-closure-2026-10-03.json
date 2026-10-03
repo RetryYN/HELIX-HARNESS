@@ -8993,13 +8993,45 @@
   "ir153_destination_projection": {
     "markdown": "docs/governance/audits/requirements-stage/ir153-destination-projection-2026-10-03.md",
     "json": "docs/governance/audits/requirements-stage/ir153-destination-projection-2026-10-03.json",
-    "json_sha256": "dac04d51f4add99cd306ccc1584638f332a699bfe081c5bf155b597ad1face28",
+    "json_sha256": "e2f46833b276a3ba0125362b6784f0ae244fbdca79aef69eec61e18faef2a463",
     "distinct_source_identities": 153,
     "route_class_counts": {
       "既存採択ID保持": 152,
       "新候補": 1
     },
     "route_destination_missing": 0,
-    "separation_note": "152 source identities each link to at least one exact adopted target; 1 links to a new unadopted proposal. Registered residuals and nonadopted revision history are preserved separately. Target adoption does not prove whole-source condition coverage."
+    "separation_note": "152 source identities each link to at least one exact adopted target; 1 links to a new unadopted proposal. Registered residuals and nonadopted revision history are preserved separately. Target adoption does not prove whole-source condition coverage.",
+    "route_locator_axis": {
+      "population": 153,
+      "rows_with_route_locator": 153,
+      "unassigned_rows": 0,
+      "classification": {
+        "既存採択targetへのroute": 152,
+        "新候補へのroute": 1
+      },
+      "meaning_boundary": "Locator presence records where to follow evidence; it does not prove whole-source meaning coverage, requirement-stage completion, or source retirement."
+    },
+    "requirement_granularity_review": {
+      "population": 153,
+      "reviewed_count": 0,
+      "unverified_count": 153,
+      "status": "未検収",
+      "check_scope": "Compare each legacy source meaning against the user-request/guarantee and human L11 acceptance grain, and check whether that grain degraded.",
+      "coverage_boundary": "This is not whole-source prose/condition coverage proof and does not re-audit every source condition.",
+      "levels_excluded": "L3 and below are outside this review.",
+      "fixed_adoption_pin_boundary": "Unverified means the requirement-granularity degradation review has not been done; it does not undo or reopen the existing fixed-adoption evidence and pin checks."
+    }
+  },
+  "po_decision_residual": {
+    "count": 4,
+    "main_current_unrecorded_count": 3,
+    "draft_branch_addition_count": 1,
+    "identities": [
+      "HARNESS-L2-067-002",
+      "HELIXOS-L2-125-002",
+      "HELIXOS-L2-131-002",
+      "HELIXOS-L2-132-002"
+    ],
+    "note": "The first three are within the pinned main denominator; HELIXOS-L2-132-002 is the current shared-draft branch addition and not part of the pinned main count."
   }
 }
