@@ -28,7 +28,7 @@ archive内の物理構成は新世代の製品区分へ並べ替えない。sour
 
 ## HELIX-Web製品群の対象
 
-2026-09-26のPO原案でHELIX-Webは製品群の総称となり、各対象の文書はdocs/の下に対象ごとのfolderで置かれた。現在の配置は2026-10-03のPO選択に従い、このdocs/内のfolder分離を保つ。
+2026-09-26のPO原案でHELIX-Webは製品群の総称となった。対象別folder分離を保ち、当時の配置はrepository直下`helix-web/docs/`の下だった。現在は2026-10-03のPO選択によりrepository rootの`docs/`以下に配置し、対象別folder分離を保つ。
 
 | 対象 | 属性 | 文書 |
 |---|---|---|

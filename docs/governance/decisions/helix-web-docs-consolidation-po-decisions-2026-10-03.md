@@ -28,7 +28,7 @@ POの選択：「docs/に統合 (Recommended)」
 
 | Source | Destination | Source SHA-256 | Destination SHA-256 | Note |
 |---|---|---|---|---|
-| `helix-web/README.md` | `docs/README.md`（HELIX-Web製品群の対象節へ統合） | `e3805eb0e17e568b1505061380a09ea3ccc9ed3ba5c2678eb7b33720387e8879` | `d66d7b19a78888f5dee933719f0e16aa5079d5b77fc03ea9881915014fee3eed` | 既存indexへ固有説明を統合 |
+| `helix-web/README.md` | `docs/README.md`（HELIX-Web製品群の対象節へ統合） | `e3805eb0e17e568b1505061380a09ea3ccc9ed3ba5c2678eb7b33720387e8879` | `c8103d3d2f63151ab3d91ad37eae45f3e17a4cd7e2085342fb2db5c8fdeb7188` | 既存indexへ固有説明を統合 |
 | `helix-web/docs/helix-web-connector/README.md` | `docs/helix-web-connector/README.md` | `5899f3eabf9b1f71bd9d00862088d72b16a15d563c50c12a62e0ffb31f7781b9` | `455d57d37cc779cbb10c40b1fe8b1f0f354f17dda667d19c94b12898e2e28fb2` | 移動。必要な相対link/locator追随 |
 | `helix-web/docs/helix-web-connector/candidates/product-requirements.md` | `docs/helix-web-connector/candidates/product-requirements.md` | `e721e5c1ca529e40f36e9b376599f2f50fe962886eea8359ab82170814002016` | `a8dde20f54007e324ee451376dd7d326e7cca17b995429225b74615e30dec509` | 移動。必要な相対link/locator追随 |
 | `helix-web/docs/helix-web-harness-core/README.md` | `docs/helix-web-harness-core/README.md` | `06ffcf8aa2da393e30f4248a3a3b10911b94280c6175b5bb8c4b776de0219231` | `8d5874ef7340d1ec44df6e5c922fd4209ef0fff8362b74f6096406797efac8ac` | 移動。必要な相対link/locator追随 |
@@ -69,7 +69,7 @@ POの選択：「docs/に統合 (Recommended)」
 
 固定commitを読む監査・決定記録・receipt・source snapshotの本文やsource revisionは履歴証拠として保持する。過去のpath/SHAやread-after記述を書き換えず、current readerとmutable locatorのみを現行pathへ追随させた。PO原文snapshot `docs/helix-web/sources/helix-web-product-group-requirements-po-original-2026-09-26.md`は移動元full-file SHA-256 `0762eecef2225f4a175bf8fa1cb668116a5526d87aac8071c15be92c545f7db1`からcurrent SHA-256 `56d05540b3ef00632f52d40477b1e8bb1415423124ae32cc5ac121bed54f5e3c`へ変わった。`original_body_sha256`=`a61feb6941412c5a7e6677b814a9d4568a79cf92c0da0951b74db3a6e43cddbf`で示されるdelimiter下原文は不変であり、introの相対link targetだけを調整した。
 
-Bindingの`upstream[].path`はcurrent参照として移動先へ更新し、対応するSHA-256をその参照先のexact current bytesへ合わせた。`note`やsource-revision、承認記録などのhistoryは変更していない。Current L2 classificationの15件は`source_path`のみ、phase-capability inventoryの9件は`current.refs`のみを更新し、status・分類・line digest・approval revision・snapshotを保持する。L2/L11の要求内容、ID、owner、version、approval parent revisionは変更しない。
+Bindingの`upstream[].path`はcurrent参照として移動先へ更新し、対応するSHA-256をその参照先のexact current bytesへ合わせた。既存の`note`本文は保持し、current移動後のread-afterを追補した。source-revision、承認記録、fixed historical pinは保持する。Current L2 classificationの15件は`source_path`のみ、phase-capability inventoryの9件は`current.refs`のみを更新し、status・分類・line digest・approval revision・snapshotを保持する。L2/L11の要求内容、ID、owner、version、approval parent revisionは変更しない。
 
 ## 検証対象と結果記録
 
