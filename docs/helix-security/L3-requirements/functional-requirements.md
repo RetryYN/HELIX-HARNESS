@@ -1,6 +1,6 @@
 # HELIX-SECURITY L3 機能要件（Stage 1 草稿）
 
-> 状態: L3要件草稿。全L3文書の完成、L3承認、実装方式確定を表さない。Stage 1対象33件中、このsliceの対象19件を固定L2/L11から起草中。残るStage 1 itemsや他Stage/機構の要件は本書に含めない。
+> 状態: L3要件草稿。全L3文書の完成、L3承認、実装方式確定を表さない。G0確定のStage 1対象34件中、このsliceの対象19件を固定L2/L11から起草中。CONNECT 5件と合わせ24件の部分草稿であり、残るStage 1 itemsや他Stage/機構の要件は本書に含めない。
 
 ## 適用・authority・owner境界
 
@@ -8,7 +8,11 @@
 
 ## 旧HELIXからの対応
 
-旧sourceとして、旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`、全体lines 1–190、特にSEC-FR-CAP-001〜007のlines 160–166）、旧受入 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md`（asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`、lines 1–50、SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）、旧pillar L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`（asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、lines 22–349、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）および旧test-design `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`（asset `LEGACY-ASSET-44DD86E3DEC09E65EF51`、lines 1–200、SHA-256 `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）を設計・failure・consumer根拠として読んだ。各行で部分再利用と再導出/新規要求を区別する。旧test source `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts`（asset `LEGACY-ASSET-E92D9979D003D353DB99`、lines 1–250、SHA-256 `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e`）はfixture consumerの場所を示す資料に限り、検証として実行しない。旧schema/runtime/runner/test/CLIを復活させない。
+旧sourceは項目別に照合した。旧SECURITY L3 capability broker `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`、全体lines 1–190、CAP-001〜007はlines 160–166）、旧pillar L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`（asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、lines 22–349、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`、P8-04はlines 168–171、P8-NFR-02はlines 186）、旧受入 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md`（asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`、lines 1–50、SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）、旧pillar acceptance `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`（asset `LEGACY-ASSET-44DD86E3DEC09E65EF51`、lines 1–200、SHA-256 `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）を読んだ。旧試験資産 `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts`（asset `LEGACY-ASSET-E92D9979D003D353DB99`、lines 1–250、SHA-256 `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e`）はconsumer所在の参照に限り実行しない。旧HELIX L3のFR/ACとfunctional/business/NFR三分割、旧L3 gate、自律境界のsourceもこのsliceの形式根拠として記録する（詳細は「旧L3構造の保持点」節）。各要件の意味は固定L2/L11から再導出し、旧runtime/test/CLIは移植しない。
+
+## 旧L3構造の保持点
+
+旧HELIXのL3定義と3 sub-doc構造は形式上の起点として参照し、旧gateを現行承認手続きにしない。旧functional sub-doc `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md`（asset `LEGACY-ASSET-B5B5E71B2AF1459D59A1`、全体lines 1–974、SHA-256 `a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a`）はFRの入出力/振る舞い/AC、旧README `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md`（asset `LEGACY-ASSET-9A772391C7FB1298D45F`、lines 1–56、SHA-256 `949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4`）はfunctional/business/NFRの3分割、pair、G3 freeze節（lines 48–56）を示す。旧business実体 `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md`（asset `LEGACY-ASSET-A6E2C7F0565E5F804F06`、lines 1–256、SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）はHARNESSのBR21評価 projectionであり、現SECURITY/LABO/BRAINへ意味を移さない。旧HELIX NFR grade `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md`（asset `LEGACY-ASSET-8CC5ABFC98C0D00183CA`、lines 1–73、SHA-256 `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3`）は候補値・測定・受入の並置を参考にし、旧数値を自動継承しない。旧HELIX L3 FR/AC構成 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`（asset `LEGACY-ASSET-C7F0C3B79CBAA72960BF`、lines 1–95、SHA-256 `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6`）と旧`CLAUDE.md`自律境界（asset `LEGACY-ASSET-6EBDB617A8104A7756D0`、lines 84–85、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）を参照し、AI起草・人による要件承認のみという保持点を現行authority modelに従って扱う。G3/L12等の旧freeze gateは本書の追加承認gateにしない。
 
 ## FR/AC
 
@@ -18,9 +22,9 @@
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧SECURITY capability brokerのtyped authority tuple・unknown/fail-closeとSEC-FR-CAP-001の一部意味を部分再利用するが、同一要件ではない。旧source: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md` lines 160–166, asset `LEGACY-ASSET-B62E49D2E156232B8C63`, SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`. 構造を現在のdata trust boundaryへ再導出。
+**旧HELIX対応（再利用/再導出/置換）**：旧pillar L3のHR-FR-P8-04（旧path `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` lines 168–171、asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）とHR-NFR-P8-02（同path line 186）を起点にraw input/trusted metadata/instructionの分離を部分再利用し、現L2のsource/project/revision/classificationへ再導出する。旧CAP-001〜007はこの要件への直接対応とみなさない。
 
 - **固定親**：`HELIXSECURITY-L2-001` / `MPR-RC-HELIXSECURITY-L2-001-001`、semantic digest `sha256:97997b9023ac5291a30cfdb263b0997209e76dfd6ce7378cf6a914da57948d8f`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L70`（section SHA `sha256:0c2fd43eba36ca1461dc40e9e91b390df36fbee51226643a52cab6ec042928e9`）、対L11 `25行`（section SHA `sha256:8e22198c3258b212cf56135925e1e6b000c1b937da6e2bf1add8a0133c51a446`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -36,9 +40,9 @@ L2-001で未信頼の命令様内容はdataのまま扱い、Tool args・system 
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-002`, 同asset/path lines 160–166/SHA上記は権限分離の部分類似に限る。命令様data semanticsは現L2から再導出し、旧判定規則/検出器を移植しない。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-001（前掲security-capability-broker-authority.md lines 160–166、asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`）はoperation capabilityとimpactの型分離であり、命令様data非昇格とは直接一致しない。authority/data分離の部分類似のみ記録し、命令様dataの扱いは固定L2から再導出する。旧CAP-002はphysical target/TOCTOU、CAP-003はprovenanceを扱い、本FRとの連番対応ではない。
 
 - **固定親**：`HELIXSECURITY-L2-002` / `MPR-RC-HELIXSECURITY-L2-002-001`、semantic digest `sha256:59b12bbafd3c6aee62a08839e8a56826e28609495422bf5eaa484fe427935700`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L80`（section SHA `sha256:07ce9de25ab4b47be2b99a0550342230e34520548fe4444b6e0166d9454c61cd`）、対L11 `26行`（section SHA `sha256:e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -54,9 +58,9 @@ project/tenant/environment/assignment identityとstate/data/Worker/credential/ar
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-003`, 同asset/path lines 160–166/SHA上記 のtarget/environment分離は部分再利用。現L2にある各scope軸を再導出。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-002（同前掲asset/path/lines/SHA）はlexical/physical targetと実行直前TOCTOU確認の部分類似に限る。project/tenant/environment/assignment隔離とは直接一致しない。旧CAP-003はprovenance区別で別の責務。現L2のscope軸から再導出する。
 
 - **固定親**：`HELIXSECURITY-L2-003` / `MPR-RC-HELIXSECURITY-L2-003-002`、semantic digest `sha256:dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L90`（section SHA `sha256:2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475`）、対L11 `27行`（section SHA `sha256:e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -72,9 +76,9 @@ project/root/HEAD/revision/digest/owner/scopeに構成を束ねる。stale、未
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-004`, 同asset/path lines 160–166/SHA上記 のauthorityとrevision整合を部分再利用。現在の構成項目は再導出し、旧config形式は移さない。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-002（同前掲asset/path/lines/SHA）のTOCTOU再確認はstale/変更済み対象を通さない部分類似に限る。旧CAP-004はclassification/sink分離であり、構成revision項目とは直接一致しない。現在の構成項目は固定L2から再導出し、旧config形式を移さない。
 
 - **固定親**：`HELIXSECURITY-L2-004` / `MPR-RC-HELIXSECURITY-L2-004-001`、semantic digest `sha256:58e9e513e934ff3c1ed8da378b05fcc7fdd3e2a27a503feb449bc7a305812d20`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L100`（section SHA `sha256:1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44`）、対L11 `28行`（section SHA `sha256:bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -90,9 +94,9 @@ raw secretをAI context/log/artifactへ出さず、credential storeをWorkerへ�
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-005`, 同asset/path lines 160–166/SHA上記 の限定capability/fail-closeを部分再利用。current credential contractへ再導出し旧store/runtimeを持ち込まない。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-004（data classificationとsink authority分離）とCAP-005（external/destructive actionのexact target/action binding、同前掲asset/path/lines/SHA）は限定的な部分類似にとどまり、credential store/use/revokeに直接一致しない。current credential contractへ再導出し旧store/runtimeを持ち込まない。
 
 - **固定親**：`HELIXSECURITY-L2-005` / `MPR-RC-HELIXSECURITY-L2-005-001`、semantic digest `sha256:8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L110`（section SHA `sha256:5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad`）、対L11 `29行`（section SHA `sha256:19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -108,9 +112,9 @@ raw secretをAI context/log/artifactへ出さず、credential storeをWorkerへ�
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-006`, 同asset/path lines 160–166/SHA上記 のsink/classification/unknown拒否を部分再利用。資産別egress policyは含めない。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-004（同前掲asset/path/lines/SHA）のdata classificationとsink authorityの分離は本要件の直接的な部分根拠である。egress scopeは固定L2から再導出する。旧CAP-006はruntime surface coverageであり、この要件への根拠ではない。asset別Web sink/publication policyは1.0へ含めない。
 
 - **固定親**：`HELIXSECURITY-L2-006` / `MPR-RC-HELIXSECURITY-L2-006-001`、semantic digest `sha256:8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L120`（section SHA `sha256:09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a`）、対L11 `30行`（section SHA `sha256:a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
@@ -126,15 +130,15 @@ path/network/credential/environment/timeout/resource/diff/rollback/result collec
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧capability broker `SEC-FR-CAP-007`, 同asset/path lines 160–166/SHA上記 のscope執行を部分再利用。worker constraintsは現L2から再導出。旧Runner/Sandboxを復帰させない。
+**旧HELIX対応（再利用/再導出/置換）**：旧CAP-006（同前掲asset/path/lines/SHA）はruntimeごとのhook/sandbox coverageとunsupported時のhost fallback禁止を扱い、未適用時に停止する点だけ部分類似である。旧CAP-007はcanonical safety failureをlegacy greenで相殺せずreason receiptへ残す要件で、Worker制約適用とは別である。worker constraintsは固定L2から再導出し、旧Runner/Sandboxを復帰させない。
 
 - **固定親**：`HELIXSECURITY-L2-007` / `MPR-RC-HELIXSECURITY-L2-007-002`、semantic digest `sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L130`（section SHA `sha256:052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210`）、対L11 `31行`（section SHA `sha256:bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 戻し先: 未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。
 
-**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。
+**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。条件別fixtureは[L10 SECURITY-CASE-007-01の9制御fixture表](../L10-verification/functional-verification.md)で制御ごとに列挙する。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-007`。
 
@@ -144,7 +148,7 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧asset（上記lines 1–190、25–55）およびtest asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md` lines 1–50、SHA `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`: typed tuple/negative fixtureは部分的な前例である。旧runtime/testは実行しない。
 
@@ -158,11 +162,11 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 ### SECURITY-FR-009-01 — revoke/quarantine伝播
 
-対象trigger/identityをOS assignment・Worker環境・CONNECT・credential/artifact accessの該当ownerへ相関可能に伝え、受領/適用/失敗/未観測を分ける。owner別stateを保持し、unknown伝播を対象operationとrisk scope内に制限。latency閾値を新設しない。
+対象trigger/identityをOS assignment・Worker環境・CONNECT・credential/artifact accessの該当ownerへ相関可能に伝え、受領/適用/失敗/未観測を分ける。owner別stateを保持し、unknown伝播を対象operationとrisk scope内に制限。latency閾値は本FRで確定しない。必要な技術値は、根拠・比較案・測定方法を添えてNFR候補に置ける。
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧SECURITY authority/受入source（上記）はrevoke/fail-close oracleの候補として参照するが、owner別の意味は再導出する。旧end-to-end機構横断flowを再利用したとは主張しない。
 
@@ -180,7 +184,7 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR `LEGACY-ASSET-EE5DBACC7F28F7D1F605`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` lines 22–349、SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）は能力/updateに隣接する根拠である。現L2の15対象と処置は再導出し、旧対象集合を再利用したとは主張しない。
 
@@ -198,7 +202,7 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR asset（旧path lines 22–349、全体SHAは上記）と旧受入test `LEGACY-ASSET-44DD86E3DEC09E65EF51`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md` lines 1–200、SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）はrisk/changeの隣接例およびtest consumerの記録に限る。正確なcapability-diff条件は再導出。
 
@@ -216,7 +220,7 @@ package/container/repository/MCP/plugin/Skill/Agent/model/binaryごとにsource/
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR/acceptance assetsはprovenance consumerの隣接資料に限る。source/producer項目は固定L2から再導出し、scanner/registry契約を再利用しない。
 
@@ -234,7 +238,7 @@ package/container/repository/MCP/plugin/Skill/Agent/model/binaryごとにsource/
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR/acceptance assets（上記）は受入chainの隣接根拠に限る。artifact chainは現L2から再導出し、旧CI/runtime/testの実行や合格を主張しない。
 
@@ -252,13 +256,13 @@ SECURITY単体としてmemory/training dataset/BRAIN knowledgeの3 target class�
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：直接対応する旧SECURITY要件は確認されていない。PO fixed L2から再導出する新しい単体要求。旧source不在の範囲は `/tmp/l3-g1-starting-inventory.json` legacy corpus log を参照。
+**旧HELIX対応（再利用/再導出/置換）**：現行HELIXSECURITY-L2-014として採択済みの意味を要件化し、新しい上流要求を追加するものではない。旧SECURITY L3 broker、旧pillar L3 functional requirements（HR-FR表、特にP8領域）とそのacceptance、旧L3 test-designを検索範囲とし、memory/training/BRAINへのSECURITY単体判定という同一契約は見つからなかった。形式上の近接点はpillar L3 HR-FR-P8-04（旧path `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md` lines 168–171、asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）および旧CAP L3全体（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`）だが、直接継承ではない。対象3 class/判定/非保存境界は採択済みL2/L11から再導出する。
 
 - **固定親**：`HELIXSECURITY-L2-014` / `MPR-RC-HELIXSECURITY-L2-014-002`、semantic digest `sha256:6acd2e5b89cc44bfbd70f4d545f666ee51fe356dcb59f7c6c985107f463a1276`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L200`（section SHA `sha256:bed52b952b89788736c7d8615f561b0eda6b08c5c7979f6fa7a834d86491887c`）、対L11 `38行`（section SHA `sha256:2e34f6860f09a6b70cc6e1d36e2cbdf122e4c26168d3f7528983abde1e10957f`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
-**責務・依存とfailure時の戻し先（固定L2の保持）**：固定L2の責務節を参照する。 戻し先: provenance/classification欠落はhold/deny。policy意味や対象追加はL1-014へ戻す。
+**責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYは3 target classごとのsource/provenance/classification判定と理由付きdecisionだけを所有する。入力metadataは各source owner、memory/training/BRAINへのhandoff・保存は各target owner、業務上の保存可否意味はL1-014のownerが正本を持ち、LABO評価とBRAIN登録を本unitに含めない。戻し先: provenance/classification欠落はhold/denyしてsource ownerへ補足を返す。判定対象・意味の変更はL1-014へ戻し、機構横断handoffはL2-027のownerへ返す。依存はSECURITY L2-014とL2-015/016のidentity/classification入力のみ。
 
 **L3 acceptance (`SECURITY-AC-014-01`)**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
 
@@ -270,7 +274,7 @@ SECURITY単体としてmemory/training dataset/BRAIN knowledgeの3 target class�
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR asset（上記）はcore asset/provenanceに隣接する根拠に限る。現在のHELIX資産一覧はPOを起点に再導出し、包括的保護scopeを引き継がない。
 
@@ -288,7 +292,7 @@ public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secre
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR/acceptance assets（上記）はdata sensitivityの隣接例に限る。6分類語彙と版境界は固定PO/L2から再導出し、1.x Web sinkを前倒ししない。
 
@@ -306,7 +310,7 @@ Injection/Scope/Hook/Secret/Egress/Runtime/Permission/Core Asset Guardの決定�
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR/acceptance assets（上記）は決定的enforcementと分析の区別に隣接する根拠である。現Guard一覧とBot任意境界は再導出し、旧Bot一覧/runtimeを保持しない。
 
@@ -324,13 +328,13 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
 **旧HELIX対応（再利用/再導出/置換）**：旧pillar FR asset（上記）はupdate/integrityに隣接するのみ。現在の機構間descriptor owner分割に直接相当する旧要件は確認されていない。固定L2-010/013とHARNESS-L2-010/011から再導出。
 
 - **固定親**：`HELIXSECURITY-L2-028` / `MPR-RC-HELIXSECURITY-L2-028-002`、semantic digest `sha256:76740f351c9bad546326e6f322ba4358348f622799a644ad1f4e0372c5ecefb1`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L342`（section SHA `sha256:af3954bd55e6b230bb615ff295c7926ef29c95e3c2cd5954250df0cf022d16b1`）、対L11 `52行`（section SHA `sha256:40bf0c7a90dbac79da072bee458309750676a1e80640dd067becc97cade6b16e`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
-**責務・依存とfailure時の戻し先（固定L2の保持）**：固定L2の責務節を参照する。 戻し先: SECURITY固有の受入軸はL1-010、artifact identity/integrityはL1-013へ戻す。共通descriptor・交換・rollback契約の不足はHARNESSへ返し、このunitで補完しない。
+**責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYはartifactのSECURITY固有accept/reject/unknown（provenance、許可、対象version/range条件）だけを所有する。HARNESSは共通descriptor・交換・rollback・未完義務lifecycle、OSはassignment/progression、artifact ownerはartifact identity/sourceを所有する。依存はHARNESS-L2-010/011共通pack契約、SECURITY-L2-010/013、該当artifact owner宣言。戻し先: SECURITY判定軸の意味変更はL1-028、artifact identity/integrityはL1-013、共通pack契約不足はHARNESS ownerへ返し、本unitで補完しない。
 
 **L3 acceptance (`SECURITY-AC-028-01`)**：HARNESS-L2-010/011の共通pack descriptorを入力し、SECURITY更新candidateのidentity/version/artifact digestがdescriptorと一致し、dependency versionが宣言compatibility range内で、provenanceとL2-010/013のSECURITY条件を満たす場合だけSECURITY固有の受入判定を返す。`version_target`は目標版で実版ではない。identity/version/digest欠落、不一致、range外、unknownを通せば不合格。共通交換/rollback/未完義務lifecycleの所有・受入をSECURITY-L2-028の証拠に含めたら不合格。
 
@@ -344,13 +348,13 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
-**範囲外**：固定L2/L11にない閾値・実装方式・schema・registry・provider/runtime・承認手続きは追加しない。1.x/Web sink/publication conditionsを1.0へ前倒ししない。保留・不採択identityを親にしない。
+**範囲外**：親の意味・範囲・担当・版を変えない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示せる（実装値・承認値ではない）。実装方式・schema・registry・provider/runtime・承認手続きを要件として固定しない。1.x/Web sink/publication conditionsを1.0へ前倒しせず、保留・不採択identityを親にしない。
 
-**旧HELIX対応（再利用/再導出/置換）**：旧 `HR-FR-P2-05` はarchive source `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` line 428（asset `LEGACY-ASSET-02319C2481B9E01698D5`、whole-file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）および6fabd125 baselineの同path line 409（fixed commit `6fabd125`、whole-file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`）を別revision atomとして参照する。capability broker SEC-FR-CAP-007（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、旧L3 path/SHAは上記）も部分的な意味根拠とする。2 source atomを統合せず、holdingを変更・解除しない。採択sourceは固定L2 registration `MPR-RC-HELIXSECURITY-L2-033-002`。PO decision `po-decision-2026-09-29-57candidates.md#L92,L113,L124`はP0訂正済みL2/L11をSHA/digestで固定する。旧「secret task deny」の文言だけでは認証済みcredential-useの扱いを確定できず、POは訂正を採択した。訂正前の未採択表現を有効なoracleとして使わない。
+**旧HELIX対応（再利用/再導出/置換）**：旧 `HR-FR-P2-05` はarchive source `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` line 428（asset `LEGACY-ASSET-02319C2481B9E01698D5`、whole-file SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）および6fabd125 baselineの同path line 409（fixed commit `6fabd125`、whole-file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`）を別revision atomとして参照する。旧SEC-FR-CAP-007（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、旧L3 path/SHAは上記）は理由receiptに全failure reasonを記録する点だけの形式上の類似で、credential-use/Worker dispatch意味の根拠にはしない。2 source atomを統合せず、holdingを変更・解除しない。採択sourceは固定L2 registration `MPR-RC-HELIXSECURITY-L2-033-002`。PO decision `po-decision-2026-09-29-57candidates.md#L92,L113,L124`はP0訂正済みL2/L11をSHA/digestで固定する。旧「secret task deny」の文言だけでは認証済みcredential-useの扱いを確定できず、POは訂正を採択した。訂正前の未採択表現を有効なoracleとして使わない。
 
 - **固定親**：`HELIXSECURITY-L2-033` / `MPR-RC-HELIXSECURITY-L2-033-002`、semantic digest `sha256:b486a0c44e8f21a6f8738dedeac91dcb94da335b73409b6adeaecf8fa639bf1a`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L455`（section SHA `sha256:ccb516e4eb6e0943e7d634e359a45370eabc31c597daa3fc5afb790895461004`）、対L11 `124行`（section SHA `sha256:437651116a0b5571759c217733ee29a93ae4d4ae3b35bdb5f0377f1352186659`）。PO decision `docs/governance/decisions/po-decision-2026-09-29-57candidates.md`、固定revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`。L2全体SHA `sha256:d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5`、L11全体SHA `sha256:e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556`。
 
-**責務・依存とfailure時の戻し先（固定L2の保持）**：固定L2の責務節を参照する。 戻し先: unknown/stale等の該当条件ではdispatchを保留し、対象revisionと不足をownerへ返す。
+**責務・依存とfailure時の戻し先（固定L2の保持）**：OSはassignment/progression、Worker環境ownerは実行隔離/enforcement、SECURITYはauthorityとcredential/egress条件、HARNESSは共通task contract/証拠交換を所有する。CONNECTは伝送結果を所有するが送信authorityを生成しない。依存は既存assignment、L2-005/006/007/008、HARNESS共通契約に限る。bindingが欠落/unknown/stale/不一致ならdispatchを停止し、対象revisionと不足をOS assignment ownerへ返す。policy意味の変更は該当SECURITY L2 ownerへ戻す。
 
 **L3 acceptance (`SECURITY-AC-033-01`)**：対象assignmentのWorker descriptor、dispatch時HEAD、既存authority、規則revision、task boundaryが一致し、L2-007制約を適用できるときに起動可能とする。raw secret値またはsecret/機密task内容を渡す場合は拒否する。一方、PO採択P0訂正に従い、既存operation authorityと非公開・範囲付きcredential-use capabilityを使い、L2-007と該当egress条件を満たすtaskは、credential-useだけを理由に一律denyせず追加の毎回承認なしで起動可能とする。Worker出力単独からauthority、承認、assignment、要求状態、verified、canonical stateを生成しない。
 
