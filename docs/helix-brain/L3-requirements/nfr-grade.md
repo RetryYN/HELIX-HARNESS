@@ -15,7 +15,7 @@
 
 以下は親L2の列挙fieldと明示した境界から導くmeasurement候補であり、POが指定した性能SLAや新しい承認条件ではない。分母はfixtureへ投入した該当要素とする。
 
-| 親L2 | 測定項目 | 候補値・比較方法 | 根拠と判定材料 |
+| 親L2／測定項目 | 候補値・比較 | 根拠と測定入力 | 判定材料・限界 |
 |---|---|---|---|
 | `HELIXBRAIN-L2-001/002` — domain/structure completeness | 各提示候補のidentity・meaning・stateと4階層kind/parent relationが全項目解決する候補 | L2で明示したdomain候補・階層を分母とし、unknown/重複/参照喪失を個別投入 | 候補・参照保持・戻し先を照合。列挙集合全fieldのcoverageを測るが、新domain充実義務は置かない |
 | `HELIXBRAIN-L2-003/004` — descriptor/comparison completeness | 親L2が列挙したapplicability fieldsを候補ごとに識別し、未充足をunknownとする候補 | 必須field欠落、required input unknown、比較scope/weight欠落を変異 | applicable/unknown/holdの誤判定を記録。新しい選択順位や比較weightは作らない |
