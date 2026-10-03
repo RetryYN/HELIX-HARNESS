@@ -29,7 +29,7 @@ PO候補一覧は[2026-10-03の固定snapshot](audits/requirements-stage/require
 
 OSの `MPR-RC-HELIXOS-L2-132-002`（HIL-BR-19）は、旧HELIXのBun依存撤去に対応するHELIX再構築の一回のrepository migrationで、activeな開発・実行・検証・配布surfaceすべてがBunなしで再現可能になったことを利用者が確認してから完了とする要望。配置はHELIX-OS、親はL1-005/007。候補はmainに統合済みですがPO判断は未記録です。`-132-001`とr1 receiptは履歴として保持し、sourceはpending、runtime・command等はr2 migration receiptに引き継ぐ。
 
-IR153件の[route locator projection](audits/requirements-stage/ir153-destination-projection-2026-10-03.md)では153/153行に行き先があり、未割当は0件です。これは参照先の有無だけを示します。[要求粒度の限定照合追補](audits/requirements-stage/ir153-requirements-bounded-join-2026-10-03.json)では既存receiptと監査を153行へ接続し、具体不足だけを補完しています。BR09、BR16、FR11〜13、FR40、FR44、NFR07の8行は利用者要望と確認の粒度で追補し、引用を現行本文と照合しました。他の行のgenericな親引用を直接保証の証明とは数えません。BR09は採択済みHARNESS-047/054、NFR07は採択済みHARNESS-035の計測追補で利用者保証を確認しました。作成側照合では新しい要求欠落を確定しませんでした。独立reviewは未完了です。全153行の全条件再監査やL3以下の完成を要求整理の終了条件には加えません。4件のPO判断も未決です。4候補の原文・推奨・影響L2/L11・保留残件はsnapshotの判断材料表にあります。
+IR153件の[route locator projection](audits/requirements-stage/ir153-destination-projection-2026-10-03.md)では153/153行に行き先があり、未割当は0件です。これは参照先の有無だけを示します。[要求粒度の限定照合追補](audits/requirements-stage/ir153-requirements-bounded-join-2026-10-03.json)では既存receiptと監査を153行へ接続し、具体不足だけを補完しています。BR01、BR09、BR16、FR11〜13、FR40、FR44、NFR07の9行は利用者要望と確認の粒度で追補し、引用を現行本文と照合しました。他の行のgenericな親引用を直接保証の証明とは数えません。BR09は採択済みHARNESS-047/054、NFR07は採択済みHARNESS-035の計測追補で利用者保証を確認しました。作成側照合では新しい要求欠落を確定しませんでした。独立reviewは未完了です。全153行の全条件再監査やL3以下の完成を要求整理の終了条件には加えません。4件のPO判断も未決です。4候補の原文・推奨・影響L2/L11・保留残件はsnapshotの判断材料表にあります。
 
 ## 既決採否の訂正（HARNESS-088）
 

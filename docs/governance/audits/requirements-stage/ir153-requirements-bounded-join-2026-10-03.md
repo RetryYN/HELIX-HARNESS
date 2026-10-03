@@ -6,6 +6,7 @@
 
 | 旧ID | 保持する利用者保証 | 現行の置き場 | 下流へ残す材料 |
 |---|---|---|---|
+| BR01 | 要件承認後は不可逆な外部作用を除きAIが工程に沿って自走する | Concept・5大目標・AGENTSの自律境界。OS-023は関連条件の参照に限る | 旧harness.db・PR/hook接続・provider固有方式 |
 | BR09 | 工程・taskに必要な専門Worker契約を特定runtimeに依存せず生成し、実割当と分けて確認する | HARNESS-047/054、OSの割当・projection | 旧teamの構造、layer×drive表、provider固有射影方式 |
 | BR16 | 変更対象の必要検証を満たしてから進み、古い対象の合格を流用しない | HARNESS-005、OS-020。動的CIの既決方針を保持 | 旧固定3段構成・SHA/tree lineage・predecessor binding |
 | FR11 | task/domainに合う能力と適用範囲を確認する | INTELLIGENCE-001/002/010、OS-018 | catalogの各field、生成定義の構造 |

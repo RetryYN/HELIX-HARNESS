@@ -29,10 +29,11 @@
         "line_sha256": "45b0c35f91386b8060b6e15a12a23b57416a40687a3aed5debbbe1118911f0c1"
       },
       "bounded_comparison": {
-        "status": "既存audit/判断を再利用",
+        "status": "旧自走要望を現行Conceptと自律境界に保持",
         "user_need_or_confirmation": "Codex自動走行とClaude Code監査を、PRとharness.db eventで交互に接続し、人のL3承認後は不可逆境界以外を無人完走する。",
-        "comparison": "人間の要件判断、工程/検証、ticket起点の作成と独立review、継続記録はHARNESS/OSの条件付きworkflowと役割分担へ再導出。旧harness.dbは現行証拠正本として引き継がれない。全不可逆境界外を無人完走させる一般保証ではなく、操作ごとのscopeで動かす。",
-        "current_l2_l11_evidence": {
+        "comparison": "人が要件を承認した後、不可逆な外部作用を除きAIが工程に沿って自走するという旧要望を保持する。Conceptの設計から検証までの自走、5大目標のsystem stateから次作業・依存・検証・差戻しを判断して継続する自走、現行AGENTS.mdと旧CLAUDE.mdの自律境界に接続する。不可逆な外部作用は既存規則どおり対象と作用を明示した許可を要する。通常の作成・独立review・push・mergeに操作ごとの重複許可を追加せず、要望を操作ごとへ縮小しない。",
+        "l3_or_lower_material": "旧harness.db event、旧PR/hook接続、provider固有の実行方式は旧sourceを参照する下流材料。自走の要望や既存の不可逆操作境界は変更しない。",
+        "related_l2_l11_locator": {
           "target_id": "HELIXOS-L2-023",
           "target_status": "採択",
           "L2": {
@@ -47,11 +48,35 @@
             "summary": "入力・版：L2-015〜020の関係する正本、ticket、assignment/attempt、検証義務/結果、evidenceを使う（1.0、版付きinterface）。",
             "quotation_check": "worker summary; not a verbatim quotation"
           },
-          "evidence_limit": "このtarget pairが元要望の意味すべてを保持するとは限らない。引用は利用者保証との直接一致箇所に限定し、不一致/下流材料は別記。"
+          "evidence_limit": "単体・接続・構成体の関連条件の参照。承認後自走の保証根拠ではない。"
         },
-        "l3_or_lower_material": null
+        "direct_upstream_evidence": [
+          {
+            "path": "docs/concept/helix-concept.md",
+            "start_line": 121,
+            "end_line": 121,
+            "quote": "人は要求を工程の起点へ入れ、要件を承認する。承認後の設計から検証までは、AIが工程に沿って自走する。"
+          },
+          {
+            "path": "docs/concept/helix-five-goals.md",
+            "start_line": 33,
+            "end_line": 37,
+            "quote": "### 1. システム駆動エージェント自走システム\n\n人間が定めたConcept、企画、要求、許可、予算、停止条件を、HARNESSの工程・検証契約とHELIX-OSの管理・推進・\n検収へ接続し、エージェントが次の作業、依存、検証、差戻しをsystem stateから判断して継続できるようにする。\n会話や個々のエージェントの記憶へ進行を依存させず、エージェントが要求、承認、権限を自己生成しない自走を目指す。"
+          },
+          {
+            "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+            "start_line": 82,
+            "end_line": 85,
+            "quote": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。"
+          }
+        ],
+        "current_rule_evidence": {
+          "path": "AGENTS.md",
+          "section": "再構築の原則の自律境界／現在の境界の通常GitHub作業と不可逆な外部作用",
+          "quote": "- secrets、PII、credentialsを書かない。通常のGitHub laneのpush・Draft PR・明示mergeに操作ごとの重複許可を求めない。release、tag、cutover、配布repo切替、およびそれ以外の不可逆な外部作用は対象と作用を明示した許可を要する。"
+        }
       },
-      "evidence_mode": "existing audit/receipt reuse with bounded L2/L11 comparison"
+      "evidence_mode": "focused requirement-grain comparison"
     },
     {
       "source_id": "HIL-BR-02",
@@ -233,7 +258,7 @@
       "bounded_comparison": {
         "status": "登録済candidate route・採否は別",
         "user_need_or_confirmation": "user directiveとIssueは分類前にdurable intake receiptを持ち、AIが不要判断だけでreject/drop/close/cancelできない。AIの非actionable dispositionは非終端で、cancel/supersedeはPOだけが行える。closure receiptが無いcloseは拒否または再openする。",
-        "comparison": "既存OS-015/019の原event不変・source/revision/訂正履歴を基礎にし、OS-L2-034/L11-034未採択候補がcancel/supersedeの既存PO authority receipt、異議/reopen、closure receipt条件を具体化する。",
+        "comparison": "既存OS-015/019の原event不変・source/revision/訂正履歴を基礎にし、採択済みOS-L2-034/L11-034（MPR-RC-HELIXOS-L2-034-003）がcancel/supersedeの既存PO authority receipt、異議/reopen、closure receipt条件を具体化する。",
         "current_l2_l11_evidence": {
           "target_id": "HELIXOS-L2-019",
           "target_status": "採択",
@@ -251,7 +276,12 @@
           },
           "evidence_limit": "このtarget pairが元要望の意味すべてを保持するとは限らない。引用は利用者保証との直接一致箇所に限定し、不一致/下流材料は別記。"
         },
-        "l3_or_lower_material": null
+        "l3_or_lower_material": null,
+        "exact_decision_evidence": {
+          "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+          "line": 51,
+          "quote": "| `HELIXOS-L2-034` | 承認（通常採択22件に含む） | `MPR-RC-HELIXOS-L2-034-003` | `sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8` | `sha256:b89f63d709b38de1ddc8b7ca7d51de595b9cae587da320e027aefed67a3a4e4b` |"
+        }
       },
       "evidence_mode": "existing audit/receipt reuse with bounded L2/L11 comparison"
     },
@@ -6306,6 +6336,7 @@
     }
   ],
   "focused_followup_source_ids": [
+    "HIL-BR-01",
     "HIL-BR-09",
     "HIL-BR-16",
     "HIL-FR-11",
