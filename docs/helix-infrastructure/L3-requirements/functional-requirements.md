@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L3 機能要件（部分草稿）
 
-**状態：部分草稿・未承認。** この文書はStage 1およびStage 2aの割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
+**状態：部分草稿・未承認。** この文書はStage 1・Stage 2a・Stage 2bの割当項目だけを具体化し、機構全体のL3を完了扱いにしない。実装方式・runtime・新しい承認gateを確定しない。通常のPO L3承認前である。対象版は各親L2が明示する`version_target: 1.0`であり、1.0の実装・release許可を意味しない。
 
 ## 起点と作成方法
 
@@ -294,3 +294,56 @@ INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとW
 |---|---|---|---|
 | 旧L3 `LEGACY-ASSET-B62E49D2E156232B8C63` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md` 17-45, 46-113, 114-175 | `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7` | 17–45行 SHA `95bb13ba0b63fe735374c3f31c65e9de06cb7c1fb71938bbcbda34e4a52b1f95`、46–113行 SHA `a71f13bf3b552cb6711ff8a9bff3387c9a92e0ef9409b465893aff12e111f8c0`、114–175行 SHA `b73525567a5742ba4d50fdc44bd7f38fa9824260986211e686e25730ceccbc12` |
 | 旧test design `LEGACY-ASSET-170112AB2FA2FFDBFEE9` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md` 13-29, 42-50 | `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4` | 13–29行 SHA `7cacf65c679bc4fed25cbf60470790b47577e85982d01a88cafc0da6d46ae2fd`、42–50行 SHA `115a969c533a592ad6fe4b1dbb60829b744259d1912a1677d0763a5a34374230` |
+
+
+## INFRA-002-FR-01 — HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift
+
+設計ownerが持つapproved design/configuration、deployment target、source-qualified actual observationを、対象environment/resource/revisionごとに別の意味状態として保持する。同じ比較対象・適用scopeで不足、余剰、version/config/network/permission/capacity差、runtime交換、unknown dependencyを提示する。差異を直す操作、設計の承認、targetの採否はこの比較から生成しない。設計、target、observationがmissing/stale/互換不明ならその部分の比較を未確定としてsource ownerへ返し、確認できた部分と未確認範囲を残す。修正はOS ticket・SECURITY authority・Workerの別契約による。
+
+- **INFRA-002-AC-01**：同じ対象のdesign/target/actualからdriftを再構成でき、三入力と結果のsource/revisionを別々に辿れる。差異を比較しただけで正本やauthorityを書き換えない。
+- **INFRA-002-AC-02**：resource missing/unexpected、version/config/network/permission/capacity差、runtime replacement、unknown dependencyを個別に識別する。入力の欠落/stale/互換不明を一致へ変換せず、該当owner・未確認scope・再比較に必要な入力を示す。
+
+| 親の句 | AC | L10 case | 観測 |
+|---|---|---|---|
+| 入力・提供・三状態の分離 | `INFRA-002-AC-01` | `L10-INFRA-002-C01,C02` | 同一対象の各source/revisionとdrift差分 |
+| 9差異類型・unknown保全 | `INFRA-002-AC-02` | `L10-INFRA-002-C02,C03` | missing/unexpected、5設定差、runtime交換、unknown dependency |
+| 自動変更・承認にしない | `INFRA-002-AC-01,AC-02` | `L10-INFRA-002-C04` | design/target/source bytes・authority状態の不変 |
+| L2-001・設計・観測依存、source ownerへ返却 | `INFRA-002-AC-02` | `L10-INFRA-002-C03,C05` | 部分比較・不足・未確認scope・返却owner |
+
+## INFRA-007-FR-01 — HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability
+
+環境消失後の対象をapproved design/config、artifact/dependency/data backupのidentity/revision、deployment evidenceから再構築し、依存再接続・起動・検証の結果を同じ復旧scopeへ結ぶ。必要情報は消失したmachineだけから取得する前提にしない。backupの存在、手順の存在、起動成功と再構築の成立を別に扱う。source/設定/依存/dataまたは適用authorityの不足があれば成功にせず、復元部分、未完の依存・verification、返却ownerを保持する。L2-005のbackup/restore契約とL2-006のcontrol-plane非依存経路を参照し、その責務を再定義しない。
+
+- **INFRA-007-AC-01**：消失対象のmachineに頼らず、完全な復旧入力から宣言された隔離環境を再構築する。必要な依存再接続、起動、固定oracleの実結果まで満たすscopeだけを再構築済みとし、入力版から結果・証拠を辿れる。
+- **INFRA-007-AC-02**：各入力欠落/stale/異版/依存・data・credential authority不足、再接続失敗、起動失敗、検証failure/unknownを個別に与えた場合は成功にしない。復元部分と残義務を分け、design/artifact/dependency/data/authorityの該当ownerへ返す。再開で元のscopeと版を失わない。
+
+| 親の句 | AC | L10 case | 観測 |
+|---|---|---|---|
+| 全復旧入力から実環境再構築 | `INFRA-007-AC-01` | `L10-INFRA-007-C01,C02` | source版・再構築・再接続・起動・oracle実結果 |
+| 特定machine内への情報閉込めを避ける | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C03` | 元machine喪失時の入力取得可否 |
+| 文書/backup存在と成功を別判定 | `INFRA-007-AC-02` | `L10-INFRA-007-C03,C04` | existenceとobserved resultの区別 |
+| 欠落ownerへ返却・未完verification保持 | `INFRA-007-AC-02` | `L10-INFRA-007-C04,C05` | 復元部分、残義務、owner、再開時の版対応 |
+| L2-001/005/006・1.0・別authority | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C04,C05` | resource identity、復旧経路、既存authorityの条件 |
+
+### INFRA-002 固定親と旧資産の起点
+
+- PO対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択登録 `MPR-RC-HELIXINFRASTRUCTURE-L2-002-002`、PO判断 `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48`（全文SHA `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`）。管理履歴 `docs/governance/management-provisional-requirement-register.jsonl#L122` の行SHA `9fd1dbecb3a6e3fb8a2b6e071783cc276df7162b079bafbafb79fb1246589a26`は追跡情報であり承認生成元ではない。
+- 固定L2 `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 42–51行、全文SHA `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、raw span SHA `ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc`。
+- 固定L11 `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 44–53行、全文SHA `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、raw span SHA `710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb`。
+
+### INFRA-007 固定親と旧資産の起点
+
+- PO対象revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択登録 `MPR-RC-HELIXINFRASTRUCTURE-L2-007-002`、PO判断 `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48`（全文SHA `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`）。管理履歴 `docs/governance/management-provisional-requirement-register.jsonl#L127` の行SHA `faf8943bfd68ef3068ab2a2dfd3939124250dffb36841ba985550e5270d73e12`は追跡情報であり承認生成元ではない。
+- 固定L2 `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md` 92–101行、全文SHA `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、raw span SHA `29820e63b84ed4119c171e12b127b5f1eb3ff0bada5b693cfd0bf860b2934959`。
+- 固定L11 `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md` 94–103行、全文SHA `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、raw span SHA `671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b`。
+
+### Stage 2bの項目別再導出
+
+002はTER-R-02/05の宣言・実効観測の区別とdrift/unknownのfailure patternを部分再導出する。approved design/target/actualの三状態と9差異類型は現固定L2/L11から導く。外部技術inventory、periodic upgrade、shadow/canary/promotion、旧authorityは移植しない。007はdistributionのclean consumer・入力版・結果照合と復旧failureを隣接例として部分再導出し、環境消失からの再構築・依存再接続・起動・検証は固定親の意味から導く。旧consumer_core_v1、Lite/Full、配布先、旧CI/runtime、release standing authorizationは置換・除外する。旧L3ディレクトリ内のrebuildability/rebuildable/Desired Target/actual state/再構築の検索で12候補を得た。今回の意味比較は下表のTER・distributionと対のtest designに限定し、全候補に対応資産がないとは判断しない。比較したsourceは完全一致再利用せず、二項目とも部分再導出として記録する。
+
+| 旧asset | source行 | 全文SHA | raw span SHA | 現item |
+|---|---|---|---|---|
+| `LEGACY-ASSET-7F8960532611D89D03E1` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md` 32–70 | `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc` | `c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477` | 002の観測/差異類例 |
+| `LEGACY-ASSET-30FFE84409079C9B06D1` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md` 16–39 | `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d` | `672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85` | 002の観測/差異類例 |
+| `LEGACY-ASSET-9B7682EBDEA171005D45` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md` 24–83 | `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c` | `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e` | 007の版付き復旧/結果類例 |
+| `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md` 1–58 | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc` | 007の版付き復旧/結果類例 |

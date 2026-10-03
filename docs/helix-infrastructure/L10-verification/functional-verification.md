@@ -1,6 +1,6 @@
 # HELIX-INFRASTRUCTURE L10 機能総合検証（部分草稿）
 
-**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1およびStage 2a assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
+**状態：部分草稿・未承認・未実行。** 本書は`../L3-requirements/functional-requirements.md`のStage 1・Stage 2a・Stage 2b assigned AC候補をシステム境界で照合する設計である。以下は検証fixtureとoracle設計であり、runtime実行結果・green・実装許可を意味しない。採否はL3と一体で通常のPO L3承認へ送る。
 
 旧HELIXのtest-design起点として、旧L10定義 `archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md:162-170,195-207`（`LEGACY-ASSET-34DF3B535879CC73FA86`、SHA-256 `d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a`）の要件挙動をsystem-levelで照合する意味を保持する。旧test-designは旧L10文書そのものとは扱わず、ここでは対のoracle設計からfailure classだけを参照する。旧source/test/runtimeを実行しない。
 
@@ -146,3 +146,29 @@ L2/L11は通常接続とpack収載を分け、identityとscopeを明記。相互
 ### 観測点とoracle
 
 L2/L11はauthority field、条件付きadmission、read-only write set、限定recovery例外をそれぞれ明示。実scope/fixture単位で照合し旧risk enum/approval機構は持ち込まない。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+
+
+## HELIXINFRASTRUCTURE-L2-002 — L10 oracle（対応 `INFRA-002-FR-01`）
+
+固定親・旧sourceのexact path/全文・span SHAはL3機能本文の「INFRA-002 固定親と旧資産の起点」と「Stage 2bの項目別再導出」を参照する。fixtureは同じ対象environment/resource/revisionに結び、他scopeの観測や設計承認を代用しない。
+
+- **L10-INFRA-002-C01**（AC `INFRA-002-AC-01`）：承認済designとtargetおよび一致actualを別sourceで与える。期待oracleは三つの入力と一致drift結果の相互traceであり、source bytesとauthorityは不変。
+- **L10-INFRA-002-C02**（AC `INFRA-002-AC-01,AC-02`）：同じfixtureをresource missing、unexpected、version/config/network/permission/capacity差、runtime replacement、unknown dependencyの9類型に独立変異する。既知の差は種類・値・sourceを返し、unknown dependencyは未確認のまま。異なる二つの差異を持つ未見の組合せでも、片方を隠さず別々に示す。
+- **L10-INFRA-002-C03**（AC `INFRA-002-AC-02`）：design/target/observationを各々missing、stale、互換不明にした9入力を与える。該当部分の比較を保留し、source ownerと未確認scopeを返す。unknownを一致、missingをresource不存在の確定にしない。
+- **L10-INFRA-002-C04**（AC `INFRA-002-AC-01,AC-02`）：unexpected resourceまたはactual設定をdesign/targetへ昇格しようとする入力を与える。比較前後の正本・authority状態は不変で、更新候補は採択/修正実行にならない。driftを消すため比較入力を上書きした結果は不合格。
+- **L10-INFRA-002-C05**（AC `INFRA-002-AC-02`）：有限scopeの一部だけ正しいsourceがあり、残りが別environment/別revision/unknownである未見fixtureを与える。確認済み部分と未確認部分を区別し、元ownerへ返す。OS ticket/SECURITY authority/Worker契約を欠く状態では修正操作を生成しない。
+
+## HELIXINFRASTRUCTURE-L2-007 — L10 oracle（対応 `INFRA-007-FR-01`）
+
+固定親と旧sourceはL3機能本文の該当節でpinする。これは再構築の検証設計であり、今回復旧操作を実施した記録ではない。後続の承認済み設計・既存authorityに従う隔離環境で結果を観測する。
+
+- **L10-INFRA-007-C01**（AC `INFRA-007-AC-01`）：元machineを利用不能とし、外部から取得できる完全なapproved design/config/artifact/dependency/data backup/version/deployment evidenceを与える。隔離環境の再構築、再接続、起動、固定oracle実結果を順に照合し、すべて成立したdeclared scopeだけを再構築済みにする。消失machine/control planeへの依存はなく、操作authorityは別sourceから取得する。
+- **L10-INFRA-007-C02**（AC `INFRA-007-AC-01,AC-02`）：作成側に伏せた同scopeの別artifact/dependency版組合せで再構築する。入力と結果版・実制約を照合し、未対応組合せは未評価とする。前fixtureのgreenを別版へ流用しない。
+- **L10-INFRA-007-C03**（AC `INFRA-007-AC-02`）：文書/backupだけ存在し実再構築証拠がない入力と、必要情報が消失machine内だけにある入力を別々に与える。どちらもrebuildable/successにせず、欠落情報とsource ownerを返す。
+- **L10-INFRA-007-C04**（AC `INFRA-007-AC-02`）：design/config/artifact/dependency/data/version/deployment evidenceを一つずつmissing/stale/異版にする。さらにcredential authority不足、依存再接続失敗、起動失敗、verification failure、verification unknownを個別に与える。起動だけの成功や一部復元を全scope成功にしない。authority不足は該当SECURITY sourceへ返す。
+- **L10-INFRA-007-C05**（AC `INFRA-007-AC-02`）：一部復元後に依存またはverificationで止まり、同じscope/版の不足を補って再開する。復元済み部分と残義務、停止原因、owner、再構築結果のprovenanceを維持し、再開前の未完結果を成功にしない。条件が変わる再開は新revisionで再照合する。
+
+| 親 | ACの同一正本参照 | case集合 | 成立範囲 |
+|---|---|---|---|
+| `HELIXINFRASTRUCTURE-L2-002` | `INFRA-002-AC-01, INFRA-002-AC-02` | `L10-INFRA-002-C01..05` | 指定resource/environmentと固定三入力の比較 |
+| `HELIXINFRASTRUCTURE-L2-007` | `INFRA-007-AC-01, INFRA-007-AC-02` | `L10-INFRA-007-C01..05` | 宣言した隔離復旧scope・版・固定oracleの結果 |
