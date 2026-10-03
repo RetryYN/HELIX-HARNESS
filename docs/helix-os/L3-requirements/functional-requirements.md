@@ -349,19 +349,19 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 一つの選択project、要求revision、許可scopeについて、HARNESS構成版のexact component set・source/artifact digest・互換性・適格性と必要安全依存を照合し、配布・更新・復旧の状態、candidate/active版、対象artifact、未完義務、復旧先を追跡する。選択した対象と必要依存だけを扱い、未指定componentを暗黙に含めず、他projectや全製品の完成を待つ条件を加えない。L2-014の段階構成へ配布結果を合算しない。
 
-**責務／依存境界**：OSはproject別operationと状態/evidenceを管理し、HARNESSはcomponent/package contractと適格性evidence、SECURITYは既存operation authority、INFRASTRUCTUREは資源/実環境を所有する。source digest、互換性、scope、権限が不明・不一致なら対象operationを止め、管理または提供元へ返す。既存qualified版または明示された復旧先、途中成果、未完義務を保つ。新しいtag、publication、cutoverはこの要件から許可しない。
+**責務／依存境界**：OSはproject別operationと状態/evidenceを管理し、HARNESSは7つの該当service契約・artifactと各サービスの適格性evidence、SECURITYは既存operation authority、INFRASTRUCTUREは資源/実環境を所有する。単独成立はOS-L2-015/016/019/020、該当HARNESS契約・artifact、SECURITY authority、INFRASTRUCTURE資源に依存する。source digest、互換性、scope、権限が不明・不一致なら対象operationを止め、管理または提供元へ返す。既存qualified版または明示された復旧先、途中成果、未完義務を保つ。新しいtag、publication、cutoverはこの要件から許可しない。
 
 **受入条件**
 
-- **`AC-OS-L3-021-01` 選択構成の追跡**：project、要求revision、operation scope、component identity/version、source/artifact digest、適格性、必要安全依存、active/candidate状態と復旧先を同じoperationへ結び、明示選択集合だけが対象になる。
+- **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦は各サービスに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。明示選択集合だけが対象になる。
 - **`AC-OS-L3-021-02` 独立判定・部分導入**：一つの適格project向け構成を配布可能とし、別project/他の全製品の未完了を理由に妨げない。個別service構成成功をHELIX全体段階成立とせず、L2-014とは別状態に置く。
-- **`AC-OS-L3-021-03` 不成立と復旧**：component/artifact/digest/互換性/authorityのいずれか一つを欠落・変異させた場合は配布を成立扱いせず、既存qualified版または明示復旧先と未完義務を保持して該当ownerへ返す。未指定componentの包含、成果消去、scope外operationを許さない。
+- **`AC-OS-L3-021-03` 不成立と復旧**：7サービスそれぞれについて証拠を一つずつ欠落させた変異、選択後の別artifact切替、component/digest/互換性/authorityの不一致を配布成立扱いしない。部分適用後の中断では途中成果・未完義務・復旧先を保持し、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
 
 ### `FR-OS-L3-022` — `HELIXOS-L2-022`
 
-対象revision・適用scopeを持つsource eventと運用evidenceを改善candidateへ結び、LABOの評価/提案、既存判断ownerの採否、OSのticket化、変更・検証、再観測を因果関係として記録する。OSは登録・振分け・状態保持を行い、効果/退行評価はLABO、要求/設計/authorityの意味判断は既存ownerが行う。知識取込や自動学習を1.0要件にしない。
+対象revision・適用scopeを持つsource eventと運用evidenceを改善candidateへ結び、LABOの独立評価・提案・比較実験依頼、既存判断ownerの採否、OSのticket化、変更・検証、再観測を因果関係として記録する。OSは登録・振分け・状態保持を行い、効果/退行評価はLABO、要求/設計/authorityの意味判断は既存ownerが行う。L2-012/013の移管済み研究・横断診断をOSの責務として引き受けない。知識取込や自動学習を1.0要件にしない。
 
-**責務／依存境界**：対象正本、source event、scope、判断owner、LABO評価契約、既存ticket契約に依存する。候補生成・登録件数は採択や効果の証拠ではない。評価範囲、採否、戻し先または再評価条件が不足する場合は未解決のまま保持し、LABOまたは該当判断ownerへ返す。
+**責務／依存境界**：OS-L2-015/016/019、対象正本、source event、scope、判断owner、LABO評価契約、既存ticket契約に依存する。入力にはLABOの独立評価結果、提案、比較実験依頼、判断状態と還流先候補をそれぞれ区別して結ぶ。候補生成・登録件数は採択や効果の証拠ではない。評価範囲、採否、戻し先または再評価条件が不足する場合は未解決のまま保持し、LABOまたは該当判断ownerへ返す。L2-012/013が所有する研究・横断診断の実行や結果解釈をOSへ再割当しない。
 
 **受入条件**
 
@@ -371,15 +371,15 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 ### `FR-OS-L3-024` — `HELIXOS-L2-024`
 
-対象projectのHARNESS提供版、運用実績、対象revision、data-use class、許可範囲、LABO評価evidenceを結び、許可されたscopeだけをLABOへ渡す。評価・feedback後は候補、既存判断、ticket、検証、再観測の状態をOSが接続する。提供完了、LABO評価、要求採否、利用者受入、改善効果を別々に記録する。後続版の学習/推薦機能を前提依存にしない。
+対象projectのHARNESS提供版、運用実績、対象revision、data-use class、許可範囲、LABO評価evidenceを結び、許可されたscopeだけをLABOへ渡す。OS-L2-019/021/022および版付きLABO接続の各revision・適合性を照合し、sourceの結合だけで接続成立としない。評価・feedback後は候補、既存判断、ticket、検証、再観測の状態をOSが接続する。提供完了、LABO評価、要求採否、利用者受入、改善効果を別々に記録する。後続版の学習/推薦機能を前提依存にしない。
 
-**責務／依存境界**：OSは接続と状態、HARNESSは提供版・証拠契約、SECURITYは既存のdata-use/operation authority、LABOは評価と効果判断、要求判断ownerは採否を所有する。tenant/customer dataや権限をOSのauthorityへ混ぜず、許可範囲を越えて送らない。許可/data class/scopeが欠落・不一致なら送信と候補採用を保留し、権限ownerまたはLABOへ返す。
+**責務／依存境界**：OSは接続と状態、HARNESSは提供版・証拠契約、SECURITYは既存のdata-use/operation authority、LABOは評価と効果判断、要求判断ownerは採否を所有する。L2-019/021/022と版付きLABO接続のそれぞれについて、互換性・欠落・staleを独立に検出する。tenant/customer dataや権限をOSのauthorityへ混ぜず、許可範囲を越えて送らない。許可/data class/scopeが欠落・不一致なら送信と候補採用を保留し、権限ownerまたはLABOへ返す。未評価・未判断・再検証待ちをそのまま保持する。
 
 **受入条件**
 
 - **`AC-OS-L3-024-01` scope付き評価入力**：許可済み正常fixtureではHARNESS版、target revision、運用結果、data-use class、許可scope、LABO評価とfeedbackを追跡し、LABOに渡した記録が許可scope内である。
 - **`AC-OS-L3-024-02` ownerとstate分離**：提供、運用観測、LABO評価、OS candidate、既存判断、ticket、再検証のstate/actorを別々に保つ。提供完了だけでは利用者受入や効果成立を作らない。
-- **`AC-OS-L3-024-03` data/permission failure**：同一fixtureからpermissionなし/拒否、data class不明、target revision違い、scope過大、評価範囲不一致を各一つずつ注入し、該当送信/採用を止める。非対象tenant/dataの送信0とし、後続学習/推薦がなくても許可済み1.0観測接続を判定できる。
+- **`AC-OS-L3-024-03` dependency・data/permission failure**：L2-019、021、022、版付きLABO接続を一つずつ欠落・非互換・staleにする変異に加え、permissionなし/拒否、data class不明、target revision違い、scope過大、評価範囲不一致を個別に投入し、該当送信/採用を止める。sourceを結合しただけでは接続成立とせず、WEB-OS tenant/job/credential/deploymentを本体OS正本へ混入しない。未評価・未判断・再検証待ちは別状態で保持し、非対象tenant/dataの送信0とする。後続学習/推薦がなくても許可済み1.0観測接続を判定できる。
 
 ### `FR-OS-L3-046` — `HELIXOS-L2-046`
 
@@ -395,19 +395,19 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 ### `FR-OS-L3-048` — `HELIXOS-L2-048`
 
-ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。OSはintake/routing/statusとticket運転、LABOは評価、INTELLIGENCEは適用可能な評価済evidenceによる配置案、HARNESSはoracle/verification義務を所有する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
+ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
 
 **責務／依存境界**：OSは新しいevent schema、status、resolution十分条件、priorityまたはapprovalを作らない。LABO評価やINTELLIGENCE案からticket/assignmentを発行しない。自由文handover、同じpathまたは時間的近さだけでresolution/因果関係を断定せず、ownerに既存条件を照合させる。
 
 **受入条件**
 
-- **`AC-OS-L3-048-01` finding traceと評価受渡し**：ticket返却findingとoracle不足findingの両方で対象revision/scope、ticket/assignment、発生元、理由、不足入力、既存resolution条件が保持され、LABOへ評価可能なevidence付きcandidateとして渡る。
-- **`AC-OS-L3-048-02` pending/resolution境界**：自由文だけ、未ack、別scope/revision evidence、source/input不足ではpendingを維持する。既存L2-007 resolution条件を満たすcurrent evidenceがある場合だけresolvedとし、LABO/INTELLIGENCE/OSのowner境界を維持する。
-- **`AC-OS-L3-048-03` 後日finding・unknown**：既に閉じたticketへ後日findingが来る正常対照ではclosureを保持し、因果関係が未確定なら追補assessmentを保留する。source、scope、resolution条件がunknown/staleなら成功やdefect 0にせず該当ownerへ返す。
+- **`AC-OS-L3-048-01` finding traceと評価受渡し**：ticket返却findingとoracle不足findingの両方で対象revision/scope、ticket/assignment、発生元、理由、不足入力、既存resolution条件が保持される。LABOの分類、適用scope、counterexample、再評価条件を含む評価結果が届き、かつtask scopeが合う場合だけINTELLIGENCEは次回配置案を返せる。OSはその案を自動実行しない。
+- **`AC-OS-L3-048-02` pending/resolution境界**：自由文だけ、未評価、未ack、evidence不足、別scope/revision、比較不能ではpendingを維持する。観測window未満、未追跡、打切りはdefect 0としない。既存L2-007 resolution条件を満たすcurrent evidenceがある場合だけresolvedとし、LABO/INTELLIGENCE/OSのowner境界を維持する。
+- **`AC-OS-L3-048-03` 再発行後評価・後日finding**：LABO評価済みでtask scope適合のfixtureではINTELLIGENCE配置案をOSが判断し、OSが元findingへの因果relation付きticket/assignmentを再発行する。再発行resultをLABOが同じ条件で評価し、未評価・不一致なら未解決を保つ。既に閉じたticketへの後日findingはclosureを保持して追補assessmentとし、source/scope/因果関係がunknown/staleなら該当ownerへ返す。
 
 ### `FR-OS-L3-052` — `HELIXOS-L2-052`
 
-明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけをcleanupし、対象・結果・未完義務を記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。conflict/stale/依存変化/binding不一致は根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。Remote refの削除は既存の対象・作用を含む明示authorityがある場合に限る。
+明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけをcleanupし、対象・結果・未完義務を記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。最新baseを再確認したうえでconflict、stale、依存変化またはreview binding不一致が残る場合だけ根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。baseが変化してもpairが一致しstale=0かつ依存が維持されれば既存stateを保つ。Remote refの削除は既存の対象・作用を含む明示authorityがある場合に限る。
 
 **責務／依存境界**：OSはassignment/cleanup/rechainの記録、作成側は自身のbranch修正、review/merge側は独立照合を担う。merge/cleanupからticket完了、Issue close、review成功、要求完了を生成しない。branch自動rebaseやremote削除はこの要件から許可しない。
 
@@ -415,7 +415,7 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 - **`AC-OS-L3-052-01` local cleanup適格性**：PR-A merge/read-after後にassignment所有、未使用、未完作業なしのlocal worktree/branchだけをcleanupし、同一cleanup再実行でも他assignmentの資源を変更しない。remote refは対象・削除作用を含むauthorityがなければ残す。
 - **`AC-OS-L3-052-02` 後続PR再照合**：PR-A merge後にPR-Bのtrial merge、最新base、stale、dependency、review bindingをcontent HEAD不変のまま再照合する。一致しstale=0なら既存review bindingを保つ。
-- **`AC-OS-L3-052-03` 作成側への返却と再review**：conflict、base drift、依存変化、pair不一致ではmerge/review側が作成branchを修正せず、差分と根拠を作成側へ返す。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。
+- **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。baseだけが変化してもpair一致・stale=0・依存維持なら既存stateを保持する。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。
 
 ## Stage 4 親・旧source crosswalk（項目ごとの再利用／再導出／置換）
 
@@ -423,7 +423,7 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 | identity / parent registration | PO・register / L2固定span | L11固定span | 旧sourceとitem単位の扱い |
 |---|---|---|---|
-| `HELIXOS-L2-021` / `MPR-RC-HELIXOS-L2-021-002` | PO採択 identity set `helix-os-requirements-po-decision-2026-09-28.md:48` (file SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`); register `#L61`, row SHA `d882097a528a2c870703ed189f991a0bc3385d1d8e656e5e36fd0908b1c0efbc`; semantic digest `0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81`; L2 `governance-requirements.md:702-711`, raw `c218690d2796bb4c91348c12c1d7ca5eab45004447c05f8dcdf3fd30ae735d2a` | L11 `governance-acceptance.md:366-371`, raw `21ab8d8199d2f8e1d9999a30d6502d6aa8d7dc3017fe394a3d090d4baf7a6462` | FRS candidate assets: `LEGACY-ASSET-B75E46DBE77592351574` requirements `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:FRS-R-04..11` SHA `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17`; `LEGACY-ASSET-201EED9C5D6D2FF4D41B` requests `.../functional-release-slice-requests.md:FRS-BR-001..009` SHA `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20`; `LEGACY-ASSET-67ADFAB856D954B3C5D2` acceptance `.../functional-release-slice-acceptance.md` SHA `bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee`. Re-derive functional unit/exact inclusion, independent maturity, rollback and safety closure under this parent. Replace old Slice/Module/Bundle/channel implementation, fixed counts, promotion/runtime/schema. These are historical candidate assets, not current authority. |
+| `HELIXOS-L2-021` / `MPR-RC-HELIXOS-L2-021-002` | PO採択 identity set `helix-os-requirements-po-decision-2026-09-28.md:48` (file SHA `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`); register `#L61`, row SHA `d882097a528a2c870703ed189f991a0bc3385d1d8e656e5e36fd0908b1c0efbc`; semantic digest `0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81`; L2 `governance-requirements.md:702-711`, raw `c218690d2796bb4c91348c12c1d7ca5eab45004447c05f8dcdf3fd30ae735d2a` | L11 `governance-acceptance.md:366-371`, raw `21ab8d8199d2f8e1d9999a30d6502d6aa8d7dc3017fe394a3d090d4baf7a6462` | FRS candidate assets: `LEGACY-ASSET-B75E46DBE77592351574` requirements `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:FRS-R-04..09` SHA `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17`; `LEGACY-ASSET-201EED9C5D6D2FF4D41B` requests `.../functional-release-slice-requests.md:FRS-BR-001..009` SHA `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20`; `LEGACY-ASSET-67ADFAB856D954B3C5D2` acceptance `.../functional-release-slice-acceptance.md` SHA `bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee`. Re-derive functional unit/exact inclusion, independent maturity, rollback and safety closure under this parent. Replace old Slice/Module/Bundle/channel implementation, fixed counts, promotion/runtime/schema. These are historical candidate assets, not current authority. |
 | `HELIXOS-L2-022` / `MPR-RC-HELIXOS-L2-022-001` | PO adoption same record `:48`, same file SHA above; register `#L56`, row SHA `3fcf774d9998f12e767755c16dd030aa0f35b0adf4a6ae5575f076e82aacf291`; semantic digest `0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea`; L2 `:712-721`, raw `d78f600f299dfd4b9f35f7b2107d9aa076819cde6668274301c309a9e7e4b190` | L11 `:373-378`, raw `844a21ece8560bc7fd0cad5b1982d96027847ac07a44518a85e5eab29539c7a8` | `LEGACY-ASSET-02D897E62EF2FA267267` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:UIL-FR-004/005, UIL-R-07..10` SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`; paired `LEGACY-ASSET-0B5B38F146D9538C9A36` `.../universal-improvement-loop-acceptance.md:UIL-AC-011/012/013/015/016` SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`. Reuse event→candidate/route/outcome separation and evidence-based before/after comparison; re-derive owner separation, current ticket/decision path, and 1.0 observation-only boundary from adopted L2/L11. Replace old routes, terminal schema, stores, thresholds and runtime. |
 | `HELIXOS-L2-024` / `MPR-RC-HELIXOS-L2-024-001` | PO adoption same record `:48`, file SHA above; register `#L58`, row SHA `5dfc77149345928a65538d286ea64a0d34da28bec659f9dc7c8981852c193f7b`; semantic digest `b84651c09401e2d58c50652d2e74942cbe3f485ec949d79a42255a947b075dcb`; L2 `:732-741`, raw `c95ed2214e72795a30ee2acaa3dd96bc77ccc41b66df4b3d44f83212ebaba780` | L11 `:387-392`, raw `7e4f145d506c50084fcaa993a255e4dc098b4055c477f0917c1d0bccfea03e54` | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md:HR-FR-P4-03` SHA `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`; `LEGACY-ASSET-44DD86E3DEC09E65EF51` paired `.../L3-pillar-acceptance-test-design.md:HAC-P4-03a/b, HAT-P4-03` SHA `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`. Reuse metric-event→candidate and traceable test/review/regression inputs only. Re-derive permissioned HARNESS→LABO→OS flow and owner separation. Replace legacy threshold, collector, DB, and backlog implementation. |
 | `HELIXOS-L2-046` / `MPR-RC-HELIXOS-L2-046-001` | PO `po-decision-2026-09-29-57candidates.md:69` (file SHA `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`); register `#L568`, row SHA `f43ddcf18a0a0450c522d717bef23854e72f186f9de22a73a7f7303e9c970c17`; digest `c86aa6e0ad81c6a37770c084af6b312ef874f2fdf7fd342796fe94fcf588d44d`; L2 `:1177-1184`, raw `65ebd519831b293afacb839c4d632107614352ad0169c38fc2bdfb8e289f85fe` | L11 `:794-800`, raw `3cc2589095ed3c6a9431fc0fb286daddd423d4a5c7d0c2b46cab3a455f6efdc0` | `LEGACY-ASSET-F38874B2497742797010` RFA requirements `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md:RFA-GH-02` SHA `97e1e5341beb48e735aacab3b3957b0707fa6aef2e70d0af8c0051607082e155`; `LEGACY-ASSET-00C7DF9250F8A9A25B24` `.../requirement-formation-scoped-admission-acceptance.md:RFA-AC-16` SHA `c3f62478904e620eced270996360274e2840f9d94eca117d838d0e6dfeda7a86`. The adopted parent explicitly limits this legacy starting point to one AC row. Reuse authority/HEAD/scope continuity and stale invalidation; re-derive exact transitions under current owners. Do not claim RFA candidate-wide source closure or import its engine/schema/runtime. |
@@ -438,8 +438,8 @@ All legacy sources above are historical/candidate material, not current authorit
 
 | 親 | 旧source path:行 | raw-span SHA-256 |
 |---|---|---|
-| HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:79-113` (FRS-R-04..11) | `1cdf090d924256276cdf28d36d7f86d5642390113e88a00f5e10efb637b5b9ed` |
-| HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-64` (FRS-BR-001..009) | `92c1327bc147144eda99a8546605f835d7a759456a82f750391c0f1208b198e4` |
+| HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:79-113` (FRS-R-04..09) | `1cdf090d924256276cdf28d36d7f86d5642390113e88a00f5e10efb637b5b9ed` |
+| HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67` (FRS-BR-001..009) | `0b640473d25bde7bab525a6c9f0f7b924ac94f54dfb828d44bd176a9beee31d3` |
 | HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md:37-59` (FRS-AC-004..026) | `9dab65068400b56f92e8eb520c8f37ec7109b903d8ad25ba0e63aef22f2f8c83` |
 | HELIXOS-L2-021 | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md:73-81` (FRS-BR crosswalk) | `bf60afeb8833ef3f2d39dc7fd80164ee021891e226283d4b6465e589a4eb8176` |
 | HELIXOS-L2-022 | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md:143-172` (UIL-FR-004/005, UIL-R-07..10) | `af6223522d74d33be66b324591e81911b9026fa7317f3fb06991a4b50f954018` |
