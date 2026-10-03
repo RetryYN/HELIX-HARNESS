@@ -88,10 +88,11 @@ L2-055/L11-055はeligible denominatorと各disposition/reasonおよびscorer rev
 - **L10-LABO-056-C02**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: 初回success一件だけを与え、accepted/evaluated/qualifiedとする。期待oracle: 観測は記録するが、単発successだけを根拠に評価済み・適格化しない。
 - **L10-LABO-056-C03**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: failed/rejected/interrupted/unknown statusesをそれぞれ与える。期待oracle: statusesを個別のまま履歴化しunknownやfailureをsuccessへまとめない。
 - **L10-LABO-056-C04**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: stale/欠落source receipt、task class mismatch、scope/data-use/verification欠落や同一/矛盾記録を与える。期待oracle:無言統合せずsourceを保持しOS/SECURITY/Workerへ戻すか未評価を維持。評価済みは適用oracle・範囲・比較・反例・判定receiptまで揃ったcaseのみ。
+- **L10-LABO-056-C05**（AC `LABO-056-AC-01`）: 観測resultとは独立してPO採択済みの評価oracleと基準revision、適用task/model/scope、判定・比較条件、結果、failure/反例/unknownの扱い、評価者、時点、判定receiptがすべて一致するfixtureを与える。期待oracle: 該当scopeに限り「評価済み」とその根拠receiptを記録し、単なる観測済み状態と区別する。qualified/eligible/assignmentやWorker authorityは生成せず、他scopeへ一般化しない。
 
 ### 観測点とoracle
 
-L2-056/L11-056は入力field群とobserved≠evaluatedを明示。単発結果の取込品質をsource stateとの正確なprovenanceで測定し、標本数自体を結果取込の成功条件にしない。評価側に必要標本数があればtask/model/scope限定の根拠・比較・測定候補を示せる。 各fixtureはparent identity/scope/revisionを記録し、証拠欠落を成功や新しいauthorityへ読み替えない。
+L2-056/L11-056は入力field群とobserved≠evaluatedを明示する。C01/C03/C04は結果取込と未評価・failure境界を、C05は完全な評価証跡があるscope限定の正常分岐を照合する。単発結果の取込品質に標本数を成功条件として足さず、評価側に標本数が必要ならtask/model/scope限定の根拠・比較・測定付き候補として扱う。どのcaseもqualified/eligible/assignment/authorityを生成せず、各fixtureはparent identity/scope/revisionを記録する。
 
 
 ## HELIXLABO-L2-057 — L10 oracle（対応 `LABO-057-FR-01`）

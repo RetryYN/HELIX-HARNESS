@@ -207,7 +207,7 @@ L2-001/002と対象stateのowner/retention/recovery要求、独立検証でき�
 | 保証: backup→restore/rollback結果を対象scopeのstate/evidenceと対応 | `INFRA-005-FR-01 / INFRA-005-AC-01` | `L10-INFRA-005-C01,C03` | backup state、実restore、rollback eligibilityを分離 |
 | 否定: source欠落/stale/別版/部分復元を完全成功としない | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | integrity/dependency/startup/verification/compatibility failure |
 | 戻し先: source owner/recovery obligation owner、未完義務を保持 | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | previous eligible state、failure、未完義務、recovery design owner/OS |
-| 版境界: version_target 1.0の明示scope。数値で定義されていない汎用RTO/RPO/retentionを追加しない | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C04` | 対象の明示義務だけを照合 |
+| 版境界: version_target 1.0の明示scope。今回のoperation-scoped restore/rollback判定は親記載のintegrity・dependency・startup・verification・compatibility・procedureで閉じるため、汎用RTO/RPO/retentionを成功条件に要しない。別scopeで技術値が必要なら、上流指定の有無に拘らず根拠・比較・測定方法付きの候補としてL3に提示する | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C04,C05` | 今回不要な汎用閾値を必須gateにせず、operation固有義務を判定。必要な別技術値は候補化可能 |
 
 ### 旧L3／対のtest designからの意味対応
 
