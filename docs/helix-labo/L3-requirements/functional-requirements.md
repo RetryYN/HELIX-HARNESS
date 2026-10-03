@@ -161,7 +161,7 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 
 ### 受入条件（AC候補）
 
-- **LABO-056-AC-01 — 正常・追跡**：許可範囲の各結果statusをsource provenanceとともにobservationへ記録し、評価可能なoracleがない初回一件は観測済み・未評価のまま保持する。評価済みを付す場合はL2所定の根拠と評価receiptが全て辿れる。採用oracle/基準revision・適用scope・判定条件・比較条件・結果・failure/反例/unknown・評価者・時点・receiptが揃う正常caseでは評価済みを記録できる。
+- **LABO-056-AC-01 — 正常・追跡**：許可範囲の各結果statusをsource provenanceとともにobservationへ記録し、評価可能なoracleがない初回一件は観測済み・未評価のまま保持する。評価済みを付す場合はL2所定の根拠と評価receiptが全て辿れる。対象scopeに適用可能な評価oracle/基準revision・判定条件・比較条件・結果・failure/反例/unknown・評価者・時点・receiptが揃う正常caseでは、その範囲の評価済みを記録できる。
 - **LABO-056-AC-02 — 異常・境界**：assignment/source/scope/classification/revision/verification/receiptの欠落、不一致、stale、重複、矛盾を暗黙補完/統合しない。single successやreceipt successだけでunknown taskを成功/qualified/evaluatedにしない。source canonical stateやassignment/worker eligibilityを書き換えない。
 
 ### 固定親句の被覆
