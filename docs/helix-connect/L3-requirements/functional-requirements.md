@@ -121,7 +121,7 @@
 #### 受入条件（AC候補）
 
 - **CONNECT-AC-006-01 — 正常・4類型追跡**：L11が列挙する4交換類型を別々に照合する。各ケースで固定側の機構・契約revisionと対象artifact/dependency revisionが交換前後で不変、交換側の新revisionが宣言互換範囲内、再照合がcurrentであり、同一接続契約上の通信だけが成立する。交換前後のrevision・互換receipt・送受信と未完operation/ACK/attempt/期限/義務をtraceし、交換前後を混在させず保持する。
-- **CONNECT-AC-006-02 — 否定・未見境界**：4類型それぞれに非互換revision、未登録revision、意味契約変更、staleまたはunknownの照合結果を与えた場合は通信attempt 0とする。固定側を変更済みと偽装せず、handoff/rollback/recovery先と残る義務を保持する。再照合・再開条件成立前にretryしない。
+- **CONNECT-AC-006-02 — 否定・未見境界**：4類型それぞれに(a)非互換revision、(b)未登録revision、(c)意味契約変更、(d)stale、(e)unknownの照合結果を個別に与える。全20 fixtureで通信attempt 0とする。固定側を変更済みと偽装せず、handoff/rollback/recovery先と残る義務を保持する。再照合・再開条件成立前にretryしない。4×5のfixture数はL11の列挙境界を測定する候補であり、新しい承認条件ではない。
 
 #### 固定親句の被覆
 
@@ -129,7 +129,7 @@
 |---|---|---|---|
 | 入力: 登録接続、固定側機構/契約/artifact/dependency revision、交換側旧新revision/scope、未完operation/義務/期限/attempt、交換/復旧権限・互換条件 | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 交換類型ごとの完全な入力とsource revision |
 | 保証: 片側を交換し、固定側を変えずに互換を個別照合、互換内なら同一契約上で通信 | `CONNECT-FR-006-01 / CONNECT-AC-006-01` | `CONNECT-CASE-006-01..04` | 4類型の固定側before/after一致、current互換receipt、同一contract送受信 |
-| 否定: 非互換/unknown/stale/意味契約変更では停止し、両側同時変更を成功扱いしない | `CONNECT-FR-006-01 / CONNECT-AC-006-02` | `CONNECT-CASE-006-05` | 各類型×4 invalidationの送信attempt 0、固定側不変 |
+| 否定: 非互換/未登録/意味契約変更/stale/unknownを個別に与えて停止し、両側同時変更を成功扱いしない | `CONNECT-FR-006-01 / CONNECT-AC-006-02` | `CONNECT-CASE-006-05` | 各類型×5境界の20 fixtureで送信attempt 0、固定側不変 |
 | handoff/recovery: 未完operation/ACK/attempt/期限/義務を保持し、再照合・再開条件前にretryしない | `CONNECT-FR-006-01 / CONNECT-AC-006-01,02` | `CONNECT-CASE-006-01..05` | 未完state、handoff receipt、再開前retry 0 |
 | 依存/戻し先: 登録接続、両端互換宣言、HARNESS-L2-010/011、該当SECURITY許可; 意味差は両端owner、技術差はadapter owner、許可差はSECURITY | `CONNECT-FR-006-01 / CONNECT-AC-006-02` | `CONNECT-CASE-006-05` | dependency identityと未完義務/owner別返却 |
 
