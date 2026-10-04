@@ -38,7 +38,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - trade-off・失敗の仕方：
   - `PublishedFailed`や、commit後にprocessが落ちて残った`NotPublished`の行を後から再送する経路は、固定commitのsrc全体を`PublishedFailed`、`RetrieveEventLogsPendingToPublishAsync`、`TimesSent`でgrepしても見つからなかった。publishの起点は、そのtransaction IDを持つ直後の呼出しだけである。
   - `TimesSent`は加算されるが、加算値を読む利用者はmigration以外に見つからなかった。
-  - `OrderingIntegrationEventService.cs` 行22–24の順序は、`InProgress`への更新 → `PublishAsync` → `Published`への更新である。publishが成功した後に`Published`への更新が失敗した場合や、その間でprocessが止まった場合は、行が`InProgress`のまま残る。publish自体が失敗した場合は`PublishedFailed`になる。どちらの場合も、上で述べたとおり後から再送する経路はsrc内で確認できていない。そのため、二重送信や欠落が実際に起きるかどうかは、再送経路の有無に依存し、この範囲では判定していない。
+  - `OrderingIntegrationEventService.cs` 行23–31（https://github.com/dotnet/eShop/blob/dc7ea499cd356924fb6689b3702964a5869dbae9/src/Ordering.API/Application/IntegrationEvents/OrderingIntegrationEventService.cs#L23-L31）では、`InProgress`への更新 → `PublishAsync` → `Published`への更新（行23–25）を一つのtryに入れ、どこかで例外が出ればcatchで`MarkEventAsFailedAsync`を呼ぶ（行27–31）。したがって、publish自体の失敗も、publish成功後の`Published`更新の失敗も、失敗状態への更新が成功すれば`PublishedFailed`になる（後者はbrokerへ送信済みなのに失敗と記録される）。行が`InProgress`のまま残るのは、途中でprocessが止まった場合か、`MarkEventAsFailedAsync`自体が失敗した場合である。どの場合も、上で述べたとおり後から再送する経路はsrc内で確認できていない。そのため、二重送信や欠落が実際に起きるかどうかは再送経路の有無に依存し、この範囲では判定していない。
 - 反例・適用しない場合：DebeziumはrelayをDBの外（CDC）に出している（O02）。pyeventsourcingは、下流がupstreamのnotification logをpullするため、outboxの表を別に持たない（O09）。
 - 互換・非互換：O03（受信側の冪等化）と組で読む必要がある。O02とは、relayの位置が異なる別解である。
 - 限界：sample applicationであり、運用規模の前提は書かれていない。状態値・型名の規約は持ち込まない。
