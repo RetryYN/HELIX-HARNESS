@@ -59,7 +59,9 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つで、P
 
 - 範囲：`docs/design/harness/L1-requirements/screen-requirements.md`の見出し、`docs/design/harness/L2-screen/`全件、`docs/design/helix/L10-ux/`、`docs/design/helix/L5-detail/ui-domain-pattern-profile.md`、`docs/test-design/helix/L2-screen-ux-test-design.md`、`docs/skills/browser-testing-and-screen-verification.md`・`acceptance-criteria-thinking.md`、`docs/governance/candidates/design-grounding-human-convergence-*.md`、`docs/design/design-catalog.yaml`の`std`・`detail`・`mobile`区分。
 - 語：`UX`、`usability`、`情報設計`、`Information Architecture`、`navigation`、`form`、`feedback`、`empty`、`loading`、`heuristic`、`ISO 9241`、`persona`、`i18n`。
-- 結果：表示状態の網羅（D10-M01）、画面詳細の欄（D10-M05）、体験条件の組合せ（D10-M06）、人の反応の扱い（D10-M07）は旧に比較的ある。formと情報設計の知識は無かった。`heuristic`（語単位の一致）は旧の約10件に出るが、HELIX自身の検出器・lint・文書生成の適合判定の文脈で、usability heuristicsではなかった（全件の精読はしていない）。`docs/design/harness/L1-requirements/screen-requirements.md`（580行）はHELIX自身の15画面の要求で、素材にしなかった（UXの横断原則CC2・CC3もHELIXの管理画面に固有）。
+- 結果：表示状態の網羅（D10-M01）、画面詳細の欄（D10-M05）、体験条件の組合せ（D10-M06）、人の反応の扱い（D10-M07）は旧に比較的ある。formと情報設計の知識は範囲内に無かった。
+- 補足検索：旧repo全体（`archive/legacy-generation-2026-09-14/root/`、`.helix/`・src・tests等を含む）を、大文字小文字を区別しない固定文字列で検索し、一致したfile数を数えた（2026-10-04）。`heuristic`（語単位の一致）は16 file（PLAN 5、test 3、src 3、設計文書3、test設計1、その他1）に出るが、HELIX自身の検出器・lint・文書生成の適合判定の文脈で、usability heuristicsではなかった（全件の精読はしていない）。
+- 結果（続き）：`docs/design/harness/L1-requirements/screen-requirements.md`（580行）はHELIX自身の15画面の要求で、素材にしなかった（UXの横断原則CC2・CC3もHELIXの管理画面に固有）。
 
 ## 6. BRAIN L2の知識の属性を付けるときの未決事項
 

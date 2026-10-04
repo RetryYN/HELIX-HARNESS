@@ -77,7 +77,7 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。こ�
 | gap | 根拠 |
 |---|---|
 | network・compute・storageの構成知識 | 旧台帳で`na`（D07-M09）。HELIX自身がlocal CLIで常設serverを持たないため |
-| scaling・capacity・負荷平準化（queue、backpressure、read replica、sharding） | 旧台帳で`na`。`sharding`・`read replica`は0件（D06 §5） |
+| scaling・capacity・負荷平準化（queue、backpressure、read replica、sharding） | 旧台帳で`na`。DBの意味の`sharding`・`read replica`は旧repo全体で0件（D06 §5の補足検索） |
 | failureの型の一覧（単一障害点、分断、枯渇、飽和、連鎖） | 旧に一覧は見つからなかった。D07-M04の運用policyが項目名を持つだけ |
 | topology（構成要素の関係のgraph） | 旧に該当なし |
 | 費用の構造（固定・変動、遊休、冗長・転送の費用） | 旧台帳で`todo` |
@@ -88,7 +88,9 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。こ�
 
 - 範囲：`.claude/agents/devops-deploy.md`、`docs/skills/`（ci-deploy-and-rollback、ci-gate-design、incident-runbook、harness-observability、deprecation-cutover）、`docs/design/harness/L3-functional/nfr-grade.md`、`docs/design/harness/L13-post-deploy/`・`L14-operations/`、`docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md`、`docs/governance/candidates/infrastructure-operations-quality-*.md`、`docs/design/design-catalog.yaml`の`infra`・`ops`区分。
 - 語：`deploy`、`rollback`、`canary`、`blue-green`、`scaling`、`capacity`、`backup`、`restore`、`failover`、`circuit breaker`、`bulkhead`、`Kubernetes`、`Terraform`、`IaC`、`SLO`。
-- 結果：Infrastructureの知識は少ない。旧HELIX自身がlocal CLIで常設の基盤を持たなかったため、旧台帳はnetwork・server・capacityを`na`とした。`circuit breaker`は旧の要求候補・test設計等4件に語として出る（D07-M04 105等）が、設計知識ではなかった。`bulkhead`は0件。`Kubernetes`・`Terraform`はtool名として旧の能力台帳・agent説明・旧concept等に出るだけだった。`docs/skills/ci-gate-design.md`はHELIX自身のCI gateの設計手順で、素材にしなかった。旧L13・L14の境界文書はHELIX自身の証拠の境界で、素材にしなかった。
+- 結果：Infrastructureの知識は少ない。旧HELIX自身がlocal CLIで常設の基盤を持たなかったため、旧台帳はnetwork・server・capacityを`na`とした。範囲内では、`circuit breaker`はD07-M04（105等）に語として出るだけで、設計知識ではなかった。
+- 補足検索：旧repo全体（`archive/legacy-generation-2026-09-14/root/`、`.helix/`・src・tests等を含む）を、大文字小文字を区別しない固定文字列で検索し、一致したfile数を数えた（2026-10-04）。`circuit breaker`は9 file（旧L3要求1、test設計2、PLAN 1、旧intake 1、`requirements-ir` 1、src 1、test 2）に出る。見た範囲では、HELIX自身の独立review fallback・enforcement配線・製品運用要求・投資段階の指示の文脈の語で、設計知識ではなかった（全件の精読はしていない）。`bulkhead`は0 fileだった。
+- 結果（続き）：`Kubernetes`・`Terraform`はtool名として旧の能力台帳・agent説明・旧concept等に出るだけだった。`docs/skills/ci-gate-design.md`はHELIX自身のCI gateの設計手順で、素材にしなかった。旧L13・L14の境界文書はHELIX自身の証拠の境界で、素材にしなかった。
 
 ## 7. BRAIN L2の知識の属性を付けるときの未決事項
 

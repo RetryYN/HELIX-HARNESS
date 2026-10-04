@@ -57,7 +57,9 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。本�
 
 - 範囲：`.claude/agents/db-schema.md`、`docs/skills/`（db、data-migration、ci-deploy-and-rollback、harness-observability）、`docs/adr/`（ADR-001、ADR-007）、`docs/design/harness/L4-basic-design/data.md`、`L5-detailed-design/physical-data.md`の見出し、`docs/design/helix/L5-detail/product-data-connector.md`、`docs/design/design-catalog.yaml`の`data`区分。
 - 語：`schema`、`migration`、`index`、`正規化`、`FK`、`transaction`、`replica`、`sharding`、`backup`、`projection`、`CQRS`、`retention`。
-- 結果：schema変更と移行の知識（D06-M02〜M04）は旧skillの中で比較的まとまっている。`sharding`・`read replica`は0件。`backup`・`restore`は多数出るが、大半はHELIX自身のstate・release・incidentの文脈で、DBの設計知識ではなかった（D07で扱う）。`physical-data.md`はHELIX自身のJSON stateの物理schemaで、素材にしなかった。
+- 結果（上の範囲内）：schema変更と移行の知識（D06-M02〜M04）は旧skillの中で比較的まとまっている。範囲内では`sharding`・`read replica`は0件だった。
+- 補足検索：旧repo全体（`archive/legacy-generation-2026-09-14/root/`、`.helix/`・src・tests等を含む）を、大文字小文字を区別しない固定文字列で検索し、一致したfile数を数えた（2026-10-04）。`backup`は124 file、`restore`は118 fileに出る（PLAN、test、`.helix/evidence/rename`、test設計、lint等）。上の範囲外の物は全件を精読していないが、見た範囲ではHELIX自身のstate・release・incident・移行の文脈で、DBの設計知識ではなかった（D07で扱う）。`sharding`は1 file（旧intakeのINV-024「実測sharding」で、testの分割実行を指し、DBのshardingではない）、`read replica`は0 fileだった。
+- 結果（続き）：`physical-data.md`はHELIX自身のJSON stateの物理schemaで、素材にしなかった。
 
 ## 6. BRAIN L2の知識の属性を付けるときの未決事項
 
