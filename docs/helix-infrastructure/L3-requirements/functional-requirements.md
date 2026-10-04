@@ -424,7 +424,7 @@ HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage release�
 **受入条件**
 
 - `INFRA-011-AC-01`: PO最低18項目の各々に、L2 identity、入力source/revision、expected outcome、observed evidence、結果を一件ずつ結ぶ。項目は親の対応表どおりに識別し、合算したgreenで欠落項目を補わない。HELIX-WEB顧客runtime・後続版項目は1.0対象外とする。
-- `INFRA-011-AC-02`: 同一target scopeでunit、CORE/OS/SECURITY/Worker connection、compositeの結果を別々に記録する。backupと実restore/verificationを区別し、rollback適格先、独立bootstrap/recoveryおよびrebuildabilityまで照合する。一つでも欠落/unknown/stale/mismatch/unauthorizedならaggregate passにしない。OS-L2-014はstage収載時のみ追加照合し、OSとの二重state ownershipを作らない。
+- `INFRA-011-AC-02`: 同一target scopeでunit、CORE/OS/SECURITY/Worker connection、compositeの結果を別々に記録する。backupと実restore/verificationを区別し、rollback適格先、独立bootstrap/recoveryおよびrebuildabilityまで照合する。一つでも欠落/unknown/stale/mismatch/unauthorizedならaggregate passにしない。HELIXOS-L2-014はstage収載時のみ追加照合し、OSとの二重state ownershipを作らない。
 
 **最低18項目のtrace分類**（項目定義は固定L2の1.0表をそのまま保つ。下表はFR/AC/L10観測への索引である。）
 
