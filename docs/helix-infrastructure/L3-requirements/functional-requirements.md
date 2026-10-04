@@ -123,7 +123,7 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 ### 受入条件（AC候補）
 
 - **INFRA-003-AC-01 — 正常・追跡**：要求scopeのCompute/Network/Storage/Model資源fieldがsource/revision付きで揃い、要求量と同じresource/environmentのavailable capacityを比較できる。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性を対象revisionのsourceと観測範囲に結ぶ。available >= requested は適用する閾値・条件が入力契約で設定済みの場合に限る技術候補であり、未設定なら観測値を保持して十分性判定をunknownとする。共通資源モデルはlocal/VPS/dedicated/cloud VM/container/GPU/Worker nodeを同じresource属性へ対応させ、network pathとpersistent/temporary stateのL2-001/003属性を参照する。条件が設定された正常候補は不足なしの根拠付きsnapshotを返し、決定ownerはOS/INTELLIGENCEに残す。モデル能力評価をInfrastructureの記録から推定しない。
-- **INFRA-003-AC-02 — 異常・境界**：available < requested、field欠落、計測不能、stale、identity/environment不一致を十分/healthyとして扱わない。容量不足は不足と未完状態を保持してOS/INTELLIGENCEへ返す。閾値・適用条件が未設定なら十分性はunknownとし、無制限なJob追加を成立にしない。配置・費用の自動採択、未根拠の固定utilization/latency閾値、自動autoscalingを要求しない。
+- **INFRA-003-AC-02 — 異常・境界**：available < requested、field欠落、計測不能、stale、identity/environment不一致を十分/healthyとして扱わない。容量不足は不足と未完状態を保持してOS/INTELLIGENCEへ返す。閾値・適用条件が未設定なら十分性はunknownとし、無制限なJob追加を成立にしない。Infrastructureは承認なしにnode移動またはcost選択を実行しない（根拠付き候補情報の提示はこの禁止に含めない）。配置・費用の自動採択、未根拠の固定utilization/latency閾値、自動autoscalingを要求しない。
 
 ### 固定親句の被覆
 
@@ -190,7 +190,7 @@ TERから外部技術の観測・根拠付きdiff・unknown/staleのfail-close�
 | 旧asset/source span | full SHA-256 | raw span SHA-256 | 対応と変更理由 |
 |---|---|---|---|
 | `LEGACY-ASSET-17C4BF78919578FEBB18` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:108–112` | `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` | `d36a7b113b96991aabd0cfca088da0f1de5847d51fd8b64116cfc5fda5616dd5` | OPS-R-07: source/変更への相関、stale/missing provenanceから原因を確定しない観点を部分再導出。旧Release schema、Runbook実行権限を現行1.0へ移さない。 |
-| `LEGACY-ASSET-F46AB11BD14F2C0469F4` / `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:32–33` | `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` | `bb403a0a1852e180d9687097e490bba7e61ce6d3430a6fb28b4e4cc9eb484b69` | OPS-AC-008/009: stale・duplicate・out-of-orderから原因を推測しない反例の形式。旧自動復旧契約を追加条件にしない。 |
+| `LEGACY-ASSET-F46AB11BD14F2C0469F4` / `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:32–33` | `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` | `bb403a0a1852e180d9687097e490bba7e61ce6d3430a6fb28b4e4cc9eb484b69` | OPS-AC-007/008: stale・duplicate・out-of-orderから原因を推測しない反例の形式。旧自動復旧契約を追加条件にしない。 |
 | `LEGACY-ASSET-5D41345F55800F23AC38` / `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:9–9` | `73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6` | `9174666dbd02a290fc26d2629a0fe3e8da79243b5a4b2ec1158258a4d3274ea4` | NIO-L3-03は旧candidate/unapproved。metric/source/collector観測根拠の候補構造を比較し、全fieldやfreshness閾値を現行承認済み要求へ昇格させない。 |
 
 ## INFRA-005-FR-01 — HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback
@@ -370,7 +370,7 @@ INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとW
 
 **受入条件**
 
-- INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。
+- INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。COREがdesignの意味を、Infrastructureがdeployment targetとactualを所有する。target提案はdesign変更やdeployment実行ではない。
 - INFRA-008-AC-02: design approval、target mapping、actual observationを個別に欠落/stale/不一致にする。該当比較だけをunknown/holdとし、actualをdesign/targetへ昇格しない。
 - INFRA-008-AC-03: actual driftを設計変更で消す変異、INFRAがdesign ownerとしてwriteする変異を拒否し、設計意味の不足をHARNESS-CORE ownerへ戻す。
 - INFRA-008-AC-04: L2-001/002 versioned design interfaceを欠落、stale、version/scope mismatchにする。deployment targetを確定せず、interface ownerへ戻す。
@@ -385,7 +385,7 @@ Worker identityと実際のexecution resource identity/capacity/stateを対応�
 
 - INFRA-025-AC-01: CPU/memory/GPU/storage/network requested/available values、process/container environment、INFRASTRUCTURE-L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work reference、SECURITY isolation policyをsource/revision付きで入力し、SEC policyの適用可能性宣言と実資源上で観測した適用stateを別々に確認する。実際の適用条件・resource identity・environment revisionが一致し、capacityが足りる場合だけ接続を成立させる。適正な再配置後もworker/work identityとunfinished workを保持する。
 - INFRA-025-AC-02: 各資源dimension不足、隔離条件を適用できない、ticket/assignment不明、state stale/mismatchを別々に与える。どれも成立/利用可能にせず、不足dimension・適用不能条件・unknown fieldを示してSECURITY、Infrastructure resource ownerまたはOS ticket ownerへ戻す。
-- INFRA-025-AC-03: 元resourceから移動先resourceへのtransitionでbefore/after state、未完work/義務、ticket/request/work referenceを保持する。移動先だけのcapacity/isolationを元側へ流用する、元stateを破棄する変異は不合格。
+- INFRA-025-AC-03: 元resourceから移動先resourceへのtransitionでbefore/after state、未完work/義務、ticket/request/work referenceを保持する。resource移動でWorkerの責務を消失扱いせず、OS ticket stateをInfrastructureへ移管しない。移動先だけのcapacity/isolationを元側へ流用する、元stateを破棄する変異は不合格。
 - INFRA-025-AC-04: Worker=machine、resource=assignment、resource stateからSECURITY isolation policyを推定する、自動scale/placementを行う、またはこの接続からoperation実行authorityを生成する変異を拒否する。既存の許可scope内でInfrastructureが隔離条件を適用・観測することは拒まない。resource利用可能性の判断とoperation実行authorityを混同しない。
 
 旧WCC LEGACY-ASSET-9114D4E463E95B67DD0C とpaired acceptance C6ADB99F1353965C5449 はworker descriptor/role境界の類例として部分再利用する。INFRA resource identityとOS ticketの結合意味は固定親から再導出する。

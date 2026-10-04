@@ -105,11 +105,11 @@ L2-056/L11-056は入力field群とobserved≠evaluatedを明示する。C01/C03/
 
 ### 検証fixtureとcase
 
-- **L10-LABO-057-C01**（AC `LABO-057-AC-01`）: OS-L2-018/019/023のresultを同一source identityでaccepted CONNECT contract経由で送信し、LABO-028 accepted receiptを得る。期待oracle:送受revision/scope/status/evidence一致、trace/ackがあり、recordは後続LABO履歴へ渡せるがevaluationは作らない。
+- **L10-LABO-057-C01**（AC `LABO-057-AC-01`）: OS-L2-018/019/023のresultを同一source identityでaccepted CONNECT contract経由で送信し、LABO-028 accepted receiptを得る。human-confirmation statusとunfinished obligationがある入力ではsource/receipt双方へ同値を与える。期待oracle:送受revision/scope/status/evidence/human-confirmation/unfinished-obligationが一致し、trace/ackがあり、recordは後続LABO履歴へ渡せるがevaluationは作らない。
 - **L10-LABO-057-C02**（AC `LABO-057-AC-01`／`LABO-057-AC-02`）: 採択済CONNECT契約が無いが、親で認める明示的な人手receiptにより同じschema/version/scope/identity/ack義務を示す。期待oracle:同義務が証明された場合だけ受領成立と記録する。人手receipt自体を新しい承認gateにしない。
 - **L10-LABO-057-C03**（AC `LABO-057-AC-01`／`LABO-057-AC-02`）: CONNECT contractも人手receiptもない、またはackが欠落するfixture。期待oracle:未受領/unknownとしてOSへ返し、受領成功を主張しない。
 - **L10-LABO-057-C04**（AC `LABO-057-AC-01`／`LABO-057-AC-02`）: 同じsource identityを再送し、またはduplicate delivery receiptを二度受ける。期待oracle:same-ID retryは冪等で新規observationを作らず重複を検出する。
-- **L10-LABO-057-C05**（AC `LABO-057-AC-01`／`LABO-057-AC-02`）: stale revision/schema/scope mismatchやresult stateの改変、OS-027 absenceを別々に与える。期待oracle:不一致/staleは止めて未完義務を保ち、OS-027不在だけでは失格にしない。
+- **L10-LABO-057-C05**（AC `LABO-057-AC-01`／`LABO-057-AC-02`）: stale revision/schema/scope mismatch、result stateの改変、人確認statusの欠落、unfinished obligationの削除、OS-027 absenceを別fixtureで与える。期待oracle:不一致/staleは止めて元statusと未完義務を保ち、OS-027不在だけでは失格にしない。
 
 ### 観測点とoracle
 
@@ -203,8 +203,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-004-C03 — `意味差を明示した候補と自動確定の否定`
 
 - 対応: `LABO-004-AC-02`; 親: `HELIXLABO-L2-004`。
-- 入力fixture: (a)目的反転または制約除去の意味差を明示したcandidate、(b)同じ差分を隠して元の意味を保つよう装うcandidate、(c)根拠なしcost=0補完、(d)候補を上流判断前に決定/実施へ昇格するmutationを分ける。
-- 期待oracle: (a)意味変更proposalとして保持し、source/L1 ownerへ判断材料とともに戻す。(b)隠蔽、(c)無根拠補完、(d)自動確定/実施だけを不成立とする。意味変更案を示すこと自体は禁止しない。
+- 入力fixture: (a)一要素だけが一致する部分candidateを方式全体の同等と表示、(b)目的反転または制約除去の意味差を明示したcandidate、(c)同じ差分を隠して元の意味を保つよう装うcandidate、(d)根拠なしcost=0補完、(e)候補を上流判断前に決定/実施へ昇格するmutationを分ける。
+- 期待oracle: (a)一致fieldだけを比較可能として残し、全体同等とはしない。(b)意味変更proposalとして保持し、source/L1 ownerへ判断材料とともに戻す。(c)隠蔽、(d)無根拠補完、(e)自動確定/実施だけを不成立とする。意味変更案を示すこと自体は禁止しない。
 
 ### L10-LABO-004-C04 — `held-out正常`
 
@@ -239,8 +239,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-006-C01 — `比較可能な正常実験`
 
 - 対応: `LABO-006-AC-01`; 親: `HELIXLABO-L2-006`。
-- 入力fixture: 同一ticket/experiment/target version、OS assignment、Worker実行結果、baseline/current/candidate/hybrid条件、oracle、cost証跡を与える。
-- 期待oracle: 成功/失敗、FP/FN、rework、time、CI/Worker時間、token/API、人介入、context、complexity、recovery、release lead time、ops burden、reuseを観測証拠に結び、結果と限界を出す。
+- 入力fixture: 同一ticket/experiment/target version、OS assignment、Worker実行結果、baseline/current/candidate/hybrid条件、品質oracle、cost証跡を与える。
+- 期待oracle: 品質を個別に判定し、成功/失敗、FP/FN、rework、time、CI/Worker時間、token/API、人介入、context、complexity、recovery、release lead time、ops burden、reuseを観測証拠に結び、結果と限界を出す。品質不成立を速度やcostで相殺しない。
 
 ### L10-LABO-006-C02 — `実験結果の個別失敗/組合せ`
 
@@ -470,16 +470,16 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 - 入力fixture: 未見の方式だが元意味・目的・条件のsource evidenceと変更fieldが明確なcandidateを与える。
 - 期待oracle:保持点と差分を同じ比較規則で返し、candidateを実変更へ昇格しない。
 
-### L10-LABO-015-C01 — 4比較armの一致条件
+### L10-LABO-015-C01 — 3比較armの一致条件
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: baseline/current/candidate/hybrid各armにsource revision、target version、適用条件、同一evaluation oracleを付ける。
-- 期待oracle:4 armの比較条件を再構成可能にし、arm間の差は候補構成だけとして明示する。Worker実行は起動しない。
+- 入力fixture: current/candidate/hybridの3 armにsource revision、target version、適用条件、同一evaluation oracleを付ける。
+- 期待oracle:3 armの比較条件を再構成可能にし、arm間の差は候補構成だけとして明示する。別baselineを第4 armとして追加せず、Worker実行は起動しない。
 
 ### L10-LABO-015-C02 — oracleまたは対象版の個別欠落
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 4 arm中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。
+- 入力fixture: 3 arm中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。
 - 期待oracle:該当armの不備を示しexperiment comparisonを成立扱いせず、oracle/対象版ownerへ戻す。
 
 ### L10-LABO-015-C03 — 比較条件の混在
@@ -491,7 +491,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-015-C04 — 同一条件のheld-out正常
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 未見candidate transformationを4 armへ適用するが、全armでtarget version・oracle・適用条件を同一にする。
+- 入力fixture: 未見candidate transformationを3 armへ適用するが、全armでtarget version・oracle・適用条件を同一にする。
 - 期待oracle:比較条件を分離して追跡可能なcandidateとして返し、未見名を理由に排除しない。
 
 ### L10-LABO-016-C01 — 比較証拠から二種類の評価材料へ
@@ -1079,7 +1079,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | `CASE-LABO-L10-068-03` | `FR-LABO-L3-068` / `AC-LABO-L3-068-03` | 遅延した訂正、assignment引継ぎ後にlineage不明、同じIDの重複と新Attemptを区別不能の3ケースを与える。 | 観測部分値を総数にしないでunknownとし、OS記録ownerへ各不足根拠を返す。 |
 | `CASE-LABO-L10-069-01` | `FR-LABO-L3-069` / `AC-LABO-L3-069-01` | 複数return reason classのticket cohort、事前に特定されたscope/revision/windowとsource-complete母数、元closure、後日findingとの根拠relation、再発行後の検証receiptを与える。 | reason別return count・該当分母と後続verification成立/不成立/未評価を分離し、元closureを保持。ticket/routing/priorityを変更しない。 |
 | `CASE-LABO-L10-069-02` | `FR-LABO-L3-069` / `AC-LABO-L3-069-02` | 時間近接だけ、same-pathだけ、scope/revision混在、母数欠落、source incomplete、観測window未満、未追跡、打切り、未実行、単純count reductionを各々投入する。 | 原因帰属やrate/quality closureを断定しない。母数等欠落はunknown/comparison unavailable、観測途中等は0 defectにしない。 |
-| `CASE-LABO-L10-069-03` | `FR-LABO-L3-069` / `AC-LABO-L3-069-03` | 初見reason class、oracle不足finding、再発行から元ticketへのrelation不在を含む未見正常 fixtureを与える。 | reason/source identityを保持しunknown classは未分類、因果relationを捏造しない。一般Ticket closeを長期window待ちにしない。 |
+| `CASE-LABO-L10-069-03` | `FR-LABO-L3-069` / `AC-LABO-L3-069-03` | 初見reason class、oracle不足finding、再発行から元ticketへのrelation不在を含む未見正常fixtureを与える。 | reason/source identityを保持しunknown classは未分類、因果relationを捏造しない。固定親にないwindow/thresholdを合否規則にしない。 |
 | `CASE-LABO-L10-070-01` | `FR-LABO-L3-070` / `AC-LABO-L3-070-01` | 9 selected atomsについて同一scope/revision/windowに属するevent・oracle・time・cost receiptを与える。4 duration、escaped defect、rollback/Recovery、observer overhead、freshness、067/068 co-present fieldsを別々に参照し、重なるwait区間を含むfixtureでも有効な個別duration fieldを与える。 | 各適用fieldはsource receiptへtrace可能。待機・実作業・review待ち・人待ちを分け、parentにaggregate total定義がないため加算して再計算しない。escaped defectは既存owner oracleに限り、same receipt費用は一度、067/068は各grainを保つ。 |
 | `CASE-LABO-L10-070-02` | `FR-LABO-L3-070` / `AC-LABO-L3-070-02` | 4 durationを総所要時間へ加算して作る未定義total、重複wait区間の加算、別々にstart/end欠落、重複wait按分、欠測0、事後oracle/window、unconfirmed finding、rollback/overhead二重計上、推計、timestampなし、ageによる許可、roundをAttempt countへ加算、silent renameも変異する。 | 未定義aggregate totalは出力せず、4個別duration fieldは保持する。他の該当fieldは個別にunknown/invalidとして成功scorecardへ混ぜず、既存metric/authorityを変更しない。 |
 | `CASE-LABO-L10-070-03` | `FR-LABO-L3-070` / `AC-LABO-L3-070-03` | selection scopeでは使わないsource/atomと、選択scope内のreceiptが一部未提供のcaseを対照する。 | unselectedをrequired dependencyにしない。selected内missingは理由付きunavailable/unknown、部分値をcomplete scorecardと称さない。 |

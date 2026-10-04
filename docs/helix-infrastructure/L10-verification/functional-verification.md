@@ -63,7 +63,7 @@ unavailable nodeを含む依存関係；operationとtarget scope；別SECURITY a
 
 - **L10-INFRA-003-C01**（AC `INFRA-003-AC-01`）: 対象environmentのresource snapshotと起動要求の各dimensionに要求量未満でない観測値を与える。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性にsource/revisionと観測範囲を持たせる。適用閾値・条件を明示したfixtureに限って比較候補を評価し、common resource modelのlocal/VPS/dedicated/cloud VM/container/GPU/Worker nodeの各表現とnetwork/storage属性が同じ資源契約へ対応することを照合する。期待oracle: demand/available値とruntime属性が同じresource identity・対象revisionに結びつき、不足のない結果材料をOS/INTELLIGENCEへ返す。モデル能力評価をInfrastructureから推定せず、Infrastructure自身がplacement/costを選ばない。
 - **L10-INFRA-003-C02**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: CPU/storage/network/model resourceのいずれかでavailable < requestedにする。期待oracle: capacity unavailableと不足dimensionを明示し、queue/delay等の未完状態を保持してdecision ownerへ返す。
-- **L10-INFRA-003-C03**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 同じfixtureの一属性をstale、欠落、計測不能、別environment identityに変える。期待oracle: sufficient/healthyを返さずunknownとsource/revision理由を保持する。観測値があっても閾値または適用条件を欠落させた各fixtureは十分性unknownとする。無制限Job追加を許す反例と、Infrastructureが承認なしにnode移動またはcost選択を実行する各反例を不合格とし、OS/INTELLIGENCEへ要求・snapshot・未完queueを返す。
+- **L10-INFRA-003-C03**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 同じfixtureの一属性をstale、欠落、計測不能、別environment identityに変える。期待oracle: sufficient/healthyを返さずunknownとsource/revision理由を保持する。観測値があっても閾値または適用条件を欠落させた各fixtureは十分性unknownとする。無制限Job追加を許す反例と、Infrastructureが承認なしにnode移動またはcost選択を実行する各反例を不合格とし、OS/INTELLIGENCEへ要求・snapshot・未完queueを返す。根拠付きの候補情報を返す正常対照は許すが、未承認の実操作・費用選択を実行したら拒否する。
 - **L10-INFRA-003-C04**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 自動増減autoscalingまたは固定utilization/latency目標がなければ失格とするfixture。期待oracle:高度autoscalingと新しいSLAを1.0必須条件にせず、明示されたcapacity/dependencyだけ判定する。
 
 ### 観測点とoracle
@@ -139,8 +139,8 @@ L2/L11は通常接続とpack収載を分け、identityとscopeを明記。相互
 ### 検証fixtureとcase
 
 - **L10-INFRA-010-C01**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: 通常OS/Worker operationに有効SECURITY authorityを与え、target/project/action/revision/scope/expiryとOS assignment/result receipt、実際のbefore/after resource stateを照合する。期待oracle:許可範囲内のeffectだけをactual-state evidence付きで受け入れる。Workerの限定実操作をOS/SECURITY/Worker責務内で停止・回収でき、INFRAはpolicy/authorityを発行しない。無制限Shell、停止不能、回収不能、INFRAのpolicy/authority発行をそれぞれ独立反例として不合格にする。
-- **L10-INFRA-010-C02**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: read-only operationからupdate-admissionを省き、同時にtarget scopeのwrite-setを空、許可resource stateをbefore/afterで宣言する。期待oracle:valid ordinary authority下でread-onlyを認め、宣言scopeのwrite=0と前後値を確認する。対象scopeにwriteが起きた独立反例と、宣言だけでwrite-set/before-after照合を省いた反例は不合格とし、無関係な並行状態変化は失敗根拠にしない。
-- **L10-INFRA-010-C03**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: state updateでupdate-admission denied/unknown/mismatch、authorityのtarget/project/action/revision/scope/expiryをそれぞれ欠落/不一致にし、期限切れ/失効、または適用recovery obligation missingを個別に与える。期待oracle:変更前に停止しSECURITY/OSへ理由付き返却。credentialの合成markerをnormal state/backup/snapshotへ無条件に保存する各反例を不合格とし、raw valueを証拠出力しない。credential不足とscope不一致を独立に与え、必要な操作条件不足では変更前に停止する。Workerの成功返答だけで実状態変化を受入れる反例、部分実行を全体成功として閉じる反例は別々に不合格とし、実状態・未完操作・適用復旧義務を保持する。
+- **L10-INFRA-010-C02**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: read-only operationからupdate-admissionを省き、同時にtarget scopeのwrite-setを空、許可resource stateをbefore/afterで宣言する。valid ordinary authority下の正常fixtureではread-onlyを認め、宣言scopeのwrite=0と前後値を確認する。別fixtureでread authorityを欠落、期限切れ、scope不一致、unknownへ個別に変異する。期待oracle: read-onlyでも有効な通常authorityがなければ実行を拒否しSECURITY/OSへ戻すが、update-admissionは要求しない。対象scopeにwriteが起きた独立反例と、宣言だけでwrite-set/before-after照合を省いた反例は不合格とし、無関係な並行状態変化は失敗根拠にしない。
+- **L10-INFRA-010-C03**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: state updateでupdate-admission denied/unknown/mismatch、authorityのtarget/project/action/revision/scope/expiryをそれぞれ欠落/不一致にし、期限切れ/失効、または適用recovery obligation missingを個別に与える。期待oracle:変更前に停止しSECURITY/OSへ理由付き返却。credentialの合成markerをnormal state/backup/snapshotへ無条件に保存する各反例を不合格とし、raw valueを証拠出力しない。credential不足とscope不一致を独立に与え、必要な操作条件不足では変更前に停止する。Workerの成功返答だけで実状態変化を受入れる反例、部分実行を全体成功として閉じる反例は別々に不合格とし、実状態・未完操作・適用復旧義務を保持してInfrastructure実状態/recovery ownerへ返す。
 - **L10-INFRA-010-C04**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: 独立bootstrap/recovery fixtureではOS/control plane停止、L2-006 pathと別SECURITY authority、OS ticket不在を与える。期待oracle:限定recovery actionのみ可能で、通常ticketの一般免除にはせず、OS復旧後にoperation/resultを同期する。
 
 ### 観測点とoracle
@@ -179,7 +179,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 
 ### HELIXINFRASTRUCTURE-L2-008（INFRA-008-FR-01）
 
-- L10-INFRA-008-C01（AC INFRA-008-AC-01）: approved design、別revisionのdeployment target、actual observationを与える。design→target mappingとtarget→actual比較を個別に追える。
+- L10-INFRA-008-C01（AC INFRA-008-AC-01）: approved design、別revisionのdeployment target、actual observationを与える。design→target mappingとtarget→actual比較を個別に追える。COREがdesign意味を所有し、Infrastructureがtarget/actualを所有すること、target proposalだけではdesign変更・deployment実行にならないことも照合する。
 - L10-INFRA-008-C02（AC INFRA-008-AC-02）: design approval、target mapping、actual observationを一項目ずつmissing/stale/mismatchにする。該当sideだけunknown/holdとなり、他入力は保持される。
 - L10-INFRA-008-C03（AC INFRA-008-AC-03）: driftをactual→designへ書き戻す、またはINFRAがdesignを変更する要求を与える。両方拒否され、design bytes/authority不変でHARNESS-COREへ戻る。
 - L10-INFRA-008-C04（AC INFRA-008-AC-04）: L2-001/002 versioned interfaceを正常入力した後、missing/stale/version mismatch/scope mismatchを個別に与える。該当時target確定はholdし、design意味やrevisionを推定しない。
@@ -188,7 +188,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 
 - L10-INFRA-025-C01（AC INFRA-025-AC-01）: CPU/memory/GPU/storage/network demand/available、process/container environment、INFRASTRUCTURE-L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work ref、SECURITY isolation conditionを結んだ正常fixtureを与える。oracleはSEC policyの適用可能性宣言と実resource/environment上の適用/観測receiptを別々に確認し、policy revision・対象resource・environmentが一致して必要capacityが足り、OS work identityを保つこと。適用可能と宣言しても未適用/異条件/異revisionの反例は不成立。
 - L10-INFRA-025-C02（AC INFRA-025-AC-02）: 5資源dimensionを各々requested>availableへ、SEC isolation適用不能、ticket/assignment unknown、stale environmentを独立変異する。不成立理由とownerを返し、利用可能/isolatedを推定しない。
-- L10-INFRA-025-C03（AC INFRA-025-AC-03）: resource move前後の元/移動先state、unfinished task/obligation、ticket/request/work refsを与える。identityと未完義務が保持される正常moveと、元state破棄・移動先のみのcapacity条件を元へ誤適用する反例を比較する。
+- L10-INFRA-025-C03（AC INFRA-025-AC-03）: resource move前後の元/移動先state、unfinished task/obligation、ticket/request/work refsを与える。identityと未完義務が保持される正常moveと、(a)機械変更をWorker責務の消失と扱う、(b)OS ticket stateをInfrastructureへ移管する、(c)元stateを破棄する、(d)移動先だけのcapacity条件を元へ誤適用する各反例を比較する。正常moveでもOS ticket/作業責務のownerはOS/Worker側に保持する。
 - L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、自動scaling/placementを行う、この接続からoperation authorityを作る試みを別々に与える。全て拒否し副作用0を確認する。対照fixtureでは既存許可scope内の隔離条件適用/観測を成立させ、実際の適用まで禁止しないことを確認する。
 
 両親の観測tupleはsource/revision、resource/worker identity、owner、unknown/hold、reference continuityである。確認済み部分と未確認部分は分離し、全体successへ丸めない。

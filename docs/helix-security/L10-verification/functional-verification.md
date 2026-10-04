@@ -52,7 +52,7 @@
 | `HELIXSECURITY-L2-004` / `SECURITY-FR-004-01` / `SECURITY-AC-004-01` / `SECURITY-CASE-004-01` | project/root/HEAD/revision/digest/owner/scope構成→integrity判定 | stale/unknown/他project/欠落を既定値で補わない | 対象scopeはL1-004、構成ownerへ欠落返却 | identity=owner、assignment=OS、enforcement=Worker、証拠=HARNESS | 1.0 |
 | `HELIXSECURITY-L2-005` / `SECURITY-FR-005-01` / `SECURITY-AC-005-01` / `SECURITY-CASE-005-01` | canonical classifier identity/revisionとcredential class/actor/operation/target/environment/scope/expiry/purpose/revoke→scoped use decision | raw secret露出、scope/purpose不足、expiry/revoke後利用は0 | policy意味はL1-005、保管/注入境界はL2-024 | authority=SECURITY、store=credential owner、dispatch=OS/Worker、egress=CONNECT | 1.0 |
 | `HELIXSECURITY-L2-006` / `SECURITY-FR-006-01` / `SECURITY-AC-006-01` / `SECURITY-CASE-006-01` | source/destination/protocol/path/classification/bytes/purpose/authority/expiry→egress decision | unknown/未許可destinationはdeny。1.x Web sinkを1.0完了にしない | policy意味はL1-006、physical routeはINFRASTRUCTUREへ | classification=SECURITY、transport=CONNECT、route=INFRASTRUCTURE、証拠=HARNESS | 1.0 |
-| `HELIXSECURITY-L2-007` / `SECURITY-FR-007-01` / `SECURITY-AC-007-01` / `SECURITY-CASE-007-01` | OS assignmentと9制約の適用要求→Worker側適用/観測結果 | 未適用/unknown/unsupportedでhost fallbackなし。制約をWorkerが拡張しない | policy不足はL1-007、enforcement欠落はWorker/INFRASTRUCTURE ownerへ | scope=SECURITY、進行=OS、実行=enforcer/Worker、記録=HARNESS | 1.0 |
+| `HELIXSECURITY-L2-007` / `SECURITY-FR-007-01` / `SECURITY-AC-007-01` / `SECURITY-CASE-007-01` | SECURITYが宣言しrevisionへ束縛した9制約→Worker適用/実観測 | 未適用/unknown/unsupportedでhost fallbackなし。制約をWorkerが拡張しない | policy不足はL1-007、enforcement欠落はWorker/INFRASTRUCTURE ownerへ | scope/policy=SECURITY、進行=OS、実行/enforcement=Worker、実資源観測=INFRASTRUCTURE、記録=HARNESS | 1.0 |
 | `HELIXSECURITY-L2-008` / `SECURITY-FR-008-01` / `SECURITY-AC-008-01` / `SECURITY-CASE-008-01` | actor/target/operation/revision/environment/scope/expiry authority tuple→operation別allow/deny | tuple各要素の欠落/不一致はallow不可 | 意味変更はL1-008、停止伝播はL2-009/022 | authority=SECURITY、assignment=OS、execution=Worker、trace=HARNESS | 1.0 |
 | `HELIXSECURITY-L2-009` / `SECURITY-FR-009-01` / `SECURITY-AC-009-01` / `SECURITY-CASE-009-01` | revocation/triggerと該当recipient集合→受領/適用/未達を分けた伝播状態 | 対象recipient未達/unknownはsuccess不可、無関係scopeのglobal stopも不可 | policy意味はL1-009、enforcement差は各recipient ownerへ | authority=SECURITY、recipient=OS/Worker/CONNECT/artifact owners、測定=HARNESS | 1.0 |
 | `HELIXSECURITY-L2-010` / `SECURITY-FR-010-01` / `SECURITY-AC-010-01` / `SECURITY-CASE-010-01` | 15対象のsource/provenance/digest/dependency/permission/network/finding/rollback→update decision | version文字列だけ/欠落unknownの採用不可 | meaning/判定軸はL1-010、実行promotionはL2-023 | policy=SECURITY、artifact=owner、progression=OS、verification=HARNESS | 1.0 |
@@ -70,7 +70,7 @@
 | `HELIXSECURITY-L2-030` / `SECURITY-FR-030-01` / `SECURITY-AC-030-01..03` / `SECURITY-CASE-030-01..03` | scope拡大revision/権限/監査/rollback/risk owner/監視/threat model→独立条件状態 | 条件欠落・unknown、ログだけの充足、SECURITYからのOS/INTELLIGENCE代行は不合格 | SECURITYは条件判定、OSは昇格、Worker/INFRAは強制、INTELLIGENCEは意味判断 | 選択されたscope/revisionと既存owner条件 | 1.0 |
 | `HELIXSECURITY-L2-032` / `SECURITY-FR-032-01` / `SECURITY-AC-032-01..02` / `SECURITY-CASE-032-01..02` | 同一repository/operation denyとone-shot/provider flag、policy適用状態→既存allow/deny境界 | 下位flagの上書き、unknownから許可、無関係操作の一律denyは不合格 | SECURITYはpolicy、OS/Workerはassignment/適用、既存authorityへ戻す | 対象repository/operationの同一policy revision | 1.0 |
 | `HELIXSECURITY-L2-034` / `SECURITY-FR-034-01` / `SECURITY-AC-034-01..03` / `SECURITY-CASE-034-01..03` | profile/revision/capability/probe/egress/authority→profile operation別判定 | raw secret/未許可egress/authority欠落をdeny、valid scoped credential useは通す | CONNECT identity/互換、SECURITY policy、Worker/INFRA適用、ownerへ未closure返却 | 選択profile・operation・sourceだけ | 1.0 |
-| `HELIXSECURITY-L2-035` / `SECURITY-FR-035-01` / `SECURITY-AC-035-01..03` / `SECURITY-CASE-035-01..04` | 追加runtime operation authority/repository policyは常時、選択bypass runの能力・cleanup・switch観測→policy/実適用結果 | deny状態を選択時だけ確認、cleanup残置、unknownからYOLOを拒否 | SECURITY policy、Worker/INFRA cleanup適用、OS assignment | 既存authority/policy常時、bypass能力/cleanupは選択時 | 1.0 |
+| `HELIXSECURITY-L2-035` / `SECURITY-FR-035-01` / `SECURITY-AC-035-01..03` / `SECURITY-CASE-035-01..04` | 既存operation authorityを常時、選択runtimeのallowlist能力とrepository policy適用を選択入力に応じて照合。bypass/YOLO選択時だけrun cleanup/switch能力を追加観測 | unknown能力をbypass根拠にしない。bypass非選択時に本候補だけの一律停止を作らず、既存policy/authorityを維持 | policy/authority=SECURITY、run設定適用=Worker、assignment=OS | allowlist/policy適用は選択runtimeに応じて確認、cleanup/switchはbypass選択runのみ | 1.0 |
 | `HELIXSECURITY-L2-021` / `SECURITY-FR-021-01` / `SECURITY-AC-021-01..03` / `SECURITY-CASE-021-01..03` | CONNECT source/revision/input-output identity→分類・理由付き受領trace | source混同、受領からtrust/permission/storage生成を拒否 | CONNECT搬送、SECURITY分類、LABO/INTELLIGENCE利用、target owner保存 | 選択sourceとtargetの既存契約 | 1.0 |
 | `HELIXSECURITY-L2-022` / `SECURITY-FR-022-01` / `SECURITY-AC-022-01..03` / `SECURITY-CASE-022-01..03` | 判断依頼tuple→SECURITY判断→OS assignment→Worker適用観測 | INTELLIGENCEだけでauthority生成、通信/retryやassignmentのowner越境を拒否 | SECURITY判断、OS assignment、Worker適用、CONNECT通信 | 同一actor/target/operation/revision/scope tuple | 1.0 |
 | `HELIXSECURITY-L2-023` / `SECURITY-FR-023-01` / `SECURITY-AC-023-01..04` / `SECURITY-CASE-023-01..04` | 段階別candidate/admission/run/verification/promotion evidence→状態遷移 | missing/failed/stale/revision違い、将来receipt前倒し、未見正常の自動拒否を区別 | SECURITY固有判定、HARNESS検証、OS progression、owner別戻し | 選択stageと既存contract | 1.0 |
@@ -153,7 +153,7 @@
 | write path | assignment scope内の許可pathとread-only/write条件 | pathを一つscope外へ差替え、またはwrite禁止を欠落 | Worker enforcement owner;要求/実効pathと実行後状態 | scope外write 0、read-only時対象変更なし |
 | network | assignmentで宣言したnetwork scope | destination/protocolを許可外にする | Worker/INFRASTRUCTURE owner; endpointと拒否結果 | 未許可egress 0 |
 | credential | credential classとscope/expiry/revoke state | credentials noneの条件でfallbackを試す、特権credentialへfallback、Workerからhost credential参照、scope不一致/unknown/期限切れを独立投入。別fixtureで有効scoped capabilityをraw値非到達で使う | SECURITY/credential owner;値を含まない判断receipt | 無許可利用とraw value記録0。既存条件内のscoped useは一律denyしない |
-| environment | SECURITYが宣言しassignment/policy revisionへ束縛した許可set、Worker実行環境identity | 許可setを欠落/改変し、別環境で適用。fixture例として`FIXTURE_MODE=review`、`FIXTURE_LOCALE=ja`と許可外`FIXTURE_SECRET_REF`を入力 | SECURITY policy owner + Worker enforcement owner;宣言setと適用観測 | SECURITYが宣言したset以外を適用しない。適用観測欠落/unknownで実行0。secret値を露出させない |
+| environment | SECURITYが宣言しassignment/policy revisionへ束縛した許可set、Worker実行環境identity | 固定L11例の`TASK_MODE`/`LANG`だけを許可し、許可外の`HOST_SECRET_REF`（値なし）を拒否する。許可set欠落/改変・別環境適用も独立変異 | SECURITY policy owner + Worker enforcement owner;宣言setと実適用観測 | SECURITYが宣言したsetだけ適用。許可外変数の継承と適用観測欠落/unknownでの実行0。secret値を露出させない |
 | timeout | assignment/runtime ownerの宣言時間値 | 宣言値到達/超過と観測不明を比較 | Worker owner;宣言値と停止event | 宣言境界を超える処理を成功にしない。未宣言値を補わない |
 | resource | SECURITY制約へ結び付いたpolicy revision、assignment内resource条件、Workerの実適用状態 | 条件を欠落、設定だけ宣言して適用観測を欠落、実resourceを境界超過させる | SECURITY policy owner + Worker enforcement owner;要求/実効resource観測 | 設定だけで適用済みとしない。欠落/unknown/超過で継続しない |
 | diff検査 | operation前後の対象scope diff | 許可scope内の実差分positive、scope外差分、実post-stateとdiff不一致、secret markerを含むdiff記録、diff receipt欠落を独立投入 | operation owner/Worker;前後identityとdiff scope | 実post-state照合に合う許可範囲のみ受入れ、scope外差分とsecret記録0、receipt欠落はunknown |
@@ -217,6 +217,7 @@
 ### SECURITY-CASE-014-01 — 永続化判定
 
 - **対象AC**: `SECURITY-AC-014-01`
+- **追加fixture/oracle**：memory／training dataset／BRAIN knowledgeの各target classへ、Memory poisoning／Prompt Injection persistence／training contamination／BRAIN contaminationにつながり得る合成入力を与え、source、provenance、classification、targetを個別に欠落・unknown・不一致へ変異する。該当targetへのSECURITY判断理由を返し、不足はhold/denyする。単体判定からhandoff、LABO評価、BRAIN登録、保存実行を生成せず、3経路はL2-027の別判定へ残す。
 - **固定L11受入oracle**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
 - **fixture/oracle**: 三つのtarget classを独立にfixture化し、valid metadataと欠落/unknown/target mismatchを比較。判定receiptに理由/targetを残し、保存や構成体完了を示さない。
 - **negative/boundary oracle**：source/provenance/classification missing/unknown、または誤targetをallowしたら不合格。判定から機構間handoff、LABO評価、BRAIN登録、実保存を成功扱いしない。
@@ -245,9 +246,9 @@
 
 - **対象AC**: `SECURITY-AC-020-01`
 - **固定L11受入oracle**：Injection Guard、Scope Guard、Hook Guard、Secret Guard、Egress Guard、Runtime Guard、Permission Guard、Core Asset Guardの決定的判定をGuard側に置く。Bot候補例のSecurity Audit Bot、Injection Analysis Bot、Core Probe Detection Bot、Supply-chain Review Bot、Security Diagnosis Botはsemantic judgement/diagnosisのため必要に応じINTELLIGENCEへ接続する。候補例は全Botの初版実装・運用を要求しない。Bot不在を理由に決定的制約が抜ける、Botが包括Write権を持つ、候補を全て1.0必須runtimeとするなら不合格。Core Asset Guardの名称を保持しつつ、1.0のGuard基盤とL2-019/025の1.x公開sink適用を別に判定する。名称の列挙だけで完全なasset-specific egress/Web保護を1.0へ前倒しせず、逆に1.0のcredential・一般egress・operation guardを延期しない。
-- **fixture/oracle**: Botなし/一部Botありを対比し決定条件が同じGuard判定で保たれることを確認。Bot requestのscopeとauthorityを検査し、包括write拒否。1.x sink protectionを未実装のまま1.0 Guardを評価する。
+- **fixture/oracle**: 8 Guardそれぞれに、規則が定義済みでBotなしの通常入力と、必要時に限定scope/authorityを持つBot補助を加えた同一入力を与え、同じ決定結果になることを確認する。独立fixtureでGuard rule未定義または適用不能、必要なenforcement観測欠落を入力し、1.0条件を推測で補わず該当enforcement ownerへunknown/holdを返す。Bot候補が不在でも決定的Guard条件を落とさず、Bot requestのscope/authorityを検査し包括writeを拒否する。1.x sink protectionを未実装のまま1.0 Guardを評価する。
 - **negative/boundary oracle**：決定的条件をBotに依存、Bot不在でGuard条件が抜ける、Botに包括write権を与える、全候補Botを1.0必須化するなら不合格。1.x asset-specific sink適用と1.0 Guard基盤を混同しない。
-- **責務・失敗時の戻し先**：L2-008 authority、Worker契約、INTELLIGENCE発行interface。 失敗時は、Guard未定義/不適用はenforcementのownerへ戻す。Botがいないことだけで1.0を不成立としない。境界意味の変更はL1-020へ戻す。
+- **責務・失敗時の戻し先**：L2-008 authority、Worker契約、INTELLIGENCE発行interface。失敗時は、Guard未定義/不適用や必要観測欠落を対象enforcement ownerへunknown/holdとして返す。Botがいないことだけでは1.0を不成立にせず、未定義のruleをBotへ委譲して埋めない。境界意味の変更はL1-020へ戻す。
 - **観測証拠**: source identityとrevision、入力scope、SECURITY判断と理由、owner別の応答・未観測、対象operationの最終状態。secretの値や不必要なasset内容は証拠へ記録しない。
 
 ### SECURITY-CASE-028-01 — SECURITY pack更新
@@ -269,6 +270,10 @@
 - **責務・失敗時の戻し先**：OSはassignment/progression、Worker環境ownerは実行隔離/enforcement、SECURITYはauthority、HARNESSはtask contract/共通交換を所有する。bindingが欠落/unknown/stale/不一致ならdispatchを止め、対象revisionと不足を既存OS assignment ownerへ返す。
 - **観測証拠**: source identityとrevision、入力scope、SECURITY判断と理由、owner別の応答・未観測、対象operationの最終状態。secretの値や不必要なasset内容は証拠へ記録しない。
 
+
+### Stage 1の未見正常・局所unknown対照
+
+Stage 1の19親（L2-001〜016、020、028、033）ごとに、既存契約のscope・owner・revision・必須根拠を満たす未見のsynthetic identity/configurationを1件与え、対応する同一親の正常ACで判定できることを確認する。未見という理由だけで拒否せず、同じfixtureの別入力でそのACに必要なidentity、authority、classification、適用観測のいずれかを個別に欠落・unknownへ変異し、該当scopeだけをunknown/holdへ戻す。未見対象を新たな必須source、runtime、1.x sink、全体停止条件へ拡張しない。
 
 ## 横断シナリオと総合判定
 
@@ -310,8 +315,8 @@
 
 - **L3 AC**：`SECURITY-AC-031-04`
 - **正常**：開始前のpolicy/assignment/runtime/config/payload/scopeだけを与え、Worker/INFRASTRUCTUREから一致する隔離・data/credential/egress適用観測を受けてpolicy条件と突合しproposal可否を返す。実行後に同一tupleのresult/diff receiptを別入力し、HARNESS既存oracleの再検証状態も別に観測する。
-- **negative／根拠あるunknown**：適用観測を個別に欠落・false・driftさせる。scope外diffまたはegress逸脱を与える。sourceが未選択ならsource固有closureを求めずunobservedとし、明示選択sourceの観測欠落は未完とする。policy適用観測そのものが欠けるrunは未評価/停止として既存OS L2-009へ戻す。
-- **oracleと戻し先**：一致した観測だけ条件適用の材料とし、欠落/non-applied/drift/scope外diff/egressは対象runを停止・隔離して未完理由付きでOSへ返す。SECURITYは実適用・enforcement receiptを生成しない。result receiptは実行後の証拠で、単体で昇格を作らない。OS/INFRASTRUCTURE/HARNESSの不足ownerも区別して返す。
+- **negative／根拠あるunknown**：Worker/INFRASTRUCTUREからの適用観測を、欠落・false・non-applied・別revision・別scope・別assignment/runtime/targetの各状態へ独立に変異させる。SECURITY policy条件と異なるowner出力、OS assignment/未完義務、HARNESS再検証状態の欠落/対象違いも個別に入力する。さらに許可隔離環境で既存quota制限に達した実行失敗、scope外diff、egress逸脱を与える。source未選択ならsource固有closureを求めずunobservedとし、明示選択sourceの観測欠落は未完とする。
+- **oracleと戻し先**：policy・assignment・実適用・再検証が同じ対象revision/scope/ownerへ結合した観測だけ条件適用の材料とする。各観測の欠落/non-applied/drift/scope外diff/egress/既存quota制限による失敗は対象runを成功扱いせず停止・隔離して未完理由付きで既存OS L2-009へ返し、対応するpolicy=SECURITY、assignment/未完=OS、適用=Worker/INFRASTRUCTURE、oracle=HARNESS ownerを識別する。quota上限やretry/routing規則は新設しない。SECURITYは実適用・enforcement receipt、assignment、実行、資源配置を所有しない。result receiptは実行後の証拠で、単体で昇格を作らない。
 
 この設計はprimary Workerへの適用拡張、毎作業の人間承認、実runtime/secret/canonical stateへのアクセスを要求しない。
 
@@ -336,7 +341,7 @@
 | `SECURITY-CASE-035-01` | `SECURITY-AC-035-01` | 追加runtimeの明示allowlist対応正例、非対応確認済み経過措置正例、対応なのにYOLO代替、能力unknown/staleを別々に与える。既存authorityは他条件として固定する。 | 対応時はallowlist、非対応の有効policy内経過措置はrun限定。対応/unknownからYOLO許可を作らない。既存authorityなしは本case正常にせず既存ownerへ戻す。 |
 | `SECURITY-CASE-035-02` | `SECURITY-AC-035-02` | run限定設定を持つ追加runtimeでsuccess/failure/cancel各終端と次runを与える。各終端の設定残置・cleanup観測欠落を別変異する。 | 全終端で除去し次runへ継承しない。残置/未観測はcleanup未完としてWorker/OSへ返し完了成功にしない。固定期限や設定schemaは作らない。 |
 | `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy不足はSECURITY、cleanup/適用不足はWorker/OSへ返す。 |
-| `SECURITY-CASE-035-04` | `SECURITY-AC-035-01..03` | bypass設定を選ばない通常operationでも選択runtimeに応じたallowlist能力とrepository policy/deny適用状態を照合する。run開始/終端/cleanupとdeny switch設定能力のcaseだけを追加runtimeでbypass系設定を選んだrunに限る。source未選択は未観測とする。 | authorityと選択runtimeに応じたrepository policy/deny適用状態は照合する。bypass非選択操作へcleanup/switch能力条件を広げず、選択時の欠落はそのrunのみ未完。HARNESS 010/011を本親の常時dependencyにしない。 |
+| `SECURITY-CASE-035-04` | `SECURITY-AC-035-01..03` | bypass設定を選ばない通常operationで、選択runtimeのallowlist能力がunknownだが既存authority/policyは有効な入力を与える。別fixtureでpolicy適用状態unknownを与える。run開始/終端/cleanupとdeny switch設定能力のcaseだけを追加runtimeでbypass系設定を選んだrunに限る。source未選択は未観測とする。 | allowlist能力unknownからbypass/YOLO許可根拠を作らず、通常operationに本親だけの一律denyを足さず既存authority/policyへ戻す。policy適用unknownなら該当operationを未完とする。bypass非選択操作へcleanup/switch条件を広げない。HARNESS 010/011を常時dependencyにしない。 |
 
 
 ## Stage 4 — 選択接続の総合検証

@@ -264,7 +264,7 @@ SECURITY単体としてmemory/training dataset/BRAIN knowledgeの3 target class�
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYは3 target classごとのsource/provenance/classification判定と理由付きdecisionだけを所有する。入力metadataは各source owner、memory/training/BRAINへのhandoff・保存は各target owner、業務上の保存可否意味はL1-014のownerが正本を持ち、LABO評価とBRAIN登録を本unitに含めない。戻し先: provenance/classification欠落はhold/denyしてsource ownerへ補足を返す。判定対象・意味の変更はL1-014へ戻し、機構横断handoffはL2-027のownerへ返す。依存はSECURITY L2-014とL2-015/016のidentity/classification入力のみ。
 
-**L3 acceptance (`SECURITY-AC-014-01`)**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
+**L3 acceptance (`SECURITY-AC-014-01`)**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationにつながる入力も該当target classの判定理由として識別し、単体判定から保存・機構横断受渡しを主張しない。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-014`。
 
@@ -404,7 +404,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 実行前にはpolicy/authority、assignment、runtime/config、payload manifest/digest、scope、execution constraintsを照合し、result/diff/完了receiptを開始前提にしない。実行後はWorker/INFRASTRUCTUREの観測とOSの既存assignment記録によりresult/diff receiptが作られ、HARNESSが選択済みoracleでproposalを再検証する。receiptは後続証拠であり、SECURITY判断、OS昇格、HARNESS受入を単独で生成しない。
 
-- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが判断条件とscopeごとに突合する。観測欠落・非適用・drift・scope外diff・egress逸脱は対象runを停止/隔離し、未完義務を添えてOSの既存L2-009経路へ戻す。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。receiptだけでproposalをaccepted/canonical化したら不合格。
+- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えてOSの既存L2-009経路へ戻す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
 
@@ -530,7 +530,7 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 
 - `SECURITY-AC-022-01` — 依頼から判断: actor/target/operation/revision/environment/scope/expiryを照合し、allow/deny/制約と理由を返す。INTELLIGENCE依頼だけからauthorityを作らない。
 - `SECURITY-AC-022-02` — 判断から割当: OS assignmentは同じ対象tupleと有効なSECURITY判断を参照し、SECURITYがWorkerを配置したりOSがdenyをoverrideしたりしない。
-- `SECURITY-AC-022-03` — 割当から適用: Workerの実適用観測を判断条件と照合し、宣言だけをenforcement完了にしない。開始後revokeも009の該当scopeへ返す。
+- `SECURITY-AC-022-03` — 割当から適用: Workerの実適用観測を判断条件と照合し、宣言だけをenforcement完了にしない。開始後revokeも009の該当scopeへ返す。SECURITYはOS assignment、Worker配置、CONNECT通信・再送を所有せず、各ownerへ戻す。
 
 ### HELIXSECURITY-L2-023 — 候補から昇格までの独立結果
 

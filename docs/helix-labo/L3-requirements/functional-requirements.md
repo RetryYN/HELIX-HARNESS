@@ -226,11 +226,11 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 
 ### FR-LABO-L3-069 — ticket返却・再発行後の評価状況
 
-OSから与えられたreturn finding、理由分類、対象ticket/scope/revision、観測母数とsource completeness、元ticketへの根拠付きrelation、再発行後の同一scope verification結果を受け、return/reason別傾向と後続成立・不成立・未評価を分母/window付きassessment candidateとして返す。時間や同一pathだけで因果を断定せず元closureを保持し追補assessmentとして出力する。件数減少だけをquality proofとせず、観測窓未満・未追跡・打切りをdefect 0としない。新しいrate/window/thresholdは候補比較として示せるが固定親にない値を合否gateにしない。ticket発行・routing・priority・oracle・placementはOS/既存ownerに残し、LABOは変更しない。
+OSから与えられたreturn finding、理由分類、対象ticket/scope/revision、観測母数とsource completeness、元ticketへの根拠付きrelation、再発行後の同一scope verification結果を受け、return/reason別傾向と後続成立・不成立・未評価を分母/window付きassessment candidateとして返す。時間や同一pathだけで因果を断定せず元closureを保持し追補assessmentとして出力する。件数減少だけをquality proofとせず、観測窓未満・未追跡・打切りをdefect 0としない。固定親にない数値threshold、rate/window、因果推論方式を合否規則として追加しない。ticket発行・routing・priority・oracle・placementはOS/既存ownerに残し、LABOは変更しない。
 
 - `AC-LABO-L3-069-01`（正常）：異なる理由class別にsource-complete cohortを構成し、closed ticketの後日findingと根拠relation、元closure、再発行後の検証receiptが結ぶfixtureを与える。出力は同じscope/revision/windowの分母と理由別return count、検証成立/不成立/未評価を分け、closureを改変しない。
 - `AC-LABO-L3-069-02`（独立反例）：時間近接/path一致のみで原因ticketを断定、異scope/revision混合、母数/完全性欠落のrate確定、観測途中・未追跡・打切りを0 defect、未実行を成功、件数減少だけでquality closure、再発行結果を元findingの因果効果と断定する変異を個別に与え、比較不能またはunknownへ返す。
-- `AC-LABO-L3-069-03`（未見）：初見return reasonまたはoracle不足findingを入力し、source identity/reasonは保持して未知classを創作せず未分類/未評価にする。分類根拠不足はsource/OS ownerへ返す。通常ticket closeを長期観測window待ちにしない。
+- `AC-LABO-L3-069-03`（未見）：初見return reasonまたはoracle不足findingを入力し、source identity/reasonは保持して未知classを創作せず未分類/未評価にする。分類根拠不足はsource/OS ownerへ返す。固定親にない観測windowや閾値を合否に用いない。
 
 ### FR-LABO-L3-070 — 補助telemetryとAttempt scorecardの併記
 
@@ -431,8 +431,8 @@ OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revi
 
 ### 受入条件（AC候補）
 
-- **LABO-057-AC-01 — 正常・追跡**：同一OS source identityのpayloadとLABO acceptance receiptがscope、state、revision、verification/data-use fieldsで一致し、accepted CONNECT契約または明示的な人手receiptの一方が必要な受渡し義務を証明する。受領は観測履歴の入力になり、evaluation/assignmentを作らない。
-- **LABO-057-AC-02 — 異常・境界**：ack/receipt不在、schema/version/scope mismatch、stale payload、duplicate retryを成功・新規実績として扱わない。受信側はresult stateやsource authorityを書き換えない。CONNECT contractがなく人手receiptもない場合は未受領/unknownのままOSへ返す。OS-027を必須dependencyにしない。
+- **LABO-057-AC-01 — 正常・追跡**：同一OS source identityのpayloadとLABO acceptance receiptがscope、state、revision、verification/data-use fields、人確認の有無、未完義務で一致し、accepted CONNECT契約または明示的な人手receiptの一方が必要な受渡し義務を証明する。受領は観測履歴の入力になり、evaluation/assignmentを作らない。
+- **LABO-057-AC-02 — 異常・境界**：ack/receipt不在、schema/version/scope mismatch、stale payload、duplicate retry、人確認の欠落、未完義務の消失を成功・新規実績として扱わない。受信側はresult stateやsource authorityを書き換えない。CONNECT contractがなく人手receiptもない場合は未受領/unknownのままOSへ返す。OS-027を必須dependencyにしない。
 
 ### 固定親句の被覆
 
@@ -470,7 +470,7 @@ OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revi
 | `HELIXLABO-L2-009` | `MPR-RC-HELIXLABO-L2-009-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L56 | `sha256:448afdff95e00eabe1089657c5424d010f4de9369c3f1f095a993a715a98a0aa`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L133–140: `de30f29aef8d0d1af93e32843fadd823afc398352d9017fe24dfc84a2f7bd025` |
 | `HELIXLABO-L2-010` | `MPR-RC-HELIXLABO-L2-010-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L57 | `sha256:b5df4ddf97563451cfb408cc04d7069a1b953c4596fe539850981e225c22f36a`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L141–149: `6ffc430c2762f509b39c2baab152115de82834be0cf168575470ed3832f9294e` |
 
-共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-007個別受入row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`をそれぞれ項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
+共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-004の肯定/否定row 48–50 `e656af0275dcd5dfea95aac0cb17ea0d4001d79df58d2a9888e74a4b78539727`、L2-005 row 49 `413148e55b778afc00c4989b9f27009e752c4efe18230d4f2ac0776d7d7eaa90`、L2-006 row 50 `396201edb2ac703bd83412b098a2a7589590ea3bcd769d659e929af49b104e9b`、L2-007 individual row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、L2-008 row 52–54 `d2d4785d5f765725129590fcae76f91676a4a278ae3b831fe847c82c582d3eb2` を親別のAC/L10で照合する。055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`も項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
 
 旧RCLS要件本文22行は `L3-PO-1384-001` をPLAN-L3-80の候補承認として記録し、承認対象の候補本文とBR 6/FR 6/AC 20、およびcanonical昇格・IR admission・runtime実装を別工程としている（旧sourceの承認文言と `docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2341-2380-2026-10-02.md` のRCLS判断履歴を参照）。したがって本書では旧RCLS候補を「未採択」とは扱わない。この旧候補承認はその時点の候補revisionに限られ、現行LABO L2/L11や本草稿へauthorityを移さない。旧項目は類例を読み、保持点を示したうえで固定L2から再導出する。
 
@@ -506,7 +506,7 @@ OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revi
 ### 受入条件候補
 
 - **LABO-002-AC-01 — 正常・追跡**：episode内の全relationにsource identity/revisionと根拠が追跡できる。
-- **LABO-002-AC-02 — 否定・owner境界**：近接時刻のみの因果主張、欠落を補完したrelation、元event改変、未完義務の消去は不成立。
+- **LABO-002-AC-02 — 否定・owner境界**：成功、失敗、拒否、cancel、blocked、unknown、not_observedのstatusを区別し、相関と因果未確定を保持する。近接時刻のみの因果主張、無関係eventの同一episode結合、欠落を補完したrelation、訂正による元event改変、未完義務の消去は不成立。
 
 ### 固定親句trace
 
@@ -563,7 +563,7 @@ episodeとsource evidenceを入力し、good/bad、condition-dependent、generic
 |---|---|---|---|---|
 | `LEGACY-ASSET-28FB139B26CD61CC51EE` 旧Bench L3 draft | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md`:76–94 | `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116` | `78e36e944f81b3d86848540620e4836a1f7ce35e58f290fdb84f7d0a640480e4` | 比較軸の分離は隣接例。旧benchmark axisを移さず守破離比較を再導出。 |
 | `LEGACY-ASSET-5841D44AE1255A061667` RCLS draft_candidate・候補承認済み／canonical昇格なし | `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md`:36–36 | `0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb` | `5a93c69a5699f57857074b26a127ddce2cf3f23d7a4191c2c66b245dafdb994c` | pattern structure/invariant/trade-offの候補承認済み旧資料の比較例。意味不明なら停止する規則はL2から再導出。 |
-| `LEGACY-ASSET-A952A3A175EB82A4781B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md`:22–24 | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` | `111268a4e97a66f6b6caccd88a57cbf6fa32510bcecde33a06973088206c4f22` | 比較軸を分離するoracle形式だけを隣接例として参照し、守破離のfieldは現行L2から再導出。 |
+| `LEGACY-ASSET-A952A3A175EB82A4781B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md`:30–31 | `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185` | `8df7c1167255ececa66bab0ae25d904ec6d03b656eeb75ad59fb6581ff2e31ef` | 比較軸を分離するoracle形式だけを隣接例として参照し、守破離のfieldは現行L2から再導出。 |
 
 ### 要件候補
 
@@ -572,7 +572,7 @@ episodeとsource evidenceを入力し、good/bad、condition-dependent、generic
 ### 受入条件候補
 
 - **LABO-004-AC-01 — 正常・追跡**：全7比較fieldと改変前source/revisionが揃い、守/破/離の候補に保持点と差分を結べる。
-- **LABO-004-AC-02 — 否定・owner境界**：意味差を隠すこと、根拠のないmeaning/guarantee補完、上流判断前にcandidateを実施/決定することは不成立。意味差を明示したcandidateは比較proposalとして保持し、source/L1 ownerの判断材料へ返す。候補提示自体は不成立としない。
+- **LABO-004-AC-02 — 否定・owner境界**：意味差を隠すこと、根拠のないmeaning/guarantee補完、部分一致を方式全体の同等性とすること、上流判断前にcandidateを実施/決定することは不成立。意味差を明示したcandidateは比較proposalとして保持し、source/L1 ownerの判断材料へ返す。候補提示自体は不成立としない。
 
 ### 固定親句trace
 
@@ -637,7 +637,7 @@ baseline/current/candidate/hybrid仮説・条件・oracleとOS割当Workerの結
 
 ### 受入条件候補
 
-- **LABO-006-AC-01 — 正常・追跡**：比較対象・条件・oracle・割当/実行証跡を追跡し、列挙された測定結果と限界が対応する。
+- **LABO-006-AC-01 — 正常・追跡**：比較対象・条件・oracle・割当/実行証跡を追跡し、品質、success/failure、FP/FN、rework、speed、CI/Worker time、token/API cost、人介入等の列挙結果と限界が対応する。同じticket/experiment/対象版でない証拠を混ぜない。
 - **LABO-006-AC-02 — 否定・owner境界**：LABOがWorker選定/割当/起動、比較不能・中断をsuccess化、失敗/費用を捨てるのは不成立。一度の実行だけから改善と認定せず、異なる条件・証拠の結果を同一比較へ混ぜない。
 
 ### 固定親句trace
@@ -671,7 +671,7 @@ baseline/current/candidate/hybrid仮説・条件・oracleとOS割当Workerの結
 ### 受入条件候補
 
 - **LABO-007-AC-01 — 正常・追跡**：再現性、machine判定可能性、oracle availability、副作用範囲、retry/rollback可能性、冪等性の6条件群を判定する。retry可否とrollback可否は同じ条件群の中で別々に観測し、欠落時は各々特定する。
-- **LABO-007-AC-02 — 否定・owner境界**：反復件数だけのsystemization、oracleに意味判断の余地がある場合、例外が多い場合、不完全で期待値を確定できない場合の区別を無視した昇格、context-dependent/high-FP/overconstraint candidateの消去は不成立。
+- **LABO-007-AC-02 — 否定・owner境界**：system化率の最大化、反復件数だけのsystemization、oracleに意味判断の余地がある場合、例外が多い場合、不完全で期待値を確定できない場合の区別を無視した昇格、context-dependent/high-FP/overconstraint candidateの消去は不成立。operation候補を未完成として扱わず、新しい昇格承認手続きも前提にしない。
 
 ### 固定親句trace
 
@@ -703,7 +703,7 @@ system ruleの版と運用結果、exception、false positive、avoidance、変�
 ### 受入条件候補
 
 - **LABO-008-AC-01 — 正常・追跡**：current rule/versionから各例外・誤検知・回避・costを追跡し、候補と未完義務/戻しownerを示す。
-- **LABO-008-AC-02 — 否定・owner境界**：LABOが実行切替、例外を消去、戻し先/未完義務なしの完了宣言は不成立。
+- **LABO-008-AC-02 — 否定・owner境界**：LABOが実行切替、例外を消去、保証または未完義務を失わせること、戻し先/未完義務なしの完了宣言は不成立。operationへの復帰候補をfailure/retirementと誤表示しない。
 
 ### 固定親句trace
 
@@ -829,7 +829,7 @@ Stage 2bの基本9件と追加22 identity、計31件のFR/L10 pair候補はす�
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -863,7 +863,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -897,7 +897,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -931,7 +931,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -965,7 +965,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -999,7 +999,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -1033,7 +1033,7 @@ system/operation適格性とcurrent guaranteeから再評価candidate/unfinished
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -1067,7 +1067,7 @@ comparison result、sample condition、counterexampleからsupported applicabili
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 
@@ -1101,7 +1101,7 @@ scope-bound insight/target candidateからtarget別Feedback candidateへ渡す�
 |---|---|---|---|---|
 | `LEGACY-ASSET-C7F0C3B79CBAA72960BF` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md`:36–36 | `8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6` | `c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2` | 旧HIL-02のcausality/flow draftを工程連結の類例として参照。段階/authority意味を移さず本L2から再導出。 |
 | `LEGACY-ASSET-FA8C6E69463183D6A19B` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md`:34–34 | `a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a` | `f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6` | 旧HAT-02のnormal/failure/boundary分離だけを再利用。old state machine/budget oracleは移さない。 |
-| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:26–31 | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
+| `LEGACY-ASSET-02D897E62EF2FA267267` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md`:53–57 (`UIL-R-02`) | `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4` | `ddac07262d5bb59d30bd43d70328e3889ae842c87d08f1ed332b9b6b7efa0b17` | source identity/revision/correlation/counterevidenceのadjacent evidence shape。confirmed UILだがLABO current parent authorityではない。 |
 
 ### 要件候補
 

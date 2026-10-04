@@ -210,7 +210,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、全required edgeが終端確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡し、再送境界を越えたattemptや別operationへの引継ぎを拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
+- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、宣言されたrequired edgeの終端が確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡する。宣言済みhandoffは次edgeのidentity/contract/authority条件に従って別operationとして受渡し可能とし、未宣言または異なるoperationへ同一attemptを無断転用する受渡しと再送境界超過を拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
 - `CONNECT-AC-007-02`: 中間edgeにstale、timeout、異digest衝突、expiry、cancel、authority revoke、partial successを個別に与える。後続edgeの未許可送信/再送を0にし、先行成功を消さずpartial/unknownを保ち、停止edge・未完owner・recovery先を出す。いずれも構成体成功・業務承認を生成しない。
 
 **責務と失敗時の戻し先**：edgeの登録・契約不一致は該当connection/両端ownerへ、SECURITY/data-use・expiryはSECURITYへ、operation/業務結果は元機構のownerへ戻す。後続edgeを実行済みにせず、先行の成功結果は保持する。
