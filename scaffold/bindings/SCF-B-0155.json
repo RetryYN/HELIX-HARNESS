@@ -22,6 +22,16 @@
       "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
       "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a",
       "note": "既存seedとの境界"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "note": "採択済みHELIXBRAIN-L2-INFRA-001〜017の対のL11受入条件。D07 §2の照合先。採否なし"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "note": "BRAINのL1確定とL2/L11採用（INFRA-001〜017を含む42件）。素材の未評価と要求の採択済みを区別する根拠"
     }
   ],
   "role": "HELIX-BRAINの初期10領域ごとの知識素材の棚卸し（旧資産、既存素材への参照、gap、BRAIN属性の未決事項）",
@@ -36,14 +46,16 @@
   ],
   "connections": {
     "consumers": [
-      "HELIX-BRAINの企画（L1）とL3以降の知識record設計",
+      "HELIX-BRAINのL3起草以下（採択済みL2の意味を保った要件・知識record設計）",
       "HELIX-BRAINの初期領域ごとの素材の評価（LABO）"
     ],
     "dependencies": [
       "docs/helix-brain/L2-requirements/brain-requirements.md",
       "scaffold/research/design-template-seed-sdop-20260929/README.md",
       "scaffold/verification-test-template-seed-20261001/README.md",
-      "scaffold/research/design-template-seed-minimum-gap-20261004/README.md"
+      "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md"
     ],
     "boundary": "scaffold/配下の棚卸しとbindingのみ。BRAINの採否・状態・要求意味・数値・技術選定を確定しない。"
   },

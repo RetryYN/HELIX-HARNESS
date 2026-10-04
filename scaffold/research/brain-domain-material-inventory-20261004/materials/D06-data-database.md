@@ -7,7 +7,7 @@ authority_effect: none
 
 ## この領域の範囲（本書での読み方）
 
-HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。本書では「dataの意味と持ち主、entityの分類と不変条件、table・index・制約、schemaの変更と移行・巻戻し、派生data（projection、読みmodel）」を扱うと仮に読む。DB serverの配置・冗長・backupの基盤はD07（INFRA候補のDatabase Infrastructure、Backup／Restore）に置いた。
+HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。本書では「dataの意味と持ち主、entityの分類と不変条件、table・index・制約、schemaの変更と移行・巻戻し、派生data（projection、読みmodel）」を扱うと仮に読む。DB serverの配置・冗長・backupの基盤はD07（採択済みINFRA-001のDatabase Infrastructure、INFRA-010のBackup／Restore）に置いた。
 
 ## 1. 旧HELIXの素材
 

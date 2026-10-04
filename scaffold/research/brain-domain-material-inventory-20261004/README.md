@@ -44,7 +44,7 @@ binding: [SCF-B-0155](../../bindings/SCF-B-0155.json)
 | Frontend | `materials/D04-frontend.md` | 8 | 1 | 状態管理の選択肢、data取得の境界、responsive、frontendの性能、form。旧はFE内部設計の本文を起票していない |
 | API / Integration | `materials/D05-api-integration.md` | 10 | 1 | 非同期連携の契約、API styleと版の方式の比較、外部公開APIの運用、rate limit |
 | Data / Database | `materials/D06-data-database.md` | 7 | 1 | 分散dataの整合性、保存方式の比較、dataのlifecycle、schemaの版の進化 |
-| Infrastructure | `materials/D07-infrastructure.md` | 9 | 1 | network・compute・storage、scaling・capacity、failureの型、topology、費用、DR。INFRA候補17件のうち、少量・部分的な素材があるのは11件、構造の話で素材を要しないのが2件（002、015）、素材がほぼ無いのが4件（008、011、014、017）（D07 §2） |
+| Infrastructure | `materials/D07-infrastructure.md` | 9 | 1 | network・compute・storage、scaling・capacity、failureの型、topology、費用、DR。採択済みINFRA要求17件のうち、少量・部分的な素材があるのは11件、構造の話で素材を要しないのが2件（002、015）、素材がほぼ無いのが4件（008、011、014、017）（D07 §2） |
 | Security | `materials/D08-security.md` | 7 | 1 | 認可modelの選び方、privacy設計、鍵の管理、Webに固有のsecurity（Web展開後、1.0の必須にしない） |
 | Visual Design | `materials/D09-visual-design.md` | 13 | 1 | typography、grid・spacing、visual hierarchy、dashboard、色の体系、motion。L2-006の要素ごとの有無はD09 §2 |
 | UX / Interaction | `materials/D10-ux-interaction.md` | 9 | 1 | form、Information Architecture、feedbackとundo、多言語、mobile・touch、利用者調査の方法 |
@@ -70,7 +70,8 @@ binding: [SCF-B-0155](../../bindings/SCF-B-0155.json)
 | `scaffold/verification-test-template-seed-20261001/`（SCF-B-0153） | 検証・test技法のtemplate seed、`materials/source-inventory.md`（旧資産の検証側の棚卸し）、`materials/reference-repositories.md`（外部repository・OSS・標準） | 同じ旧資産の同じ行を引く素材（D04-M06、D09-M04・M10、D10-M01・M02・M06）は、検証templateの材料ではなく設計知識の観点で記録し、重なりを各行に明記した。外部参考は再掲しない |
 | `scaffold/research/design-template-seed-minimum-gap-20261004/`（SCF-B-0154） | 最小seedの未被覆領域の設計template 6件と`materials/legacy-source-inventory.md` | 同じ旧資産（api-contract、db、data-migration、threat-model、external-if、if-detail、durability-boundaries等）を出典にするDT-MSGがある素材は、各行に「既存DT-MSG-00xが同じ資産を出典にしている」と書いた |
 | `scaffold/research/design-pattern-inventory-20260925/` | ZIP（ハイブリッド設計ドキュメント）からの候補束と設計pattern候補 | ZIP由来の候補は各領域の§2で参照するだけで、重ねて棚卸ししない。ZIPは旧HELIXの資産ではない |
-| `docs/helix-brain/candidates/infrastructure-domain-requirements.md` | InfrastructureのL2候補（INFRA-001〜017）と、旧NIO-L3-01・02・03・06・09の引用 | 候補の意味は変えない。D07 §2で候補ごとの素材の有無だけを照らした。旧NIO-L3（D07-M05）は既に引用済みで重ねて意味を起こさない |
+| `docs/helix-brain/L2-requirements/brain-requirements.md`のHELIXBRAIN-L2-INFRA-001〜017（53–69、220–390）、対のL11（`brain-acceptance.md` 41–57）、2026-09-28 PO decision（60–76） | 採択済みのInfrastructure要求と受入条件 | 要求の意味は変えない。D07 §2で採択済みの要求ごとに素材の有無だけを照らした。素材は未評価、要求は採択済みであり、両者の状態を混ぜない |
+| `docs/helix-brain/candidates/infrastructure-domain-requirements.md` | 採択前のInfrastructure候補と、旧NIO-L3-01・02・03・06・09の引用 | 判断史と素材の由来を辿るためにだけ参照し、要求との対応の参照先にしない。旧NIO-L3（D07-M05）は既に引用済みで重ねて意味を起こさない |
 
 ## SHA照合
 
@@ -82,7 +83,7 @@ binding: [SCF-B-0155](../../bindings/SCF-B-0155.json)
 ## 生成しないもの
 
 - 素材の採否、BRAINへの登録、知識recordの作成、状態（採用済み・評価済み・成熟度）を生成しない。全件「未評価の候補素材」である。
-- 要求の意味を生成しない。HELIXBRAIN-L2-001の領域の意味、L2-006の要素の割り振り、INFRA候補の意味を変えない。各領域の「この領域の範囲」と領域の境目は本棚卸しの仮置きである。
+- 要求の意味を生成しない。HELIXBRAIN-L2-001の領域の意味、L2-006の要素の割り振り、採択済みINFRA要求の意味を変えない。各領域の「この領域の範囲」と領域の境目は本棚卸しの仮置きである。
 - 数値の閾値・既定値を生成しない。旧資産にある値（閾値、寸法、色、時間、件数）は「持ち込まない」と各行に書き、値は写していない。
 - 技術選定を生成しない。旧資産や外部参考に出るtool・library・provider名は観点の名前であり、採用ではない。
 - Web展開後のSecurity・Infrastructureの内容を1.0の必須に前倒ししない。securityの素材を全製品の義務にしない。
@@ -90,7 +91,7 @@ binding: [SCF-B-0155](../../bindings/SCF-B-0155.json)
 
 ## 後続
 
-1. BRAINの企画（L1）がPOの確認を経て要求（L2）を採否するとき、HELIXBRAIN-L2-001の領域の意味と境目（とくにD01／D02、D04／D09／D10）を決める入力の候補にする。
+1. BRAINのL1は確定し、L2・L11は2026-09-28に採用済みである（`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md` 31–43、104–107）。本棚卸しは、採択済みの要求の意味を保ったまま、L3起草以下（要件、知識recordの設計、領域ごとの素材の評価）の材料の候補にする。各領域の「この領域の範囲」と領域の境目（とくにD01／D02、D04／D09／D10）は棚卸し上の仮の仕分けであり、L3起草で採択済みのHELIXBRAIN-L2-001・006の意味に照らして確かめる。領域の意味や範囲を変える必要が判明した場合に限り、上流のownerへ戻す。
 2. L2-007・008・025の属性（由来の種類、適用scope、評価根拠、版、状態）を降ろすとき、各領域の§「未決事項」を入力の候補にする。共通して未決なのは、(a) 旧資産を「内部の実績」「指示・手順」「判断記録」のどれとして由来に記録するか、(b) HELIX固有の適用例と汎用の原理をどう分けて記録するか（L2-011）、(c) 旧testを証拠にしないとき評価をどこで行うか（L2-020のLABO）、(d) 外部標準の版と知識recordの版の結び方である。
 3. 外部の参考に挙げた名前は、2.0の経路（L2-026・027）が成り立った後にLABOで扱う候補であり、1.0では使わない。
 4. 正式なBRAINの知識storeと素材が入ったら、SCF-B-0155に対して`scfctl check-replacement` → `retire`で本scaffoldを撤去する。
