@@ -3,7 +3,7 @@
 status: scaffold（調査材料。採否、要求、設計、実装、BRAINへの登録の決定ではない）
 authority_effect: none
 binding: [SCF-B-0156](../../bindings/SCF-B-0156.json)
-基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）、第4弾のうちP24〜P26は`origin/main` `12bfc72eab068a672bfb5c9cc814c3c1e9eb6cd2`（2026-10-05）、P27〜P28は`origin/main` `c2e4c2eb64e16f5c6b8f6fcd2b47b10c08ec6fba`（2026-10-05）
+基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）、第4弾のうちP24〜P26は`origin/main` `12bfc72eab068a672bfb5c9cc814c3c1e9eb6cd2`（2026-10-05）、P27〜P28は`origin/main` `c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7`（2026-10-05）
 
 ## 何をしたか
 
