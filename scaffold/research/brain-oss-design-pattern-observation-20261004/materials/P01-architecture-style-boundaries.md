@@ -198,7 +198,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ### P01-O09 service間の契約の共有方法：型名の一致による複製（eShop）と単一protoの生成（microservices-demo）
 - 出典：
   - eShop `src/EventBusRabbitMQ/RabbitMQEventBus.cs` 行31–33・192–196（https://github.com/dotnet/eShop/blob/dc7ea499cd356924fb6689b3702964a5869dbae9/src/EventBusRabbitMQ/RabbitMQEventBus.cs#L31-L33）
-  - `src/EventBus/Extensions/EventBusBuilderExtensions.cs` 行20–38
+  - `src/EventBus/Extensions/EventBusBuilderExtensions.cs` 行20–36（https://github.com/dotnet/eShop/blob/dc7ea499cd356924fb6689b3702964a5869dbae9/src/EventBus/Extensions/EventBusBuilderExtensions.cs#L20-L36）
   - `src/Ordering.API/Application/IntegrationEvents/Events/OrderStatusChangedToPaidIntegrationEvent.cs` 行3–21
   - `src/Catalog.API/IntegrationEvents/Events/OrderStatusChangedToPaidIntegrationEvent.cs` 行3
   - `src/Webhooks.API/IntegrationEvents/OrderStatusChangedToPaidIntegrationEvent.cs` 行3

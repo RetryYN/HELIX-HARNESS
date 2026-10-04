@@ -185,7 +185,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - processorはsegmentごとに`TrackingToken`を持ち、claimしたsegmentのeventを順に処理する。
   - handlerの作業とtokenの更新は同じtransactionで行う（行233–234）。
   - `SequencingPolicy`が返す識別子が同じeventは順に処理し、異なれば並列に処理してよい。既定ではaggregate単位で、aggregate情報がなければ全体を逐次にする（行709–714）。
-  - replayはtokenを巻き戻して行う。全segmentのclaimが要るので、processorを停止してから`resetTokens`する。`@ResetHandler`、`@DisallowReplay`、`ReplayStatus`で、handlerごとにreplay時の振る舞いを分ける。
+  - replayはtokenを巻き戻して行う。全segmentのclaimが要るので、processorを停止してから`resetTokens`する。`@ResetHandler`、`@DisallowReplay`、`ReplayStatus`で、handlerごとにreplay時の振る舞いを分ける（streaming.adoc 行1158–1189：https://github.com/AxonIQ/AxonFramework/blob/4aae3b4c86603b913ad34fbc076ec7bb1c1dce41/docs/reference-guide/modules/events/pages/event-processors/streaming.adoc#L1158-L1189）。
   - ただし固定commitの文書には、replayは5.0では利用できず5.1で再導入予定という警告がある（行1043–1049）。
 - 解いている問題と前提：書込み側と非同期に、順序を保ちながら並列に読みmodelを更新し、作り直せるようにする。
 - 必要な入力：sequencing policy（順序を守る単位）、segment数、token store、失敗時のerror handler（再throwか、dead-letterか）。
