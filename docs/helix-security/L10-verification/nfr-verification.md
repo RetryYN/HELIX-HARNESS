@@ -31,7 +31,7 @@
 | `CASE-NFR-SECURITY-030-01` | `SEC-NFR-030-01` | CASE-030-01..03で独立条件欠落と正常反復を対照にし、誤昇格・新規都度approve要求を計数する。 | 候補0件。意味上のrisk/owner/監視不明は未評価。総合点で不足を相殺しない。 |
 | `CASE-NFR-SECURITY-032-01` | `SEC-NFR-032-01` | CASE-032-01..02の主/追加各marker/flag、policy適用状態を個別に比較する。 | 上書き・非適用時新規許否候補0。policy/適用観測なしはunknown。035のswitch能力はこの測定から生成しない。 |
 | `CASE-NFR-SECURITY-034-01` | `SEC-NFR-034-01` | CASE-034-01..03でprofile/revision/capability/egress/authorityを一項目ずつ変え、scoped credential-useと未知正常profileを対照にする。 | 流用・write-probe誤認・正常credential-use追加deny候補0。能力/供給意味の未完は未closure。 |
-| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04でsuccess/failure/cancel後の次run、allowlist能力、deny設定能力/適用を別々に観測する。CASE-035-04では通常operationのallowlist能力unknownと既存authority/policy有効を入力し、別fixtureでpolicy適用unknownを与える。 | 残置・継承・YOLO代替・未観測成功claim候補0。通常operationは本候補だけで一律停止せず、unknown能力からbypass/YOLO許可を作らない。policy適用unknownは該当operationを未完とする。能力/cleanup unknownは該当ownerへ返す。主Workerは035の測定母集団に含めない。 |
+| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04でsuccess/failure/cancel後の次run、既存operation authorityとrepository policy/deny stateの常時照合、選択runtimeのallowlist能力とpolicy適用、deny設定能力/cleanupを区分して観測する。CASE-035-04では通常operationのallowlist能力unknownでも既存authorityとpolicy/deny stateが有効な入力を与え、別fixtureでそのoperationに適用される既存policyの適用状態unknownを与える。 | 残置・継承・YOLO代替・常時policy/deny照合の欠落・未観測成功claim候補0。通常operationはallowlist能力unknownだけで本候補から一律停止せず、unknown能力からbypass/YOLO許可を作らない。既存policy適用unknownはその条件に該当するoperationだけ未完とする。能力/cleanup unknownは該当ownerへ返す。主Workerは035のscope外。 |
 
 値は根拠付き候補であり、実測達成・L3承認・実runtime使用許可を表さない。fixtureは合成入力と観測契約の設計に限り、秘密値や実runtimeを使った測定は行っていない。
 

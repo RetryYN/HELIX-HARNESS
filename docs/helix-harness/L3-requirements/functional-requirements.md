@@ -172,7 +172,7 @@ paired_l10: ../L10-verification/functional-verification.md
 **不変条件**：契約・要求を保てる変更だけをrefactorとする。詳細契約差分はL5、architecture／境界はL4、要求／受入はL3/L2、製品価値はL1へ返す。右側変更で左側authorityを書き換えない。performance候補の具体値は測定可能な根拠・比較案とともに提示し、固定されていない数値を旧sourceから転記しない。
 
 - **`AC-HARNESS-L3-016-01`**：通常refactor前後のpublic contract・要求・architecture/state意味を対比し、意味差分0の範囲だけをrefactorとして受理する。
-- **`AC-HARNESS-L3-016-02`**：意味差分が見つかった場合は差分種別に応じL5/L4/L3・L2/L1へ返し、右側のみで上流内容を置換しない。変更なしの適格refactorを過剰に拒否しない。
+- **`AC-HARNESS-L3-016-02`**：意味差分が見つかった場合は差分種別に応じL5/L4/L3・L2/L1へ返し、右側のみで上流内容を置換しない。対の設計・契約がないコードはHARNESS-L2-019へ戻し、④を追加前提にしない。変更なしの適格refactorを過剰に拒否しない。
 - **`AC-HARNESS-L3-016-03`**：Performance Refactorはbaseline等6入力が実測可能な形で開始前に揃うことを確認し、いずれか欠落ならperformance比較を未評価として止める。固定した全regression oracleも同じscope/revisionで判定し、局所改善で退行を隠さない。L2でpriority/toleranceが定まらない場合は勝敗を捏造せず判断ownerへ戻し、数値候補は根拠・比較・測定方法を添える。実測なしに達成扱いしない。
 
 #### `FR-HARNESS-L3-017` — 単体製品のリリース契約（親: `HARNESS-L2-017`）
@@ -469,6 +469,8 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 
 旧FR-14 reverse、multimodal authority、AAFD差分sourceは隣接failure/identityの類例に限定し、029の5 bundle/composite意味は現行固定親から再導出する。詳細pinは下記source mapに記す。
 
+固定L11の共通分類根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-harness/L11-acceptance/product-acceptance.md:393–402`（ファイルSHA-256 `1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4`、raw span SHA-256 `ab30b0c381f6f18ef99f39d82dfb71ee87a6fae430b4ce79eb43b0af5c7b660d`）である。固定PO判断は同commitの `docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md:18–20`（全文SHA-256 `c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23`）で明示候補集合・version_target・適用条件を保持し、所属判断は029=CORE、031=共通部品、032=COREとする。下記の027–029個別親の意味・範囲をこの記録から拡張しない。
+
 **027–029共通依存の適用分類**：常時必須はHARNESS-L2-019のintake/result boundary、HARNESS-L2-010/011のpack identity/version・call/scope/receipt、選択product/source revisionの対応、source read authorizationとdata-use条件である。HARNESS-L2-003/004および要求revision/authorityとの照合は要求traceまたは保存設計比較を行う028/029だけに適用し、027のraw observationへ課さない。API repairではAPI contract・対象実装revision・validation oracle、migrationではschema/data owner・互換/損失/rollback oracleを選択操作時のみ要求する。選択sourceだけを閉包し、他sourceへのsilent fallbackを拒否する。一般説明・旧例・類似製品資料は参照のみであり、authority、source relation、data owner、oracleの代替にしない。固定L11 G16共通句からの適用分類で、親L2の入力範囲は増やさない。
 
 ### Stage 4 fixed-parent pins
@@ -520,7 +522,7 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 一つの同一対象revision/scopeで、要求形成から設計、実装、検証・受入（022）、release、運用保守、L12観測・実績評価から要求へ戻る受け口までのtraceをつなぐ。構成体固有の端から端義務、横断NFR、統合版更新/rollback、L12運用検証を個別release unitの成功と別に観測し、各段階のownerと未完義務を保持する。LABO/OSは評価と改善案・実行を所有し、HARNESSは評価結果を要求へ戻す受け口を持つだけで、改善を実行しない。
 
 **受入条件**
-- `AC-HARNESS-L3-021-01`: 同じ対象revision/scopeに対する上流要求、L3/L10、L4/L9、実装・L8、L2/L11、release、L1/L12の対応と各ownerを示す。選択scopeで下位段階の成立証拠が揃い、構成体固有義務も満たされた場合に限り構成体候補を成立とする。必要な下位証拠または構成体義務が未完・unknownなら成立を保留する。異なる対象revisionの証拠を混ぜない。
+- `AC-HARNESS-L3-021-01`: 同じ対象revision/scopeに対する上流要求、L3/L10、L4/L9、実装・L8、L2/L11、release、L1/L12の対応と各ownerを示す。構成体が要求から設計・実装・検証・受入・release・運用保守まで一つの対象として通り、L12の観測・評価から要求へ戻る経路も含めて、下位段階の成立証拠と構成体固有義務が揃った場合に限り構成体候補を成立とする。選択unitのみへ対象・分母を狭めない。必要な下位証拠または構成体義務が未完・unknownなら成立を保留する。異なる対象revisionの証拠を混ぜない。
 - `AC-HARNESS-L3-021-02`: release unit各々のpassだけがあるfixtureと、構成体固有trace・横断NFR・統合版更新/rollback・L12検証も揃うfixtureを比較する。unit passのみでは構成体成立にしない。必要fieldを一つずつ欠落/staleにした場合は該当義務を未完とする。
 - `AC-HARNESS-L3-021-03`: 観測・評価結果に要求への受け口がある正常例と、受け口なし/評価結果をHARNESSが自動実行する反例を照合する。HARNESSは提案を受け取って要求へtraceできるが改善を実行せず、評価・実行ownerをLABO/OSへ保持する。未見の評価種別は根拠ある対応だけを受け入れ、適用範囲不明ならunknownとする。
 

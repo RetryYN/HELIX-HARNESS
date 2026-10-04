@@ -56,23 +56,23 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 |---|---|---|---|
 | CASE-OS-L10-BIZ-032 | HELIXOS-L2-032 / FR-OS-L3-032 AC-01..03 | eligible/failure/unknownを分け、quarantineから全体greenを導かない。 | failure解消目標 |
 | CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..03 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
-| CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..03 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
-| CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..03 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
+| CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..04 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
+| CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..05 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
 | CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..03 | preflight/plan/applyを別状態にする。 | Retrofit投資効果 |
 | CASE-OS-L10-BIZ-037 | HELIXOS-L2-037 / FR-OS-L3-037 AC-01..03 | 観測欠落/条件不成立/handoffを分ける。 | 負債金額化 |
-| CASE-OS-L10-BIZ-038 | HELIXOS-L2-038 / FR-OS-L3-038 AC-01..03 | snapshot/proposal appendとHARNESS採択を分ける。 | layer coverage目標 |
+| CASE-OS-L10-BIZ-038 | HELIXOS-L2-038 / FR-OS-L3-038 AC-01..04 | snapshot/proposal appendとHARNESS採択を分ける。 | layer coverage目標 |
 | CASE-OS-L10-BIZ-040 | HELIXOS-L2-040 / FR-OS-L3-040 AC-01..03 | retry routeを回復済みと数えない。 | 旧ticket taxonomy |
-| CASE-OS-L10-BIZ-041 | HELIXOS-L2-041 / FR-OS-L3-041 AC-01..03 | source再取得とcoordination-only未完を分ける。 | resume KPI |
+| CASE-OS-L10-BIZ-041 | HELIXOS-L2-041 / FR-OS-L3-041 AC-01..04 | source再取得とcoordination-only未完を分ける。 | resume KPI |
 | CASE-OS-L10-BIZ-042 | HELIXOS-L2-042 / FR-OS-L3-042 AC-01..03 | strict/relaxed検証と再検証結果を分ける。 | output accept率目標 |
-| CASE-OS-L10-BIZ-043 | HELIXOS-L2-043 / FR-OS-L3-043 AC-01..03 | request/call/resultのstatusを独立表示する。 | throughput KPI |
+| CASE-OS-L10-BIZ-043 | HELIXOS-L2-043 / FR-OS-L3-043 AC-01..04 | request/call/resultのstatusを独立表示する。 | throughput KPI |
 | CASE-OS-L10-BIZ-044 | HELIXOS-L2-044 / FR-OS-L3-044 AC-01..03 | prose handoverとevidence-backed resolutionを分ける。 | finding closure KPI |
 | CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..03 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |
-| CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..03 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
+| CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..05 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
 | CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..03 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |
-| CASE-OS-L10-BIZ-021 | HELIXOS-L2-021 / FR-OS-L3-021 AC-01..03 | project構成配布、HARNESS全体、HELIX段階releaseを別状態で照合する。 | 製品全体完成KPI |
-| CASE-OS-L10-BIZ-022 | HELIXOS-L2-022 / FR-OS-L3-022 AC-01..03 | candidate登録、既存判断、LABO評価、効果を別owner/stateで確認する。 | 改善件数目標 |
+| CASE-OS-L10-BIZ-021 | HELIXOS-L2-021 / FR-OS-L3-021 AC-01..07 | project構成配布、HARNESS全体、HELIX段階releaseを別状態で照合する。 | 製品全体完成KPI |
+| CASE-OS-L10-BIZ-022 | HELIXOS-L2-022 / FR-OS-L3-022 AC-01..05 | candidate登録、既存判断、LABO評価、効果を別owner/stateで確認する。 | 改善件数目標 |
 | CASE-OS-L10-BIZ-024 | HELIXOS-L2-024 / FR-OS-L3-024 AC-01..03 | data-use許可範囲、LABO評価、利用者acceptanceを分ける。 | tenant横断利用価値 |
-| CASE-OS-L10-BIZ-046 | HELIXOS-L2-046 / FR-OS-L3-046 AC-01..03 | 遷移証拠を既存owner/契約の範囲で照合する。 | 新approval/merge rate |
+| CASE-OS-L10-BIZ-046 | HELIXOS-L2-046 / FR-OS-L3-046 AC-01..04 | 遷移証拠を既存owner/契約の範囲で照合する。 | 新approval/merge rate |
 | CASE-OS-L10-BIZ-048 | HELIXOS-L2-048 / FR-OS-L3-048 AC-01..03 | pending/resolvedの根拠と閉じたticket履歴を分ける。 | resolution率 |
 | CASE-OS-L10-BIZ-052 | HELIXOS-L2-052 / FR-OS-L3-052 AC-01..03 | cleanup適格性と後続PR最新base照合を別状態で観測する。 | issue close/生産性 |
 

@@ -404,7 +404,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 実行前にはpolicy/authority、assignment、runtime/config、payload manifest/digest、scope、execution constraintsを照合し、result/diff/完了receiptを開始前提にしない。実行後はWorker/INFRASTRUCTUREの観測とOSの既存assignment記録によりresult/diff receiptが作られ、HARNESSが選択済みoracleでproposalを再検証する。receiptは後続証拠であり、SECURITY判断、OS昇格、HARNESS受入を単独で生成しない。
 
-- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えてOSの既存L2-009経路へ戻す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
+- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えて既存HELIXSECURITY-L2-009の停止伝播へ渡し、OSの既存assignment/未完義務記録へ返す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
 
@@ -455,7 +455,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 - **`SECURITY-AC-035-01` 能力に応じた選択**：選択runtimeのallowlist能力とrepository policy適用状態は選択入力に応じて確認する。run開始/終端/cleanupはbypass系設定を選択した場合に限って照合し、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
 - **`SECURITY-AC-035-02` 全終端cleanup**：success/failure/cancel各終端でrun設定が除去され次runへ継承されない。残置/観測欠落は未完としWorker/OSへ返す。
-- **`SECURITY-AC-035-03` deny能力・優先・scope**：既存operation authorityとrepository policy/deny状態が常に照合される。repository denyの適用状態は選択runtimeの入力に応じて照合する。repository deny switchの設定能力とcleanup後の維持はbypass選択runで追加照合し、032の同一対象deny優先を保つ。deny状態を選択時だけ照合する変異は不合格。主Workerへの035の四条件拡張や通常operationへの新gateは作らず、既存006/007/008/OS018条件を免除しない。
+- **`SECURITY-AC-035-03` deny能力・優先・scope**：対象revisionの既存operation authorityと既存repository policy/deny状態は、bypass選択の有無にかかわらず常時入力し、該当operationへ適用される既存条件を照合する。選択runtimeについては選択入力に応じてallowlist能力とrepository policyの適用状態を追加確認する。repository deny switchの設定能力とcleanup後の維持はbypass選択runで追加照合し、032の同一対象deny優先を保つ。既存policy/deny状態をbypass選択時だけ確認する変異は不合格。bypassを選ばない通常operationは既存authorityと既存policyの判定だけに従い、allowlist能力unknownだけからdenyを作らない。既存policyの適用状態がunknownの場合も、その既存契約で定まる対象operationの結果だけを未確定として記録し、035だけの一律停止・新gateへ広げない。主Workerへの035四条件拡張や新gateは作らず、既存006/007/008/OS018条件を免除しない。
 
 ### Stage 3固定親の出所とrevision
 

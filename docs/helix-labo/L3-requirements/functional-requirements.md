@@ -80,8 +80,8 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 
 ### 受入条件（AC候補）
 
-- **LABO-011-AC-01 — 正常・追跡**：Aggregateで得たobservationをCorrelateへ渡し、episode候補から元source observation・revisionへ往復参照できる。欠測や未対応relationはunknown/unresolvedとして保つ。
-- **LABO-011-AC-02 — 異常・境界**：observation identity/source revision欠落または不一致、Aggregate単体成功だけで接続完了を主張、同時刻/同pathだけのeventを因果と断定する場合は不成立。元source recordを保ったままrelation/correlationへ戻す。
+- **LABO-011-AC-01 — 正常・追跡**：Aggregateで得たobservationをCorrelateへ渡し、episode候補から元source observation・revisionへ往復参照できる。欠測や未対応relationはunknown/unresolvedとして保つ。 専用HELIX-CONNECT contract `HELIXLABO-L2-011` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（Aggregate observationのidentity/revisionからepisode候補へ往復参照し、欠測を保持して因果確定をしない）だけを成立させる。
+- **LABO-011-AC-02 — 異常・境界**：observation identity/source revision欠落または不一致、Aggregate単体成功だけで接続完了を主張、同時刻/同pathだけのeventを因果と断定する場合は不成立。元source recordを保ったままrelation/correlationへ戻す。 専用HELIX-CONNECT `HELIXLABO-L2-011` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、元source/correlation ownerへ戻す。
 
 ### 固定親句の被覆
 
@@ -470,7 +470,7 @@ OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revi
 | `HELIXLABO-L2-009` | `MPR-RC-HELIXLABO-L2-009-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L56 | `sha256:448afdff95e00eabe1089657c5424d010f4de9369c3f1f095a993a715a98a0aa`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L133–140: `de30f29aef8d0d1af93e32843fadd823afc398352d9017fe24dfc84a2f7bd025` |
 | `HELIXLABO-L2-010` | `MPR-RC-HELIXLABO-L2-010-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L57 | `sha256:b5df4ddf97563451cfb408cc04d7069a1b953c4596fe539850981e225c22f36a`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L141–149: `6ffc430c2762f509b39c2baab152115de82834be0cf168575470ed3832f9294e` |
 
-共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-004の肯定/否定row 48–50 `e656af0275dcd5dfea95aac0cb17ea0d4001d79df58d2a9888e74a4b78539727`、L2-005 row 49 `413148e55b778afc00c4989b9f27009e752c4efe18230d4f2ac0776d7d7eaa90`、L2-006 row 50 `396201edb2ac703bd83412b098a2a7589590ea3bcd769d659e929af49b104e9b`、L2-007 individual row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、L2-008 row 52–54 `d2d4785d5f765725129590fcae76f91676a4a278ae3b831fe847c82c582d3eb2` を親別のAC/L10で照合する。055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`も項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
+共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-004の肯定/否定row 48–50 `e656af0275dcd5dfea95aac0cb17ea0d4001d79df58d2a9888e74a4b78539727`、L2-005 L11 row 49 `01dc15d6bd73a2b3ebc8e72c4deb42746c8eadc43d54010791472345a10d5a92`、L2-006 L11 row 50 `b4ac64ec8fb37afed92f5a2603e9229af869fa0a480d7b092a6befc2cfe43c4f`、L2-007 individual L11 row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、L2-008 L11 rows 52–54 `413148e55b778afc00c4989b9f27009e752c4efe18230d4f2ac0776d7d7eaa90` を親別のAC/L10で照合する。055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`も項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
 
 旧RCLS要件本文22行は `L3-PO-1384-001` をPLAN-L3-80の候補承認として記録し、承認対象の候補本文とBR 6/FR 6/AC 20、およびcanonical昇格・IR admission・runtime実装を別工程としている（旧sourceの承認文言と `docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2341-2380-2026-10-02.md` のRCLS判断履歴を参照）。したがって本書では旧RCLS候補を「未採択」とは扱わない。この旧候補承認はその時点の候補revisionに限られ、現行LABO L2/L11や本草稿へauthorityを移さない。旧項目は類例を読み、保持点を示したうえで固定L2から再導出する。
 
@@ -837,8 +837,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-012-AC-01 — 正常・trace**：分類入力全てに元episode/source evidence/relation revisionが追跡できる。
-- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、unknown消去を受理しない。時間/pathの近さや相関だけから因果を確定しない。上流のepisodeとrelation authorityを変更しない。
+- **LABO-012-AC-01 — 正常・trace**：分類入力全てに元episode/source evidence/relation revisionが追跡できる。 専用HELIX-CONNECT contract `HELIXLABO-L2-012` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（episode/evidence/relationから分類対象を作り、relation revision不一致は訂正sourceへ戻す）だけを成立させる。
+- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、unknown消去を受理しない。時間/pathの近さや相関だけから因果を確定しない。上流のepisodeとrelation authorityを変更しない。 専用HELIX-CONNECT `HELIXLABO-L2-012` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、relation訂正source ownerへ戻す。
 
 ### 固定親句trace
 
@@ -871,8 +871,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-013-AC-01 — 正常・trace**：各比較hypothesisから元分類と証拠を追跡可能。
-- **LABO-013-AC-02 — failure/owner boundary**：分類軸の混同/根拠欠落をsuccessにしない。 Vectorはsource meaningを上書きしない。
+- **LABO-013-AC-01 — 正常・trace**：各比較hypothesisから元分類と証拠を追跡可能。 専用HELIX-CONNECT contract `HELIXLABO-L2-013` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（根拠付き分解から意味・条件別比較仮説へ渡し、分類軸と根拠を保持する）だけを成立させる。
+- **LABO-013-AC-02 — failure/owner boundary**：分類軸の混同/根拠欠落をsuccessにしない。 Vectorはsource meaningを上書きしない。 専用HELIX-CONNECT `HELIXLABO-L2-013` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、source evidence ownerへ戻す。
 
 ### 固定親句trace
 
@@ -905,8 +905,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-014-AC-01 — 正常・trace**：元source/revision、意味、目的、条件とcandidate差分を追跡する。
-- **LABO-014-AC-02 — failure/owner boundary**：元意味不明、meaning delta欠落を確定candidateにしない。 接続はcandidateを実変更/決定へ昇格しない。
+- **LABO-014-AC-01 — 正常・trace**：元source/revision、意味、目的、条件とcandidate差分を追跡する。 専用HELIX-CONNECT contract `HELIXLABO-L2-014` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（元意味・目的・条件付きpartial comparison candidateからtransformation candidateを作り、保持意味と変更部分を分ける）だけを成立させる。
+- **LABO-014-AC-02 — failure/owner boundary**：元意味不明、meaning delta欠落を確定candidateにしない。 接続はcandidateを実変更/決定へ昇格しない。 専用HELIX-CONNECT `HELIXLABO-L2-014` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、L1/source ownerへ戻す。
 
 ### 固定親句trace
 
@@ -939,8 +939,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-015-AC-01 — 正常・trace**：3比較armのsource revision、条件、oracle、target versionが一貫する。
-- **LABO-015-AC-02 — failure/owner boundary**：比較arm間の版/条件差、oracle不足を成功扱いしない。 Worker実行を開始/割当しない。
+- **LABO-015-AC-01 — 正常・trace**：baseline/current、candidate、hybridの親指定比較区分についてsource revision、条件、oracle、target versionが一貫する。 専用HELIX-CONNECT contract `HELIXLABO-L2-015` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（transformation candidateをbaseline/current・candidate・hybrid比較条件へ渡し、対象版・oracle・適用条件を保つ）だけを成立させる。
+- **LABO-015-AC-02 — failure/owner boundary**：比較arm間の版/条件差、oracle不足を成功扱いしない。 Worker実行を開始/割当しない。 専用HELIX-CONNECT `HELIXLABO-L2-015` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、experiment/oracle ownerへ戻す。
 
 ### 固定親句trace
 
@@ -973,8 +973,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-016-AC-01 — 正常・trace**：比較可能性、反例、oracle、run interruptionが評価材料へ個別に残る。
-- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。 自動system化/昇格をしない。
+- **LABO-016-AC-01 — 正常・trace**：比較可能性、反例、oracle、run interruptionが評価材料へ個別に残る。 専用HELIX-CONNECT contract `HELIXLABO-L2-016` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（比較結果・反例・oracle・中断状態をsystem/operation評価材料へ渡し、判定不能はoperation候補に留める）だけを成立させる。
+- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。 自動system化/昇格をしない。 専用HELIX-CONNECT `HELIXLABO-L2-016` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、評価ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1007,8 +1007,8 @@ system/operation適格性とcurrent guaranteeから再評価candidate/unfinished
 
 ### 受入条件候補
 
-- **LABO-017-AC-01 — 正常・trace**：current rule version、適格性材料、未完義務とownerを結ぶ。
-- **LABO-017-AC-02 — failure/owner boundary**：current version/evidence不足を切替完了にしない。 LABOはoperational switchを実行しない。
+- **LABO-017-AC-01 — 正常・trace**：current rule version、適格性材料、未完義務とownerを結ぶ。 専用HELIX-CONNECT contract `HELIXLABO-L2-017` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（適格性・現行保証から再評価候補と未完義務を返し、切替は実行しない）だけを成立させる。
+- **LABO-017-AC-02 — failure/owner boundary**：current version/evidence不足を切替完了にしない。 LABOはoperational switchを実行しない。 専用HELIX-CONNECT `HELIXLABO-L2-017` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、operation ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1041,8 +1041,8 @@ comparison result、sample condition、counterexampleからsupported applicabili
 
 ### 受入条件候補
 
-- **LABO-018-AC-01 — 正常・trace**：scopeとsupporting sample/condition/counterexampleを結ぶ。
-- **LABO-018-AC-02 — failure/owner boundary**：unsupported scopeを承認済み一般則にしない。 一例を根拠に広げない。
+- **LABO-018-AC-01 — 正常・trace**：scopeとsupporting sample/condition/counterexampleを結ぶ。 専用HELIX-CONNECT contract `HELIXLABO-L2-018` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（比較結果・標本条件・反例から証拠が支持する適用範囲を返し、scopeを拡張しない）だけを成立させる。
+- **LABO-018-AC-02 — failure/owner boundary**：unsupported scopeを承認済み一般則にしない。 一例を根拠に広げない。 専用HELIX-CONNECT `HELIXLABO-L2-018` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、experiment evaluation ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1075,8 +1075,8 @@ scope-bound insight/target candidateからtarget別Feedback candidateへ渡す�
 
 ### 受入条件候補
 
-- **LABO-019-AC-01 — 正常・trace**：各proposalはtarget identity/evidence/scopeへ個別にtraceする。
-- **LABO-019-AC-02 — failure/owner boundary**：target不明/複数target混同を自動routingしない。 OS routingとtarget owner変更は実行しない。
+- **LABO-019-AC-01 — 正常・trace**：各proposalはtarget identity/evidence/scopeへ個別にtraceする。 専用HELIX-CONNECT contract `HELIXLABO-L2-019` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（範囲付き知見とtarget/responsibility候補からtarget別feedbackを作り、target不明はOS routing候補へ戻す）だけを成立させる。
+- **LABO-019-AC-02 — failure/owner boundary**：target不明/複数target混同を自動routingしない。 OS routingとtarget owner変更は実行しない。 専用HELIX-CONNECT `HELIXLABO-L2-019` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、OS routing ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1109,8 +1109,8 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 受入条件候補
 
-- **LABO-020-AC-01 — 正常・trace**：result observationに戻し前後versionとowner provenanceが含まれる。
-- **LABO-020-AC-02 — failure/owner boundary**：旧新version/source欠落で新observed successを作らない。 fallbackの実行責務はowner、Aggregateは観測に限定。
+- **LABO-020-AC-01 — 正常・trace**：result observationに戻し前後versionとowner provenanceが含まれる。 専用HELIX-CONNECT contract `HELIXLABO-L2-020` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（operation復帰後結果・旧新rule版から新observationを作り、未完義務と前後版を保つ）だけを成立させる。
+- **LABO-020-AC-02 — failure/owner boundary**：旧新version/source欠落で新observed successを作らない。 fallbackの実行責務はowner、Aggregateは観測に限定。 専用HELIX-CONNECT `HELIXLABO-L2-020` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、source ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1144,8 +1144,8 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 受入条件候補
 
-- **LABO-021-AC-01 — 正常・trace**：許可source revisionとobservation attribution/raw-source locatorが一貫する。
-- **LABO-021-AC-02 — failure/owner boundary**：scope/version不明やunauthorized dataを取込成功にしない。 HARNESS raw record/authorityをLABOで変更しない。
+- **LABO-021-AC-01 — 正常・trace**：許可source revisionとobservation attribution/raw-source locatorが一貫する。 専用HELIX-CONNECT contract `HELIXLABO-L2-021` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（HARNESSの許可済み過去工程/実績だけをsource identity/revision付きobservationへ移し、raw record/authorityは保持）だけを成立させる。
+- **LABO-021-AC-02 — failure/owner boundary**：scope/version不明やunauthorized dataを取込成功にしない。 HARNESS raw record/authorityをLABOで変更しない。 専用HELIX-CONNECT `HELIXLABO-L2-021` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、HARNESS ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1179,8 +1179,8 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 受入条件候補
 
-- **LABO-022-AC-01 — 正常・trace**：ticket/run/receiptのOS ID/revision/stateがobservationへ一致する。
-- **LABO-022-AC-02 — failure/owner boundary**：stale/欠落を完了/評価済みにしない。 OSが割当/運転state ownerのまま。
+- **LABO-022-AC-01 — 正常・trace**：ticket/run/receiptのOS ID/revision/stateがobservationへ一致する。 専用HELIX-CONNECT contract `HELIXLABO-L2-022` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（OSの許可済みticket/運転/evidenceをobservation化し、未完/unknownを分けてstale/欠落をOSへ返す）だけを成立させる。
+- **LABO-022-AC-02 — failure/owner boundary**：stale/欠落を完了/評価済みにしない。 OSが割当/運転state ownerのまま。 専用HELIX-CONNECT `HELIXLABO-L2-022` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、OS ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1214,8 +1214,8 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 受入条件候補
 
-- **LABO-023-AC-01 — 正常・trace**：usage observationは知識asset revisionと結果を区別して追跡する。
-- **LABO-023-AC-02 — failure/owner boundary**：unknown source identity、unauthorized knowledge useを受理しない。 BRAIN knowledge sourceを編集/更新しない。
+- **LABO-023-AC-01 — 正常・trace**：usage observationは知識asset revisionと結果を区別して追跡する。 専用HELIX-CONNECT contract `HELIXLABO-L2-023` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（BRAINの許可済みknowledge use/application resultだけをobservation化し、知識正本を書き換えない）だけを成立させる。
+- **LABO-023-AC-02 — failure/owner boundary**：unknown source identity、unauthorized knowledge useを受理しない。 BRAIN knowledge sourceを編集/更新しない。 専用HELIX-CONNECT `HELIXLABO-L2-023` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、BRAIN ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1249,8 +1249,8 @@ operationへ戻った後の結果と旧/新rule versionをnew observationへ集�
 
 ### 受入条件候補
 
-- **LABO-024-AC-01 — 正常・trace**：past assessment revision/timeとobservation fact/judgmentを区別する。
-- **LABO-024-AC-02 — failure/owner boundary**：source revision mismatchをcurrent resultに偽装しない。 評価履歴を現在のauthority/decisionへ変えない。
+- **LABO-024-AC-01 — 正常・trace**：past assessment revision/timeとobservation fact/judgmentを区別する。 専用HELIX-CONNECT contract `HELIXLABO-L2-024` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（INTELLIGENCEの判断/予測/診断/reviewをfactとjudgmentに分け、過去評価をcurrent authorityにしない）だけを成立させる。
+- **LABO-024-AC-02 — failure/owner boundary**：source revision mismatchをcurrent resultに偽装しない。 評価履歴を現在のauthority/decisionへ変えない。 専用HELIX-CONNECT `HELIXLABO-L2-024` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、INTELLIGENCE ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1284,8 +1284,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-025-AC-01 — 正常・trace**：許可されたscope/authority locatorとobservation範囲が照合できる。
-- **LABO-025-AC-02 — failure/owner boundary**：scope不明/制限データを受理、展開しない。 restricted payloadやsecurity authorityをLABOに保持・移管しない。
+- **LABO-025-AC-01 — 正常・trace**：許可されたscope/authority locatorとobservation範囲が照合できる。 専用HELIX-CONNECT contract `HELIXLABO-L2-025` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（SECURITYの許可済みsafety/incident evidenceをscope付きで扱い、restricted data/authorityを移さない）だけを成立させる。
+- **LABO-025-AC-02 — failure/owner boundary**：scope不明/制限データを受理、展開しない。 restricted payloadやsecurity authorityをLABOに保持・移管しない。 専用HELIX-CONNECT `HELIXLABO-L2-025` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、SECURITY ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1319,8 +1319,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-026-AC-01 — 正常・trace**：resource/runtime source revision, environment, stateがobservationへ保持される。
-- **LABO-026-AC-02 — failure/owner boundary**：stale/unknown environmentをcurrent healthyに変換しない。 resource authority/configurationは変更しない。
+- **LABO-026-AC-01 — 正常・trace**：resource/runtime source revision, environment, stateがobservationへ保持される。 専用HELIX-CONNECT contract `HELIXLABO-L2-026` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（許可済みresource/runtime evidenceをsource revision付きで扱い、resource authorityをINFRASTRUCTUREに残す）だけを成立させる。
+- **LABO-026-AC-02 — failure/owner boundary**：stale/unknown environmentをcurrent healthyに変換しない。 resource authority/configurationは変更しない。 専用HELIX-CONNECT `HELIXLABO-L2-026` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、INFRASTRUCTURE ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1354,8 +1354,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-027-AC-01 — 正常・trace**：選択connection固有のadmitted contract identity/revision、schema version、source traceと受領内容が一致し、そのconnection固有の契約範囲でのみ受領する。
-- **LABO-027-AC-02 — failure/owner boundary**：contract/schema/version/traceのdrift、暗黙の別connector契約の共有・代用、unknownを正常接続として扱わずCONNECT ownerへ戻す。logical connection contractをLABOで改定しない。
+- **LABO-027-AC-01 — 正常・trace**：選択connection固有のadmitted contract identity/revision、schema version、source traceと受領内容が一致し、そのconnection固有の契約範囲でのみ受領する。 専用HELIX-CONNECT contract `HELIXLABO-L2-027` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（選択されたconnection observation/traceをschema/provenance version付きで扱い、drift/unknownをCONNECT ownerへ返す）だけを成立させる。
+- **LABO-027-AC-02 — failure/owner boundary**：contract/schema/version/traceのdrift、暗黙の別connector契約の共有・代用、unknownを正常接続として扱わずCONNECT ownerへ戻す。logical connection contractをLABOで改定しない。 専用HELIX-CONNECT `HELIXLABO-L2-027` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、HELIX-CONNECT/source ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1389,8 +1389,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-028-AC-01 — 正常・trace**：result/task class/worker/source/assignment revisionsを相互照合し、Experiment resultはL2-006の同一experiment identity・target version・scopeへ結ぶ。
-- **LABO-028-AC-02 — failure/owner boundary**：assignment不明、unknown result、別experiment/ticket/target version resultを評価済み/qualifiedへしない。Workerの実行/OS assignment責務を置換せず、誤ったidentityはOS/result sourceへ戻す。
+- **LABO-028-AC-01 — 正常・trace**：result/task class/worker/source/assignment revisionsを相互照合し、Experiment resultはL2-006の同一experiment identity・target version・scopeへ結ぶ。 専用HELIX-CONNECT contract `HELIXLABO-L2-028` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（許可Worker resultにtask class/OS assignment/sourceを結び、未評価を評価済みにせずassignment不明はOSへ戻す）だけを成立させる。
+- **LABO-028-AC-02 — failure/owner boundary**：assignment不明、unknown result、別experiment/ticket/target version resultを評価済み/qualifiedへしない。Workerの実行/OS assignment責務を置換せず、誤ったidentityはOS/result sourceへ戻す。 専用HELIX-CONNECT `HELIXLABO-L2-028` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、OS assignment ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1424,8 +1424,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-029-AC-01 — 正常・trace**：対象revisionとverification scope/statusが同一observationに残る。
-- **LABO-029-AC-02 — failure/owner boundary**：未実行/stale/interrupted/missing scopeをpassにしない。 LABOはCI/testを実行せずverification authorityも変更しない。
+- **LABO-029-AC-01 — 正常・trace**：対象revisionとverification scope/statusが同一observationに残る。 専用HELIX-CONNECT contract `HELIXLABO-L2-029` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（許可CI/test resultとtarget revisionからverification scope付きobservationを作り、not-run/stale/interruptedをpassにしない）だけを成立させる。
+- **LABO-029-AC-02 — failure/owner boundary**：未実行/stale/interrupted/missing scopeをpassにしない。 LABOはCI/testを実行せずverification authorityも変更しない。 専用HELIX-CONNECT `HELIXLABO-L2-029` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、HARNESS/OS verification source ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1459,8 +1459,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-030-AC-01 — 正常・trace**：source/product identityと適用版/許可が観測ごとに追跡可能。
-- **LABO-030-AC-02 — failure/owner boundary**：異なるsourceを統合、scope外を同一identityへ混入しない。 未採択source/productを暗黙必須化せず、製品stateを書換えない。
+- **LABO-030-AC-01 — 正常・trace**：source/product identityと適用版/許可が観測ごとに追跡可能。 専用HELIX-CONNECT contract `HELIXLABO-L2-030` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（許可Product Core resultをproduct/source identity別にし、異なるproduct/meaning/authorityを統合しない）だけを成立させる。
+- **LABO-030-AC-02 — failure/owner boundary**：異なるsourceを統合、scope外を同一identityへ混入しない。 未採択source/productを暗黙必須化せず、製品stateを書換えない。 専用HELIX-CONNECT `HELIXLABO-L2-030` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、該当Product Core ownerへ戻す。
 
 ### 固定親句trace
 

@@ -179,7 +179,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 
 ### HELIXINFRASTRUCTURE-L2-008（INFRA-008-FR-01）
 
-- L10-INFRA-008-C01（AC INFRA-008-AC-01）: approved design、別revisionのdeployment target、actual observationを与える。design→target mappingとtarget→actual比較を個別に追える。COREがdesign意味を所有し、Infrastructureがtarget/actualを所有すること、target proposalだけではdesign変更・deployment実行にならないことも照合する。
+- L10-INFRA-008-C01（AC INFRA-008-AC-01）: approved design、別revisionのdeployment target、actual observationを与える。design→target mappingとtarget→actual比較を個別に追える。COREがdesign意味を所有し、Infrastructureがtarget/actualを所有すること、targetまたは変更の提案だけではdesign変更・deployment実行にならず、actualからdesignへ書き戻さないことも照合する。
 - L10-INFRA-008-C02（AC INFRA-008-AC-02）: design approval、target mapping、actual observationを一項目ずつmissing/stale/mismatchにする。該当sideだけunknown/holdとなり、他入力は保持される。
 - L10-INFRA-008-C03（AC INFRA-008-AC-03）: driftをactual→designへ書き戻す、またはINFRAがdesignを変更する要求を与える。両方拒否され、design bytes/authority不変でHARNESS-COREへ戻る。
 - L10-INFRA-008-C04（AC INFRA-008-AC-04）: L2-001/002 versioned interfaceを正常入力した後、missing/stale/version mismatch/scope mismatchを個別に与える。該当時target確定はholdし、design意味やrevisionを推定しない。
@@ -189,7 +189,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 - L10-INFRA-025-C01（AC INFRA-025-AC-01）: CPU/memory/GPU/storage/network demand/available、process/container environment、INFRASTRUCTURE-L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work ref、SECURITY isolation conditionを結んだ正常fixtureを与える。oracleはSEC policyの適用可能性宣言と実resource/environment上の適用/観測receiptを別々に確認し、policy revision・対象resource・environmentが一致して必要capacityが足り、OS work identityを保つこと。適用可能と宣言しても未適用/異条件/異revisionの反例は不成立。
 - L10-INFRA-025-C02（AC INFRA-025-AC-02）: 5資源dimensionを各々requested>availableへ、SEC isolation適用不能、ticket/assignment unknown、stale environmentを独立変異する。不成立理由とownerを返し、利用可能/isolatedを推定しない。
 - L10-INFRA-025-C03（AC INFRA-025-AC-03）: resource move前後の元/移動先state、unfinished task/obligation、ticket/request/work refsを与える。identityと未完義務が保持される正常moveと、(a)機械変更をWorker責務の消失と扱う、(b)OS ticket stateをInfrastructureへ移管する、(c)元stateを破棄する、(d)移動先だけのcapacity条件を元へ誤適用する各反例を比較する。正常moveでもOS ticket/作業責務のownerはOS/Worker側に保持する。
-- L10-INFRA-025-C04（AC INFRA-025-AC-04）: Worker=machine、resource=assignment、resource stateからSECURITY policyを推定、自動scaling/placementを行う、この接続からoperation authorityを作る試みを別々に与える。全て拒否し副作用0を確認する。対照fixtureでは既存許可scope内の隔離条件適用/観測を成立させ、実際の適用まで禁止しないことを確認する。
+- L10-INFRA-025-C04（AC INFRA-025-AC-04）: (a) 既存許可scope内でWorker/resource/ticket対応と隔離適用観測が揃い、自動配置最適化器が存在しない正常fixture、(b) 自動配置最適化器を必須成功条件として追加する変異、(c) Workerをmachine identityと同一視する、resourceをassignmentと同一視する、自動scaling/placement実行、resource stateからSECURITY policy推定、この接続からoperation authority生成をそれぞれ独立に与える。oracle: (a) mapping/適用条件に基づき候補を判定でき、最適化器の不在だけでは不成立にしない。(b) 新条件の追加を拒否。(c) 親にない自動操作・推定・authority生成を拒否し副作用0。既存scope内の隔離適用/観測自体は許容する。
 
 両親の観測tupleはsource/revision、resource/worker identity、owner、unknown/hold、reference continuityである。確認済み部分と未確認部分は分離し、全体successへ丸めない。
 

@@ -116,7 +116,7 @@ assignment/attemptを要求・authority revision、ticket/scope、指定Worker/c
 
 明示された初回task/attempt/scope/revision/environmentについて、親L2の6つの限定適格条件、既存操作authority、人の確認、限定Worker、親入力済みbudget/deadline/stop criteria、HARNESS oracleを照合する。性能未評価は単独で拒否理由にしない。初回成功だけでは評価済みにせず、LABOが該当task/model classとscopeの評価を成立させるまでは未評価を維持する。assignment/attempt/evidence/handoffをLABO観測へ渡し、unknown/missing/conflict/stale/拒否なら実行しない。
 
-**責務／依存境界**：限定適格性確認・assignment/stop・receiptはOS。分類/許可/隔離/egressはSECURITY、runner資源はINFRASTRUCTURE、proposalはINTELLIGENCEまたはL2-066同契約の人代行、評価状態/evidenceはLABO、固定oracleはHARNESSが所有する。単独成立依存はOS-L2-015/017/018/019、SECURITY-L2-003/005/006/007/008/016、INFRASTRUCTURE資源、HARNESS-L2-022の証拠、INTELLIGENCE-L2-010、LABO-L2-054/055。OS-L2-020実装およびOS-L2-026導出器の実行は依存でない。
+**責務／依存境界**：限定適格性確認・assignment/stop・receiptはOS。分類/許可/隔離/egressはSECURITY、runner資源はINFRASTRUCTURE、proposalはINTELLIGENCEまたはINTELLIGENCE-L2-010と同じ契約に沿う人の代行案、評価状態/evidenceはLABO、固定oracleはHARNESSが所有する。単独成立依存はOS-L2-015/017/018/019、SECURITY-L2-003/005/006/007/008/016、INFRASTRUCTURE資源、HARNESS-L2-022の証拠、INTELLIGENCE-L2-010、LABO-L2-054/055。OS-L2-020実装およびOS-L2-026導出器の実行は依存でない。
 
 **受入条件**
 
@@ -223,8 +223,8 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 
 ### FR-OS-L3-040 — HELIXOS-L2-040
 入力済retry上限に達したoperationは、同一episodeのattempt lineage・累積budget・失敗根拠を保持して既存routeへ戻す。要求意味/入力不足はBackflow、context interruptionからの復旧はRecoveryへ対応付け、原因不明ならrouteを推定しない。旧ticket型や親にないbudget/上限値は新設しない。
-- AC-OS-L3-040-01：入力済上限到達時、要求意味/入力不足は既存Backflow、context interruption/recoveryは既存Recoveryへ原因と戻し先を対応付け、attempt lineage・累積budget・元ticket・未完義務とともにcandidateとして記録する。
-- AC-OS-L3-040-02：未到達、別ticket/scope、値欠落/改変、再送、要求意味不足をRecovery成功で隠す、context復旧をBackflowで代替する、別experiment budgetを本線に混ぜる、route待ちをclose扱いする反例を個別に拒否する。counter reset・二重Recovery・誤routeを許さない。
+- AC-OS-L3-040-01：入力済上限到達時、要求意味/入力不足は既存Backflow、context interruption/recoveryは既存Recoveryへ原因と戻し先を対応付け、attempt lineage・累積budget・元ticket・未完義務とともにcandidateとして記録する。上限N未満で既存policyに適合するretryはそのpolicyに従って扱い、上限前のretryを一律拒否しない。
+- AC-OS-L3-040-02：上限到達後の同scope retry、別ticket/scopeのcounter混入、値欠落/改変、再送による二重起動、要求意味不足をRecovery成功で隠す、context復旧をBackflowで代替する、別experiment budgetを本線に混ぜる、route待ちをclose扱いする反例を個別に拒否する。counter reset・二重Recovery・誤routeを許さない。
 - AC-OS-L3-040-03：policy/counter semantics/失敗分類/routeがunknownならretry/closeを保留して宣言ownerへ戻し、無関係ticketの通常作業は止めない。旧分類名を復活させない。
 
 ### FR-OS-L3-041 — HELIXOS-L2-041
@@ -234,7 +234,7 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 - AC-OS-L3-041-03：保持可能範囲unknownならcoordination-only未完として未完義務と確認先を示し、既存authority ownerへ返す。確認不能な依存範囲だけを保留し、無関係な許可済み作業は継続する。
 
 ### FR-OS-L3-042 — HELIXOS-L2-042
-Worker outputはstrict schema/digestを既定検査し、不適合成果を受理・完了・検証済みへ進めず、理由と未完義務を既存assignment/evidenceへ残す。緩和時は既存契約の対象・理由・期限・owner・再検証receiptを結ぶ。旧schema/実装や新承認者は導入しない。
+Worker outputはstrict schema/digestを既定検査し、不適合成果を受理・完了・検証済みへ進めず、理由と未完義務を既存assignment/evidenceへ残す。緩和時は既存契約の対象・理由・期限・再検証receiptを結ぶ。旧schema/実装や新承認者は導入しない。
 - AC-OS-L3-042-01：正しいschema/version/digest/revisionだけ検証済候補としWorker/attempt/sourceを保持。
 - AC-OS-L3-042-02：schema/policy/oracle欠落、版・scope違い、strict validation未実施、digest不一致、Worker自己申告だけ、既存選択contractに明記された条件違反、緩和条件各欠落/再検証なしを個別変異し昇格0。digest一致だけで内容正しさ・authority・別成果適合を認めない。OSがschema・digest algorithm・HARNESS oracle・SECURITY許可を発行または変更する反例も不合格とする。contractにないsize/timeout条件は追加しない。
 - AC-OS-L3-042-03：version/applicability unknownは対象成果のみ未完。
@@ -253,9 +253,9 @@ feedback findingのprose handoverだけをresolutionの証拠やresolved状態�
 
 ### FR-OS-L3-049 — HELIXOS-L2-049
 configured resource上限と割当可能/割当中/実行中/遊休/検証待ち/統合待ち/停止・失敗を時点/source付きで区別する。遊休taskの追加割当はREADY/依存/優先順/authority/scope/競合を守り、後段検証義務・担当・実施capacityを割当前に確保できる場合のみ別assignmentとする。登録数を実行数/throughputと混同しない。
-- AC-OS-L3-049-01：有限task fixtureで登録上限5、割当可能3、割当中2、実行中2、遊休1、検証待ち4、統合待ち1の各状態を分離する。利用率は分母・観測時点・対象scopeを示し、5はfixture値として扱う。後段容量確保済みの適格taskだけ追加。
-- AC-OS-L3-049-02：依存/authority/scope/競合/期限/後段担当・容量/上限を各々変異しdispatchを保留。
-- AC-OS-L3-049-03：INTELLIGENCE案、INFRASTRUCTURE資源、観測時点unknownは稼働中と推定せず、適格taskなしはidleのまま。
+- AC-OS-L3-049-01：有限task fixtureで登録上限5、割当可能3、割当中2、実行中2、遊休1、検証待ち4、統合待ち1の各状態を分離する。利用率は分母・観測時点・対象scopeを示し、5はfixture値として扱う。READY・依存充足・single-writer/authority lease・scope・非競合path・優先順/deadline・INTELLIGENCEのlow-impact適格性と後段検証義務/担当/容量を割当前に照合し、元ticketの順序/identity・成果/budget/未完義務lineageを保持して別assignmentを一度だけ追加する。新assignmentのreview/merge済み状態を割当前提にしない。
+- AC-OS-L3-049-02：READY/依存/lease/authority/scope/競合/優先順/期限/後段検証義務・担当・容量/low-impact適格性を各々欠落・不適合・unknownへ変異してdispatchを保留する。同一入力で設定上限2と5を比較し、それぞれの超過を拒否する。変更中の設定と上限/停止条件missing・unknown・staleを許可と推定しない。2/5は有期profileのfixture値で恒久値ではない。
+- AC-OS-L3-049-03：INTELLIGENCE案、INFRASTRUCTURE資源、観測時点unknownは稼働中と推定せず、適格taskなしはidleのままとしdummy task/利用率補完を作らない。OSによる配置案/影響判断の上書き、HARNESS義務の省略、resource pool上限の稼働数扱い、旧provider数/8-slot/CI/DB/Merge Trainの成立証拠扱いを個別に拒否する。
 
 ### FR-OS-L3-050 — HELIXOS-L2-050
 review負荷・独立reviewer availabilityを適用中のtyped threshold/capacity/縮退条件で観測する。reviewer不足が主因で適格reviewerが上限内にいるときだけ別対象review assignmentを増枠。merge admission/Ready化/作成branch権限を生成しない。
@@ -544,14 +544,14 @@ HELIX-OS自身と性質の異なる複数projectを対象に、採択済み要�
 
 ### `FR-OS-L3-047` — `HELIXOS-L2-047`
 
-受け手からの返却を、固定されたrecipient、元ticket identity/meaning revision、元assignment、返却理由・対象条件・根拠source/revision/scopeを持つ独立した返却evidenceとして受け取り、OSが既存のtyped lineage/relationで元ticketへ因果結合する。受け手は元ticket本文を直接変えない。OSは有効な返却を受け取るたび、既存境界に従って新revisionを発行し、元revisionを保持する。返却理由に対処した再発行と運用属性だけの更新を分け、運用属性だけをticket意味revisionの変更理由にしない。既存契約が明示適格化しない限り、旧assignment、attempt/result、authorityは新revisionへ継承しない。
+受け手からの返却を、固定されたrecipient、元ticket identity/meaning revision、元assignment、返却理由・対象条件・根拠source/revision/scopeを持つ独立した返却evidenceとして受け取り、OSが既存のtyped lineage/relationで元ticketへ因果結合する。受け手は元ticket本文を直接変えない。OSは返却理由への対処がticket意味の変更を要する場合、既存境界に従って新revisionを発行し、元revisionを保持する。返却理由に対処した再発行と運用属性だけの更新を分け、運用属性だけをticket意味revisionの変更理由にしない。既存契約が明示適格化しない限り、旧assignment、attempt/result、authorityは新revisionへ継承しない。
 
-**責務／参照境界**：OSだけが発行・再発行する。Ticketは作業指示であり、他Ticket/artifactへの参照を中に持たず、要求・design・code等artifactもTicketを要求根拠/実装部品として参照しない。根拠は要求・設計・契約の正本へ辿る。新field/schema/relationやgraphを追加しない。provider、actor、model、session、branch/worktree、lease、priority、progress、measurementのみの差は意味revisionを変えず、意味/scopeの変更は既存authority/Backflowへ戻す。
+**責務／参照境界**：OSだけが発行・再発行する。Ticketは作業指示であり、他Ticket/artifactへの参照を中に持たず、要求・design・code等artifactもTicketを要求根拠/実装部品として参照しない。根拠は要求・設計・契約の正本へ辿る。新field/schema/relationやgraphを追加しない。provider、actor、model、session、branch/worktree、lease、priority、progress、measurementのみの差は意味revisionを変えず、意味/scopeの変更やsplitは既存authority/Backflowへ戻す。
 
 **受入条件**
 
 - **`AC-OS-L3-047-01` 理由付き返却と元revision保持**：返却元はticket本文を編集せず、元ticket/revision/assignmentとの関係、返却理由、対象条件、根拠source/revision/scope、未完義務を返す。OSは元bytes/digestを保持し、evidenceのmissing/stale/wrong-scopeを未完へ戻す。
-- **`AC-OS-L3-047-02` 意味revisionと運用属性の区分**：有効な返却を受けた新ticketは返却理由・未完義務を保持する新revisionとtyped lineageで元ticketへ結ぶ。返却evidenceのない通常更新でprovider/actor/model/session/branch/worktree/lease/priority/progress/measurementだけが変わる対照はticket意味revisionの変更理由にせず、新revisionを発行しない。
+- **`AC-OS-L3-047-02` 意味revisionと運用属性の区分**：返却理由への対処でticket意味を変更する場合は、返却理由・未完義務を保持する新revisionとtyped lineageで元ticketへ結ぶ。返却の有無にかかわらずprovider/actor/model/session/branch/worktree/lease/priority/progress/measurementだけが変わる対照はticket意味revisionの変更理由にせず、新revisionを発行しない。
 - **`AC-OS-L3-047-03` authority非継承と既存関係のみ**：新revisionは旧assignment/result/authorityを明示的適格化なしに再利用しない。欠落/方向違い/staleの既存typed relationは未完としてOSへ返し、新しいschema/relation型やTicket内参照で修復しない。
 - **`AC-OS-L3-047-04` Ticket非参照境界**：Ticket本文に他Ticket/artifact refを埋め込まず、成果物からTicketを要求根拠・実装部品として参照しない。要求・設計・契約の正本を根拠として示し、Issue/PR projectionの編集/close/mergeから意味変更や再発行を生成しない。
 
@@ -582,3 +582,214 @@ GH-FR-025（旧L3 `github-atomic-development-requirements.md:52-65`）はPR省�
 | 047 | `docs/helix-os/L2-requirements/governance-requirements.md` lines 1185-1194; whole SHA-256 `97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7`; raw span `9afa3ef650768224d85fd336eaaf89baa3d7e5eb96c776bb812a66fd67cada9f` | `docs/helix-os/L11-acceptance/governance-acceptance.md` lines 802-811; whole SHA-256 `40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997`; raw span `2f0ca89554fc9d4618c1f763c4e0f567488bd221a6029cd3670c79c806b8a3ef` | `MPR-RC-HELIXOS-L2-047-004`, adopted / 1.0, `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L70`, semantic `e19191ce980467fddf5822619ccd480a41c84e6382ad1191ad5ea3ab04192377`; decision whole SHA-256 `c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad`, row SHA-256 `f03e66901529dfad317010ef922afdb5632e925cc07f000415a900ba2dfdc1ed` |
 
 031の運転境界は2026-09-26 decision `harness-v-valley-process-po-decisions-2026-09-26.md` lines 41-55（whole SHA-256 `650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea`; raw span `b0b43ff1e09e5d7a0a58c8f24a87c95b6a3b430b35a99e7b9f51b5d46082ccf3`）にも従う。
+
+## 継承されたticket条件の個別受入（FR-OS-L3-017）
+
+登録receiptのcurrent_condition_refsは元本文全体を保持する。以下はHELIXOS-L2-003/010/011を束ねる採択親017の条件を個別ACへ再導出したもので、親IDを追加しない。種類の目的・発行区分・合流先と、接続の端から端の条件を一組として照合する。TrainingとWEB-OSの将来境界は案・非適用の状態を保持する検証に限り、1.0で実行する条件にしない。システムと運用の分担はL2の対応する詳細IDに従い、必要な入力・人判断をOSが生成しない。
+
+- **`AC-OS-L3-017-04` HXT-TYPE-01**：「Forward 大」について、目的「構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す」、発行「計画」、合流先「本流」を同じticketで確認できる。 個別不成立条件：単体CIだけで構成体の受入を成立させる。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:278`。
+
+- **`AC-OS-L3-017-05` HXT-TYPE-02**：「Forward 中」について、目的「接続（機能と機能のつなぎ）を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 大」を同じticketで確認できる。 個別不成立条件：接続を作らず単体の完了だけでForward 大へ合流する。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:279`。
+
+- **`AC-OS-L3-017-06` HXT-TYPE-03**：「Forward 小」について、目的「単体の機能を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 中／大」を同じticketで確認できる。 個別不成立条件：単体の範囲を越えた実差分を小のまま通す。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:280`。
+
+- **`AC-OS-L3-017-07` HXT-TYPE-04**：「Discovery」について、目的「開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる」、発行「突発」、合流先「発行元のticket」を同じticketで確認できる。 個別不成立条件：範囲不明を解消しないまま発行元を完了にする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:281`。
+
+- **`AC-OS-L3-017-08` HXT-TYPE-05**：「PoC」について、目的「技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 個別不成立条件：画面がないことだけでPoCを省略する／本番実装へ流用する。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:282`。
+
+- **`AC-OS-L3-017-09` HXT-TYPE-06**：「Prototype」について、目的「画面の操作と使う人の反応を確かめる。画面のない対象では発行しない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 個別不成立条件：画面なしの対象にPrototypeを必須発行する。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:283`。
+
+- **`AC-OS-L3-017-10` HXT-TYPE-07**：「Decide」について、目的「裁定。要求の確認や技術の選定をPR化して決める」、発行「計画」、合流先「採用→Forward、不採用→記録して終了、方針変更→次の計画」を同じticketで確認できる。 個別不成立条件：不採用なのにForwardへ進める。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:284`。
+
+- **`AC-OS-L3-017-11` HXT-TYPE-08**：「Backflow」について、目的「下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す」、発行「PoC・Prototypeの後は計画、それ以外は突発」、合流先「要求エンジン（L2）」を同じticketで確認できる。 個別不成立条件：Backflowを経ずに下流が要求を書き換える。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:285`。
+
+- **`AC-OS-L3-017-12` HXT-TYPE-09**：「Reverse」について、目的「実装の事実から設計へ戻す。Scrum Reverseを含む」、発行「突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`）」、合流先「Forwardの該当層」を同じticketで確認できる。 個別不成立条件：必須checkpointを計画・実行せずにrelease-readyにする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:286`。
+
+- **`AC-OS-L3-017-13` HXT-TYPE-10**：「Recovery」について、目的「AIの逸脱・暴走・context切れから正常な地点へ戻す」、発行「突発」、合流先「中断していた工程」を同じticketで確認できる。 個別不成立条件：復旧で累積予算・未完義務や許可境界を失う。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:287`。
+
+- **`AC-OS-L3-017-14` HXT-TYPE-11**：「Incident」について、目的「本番障害に緊急対応する」、発行「突発」、合流先「運用評価（L12）。恒久対策はReverse経由」を同じticketで確認できる。 個別不成立条件：緊急対応だけで恒久対策を完了にする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:288`。
+
+- **`AC-OS-L3-017-15` HXT-TYPE-12**：「Refactor」について、目的「振る舞いを変えずにコードの構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward 小」を同じticketで確認できる。 個別不成立条件：振る舞いを変える修正をRefactorで閉じる。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:289`。
+
+- **`AC-OS-L3-017-16` HXT-TYPE-13**：「Design-refactor」について、目的「外部の振る舞いを保って設計の構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 個別不成立条件：外部契約の変更をDesign-refactorで閉じる。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:290`。
+
+- **`AC-OS-L3-017-17` HXT-TYPE-14**：「Performance-refactor」について、目的「設計を保って性能を上げる。測れない高速化は不可」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 個別不成立条件：性能を測定せず高速化を完了にする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:291`。
+
+- **`AC-OS-L3-017-18` HXT-TYPE-15**：「Redesign」について、目的「外部の約束・要求・受入条件を変えて設計をやり直す」、発行「計画」、合流先「Forward（要求が変わるときはDecideを経る）」を同じticketで確認できる。 個別不成立条件：要求が変わるのにDecideを経ずForwardへ合流する。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:292`。
+
+- **`AC-OS-L3-017-19` HXT-TYPE-16**：「Retrofit」について、目的「依存・基盤・構成の更新に合わせて段階的に移行する」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forwardの該当層」を同じticketで確認できる。 個別不成立条件：段階移行の対象層へ戻らず全体を完了にする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:293`。
+
+- **`AC-OS-L3-017-20` HXT-TYPE-17**：「Research」について、目的「選定や比較のための参考ソースを集める。決定には関わらない」、発行「計画」、合流先「依頼元」を同じticketで確認できる。 個別不成立条件：Researchで採否を決める。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:294`。
+
+- **`AC-OS-L3-017-21` HXT-TYPE-18**：「Add-feature」について、目的「既存のものに機能を差分で追加する」、発行「計画」、合流先「Forwardの該当層」を同じticketで確認できる。 個別不成立条件：既存層の差分へ接続しない機能追加を完了にする。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:295`。
+
+- **`AC-OS-L3-017-22` HXT-TYPE-19**：「Version-up」について、目的「後の版へ回した項目を保全し、時期が来たら取り込む」、発行「計画」、合流先「取り込み時にDecide→Add-feature」を同じticketで確認できる。 個別不成立条件：将来項目を消す／DecideなしにAdd-featureへ取り込む。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:296`。
+
+- **`AC-OS-L3-017-23` HXT-TYPE-20**：「Experiment（案）」について、目的「LABOの比較実験。改善の候補を今の方式と比べるために、追加の実行が要るときだけ発行する。評価対象のticketとは別のticketにし、本線と別の予算と列で動かす」、発行「計画（LABOの比較実験の依頼をOSが登録）」、合流先「LABOの評価（結果はFeedbackとしてOSへ戻る）」を同じticketで確認できる。 個別不成立条件：観測だけでticketを増やす／評価作業の完了で対象ticketを閉じる。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:297`。 追加実験を選ぶ場合はExperimentDefinitionのsubject/task snapshot、control/treatments、変更factor、固定条件、repeat/seed、allocation、評価基準/scorer/protocol、warmup/cache、budget、stop rule、汚染policyを実行前に固定し、定義欠落または実行後の固定を成立にしない。
+
+- **`AC-OS-L3-017-24` HXT-TYPE-21**：1.0では将来能力の実行を行わず、案・版・責務境界を保持した合成記録について次を確認する：「Training（案、3.0）」について、目的「INTELLIGENCEのローカルLLMの学習・チューニング。LABOが利用区分を付けた材料だけを使う」、発行「計画（INTELLIGENCEの学習の案をOSが登録）」、合流先「LABOの評価→Decide」を同じticketで確認できる。 個別不成立条件：利用区分のない材料を学習に使う／3.0の案から今の実行許可を作る。原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:298`。
+
+- **`AC-OS-L3-017-25` HXT-FLOW-01**：PoCとPrototypeの適用結果から、戻した要求revision・裁定・再合流先へ辿れる。 個別不成立条件：技術成立や画面試作だけでL3を凍結する／裁定なしに合流する。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:299`。
+
+- **`AC-OS-L3-017-26` HXT-FLOW-02**：Incidentの結果と、恒久対策のReverse・再合流先を区別して辿れる。 個別不成立条件：緊急対応の成功を恒久対策の成立に流用する。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:300`。
+
+- **`AC-OS-L3-017-27` HXT-FLOW-03**：保全した項目から裁定と取り込み先へ辿れる。 個別不成立条件：保全した項目を消す／裁定と追加差分を切り離す。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:301`。
+
+- **`AC-OS-L3-017-28` HXT-FLOW-04**：Discoveryの出典、明らかにした範囲、発行元への戻しを確認できる。 個別不成立条件：発行元との接続を失う／DiscoveryをPoCと同一にする。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:302`。
+
+- **`AC-OS-L3-017-29` HXT-FLOW-05**：下位の証拠、上位固有の義務、省略検査の回収を区別でき、構造を分類し直した後は新revisionに結び直される。 個別不成立条件：下位CI合格だけで上位完了／省略検査未回収／Unknownの影響を成立済みとして扱う。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:303`。
+
+- **`AC-OS-L3-017-30` HXT-FLOW-06**：元の完了と追補評価、因果の証拠、改善候補の還流先を別に辿れる。 個別不成立条件：元の完了記録を書き換える／path一致だけで帰属させる。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:304`。
+
+- **`AC-OS-L3-017-31` HXT-FLOW-07**：findingと振り分け理由、返却先又は次ticketを同じ因果で追跡できる。 個別不成立条件：finding破棄／次ticketのfindingを今のPRへ戻す／返却先欠落。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:305`。
+
+- **`AC-OS-L3-017-32` HXT-FLOW-08**：評価対象、実験作業、結果とFeedbackの戻し先を混同せず辿れる。 個別不成立条件：実験の完了で対象ticketを閉じる／本線の予算・列へ混載する。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:306`。
+
+- **`AC-OS-L3-017-33` HXT-FLOW-09**：1.0では将来能力の実行を行わず、案・版・責務境界を保持した合成記録について次を確認する：3.0の版の印と案の状態を保って、材料の区分から評価・裁定まで辿れる。 個別不成立条件：案の登録を学習実行許可・採用・完了にする。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:307`。
+
+- **`AC-OS-L3-017-34` HXT-SYS-01**：同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 個別不成立条件：BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する／開発方式をticketの種類にする／突発と計画を分けない。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:308`。
+
+- **`AC-OS-L3-017-35` HXT-USE-01**：1.0では将来能力の実行を行わず、案・版・責務境界を保持した合成記録について次を確認する：CrawlerとBugbotが既存の種類・割当てへ接続し、WEB-OSのjobは内部OSの種類へ追加されず未決の扱いが明示される。 個別不成立条件：botごとに種類を増やす／WEB-OSの未定のjobを内部OSで正式化する。 原条件は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L11-acceptance/governance-acceptance.md:309`。
+
+## 継承条件と追補の受入条件
+
+以下は採択親の既存条件を明示する追補である。sourceのcandidate/将来版/担当移管はその状態を保持し、source linkの存在や本設計から採択・実行・承認を生成しない。
+
+- **`AC-OS-L3-015-04` 原要求と未被覆atom**：原要求ID・原文digest・successor・未被覆atomを追跡し、旧owner/技術との衝突、Issue close/PR merge、routing containerへの接続だけで意味を削除・縮退・retireしない。意味の変更は既存人判断へ戻す。
+
+- **`AC-OS-L3-015-05` source holdingとproposal仮登録**：registered_source_holdingを先行させ、候補semantic digest・source atom完全集合digest・HARNESS無損失receipt・保持atom・別の生存中仮登録へ残すatom・人判断対象atomを対象product/revisionに束ねる。未計上、stale、digest不一致、wrong product、仮登録欠落、authority_effectがnone以外なら要求PRをmerge可能にしない。仮登録自体は要求採用・実装許可を作らない。
+
+- **`AC-OS-L3-018-08` 指定Workerの三段trace**：LABOのBench作業履歴によるモデルクラス水準→INTELLIGENCEのticket配置案→OS推進の確認・指定・割当を同じticketへ結ぶ。未評価印を保持し、Bench scoreやproposalだけでscope/branch/assignment/merge authorityを変えない。Worker identity、model class、呼出レーン、目的・authority・資源・成果を記録し、Subagentの範囲は呼出レーンのscope/authority/budget以下とする。
+
+- **`AC-OS-L3-018-09` 独立reviewと許可route**：作成Worker自身とそのSubagentのreviewは独立reviewに数えない。reviewer identity/context/authority/指定routeを区別し、route/account・credential/network/費用/read-write範囲/期限の許可を照合する。不明、route未指定、timeout、無出力ならreview_waitingを保ち、別routeの過去許可をfallback認可にしない。無許可出力をreview receiptへ採用しない。
+
+- **`AC-OS-L3-018-10` assignment全fieldと終了回収**：ticket・指定モデルクラス・レーン・要求revision・project・環境・役割・budget・期限と、Worker identity/capability/provider/model/config、開始終了時刻・result/artifact/evidenceを追える。割当/受入/実行/完了と停止/取消/失敗/authority失効を分ける。model変更だけでWorker identityを変えず、終了後process・一時credential/environment/file/lock/network session/resource予約を次assignmentへ残さない。
+
+- **`AC-OS-L3-019-04` 成功・拒否・未実行の分離**：通常開発の成功/失敗/拒否/中断/待ち/未実行を別状態で記録し、全対象から観測receiptまで追える。欠損を検出し、同じ入力のreplay集計を一致させ、成功例だけの集計を完全観測としない。未実行を成功または失敗Attemptへ捏造しない。
+
+- **`AC-OS-L3-020-04` 動的計画・隔離と省略義務回収**：ticket/V字pair/触るconnector/変更種類とHARNESS義務からPR前の検証scopeを導き、固定段数を全案件へ強制しない。計画導出とCI合成実行を別scopeにし、実際のbase+A+Bと結果・base更新・候補増減・順序変更で再計画する。scope超過は止め、隔離実行の結果・省略検査・合流先での回収をorigin義務へ結ぶ。下位CIから上位固有義務の成立を作らず、HARNESS oracleを増減しない。
+
+- **`AC-OS-L3-021-04` 不可逆公開操作の個別境界**：選択構成の配布・更新・復旧が適格でも、tag/publication/cutoverは対象・作用に適用する既存authorityを別に照合し、無許可では行わない。配布成功を公開許可へ昇格せず、実成果と旧版/rollback先を保持する。
+
+- **`AC-OS-L3-027-04` 評価をauthorityにしない**：Bench scoreのみでscope/branch/assignment/権限を変えず、oracleの存在だけで評価済みにしない。LABO評価には対象task/model class・scope・入力revision、実適用結果・根拠・評価者・時点・判定receiptを要し、判定不能/不足は未評価のまま。生成物が事前分類/出力scopeを逸脱した場合は受渡し停止・隔離/復旧し、成功受領にしない。
+
+- **`AC-OS-L3-035-05` 作成者・providerによる対象除外禁止**：選択project/scopeの観測可能PR eventは複数base branch・stacked PRを含み、作成者またはprovider/runtime名を理由に除外しない。delivery filterで除外した対象があるときは全scope網羅と表示しない。
+
+- **`AC-OS-L3-041-04` 古いauthorityの持越し禁止**：旧instructionの継続、撤回済みclaimの有効化、source再取得の代わりに会話要約を正本とすること、古いrevision/conflict sourceを確認済みとすることを、それぞれauthority確認済みにしない。secret/private reasoningもcoordination packetへ含めず、無関係な許可済み継続を一律停止しない。
+
+- **`AC-OS-L3-043-04` eventからauthorityを生成しない**：OSがapproval decisionを作る、SECURITYがOS assignment/progressを所有する、Worker event/resultが自身のauthority/write transactionを決めることを成立にしない。旧Node専有条件を現在ownerへ推定移管しない。request不要の有効既決authorityへ追加人承認を要求しない。
+
+- **`AC-OS-L3-046-04` 遷移成功の非伝播**：dispatch、実行、Ready化、merge admissionを個別に照合し、一段の成功から次段の完了を生成しない。探索/prototypeのmergeを本実装許可にしない。最終admissionはexact content HEADと最新baseの組へ結びread-afterする。
+
+- **`AC-OS-L3-050-05` review capacityと独立性・権限**：provider/model差だけで独立reviewとせず、作成者とそのSubagentへ独立reviewを割り当てない。reviewerへ作成branch修正/Ready化権限を付けず、増枠でmerge権限を作らない。同一対象重複receiptをcapacityと数えず、review完了から他のHARNESS段階成立を作らない。既存review_merge担当の権限は個別admission照合に従う。
+
+## 継承本文の具体条件（001〜014の保持先）
+
+本節は登録時の継承本文を起点に、既存の条件・担当・候補状態を維持して再導出する。旧candidate固有の未決方式や実行経路を採択済みに変えず、sourceで要求される適用判定と状態保全を受入条件にする。
+
+- **`AC-OS-L3-015-06` 要求エンジン・templateの登録境界**：Concept/L1、engine入力・L2候補、人の訂正/採否、採用要求、後日の見逃しを同じ因果IDへ登録する。意味差分/分類はHARNESSから受け、OSで再算出しない。原eventのsource/actor/対象/permission/data classを分類前に保持し、異なるschema版の再分類でも原eventを変えない。template exact set/版・適用・義務・N/A・戻し・成果・finding・再作業・受入を記録し、未登録/stale/conflict/必要input欠落で任意様式へfallbackしない。
+
+- **`AC-OS-L3-016-04` 運用証拠と管理projection**：要求revisionからrelease準備/artifact受渡しと、runtime所有の配備・設定・計測/log/通知/incident/backup/restore/rollback/保守/廃止/費用へtraceする。欠測・stale・collector停止をhealthyへ変換せず、runtime実行authorityを吸収しない。進行/blocker/待ち/失敗/検証/改善候補のviewはauthorityから再構築し、projection failureを完了へ補完しない。
+
+- **`AC-OS-L3-019-05` 許可内のdataと通知lifecycle**：data class・用途・同意・retention・scopeを既存owner条件で照合し、欠落/期限超過/用途scope不一致は拒否または隔離して学習・要求化・他project転用へ進めない。後の許可で過去の無許可処理を成功にしない。有期限通知はtyped pointerと再取得を持ち、request/assignment/review/handover/heartbeat/確認待ちを区別する。provider native memoryを使わず、session history/user設定をauthorityへ混入しない。 要求・設計・受入・運用規則・ユーザー嗜好をmemory正本へ移さず、規則は仕組みへ吸収する。知識は1.0〜2.xではLABOが評価・保持し、3.0からINTELLIGENCEが改善へ使う版境界を保持する。旧memory中心責務の置換前に移管先・原文provenance・再取得可用性・訂正履歴・未移管項目を照合し、通知削除や件数減少を移行証拠にしない。保持・削除期間は追加しない。
+
+- **`AC-OS-L3-019-06` provenanceと安全な継続**：producer、commit実行者、PR公開者、独立reviewerを別identityで扱い、実証mixedをunknownへ落とさず不明producerを推定承認しない。checkpointから未commit/未追跡差分、実行中処理、累積制約を追い、安全点→保存/再取得→旧writer停止またはhandover→後継再束縛→再構成確認を保つ。packet不足は分割取得/保留し、撤回claim・secret/private reasoning・他案件情報・結論誘導を入れない。
+
+- **`AC-OS-L3-021-05` archive・再利用とconsumer統制**：archiveは元相対構造/provenance/digestを保ち、manifest全資産の完全一致再利用/再導出/置換/退役/archive限定/不採用/未判定を追う。未判定を不要としない。完全一致再利用時はsource/target digest、owner、上流、consumer、権利/secret/外部作用/実行性/採否revisionを照合しread-afterする。旧startup/runtime/CI/hook/prompt/configを暗黙再有効化せず、退役は全consumer relationの移管・rollback・oracleを確認する。物理削除は通常archiveと分け、別のaction-binding authorityを要する。
+
+- **`AC-OS-L3-021-06` 契約scopeと再現・再編**：配布の製品scope/契約版/asset/第三者条件/artifact/releaseを照合し、権利不明・版不一致・未発効を保持する。OS内部統制とHARNESS/Web外部提供契約を混在させず、候補merge/CI/配布成功から公開許可を作らない。機能単位の収載/除外、版/成熟度、owner/影響/検証、同入力artifact・clean consumer・適格復旧先を結ぶ。未適格機能混入・shadow再編の成立化・個別成功から構成体成立を拒む。
+
+- **`AC-OS-L3-022-04` 改善の状態・候補の非実行化**：観測/finding/candidate/採否/割当/結果/効果/失効と、未評価/unknown/stale/partial/findingなし/no actionを分ける。単一metric/AI評価/file size/Issue数/定期scanだけで採択や実行を作らず、意味変更は上流へ戻す。学習発火/利用/効果/誤推薦/旧版はLABO評価へ渡し、知見登録・ログ件数を改善達成としない。棄却理由・再評価条件・HARNESS改善への還流を保つ。
+
+- **`AC-OS-L3-018-11` capacityと操作authority**：resource/pool上限、許可WIP、実行中、検証待ち、統合待ち、budget/期限/競合/再作業/停止/縮退を分け、下流capacityと独立性を保つbackpressureを適用する。特権操作は対象製品のtarget/operation/environment/network/data scope/期限authorityを照合し、失効では新規/実行中を止める。sensitive dataを通常log/DB/memory/Issue/PR/context/配布へ送らない。固定provider/model/account/runner数を恒久要求にしない。
+
+- **`AC-OS-L3-015-07` AI可読文書と更新receipt**：AI文書は承認上流から一方向に生成しsource/digest/生成版/適用scopeを保持する。HARNESS工程/OS統制/製品要求を分け、要約でもauthority/禁止/停止/未解決/次readを落とさない。source更新では影響文書をstale化し再生成・semantic diff・read-after前に実行へ使わない。input/registry/activation/generation/distribution/enforcement/recovery/citationを別relationとして追い、一件の置換や一つのread setで全移管としない。要求更新案は原文/理由/target/変更前revisionを保ち、適用policy内の自動適用・修復・人判断・拒否・競合を分け、原子的確定と冪等性を照合する。
+
+- **`AC-OS-L3-015-08` 要求形成と人の反応**：selection/approval/disposition/一時技術評価/作業指示/完了証拠を区別し、恒久判断はscope/revision/sourceへ辿る。相談/質問/叱責/緊急性/AI解釈を人間承認にしない。委任scopeの技術具体化を反復承認待ちへせず、未委任の意味・権限変更のみ判断へ戻す。客観検証と人の反応・AI解釈を分け、受容済み軸/再発/未解決findingを保ち、無関係な有効作業を失効させない。
+
+- **`AC-OS-L3-020-05` 旧CI非代替と移管relation**：旧workflow/job/required check/review admissionは新世代の要求分母/oracleにしない。新旧writer/evidenceを分け、旧CIを起動せず新世代だけを承認要求oracleへ照合する。dual-green/job一致/parityを求めない。shadow/cutover/rollback/consumer read-afterを別に追い、旧workflow削除だけでrequired context/schedule/template/admission/復元relationの退役完了としない。
+
+- **`AC-OS-L3-025-05` 継承条件の適用性と将来・移管**：本節の条件対応表を用い、current_condition_refsの全条件を各担当ACへ結ぶ。候補固有拡張・数値・未決事項は元sourceの適用/採用状態を保持し、一括採択や1.0の実行前提にしない。L2-012/013の研究・横断診断はLABOへ移管したまま保持する。Web/WEB-OSは開発対象として個別要求revisionを管理するが、展開後tenant/job/service state/credential/配備監視復旧を内部OSへ収容しない。INV将来研究、Training3.0、部品外workflow4.0を1.0へ前倒しせず、原条件と保持先を追える。
+
+## 継承本文の比較・更新・観測条件
+
+- **`AC-OS-L3-015-09` 要求正本更新の原子性**：未確定案を原文/理由/対象/変更前revisionとともに保持し、要求・契約・受入・検証・下流影響と意味変更/projection追従を分ける。要求revision/履歴/trace/下流失効/生成view/DB/receiptを原子的に確定し、部分更新を現行正本にしない。stale beforeを拒否し、同operation重送で二重更新しない。旧Markdown/shadow/IssueからJSONを巻き戻さず、実経路before/after/receiptと未実装状態を分ける。 適用policy・根拠・scopeに沿う自動適用/修復/必要な人判断/拒否/競合を区別し、同じ理由で許可済み変更を再質問しない。
+
+- **`AC-OS-L3-019-07` 会話継続の比較と段階**：未保存の目的/受入/意図/棄却理由/失敗仮説を識別し、必要情報不足で切替を保留する。保存/再取得/意味版確認ができた範囲だけを次回入力から外し、原会話/監査を削除しない。同task/HEAD/要求/provider/model/設定で継続/compact/新sessionを隔離比較し、意図/品質/見逃し/retry/再取得/時間/総費用/token/cacheを測る。初期context減少だけを成功にせず、shadow/無副作用復元/単task/未commit未追跡/長期実行を別段階にし、Skill/Ruleの完了で会話継続を完了にしない。
+
+- **`AC-OS-L3-018-12` 通常観測と限定追加実験**：仕事の意味/担当/試行/測定を分離し、再割当後も同じ仕事と別attemptを追う。同model/同仕事/固定条件と共通oracleでHELIX効果を比較し、改善なし/劣化/判定不能を正当結果にする。追加実験は既存許可/有限budget/隔離/別laneで通常開発とreview capacityを保護し、観測だけで足りる評価に新ticketを発行しない。既存Benchは新Ticket完成待ちにせず切替scopeのみを限定する。意味/予算/危険操作の人判断と委譲policy内の依存/優先度/WIP順序を区別する。
+
+- **`AC-OS-L3-022-05` 投資candidateの個別状態**：INV-001..072の既存分類とsource provenanceを保持し、旧ID/P0..P4/Issue/owner/実装状態から要求採否・priority・完了を作らない。INV-043の旧Cursor早期E2Eを起動せず、INV-068/070/071/072の将来研究をcurrent必須機能にしない。72件をIssue/PLANへ一括変換せず、有界Worker委譲は既存の別要求sourceへ結ぶ。
+
+- **`AC-OS-L3-021-07` 段階成立と機能再編の個別性**：7サービスの配布、HELIX段階構成、1.0到達を別に追う。未完上位構成内の適格単位を隠さず、局所検証と全体critical pathを分ける。責務の維持/分割/統合/移管候補は要求/owner/依存/検証/利用実績を根拠に比較し、未検証再編をshadowとして残す。growth-offでも通常開発可能な既存境界を保ち、製品releaseと自己releaseのauthority/receiptを転用しない。固定9群/17系統/PKG名・個数/旧Slice/Module/channelを新世代分母にしない。
+
+## 015〜025のcurrent_condition_refs継承条件の扱い
+
+機能単位登録receipt `helixos-functional-units-coverage-receipt-2026-09-27.json` と `-r2.json` のscopeに従い、001〜014の元本文全体を条件の起点として保持する。以下は条件群ごとの取込み先であり、001〜013を新たな採択親へ数えない。同じ条件を複数親が継承するときは下表の担当ACを参照し、再定義しない。対象sourceはrevision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `docs/helix-os/L2-requirements/governance-requirements.md`（full SHA-256 `c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a`）。
+
+012/013の評価・研究はLABO移管状態を保持し、OSは原記録とroutingだけを持つ。Training3.0/部品外workflow4.0/展開後WEB-OS/将来研究は1.0の実行から対象外で、元のL2同節および各担当機構の正本に残す。025-05と017-24/33/35はこの非前倒しを照合する。旧sourceの分類・candidateの未決事項・古い状態表示を新たな採択や恒久ルールへ変えない。数値は既存sourceの適用状態を保ち、無関係な閾値を新設しない。
+
+| 固定L2条件span | raw-span SHA-256 | 条件群 | 処置・担当ACと対L10 |
+|---|---|---|---|
+| `docs/helix-os/L2-requirements/governance-requirements.md:21-26` | `fcd4505b19fc63833d6e5c6e212e85a8bfca885855f94e3b365ffaf9c46c0f8c` | 旧採用意味・原要求・successor・未被覆・仮登録 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-04`、`AC-OS-L3-015-05`。対L10：`CASE-OS-L10-015-04`、`CASE-OS-L10-015-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:27-31` | `da774c4f376b3ddb14b384e1e219782e9d0f748e97c18dadda9d7267deb7b014` | 対象群の目的・OS非外販・HARNESS改善の還流 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-022-01`、`AC-OS-L3-022-03`、`AC-OS-L3-025-03`。対L10：`CASE-OS-L10-022-01`、`CASE-OS-L10-022-03`、`CASE-OS-L10-025-03`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:54-54` | `4acfd31eda15d28fa8d73fa4934437943a6c437c17fbd1f7e317bd29fddf9a78` | 001 要求authority | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-01`、`AC-OS-L3-015-03`。対L10：`CASE-OS-L10-015-01`、`CASE-OS-L10-015-03`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:55-55` | `538595fd52ef9673b7bb3674a069244977a19c69e77b233a5e063df04821b49d` | 002 portfolio/release-kanban | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-016-01`、`AC-OS-L3-016-02`。対L10：`CASE-OS-L10-016-01`、`CASE-OS-L10-016-02`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:56-56` | `527db405ae54b00b4082836ad41c04337f203ecd50850e41db81ca1110cc404f` | 003 product方式と共通統制 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-03`。対L10：`CASE-OS-L10-015-03`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:57-57` | `79dca676c65cb1313109a3d8c93ff33bf5d8b1bd59b155d7776648aedd2763c2` | 004 Worker/三段配置/制約 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-01`、`AC-OS-L3-018-08`、`AC-OS-L3-018-10`。対L10：`CASE-OS-L10-018-01`、`CASE-OS-L10-018-08`、`CASE-OS-L10-018-10`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:58-58` | `ef2afad517f7b649473d359fa6138566c94ad9ee7fb0b6a9dc57e55e44ed710f` | 005 LABOとOSの改善分担 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-022-01`、`AC-OS-L3-022-04`。対L10：`CASE-OS-L10-022-01`、`CASE-OS-L10-022-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:59-59` | `2e9bbe7c052fffc692c517ef1902322a871f6f4b56095ee931b98b5d4d50f4d6` | 006 7サービスの導入更新復旧 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-021-01`、`AC-OS-L3-021-03`。対L10：`CASE-OS-L10-021-01`、`CASE-OS-L10-021-03`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:60-60` | `1602afca850c3c4cd95ac67a449cdca06a0e4c471871af4e709e95bf5052adfd` | 007 BASE-01共通証拠 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-019-01`、`AC-OS-L3-019-02`、`AC-OS-L3-019-04`。対L10：`CASE-OS-L10-019-01`、`CASE-OS-L10-019-02`、`CASE-OS-L10-019-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:61-61` | `33cf7f1f3526c80cb47660b55f15a6f5f1fc934696dddf7ca5eff923f7ff5e0b` | 008 動的CIと実行状態 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-020-01`、`AC-OS-L3-020-02`、`AC-OS-L3-020-04`。対L10：`CASE-OS-L10-020-01`、`CASE-OS-L10-020-02`、`CASE-OS-L10-020-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:62-62` | `c885cd43d7794f4bc65a3ef06eee4fcdd5daecf9beccef609ea7ba7834671664` | 009 継続と累積制約 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-019-02`、`AC-OS-L3-018-03`。対L10：`CASE-OS-L10-019-02`、`CASE-OS-L10-018-03`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:63-63` | `5a6b2dd37b0bd10dd632f52e70e152c484579675b105214fb14f497eb7c63c98` | 010 ticket共通条件 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-03`、`AC-OS-L3-017-34`。対L10：`CASE-OS-L10-017-03`、`CASE-OS-L10-017-34`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:64-64` | `8081819df3621519e33bae359ac6857348df6ae65a1a251f39697441a3031c0f` | 011 統合検証計画と再計画 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-020-04`。対L10：`CASE-OS-L10-020-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:65-66` | `e4c012c4ae02415ee3bf409d8ab729bc75d2c391fcf0e74c66adfed114f72456` | 012/013 LABO移管とOSに残る原記録 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-025-04`、`AC-OS-L3-025-05`、`AC-OS-L3-019-01`。対L10：`CASE-OS-L10-025-04`、`CASE-OS-L10-025-05`、`CASE-OS-L10-019-01`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:74-77` | `8a8e0025b42712b512397ba52a37306badb82e2ad08e43ae893880687a534687` | HARNESS契約とOS証拠・自己承認禁止 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-09`、`AC-OS-L3-020-01`、`AC-OS-L3-025-02`。対L10：`CASE-OS-L10-018-09`、`CASE-OS-L10-020-01`、`CASE-OS-L10-025-02`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:79-87` | `12e910d726f6eb0f6ad68c37d6e605c66fa781556e5884a42087b2ca919785d1` | 要求engine分類・原event・owner routing | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-06`、`AC-OS-L3-022-01`。対L10：`CASE-OS-L10-015-06`、`CASE-OS-L10-022-01`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:89-94` | `9bf6b13b85a494f36670679b534312de27c16c70ef4e4d8c423603d7377e2f11` | template版/set/適用義務・欠落とLABO評価 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-06`。対L10：`CASE-OS-L10-015-06`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:98-101` | `0bdbff5c6d3c43be53621c1783e505bab2100e2b32db6fe9975e9abbcc1f7d10` | review route/許可/fallback禁止 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-09`。対L10：`CASE-OS-L10-018-09`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:107-121` | `8e3146ee60065d0d281e91820065ceeee3ce4e95cbe3421d7d1a3b24ce162adf` | 動的ticket/発行主体/上位固有義務/後日評価/finding振分け | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-03`、`AC-OS-L3-017-08`、`AC-OS-L3-017-10`、`AC-OS-L3-017-28`、`AC-OS-L3-017-29`、`AC-OS-L3-017-30`、`AC-OS-L3-017-34`、`AC-OS-L3-020-04`。対L10：`CASE-OS-L10-017-03`、`CASE-OS-L10-017-08`、`CASE-OS-L10-017-10`、`CASE-OS-L10-017-28`、`CASE-OS-L10-017-29`、`CASE-OS-L10-017-30`、`CASE-OS-L10-017-34`、`CASE-OS-L10-020-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:131-151` | `7615704bf9a2fb8e144d92fd3542c0748e6e76fa9baa983f016cc8fe2e2f3b1c` | ticket20種類とTraining3.0案 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-04`、`AC-OS-L3-017-05`、`AC-OS-L3-017-06`、`AC-OS-L3-017-07`、`AC-OS-L3-017-08`、`AC-OS-L3-017-09`、`AC-OS-L3-017-10`、`AC-OS-L3-017-11`、`AC-OS-L3-017-12`、`AC-OS-L3-017-13`、`AC-OS-L3-017-14`、`AC-OS-L3-017-15`、`AC-OS-L3-017-16`、`AC-OS-L3-017-17`、`AC-OS-L3-017-18`、`AC-OS-L3-017-19`、`AC-OS-L3-017-20`、`AC-OS-L3-017-21`、`AC-OS-L3-017-22`、`AC-OS-L3-017-23`、`AC-OS-L3-017-24`。対L10：`CASE-OS-L10-017-04`、`CASE-OS-L10-017-05`、`CASE-OS-L10-017-06`、`CASE-OS-L10-017-07`、`CASE-OS-L10-017-08`、`CASE-OS-L10-017-09`、`CASE-OS-L10-017-10`、`CASE-OS-L10-017-11`、`CASE-OS-L10-017-12`、`CASE-OS-L10-017-13`、`CASE-OS-L10-017-14`、`CASE-OS-L10-017-15`、`CASE-OS-L10-017-16`、`CASE-OS-L10-017-17`、`CASE-OS-L10-017-18`、`CASE-OS-L10-017-19`、`CASE-OS-L10-017-20`、`CASE-OS-L10-017-21`、`CASE-OS-L10-017-22`、`CASE-OS-L10-017-23`、`CASE-OS-L10-017-24`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:153-157` | `4242d25768ec328c8a544228ef8b5b5a962db7af83cdf72a011682c12661d7bc` | Experiment/Training/bot/Web jobの分担 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-23`、`AC-OS-L3-017-24`、`AC-OS-L3-017-31`、`AC-OS-L3-017-32`、`AC-OS-L3-017-35`、`AC-OS-L3-025-05`。対L10：`CASE-OS-L10-017-23`、`CASE-OS-L10-017-24`、`CASE-OS-L10-017-31`、`CASE-OS-L10-017-32`、`CASE-OS-L10-017-35`、`CASE-OS-L10-025-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:159-168` | `70a53aaa4fbc718b2c1118fb7a1f8ef9293c69dd9abdbbe466f81bf6315acd36` | 旧との差分とBackflow/prototype/Forwardの再導出 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-08`、`AC-OS-L3-017-09`、`AC-OS-L3-017-11`、`AC-OS-L3-017-25`、`AC-OS-L3-017-28`。対L10：`CASE-OS-L10-017-08`、`CASE-OS-L10-017-09`、`CASE-OS-L10-017-11`、`CASE-OS-L10-017-25`、`CASE-OS-L10-017-28`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:170-185` | `d5e764873a0dc96328b4cc501e5edb43886ebff5e2f2e22d329611c40dd1769c` | archive/reuse全資産/consumer/read-after/物理削除 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-021-05`。対L10：`CASE-OS-L10-021-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:187-208` | `a93f033cf64c1642bdbe397f2fb9d7d61be7e224592d754d5cfe2b46cdce6727` | 管理intake/projectionと状態の非補完 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-016-04`、`AC-OS-L3-022-04`。対L10：`CASE-OS-L10-016-04`、`CASE-OS-L10-022-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:210-217` | `efa5c7fd33704965b837a4965be264c5fd7c7117a2d5c5da4ee2184e20429338` | 構造改善候補・各状態/採否 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-022-04`。対L10：`CASE-OS-L10-022-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:219-231` | `a52d327dd95e34af01f646ad87d0051bec71aa9c30516e07c401b4a17215858f` | capacity/WIP/downstream/独立性 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-11`、`AC-OS-L3-049-01`、`AC-OS-L3-049-02`、`AC-OS-L3-050-05`。対L10：`CASE-OS-L10-018-11`、`CASE-OS-L10-049-01`、`CASE-OS-L10-049-02`、`CASE-OS-L10-050-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:233-241` | `37c384b6b04638ab3b528993b308fd6bbb16caafb39617883ffe3db9485e4478` | 特権authority/sensitive evidence | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-11`。対L10：`CASE-OS-L10-018-11`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:245-252` | `9bf15ad4a6ad83ca7744d859b8609e0d4ab22928004aa84bad7c45d86108ca43` | 利用許諾/製品scope/公開境界 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-021-06`。対L10：`CASE-OS-L10-021-06`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:254-273` | `d6fe4694362dd9111826f85a41b38cc65d8d80543e25a072bde94708fca5996c` | AI可読source/生成/要約/read/全consumer | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-07`。対L10：`CASE-OS-L10-015-07`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:275-284` | `dc0ddb1a535d10a3ba583f4f675080d80d5403ee3f461eded742520bed5e8cff` | 投資候補72件/将来/非一括運転 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-022-05`、`AC-OS-L3-025-05`。対L10：`CASE-OS-L10-022-05`、`CASE-OS-L10-025-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:287-307` | `1aa25517cb37e8a37405c7d4faf59c9f801faffae510a68e7ab0c3fd368e844f` | Worker/log/CI具体条件・Agentic/Patch Bot分担 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-35`、`AC-OS-L3-018-09`、`AC-OS-L3-018-10`、`AC-OS-L3-019-02`、`AC-OS-L3-020-01`、`AC-OS-L3-022-04`。対L10：`CASE-OS-L10-017-35`、`CASE-OS-L10-018-09`、`CASE-OS-L10-018-10`、`CASE-OS-L10-019-02`、`CASE-OS-L10-020-01`、`CASE-OS-L10-022-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:309-319` | `6a3c4271091c5df328d580718e20e3ee724c1278b14b8c2331483b0403ea0e71` | 新CI/旧CI/影shadow/移管relation | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-020-05`。対L10：`CASE-OS-L10-020-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:320-334` | `e76eb258e1ae144e60fd946d66788c94525882818d3d29b86afe2fdc4be7c9bb` | 運用品質/状態証拠/復旧authority | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-016-04`、`AC-OS-L3-018-11`。対L10：`CASE-OS-L10-016-04`、`CASE-OS-L10-018-11`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:336-349` | `27c496bbde91ba50e631c6919d362ccb03342484bd2cb692dbe59fe96ccbcd1c` | Web開発対象と展開後WEB-OS境界 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-024-03`、`AC-OS-L3-025-05`。対L10：`CASE-OS-L10-024-03`、`CASE-OS-L10-025-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:351-379` | `2aba1ce7406db6047b26919fa4f5d96c9dc00864060f60a81b23db655dd46abb` | 通知HMC各6条件/訂正/移管/正本 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-019-02`、`AC-OS-L3-019-05`。対L10：`CASE-OS-L10-019-02`、`CASE-OS-L10-019-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:380-394` | `364b6cf6f24f9fe9dd129402b9f7dee937cd8b0910be7068951352c707a176bc` | PPSproducer/commit/publisher/mixed/unknown | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-019-06`。対L10：`CASE-OS-L10-019-06`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:396-423` | `5392b21a6b360caaf59e60146b7cd716dd31eee17f84c91f1728c21b65e48032` | CLR各8条件/3方式比較/安全handover/段階 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-019-06`、`AC-OS-L3-019-07`。対L10：`CASE-OS-L10-019-06`、`CASE-OS-L10-019-07`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:425-457` | `b47343ef165c91ef1f304d98ddc19bef48e3904dd0381e99bdb80c8016f47e03` | AVS6/RFA3/DGH3・判断/合意/反復 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-08`。対L10：`CASE-OS-L10-015-08`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:461-493` | `a34ad4ceb037027443e052ff59c80c265971c5103c838ebd9c17147d961f2106` | FRS9条件/収載除外/再編/consumer/critical path | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-014-01`、`AC-OS-L3-014-03`、`AC-OS-L3-014-04`、`AC-OS-L3-021-01`、`AC-OS-L3-021-03`、`AC-OS-L3-021-06`、`AC-OS-L3-021-07`。対L10：`CASE-OS-L10-014-01`、`CASE-OS-L10-014-03`、`CASE-OS-L10-014-04`、`CASE-OS-L10-021-01`、`CASE-OS-L10-021-03`、`CASE-OS-L10-021-06`、`CASE-OS-L10-021-07`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:495-513` | `0966cc414405841e0c1c628a8423958f9d0841a79432a437126b30de736b8229` | 旧L3候補接続index・source状態保持 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-025-05`。対L10：`CASE-OS-L10-025-05`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:515-533` | `49ad7768a53a466c3d05d50bc2c45cb7d99b9e553d10c48a9ec4f3dc3713802d` | 要求正本の更新7条件/原子性/冪等性 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-015-09`。対L10：`CASE-OS-L10-015-09`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:534-552` | `764dc1f68e3951d98f92e9085efa3a30578223a0341b9a6d47027bff49669153` | Execution Ticket Worker6条件/独立性/lane | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-08`、`AC-OS-L3-018-09`、`AC-OS-L3-018-10`。対L10：`CASE-OS-L10-018-08`、`CASE-OS-L10-018-09`、`CASE-OS-L10-018-10`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:554-568` | `a8ff648091b4ca13500b02bd5d827d53b2c905930e8843e44fb4b91d38a59433` | HXT-RQ7条件/比較/観測/移行/人判断 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-018-12`、`AC-OS-L3-019-04`。対L10：`CASE-OS-L10-018-12`、`CASE-OS-L10-019-04`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:576-609` | `43fa72b987c171ccfc085d7750bd25ba548d4809a629712a22ff6fb9572edf53` | HXT TYPE21/FLOW9/SYS1/USE1と運用分担 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-017-04`、`AC-OS-L3-017-05`、`AC-OS-L3-017-06`、`AC-OS-L3-017-07`、`AC-OS-L3-017-08`、`AC-OS-L3-017-09`、`AC-OS-L3-017-10`、`AC-OS-L3-017-11`、`AC-OS-L3-017-12`、`AC-OS-L3-017-13`、`AC-OS-L3-017-14`、`AC-OS-L3-017-15`、`AC-OS-L3-017-16`、`AC-OS-L3-017-17`、`AC-OS-L3-017-18`、`AC-OS-L3-017-19`、`AC-OS-L3-017-20`、`AC-OS-L3-017-21`、`AC-OS-L3-017-22`、`AC-OS-L3-017-23`、`AC-OS-L3-017-24`、`AC-OS-L3-017-25`、`AC-OS-L3-017-26`、`AC-OS-L3-017-27`、`AC-OS-L3-017-28`、`AC-OS-L3-017-29`、`AC-OS-L3-017-30`、`AC-OS-L3-017-31`、`AC-OS-L3-017-32`、`AC-OS-L3-017-33`、`AC-OS-L3-017-34`、`AC-OS-L3-017-35`。対L10：`CASE-OS-L10-017-04`、`CASE-OS-L10-017-05`、`CASE-OS-L10-017-06`、`CASE-OS-L10-017-07`、`CASE-OS-L10-017-08`、`CASE-OS-L10-017-09`、`CASE-OS-L10-017-10`、`CASE-OS-L10-017-11`、`CASE-OS-L10-017-12`、`CASE-OS-L10-017-13`、`CASE-OS-L10-017-14`、`CASE-OS-L10-017-15`、`CASE-OS-L10-017-16`、`CASE-OS-L10-017-17`、`CASE-OS-L10-017-18`、`CASE-OS-L10-017-19`、`CASE-OS-L10-017-20`、`CASE-OS-L10-017-21`、`CASE-OS-L10-017-22`、`CASE-OS-L10-017-23`、`CASE-OS-L10-017-24`、`CASE-OS-L10-017-25`、`CASE-OS-L10-017-26`、`CASE-OS-L10-017-27`、`CASE-OS-L10-017-28`、`CASE-OS-L10-017-29`、`CASE-OS-L10-017-30`、`CASE-OS-L10-017-31`、`CASE-OS-L10-017-32`、`CASE-OS-L10-017-33`、`CASE-OS-L10-017-34`、`CASE-OS-L10-017-35`。 |
+| `docs/helix-os/L2-requirements/governance-requirements.md:611-637` | `d667ca764ebdff4a6e2147fe528a0e28d26a18f3b113b652457d4c0a49e78349` | 014 段階構成の全条件/安全/版/将来非前提 | ACへ取込み／共通条件は担当AC参照：`AC-OS-L3-014-01`、`AC-OS-L3-014-02`、`AC-OS-L3-014-03`、`AC-OS-L3-014-04`。対L10：`CASE-OS-L10-014-01`、`CASE-OS-L10-014-02`、`CASE-OS-L10-014-03`、`CASE-OS-L10-014-04`。 |
+
+| 継承する採択親 | 登録receiptのcurrent_condition_refs | 担当条件の扱い |
+|---|---|---|
+| `HELIXOS-L2-015` | `HELIXOS-L2-001`, `HELIXOS-L2-003`, `HELIXOS-L2-007` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-016` | `HELIXOS-L2-002`, `HELIXOS-L2-006`, `HELIXOS-L2-007`, `HELIXOS-L2-008`, `HELIXOS-L2-011`, `HELIXOS-L2-014` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-017` | `HELIXOS-L2-003`, `HELIXOS-L2-010`, `HELIXOS-L2-011` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-018` | `HELIXOS-L2-004`, `HELIXOS-L2-009` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-019` | `HELIXOS-L2-001`, `HELIXOS-L2-002`, `HELIXOS-L2-004`, `HELIXOS-L2-005`, `HELIXOS-L2-007`, `HELIXOS-L2-009` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-020` | `HELIXOS-L2-002`, `HELIXOS-L2-007`, `HELIXOS-L2-008`, `HELIXOS-L2-011` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-021` | `HELIXOS-L2-002`, `HELIXOS-L2-006`, `HELIXOS-L2-014` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-022` | `HELIXOS-L2-005`, `HELIXOS-L2-007` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-023` | `HELIXOS-L2-001`, `HELIXOS-L2-002`, `HELIXOS-L2-003`, `HELIXOS-L2-004`, `HELIXOS-L2-007`, `HELIXOS-L2-008`, `HELIXOS-L2-009`, `HELIXOS-L2-010`, `HELIXOS-L2-011` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-024` | `HELIXOS-L2-005`, `HELIXOS-L2-006`, `HELIXOS-L2-007`, `HELIXOS-L2-014` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-025` | `HELIXOS-L2-001`, `HELIXOS-L2-002`, `HELIXOS-L2-003`, `HELIXOS-L2-004`, `HELIXOS-L2-005`, `HELIXOS-L2-006`, `HELIXOS-L2-007`, `HELIXOS-L2-008`, `HELIXOS-L2-009`, `HELIXOS-L2-010`, `HELIXOS-L2-011`, `HELIXOS-L2-012`, `HELIXOS-L2-013`, `HELIXOS-L2-014` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-017` | `HELIXOS-L2-003`, `HELIXOS-L2-010`, `HELIXOS-L2-011` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-021` | `HELIXOS-L2-002`, `HELIXOS-L2-006` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |
+| `HELIXOS-L2-023` | `HELIXOS-L2-001`, `HELIXOS-L2-002`, `HELIXOS-L2-003`, `HELIXOS-L2-004`, `HELIXOS-L2-007`, `HELIXOS-L2-008`, `HELIXOS-L2-009`, `HELIXOS-L2-010`, `HELIXOS-L2-011` | 上記条件群の担当ACと対L10へ取込み、他の親の条件は担当ACを参照する。元本文・例外・移管/将来/未決状態を維持する。 |

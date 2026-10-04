@@ -370,7 +370,7 @@ INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとW
 
 **受入条件**
 
-- INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。COREがdesignの意味を、Infrastructureがdeployment targetとactualを所有する。target提案はdesign変更やdeployment実行ではない。
+- INFRA-008-AC-01: approved design、target、actualを各source/revision付きで与え、design→target field mappingとtarget→actual比較を別々に追跡する。COREがdesignの意味を、Infrastructureがdeployment targetとactualを所有する。targetまたは変更の提案はdesign変更やdeployment実行ではなく、変更提案をdesign/actualへ昇格しない。
 - INFRA-008-AC-02: design approval、target mapping、actual observationを個別に欠落/stale/不一致にする。該当比較だけをunknown/holdとし、actualをdesign/targetへ昇格しない。
 - INFRA-008-AC-03: actual driftを設計変更で消す変異、INFRAがdesign ownerとしてwriteする変異を拒否し、設計意味の不足をHARNESS-CORE ownerへ戻す。
 - INFRA-008-AC-04: L2-001/002 versioned design interfaceを欠落、stale、version/scope mismatchにする。deployment targetを確定せず、interface ownerへ戻す。
@@ -386,7 +386,7 @@ Worker identityと実際のexecution resource identity/capacity/stateを対応�
 - INFRA-025-AC-01: CPU/memory/GPU/storage/network requested/available values、process/container environment、INFRASTRUCTURE-L2-001/003 design/capacity revision、Worker contract、OS assignment/ticket/work reference、SECURITY isolation policyをsource/revision付きで入力し、SEC policyの適用可能性宣言と実資源上で観測した適用stateを別々に確認する。実際の適用条件・resource identity・environment revisionが一致し、capacityが足りる場合だけ接続を成立させる。適正な再配置後もworker/work identityとunfinished workを保持する。
 - INFRA-025-AC-02: 各資源dimension不足、隔離条件を適用できない、ticket/assignment不明、state stale/mismatchを別々に与える。どれも成立/利用可能にせず、不足dimension・適用不能条件・unknown fieldを示してSECURITY、Infrastructure resource ownerまたはOS ticket ownerへ戻す。
 - INFRA-025-AC-03: 元resourceから移動先resourceへのtransitionでbefore/after state、未完work/義務、ticket/request/work referenceを保持する。resource移動でWorkerの責務を消失扱いせず、OS ticket stateをInfrastructureへ移管しない。移動先だけのcapacity/isolationを元側へ流用する、元stateを破棄する変異は不合格。
-- INFRA-025-AC-04: Worker=machine、resource=assignment、resource stateからSECURITY isolation policyを推定する、自動scale/placementを行う、またはこの接続からoperation実行authorityを生成する変異を拒否する。既存の許可scope内でInfrastructureが隔離条件を適用・観測することは拒まない。resource利用可能性の判断とoperation実行authorityを混同しない。
+- INFRA-025-AC-04: Worker=machine、resource=assignment、resource stateからSECURITY isolation policyを推定する、自動scale/placementを行う、またはこの接続からoperation実行authorityを生成する変異を拒否する。自動配置最適化器の不在だけを理由に、親が定めるWorker/resource/ticket対応や許可範囲内の隔離適用を不成立としない。既存の許可scope内でInfrastructureが隔離条件を適用・観測することは拒まない。resource利用可能性の判断とoperation実行authorityを混同しない。
 
 旧WCC LEGACY-ASSET-9114D4E463E95B67DD0C とpaired acceptance C6ADB99F1353965C5449 はworker descriptor/role境界の類例として部分再利用する。INFRA resource identityとOS ticketの結合意味は固定親から再導出する。
 
