@@ -1,0 +1,11 @@
+# HELIX-CONNECT L10 NFR候補検証（Stage 1）
+
+本書は[L3 NFR候補](../L3-requirements/nfr-grade.md)の各候補を同じIDで測定する。未指定値は根拠付き候補として比較し、実装値やPO承認値を仮定しない。意味・scope・owner・version変更が必要な場合だけL2/POへ戻す。
+
+| 候補 / AC | 入力と測定方法 | 合格判定 | 失敗・戻し先 |
+|---|---|---|---|
+| `CON-NFR-001` / `CONNECT-AC-004-01` | 接続契約で宣言されたretry上限N、初回送信1回とretry回数を分けたattempt traceを入力。retry N-1回、N回、N+1回目の境界を測定し、別fixtureでfailure classificationをmissing/unknownにする。 | L11の記述どおり、初回送信後に契約が許す最大N回までretryし、N+1回目retryは0。同一ID/digestの効果1回、異digest拒否。missing/unknown classificationはretry不可と推測せず、追加retry 0・classification unknownとして保持する。契約がNをtotal attemptsと明記する場合はその宣言で境界を解釈し、推測で置換しない。 | retry対象/上限の意味またはfailure classificationがunknownなら追加retry 0のままconnection operation ownerへ返す。business failureはretryしない。 |
+| `CON-NFR-002` / `CONNECT-AC-004-01` | 同じoperation identity/digestの再到着を複数回発生させ、receiver effect countとattempt traceを測る。次に同ID/異digestを入力する。 | 業務効果は1回、追加重複効果は0回。異digestは拒否され効果増加なし。 | duplicate suppression不明または異digest衝突は送信停止しoperation ownerへ返す。 |
+| `CON-NFR-003` / `CONNECT-AC-002-01` | endpoint/contract revisionを変え、stale検出からcompatible再照合までのattempt countを測る。read-only照合だけのeligibility結果も記録する。 | 再照合まで送信attempt 0。read-only照合ではeligibility=`not_evaluated`。 | 比較不能はunknown/staleを保ちCONNECT契約owner、send authority差はSECURITYへ戻す。 |
+| `CON-NFR-004` / `CONNECT-AC-005-01` | 登録/照合/send/receipt/retry/stale/拒否/終端の各観測eventをoperation/revision/attemptでtraceと突合し、欠落数・順序不明数を測る。 | 観測済みeventのtrace欠落0。欠落/順序曖昧はunknownで業務完了0。通常trace/receiptへraw業務payload・secret・credentialの合成markerを保存/複製する反例を各々測り、いずれも不合格とする。保存/複製件数各0、同identity同digest重複と異digest衝突の区別、L11列挙の全証拠fieldの欠落を個別照合する。値を証拠出力しない。 | trace producer/operation ownerへ欠落eventを返し、SECURITY/data-use不明は該当ownerへ返す。 |
+| `CON-NFR-005` / `CONNECT-AC-005-01` | 接続contractの宣言値、または根拠・比較案・測定方法・判定境界を添えた技術候補を入力し、end-to-end latency区間/retention windowを実測する。 | 入力値の根拠・実測値・境界判定を記録する。候補は実装値・PO承認値ではなく、未指定を達成扱いしない。共通SLAを新設せず、必要な技術候補の起草も妨げない。 | 候補化に必要な入力が不足すればunknownとして接続contract ownerへ返す。要求の意味・scope・owner・versionを変える場合だけ該当L2/POへ戻す。 |
