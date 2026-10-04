@@ -138,7 +138,7 @@ path/network/credential/environment/timeout/resource/diff/rollback/result collec
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 戻し先: 未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。
 
-**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。環境変数は対象assignmentと実行環境ownerが宣言する適用可能な最小setへ照合し、fixture中の変数名は例示値に限る。raw secret valueや許可されていないsecret参照を環境へ渡さない。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。許可された既存credential capabilityの使用を一律禁止せず、raw値の露出・無許可利用と区別する。条件別fixtureは[L10 SECURITY-CASE-007-01の9制御fixture表](../L10-verification/functional-verification.md)で制御ごとに列挙する。
+**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。環境変数の許可setはSECURITY制約として定め、対象assignmentとpolicy revisionへ結び付ける。現行Worker実行環境が制約を適用し、その実適用をWorker/INFRASTRUCTUREの観測で確認する。raw secret valueや許可されていないsecret参照を環境へ渡さない。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。許可された既存credential capabilityの使用を一律禁止せず、raw値の露出・無許可利用と区別する。条件別fixtureは[L10 SECURITY-CASE-007-01の9制御fixture表](../L10-verification/functional-verification.md)で制御ごとに列挙する。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-007`。
 
@@ -380,13 +380,13 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 旧test-designのstatus `designed_not_implemented` を実行済み・承認済み証拠として扱わず、旧assetの採否を現行authorityへ引き継がない。
 
 ### `SECURITY-FR-031-01` — 追加runtimeのscopeと既存authority
-L2-031が宣言する依存4区分を、同じ対象revisionで分類する。常時必須はL2-029、005、007、008、HELIXOS-L2-018、HELIXINFRASTRUCTURE-L2-010。外部runtimeへ接続またはdata送信するoperationでは006を、停止/逸脱時は009を、proposalを検証・採択・昇格するstageでは022/023と該当HARNESS verification・OS promotion/handoff条件を適用する。選択した入力元だけsource dependencyを閉じ、未選択sourceは未観測とする。旧BR/HR/HAC/HAT/WCCは意味basis/consumer資料であり実行dependencyではない。HARNESS-L2-023は4区分を宣言する参照契約で、010/011を031の常時dependencyとしない。後段条件をproposal生成前の承認へ前倒ししない。
+L2-031が宣言する依存4区分を、同じ対象revisionで分類する。常時必須はL2-029、005、007、008、HELIXOS-L2-018、HELIXINFRASTRUCTURE-L2-010であり、対象ごとにdependency identity、owner、contract version、適用range、scope、compatibility evidenceを一致させる。採択済みpack revisionでこの宣言を固定し、いずれかが未解決の間はruntimeを開始しない。外部runtimeへ接続またはdata送信するoperationでは006を、停止/逸脱時は009を、proposalを検証・採択・昇格するstageでは022/023と該当HARNESS verification・OS promotion/handoff条件を適用する。選択した入力元だけsource dependencyを閉じ、未選択sourceは未観測とする。旧BR/HR/HAC/HAT/WCCは意味basis/consumer資料であり実行dependencyではない。HARNESS-L2-023は4区分を宣言する参照契約で、010/011を031の常時dependencyとしない。後段条件をproposal生成前の承認へ前倒ししない。
 
 L2-029で対象となる追加runtime operationについてのみ、SECURITYは既存policy・classification・operation authorityを対象runtime/config、operation、target revision、scope、expiryに照合し、allow/deny/constrain/unknownと理由を返す。主Workerや追加runtimeを使わないtaskにはこの要件を適用しない。既存authorityが許す同一taskの反復に、新しい承認者や毎回の人確認を加えない。L2-005/006/007/008/029の条件をこの要件で置換・緩和しない。
 
 **受入条件**
 
-- **`SECURITY-AC-031-01` scope/authorityの限定**：追加runtime、既存policy/authority、OS assignment、対象revision/scopeが一致する合成fixtureでのみ判定を返す。常時必須のL2-029/005/007/008、OS-018、INFRASTRUCTURE-010をそれぞれ個別にmissing/stale/wrong-scopeへ変異し、該当runをholdして宣言ownerへ戻す。006/009/022/023等はFR-031-01に定める操作/段階条件に限る。scope/authority driftは既存経路へdeny/unknownとして返す。HARNESS-L2-023は参照契約とし、010/011を常時dependencyへ戻さない。主Worker・無関係operationを巻き込まず、許可済み同一authority内の反復に新しいper-task confirmationを要求しない。
+- **`SECURITY-AC-031-01` scope/authorityの限定**：追加runtime、既存policy/authority、OS assignment、対象revision/scopeが一致する合成fixtureでのみ判定を返す。常時必須のL2-029/005/007/008、OS-018、INFRASTRUCTURE-010をそれぞれ個別にmissing/stale/wrong-scope/wrong-version/out-of-range/compatibility-unknownへ変異し、該当runをholdして宣言ownerへ戻す。採択済みpack revisionとdependency declaration自体が未確定のcaseではruntime開始を保留する。006/009/022/023等はFR-031-01に定める操作/段階条件に限る。scope/authority driftは既存経路へdeny/unknownとして返す。HARNESS-L2-023は参照契約とし、010/011を常時dependencyへ戻さない。主Worker・無関係operationを巻き込まず、許可済み同一authority内の反復に新しいper-task confirmationを要求しない。
 
 ### `SECURITY-FR-031-02` — proposal-onlyとisolated copy
 
@@ -449,13 +449,13 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 ### `SECURITY-FR-035-01` — 追加runtimeのrun限定設定とdeny能力
 
-対象はPO scope Aの追加runtimeで、policy/authorityはSECURITY、適用・cleanup強制はWorker、run/assignmentはOSである。既存operation authorityと既存repository policy/deny状態を常時照合する。bypass系設定を選択したrunではruntimeのallowlist能力、repository deny switchの設定能力と適用状態、run開始/終端/cleanup観測も照合する。明示allowlist対応ならdeny既定+allowlistを使い、YOLO代替を選ばない。非対応と確認できるruntimeだけ、既存policy内で選ばれた経過措置をそのrunに限定できる。bypass利用許可や経過期限・runtime一覧を新設しない。
+対象はPO scope Aの追加runtimeで、policy/authorityはSECURITY、適用・cleanup強制はWorker、run/assignmentはOSである。既存operation authorityと既存repository policy/deny状態を常時照合する。選択runtimeについてallowlist能力とrepository policy/denyの適用状態を照合する。bypass系設定を選択したrunに限り、run開始/終端/cleanupの観測とrepository deny switchの設定能力を追加照合する。明示allowlist対応ならdeny既定+allowlistを使い、YOLO代替を選ばない。非対応と確認できるruntimeだけ、既存policy内で選ばれた経過措置をそのrunに限定できる。bypass利用許可や経過期限・runtime一覧を新設しない。
 
 選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置をcleanup成功にせず次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。
 
-- **`SECURITY-AC-035-01` 能力に応じた選択**：allowlist対応はallowlist使用、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
+- **`SECURITY-AC-035-01` 能力に応じた選択**：選択runtimeのallowlist能力とrepository policy適用状態は選択入力に応じて確認する。run開始/終端/cleanupはbypass系設定を選択した場合に限って照合し、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
 - **`SECURITY-AC-035-02` 全終端cleanup**：success/failure/cancel各終端でrun設定が除去され次runへ継承されない。残置/観測欠落は未完としWorker/OSへ返す。
-- **`SECURITY-AC-035-03` deny能力・優先・scope**：既存operation authorityとrepository policy/deny状態が常に照合される。bypass選択runではrepository deny能力/適用を別個に照合し、032の同一対象deny優先を保ちcleanup後もdenyを維持する。deny状態を選択時だけ照合する変異は不合格。主Workerへの035の四条件拡張や通常operationへの新gateは作らず、既存006/007/008/OS018条件を免除しない。
+- **`SECURITY-AC-035-03` deny能力・優先・scope**：既存operation authorityとrepository policy/deny状態が常に照合される。repository denyの適用状態は選択runtimeの入力に応じて照合する。repository deny switchの設定能力とcleanup後の維持はbypass選択runで追加照合し、032の同一対象deny優先を保つ。deny状態を選択時だけ照合する変異は不合格。主Workerへの035の四条件拡張や通常operationへの新gateは作らず、既存006/007/008/OS018条件を免除しない。
 
 ### Stage 3固定親の出所とrevision
 

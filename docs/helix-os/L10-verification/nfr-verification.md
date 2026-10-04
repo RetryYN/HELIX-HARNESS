@@ -67,13 +67,13 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-034-01 | NFR-OS-L3-034-01 | dispositionごと所定evidence set、各欠落mutation。required-evidence coverage/誤terminal数。 |
 | CASE-OS-L10-NFR-035-01 | NFR-OS-L3-035-01 | 同一eventを3回delivery、headを変えた次eventも投入。registration cardinalityとold-head reuse数。 |
 | CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。 |
-| CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | UTC 7-day bucket/rolling 7-day比較と週境界missing fixture。欠測をno-driftとした件数。 |
+| CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | 週次観測の週境界、欠測、stale sourceを含むfixture。欠測をno-driftとした件数。2期間連続観測を追加必須にしない。 |
 | CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |
 | CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 適用policyのscope/revision/counter semanticsと入力上限Nを使い、N未到達/N到達/policy不明を比較する。重複副作用・無駄retry・必要returnの未送信を測る。 |
 | CASE-OS-L10-NFR-041-01 | NFR-OS-L3-041-01 | restart/resumeごとcanonical sourceをdriftさせる。reacquisition coverage、stale continuation数。 |
 | CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | 既存contractが定める期限の前/境界/後、期限不明、再検証なしを比較する。期限後/対象外scopeの誤昇格数を測り、固定期限は導入しない。 |
 | CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
-| CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-only/typed receipt、同一/異headの対照。誤resolution数。 |
+| CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-onlyを与え、既存owner条件に基づく解決判断と未解決を比較する。新しいreceipt型・十分条件は作らず、誤resolution数を数える。 |
 | CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認。無根拠dispatchと誤状態数。 |
 | CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | configured thresholdの1/2 bucket超過、15/60min窓、spike/downstream blockerを比較。誤増枠・backpressure漏れ。 |
 | CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | evidence age 7/30/90日、scope change、同名別providerのfixture。false-fitと不要stale判定。 |
@@ -106,4 +106,4 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 |---|---|---|---|---|
 | `CASE-OS-L10-NFR-031-01` | `NFR-OS-L3-031-01` | 同一runのticket/HEAD/obligation集合に、欠落・重複・延期linkと劣化oracleを個別に加える。 | exact-set完全性とfalse pass=0を経過時間とは別に測る。 | 分母不明・欠落を報告し、性能passで正しさ失敗を隠さない。 |
 | `CASE-OS-L10-NFR-031-02` | `NFR-OS-L3-031-02` | 現行scopeの代表的な内部/外部runを別々に測り、p50/p95と分布を旧比較値60秒/180秒に照らす。scope別budget案と旧値の一律転用案を比較する。 | environment/population/window/除外条件、wall/runner/queue/区間時間を保存し、条件が対応する範囲ごとに旧比較値の適用性を報告する。 | 標本不足/stale/比較不能はunknownとし、旧値を現行共通閾値にしない。60/180秒の変更・不採択が必要ならL2へ戻す。 |
-| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | ticket意味/契約変更を伴う返却、evidence追記だけの返却、意味を変えない運用属性変更、根拠欠落/stale/scope違いを各々与え、revision/bytes/digest/lineage/継承authorityを記録する。 | 適切な再発行、運用属性だけの誤再発行、元revision上書き、無資格継承を別々に数える。 | 適用性unknownは未解決のまま示し、ticket総数に閾値を置かない。 |
+| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | 有効な返却を受けるcaseと返却なしの通常更新、運用属性だけの変更、根拠欠落/stale/scope違いを各々与え、revision/bytes/digest/lineage/継承authorityを記録する。 | 有効返却ごとの新revision、運用属性だけでのmeaning digest不変、元revision上書き、無資格継承を別々に数える。 | 適用性unknownは未解決のまま示し、ticket総数に閾値を置かない。 |

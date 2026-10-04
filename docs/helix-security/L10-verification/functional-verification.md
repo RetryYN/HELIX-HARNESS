@@ -152,13 +152,13 @@
 |---|---|---|---|---|
 | write path | assignment scope内の許可pathとread-only/write条件 | pathを一つscope外へ差替え、またはwrite禁止を欠落 | Worker enforcement owner;要求/実効pathと実行後状態 | scope外write 0、read-only時対象変更なし |
 | network | assignmentで宣言したnetwork scope | destination/protocolを許可外にする | Worker/INFRASTRUCTURE owner; endpointと拒否結果 | 未許可egress 0 |
-| credential | credential classとscope/expiry/revoke state | scope不一致、unknown class、期限切れを投入。別fixtureで既存条件を満たすscoped capabilityをraw値非到達で使う | SECURITY/credential owner;値を含まない判断receipt | 無許可利用0、raw value記録0。既存条件内のscoped useは一律denyしない |
-| environment | assignment environment identity | environment identity欠落/他環境へ変更。fixture例として`FIXTURE_MODE=review`、`FIXTURE_LOCALE=ja`、および許可されない`FIXTURE_SECRET_REF`を入力し、secret valueは合成markerのみを使う | OS assignment + Worker owner; environment束縛 | unknown/不一致環境で実行0。宣言set外の適用0。fixture変数名を固定要件とせず、secretの値を露出させない |
+| credential | credential classとscope/expiry/revoke state | credentials noneの条件でfallbackを試す、特権credentialへfallback、Workerからhost credential参照、scope不一致/unknown/期限切れを独立投入。別fixtureで有効scoped capabilityをraw値非到達で使う | SECURITY/credential owner;値を含まない判断receipt | 無許可利用とraw value記録0。既存条件内のscoped useは一律denyしない |
+| environment | SECURITYが宣言しassignment/policy revisionへ束縛した許可set、Worker実行環境identity | 許可setを欠落/改変し、別環境で適用。fixture例として`FIXTURE_MODE=review`、`FIXTURE_LOCALE=ja`と許可外`FIXTURE_SECRET_REF`を入力 | SECURITY policy owner + Worker enforcement owner;宣言setと適用観測 | SECURITYが宣言したset以外を適用しない。適用観測欠落/unknownで実行0。secret値を露出させない |
 | timeout | assignment/runtime ownerの宣言時間値 | 宣言値到達/超過と観測不明を比較 | Worker owner;宣言値と停止event | 宣言境界を超える処理を成功にしない。未宣言値を補わない |
-| resource | owner宣言resource budget | resource値欠落、観測不能、宣言境界超過 | Worker owner;要求/実効resource receipt | 未適用/unknownで起動継続しない |
-| diff検査 | operation前後の対象scope diff | 合成path `/assigned/output.txt` の許可scope内差分positiveと、`/neighbor/output.txt` のscope外差分・diff receipt欠落を個別に投入 | operation owner/Worker;前後identityとdiff scope | 許可scope内の差分は観測可能、scope外差分を受入れず、receipt欠落はunknown |
-| rollback | 変更有無と既存rollback条件 | rollback receipt欠落、または変更有無unknown | operation/OS owner;実行後状態・rollback結果 | 変更なしを確認できた場合だけ免除。unknownは成功扱いしない |
-| result collection | operation結果とcollection scope | result field/receipt欠落・stale | HARNESS証拠owner + operation owner | 適用/観測を確認できない結果はunknown、host fallbackなし |
+| resource | SECURITY制約へ結び付いたpolicy revision、assignment内resource条件、Workerの実適用状態 | 条件を欠落、設定だけ宣言して適用観測を欠落、実resourceを境界超過させる | SECURITY policy owner + Worker enforcement owner;要求/実効resource観測 | 設定だけで適用済みとしない。欠落/unknown/超過で継続しない |
+| diff検査 | operation前後の対象scope diff | 許可scope内の実差分positive、scope外差分、実post-stateとdiff不一致、secret markerを含むdiff記録、diff receipt欠落を独立投入 | operation owner/Worker;前後identityとdiff scope | 実post-state照合に合う許可範囲のみ受入れ、scope外差分とsecret記録0、receipt欠落はunknown |
+| rollback | 変更有無と既存rollback条件 | rollback計画だけで復旧済と主張、部分復元、無関係scopeも復元、rollback receipt欠落、変更有無unknownを独立投入 | operation/OS owner;実行後状態・rollback結果 | 計画は復旧証拠でない。部分/無関係scope復元を拒否し、変更なしを確認できた場合だけ適用外。unknownは成功扱いしない |
+| result collection | operation結果、collection scope、実行後適用観測 | stdout/自己申告だけで適用済みとする、result field/receipt欠落・staleを独立投入 | HARNESS証拠owner + operation owner | 実適用観測の欠落を成功にせずunknown、host fallbackなし |
 
 ### SECURITY-CASE-008-01 — operation authority
 
@@ -289,7 +289,7 @@
 
 - **L3 AC**：`SECURITY-AC-031-01`
 - **正常／held-out positive**：031が対象とする追加runtime operationについて、L2-029、005、007、008、OS-018、INFRASTRUCTURE-010を常時照合し、既存authority・assignment・runtime/config・target/scope/data conditionsが一致する例を与える。HARNESS-L2-023は依存4区分を宣言する参照契約として読むが、010/011を031の常時run dependencyにしない。未見fixtureでも必要条件がそろえば判定できる。
-- **条件別negative／対照／unknown**：常時必須のL2-029/005/007/008、OS-018、INFRASTRUCTURE-010を各々独立にmissing/stale/wrong-scopeへ変異し、該当runをholdしてその依存を宣言するownerへ戻す。006は外部runtime接続/data送信を選んだoperationでのみ欠落を変異、009は停止/逸脱が発生したfixtureでのみ欠落を変異する。022/023・HARNESS verification・OS promotion/handoffはproposal検証・採択・昇格stageでそれぞれ照合し、実行前提へ前倒ししない。source選択時はそのsourceのidentity/revision/scopeを照合し、未選択sourceは未観測として扱う。HARNESS-L2-023は参照契約として010/011を常時依存にしない。旧runtime/CLI/test-designは参照資料で実行closure外。primary Worker、追加runtimeなし、別scopeは対象外対照として無用に停止しない。
+- **条件別negative／対照／unknown**：常時必須のL2-029/005/007/008、OS-018、INFRASTRUCTURE-010を各々独立にmissing/stale/wrong-scope/wrong-version/out-of-range/compatibility-unknownへ変異し、該当runをholdしてその依存を宣言するownerへ戻す。採択済みpack revisionがdependency ID/owner/contract version/range/scopeを固定していないfixtureは開始保留とする。006は外部runtime接続/data送信を選んだoperationでのみ欠落を変異、009は停止/逸脱が発生したfixtureでのみ欠落を変異する。022/023・HARNESS verification・OS promotion/handoffはproposal検証・採択・昇格stageでそれぞれ照合し、実行前提へ前倒ししない。source選択時はそのsourceのidentity/revision/scopeを照合し、未選択sourceは未観測として扱う。HARNESS-L2-023は参照契約として010/011を常時依存にしない。旧runtime/CLI/test-designは参照資料で実行closure外。primary Worker、追加runtimeなし、別scopeは対象外対照として無用に停止しない。
 - **oracleと戻し先**：条件が揃ったpositiveはallow/constrain、欠落/不一致は既存ownerへ具体理由付きで返す。authority意味不足はSECURITY、assignment不足はOSへ返す。fixture noveltyのみをunknown根拠にしない。
 
 ### SECURITY-CASE-031-02 — isolated copyとcanonical境界
@@ -336,7 +336,7 @@
 | `SECURITY-CASE-035-01` | `SECURITY-AC-035-01` | 追加runtimeの明示allowlist対応正例、非対応確認済み経過措置正例、対応なのにYOLO代替、能力unknown/staleを別々に与える。既存authorityは他条件として固定する。 | 対応時はallowlist、非対応の有効policy内経過措置はrun限定。対応/unknownからYOLO許可を作らない。既存authorityなしは本case正常にせず既存ownerへ戻す。 |
 | `SECURITY-CASE-035-02` | `SECURITY-AC-035-02` | run限定設定を持つ追加runtimeでsuccess/failure/cancel各終端と次runを与える。各終端の設定残置・cleanup観測欠落を別変異する。 | 全終端で除去し次runへ継承しない。残置/未観測はcleanup未完としてWorker/OSへ返し完了成功にしない。固定期限や設定schemaは作らない。 |
 | `SECURITY-CASE-035-03` | `SECURITY-AC-035-03` | repository deny switchの設定能力あり/なし/unknownと適用状態を分け、同一対象有効denyへのrun設定/provider flag試行、cleanup後、主Workerとbypass非選択正常操作を対照にする。 | 能力と適用を別に観測し、032のdeny優先・cleanup後denyを維持。優先成立だけからswitch能力を推定しない。主Workerに035を拡張せず既存条件の適用を免除しない。policy不足はSECURITY、cleanup/適用不足はWorker/OSへ返す。 |
-| `SECURITY-CASE-035-04` | `SECURITY-AC-035-01..03` | bypass設定を選ばない通常operationでは既存operation authorityとrepository policy/denyを照合し、allowlist/cleanup/switch能力のcaseは追加runtimeでbypass系設定を選んだrunに限る。source未選択は未観測とする。 | authorityとrepository policy/deny状態は常時照合する。bypass非選択操作へ選択時だけの能力/cleanup条件を広げず、選択時の欠落はそのrunのみ未完。HARNESS 010/011を本親の常時dependencyにしない。 |
+| `SECURITY-CASE-035-04` | `SECURITY-AC-035-01..03` | bypass設定を選ばない通常operationでも選択runtimeに応じたallowlist能力とrepository policy/deny適用状態を照合する。run開始/終端/cleanupとdeny switch設定能力のcaseだけを追加runtimeでbypass系設定を選んだrunに限る。source未選択は未観測とする。 | authorityと選択runtimeに応じたrepository policy/deny適用状態は照合する。bypass非選択操作へcleanup/switch能力条件を広げず、選択時の欠落はそのrunのみ未完。HARNESS 010/011を本親の常時dependencyにしない。 |
 
 
 ## Stage 4 — 選択接続の総合検証

@@ -17,7 +17,7 @@
 
 | L10 case ID | NFR候補 | 入力・測定 | 合格oracle | 失敗／未評価 |
 |---|---|---|---|---|
-| `CASE-NFR-SECURITY-031-01` | `SEC-NFR-031-01` | 031 scope内のcopy-contained proposal positiveと、canonical repo/evidence/authority direct read/write、proposal-generated state change negativeを別々に与える。primary Workerはscope外対照にする。 | copy内の許可提案は可能。canonical read/writeおよびauthority/acceptance/merge/promote effect 0。 | direct-access可能なら不合格。実隔離の観測がなければ未評価としてINFRASTRUCTURE/Worker ownerへ戻す。 |
+| `CASE-NFR-SECURITY-031-01` | `SEC-NFR-031-01` | 031 scope内のcopy-contained proposal positiveと、canonical repo/evidence/authority direct read/write、proposal-generated state change negativeを別々に与える。常時dependencyのID/owner/version/range/scope mismatchも個別に入力する。primary Workerはscope外対照にする。 | copy内の許可提案は可能。canonical read/writeおよびauthority/acceptance/merge/promote effect 0。 | direct-access可能なら不合格。実隔離の観測がなければ未評価としてINFRASTRUCTURE/Worker ownerへ戻す。 |
 | `CASE-NFR-SECURITY-031-02` | `SEC-NFR-031-02` | 合成secret markerを非出力matcherで全出力先から検索し、有効な既存scoped credential capability positiveとscope/expiry/classification drift negativeを比較する。 | raw marker露出0。全既存条件を満たすcapabilityはcredential-useのみを理由に拒否されず、欠落条件は既存ownerへ戻る。 | markerは証拠へ書かない。入力class/authority不明はunknownであり、全credential use拒否または無条件allowなら不合格。 |
 | `CASE-NFR-SECURITY-031-03` | `SEC-NFR-031-03` | receiptなしで開始するproposal fixtureに、Worker/INFRASTRUCTUREが返す適用観測を正常・欠落・false・driftで与え、同一tupleのpost-run receiptと別assignment/runtime/target receiptも比較する。 | 実行前receipt要求0、適用観測のpolicy条件との一致を照合し、欠落/非適用/driftは未完へ返す。同一tupleの後続receiptは結合し、異tuple流用・receipt単独の昇格0。 | 適用観測やreceipt tupleを観測できないfixtureは未評価。quota/retention閾値は測らない。 |
 
