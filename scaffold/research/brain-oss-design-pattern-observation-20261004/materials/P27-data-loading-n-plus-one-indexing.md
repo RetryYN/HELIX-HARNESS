@@ -115,13 +115,14 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 何をしているか：
   - `load(key)`は、現在のbatchにkeyとresolve／rejectの組を積み、Promiseを返す。batchは`getCurrentBatch`で、未dispatchかつ上限件数内なら再利用され、そうでなければ新しく作られ、`batchScheduleFn`でdispatchが予約される。
   - 既定の予約`enqueuePostPromiseJob`は、Nodeでは解決済みPromiseの`then`の中で`process.nextTick`を呼び、現在の実行frameと、その後のPromise jobの処理が終わった後にdispatchする。Node以外では`setImmediate`、なければ`setTimeout`を使い、commentはmacrotaskになる分の性能上の不利を書いている。
-  - `dispatchBatch`は、batch関数が同期的に例外を出す、Promiseを返さない、配列でない、keyと長さが違う、のいずれかを契約違反として`TypeError`にする。READMEは、値の配列はkeyと同じ長さで、各位置がkeyの位置に対応することを契約とし、backendが順序を変えたり欠けたりする場合はbatch関数側で並べ直し、欠けをnullかErrorで埋めることを求めている。
+  - 利用者が守る契約：READMEは、値の配列はkeyと同じ長さで、各位置がkeyの位置に対応することを契約とし、backendが順序を変えたり欠けたりする場合はbatch関数側で並べ直し、欠けをnullかErrorで埋めることを求めている。
+  - runtimeが検出する違反：`dispatchBatch`が検出するのは形状と長さだけである。batch関数が同期的に例外を出す、Promiseを返さない、解決値がarray-likeでない、keyと長さが違う、のいずれかを`TypeError`にする（https://github.com/graphql/dataloader/blob/65be452f5ffad3eede2d862dc26c96003fa87ef3/src/index.js#L343-L380）。各位置の値`values[i]`がkey`i`に対応するかは検査せず、そのまま`callbacks[i]`へresolveする。
   - 値が`Error`のinstanceなら、そのkeyのPromiseだけをrejectする。
 - 解いている問題と前提：GraphQLのresolverのように、互いを知らない多数の箇所が個別にkeyを要求する場合に、呼出し側を変えずに照会をまとめる。まとめる範囲は時間（実行の区切り）で決まり、照会の形は利用者のbatch関数が決める。
 - 必要な入力：keyの配列を受けて同じ長さの値の配列を返すbatch関数、batchの上限件数、dispatchの予約関数、loaderをどの範囲で共有するか（P27-O08）。
 - trade-off・失敗の仕方：
   - 既定の区切りは追加の待ちを入れない代わりに、別のtickに分かれた要求は別のbatchになる。READMEは、要求が数tickに分かれる場合に、待ち時間を入れる予約関数を与える例を示し、その分の遅延が増えると書いている（値は持ち込まない）。
-  - 位置合わせの契約を守らないbatch関数は、batch全体の失敗になる（`failedDispatch`で全keyをreject）。
+  - runtimeが検出する形状・長さの違反（上記）は、batch全体の失敗になる（`failedDispatch`で全keyをreject）。一方、長さが同じで順序だけが違う値は検出されず、各keyの呼出し側に別のkeyの値が返りうる。位置の対応は、batch関数を書く利用者の責務である。
 - 反例・適用しない場合：Prisma NextのADR 003は、自動のbatch化と透過的なdata loaderを、非決定性をもたらし予算とlintを複雑にするとして採らなかった（P27-O09）。RailsのPreloaderは時間ではなく照会の形でまとめる（P27-O02）。
 - 互換・非互換：P27-O08（要求単位のcache）と同じloaderに同居する。P27-O06の`FETCH_PEERS`と、最初のアクセスを契機にまとめる点が近い。
 - 限界：batchの上限件数、待ち時間の値は持ち込まない。他言語の移植（README「Other Implementations」）は読んでいない。
@@ -215,14 +216,15 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 限界：PostgreSQL専用。PostgreSQLのversionごとのhookの差の詳細と、`hypopg_index.c`の索引の推定の中身は読んでいない。
 
 ### P27-O14 統計viewから未使用・重複・不足の索引を検出し、照会統計から索引案を出す（PgHero）
-- 出典：pghero、`lib/pghero/methods/indexes.rb` 行49–101（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L49-L101）、行119–128、173–187（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L173-L187）、行330–332（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L330-L332）、`lib/pghero/methods/suggested_indexes.rb` 行1–236（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/suggested_indexes.rb#L1-L236）。信頼性ラベル：primary。本文確認：済
+- 出典：pghero、`lib/pghero/methods/indexes.rb` 行49–101（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L49-L101）、行119–128、173–187（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L173-L187）、行330–332（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/indexes.rb#L330-L332）、`lib/pghero/methods/suggested_indexes.rb` 行1–236（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/suggested_indexes.rb#L1-L236）、`lib/pghero/methods/query_stats.rb` 行4–81（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/query_stats.rb#L4-L81）、行205–260（https://github.com/ankane/pghero/blob/0efe3327aab12e40a53ec4e2bbc90b06499c9a10/lib/pghero/methods/query_stats.rb#L205-L260）、行138–144。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   - 未使用索引（`unused_indexes`）：`pg_stat_user_indexes`の走査回数と`pg_index`を結び、一意索引を除き、走査回数が上限以下で大きさが下限以上のものを、大きさの順に返す。`across`に他のdatabase（replica等）を渡すと、それらでも未使用のものだけに絞る。統計のreset時刻を取る関数と、resetする関数がある。
   - 重複索引（`duplicate_indexes`）：同じtableの有効な索引のうち、主keyでも一意でもないものについて、列の並びが別の索引の先頭部分と一致し（`index_covers?`は先頭からの前方一致）、access method、式、部分索引の条件が同じものを、不要な索引と覆う索引の組として返す。無効な索引（作成中でないのに`valid`でないもの）も別に返す。
   - 不足索引（`missing_indexes`）：`pg_stat_user_tables`の順次走査と索引走査の回数から、索引の使用割合が低く行数の多いtableを返す。対象は索引走査が1回以上あるtableに限られる（行62の条件）。索引走査が一度もないtableは、この一覧には出ない。
-  - 索引案（`suggested_indexes_by_query`）：`pg_stat_statements`由来の照会統計から時間のかかる照会を取り、`PgQuery`で構文解析して、単一tableのWHEREとORDER BYの列を取り出す。列の統計（行数、値の分布）から、各条件で残る行数を見積もり、絞込みの効きが大きい順に列を並べ、効きの小さい後続の列を落として索引案にする。既存の同種の索引が案を覆っていれば「覆われている」と説明を付け、案から外す。JOINや複数文、構文解析できない照会は、理由を付けて対象外にする。
+  - 索引案（`suggested_indexes_by_query`）：照会統計（`query_stats(historical: true, ...)`）から時間のかかる照会を取り、`PgQuery`で構文解析して、単一tableのWHEREとORDER BYの列を取り出す。列の統計（行数、値の分布）から、各条件で残る行数を見積もり、絞込みの効きが大きい順に列を並べ、効きの小さい後続の列を落として索引案にする。既存の同種の索引が案を覆っていれば「覆われている」と説明を付け、案から外す。JOINや複数文、構文解析できない照会は、理由を付けて対象外にする。
+  - 照会統計の由来（`query_stats.rb`）：現在の統計は`pg_stat_statements`を`pg_database`・`pg_roles`と結び、現在のdatabaseで呼出しのある照会を総時間等の順に取る（`current_query_stats`、行205–260）。過去の統計は、PgHero自身のtable（`pghero_query_stats`）に取り込んだものを期間で集計する（`historical_query_stats`、行263以降）。取込み（`capture_query_stats`、行138–144）は、現在の統計を保存し、`pg_stat_statements`をresetする。`query_stats`（行4–61）は両者を照会のhashと利用者でまとめて並べる。照会統計が使えるかは、`pg_stat_statements`を読めるかで判定する（行63–81）。
 - 解いている問題と前提：索引が実際に使われているか、余分か、足りないかを、本番DBの統計から事後に見る。統計は前回のreset以降の累積で、serverごとに別である（そのため`across`がある）。
-- 必要な入力：統計view（索引・tableの走査回数）、照会統計（`pg_stat_statements`）、列の統計、統計の期間（reset時刻）、replica等の他のdatabase。
+- 必要な入力：統計view（索引・tableの走査回数）、照会統計（`pg_stat_statements`と、PgHeroが取り込んだ過去の統計）、列の統計、統計の期間（reset時刻）、replica等の他のdatabase。
 - trade-off・失敗の仕方：
   - 走査回数は統計の期間に依存し、resetの直後や、まれにしか走らない照会（月次処理等）で使う索引は未使用に見えうる。replicaでだけ使う索引は、primaryだけ見ると未使用に見える（`across`はその対策として読める）。
   - 重複の判定は列の前方一致で、一意索引・主keyは不要側にしない。`suggested_indexes.rb`のcomment（行38–40）は、索引案の被覆判定の文脈で、operator classが列名に含まれるため、operator classがあると列が一致しないと書いている。重複判定も同じ索引一覧の列の文字列で前方一致をとるため、同じくoperator classの違いで一致しなくなると推論できる（重複判定の側にこの旨のcommentはない）。
@@ -261,7 +263,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - django/django：`django/db/models/fetch_modes.py`（全体）、`django/db/models/query.py`（grepで`fetch_mode`の箇所、175–195）、`django/db/models/fields/related_descriptors.py`（245–292、grepで`fetch_mode`の箇所）、`django/db/models/query_utils.py`（265–285、deferred fieldの`fetch`呼出し）、`django/core/exceptions.py`（`FieldFetchBlocked`の定義）、`docs/topics/db/fetch-modes.txt`（全体）、`docs/topics/db/optimization.txt`（1–60、120–240）、`docs/ref/models/querysets.txt`（1044–1215、1360–1380、3148–3185、4300–4352）、`docs/ref/models/indexes.txt`（全体）。読んでいないもの：`prefetch_related_objects`の実装本体、`docs/ref/contrib/postgres/indexes.txt`（checkoutのみ）、release notes、ticket。
 - prisma/orm：`docs/architecture docs/adrs/ADR 003`（全体）、`ADR 023`（1–120）、`ADR 115`（1–150）、`ADR 174`（冒頭。MongoDBのaggregate rootと関連の埋込みで、本テーマの対象外と判断した）、`packages/2-sql/5-runtime/src/middleware/budgets.ts`（全体）、`lints.ts`（grepで見出し）、`packages/3-extensions/sql-orm-client/src/query-plan-select.ts`（1285–1378、1500–1540）、`collection-dispatch.ts`（grep、405–430）。ADRの一覧をgrepで`N+1`、`lateral`、`EXPLAIN`、`capabilit`について絞った。読んでいないもの：`ADR 022`（lint taxonomy）、`ADR 029`、`ADR 065`、`where-binding.ts`、`test/`配下のbatching系test（題名のみ）、従来版のRust query engine（別repository）。
 - HypoPG/hypopg：`README.md`（全体）、`hypopg.c`（grepした宣言・hookの行、420–460、512–585）、`docs/hypothetical_indexes.rst`（冒頭）、`docs/usage.rst`（80–100、205–225）、`LICENSE`（冒頭）。読んでいないもの：`hypopg_index.c`、`import/`、`test/`、`expected/`。
-- ankane/pghero：`lib/pghero/methods/indexes.rb`（49–190、325–336）、`suggested_indexes.rb`（1–240）、`explain.rb`（1–50）、`lib/pghero.rb`（80–90）、`app/controllers/pg_hero/home_controller.rb`（300–350）、`guides/Docker.md`（grepの該当行のみ）。読んでいないもの：`index_bloat`のSQL、`query_stats.rb`、`row_estimates`の本体（239行以降）、test。
+- ankane/pghero：`lib/pghero/methods/indexes.rb`（49–190、325–336）、`suggested_indexes.rb`（1–240）、`query_stats.rb`（1–145、205–290）、`explain.rb`（1–50）、`lib/pghero.rb`（80–90）、`app/controllers/pg_hero/home_controller.rb`（300–350）、`guides/Docker.md`（grepの該当行のみ）。読んでいないもの：`index_bloat`のSQL、`query_stats.rb`の上記以外（`combine_query_stats`、`insert_query_stats`等）、`row_estimates`の本体（239行以降）、test。
 - 検索した語：`strict_loading`、`n_plus_one_only`、`eager_loading?`、`preload`、`FETCH_PEERS`、`fetch_mode`、`track_peers`、`batchScheduleFn`、`maxBatchSize`、`cacheMap`、`lateral`、`json_agg`、`N+1`、`EXPLAIN`、`budget`、`hypopg`、`analyze`、`unused`、`duplicate`、`index_covers`。
 - 選ばなかった候補：pganalyze系（索引分析の本体が非公開のため。§gap）。従来版Prisma（prisma/prisma-engines）の`relationLoadStrategy`（join／query）は、今回のrepositoryの固定commitに含まれず、読んでいない。
 

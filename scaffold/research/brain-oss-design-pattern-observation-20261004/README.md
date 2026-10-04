@@ -62,7 +62,7 @@ POの発言（2026-10-04、原文）は次のとおり。
 | P27 data取得の型と索引（N+1） | [P27](materials/P27-data-loading-n-plus-one-indexing.md) | 14 | 6 | D01「性能の構造」のうち索引とN+1（P17で扱えなかった部分） |
 | P28 cacheの無効化方式の比較 | [P28](materials/P28-cache-invalidation.md) | 14 | 5 | D01「性能の構造」のうちcacheの無効化（P17で比べられなかった部分） |
 
-dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。P27〜P28では、TanStack/queryとapollographql/apollo-clientをP09と、vercel/next.jsをP22と別の箇所（無効化と再検証）で読んだ。P28のTanStack/queryはP09と別の固定commitである。P27〜P28の10 repositoryのうち新規は7で、重複を除いた合計は137である。
+dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。P27〜P28では、vercel/next.jsをP22と別の箇所（無効化と再検証）で読んだ。TanStack/queryはP09と同じ機能（query keyの照合、staleの判定、無効化、fetch）を別の固定commitで再び観察しており、2つのrevisionの差は照合していない。apollographql/apollo-clientは、P09と同じ固定commitで、`entityStore.ts`の`CacheGroup`の範囲がP09の出典と重なる（P28では無効化の観点で読んだ）。P27〜P28の10 repositoryのうち新規は7で、重複を除いた合計は137である。
 
 ## 置き場所と形の根拠
 
@@ -125,7 +125,8 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
     - 行のずれ（SHIFTED）2件、観察IDの相互参照の誤り1件も直した。
   - SPDXとarchivedの記載は、14 repositoryすべてでGitHub APIの値と一致した。
 - **第4弾のP27〜P28の照合**：P24〜P26と同じ手順で、別の照合担当が行った。
-  - permalink 94件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - permalink 98件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - 独立review（PR #2575、Codex）で、Major 1件・Minor 4件の指摘を受けた。P27-O07はDataLoaderの位置対応の契約違反をbatch全体の失敗と書いていたが、runtimeが検出するのは形と長さだけで、長さが同じで順序が違う値は検出されない。ほかに、Railsの公開write／delete APIを無いとした一般化、Next.jsの警告後も再検証を登録する流れの見落とし、P09との出典の重なりの過少な開示、未読のfileに依る断定があった。原文を読み直して全件を直した。
   - 内容の抜き取り照合は計233件（P27 114件、P28 119件）。
     - 原文と逆・原文にない記述（WRONG）は2件だった。P27-O04は、has_many以外の集合関連がstrictにならないと書いていたが、throughとHABTMも`:has_many`としてstrictになる。P28-O14は、P09と出典が重ならないと書いていたが、P09は同じfileの`CacheGroup`の範囲も引いていた。どちらも原文どおりに直した。
     - 主張の一部が原文と違うもの（PARTIAL）は10件だった。条件付きの処理の一般化（`references`のJOIN条件、prefetchの例外、`evict`の通知条件、`cancelRefetch`の条件）、handlerに求める契約を既定の実装の挙動として書いたもの、「要求ごと」を「権限ごと」と言い換えたものである。書いた調査担当が原文を読み直し、全件直した。

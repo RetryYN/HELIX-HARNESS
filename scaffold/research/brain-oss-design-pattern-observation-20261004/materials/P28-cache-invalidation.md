@@ -12,7 +12,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 |---|---|---|---|---|---|---|
 | rails/rails | https://github.com/rails/rails | 4088f9d2ef00f9b85493362fb6f4b2526bd5d314（default branch: main） | MIT | false | 2026-10-05 | server側のkey-value cacheで、entry単位のTTL、版付きkey（`cache_version`による再利用可能なkey）、templateのdigestをkeyに含める方式、`touch`による入れ子fragmentの無効化（Russian doll caching）、`race_condition_ttl`による殺到の抑止を1つのframeworkで持つ |
 | vercel/next.js | https://github.com/vercel/next.js | ba80ee48fc319735151c3ad6d9bb9a8180c9f09e（canary） | MIT | false | 2026-10-05 | tagによる無効化を「tagごとの無効化時刻」で表し、読込み時に照合する。pathの無効化をtagへ写す。stale-while-revalidateと、複数instance間での無効化の伝搬の責務分担を設計文書に書いている |
-| TanStack/query | https://github.com/TanStack/query | ec8c6de8842445c29d3ea2edca51593e095abb5a（main） | MIT | false | 2026-10-05 | client側のquery結果cache。P09では`gcTime`、cancel、client stateとの境界を読んだ。本書では別の箇所として、時間による鮮度判定（`staleTime`）と明示的無効化（`invalidateQueries`）の合成、keyの前方一致による無効化範囲の決め方を読んだ |
+| TanStack/query | https://github.com/TanStack/query | ec8c6de8842445c29d3ea2edca51593e095abb5a（main） | MIT | false | 2026-10-05 | client側のquery結果cache。本書は、時間による鮮度判定（`staleTime`）と明示的無効化（`invalidateQueries`）の合成、keyの前方一致による無効化範囲の決め方を読んだ。P09のO02（`matchQuery`、`partialMatchKey`、`invalidateQueries`）、O03（`isStale`、`isStaleByTime`、`invalidate`）、O06（`fetch`）と同じpath・同じ機能が重なる。P09とは別の固定commit（P09は`f9fe54c960ffe39affe89a7b3dd8a69e6b194fda`、本書は`ec8c6de8842445c29d3ea2edca51593e095abb5a`）で、同じ機能をもう一度観察した。2つのrevisionの差は照合していない |
 | varnishcache/varnish-cache | https://github.com/varnishcache/varnish-cache | 0038dd19804fd92cd8bd4bfe92e5a515a57d5e8e（master） | NOASSERTION（LICENSE冒頭：「The compilation of software known as "Varnish Cache" is distributed under the following terms:」に続き、同fileに`SPDX-License-Identifier: BSD-2-Clause`の行がある） | true | 2026-10-05 | HTTP reverse proxy cache。期限切れ後も一定期間配る`grace`、同じobjectへの要求を1つのbackend要求に合流させるwaiting list、条件式で後から絞り込む`ban`、即時削除の`purge`を、C実装と利用者向け文書の両方で読める |
 | apollographql/apollo-client | https://github.com/apollographql/apollo-client | 9659425dd0f1395d0fd7897ef882ab1082391dc2（main） | MIT | false | 2026-10-05 | 正規化cache（entity単位）。書込みのたびにfield単位の依存を辿って読み直しを起こす方式と、`evict`・到達可能性による`gc`を持つ。P09では正規化とoptimistic layerを読んだ。本書では無効化と除去の経路を読んだ |
 
@@ -107,7 +107,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：書込みをした本人には直後に新しい値を見せたい（read-your-own-writes）一方、それ以外の無効化では古い値を許して再生成の負荷を平らにしたい。どちらを選ぶかを呼出し側のAPIで分ける。
 - 必要な入力：無効化を起こす文脈（Server Action、route handler等）、書込み直後に自分の結果を読む必要があるか、古い値を許す期間（profile）。
 - trade-off・失敗の仕方：profile付きの`revalidateTag`の直後に同じ利用者が読むと、古い値が一度返りうる（`stale`の扱い、P28-O05）。`updateTag`はServer Action内に限られ、route handlerからは使えない（行61–69、TODO commentあり）。
-- 反例・適用しない場合：TanStackの`invalidateQueries`は`refetchType`で再取得の範囲を選ぶが、古い値を返すかどうかの選択は`staleTime`と画面の状態に依存する（P28-O10・O11）。Railsは書込み側の無効化APIを持たず、版の変化（P28-O02）で表す。
+- 反例・適用しない場合：TanStackの`invalidateQueries`は`refetchType`で再取得の範囲を選ぶが、古い値を返すかどうかの選択は`staleTime`と画面の状態に依存する（P28-O10・O11）。Railsは`Store#write`・`Store#delete`という公開のwrite／delete APIを持つ（`activesupport/lib/active_support/cache.rb` 行674–695、https://github.com/rails/rails/blob/4088f9d2ef00f9b85493362fb6f4b2526bd5d314/activesupport/lib/active_support/cache.rb#L674-L695）。ただし、O02で観察したrecordのcache-version方式の中では、書込みのたびに無効化を個別に呼ぶ必要はなく、recordの版の変化（P28-O02）で古いentryを読まなくする。
 - 互換・非互換：P28-O05の`stale`／`expired`の2つの時刻に対応する。
 - 限界：profile名・既定のprofileの値は持ち込まない。
 
@@ -118,7 +118,11 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - `revalidatePath(path, type)`は、pathを正規化してsoft tagにする。`type`（`layout`／`page`）があればtagに付ける。動的なroute（`[id]`等）で`type`がない場合は「既定では効果がない」と警告する。rootと`/index`は相互にtagを足す。長さの上限を超えたpathは警告して何もしない。
 - 解いている問題と前提：利用者が個々のentryのtagを知らなくても、URLの階層で無効化の範囲を指定できるようにする。pathの階層が依存の階層に対応していることが前提である。
 - 必要な入力：無効化するpath、そのpathをlayoutとして扱うかpageとして扱うか、動的routeかどうか。
-- trade-off・失敗の仕方：動的routeで`type`を省くと無効化が効かず、警告だけが出る（行122–126）。長すぎるpathは無効化されずに戻る（行111–116）。いずれも例外ではなく警告なので、呼出し側は失敗を検出しにくい。
+- trade-off・失敗の仕方：
+  - 警告文：動的routeで`type`を省くと、「既定では効果がない」（has no effect by default）という警告を出す（行122–126）。
+  - 制御の流れ：この警告の後もreturnせず、`type`の付かないsoft tagで`revalidate`を呼び、再検証の要求を登録する（行118–135）。登録されたtagが動的routeのentryに当たらないために「既定では効果がない」と警告している、と読める（警告文からの推論。entry側のsoft tagの作られ方は読んでいない）。
+  - 早期return：長すぎるpathだけは、警告した後に`revalidate`を呼ばずにreturnする（行111–116）。
+  - いずれも例外ではなく警告なので、呼出し側は失敗を検出しにくい。
 - 反例・適用しない場合：TanStack（P28-O11）は配列のquery keyの前方一致で範囲を決める。Railsはmodelの関連を`touch`で辿る（P28-O03）。
 - 互換・非互換：P28-O05の上に乗る。
 - 限界：tagの接頭辞・長さの上限の値は持ち込まない。
@@ -181,8 +185,8 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - 前方一致の範囲はkeyの設計で決まり、keyの階層と依存が合っていなければ、無効化漏れか過剰な再取得になる（文書の例は、より具体的なkeyを渡すと親のkeyのqueryは無効化されないことを示す、行55–75）。
   - 既定の`cancelRefetch: true`は、書込み前に始まった取得を取り消して、書込み後の値を取り直す。`false`にすると実行中の取得を返すので、書込み前の値が返りうる（取消しの意図はdoc commentから、書込み前の値が返ることは構造からの推論）。
 - 反例・適用しない場合：Apollo（P28-O14）は正規化cacheで、書込みでentityを更新すると依存するqueryが読み直される。Next.js（P28-O05）はtagを明示的に付ける。
-- 互換・非互換：P28-O10のflagを立てる側である。P09（`gcTime`、cancel）と同じrepoだが、本書は別の箇所を読んだ。
-- 限界：P09とは固定commitが異なる（P09は`f9fe54c960ffe39affe89a7b3dd8a69e6b194fda`）。両commitの差分は確認していない。
+- 互換・非互換：P28-O10のflagを立てる側である。P09のO02（`matchQuery`、`partialMatchKey`、`invalidateQueries`）、O03（`isStale`、`isStaleByTime`、`invalidate`）、O06（`fetch`）と同じpath・同じ機能が重なる。本書は、P09とは別の固定commitで同じ機能をもう一度観察した。
+- 限界：P09は`f9fe54c960ffe39affe89a7b3dd8a69e6b194fda`、本書は`ec8c6de8842445c29d3ea2edca51593e095abb5a`を読んだ。2つのrevisionの差は照合していない。
 
 ### P28-O12 期限切れ後の配信猶予（grace）と、同じobjectへの要求の待ち合わせ（request coalescing）を1つの検索で決める
 - 出典：varnish-cache、`bin/varnishd/cache/cache_hash.c` 行505–584、640–689（https://github.com/varnishcache/varnish-cache/blob/0038dd19804fd92cd8bd4bfe92e5a515a57d5e8e/bin/varnishd/cache/cache_hash.c#L640-L689）、`doc/sphinx/users-guide/vcl-grace.rst` 行19–50、72–110、139–146（https://github.com/varnishcache/varnish-cache/blob/0038dd19804fd92cd8bd4bfe92e5a515a57d5e8e/doc/sphinx/users-guide/vcl-grace.rst#L19-L110）。信頼性ラベル：primary。本文確認：済
@@ -236,14 +240,14 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - `keyArgs`がないと、1つの引数の値の書込みで同名fieldの全値が無効化され、読み直しが過剰になる。
   - `evict`だけでは参照元が残り、`gc`を呼ばないと到達不能なentityが残る。dangling referenceの扱いを誤ると、単一参照のfieldが欠けたdataを返す。
 - 反例・適用しない場合：TanStack（P28-O11）は正規化をせず、query単位のkeyで無効化する。Rails（P28-O02）は版付きkeyで、依存の追跡をしない。
-- 互換・非互換：P09（正規化とoptimistic layer）と同じrepo・同じcommitの別の箇所である。P09は`entityStore.ts`の行735–760（`CacheGroup`）と行859–929を引いており、本書の行731–794（`CacheGroup`）はP09の行735–760と重なる。本書はその範囲を、無効化（`depend`／`dirty`）の観点で読み直した。
+- 互換・非互換：P09（正規化とoptimistic layer）と同じrepo・同じ固定commit（`9659425dd0f1395d0fd7897ef882ab1082391dc2`）である。P09は`entityStore.ts`の行735–760（`CacheGroup`）と行859–929を引いており、本書の行731–794（`CacheGroup`）はP09の行735–760と同じpath・同じ機能が重なる。本書は、その機能を無効化（`depend`／`dirty`）の観点でもう一度観察した。同じcommitなので、revisionの差はない。
 - 限界：`optimism`（依存追跡のlibrary）の本体は別repositoryで、読んでいない。
 
 ## 同じ問題の解き方の比較
 | 問題 | repoA のやり方 | repoB のやり方 | 違いが生じる前提 |
 |---|---|---|---|
 | 時間による鮮度 | Rails：entryの期限。期限切れは読込み時に削除しmiss（O01） | TanStack：`staleTime`の経過か無効化flagでstale。staleは再取得の契機で、値は使える（O10）。Next.js：`revalidate`（作り直し開始）と`expire`（使用上限）の2段（O05・O08）。Varnish：`ttl`・`grace`・`keep`の3段（O12）。Apollo：期限なし（O14） | 古い値を出してよい時間をどう段に分けるか。期限切れを「消す」か「作り直しの契機」にするか |
-| 書込み時の無効化 | Apollo：書込みのたびに変わったfieldの依存を`dirty`にする（O14） | TanStack：書込み後に利用側が`invalidateQueries`を呼ぶ（O11）。Next.js：`revalidateTag`／`updateTag`（O06）。Rails：無効化APIではなく版の変化（O02） | 書込みがcacheを通るか。依存をcacheが自動で追うか、利用側が指定するか |
+| 書込み時の無効化 | Apollo：書込みのたびに変わったfieldの依存を`dirty`にする（O14） | TanStack：書込み後に利用側が`invalidateQueries`を呼ぶ（O11）。Next.js：`revalidateTag`／`updateTag`（O06）。Rails：O02のrecordのcache-version方式の中では、個別の無効化呼出しを要さず版の変化で表す（O02）。公開のwrite／delete API（`Store#write`／`Store#delete`）は別にある | 書込みがcacheを通るか。依存をcacheが自動で追うか、利用側が指定するか |
 | 依存・範囲の指定 | Next.js：明示tagとpathのsoft tag（O05・O07） | TanStack：keyの前方一致（O11）。Rails：record配列とtemplate digest、`touch`の伝搬（O02・O03）。Varnish：任意の条件式（O13）。Apollo：実行時のfield依存（O14） | 依存を宣言するか、key設計に埋め込むか、実行時に記録するか |
 | 無効化の評価時機 | Next.js：tagの時刻を進め、読込み時にentryの作成時刻と比べる（O05） | Varnish：ban listに追加し、hit時にobjectより新しいbanだけ評価、背景のlurkerも除く（O13）。TanStack：該当queryを列挙してflagを立てる（O11） | entryを列挙できるか。条件がobject側の属性だけで書けるか |
 | stale-while-revalidate | Next.js：古い値で応答を確定し背景で再生成。失敗時は古い値を保持（O08） | Varnish：grace内は古いobjectを返し取得を1本だけ起こす（O12）。TanStack：staleでも値を出し、mount・focus等で背景再取得（O10） | 古い値を出せる上限を誰が決めるか（応答の性質、利用側） |
@@ -264,7 +268,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 方法：5 repoを作業用の一時領域へ`git clone --filter=blob:none --no-checkout`し、sparse checkoutで範囲を限ってから固定commitをcheckoutした（core.hooksPathを無効化）。読むだけで、build・test・script・hook・package managerは実行していない。GitHub APIはmetadata（default branch、SPDX、archived、HEAD commit、description、最終push）の取得に使った。
 - rails：`activesupport/lib/active_support/cache.rb`（375–530, 1020–1135）、`activesupport/lib/active_support/cache/entry.rb`（1–90）、`activerecord/lib/active_record/integration.rb`（15–130）、`actionview/lib/action_view/helpers/cache_helper.rb`（24–70, 176–298の見出し、244–298）、`guides/source/caching_with_rails.md`（見出し全体、236–445, 761–775）。読んでいないもの：各store（`redis_cache_store.rb`、`mem_cache_store.rb`等）の本体、`ActionView::Digestor`の本体、`delete_matched`、`ActiveRecord::Base#touch`の実装、Solid Cache（別repo）。
 - next.js：`packages/next/src/server/web/spec-extension/revalidate.ts`（全体）、`packages/next/src/server/lib/incremental-cache/tags-manifest.external.ts`（全体）、`packages/next/src/server/lib/cache-handlers/default.ts`（全体）、`packages/next/src/server/lib/cache-handlers/types.ts`（全体）、`packages/next/src/server/response-cache/index.ts`（112–150, 370–470, 488–621）、`docs/01-app/02-guides/how-revalidation-works.mdx`（全体）。読んでいないもの：`incremental-cache/index.ts`・`file-system-cache.ts`、`lib/batcher`の本体、`use-cache`のwrapper、`cacheLife`のprofile定義、CDN向け文書。
-- TanStack/query：`packages/query-core/src/query.ts`（498–600, 668–740）、`queryClient.ts`（205–230, 470–560, 610–640）、`utils.ts`（205–260, 343–370）、`docs/framework/react/guides/query-invalidation.md`（1–80）、`important-defaults.md`（1–40）。読んでいないもの：`invalidations-from-mutations.md`、`queryObserver.ts`の`isStale`計算、`queryCache.ts`、P09と同じ箇所。
+- TanStack/query：`packages/query-core/src/query.ts`（498–600, 668–740）、`queryClient.ts`（205–230, 470–560, 610–640）、`utils.ts`（205–260, 343–370）、`docs/framework/react/guides/query-invalidation.md`（1–80）、`important-defaults.md`（1–40）。読んでいないもの：`invalidations-from-mutations.md`、`queryObserver.ts`の`isStale`計算、`queryCache.ts`。P09と同じpath・同じ機能（`matchQuery`、`partialMatchKey`、`invalidateQueries`、`isStale`、`isStaleByTime`、`invalidate`、`fetch`）は、P09とは別の固定commitで読み直した。2つのrevisionの差は照合していない。
 - varnish-cache：`bin/varnishd/cache/cache_hash.c`（505–690, 790–860）、`cache_ban.c`（244–262, 631–722、`grep`による該当行）、`cache_ban_lurker.c`（冒頭の著作権表示のみ）、`doc/sphinx/users-guide/purging.rst`（全体）、`vcl-grace.rst`（全体）、`LICENSE`（冒頭）。読んでいないもの：`cache_ban_build.c`、`cache_ban_lurker.c`の本体、`cache_expire.c`、`hsh_rush`系、VCLの組込み定義。
 - apollo-client：`src/cache/inmemory/entityStore.ts`（95–112, 123–300, 380–410, 550–640, 730–800）、`inMemoryCache.ts`（620–660）、`docs/source/caching/garbage-collection.mdx`（40–112）、`cache-interaction.mdx`（610–642）。読んでいないもの：`policies.ts`（`keyArgs`の処理）、`readFromStore.ts`、`writeToStore.ts`、`optimism`（別repo）。
 - 検索した語：`race_condition_ttl`、`cache_version`、`mismatched`、`expired`、`digest`、`touch`、`revalidateTag`、`updateTag`、`revalidatePath`、`tagsManifest`、`stale`、`expire`、`Batcher`、`retainPreviousCacheEntry`、`refreshTags`、`invalidateQueries`、`isStaleByTime`、`static`、`cancelRefetch`、`partialMatchKey`、`grace`、`busy`、`waitinglist`、`BAN_CheckObject`、`HSH_Purge`、`evict`、`gc`、`retain`、`dirty`、`INVALIDATE`、`ttl`／`expir`／`maxAge`／`staleTime`（apollo `src/cache`、test以外で該当0件）。
