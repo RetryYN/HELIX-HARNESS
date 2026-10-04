@@ -55,6 +55,43 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 
 要求を降ろす順序は、単独で成立する`unit`、採用済みunit間の関係を定める`connection`、採用済みunit／connectionの集合に固有な結果を定める`composite`とする。後段要求は参照先のexact revisionを持ち、unitの成立からconnectionやcompositeの成立を推定しない。分割元の旧要求は、各successorを別PRで確定し、全意味atomの被覆を確認するまで`pending`を残す。要求revisionの承認後に管理が工程を推進へ渡し、推進がFeature Ticketを発行する。親要求、必要なconnection／composite、premise状態、HARNESS contract、停止条件のいずれかが未確定ならticketをReadyにしない。
 
+### PRの原子性
+
+一つのPRは、一つの変更目的と、上表のclassが定める一つの対象だけを扱う。`requirement`と`design_verification`の対象は一つの要求identityであり、
+複数の要求identityのL3／L10を同じPRで一括して起草・修正・確定しない。複数の対象に共通する部品（template、共通規則、参照先の契約）が
+要る場合は、共通部品を先行PRで閉じてmergeし、各対象のPRはそのexact revisionを参照する。後段の内容を先行PRへ混載しない。
+各対象PRは共通部品の規則を本文へ書き写さず参照し、その対象に固有の条件だけを書く。
+
+人が読む本文の差分は200〜400行を目安とする。目安を超える場合は、PR本文に超える理由と、対象を分けられない理由を書く。
+監査・照合の証拠や機械生成の記録は行数の目安に含めないが、対象を増やす理由にはしない。
+
+対象を超えて作業した成果は、そのPRをmergeせず、対象ごとのPRへ切り出す。切り出した各PRはexact HEADで独立reviewを受け直し、
+元PRには切り出し先PRの一覧と、元の範囲の全対象が切り出し先で被覆されたことを記録してからcloseする。被覆を確認するまで、
+元PRの範囲で未確定の対象を確定済みとして扱わない。
+
+レビュー対応側は、本文の句単位reviewの前に、PR class、対象の数、変更目的の数を確かめる。対象または変更目的が複数なら、
+範囲違反をblockerとして返し、句単位reviewには進まない。範囲違反のPRではmerge admissionは成立しない。
+
+旧sourceは次のとおりである。いずれも台帳上`unresolved`であり、本文を完全一致copyせず意味を再導出する。
+
+- `archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md`（`LEGACY-ASSET-20C14BB23C519C65E7BD`、
+  SHA-256 `4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d`）101–107行「原則5: 1 PR = 1 変更目的」：
+  複数の目的を1つのPRに詰め込まない、差分200〜400行の目安、巨大PRはreviewされない。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/github-operations-reference-audit-2026-07-18.md`（`LEGACY-ASSET-57E3CD5314D2CB4C2EF1`、
+  SHA-256 `c6f2c106ee33720b7664f3ac9f02ba1896b7b819cb4f57bc119f1ce817ff27a3`）41行：採用した「1 PR 1目的」と短命branch。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/l3-rebaseline-g3-freeze-packet.md`（`LEGACY-ASSET-269C287365D652DEAD93`、
+  SHA-256 `519be70ab005c875d57acab510869b67bea23bd3304f8f24d9b0223da37a2ebd`）340–342行：責務ごとに小PRで閉じ、
+  先行PRのmerge後に後段PRを別PRで閉じ、後段PRを先行PRへ混載しない。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/github-issue-hierarchy-rules.md`（`LEGACY-ASSET-3BBD5A19BFD9A0FC7166`、
+  SHA-256 `c965a2744c99cbdfe69f071167fe009ade68337e31e0fb1de13377568084d1ca`）37行：1 PRは1 `task` Issueだけを閉じる。
+
+保持する点は、1 PR 1目的、行数の目安、共通部品を先行PRで閉じる順序、後段の混載禁止である。変更する点は二つある。
+一つ目は、旧sourceのPLAN・`task` Issue単位を、現行のPR class表が定める対象（要求identity等）の単位へ置き換えることである。
+現行の工程はPLANやIssueから要求意味を生成しないためである。二つ目は、レビュー対応側が句単位reviewの前に範囲を確かめ、
+範囲違反をblockerとして返すことである。旧sourceは巨大PRがreviewされないことを心得として述べるだけだった。
+現行では、274件のL3／L10を一つの`design_verification` PRで扱った#2564が11回の往復でmajorを減らせず、
+規則の書き写しと兄弟対象の取りこぼしが毎回再発した。この再発が変更の理由である。
+
 ## IssueとFeature Ticket
 
 - GitHubで人が読むtitle、見出し、目的、判断、状態説明、停止理由は日本語を原則とする。ID、path、command、schema語彙、
