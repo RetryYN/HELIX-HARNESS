@@ -62,7 +62,7 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。本�
 - 範囲：`.claude/agents/security-audit.md`、`be-api.md`、`docs/skills/`（security、security-and-hardening、threat-model、browser-testing-and-screen-verification）、`docs/research/worker-runtime-security-requirements-instruction-2026-07-19.md`の見出し、`docs/governance/candidates/security-engagement-authority-*.md`の見出し、`docs/design/design-catalog.yaml`の`sec`区分。
 - 語：`OWASP`、`ASVS`、`STRIDE`、`threat`、`認証`、`認可`、`RBAC`、`secret`、`PII`、`CSRF`、`CORS`、`supply chain`、`zero trust`、`NIST`。
 - 結果（上の範囲内）：OWASPのうち知識として書かれているのはsecurity-audit（D08-M01）とsecurity-and-hardening周辺だけだった。
-- 補足検索：旧repo全体（`archive/legacy-generation-2026-09-14/root/`、`.helix/`・src・tests等を含む）を、大文字小文字を区別しない固定文字列で検索し、一致したfile数を数えた（2026-10-04）。`OWASP`は44 fileに出るが、上の範囲外の物は、見た範囲ではHELIX自身のguard・review・worker隔離の文脈だった（全件の精読はしていない）。`ASVS`は1 file、`zero trust`は0 file、`NIST`（語単位の一致）は30 file（PLAN 8、lint 7、test 5、工程文書5、機能設計2、その他3）だった。
+- 補足検索：旧repo全体（`archive/legacy-generation-2026-09-14/root/`、`.helix/`・src・tests等を含む）を、大文字小文字を区別しない固定文字列で検索し、一致したfile数を数えた（2026-10-04）。`OWASP`は44 fileに出るが、上の範囲外の物は、見た範囲ではHELIX自身のguard・review・worker隔離の文脈だった（全件の精読はしていない）。`ASVS`は1 file、`zero trust`は0 file、`NIST`（語単位の一致）は34 file（PLAN 9、lint 7、test 7、工程文書5、機能設計2、その他4）だった。
 - 結果（補足検索の内訳）：`ASVS`の1 fileは旧のPLAN（`docs/plans/PLAN-L7-419-skill-mythos-uplift.md` 163「CC-BY-SAのため転記せず名前とURLの参照のみ」）である。`NIST`は、SSDF・least privilege等として旧の工程・gate・機能設計の文書とその検査（lint・test）・PLANに出るが、HELIX自身の工程の根拠としての引用で、製品のidentity設計の知識ではなかった（全件の精読はしていない）。`worker-runtime-security-requirements-instruction`と`security-engagement-authority`はHELIX自身のworkerの隔離とsecurity関与の手続きで、HELIX-SECURITY側の材料であり、BRAINの製品設計知識の素材にしなかった。
 
 ## 6. BRAIN L2の知識の属性を付けるときの未決事項
