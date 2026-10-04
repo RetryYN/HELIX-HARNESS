@@ -76,7 +76,7 @@ binding: [SCF-B-0155](../../bindings/SCF-B-0155.json)
 ## SHA照合
 
 - 方法：引用した旧assetごとに、`docs/governance/legacy-asset-disposition.jsonl`から`source_path`が完全一致する行を引き、最大revisionの`source_sha256`と、`archive/legacy-generation-2026-09-14/root/<source_path>`の実fileのSHA-256（file全体）を比べた。行範囲は実fileの行数の内側にあることを確かめた。
-- 結果：本READMEと`materials/`で引用した旧assetは78件（重複を除く）。うち65件は素材の表（領域の§1と本READMEの「領域横断の素材」）に asset ID・全体SHA-256付きで引用し、13件は本文中でpathと行を挙げた補足の参照（検索結果の説明等）である。78件全件で、台帳の最大revisionの`source_sha256`と実fileのSHA-256が一致した。表の行範囲は全件が実fileの行数の内側にあった。
+- 結果：本READMEと`materials/`で引用した旧assetは79件（重複を除く）。うち65件は素材の表（領域の§1と本READMEの「領域横断の素材」）に asset ID・全体SHA-256付きで引用し、14件は本文中で完全pathを挙げた補足の参照（検索結果の説明等）である。79件全件で、台帳の最大revisionの`source_sha256`と実fileのSHA-256が一致した。表の行範囲は全件が実fileの行数の内側にあった。
 - 一致しないassetは引用していない。台帳に無いfileは引用していない。
 - 台帳上`RequirementSourceSnapshot`（revision 3）の資産（旧L1 nfr、L2画面設計のui-element・wireframe・screen-detail・screen-flow・business-flow）は、その旨を各行に書いた。
 

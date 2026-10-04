@@ -54,7 +54,7 @@ HELIXBRAIN-L2-001（`brain-requirements.md` 90）の初期領域の一つ。本�
 
 - 範囲：`.claude/agents/`（be-logic、be-api、db-schema）、`docs/skills/`（debugging-and-error-recovery、error-fix、code-minimalism、incremental-implementation）、`docs/design/harness/L5-detailed-design/`、`docs/design/harness/L6-function-design/`の見出し、`docs/design/design-catalog.yaml`の`detail`区分。
 - 語：`transaction`、`lock`、`retry`、`冪等`、`idempotency`、`batch`、`バッチ`、`saga`、`outbox`、`queue`、`error`。
-- 結果：backendの一般知識は旧agent設定2件（be-logic、be-api）に短くあるだけで少ない。`outbox`はHELIX自身のGitHub作業episodeの設計（D03-M07、`docs/design/helix/L3-requirements/github-merge-admission-requirements.md` 96–110も同じ対象）に適用例としてあった。`saga`は`docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md` 63（UTH-FR-032）に「単一transaction saga」という語で出るだけで、補償の設計知識ではなかった。`docs/skills/debugging-and-error-recovery.md`・`error-fix.md`はHELIXの不具合対応の手順で、backend設計の知識ではないため素材にしなかった。`docs/design/harness/L6-function-design/`の大半（closure、handover、plan等）はHELIX自身の機能設計で素材にしなかった。
+- 結果：backendの一般知識は旧agent設定2件（be-logic、be-api）に短くあるだけで少ない。`outbox`はHELIX自身のGitHub作業episodeの設計（D03-M07、`docs/design/helix/L3-requirements/github-merge-admission-requirements.md` 96–110も同じ対象）に適用例としてあった。`saga`は`docs/design/helix/L3-requirements/predecessor-harness-mechanism-hardening-requirements.md` 63（UTH-FR-032）に「単一transaction saga」という語で出るだけで、補償の設計知識ではなかった。`docs/skills/debugging-and-error-recovery.md`・`docs/skills/error-fix.md`はHELIXの不具合対応の手順で、backend設計の知識ではないため素材にしなかった。`docs/design/harness/L6-function-design/`の大半（closure、handover、plan等）はHELIX自身の機能設計で素材にしなかった。
 
 ## 6. BRAIN L2の知識の属性を付けるときの未決事項
 
