@@ -48,7 +48,7 @@
 
 ### CONNECT-FR-002-01 — 互換性/stale
 
-開始前および関連revision変更後の再利用前に実revision組を照合する。照合は既存read scope内で単独実施でき、送信許可を要しない。compatible/incompatible/unknown/staleと原因revisionを記録し、再照合で確認した組だけstale解除。send判定時だけ既存SECURITY authority/data-useを追加照合し、参照のみはnot_evaluated。
+開始前および関連revision変更後の再利用前に実revision組を照合する。照合は既存read scope内で単独実施でき、送信許可を要しない。登録時と使用時のrevisionを区別して記録し、compatible/incompatible/unknown/staleと原因revisionを記録し、再照合で確認した組だけstale解除。send判定時だけ既存SECURITY authority/data-useを追加照合し、参照のみはnot_evaluated。
 
 **範囲外**：transport/wire/schema・business success semantics・approval・実装方式は本FRで確定しない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示してよい（実装値・承認値ではない）。親の意味・scope・owner・version変更が必要なときだけL2へ戻す。
 
@@ -58,7 +58,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-001の接続登録、端点ownerのversion/互換宣言。送信適格性を照合する操作では、該当するSECURITY authorityとdata-use条件を追加で参照する。通信実行を必須にしない。 戻し先: 契約不一致は接続設計・契約ownerへ、読取りaccess条件はその既存owner/authorityへ、送信時の許可scope/expiry問題はHELIX-SECURITYへ戻す。比較不能はunknown/staleとして記録し、送信は保留する。
 
-**L3 acceptance (`CONNECT-AC-002-01`)**：既存scope/access条件下で互換性を照合し、結果をcompatible/incompatible/unknown/staleに区別して記録し、送信時のみ許可を確認する。互換条件の比較不能や未登録revisionはunknownのまま扱い、compatibleへ推定せず、送信attemptを0に保つ。revision変更後はstaleを検知して再照合まで通信を止める。read access欠落/拒否/unknownは比較をunknown/保留にし、参照のみの正常照合はcompatibleとsend eligibility not_evaluated、attempt 0を保つ。送信適格性はactor/target/operation/revision/environment/scope/expiryとdata-use条件の個別照合が成立したときだけeligibleで、不一致/不明/期限切れ/失効ではcompatible結果を保持してwithheld・attempt 0とする。未見の宣言範囲内revision組も同条件で照合し、宣言外・未登録revisionはunknownとする
+**L3 acceptance (`CONNECT-AC-002-01`)**：既存scope/access条件下で互換性を照合し、結果をcompatible/incompatible/unknown/staleに区別して記録し、送信時のみ許可を確認する。互換条件の比較不能や未登録revisionはunknownのまま扱い、compatibleへ推定せず、送信attemptを0に保つ。端点、意味契約revision、adapter/transport revision、互換範囲の変化を各々stale契機として検知し、再照合まで通信を止める。登録時と使用時のrevisionを区別した記録があり、原因revisionと照合結果に結び付く。read access欠落/拒否/unknownは比較をunknown/保留にし、参照のみの正常照合はcompatibleとsend eligibility not_evaluated、attempt 0を保つ。送信適格性はactor/target/operation/revision/environment/scope/expiryとdata-use条件の個別照合が成立したときだけeligibleで、不一致/不明/期限切れ/失効ではcompatible結果を保持してwithheld・attempt 0とする。未見の宣言範囲内revision組も同条件で照合し、宣言外・未登録revisionはunknownとする
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-002`。
 
@@ -74,7 +74,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：登録済み接続と現時点の互換照合、端点双方の受領契約。別の接続を必須にしない。 戻し先: 契約・版問題は両端contract ownerへ、scope/許可問題はSECURITYへ、受領拒否・業務結果は受信側業務ownerへ返す。接続結果を業務完了へ昇格しない。
 
-**L3 acceptance (`CONNECT-AC-003-01`)**：送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを各々欠落・不一致にした反例を拒否し、対象接続・理由・観測地点を保持する。契約/版の修正先は両端contract ownerである。接続identityの混載を拒否し、送信に適用する許可の期限切れ・期限不明、許可/data-use不明・範囲外では送信attempt 0を保ちSECURITYへ返す。受領拒否/業務結果は受信側業務ownerに区別して返す
+**L3 acceptance (`CONNECT-AC-003-01`)**：送受信が正しい接続identity・operation・契約revisionに束縛され、同じoperation identityが両端記録に現れ、契約外入力を成功扱いしない。未完義務がある場合は共通recovery先へのhandoff情報を返す。両端identityの不一致・片端記録欠落、必要なhandoff欠落を成功としない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを各々欠落・不一致にした反例を拒否し、対象接続・理由・観測地点を保持する。契約/版の修正先は両端contract ownerである。接続identityの混載を拒否し、送信に適用する許可の期限切れ・期限不明、許可/data-use不明・範囲外では送信attempt 0を保ちSECURITYへ返す。受領拒否/業務結果は受信側業務ownerに区別して返す
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-003`。
 
@@ -90,13 +90,13 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：登録・互換照合・通信契約、受信側の同一identity重複排除契約。構成体や後続機構を必須にしない。 戻し先: digest衝突や再送上限到達は送信を停止し、connection operationのownerへ未完義務と試行数を返す。業務結果は元の業務ownerへ、許可期限切れはSECURITYへ戻す。新revisionへ自動混載再送しない。
 
-**L3 acceptance (`CONNECT-AC-004-01`)**：接続契約が再送可能と定めた技術的失敗について、既存operation identity・同一digest・単一contract revisionで設定済み上限内の再送だけを許し、受信側効果は一回分とする。応答欠落はその一例であり唯一の再送契機ではない。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完義務・試行数は元connection operation ownerへ返し、業務結果は元の業務ownerへ返す。上限到達時も未完の業務結果を業務ownerへ戻すL11判定と、operationの義務引継ぎを別々に記録する。新しい上限値・retry権限は作らない。
+**L3 acceptance (`CONNECT-AC-004-01`)**：接続契約が再送可能と定めた技術的失敗について、既存operation identity・同一digest・単一contract revisionで設定済み上限内の再送だけを許し、受信側効果は一回分とする。応答欠落はその一例であり唯一の再送契機ではない。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完義務・試行数は元connection operation ownerへ返し、業務結果は元の業務ownerへ返す。上限到達時も未完の業務結果を業務ownerへ戻すL11判定と、operationの義務引継ぎを別々に記録する。許可期限切れでは追加attempt 0としSECURITYへ戻す。新しい上限値・retry権限は作らない。
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-004`。
 
 ### CONNECT-FR-005-01 — 技術trace
 
-登録・照合・送信・受領・attempt/retry/stale/拒否/終端をconnection/operation/contract revision/attempt identityで順序追跡する。技術状態と端点観測範囲を区別し、欠落/順序不明はunknown。通常のtrace/receiptにraw業務payload・secret・credential値を保存・複製しない。必要な本文の保持・削除・利用区分は元source/consumer ownerとSECURITYの契約に従い、CONNECTが再定義せず、業務判断を代筆しない。
+登録・照合・送信・受領・attempt/retry/stale/交換/切戻し/拒否/終端をconnection/operation/contract revision/attempt identityで順序追跡する。記録済みtrace eventを書き換え・削除・順序差替えせず、訂正は追記で表す。data-use区分はsource ownerの識別子で保つ。技術状態と端点観測範囲を区別し、欠落/順序不明はunknown。通常のtrace/receiptにraw業務payload・secret・credential値を保存・複製しない。必要な本文の保持・削除・利用区分は元source/consumer ownerとSECURITYの契約に従い、CONNECTが再定義せず、業務判断を代筆しない。
 
 **範囲外**：transport/wire/schema・business success semantics・approval・実装方式は本FRで確定しない。未指定の技術値は旧値を自動継承せず、根拠・比較案・測定方法・判定境界を添えた候補として示してよい（実装値・承認値ではない）。親の意味・scope・owner・version変更が必要なときだけL2へ戻す。
 
@@ -106,7 +106,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：connection operation eventと共通ログ/証拠の契約。本文payload保存を必須にしない。 戻し先: traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。
 
-**L3 acceptance (`CONNECT-AC-005-01`)**：送受信・受信確認失敗・再送途中のstale・期限切れ・取消・許可失効・部分失敗を接続単位に順序追跡できる。証拠は接続identity、能力名、operation/correlation/idempotency identity、target scope、使用revision、期限、互換照合結果、各attemptの識別子・順序・結果、停止理由、成功を観測した端点を含む。成功・失敗・部分成功・同identity同digestの重複・異digest衝突・unknownを区別し、ACKなし・取消・期限切れ・許可失効をunknown/unfinishedとして保持し、途中成功をend-to-end成功や業務完了へ丸めない。通常trace/receiptへraw業務payload・secret・credential値を保存・複製しない
+**L3 acceptance (`CONNECT-AC-005-01`)**：記録済み技術trace eventは上書き・削除・順序差替えせず、訂正を追記で表す。交換/切戻しeventも追跡し、data-use区分はsource ownerの識別子を保持する。送受信・受信確認失敗・再送途中のstale・期限切れ・取消・許可失効・部分失敗を接続単位に順序追跡できる。証拠は接続identity、能力名、operation/correlation/idempotency identity、target scope、使用revision、期限、互換照合結果、各attemptの識別子・順序・結果、停止理由、成功を観測した端点を含む。成功・失敗・部分成功・同identity同digestの重複・異digest衝突・unknownを区別し、ACKなし・取消・期限切れ・許可失効をunknown/unfinishedとして保持し、途中成功をend-to-end成功や業務完了へ丸めない。通常trace/receiptへraw業務payload・secret・credential値を保存・複製しない
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-005`。
 
