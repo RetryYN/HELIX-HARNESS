@@ -37,8 +37,8 @@
 | `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務、co-timed unrelated eventsとcausality overclaimを個別/併発変異 | provenance/unknown保持、correlation-onlyからcausal conclusion 0、owner return |
 | `HELIXLABO-L2-013` | C01/C02〜04 | 分類軸、根拠、元episodeの個別欠落/矛盾 | 分類軸別trace、根拠欠落の検出 |
 | `HELIXLABO-L2-014` | C01/C02〜04 | original meaning/purpose/condition、candidate deltaの欠落/不整合 | original-to-candidateの意味差trace、unknown停止 |
-| `HELIXLABO-L2-015` | C01/C02〜04 | 選択された比較区分のversion/condition/oracleを個別にずらし、選択arm欠落と未選択区分不在を分けて投入 | 選択区分の条件一致/欠落と不成立理由を照合し、未選択群だけで二者比較を不成立にしない |
-| `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落 | 各証拠状態の保持、判定不能のoperation return |
+| `HELIXLABO-L2-015` | C01/C02〜04 | baseline/current・candidate・hybridの実験条件を選択状態別に変異し、L2-059のHELIXなし/旧/新cohortは独立fieldとする。選択条件欠落と未選択condition/cohort不在を分ける。 | 選択実験条件の一致/不成立を照合し、未選択cohortまたは条件の不在だけでは比較を不成立にしない。 |
+| `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落。connector mismatchも別failure classで与える。 | 各証拠状態を保持し、判定不能はoperation候補に保留。親/有効contractに明示された宛先がなければunknown/保留とする。 |
 | `HELIXLABO-L2-017` | C01/C02〜04 | guarantee/revision/unfinished obligation/ownerを個別に欠落 | switch 0、欠落理由とowner return |
 | `HELIXLABO-L2-018` | C01/C02〜04 | sample condition/evidence scope/counterexampleを欠落または追加 | supportされた最大scope、反例によるscope縮小 |
 | `HELIXLABO-L2-019` | C01/C02〜04 | target identity/evidence/target permissionを欠落・混在 | target別提案、unknown targetをOSへ返す |

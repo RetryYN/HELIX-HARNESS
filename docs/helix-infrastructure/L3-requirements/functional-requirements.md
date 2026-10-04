@@ -204,22 +204,22 @@ TERから外部技術の観測・根拠付きdiff・unknown/staleのfail-close�
 
 ### 要件（候補）
 
-L2-001/002と対象stateのowner/retention/recovery要求、独立検証できるrestore environmentに依存し、`version_target: 1.0`とする。backup対象・source revision・time・completeness・location・integrity・expiry、要求にあるretention、configuration/artifact/dependency/data compatibility、復旧procedureとverification resultを対応付ける。backup実行state、実restore結果、適格rollback targetを別々に記録する。restoreでintegrity、dependency reconnection、startup、verificationを確認し、rollback targetにはInfrastructure version・configuration・artifact・dependency・data compatibilityとprocedureを結ぶ。backup設定≠backup成功、backup存在≠restore可能、rollback≠incident closureを保つ。変更前の適格state、failure、未完recovery/verificationを保存し、不完全または互換性不明ならrecovery design owner/OSへ返す。
+L2-001/002と対象state ownerが定めるretention/recovery要求、独立検証できるrestore environmentに依存し、`version_target: 1.0`とする。Infrastructureは保持期間のownerではなく、ownerの宣言値をsource/revision付きで参照する。技術上の期間候補が必要なら、owner要求を根拠に比較・測定方法とともにL3候補として明示し、宣言値や採択値として扱わない。backup対象・source revision・time・completeness・location・integrity・expiry、要求にあるretention、configuration/artifact/dependency/data compatibility、復旧procedureとverification resultを対応付ける。backup実行state、実restore結果、適格rollback targetを別々に記録する。restoreでintegrity、dependency reconnection、startup、verificationを確認し、rollback targetにはInfrastructure version・configuration・artifact・dependency・data compatibilityとprocedureを結ぶ。backup設定≠backup成功、backup存在≠restore可能、rollback≠incident closureを保つ。変更前の適格state、failure、未完recovery/verificationを保存し、不完全または互換性不明ならrecovery design owner/OSへ返す。
 
 ### 受入条件（AC候補）
 
-- **INFRA-005-AC-01 — 正常・追跡**：対象backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionが参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。rollback成功からincident closureやforward fix完了を生成せず、各ownerの別証拠を要求する。
-- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。rollback receiptのみでincidentをclosedにする反例を拒否し、元incident状態と未完義務を保持する。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
+- **INFRA-005-AC-01 — 正常・追跡**：対象state ownerが定めた保持期間・recovery要求（宣言がある場合）を、そのownerとsource revisionに結んで入力し、backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionを参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。保持期間の指定がない場合は値を補わず未指定として記録する。Infrastructure自身の保持期間要求として宣言せず、技術候補を提示する場合もowner要求から分けて未採択候補と明記する。rollback成功からincident closureやforward fix完了を生成せず、各ownerの別証拠を要求する。
+- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。保持期間要求のsource/ownerがmissing・unknownなら期間を推測せずunknownとして対象state/recovery ownerへ返し、宣言済み要求のowner/revisionが誤っている場合も一致扱いしない。Infrastructureが保持期間を所有すると扱う入力、または技術候補を採択済みowner要求として扱う入力も拒否する。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。rollback receiptのみでincidentをclosedにする反例を拒否し、元incident状態と未完義務を保持する。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
 
 ### 固定親句の被覆
 
 | 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
 |---|---|---|---|
-| 依存: L2-001/002、対象state owner/retention/recovery requirement、独立検証可能restore environment | `INFRA-005-FR-01 / INFRA-005-AC-01` | `L10-INFRA-005-C01,C02,C03` | target/source revision/time/completeness/location/integrity/expiry |
+| 依存: L2-001/002、対象state ownerが定めるretention/recovery requirement、独立検証可能restore environment。保持期間ownerは対象state ownerでありInfrastructureではない。 | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C01,C02,C03` | ownerの宣言済み保持要求・owner/source revision、target/source revision/time/completeness/location/integrity/expiry。欠落/unknownは期間を補わずunknown。候補提示は採択済み要求と分離 |
 | 保証: backup→restore/rollback結果を対象scopeのstate/evidenceと対応し、rollbackだけからincident closure/forward fix完了を生成しない | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C01,C03,C05` | backup state、実restore、rollback eligibility、incident/forward fixの別owner証拠を分離 |
 | 否定: source欠落/stale/別版/部分復元を完全成功としない | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | integrity/dependency/startup/verification/compatibility failure |
 | 戻し先: source owner/recovery obligation owner、未完義務を保持 | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | previous eligible state、failure、未完義務、recovery design owner/OS |
-| 版境界: version_target 1.0の明示scope。今回のoperation-scoped restore/rollback判定は親記載のintegrity・dependency・startup・verification・compatibility・procedureで閉じるため、汎用RTO/RPO/retentionを成功条件に要しない。別scopeで技術値が必要なら、上流指定の有無に拘らず根拠・比較・測定方法付きの候補としてL3に提示する | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C04,C05` | 今回不要な汎用閾値を必須gateにせず、operation固有義務を判定。必要な別技術値は候補化可能 |
+| 版境界: version_target 1.0の明示scope。今回のoperation-scoped restore/rollback判定は親記載のintegrity・dependency・startup・verification・compatibility・procedureで閉じるため、汎用RTO/RPO/retentionを成功条件に要しない。別scopeで技術値が必要なら、owner要求を根拠に、上流指定の有無に拘らず根拠・比較・測定方法付きの未採択候補としてL3に提示する。保持期間ownerをInfrastructureに移さない。 | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C04,C05` | 今回不要な汎用閾値を必須gateにせず、operation固有義務を判定。必要な別技術値は候補化可能 |
 
 ### 旧L3／対のtest designからの意味対応
 

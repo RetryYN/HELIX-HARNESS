@@ -18,7 +18,7 @@ task type/domain/complexity/context/tool requirement、ticket identity、およ�
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-010-01` 入力属性と戻し先**：全属性・ticket identityのそろった入力からproposalを生成し、各必須属性を一つずつ欠いた場合は推測で補わず未確定としてOSへ戻す。
-- **`AC-INTELLIGENCE-L3-010-02` 実績scopeと未評価**：各実績軸をWorker/model/version、task class、source revision/scopeへ結び、stale・scope mismatch・未評価をqualifiedと表示しない。価格／model名だけのfixtureも根拠不十分として未確定にする。
+- **`AC-INTELLIGENCE-L3-010-02` 実績scopeと未評価**：各実績軸をWorker/model/version、task class、source revision/scopeへ結び、stale・scope mismatch・未評価をqualifiedと表示しない。価格／model名だけのfixtureも根拠不十分として未確定にする。task属性/ticket不足はOSへ、Bench/evidence不足はLABOへ戻し配置proposalを未確定にする。
 - **`AC-INTELLIGENCE-L3-010-03` proposalとassignment分離**：proposalは推奨と根拠を示すだけで、OS assignment/authority receiptがない状態ではWorker起動・割当を起こさない。OS判断後もINTELLIGENCEが進行責務を取得しない。
 - **`AC-INTELLIGENCE-L3-010-05` G13内容oracle**：同条件の品質判定をcost/time/preferenceより先に適用し、quality gate未達を安さや速さで補償しない。rescue/rework/human interventionを別々に示し、人時間・介入が未換算または欠測ならunknownとし、総費用を完全と表示しない。L2-034経由のLABO材料についてsource/scope/revisionを保持し、適用可能なpriority/tolerance decisionがあるmetricだけ条件付きwinnerを示す。既決decisionが適用範囲内で有効なら各runで再確認を求めず、そのdecisionのscope/revisionを比較結果に結ぶ。未決・失効・範囲外のmetricは未選好値のままownerへ戻す。
 
@@ -31,8 +31,8 @@ INTELLIGENCE実装を使えない場合、人がL2-010と同じproposal contract
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-066-01` 同一proposal契約**：人手案とINTELLIGENCE案を同じL2-010 schema/versionおよびtask/scope/evidence fixtureへ通し、必須fieldの意味・範囲が一致する。human provenanceはINTELLIGENCE provenanceと区別して保持する。
-- **`AC-INTELLIGENCE-L3-066-02` 受領receiptと欠損**：receiptにsource/contract revision、task/scope、根拠・除外理由・不確実性/未評価、作成/受領actorと時点を結び、field欠落・wrong receiver・revision/scope mismatchでは受領済み扱いにしない。同一proposalの重複を新しい根拠にせず、未見contract版・遅延receiptは互換性不明ならOSへ戻す。
-- **`AC-INTELLIGENCE-L3-066-03` authority状態の分離**：人手案のみではLABO qualified state、INTELLIGENCE出力状態、OS assignment/実行開始を生成しない。各々の別recordがあるときもactor・scopeと状態を混同しない。
+- **`AC-INTELLIGENCE-L3-066-02` 受領receiptと欠損**：receiptにsource/contract revision、task/scope、根拠・除外理由・不確実性/未評価、作成/受領actorと時点を結び、field欠落・wrong receiver・revision/scope mismatchでは受領済み扱いにしない。同一proposalの重複を新しい根拠にしない。task属性/ticket不足はOSへ、Bench evidence・revision・scope不足はLABOへ、schema/contract version不明はINTELLIGENCEへ戻す。未見版・遅延receiptの互換性が不明な範囲だけunknownにし、戻し先を混同しない。
+- **`AC-INTELLIGENCE-L3-066-03` authority状態の分離**：人手案のみではLABO qualified state、INTELLIGENCE出力状態、OS assignment/実行開始を生成しない。配置案だけでauthority/scope/branchを拡張せず、各々の別recordがあるときもactor・scopeと状態を混同しない。
 
 
 ### `FR-INTELLIGENCE-L3-068` — `HELIXINTELLIGENCE-L2-068`
@@ -304,8 +304,8 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 - **`AC-INTELLIGENCE-L3-072-01` 正常成立とtrace**：適用scopeとpack revisionが一致するshadow candidateを入力し、review/rollback条件とnon-force状態、004と005各partを保つこと。
 - **`AC-INTELLIGENCE-L3-072-02` 個別変異・owner境界**：domain identityとselected capability compositionの不一致、未構成capabilityの実行可能化、stale applicability、review欠落、rollback根拠欠落、forced state、004/005 partの混同を独立に入れる。実験条件を選択した場合に限りLABO-006のOS assignment/result evidenceを、system化/operation配分評価を選択した場合に限りLABO-007の根拠を要求し、選択していない条件は必須化しない。INTELLIGENCEの自己評価だけで効果を確定しない。HARNESS-L2-023の常時必須/特定操作時のみ/選択時のみ/参照のみの四区分をsource tupleごとに区別し、allowlist変更だけで実行許可を作らない。未採択L2-076のmodel再検証提案は本候補で採択・実行せず、選択済みmodel-catalogの変更をcandidate facet staleとしてsource ownerへ返す範囲と分離する。2.0以降の外部知識取得または3.0以降の学習利用を1.0依存へ前倒しする変異もそれぞれ拒否し、未採択の版境界は候補に混入しない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
 - **`AC-INTELLIGENCE-L3-072-03` PO固定6-part追跡**：PO採択digest `sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775`を、`docs/governance/decisions/po-decision-2026-10-03-additions10.md`の合成規則どおり6 partの正規化bytes（各末尾空行を除いてLF終端、列挙順、part間区切りなし）から再現する。partは順に、(1) L2 original `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:561–589` `sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2`（004のpack candidate scope/version/依存）、(2) L2 supplement同path`:592–598` `sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b`（pack構成/FR57・58の保持・版境界）、(3) L11 original `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:289–303` `sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f`（004の前提・正常/失敗/未見oracle）、(4) L11 supplement同path`:306–314` `sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8`（未完正常、同条件比較、独立review、rollback/active、3.0境界oracle）、(5) L2 NFR-34 supplement `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:673–687` `sha256:511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8`（005の選択source stale意味）、(6) L11 NFR-34 supplement `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:398–434` `sha256:9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194`（source別 stale/unknown/owner戻しのoracle）。旧004の最初4 partを不変保持し、005の追加2 partを別途traceする。L2/L11のfull-file SHAや単独semantic SHAは補助locatorに限り、6 partの代替にしない。各ACはL2 original/supplementとL11 original/supplementを`AC-072-01/-02/-06/-07/-08`へ、005追加2 partを`AC-072-05`へ結び、L10 `CASE-072-01/-02/-05/-06/-07/-08`でそれぞれのpin・meaning・oracleを照合する。
-- **`AC-INTELLIGENCE-L3-072-04` held-out正常／局所unknown**：未見pack revisionでもapplicability/shadow/review/rollback evidenceが揃う候補を同じcontractで評価し、005 selected-source facetだけstaleならそのfacetの適用を止める。1.0〜2.xの知識評価・保持はLABOの範囲に残し、INTELLIGENCEの改善利用は3.0以降とする。3.0利用を1.0依存へ前倒ししない。未見workflowは宣言済み適用範囲外ならunknownのままにし、既定checklistへfallbackしてgateを強制しない。未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
-- **`AC-INTELLIGENCE-L3-072-05` 選択sourceごとのstale**：scope、requirement、template、skill、model catalog、allowlistの各source tupleを独立に選択したfixtureに対し、そのsource identity/revision/digest/applicability/ownerだけを個別に欠落・不一致・変更する。選択状態やformal ownerが不明なら該当facetを保留しownerを捏造しない。TERのprovider/model/runtime/versionだけが変わりmodel-catalog sourceが未選択ならstaleを主張せず、選択済みcatalogのrevision/digest変更だけを当該facet staleとする。実際に選択したsourceの該当candidate/shadow facetだけstaleへ変え、source ownerへ照合を戻す。各dependencyはHARNESS-L2-023区分どおり必要なoperationにだけ要求し、選択されていないsourceを依存として要求しない。非選択source変更では当該facetをstaleと断定せず、選択状態不明はunknownにする。
+- **`AC-INTELLIGENCE-L3-072-04` held-out正常／局所unknown**：未見pack revisionでもapplicability/shadow/review/rollback evidenceが揃う候補を同じcontractで評価し、005 selected-source facetだけstaleならそのfacetの適用を止める。1.0〜2.xの知識評価・保持はLABOの範囲に残し、INTELLIGENCEの改善利用は3.0以降とする。3.0利用を1.0依存へ前倒ししない。未見workflowは宣言済み適用範囲外ならunknownのままにし、既定checklistへfallbackしてgateを強制しない。未見性自体を失敗と扱わず、親contractで成立する部分を評価する。shadow中のcandidateは実判断・gate結果を変えず、shadow/reviewの完了だけではactive/強制状態にせず、既存対象authorityの採択記録がある場合だけその記録を参照する。
+- **`AC-INTELLIGENCE-L3-072-05` 選択sourceごとのstale**：scope、requirement、template、skill、model catalog、allowlistの各source tupleを独立に選択したfixtureに対し、そのsource identity/revision/digest/applicability/ownerだけを個別に欠落・不一致・変更する。選択状態やformal ownerが不明なら該当facetを保留しownerを捏造しない。TERのprovider/model/runtime/versionだけが変わりmodel-catalog sourceが未選択ならstaleを主張せず、選択済みcatalogのrevision/digest変更だけを当該facet staleとする。source ownerから新revision/digest、対象scopeへのapplicability、更新snapshotを受けた再評価後は新candidate revisionを作れるが、shadowが未実施なら未完のままとし、更新だけでreview済み・active・gate強制とはしない。実際に選択したsourceの該当candidate/shadow facetだけstaleへ変え、source ownerへ照合を戻す。各dependencyはHARNESS-L2-023区分どおり必要なoperationにだけ要求し、選択されていないsourceを依存として要求しない。非選択source変更では当該facetをstaleと断定せず、選択状態不明はunknownにする。旧専門agent/team/tool、self-verification、unbounded subagent、工程外completion authority、catalog lifecycle等の隣接条件はこのselected-source facetの合格対象ではなく、参照や本facetの完了をNFR-34全体またはHR-FR-HIL-21/HAC-HIL-21a/b/c/HAT-HIL-21のclosureとして数えない。
 - **`AC-INTELLIGENCE-L3-072-06` 構成edgeと競合保持**：同じpackへ重複source edgeを束ねる場合も各identity/version/applicability edgeを保持し、意味の異なるrequirement/evidence/反証/停止条件が競合したときはconflict/unknownと未解決部分を残す。INTELLIGENCEが優先順や意味を創作しない。
 - **`AC-INTELLIGENCE-L3-072-07` same-case比較とrollback**：同じ対象scope/revision/case/oracleでcandidateあり/なしのshadow結果を対にし、false-positive/false-negative/unknown/反例とrollback先・戻し条件・rollback evidenceを同じversionへ結ぶ。新しい数値閾値を作らず、観測値を成功条件にしない。unknownは成功に変換せず、rollback先・戻し条件・該当versionのrollback evidenceが欠ける候補はactiveにしない。対象pack版/scope・oracle・shadow結果が一致する有効な既存評価証拠は再利用でき、Worker実験を一律再要求しない。再利用元がstale/比較不能なら未完へ戻す。比較条件不一致やrollback根拠欠落は未完であり、閾値やrollback方式を新設しない。
 - **`AC-INTELLIGENCE-L3-072-08` candidate生成と独立reviewの段階分離**：scope/sourceだけでcandidate identity/versionを作成でき、shadow/review receiptが未取得なら後続義務として未完保持する。reviewを実施する場合は作成側と異なるreviewer identity/context/authority/routeを記録する。作成側が起用したsubagentは独立reviewerに数えない。provider/modelの一致だけで独立性を否定/肯定しない。shadow評価と独立reviewの双方が揃う前に強制規則へ昇格しない。双方が揃った後も、強制適用には別途既存対象authorityの記録が必要である。配置案はPO判断`docs/governance/decisions/po-decision-2026-09-29-57candidates.md` row 85の条件付き採択B（1.0はcandidate generationとshadow evaluationまで）を既決情報として表示し、候補文面・review・PR統合からその判断を生成または変更しない。
@@ -393,7 +393,7 @@ SECURITY permission、Worker execution、HARNESS verification、OS acceptanceの
 
 #### HELIXINTELLIGENCE-L2-030〜033 共通接続依存
 
-各対象sourceはその機構の専用CONNECT admitted contractを通して読み、HARNESS-L2-010/011の共通pack identity・契約版・scope・compatibilityも照合する。source join単独では接続成立にしない。契約の交換時は新旧版の互換・対象scope・対の受入を再照合し、不一致またはstaleなら該当handoffを保留して既存rollback条件を適用する。各接続のsource/semantic ownerは移さない。
+各対象sourceはその機構の専用CONNECT admitted contractを通して読み、HARNESS-L2-010/011の共通pack identity・契約版・scope・compatibilityも照合する。source join単独では接続成立にしない。契約の交換時は新旧版の互換・対象scope・対の受入を再照合し、不一致またはstaleなら該当handoffを保留して既存rollback条件を適用する。失敗時はL2-030–033各親の固定戻し先（HARNESS／OS／BRAIN／矛盾したProduct CoreまたはHARNESS source owner）を保持し、admitted contractが宛先を明示する場合はその宛先を継承、宛先未指定ならunknown/保留としてownerを推測しない。各接続のsource/semantic ownerは移さない。
 
 ### `FR-INTELLIGENCE-L3-030-01` — `HELIXINTELLIGENCE-L2-030`
 
@@ -509,13 +509,13 @@ Stage 4 rosterから採択済み・`version_target: 1.0`のINTELLIGENCE対象の
 
 LABO evaluation, target scope, explicit unassessed state, failure/counterexample/evidenceを受け、scope不一致をWorker suitabilityへ読み替えない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：LABO producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：LABO producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示された宛先があるときだけそこへ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-034-01` 正常成立**：LABOの評価済み結果はそのtarget/revision/method/scopeのevidenceとして、別caseの明示的未評価はunassessedのまま返す。適用先のWorker/task scopeを各結果に結び、両状態を集約して適格判定にしない。
 - **`AC-INTELLIGENCE-L3-034-02` 個別変異と失敗戻し先**：対象と異なるscopeの評価、success/failure/counterexampleの欠落、別caseの未評価を評価済みへ置換する変異、およびLABO historyだけからcurrent Worker/task assignmentを直接更新する変異を個別投入する。誤った評価の適用はLABOへ照合を戻し、historyからのassignment更新は成立させず既存OS assignment ownerへ返す。結果・未評価state・元scopeは保持し、別sourceやauthorityを代替しない。
-- **`AC-INTELLIGENCE-L3-034-03` 未見正常と局所unknown**：未見status/versionでもLABOが定義したstatusとscope compatibilityが一致する結果は対応する評価/未評価stateに保持する。評価または対象scopeの意味が不明な部分だけunassessedのままLABOへ戻す。
+- **`AC-INTELLIGENCE-L3-034-03` 未見正常と局所unknown**：未見status/versionでもLABOが定義したstatusとscope compatibilityが一致する結果は対応する評価/未評価stateに保持する。評価statusまたは対象scopeの意味が不明な範囲だけunassessedとしてLABOへ返す。L2-034の不一致/未評価evidenceもLABOへ戻す。別source/authorityは代替しない。historyからcurrent assignment変更を試みた場合は成立させず、既存OS assignment ownerへ返す。
 
 ### `FR-INTELLIGENCE-L3-035-01` — `HELIXINTELLIGENCE-L2-035`
 
@@ -523,7 +523,7 @@ LABO evaluation, target scope, explicit unassessed state, failure/counterexample
 
 承認済みgoal・dependency・plan/placement/diagnosis/review/repair candidateをOSへ渡すがticket/assignmentを作らない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCE producer・OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示された宛先があるときだけそこへ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
 
 **受入条件**
 
@@ -593,13 +593,13 @@ candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhand
 
 親L2が列挙するprediction・diagnosis・review・placement・repairの5種result（判断材料群の総称）を、種類・source revision・observation windowを保った別のsource-bound recordとして同一episode/scopeへ渡す。predictionとactual outcomeは別々に結び、比較差分も区別する。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示宛先がある場合だけその宛先へ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-040-01` 正常成立**：親L2の判断材料として列挙されたprediction・diagnosis・review・placement・repairの各対象resultを種類ごとに入力し、source revision・観測window・evidence・assumption・falsificationまたはactualを同一episode/scopeへ結んでLABOへ渡す。判断はこの列挙result群の総称として扱い、各result種別と根拠を別々に追跡する。未取得actualは未評価のままにする。
-- **`AC-INTELLIGENCE-L3-040-02` 個別変異と失敗戻し先**：predictionをactualと称する、prediction/diagnosis/review/placement/repairの各resultを脱落・別種へ置換する、別episodeをjoinする、遅延/重複actualを別成功として数える、INTELLIGENCEが効果評価を自分で採択する変異を個別投入する。source revisionまたは実測結果が不足する場合は固定L2どおりINTELLIGENCE/LABOへ戻す。未対応actualは固定L11どおりLABOへunknownとして送る。episode不一致は該当する元episodeへ照合し、重複は追加successに数えない。
-- **`AC-INTELLIGENCE-L3-040-03` 未見正常と局所unknown**：episode/scope/source revisionとobservation windowが宣言済みなら未見windowも追跡する。まだ取得していないactualはpending/unassessedとし、未観測を成功/失敗の実績にしない。
+- **`AC-INTELLIGENCE-L3-040-02` 個別変異と失敗戻し先**：predictionをactualと称する、prediction/diagnosis/review/placement/repairの各resultを脱落・別種へ置換する、別episodeをjoinする、遅延/重複actualを別成功として数える、INTELLIGENCEが効果評価を自分で採択する変異を個別投入する。source revisionまたは実測結果が不足する場合は固定L2どおりINTELLIGENCE/LABOへ戻す。未対応actualは固定L11どおりLABOへunknownとして送る。episode不一致は該当する元episodeへ照合し、重複は追加successに数えない。connector/pack不一致はhandoffを保留してunknownを保持し、明示宛先がないownerは推測しない。
+- **`AC-INTELLIGENCE-L3-040-03` 未見正常と局所unknown**：episode/scope/source revisionとobservation windowが宣言済みなら未見windowも追跡する。まだ取得していないactualはpending/unassessedとし、未観測を成功/失敗の実績にしない。result種別またはそのsourceが特定できない入力は該当部分だけunknownとして保持し、判断材料群の総称を第6種resultにしない。
 
 ### `FR-INTELLIGENCE-L3-041-01` — `HELIXINTELLIGENCE-L2-041`
 
@@ -621,7 +621,7 @@ candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhand
 
 generic candidateとevidence/scopeをLABOへ渡し、BRAIN knowledgeへ直接writeしない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示宛先がある場合だけその宛先へ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
 
 **受入条件**
 
@@ -696,7 +696,7 @@ LABOの過去評価、BRAIN汎用知識、INTELLIGENCEの今回判断、OS実行
 
 - **`AC-INTELLIGENCE-L3-063-01` 正常**：過去episodeのLABO評価とcurrent判断を別source/revisionとして結び、OS実行・HARNESS工程証拠と今回判断への適用範囲を追跡する。candidateから恒久改善やBRAIN writeを起こさない。
 - **`AC-INTELLIGENCE-L3-063-02` 欠落・反例**：LABO評価なし、BRAIN source不明または未承認BRAIN candidate、OS未完了、HARNESS contract mismatchを個別投入する。INTELLIGENCEが単独で効果を確定する変異も不成立とし、評価不足はLABO、知識不明/未承認候補はBRAIN、実行未完はOS、contract不一致はHARNESSへ戻す。
-- **`AC-INTELLIGENCE-L3-063-03` 未見・遅着**：遅着/重複のhistorical outcomeを元episode/revisionへ結び、current judgmentを上書きしない。applicabilityが未確定なら該当effect/candidateをunknownのままにし、適用先の意味を推測しない。効果評価の不足/不明はLABOへ、汎用knowledge sourceのidentity/revision不明はBRAINへ、実行状態未完了はOSへ個別に返す。複数の欠落を一つの曖昧な戻し先へまとめず、historical outcomeとcurrent judgmentを分離する。
+- **`AC-INTELLIGENCE-L3-063-03` 未見・遅着**：遅着/重複のhistorical outcomeを元episode/revisionへ結び、current judgmentを上書きしない。applicabilityが未確定なら該当effect/candidateをunknownのままにし、固定L11どおりLABO/BRAIN ownerへ返す。効果評価の不足はLABOへ、汎用knowledge sourceのidentity/revision不明はBRAINへ、実行状態未完了はOSへ個別に返す。複数の欠落を一つの曖昧な戻し先へまとめず、historical outcomeとcurrent judgmentを分離する。
 
 ### `FR-INTELLIGENCE-L3-069-01` — `HELIXINTELLIGENCE-L2-069`
 
@@ -735,7 +735,7 @@ LABOが評価済みとした返却reason・再発行後検証結果を同scope/t
 既存source ownerがqualifiedと示すinternal/UILまたはexternal/TER receiptを選択したoperationでだけdelta candidateを作り、source identity/revision/owner/originとunknownを保つ。source qualification、UIL/TER observation、Future Synthesis intake/invalidation、route/assignment、Requirement/Design/Release/merge stateの変更を再実装せず、delta candidateから直接変更しない。
 
 - **`AC-INTELLIGENCE-L3-077-01` 正常**：一つのselected qualified receiptをsource-bound delta candidateへ結びorigin typeとownerを保つ。候補受入だけでは正本/authorityを変更しない。
-- **`AC-INTELLIGENCE-L3-077-02` 欠落・反例**：receipt unavailable/stale/unqualified、owner不明、unknown値を0/neutral/unchanged/observedへ補完する4変異、別receiptへの暗黙fallback、Requirement/Design/Release/Assignment/merge authority/stateへの各direct writeを5変異として個別投入し、unknown/incompleteとしてselected source ownerへ戻す。 external provider releaseだけでHELIX artifact/findingがない例はHELIX defect確定とせず、internal→external/TER、external→internal/UILの誤帰属をそれぞれ拒否する。選択receiptのownerを別ownerへ置換する変異も個別に拒否し、選択sourceとorigin/ownerを保つ。
+- **`AC-INTELLIGENCE-L3-077-02` 欠落・反例**：receipt unavailable/stale/unqualified、owner不明、unknown値を0/neutral/unchanged/observedへ補完する4変異、別receiptへの暗黙fallback、Requirement/Design/Release/Assignment/merge authority/stateへの各direct writeを5変異として個別投入し、unknown/incompleteとしてsource identity/qualification不明は該当source ownerへ、finding/delta candidate根拠不足はINTELLIGENCE ownerへ、OS ticket/assignmentはOS ownerへ、評価不足はLABO ownerへ戻す。正式なFuture Synthesis consumer/ownerが不明ならunknownのまま上流scope照合へ戻す。 external provider releaseだけでHELIX artifact/findingがない例はHELIX defect確定とせず、internal→external/TER、external→internal/UILの誤帰属をそれぞれ拒否する。選択receiptのownerを別ownerへ置換する変異も個別に拒否し、選択sourceとorigin/ownerを保つ。
 - **`AC-INTELLIGENCE-L3-077-03` 未見・依存区分**：HARNESS-023の常時/operation時/selected-source/参照のみ4区分に沿ってfixtureを分ける。未選択source不在を推論せず、履歴candidateをcurrent authorityにしない。正式consumer/routeが固定親で未定ならunknownのまま保つ。
 
 ### Stage 5 親pin・旧起点crosswalk

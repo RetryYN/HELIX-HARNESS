@@ -939,8 +939,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-015-AC-01 — 正常・trace**：選択された比較区分（baseline/current、candidate、hybridのうち親が対象とするもの）についてsource revision、条件、oracle、target versionを対応づける。区分を混同せず、別条件として指定された比較も保持する。三者の関係を主張する場合に限り三者をそろえ、目的に応じた二者比較を不必要に失格にしない。専用HELIX-CONNECT contract `HELIXLABO-L2-015` の採択済みidentity/revision・schema/provenanceを個別に照合し、transformation candidateを各比較区分の条件へ渡す親指定の接続意味だけを成立させる。
-- **LABO-015-AC-02 — failure/owner boundary**：選択された比較arm間の版/条件差、選択armのoracle不足を成功扱いしない。未選択区分の欠落だけでは、選択した比較目的の成立を否定しない。 Worker実行を開始/割当しない。 専用HELIX-CONNECT `HELIXLABO-L2-015` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、experiment/oracle ownerへ戻す。
+- **LABO-015-AC-01 — 正常・trace**：選択された比較条件（baseline/current、candidate、hybrid）についてsource revision、適用条件、oracle、target versionを対応づける。これはL2-015の実験条件軸であり、L2-059の支援cohort（HELIXなし／旧／新）とは別要求・別fieldで、L2-015判定へ持ち込まない。選択した実験条件の外は未測定・対象外として示し、選択範囲で成立する比較を要求外のarm不在だけで失格にしない。専用HELIX-CONNECT contract `HELIXLABO-L2-015` の採択済みidentity/revision・schema/provenanceを照合する。
+- **LABO-015-AC-02 — failure/owner boundary**：選択条件間の版/条件差または選択条件のoracle不足を成功扱いせず、比較を未成立として保留する。L2-015は戻し先ownerを指定しないため、既存の有効なconnector contractが明示する戻し先があればそれを継承し、なければunknown/保留としてownerを推測しない。connector不一致は接続不成立として同じunknown/保留にし、業務上のoracle/比較条件不足とfailure classを分けて記録する。Worker実行/割当は起こさない。
 
 ### 固定親句trace
 
@@ -948,7 +948,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-015-FR-01 / LABO-015-AC-01` | `L10-LABO-015-C01`, `L10-LABO-015-C04` | 許可input・source identity/revision・出力状態が対応 |
 | 不一致/欠落/unknown/staleの失敗規則 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C02`, `L10-LABO-015-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 責務ownerと変更禁止境界 | `LABO-015-FR-01 / LABO-015-AC-02` | `L10-LABO-015-C02,C03` | 書戻し/dispatchなし。親にないoracle不足・connector不一致ownerは推測せずunknown/保留。 |
 | 親範囲内のheld-out正常fixture | `LABO-015-FR-01 / LABO-015-AC-01` | `L10-LABO-015-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-016-FR-01 — HELIXLABO-L2-016 Experiment → Assurance Allocation
@@ -973,8 +973,8 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 
 ### 受入条件候補
 
-- **LABO-016-AC-01 — 正常・trace**：比較可能性、反例、oracle、run interruptionが評価材料へ個別に残る。 専用HELIX-CONNECT contract `HELIXLABO-L2-016` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（比較結果・反例・oracle・中断状態をsystem/operation評価材料へ渡し、判定不能はoperation候補に留める）だけを成立させる。
-- **LABO-016-AC-02 — failure/owner boundary**：判定不能をsystem候補成立へ読み替えない。 自動system化/昇格をしない。 専用HELIX-CONNECT `HELIXLABO-L2-016` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、評価ownerへ戻す。
+- **LABO-016-AC-01 — 正常・trace**：比較可能性、反例、oracle、run interruptionが評価材料へ個別に残る。専用HELIX-CONNECT contract `HELIXLABO-L2-016` の採択済みidentity/revision・schema/provenanceを照合し、比較結果・反例・oracle・中断状態をsystem/operation評価材料へ渡す。
+- **LABO-016-AC-02 — failure/owner boundary**：判定不能はL2-016どおりoperation候補として保留し、system候補成立へ読み替えない。自動system化/昇格をしない。親は判定不能のownerを指定しないため、connector contractが既存の明示戻し先を持つ場合だけ継承し、指定がなければunknown/保留としてownerを推測しない。connector不一致は接続不成立として別failure classで保持する。
 
 ### 固定親句trace
 
@@ -982,7 +982,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 |---|---|---|---|
 | parentの入力→出力とprovenance/version guarantee | `LABO-016-FR-01 / LABO-016-AC-01` | `L10-LABO-016-C01`, `L10-LABO-016-C04` | 許可input・source identity/revision・出力状態が対応 |
 | 不一致/欠落/unknown/staleの失敗規則 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C02`, `L10-LABO-016-C03` | 個別および併発mutationを成功へ昇格しない |
-| 責務ownerと変更禁止境界 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C03` | LABOの書戻し/dispatch/owner変更0、親指定ownerへ戻す |
+| 責務ownerと変更禁止境界 | `LABO-016-FR-01 / LABO-016-AC-02` | `L10-LABO-016-C02,C03` | 判定不能operation候補として保留。親にないownerは推測しない。 |
 | 親範囲内のheld-out正常fixture | `LABO-016-FR-01 / LABO-016-AC-01` | `L10-LABO-016-C04` | 未見typeだけを理由に落とさず同じ親契約で照合 |
 
 ## LABO-017-FR-01 — HELIXLABO-L2-017 Assurance Allocation → Operational Fallback
@@ -1493,7 +1493,7 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 ### 受入条件候補
 
 - **LABO-034-AC-01 — 正常・trace**：複数の独立product/meaning/episodeを含むsupported structureのみ内部candidateとして渡しsource/scopeを保持し、採択された当該BRAIN接続専用connector contract identity/revision/schema/provenanceを照合する。
-- **LABO-034-AC-02 — failure/owner boundary**：single case、product-specific meaning、顧客固有ルール、unknown applicabilityからgeneric candidateを作らない。L2-009が指定する一事例・適用範囲不明は同ownerへ戻す。BRAIN向け専用connectorのidentity/revision/schema/provenance欠落、stale、非互換は受領不成立としてunknownのまま保留する。L2-009が明示する戻し先は一事例・適用範囲不明の条件に限り、connector不一致に新しい戻し先を追加しない。BRAIN ingestion/authorityを作らず、外部knowledge/evaluation loopを1.0に含めない。
+- **LABO-034-AC-02 — failure/owner boundary**：single case、product-specific meaning、顧客固有ルール、unknown applicabilityからgeneric candidateを作らない。L2-034が一事例・適用範囲不明の戻し先としてL2-009を指定するため、その条件に限りL2-009へ戻す。BRAIN向け専用connectorのidentity/revision/schema/provenance欠落、stale、非互換は受領不成立としてunknownのまま保留する。L2-034が明示するL2-009への戻し先は一事例・適用範囲不明に限り、connector不一致に新しい戻し先を追加しない。BRAIN ingestion/authorityを作らず、外部knowledge/evaluation loopを1.0に含めない。
 
 ### 固定親句trace
 
@@ -1526,7 +1526,7 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 ### 受入条件候補
 
 - **LABO-035-AC-01 — 正常・trace**：評価material packetはscope/source revision/unassessed stateを保持し、L2-035のpayloadとして受渡す。これはL2-052が担う全材料収集・同一revision到達の完了を主張せず、L2-054のBench作業水準を重複定義しない。採択されたINTELLIGENCE接続専用connector contract identity/revision/schema/provenanceを照合する。
-- **LABO-035-AC-02 — failure/owner boundary**：source/scope/revision unknownやunassessedを評価済み/learnedへ変えない。INTELLIGENCE向け専用connectorのidentity/revision/schema/provenance欠落、stale、非互換は受領不成立・unknownとして保留し、固定L2-035が明示していない戻し先（CONNECT/source owner/INTELLIGENCE consumer）を推測しない。INTELLIGENCEの学習/調整、model selection/placement/bot operationを実行しない。
+- **LABO-035-AC-02 — failure/owner boundary**：source/scope/revision unknownやunassessedを評価済み/learnedへ変えない。L2-052が担う構成体の全材料収集・同一revision到達を本packetの完了として主張する変異、L2-054専用のHELIX-Bench水準を本payloadで再定義する変異をそれぞれ不成立にする。INTELLIGENCE向け専用connectorのidentity/revision/schema/provenance欠落、stale、非互換は受領不成立・unknownとして保留し、固定L2-035が明示していない戻し先（CONNECT/source owner/INTELLIGENCE consumer）を推測しない。INTELLIGENCEの学習/調整、model selection/placement/bot operationを実行しない。
 
 ### 固定親句trace
 

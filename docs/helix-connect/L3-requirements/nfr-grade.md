@@ -4,7 +4,7 @@
 
 | 候補ID / AC | 候補parameter | 候補値・比較 | 根拠 | L10で観測するもの |
 |---|---|---|---|---|
-| `CON-NFR-001` / AC-004-01 | retry cap | L11の「初回送信後に、設定済み上限まで再送」を根拠に、候補Nは初回ではなく追加retry数として扱う。共通数値は置かず接続契約のNを入力する。 | `HELIXCONNECT-L2-004` は上限/可否を接続契約へ帰属させる。旧generic CONNECT sourceに数値なし。PDCのpage/cursor値は別ownerのため転用しない。 | retry N-1回でまだ上限未到達、N回で停止、N+1回目の追加retry 0。total sendは初回1回+最大N retry。契約がNの意味を別途宣言する場合はその定義を入力し、この解釈を押し付けない。 |
+| `CON-NFR-001` / AC-004-01 | retry capとfailure classification | L11の「初回送信後に、設定済み上限まで再送」を根拠に、候補Nは初回ではなく追加retry数として扱う。failure classificationがmissing/unknownなら候補上の追加retryは0とし、unknownをretryableへ補完しない。共通数値は置かず接続契約のNを入力する。 | `HELIXCONNECT-L2-004` は上限/可否を接続契約へ帰属させる。旧generic CONNECT sourceに数値なし。PDCのpage/cursor値は別ownerのため転用しない。 | retry N-1回でまだ上限未到達、N回で停止、N+1回目の追加retry 0。missing/unknown classification別fixtureでも追加retry 0、unknown記録、operation ownerへの返却を観測する。契約がNの意味を別途宣言する場合はその定義を入力し、この解釈を押し付けない。 |
 | `CON-NFR-002` / AC-004-01 | 同一operationの重複効果 | 同一operation identity＋同一digestに対する業務効果の候補上限は1回、追加attemptの効果は0回。 | `HELIXCONNECT-L2-004`の同一identity/digest重複排除。 | 同じfixtureを再送し、受信効果1回・重複効果0回を確認。異digestは拒否し、business resultはretryしない。 |
 | `CON-NFR-003` / AC-002-01 | stale中の送信数 | revision drift検出から新しい互換照合まで送信0回。 | `HELIXCONNECT-L2-002`はstaleを互換成立と扱わず、再検証したrevision組だけstaleを解除する。 | revisionを変え、再照合までattempt数が0であること、送信なし照合のeligibilityが`not_evaluated`であることを観測する。 |
 | `CON-NFR-004` / AC-005-01 | trace completeness | 固定L2が挙げるevent classとoperation/revision/attempt識別子について、観測した各eventのtrace欠落0件を候補基準とする。L11列挙の証拠fieldも個別に全件照合する。通常trace/receiptのraw業務payload・secret・credential値保存/複製件数は各0とし、同一identity同digest重複と異digest衝突を別状態で測る。 | `HELIXCONNECT-L2-005`のappend-only trace、状態区分と端点観測範囲。 | 登録/照合/send/receipt/retry/stale/拒否/終端のfixture eventとtraceを突合。欠落・順序曖昧はunknownで業務完了しない。 |

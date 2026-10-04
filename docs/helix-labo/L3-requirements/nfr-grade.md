@@ -59,8 +59,8 @@
 | `HELIXLABO-L2-012` | provenance/relation revision/unknown保持候補、correlation-onlyからcausal claimを作る誤り0候補 | relation・episode revision不一致/欠落とco-timed unrelated eventを個別/併発入力 | relation/source owner return、causal overclaim 0 |
 | `HELIXLABO-L2-013` | 分類軸/根拠のtrace completeness 100%候補 | 根拠field欠落・分類矛盾 mutation | Vector inputからsource evidenceへ往復 |
 | `HELIXLABO-L2-014` | original meaning/purpose/conditionとcandidate delta 100% trace候補 | 元意味不明・partial evidence mutation | 不明時停止、ownerへbackflow |
-| `HELIXLABO-L2-015` | 選択された比較区分（baseline/current、candidate、hybrid）のversion/condition/oracle一致100%候補 | 選択した区分ごとにcondition/oracleを個別にずらし、未選択区分の欠落と選択区分の欠落を分けて確認する | 比較成立/不成立を区別し、未選択区分の欠落だけで目的に合う比較を排除しない |
-| `HELIXLABO-L2-016` | comparison/counterexample/oracle/interruption status全件保持候補 | oracle不一致・counterexample・中断を独立投入 | 判定不能をoperation候補に保留 |
+| `HELIXLABO-L2-015` | 選択された実験条件（baseline/current、candidate、hybrid）のversion/condition/oracle一致100%候補。L2-059のHELIXなし/旧/新cohortとは独立fieldで保持する。 | 選択した実験条件ごとにcondition/oracleを変異し、選択条件の欠落と未選択cohort/conditionの不在を分けて照合する。 | 選択条件の比較成立/不成立を区別し、未選択cohortまたは条件の不在だけで比較を失格にしない。 |
+| `HELIXLABO-L2-016` | comparison/counterexample/oracle/interruption status全件保持候補 | oracle不一致・counterexample・中断を独立投入 | 判定不能をoperation候補に保留し、親または既存contractに明示された場合以外の戻し先を推測しない。 |
 | `HELIXLABO-L2-017` | current guarantee/revision/unfinished obligations/owner trace 100%候補 | current versionまたはownerを欠落 | switch実行0、owner returnを記録 |
 | `HELIXLABO-L2-018` | supported scope/evidence/counterexample coverage 100%候補 | sample condition欠落・反例追加 | evidence以上のscope拡張0 |
 | `HELIXLABO-L2-019` | target-specific proposal/evidence/identity一致100%候補 | target identity欠落/target混合 | 不明targetはOSへrouting候補として返す |

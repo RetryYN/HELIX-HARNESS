@@ -99,15 +99,15 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-005-C01**（AC `INFRA-005-AC-01`）: 対象state ownerが定めるretention/recovery要求とbackup target/source revision/time/completeness/location/integrity/expiry、procedureを入力する。期待oracle:backup設定とbackup execution stateが別で、retention/recovery要求および各fieldを対象state owner・source revisionへtraceできる。owner要求が欠落/unknownなら期間を補わずunknownとして保持する。
-- **L10-INFRA-005-C02**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: job successfulでもbackup completeness/integrity false、staleまたはtarget外revisionのfixture。期待oracle:backup存在/job成功だけからrestore可能とせず、failure/理由/変更前の適格stateを保持する。
+- **L10-INFRA-005-C01**（AC `INFRA-005-AC-01`）: 対象state ownerが宣言したretention/recovery要求（保持期間を含む場合はその値・source revision）とbackup target/source revision/time/completeness/location/integrity/expiry、procedureを入力する。期待oracle:backup設定とbackup execution stateが別で、ownerが宣言した要求および各fieldを対象state owner・source revisionへtraceできる。owner要求が欠落/unknownなら期間を補わずunknownとして保持し、owner不在時は保持期間を候補値で埋めない。技術候補を提示する場合は対象state ownerの要求から分け、未採択候補として示す。
+- **L10-INFRA-005-C02**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: job successfulでもbackup completeness/integrity false、staleまたはtarget外revisionのfixtureを与える。独立変異としてowner retention/recovery要求を欠落・unknownにし、宣言済み要求ではownerまたはsource revisionを異ならせる。別変異でInfrastructureを保持期間ownerとして扱い、さらに未採択候補をowner宣言値と偽る。期待oracle:backup存在/job成功だけからrestore可能とせず、保持期間を推測せずunknownを保ち、誤owner/revisionを一致とせず、Infrastructureへのowner付替えや候補の採択済み扱いを拒否し、failure/理由/変更前の適格stateを保持してrecovery design owner/OSへ戻す。
 - **L10-INFRA-005-C03**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: compatible restore environmentで実restoreし、integrity、dependency reconnection、startup、verificationを全て照合する正常caseと、各条件を個別に欠落させるcase。期待oracle:実restore resultと検証結果を区別し、条件不足を成功にしない。
 - **L10-INFRA-005-C04**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: configuration/artifact/dependency/data compatibility不明またはrollback target/procedure不明のfixture。期待oracle:rollback適格性を保留し、previous eligible state/failure/未完義務をrecovery design owner/OSへ戻す。
-- **L10-INFRA-005-C05**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: 親に指定されない汎用RTO/retention-day/RPO閾値を判定に注入するfixtureと、正常rollback receiptしかなくincident closureまたはforward fix完了を主張する各fixtureを別々に与える。期待oracle:今回のoperation-scoped criteriaに不要な数値を必須gateにしない。別途数値scopeが要件上必要なら、根拠・比較・測定方法付きL3候補として示す。正常rollback receiptのみでincident closure/forward fix完了を生成する各反例は不合格で、incident状態・未完義務を別ownerの証拠がない限り保持する。
+- **L10-INFRA-005-C05**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: 親に指定されない汎用RTO/retention-day/RPO閾値を判定に注入するfixtureと、正常rollback receiptしかなくincident closureまたはforward fix完了を主張する各fixtureを別々に与える。期待oracle:今回のoperation-scoped criteriaに不要な数値を必須gateにしない。ownerの保持要求を入力にした技術候補提示の正常fixtureでは、Infrastructureが保持期間を所有せず、その要求を根拠とする未採択L3候補として根拠・比較・測定方法を示す。Infrastructure自身を保持期間ownerとせず、candidateを実行値にしない。正常rollback receiptのみでincident closure/forward fix完了を生成する各反例は不合格で、incident状態・未完義務を別ownerの証拠がない限り保持する。
 
 ### 観測点とoracle
 
-このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。技術上時間・保持期間の候補が必要と判断した場合は、固定L2/L11に値がなくても、運用目的、比較案、測定方法を添えてL3候補として提示できる。候補は対象state ownerのretention/recovery要求と照合し、owner要求が欠落/unknownなら値・期間を推測しない。上流に明示されていない値は採択前の合否oracleにせず、汎用閾値を必須化しない。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。保持期間ownerは対象state ownerでありInfrastructureではない。技術上時間・保持期間の候補が必要と判断した場合は、固定L2/L11に値がなくても、owner要求をsourceとして運用目的、比較案、測定方法を添えた未採択L3候補として提示できる。候補は対象state ownerのretention/recovery要求と照合し、owner要求が欠落/unknownなら値・期間を推測しない。上流に明示されていない値は採択前の合否oracleにせず、汎用閾値を必須化しない。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
 
 
 ## HELIXINFRASTRUCTURE-L2-009 — L10 oracle（対応 `INFRA-009-FR-01`）
