@@ -48,10 +48,10 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：P11-O04（cut-over）とP11-O10（revert・旧表の扱い）と一体で使われる。P11-O01・O02とは対立する案である。
 - 限界：MySQLのreplication protocolに固有である。
 
-### P11-O04 sentry表と2接続で行う原子的なcut-over（失敗すると切替前に戻る）
+### P11-O04 sentry表と2接続で行う原子的な表名切替（cut-over）
 - 出典：gh-ost、`doc/cut-over.md` 行1–21（https://github.com/github/gh-ost/blob/f7a42f6b8028e96d3c8abd47a4da38baedb1161d/doc/cut-over.md#L1-L21）、`go/logic/migrator.go` の `cutOver` 行875–965、`waitForEventsUpToLock` 行967–1007、`atomicCutOver` 行1055–1162（https://github.com/github/gh-ost/blob/f7a42f6b8028e96d3c8abd47a4da38baedb1161d/go/logic/migrator.go#L875-L1162）。two-step方式の説明は `doc/triggerless-design.md` 行81–87（https://github.com/github/gh-ost/blob/f7a42f6b8028e96d3c8abd47a4da38baedb1161d/doc/triggerless-design.md#L81-L87）。設計の議論はissue #82（https://github.com/github/gh-ost/issues/82、closed）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：`cutOver` は、まずthrottleし、postpone flag fileがある間は待つ。heartbeatの遅れが大きい間も待つ。次にghost tableをANALYZEし、atomic方式とtwo-step方式を切り替える。`atomicCutOver` では、接続Aがsentry表（`_del`名）を作り、原表と一緒にlockする（`AtomicCutOverMagicLock`）。続いて `waitForEventsUpToLock` が、changelogへ書いたchallenge値をbinlogから読み戻すまで待ち、backlogを消化する。接続Bは `RENAME` を発行してblockされる。`RENAME` がPROCESSLISTに現れたことを確かめてから、Aはsentry表を消し、unlockする。
-- 解いている問題と前提：MySQLでは、lockを持つ接続自身は表を入れ替えられない。two-step方式では、表が存在しない瞬間がある。issue #82は、どの接続がどの時点で死んでも、lockが解けて `RENAME` が失敗し、元の状態に戻ることを列挙している。成否はghost tableが残っているかどうかで判定する。
+- 解いている問題と前提：MySQLでは、lockを持つ接続自身は表を入れ替えられない。two-step方式では、表が存在しない瞬間がある。issue #82の初期本文は、接続が死ぬ時点ごとに、lockが解けて `RENAME` が失敗し元の状態に戻る、という設計上の説明を列挙している。ただし同じissueの後続の反例報告（https://github.com/github/gh-ost/issues/82#issuecomment-862200470）は、sentry表のDROPとunlockの間で接続が切れた場合に、表名切替は完了する一方で、後続のretryがmagic commentの不一致で失敗終了しうると指摘している。maintainerの後続応答（https://github.com/github/gh-ost/issues/82#issuecomment-864892666）はこれを解決済みとせず、two-step方式の検討を案内している。固定commitの`atomicCutOver`（行1055–1162）も、unlockの結果とrenameの結果を別々に観測する制御である。したがって、ここで観察できるのは「表名切替がatomicであること」であり、「操作がどこで失敗しても切替前に戻る」という保証ではない。反例commentは接続の呼び方に揺れがあり、固定版で失敗を再現した証拠としては扱わない。
 - 必要な入力：cut-overのlock待ちの上限（値は持ち込まない）、postponeの制御（flag file、対話command）、two-step方式を許すかどうか。
 - trade-off・失敗の仕方：cut-overは、retryすることを前提にしている（コメント行955–957付近）。ANALYZEの失敗はretryさせず致命とする、というコメントがある（行923–930）。two-step方式は「table outage」を伴うと明記されている（`doc/triggerless-design.md` 行81–87）。
 - 反例・適用しない場合：pgrollのcompleteは、表の差替えではなく、旧版のviewの削除と列の改名で済ませる（P11-O01）。

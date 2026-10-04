@@ -169,7 +169,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：失敗が一時的か恒久的かをworkerが一番よく知っているので、判断をworkerへ委ねる。at-least-once実行（P08-O04・O05）を前提に、冪等性を利用者側の責務にしている。
 - 必要な入力：恒久失敗と一時失敗の区別、最大試行回数、job種別ごとのtimeout、外部の待ち（rate limit等）をsnoozeで表すかどうか。
 - trade-off・失敗の仕方：Riverのrescuerは、worker固有timeoutが未経過なら救出しない（P08-O04）。timeoutとrescueの閾値が互いに作用する。BullMQは、timeoutを利用者codeに置くため、中断できない処理はlock更新（P08-O05）でしか見えない。
-- 反例・適用しない場合：Quartzは時刻駆動であり、job失敗時のretry・backoffを組込みでは持たない（今回の検索範囲では見当たらなかった）。回復は `requestsRecovery`（P08-O08）とmisfire（P08-O09）に限られる。
+- 反例・適用しない場合：Quartzは時刻駆動であり、間隔を空けた一般的な遅延retry・backoffは、今回の検索範囲では組込みに見当たらなかった。これとは別に、jobが`JobExecutionException`の`refireImmediately`を指定して例外を返すと、即時に再実行する経路がある（`JobExecutionException.java` 行92–111、155–160 → `AbstractTrigger.java` 行492–497の`executionComplete`が`RE_EXECUTE_JOB`を返す → `JobRunShell.java` 行221–255の実行loopが継続。https://github.com/quartz-scheduler/quartz/blob/741ccc3cff96a32e4ab07d69624eaaa534624245/quartz/src/main/java/org/quartz/JobExecutionException.java#L92-L111 、https://github.com/quartz-scheduler/quartz/blob/741ccc3cff96a32e4ab07d69624eaaa534624245/quartz/src/main/java/org/quartz/impl/triggers/AbstractTrigger.java#L492-L497 、https://github.com/quartz-scheduler/quartz/blob/741ccc3cff96a32e4ab07d69624eaaa534624245/quartz/src/main/java/org/quartz/core/JobRunShell.java#L221-L255）。instance障害後の回復は `requestsRecovery`（P08-O08）、予定時刻の取りこぼしはmisfire（P08-O09）が扱う。
 - 互換・非互換：P08-O04（rescue時のretry判断に使う）、P08-O03（snoozeは running→scheduled の遷移）。
 - 限界：backoffの式、上限回数、timeoutの値は持ち込まない。
 

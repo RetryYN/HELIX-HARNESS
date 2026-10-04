@@ -274,7 +274,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - trade-off・失敗の仕方：
   - issue #306 は、toastごとの `role=status` の要素が、toastがあるときだけ存在していたため、一部の読み上げ器が告知を逃した失敗の報告である。常に存在する容器にliveの属性を移す案が採られた。同じissueでは、固定の英語の `aria-label` が多言語のsiteで問題になると指摘されている。
   - issue #620 は、緊急の通知を `alertdialog` にする要望である。portal構造上対応できないとして閉じられた。
-- 反例・適用しない場合：緊急の通知（alertdialog）は、両repoとも一時通知の範囲外としている。
+- 反例・適用しない場合：sonnerは、緊急の通知をalertdialogにする要望（issue #620）を、portal構造上対応できないとして閉じている。MDCについて引用範囲で確かめたのは、politeなlive regionの設定と、音声feedback系のa11y serviceが有効なときのanimation省略までである。MDCが緊急の通知をどう扱うかの方針は、この範囲からは導かない。
 - 互換・非互換：P15-O07〜O09と組で使う。P15-O03（読み上げ文言の多言語化）と関係する。
 - 限界：ARIAの具体設定の妥当性は、HELIXでは未評価。
 

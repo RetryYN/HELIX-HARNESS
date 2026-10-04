@@ -17,14 +17,14 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 
 ## 観察
 
-### P14-O01 背景との対を必須にした役割色（DynamicColor＋ContrastCurve）
+### P14-O01 背景を宣言した役割色にcontrast曲線との整合を実行時に検査する（DynamicColor＋ContrastCurve）
 - 出典：material-color-utilities、`typescript/dynamiccolor/dynamic_color.ts` 行225–254（https://github.com/material-foundation/material-color-utilities/blob/5b3618b16fdc3825e21d5679bafd144662088ea1/typescript/dynamiccolor/dynamic_color.ts#L225-L254）、同 行326–396（#L326-L396）、`typescript/dynamiccolor/contrast_curve.ts` 行20–62（https://github.com/material-foundation/material-color-utilities/blob/5b3618b16fdc3825e21d5679bafd144662088ea1/typescript/dynamiccolor/contrast_curve.ts#L20-L62）、設計文書 `concepts/contrast_for_accessibility.md` 行45–117（https://github.com/material-foundation/material-color-utilities/blob/5b3618b16fdc3825e21d5679bafd144662088ea1/concepts/contrast_for_accessibility.md#L45-L117）。信頼性ラベル：primary（公式source repository）。本文確認：済
-- 何をしているか：`DynamicColor`は値ではなく、`DynamicScheme`を受け取る関数の束（`palette`、`tone`、`background`、`secondBackground`、`contrastCurve`、`toneDeltaPair`、`chromaMultiplier`）として役割色を定義する。constructorは「`background`があるのに`contrastCurve`がない」「`contrastCurve`があるのに`background`がない」「`secondBackground`だけある」をエラーにする。つまり前景色は必ず背景との対とcontrast曲線を持つ。`ContrastCurve`は複数のcontrast level（低、標準、中、高）に対応する目標値を持ち、`get(contrastLevel)`はその間を線形補間する。`foregroundTone(bgTone, ratio)`は明るい側と暗い側の候補を両方計算して選び、`tonePrefersLightForeground`、`enableLightForeground`で白い前景を好む帯の扱いを決める。
+- 何をしているか：`DynamicColor`は値ではなく、`DynamicScheme`を受け取る関数の束（`palette`、`tone`、`background`、`secondBackground`、`contrastCurve`、`toneDeltaPair`、`chromaMultiplier`）として役割色を定義する。`background`、`secondBackground`、`contrastCurve`はいずれも省略可能な引数である（行231–237）。constructorは、指定された組合せの整合を実行時に検査し、「`background`があるのに`contrastCurve`がない」「`contrastCurve`があるのに`background`がない」「`secondBackground`だけある」をエラーにする（行239–253）。つまり、背景を宣言した役割色は必ずcontrast曲線を持つ。背景を持たない色も定義でき（行152–158）、すべての前景色に背景を型で必須にしているわけではない。`ContrastCurve`は複数のcontrast level（低、標準、中、高）に対応する目標値を持ち、`get(contrastLevel)`はその間を線形補間する。`foregroundTone(bgTone, ratio)`は明るい側と暗い側の候補を両方計算して選び、`tonePrefersLightForeground`、`enableLightForeground`で白い前景を好む帯の扱いを決める。
 - 解いている問題と前提：ユーザーの壁紙など任意のsource colorとユーザーのcontrast設定から、多数の役割色を実行時に生成しても、前景と背景の対が規定contrastを満たすようにする。文書は「保証する最小比」と「物理的に届かない場合がある目標比（discretionary）」を区別している（contrast_for_accessibility.md 行51–58）。
 - 必要な入力：役割ごとの背景対の決定、contrast levelごとの目標値、light/darkの区別、どの役割を背景とするか（`isBackground`）。
 - trade-off・失敗の仕方：コメントに、高contrastと最大contrastの間で`On Primary Container`が一瞬黒になった実例と、その回避分岐が書かれている（dynamic_color.ts 行341–356）。constructorのdocは「この既定の振る舞いが全design system、全組合せに望ましいわけではない」と明記する（行199–203）。中間toneの背景では目標比に届かないことを文書が認めている（`concepts/scheme_generation.md` 行87–90）。
 - 反例・適用しない場合：背景を持たない色はcontrast変化でtoneが変わらない（dynamic_color.ts 行152–154）。Radix（P14-O04）は実行時solverを持たず、固定scaleの段どうしの組合せでcontrastを主張する。
-- 互換・非互換：P14-O02（制約の優先順位）、P14-O03（spec版）と一体で動く。P14-O05（Leonardo）とは「contrastを入力にする」点で共通し、「役割の背景対を型で強制する」点が異なる。
+- 互換・非互換：P14-O02（制約の優先順位）、P14-O03（spec版）と一体で動く。P14-O05（Leonardo）とは「contrastを入力にする」点で共通し、「背景を宣言した役割色について、背景とcontrast曲線の整合を実行時に検査する」点が異なる。
 - 限界：このrepoで成立していることはHELIXで成立することを意味しない。contrast比、tone、帯の境界などの値は持ち込まない。
 
 ### P14-O02 hard／soft制約の順序で解く配色生成（ToneDeltaPairとfidelity調整）
@@ -54,7 +54,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 必要な入力：段ごとの用途の定義、light/darkの両方の値、広色域の扱い。
 - trade-off・失敗の仕方：issue #42は「文字用の段が所定contrastを満たす」という文書の主張が一部の色相で満たされていないと報告している。#12はsolid背景＋白文字の例がcontrast基準に届かないと指摘し、回答は大きい太字の例外に依拠していた。固定commitの文書は、文字の段の保証を別のcontrast方式と別の背景段で書いている（行99–102）。issue時点の文言から主張の基準が変わっている。値は固定のまま、主張側の文書が動いたことになる。文字色を白にするか暗色にするかが色相ごとに違う（行215–218）。
 - 反例・適用しない場合：MCU（P14-O01）とLeonardo（P14-O05）は実行時に生成する。Radixの任意色からの生成器はpackageに含まれない（issue #45、#51。#51の議論でwebsite側の生成器が示された）。
-- 互換・非互換：P14-O06（意味の別名層）と組み合わせる前提。P14-O01とは「contrastを型で保証するか、文書で主張するか」で衝突する。
+- 互換・非互換：P14-O06（意味の別名層）と組み合わせる前提。P14-O01とは「背景を宣言した役割色のcontrastを実行時の検査とsolverで扱うか、文書で主張するか」で衝突する。
 - 限界：段数、各段の色値、contrast値は持ち込まない。
 
 ### P14-O05 目標contrast比を入力にした色探索（Leonardo Theme）
@@ -130,7 +130,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ## 同じ問題の解き方の比較
 | 問題 | repoA のやり方 | repoB のやり方 | 違いが生じる前提 |
 |---|---|---|---|
-| contrastを満たす色の生成 | MCU：役割ごとに背景対とcontrast曲線を型で必須にし、制約を順に解く（O01、O02） | Leonardo：背景1つに対する目標比の集合を入力にし、補間scale上で二分探索する（O05） | MCUは固定の役割体系（容器と中身など）を前提にする。Leonardoは役割を持たず、利用者が比の集合を設計する |
+| contrastを満たす色の生成 | MCU：背景を宣言した役割色について背景とcontrast曲線の整合を実行時に検査し、制約を順に解く（O01、O02） | Leonardo：背景1つに対する目標比の集合を入力にし、補間scale上で二分探索する（O05） | MCUは固定の役割体系（容器と中身など）を前提にする。Leonardoは役割を持たず、利用者が比の集合を設計する |
 | contrastの保証の置き場所 | MCU：constructorの検査とsolverで保証し、届かない目標は文書でdiscretionaryと区別する | Radix：固定値を手調整し、保証は文書の主張にとどまる。issue #42、#12で主張と実測のずれが報告された（O04） | 実行時生成か配布時固定か |
 | 指定色（ブランド色）の保持 | Radix生成器：既存の手調整scaleのうち最も近いものを混ぜ、hueとchromaを指定色に寄せる（website `generate-radix-colors.tsx` 行191–260） | Leonardo：比が正本なので指定色そのものは出力に残らない（issue #149、#77） | 見た目の正本が「手調整scale」か「比」か |
 | 意味色の派生 | Grafana：1値から係数で明暗派生し、未指定だけ埋める（O07） | MCU：役割を制約付きで解く。material-web：ref palette→sys役割→compの参照（O06） | 派生色にcontrast保証を求めるかどうか |

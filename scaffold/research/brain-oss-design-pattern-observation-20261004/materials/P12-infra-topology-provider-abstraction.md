@@ -175,7 +175,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - 代替案として、汎用Usageへの収束やMR実体の監視が検討されている（見出し 行364–386。本文は未読）。
 - 反例・適用しない場合：OpenTofuは、provider設定を依存graphの頂点にして順序で守る（O04）。
 - 互換・非互換：O06のUsageと同じ問題を別の仕組みで解いており、docは統合を検討中としている。
-- 限界：GCの意味論に依存する失敗である。
+- 限界：GCの意味論に依存する失敗である。marker作成・削除の競合は、Draftのone-pager（設計文書）が説明している内容である。API型（`resource.go`）は固定commitで確かめたが、ProviderConfigUsageを作成・削除するruntime実装（crossplane-runtime、別repository）は読んでいない。
 
 ### P12-O08 runtimeを抽象化しない：起動形態は既定の1種とexternal委譲だけにする
 - 出典：crossplane
@@ -259,7 +259,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - trade-off・失敗の仕方：annotationは不変にできない。外部管理から管理下へ戻すと、作っていないinfraをcontrollerがreconcileし始め、結果を予測できない。そのためwebhookでこの方向の変換を禁じ、一方向操作として文書化するとしている（行175–188）。
 - 反例・適用しない場合：Crossplaneは、runtimeの層でExternalを起動flagとして、cluster全体に一律に適用する（O08）。こちらはobject単位である。
 - 互換・非互換：O08と同型。O05の「controller参照が無ければ消さない」と、所有確認の考え方が近い。
-- 限界：個々の値は持ち込まない。本文に記したannotation名（`cluster.x-k8s.io/managed-by`）はcluster-apiの実装の観察であり、HELIXの名前として持ち込むものではない。
+- 限界：個々の値は持ち込まない。本文に記したannotation名（`cluster.x-k8s.io/managed-by`）はcluster-apiの実装の観察であり、HELIXの名前として持ち込むものではない。出典は2種類に分かれる。annotationによるreconcile除外という契約は固定版のAPI commentとpredicateにもある内容だが、本観察が引いたのはproposalである。一方向性（管理下へ戻す変換をwebhookで禁じる）の記述も、proposalの文書に基づく。実装の契約と提案の記述を区別して読む。
 
 ### P12-O12 観測inventory graph：schema宣言、tenant scope、更新印によるmark-and-sweep
 - 出典：cartography
