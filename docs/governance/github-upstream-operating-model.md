@@ -97,8 +97,8 @@ PRの中でも要求identityごとにL3とL10の対を分けて書き、別の�
 二つ目は、`design_verification`のL3／L10の範囲を、一つの承認要求から一つの機構の一つのStageへ広げることである。
 起点は利用者の起草指示`scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`（SHA-256
 `3561eb221023220ccd6dda9ace008882851eac343ca76611742b07b2e30703e5`）のL3-G1「機構ごとまたは依存のまとまりごとにPRを分けてよい」と、
-同「PO承認への渡し方」の「承認は機構またはStageのまとまりごとに受ける」である。2026-10-05に利用者が、PRの単位を
-機構×Stageとすることを選んだ。PRの範囲を承認の単位と揃え、承認単位をまたぐ一括PRを作らないためである。
+同「PO承認への渡し方」の「承認は機構またはStageのまとまりごとに受ける」である。2026-10-05にPOが、PRの単位の上限を
+機構×Stageとすることを選んだ（[判断記録](decisions/pr-atomicity-unit-po-decisions-2026-10-05.md)）。PRの範囲を承認の単位と揃え、承認単位をまたぐ一括PRを作らないためである。
 影響として、PR class表の`design_verification`行に範囲の上限を追記した。要求identityごとのL3／L10の対と、PO承認の記録方法は変えない。
 
 三つ目は、共通部品の先行mergeである。旧`l3-rebaseline-g3-freeze-packet.md:340–342`は、GitHubの五責務ごとにL4基本設計とL9結合oracleを閉じ、
