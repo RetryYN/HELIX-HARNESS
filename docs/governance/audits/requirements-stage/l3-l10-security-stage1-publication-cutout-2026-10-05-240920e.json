@@ -1,0 +1,86 @@
+{
+  "schema_version": "helix.l3-l10.stage-publication-cutout.v1",
+  "record_kind": "immutable source-to-publication cutout",
+  "status": "copied exact local Stage 1 draft; no independent review, PO L3 approval, L10 execution, or merge admission generated",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 1",
+  "scope": {
+    "adopted_parent_count": 19,
+    "parents": [
+      "HELIXSECURITY-L2-001",
+      "HELIXSECURITY-L2-002",
+      "HELIXSECURITY-L2-003",
+      "HELIXSECURITY-L2-004",
+      "HELIXSECURITY-L2-005",
+      "HELIXSECURITY-L2-006",
+      "HELIXSECURITY-L2-007",
+      "HELIXSECURITY-L2-008",
+      "HELIXSECURITY-L2-009",
+      "HELIXSECURITY-L2-010",
+      "HELIXSECURITY-L2-011",
+      "HELIXSECURITY-L2-012",
+      "HELIXSECURITY-L2-013",
+      "HELIXSECURITY-L2-014",
+      "HELIXSECURITY-L2-015",
+      "HELIXSECURITY-L2-016",
+      "HELIXSECURITY-L2-020",
+      "HELIXSECURITY-L2-028",
+      "HELIXSECURITY-L2-033"
+    ],
+    "stage2a_or_stage2c_included": false
+  },
+  "target": {
+    "base_commit": "ef753a0e13c908ef1e02b6185bf371ad4eefadd1",
+    "publication_body_commit": "240920e435932276d5a520a95df1ccbcff7e051d",
+    "branch": "codex/l3-security-stage1-publication"
+  },
+  "source": {
+    "worktree": "/home/tenni/.helix-worktrees/l3-security-stage1-pair",
+    "source_commit": "4f1d07e57e9586b1382dd0132123488db77aa735",
+    "body_revision": "a95b77aad7b85bd1fa609d7734b04c98c9a57df0",
+    "audit_path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-static-validation-2026-10-05-a95b77aad.json",
+    "audit_sha256": "cfe1aef3ffc96b87be87298769f96bc78254585398e6179bb72e7c10e25790b1",
+    "po_summary_path": "docs/governance/audits/requirements-stage/l3-l10-security-stage1-po-review-2026-10-05-a95b77aad.md",
+    "po_summary_sha256": "30ec380fbc3fc0d258d85f84f9ee2f52b0e89e3669e03e142675bf3e95ada2e2"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "line_count": 3,
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "a6ebe9cb3d918de940257f79cffe125bcce51dadb1ef6306dd43cb2e35420275",
+      "line_count": 245,
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "31f2d36232ba1ab590c86ddc3dd5600b4b031992893bd066a72d094ede0912c5",
+      "line_count": 19,
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "line_count": 5,
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "d0e8611b486c64e8e605ab72a6dba7a69dc3e43a2d9e6f96bed505b27bcc8588",
+      "line_count": 301,
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "d494ece7e7fdf6ab886cd0f16abf47f9dc6cda587c417955585a7e1ede4b3c5b",
+      "line_count": 45,
+      "byte_identical_to_source": true
+    }
+  ],
+  "copy_policy": "six canonical Stage 1 documents and the exact source static audit/PO summary were copied byte-for-byte; copied metadata was not edited. This record adds publication provenance only.",
+  "authority_boundary": "This cutout records provenance and scope. It does not change candidate status, create approval, close carried findings, or assert L10 execution."
+}
