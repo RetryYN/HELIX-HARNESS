@@ -66,8 +66,8 @@
 
 - **対象AC**: `CONNECT-AC-004-01`
 - **固定L11受入oracle**：同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する
-- **正常fixture**: 応答欠落と、接続契約上再送可能と宣言された別の技術的失敗を独立に与え、各々で同一logical operation identity/content digest/単一contract revisionを設定済み上限内で再送する。同じidentity+digestの再到着は二重効果なし。応答欠落だけをretry契機にしない。異digestはidentity以外を変えず拒否し、business resultや契約上retry不可の失敗は再送せずownerへ返す。新revisionへ自動移行しない。
-- **negative/boundary oracle**：異digestの同一operation、契約上限を超えるattempt、再送不能business result、scope/expiry失効を投入して停止させる。同一identity+digestの再到着は二重効果を生まず、新revisionへ自動移行しない。
+- **正常fixture**: 応答欠落と、接続契約上再送可能と宣言された別の技術的失敗を独立に与え、各々で同一logical operation identity/content digest/単一contract revisionを設定済み上限内で再送する。同じidentity+digestの再到着は二重効果なし。応答欠落だけをretry契機にしない。retry可否はその失敗の契約上の分類で決め、応答欠落そのものを全失敗のretry許可と読み替えない。異digestはidentity以外を変えず拒否し、business resultや契約上retry不可の失敗は再送せずownerへ返す。新revisionへ自動移行しない。
+- **negative/boundary oracle**：異digestの同一operation、契約上限を超えるattempt、再送不能business result、scope/expiry失効を投入して停止させる。retryableとされた技術失敗は契約上限内の再送対象とし、business resultおよび明示されたnon-retryable failureは再送しない。同一identity+digestの再到着は二重効果を生まず、新revisionへ自動移行しない。
 - **責務・失敗時の戻し先**：登録・互換照合・通信契約、受信側の同一identity重複排除契約。構成体や後続機構を必須にしない。 failure時は、digest衝突や再送上限到達は送信を停止し、connection operationのownerへ未完義務と試行数を返す。業務結果は元の業務ownerへ、許可期限切れはSECURITYへ戻す。新revisionへ自動混載再送しない。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
 
@@ -131,7 +131,7 @@
 
 ### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
 
-- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。辺の一部成功を全体成功へ伝播する変異では全体完了を拒否し、未完edgeを保持する。
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。paired-bidirectionalの正常例ではforwardと独立宣言されたreverse feedbackへ別operation identity/digestを与え、correlation/因果lineageで関係づけ、各方向のauthorityを別々に照合する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。辺の一部成功を全体成功へ伝播する変異では全体完了を拒否し、未完edgeを保持する。
 - CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: 初回辺のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictへ個別変異し、その辺の初回attempt 0、missing inputとownerの保持を照合する。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityの各同状態変異はfeedback送信だけhold、parallel join条件の各同状態変異はjoin/全体完了だけhold、ACK対応不明は既存attempt保持と受領/完了holdを照合し、独立eligibleな他操作を止めない。eligible first edge＋未送信feedback、ACK未着、feedback endpoint/reason/contract unknownを独立変異する。第一edgeはfeedback欠落で止めず、ACK未着ではattemptを保ったまま受領/完了だけholdし、loop条件欠落は追加retryだけ0となる。
 - CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policy、累積attempt数、operation identityのmissing/unknown/stale/conflictを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
 - CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。正常なbounded loopではforward operationと独立宣言されたreverse feedback operationに別々のidentity/digestを与え、共有correlation/因果lineageへ結ぶ。ACK/terminal receiptは対応するoperationへ付ける。同一logical operationのretry/resumeだけは同じidentity/digest/contract revisionを保つ。resume後に同一operation eventを再適用して二重効果を生む変異、retry digestだけの変更、共有correlationだけによるforward/reverse同一化を互いに独立して拒否する。冪等性は固定L2-004/005の同一operation契約に限り、新しい一般重複排除義務を設けない。因果traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retry 0、未解決と停止理由・未完義務をOS-040等の既存terminal ownerへ返す。累積attemptは単調に保持し、deadline/terminal不明でも新規retryを止める。

@@ -59,7 +59,7 @@
 | `HELIXLABO-L2-012` | provenance/relation revision/unknown保持候補、correlation-onlyからcausal claimを作る誤り0候補 | relation・episode revision不一致/欠落とco-timed unrelated eventを個別/併発入力 | relation/source owner return、causal overclaim 0 |
 | `HELIXLABO-L2-013` | 分類軸/根拠のtrace completeness 100%候補 | 根拠field欠落・分類矛盾 mutation | Vector inputからsource evidenceへ往復 |
 | `HELIXLABO-L2-014` | original meaning/purpose/conditionとcandidate delta 100% trace候補 | 元意味不明・partial evidence mutation | 不明時停止、ownerへbackflow |
-| `HELIXLABO-L2-015` | 4 arm（baseline、current、candidate、hybrid）ごとのversion/condition/oracle一致100%候補 | 各armのcondition/oracleを個別にずらし、armの欠落/統合も確認する | 比較成立/不成立を区別し、明示された別比較を本候補だけで排除しない |
+| `HELIXLABO-L2-015` | 3比較区分（baseline/current、candidate、hybrid）ごとのversion/condition/oracle一致100%候補 | 各比較区分のcondition/oracleを個別にずらし、比較区分の欠落/統合も確認する | 比較成立/不成立を区別し、明示された別比較を本候補だけで排除しない |
 | `HELIXLABO-L2-016` | comparison/counterexample/oracle/interruption status全件保持候補 | oracle不一致・counterexample・中断を独立投入 | 判定不能をoperation候補に保留 |
 | `HELIXLABO-L2-017` | current guarantee/revision/unfinished obligations/owner trace 100%候補 | current versionまたはownerを欠落 | switch実行0、owner returnを記録 |
 | `HELIXLABO-L2-018` | supported scope/evidence/counterexample coverage 100%候補 | sample condition欠落・反例追加 | evidence以上のscope拡張0 |
@@ -72,11 +72,11 @@
 | `HELIXLABO-L2-025` | selected SECURITY data-use scope coverage 100%候補、restricted payload transfer 0 | scope欠落/restricted field/stale rev | intake拒否、security ownerへ戻す |
 | `HELIXLABO-L2-026` | resource/environment source-version coverage 100%候補 | stale/unknown resource state | current healthyへのcoercion 0 |
 | `HELIXLABO-L2-027` | 各connection admitted contract identity/revision/schema/traceの一致候補、implicit cross-connector reuse 0 | 専用contract/schema/revision drift、暗黙共有を個別/併発変異 | mismatch/unknownを露出しCONNECT ownerへreturn |
-| `HELIXLABO-L2-028` | assignment/task class/Worker result trace候補、L2-006と同experiment/target version/scope一致 | 別ticket/experiment/target version、assignment欠落、status unknownと専用connector identity/revision/schema/provenance不一致を個別変異 | observed→evaluated誤昇格0。assignment/result不一致はOS assignment owner、connector不一致はHELIX-CONNECT/source ownerへreturn |
+| `HELIXLABO-L2-028` | assignment/task class/Worker result trace候補、L2-006と同experiment/target version/scope一致 | 別ticket/experiment/target version、assignment欠落、status unknownと専用connector identity/revision/schema/provenance不一致を個別変異 | observed→evaluated誤昇格0。assignment/result不一致はOS assignment owner、connector不一致は契約上のfailure return destinationが確定時だけ返し、未確定なら受領保留 |
 | `HELIXLABO-L2-029` | target revision/test scope/CI status coverage 100%候補 | not-run/stale/interrupted/scope missing | pass誤表記0 |
 | `HELIXLABO-L2-030` | product/source identity/version/scope分離100%候補 | different source merge、unselected product required化 | cross-identity merge0 |
 | `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/顧客固有ルール/unknown scopeと専用connector identity/revision/schema/provenance欠落・stale・不一致を個別変異 | 1.0内部evidenceと2.0外部loopの混入0、connector mismatch success 0、該当BRAIN source/consumerへreturn |
-| `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision/scope missing、unassessed omitted、専用connector identity/revision/schema/provenance不一致、3.0 learning requestを個別変異 | training/placement/bot execution 0。connector不一致はsource owner、payload consumer不一致はINTELLIGENCEへ返す |
+| `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision/scope missing、unassessed omitted、専用connector identity/revision/schema/provenance不一致、3.0 learning requestを個別変異 | training/placement/bot execution 0。connector不一致は契約上のfailure return destinationが確定時だけ返し、未確定なら受領保留 |
 | `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionに加えscope/source/operation/version各変更を個別に入力しclosure再照合 | 選択sourceだけclosureを再照合。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
 
 ## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071 測定候補

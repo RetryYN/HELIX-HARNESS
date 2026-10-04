@@ -85,7 +85,7 @@
 | `HELIXSECURITY-L2-028` | pack identity/version/digest/compatibility不一致受入 | 独立timeout・更新頻度候補なし | `SECURITY-CASE-028-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-029` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-029-01 | `SECURITY-CASE-029-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-030` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-030-01 | `SECURITY-CASE-030-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
-| `HELIXSECURITY-L2-031` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-031-01/02/03 | `SECURITY-CASE-031-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
+| `HELIXSECURITY-L2-031` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-031-01/02/03 | `SECURITY-CASE-031-01..04` と `CASE-NFR-SECURITY-031-01..03` をそれぞれ照合し、各NFR候補を対応する測定caseへ結ぶ。 |
 | `HELIXSECURITY-L2-032` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-032-01 | `SECURITY-CASE-032-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-033` | context binding不一致・raw値到達・旧binding再利用 | SEC-NFR-001/007 | `SECURITY-CASE-033-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-034` | 当該親の接続・独立条件・誤昇格境界 | SEC-NFR-034-01 | `SECURITY-CASE-034-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |

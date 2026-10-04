@@ -107,7 +107,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 
 ### 観測点とoracle
 
-このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。固定L2/L11で別の時間・保持期間要件が確認された場合に限り、比較根拠・測定方法付きL3候補を提示する。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。技術上時間・保持期間の候補が必要と判断した場合は、固定L2/L11に値がなくても、運用目的、比較案、測定方法を添えてL3候補として提示できる。上流に明示されていない値は採択前の合否oracleにせず、汎用閾値を必須化しない。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
 
 
 ## HELIXINFRASTRUCTURE-L2-009 — L10 oracle（対応 `INFRA-009-FR-01`）

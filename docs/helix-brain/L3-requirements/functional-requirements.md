@@ -1752,7 +1752,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 ### 受入条件（AC候補）
 
 - **BRAIN-030-AC-01 — 正常**: 二つの選択Patternとrelation/conflict、required fieldの既知値と一つの未決値をqueryし、知識receiptは受領可能だが対応義務はopen、設計完了/実装準備はfalseであること、双方向trace、contract範囲を照合する。 常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、選択Pattern version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。contract missing/unknown/stale→connection保留。selected knowledge field/version/conflict/meaning欠落・矛盾や製品固有選択→BRAIN。receiver scope/schema/obligation mapping欠落→HARNESS。 一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
+- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、選択Pattern version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。contract version/compatibility unknown→query保留。知識identity/revision/version、意味またはfield定義の欠落・不一致、製品固有選択→BRAIN。Pattern意味・条件・関係の不整合→該当BRAIN親L1。receiver scope/schema/obligation mapping欠落→HARNESS。 一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
 
 ### 固定親句の被覆
 
@@ -1760,7 +1760,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 |---|---|---|---|
 | Input・版・範囲 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
 | 保証・出力: BRAIN knowledgeからHARNESSへの単一接続 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 全必須field・receipt・状態を維持 |
-| 否定条件・失敗時の戻し先: compatibility不明はquery hold、Pattern意味/条件/relation不整合は該当BRAIN L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 3種の不備を別fixture化し、各ownerへ返し、採択/承認/実装を生成しない。 |
+| 否定条件・失敗時の戻し先: connector contract version/compatibility unknownはquery hold、知識identity/revision/version・意味/field定義の欠落や製品固有選択はBRAINへ、Pattern意味/条件/relation不整合は該当BRAIN親L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 4種類のrouteを別fixture化し、各owner/stateを照合し、採択/承認/実装を生成しない。 |
 | 未見入力の境界 | `BRAIN-030-AC-01,BRAIN-030-AC-02` | `L10-BRAIN-030-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
 | 依存と版 | `BRAIN-030-FR-01` | `L10-BRAIN-030-C01,L10-BRAIN-030-C02` | L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。 版1.0 / Stage 4 |
 | PO固定L11の例 | 固定L11全例 | `L10-BRAIN-030-C01,L10-BRAIN-030-C02,L10-BRAIN-030-C03` | 否定条件・停止・戻し先も個別照合 |
@@ -1830,7 +1830,7 @@ AI生成、単一実績、LABO評価、OS ticket、文書存在のどれも単�
 | 出力：proposal/evaluation/registration/verification/adoptionを分離したknowledge revision/owner付きreceipt | `AC-01,03` | `L10-BRAIN-025-C01,C03` | 各stage identity/stateと未完義務 |
 | 否定：AI、単一実績、LABO、OS ticket、文書単独でgeneric promotionしない | `AC-02` | `L10-BRAIN-025-C02` | accepted/mature/adopted誤遷移0 |
 | 失敗戻し先：LABO, OS, L1, BRAIN change owner。未知/差戻しはaccepted/matureにならない | `AC-03` | `L10-BRAIN-025-C03` | reasonとowner付き戻し、state保持 |
-| version/dependency：L2-007/008/009/011/012/020、必要時INFRA-017、1.0 | `FR-01 / AC-01, AC-02, AC-03, AC-04` | `L10-BRAIN-025-C01, L10-BRAIN-025-C02, L10-BRAIN-025-C03, L10-BRAIN-025-C04` | 適用依存のみ照合、版・採否・releaseを混同しない |
+| version/dependency：L2-007/008/009/011/012/020、Infrastructure maturity判定時だけL2-INFRA-017 state/evidence、1.0 | `FR-01 / AC-01, AC-02, AC-03, AC-04, AC-05` | `L10-BRAIN-025-C01,C02,C03,C04,C05,C06` | 各適用flowのidentity/revision/scopeを個別照合。Infrastructure maturity時の017は同revision evidenceを確認し、非該当候補へ波及させない。 |
 
 ### Stage 5 旧sourceとの項目別対応
 
