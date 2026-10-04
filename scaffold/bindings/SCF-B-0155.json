@@ -1,0 +1,125 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0155",
+  "kind": "scaffold",
+  "title": "HELIX-BRAIN初期10領域の知識素材の棚卸し（未評価の候補素材、採否なし）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-BRAIN（知識素材・領域）。formal owner未確定",
+  "state": "registered",
+  "reason": "2026-10-04のPO発言「並列で進められるのない？待機期間長すぎて時間がもったいないだろ。BRAIN素材をためまくるのがいいと思うがどうかね？」を受け、HELIXBRAIN-L2-001が1.0の初期領域として挙げる10領域ごとに、旧HELIX資産のうち知識素材として使える物（asset ID、行、全体SHA-256、候補粒度、限界）、既存scaffold素材への参照、旧に欠けた観点（gap）と検索範囲を棚卸しする。全件を未評価の候補素材とし、BRAINの採否・登録・状態・要求意味を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "sha256": "421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa",
+      "note": "HELIXBRAIN-L2-001の初期10領域と、知識の由来・scope・評価根拠・限界・版・状態の属性。採否なし"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/materials/reference-repositories.md",
+      "sha256": "dad2483ed7396b6e2fbc9d7606b3b819bc9a47c55f9a1340a0c915c0289ff703",
+      "note": "既存の外部参考資料との重複を避ける"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a",
+      "note": "既存seedとの境界"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "sha256": "833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5",
+      "note": "採択済みHELIXBRAIN-L2-INFRA-001〜017の対のL11受入条件。D07 §2の照合先。採否なし"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "note": "BRAINのL1確定とL2/L11採用（INFRA-001〜017を含む42件）。素材の未評価と要求の採択済みを区別する根拠"
+    }
+  ],
+  "role": "HELIX-BRAINの初期10領域ごとの知識素材の棚卸し（旧資産、既存素材への参照、gap、BRAIN属性の未決事項）",
+  "obligations": [
+    "各素材に旧asset ID、path、行範囲、全体SHA-256、知識の内容、候補粒度、限界（HELIX固有か汎用か、古さ）を記録する",
+    "全素材の状態を未評価の候補素材とし、採用済み・BRAIN登録として扱わない",
+    "旧資産の数値（閾値・寸法・色・時間）を持ち込まない",
+    "外部参考は観点の名前と出典種別に限り、採用・技術選定・BRAINへの外部知識取込み（L2-026・027、2.0）の代替にしない",
+    "既存seed・素材と同じ旧資産は参照に留め、意味を重ねて起こさない",
+    "Web展開後のSecurity・インフラの内容を1.0の必須へ前倒しせず、securityの素材を全製品の義務にしない",
+    "旧HELIXのskill・agent定義・test・CI・runtimeを実行しない"
+  ],
+  "connections": {
+    "consumers": [
+      "HELIX-BRAINのL3起草以下（採択済みL2の意味を保った要件・知識record設計）",
+      "HELIX-BRAINの初期領域ごとの素材の評価（LABO）"
+    ],
+    "dependencies": [
+      "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "scaffold/verification-test-template-seed-20261001/README.md",
+      "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md"
+    ],
+    "boundary": "scaffold/配下の棚卸しとbindingのみ。BRAINの採否・状態・要求意味・数値・技術選定を確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "read-only source inspection",
+      "write this scaffold seed candidates, materials, and binding",
+      "python3 scaffold/tools/scfctl.py stale|validate|residuals|selftest",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "execute tools or copy sample values from archive/reference-sources ZIP packages",
+      "decide adoption, rejection, approval, requirement meaning, design obligation, verification obligation, or completion",
+      "write outside scaffold/"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/brain-domain-material-inventory-20261004/README.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D01-software-architecture.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D02-application-architecture.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D03-backend.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D04-frontend.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D05-api-integration.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D06-data-database.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D07-infrastructure.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D08-security.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D09-visual-design.md",
+    "scaffold/research/brain-domain-material-inventory-20261004/materials/D10-ux-interaction.md",
+    "scaffold/bindings/SCF-B-0155.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "manual static comparison of each template against the cited current candidates and legacy source lines",
+      "legacy asset ledger SHA-256 match for every cited asset ID",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "候補素材をBRAINの採用済み知識・登録済みrecordとして扱わない",
+      "旧資産の数値を候補値・既定値として持ち込まない",
+      "外部参考を採用・技術選定・外部知識取込みとして扱わない",
+      "Web展開後のSecurity・インフラ項目を1.0の必須にしない"
+    ]
+  },
+  "replacement": {
+    "role_target": "formal HELIX-BRAIN knowledge records and domain seed, if separately derived, evaluated and authorized",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-04",
+  "updated": "2026-10-04"
+}
