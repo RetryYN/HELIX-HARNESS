@@ -2,7 +2,7 @@
 
 **状態：部分草稿・未承認。** Stage 1の3 identityおよび今回のStage 2b 28 identity、Stage 4の7 identity、Stage 5の2 identityについて、この文書へ独立して配置できる機構業務成果は、固定L2/L11 sourceから確認できなかった。機能behaviorをbusiness-detailという旧ファイル名だけで分類しない。要求本文・分類・ownerの意味を変えず、対象各itemの動作・ACは`functional-requirements.md`の対応節に置く。
 
-旧HELIX `business-detail.md` は、現行の業務要件候補を探す旧起点として参照した。次の旧BR-21等はHARNESS利用dashboardと集計batchの業務条件であり、本体機構の現行LABO/BRAIN/INFRASTRUCTURE業務責務へ直接一致しない。したがって移植・複製せず、LABO-001の部分source失敗時に有効sourceを保持するfailure類型のみfunctional ACへ再導出した。
+旧HELIXの業務要件起点は `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:1–21,27–64,108–123,147–177`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）である。この旧実体はHARNESS固有のBR-21/HM-08および集計・計測条件であり、BRAINの現行業務outcomeに直接一致しない。固定BRAIN L2/L11から独立business outcomeが確認できないため、本書では分類だけを記録し、旧HARNESS値やLABO-001のAC/failure類型をBRAINへ移さない。機能ACの再導出はBRAINの固定親ごとにfunctional本文で行う。
 
 今回対象の親L2 identity: `HELIXBRAIN-L2-007`, `HELIXBRAIN-L2-008`, `HELIXBRAIN-L2-028`, `HELIXBRAIN-L2-024`, `HELIXBRAIN-L2-025`。Stage 4対象は`HELIXBRAIN-L2-018/019/020/021/022/023/030`。
 
