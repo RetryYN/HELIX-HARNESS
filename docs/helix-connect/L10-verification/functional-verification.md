@@ -131,10 +131,10 @@
 
 ### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
 
-- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。辺の一部成功を全体成功へ伝播する変異では全体完了を拒否し、未完edgeを保持する。
 - CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: 初回辺のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictへ個別変異し、その辺の初回attempt 0、missing inputとownerの保持を照合する。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityの各同状態変異はfeedback送信だけhold、parallel join条件の各同状態変異はjoin/全体完了だけhold、ACK対応不明は既存attempt保持と受領/完了holdを照合し、独立eligibleな他操作を止めない。eligible first edge＋未送信feedback、ACK未着、feedback endpoint/reason/contract unknownを独立変異する。第一edgeはfeedback欠落で止めず、ACK未着ではattemptを保ったまま受領/完了だけholdし、loop条件欠落は追加retryだけ0となる。
-- CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policyのmissing/unknown/stale/conflictを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
-- CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。累積attemptは単調に保持し、deadline/terminal確定まで新規retryを止め、停止理由と未完義務を残す。
+- CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policy、累積attempt数、operation identityのmissing/unknown/stale/conflictを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
+- CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。正常なbounded loopを別fixtureで与え、全反復が同じoperation lineageに結び付くことを照合する。既存上限到達では新規retry 0、未解決と停止理由・未完義務をOS-040等の既存terminal ownerへ返す。累積attemptは単調に保持し、deadline/terminal不明でも新規retryを止める。
 
 全caseの観測はdescriptor/relation tuple、revision、attempt count、authority stateである。期待oracleは送信権限ではなく、relation completenessとfail-closed処理である。自由文feedbackをfindingのまま保持し、resolution・ACK・承認・完了へ変換するmutationは不合格とする。
 
@@ -142,8 +142,8 @@
 
 固定L2/L11はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択本文で照合した。fixtureは宣言された構成体のedge集合に限定し、実端点送信はしない。
 
-- `CONNECT-CASE-007-01`（`CONNECT-AC-007-01`）: 3以上の機構・複数接続identityからなる正常構成を与え、edgeごとに能力名、契約revision、scope、順序、operation/correlation/idempotency identity、expiry/result、SECURITY/data-use、owner/recovery先を割り当てる。oracle: required edgeごとの登録/互換/送受信/終端証拠が揃ったときだけ技術的構成体完了となる。接続成功から業務成立を作らない。
-- `CONNECT-CASE-007-02`（`CONNECT-AC-007-02`）: 中間edgeにstale、timeout、異digest衝突、期限切れ、取消、許可失効、partial successを各々独立に投入する。oracle: 各変異で後続の未許可送信/再送0、全体success 0、停止edgeと未完owner/recovery先を保持。先行edgeの観測済成功は消去しない。
+- `CONNECT-CASE-007-01`（`CONNECT-AC-007-01`）: 3以上の機構・複数接続identityからなる正常構成を与え、edgeごとに能力名、契約revision、scope、順序、operation/correlation/idempotency identity、expiry/result、再送可否・上限・停止条件、SECURITY/data-use、owner/recovery先を割り当てる。oracle: required edgeごとの登録/互換/送受信/終端証拠が揃ったときだけ技術的構成体完了となる。接続成功から業務成立を作らない。
+- `CONNECT-CASE-007-02`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: 中間edgeにstale、timeout、異digest衝突、期限切れ、取消、許可失効、partial successを各々独立に投入する。oracle: 各変異で後続の未許可送信/再送0、全体success 0、停止edgeと未完owner/recovery先を保持。辺の再送可否・上限・停止条件を単独で違反する変異も同じoperation identityと累積attemptへ結び、再送境界を越えた新規attemptを拒否する。先行edgeの観測済成功は消去しない。
 - `CONNECT-CASE-007-03`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: required edge登録、互換確認、operation mapping、相関/idempotency引継ぎ、終端結果、SECURITY/data-use reference、recovery ownerをそれぞれmissing/stale/wrong-revisionへ個別変異する。oracle: 該当edgeがunknown/unfinishedであり、別edgeのgreenやaggregate表示で補わない。
 - `CONNECT-CASE-007-04`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: 既知fieldを満たす4+ edgeの未見構成と、全技術edgeが終端済みだが業務ownerの受入が未観測の対照fixtureを与える。oracle: 宣言契約を満たす未見構成は許容し、業務結果/承認は未観測のままにする。
 

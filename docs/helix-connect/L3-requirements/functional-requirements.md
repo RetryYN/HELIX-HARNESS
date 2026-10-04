@@ -169,10 +169,10 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。
+- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
 - CONNECT-AC-009-02: 初回送信のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictにする個別fixtureでは、該当辺の初回送信attemptを0にし、missing inputとownerを返す。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityを各状態へ個別変異するとfeedback送信だけを保留する。parallel join条件不明はjoin/全体完了だけを保留し、ACK対応不明は既存attemptを保持して受領/完了だけ保留する。独立してeligibleな他操作へ伝播しない。eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
-- CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policyをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
-- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。累積値を保持し、期限/terminal解決が不明なら新規retryを止め、未完義務・停止理由・ownerを返す。
+- CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policy、累積attempt数、operation identityをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
+- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopでは各反復を同じoperation lineageに結び、累積attemptを保持する。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
 
 旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは以下の旧資産source mapに記録している）。
 
@@ -210,7 +210,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、全required edgeが終端確認された場合だけ構成体の技術完了となる。単体接続のgreenを他edgeへ転用しない。
+- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、全required edgeが終端確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡し、再送境界を越えたattemptや別operationへの引継ぎを拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
 - `CONNECT-AC-007-02`: 中間edgeにstale、timeout、異digest衝突、expiry、cancel、authority revoke、partial successを個別に与える。後続edgeの未許可送信/再送を0にし、先行成功を消さずpartial/unknownを保ち、停止edge・未完owner・recovery先を出す。いずれも構成体成功・業務承認を生成しない。
 
 **責務と失敗時の戻し先**：edgeの登録・契約不一致は該当connection/両端ownerへ、SECURITY/data-use・expiryはSECURITYへ、operation/業務結果は元機構のownerへ戻す。後続edgeを実行済みにせず、先行の成功結果は保持する。
@@ -219,7 +219,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択revision。L2 `docs/helix-connect/L2-requirements/connect-requirements.md:128–138`（全文SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、raw span SHA `a2ce7b34ee2d389fbc60a45329c66014a02739150e0cc3c577188aa5578d6228`。末尾空行を含むraw spanと採択semantic digestは区別する）。対L11 `docs/helix-connect/L11-acceptance/connect-acceptance.md:74–77`（全文SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`、raw span SHA `1caa90d7e3b407c72bea119a4084eb37e9e828c6889ea8621d65410a090a0ade`）。PO decision `helix-connect-requirements-po-decision-2026-09-28.md#L48`（decision SHA `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`）、採択登録 `MPR-RC-HELIXCONNECT-L2-007-001`、PO対象semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`。
 
-旧HELIXに現行HELIXCONNECT-L2-007と一対一の複数接続構成体要件は確認できない。旧distribution-package L3 `LEGACY-ASSET-9B7682EBDEA171005D45`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md:24–83`、全文SHA `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c`、raw span SHA `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e`）とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md:16–20`、全文SHA `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc`、raw span SHA `1efc7ea8b809b274ed4b3427747b1b4b19a69fcea12203a867583fee5f721db5`）はsource/revision/consumer整合とpositive/negative分離の構造類例だけに使い、release/promotion authorityやbundle意味をCONNECTへ移さない。複数connection edge、技術終端、途中失敗と戻し先は固定L2/L11から再導出する。
+旧HELIXに現行HELIXCONNECT-L2-007と一対一の複数接続構成体要件は確認できない。旧distribution-package L3 `LEGACY-ASSET-9B7682EBDEA171005D45`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md:24–83`、全文SHA `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c`、raw span SHA `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e`）とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md:22–31`、全文SHA `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc`、raw span SHA `d826f63a45f76c205a424ce412ad3a7de4fcac0a8d3b4e9090460e4e7e38abd5`）はsource/revision/consumer整合とpositive/negative分離の構造類例だけに使い、release/promotion authorityやbundle意味をCONNECTへ移さない。複数connection edge、技術終端、途中失敗と戻し先は固定L2/L11から再導出する。
 
 ## Review修正：個別L11受入本文の固定pin
 
