@@ -33,4 +33,4 @@
 | 候補 | 対象AC | 候補値・比較・根拠 | L10測定 |
 |---|---|---|---|
 | NFR-INFRA-011-01 | INFRA-011-AC-01 | PO固定の最低18 item全てについて個別入力/expected/observed/result参照を閉じるcoverage 18/18を候補とする。aggregate構成体greenだけを数える案より、項目別traceで欠落を特定できる。18という分母は親の列挙で固定される。 | C01–C18を各々正常＋個別欠落/unknown/stale変異として測り、各itemのevidence closureを記録する。 |
-| NFR-INFRA-011-02 | INFRA-011-AC-02 | 欠落/unknown/stale/mismatch/unauthorized unit・connection・minimum itemをcomposite successへ写像する件数0候補。aggregate-only案とunit/connection/compositeを分離する案を比較し、後者がfailure位置・未完ownerを保つため候補とする。 | C19–C23でpartial success、backup-only、stage dependency誤適用、Web/later-version混入、未見正常構成を測定しfalse passを個別記録する。 |
+| NFR-INFRA-011-02 | INFRA-011-AC-02 | 欠落/unknown/stale/mismatch/unauthorized unit・connection・minimum itemをcomposite successへ写像する件数0候補。aggregate-only案とunit/connection/compositeを分離する案を比較し、後者がfailure位置・未完ownerを保つため候補とする。 | C19–C24でpartial success、backup-only、stage dependency誤適用、後続版/Web境界、未見正常構成を測定しfalse passと、後続機能の不存在だけによる誤failを個別記録する。 |

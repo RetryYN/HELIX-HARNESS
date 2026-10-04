@@ -473,8 +473,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-015-C01 — 親指定比較条件の一致
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: baseline/current、candidate、hybridの親指定比較区分それぞれにsource revision、target version、適用条件、同一evaluation oracleを付ける。 専用connector `HELIXLABO-L2-015` のadmitted contract identity/revision、schema version、source provenanceもfixtureへ結ぶ。
-- 期待oracle:親指定のbaseline/current、candidate、hybrid各区分の比較条件を再構成可能にし、条件差は候補構成として明示する。明示された別比較条件を本ACだけを根拠に排除せず、Worker実行は起動しない。 `HELIXLABO-L2-015`のconnector contractと入力→出力（transformation candidateをbaseline/current・candidate・hybrid比較条件へ渡し、対象版・oracle・適用条件を保つ）が一致することを観測し、別connectorの契約で代替しない。
+- 入力fixture: 親指定の4 arm（baseline、current、candidate、hybrid）それぞれにsource revision、target version、適用条件、evaluation oracleを付ける。専用connector `HELIXLABO-L2-015` のadmitted contract identity/revision、schema version、source provenanceもfixtureへ結ぶ。
+- 期待oracle:4 armの比較条件を省略・統合せず再構成可能にし、条件差は候補構成として明示する。明示された別比較条件を本ACだけを根拠に排除せず、Worker実行は起動しない。`HELIXLABO-L2-015`のconnector contractと入力→出力が一致することを観測し、別connectorの契約で代替しない。
 
 ### L10-LABO-015-C02 — oracleまたは対象版の個別欠落
 
@@ -485,13 +485,13 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-015-C03 — 比較条件の混在
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: arm間の適用条件を一つだけずらし、別fixtureではscopeとrevisionを組合せて不一致にする。
+- 入力fixture: 親指定の4 arm（baseline、current、candidate、hybrid）のうち一つだけ適用条件をずらし、別fixtureではscopeとrevisionを組合せて不一致にする。
 - 期待oracle:一致しないarmを比較可能と扱わず、条件差を保持して実験ownerへ戻す。assignmentや実行を開始しない。
 
 ### L10-LABO-015-C04 — 同一条件のheld-out正常
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 未見candidate transformationをbaseline/current、candidate、hybridの親指定比較区分へ適用するが、全armでtarget version・oracle・適用条件を同一にする。
+- 入力fixture: 未見candidate transformationを親指定の4 arm（baseline、current、candidate、hybrid）へ適用し、全armでtarget version・oracle・適用条件を同一にする。
 - 期待oracle:比較条件を分離して追跡可能なcandidateとして返し、未見名を理由に排除しない。
 
 ### L10-LABO-016-C01 — 比較証拠から二種類の評価材料へ
@@ -792,7 +792,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-028` / `LABO-028-AC-02`。
 - Input fixture: (a)assignment missing、(b)wrong task class、(c)Worker result revision staleを個別・併発。 選択親専用connector identity/revision/schema/provenanceのmissing、stale、mismatchを個別に投入する。
-- Observable oracle: OSへ返し、resultはhold/unknown。Workerをauthority ownerにしない。 専用connector mismatchも受領成立にせず、assignment不一致はOS owner、専用connector契約不一致はHELIX-CONNECT/source ownerへ戻し、別connectorへfallbackしない。
+- Observable oracle: OSへ返し、resultはhold/unknown。Workerをauthority ownerにしない。assignment/result mismatchはOS assignment ownerへ、専用connector identity/revision/schema/provenance mismatchはHELIX-CONNECT/source ownerへ戻す。別connectorへfallbackしない。
 
 ### L10-LABO-028-C03 — evaluation promotion否定
 
@@ -863,8 +863,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-034-C02 — single/product-specific failure
 
 - Parent/AC: `HELIXLABO-L2-034` / `LABO-034-AC-02`。
-- Input fixture: (a)single episode、(b)single product meaning、(c)unknown scopeを個別・併発。 選択された当該親専用connector contract identity/revision/schema/provenanceも入力する。
-- Observable oracle: candidateをholdしL2-009へ戻す。汎用構造として送らない。 受渡し条件が一致する場合だけ受領し、missing/stale/schema/provenance mismatchは不成立として該当BRAIN source/consumerへ戻す。
+- Input fixture: (a)single episode、(b)single product meaning、(c)顧客固有ルール、(d)unknown scopeを個別・併発。正常対照では複数meaning/product/episodeの根拠とgeneric候補を入力する。さらにBRAIN向け専用connectorのidentity欠落、revision stale、schema非対応、provenance不一致をそれぞれ独立に与える。
+- Observable oracle: single case/product-specific meaning/顧客固有ルール/unknown scopeからの候補はholdしL2-009へ戻し、正常対照だけ根拠・scope付きgeneric candidateとして出す。connector各変異は受領不成立として該当BRAIN source/consumerへ戻し、authority/ingestionを生成しない。
 
 ### L10-LABO-034-C03 — version boundary
 
@@ -887,8 +887,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-035-C02 — scope/revision failure
 
 - Parent/AC: `HELIXLABO-L2-035` / `LABO-035-AC-02`。
-- Input fixture: (a)evidence source revision missing、(b)unassessed field omitted、(c)stale model/provider evaluationを個別・併発。 選択された当該親専用connector contract identity/revision/schema/provenanceも入力する。
-- Observable oracle: unknown/unassessedを保持しINTELLIGENCE consumerへ戻す。current judgmentを偽装しない。 受渡し条件が一致する場合だけ受領し、missing/stale/schema/provenance mismatchは不成立として該当BRAIN source/consumerへ戻す。
+- Input fixture: (a)evidence source revision missing、(b)unassessed field omitted、(c)stale model/provider evaluationを個別・併発。さらにINTELLIGENCE向け専用connectorのidentity欠落、revision stale、schema非対応、provenance不一致をそれぞれ独立に与える。正常対照として全source/revision/scope/evaluation stateが宣言契約に適合するpayloadを入力する。
+- Observable oracle: unknown/unassessedを保持し、payload consumer不一致はINTELLIGENCE consumerへ照会する。connector contract mismatchは受領不成立として該当HELIX-CONNECT/source ownerへ返す。正常対照だけ同一scopeの評価材料として受領し、current judgmentを偽装しない。
 
 ### L10-LABO-035-C03 — learning/operation exclusion
 
@@ -948,7 +948,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-036` / `LABO-036-AC-01, LABO-036-AC-02`。旧類例: `LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)、隣接起点として限定利用。
 - **L10-LABO-036-C01 — 正常**：HARNESS対象revision/connector、V-model又はverification-contract issueに関する許可evidenceとsource参照を入力。期待値はscope付きcandidateをHARNESSへ返し、要求/contract revisionを変えず候補と実変更を区別する。
-- **L10-LABO-036-C02 — 個別不一致**：target revision missing、connector stale、source evidence missingを一つずつ投入。target identity不明はOS routing候補へ返し、target以外のrevision/connector/source evidence欠落はHARNESS ownerへ戻す。原因を分け、欠けていないsourceは破棄しない。
+- **L10-LABO-036-C02 — 個別不一致**：target identity unknown、target revision missing/stale、connector stale、source evidence missingを一つずつ投入。target identity不明はOS routing候補へ返し、target以外のrevision/connector/source evidence欠落はHARNESS ownerへ戻す。原因を分け、欠けていないsourceは破棄しない。
 - **L10-LABO-036-C03 — 境界変異**：candidate生成時に要求意味または工程contractを書き換え、実験結果を即時反映とする。いずれも該当candidateは不成立。意味差を明記した提案自体は許し、HARNESS側の判断材料として返す。
 - **L10-LABO-036-C04 — 未見正常**：別のops-maintenance/refactor問題だが対象revisionとconnectorが有効なfixture。未見のproblem subtypeだけを理由に拒否せず、同じscope traceでcandidateを返す。
 
@@ -995,8 +995,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-054 — Bench水準のINTELLIGENCE接続
 
 - Parent/AC: `HELIXLABO-L2-054` / `LABO-054-AC-01, LABO-054-AC-02`。旧起点は`LEGACY-ASSET-28FB139B26CD61CC51EE` (`helix-bench-evaluation.md:19–36,96–169`, SHA `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`) と `LEGACY-ASSET-A952A3A175EB82A4781B` (`helix-bench-evaluation-acceptance.md:28–41`, SHA `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`)。055水準/INTELLIGENCE接続とworker-admissionの責務分離だけ隣接類例。
-- **L10-LABO-054-C01 — 正常**：055からtask type/model class/level/basis/evaluation scope/unassessedを含むpayloadと、同じscopeのINTELLIGENCE受領を渡す。期待値は全fieldが一致し、LABO source→INTELLIGENCE受領まで追跡できること。INTELLIGENCEの配置案とOSの指定/割当は別状態に保ち、unassessedもそのまま受け渡す。
-- **L10-LABO-054-C02 — 個別payload mismatch**：level、scope、basis、unassessed marker、task type/model classを一つずつ改変し、対応するpayload fieldと受領値の不一致を検知する。個々の不一致は受領成立にせず、元scopeと不成立理由を保持してL2-055の水準生成側へ再評価として戻す。connector ownerへの返却条件は追加しない。
+- **L10-LABO-054-C01 — 正常**：055からtask type/model class/level/basis/evaluation scope/unassessedを含むpayload、採択済み専用connectorのidentity/revision/schema/provenance、および同じscopeのINTELLIGENCE受領を渡す。期待値は全fieldが一致し、LABO source→connector→INTELLIGENCE受領まで追跡できること。INTELLIGENCEの配置案とOSの指定/割当は別状態に保ち、unassessedもそのまま受け渡す。
+- **L10-LABO-054-C02 — 個別payload/connector不一致**：level、scope、basis、unassessed marker、task type/model classを一つずつ改変する。別fixtureで専用connector identity欠落、revision stale、schema非互換、provenance欠落をそれぞれ個別に与える。個々の不一致は受領成立にせず、payload不一致は元scopeと理由を保持してL2-055水準生成側へ戻す。connector条件不成立は受領成立にせず接続を保留する。返却先を新設せず、固定親の既存責務境界を変えない。
 - **L10-LABO-054-C03 — authority/extrapolation negative**：未評価jobを過去のlevelで成功保証、LABOがworker/modelを割当、scoreからscope/branch/merge authorityを作る変異。各出力を不成立とし、候補水準をそのまま持つ。
 - **L10-LABO-054-C04 — 未見正常**：別task/model classについて055が評価範囲とunassessed状態を示した水準結果を同範囲で受領する。評価済みと偽らず受領し、未評価状態だけを理由に有効な受渡しを拒否しない。
 

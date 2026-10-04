@@ -130,7 +130,7 @@ HARNESS-L2-010/011のBRAIN capability descriptorに含まれるidentity/kind、c
 ### 受入条件（AC候補）
 
 - **BRAIN-028-AC-01 — 正常・追跡**：有効なdescriptorとknowledge revisionを受け取り、契約に定めたrangeの内側であることを確認した場合、descriptorのidentity/kind、contract/artifact version、dependency identity/version、declared compatibility range、verification scopeと、knowledge identity/revision/version/stateを独立照合し、照合対象のidentityとrevisionを保持した適用可能応答を返す。
-- **BRAIN-028-AC-02 — 異常・境界**：descriptor kind、dependency identity、verification scope、knowledge version/stateを含む各fieldのunknown/mismatch/range外/必要field欠落/range解釈未確定をnot-applicableまたはunknownとして止め、relation endpointのidentity/revision欠落と明示conflictも保持する。BRAIN知識側の不一致はBRAIN、descriptor contract/range側はHARNESSへ返す。旧版への黙った置換、互換range不明時のfallback、conflictからcompatibleへの変換を拒否する。version_target代入やrollback義務のBRAINへの移管を受理しない。
+- **BRAIN-028-AC-02 — 異常・境界**：descriptor kind、dependency identity、verification scope、knowledge version/stateを含む各fieldのunknown/mismatch/range外/必要field欠落/range解釈未確定をnot-applicableまたはunknownとして止める。BRAIN知識側のrevision/version/state不一致はBRAIN、descriptor contract/range側の不一致はHARNESSへ返す。旧版への黙った置換、互換range不明時のfallbackを拒否する。version_target代入やcommon exchange/update/rollback/unfinished-obligation義務のBRAINへの移管を受理しない。relation endpointやconflictの意味判定は親028へ追加せず、該当するrelation契約の対象として扱う。
 
 ### 固定親句の被覆
 
@@ -189,8 +189,8 @@ Domain identity・意味・状態とPattern関係を識別し、Domainの追加�
 | 親L2/L11の要素 | 要件／AC | 対応L10 | 観測oracle |
 |---|---|---|---|
 | 入力・identity・source: Domain候補・操作種別・既存relation利用者 | `BRAIN-001-FR-01 / AC-01` | `L10-BRAIN-001-C01` | 入力fieldとsource/revision保持 |
-| 正常出力・意味: 候補Domainのmeaning/stateと変更案の影響、既存relation利用者を識別する。 | `BRAIN-001-FR-01 / AC-01` | `L10-BRAIN-001-C01` | 正常候補/状態/出力が親のmeaningに一致 |
-| 否定・failure: 製品/project名、重複・不明なmeaning、既存利用者を消す分割・退役案は確定しない。meaning不明ならcandidateで止めL1-001へ戻す。 | `AC-02` | `L10-BRAIN-001-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
+| 正常出力・意味: 初期10 Domainを保持し、候補の追加・意味変更を閉じた集合とせず扱う。固定L2はReliability/Recovery、Performance、Observability、Testing/Quality等の候補領域の充実を初版必須にしていない。 | `BRAIN-001-FR-01 / AC-01` | `L10-BRAIN-001-C01,C03` | 初期例の意味/stateを保持し、追加candidateを受け付ける。候補領域の網羅を初版必須にする変異は不合格。 |
+| 否定・failure: 製品/project名、重複・不明なmeaning、既存利用者を消す分割・退役案は確定しない。候補領域を列挙どおりに充実させることを初版の成立条件にしない。meaning不明ならcandidateで止めL1-001へ戻す。 | `AC-01,AC-02` | `L10-BRAIN-001-C02` | 不正/不足を確定せず、候補列挙の非網羅性だけで拒否しない。 |
 | owner・戻し先: 意味不明時に候補で停止し、L1-001へ戻す。 | `AC-02` | `L10-BRAIN-001-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-001、Concept機構境界。PO束ね条件: §BRAIN-L1-001、§初期Domain候補、Visual Designの1.0回答。 | `FR-01 / AC-01,02` | `L10-BRAIN-001-C01,C02` | dependency identity/sourceと戻し先を明示 |
 | 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-001-C03` | sourceにない意味はunknown/未評価として保持 |
@@ -477,7 +477,7 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 ### 受入条件（AC候補）
 
 - **BRAIN-009-AC-01 — 正常**：Pattern AのUnit A1とPattern BのUnit B1を新relationで組む例等を、候補stateとcomponent/relation source付きで示す。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
-- **BRAIN-009-AC-02 — 否定・失敗**：component/relationのsourceまたはmeaningが不足・unknownなら、その項目を未確定candidateとして保持し、適用可能・確立済みへ進めない。構成candidate自体は親が認める入力から提示できる。意味の変更が必要な場合はBRAIN L1-009へ戻し、昇格はLABO評価・OS登録と振分け・BRAIN独立検証を経る既存promotion経路だけで行う。親にない「適用条件不明」だけを理由にcandidate作成全体を停止しない。
+- **BRAIN-009-AC-02 — 否定・失敗**：構成する部品またはrelationの根拠が不明な入力は、candidateとしても適用せず構成を止め、固定親のBRAIN L1-009へ戻す。根拠がある候補は候補状態に保ち、LABO等の評価とL2-025 promotion経路が終わる前に確立済みへ進めない。source/relation meaningが既知でも欠けた適用根拠を補作しない。
 
 ### 固定親句の被覆
 
@@ -485,8 +485,8 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 |---|---|---|---|
 | 入力・identity・source: 既存unit・relation・source/evaluation scope | `BRAIN-009-FR-01 / AC-01` | `L10-BRAIN-009-C01` | 入力fieldとsource/revision保持 |
 | 正常出力・意味: Pattern AのUnit A1とPattern BのUnit B1を新relationで組む例等を、候補stateとcomponent/relation source付きで示す。 | `BRAIN-009-FR-01 / AC-01` | `L10-BRAIN-009-C01` | 正常候補/状態/出力が親のmeaningに一致 |
-| 否定・failure: component/relationの根拠不明、適用条件不明、候補を確立済みにする入力は停止する。 | `AC-02` | `L10-BRAIN-009-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
-| owner・戻し先: 不足根拠はsource ownerへ、構成meaning不明は固定親のBRAIN L1-009へ戻す。昇格には既存評価/promotion経路のみ適用。 | `AC-02` | `L10-BRAIN-009-C02` | 停止理由と固定親ownerへ返す先 |
+| 否定・failure: 部品またはrelationの根拠が不明な構成はcandidateとしても適用せず停止する。根拠があるcandidateも評価前に確立済みにしない。 | `AC-02` | `L10-BRAIN-009-C02` | 根拠不明構成は不適用として止まりL1-009へ戻る。根拠あるcandidateはcandidate stateに留まる |
+| owner・戻し先: 部品またはrelationの根拠が不明な構成は固定親のBRAIN L1-009へ戻す。昇格は既存評価/promotion経路のみ適用。 | `AC-02` | `L10-BRAIN-009-C02` | 戻し先とpromotion前状態をそれぞれ確認 |
 | 依存・束ね条件: BRAIN L1-009、L2-005/007/025。PO束ね条件: §BRAIN-L1-009。 | `FR-01 / AC-01,02` | `L10-BRAIN-009-C01,C02` | dependency identity/sourceと戻し先を明示 |
 | 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-009-C03` | sourceにない意味はunknown/未評価として保持 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-009-C01,C02` | candidate versionを実装/release authorizationと混同しない |
@@ -571,12 +571,12 @@ Product Core由来の候補、製品名/要求/screen/business rule/user decisio
 
 **出力・責務**：製品識別子を含むsourceから独立したreusable conditionを提示し、source/provenanceを保持する。
 
-**否定・境界**：一般化がProduct Core固有meaningを変える、または未分離要素を含む場合採用しない。共有範囲の人間判断が必要な場合は既存判断先へ送る。 分離不能は提供元CORE/LABOへ戻す。
+**否定・境界**：一般化がProduct Core固有meaningを変える、または未分離要素を含む場合採用しない。共有範囲の決定が必要な場合は固定親に従って人の判断点へ送る。分離不能は提供元CORE/LABOへ戻す。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-011-AC-01 — 正常**：製品識別子を含むsourceから独立したreusable conditionを提示し、source/provenanceを保持する。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
-- **BRAIN-011-AC-02 — 否定・失敗**：一般化がProduct Core固有meaningを変える、product requirement・screen・業務ルール・利用者判断を汎用Patternへそのまま移す、または未分離要素を含む場合は採用しない。共有範囲や意味の判断が必要なら既存の該当ownerへ送り、分離不能は提供元CORE/LABOへ戻す。
+- **BRAIN-011-AC-02 — 否定・失敗**：一般化がProduct Core固有meaningを変える、product requirement・screen・業務ルール・利用者判断を汎用Patternへそのまま移す、または未分離要素を含む場合は採用しない。共有範囲の決定が必要なら人の判断点へ送り、分離不能は提供元CORE/LABOへ戻す。
 
 ### 固定親句の被覆
 
@@ -584,7 +584,7 @@ Product Core由来の候補、製品名/要求/screen/business rule/user decisio
 |---|---|---|---|
 | 入力・identity・source: Product Core source context・候補knowledge・一般化根拠 | `BRAIN-011-FR-01 / AC-01` | `L10-BRAIN-011-C01` | 入力fieldとsource/revision保持 |
 | 正常出力・意味: 製品識別子を含むsourceから独立したreusable conditionを提示し、source/provenanceを保持する。 | `BRAIN-011-FR-01 / AC-01` | `L10-BRAIN-011-C01` | 正常候補/状態/出力が親のmeaningに一致 |
-| 否定・failure: 一般化がProduct Core固有meaningを変える、または未分離要素を含む場合採用しない。共有範囲の人間判断が必要な場合は既存判断先へ送る。 | `AC-02` | `L10-BRAIN-011-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
+| 否定・failure: 一般化がProduct Core固有meaningを変える、または未分離要素を含む場合採用しない。共有範囲の決定が必要な場合は人の判断点へ送る。 | `AC-02` | `L10-BRAIN-011-C02` | 固定親の共有範囲判断点へ送り、CORE/LABO返却とは分ける |
 | owner・戻し先: 分離不能は提供元CORE/LABOへ戻す。 | `AC-02` | `L10-BRAIN-011-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-011、L2-007/018/020/025。PO束ね条件: §BRAIN-L1-011。 | `FR-01 / AC-01,02` | `L10-BRAIN-011-C01,C02` | dependency identity/sourceと戻し先を明示 |
 | 未見条件/追加candidateへの一般化境界 | `AC-01,AC-02` | `L10-BRAIN-011-C03` | sourceにない意味はunknown/未評価として保持 |
@@ -916,7 +916,7 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-005-AC-01 — 正常**: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 固定parent owner/版を越えず、source・revision・scopeが追跡可能。
-- **BRAIN-INFRA-005-AC-02 — 否定・境界**: Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region/Zone Failure、Deployment/Backup/Restore Failure、configuration driftの各例について、想定failure・detection・impact・containment・recovery・residual riskを個別に対応づける。一要素から他要素を推定する、conditionを落として全環境failureとする、観点欠落やresidual risk隠しは不成立。incidentの実測値はLABO/Runtimeへ、failure一般化範囲はL1-010へ戻す。
+- **BRAIN-INFRA-005-AC-02 — 否定・境界**: 固定L2が示す13個別fixtureと固定L11の11群を対応づけ、L11のDeployment/Backup/Restore Failure群はL2の3個別例へ分けて照合する。各例の想定failure・detection・impact・containment・recovery・residual riskを個別に対応づける。一要素から他要素を推定する、conditionを落として全環境failureとする、観点欠落やresidual risk隠しは不成立。incidentの実測値はLABO/Runtimeへ、failure一般化範囲はL1-010へ戻す。
 
 ### 固定親句の被覆
 
@@ -924,7 +924,7 @@ Single Point of Failure、Network Partition、Dependency Failure、Storage Exhau
 |---|---|---|---|
 | Input/source: failure condition/sourceと親L2の6要素 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: failure event候補の各要素と条件を個別に照合し、分からない要素をunknownとして保持する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-005-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 一要素の記載から他の要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。 失敗時戻し先: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: L2の13個別例とL11の11群を対応づけ、Deployment/Backup/Restore Failure群は3個別例へ分ける。一要素から他要素を推定する、conditionを落として全環境failureとする、residual riskを隠す入力は不成立。実測値はLABO/Runtimeへ、一般化範囲はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | 群集約で個別例を落とさず、欠落/矛盾/unknownを成功扱いしない |
 | Held-out boundary: 未見failure categoryと不完全oracleを投入し、known fieldsから残りを推測しない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-005-C03` | source/condition scope外をunknown/未評価に保つ |
 | Owner/backflow: incidentの実測値はLABO／Runtimeへ、failure一般化範囲はL1-010へ戻す。 | `AC-02` | `L10-BRAIN-INFRA-005-C02` | stop reasonとparent ownerを観測 |
 | Dependencies/PO bundling: 親L1-010; 常時 BRAIN L2-010/INFRA-003。全failure exampleとoracle field。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-005-C01,C02` | dependency identity/sourceと戻し先を照合 |
@@ -1636,18 +1636,18 @@ HELIX-Benchのscope/method/failure/欠測保持と自己申告score拒否の意�
 
 ### 要件候補
 
-INTELLIGENCEのquery/scopeへBRAIN knowledge identity/version、candidate、required input、条件、alternative、constraints、counterexample、evidenceを判断材料として返す。BRAINはruntime結論/選択を確定せず、INTELLIGENCEはBRAIN knowledgeを暗黙変更・昇格しない。推薦材料と稼働中判断を分離する。
+INTELLIGENCEから受け取る対象課題・案件状態query identityと必要scopeに対し、BRAIN knowledge identity/version、candidate、required input、条件、alternative、constraints、counterexample、evidenceを判断材料として返す。BRAINはruntime結論/選択を確定せず、INTELLIGENCEはBRAIN knowledgeを暗黙変更・昇格しない。推薦材料と稼働中判断を分離する。
 
 ### 受入条件（AC候補）
 
-- **BRAIN-021-AC-01 — 正常**: 対象query scopeに一致した知識候補をsource/version・条件・根拠込みで返し、response statusをcandidate informationとして記録する。 返却のknowledge identity/version/candidate/input/conditions/alternative/constraint/counterexample/evidence全field coverage、BRAIN mutation/runtime conclusion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-021-AC-02 — 否定・境界**: runtime選択/結論を要求、BRAIN knowledge書換えを行う、scope/source versionが欠ける、またはL2-003/004/008/012とINTELLIGENCE query/response contractのidentity/revision/scopeがmissing/stale/wrong-scopeの変異を投入し、決定・mutationを生じさせない。対象条件不足はINTELLIGENCE、意味/版不整合はBRAIN L1またはknowledge ownerへ返す。
+- **BRAIN-021-AC-01 — 正常**: 対象課題・案件状態query identityとscopeに一致した知識候補をsource/version・条件・根拠込みで返し、response statusをcandidate informationとして記録する。返却のknowledge identity/version/candidate/input/conditions/alternative/constraint/counterexample/evidence全field coverage、BRAIN mutation/runtime conclusion 0件を候補とする。これは根拠付き測定候補で、PO承認値・実測値ではない。
+- **BRAIN-021-AC-02 — 否定・境界**: 対象課題/案件状態query identity、scope、source versionを一つずつmissing/stale/wrong-scopeにするほか、runtime選択/結論を要求、BRAIN knowledgeを書換える、L2-003/004/008/012またはINTELLIGENCE query/response contractのidentity/revision/scopeが不一致となる変異を投入し、決定・mutationを生じさせない。対象条件不足はINTELLIGENCE、意味/版不整合はBRAIN L1またはknowledge ownerへ返す。
 
 ### 固定親句の被覆
 
 | 親L2/L11要素 | 要件／AC | 対応L10 | 観測oracle |
 |---|---|---|---|
-| Input・版・範囲 | `BRAIN-021-FR-01` / `BRAIN-021-AC-01` | `L10-BRAIN-021-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
+| Input・版・範囲 | 対象課題・案件状態query identity、scope、knowledge source/version。`BRAIN-021-FR-01` / `BRAIN-021-AC-01` | `L10-BRAIN-021-C01` | 固定L2/L11と一致するquery identity/revision/scopeを記録 |
 | 保証・出力: INTELLIGENCE判断材料の受渡し | `BRAIN-021-FR-01` / `BRAIN-021-AC-01` | `L10-BRAIN-021-C01` | 全必須field・receipt・状態を維持 |
 | 否定条件・失敗時の戻し先 | `BRAIN-021-AC-02` | `L10-BRAIN-021-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
 | 未見入力の境界 | `BRAIN-021-AC-01,BRAIN-021-AC-02` | `L10-BRAIN-021-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
@@ -1760,7 +1760,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 |---|---|---|---|
 | Input・版・範囲 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
 | 保証・出力: BRAIN knowledgeからHARNESSへの単一接続 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 全必須field・receipt・状態を維持 |
-| 否定条件・失敗時の戻し先 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 否定条件・失敗時の戻し先: compatibility不明はquery hold、Pattern意味/条件/relation不整合は該当BRAIN L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 3種の不備を別fixture化し、各ownerへ返し、採択/承認/実装を生成しない。 |
 | 未見入力の境界 | `BRAIN-030-AC-01,BRAIN-030-AC-02` | `L10-BRAIN-030-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
 | 依存と版 | `BRAIN-030-FR-01` | `L10-BRAIN-030-C01,L10-BRAIN-030-C02` | L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。 版1.0 / Stage 4 |
 | PO固定L11の例 | 固定L11全例 | `L10-BRAIN-030-C01,L10-BRAIN-030-C02,L10-BRAIN-030-C03` | 否定条件・停止・戻し先も個別照合 |

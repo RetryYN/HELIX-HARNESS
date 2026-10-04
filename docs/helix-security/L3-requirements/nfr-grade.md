@@ -12,7 +12,7 @@
 | `SEC-NFR-006` / `SECURITY-AC-007-01` | execution control coverage | 適用可能な制約ごとのrequest→実行環境の受渡し/適用証拠の欠落0。timeout/resourceの値自体はassignment/runtime ownerの宣言値を候補入力にする。 | `HELIXSECURITY-L2-007`とread-only変更なし/rollback条件。 | 既存scope内の各制約とowner宣言値を照合。未宣言値を仮定せず、unsupported/unknownで起動しない。 |
 | `SEC-NFR-007` / `SECURITY-AC-005-01`, `SECURITY-AC-008-01`, `SECURITY-AC-009-01`, `SECURITY-AC-033-01` | revoke/credential re-check point | dispatch開始時および既存operationのresume/retry時にcurrent authority・expiry・bindingを再照合する案を候補とし、初回だけ照合する案と比較する。expiry境界の比較候補はA=`now < expires_at`のみ有効（`now >= expires_at`でdeny）、B=`now <= expires_at`も有効（`now > expires_at`でdeny）とし、保守候補Aを推奨する。これはPO承認値ではなく、expiryを越える利用を許さない候補解釈である。 | L2-008 tuple/expiry、L2-009 revoke、L2-033のdrift後に以前のbindingを流用しない条件。 | expiry直前/境界/経過後、revoked後resume、HEAD/assignment変更をfixtureし、stale/expired operationのsuccess化を0件とする。durationの値は作らない。 |
 | `SEC-NFR-008` / `SECURITY-AC-009-01`, `SECURITY-AC-010-01`, `SECURITY-AC-013-01` | evidence retention | 保存期間は固定候補値なし。minimum evidenceはsource identity/revision、decision reason、recipient/owner stateで、raw secret値は常に0件。 | `HELIXSECURITY-L2-005/009/010/013/033`。sourceにretention期間なし。 | 必要なdecision traceが定めたverification windowで参照できるか測定し、window自体はownerが宣言したときだけ適用する。 |
-| `SEC-NFR-014-01` / `SECURITY-AC-014-01` | target別decision trace | memory、training dataset、BRAIN knowledgeの各target classについて、source/provenance/classification、allow/deny/hold、理由の対応欠落0件を候補とする。 | L2-014の3 target classと理由付き判定を、分類結果だけ数える案と比較する。分類のみでは誤ったtargetや理由欠落を隠すため、target別のdecision trace候補を選ぶ。 | 合成入力で3 classと欠落/unknown/wrong-targetを比較し、CASE-NFR-SECURITY-014-01でfield対応を計測する。handoff、LABO評価、保存、BRAIN登録の成立は測定対象にしない。 |
+| `SEC-NFR-014-01` / `SECURITY-AC-014-01` | target別decision trace | memory、training dataset、BRAIN knowledgeの各target classについて、source/provenance/classification、allow/deny/hold、理由の対応欠落0件を候補とする。 | L2-014の3 target classと理由付き判定を、分類結果だけ数える案と比較する。分類のみでは誤ったtargetや理由欠落を隠すため、target別のdecision trace候補を選ぶ。 | 合成入力で3 classと欠落/unknown/wrong-targetを比較し、`SECURITY-CASE-014-01`の同一入力とfield対応を測定に使う。handoff、LABO評価、保存、BRAIN登録の成立は測定対象にしない。 |
 
 候補境界は測定可能だが、未指定の性能値を普遍閾値にしない。1.x/Web sink保護を1.0へ前倒しせず、scanner/registry/providerや必須Botを追加しない。
 
@@ -72,7 +72,7 @@
 | `HELIXSECURITY-L2-011` | capability driftの旧条件継続 | 独立性能・期間候補なし | `SECURITY-CASE-011-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-012` | provenance不明の受入 | 独立性能・期間候補なし | `SECURITY-CASE-012-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-013` | artifact identity chain不一致の受入 | SEC-NFR-008（traceのみ） | `SECURITY-CASE-013-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
-| `HELIXSECURITY-L2-014` | 分類・判断不足のpromotion許可 | SEC-NFR-014-01（target別decision traceのみ） | `SECURITY-CASE-014-01` と `CASE-NFR-SECURITY-014-01` を照合。該当NFR caseは各候補節を参照。 |
+| `HELIXSECURITY-L2-014` | 分類・判断不足のpromotion許可 | SEC-NFR-014-01（target別decision traceのみ） | `SECURITY-CASE-014-01`を同じ合成target/source入力で照合。別NFR case IDを新設しない。 |
 | `HELIXSECURITY-L2-015` | asset identity分類基盤の誤対応 | SEC-NFR-003（適用する基盤分類のみ） | `SECURITY-CASE-015-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-016` | 分類不明のpublic/allow化 | SEC-NFR-003 | `SECURITY-CASE-016-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |
 | `HELIXSECURITY-L2-020` | 決定Guardの委譲・条件抜け | SEC-NFR-004 | `SECURITY-CASE-020-01` と同番号の全機能caseを照合。該当NFR caseは各候補節を参照。 |

@@ -21,7 +21,7 @@
 
 ### 要件（候補）
 
-対象resourceをidentity、role、environment、location、version、dependency、lifecycle stateへ結び、source/revisionからresource topologyとして参照可能にする。各environmentは独立identityとして扱い、resource/config/network/credential scope/data/version/authorityを混ぜない。HELIX-CONNECTのlogical connectionとphysical/runtime pathを別に表し、pathにはsource、destination、protocol、endpoint、direction、purpose、security boundary、dependencyを結ぶ。persistent/temporary stateはowner、durability、backup、retention、environment、confidentiality、recovery属性をsource付きで記録する。Model/Worker runtime資源・状態は参照するが、model評価、ticket state、security policyを所有しない。
+対象resourceをidentity、role、environment、location、version、dependency、lifecycle stateへ結び、source/revisionからresource topologyとして参照可能にする。各environmentは独立identityとして扱い、resource/config/network/credential scope/data/version/authorityを混ぜない。credentialはowner付き参照とscope/classificationだけを保持し、値自体を通常resource state/recordへ保存しない。HELIX-CONNECTのlogical connectionとphysical/runtime pathを別に表し、pathにはsource、destination、protocol、endpoint、direction、purpose、security boundary、dependencyを結ぶ。persistent/temporary stateはowner、durability、backup、retention、environment、confidentiality、recovery属性をsource付きで記録する。Model/Worker runtime資源・状態は参照するが、model評価、ticket state、security policyを所有しない。
 
 **境界**：L2で指定された入力・出力・ownerを越えない。BRAINは知識identity/state、LABOはobservation/evaluation、OSは登録・project use、INFRASTRUCTUREは資源/topology/recovery path、CONNECTは論理通信契約、SECURITYはauthorityを保持する。項目固有の適用境界は上記本文に従う。
 
@@ -415,16 +415,16 @@ Worker identityと実際のexecution resource identity/capacity/stateを対応�
 
 ### INFRA-011-FR-01 — PO列挙18 minimum itemの個別・構成体受入
 
-対象はHELIX自身のInfrastructure構成体である。固定親が入力として列挙するHELIX-HARNESS-CORE design、HELIX-OS/SECURITY/Worker connection、対象runtime/recovery environment、およびL2-001〜010/025の必要なversioned identity/evidenceを同一構成scopeへ結ぶ。PO既決の最低18項目は一つずつ個別scope、test input、expected outcome、observed evidence、結果へ対応させてから、unit、CORE/OS/SECURITY/Worker connection、composite outcomeを別々に評価する。
+対象はHELIX自身のInfrastructure構成体である。固定親が入力として列挙するHELIX-HARNESS-CORE design、HELIX-OS/SECURITY/Worker connection、対象runtime/recovery environment、およびL2-001〜010/025の必要なversioned identity/evidenceを同一構成scopeへ結ぶ。PO既決の最低18項目は一つずつ個別scope、test input、expected outcome、observed evidence、結果へ対応させてから、unit、CORE/OS/SECURITY/Worker connection、composite outcomeを別々に評価する。後続版境界の個別確認はL10 `L10-INFRA-011-C24`に対応し、詳細分離・full lifecycle/cost・future telemetry taxonomy・高可用自動化の不在を1.0最低範囲の欠落と混同しない。
 
 構成体成立には18項目すべての採択済み要求と適用契約、適格なbackup/restore/rollback、独立bootstrap/recovery、rebuildabilityの結果が要る。どれか一つの欠落・unknown/stale/mismatch/unauthorized、または必要な独立recovery/rebuildabilityの失敗があればcompositeは未成立のまま部分成功と未完義務を保ち、欠けたunit/connection ownerへ戻す。HELIX-WEB-OSの顧客runtimeと1.0より後の能力を混ぜない。
 
-HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage releaseへ収載される場合だけ照合する。通常のInfrastructure 1.0 compositeを成立させるための必須dependencyとしては扱わない。OSはWork/Change stateを、INFRASTRUCTUREはresource/runtime stateをそれぞれ所有する。read-only操作に無関係なbackup全件を要求しない一方、構成体の18項目からbackup/restore/rollback/recoveryを外さない。個々のoperationのauthorityはL2-010/SECURITY/OS/Workerの既存契約に従い、このFRから実行権限を生成しない。
+HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage releaseへ収載される場合だけ照合する。通常のInfrastructure 1.0 compositeを成立させるための必須dependencyとしては扱わない。OSはWork/Change stateを、INFRASTRUCTUREはresource/runtime stateをそれぞれ所有する。read-only操作に無関係なbackup全件を要求しない一方、構成体の18項目からbackup/restore/rollback/recoveryを外さない。個々のoperationのauthorityはL2-010/SECURITY/OS/Workerの既存契約に従い、このFRから実行権限を生成しない。固定L11後続版境界（Infrastructure L11 158–165）に従い、1.0ではplane/failure-domain詳細分離、LABO episode・候補promote update lifecycle・blast-radius最適化、provider portability/hybrid/multicloud/location proof/tool neutrality、full cost/lifecycle/decommission照合、後続freshness/collector-confidence taxonomy、Web runtime placement classification/self-host promotion、高度autoscalingおよび完全自動failoverを必須化しない。最低1.0項目のrecovery/incident、004のtelemetry欠測をhealthyにしないこと、035/036の顧客runtime分離は保持する。
 
 **受入条件**
 
 - `INFRA-011-AC-01`: PO最低18項目の各々に、L2 identity、入力source/revision、expected outcome、observed evidence、結果を一件ずつ結ぶ。項目は親の対応表どおりに識別し、合算したgreenで欠落項目を補わない。HELIX-WEB顧客runtime・後続版項目は1.0対象外とする。
-- `INFRA-011-AC-02`: 同一target scopeでunit、CORE/OS/SECURITY/Worker connection、compositeの結果を別々に記録する。backupと実restore/verificationを区別し、rollback適格先、独立bootstrap/recoveryおよびrebuildabilityまで照合する。一つでも欠落/unknown/stale/mismatch/unauthorizedならaggregate passにしない。HELIXOS-L2-014はstage収載時のみ追加照合し、OSとの二重state ownershipを作らない。
+- `INFRA-011-AC-02`: 同一target scopeでunit、CORE/OS/SECURITY/Worker connection、compositeの結果を別々に記録する。backupと実restore/verificationを区別し、rollback適格先、独立bootstrap/recoveryおよびrebuildabilityまで照合する。一つでも欠落/unknown/stale/mismatch/unauthorizedならaggregate passにしない。HELIXOS-L2-014はstage収載時のみ追加照合し、OSとの二重state ownershipを作らない。L11後続版境界の対象機能が無いことだけでは1.0を失敗にせず、1.0で明示されたminimum項目・incident/recovery観測はなお個別に判定する。
 
 **最低18項目のtrace分類**（項目定義は固定L2の1.0表をそのまま保つ。下表はFR/AC/L10観測への索引である。）
 
@@ -448,6 +448,7 @@ HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage release�
 | 16 Worker execution | L2-010/025 | OS assignmentとSECURITY-authorized Worker operation/result/actual state |
 | 17 Bootstrap/Out-of-Band Recovery | L2-006 | HELIX/control planeから独立したminimum path/resource/別SECURITY authority |
 | 18 Rebuildability | L2-007/011 | approved design/config/artifact/dependency/data backup/version/evidenceから実再構築結果 |
+| 後続版境界（固定L11 158–165） | `INFRA-011-AC-02` | `L10-INFRA-011-C24`で後続能力の不存在だけをfailureにせず、minimum/recovery条件を個別維持 |
 
 ### HELIXINFRASTRUCTURE-L2-011 固定親・旧sourceとの照合
 

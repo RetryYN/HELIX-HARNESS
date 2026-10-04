@@ -404,7 +404,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 実行前にはpolicy/authority、assignment、runtime/config、payload manifest/digest、scope、execution constraintsを照合し、result/diff/完了receiptを開始前提にしない。実行後はWorker/INFRASTRUCTUREの観測とOSの既存assignment記録によりresult/diff receiptが作られ、HARNESSが選択済みoracleでproposalを再検証する。receiptは後続証拠であり、SECURITY判断、OS昇格、HARNESS受入を単独で生成しない。
 
-- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。deny/unknown後にhostへfallbackして実行した場合、またはpayload・credential条件・data classificationが変化したのに旧照合を流用した場合は不合格とする。SECURITYがcommitを決定する、OSがenforcerまたは実資源を代替する越境も拒否する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えて既存HELIXSECURITY-L2-009の停止伝播へ渡し、OSの既存assignment/未完義務記録へ返す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、commit判断、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
+- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。deny/unknown後にhostへfallbackして実行した場合、またはpayload・credential条件・data classificationが変化したのに旧照合を流用した場合は不合格とする。SECURITYがcommitを決定する、INFRASTRUCTUREがSECURITY authorityを発行する、OSがenforcerまたは実資源を代替する越境も拒否する。Workerの自己申告だけでHARNESS再検証を満たしたり、HARNESS再検証を迂回してOS昇格を成立させたりする変異も拒否し、HARNESS verificationとOS promotionは各ownerの既存条件に戻す。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えて既存HELIXSECURITY-L2-009の停止伝播へ渡し、OSの既存assignment/未完義務記録へ返す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、commit判断、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
 
@@ -418,7 +418,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 ローカル保証は同じtupleのsandbox適用、該当network operationのallowlistとegress実測、該当write operationのFS差分を型別に返す。全operationへ四型すべてを課さず、read-onlyは既存007のwrite禁止と対象scope不変oracleを使う。適用性unknownを非該当へ落とさない。provider UI・宣言・flagはopt-out申告の出所として残せるがローカル強制の代用にならず、ローカル成功はprovider訓練停止の証明でもない。SECURITYはpolicy、INFRASTRUCTURE/Workerは適用観測、OSはassignmentと未完義務を所有する。対象外の主Worker・未選択sourceを止めず、別tuple証拠への暗黙fallbackをしない。
 
-- **`SECURITY-AC-029-01` 分類・委譲・採用の分離**：publicと機密/secret/PII・unknown、およびopt-out完了/未完/不明を個別比較し、機密以上を遮断する。未完opt-out下の適格public委譲は採用完了へ昇格せず、有効な既存scoped credential-useだけを理由に拒否しない。これは追加runtimeだけに適用し、主Workerの許可済み非公開repository作業を029の追加制約だけで止めない。
+- **`SECURITY-AC-029-01` 分類・委譲・採用の分離**：publicと機密/secret/PII・unknown、およびopt-out完了/未完/不明を個別比較し、機密以上を遮断する。public codeであっても既存のoperation authority、target/scope、expiry、許可隔離環境と適用検査を省略しない。未完opt-out下の適格public委譲は採用完了へ昇格せず、有効な既存scoped credential-useだけを理由に拒否しない。これは追加runtimeだけに適用し、主Workerの許可済み非公開repository作業を029の追加制約だけで止めない。
 - **`SECURITY-AC-029-02` 型別適用観測**：選択operationごとにsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、許可隔離環境の実適用状態を常時結び、各要素の欠落/stale/scope不一致を該当runの未完として扱う。payloadまたはclassificationが変わった場合も旧判断・証拠を流用しない。加えてoperationに適用されるsandbox/allowlist/egress/FS差分を型別に独立照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分け、全operationへ未規定の制約を広げない。個別fixtureは`SECURITY-CASE-029-04`を参照する。
 - **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scope/payload/classificationの変更で旧証拠を流用せず、常時必須tupleまたは適用条件の不足をpolicy/実環境/data/runtimeの宣言ownerへ返す。provider申告とローカル適用観測を独立に保持する。追加runtimeが主Workerであると名乗るだけで029条件を逃れる変異と、主Worker通常taskへ029のopt-out/public-only・機密以上遮断を拡張する変異をいずれも拒否する。1.x Web強制を生成しない。CASE-029-04でtupleの個別欠落とこの戻し先を照合する。
 
@@ -539,7 +539,7 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 - `SECURITY-AC-023-01` — 候補とadmission: 候補の出所・対象revision・能力差分を判断対象へ結合し、admissionは限定条件の判断であり実行・検証・昇格完了を生成しない。
 - `SECURITY-AC-023-02` — 実行の結果: admitted範囲の隔離実行結果をWorkerが記録し、隔離実観測欠落と実行失敗をHARNESS成功で相殺しない。
 - `SECURITY-AC-023-03` — 検証の結果: HARNESSは同一実行対象を検証し、CI green・ticket・別HEAD結果から検証完了を作らない。
-- `SECURITY-AC-023-04` — 昇格の結果: OSは各段階の結果と現行条件を照合し昇格結果を別記録する。候補・admission・検証のいずれか単独では昇格しない。
+- `SECURITY-AC-023-04` — 昇格の結果: OSは各段階の結果と現行条件を照合し昇格結果を別記録する。候補・admission・検証のいずれか単独でも、OS ticket/昇格要求単独でも昇格しない。
 
 ### HELIXSECURITY-L2-024 — policy・資源・実強制の接続
 

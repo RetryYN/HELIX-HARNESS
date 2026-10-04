@@ -44,7 +44,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-001の接続登録、端点ownerのversion/互換宣言。送信適格性を照合する操作では、該当するSECURITY authorityとdata-use条件を追加で参照する。通信実行を必須にしない。 戻し先: 契約不一致は接続設計・契約ownerへ、読取りaccess条件はその既存owner/authorityへ、送信時の許可scope/expiry問題はHELIX-SECURITYへ戻す。比較不能はunknown/staleとして記録し、送信は保留する。
 
-**L3 acceptance (`CONNECT-AC-002-01`)**：既存scope/access条件下で互換性を照合し、送信時のみ許可を確認。revision変更後はstaleを検知して再照合まで通信を止める。read access欠落/拒否/unknownは比較をunknown/保留にし、参照のみの正常照合はcompatibleとsend eligibility not_evaluated、attempt 0を保つ。送信適格性はactor/target/operation/revision/environment/scope/expiryとdata-use条件の個別照合が成立したときだけeligibleで、不一致/不明/期限切れ/失効ではcompatible結果を保持してwithheld・attempt 0とする。未見の宣言範囲内revision組も同条件で照合し、宣言外・未登録revisionはunknownとする
+**L3 acceptance (`CONNECT-AC-002-01`)**：既存scope/access条件下で互換性を照合し、結果をcompatible/incompatible/unknown/staleに区別して記録し、送信時のみ許可を確認する。互換条件の比較不能や未登録revisionはunknownのまま扱い、compatibleへ推定せず、送信attemptを0に保つ。revision変更後はstaleを検知して再照合まで通信を止める。read access欠落/拒否/unknownは比較をunknown/保留にし、参照のみの正常照合はcompatibleとsend eligibility not_evaluated、attempt 0を保つ。送信適格性はactor/target/operation/revision/environment/scope/expiryとdata-use条件の個別照合が成立したときだけeligibleで、不一致/不明/期限切れ/失効ではcompatible結果を保持してwithheld・attempt 0とする。未見の宣言範囲内revision組も同条件で照合し、宣言外・未登録revisionはunknownとする
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-002`。
 
@@ -80,7 +80,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：登録・互換照合・通信契約、受信側の同一identity重複排除契約。構成体や後続機構を必須にしない。 戻し先: digest衝突や再送上限到達は送信を停止し、connection operationのownerへ未完義務と試行数を返す。業務結果は元の業務ownerへ、許可期限切れはSECURITYへ戻す。新revisionへ自動混載再送しない。
 
-**L3 acceptance (`CONNECT-AC-004-01`)**：応答欠落後、既存operation identityと同一digestで設定済み上限内の再送だけを許し、受信側効果は一回分とする。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完結果を元operation ownerへ返す。新しい上限値・retry権限は作らない。
+**L3 acceptance (`CONNECT-AC-004-01`)**：接続契約が再送可能と定めた技術的失敗について、既存operation identity・同一digest・単一contract revisionで設定済み上限内の再送だけを許し、受信側効果は一回分とする。応答欠落はその一例であり唯一の再送契機ではない。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完結果を元operation ownerへ返す。新しい上限値・retry権限は作らない。
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-004`。
 
@@ -165,14 +165,14 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 ### CONNECT-FR-009-01 — typed feedback relation（親 HELIXCONNECT-L2-009）
 
-必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。自由文feedbackはfindingのまま保持し、resolution・受領・承認・完了へ変換しない。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは宣言順と宣言された先行条件を保持し、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
+必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。自由文feedbackはfindingのまま保持し、resolution・受領・承認・完了へ変換しない。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。独立宣言されたreverse feedback operationは新しい一方向operation identityとpayload digestを持つ。forward/reverseはcorrelationと因果operation lineageを共有しても同一operationとはみなさず、同一operationのretry/resumeだけが元identity・digest・contract revisionを維持する。serialは宣言順と宣言された先行条件を保持し、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
 
 **受入条件**
 
-- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
+- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。forwardと独立宣言されたreverse feedback operationは別々のoperation identity/digestを持ち、共有correlation/因果lineage・reason/endpoint/revisionへ関係づける。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
 - CONNECT-AC-009-02: 初回送信のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictにする個別fixtureでは、該当辺の初回送信attemptを0にし、missing inputとownerを返す。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityを各状態へ個別変異するとfeedback送信だけを保留する。parallel join条件不明はjoin/全体完了だけを保留し、ACK対応不明は既存attemptを保持して受領/完了だけ保留する。独立してeligibleな他操作へ伝播しない。eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
 - CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policy、累積attempt数、operation identityをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
-- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopでは各forward/feedback/ACK/terminal eventを同じoperation identity・digest・lineageへ結び、attemptを累積して保持する。L2-004/005の既存冪等性・trace条件に反し同一eventをresumeで再適用して二重効果を生む変異は拒否するが、一般的な追加重複排除義務は設けない。因果event/receipt traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
+- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopではforward/reverse-feedback operationにそれぞれ独立宣言済みidentityとdigestを持たせ、共通correlation/因果lineageへ結び、ACK/terminal eventは対応operationへ記録する。同一operationのretry/resumeだけは同一identity・digest・contract revisionを保つ。resumeでそのoperationを二重効果化する変異、retry時だけdigestを変える変異、shared correlationだけでforwardとreverseを同一operation扱いする変異は個別に拒否する。新しい重複排除義務は設けない。因果event/receipt traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
 
 旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは以下の旧資産source mapに記録している）。
 

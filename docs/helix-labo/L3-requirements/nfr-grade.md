@@ -23,13 +23,13 @@
 
 | 親L2 | 候補値・比較 | 根拠と測定 | 適用限界 |
 |---|---|---|---|
-| `HELIXLABO-L2-036` | target revision/connector/source provenanceの必要field一致100%候補、要求・contract直接書換え0 | L2/L11はscope付きHARNESS feedbackと意味書換え/即時変更の否定を示す。fieldごと欠落/改変するcaseと有効な未見正常sourceを比較する。 | latency、候補数、採択率は指定なし。 |
+| `HELIXLABO-L2-036` | target identity/revision・connector・source provenanceの必要field一致100%候補、要求・contract直接書換え0 | target identity不明、revision欠落/stale、connector/source欠落を別々に変異し、target不明はOS routing候補、その他のsource不足はHARNESS ownerへの戻しを測る。 | latency、候補数、採択率は指定なし。 |
 | `HELIXLABO-L2-037` | OS運転evidenceの観測field/target一致100%候補、ticket/routing/stateのLABO直接write 0 | ticket/WIP/placement/priority等を個別に変異し、OS ownershipのままcandidateが戻るか観測。 | OS全fieldを毎caseに要求しない。各fixtureで実在するscopeのみを対象にする。 |
 | `HELIXLABO-L2-038` | 選択targetのrequired permission/scope/identity/source revision/owner relation coverage 100%候補、誤受領・LABO直接authority変更・restricted/raw credentialの通常packet流入0 | 直接authority変更のnegativeと、sanitized change proposalをSECURITYへ渡すpositiveを分ける。permission unknown、scope mismatch、restricted inputも個別に測る。 | 実権限は変更せず、提案candidate自体は判断材料として許容する。新data classification taxonomyやcredential scannerの性能閾値は追加しない。 |
 | `HELIXLABO-L2-039` | selected Worker result identity/revision/routing一致100%候補、LABO割当/実行0 | execution/stop/recovery resultとOS/SECURITY routeを組み、片field欠落/不一致を独立変異。 | 未選択Worker/sourceを全runの必須依存にしない。 |
 | `HELIXLABO-L2-040` | connection identity/採択scope/version/trace一致100%候補、mismatch成功昇格0 | 選択接続のcontract versionとretry/traceを別々に欠落・変異させてCONNECT returnを確認。 | 全CONNECT connectorの存在や具体retry回数/latencyは固定しない。 |
 | `HELIXLABO-L2-041` | 選択Product Core identity/version/connector/meaning provenance一致100%候補、製品意味の汎用化0 | 複数の選択/未選択target、version mismatch、product-to-BRAIN mutationを比較する。 | 全製品connectorを一律必須にしない。 |
-| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptのtask type/model class/level/basis/scope/unassessed一致100%候補、割当・authority生成0 | 必須fieldの各単独欠落/変異と併発を測り、異なる未評価jobを正常対照にする。 | legacy 12 metrics/5 categories/score cutoffは使わない。固定task数・水準閾値も追加しない。 |
+| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptのtask type/model class/level/basis/scope/unassessedおよび採択connector identity/revision/schema/provenance一致100%候補、割当・authority生成0 | 必須payload/receipt fieldとconnector条件の各単独欠落/不一致を変異し、異なる未評価jobを正常対照にする。受領不成立と責務境界への戻りを観測する。 | legacy 12 metrics/5 categories/score cutoffは使わない。固定task数・水準閾値も追加しない。 |
 | `HELIXLABO-L2-052` | 選択targetの035/source/receipt identity・revision・scope・status・unassessed・owner relation coverage 100%候補、誤受領0 | summary/部分edge照合と全required tuple/owner別traceを比較し、schema mismatch、revision stale、scope mismatch、receipt missingも個別/併発投入してsourceまで往復照合。 | 選択契約のrequired relationだけを分母にする。未選択sourceは必須にせず、035 payload schemaの複製、training/model change、bot・placement outcomeを測定対象にしない。 |
 
 比較案はsummaryまたは部分edgeの一致確認と、選択targetの全required tupleをsource/owner別に結ぶ照合を並べる。前者は簡易だが、一つの欠落edgeや誤受領を隠し得るため、後者を候補とする。各選択scopeで契約が要求するidentity・source revision・scope・status・receipt・owner relationを分母としてrequired-relation coverageを測り、欠落/不一致を受領成功した数とLABOからの直接authority変更数を別々に数える。目標候補はrelation coverage 100%、誤受領・直接変更0。99%比較は少なくとも一つのrelation欠落を許すため採らない。未選択target/sourceは分母や一律gateへ加えず、親にない標本数・反復数・時間目標も固定しない。必要性が後続測定で判明すれば根拠・比較・計測方法付き候補を同一のL3/L10承認パッケージに加える。parameterごとの人間gateは設けない。
@@ -59,7 +59,7 @@
 | `HELIXLABO-L2-012` | provenance/relation revision/unknown保持候補、correlation-onlyからcausal claimを作る誤り0候補 | relation・episode revision不一致/欠落とco-timed unrelated eventを個別/併発入力 | relation/source owner return、causal overclaim 0 |
 | `HELIXLABO-L2-013` | 分類軸/根拠のtrace completeness 100%候補 | 根拠field欠落・分類矛盾 mutation | Vector inputからsource evidenceへ往復 |
 | `HELIXLABO-L2-014` | original meaning/purpose/conditionとcandidate delta 100% trace候補 | 元意味不明・partial evidence mutation | 不明時停止、ownerへbackflow |
-| `HELIXLABO-L2-015` | baseline/current/candidate/hybridのversion/condition/oracle一致100%候補 | 比較armの各条件を個別にずらす | 比較成立/不成立を区別 |
+| `HELIXLABO-L2-015` | 4 arm（baseline、current、candidate、hybrid）ごとのversion/condition/oracle一致100%候補 | 各armのcondition/oracleを個別にずらし、armの欠落/統合も確認する | 比較成立/不成立を区別し、明示された別比較を本候補だけで排除しない |
 | `HELIXLABO-L2-016` | comparison/counterexample/oracle/interruption status全件保持候補 | oracle不一致・counterexample・中断を独立投入 | 判定不能をoperation候補に保留 |
 | `HELIXLABO-L2-017` | current guarantee/revision/unfinished obligations/owner trace 100%候補 | current versionまたはownerを欠落 | switch実行0、owner returnを記録 |
 | `HELIXLABO-L2-018` | supported scope/evidence/counterexample coverage 100%候補 | sample condition欠落・反例追加 | evidence以上のscope拡張0 |
@@ -72,11 +72,11 @@
 | `HELIXLABO-L2-025` | selected SECURITY data-use scope coverage 100%候補、restricted payload transfer 0 | scope欠落/restricted field/stale rev | intake拒否、security ownerへ戻す |
 | `HELIXLABO-L2-026` | resource/environment source-version coverage 100%候補 | stale/unknown resource state | current healthyへのcoercion 0 |
 | `HELIXLABO-L2-027` | 各connection admitted contract identity/revision/schema/traceの一致候補、implicit cross-connector reuse 0 | 専用contract/schema/revision drift、暗黙共有を個別/併発変異 | mismatch/unknownを露出しCONNECT ownerへreturn |
-| `HELIXLABO-L2-028` | assignment/task class/Worker result trace候補、L2-006と同experiment/target version/scope一致 | 別ticket/experiment/target version、assignment欠落、status unknownを個別変異 | observed→evaluated誤昇格0、異identityはOS/result ownerへreturn |
+| `HELIXLABO-L2-028` | assignment/task class/Worker result trace候補、L2-006と同experiment/target version/scope一致 | 別ticket/experiment/target version、assignment欠落、status unknownと専用connector identity/revision/schema/provenance不一致を個別変異 | observed→evaluated誤昇格0。assignment/result不一致はOS assignment owner、connector不一致はHELIX-CONNECT/source ownerへreturn |
 | `HELIXLABO-L2-029` | target revision/test scope/CI status coverage 100%候補 | not-run/stale/interrupted/scope missing | pass誤表記0 |
 | `HELIXLABO-L2-030` | product/source identity/version/scope分離100%候補 | different source merge、unselected product required化 | cross-identity merge0 |
-| `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/unknown scope fixture | 1.0内部evidenceと2.0外部loopの混入0 |
-| `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
+| `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/顧客固有ルール/unknown scopeと専用connector identity/revision/schema/provenance欠落・stale・不一致を個別変異 | 1.0内部evidenceと2.0外部loopの混入0、connector mismatch success 0、該当BRAIN source/consumerへreturn |
+| `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision/scope missing、unassessed omitted、専用connector identity/revision/schema/provenance不一致、3.0 learning requestを個別変異 | training/placement/bot execution 0。connector不一致はsource owner、payload consumer不一致はINTELLIGENCEへ返す |
 | `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionに加えscope/source/operation/version各変更を個別に入力しclosure再照合 | 選択sourceだけclosureを再照合。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
 
 ## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071 測定候補

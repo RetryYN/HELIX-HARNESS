@@ -107,7 +107,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 
 ### 観測点とoracle
 
-このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。L2/L1で別の時間・期間要件が必要と分かったときは比較根拠・測定方法付きL3 candidateを提示する。 各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。固定L2/L11で別の時間・保持期間要件が確認された場合に限り、比較根拠・測定方法付きL3候補を提示する。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
 
 
 ## HELIXINFRASTRUCTURE-L2-009 — L10 oracle（対応 `INFRA-009-FR-01`）
@@ -227,5 +227,6 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 - `L10-INFRA-011-C21`（AC `INFRA-011-AC-02`）: HELIX自身のphase releaseへ収載するfixtureではHELIXOS-L2-014のstage identity/contract/evidenceを照合する。通常Infrastructure構成体の対照fixtureではその依存を要求しない。HELIX-WEB-OS顧客runtimeや後続version_targetを1.0 scopeに入れたら拒否する。
 - `L10-INFRA-011-C22`（AC `INFRA-011-AC-02`）: authorized read-only/no-change operation、許可update、OS停止中独立recoveryを別fixtureにする。read-onlyは適用scopeのwrite-setと対象resource before/afterを検査し、全state digest不変は要求しない。個々のread-only operationへbackup全件は課さず、compositeの18 item coverageから復旧itemを外さない。許可updateでは当該actionへ適用される復旧義務を別に照合し、その義務がunknownのstate changeはholdする。OS停止中の限定recoveryを根拠に通常operationのticket/assignmentを免除する変異は拒否する。
 - `L10-INFRA-011-C23`（AC `INFRA-011-AC-01,02`）: source identity/scope/versionと親が定める18項目を保った、既知の構成とは異なるvalid topology fixtureを与える。oracleは要求field/evidence/ownerが適合する未見構成を許容し、特定の旧実装・製品構成を唯一例として要求しない。
+- `L10-INFRA-011-C24`（AC `INFRA-011-AC-02`）: 固定L11 158–165の後続版境界を独立fixtureで照合する。1)18 minimumが揃いplane/failure-domain詳細分離なし、2)LABO episode/候補promote更新/blast-radius最適化なし、3)provider portability/hybrid/multicloud/location proof/tool neutralityなし、4)full cost/lifecycle/decommission詳細なし、5)後続freshness/collector-confidence taxonomyなし（ただし既存004の欠測はhealthyにしない）、6)Web asset-placement分類やself-host promotionなし（顧客runtimeを本体へ混ぜない）、7)高度autoscaling/完全自動failoverなしを各々与える。oracleは各不存在だけで1.0 failまたは依存待ちにせず、最低18項目、要求済みrecovery/incident、後続版scope分離を個別照合する。対応する1.0条件の欠落、欠測telemetryのhealthy化、顧客runtime混入は独立に不合格とする。
 
 case集合の出力は各itemのinput/expected outcome/observed evidence/result、source/revision、owner、unknown/hold、未完義務、recovery/rollback先である。外部環境操作や実測結果は本設計に含まない。

@@ -28,7 +28,7 @@ NFR候補の測定設計であり、L3機能ACの正本は[機能要件](../L3-r
 | `CASE-OS-L10-NFR-023-02` | `NFR-OS-023-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | wrong actor・self-review・推進によるoracle変更の3mutationを拒否。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-027-01` | `NFR-OS-027-01` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 1 positive + 6 independent negative + 各条件の状態変異を比較。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
 | `CASE-OS-L10-NFR-027-02` | `NFR-OS-027-02` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | 成功1件、scope mismatch、oracle欠落、評価済みreceiptありの4条件を比較。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
-| `CASE-OS-L10-NFR-027-03` | `NFR-OS-027-03` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | source/contract/scope/actor/receiver field欠落を独立に試し、assignment0を確認。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 |
+| `CASE-OS-L10-NFR-027-03` | `NFR-OS-027-03` | 同一親revision・同一scopeで候補条件と比較案をfixture化する。 | source/contract/scope/actor/receiver field欠落を独立に試し、assignment0を確認。 | 候補条件が観測不能、入力scope不一致なら未評価として記録し、承認値とみなさない。 INTELLIGENCE-L2-010／HELIXINTELLIGENCE-L2-066と同じfield・revision・scopeの人代行案を正常対照にし、各不一致、受領だけのassignment生成、066未実装を理由とする正常対照の拒否を個別に変異する。 |
 | `CASE-OS-L10-NFR-028-01` | `NFR-OS-028-01` | request/response/return receiptを完全に結ぶpositiveと、required field・response・source revisionを個別欠落/不一致にしたfixtureを比較する。 | 完全fixtureだけconnection成立、欠落時成立0を測る。 | source applicability不明は未評価/holdで、成功に丸めない。 |
 | `CASE-OS-L10-NFR-029-01` | `NFR-OS-029-01` | 事前candidate、assignment、change、oracle result、independent review、任意consultの各stageを全て含むfixtureとstageごとの欠落fixtureを比較する。 | 有効な全stage traceのときだけcomposite候補成立、欠落時誤success0を測る。 | consultを選ばない正例でOS-028 receipt不在を失敗にしない。 |
 | `CASE-OS-L10-NFR-029-02` | `NFR-OS-029-02` | final HEADとreview receiptが一致する例、review後HEAD mutation、supporter/self-review、stop/budget expiryを比較する。 | final exact HEADへの独立receiptのみ最終review条件を満たし、未完success0を測る。 | 適用可能なHARNESS oracleやreviewer authorityが不明なら未評価。 |
@@ -72,7 +72,7 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 適用policyのscope/revision/counter semanticsと入力上限Nを使い、N未到達/N到達/policy不明を比較する。重複副作用・無駄retry・必要returnの未送信を測る。 |
 | CASE-OS-L10-NFR-041-01 | NFR-OS-L3-041-01 | restart/resumeごとcanonical sourceをdriftさせる。reacquisition coverage、stale continuation数。 |
 | CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | 既存contractが定める期限の前/境界/後、期限不明、再検証なしを比較する。期限後/対象外scopeの誤昇格数を測り、固定期限は導入しない。 |
-| CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
+| CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 OSによるapproval生成、SECURITYによるassignment/progress所有、Workerによる自己authority/write成立、旧Node専有条件の推定移管の四変異で誤成立0を測る。 |
 | CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-onlyを与え、既存owner条件に基づく解決判断と未解決を比較する。新しいreceipt型・十分条件は作らず、誤resolution数を数える。 |
 | CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認。無根拠dispatchと誤状態数。 |
 | CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | configured thresholdの1/2 bucket超過、15/60min窓、spike/downstream blockerを比較。誤増枠・backpressure漏れ。bucket数・時間は測定比較候補であり、既存の増枠/縮退条件を置換せず合否の追加gateにしない。 |

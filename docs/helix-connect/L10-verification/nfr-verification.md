@@ -16,7 +16,7 @@
 | 候補 | 入力・測定 | 判定候補 | 限界 |
 |---|---|---|---|
 | CON-NFR-008 | catalog各列挙profileのdescriptor fieldとsource revisions | 全fieldを照合し、identity mismatchと誤safe/executable/send claimが0。descriptor数のみのcoverage案と比較する。 | 性能閾値・operation成功率を追加しない。 |
-| CON-NFR-009 | relation tuple、attempt trace、既存retry/budget policy revision | tuple欠落とpolicy外attemptを別々に数え、unknownからの追加attempt0を候補とする。 | policy値を発明しない。未指定の必要技術値は計測比較付き候補にできる。 |
+| CON-NFR-009 | relation tuple、各operation identity/digest、共有correlation/lineage、attempt trace、既存retry/budget policy revision | tuple欠落・誤結合とpolicy外attemptを別々に数え、unknownからの追加attempt0を候補とする。逆方向feedbackは別operation identity/digest、同一operation retryは同一identity/digestを保持する。 | policy値を発明しない。未指定の必要技術値は計測比較付き候補にできる。 |
 
 ## Stage 5 NFR候補測定
 
