@@ -1,0 +1,663 @@
+{
+  "recorded_at": "2026-10-05",
+  "record_kind": "CONNECT Stage1切り出しのsource・pair・静的照合",
+  "authority_effect": "none",
+  "status": "draft_pending_independent_review_and_PO_L3_approval",
+  "content_source_commit": "3c4c85e5c8157cffee710a6d993fb722d810a647",
+  "base_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+  "requirements_basis_main": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "fixed_parent_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "mechanism": "HELIX-CONNECT",
+  "stage": "Stage 1",
+  "parent_count": 5,
+  "canonical_document_count": 6,
+  "documents": [
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "0ecd6905b16568d54f13ed3ae807eb588be3dfefaa41f9c2e3a6daf372b9e012",
+      "line_count": 5
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "527a9d6832d42d33229e7a2cb1b6df91b1b1bd65203b3d3a8fed1bdd78c8882c",
+      "line_count": 76
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "41a6623b5c1a098617161276f04f109dd8eca3bc117e890f577e3a3dfea3926b",
+      "line_count": 11
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "7cbbfe2095d182a1e4244255c8dc40d55fe3bc4692a6e62e417d749c677b7087",
+      "line_count": 7
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "02f19db5919bed55197289083cd78a0bcdaa79b61bbb37b1768d360034dac525",
+      "line_count": 123
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "b9352d3d12d35d45f2003219e987c00ba51d44c718966122a56c9bf371bf06f1",
+      "line_count": 16
+    }
+  ],
+  "parents": [
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-001-002",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage": "Stage 1",
+      "parent_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "parent_full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "physical_lines": [
+        56,
+        66
+      ],
+      "raw_span_sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09",
+      "candidate_semantic_digest": "sha256:895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+      "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L27",
+      "po_row_sha256": "a4798297d8e6b144fb085ed0a98458382eed10cdb80201534e159da2134e1931",
+      "po_registration_semantic_pin": {
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-001-002",
+        "candidate_semantic_digest": "sha256:895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+        "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L27",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      },
+      "l3": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "l10": "docs/helix-connect/L10-verification/functional-verification.md",
+      "limit": "本体節とPO対象行のbytes照合。追補意味やL3承認を単独で証明しない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-002-002",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage": "Stage 1",
+      "parent_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "parent_full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "physical_lines": [
+        67,
+        79
+      ],
+      "raw_span_sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756",
+      "candidate_semantic_digest": "sha256:ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+      "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+      "po_row_sha256": "62b1f9acffffba7124f4328959b310d739e01d665136f77577251aaac872f4d4",
+      "po_registration_semantic_pin": {
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-002-002",
+        "candidate_semantic_digest": "sha256:ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+        "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      },
+      "l3": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "l10": "docs/helix-connect/L10-verification/functional-verification.md",
+      "limit": "本体節とPO対象行のbytes照合。追補意味やL3承認を単独で証明しない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-003-001",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage": "Stage 1",
+      "parent_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "parent_full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "physical_lines": [
+        80,
+        90
+      ],
+      "raw_span_sha256": "538e057821cbe69138efe2b2ffd1c593d08be7a4348f01dc0c8afa26b4eac15e",
+      "candidate_semantic_digest": "sha256:6eea10829958fee5807147b6a7cdd9d4e889f72fbf5b6cef24ab925e9b85bf42",
+      "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+      "po_row_sha256": "62b1f9acffffba7124f4328959b310d739e01d665136f77577251aaac872f4d4",
+      "po_registration_semantic_pin": {
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-003-001",
+        "candidate_semantic_digest": "sha256:6eea10829958fee5807147b6a7cdd9d4e889f72fbf5b6cef24ab925e9b85bf42",
+        "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      },
+      "l3": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "l10": "docs/helix-connect/L10-verification/functional-verification.md",
+      "limit": "本体節とPO対象行のbytes照合。追補意味やL3承認を単独で証明しない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-004-001",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage": "Stage 1",
+      "parent_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "parent_full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "physical_lines": [
+        91,
+        101
+      ],
+      "raw_span_sha256": "f4b6bcba98851d0c9bd8c73cd59e7fdf3722b5c177f45594cc20a47da33daccd",
+      "candidate_semantic_digest": "sha256:2a62ae83a10c379554ce2ac586edeb887256ee8742f7c8b5c53f0c6250dc41ef",
+      "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+      "po_row_sha256": "62b1f9acffffba7124f4328959b310d739e01d665136f77577251aaac872f4d4",
+      "po_registration_semantic_pin": {
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-004-001",
+        "candidate_semantic_digest": "sha256:2a62ae83a10c379554ce2ac586edeb887256ee8742f7c8b5c53f0c6250dc41ef",
+        "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      },
+      "l3": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "l10": "docs/helix-connect/L10-verification/functional-verification.md",
+      "limit": "本体節とPO対象行のbytes照合。追補意味やL3承認を単独で証明しない。"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "registration_id": "MPR-RC-HELIXCONNECT-L2-005-001",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "stage": "Stage 1",
+      "parent_path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "parent_full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "physical_lines": [
+        102,
+        112
+      ],
+      "raw_span_sha256": "2d913f153b1d7ee5e07e4dabc65baee93649ee06ad442c942b07541389835289",
+      "candidate_semantic_digest": "sha256:d2e2a658c6055384b4946a6aff9840ec3a1d719f9cc6863d8fc260ff0e3af871",
+      "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+      "po_row_sha256": "62b1f9acffffba7124f4328959b310d739e01d665136f77577251aaac872f4d4",
+      "po_registration_semantic_pin": {
+        "registration_id": "MPR-RC-HELIXCONNECT-L2-005-001",
+        "candidate_semantic_digest": "sha256:d2e2a658c6055384b4946a6aff9840ec3a1d719f9cc6863d8fc260ff0e3af871",
+        "po_decision_locator": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md#L48",
+        "approval_attribution": "Exact PO decision row at basis main 633bf12 only; the post-basis latest register row, including R2289 metadata/locator corrections, does not itself alter the PO-fixed registration revision or candidate semantic digest and is not approval."
+      },
+      "l3": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "l10": "docs/helix-connect/L10-verification/functional-verification.md",
+      "limit": "本体節とPO対象行のbytes照合。追補意味やL3承認を単独で証明しない。"
+    }
+  ],
+  "pairs": [
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "stage": "Stage 1",
+      "fr": "CONNECT-FR-001-01",
+      "ac": "CONNECT-AC-001-01",
+      "case": "CONNECT-CASE-001-01",
+      "legacy_disposition": "meaning_rederived_from_fixed_L2_L11; adjacent_distribution_contract_comparison_only",
+      "new_body_review": "not_received",
+      "po_l3_approval": "not_received"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "stage": "Stage 1",
+      "fr": "CONNECT-FR-002-01",
+      "ac": "CONNECT-AC-002-01",
+      "case": "CONNECT-CASE-002-01",
+      "legacy_disposition": "meaning_rederived_from_fixed_L2_L11; adjacent_distribution_contract_comparison_only",
+      "new_body_review": "not_received",
+      "po_l3_approval": "not_received"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "stage": "Stage 1",
+      "fr": "CONNECT-FR-003-01",
+      "ac": "CONNECT-AC-003-01",
+      "case": "CONNECT-CASE-003-01",
+      "legacy_disposition": "meaning_rederived_from_fixed_L2_L11; adjacent_distribution_contract_comparison_only",
+      "new_body_review": "not_received",
+      "po_l3_approval": "not_received"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "stage": "Stage 1",
+      "fr": "CONNECT-FR-004-01",
+      "ac": "CONNECT-AC-004-01",
+      "case": "CONNECT-CASE-004-01",
+      "legacy_disposition": "meaning_rederived_from_fixed_L2_L11; adjacent_distribution_contract_comparison_only",
+      "new_body_review": "not_received",
+      "po_l3_approval": "not_received"
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "stage": "Stage 1",
+      "fr": "CONNECT-FR-005-01",
+      "ac": "CONNECT-AC-005-01",
+      "case": "CONNECT-CASE-005-01",
+      "legacy_disposition": "meaning_rederived_from_fixed_L2_L11; adjacent_distribution_contract_comparison_only",
+      "new_body_review": "not_received",
+      "po_l3_approval": "not_received"
+    }
+  ],
+  "source_pins": [
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "physical_lines": [
+        43,
+        112
+      ],
+      "full_file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+      "raw_span_sha256_lf_inclusive": "cf2cf07eeab3ed3e0b3039c884dce65ab93121e99376484e6de2b27445074d94",
+      "role": "共通境界と001–005固定親"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "physical_lines": [
+        26,
+        65
+      ],
+      "full_file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+      "raw_span_sha256_lf_inclusive": "460f3940b8595eb0babe74f3f58eb66eb7b98177177cbcab57d5e27780531326",
+      "role": "共通束縛・一覧と001–005個別受入"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "physical_lines": [
+        43,
+        112
+      ],
+      "full_file_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+      "raw_span_sha256_lf_inclusive": "cf2cf07eeab3ed3e0b3039c884dce65ab93121e99376484e6de2b27445074d94",
+      "role": "共通境界と001–005固定親"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "physical_lines": [
+        26,
+        65
+      ],
+      "full_file_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+      "raw_span_sha256_lf_inclusive": "460f3940b8595eb0babe74f3f58eb66eb7b98177177cbcab57d5e27780531326",
+      "role": "共通束縛・一覧と001–005個別受入"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        19,
+        32
+      ],
+      "full_file_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "raw_span_sha256_lf_inclusive": "051e3c6f72b816bdfe1ce6028edcdbac4abadaa40aebf857f2e0064ede2f9d15",
+      "role": "PO原文と対象revision"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        44,
+        58
+      ],
+      "full_file_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+      "raw_span_sha256_lf_inclusive": "72ef40c7dd1192472b56afd489a9cf8dfa9f7168ad346839591d5951e9751566",
+      "role": "採用集合・1.0・下流承認非生成"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_lines": [
+        340,
+        362
+      ],
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_span_sha256_lf_inclusive": "d3c98bffae422e6ff08cdef1c88072a1d888e3ff8f758eafcd3b032c776d3da6",
+      "role": "HARNESS010/011要求共通契約参照"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        13,
+        21
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69",
+      "role": "対の起票"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": [
+        148,
+        168
+      ],
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "role": "旧L3定義"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "physical_lines": [
+        1,
+        56
+      ],
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "role": "旧3 sub-doc"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_lines": [
+        1,
+        73
+      ],
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "f0475a39fee93da1ee1e0386219934265b424f8ab78c3d28352df343af5e9aae",
+      "role": "候補/測定/判定形式のみ"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "physical_lines": [
+        24,
+        83
+      ],
+      "full_file_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "raw_span_sha256_lf_inclusive": "60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e",
+      "role": "隣接類例、release authority非継承"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "physical_lines": [
+        1,
+        58
+      ],
+      "full_file_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "raw_span_sha256_lf_inclusive": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "role": "正常/個別negative対応形式"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 5,
+      "literal": "独立business ACは新設せず、[L3業務要件](../L3-requirements/business-requirements.md)の分類を照合する。[機能検証](functional-verification.md)の各CONNECT-CASE-001-01〜005-01において、登録・技術送受信・再送・traceだけで業務成功、承認、SECURITY許可、保存完了を生成する反例を不合格とする。両端ownerが持つ業務結果はそのownerの受入へ引き渡し、CONNECTが代行しない。",
+      "line_sha256_without_lf": "b84a767cf407ce9397bd5273914acdf59134dc77246b705024028045bd1ad634"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 15,
+      "literal": "| `HELIXCONNECT-L2-001` | `CONNECT-FR-001-01` | `CONNECT-AC-001-01` | `CONNECT-CASE-001-01` | 1.0 |",
+      "line_sha256_without_lf": "7337d06409bec77d087d1c64f84f082d7fee25cabab8c70cdc089fd866152c4d"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 16,
+      "literal": "| `HELIXCONNECT-L2-002` | `CONNECT-FR-002-01` | `CONNECT-AC-002-01` | `CONNECT-CASE-002-01` | 1.0 |",
+      "line_sha256_without_lf": "df776f5a08d7e5427a409f6852ec25142d6903c4ae0e57a282184fe045020548"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 17,
+      "literal": "| `HELIXCONNECT-L2-003` | `CONNECT-FR-003-01` | `CONNECT-AC-003-01` | `CONNECT-CASE-003-01` | 1.0 |",
+      "line_sha256_without_lf": "0ff234f511efe2d43fc7c3f7bafda3e91380a11842a7e06c5f999459e0504034"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 18,
+      "literal": "| `HELIXCONNECT-L2-004` | `CONNECT-FR-004-01` | `CONNECT-AC-004-01` | `CONNECT-CASE-004-01` | 1.0 |",
+      "line_sha256_without_lf": "03ed506d00dbafe5368f2a539839e2323b70946b70628452b63f60211eb739be"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 19,
+      "literal": "| `HELIXCONNECT-L2-005` | `CONNECT-FR-005-01` | `CONNECT-AC-005-01` | `CONNECT-CASE-005-01` | 1.0 |",
+      "line_sha256_without_lf": "8d37bdfeb5b305c2530f487d717782c1a12afd8d1c5926bd4b57e0da6dda1dbd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 25,
+      "literal": "| `HELIXCONNECT-L2-001` / `CONNECT-FR-001-01` / `CONNECT-AC-001-01` / `CONNECT-CASE-001-01` | endpoint/owner/direction/scope/contract・revisionを入力し、一意な登録identityを返す | 必須要素欠落、unknown、同一IDの矛盾宣言はusable不可。別IDのendpoint共有は許容 | CONNECTは登録結果。矛盾はsource/consumer endpoint ownerへ戻す | 業務意味=端点owner、authority=SECURITY、assignment=OS、fixture/証拠=HARNESS | 1.0 |",
+      "line_sha256_without_lf": "d53c98b1270503d975d5abb6d723ff178ebc5c3451cb21d65079059f29781322"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 26,
+      "literal": "| `HELIXCONNECT-L2-002` / `CONNECT-FR-002-01` / `CONNECT-AC-002-01` / `CONNECT-CASE-002-01` | 現revision組・宣言互換範囲・read scope、送信時の既存許可を入力しcompatible/incompatible/unknown/staleと送信適格性を分離 | drift後のstale再照合なし、不一致/unknown、送信時の許可欠落でattempt 0 | 契約不一致・比較不能は接続設計/契約owner、読取りaccessは既存owner/authority、送信許可差はSECURITYへ返す | 契約=両端owner、authority=SECURITY、assignment=OS、測定証拠=HARNESS | 1.0 |",
+      "line_sha256_without_lf": "344383b698ca2c0e50811d8d77f9f904cf0237f53f7ec6092636fe8e4c691258"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 27,
+      "literal": "| `HELIXCONNECT-L2-003` / `CONNECT-FR-003-01` / `CONNECT-AC-003-01` / `CONNECT-CASE-003-01` | connection/operation/contract revision/compatibility receiptに結ぶenvelopeを入力し、技術結果を返す | 未識別operation、contract外、revision違いを成功扱いしない | 契約差は両端owner、scopeはSECURITY、業務結果はreceiver business ownerへ返す | 契約=両端owner、authority=SECURITY、進行=OS、fixture=HARNESS | 1.0 |",
+      "line_sha256_without_lf": "c5a783b3cd0ec94833d19addc8d40f5e7e310f1792e80505a2ba3e8590d0c576"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 28,
+      "literal": "| `HELIXCONNECT-L2-004` / `CONNECT-FR-004-01` / `CONNECT-AC-004-01` / `CONNECT-CASE-004-01` | retryable technical failure、同一ID/digest/revision、既存契約上限を入力しattempt/receiptとunfinishedを返す | 異digest、上限超過、business failure再送、新revision混載を拒否。重複効果0 | operation ownerへ未完義務/試行数、業務結果はbusiness owner、expiryはSECURITYへ | retry契約=connection owner、authority=SECURITY、実行=OS/CONNECT、証拠=HARNESS | 1.0 |",
+      "line_sha256_without_lf": "a1d50d1f6931abb62476f492ace97f4cf9eae8ca142da1154fe3a278ec782033"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 29,
+      "literal": "| `HELIXCONNECT-L2-005` / `CONNECT-FR-005-01` / `CONNECT-AC-005-01` / `CONNECT-CASE-005-01` | register/check/send/receipt/retry/stale/deny/terminal eventsを入力し順序traceと観測端点を返す | 欠落/順序曖昧/片端未観測はunknown、通常trace/receiptへraw業務payload・secret・credentialを保存/複製する各反例は不合格 | trace欠落はoperation owner、data-use/authority不明はSECURITY/source ownerへ | event producer=接続端点、authority=SECURITY、状態=OS、証拠契約=HARNESS | 1.0 |",
+      "line_sha256_without_lf": "4f9a9cb763dc0cd524fced5c1f28dc1cacc59fd21d2f59025e6f3b4de1f13025"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 32,
+      "literal": "### CONNECT-CASE-001-01 — `001` / 登録Identity",
+      "line_sha256_without_lf": "0546166482e818739ee3b32c8cfe771df3b5d0a30e2bdfc30c8e931bb28709a4"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 34,
+      "literal": "- **対象AC**: `CONNECT-AC-001-01`",
+      "line_sha256_without_lf": "bb3bad089e35fc7d3ce2bd75edd0370108aa0ae3114a958e488398504a475619"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 41,
+      "literal": "### CONNECT-CASE-002-01 — `002` / 互換性/stale",
+      "line_sha256_without_lf": "9c171e1cc26a04d697d52be2c0abfabe414ff89ed9b43ea801dc423497c9c138"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 43,
+      "literal": "- **対象AC**: `CONNECT-AC-002-01`",
+      "line_sha256_without_lf": "864102864985afc6f3c0540774c8ea3ac51fff5263bb8da4f615acd949c856d4"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 50,
+      "literal": "### CONNECT-CASE-003-01 — `003` / 契約に束縛した送受信",
+      "line_sha256_without_lf": "dbbe1eda914429c84bbbdab93d242275dc00d572236b64b3cc9562825fcd5621"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 52,
+      "literal": "- **対象AC**: `CONNECT-AC-003-01`",
+      "line_sha256_without_lf": "df083531c9a9eee51477e8705981cf4a1c50a9594884ad543169f13890dd711c"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 59,
+      "literal": "### CONNECT-CASE-004-01 — `004` / 制御再送",
+      "line_sha256_without_lf": "9f296ddcb9f8342c5fc264c3c671eb32c04cf0232efab0122381f1b130b0cf48"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 61,
+      "literal": "- **対象AC**: `CONNECT-AC-004-01`",
+      "line_sha256_without_lf": "9c67eca5ae7feb8271fa063139bf5734563942c6ffece92f937f520907f12747"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 69,
+      "literal": "### CONNECT-CASE-005-01 — `005` / 技術trace",
+      "line_sha256_without_lf": "085796994362b9def40d0f89d4b2fe57a11e95eed0ae86c152ce2bbf7374c749"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 71,
+      "literal": "- **対象AC**: `CONNECT-AC-005-01`",
+      "line_sha256_without_lf": "5a8a2eacaefe4c88ab65055dc1c5dd687347188b3834dd2bfba3335e9f9945d2"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 72,
+      "literal": "- **固定L11受入oracle**：L3 `CONNECT-AC-005-01` の全状況と全証拠項目を個別照合する。成功・失敗・部分成功・同identity同digest重複・異digest衝突・unknownを区別し、raw業務payload・secret・credential値を通常trace/receiptへ保存・複製しない。",
+      "line_sha256_without_lf": "34dbcecb7903f847ce6fb5084755792fe178e3808ba1155c2779c039c1b889de"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 7,
+      "literal": "| `CON-NFR-001` / `CONNECT-AC-004-01` | 接続契約で宣言されたretry上限N、初回送信1回とretry回数を分けたattempt traceを入力。retry N-1回、N回、N+1回目の境界を測定し、別fixtureでfailure classificationをmissing/unknownにする。 | L11の記述どおり、初回送信後に契約が許す最大N回までretryし、N+1回目retryは0。同一ID/digestの効果1回、異digest拒否。missing/unknown classificationはretry不可と推測せず、追加retry 0・classification unknownとして保持する。契約がNをtotal attemptsと明記する場合はその宣言で境界を解釈し、推測で置換しない。 | retry対象/上限の意味またはfailure classificationがunknownなら追加retry 0のままconnection operation ownerへ返す。business failureはretryしない。 |",
+      "line_sha256_without_lf": "3484adef30bfcc38b49d7dc22513b78b66b3fb0fc5325cac754517e076e2c02f"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 8,
+      "literal": "| `CON-NFR-002` / `CONNECT-AC-004-01` | 同じoperation identity/digestの再到着を複数回発生させ、receiver effect countとattempt traceを測る。次に同ID/異digestを入力する。 | 業務効果は1回、追加重複効果は0回。異digestは拒否され効果増加なし。 | duplicate suppression不明または異digest衝突は送信停止しoperation ownerへ返す。 |",
+      "line_sha256_without_lf": "19333ff256f8d10259eee6b4789741d422025e6277b52e9006cb262853c42bef"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 9,
+      "literal": "| `CON-NFR-003` / `CONNECT-AC-002-01` | endpoint/contract revisionを変え、stale検出からcompatible再照合までのattempt countを測る。read-only照合だけのeligibility結果も記録する。 | 再照合まで送信attempt 0。read-only照合ではeligibility=`not_evaluated`。 | 比較不能はunknown/staleを保ちCONNECT契約owner、send authority差はSECURITYへ戻す。 |",
+      "line_sha256_without_lf": "04b4aeef6f54d9f4625fa87c041eaccf07703336dfcf3c29d03b06640b75e7f6"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 10,
+      "literal": "| `CON-NFR-004` / `CONNECT-AC-005-01` | 登録/照合/send/receipt/retry/stale/拒否/終端の各観測eventをoperation/revision/attemptでtraceと突合し、欠落数・順序不明数を測る。 | 観測済みeventのtrace欠落0。欠落/順序曖昧はunknownで業務完了0。通常trace/receiptへraw業務payload・secret・credentialの合成markerを保存/複製する反例を各々測り、いずれも不合格とする。保存/複製件数各0、同identity同digest重複と異digest衝突の区別、L11列挙の全証拠fieldの欠落を個別照合する。値を証拠出力しない。 | trace producer/operation ownerへ欠落eventを返し、SECURITY/data-use不明は該当ownerへ返す。 |",
+      "line_sha256_without_lf": "5e1b0ebb67af536a0ddcbdd544bb798afc7fbe4d240434629f9d25cacbd43851"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 11,
+      "literal": "| `CON-NFR-005` / `CONNECT-AC-005-01` | 接続contractの宣言値、または根拠・比較案・測定方法・判定境界を添えた技術候補を入力し、end-to-end latency区間/retention windowを実測する。 | 入力値の根拠・実測値・境界判定を記録する。候補は実装値・PO承認値ではなく、未指定を達成扱いしない。共通SLAを新設せず、必要な技術候補の起草も妨げない。 | 候補化に必要な入力が不足すればunknownとして接続contract ownerへ返す。要求の意味・scope・owner・versionを変える場合だけ該当L2/POへ戻す。 |",
+      "line_sha256_without_lf": "33d19bdbaed698c5180026ef48a9c5441e04e65b3968f2a81525ff52bdc9a802"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 33,
+      "literal": "### CONNECT-FR-001-01 — 登録Identity",
+      "line_sha256_without_lf": "b196ad81fa93f2975cebb8ae6fdd67b78c15f560a53b2587bb11d23d4d32a60f"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 45,
+      "literal": "**L3 acceptance (`CONNECT-AC-001-01`)**：登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない。能力名、契約/成果物/依存版、scope、correlation ID、期限、冪等キー、result stateを含む完全descriptorを照合し、各必須値欠落・未登録revision・衝突をusableにせず、別identityや既定登録へのfallbackで補わない。登録から業務承認・SECURITY許可を生成しない",
+      "line_sha256_without_lf": "9be721adcbac3fd4b2ef5f911e159a03a19b637519a49afcdd577905f5e6fce1"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 49,
+      "literal": "### CONNECT-FR-002-01 — 互換性/stale",
+      "line_sha256_without_lf": "c7c01f7967f9d61ad9f539ae71af6554a182ed20811a5eeefc82e397bf5685ae"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 61,
+      "literal": "**L3 acceptance (`CONNECT-AC-002-01`)**：既存scope/access条件下で互換性を照合し、結果をcompatible/incompatible/unknown/staleに区別して記録し、送信時のみ許可を確認する。互換条件の比較不能や未登録revisionはunknownのまま扱い、compatibleへ推定せず、送信attemptを0に保つ。revision変更後はstaleを検知して再照合まで通信を止める。read access欠落/拒否/unknownは比較をunknown/保留にし、参照のみの正常照合はcompatibleとsend eligibility not_evaluated、attempt 0を保つ。送信適格性はactor/target/operation/revision/environment/scope/expiryとdata-use条件の個別照合が成立したときだけeligibleで、不一致/不明/期限切れ/失効ではcompatible結果を保持してwithheld・attempt 0とする。未見の宣言範囲内revision組も同条件で照合し、宣言外・未登録revisionはunknownとする",
+      "line_sha256_without_lf": "82acb7e2dc53426d076dd8e426077400f01b87995db944cecfb70d2f93426687"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 65,
+      "literal": "### CONNECT-FR-003-01 — 契約に束縛した送受信",
+      "line_sha256_without_lf": "a5c706b4f26bd503fe04dced59e310556b2d71cf840442d7e1cd26e287b72498"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 77,
+      "literal": "**L3 acceptance (`CONNECT-AC-003-01`)**：送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを各々欠落・不一致にした反例を拒否し、対象接続・理由・観測地点を保持する。契約/版の修正先は両端contract ownerである。接続identityの混載を拒否し、送信に適用する許可の期限切れ・期限不明、許可/data-use不明・範囲外では送信attempt 0を保ちSECURITYへ返す。受領拒否/業務結果は受信側業務ownerに区別して返す",
+      "line_sha256_without_lf": "f66674888a78ff8f24053aaebc2bc12e5dd54a0d519ae621ea9e259ab3c2a04d"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 81,
+      "literal": "### CONNECT-FR-004-01 — 制御再送",
+      "line_sha256_without_lf": "83315e275321af6358a680325d06e952ee96bafe161f87e90dded662251e544b"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 93,
+      "literal": "**L3 acceptance (`CONNECT-AC-004-01`)**：接続契約が再送可能と定めた技術的失敗について、既存operation identity・同一digest・単一contract revisionで設定済み上限内の再送だけを許し、受信側効果は一回分とする。応答欠落はその一例であり唯一の再送契機ではない。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完義務・試行数は元connection operation ownerへ返し、業務結果は元の業務ownerへ返す。上限到達時も未完の業務結果を業務ownerへ戻すL11判定と、operationの義務引継ぎを別々に記録する。新しい上限値・retry権限は作らない。",
+      "line_sha256_without_lf": "0d4b5a21d159b9b9f81feb29efb759a424f8b90a4a96d689e9856bd165c11c55"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 97,
+      "literal": "### CONNECT-FR-005-01 — 技術trace",
+      "line_sha256_without_lf": "aedab721de4eb81f96dc5db3fce97c3feef46446be73c419c4ddbaca49c9e1d6"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 109,
+      "literal": "**L3 acceptance (`CONNECT-AC-005-01`)**：送受信・受信確認失敗・再送途中のstale・期限切れ・取消・許可失効・部分失敗を接続単位に順序追跡できる。証拠は接続identity、能力名、operation/correlation/idempotency identity、target scope、使用revision、期限、互換照合結果、各attemptの識別子・順序・結果、停止理由、成功を観測した端点を含む。成功・失敗・部分成功・同identity同digestの重複・異digest衝突・unknownを区別し、ACKなし・取消・期限切れ・許可失効をunknown/unfinishedとして保持し、途中成功をend-to-end成功や業務完了へ丸めない。通常trace/receiptへraw業務payload・secret・credential値を保存・複製しない",
+      "line_sha256_without_lf": "ec6edbd3f67bfc4c048ee4b34030089704a6da7a2c83c54070321a6e38afabe4"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 7,
+      "literal": "| `CON-NFR-001` / AC-004-01 | retry capとfailure classification | L11の「初回送信後に、設定済み上限まで再送」を根拠に、候補Nは初回ではなく追加retry数として扱う。failure classificationがmissing/unknownなら候補上の追加retryは0とし、unknownをretryableへ補完しない。共通数値は置かず接続契約のNを入力する。 | `HELIXCONNECT-L2-004` は上限/可否を接続契約へ帰属させる。今回参照した旧配布契約は接続契約ごとのretry数値の根拠ではない。 | retry N-1回でまだ上限未到達、N回で停止、N+1回目の追加retry 0。missing/unknown classification別fixtureでも追加retry 0、unknown記録、operation ownerへの返却を観測する。契約がNの意味を別途宣言する場合はその定義を入力し、この解釈を押し付けない。 |",
+      "line_sha256_without_lf": "bc65bd73275c5e20eeed081fbda79371fa8eff26d80c8f581b405bd5ded274f5"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 8,
+      "literal": "| `CON-NFR-002` / AC-004-01 | 同一operationの重複効果 | 同一operation identity＋同一digestに対する業務効果の候補上限は1回、追加attemptの効果は0回。 | `HELIXCONNECT-L2-004`の同一identity/digest重複排除。 | 同じfixtureを再送し、受信効果1回・重複効果0回を確認。異digestは拒否し、business resultはretryしない。 |",
+      "line_sha256_without_lf": "9fc08f32f6c95289a6717eba7ab7d0a62c28bf931dbb0ba87dd7d679633b64b7"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 9,
+      "literal": "| `CON-NFR-003` / AC-002-01 | stale中の送信数 | revision drift検出から新しい互換照合まで送信0回。 | `HELIXCONNECT-L2-002`はstaleを互換成立と扱わず、再検証したrevision組だけstaleを解除する。 | revisionを変え、再照合までattempt数が0であること、送信なし照合のeligibilityが`not_evaluated`であることを観測する。 |",
+      "line_sha256_without_lf": "95ccbb3a8c5e45fa747ab661302b4aac1117d6e83308bd7eed3d5ebe8a8d4136"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 10,
+      "literal": "| `CON-NFR-004` / AC-005-01 | trace completeness | 固定L2が挙げるevent classとoperation/revision/attempt識別子について、観測した各eventのtrace欠落0件を候補基準とする。L11列挙の証拠fieldも個別に全件照合する。通常trace/receiptのraw業務payload・secret・credential値保存/複製件数は各0とし、同一identity同digest重複と異digest衝突を別状態で測る。 | `HELIXCONNECT-L2-005`のappend-only trace、状態区分と端点観測範囲。 | 登録/照合/send/receipt/retry/stale/拒否/終端のfixture eventとtraceを突合。欠落・順序曖昧はunknownで業務完了しない。 |",
+      "line_sha256_without_lf": "bd8c15d913659eeb55396f85e0bdf2451b2d7a1ac1490e98ff345ad1d3cc2b87"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 11,
+      "literal": "| `CON-NFR-005` / AC-005-01 | end-to-end latency / retention | 共通SLA値は置かない。接続ごとのcontractに値が必要な場合、根拠・比較案・測定方法・判定境界を添えた技術候補として提示する。宣言済み値があればそれを入力に比較し、候補を実装値・PO承認値として扱わない。 | CONNECTは接続単位のcontractを扱い、固定L2/L11と今回参照した旧配布契約・対の検証設計には全接続共通のSLA根拠がない。これは必要な技術候補を一律に禁じる根拠ではない。 | 宣言値または候補値の根拠・比較・実測値・境界判定を記録する。未指定でも必要な技術値は候補化でき、宣言なしを数値達成と扱わない。意味・scope・owner・versionを変える場合だけL2/POへ戻す。 |",
+      "line_sha256_without_lf": "b4917cf96a4e25b8de97f02d715922f163fe81578202499df035f00249f652ce"
+    }
+  ],
+  "cutout_source": {
+    "pr": 2564,
+    "body_revision": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+    "preservation_head": "a5192449766859117759118c533181eec0957c02",
+    "source_audit_sha256": "2a7aabbda5e090c05a70a5a51d9e86ebe477e4f7cb8e5254bda300ed2c8ed882",
+    "remaining_parent_count": 269,
+    "aggregate_pr_close": "not_admitted_until_all_274_covered"
+  },
+  "carried_review": {
+    "main_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5981101754",
+    "scope_blocker_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5982009954",
+    "B1": "切り出し範囲CONNECT Stage1だけを今回review。元集約PRは未解消・非merge。",
+    "M12_CONNECT": "旧報告のFR/AC/L10/NFR一括同期を継承しない。個別L11:44/50/56はこのbodyの実AC/CASEとsource pinへ照合する。",
+    "Minor_CONNECT": "L11個別受入句44/50/56、L2-001本節source pinを保持。ACを補う規約はL10冒頭に明記。004retryと005traceをNFR/CASEで照合。",
+    "SM1": "消費側のINT/LABOは今回対象外。共通参照先になる001–005自体は独立再reviewする。承認済みとは扱わない。",
+    "old_unreviewed": "全274親・archive全体・receipt atom全体の合格を継承せず、今回5親の採択原文・旧類例・対を限定再照合。残り269親は未確定。",
+    "root_additional_corrections": [
+      "002被覆表のstale戻し先を固定契約ownerへ合わせ読取りaccess ownerを保持。",
+      "004上限到達のoperation未完義務/試行数とL11業務ownerへの結果返却を別に照合。"
+    ]
+  },
+  "checks": {
+    "canonical_git_worktree_bytes": "6/6",
+    "parent_and_PO_row_bytes": "5/5",
+    "FR_AC_CASE_definitions": "5/5/5, duplicate 0",
+    "tables": 6,
+    "relative_links": 5,
+    "runtime_old_CI_test_Bun_execution": "none"
+  },
+  "limits": [
+    "作成側の静的照合で、意味全件充足・独立review合格・L3承認・実装成立・L10実行結果を生成しない。",
+    "共通HARNESS-L2-010/011の採択要求をfixtureへ適用し、未承認L3候補を承認済み依存へ昇格しない。",
+    "各親の全旧資産の意味同等性を証明しない。検索0hitは指定語と指定directoryだけ。"
+  ]
+}
