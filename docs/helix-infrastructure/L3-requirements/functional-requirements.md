@@ -13,6 +13,7 @@
 ### 親revisionとauthority
 
 - L2 parent: `HELIXINFRASTRUCTURE-L2-001` — [`docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L27); PO-fixed parent revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision body SHA-256 `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`.
+- PO対象registration: `MPR-RC-HELIXINFRASTRUCTURE-L2-001-003`、semantic digest `sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6`。基準main633bf12 register locator `docs/governance/management-provisional-requirement-register.jsonl#L440`、row SHA `e2fa74ad7f424982e8ff02e6038e3d497208bdd384074c53d37cd41dec4e671f`。
   - Source `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32-41`; full SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`, raw inclusive-span SHA-256 `3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77`.
 - Paired L11 source: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md`; PO-fixed parent revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, full SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`; lines 34–42 raw SHA-256 `54a9aee8e76a5b4369d18f225e9b4970def0ea7e1d447dad8c79d714e3b25742`.
 
@@ -47,7 +48,7 @@
 
 ### 旧L3／対のテスト設計からの意味対応
 
-旧nfr-grade・pillar FR/NFRとHAT設計から測定可能性・正常/反例/境界を対にする骨格だけ再利用する。旧runtime/CLI、閾値、old physical topologyは移さない。現行L2/L11にあるidentity/environment/resource graphと明示attributeを再導出し、owner境界に合わせてCONNECT論理接続・INFRA物理pathを分ける。直接一致は確認できず、旧L3 `technology-environment-reconciliation-requirements.md:32-70,72-94`および旧test design `technology-environment-reconciliation-acceptance.md:16-39`のsource/version drift観点を部分参照した。
+旧nfr-grade・pillar FR/NFRとHAT設計から測定可能性・正常/反例/境界を対にする骨格だけ再利用する。旧runtime/CLI、閾値、old physical topologyは移さない。現行L2/L11にあるidentity/environment/resource graphと明示attributeを再導出し、owner境界に合わせてCONNECT論理接続・INFRA物理pathを分ける。現行ownershipを持つ全要件の完全一致再利用ではなく、旧OPS-R-01/OPS-AC-001の環境identity・資源・資格情報参照/値非保存を起点に意味を再導出する（下の項目別追補）。旧L3 `technology-environment-reconciliation-requirements.md:32-70,72-94`および旧test design `technology-environment-reconciliation-acceptance.md:16-39`のsource/version drift観点を部分参照した。
 
 | 旧asset ID | 旧source path・行 | 旧source full SHA-256 | 旧span SHA-256 |
 |---|---|---|---|
@@ -60,6 +61,7 @@
 ### 親revisionとauthority
 
 - L2 parent: `HELIXINFRASTRUCTURE-L2-006` — [`docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md`](../../governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md#L48); PO-fixed parent revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, decision body SHA-256 `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`.
+- PO対象registration: `MPR-RC-HELIXINFRASTRUCTURE-L2-006-002`、semantic digest `sha256:546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc`。基準main633bf12 register locator `docs/governance/management-provisional-requirement-register.jsonl#L126`、row SHA `95a7ec0849ed46f8691ada7731beaca4cba70cb9efae0a9c095a4b4a6900f7f8`。
   - Source `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:82-91`; full SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`, raw inclusive-span SHA-256 `35b634d00f4139bc7fbf91f0c3674f6420fec4f84cc1504f2b489845b31965ef`.
 - Paired L11 source: `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md`; PO-fixed parent revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`, full SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`; lines 84–92 raw SHA-256 `74183904675612644b9ca9f8ced9b4b34f3d6b76f8e29db779aa6605e7a24c29`.
 
@@ -77,7 +79,7 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 
 ### 受入条件（AC候補）
 
-- **INFRA-006-AC-01 — 正常・追跡**：HELIX-OS/通常control plane unavailableのとき、停止中control planeへ依存しないpathと別SECURITY authorityで親L2に列挙された範囲の一操作を確認し、対象revisionと残作業を含む結果を返す。
+- **INFRA-006-AC-01 — 正常・追跡**：HELIX-OS/通常control plane unavailableのとき、停止中control planeへ依存しないpathと別SECURITY authorityで親L2に列挙された点検・health確認・service停止・rollback・recovery起動の5操作を個別に確認し、対象revisionと残作業を含む結果を返す。
 - **INFRA-006-AC-02 — 異常・境界**：停止中OSへ修復を依頼する循環、通常権限の流用、credential/policy/target不明の実行、許可された範囲外operation、完全自動failoverを必須化した成功主張は不成立。安全に復旧できなければ停止し、最後に適格なrevisionと残workを記録する。
 
 ### 固定親句の被覆
@@ -120,8 +122,8 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 
 ### 受入条件（AC候補）
 
-- **INFRA-003-AC-01 — 正常・追跡**：要求scopeのCompute/Network/Storage/Model資源fieldがsource/revision付きで揃い、要求量と同じresource/environmentのavailable capacityを比較できる。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性を対象revisionのsourceと観測範囲に結ぶ。available >= requested の正常候補は不足なしの根拠付きsnapshotを返し、決定ownerはOS/INTELLIGENCEに残す。モデル能力評価をInfrastructureの記録から推定しない。
-- **INFRA-003-AC-02 — 異常・境界**：available < requested、field欠落、計測不能、stale、identity/environment不一致を十分/healthyとして扱わない。容量不足は不足と未完状態を保持してOS/INTELLIGENCEへ返す。配置・費用の自動採択、未根拠の固定utilization/latency閾値、自動autoscalingを要求しない。
+- **INFRA-003-AC-01 — 正常・追跡**：要求scopeのCompute/Network/Storage/Model資源fieldがsource/revision付きで揃い、要求量と同じresource/environmentのavailable capacityを比較できる。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性を対象revisionのsourceと観測範囲に結ぶ。available >= requested は適用する閾値・条件が入力契約で設定済みの場合に限る技術候補であり、未設定なら観測値を保持して十分性判定をunknownとする。共通資源モデルはlocal/VPS/dedicated/cloud VM/container/GPU/Worker nodeを同じresource属性へ対応させ、network pathとpersistent/temporary stateのL2-001/003属性を参照する。条件が設定された正常候補は不足なしの根拠付きsnapshotを返し、決定ownerはOS/INTELLIGENCEに残す。モデル能力評価をInfrastructureの記録から推定しない。
+- **INFRA-003-AC-02 — 異常・境界**：available < requested、field欠落、計測不能、stale、identity/environment不一致を十分/healthyとして扱わない。容量不足は不足と未完状態を保持してOS/INTELLIGENCEへ返す。閾値・適用条件が未設定なら十分性はunknownとし、無制限なJob追加を成立にしない。配置・費用の自動採択、未根拠の固定utilization/latency閾値、自動autoscalingを要求しない。
 
 ### 固定親句の被覆
 
@@ -196,8 +198,8 @@ L2-001/002と対象stateのowner/retention/recovery要求、独立検証でき�
 
 ### 受入条件（AC候補）
 
-- **INFRA-005-AC-01 — 正常・追跡**：対象backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionが参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。
-- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
+- **INFRA-005-AC-01 — 正常・追跡**：対象backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionが参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。rollback成功からincident closureやforward fix完了を生成せず、各ownerの別証拠を要求する。
+- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。rollback receiptのみでincidentをclosedにする反例を拒否し、元incident状態と未完義務を保持する。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
 
 ### 固定親句の被覆
 
@@ -211,7 +213,7 @@ L2-001/002と対象stateのowner/retention/recovery要求、独立検証でき�
 
 ### 旧L3／対のtest designからの意味対応
 
-retention-purge旧L3/test designからirreversible evidence deletionとderived projection差だけ比較。旧retention days/purge approval/audit-runtimeをbackup/restore要件全体へ一般化しない。
+retention-purge旧L3/test designからirreversible evidence deletionとderived projection差だけ比較。旧sourceの期限だけによる物理削除禁止、可逆compaction/archive、projection rebuildの区別を保持する。旧purge approvalやaudit-runtimeをbackup/restore全体の追加条件へ一般化しない。
 
 | 起点 | 旧asset source・行 | 全文SHA-256 | 該当raw span SHA-256 (LF保持) |
 |---|---|---|---|
@@ -235,7 +237,7 @@ L2-001/002/004/006とOSのversioned Work/Change interface/evidenceに依存し�
 ### 受入条件（AC候補）
 
 - **INFRA-009-AC-01 — 正常・追跡**：通常接続でOS ticket/changeとInfrastructure resource/runtime recordを相互に参照し、未完/stop/resume/rollbackを失わない。stage packを使うfixtureでは、stage IDとruntime revisionを分離し、同stage evidence内に適用条件を対応づける。
-- **INFRA-009-AC-02 — 異常・境界**：unknown target/revision/owner、部分適用、未完operation欠落を成功扱いしない。OS ticketをruntime stateの正本にせず、Infrastructureに作業承認させない。通常接続をstage release完成待ちにせず、全7製品や後続L1-023を開始条件にしない。
+- **INFRA-009-AC-02 — 異常・境界**：unknown target/revision/owner、部分適用、未完operation欠落を成功扱いしない。OS ticketをruntime stateの正本にせず、Infrastructureに作業承認させない。通常接続をstage release完成待ちにせず、全7製品や後続L1-015/023を開始条件にしない。
 
 ### 固定親句の被覆
 
@@ -268,12 +270,12 @@ orchestration-runtime-bridgeのoperation/work requestとruntime evidenceをつ�
 
 ### 要件（候補）
 
-INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとWorker execution contractの下でのみ実行し、operation request、target/action/revision/scope/expiry、OS assignment/ticket (通常経路)、result receipt、実際のbefore/after resource stateを別々のevidenceとして接続する。更新を適用するoperationでは同一target/revision/scopeのaccepted update-admissionを照合し、read-onlyにはupdate-admissionを要求しないがread authority/scopeを照合する。state change時は該当するL2-005 recovery義務だけを確かめる。独立bootstrap/recoveryはL2-006の独立pathと別SECURITY authorityを使い、通常OS ticketなしの限定実行を許す。復旧後は結果をOSへ同期する。credential値は記録しない。
+INFRASTRUCTUREの限定操作を、SECURITYが持つ適用可能なauthorityとWorker execution contractの下でのみ実行し、operation request、target/project/action/revision/scope/expiry、OS assignment/ticket (通常経路)、result receipt、実際のbefore/after resource stateを別々のevidenceとして接続する。更新を適用するoperationでは同一target/revision/scopeのaccepted update-admissionを照合し、read-onlyにはupdate-admissionを要求しないがread authority/scopeを照合する。state change時は該当するL2-005 recovery義務だけを確かめる。独立bootstrap/recoveryはL2-006の独立pathと別SECURITY authorityを使い、通常OS ticketなしの限定実行を許す。復旧後は結果をOSへ同期する。credential値は記録しない。
 
 ### 受入条件（AC候補）
 
-- **INFRA-010-AC-01 — 正常・追跡**：有効なauthorityが同一target/action/revision/scope/expiryを覆う場合だけ許可範囲を判定する。通常operationはOS assignment/ticketをtraceし、update actionはaccepted update-admissionを要求、read-onlyは対象内write=0と対象resource前後状態を照合する。独立recovery fixtureは別authority/pathに制限し、OS復旧後の同期を示す。
-- **INFRA-010-AC-02 — 異常・境界**：authority不明/期限切れ/失効/mismatch、scope外target/action、update-admissionがdenied/unknownの変更、必要な該当recovery obligation未充足、部分操作、Worker successだけでactual state未確認を成功にしない。read-onlyにupdate-admissionを要求せず、無関係なresource状態digest不変も求めない。credentialをnormal state/evidenceに出さない。
+- **INFRA-010-AC-01 — 正常・追跡**：有効なauthorityが同一target/project/action/revision/scope/expiryを覆う場合だけ許可範囲を判定する。通常operationはOS assignment/ticketをtraceし、update actionはaccepted update-admissionを要求、read-onlyは対象内write=0と対象resource前後状態を照合する。独立recovery fixtureは別authority/pathに制限し、OS復旧後の同期を示す。Workerを無制限Shell主体にせず、OS/SECURITY/Workerの責務内で停止・回収できる証拠を照合する。INFRAがpolicyや自身のauthorityを発行しない。
+- **INFRA-010-AC-02 — 異常・境界**：authority不明/期限切れ/失効/mismatch、scope外target/action、update-admissionがdenied/unknownの変更、必要な該当recovery obligation未充足、部分操作、Worker successだけでactual state未確認を成功にしない。read-onlyにupdate-admissionを要求せず、無関係なresource状態digest不変も求めない。無制限Shell、停止/回収不能、INFRAによるpolicy/authority発行、credential値のnormal state/backup/snapshotへの保存を各反例として拒否する。credentialをnormal state/evidenceに出さない。
 
 ### 固定親句の被覆
 
@@ -439,6 +441,15 @@ HELIXOS-L2-014のstage contractはInfrastructureがHELIX自身のstage release�
 
 ### HELIXINFRASTRUCTURE-L2-011 固定親・旧sourceとの照合
 
-固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`。採択PO decision `helix-infrastructure-requirements-po-decision-2026-09-28.md#L48`（全文SHA `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`）はL2-001〜011および025を1.0として採択し、最低18項目と後続版境界を維持する。固定L2 `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:138–147`（全文SHA `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、raw span SHA `ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791`、semantic digest `06001f28b80484fc1b3754d0c72f0a727438e8cf52772a9eea1459a6d231a9ff`、採択登録 `MPR-RC-HELIXINFRASTRUCTURE-L2-011-001`）。対L11 `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:140–151`（全文SHA `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、raw span SHA `6b9835a47096ab07f9007e47429bf2415bf29bf23cdf70420f1b0c2b3ac52a6e`）。最低18表 `infrastructure-requirements.md:376–399`のraw SHA `10148eae3c04c7d0f925c27c6d71cdafd4ba2d3e58f41f21c3a00aab4681da69`。
+固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`。採択PO decision `helix-infrastructure-requirements-po-decision-2026-09-28.md#L48`（全文SHA `0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f`）はL2-001〜011および025を1.0として採択し、最低18項目と後続版境界を維持する。固定L2 `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:138–147`（全文SHA `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、raw span SHA `ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791`、semantic digest `6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351`、採択登録 `MPR-RC-HELIXINFRASTRUCTURE-L2-011-003`）。対L11 `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:140–151`（全文SHA `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、raw span SHA `6b9835a47096ab07f9007e47429bf2415bf29bf23cdf70420f1b0c2b3ac52a6e`）。最低18表 `infrastructure-requirements.md:376–399`のraw SHA `10148eae3c04c7d0f925c27c6d71cdafd4ba2d3e58f41f21c3a00aab4681da69`。
 
 旧HELIX L3/test inventoryでは、1.0最低18項目をHELIX自身のInfrastructure構成体として一件ずつ束ね、CORE/OS/SECURITY/Worker connectionと別に受け入れる同一要件は特定できなかった。`LEGACY-ASSET-7F8960532611D89D03E1`旧Technology Environment Reconciliation L3 (`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md:32–70,72–94`、全文SHA `65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc`、raw span SHA `c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477` / `afaad3aaa2f623b5979b658c32525c0552dce29b8591dc58e8b11b8b1ab684bf`) と `LEGACY-ASSET-30FFE84409079C9B06D1` paired acceptance (`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md:16–39`、全文SHA `aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d`、raw span SHA `672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85`) はsource/revision差異を正常・negative/unknownとして扱う観点だけを部分再利用する。旧external technology reconciliation scope、旧threshold、runtime state/CLI/testを持ち込まず、18項目、ownership、backup≠restore、independent recovery、rebuildabilityの意味は採択済み現行L2/L11から再導出する。asset IDとsource SHAは`legacy-asset-disposition.jsonl`照合済み。
+
+## Review修正：INFRA-001/005の旧source起点
+
+旧OPS-R-01は環境identityと資源・資格情報参照の区別、旧OPS-R-03はrollback contract/receiptとincident closureの分離を保持する起点である。対応旧ACの正常/反例の観点を部分再利用し、現行L2/L11のowner境界へ意味を再導出する。旧provider adapter schema、credential方式、release・approval authorityや後続版能力は移植せず、001の環境/資源identityと005の独立backup/restore/rollbackおよびincident非closureを現行AC/L10へ結ぶ。既存の隣接sourceは補助資料として保持し、直接の起点がないとの扱いを訂正する。
+
+| 現行item | 旧L3 source pin | 対の旧受入 pin |
+|---|---|---|
+| INFRA-001 | `LEGACY-ASSET-17C4BF78919578FEBB18` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68–73` / full `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` / raw `90ec4ca119bf860db25efd2126095d80376a2fa1ce3db2159a5da49fc5610f14` | `LEGACY-ASSET-F46AB11BD14F2C0469F4` / `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26–26` / full `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` / raw `f14b760580d8ec6a8b1a01bd0d4ef197a9b9b670fb8201f4ff8c1c8630b20657` |
+| INFRA-005 | `LEGACY-ASSET-17C4BF78919578FEBB18` / `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:81–85` / full `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` / raw `69c71beb6d0c9f1d7b8c9c53989fe139c6ac563a13f21b40f73686de127376b8` | `LEGACY-ASSET-F46AB11BD14F2C0469F4` / `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:28–28` / full `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` / raw `2aff5b1396950997bcb3344bf1cb87b41f51dd0d6990b8ece5b07972f822f7bc` |

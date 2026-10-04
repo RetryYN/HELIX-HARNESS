@@ -24,7 +24,7 @@
 | `HELIXLABO-L2-004` | comparison field fidelity | 7-fieldの各欠落と意味矛盾mutation | field別coverageと停止/unknown処置 |
 | `HELIXLABO-L2-005` | transformation candidate trace | 12 action語彙と保持/変更意味を比較 | 許可action外0、owner/条件/meaning trace欠落0 |
 | `HELIXLABO-L2-006` | experiment comparability | assignment/oracle/revision/cost/interruptionを個別・組合せ欠落 | 比較可能/不能が正しく分離し、missing costを0にしない |
-| `HELIXLABO-L2-007` | assurance condition matrix | 再現条件、machine判定可能性、oracle、副作用範囲、retry/rollback/idempotenceの5条件を個別・併発で変異 | 5条件それぞれの判定根拠を記録し、不足時はsystemization候補に昇格しない。2/3/5反復案の安定性と費用を比較 |
+| `HELIXLABO-L2-007` | assurance condition matrix | 再現性、machine判定可能性、oracle、副作用限定、retry/rollback可能性、冪等性の6条件を個別・併発で変異 | 6条件それぞれの判定根拠を記録し、不足時はsystemization候補に昇格しない。2/3/5反復案の安定性と費用を比較 |
 | `HELIXLABO-L2-008` | operational return trace | rule/version/exception/FP/avoidance/cost/ownerを個別欠落 | 欠落を特定し戻し候補を保持、実行切替0 |
 | `HELIXLABO-L2-009` | scope generalization | 1例、2/3/5独立例、cross-project/product、counterexample各fixture | 単一例上位scope0、例数別のscope安定性/偽一般化/費用を比較 |
 | `HELIXLABO-L2-010` | feedback completeness | 16 fieldを個別欠落・targetを混在 | 16/16 coverage、未根拠補完0、target別分離 |
@@ -34,7 +34,7 @@
 
 | 親L2 | 測定case | 入力／変異 | 判定oracle |
 |---|---|---|---|
-| `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務の個別欠落/不一致 | provenanceとunknown保持、owner returnの観測 |
+| `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務、co-timed unrelated eventsとcausality overclaimを個別/併発変異 | provenance/unknown保持、correlation-onlyからcausal conclusion 0、owner return |
 | `HELIXLABO-L2-013` | C01/C02〜04 | 分類軸、根拠、元episodeの個別欠落/矛盾 | 分類軸別trace、根拠欠落の検出 |
 | `HELIXLABO-L2-014` | C01/C02〜04 | original meaning/purpose/condition、candidate deltaの欠落/不整合 | original-to-candidateの意味差trace、unknown停止 |
 | `HELIXLABO-L2-015` | C01/C02〜04 | baseline/current/candidate/hybridのversion/condition/oracleを個別にずらす | 比較arm間の条件一致と不成立理由 |
@@ -49,13 +49,13 @@
 | `HELIXLABO-L2-024` | C01/C02〜04 | observed fact/judgment/source versionを欠落・混同 | factとjudgmentの区分、旧判断をcurrent authorityにしない |
 | `HELIXLABO-L2-025` | C01/C02〜04 | SECURITY data-use scope/permission/source revisionとrestricted fieldを個別操作 | unauthorized/restricted intake 0、SECURITYへreturn |
 | `HELIXLABO-L2-026` | C01/C02〜04 | INFRA resource/environment source versionをstale/unknown化 | stale/unknownをhealthyへ変換しない |
-| `HELIXLABO-L2-027` | C01/C02〜04 | CONNECT source/schema/revision/traceを個別にdriftさせる | mismatch/unknownを可視化しconnection ownerへ返す |
-| `HELIXLABO-L2-028` | C01/C02〜04 | Worker assignment/task class/result source/statusを欠落・未評価化 | observedをevaluatedへ昇格0、assignment owner return |
+| `HELIXLABO-L2-027` | C01/C02〜04 | 専用connection contract identity/revision/schema/traceを個別drift、implicit connector sharingも投入 | mismatch/unknownを可視化しCONNECT ownerへ返し、暗黙共有0 |
+| `HELIXLABO-L2-028` | C01/C02〜04 | Worker result identity、L2-006 experiment/target version、assignment/task class/source/statusを別ticket・別versionで個別変異 | observedをevaluatedへ昇格0、異identity/assignment欠落はOS/result owner return |
 | `HELIXLABO-L2-029` | C01/C02〜04 | CI target revision/test scope/statusを欠落、stale/not-run/interrupted化 | 未実行/古い結果のpass表記0 |
 | `HELIXLABO-L2-030` | C01/C02〜04 | Product Core source identity/version/scopeを混在、unselected sourceを必須化 | identity merge 0、unselected sourceはoptional |
 | `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/unknown; 2.0 external input | internal evidence scope、1.0/2.0 boundary |
 | `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed field omission; learning/tuning request | packet trace complete、unassessed retained、3.0+ execution 0 |
-| `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0 | selected-only dependency closure、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
+| `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0、selected scope/source/operation/versionの各変更 | selected-only dependency closureを変更時に再照合、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
 
 ## Stage 4 — 接続・受渡し契約の測定
 
@@ -85,5 +85,5 @@
 | `CASE-LABO-L10-NFR-067-01` | `NFR-LABO-L3-067-01` | selected scopeのpredicate/oracle revision、first-eligible candidate、順序付きround eventとAttempt identityを完全入力し、predicate事後選択・event欠落・round越境を各々変異する。 | required tupleとevent trace一致100%候補。first-eligible上書き、missing-to-zero、Attempt越境誤分類0候補。未見scopeは分母外ではなくunknown適用状態で報告。 |
 | `CASE-LABO-L10-NFR-068-01` | `NFR-LABO-L3-068-01` | 完全性receipt付きOS Attempt identity集合とdistinct countを照合し、duplicate delivery、pre-execution refusal、scope外Attempt、event gapを個別に加える。 | 完全集合のidentity reconciliation 100%候補、重複計上0候補。event gap時に総数確定0。 |
 | `CASE-LABO-L10-NFR-069-01` | `NFR-LABO-L3-069-01` | reason class別return cohortの母数・window・source completeness・元finding relation・reissue verification receiptを照合し、window未満/未追跡/打切りとcount-only presentationを比較する。 | selected cohort denominator/receipt trace候補を確認。return trendとpost-reissue resultを分離し、censored defect=0、count reduction=quality proofの誤り0。 |
-| `CASE-LABO-L10-NFR-070-01` | `NFR-LABO-L3-070-01` | 9 selected atomの各fieldへ適用source/event/definition/scopeを結び、重なるwait区間を含む有効な個別duration fixtureと、重なりを処理せず総所要時間へ加算する変異を比較する。one-field missing、timestamp欠落、duplicate cost receipt、67/68 grain混同も別々に変異する。 | 個別duration fieldのsource traceと値を保持し、重複waitの誤加算によるtotal誤りを検出する。重複費用・根拠なし推定・silent rename 0候補。unselected atomは分母へ含めない。 |
+| `CASE-LABO-L10-NFR-070-01` | `NFR-LABO-L3-070-01` | 9 selected atomの各fieldへ適用source/event/definition/scopeを結び、重なるwait区間を含む有効な個別duration fixtureと、4 durationを未定義aggregate totalへ加算する変異を比較する。one-field missing、timestamp欠落、duplicate cost receipt、67/68 grain混同も別々に変異する。 | 待機・実作業・review待ち・人待ちを別fieldで保持する。親がtotal定義を持たないため加算totalを再計算しない。重複費用・根拠なし推定・silent rename 0候補。unselected atomは分母へ含めない。 |
 | `CASE-LABO-L10-NFR-071-01` | `NFR-LABO-L3-071-01` | class/revision/evidence tupleの完全例と、major-miss、revision-change、title/permission/assignment各field mutationを比較する。 | selected record field trace候補、permission/assignment mutation 0候補。未確定rubricから合否thresholdを生成しない。 |

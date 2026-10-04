@@ -67,9 +67,9 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。 |
 | CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | UTC 7-day bucket/rolling 7-day比較と週境界missing fixture。欠測をno-driftとした件数。 |
 | CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |
-| CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | transient/permanent failure系列で1/2/3 retry上限比較。重複副作用・無駄retry・必要returnの未送信。 |
+| CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 適用policyのscope/revision/counter semanticsと入力上限Nを使い、N未到達/N到達/policy不明を比較する。重複副作用・無駄retry・必要returnの未送信を測る。 |
 | CASE-OS-L10-NFR-041-01 | NFR-OS-L3-041-01 | restart/resumeごとcanonical sourceをdriftさせる。reacquisition coverage、stale continuation数。 |
-| CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | strict failure、緩和4/24/72h expiry境界、再検証なしの比較。期限後/対象外scopeの誤昇格数。 |
+| CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | 既存contractが定める期限の前/境界/後、期限不明、再検証なしを比較する。期限後/対象外scopeの誤昇格数を測り、固定期限は導入しない。 |
 | CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
 | CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-only/typed receipt、同一/異headの対照。誤resolution数。 |
 | CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認。無根拠dispatchと誤状態数。 |

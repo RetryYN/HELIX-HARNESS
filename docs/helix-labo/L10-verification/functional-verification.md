@@ -119,17 +119,25 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 以下は `functional-requirements.md` の9 FR/18 ACへ対応する初回L10候補。固定親はPO basis `633bf12`、revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、L2 source full SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`。共通L11 acceptance source `docs/helix-labo/L11-acceptance/labo-acceptance.md` は同一fixed revision、full SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、common spans L43–47 `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b` / L109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`。表中のcaseは設計であり実装済みtest/実行結果ではない。
 
-| 親ID | registration / decision | L2 raw span | FR / AC | L10 cases |
-|---|---|---|---|---|
-| `HELIXLABO-L2-002` | `MPR-RC-HELIXLABO-L2-002-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L49 | L77–84 `d4ecde864ac4129741f32ac65d0075d1d0704cc7166b86491bbae6ef8865bf28` | `LABO-002-FR-01`, `LABO-002-AC-01/02` | `L10-LABO-002-C01..C04` |
-| `HELIXLABO-L2-003` | `MPR-RC-HELIXLABO-L2-003-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L50 | L85–92 `5a5472b632726e3b6069e251024c59dbb4c076889bf48771d4cd306907922901` | `LABO-003-FR-01`, `LABO-003-AC-01/02` | `L10-LABO-003-C01..C04` |
-| `HELIXLABO-L2-004` | `MPR-RC-HELIXLABO-L2-004-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L51 | L93–100 `6f1751ca2ca2dddd1e1065a68421d63e3c18ce656786c9c1fe318b1a4e458889` | `LABO-004-FR-01`, `LABO-004-AC-01/02` | `L10-LABO-004-C01..C04` |
-| `HELIXLABO-L2-005` | `MPR-RC-HELIXLABO-L2-005-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L52 | L101–108 `3b7f37f57a9db5df451275962aa0a90f951cf61e23496828cb9a078f52bc36ee` | `LABO-005-FR-01`, `LABO-005-AC-01/02` | `L10-LABO-005-C01..C04` |
-| `HELIXLABO-L2-006` | `MPR-RC-HELIXLABO-L2-006-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L53 | L109–116 `2d5aa6810c6a2a21c532e7f2a96ec39fdef9b8e6040b476b23187f3be0bd02ce` | `LABO-006-FR-01`, `LABO-006-AC-01/02` | `L10-LABO-006-C01..C04` |
-| `HELIXLABO-L2-007` | `MPR-RC-HELIXLABO-L2-007-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L54 | L117–124 `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e` | `LABO-007-FR-01`, `LABO-007-AC-01/02` | `L10-LABO-007-C01..C04` |
-| `HELIXLABO-L2-008` | `MPR-RC-HELIXLABO-L2-008-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L55 | L125–132 `08da4c2fb64ede944ace1e21fe8f165a161fe981e902458a8263602040d581ce` | `LABO-008-FR-01`, `LABO-008-AC-01/02` | `L10-LABO-008-C01..C04` |
-| `HELIXLABO-L2-009` | `MPR-RC-HELIXLABO-L2-009-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L56 | L133–140 `de30f29aef8d0d1af93e32843fadd823afc398352d9017fe24dfc84a2f7bd025` | `LABO-009-FR-01`, `LABO-009-AC-01/02` | `L10-LABO-009-C01..C04` |
-| `HELIXLABO-L2-010` | `MPR-RC-HELIXLABO-L2-010-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L57 | L141–149 `6ffc430c2762f509b39c2baab152115de82834be0cf168575470ed3832f9294e` | `LABO-010-FR-01`, `LABO-010-AC-01/02` | `L10-LABO-010-C01..C04` |
+| 親ID | registration / decision | L2 raw span | 個別L11受入行（raw） | FR / AC | L10 cases |
+|---|---|---|---|---|---|
+| `HELIXLABO-L2-002` | `MPR-RC-HELIXLABO-L2-002-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L49 | L77–84 `d4ecde864ac4129741f32ac65d0075d1d0704cc7166b86491bbae6ef8865bf28` | L11 46 `ce062011fb183b86d221549f02b2885afe619ec15acbd3e3442e9fbe12fc3465` | `LABO-002-FR-01`, `LABO-002-AC-01/02` | `L10-LABO-002-C01..C04` |
+| `HELIXLABO-L2-003` | `MPR-RC-HELIXLABO-L2-003-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L50 | L85–92 `5a5472b632726e3b6069e251024c59dbb4c076889bf48771d4cd306907922901` | L11 47 `3ae2ba712bfb8343c1e8b451c3c5803e1fddecaa94137dbe1ae6f793a340852f` | `LABO-003-FR-01`, `LABO-003-AC-01/02` | `L10-LABO-003-C01..C04` |
+| `HELIXLABO-L2-004` | `MPR-RC-HELIXLABO-L2-004-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L51 | L93–100 `6f1751ca2ca2dddd1e1065a68421d63e3c18ce656786c9c1fe318b1a4e458889` | L11 48 `8bb5f1bb12ea7acac957089b86ed6a9743027e21d3d8d8082f265cf181d73025` | `LABO-004-FR-01`, `LABO-004-AC-01/02` | `L10-LABO-004-C01..C04` |
+| `HELIXLABO-L2-005` | `MPR-RC-HELIXLABO-L2-005-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L52 | L101–108 `3b7f37f57a9db5df451275962aa0a90f951cf61e23496828cb9a078f52bc36ee` | L11 49 `01dc15d6bd73a2b3ebc8e72c4deb42746c8eadc43d54010791472345a10d5a92` | `LABO-005-FR-01`, `LABO-005-AC-01/02` | `L10-LABO-005-C01..C04` |
+| `HELIXLABO-L2-006` | `MPR-RC-HELIXLABO-L2-006-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L53 | L109–116 `2d5aa6810c6a2a21c532e7f2a96ec39fdef9b8e6040b476b23187f3be0bd02ce` | L11 50 `b4ac64ec8fb37afed92f5a2603e9229af869fa0a480d7b092a6befc2cfe43c4f` | `LABO-006-FR-01`, `LABO-006-AC-01/02` | `L10-LABO-006-C01..C04` |
+| `HELIXLABO-L2-007` | `MPR-RC-HELIXLABO-L2-007-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L54 | L117–124 `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e` | L11 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae` | `LABO-007-FR-01`, `LABO-007-AC-01/02` | `L10-LABO-007-C01..C06` |
+| `HELIXLABO-L2-008` | `MPR-RC-HELIXLABO-L2-008-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L55 | L125–132 `08da4c2fb64ede944ace1e21fe8f165a161fe981e902458a8263602040d581ce` | L11 52 `d2d4785d5f765725129590fcae76f91676a4a278ae3b831fe847c82c582d3eb2` | `LABO-008-FR-01`, `LABO-008-AC-01/02` | `L10-LABO-008-C01..C04` |
+| `HELIXLABO-L2-009` | `MPR-RC-HELIXLABO-L2-009-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L56 | L133–140 `de30f29aef8d0d1af93e32843fadd823afc398352d9017fe24dfc84a2f7bd025` | L11 53 `5cf6b05ac4a5565415593b8892c37abe678889b6ba101851a9b1d7bad1e58e07` | `LABO-009-FR-01`, `LABO-009-AC-01/02` | `L10-LABO-009-C01..C04` |
+| `HELIXLABO-L2-010` | `MPR-RC-HELIXLABO-L2-010-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L57 | L141–149 `6ffc430c2762f509b39c2baab152115de82834be0cf168575470ed3832f9294e` | L11 54 `7c26ac7e6e33c5f4765085decc6b3e0819a049667ad2920b301f439ea9269033` | `LABO-010-FR-01`, `LABO-010-AC-01/02` | `L10-LABO-010-C01..C04` |
+
+| 親ID | registration / decision | L2 raw span | L11 raw span（採択対象） | FR / AC | L10 cases |
+|---|---|---|---|---|---|
+| `HELIXLABO-L2-055` | `MPR-RC-HELIXLABO-L2-055-002`, semantic `7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L58` | L150–155 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7` | L11 L191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c` | `LABO-055-FR-01`, `LABO-055-AC-01/02` | `L10-LABO-055-C01..C04` |
+| `HELIXLABO-L2-056` | `MPR-RC-HELIXLABO-L2-056-003`, semantic `5965a1449b772ba7b53b1e47325a0f0ce77cbde29eb4f6d80c68c9911db48019`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L96` | L379–390 `d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7` | L11 L138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed` + adopted supplement L198–203 `24d96629585ccb7f8bb248f7748d06575c3af38f892753d306733eb9609bb1e0` | `LABO-056-FR-01`, `LABO-056-AC-01/02` | `L10-LABO-056-C01..C05` |
+| `HELIXLABO-L2-057` | `MPR-RC-HELIXLABO-L2-057-002`, semantic `4c8acbcfcf35bcdb62d6e5371141135b7a70da1d69115a41194065471b4fa63b`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L97` | L391–402 `d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d` | L11 L148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60` | `LABO-057-FR-01`, `LABO-057-AC-01/02` | `L10-LABO-057-C01..C05` |
+| `HELIXLABO-L2-070` | `MPR-RC-HELIXLABO-L2-070-001`, semantic `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`, PO decision `docs/governance/decisions/po-decision-2026-09-30-live26.md#L49` | L561–575 `82b94ab1ed63d1ab15476e61bfd4fec07c202a2b5874d5f3dffa6161969da064` | L11 L297–307 `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1` | `LABO-070-FR`, assigned AC | `CASE-LABO-L10-070-01/02` |
+| `HELIXLABO-L2-071` | `MPR-RC-HELIXLABO-L2-071-001`, semantic `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f`, PO decision `docs/governance/decisions/po-decision-2026-09-30-live26.md#L50` | L576–584 `3036e4c300ee6f78e74b819657d456c0bad08b8ccb483882cfc3b59fa5bbbe1f` | L11 L311–316 `1f8ef8bdb0a6daf2a0e24fb2150fd28c3339d33bd45537a1d039d563264d9655` | `LABO-071-FR`, assigned AC | `CASE-LABO-L10-071-01/02` |
 
 ### L10-LABO-002-C01 — `親の正常系列`
 
@@ -255,12 +263,12 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - 対応: `LABO-007-AC-01`; 親: `HELIXLABO-L2-007`。
 - 入力fixture: 同一の再現条件を持つ反復episodes、machine判定可能な入力、独立oracle、限定side effect、retry/rollback/idempotence証拠を別fieldで与える。
-- 期待oracle: 再現条件、machine判定可能性、oracle、副作用範囲、retry/rollback/idempotenceの5条件を個別に観測し、operation継続案とsystem化候補の双方を示す。自動昇格しない。
+- 期待oracle: 6条件群を個別に観測する。retry可否とrollback可否は同じ条件群の中でも別々に記録し、片方の証拠を他方へ代用しない。operation継続案とsystem化候補の双方を示し、自動昇格しない。
 
 ### L10-LABO-007-C02 — `条件欠落/不安定`
 
 - 対応: `LABO-007-AC-02`; 親: `HELIXLABO-L2-007`。
-- 入力fixture: 5条件のうち再現条件、machine判定可能性、oracle、副作用範囲、retry/rollback/idempotenceをそれぞれ一つずつ欠落または矛盾させ、最後に複合欠落を与える。
+- 入力fixture: 再現性、machine判定可能性、oracle、副作用範囲、retry可否、rollback可否、冪等性を一つずつ欠落/矛盾させ、最後に複合欠落を与える。
 - 期待oracle: 欠落した条件名と証拠を個別に示し、systemizationへ進めずoperation継続候補を保留状態で返す。
 
 ### L10-LABO-007-C03 — `単純頻度の否定`
@@ -270,6 +278,18 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 - 期待oracle: 頻度だけで再現可能と判定しない。反例・条件差を保持し、自動昇格0。
 
 ### L10-LABO-007-C04 — `held-out正常`
+
+### L10-LABO-007-C05 — 文脈依存・高FP・過剰拘束candidateの保持
+
+- 対応: `LABO-007-AC-02`; 親: `HELIXLABO-L2-007`。
+- 入力fixture: 正常operation対照に加え、文脈依存、FP高、overconstraintの各理由を単独で含む候補を与える。
+- 期待oracle:当該candidateをsystem化不適と判断してもoperation candidateとして保持し、理由とscopeを表示する。
+
+### L10-LABO-007-C06 — shadowとsystemization段階の区別
+
+- 対応: `LABO-007-AC-01/02`; 親: `HELIXLABO-L2-007`。
+- 入力fixture:同一candidateのoperation、shadow評価、systemization候補の別状態と、shadow evidence欠落を与える。
+- 期待oracle:shadow段階をoperationやsystemization済みと同一視せず、親にない自動昇格・承認条件を設けない。
 
 - 対応: `LABO-007-AC-01`; 親: `HELIXLABO-L2-007`。
 - 入力fixture: 未見のrule candidateだが全親条件と証拠を持つ。
@@ -380,14 +400,14 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-012-C01 — Correlate episodeから分類対象へ
 
 - 対応: `LABO-012-AC-01`; 親: `HELIXLABO-L2-012`。
-- 入力fixture: `L2-002`が出したepisode identity、source/evidence locator、relation identityとrevision、欠測/unknown状態を渡す。
-- 期待oracle:分類対象が元episode・証拠・relation revisionへ戻れ、relationと欠測状態をそのまま保持する。因果関係を新たに確定しない。
+- 入力fixture: `L2-002`が出したepisode identity、source/evidence locator、relation identityとrevision、欠測/unknown状態を渡す。時刻・場所だけ一致する無関係eventの対照と、因果関係の根拠を持つeventを別々に与える。
+- 期待oracle:分類対象が元episode・証拠・relation revisionへ戻れ、relationと欠測状態をそのまま保持する。co-timed/co-locatedだけの例は相関candidateに止まりcausal claimを出さず、根拠が揃う場合も親のrelation evidenceに沿う。
 
 ### L10-LABO-012-C02 — relation版不一致
 
 - 対応: `LABO-012-AC-02`; 親: `HELIXLABO-L2-012`。
-- 入力fixture: relation revisionだけを訂正元と不一致にし、episodeとevidenceは有効な対照を用意する。
-- 期待oracle:現在relationとして分類せず、不一致版を明示して訂正sourceへ戻す。有効なepisode/evidenceは保持する。
+- 入力fixture: relation revisionだけを訂正元と不一致にし、episodeとevidenceは有効な対照を用意する。別caseでcorrelation candidateだけからcausal conclusionを作る変異を与える。
+- 期待oracle:現在relationとして分類せず、不一致版を明示して訂正sourceへ戻す。有効なepisode/evidenceは保持する。相関だけで因果を確定した結果は不成立としてrelation/evidence ownerへ戻す。
 
 ### L10-LABO-012-C03 — evidence欠落・unknown保持
 
@@ -1030,8 +1050,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | `CASE-LABO-L10-064-01` | `FR-LABO-L3-064` / `AC-LABO-L3-064-01` | 選択比較pairでjudge-visible資料を検査し、元identity mappingはrecord側にだけ保持。fixture/rubric/judge version/sample/retryの事前固定条件が同一のpairを与える。 | 候補名がjudge資料に現れず、全5条件が固定一致する場合だけblind比較を成立候補として返す。 |
 | `CASE-LABO-L10-064-02` | `FR-LABO-L3-064` / `AC-LABO-L3-064-02` | 候補名直書き、添付metadata漏れ、judge視界不明を個別に与える。fixture/rubric/judge version/sample/retryの5条件はそれぞれ欠落・変更を別変異とし、さらにsmoke-only/平均相殺/assignment許可も独立に試す。 | 各対象pairは比較不成立。別pairへfindingを広げず、smoke結果をfull qualificationやassignmentへ読み替えない。 |
 | `CASE-LABO-L10-064-03` | `FR-LABO-L3-064` / `AC-LABO-L3-064-03` | 通常history記録と、新runtime版/新output形式のjudge-visible資料が不足する比較を対照にする。 | historyにblind比較を強制せず、新比較は可視範囲がunknownなら過去blind証拠を継承せずevaluation ownerへ戻す。 |
-| `CASE-LABO-L10-065-01` | `FR-LABO-L3-065` / `AC-LABO-L3-065-01` | 選択qualification scopeのmanifest/receipt、8軸各判定、machine smoke/blind full-benchを別記録する正常例と、独立task scorecardの6 fields及びfirst Attempt failure→retry successを与える。 | 8/8軸を同一fixture/oracle/rubric版へ結び、6/6 fieldはscope definitionとreceiptを持つ。retry成功をfirst_pass成功へ変えず、owner decisionを参照する。 |
-| `CASE-LABO-L10-065-02` | `FR-LABO-L3-065` / `AC-LABO-L3-065-02` | 8軸を各々欠落/版違い、manifest/digest、smokeのみ、visible leakを個別に変異する。scorecardは6 fields各欠落、適用外理由欠落、unknown→0、retry first-pass誤記、retry/rework cost欠落を個別に投入する。 | 該当scope/metricを未完・unknownとし、他軸成功で相殺しない。qualification/admissionをLABOから作らない。 |
+| `CASE-LABO-L10-065-01` | `FR-LABO-L3-065` / `AC-LABO-L3-065-01` | 選択qualification scopeのmanifest/receipt、8軸各判定、machine smoke/blind full-benchを別記録する正常例と、独立task scorecardの6 fields及びfirst Attempt failure→retry successを与える。 | 8/8軸を同一fixture/oracle/rubric版へ結び、6/6 fieldはscope definitionとreceiptを持つ。選択scopeの同一task class/測定定義/revisionで記録されたtrendとfailure findingだけを併記し、条件違いを同じtrendへ混ぜない。retry成功をfirst_pass成功へ変えず、owner decisionを参照する。 |
+| `CASE-LABO-L10-065-02` | `FR-LABO-L3-065` / `AC-LABO-L3-065-02` | 8軸を各々欠落/版違い、manifest/digest、smokeのみ、visible leakを個別に変異する。scorecardは6 fields各欠落、適用外理由欠落、unknown→0、retry first-pass誤記、retry/rework cost欠落を個別に投入する。 | 該当scope/metricを未完・unknownとし、異なるtask/scope/測定revisionのtrend混合も不成立にする。他軸成功で相殺せず、qualification/admissionをLABOから作らない。 |
 | `CASE-LABO-L10-065-03` | `FR-LABO-L3-065` / `AC-LABO-L3-065-03` | qualification未選択の通常Worker history、新runtime/task/fixture/rubric版、未定のdiff/lint measurement definitionを比較する。 | 通常historyはqualification bench不要。新scopeは既存資格を継承せず、定義欠落はunknown/owner返却。 |
 | `CASE-LABO-L10-066-01` | `FR-LABO-L3-066` / `AC-LABO-L3-066-01` | Aと候補の事前同一eligible case set、scope/revision/oracle/protocol/cutoff、両群のcase receiptを与え、各群の2 countを算出する。 | 両群のmisrepair_count/Nとunresolved_count/Nを別々に、分子/分母とcase-oracle receipt付きで示し、059費用比較も保つ。 |
 | `CASE-LABO-L10-066-02` | `FR-LABO-L3-066` / `AC-LABO-L3-066-02` | A/候補のcase集合またはoracle条件を変える、結果後にN変更、重複/unknown除外、oracle receiptなし、分子のみ、成功/安価さで隠すmutationを独立に与える。 | 比較不能/未評価を返し、unknownを0・除外・成功として数えない。 |
@@ -1039,7 +1059,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 ### HELIXLABO-L2-067/068/069/070/071 — 初回候補・Attempt・再発行・補助計測・資格oracle
 
-固定parentはmain `633bf12`。L2 full SHA-256 `5d939d814f0aca2fa4bdde89f09c68428ef434e8c9b662f5bd3c546533897ae9`、L11 full SHA-256 `30de41e2361405f3598e3ee511bfec1b51e47514af4de3e6c480c2a068073de0`。個別raw spanはL3 crosswalkを参照する。旧test-designは未実行の設計資料で、現行runtime/結果証拠として実行しない。
+固定parentはmain `633bf12`。L2 full SHA-256 `cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6`、L11 full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。070/071の採択rootはlive26 decision rows 49/50のexact registrationに従う。個別raw spanはL3 crosswalkを参照する。旧test-designは未実行の設計資料で、現行runtime/結果証拠として実行しない。
 
 | L10 case | 対応FR / AC | Fixtureと操作 | 期待oracle |
 |---|---|---|---|
@@ -1052,8 +1072,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | `CASE-LABO-L10-069-01` | `FR-LABO-L3-069` / `AC-LABO-L3-069-01` | 複数return reason classのticket cohort、事前に特定されたscope/revision/windowとsource-complete母数、元closure、後日findingとの根拠relation、再発行後の検証receiptを与える。 | reason別return count・該当分母と後続verification成立/不成立/未評価を分離し、元closureを保持。ticket/routing/priorityを変更しない。 |
 | `CASE-LABO-L10-069-02` | `FR-LABO-L3-069` / `AC-LABO-L3-069-02` | 時間近接だけ、same-pathだけ、scope/revision混在、母数欠落、source incomplete、観測window未満、未追跡、打切り、未実行、単純count reductionを各々投入する。 | 原因帰属やrate/quality closureを断定しない。母数等欠落はunknown/comparison unavailable、観測途中等は0 defectにしない。 |
 | `CASE-LABO-L10-069-03` | `FR-LABO-L3-069` / `AC-LABO-L3-069-03` | 初見reason class、oracle不足finding、再発行から元ticketへのrelation不在を含む未見正常 fixtureを与える。 | reason/source identityを保持しunknown classは未分類、因果relationを捏造しない。一般Ticket closeを長期window待ちにしない。 |
-| `CASE-LABO-L10-070-01` | `FR-LABO-L3-070` / `AC-LABO-L3-070-01` | 9 selected atomsについて同一scope/revision/windowに属するevent・oracle・time・cost receiptを与える。4 duration、escaped defect、rollback/Recovery、observer overhead、freshness、067/068 co-present fieldsを別々に参照し、重なるwait区間を含むfixtureでも有効な個別duration fieldを与える。 | 各適用fieldはsource receiptへtrace可能。4時間値は分離、個別durationの有効な集計を保つ。escaped defectは既存owner oracleに限り、same receipt費用は一度、067/068は各grainを保つ。 |
-| `CASE-LABO-L10-070-02` | `FR-LABO-L3-070` / `AC-LABO-L3-070-02` | 重複wait区間を重なり処理なしに総所要時間へ加算する変異を与え、別々にstart/end欠落、重複wait按分、欠測0、事後oracle/window、unconfirmed finding、rollback/overhead二重計上、推計、timestampなし、ageによる許可、roundをAttempt countへ加算、silent renameも変異する。 | 誤ったtotalだけをinvalid/unknownとし、正当な個別duration fieldは保持する。他の該当fieldは個別にunknown/invalidとして成功scorecardへ混ぜず、既存metric/authorityを変更しない。 |
+| `CASE-LABO-L10-070-01` | `FR-LABO-L3-070` / `AC-LABO-L3-070-01` | 9 selected atomsについて同一scope/revision/windowに属するevent・oracle・time・cost receiptを与える。4 duration、escaped defect、rollback/Recovery、observer overhead、freshness、067/068 co-present fieldsを別々に参照し、重なるwait区間を含むfixtureでも有効な個別duration fieldを与える。 | 各適用fieldはsource receiptへtrace可能。待機・実作業・review待ち・人待ちを分け、parentにaggregate total定義がないため加算して再計算しない。escaped defectは既存owner oracleに限り、same receipt費用は一度、067/068は各grainを保つ。 |
+| `CASE-LABO-L10-070-02` | `FR-LABO-L3-070` / `AC-LABO-L3-070-02` | 4 durationを総所要時間へ加算して作る未定義total、重複wait区間の加算、別々にstart/end欠落、重複wait按分、欠測0、事後oracle/window、unconfirmed finding、rollback/overhead二重計上、推計、timestampなし、ageによる許可、roundをAttempt countへ加算、silent renameも変異する。 | 未定義aggregate totalは出力せず、4個別duration fieldは保持する。他の該当fieldは個別にunknown/invalidとして成功scorecardへ混ぜず、既存metric/authorityを変更しない。 |
 | `CASE-LABO-L10-070-03` | `FR-LABO-L3-070` / `AC-LABO-L3-070-03` | selection scopeでは使わないsource/atomと、選択scope内のreceiptが一部未提供のcaseを対照する。 | unselectedをrequired dependencyにしない。selected内missingは理由付きunavailable/unknown、部分値をcomplete scorecardと称さない。 |
 | `CASE-LABO-L10-071-01` | `FR-LABO-L3-071` / `AC-LABO-L3-071-01` | task class/revision別の評価証拠と資格状態、および独立した称号・permission・assignment role fieldsを与える。 | qualificationは対象class/revisionと評価範囲に結び、他fieldを変更しない。 |
 | `CASE-LABO-L10-071-02` | `FR-LABO-L3-071` / `AC-LABO-L3-071-02` | major miss後も有効、model revision更新後の旧qualification/score/title継承、class/revision mismatch、title→permission、qualification→assignment、permission失効と資格失効の同一視を個別変異する。 | 該当qualificationだけを失効またはunknownとし、権限・assignmentを変更しない。 |

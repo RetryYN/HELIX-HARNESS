@@ -7,11 +7,12 @@
 ## HELIXBRAIN-L2-007 — L10 oracle（対応 `BRAIN-007-FR-01`）
 
 - 親：PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 `docs/helix-brain/L2-requirements/brain-requirements.md:150-160` span SHA-256 `f96983fecc67fdb539d5ff143ed758a9c2ae799ae3f4fb6fa24bad2c381a6774`。対L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md` full SHA-256 `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`.
+- main633採択registration: `MPR-RC-HELIXBRAIN-L2-007-002` / semantic digest `sha256:9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee`。後続metadataから承認を継承しない。
 - 対応AC: `BRAIN-007-AC-01`, `BRAIN-007-AC-02`。各caseはシステム全体の受渡しとowner境界を照合し、単体componentの成功だけでは対全体を満たさない。
 
 ### 検証fixtureとcase
 
-- **L10-BRAIN-007-C01**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：L1-007、L2-011/025およびLABO→BRAIN L2-020の参照revisionを記録した上で、必須source/provenance/evidence/scope等が揃いLABO対象revisionが一致する候補を投入し、各owner stateが分離されることを確認する。 **期待oracle**：候補はsource identity/revisionと全入力fieldを保持し、LABO評価・OS登録・BRAIN独立検証・採否を別stateとして返す。
+- **L10-BRAIN-007-C01**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：L1-007、L2-011/025およびLABO→BRAIN `HELIXBRAIN-L2-020`の参照revisionを記録した上で、必須source/provenance/evidence/scope等が揃いLABO対象revisionが一致する候補を投入し、各owner stateが分離されることを確認する。 **期待oracle**：候補はsource identity/revisionと全入力fieldを保持し、LABO評価・OS登録・BRAIN独立検証・採否を別stateとして返す。
 - **L10-BRAIN-007-C02**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：source identityまたはrevisionの欠落・stale・danglingを個別に与え、昇格せず不足sourceを返す。 **期待oracle**：候補stateを維持しpromotionを止め、不足source/revisionを列挙してsource/evidence ownerへ返す。
 - **L10-BRAIN-007-C03**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：提案scopeとevaluated scopeを不一致にし、counterexampleまたはlimitationを欠落させてaccepted/matureを拒否する。 **期待oracle**：proposed/evaluated scope差またはcounterexample/limitation欠落を理由にaccepted/matureを拒み、候補の戻し先を示す。
 - **L10-BRAIN-007-C04**（AC `BRAIN-007-AC-01`／`BRAIN-007-AC-02`に対応）：AI生成のみ、成功実績一件のみでaccepted/matureを要求し、昇格が起きないことを確認する。 **期待oracle**：accepted/matureへの遷移が起きず、AI生成または単一成功実績のみを根拠にできないことを返す。
@@ -31,12 +32,13 @@
 ## HELIXBRAIN-L2-008 — L10 oracle（対応 `BRAIN-008-FR-01`）
 
 - 親：PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 `docs/helix-brain/L2-requirements/brain-requirements.md:161-171` span SHA-256 `8982f6583ed81151b3519a26ba2ae858566650fdbc2cca43cfda29632dce7f87`。対L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md` full SHA-256 `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`.
+- main633採択registration: `MPR-RC-HELIXBRAIN-L2-008-002` / semantic digest `sha256:90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e`。後続metadataから承認を継承しない。
 - 対応AC: `BRAIN-008-AC-01`, `BRAIN-008-AC-02`。各caseはシステム全体の受渡しとowner境界を照合し、単体componentの成功だけでは対全体を満たさない。
 
 ### 検証fixtureとcase
 
 - **L10-BRAIN-008-C01**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：L1-008、L2-028、CORE/OS接続L2-018/019/025の参照revisionを記録し、Product Coreがrevision Rを参照後、BRAINでRをsupersededとしてR2を追加、既存参照がRを保持するfixtureを置く。 **期待oracle**：既存Core参照はrevision Rのままで、BRAINのR=superseded/R2=current等のstateとOS usage recordが別々に読める。
-- **L10-BRAIN-008-C02**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：unknown identity/revision/state、競合するstateを使い、currentへの暗黙解決がないことを確認する。 **期待oracle**：identity/revision/stateのunknownまたは競合をunknown/停止として返し、currentへの暗黙置換を行わない。
+- **L10-BRAIN-008-C02**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：unknown identity/revision/state、競合するstate、Product Coreのexact revisionとOS usage recordを個別に変更するfixtureを使い、currentへの暗黙解決がないことを確認する。 **期待oracle**：identity/revision/stateのunknownまたは競合をunknown/停止として返し、currentへの暗黙置換を行わない。BRAIN lifecycle変更だけではOS usageを変えず、OS usage変更だけではBRAIN lifecycleを変えない。
 - **L10-BRAIN-008-C03**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：version_targetをactual versionとして差し替え、解決されないことを確認する。 **期待oracle**：version_targetは目標印として扱われactual version不明を解消せず、候補利用を停止する。
 - **L10-BRAIN-008-C04**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：BRAIN ownerが知識stateを正当にR=currentからR=supersededへ更新する一方、既存OS project usage recordを同時に変えない。 **期待oracle**：BRAIN state更新を反映しつつ、OS usage historyは旧参照revisionを保持する。BRAINの正当な更新自体は拒否しない。
 - **L10-BRAIN-008-C05**（AC `BRAIN-008-AC-01`／`BRAIN-008-AC-02`に対応）：OS ownerが利用中のexact revisionを保ったままproject usage recordを正当に更新する。 **期待oracle**：OS usage updateを反映しつつ、BRAIN lifecycle stateは不変。OSの正当なproject update自体は拒否しない。
@@ -52,13 +54,14 @@ Product Core参照identityとexact revision；BRAIN identity/revision/state/supe
 ## HELIXBRAIN-L2-028 — L10 oracle（対応 `BRAIN-028-FR-01`）
 
 - 親：PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2 `docs/helix-brain/L2-requirements/brain-requirements.md:494-503` span SHA-256 `0120989594637907eed4c8a63a2b17619187739e1dd34d916a1dc15cb80e72c1`。対L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md` full SHA-256 `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b`.
+- main633採択registration: `MPR-RC-HELIXBRAIN-L2-028-002` / semantic digest `sha256:e3d58bda2215f1a5aeb846d7160f31d832c8e46866a8a53c5e8115664cd72df8`。後続metadataから承認を継承しない。
 - 対応AC: `BRAIN-028-AC-01`, `BRAIN-028-AC-02`。各caseはシステム全体の受渡しとowner境界を照合し、単体componentの成功だけでは対全体を満たさない。
 
 ### 検証fixtureとcase
 
 - **L10-BRAIN-028-C01**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：L2-008とHARNESS-L2-010/011 descriptor contractのrevisionを明示し、descriptor全fieldとknowledge revisionが一致、required versionが宣言range内となる正常case。 **期待oracle**：全fieldが契約と一致しrequired versionが宣言range内の場合だけ、同じknowledge identity/revisionのapplicable応答を返す。
 - **L10-BRAIN-028-C02**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：unknown descriptorまたはknowledge identity/revisionを与える。 **期待oracle**：未知identity/revisionをnot-applicableまたはunknownで返し、推定・最新置換を行わない。
-- **L10-BRAIN-028-C03**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：descriptor contract/artifact/dependency versionを不一致にする。 **期待oracle**：contract/artifact/dependencyの不一致fieldを特定してnot-applicableとし、共通契約ownerへ返す。
+- **L10-BRAIN-028-C03**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：descriptor contract/artifact/dependency versionを一つずつ不一致にし、unknown identity、range外・range欠落・range解釈不能、version_targetの実版代用、common lifecycleをBRAIN側へ移す変異も別々に与える。 **期待oracle**：contract/artifact/dependencyの不一致fieldを特定してnot-applicableとし、共通契約ownerへ返す。
 - **L10-BRAIN-028-C04**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：required versionをrange外・range欠落・range解釈不能にする。 **期待oracle**：range外・range欠落・解釈不能をunknown/not-applicableにし、適用を止める。
 - **L10-BRAIN-028-C05**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：version_targetをactual contract/artifact/knowledge versionとして使用する。 **期待oracle**：version_targetによるactual version補完を拒み、未確定版をunknownのまま返す。
 - **L10-BRAIN-028-C06**（AC `BRAIN-028-AC-01`／`BRAIN-028-AC-02`に対応）：common rollback/unfinished obligationをBRAIN側へ要求する。 **期待oracle**：common exchange/update/rollback/unfinished-obligationの操作・stateはBRAIN応答で変更せず、HARNESS ownerへ返す。
@@ -84,7 +87,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - Version candidate `1.0`; sequence `Stage 2b`。実装・release許可ではない。
 
 - Dependency: BRAIN L1-001、Concept機構境界。PO束ね条件: §BRAIN-L1-001、§初期Domain候補、Visual Designの1.0回答。 L10はL3 ACを実装・追加せず観測する。
-- **`L10-BRAIN-001-C01` — 正常（`BRAIN-001-AC-01`）**: fixture: 4 separate change fixtures: Software Architecture初期domainの保持を基準に、(a)追加、(b)分割、(c)統合、(d)退役を一操作ずつ行い、各既存relation consumerを入力する。Reliability/Recoveryは追加候補として渡す。 **期待oracle**: 4種類の変更proposalでDomain meaning/stateが保たれ、各existing relation referenceを新しい/残存先で解決可能。初期Domainと追加候補を区別する。
+- **`L10-BRAIN-001-C01` — 正常（`BRAIN-001-AC-01`）**: fixture: Software Architecture、Application Architecture、Backend、Frontend、API / Integration、Data / Database、Infrastructure、Security、Visual Design、UX / Interactionの初期10 Domainを基準にし、10/10 exact-setを観測する。加えて(a)追加、(b)分割、(c)統合、(d)退役を別fixtureで実施し、各既存relation consumerを入力する。Reliability/Recoveryは追加候補として渡す。 **期待oracle**: 10個の初期Domain identityが過不足なく一致し、4種類の変更proposalでmeaning/stateと各既存relation参照が保持される。初期Domainと追加候補を区別する。
 - **`L10-BRAIN-001-C02` — 否定・境界（`BRAIN-001-AC-02`）**: fixture: product/project名をDomainとして固定、meaning重複/unknown、分割統合退役で既存relation consumerを落とす変異を各々投入。 **期待oracle**: 製品/project名をDomain化せず、meaning不明時はcandidateで停止しL1-001へ戻し、既存relation利用者を維持する。
 - **`L10-BRAIN-001-C03` — 未見境界（`BRAIN-001-AC-01,AC-02`）**: fixture: 伏せた未列挙Domain候補と追加/分割/統合/退役の組合せを与える。初期Domain候補と追加候補を混同せず、scope未確定は候補/unknownに保つ。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: 列挙された初期Domain・identity/meaning/state・変更impact・候補/停止state。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
@@ -152,7 +155,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - Version candidate `1.0`; sequence `Stage 2b`。実装・release許可ではない。
 
 - Dependency: BRAIN L1-005、L2-001/002。PO束ね条件: §BRAIN-L1-005。 L10はL3 ACを実装・追加せず観測する。
-- **`L10-BRAIN-005-C01` — 正常（`BRAIN-005-AC-01`）**: fixture: Authentication→Session→Frontend State→UX と Database→Performance→Infrastructure のtyped directed relation edgeをsourceとともに投入。 **期待oracle**: 全typed directed edgeが両endpoint・direction・meaning/sourceへtraceされる。
+- **`L10-BRAIN-005-C01` — 正常（`BRAIN-005-AC-01`）**: fixture: requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_ofの7 relation種を、それぞれ両端identity・方向・source付きで投入する。 **期待oracle**: 7種全てをexact setで識別し、各edgeを両endpoint・方向・meaning/sourceへtraceする。
 - **`L10-BRAIN-005-C02` — 否定・境界（`BRAIN-005-AC-02`）**: fixture: 両endpoint不明、relation direction/meaning欠落、name similarityのみのedge、因果未確認を個別および組合せで投入。 **期待oracle**: unknown endpointやunsupported causal edgeは確定せずL1-005へ戻す。
 - **`L10-BRAIN-005-C03` — 未見境界（`BRAIN-005-AC-01,AC-02`）**: fixture: 別Domain間に名前が近いnode pairを伏せ、source/evidenceを与えないrelation claimを渡す。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: 両endpoint、許容type/meaning、cross-domain source trace。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
@@ -532,8 +535,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 ## `HELIXBRAIN-L2-019` — paired L10 oracle（対応 `BRAIN-019-FR-01`）
 
 - 親固定: decision `docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L78`; L2 `docs/helix-brain/L2-requirements/brain-requirements.md:404–413` raw span `e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5`; L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:59–59` raw span `bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152`; version 1.0 / Stage 4。
-- **L10-BRAIN-019-C01 — 正常**（`BRAIN-019-AC-01`）: 入力: scopeとrequired inputがそろうqueryに、二つの候補、条件、alternatives, relation, tradeoff, counterexample, evidence, maturity, exact versionを別々に返し、採用選択なしを観測する。 期待oracle: 全10 response class (Pattern/Unit/Part, required input, conditions, alternative, relation, trade-off, counterexample, evidence, maturity, version)のtrace coverage 100%、根拠のない推薦/採用0件を候補値にする。結果field/stateが一致する。
-- **L10-BRAIN-019-C02 — 否定・境界**（`BRAIN-019-AC-02`）: 入力: required input欠落、version/meaning conflict、反例/根拠欠落を個別/併発で投入し、不足を照会・矛盾をownerへ戻し、unknownでは候補推薦を出さない。候補の一つを採用済みにしない。 期待oracle: 不足inputはProduct Coreへ照会し、knowledge meaning/version矛盾はBRAIN L1-003/008または知識ownerへ返す。unknownは推薦なし。 不足・矛盾を成功、確定、昇格に丸めない。
+- **L10-BRAIN-019-C01 — 正常**（`BRAIN-019-AC-01`）: 入力: scopeとrequired inputがそろうqueryに、二つの候補、条件、alternatives, relation, tradeoff, constraint, counterexample, evidence, maturity, exact versionを別々に返し、採用選択なしを観測する。 期待oracle: 全11 response class (Pattern/Unit/Part, required input, conditions, alternative, relation, trade-off, constraint, counterexample, evidence, maturity, version)のtrace coverage 100%、根拠のない推薦/採用0件を候補値にする。結果field/stateが一致する。
+- **L10-BRAIN-019-C02 — 否定・境界**（`BRAIN-019-AC-02`）: 入力: required input/constraint欠落、version/meaning conflict、反例/根拠欠落を個別/併発で投入し、不足を照会・矛盾をownerへ戻し、unknownでは候補推薦を出さない。候補の一つを採用済みにしない。 期待oracle: 不足inputはProduct Coreへ照会し、knowledge meaning/version矛盾はBRAIN L1-003/008または知識ownerへ返す。unknownは推薦なし。 不足・矛盾を成功、確定、昇格に丸めない。
 - **L10-BRAIN-019-C03 — 未見**（`BRAIN-019-AC-01,BRAIN-019-AC-02`）: 入力: 未見課題でrequired inputとscopeが既知なら同じ契約で候補比較を行う。特定Patternが未選択なら知識存在や不存在を推測せず未観測とする。 期待oracle: 根拠の揃う範囲は同じparent contractで評価し、欠落/矛盾する要素だけをunknown/未評価として返す。新しいgateは設けない。
 - 観測・判定: parent revision、source/field/scope、response state、failure reason、return owner。L10では各caseの出力を上のoracleへ照合し、coverage候補と誤昇格/誤結合数を記録する。本文は未実行の設計で、passを主張しない。
 - 旧test-design起点: `LEGACY-ASSET-6FFD7F4E58066D08B053` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:25–32` raw span `2a56a119a949c64b4344c37c9bf6c97d543c00edf027f6c3041de33fcf05c4fd`。failure oracleの考えだけを再導出し、旧test/runtimeを実行しない。
@@ -544,6 +547,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **L10-BRAIN-020-C01 — 正常**（`BRAIN-020-AC-01`）: 入力: 候補revision一致のLABO評価receiptにscope/method/evidence/result/failure/counterexample/unassessed rangeを全て含め、evaluation identityとsource/versionを結びcandidate inputへ登録する。resultは未成熟candidateのまま。 期待oracle: 8評価relation (target rev, candidate rev, scope, method, evidence, result, failure/counterexample, unassessed range)を完全traceし、対象不一致または部分評価からの誤昇格0件を候補値にする。結果field/stateが一致する。
 - **L10-BRAIN-020-C02 — 否定・境界**（`BRAIN-020-AC-02`）: 入力: 対象revision不一致、failure/counterexample/unassessed rangeいずれか欠落、評価resultだけの昇格を個別/併発で投入し、LABOへ返しOS state/BRAIN adoptionを変えない。 期待oracle: 対象revision不一致/評価部分欠落はunknown candidateとして止めLABOへ返す。OS登録stateの正本はOS。 不足・矛盾を成功、確定、昇格に丸めない。
 - **L10-BRAIN-020-C03 — 未見**（`BRAIN-020-AC-01,BRAIN-020-AC-02`）: 入力: 未見scopeの評価にfailureと未評価範囲が明記されればcandidateとして保持する。未評価scopeだけをmature/acceptedへ補完しない。 期待oracle: 根拠の揃う範囲は同じparent contractで評価し、欠落/矛盾する要素だけをunknown/未評価として返す。新しいgateは設けない。
+- **L10-BRAIN-020-C04 — 条件付きINFRA-017**（`BRAIN-020-AC-01`／`BRAIN-020-AC-02`に対応）：Infrastructure candidateのmaturityを扱うfixtureでは、同一revisionのL2-INFRA-017 state/evidenceを評価receiptへ結ぶ。maturityを扱わないfixtureでは依存を適用しない。対象revision/evidenceの欠落または別revision流用はそのcandidateだけをunknown/holdにし、全評価を一律停止しない。
 - 観測・判定: parent revision、source/field/scope、response state、failure reason、return owner。L10では各caseの出力を上のoracleへ照合し、coverage候補と誤昇格/誤結合数を記録する。本文は未実行の設計で、passを主張しない。
 - 旧test-design起点: `LEGACY-ASSET-A952A3A175EB82A4781B` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:21–39` raw span `b26c073b9441042e8e47e7014a0c12eeca9bfe012262f69ca7da5861f378746a`。failure oracleの考えだけを再導出し、旧test/runtimeを実行しない。
 

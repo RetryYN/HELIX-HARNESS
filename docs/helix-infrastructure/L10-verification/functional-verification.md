@@ -24,7 +24,7 @@ resource identity/role/environment/location/version/dependency/lifecycle；netwo
 
 **判定**：正常caseは各AC候補が親のfield/state/boundaryを満たす証拠を示す。反例caseでは該当情報が拒否/unknown/保留となり、誤った成功・昇格・owner間writebackを起こさない。部分成功は部分として記録し、残作業を成功に丸めない。
 
-**旧test-design oracleの限定**：旧NFR gradeとpillar FR/NFR・HAT設計の測定可能性とnormal/negative/boundary構成を起点にする。runtime topology個別の旧直接oracleはない。旧case ID・閾値・role schema・runtimeを使わず、現行L2/L11へ合わせた検証設計とする。
+**旧test-design oracleの限定**：旧NFR gradeとpillar FR/NFR・HAT設計の測定可能性とnormal/negative/boundary構成を起点にする。旧OPS-R-01/OPS-AC-001の環境identity・資源参照・credential値非保存を部分再導出する。現行resource topologyの全属性を旧oracleの完全一致再利用とはしない。旧case ID・閾値・role schema・runtimeを使わず、現行L2/L11へ合わせた検証設計とする。
 
 ## HELIXINFRASTRUCTURE-L2-006 — L10 oracle（対応 `INFRA-006-FR-01`）
 
@@ -33,7 +33,7 @@ resource identity/role/environment/location/version/dependency/lifecycle；netwo
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-006-C01**（AC `INFRA-006-AC-01`／`INFRA-006-AC-02`に対応）：HELIX-OSと通常control planeが利用不能で、独立minimum recovery resourceと別SECURITY authorityをsource/revision付きで識別するfixtureを置く。bootstrap、health check、service stop、rollback、recoveryの各許可operationを個別に限定pathへ対応付ける。 **期待oracle**：HELIX-OS停止中も列挙された限定操作だけが独立resource path・別authorityで照合可能で、結果にtarget revisionとremaining workが残る。
+- **L10-INFRA-006-C01**（AC `INFRA-006-AC-01`／`INFRA-006-AC-02`に対応）：HELIX-OSと通常control planeが利用不能で、独立minimum recovery resourceと別SECURITY authorityをsource/revision付きで識別するfixtureを置く。点検、health確認、service停止、rollback、recovery起動の5許可operationを個別に限定pathへ対応付ける。 **期待oracle**：HELIX-OS停止中も列挙された限定操作だけが独立resource path・別authorityで照合可能で、結果にtarget revisionとremaining workが残る。
 - **L10-INFRA-006-C02**（AC `INFRA-006-AC-01`／`INFRA-006-AC-02`に対応）：各復旧操作が停止対象control planeへ戻って依存する反例。 **期待oracle**：停止中control planeへの依存辺を検出しrecovery successにせず、安全停止と依存箇所を返す。
 - **L10-INFRA-006-C03**（AC `INFRA-006-AC-01`／`INFRA-006-AC-02`に対応）：通常authority、欠落/unknown authority、対象外operationの反例。 **期待oracle**：通常authority・unknown credential/policy・範囲外target/operationを拒否し、operationを実行可能扱いしない。
 - **L10-INFRA-006-C04**（AC `INFRA-006-AC-01`／`INFRA-006-AC-02`に対応）：部分復旧で残る操作があるのにcomplete successを主張する反例。 **期待oracle**：部分復旧はpartial/stoppedとし、最終適格revision、未完操作、制約を記録する。
@@ -61,9 +61,9 @@ unavailable nodeを含む依存関係；operationとtarget scope；別SECURITY a
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-003-C01**（AC `INFRA-003-AC-01`）: 対象environmentのresource snapshotと起動要求の各dimensionに要求量未満でない観測値を与える。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性にsource/revisionと観測範囲を持たせる。期待oracle: demand/available値とruntime属性が同じresource identity・対象revisionに結びつき、不足のない結果材料をOS/INTELLIGENCEへ返す。モデル能力評価をInfrastructureから推定せず、Infrastructure自身がplacement/costを選ばない。
+- **L10-INFRA-003-C01**（AC `INFRA-003-AC-01`）: 対象environmentのresource snapshotと起動要求の各dimensionに要求量未満でない観測値を与える。対象Model Runtimeがあるfixtureではmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointの全属性にsource/revisionと観測範囲を持たせる。適用閾値・条件を明示したfixtureに限って比較候補を評価し、common resource modelのlocal/VPS/dedicated/cloud VM/container/GPU/Worker nodeの各表現とnetwork/storage属性が同じ資源契約へ対応することを照合する。期待oracle: demand/available値とruntime属性が同じresource identity・対象revisionに結びつき、不足のない結果材料をOS/INTELLIGENCEへ返す。モデル能力評価をInfrastructureから推定せず、Infrastructure自身がplacement/costを選ばない。
 - **L10-INFRA-003-C02**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: CPU/storage/network/model resourceのいずれかでavailable < requestedにする。期待oracle: capacity unavailableと不足dimensionを明示し、queue/delay等の未完状態を保持してdecision ownerへ返す。
-- **L10-INFRA-003-C03**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 同じfixtureの一属性をstale、欠落、計測不能、別environment identityに変える。期待oracle: sufficient/healthyを返さずunknownとsource/revision理由を保持する。
+- **L10-INFRA-003-C03**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 同じfixtureの一属性をstale、欠落、計測不能、別environment identityに変える。期待oracle: sufficient/healthyを返さずunknownとsource/revision理由を保持する。観測値があっても閾値または適用条件を欠落させた各fixtureは十分性unknownとする。無制限Job追加を許す反例を不合格とし、OS/INTELLIGENCEへ要求・snapshot・未完queueを返す。
 - **L10-INFRA-003-C04**（AC `INFRA-003-AC-01`／`INFRA-003-AC-02`）: 自動増減autoscalingまたは固定utilization/latency目標がなければ失格とするfixture。期待oracle:高度autoscalingと新しいSLAを1.0必須条件にせず、明示されたcapacity/dependencyだけ判定する。
 
 ### 観測点とoracle
@@ -103,7 +103,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 - **L10-INFRA-005-C02**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: job successfulでもbackup completeness/integrity false、staleまたはtarget外revisionのfixture。期待oracle:backup存在/job成功だけからrestore可能とせず、failure/理由/変更前の適格stateを保持する。
 - **L10-INFRA-005-C03**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: compatible restore environmentで実restoreし、integrity、dependency reconnection、startup、verificationを全て照合する正常caseと、各条件を個別に欠落させるcase。期待oracle:実restore resultと検証結果を区別し、条件不足を成功にしない。
 - **L10-INFRA-005-C04**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: configuration/artifact/dependency/data compatibility不明またはrollback target/procedure不明のfixture。期待oracle:rollback適格性を保留し、previous eligible state/failure/未完義務をrecovery design owner/OSへ戻す。
-- **L10-INFRA-005-C05**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: 親に指定されない汎用RTO/retention-day/RPO閾値を判定に注入する。期待oracle:今回のoperation-scoped criteriaに不要な数値を必須gateにしない。別途数値scopeが要件上必要なら、根拠・比較・測定方法付きL3候補として示す。
+- **L10-INFRA-005-C05**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: 親に指定されない汎用RTO/retention-day/RPO閾値を判定に注入する。期待oracle:今回のoperation-scoped criteriaに不要な数値を必須gateにしない。別途数値scopeが要件上必要なら、根拠・比較・測定方法付きL3候補として示す。正常rollback receiptのみでincident closure/forward fix完了を生成する各反例は不合格で、incident状態・未完義務を別ownerの証拠がない限り保持する。
 
 ### 観測点とoracle
 
@@ -122,7 +122,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 - **L10-INFRA-009-C01**（AC `INFRA-009-AC-01`）: stage releaseを使わない通常OS Work/Change ticketとInfrastructure resource/runtime revisionを相互参照する。期待oracle:両者の別owner SSoT・evidence・stop/resumeを保ったversioned connectionが成立する。
 - **L10-INFRA-009-C02**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: HELIXOS-L2-014 stage packへ収載するfixture。期待oracle: stage ID、contract/artifact/dependency version、runtime revisionは別identityとして同stage evidenceで関連付く。
 - **L10-INFRA-009-C03**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: target/revision mappingを欠落・不一致にし、OS ticketをresource stateの正本として提示する。期待oracle:unknown/hold、OSまたはInfrastructure ownerへ戻し、部分変更と未完operationを維持する。
-- **L10-INFRA-009-C04**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: 通常接続にstage pack完成、全7製品または後続L1-023を必須条件として注入する。期待oracle:通常接続を独立に判定し、これらを必須化しない。
+- **L10-INFRA-009-C04**（AC `INFRA-009-AC-01`／`INFRA-009-AC-02`）: 通常接続にstage pack完成、全7製品または後続L1-015/023を必須条件として注入する。期待oracle:通常接続を独立に判定し、これらを必須化しない。
 
 ### 観測点とoracle
 
@@ -138,9 +138,9 @@ L2/L11は通常接続とpack収載を分け、identityとscopeを明記。相互
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-010-C01**（AC `INFRA-010-AC-01`）: 通常OS/Worker operationに有効SECURITY authorityを与え、target/action/revision/scope/expiryとOS assignment/result receipt、実際のbefore/after resource stateを照合する。期待oracle:許可範囲内のeffectだけをactual-state evidence付きで受け入れる。
+- **L10-INFRA-010-C01**（AC `INFRA-010-AC-01`）: 通常OS/Worker operationに有効SECURITY authorityを与え、target/project/action/revision/scope/expiryとOS assignment/result receipt、実際のbefore/after resource stateを照合する。期待oracle:許可範囲内のeffectだけをactual-state evidence付きで受け入れる。Workerの限定実操作をOS/SECURITY/Worker責務内で停止・回収でき、INFRAはpolicy/authorityを発行しない。無制限Shell、停止不能、回収不能、INFRAのpolicy/authority発行をそれぞれ独立反例として不合格にする。
 - **L10-INFRA-010-C02**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: read-only operationからupdate-admissionを省き、同時にtarget scopeのwrite-setを空、許可resource stateをbefore/afterで宣言する。期待oracle:valid ordinary authority下でread-onlyを認め、宣言scopeのwrite=0と前後値を確認する。
-- **L10-INFRA-010-C03**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: state updateでupdate-admission denied/unknown/mismatch、authority expired/target/revision/scope mismatch、または適用recovery obligation missingを個別に与える。期待oracle:変更前に停止しSECURITY/OSへ理由付き返却。credential raw valueを保存しない。
+- **L10-INFRA-010-C03**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: state updateでupdate-admission denied/unknown/mismatch、authorityのtarget/project/action/revision/scope/expiryをそれぞれ欠落/不一致にし、期限切れ/失効、または適用recovery obligation missingを個別に与える。期待oracle:変更前に停止しSECURITY/OSへ理由付き返却。credentialの合成markerをnormal state/backup/snapshotへ保存する各反例を不合格とし、raw valueを証拠出力しない。
 - **L10-INFRA-010-C04**（AC `INFRA-010-AC-01`／`INFRA-010-AC-02`）: 独立bootstrap/recovery fixtureではOS/control plane停止、L2-006 pathと別SECURITY authority、OS ticket不在を与える。期待oracle:限定recovery actionのみ可能で、通常ticketの一般免除にはせず、OS復旧後にoperation/resultを同期する。
 
 ### 観測点とoracle
@@ -216,7 +216,7 @@ L2/L11はauthority field、条件付きadmission、read-only write set、限定r
 | 13 Deployment version | `L10-INFRA-011-C13` / `INFRA-011-AC-01` | runtime revisionとOS stage release identityを別field/sourceで参照する。 | runtime revisionをstage IDと同一視またはstaleにし、版境界を保てなければhold。 |
 | 14 SECURITY connection | `L10-INFRA-011-C14` / `INFRA-011-AC-01,02` | SECURITY policy/authority/credential/isolation/egress contract identity/revisionと対象scopeを参照する。 | missing/expired/target/action/scope mismatchはauthorizationを生成せずSECURITYへ戻す。raw credentialは保存しない。 |
 | 15 OS connection | `L10-INFRA-011-C15` / `INFRA-011-AC-01,02` | OS Work/Change identity/state/evidenceとINFRA Runtime Resource Stateを接続し、各ownerの正本を分ける。 | OS-L2-009 field欠落/staleを個別に与え二重正本を作らない。stage収載fixtureでない通常構成にはOS-L2-014を要求しない。 |
-| 16 Worker execution | `L10-INFRA-011-C16` / `INFRA-011-AC-01,02` | OS assignment、SECURITY authority/target/action/revision/scope/expiry、Worker execution/result、actual before/after stateを別sourceで与える。 | assignment/authority/result/effect evidenceの欠落・不一致は実操作成立にせずOS/SECURITY/Worker ownerへ戻す。 |
+| 16 Worker execution | `L10-INFRA-011-C16` / `INFRA-011-AC-01,02` | OS assignment、SECURITY authority/target/project/action/revision/scope/expiry、Worker execution/result、actual before/after stateを別sourceで与える。 | assignment/authority/result/effect evidenceの各欠落・不一致、project違い、Workerの無制限Shell化、停止/回収不能、INFRAのpolicy/authority発行を個別に不合格とし、実操作成立にせずOS/SECURITY/Worker ownerへ戻す。 |
 | 17 Bootstrap/Out-of-Band Recovery | `L10-INFRA-011-C17` / `INFRA-011-AC-01,02` | OS/control plane停止状態、独立resource/path、別SECURITY authority、SECURITY制約下Worker contract、復旧後OS syncを与える。 | 通常control planeへの依存、別authority欠落、Worker contract欠落、同期なしを各々変異し独立復旧成功にしない。 |
 | 18 Rebuildability | `L10-INFRA-011-C18` / `INFRA-011-AC-01,02` | approved design/config/artifact/dependency/data backup/version/evidenceからisolated environmentを再構築し、declared scopeのverification resultを与える。 | document/backupのみ存在、sourceが消失machine内だけ、dependency/startup/verification失敗を個別に与え、rebuildableにしない。 |
 

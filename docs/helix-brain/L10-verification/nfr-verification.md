@@ -6,6 +6,7 @@
 |---|---|---|---|
 | `HELIXBRAIN-L2-007` | required field coverage | 正常記録で8/8由来fieldを解決でき、各fieldを1つずつ欠落/stale/revision不一致にする | source/evidence/scope/evaluationが不足するごとにcandidateのまま、accepted/matureへの誤遷移0。 |
 | `HELIXBRAIN-L2-007` | false promotion | AI-generated-only、single successのみ、counterexample/limitationなし、LABO revision mismatchを個別に投入 | accepted/matureへの遷移がなく、不足元owner/fieldを観測可能。 |
+| `HELIXBRAIN-L2-005` | relation-kind coverage | 7列挙relation kindの正常edgeとkind/endpoint/direction/source欠落・名称類似のみedge | exact setとedge単位traceを照合し、根拠なしedgeの誤確定0を観測。全件数だけの案との原因特定能力を比較する。親未列挙のrelation kindは対象外。候補測定、未実行。 |
 | `HELIXBRAIN-L2-008` | state distinction and pin stability | 5 L2 stateをそれぞれ適用し、consumer Rをpinした後でRをsupersededとしてR2を追加 | 各state識別、既存consumer R保持、OS usageとBRAIN state別owner。 |
 | `HELIXBRAIN-L2-008` | unknown handling | unknown identity/revision/stateおよびversion_targetを実版として差し替える | currentへの推測解決・version_target受入・owner間のwritebackがない。 |
 | `HELIXBRAIN-L2-028` | range and identity matrix | 共通HARNESS contractのrange内/外/欠落/解釈不能、descriptorとknowledgeのfieldを独立変異 | 内側のみ適用可能、外/unknown拒否またはunknown、field cross-substitutionがない。 |
@@ -52,8 +53,8 @@
 | case ID | 親L2 | 測定対象・入力 | 測定oracle | 限界 |
 |---|---|---|---|---|
 | `CASE-BRAIN-L10-NFR-018-01` | `HELIXBRAIN-L2-018` | CORE候補intake: source/revision、原本と抽出候補の区別、製品固有relation、受取identityの完全例および各項目欠落/混入 | 候補receipt、隔離/CORE返却、raw original受領/誤promotion数を固定oracleへ照合する。 | 性能値ではなくfield/authority境界候補。候補測定、未実行。 |
-| `CASE-BRAIN-L10-NFR-019-01` | `HELIXBRAIN-L2-019` | Product Core query: 候補を二つ含む完全query、required input/condition/evidence/versionの個別欠落、意味/version競合 | 返却各項目のtrace、候補比較、推薦なし/戻し先、誤採用数を固定oracleへ照合する。 | 製品採用判断を測定・代行しない。候補測定、未実行。 |
-| `CASE-BRAIN-L10-NFR-020-01` | `HELIXBRAIN-L2-020` | LABO評価候補: 対象revision一致・不一致、scope/method/result/failure/counterexample/unassessed rangeの各欠落 | 評価対象との結合、candidate保持、LABO返却、accepted/mature誤遷移数を固定oracleへ照合する。 | OS登録stateの判定は含まない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-019-01` | `HELIXBRAIN-L2-019` | Product Core query: 候補を二つ含む完全query、required input/condition/relation/constraint/evidence/versionの個別欠落、意味/version競合 | 11応答分類それぞれのtrace、候補比較、constraint欠落の拒否、推薦なし/戻し先、誤採用数を固定oracleへ照合する。 | 製品採用判断を測定・代行しない。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-020-01` | `HELIXBRAIN-L2-020` | LABO評価候補: 対象revision一致・不一致、scope/method/result/failure/counterexample/unassessed rangeの各欠落。Infrastructure maturityを扱う適用例と非該当例を分ける | 評価対象との結合、candidate保持、該当時だけINFRA-017同revision evidence、LABO返却、accepted/mature誤遷移数を固定oracleへ照合する。 | OS登録stateの判定は含まない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-021-01` | `HELIXBRAIN-L2-021` | INTELLIGENCE向け材料: scope/source/version付きquery、runtime結論要求、BRAIN変更要求、scope欠落 | 判断材料fieldのtrace、BRAIN mutation/runtime decision誤生成数、owner返却を固定oracleへ照合する。 | 稼働中判断品質や性能SLAではない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-022-01` | `HELIXBRAIN-L2-022` | HARNESS設計義務trace: Pattern input/dependencyからHARNESS-L2-009への完全/欠落/誤版forward/reverse fixture | 両方向edge coverage、orphan/wrong revision/product値誤決定数を固定oracleへ照合する。 | 製品設計の正しさを判定しない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-023-01` | `HELIXBRAIN-L2-023` | 通常の汎用知識query/返却と、別個の利用・評価結果（LABO receiptあり/なし）を与え、Product Core固有screen/flow/tokenの混在も変異する。 | 汎用知識は既存受領contractで成立すること、利用・評価結果のLABO provenance、製品固有fieldの所有先、未評価candidate保持、誤昇格数を別々の固定oracleへ照合する。 | 画面UX品質を独立評価しない。候補測定、未実行。 |

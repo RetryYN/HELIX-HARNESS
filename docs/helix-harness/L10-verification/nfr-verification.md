@@ -45,10 +45,10 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 
 | L10 case ID | NFR候補 | 入力／比較 | oracle／測定 | 失敗・未評価 |
 |---|---|---|---|---|
-| `CASE-HARNESS-L10-NFR-034-01` | `NFR-C-HARNESS-034-01` | 適用metricごとのcontract input/全fieldと、各field欠落fixtureを比較。 | metric identity/condition/baseline-target/N-A/sampling/probe/evidence/oracle/owner/layer/triggerのunmatched数を記録。 | unselected quality areaは分母に含めない。unknown applicabilityは未評価。 |
-| `CASE-HARNESS-L10-NFR-036-01` | `NFR-C-HARNESS-036-01` | selected profile設計観点とlocal/CI gate snapshotを対応づけ、gap/duplicate/mismatchを変異。 | unmatched required view、duplicate level, false same-condition passを各別count。 | profile/scope不明は未評価。全ticket実行率に読み替えない。 |
+| `CASE-HARNESS-L10-NFR-034-01` | `NFR-C-HARNESS-034-01` | 性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityの13品質領域を個別に適用または理由付きN/Aへ分類し、14契約fieldを持つ適用metricと各field欠落fixtureを比較する。hard limit/error budgetの混同とAI・永続化・fault・time-series条件の適用欠落も変異する。 | metric identity/condition/baseline-target/N-A/sampling/probe/evidence/oracle/owner/layer/triggerのunmatched数を記録。 | 適用領域の欠落と理由なしN/Aを別々に数える。unknown applicabilityは未評価とし分母から黙って除かない。 |
+| `CASE-HARNESS-L10-NFR-036-01` | `NFR-C-HARNESS-036-01` | selected profile設計観点とlocal/CI gate snapshotを対応づけ、4 cross-detection種別とgap/duplicate/mismatchを変異。NFR-13の≥90%率について母集団・期間・分母候補も測定する。 | unmatched required view、duplicate level, false same-condition passを各別count。 | 依存漏れ・契約漏れ・接続欠損・デグレを個別に集計する。NFR-13目標を変更せず、profile/scopeや分母不明は未評価。全ticket実行率に読み替えない。 |
 | `CASE-HARNESS-L10-NFR-038-01` | `NFR-C-HARNESS-038-01` | selected source scopeの各適用obligation/endpointのforward・reverse relationと理由付きN/A。 | asymmetric relation/aggregate-only/unjustified N-A/no-finding countを測る。後段未作成はunresolvedとして別count。 | unknownをzeroにしない。全旧source一括走査なし。 |
-| `CASE-HARNESS-L10-NFR-039-01` | `NFR-C-HARNESS-039-01` | selected UI/Experience/Frontend relation, screen identity/acceptance pairとbefore-after revision。 | missing/stale/untraced relationを個別countし、未選択FE measurementを039の実測成果に含めない。 | applicability不明は未評価。旧inventory全数を母集団にしない。 |
+| `CASE-HARNESS-L10-NFR-039-01` | `NFR-C-HARNESS-039-01` | selected UI/Experience/Frontend relation、screen identity/acceptance pair、before-after revisionと、UI walkthroughの7軸別evidence。 | missing/stale/untraced relationを個別countし、未選択FE measurementを039の実測成果に含めない。 | UIの7軸個別欠落を別計数し、UI対象はN/Aにしない。非UIの理由付きN/Aのみ許可。applicability不明は未評価。旧inventory全数を母集団にしない。 |
 | `CASE-HARNESS-L10-NFR-040-01` | `NFR-C-HARNESS-040-01` | 12 layer/6 pair/L0 anchor契約候補と双方向edge fixture。 | 欠落layer/pair/anchor relationとone-sided edgeを分けて数える。 | catalog未実装は未完として記録、registration/executionを測定しない。 |
 | `CASE-HARNESS-L10-NFR-041-01` | `NFR-C-HARNESS-041-01` | 同じactive template/extractor inputを反復し、1 obligation atom/gap対応を比較。 | atomic obligation coverageとsource/extractor semantic digest再現を測定。 | extractor/scope未固定は未評価。将来版L11や別extractorは混ぜない。 |
 | `CASE-HARNESS-L10-NFR-042-01` | `NFR-C-HARNESS-042-01` | candidate routeごとにsemantic, consumer, oracle, dependency evidenceをそろえ、feature additionを別episodeにする。 | successful candidateのevidence missing数と同一episode混載数をcount。 | unknown consumer/oracleは未評価; performance改善量はこのNFRの判定対象外。 |
@@ -98,7 +98,7 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | `CASE-HARNESS-L10-NFR-021-01` | `NFR-C-HARNESS-021-01` | 同一scopeの端から端relation一覧、統合version/update/rollback trace。全relation対sample案を比較。 | 適用義務の未trace数0、rollback先と版対応が明示。 | scope不明は未評価。 |
 | `CASE-HARNESS-L10-NFR-025-01` | `NFR-C-HARNESS-025-01` | cross-element design graphと適用oracle、1 edge/invariantを順次除くmutation。 | 欠落/conflict見逃し各0。Pattern未選択は未観測。 | UI証拠適用性はUI条件に従う。 |
 | `CASE-HARNESS-L10-NFR-033-01` | `NFR-C-HARNESS-033-01` | candidate/reproduction/regression stagesのreceiptを一つずつ欠落し、同一failure oracleを比較。 | 各段階の欠落が成立claimに隠れず、誤claim0。 | 未実行run resultは未評価。 |
-| `CASE-HARNESS-L10-NFR-035-01` | `NFR-C-HARNESS-035-01` | source→candidate→acceptance graph、self/cycle/unknown mutations。 | valid edges全件trace、循環を根拠成立に数えない。 | authority/予算unknownを未評価に保つ。 |
+| `CASE-HARNESS-L10-NFR-035-01` | `NFR-C-HARNESS-035-01` | source→candidate→acceptance graphと、scope拡張の複雑さ・公開面・運用負債各before/afterの欠落・旧revision・追加数のみのmutation。 | valid edges全件trace、循環を根拠成立に数えない。 | authority/予算unknownを未評価に保つ。 |
 | `CASE-HARNESS-L10-NFR-037-01` | `NFR-C-HARNESS-037-01` | 009-selected two-phase scope、両phase revision/L4/L9 receipt、片方欠落mutation。 | phase boundary/receipt欠落0、片phaseのみでmerge0。 | 009非適用は分母外、未見scopeは適用性unknown。 |
 
 計測は候補設計であり、実装実行や外部system性能の保証ではない。

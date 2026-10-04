@@ -46,7 +46,7 @@
 | `HELIXLABO-L2-004` | purpose/structure/behavior/assumption/constraint/guarantee/cost 7-field coverage 100%候補 | 親の列挙要素を一つずつmissing変異にして候補を停止/unknownへ戻せるか測る。 | 各方式の意味スコア/類似度閾値は未指定。 |
 | `HELIXLABO-L2-005` | action候補が許可語彙内、意味差/適用条件/owner trace completeness 100%候補 | 親列挙12 actionから各候補を作り、維持/変更fieldとsourceを再構成する。 | 各actionの優先順位/採択率は親未指定。 |
 | `HELIXLABO-L2-006` | 条件/assignment/oracle/source result coverage、cost欠測を0扱いする誤り0候補 | baseline/current/candidate/hybridで同一条件fixtureと個別欠落・中断を測定。 | 実験回数・統計的power・時間/cost SLAは未指定。比較候補は同一条件の1回以上と複数反復案（3/5回等）を並べ、分散/再現性・費用から測定設計で選ぶ。 |
-| `HELIXLABO-L2-007` | systemization候補について5条件（再現条件、machine判定可能性、oracle、副作用範囲、retry/rollback/idempotence）の全件記録 | 5条件を別々に変異し、不成立理由を識別する。候補値として同一条件3反復を比較開始案、2回/5回案を安定性と費用で比較できる。 | 反復数は固定合否閾値でなく、親が必要とする比較可能性の測定候補。 |
+| `HELIXLABO-L2-007` | systemization候補について6条件（再現性、machine判定可能性、oracle、副作用限定、retry/rollback可能性、冪等性）の全件記録 | 6条件を個別に変異し、不成立理由を識別する。候補値として同一条件3反復を比較開始案、2回/5回案を安定性と費用で比較できる。 | 反復数は固定合否閾値でなく、親が必要とする比較可能性の測定候補。 |
 | `HELIXLABO-L2-008` | rule/versionからexception・FP・avoidance・cost・return condition・ownerへのtrace completeness 100%候補 | 各項目欠落を独立mutateしunknown/return状態を確認。 | 自動切替率や障害時間閾値を追加しない。 |
 | `HELIXLABO-L2-009` | 単一episodeの上位一般化0候補。repeated episodes案は独立3例を初期比較候補、2/5例と条件多様性を比較 | 親は一事例から一般化しないと明記。独立例数を2/3/5で比較し、範囲安定性・反例発見率・偽一般化・追加観測費用を測る。 | 3例はAI候補でありPO承認済値や固定閾値ではない。sample独立性/適用scope別に検証する。 |
 | `HELIXLABO-L2-010` | feedback 16 required fields coverage 100%候補、未根拠field補完0 | 正常fixtureで16/16とtarget-specificityを照合し、各field欠落mutationで差戻しを観察。 | confidenceの尺度/閾値と候補採択率は親未指定。 |
@@ -56,7 +56,7 @@
 
 | 親L2 | 候補値・比較 | 根拠と測定 | 適用限界 |
 |---|---|---|---|
-| `HELIXLABO-L2-012` | relation revision/unknown保持100%候補 | relation・episode revisionを個別に欠落/不一致化 | 訂正sourceへ戻す。不一致を分類成功へ昇格しない |
+| `HELIXLABO-L2-012` | provenance/relation revision/unknown保持候補、correlation-onlyからcausal claimを作る誤り0候補 | relation・episode revision不一致/欠落とco-timed unrelated eventを個別/併発入力 | relation/source owner return、causal overclaim 0 |
 | `HELIXLABO-L2-013` | 分類軸/根拠のtrace completeness 100%候補 | 根拠field欠落・分類矛盾 mutation | Vector inputからsource evidenceへ往復 |
 | `HELIXLABO-L2-014` | original meaning/purpose/conditionとcandidate delta 100% trace候補 | 元意味不明・partial evidence mutation | 不明時停止、ownerへbackflow |
 | `HELIXLABO-L2-015` | baseline/current/candidate/hybridのversion/condition/oracle一致100%候補 | 比較armの各条件を個別にずらす | 比較成立/不成立を区別 |
@@ -71,13 +71,13 @@
 | `HELIXLABO-L2-024` | observed fact vs judgment/source version分離100%候補 | historical/stale result current化 mutation | current authority生成0 |
 | `HELIXLABO-L2-025` | selected SECURITY data-use scope coverage 100%候補、restricted payload transfer 0 | scope欠落/restricted field/stale rev | intake拒否、security ownerへ戻す |
 | `HELIXLABO-L2-026` | resource/environment source-version coverage 100%候補 | stale/unknown resource state | current healthyへのcoercion 0 |
-| `HELIXLABO-L2-027` | connection source/schema/trace concordance 100%候補 | schema drift/trace mismatch | unknown/holdが正しく露出 |
-| `HELIXLABO-L2-028` | assignment/task class/Worker result source trace 100%候補 | assignment欠落・status unknown | observed→evaluated誤昇格0 |
+| `HELIXLABO-L2-027` | 各connection admitted contract identity/revision/schema/traceの一致候補、implicit cross-connector reuse 0 | 専用contract/schema/revision drift、暗黙共有を個別/併発変異 | mismatch/unknownを露出しCONNECT ownerへreturn |
+| `HELIXLABO-L2-028` | assignment/task class/Worker result trace候補、L2-006と同experiment/target version/scope一致 | 別ticket/experiment/target version、assignment欠落、status unknownを個別変異 | observed→evaluated誤昇格0、異identityはOS/result ownerへreturn |
 | `HELIXLABO-L2-029` | target revision/test scope/CI status coverage 100%候補 | not-run/stale/interrupted/scope missing | pass誤表記0 |
 | `HELIXLABO-L2-030` | product/source identity/version/scope分離100%候補 | different source merge、unselected product required化 | cross-identity merge0 |
 | `HELIXLABO-L2-034` | generic candidateの支持episode/product/meaning scope trace 100%候補 | single/product-specific/unknown scope fixture | 1.0内部evidenceと2.0外部loopの混入0 |
 | `HELIXLABO-L2-035` | evaluation packetのsource revision/scope/unassessed state trace 100%候補 | revision missing/unassessed omitted/3.0 learning request | training/placement/bot execution 0 |
-| `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage 100%候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionの有限条件行列 | 選択sourceだけclosureを要求。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
+| `HELIXLABO-L2-058` | 呼出しごとのselected dependency closure coverage候補; selected missingをunselectedへ変換0; unselected source required化0 | none/Worker-only/multi-source/selected missing/unknown selectionに加えscope/source/operation/version各変更を個別に入力しclosure再照合 | 選択sourceだけclosureを再照合。未選択はunobserved、unknown selectionは確認へ。No selectionはunauthorized ingestを認めない |
 
 ## Stage 5 — LABO-L2-050/059/060/061/063/064/065/066/067/068/069/070/071 測定候補
 
@@ -96,7 +96,7 @@
 | `NFR-LABO-L3-067-01` / `HELIXLABO-L2-067` | 選択scopeのpredicate/oracle revision、candidate identity/digest、Attempt内変更event/result receiptの全trace候補。Attempt越境・round欠落の誤確定0候補 | 最終candidateだけからfirst-eligible/round数を推測する案と、事前predicate＋順序付き全eventを照合する案を比較し、後者を採る。L10でfirst eligible結果、round列、Attempt境界、欠落時unknownを測る。 | 頻度/成功率thresholdや新しいeligibility規則は置かない。 |
 | `NFR-LABO-L3-068-01` / `HELIXLABO-L2-068` | 完全性が確認された選択OS Attempt集合のdistinct identity数と集計一致100%候補、欠測を総数/0へ変換0 | retry_count等から算出する案とOS identityを一意化しcomplete receiptと照合する案を比較し、後者を候補とする。L10でduplicate、pre-execution refusal、scope外、event gapを別々に計測する。 | Attempt成功率やretry上限を追加せず、source completeness不明では総数を出さない。 |
 | `NFR-LABO-L3-069-01` / `HELIXLABO-L2-069` | reason/scope/revision/windowごとの母数・source completeness・return/reissue結果traceを全件照合する候補。未追跡/打切りを0 defect化0候補 | 総return件数だけの案、率だけの案、reason別count＋明示分母＋成立/不成立/未評価を並べる案を比較し、最後の案を候補にする。L10でwindow未満・欠測・単純count reductionと根拠relationの有無を測る。 | rate threshold、観測期間や因果効果を決めない。O2 request snapshotはtask input由来で、PO発言sourceではない。 |
-| `NFR-LABO-L3-070-01` / `HELIXLABO-L2-070` | 9 selected atomの各fieldをscope/revision/window/source event receiptへtraceする候補、double-count・silent rename・根拠なし推定0候補 | summary完了flag案とfield別definition/event/receipt照合案を比較し、後者は欠落fieldと重複を識別できるため候補にする。L10で4 duration・oracle済defect・rollback/overhead/freshness・067/068 co-present fieldを別々に測り、overlap-awareな総所要時間と個別durationの整合も確認する。 | freshness期限、escaped defect window、overhead推計、旧12指標への対応規則は作らない。重複区間の存在だけで個別durationを無効にしない。 |
+| `NFR-LABO-L3-070-01` / `HELIXLABO-L2-070` | 9 selected atomの各fieldをscope/revision/window/source event receiptへtraceする候補、double-count・silent rename・根拠なし推定0候補 | summary完了flag案とfield別definition/event/receipt照合案を比較し、後者は欠落fieldと重複を識別できるため候補にする。L10で4 duration・oracle済defect・rollback/overhead/freshness・067/068 co-present fieldを別々に測り、4個の個別duration fieldを別々に照合し、親に総所要時間の合算oracleがないためaggregateを算出しない。 | freshness期限、escaped defect window、overhead推計、旧12指標への対応規則は作らない。重複区間の存在だけで個別durationを無効にしない。 |
 | `NFR-LABO-L3-071-01` / `HELIXLABO-L2-071` | class/model revision/評価根拠/qualification状態の同一scope trace候補、称号由来qualification・資格由来permission/assignment mutation 0候補 | qualification status単独を記録する案とclass/revision/evidence scope付きtupleを記録する案を比較し、後者でstale資格と誤ったidentity結合を識別できるため候補にする。L10でmajor miss、revision change、title/permission/assignmentの独立変異を測る。 | 数値threshold、class既定集合、失効後の再bench schedule/permission policyは固定しない。 |
 
 これらは提案値である。L3承認に個別parameter gateを追加しない。必要な測定値が固定親に指定されていない場合は、候補・比較理由・観測方法を同一のL3/L10 packageで示す。
