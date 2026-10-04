@@ -8,7 +8,7 @@
 
 ## 旧HELIXからの対応
 
-旧sourceは項目別に照合した。旧SECURITY L3 capability broker `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`、全体lines 1–176、CAP-001〜007はlines 160–166）、旧pillar L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`（asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、lines 22–349、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`、P8-04はlines 168–171、P8-NFR-02はlines 186）、旧受入 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md`（asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`、lines 1–59、SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）、旧pillar acceptance `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`（asset `LEGACY-ASSET-44DD86E3DEC09E65EF51`、lines 1–200、SHA-256 `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）を読んだ。旧試験資産 `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts`（asset `LEGACY-ASSET-E92D9979D003D353DB99`、lines 1–250、SHA-256 `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e`）はconsumer所在の参照に限り実行しない。旧HELIX L3のFR/ACとfunctional/business/NFR三分割、旧L3 gate、自律境界のsourceもこのsliceの形式根拠として記録する（詳細は「旧L3構造の保持点」節）。各要件の意味は固定L2/L11から再導出し、旧runtime/test/CLIは移植しない。
+旧sourceは項目別に照合した。旧SECURITY L3 capability broker `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md`（asset `LEGACY-ASSET-B62E49D2E156232B8C63`、SHA-256 `161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7`、全体lines 1–176、CAP-001〜007はlines 160–166）、旧pillar L3 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md`（asset `LEGACY-ASSET-EE5DBACC7F28F7D1F605`、lines 22–349、SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`、P8-04はlines 168–171、P8-NFR-02はlines 186）、旧受入 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md`（asset `LEGACY-ASSET-170112AB2FA2FFDBFEE9`、lines 1–59、SHA-256 `b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4`）、旧pillar acceptance `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md`（asset `LEGACY-ASSET-44DD86E3DEC09E65EF51`、lines 1–200、SHA-256 `df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6`）を読んだ。旧試験資産 `archive/legacy-generation-2026-09-14/root/tests/security-capability-broker-authority-design.test.ts`（asset `LEGACY-ASSET-E92D9979D003D353DB99`、実ファイルlines 1–67、SHA-256 `ff1ee8fefaf8416cafb4a706301cb7a7d4afe549f04e31c5560a1cac4d88d31e`）はconsumer所在の参照に限り実行しない。旧HELIX L3のFR/ACとfunctional/business/NFR三分割、旧L3 gate、自律境界のsourceもこのsliceの形式根拠として記録する（詳細は「旧L3構造の保持点」節）。各要件の意味は固定L2/L11から再導出し、旧runtime/test/CLIは移植しない。
 
 ## 旧L3構造の保持点
 
@@ -84,7 +84,7 @@ project/root/HEAD/revision/digest/owner/scopeに構成を束ねる。stale、未
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。 戻し先: 対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。
 
-**L3 acceptance (`SECURITY-AC-004-01`)**：正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。
+**L3 acceptance (`SECURITY-AC-004-01`)**：正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、採用可能revisionとunknown/stale/他project由来の比較結果を返す。内容差分とauthority差分を分けて示し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-004`。
 
@@ -102,9 +102,9 @@ raw secretをAI context/log/artifactへ出さず、credential storeをWorkerへ�
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。 戻し先: 欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。
 
-**L3 acceptance (`SECURITY-AC-005-01`)**：全credential consumerが同一canonical secret classifierのidentity/revisionと判定を参照する。raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceipt、consumer別classifierの作成/不一致があれば不合格。
+**L3 acceptance (`SECURITY-AC-005-01`)**：全credential consumerが同一canonical secret classifierのidentity/revisionと判定を参照する。raw credentialはcontext/log/artifactに現れず、actor・operation・target・environment・scope・expiry・purposeが一致する利用だけを許可し、期限切れ/revoked credentialの後続利用を止める。repository混入、直接Worker露出、egress漏れ、値入りreceipt、consumer別classifierの作成/不一致、credential-use tupleの欠落/不一致があれば不合格。
 
-**対応L11 acceptance**：`HELIXSECURITY-L2-005`。
+**対応L11 acceptance**：`HELIXSECURITY-L2-005`。actor/environment/purposeは固定L2のcredential-use条件と既存L2-008 authority tupleから明示し、purposeを欠いた利用を許さない。
 
 ### SECURITY-FR-006-01 — Network/egress境界
 
@@ -120,7 +120,7 @@ raw secretをAI context/log/artifactへ出さず、credential storeをWorkerへ�
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。 戻し先: 宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。
 
-**L3 acceptance (`SECURITY-AC-006-01`)**：送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。
+**L3 acceptance (`SECURITY-AC-006-01`)**：送信先/protocol/endpoint/path/data class/bytes/purpose/authority/expiryを照合し、default-denyを基準とする許可一覧、operation別判断、計測値とdata-minimization結果を返す。明示許可範囲内だけ送る。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。送信量上限は追加しない。L2-019のasset-specific egressは別の1.x受入とする。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-006`。
 
@@ -138,7 +138,7 @@ path/network/credential/environment/timeout/resource/diff/rollback/result collec
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 戻し先: 未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。
 
-**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。environment variable setは親が許可する`TASK_MODE`/`LANG`に照合し、禁止された`HOST_SECRET_REF`等を通さない。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。条件別fixtureは[L10 SECURITY-CASE-007-01の9制御fixture表](../L10-verification/functional-verification.md)で制御ごとに列挙する。
+**L3 acceptance (`SECURITY-AC-007-01`)**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。環境変数は対象assignmentと実行環境ownerが宣言する適用可能な最小setへ照合し、fixture中の変数名は例示値に限る。raw secret valueや許可されていないsecret参照を環境へ渡さない。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。許可された既存credential capabilityの使用を一律禁止せず、raw値の露出・無許可利用と区別する。条件別fixtureは[L10 SECURITY-CASE-007-01の9制御fixture表](../L10-verification/functional-verification.md)で制御ごとに列挙する。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-007`。
 
@@ -210,7 +210,7 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-004の構成identity、L2-010のcandidate revision。比較不能はunknownとする。 戻し先: 能力を分類できない変更は受け入れず、分類意味の不足をL1-011へ戻す。
 
-**L3 acceptance (`SECURITY-AC-011-01`)**：同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。
+**L3 acceptance (`SECURITY-AC-011-01`)**：更新前後の構成・file差分・能力記述からversion差分、capability差分、security impactを対応付けて返し、model/Agent/MCP/pluginにも適用する。同じfile変更でもread-only→write+shell+networkの能力変化を検出する。比較不能はunknownとし、hash一致/ファイル名だけでcapability不変と結論したら不合格。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-011`。
 
@@ -364,7 +364,7 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 
 ### 適用範囲・固定親
 
-本追補は追加runtimeの単体境界のみで、全L3完成・承認・実装を示さない。固定親は `HELIXSECURITY-L2-031`、`MPR-RC-HELIXSECURITY-L2-031-001`、revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`。`docs/helix-security/L2-requirements/security-requirements.md`の全文SHA-256は `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5`、427–446節のnormalized SHA-256は `db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765`。登録IDは `MPR-RC-HELIXSECURITY-L2-031-001`、PO判断は[decision 57 L90](../../governance/decisions/po-decision-2026-09-29-57candidates.md#L90)。対L11 `docs/helix-security/L11-acceptance/security-acceptance.md`は固定revision同一、全文SHA-256 `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556`、104–115節のraw SHA-256 `3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7`。
+本追補は追加runtimeの単体境界のみで、全L3完成・承認・実装を示さない。固定親は `HELIXSECURITY-L2-031`、`MPR-RC-HELIXSECURITY-L2-031-001`、revision `318ec4a04abb3c1cc17111b3d939f913facd5fd3`。`docs/helix-security/L2-requirements/security-requirements.md`の全文SHA-256は `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5`、427–446節のnormalized SHA-256は `db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765`。登録IDは `MPR-RC-HELIXSECURITY-L2-031-001`、PO判断は[decision 57 L90](../../governance/decisions/po-decision-2026-09-29-57candidates.md#L90)。対L11 `docs/helix-security/L11-acceptance/security-acceptance.md`は固定revision同一、全文SHA-256 `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556`、104–115節のraw SHA-256 `3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7`。依存4区分の実本文はL2-031 438–441行で照合する。
 
 適用対象はL2-029が定義する主Worker契約外の追加runtimeだけ。SECURITYは既存条件下のallow/deny/constrain、classificationとauthority判断を所有し、OSはassignment/progression、Worker環境/INFRASTRUCTUREは実行隔離と適用観測、HARNESSはproposalの既存oracle再検証を所有する。通常主Worker、追加runtimeを選ばないtask、無関係scopeへ一律に広げない。既存のoperation authorityが同じtaskの反復を許す場合、作業ごとの人間確認を追加しない。
 
@@ -380,13 +380,13 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 旧test-designのstatus `designed_not_implemented` を実行済み・承認済み証拠として扱わず、旧assetの採否を現行authorityへ引き継がない。
 
 ### `SECURITY-FR-031-01` — 追加runtimeのscopeと既存authority
-HARNESS-L2-023の依存閉包をこのoperationへ適用する。HARNESS-L2-010/011のpack/call contract revisionは常時照合し、031固有の隔離・実行・受入依存は選択operation時のみ、実際に選んだinput source依存はそのsource選択時のみclosureへ含める。旧runtime/CLIやhistorical testは参照資料のみであり、規範source・現行security condition・oracleを参照のみへ落とさない。identity/owner/version/range/applicability/compatibility evidenceが欠ける場合は当該operationを保留する。
+L2-031が宣言する依存4区分を、同じ対象revisionで分類する。常時必須はL2-029、005、007、008、HELIXOS-L2-018、HELIXINFRASTRUCTURE-L2-010。外部runtimeへ接続またはdata送信するoperationでは006を、停止/逸脱時は009を、proposalを検証・採択・昇格するstageでは022/023と該当HARNESS verification・OS promotion/handoff条件を適用する。選択した入力元だけsource dependencyを閉じ、未選択sourceは未観測とする。旧BR/HR/HAC/HAT/WCCは意味basis/consumer資料であり実行dependencyではない。HARNESS-L2-023は4区分を宣言する参照契約で、010/011を031の常時dependencyとしない。後段条件をproposal生成前の承認へ前倒ししない。
 
 L2-029で対象となる追加runtime operationについてのみ、SECURITYは既存policy・classification・operation authorityを対象runtime/config、operation、target revision、scope、expiryに照合し、allow/deny/constrain/unknownと理由を返す。主Workerや追加runtimeを使わないtaskにはこの要件を適用しない。既存authorityが許す同一taskの反復に、新しい承認者や毎回の人確認を加えない。L2-005/006/007/008/029の条件をこの要件で置換・緩和しない。
 
 **受入条件**
 
-- **`SECURITY-AC-031-01` scope/authorityの限定**：追加runtime、既存policy/authority、OS assignment、対象revision/scopeが一致する合成fixtureでのみ判定を返す。scope/authority driftは既存経路へdeny/unknownとして返す。主Worker・無関係operationを巻き込まず、許可済み同一authority内の反復に新しいper-task confirmationを要求しない。
+- **`SECURITY-AC-031-01` scope/authorityの限定**：追加runtime、既存policy/authority、OS assignment、対象revision/scopeが一致する合成fixtureでのみ判定を返す。常時必須のL2-029/005/007/008、OS-018、INFRASTRUCTURE-010をそれぞれ個別にmissing/stale/wrong-scopeへ変異し、該当runをholdして宣言ownerへ戻す。006/009/022/023等はFR-031-01に定める操作/段階条件に限る。scope/authority driftは既存経路へdeny/unknownとして返す。HARNESS-L2-023は参照契約とし、010/011を常時dependencyへ戻さない。主Worker・無関係operationを巻き込まず、許可済み同一authority内の反復に新しいper-task confirmationを要求しない。
 
 ### `SECURITY-FR-031-02` — proposal-onlyとisolated copy
 
@@ -396,7 +396,7 @@ L2-029で対象となる追加runtime operationについてのみ、SECURITYは�
 
 ### `SECURITY-FR-031-03` — data/credential境界の保持
 
-L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/006/007/008の既存credential・egress・制約・authority条件をそのまま適用する。raw credentialをruntimeへ渡さず、raw valueをcontext/env/payload/artifact/receiptへ出さない。既存の範囲付き非公開credential-use capabilityはその既存条件が満たされれば使用でき、credential利用というだけの一律拒否を加えない。customer-owned/service-internal等を031だけでpublic-onlyへ狭めず、opt-out完了をsecret/機密委譲の許可へ読み替えない。
+L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008の既存credential・制約・authority条件を常時適用する。L2-006は外部runtimeへ接続/data送信するoperationで必須とする。L2-009は停止/逸脱時、L2-022/023と該当HARNESS verification・OS promotion/handoff条件はproposalの検証・採択・昇格stageで適用し、後段条件をproposal生成前の追加承認へ変換しない。raw credentialをruntimeへ渡さず、raw valueをcontext/env/payload/artifact/receiptへ出さない。既存の範囲付き非公開credential-use capabilityはその既存条件が満たされれば使用でき、credential利用というだけの一律拒否を加えない。customer-owned/service-internal等を031だけでpublic-onlyへ狭めず、opt-out完了をsecret/機密委譲の許可へ読み替えない。
 
 - **`SECURITY-AC-031-03` classificationとsecret非到達**：L2-029が許すclass/opt-out/authority条件では既存範囲で評価可能。unknown分類、raw secret要求、secret/機密task内容、適用不能なegress/隔離条件は拒否またはunknownで停止し、合成secret markerの値はどの出力にも現れない。既存credential capabilityの正常例はraw値なしで許可され、一律拒否されない。
 
@@ -410,17 +410,17 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/006/007/
 
 本節は採択済み1.0の029、030、032、034、035を親とする未承認草稿である。固定親の本文中の候補状態表示は、その後の対象revision付きPO判断と組で読む。035はPOが**scope A（追加runtimeだけ）・配置A（SECURITY policy、Worker強制、OS運転）**を選択済みであり、未決として再質問しない。032のdeny優先は主Workerと追加runtime双方に適用する。草稿は実runtime使用、bypass、MCP起動の許可を生成しない。
 
-HARNESS-L2-023の4区分に従い、010/011 pack/call契約版を常時照合し、029の制約適用・runtime実行など選択operationと選択input sourceだけを条件付きclosureへ含める。旧runtime/tool/testは参照資料のみであり、required policy・authority・oracleを参照のみへ落とさない。必要identity/owner/version-range/applicability/compatibility evidenceが不明なら該当operationだけを未完とする。
+各親が定める依存・適用範囲を個別に保つ。HARNESS-L2-023のdependency分類をSECURITY-029/031/035へ共通規則として適用せず、031で同親が参照形式として指定する場合に限り、その4区分をその親の分類どおり使う。旧runtime/tool/testは参照資料のみで、現行policy・authority・oracleを参照のみへ落とさない。
 
 ### `SECURITY-FR-029-01` — 追加runtimeの委譲分類と型別ローカル証拠
 
-入力は選択runtime identity/version/config、operation/assignment/target revision/scope、data分類、許可path・検査結果、opt-outの対象・出所・時点、既存authorityと適用policy、実環境の観測である。SECURITYは委譲可否・不足・採用条件の充足状態を別々に返す。機密以上はpath allowlistとsecret/PII検査を含むローカル制御で遮断し、分類unknownをpublicへ丸めない。opt-out未完・不明では既存条件を満たす公開可能コードだけを限定委譲でき、runtime採用は未完のまま。完了後も機密以上を許さない。
+選択した追加runtime operationについて、source/target revision、runtime identity/version/config、OS-018 assignment、採択済みSECURITY-029 scope、SECURITY-007が要求する許可隔離環境とその適用状態を常時入力する。operationに応じてdata分類、許可path・検査結果、opt-outの対象・出所・時点、既存authority・適用policyと実環境観測も受ける。SECURITYは委譲可否・不足・採用条件の充足状態を別々に返す。機密以上はpath allowlistとsecret/PII検査を含むローカル制御で遮断し、分類unknownをpublicへ丸めない。opt-out未完・不明では既存条件を満たす公開可能コードだけを限定委譲でき、runtime採用は未完のまま。完了後も機密以上を許さない。
 
 ローカル保証は同じtupleのsandbox適用、該当network operationのallowlistとegress実測、該当write operationのFS差分を型別に返す。全operationへ四型すべてを課さず、read-onlyは既存007のwrite禁止と対象scope不変oracleを使う。適用性unknownを非該当へ落とさない。provider UI・宣言・flagはopt-out申告の出所として残せるがローカル強制の代用にならず、ローカル成功はprovider訓練停止の証明でもない。SECURITYはpolicy、INFRASTRUCTURE/Workerは適用観測、OSはassignmentと未完義務を所有する。対象外の主Worker・未選択sourceを止めず、別tuple証拠への暗黙fallbackをしない。
 
 - **`SECURITY-AC-029-01` 分類・委譲・採用の分離**：publicと機密/secret/PII・unknown、およびopt-out完了/未完/不明を個別比較し、機密以上を遮断する。未完opt-out下の適格public委譲は採用完了へ昇格せず、有効な既存scoped credential-useだけを理由に拒否しない。
-- **`SECURITY-AC-029-02` 型別適用観測**：同じtupleで適用対象のsandbox、allowlist、egress、FS差分を独立に照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分ける。
-- **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scopeの変更で旧証拠を流用せず、不足をpolicy/実環境/data/runtime条件の該当ownerへ返す。provider申告とローカル観測を独立に保持し、主Workerへの条件拡張・1.x Web強制を生成しない。
+- **`SECURITY-AC-029-02` 型別適用観測**：選択operationごとにsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、許可隔離環境の実適用状態を常時結び、各要素の欠落/stale/scope不一致を該当runの未完として扱う。加えてoperationに適用されるsandbox/allowlist/egress/FS差分を型別に独立照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分け、全operationへ未規定の制約を広げない。個別fixtureは`SECURITY-CASE-029-04`を参照する。
+- **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scopeの変更で旧証拠を流用せず、常時必須tupleまたは適用条件の不足をpolicy/実環境/data/runtimeの宣言ownerへ返す。provider申告とローカル適用観測を独立に保持する。追加runtimeが主Workerであると名乗るだけで029条件を逃れる変異と、主Worker通常taskへ029のopt-out/public-only・機密以上遮断を拡張する変異をいずれも拒否する。1.x Web強制を生成しない。CASE-029-04でtupleの個別欠落とこの戻し先を照合する。
 
 ### `SECURITY-FR-030-01` — agentic自動適用範囲の変更確認
 
@@ -445,17 +445,17 @@ HARNESS-L2-023の4区分に従い、010/011 pack/call契約版を常時照合し
 - **`SECURITY-AC-034-02` secret・egress・authority**：raw secret、未許可destination、authority tuple不成立を個別に拒否し、既存条件を満たすscoped credential-use正例を通す。
 - **`SECURITY-AC-034-03` ownerと未closure**：CONNECTのidentity/互換、SECURITYのpolicy、Worker/INFRASTRUCTUREの適用観測を分ける。未確定catalog/typed/probe意味は未closureとし、無関係profileや正常反復へ一律停止・毎回承認を追加しない。
 
-HARNESS-L2-023の4区分を適用し、010/011 pack/call契約版は常時必須、035のallowlist/cleanup/deny-switch確認は選択時のみ、選択source依存はsource選択時のみ閉じる。旧runtime/tool/testは参照資料のみであり、required authority/oracleを参照のみへ分類しない。missing/unknown/staleは該当operationを未完とする。
+031の4区分は固定L2-031の分類をそのまま使う。常時必須は029、005、007、008、OS-018、INFRASTRUCTURE-010の該当契約。006は外部runtimeへの接続/data送信時、009は停止/逸脱時、022/023・該当HARNESS検証・OS promotion/handoffはproposalを検証・採択・昇格へ進めるstageで必須。選択sourceだけsource dependencyを閉じ、未選択sourceは未観測とする。旧runtime/tool/testとHARNESS-L2-023自体は参照資料のみだが、現行policy・authority・oracleを参照のみへ落とさない。missing/unknown/staleは該当operation/stageだけを未完とする。
 
 ### `SECURITY-FR-035-01` — 追加runtimeのrun限定設定とdeny能力
 
-対象はPO scope Aの追加runtimeで、policy/authorityはSECURITY、適用・cleanup強制はWorker、run/assignmentはOSである。選択runtimeのallowlist能力、repository deny switchの設定能力と適用状態、既存authority、run開始/終端/cleanup観測を受ける。明示allowlist対応ならdeny既定+allowlistを使い、YOLO代替を選ばない。非対応と確認できるruntimeだけ、既存policy内で選ばれた経過措置をそのrunに限定できる。bypass利用許可や経過期限・runtime一覧を新設しない。
+対象はPO scope Aの追加runtimeで、policy/authorityはSECURITY、適用・cleanup強制はWorker、run/assignmentはOSである。既存operation authorityと既存repository policy/deny状態を常時照合する。bypass系設定を選択したrunではruntimeのallowlist能力、repository deny switchの設定能力と適用状態、run開始/終端/cleanup観測も照合する。明示allowlist対応ならdeny既定+allowlistを使い、YOLO代替を選ばない。非対応と確認できるruntimeだけ、既存policy内で選ばれた経過措置をそのrunに限定できる。bypass利用許可や経過期限・runtime一覧を新設しない。
 
 選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置をcleanup成功にせず次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。
 
 - **`SECURITY-AC-035-01` 能力に応じた選択**：allowlist対応はallowlist使用、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
 - **`SECURITY-AC-035-02` 全終端cleanup**：success/failure/cancel各終端でrun設定が除去され次runへ継承されない。残置/観測欠落は未完としWorker/OSへ返す。
-- **`SECURITY-AC-035-03` deny能力・優先・scope**：repository deny能力/適用を別個に照合し、032の同一対象deny優先を保ちcleanup後もdenyを維持する。主Workerへ035の四条件を拡張せず、通常操作や既存006/007/008/OS018条件を免除しない。
+- **`SECURITY-AC-035-03` deny能力・優先・scope**：既存operation authorityとrepository policy/deny状態が常に照合される。bypass選択runではrepository deny能力/適用を別個に照合し、032の同一対象deny優先を保ちcleanup後もdenyを維持する。deny状態を選択時だけ照合する変異は不合格。主Workerへの035の四条件拡張や通常operationへの新gateは作らず、既存006/007/008/OS018条件を免除しない。
 
 ### Stage 3固定親の出所とrevision
 
@@ -463,7 +463,7 @@ HARNESS-L2-023の4区分を適用し、010/011 pack/call契約版は常時必須
 
 | 親／登録 | PO判断 | 固定L2行／意味SHA | 固定L11行／raw span SHA |
 |---|---|---|---|
-| `HELIXSECURITY-L2-029` / `MPR-RC-HELIXSECURITY-L2-029-003` | `docs/governance/decisions/po-decision-2026-10-03-additions10.md#L35` | 405–416 / `0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745` | 89–95 / `3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0`; 169–222 / `9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288` |
+| `HELIXSECURITY-L2-029` / `MPR-RC-HELIXSECURITY-L2-029-003` | `docs/governance/decisions/po-decision-2026-10-03-additions10.md#L35` | 405–416 / `0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745` | part 1: 89–95 / `3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0`; adopted supplement part 2: 169–222 / `9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288` (separate span; neither part substitutes for the other) |
 | `HELIXSECURITY-L2-030` / `MPR-RC-HELIXSECURITY-L2-030-001` | `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L89` | 417–426 / `9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8` | 97–103 / `908b321efad903489d8d83dd1e1dc7d46bce0993e4b1f2787450591b8cca3567` |
 | `HELIXSECURITY-L2-032` / `MPR-RC-HELIXSECURITY-L2-032-001` | `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L91` | 447–454 / `ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8` | 116–123 / `277d24b23c7407eeb6e34574a26b16794f47c07caddf15d4fc456ce39b6e740f` |
 | `HELIXSECURITY-L2-034` / `MPR-RC-HELIXSECURITY-L2-034-001` | `docs/governance/decisions/po-decision-2026-09-29-57candidates.md#L93` | 468–478 / `9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166` | 135–144 / `2f697a2bf2ec986f1f21ced2d7bfe4b285b367960de874f75c21d0de5bbe314f` |

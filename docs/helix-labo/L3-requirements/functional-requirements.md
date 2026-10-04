@@ -32,7 +32,7 @@
 ### 受入条件（AC候補）
 
 - **LABO-001-AC-01 — 正常・追跡**：複数の許可sourceから各sourceに実在するstatusを受け、各recordのsource identity/revisionと列挙fieldを保った独立observationを返す。source範囲のeventがすべてsuccessならそのsuccess recordだけで受け入れ、発生していないstatusを捏造しない。過去のsource revisionに結びつく観測は、その当時のrevision・時点を保ったhistorical recordとして追跡可能にする。1 sourceの欠落・破損はそのsourceのwarning/unknownとして分離し、他sourceの有効recordを巻き込まない。
-- **LABO-001-AC-02 — 異常・境界**：元sourceに存在するfailure/rejected/cancelled/blocked/unknown/not_observedをsuccess-only projectionで除去する、unknownをsuccess化する、既知の古いrevisionをcurrentとして偽装する、scope外/secret dataを取り込む、LABOからsource stateへwritebackする場合は不成立。該当observationを保留しsource ownerへ返す。元source上で対象期間に非success eventが存在しない正常ケースは拒否せず、その期間にstatusを追加生成しない。旧BR21-09の部分破損時に他sourceを維持するfailure類型は参考にするが、旧dashboardの4 source/5 metric/30秒poll/token costは移さない。旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:22-34`と`business-detail.md:137-145`、旧対のtest design `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:43-50,67-90,91-120`を調査したが、現行cross-mechanism observation planeに直接一致は確認されなかった。
+- **LABO-001-AC-02 — 異常・境界**：元sourceに存在するfailure/rejected/cancelled/blocked/unknown/not_observedをsuccess-only projectionで除去する、unknownをsuccess化する、必須observation fieldを欠落したまま成功扱いする、既知の古いrevisionをcurrentとして偽装する、scope外/secret dataを取り込む、LABOからsource stateへwritebackする場合は不成立。該当observationを保留しsource ownerへ返す。元source上で対象期間に非success eventが存在しない正常ケースは拒否せず、その期間にstatusを追加生成しない。旧BR21-09の部分破損時に他sourceを維持するfailure類型は参考にするが、旧dashboardの4 source/5 metric/30秒poll/token costは移さない。旧L3 `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:22-34`と`business-detail.md:137-145`、旧対のtest design `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md:43-50,67-90,91-120`を調査したが、現行cross-mechanism observation planeに直接一致は確認されなかった。
 
 ### 固定親句の被覆
 
@@ -41,7 +41,7 @@
 | source input・observation output：許可sourceごとのidentity/revision/attribution、L2のepisode_idからresultまでの全20 field | `LABO-001-FR-01 / LABO-001-AC-01` | `L10-LABO-001-C01,C03,C04,C08,C09` | 20/20列挙fieldとexact current/historical source revision |
 | 状態網羅：実在するsuccess/failure/rejected/cancelled/blocked/unknown/not_observedを区別し、成功だけに投影しない | `LABO-001-FR-01 / LABO-001-AC-01,AC-02` | `L10-LABO-001-C01,C03,C08` | 存在statusの個別識別、sourceに存在する非success eventの脱落0、未発生status捏造0 |
 | source authority境界：canonical state/authorityはsourceに残し、LABO observationを書き戻さない | `LABO-001-FR-01 / LABO-001-AC-02` | `L10-LABO-001-C05,C06` | 許可外入力hold、source writeback 0 |
-| 部分失敗：一sourceの破損/欠落はsource単位でwarning/unknownを残し他sourceを捨てない | `LABO-001-FR-01 / LABO-001-AC-01,AC-02` | `L10-LABO-001-C02` | 当該source warningと他source valid recordの保持 |
+| 部分失敗・field欠落：一sourceの破損/欠落または必須observation field欠落は当該observationを成功扱いせずsource責務へ戻し、他sourceを捨てない | `LABO-001-FR-01 / LABO-001-AC-01,AC-02` | `L10-LABO-001-C02,C10` | 当該source/observationのwarning・holdと戻し先、他source valid recordの保持 |
 | 否定・戻し先：古い既知revisionはhistoryとして保持できるがcurrent扱いせず、secret/out-of-scope/権限外は成功とせずsource ownerへ返す | `LABO-001-AC-02` | `L10-LABO-001-C04,C05,C09` | exact historical revision保持、stale-as-current拒否、理由・source owner |
 | 任意接続：Web/WEB-OS未選択時に1.0必須dependencyへしない | `LABO-001-FR-01 / LABO-001-AC-01` | `L10-LABO-001-C07` | 未選択時必須扱い0 |
 | 依存・版：個別採択source contract L2-021〜030を1.0接続対象とし、L2-031/032は採択時だけ任意接続 | `LABO-001-FR-01 / LABO-001-AC-01` | `L10-LABO-001-C01,C07` | 採択済みsourceのみ接続し、未選択Web/WEB-OSをrequired dependencyにしない。version_targetは実source contract版を意味しない |
@@ -167,7 +167,7 @@ Aggregate observation fields/source revisionからepisode候補を作り、元ob
 `HELIXLABO-L2-063`はadopted `version_target: 1.0`。修復対象/版、原因候補と適用条件、修復手順・結果、独立検証、再発防止根拠を受け取り、裏付けのある成功recipeだけをLABO評価知識へ結ぶ。母数・閾値・反例が不明なら頻出とは断定せず、親から与えられた適用条件で反復を集計する。閾値以上を確認できた場合は、予防条件を組み込む候補と根拠・適用範囲・反例・残検証義務を、LABO-010 Feedback契約を介してOSへ返す。未処理の頻出問題は見える警告にする。OSの登録/routing、HARNESS ownerの候補採否・実装、target変更、変更後検証と運用後再観測を別stateとして保ち、成功終結・candidate作成・backlog登録を循環完了にしない。LABOは修復、gate強制、owner判断を行わない。
 
 - `AC-LABO-L3-063-01`（正常）：独立検証済みrecipeと対象版/適用条件を同定し、同じ原因・条件の反復episodeだけを、親が指定する母集団/threshold basisに基づいて数える。予防candidateとOS Feedback登録、未処理時のwarning、target ownerの判断、変更後検証、運用後観測を因果系譜内で区別する。
-- `AC-LABO-L3-063-02`（独立反例）：未検証の修復案を成功扱い、再送を複数episode扱い、異なる原因/適用条件を混合、親の閾値/母集団不足を0で補う、頻出findingを候補もwarningもなく落とす、registration/target changeだけを予防完了とする各変異を拒否し、担当ownerへ戻す。
+- `AC-LABO-L3-063-02`（独立反例）：未検証の修復案を成功扱い、再送を複数episode扱い、異なる原因/適用条件を混合、親の閾値/母集団不足を0で補う、頻出findingを候補もwarningもなく落とす、registration/target changeだけを予防完了とする、LABOがgateを直接有効化する、harness/provider memoryを修復知識の正本へ戻す、特定問題の未評価知識をBRAIN汎用構造や実行権限へ昇格する各変異を拒否し、担当ownerへ戻す。
 - `AC-LABO-L3-063-03`（未見・再評価）：新しい原因または改版recipeの適用範囲が未確認ならunknownを保ち、旧成功数を現行有効性へ流用しない。適用範囲を検証できるまでLABO評価を未完として保持する。
 
 ### FR-LABO-L3-064 — 選択比較scopeの候補名遮蔽と固定条件
@@ -343,16 +343,16 @@ L2-035で定義されたpayloadを重複定義せず、評価済みsource revisi
 - 採択登録: `MPR-RC-HELIXLABO-L2-055-002`, semantic digest `7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065` (`docs/governance/management-provisional-requirement-register.jsonl` main633 line 451, row SHA `7e7d4868c33fd35b35741cae55d295e7ed6f1ad42df23cef5e10b4c718b1af88`); PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` line 58, SHA `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`.
 - 固定parent commit: `f6dad2a33e24f000b87d7f09b8d40288257e74cc`; version candidate `1.0 explicit/current PO-targeted candidate`; sequence `Stage 2a`.
 - 固定L2親: `docs/helix-labo/L2-requirements/labo-requirements.md` 150–155行、全文SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、該当span SHA-256 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7`、heading「### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）」
-- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` 191–197行、全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、該当span SHA-256 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、heading「### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠」
+- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` line 56（raw SHA-256 `9e169e5f6a6eead24677031a479dba94060fe6916e76f4e3b1508527880f13c5`、未知jobを履歴だけで成功保証しない）と採択追補191–197（全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、span SHA-256 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`）、heading「### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠」
 
 ### 要件（候補）
 
-依存は許可されたLABO observation (L2-001/028)、Worker historyのtask type/model class identityと評価可能な実績（必要に応じL2-006）で、`version_target: 1.0`とする。許可されたWorker historyをtask class / model class / declared scopeごとに評価し、評価した出力にはeligible denominator、算入結果、欠測/失敗/拒否/停止/unknownの処置と算入・除外理由、metric/scorer-oracle revisionを結ぶ。定性的水準も適用条件・根拠・未評価部分を記録する。評価していないclassを未評価と表示し、結果確認後にdenominator/scopeを変えない。Benchは配置案、Worker/modelの選定・指定・割当て、authorityを作らない。
+依存は許可されたLABO observation (L2-001/028)、Worker historyのtask type/model class identityと評価可能な実績（必要に応じL2-006）で、`version_target: 1.0`とする。許可されたWorker historyをtask class / model class / declared scopeごとに評価し、評価した出力にはeligible denominator、算入結果、欠測/失敗/拒否/停止/unknownの処置と算入・除外理由、metric/scorer-oracle revisionを結ぶ。定性的水準も適用条件・根拠・未評価部分を記録する。評価していないclassを未評価と表示する。特に履歴だけで未知jobの成功を保証せず、新task class・source・scorer/oracle版は適用性が示されない限り未評価を保つ。結果確認後にdenominator/scopeを変えない。Benchは配置案、Worker/modelの選定・指定・割当て、authorityを作らない。
 
 ### 受入条件（AC候補）
 
 - **LABO-055-AC-01 — 正常・追跡**：同一の許可snapshotとdeclared task/model class/scopeから評価結果を再構成できるよう、eligible denominator、各resultのdisposition、metric/scorer revisionと判定理由が揃う。qualitative outcomeでも根拠とunassessed subsetが追跡可能。
-- **LABO-055-AC-02 — 異常・境界**：failure/missing/unknownを理由なく分母から落とす、欠測費用を0扱いする、result確認後に母数・scopeを変える、根拠/採点版なしに水準を出す、major failuresを平均で相殺する、未評価を評価済みにする場合は不成立。scoreで配置/割当/権限を生成しない。
+- **LABO-055-AC-02 — 異常・境界**：failure/missing/unknownを理由なく分母から落とす、未知jobを履歴だけで成功保証する、新task class/source/scorer版の未評価を過去水準へ流用する、欠測費用を0扱いする、result確認後に母数/scopeを変える、根拠/採点版なしに水準を出す、major failuresを平均で相殺する、未評価を評価済みにする場合は不成立。scoreで配置/割当/権限を生成しない。
 
 ### 固定親句の被覆
 
@@ -387,12 +387,12 @@ L2-035で定義されたpayloadを重複定義せず、評価済みsource revisi
 
 ### 要件（候補）
 
-許可されたfirst Worker resultをticket/assignment/attempt, task/Worker/contract revision, request revision/scope, result state, verification/human-confirmation, data-use class, source receiptへ結び、Bench履歴に観測済みとして追加する。success/failure/rejected/interrupted/unknownを区別しsource authorityを変更しない。観測済みと評価済みを分け、評価済みを出す場合は採用oracle/基準revision・適用範囲・判定条件・比較条件・結果・失敗/反例/unknown・評価者・時点および判定receiptが揃う範囲に限る。
+許可されたfirst Worker resultをticket/assignment/attempt, task/Worker/model identity, 実行契約revision, request revision/scope, run identity/result state, verification/human-confirmation, data-use class, source receiptへ結び、receiptのmodel/source/revision/scope/run identityを実際のrunと照合してBench履歴に観測済みとして追加する。success/failure/rejected/interrupted/unknownを区別しsource authorityを変更しない。観測済みと評価済みを分け、評価済みを出す場合は採用oracle/基準revision・適用範囲・判定条件・比較条件・結果・失敗/反例/unknown・評価者・時点および判定receiptが揃う範囲に限る。
 
 ### 受入条件（AC候補）
 
-- **LABO-056-AC-01 — 正常・追跡**：許可範囲の各結果statusをsource provenanceとともにobservationへ記録し、評価可能なoracleがない初回一件は観測済み・未評価のまま保持する。評価済みを付す場合はL2所定の根拠と評価receiptが全て辿れる。対象scopeに適用可能な評価oracle/基準revision・判定条件・比較条件・結果・failure/反例/unknown・評価者・時点・receiptが揃う正常caseでは、その範囲の評価済みを記録できる。
-- **LABO-056-AC-02 — 異常・境界**：assignment/source/scope/classification/revision/verification/receiptの欠落、不一致、stale、重複、矛盾を暗黙補完/統合しない。single successやreceipt successだけでunknown taskを成功/qualified/evaluatedにしない。source canonical stateやassignment/worker eligibilityを書き換えない。
+- **LABO-056-AC-01 — 正常・追跡**：許可範囲の各結果statusをsource provenanceとともにobservationへ記録し、受領receiptのmodel/source/revision/scope/run identityが実行recordと一致することを照合する。評価可能なoracleがない初回一件は観測済み・未評価のまま保持する。評価済みを付す場合はL2所定の根拠と評価receiptが全て辿れる。対象scopeに適用可能な評価oracle/基準revision・判定条件・比較条件・結果・failure/反例/unknown・評価者・時点・receiptが揃う正常caseでは、その範囲の評価済みを記録できる。
+- **LABO-056-AC-02 — 異常・境界**：assignment/source/scope/classification/revision/verification/receiptの欠落、不一致、stale、重複、矛盾を暗黙補完/統合しない。single successやreceipt successだけでunknown taskを成功/qualified/evaluatedにしない。source canonical stateやassignment/worker eligibilityを書き換えない。新provider/model/toolchain等の未見条件で適用性が未確認なら観測記録を残して未評価とし、任意の期限や再評価間隔を足さず、不一致を「実績なし」へ書き換えない。
 
 ### 固定親句の被覆
 
@@ -400,7 +400,7 @@ L2-035で定義されたpayloadを重複定義せず、評価済みsource revisi
 |---|---|---|---|
 | 入力: OS assignment/ticket/task, Worker/execution contract revision, requested revision/scope, attempt status, evidence/classification/receipt | `LABO-056-FR-01 / LABO-056-AC-01` | `L10-LABO-056-C01,C02,C03` | 列挙入力field・source receipt |
 | 提供: 初回resultをobservation historyへ追加; observation≠performance evaluation | `LABO-056-FR-01 / LABO-056-AC-01,AC-02` | `L10-LABO-056-C01,C02` | 観測状態と評価状態の分離 |
-| 保証: oracle/scope/revision/conditions/result/failure/unknown/evaluator/time/receiptに基づく範囲のみ評価済み。必要証跡が揃う正常評価も許容 | `LABO-056-FR-01 / LABO-056-AC-01` | `L10-LABO-056-C04,C05` | 未充足証跡は未評価を維持し、充足時は範囲限定の評価済みreceiptを再構成 |
+| 保証: 受領receiptのmodel/source/revision/scope/run identityを実runと照合し、oracle/scope/revision/conditions/result/failure/unknown/evaluator/time/receiptに基づく範囲のみ評価済み。必要証跡が揃う正常評価も許容 | `LABO-056-FR-01 / LABO-056-AC-01` | `L10-LABO-056-C01,C04,C05` | receipt-run一致、未充足証跡は未評価、充足時は範囲限定の評価済みreceiptを再構成 |
 | 否定・戻し先: stale/duplicate/contradictory/missing evidence; OS/SECURITY/Workerまたは未評価維持 | `LABO-056-FR-01 / LABO-056-AC-02` | `L10-LABO-056-C03,C04` | 元記録維持・正しいowner返却 |
 | 範囲: 1.0 unit candidate、既存001/028/055とOS assignment、SECURITY data-use; 054は別edge | `LABO-056-FR-01 / LABO-056-AC-01,AC-02` | `L10-LABO-056-C01,C03` | 親の既存責任を重複しない |
 
@@ -468,7 +468,7 @@ OSが受領したexact ticket/task/assignment/attempt、要求/Worker/契約revi
 | `HELIXLABO-L2-009` | `MPR-RC-HELIXLABO-L2-009-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L56 | `sha256:448afdff95e00eabe1089657c5424d010f4de9369c3f1f095a993a715a98a0aa`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L133–140: `de30f29aef8d0d1af93e32843fadd823afc398352d9017fe24dfc84a2f7bd025` |
 | `HELIXLABO-L2-010` | `MPR-RC-HELIXLABO-L2-010-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L57 | `sha256:b5df4ddf97563451cfb408cc04d7069a1b953c4596fe539850981e225c22f36a`; file `docs/helix-labo/L2-requirements/labo-requirements.md` full `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | L141–149: `6ffc430c2762f509b39c2baab152115de82834be0cf168575470ed3832f9294e` |
 
-共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028/058のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-007個別受入row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`をそれぞれ項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
+共通L11 acceptance basis: `docs/helix-labo/L11-acceptance/labo-acceptance.md`、基準main `633bf12` full SHA-256 `39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a`。lines 43–47 raw SHA `d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b`、109–116 `7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d`に加え、Stage2b採択row 012/027/028のspan 63–81 `fa8c0ca23fbd64e111de2fe2afbd71d742ab66515f00832fba46be54ff7e3e7d`、L2-007個別受入row 51 `afa339ed01fdff62267af2e2a4949cc57f0bdb194914c73a4089effa22420cae`、055 191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、056 138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed`、057 148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60`、058 156–163 `f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd`、055/056/058不変条件 117–124 `bb797b8f26fd6e27d18f5cd24bf367c45e2b944b1d40b2083e2d26fff090a6d0`をそれぞれ項目別に照合する。L2-007の詳細条件は固定L2の117–124行（raw `89aa2011a64af3475f1bf23f6e52d2622535c96b374bebbc6926c5bab280c84e`）であり、L11 locatorとは区別する。採択済み056 -003のL11 supplement 198–203は別pinとして扱う（上記056項）。
 
 旧RCLS要件本文22行は `L3-PO-1384-001` をPLAN-L3-80の候補承認として記録し、承認対象の候補本文とBR 6/FR 6/AC 20、およびcanonical昇格・IR admission・runtime実装を別工程としている（旧sourceの承認文言と `docs/governance/audits/requirements-stage/legacy-candidate4755-explanation-normative-complement-ranks-2341-2380-2026-10-02.md` のRCLS判断履歴を参照）。したがって本書では旧RCLS候補を「未採択」とは扱わない。この旧候補承認はその時点の候補revisionに限られ、現行LABO L2/L11や本草稿へauthorityを移さない。旧項目は類例を読み、保持点を示したうえで固定L2から再導出する。
 
@@ -587,7 +587,7 @@ episodeとsource evidenceを入力し、good/bad、condition-dependent、generic
 
 - 固定親 `HELIXLABO-L2-005` / `MPR-RC-HELIXLABO-L2-005-001`。PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L52`、固定parent `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、親source `docs/helix-labo/L2-requirements/labo-requirements.md:101–108`、full SHA `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、raw span SHA `3b7f37f57a9db5df451275962aa0a90f951cf61e23496828cb9a078f52bc36ee`。採択basis `633bf12` はこのrevisionの起草根拠であり、この草稿は未承認。`version_target: 1.0` はrelease/implementation許可ではない。
 - 依存／版: 依存: Vector出力L2-004/014が保持する元意味と部分比較。 `version_target: 1.0`。これは対象能力の目標版であり、実契約版・成果物版、実装許可またはrelease許可ではない。採択後の実版と互換範囲はHARNESS共通L2-010/011で扱う。
-- 旧項目ごとの判定: 再導出。旧RCLS R-12/13/15のlifecycle・縮退・rollback条件を候補資料として比較。非採択文書のstate machineは継承せず、変換語彙・meaning delta・owner/fallback条件はL2-005から再導出。
+- 旧項目ごとの判定: 再導出。旧RCLS R-12/13/15のlifecycle・縮退・rollback条件を候補資料として比較。旧候補文書のstate machineは継承せず、変換語彙・meaning delta・owner/fallback条件はL2-005から再導出。
 
 **旧項目別起点（再利用／再導出／置換の根拠）**
 
@@ -636,7 +636,7 @@ baseline/current/candidate/hybrid仮説・条件・oracleとOS割当Workerの結
 ### 受入条件候補
 
 - **LABO-006-AC-01 — 正常・追跡**：比較対象・条件・oracle・割当/実行証跡を追跡し、列挙された測定結果と限界が対応する。
-- **LABO-006-AC-02 — 否定・owner境界**：LABOがWorker選定/割当/起動、比較不能・中断をsuccess化、失敗/費用を捨てるのは不成立。
+- **LABO-006-AC-02 — 否定・owner境界**：LABOがWorker選定/割当/起動、比較不能・中断をsuccess化、失敗/費用を捨てるのは不成立。一度の実行だけから改善と認定せず、異なる条件・証拠の結果を同一比較へ混ぜない。
 
 ### 固定親句trace
 
@@ -669,7 +669,7 @@ baseline/current/candidate/hybrid仮説・条件・oracleとOS割当Workerの結
 ### 受入条件候補
 
 - **LABO-007-AC-01 — 正常・追跡**：再現性、machine判定可能性、oracle availability、副作用範囲、retry/rollback可能性、冪等性の6条件群を判定する。retry可否とrollback可否は同じ条件群の中で別々に観測し、欠落時は各々特定する。
-- **LABO-007-AC-02 — 否定・owner境界**：反復件数だけのsystemization、oracleなしの昇格、context-dependent/high-FP/overconstraint candidateの消去は不成立。
+- **LABO-007-AC-02 — 否定・owner境界**：反復件数だけのsystemization、oracleに意味判断の余地がある場合、例外が多い場合、不完全で期待値を確定できない場合の区別を無視した昇格、context-dependent/high-FP/overconstraint candidateの消去は不成立。
 
 ### 固定親句trace
 
@@ -836,7 +836,7 @@ episode、evidence、relation版を受けて分類対象を出力する。co-tim
 ### 受入条件候補
 
 - **LABO-012-AC-01 — 正常・trace**：分類入力全てに元episode/source evidence/relation revisionが追跡できる。
-- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、unknown消去を受理しない。 上流のepisodeとrelation authorityを変更しない。
+- **LABO-012-AC-02 — failure/owner boundary**：relation版不一致、根拠欠落、unknown消去を受理しない。時間/pathの近さや相関だけから因果を確定しない。上流のepisodeとrelation authorityを変更しない。
 
 ### 固定親句trace
 
@@ -1335,7 +1335,7 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 - 固定親 `HELIXLABO-L2-027` / `MPR-RC-HELIXLABO-L2-027-001`。decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L75`、fixed parent `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、source `docs/helix-labo/L2-requirements/labo-requirements.md:227–230`、full SHA `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、raw span SHA `23833b323d44a786c302f054e22ead8a33e41ecdf66ff54fa1068ae1ac1eb30d`; PO decision basis `633bf12`。対象版/境界は要件に記した親のversion_targetであり実装/release許可ではない。
 - 親の依存区分: 各元connection contractと専用connector `version_target: 1.0`。
-- 旧項目判定: 入力接続。固定親で保持する意味: 各HELIX-CONNECT connectionのadmitted contract identity/revision、schema、provenanceを照合して個別observationへ写す。connector間で契約を暗黙共用せず、contract driftを適合に見せない。drift/unknownはCONNECT/source ownerへ戻す。
+- 旧項目判定: 入力接続。固定親で保持する意味: 各選択HELIX-CONNECT connection固有のadmitted contract identity/revision、schema、provenanceを照合して個別observationへ写す。別connectorの契約を共有・代用する経路を暗黙に許可せず、contract driftを適合に見せない。drift/unknownはCONNECT/source ownerへ戻す。
 
 **旧項目別起点（判定根拠。旧資料は現在のauthorityではない）**
 
@@ -1348,12 +1348,12 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 要件候補
 
-各HELIX-CONNECT connectionのadmitted contract identity/revision、schema、provenanceを照合して個別observationへ写す。connector間で契約を暗黙共用せず、contract driftを適合に見せない。drift/unknownはCONNECT/source ownerへ戻す。
+各選択HELIX-CONNECT connection固有のadmitted contract identity/revision、schema、provenanceを照合して個別observationへ写す。別connectorの契約を共有・代用する経路を暗黙に許可せず、contract driftを適合に見せない。drift/unknownはCONNECT/source ownerへ戻す。
 
 ### 受入条件候補
 
-- **LABO-027-AC-01 — 正常・trace**：選択connection固有のadmitted contract identity/revision、schema version、source traceと受領内容が一致し、共有が明示された場合だけその契約範囲内で共有する。
-- **LABO-027-AC-02 — failure/owner boundary**：contract/schema/version/traceのdrift、暗黙の別connector契約共有、unknownを正常接続として扱わずCONNECT ownerへ戻す。logical connection contractをLABOで改定しない。
+- **LABO-027-AC-01 — 正常・trace**：選択connection固有のadmitted contract identity/revision、schema version、source traceと受領内容が一致し、そのconnection固有の契約範囲でのみ受領する。
+- **LABO-027-AC-02 — failure/owner boundary**：contract/schema/version/traceのdrift、暗黙の別connector契約の共有・代用、unknownを正常接続として扱わずCONNECT ownerへ戻す。logical connection contractをLABOで改定しない。
 
 ### 固定親句trace
 
@@ -1570,6 +1570,7 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 | unselectedはunobserved、selected-missingはunmet dependency | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C02`, `L10-LABO-058-C03` | 未選択≠成功観測、選択欠落≠未選択化 |
 | unknown selection/permission/scopeは確認に戻し、no selectionは未許可取込を許可しない | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C04` | 入力成立拒否と戻し先、unauthorized intake 0 |
 | WEB/WEB-OSは選択時だけ既存contract、external 2.0を1.0へ含めない | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C05` | 未選択時の実稼働依存0、2.0 external intake 0 |
+| source/scope/operation/contract version変更後にselected closureを再照合 | `LABO-058-FR-01 / LABO-058-AC-02` | `L10-LABO-058-C06` | 変更後のclosure再照合、影響sourceだけunknown/hold |
 
 ## 未承認事項
 

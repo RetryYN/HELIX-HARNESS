@@ -62,7 +62,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：登録済み接続と現時点の互換照合、端点双方の受領契約。別の接続を必須にしない。 戻し先: 契約・版問題は両端contract ownerへ、scope/許可問題はSECURITYへ、受領拒否・業務結果は受信側業務ownerへ返す。接続結果を業務完了へ昇格しない。
 
-**L3 acceptance (`CONNECT-AC-003-01`)**：送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを各々欠落・不一致にした反例を拒否し、対象接続・理由・観測地点を保持する。契約/版の修正先は両端contract owner、許可/data-use不明・範囲外はSECURITY、受領拒否/業務結果は受信側業務ownerに区別して返す
+**L3 acceptance (`CONNECT-AC-003-01`)**：送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを各々欠落・不一致にした反例を拒否し、対象接続・理由・観測地点を保持する。契約/版の修正先は両端contract ownerである。接続identityの混載を拒否し、送信に適用する許可の期限切れ・期限不明、許可/data-use不明・範囲外では送信attempt 0を保ちSECURITYへ返す。受領拒否/業務結果は受信側業務ownerに区別して返す
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-003`。
 
@@ -146,35 +146,35 @@
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-006`。
 
-## Stage 4 — CONNECT-L2-008/009（対の部分草稿）
+## Stage 4 — HELIXCONNECT-L2-008/009（対の部分草稿）
 
 固定親はbase 633bf12の採択revisionと判断記録で固定する。旧MCP profile調査は具体的な接続契約の完全一致根拠ではなく、profile identityと技術traceの部分類例である。両親とも固定L2/L11から要件を再導出する。
 
 ### CONNECT-FR-008-01 — MCP profile probe descriptor（親 HELIXCONNECT-L2-008）
 
-Probe descriptorはcatalogに列挙されたMCP profile identity/revision、configuration identity/revision/type、descriptor schema/version、typed operation/tool capability、read-only probe descriptorを結ぶ。異なる型のconfig/descriptor、同一identityの競合定義、catalog未登録revisionはtarget/profileを確定せず、raw secretをdescriptorへ含めない。profile/config/descriptorの一件の失敗を他profileへ波及させない。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchはfail closedとし、staleはCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。不正identity/config/descriptorの修正先はprofile提供元、policy/safetyのunknown・拒否はSECURITYへ区別して返す。SECURITY-L2-034の採択を前提・依存・pass根拠にしない。
+Probe descriptorはcatalogに列挙されたMCP profile identity/revision、configuration identity/revision/type、descriptor schema/version、typed operation/tool capability、read-only probe descriptorを結ぶ。異なる型のconfig/descriptor、同一identityの競合定義、catalog未登録revisionはtarget/profileを確定せず、raw secret・credential値をdescriptorへ含めない。profile/config/descriptorの一件の失敗を他profileへ波及させない。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchは拒否理由を記録してfail closedとし、default profileへfallbackせず、staleはHELIXCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。不正identity/config/descriptorの修正先はprofile提供元、policy/safetyのunknown・拒否はSECURITYへ区別して返す。SECURITY-L2-034の採択を前提・依存・pass根拠にしない。
 
 **受入条件**
 
 - CONNECT-AC-008-01: catalogの各列挙profileについてprofile/configuration/descriptor identityとrevision/type/schema、typed capability、read-only probeを結び、正常descriptorが実行を開始しないことを確認する。
-- CONNECT-AC-008-02: 同一identity競合、config/descriptor型違い、catalog未登録revision、および各列挙fieldのmissing/stale/mismatchを個別に与える。該当targetをunknown/staleにし古いcompatible記録へfallbackしない。他profileの結果は不変。
+- CONNECT-AC-008-02: 同一identity競合、config/descriptor型違い、catalog未登録revision、および各列挙fieldのmissing/stale/mismatchを個別に与える。unknown profileも該当targetをunknown/staleにして拒否理由を記録し、default profileや古いcompatible記録へfallbackしない。他profileの結果は不変。
 - CONNECT-AC-008-03: descriptorの存在だけでpermission、安全、executableをtrueにする変異を拒否する。SECURITY authorityが無い場合もsend eligibilityを生成しない。
-- CONNECT-AC-008-04: raw secretをdescriptor/config observationへ含める入力を拒否し、secret値を出力・保存しない。別profileの有効descriptorは独立に維持する。
+- CONNECT-AC-008-04: raw secret・credential値をdescriptor/config observationへ含める入力をそれぞれ拒否し、値を出力・保存しない。別profileの有効descriptorは独立に維持する。
 
 旧MCP profile調査 LEGACY-ASSET-1E45495250B6F9793189 はprofile特性の部分類例、旧gap audit DC0AE3267D63F3525BAEは旧L3該当が見つからなかった証拠、旧U-MCPPROFILE test FAAFFA616A44F65911EB は設計形式の参照に限る（正しいIDはFAAFFA616A44F65911EB）。旧test・runtimeは実行しない。
 
 ### CONNECT-FR-009-01 — typed feedback relation（親 HELIXCONNECT-L2-009）
 
-必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。自由文feedbackはfindingのまま保持し、resolution・受領・承認・完了へ変換しない。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは先行結果に依存するedgeだけを待ち、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
+必要時にdirection、serial/parallel execution topology、typed feedback relationを記録し、operation lineage、reason、endpoint、contract versionに結ぶ。自由文feedbackはfindingのまま保持し、resolution・受領・承認・完了へ変換しない。one-wayとpaired-bidirectionalは各方向のauthority・edgeを個別に保持し、片方向だけの宣言から逆方向の送信許可やrelationを推定しない。feedback未送信edgeは未完relationであり、独立にeligibleな初回edgeを止めない。serialは宣言順と宣言された先行条件を保持し、parallel joinは固定親が要求する全入力・terminal状態が揃うまでjoin結果を未完にする。欠落ACKは既に行ったattemptを維持し、受領/完了の確定だけを保留する。loop条件欠落は追加retryを0にするが、初回eligibilityを遡って変更しない。既存retry/budget/termination policyを使用し、attempt累積を保持する。各反復でbudgetをresetせず、deadline・terminal owner・停止理由を記録し、attempt回数またはretry capを追加しない。first-send dependency unknownとfeedback-specific unknownは別状態で返し、片方の未確定を他方の失敗へ混ぜない。
 
 **受入条件**
 
-- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは先行result前に後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。
+- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。
 - CONNECT-AC-009-02: 初回送信のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictにする個別fixtureでは、該当辺の初回送信attemptを0にし、missing inputとownerを返す。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityを各状態へ個別変異するとfeedback送信だけを保留する。parallel join条件不明はjoin/全体完了だけを保留し、ACK対応不明は既存attemptを保持して受領/完了だけ保留する。独立してeligibleな他操作へ伝播しない。eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
 - CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policyをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
 - CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。累積値を保持し、期限/terminal解決が不明なら新規retryを止め、未完義務・停止理由・ownerを返す。
 
-旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは旧資産source mapに追記する）。
+旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは以下の旧資産source mapに記録している）。
 
 ## Stage 4 fixed-parent and legacy source pins
 
@@ -217,7 +217,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 ### HELIXCONNECT-L2-007 固定親・旧sourceとの照合
 
-固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択revision。L2 `docs/helix-connect/L2-requirements/connect-requirements.md:128–138`（全文SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、raw span SHA `a2ce7b34ee2d389fbc60a45329c66014a02739150e0cc3c577188aa5578d6228`。末尾空行を含むraw spanと採択semantic digestは区別する）。対L11 `docs/helix-connect/L11-acceptance/connect-acceptance.md:74–76`（全文SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`、raw span SHA `4ac689f38f647b61c77a8bf46c491e9b50f95294e36073379b05912c3200bed8`）。PO decision `helix-connect-requirements-po-decision-2026-09-28.md#L48`（decision SHA `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`）、採択登録 `MPR-RC-HELIXCONNECT-L2-007-001`、PO対象semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`。
+固定親はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択revision。L2 `docs/helix-connect/L2-requirements/connect-requirements.md:128–138`（全文SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、raw span SHA `a2ce7b34ee2d389fbc60a45329c66014a02739150e0cc3c577188aa5578d6228`。末尾空行を含むraw spanと採択semantic digestは区別する）。対L11 `docs/helix-connect/L11-acceptance/connect-acceptance.md:74–77`（全文SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`、raw span SHA `1caa90d7e3b407c72bea119a4084eb37e9e828c6889ea8621d65410a090a0ade`）。PO decision `helix-connect-requirements-po-decision-2026-09-28.md#L48`（decision SHA `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`）、採択登録 `MPR-RC-HELIXCONNECT-L2-007-001`、PO対象semantic digest `44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b`。
 
 旧HELIXに現行HELIXCONNECT-L2-007と一対一の複数接続構成体要件は確認できない。旧distribution-package L3 `LEGACY-ASSET-9B7682EBDEA171005D45`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md:24–83`、全文SHA `c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c`、raw span SHA `60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e`）とpaired system test `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md:16–20`、全文SHA `3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc`、raw span SHA `1efc7ea8b809b274ed4b3427747b1b4b19a69fcea12203a867583fee5f721db5`）はsource/revision/consumer整合とpositive/negative分離の構造類例だけに使い、release/promotion authorityやbundle意味をCONNECTへ移さない。複数connection edge、技術終端、途中失敗と戻し先は固定L2/L11から再導出する。
 

@@ -1,6 +1,6 @@
 # HELIX-CONNECT L10 総合検証（1.0対象親9件の草稿）
 
-> 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではCONNECT-L2-001〜005の5件を対象とし、Stage 2aのCONNECT-L2-006、Stage 4のCONNECT-L2-008/009、本Stage 5でCONNECT-L2-007を追補する。
+> 状態: L10総合検証設計の草稿・未実行。検証実施結果、CI合格、L3承認を表さない。旧HELIX test/runtime/CIは実行しない。既存Stage 1ではHELIXCONNECT-L2-001〜005の5件を対象とし、Stage 2aのHELIXCONNECT-L2-006、Stage 4のHELIXCONNECT-L2-008/009、本Stage 5でHELIXCONNECT-L2-007を追補する。
 
 ## 判定規約
 
@@ -30,6 +30,9 @@
 | `HELIXCONNECT-L2-004` / `CONNECT-FR-004-01` / `CONNECT-AC-004-01` / `CONNECT-CASE-004-01` | retryable technical failure、同一ID/digest/revision、既存契約上限を入力しattempt/receiptとunfinishedを返す | 異digest、上限超過、business failure再送、新revision混載を拒否。重複効果0 | operation ownerへ未完義務/試行数、業務結果はbusiness owner、expiryはSECURITYへ | retry契約=connection owner、authority=SECURITY、実行=OS/CONNECT、証拠=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-005` / `CONNECT-FR-005-01` / `CONNECT-AC-005-01` / `CONNECT-CASE-005-01` | register/check/send/receipt/retry/stale/deny/terminal eventsを入力し順序traceと観測端点を返す | 欠落/順序曖昧/片端未観測はunknown、通常trace/receiptへraw業務payload・secret・credentialを保存/複製する各反例は不合格 | trace欠落はoperation owner、data-use/authority不明はSECURITY/source ownerへ | event producer=接続端点、authority=SECURITY、状態=OS、証拠契約=HARNESS | 1.0 |
 | `HELIXCONNECT-L2-006` / `CONNECT-FR-006-01` / `CONNECT-AC-006-01,02` / `CONNECT-CASE-006-01..05` | 一接続の4交換類型ごとに固定側revisionと互換条件、未完義務を受けて交換後の同一契約通信または停止/handoffを返す | 固定側を変える、非互換/未登録/意味契約変更/stale/unknownで送信する、再照合前retry、義務欠落を拒否 | 意味差=両端owner、技術互換=adapter owner、許可=SECURITY、未完義務=connection operation owner | 接続契約=両端owner、更新/未完=HARNESS-L2-010/011、authority=SECURITY、進行=OS、検証証拠=HARNESS | 1.0 |
+| `HELIXCONNECT-L2-007` / `CONNECT-FR-007-01` / `CONNECT-AC-007-01,02` / `CONNECT-CASE-007-01..04` | 宣言required edgesの個別登録・互換・operation・終端証拠から技術composite結果を返す | 中間失敗、欠落edge、未完をaggregate greenで補わず、業務結果を生成しない | 接続契約は両端owner、許可はSECURITY、未完operationは元ownerへ | 常時=宣言edge契約、authority照合=該当送信、証拠=HARNESS | 1.0 |
+| `HELIXCONNECT-L2-008` / `CONNECT-FR-008-01` / `CONNECT-AC-008-01..04` / `CONNECT-CASE-008-01..04` | catalog profile/config/descriptor revision・型・capabilityからread-only descriptorを返す | unknown profile・競合・欠落・stale・型違い・raw secret/credentialを拒否し、default fallback・operation spawn・安全/許可推論をしない | 不正descriptorはprofile提供元、policy/safetyはSECURITYへ | 常時=catalog/source descriptor、条件付き=既存SECURITY照合、034採択非依存 | 1.0 |
+| `HELIXCONNECT-L2-009` / `CONNECT-FR-009-01` / `CONNECT-AC-009-01..04` / `CONNECT-CASE-009-01..04` | direction・宣言順/先行条件・feedback lineage・既存loop policyから操作別relation状態を返す | 逆方向許可推論・undeclared順序/join・budget reset・理由なしresolutionを拒否し、unknownを該当操作だけhold | 端点契約は両端owner、authorityはSECURITY、terminationは既存policy/terminal ownerへ | 初回/feedback送信・追加retry・join・ACKの依存を操作別に照合 | 1.0 |
 
 ## Case catalog
 ### CONNECT-CASE-001-01 — `001` / 登録Identity
@@ -55,7 +58,7 @@
 - **対象AC**: `CONNECT-AC-003-01`
 - **固定L11受入oracle**：送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない
 - **正常fixture**: 通信はconnection/operation/contract revision/互換receiptに束縛する。契約外入力・revision違い・未識別operationは成功でなく拒否または隔離。技術結果だけ返し業務完了を決めない。
-- **negative/boundary oracle**：contract外envelope、異なる契約revision、operation identity欠落を投入し、正常受信/業務完了にしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateをそれぞれ欠落/不一致へ変異し、正常受信にしない。許可/operation/target/environment/scope/data-use不明・範囲外は送信attempt 0。対象接続・拒否/隔離理由・観測地点・技術状態を保持し、契約/版の両端owner、SECURITY、受信側業務ownerへの戻し先を区別する。未見の適合envelopeでも同じ契約を照合する。
+- **negative/boundary oracle**：contract外envelope、異なる契約revision、operation identity欠落を投入し、正常受信/業務完了にしない。能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateをそれぞれ欠落/不一致へ変異し、正常受信にしない。別接続identityを混載する反例を拒否し、適用する許可の期限切れ・期限不明、許可/operation/target/environment/scope/data-use不明・範囲外は送信attempt 0。対象接続・拒否/隔離理由・観測地点・技術状態を保持し、契約/版の両端owner、SECURITY、受信側業務ownerへの戻し先を区別する。未見の適合envelopeでも同じ契約を照合する。
 - **責務・失敗時の戻し先**：登録済み接続と現時点の互換照合、端点双方の受領契約。別の接続を必須にしない。 failure時は、契約・版問題は両端contract ownerへ、scope/許可問題はSECURITYへ、受領拒否・業務結果は受信側業務ownerへ返す。接続結果を業務完了へ昇格しない。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
 
@@ -74,7 +77,7 @@
 - **固定L11受入oracle**：L3 `CONNECT-AC-005-01` の全状況と全証拠項目を個別照合する。成功・失敗・部分成功・同identity同digest重複・異digest衝突・unknownを区別し、raw業務payload・secret・credential値を通常trace/receiptへ保存・複製しない。
 - **正常fixture**: 登録・照合・送信・受領・attempt/retry/stale/拒否/終端をconnection/operation/contract revision/attempt identityで順序追跡する。技術状態と端点観測範囲を区別し、欠落/順序不明はunknown。通常trace/receiptへraw業務payload・secret・credential値を保存・複製せず、業務判断を代筆しない。
 - **negative/boundary oracle**：attempt/event欠落、順序逆転、終端receipt欠落、片端観測不能を投入し、traceをcomplete/business successとせずunknown/unfinishedとしてownerへ返す。受信確認失敗、再送途中stale、期限切れ、取消、許可失効をそれぞれ独立変異し、停止地点・未完義務・owner/recovery先と観測済端点結果を保持する。ACの各証拠項目を一つずつ欠落させ、completeへ丸めない。同identity同digestの重複と異digest衝突は異なる結果として観測する。合成markerのみのraw業務payload・secret・credentialの各保存反例は、値を証拠出力せず不合格とする。未見のevent並びでも同じ証拠・非保存条件を照合する。
-- **責務・失敗時の戻し先**：connection operation eventと共通ログ/証拠の契約。本文payload保存を必須にしない。 failure時は、traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。
+- **責務・失敗時の戻し先**：connection operation eventと共通ログ/証拠の契約。通常trace/receiptへraw業務payload・secret・credential値を保存・複製しない。必要な本文保持は元source/consumer ownerとSECURITYの契約を参照する。 failure時は、traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
 
 ### CONNECT-CASE-006-01..05 — `006` / 片側交換
@@ -115,20 +118,20 @@
 
 総合passは全9親の17個のL3 AC候補（001〜005各1、006/007各2、008/009各4）がすべて個別に成立し、横断シナリオでrevision/authority/retry/trace/片側交換の連鎖が保たれること。任意項目の未観測、業務ownerの結果、未実施の旧デグレ検証をpassとして補完しない。
 
-## Stage 4 — CONNECT-L2-008/009 L10 oracle
+## Stage 4 — HELIXCONNECT-L2-008/009 L10 oracle
 
 固定L2/L11は633bf12の採択revision。probeやfeedbackのfixtureは静的な受入設計であり、実際のMCP接続・送信を行わない。
 
 ### HELIXCONNECT-L2-008（CONNECT-FR-008-01）
 
 - CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: catalogの各列挙profileを別々に選び、profile/config identity・revision・type、descriptor schema/version、typed capability、read-only probe descriptorを全てsource付きで与える。relationを再構成でき、operation spawnは0。他profileの入力/結果は不変。不正identity/config/descriptorはprofile提供元へ、policy/safetyのunknown・拒否はSECURITYへ返し、SECURITY-L2-034の採択やそのoracleを前提・pass根拠にしない。
-- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各列挙fieldを単独でmissing/stale/mismatch、configとdescriptorの型不一致、同一identityの異なる宣言、catalog未登録revisionに変異する。該当profileだけtarget未確定/unknown/staleとなり、古いcompatibleへfallbackしない。
+- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各列挙fieldを単独でmissing/stale/mismatch、configとdescriptorの型不一致、同一identityの異なる宣言、catalog未登録revisionに変異する。unknown profileを含め該当profileだけtarget未確定/unknown/staleとなり、拒否理由を記録し、default profileや古いcompatibleへfallbackしない。
 - CONNECT-CASE-008-03（AC CONNECT-AC-008-03）: descriptorあり・permissionなし、安全判定なし・実行可能と主張する反例。executable/safe/send eligibilityをfalseまたはunknownに留め、SECURITYへauthority照合を戻す。
-- CONNECT-CASE-008-04（AC CONNECT-AC-008-04）: raw secretをconfig/descriptorに含める反例を与え、拒否・値の非出力を確認する。同時に独立profileの正常descriptorが通ることを確認。
+- CONNECT-CASE-008-04（AC CONNECT-AC-008-04）: raw secret・credential値をconfig/descriptorに含める反例をそれぞれ与え、拒否・値の非出力を確認する。同時に独立profileの正常descriptorが通ることを確認。
 
 ### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
 
-- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは先行結果前の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。
 - CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: 初回辺のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictへ個別変異し、その辺の初回attempt 0、missing inputとownerの保持を照合する。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityの各同状態変異はfeedback送信だけhold、parallel join条件の各同状態変異はjoin/全体完了だけhold、ACK対応不明は既存attempt保持と受領/完了holdを照合し、独立eligibleな他操作を止めない。eligible first edge＋未送信feedback、ACK未着、feedback endpoint/reason/contract unknownを独立変異する。第一edgeはfeedback欠落で止めず、ACK未着ではattemptを保ったまま受領/完了だけholdし、loop条件欠落は追加retryだけ0となる。
 - CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policyのmissing/unknown/stale/conflictを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
 - CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。累積attemptは単調に保持し、deadline/terminal確定まで新規retryを止め、停止理由と未完義務を残す。

@@ -16,7 +16,7 @@
 
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
-| `HELIXBRAIN-L2-001/002` | candidate domain and hierarchy trace | identity/meaning/state、4 kind level、parent edgeを投入し、重複/unknown/製品名/参照喪失を変異 | 列挙field coverageと候補停止を観測。domain候補一覧を充実させる義務は検証しない |
+| `HELIXBRAIN-L2-001/002` | 初期Domain 10件と4段階構造の追跡 | 固定親が列挙する初期Domain 10件をsource/revision付きで各々投入し、identity/meaning/state、Domain→Pattern→Design Unit→Partのkindとparent edgeを照合する。重複/unknown/製品名/参照喪失を個別に変異 | 初期Domainのidentity/meaning/stateを10/10で照合し、4段階のkind/parent relationをtraceする。追加・分割・統合・退役可能性を閉じた集合にせず、候補一覧の充実義務は検証しない |
 | `HELIXBRAIN-L2-003/004` | descriptor and comparison completeness | applicability fieldを一つずつ欠落させ、複数候補のscope/weightを欠落 | field別にunknown/holdを確認し、推測適用・絶対順位がない |
 | `HELIXBRAIN-L2-005/009` | relation source trace | endpoint/type/meaning/sourceを持つedge、名称類似だけのedge、source欠落composite | 各edge/candidateからsourceへtraceでき、根拠なしedgeを確定しない |
 | `HELIXBRAIN-L2-006/011` | shared/product boundary | shared knowledgeとProduct Core固有fieldを混在し、source context欠落/除去 | 分離可能fieldの対応率と、分離不能時に停止することを記録 |
@@ -52,7 +52,7 @@
 
 | case ID | 親L2 | 測定対象・入力 | 測定oracle | 限界 |
 |---|---|---|---|---|
-| `CASE-BRAIN-L10-NFR-018-01` | `HELIXBRAIN-L2-018` | CORE候補intake: source/revision、原本と抽出候補の区別、製品固有relation、受取identityの完全例および各項目欠落/混入 | 候補receipt、隔離/CORE返却、raw original受領/誤promotion数を固定oracleへ照合する。 | 性能値ではなくfield/authority境界候補。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-018-01` | `HELIXBRAIN-L2-018` | CORE候補intake: source/revision、原本と抽出候補の区別、製品固有relation、受取identityの完全例および各項目欠落/混入。親にない保持期限/削除証拠を必須化するmutationも加える。 | 候補receipt、隔離/CORE返却、raw original受領/誤promotion数を固定oracleへ照合し、追加retention/erase evidenceを要求しない。 | 性能値ではなくfield/authority境界候補。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-019-01` | `HELIXBRAIN-L2-019` | Product Core query: 候補を二つ含む完全query、required input/condition/relation/constraint/evidence/versionの個別欠落、意味/version競合 | 11応答分類それぞれのtrace、候補比較、constraint欠落の拒否、推薦なし/戻し先、誤採用数を固定oracleへ照合する。 | 製品採用判断を測定・代行しない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-020-01` | `HELIXBRAIN-L2-020` | LABO評価候補: 対象revision一致・不一致、scope/method/result/failure/counterexample/unassessed rangeの各欠落。Infrastructure maturityを扱う適用例と非該当例を分ける | 評価対象との結合、candidate保持、該当時だけINFRA-017同revision evidence、LABO返却、accepted/mature誤遷移数を固定oracleへ照合する。 | OS登録stateの判定は含まない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-021-01` | `HELIXBRAIN-L2-021` | INTELLIGENCE向け材料: scope/source/version付きquery、runtime結論要求、BRAIN変更要求、scope欠落 | 判断材料fieldのtrace、BRAIN mutation/runtime decision誤生成数、owner返却を固定oracleへ照合する。 | 稼働中判断品質や性能SLAではない。候補測定、未実行。 |

@@ -20,6 +20,7 @@
 - **L10-LABO-001-C07**（AC `LABO-001-AC-01`／`LABO-001-AC-02`に対応）：Web/WEB-OS source contractが未選択/未採択の場合に1.0必須と誤認する。 **期待oracle**：Web/WEB-OS未選択時はsource接続をoptional/unconfiguredとして示し、1.0必須依存エラーにしない。
 - **L10-LABO-001-C08**（AC `LABO-001-AC-01`に対応）：観測期間内の許可sourceにsuccess eventのみが存在し、他statusは発生していないsnapshotを与える。 **期待oracle**：実在するsuccess recordを正常に取り込み、未発生のfailure/rejected/blocked/not_observedを生成せず、存在しないstatusの欠落errorも出さない。
 - **L10-LABO-001-C09**（AC `LABO-001-AC-01`／`LABO-001-AC-02`に対応）：既知の過去source revision・観測時点が保持されたhistorical observationと、同じ古いrevisionをcurrentと偽装した入力を別々に与える。 **期待oracle**：正確な過去revisionのhistoryはhistoricalとして保存・追跡し、currentと偽装したものだけをstale/unknownとして拒否する。
+- **L10-LABO-001-C10**（AC `LABO-001-AC-01`／`LABO-001-AC-02`に対応）：他のfieldが有効な許可source observationから必須fieldを一つ欠落させ、別sourceには有効recordを与える。 **期待oracle**：field欠落observationは成功扱いせず欠落理由付きでholdしsource責務へ返す。他sourceの有効recordは保持し、欠落値を推測補完しない。
 
 ### 観測点とoracle
 
@@ -41,7 +42,7 @@ source identity/revisionごとの観測；20 field identitiesと7 status classif
 - **L10-LABO-011-C03**（AC `LABO-011-AC-01`／`LABO-011-AC-02`に対応）：Aggregate engine成功だけでCorrelate接続も成功と主張する。 **期待oracle**：Aggregateの成功状態とAggregate→Correlate接続状態を分離し、未接続を成功表示しない。
 - **L10-LABO-011-C04**（AC `LABO-011-AC-01`／`LABO-011-AC-02`に対応）：relation/field不一致またはsource observation欠落。 **期待oracle**：不一致relationは補完せずunresolvedを保持し、元recordと不一致理由をcorrelation側へ返す。
 - **L10-LABO-011-C05**（AC `LABO-011-AC-01`／`LABO-011-AC-02`に対応）：同時刻/同pathだが因果evidenceのないevent。 **期待oracle**：causal evidenceのないeventはrelated/unknownまでとし、causalに確定しない。
-- **L10-LABO-011-C06**（AC `LABO-011-AC-01`／`LABO-011-AC-02`に対応）：correlation後の訂正でも元source eventを保持しcandidate discrepancyを記録する。 **期待oracle**：訂正後も元source eventをimmutable referenceで保ち、変更されたcandidate relationとdiscrepancyを別記録にする。
+- **L10-LABO-011-C06**（AC `LABO-011-AC-01`／`LABO-011-AC-02`に対応）：relation不一致をcorrelationへ戻して再照合する際、元source eventを保持する。 **期待oracle**：不一致を黙って補完・上書きせず、元source recordとrevisionを保ってcorrelationへ戻す。source contractが訂正後revisionを供給する場合はそのrevisionを別の入力として照合するが、独立したdiscrepancy recordは必須にしない。
 
 ### 観測点とoracle
 
@@ -60,7 +61,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 親: PO固定 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
 - 固定L2親: `docs/helix-labo/L2-requirements/labo-requirements.md` 150–155行、全文SHA-256 `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、該当span SHA-256 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7`、heading「### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）」。
-- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` 191–197行、全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、該当span SHA-256 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`、heading「### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠」。
+- 固定L11親: `docs/helix-labo/L11-acceptance/labo-acceptance.md` line 56（raw SHA-256 `9e169e5f6a6eead24677031a479dba94060fe6916e76f4e3b1508527880f13c5`、未知jobを履歴だけで成功保証しない）と採択追補191–197（全文SHA-256 `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`、span SHA-256 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c`）、heading「### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠」。
 - 対応AC: `LABO-055-AC-01`, `LABO-055-AC-02`。正常・失敗・境界を別caseで置き、親のowner/state authorityをまたがせない。
 
 ### 検証fixtureとcase
@@ -68,7 +69,7 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-055-C01**（AC `LABO-055-AC-01`）: 許可history snapshotからtask/model class/scopeのeligible denominatorを作り、numeric metricまたはqualitative levelを出す。期待oracle: denominator、算入record、metric/scorer revision、basisと評価scopeから出力を再構成できる。
 - **L10-LABO-055-C02**（AC `LABO-055-AC-01`／`LABO-055-AC-02`）: failed/missing/unknown resultを理由なく外し、結果後にdenominatorを縮める。期待oracle:各除外/dispositionと理由を示すか、根拠不十分として水準を保留し、scoreを高く補正しない。
 - **L10-LABO-055-C03**（AC `LABO-055-AC-01`／`LABO-055-AC-02`）: 未評価model classを評価済みへ変更、またはfailed quality eventをaverageで相殺する。期待oracle: classをunassessedのまま、failureをfailureで保持し、未根拠levelを出さない。
-- **L10-LABO-055-C04**（AC `LABO-055-AC-01`／`LABO-055-AC-02`）: 定性的なlevelを出すsnapshotでもscope、適用条件、判定根拠、未評価部分を記録する。期待oracle:同じsource receiptから判定範囲を再構成でき、配置・指定・割当・authorityを作らない。
+- **L10-LABO-055-C04**（AC `LABO-055-AC-01`／`LABO-055-AC-02`）: 二つのfixtureを対にする。正常側は許可済みsource receiptに結び付く既知task class/model classの定性的水準を与え、適用条件・判定根拠・未評価部分を特定可能にする。未見側は新task class、source、scorer/oracle版を含み適用性根拠がないsnapshotと過去classの水準だけを与える。期待oracle: 正常側はsource receiptから水準のscope/適用条件/根拠/未評価部分を再構成できる。未見側は該当範囲を未評価に保ち、履歴だけで未知jobの成功を保証しない。どちらも配置案・指定・割当て・権限を生成しない。恣意的なsample数/thresholdを足さず、欠測理由とowner返却先を追跡できる。
 
 ### 観測点とoracle
 
@@ -84,10 +85,10 @@ L2-055/L11-055はeligible denominatorと各disposition/reasonおよびscorer rev
 
 ### 検証fixtureとcase
 
-- **L10-LABO-056-C01**（AC `LABO-056-AC-01`）: 初回の許可Worker resultと列挙されたassignment/task/Worker/revision/scope/status/verification/classification/source receiptを与える。期待oracle: 全fieldを保ち「観測済み・未評価」を追加する。
+- **L10-LABO-056-C01**（AC `LABO-056-AC-01`）: 初回の許可Worker resultについて、assignment/ticket/attempt、task class、Worker/model identity、実行契約revision、要求/source revision、scope、run identity、result status、verification、data-use classificationとsource receiptを入力する。receiptのmodel/source/revision/scope/run identityが実runと一致する正常例と、各identity/revision/scope/run不一致を個別に変異した対照を与える。期待oracle: 一致する正常例だけ全fieldを保ち「観測済み・未評価」を追加し、不一致例は元identityの観測と理由を保って水準へ算入しない。
 - **L10-LABO-056-C02**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: 初回success一件だけを与え、accepted/evaluated/qualifiedとする。期待oracle: 観測は記録するが、単発successだけを根拠に評価済み・適格化しない。
 - **L10-LABO-056-C03**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: failed/rejected/interrupted/unknown statusesをそれぞれ与える。期待oracle: statusesを個別のまま履歴化しunknownやfailureをsuccessへまとめない。
-- **L10-LABO-056-C04**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: stale/欠落source receipt、task class mismatch、scope/data-use/verification欠落や同一/矛盾記録を与える。期待oracle:無言統合せずsourceを保持しOS/SECURITY/Workerへ戻すか未評価を維持。評価済みは適用oracle・範囲・比較・反例・判定receiptまで揃ったcaseのみ。
+- **L10-LABO-056-C04**（AC `LABO-056-AC-01`／`LABO-056-AC-02`）: receiptのmodel/source/revision/scope/run identityの各々を実runと不一致にし、加えてtask class mismatch、data-use/verification欠落、new provider/model/toolchain、scorer/source revision mismatch、同一/矛盾記録を単独・併発で与える。期待oracle: 無言統合せず元observationと各不一致理由を保持し、該当範囲を未評価としてOS/SECURITY/Workerまたはoracle/source ownerへ戻す。評価済みは適用oracle・範囲・比較・反例・判定receiptまで揃ったcaseのみ。任意の期限・一律再評価間隔を作らず、sourceとの不一致を実績なしへ書き換えない。
 - **L10-LABO-056-C05**（AC `LABO-056-AC-01`）: 観測resultとは独立して、対象task/model/scopeを判定できる評価oracleと基準revision、判定・比較条件、結果、failure/反例/unknownの扱い、評価者、時点、判定receiptがすべて揃うfixtureを与える。期待oracle: 該当scopeに限り「評価済み」とその根拠receiptを記録し、単なる観測済み状態と区別する。qualified/eligible/assignmentやWorker authorityは生成せず、他scopeへ一般化しない。
 
 ### 観測点とoracle
@@ -133,7 +134,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 | 親ID | registration / decision | L2 raw span | L11 raw span（採択対象） | FR / AC | L10 cases |
 |---|---|---|---|---|---|
-| `HELIXLABO-L2-055` | `MPR-RC-HELIXLABO-L2-055-002`, semantic `7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L58` | L150–155 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7` | L11 L191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c` | `LABO-055-FR-01`, `LABO-055-AC-01/02` | `L10-LABO-055-C01..C04` |
+| `HELIXLABO-L2-055` | `MPR-RC-HELIXLABO-L2-055-002`, semantic `7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L58` | L150–155 `f6c97eeef48634ec11fc36f849763a35da358f5ce89490f6c785c9f67b4575c7` | L11 L56 `9e169e5f6a6eead24677031a479dba94060fe6916e76f4e3b1508527880f13c5`（未知jobを履歴だけで成功保証しない）; adopted supplement L191–197 `c585c90b04dc2f8cf5c979ea4096a2c877029a234ce5f5154aac4267e23fa46c` | `LABO-055-FR-01`, `LABO-055-AC-01/02` | `L10-LABO-055-C01..C04` |
 | `HELIXLABO-L2-056` | `MPR-RC-HELIXLABO-L2-056-003`, semantic `5965a1449b772ba7b53b1e47325a0f0ce77cbde29eb4f6d80c68c9911db48019`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L96` | L379–390 `d8d9c30b52c338580f535a913a4b04d67f0d3d59d79eb2645ed33c911b1621c7` | L11 L138–147 `b2c453c3cdc4aa99ee2df28d3c1a6c96dc2bd4d3d68d41c77ad49dc78243f3ed` + adopted supplement L198–203 `24d96629585ccb7f8bb248f7748d06575c3af38f892753d306733eb9609bb1e0` | `LABO-056-FR-01`, `LABO-056-AC-01/02` | `L10-LABO-056-C01..C05` |
 | `HELIXLABO-L2-057` | `MPR-RC-HELIXLABO-L2-057-002`, semantic `4c8acbcfcf35bcdb62d6e5371141135b7a70da1d69115a41194065471b4fa63b`, PO decision `docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L97` | L391–402 `d5a62f8588867f80e17e1931f7570c72c89f28eedfd30a5aa9a368fbaba8004d` | L11 L148–155 `ac433c56cece7fae90458ab3e3edf556425b90af8c1917ec60a1c61479bb3b60` | `LABO-057-FR-01`, `LABO-057-AC-01/02` | `L10-LABO-057-C01..C05` |
 | `HELIXLABO-L2-070` | `MPR-RC-HELIXLABO-L2-070-001`, semantic `07d9114fe55ed6bea2522756652cadec23f89397c619429360062256dc94e533`, PO decision `docs/governance/decisions/po-decision-2026-09-30-live26.md#L49` | L561–575 `82b94ab1ed63d1ab15476e61bfd4fec07c202a2b5874d5f3dffa6161969da064` | L11 L297–307 `c6268c5f97bfa3d87a1075d9aa6eac2eca20593e611c9aadcd92ee1025e9beb1` | `LABO-070-FR`, assigned AC | `CASE-LABO-L10-070-01/02` |
@@ -244,8 +245,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-006-C02 — `実験結果の個別失敗/組合せ`
 
 - 対応: `LABO-006-AC-02`; 親: `HELIXLABO-L2-006`。
-- 入力fixture: (a)OS assignment欠落、(b)oracle欠落、(c)baseline revision差、(d)interrupted run、(e)cost欠測、複数の組合せ。
-- 期待oracle: 実験実行済みを捏造せず、比較不能/中断/unknownを明記。cost欠測を0扱いしない。個別理由を列挙し有効な別scope結果は分離。
+- 入力fixture: (a)OS assignment欠落、(b)oracle欠落、(c)baseline revision差、(d)interrupted run、(e)cost欠測、(f)品質を下げ速度改善と表示、(g)単一runを改善成立と表示、(h)異なる条件/evidenceを結合、複数の組合せ。
+- 期待oracle: 実験実行済みを捏造せず、比較不能/中断/unknownを明記。cost欠測を0扱いしない。品質低下を速度改善で相殺せず、単発を改善と認定せず、異条件の証拠を結合しない。個別理由を列挙し有効な別scope結果は分離。
 
 ### L10-LABO-006-C03 — `owner境界`
 
@@ -279,21 +280,21 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 ### L10-LABO-007-C04 — `held-out正常`
 
+- 対応: `LABO-007-AC-01`; 親: `HELIXLABO-L2-007`。
+- 入力fixture: 未見のrule candidateだが全親条件と証拠を持つ。
+- 期待oracle: 同一oracleで分類し、特定旧candidate名や登録済みruleに依存しない。
+
 ### L10-LABO-007-C05 — 文脈依存・高FP・過剰拘束candidateの保持
 
 - 対応: `LABO-007-AC-02`; 親: `HELIXLABO-L2-007`。
-- 入力fixture: 正常operation対照に加え、文脈依存、FP高、overconstraintの各理由を単独で含む候補を与える。
-- 期待oracle:当該candidateをsystem化不適と判断してもoperation candidateとして保持し、理由とscopeを表示する。
+- 入力fixture: 正常operation対照に加え、意味判断の余地があるoracle、例外多数、期待値を確定できない不完全oracle、文脈依存、FP高、overconstraintの各理由を単独で含む候補を与える。
+- 期待oracle:oracleの意味判断・例外・不完全性を個別に未確定として保持し、candidateはsystem化不適でもoperation candidateとして残す。各理由とscopeを表示し、oracleを完全/合格と偽装しない。
 
 ### L10-LABO-007-C06 — shadowとsystemization段階の区別
 
 - 対応: `LABO-007-AC-01/02`; 親: `HELIXLABO-L2-007`。
 - 入力fixture:同一candidateのoperation、shadow評価、systemization候補の別状態と、shadow evidence欠落を与える。
 - 期待oracle:shadow段階をoperationやsystemization済みと同一視せず、親にない自動昇格・承認条件を設けない。
-
-- 対応: `LABO-007-AC-01`; 親: `HELIXLABO-L2-007`。
-- 入力fixture: 未見のrule candidateだが全親条件と証拠を持つ。
-- 期待oracle: 同一oracleで分類し、特定旧candidate名や登録済みruleに依存しない。
 
 ### L10-LABO-008-C01 — `system運用正常`
 
@@ -304,14 +305,14 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-008-C02 — `return evidence欠落`
 
 - 対応: `LABO-008-AC-02`; 親: `HELIXLABO-L2-008`。
-- 入力fixture: (a)rule revision不明、(b)回避cost欠落、(c)現owner不明、(d)併発。
-- 期待oracle: unknownを明記し、current ownerへ戻す。欠けた要素を補完してsystem維持/切替を確定しない。
+- 入力fixture: (a)rule revision不明、(b)回避cost欠落、(c)現owner不明、(d)operationの実行結果が失敗なのに成功/退役表示、(e)system→operation復帰をfailure/retiredと誤表示、(f)併発。
+- 期待oracle: unknownを明記し、current ownerへ戻す。operation復帰は親の定義どおりoperation stateとして保持し、failure/retiredへ改変しない。欠けた要素を補完してsystem維持/切替を確定しない。
 
 ### L10-LABO-008-C03 — `operation再評価境界`
 
 - 対応: `LABO-008-AC-02`; 親: `HELIXLABO-L2-008`。
-- 入力fixture: 既知system exceptionが繰返す一方、改善が未評価。
-- 期待oracle: 再評価candidateを作成してもsystem execution stateは変更なし。未完義務を残す。
+- 入力fixture: 既知system exceptionが繰返す一方、改善が未評価の例と、system適用限界によりoperationへ戻す例を与える。併せてsystemからoperationへ戻す観測を入力し、operation自体の状態がfailureである場合と、system適用限界で戻した場合を分ける。
+- 期待oracle: 再評価candidateを作成してもsystem execution stateは変更なし。戻し理由とoperation stateを区別し、未完義務を残す。
 
 ### L10-LABO-008-C04 — `held-out正常`
 
@@ -760,8 +761,8 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-027-C01 — accepted contract正常
 
 - Parent/AC: `HELIXLABO-L2-027` / `LABO-027-AC-01`。
-- Input fixture: 個別 connection contract/schema version, source ID, request/response trace, accepted receiptを与える。
-- Observable oracle: source/schema/trace/payload一致、driftなしのobservation。
+- Input fixture: 選択connection固有のadmitted contract/schema version, source ID, request/response trace, accepted receiptを与える。別connector契約しか存在しない対照も与える。
+- Observable oracle: 自身のsource/schema/trace/payload一致時だけobservationを受領する。別connector契約の暗黙共有/代用では受領成立しない。
 
 ### L10-LABO-027-C02 — contract mismatch
 
@@ -778,14 +779,14 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-027-C04 — held-out正常
 
 - Parent/AC: `HELIXLABO-L2-027` / `LABO-027-AC-01`。
-- Input fixture: 未見の接続sourceだが個別contractとtraceを満たす。
-- Observable oracle: contractに従い接続observationを作り、新しいconnector policyは発明しない。
+- Input fixture: 未見の接続sourceだが個別contractとtraceを満たす。別connectorのcontractだけを流用したnegative対照も与える。
+- Observable oracle: 自身のadmitted contractに従う場合だけ接続observationを作る。別connector契約の暗黙共有/代用は拒否し、新しい共有許可経路は発明しない。
 
 ### L10-LABO-028-C01 — OS-assigned Worker result正常
 
 - Parent/AC: `HELIXLABO-L2-028` / `LABO-028-AC-01`。
-- Input fixture: OS assignment ID/revision、task class、Worker identity、result source/revision/status/verificationを揃えて投入。
-- Observable oracle: task/assignment/sourceをtraceし、状態はobservedのまま評価済へ上げない。
+- Input fixture: OS assignment ID/revision、task class、Worker identity、result source/revision/status/verificationに加え、L2-006のexperiment identity・target version・scopeを同一値で揃えて投入する。別experiment、別ticket、target version違いのresultを個別変異で与える。
+- Observable oracle: task/assignment/sourceおよびL2-006と同一experiment identity・target version・scopeをtraceし、状態はobservedのまま評価済へ上げない。
 
 ### L10-LABO-028-C02 — assignment/result failure
 
@@ -936,6 +937,13 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 親の固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2本文full SHA-256は`f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed`、対L11 full SHA-256は`bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200`。対応するPO decisionは`docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md` SHA-256 `b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0`、行84–94。L10は旧test designを実行せず、各固定L2/L11と上記L3のACを測定可能にする。
 
+
+### L10-LABO-058-C06 — source/scope/operation/version変更後の再照合
+
+- Parent/AC: `HELIXLABO-L2-058` / `LABO-058-AC-02`。
+- Input fixture: C01/C03で成立した選択source closureの後、source identity、scope、operation、contract/source versionを一つずつ変更し、さらに複数同時変更の入力を与える。
+- Observable oracle: 旧closureを再利用せず変更後の各選択source固有のconnector・permission・version・result conditionを再照合する。条件不明/不一致のsourceだけunknown/holdとし、未選択sourceを必須化しない。
+
 ### L10-LABO-036 — HARNESS向けfeedback
 
 - Parent/AC: `HELIXLABO-L2-036` / `LABO-036-AC-01, LABO-036-AC-02`。旧類例: `LEGACY-ASSET-02D897E62EF2FA267267` (`universal-improvement-loop-requirements.md:143–160`, SHA `01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4`) と `LEGACY-ASSET-0B5B38F146D9538C9A36` (`universal-improvement-loop-acceptance.md:31–42`, SHA `f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943`)、隣接起点として限定利用。
@@ -1045,7 +1053,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | case ID | FR / AC | 入力・操作 | 期待oracle |
 |---|---|---|---|
 | `CASE-LABO-L10-063-01` | `FR-LABO-L3-063` / `AC-LABO-L3-063-01` | version/適用条件/独立検証receiptを持つ修復recipeと、同種episode、親指定threshold/母数/反例、LABO Feedback、OS登録、owner変更、再検証と運用後観測を同一系譜で与える。 | recipeを評価知識に保持し、親条件に基づく反復candidate/warningを出力しつつOS/ownerの各stateを混ぜない。 |
-| `CASE-LABO-L10-063-02` | `FR-LABO-L3-063` / `AC-LABO-L3-063-02` | 未検証案、重複resend、原因/条件混合、thresholdまたは母数欠落、頻出なのにcandidate/warning欠落、登録だけでclosureとする各独立mutationを与える。 | 各個別エラーを成功recipe、同種反復、予防完了へ昇格しない。該当義務だけを原因別owner（source/LABO/OS/target）へ返す。 |
+| `CASE-LABO-L10-063-02` | `FR-LABO-L3-063` / `AC-LABO-L3-063-02` | 未検証案、重複resend、原因/条件混合、thresholdまたは母数欠落、頻出なのにcandidate/warning欠落、登録だけでclosureとする各独立mutationを与える。さらにLABOがgateを直接有効化する、HARNESS/provider memoryを修復知識の正本として書換える、未評価のissue知識をBRAIN汎用構造へ昇格する、未評価知識から実行authorityを生成する4 mutationを別々に与える。 | 各個別エラーで成功recipe・同種反復・予防完了を主張しない。gate activation、memory write、BRAIN promotion、authority writeはいずれも0とし、該当義務だけを原因別owner（source/LABO/OS/target）へ返す。 |
 | `CASE-LABO-L10-063-03` | `FR-LABO-L3-063` / `AC-LABO-L3-063-03` | 新原因・改版recipeで同一適用性が確認できないfixtureと、旧成功recordのみの入力を与える。 | 頻出/現行有効性をunknownとして保持し、評価を未完にする。 |
 | `CASE-LABO-L10-064-01` | `FR-LABO-L3-064` / `AC-LABO-L3-064-01` | 選択比較pairでjudge-visible資料を検査し、元identity mappingはrecord側にだけ保持。fixture/rubric/judge version/sample/retryの事前固定条件が同一のpairを与える。 | 候補名がjudge資料に現れず、全5条件が固定一致する場合だけblind比較を成立候補として返す。 |
 | `CASE-LABO-L10-064-02` | `FR-LABO-L3-064` / `AC-LABO-L3-064-02` | 候補名直書き、添付metadata漏れ、judge視界不明を個別に与える。fixture/rubric/judge version/sample/retryの5条件はそれぞれ欠落・変更を別変異とし、さらにsmoke-only/平均相殺/assignment許可も独立に試す。 | 各対象pairは比較不成立。別pairへfindingを広げず、smoke結果をfull qualificationやassignmentへ読み替えない。 |

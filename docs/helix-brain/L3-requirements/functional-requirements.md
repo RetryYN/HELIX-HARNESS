@@ -32,7 +32,7 @@ Pattern / Unit / Part候補を、source identity・revision、provenance、evide
 ### 受入条件（AC候補）
 
 - **BRAIN-007-AC-01 — 正常・追跡**：完全なsource/evidenceとscopeがあり、LABO対象revisionがcandidate revisionに一致する場合、採否前candidateの各owner stateを分離し由来を追跡する。既存契約に沿って採用済みの記録も、同じsource/evidenceからLABO評価、OS登録・振分け、独立検証および採否根拠まで辿れる。新しい判定閾値・actor承認は設けない。
-- **BRAIN-007-AC-02 — 異常・境界**：source identity/revision、provenance、evidence、evaluated scope、counterexample、limitationのいずれか欠落・stale・不一致、LABO対象revisionの不一致、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、該当source/evidenceまたはL1意味へ戻す。
+- **BRAIN-007-AC-02 — 異常・境界**：source identity/revision、provenance、evidence、adopted reason、evaluated scope、counterexample、limitationのいずれか欠落・stale・不一致、LABO評価を未実施なのに評価済みとする入力、LABO対象revisionの不一致、AI生成のみまたは実績一件のみでaccepted/matureとする入力は不成立。採用状態にしない理由と不足項目を示し、該当source/evidenceまたはL1意味へ戻す。
 
 ### 固定親句の被覆
 
@@ -129,8 +129,8 @@ HARNESS-L2-010/011のBRAIN capability descriptorに含まれるidentity/kind、c
 
 ### 受入条件（AC候補）
 
-- **BRAIN-028-AC-01 — 正常・追跡**：有効なdescriptorとknowledge revisionを受け取り、契約に定めたrangeの内側であることを確認した場合、照合対象のidentityとrevisionを保持した適用可能応答を返す。
-- **BRAIN-028-AC-02 — 異常・境界**：unknown/mismatch/range外/必要field欠落/range解釈未確定をnot-applicableまたはunknownとして止め、BRAIN知識側の不一致はBRAIN、descriptor contract/range側はHARNESSへ返す。version_target代入やrollback義務のBRAINへの移管を受理しない。
+- **BRAIN-028-AC-01 — 正常・追跡**：有効なdescriptorとknowledge revisionを受け取り、契約に定めたrangeの内側であることを確認した場合、descriptorのidentity/kind、contract/artifact version、dependency identity/version、declared compatibility range、verification scopeと、knowledge identity/revision/version/stateを独立照合し、照合対象のidentityとrevisionを保持した適用可能応答を返す。
+- **BRAIN-028-AC-02 — 異常・境界**：descriptor kind、dependency identity、verification scope、knowledge version/stateを含む各fieldのunknown/mismatch/range外/必要field欠落/range解釈未確定をnot-applicableまたはunknownとして止め、BRAIN知識側の不一致はBRAIN、descriptor contract/range側はHARNESSへ返す。version_target代入やrollback義務のBRAINへの移管を受理しない。
 
 ### 固定親句の被覆
 
@@ -171,7 +171,7 @@ HARNESS-L2-010/011のBRAIN capability descriptorに含まれるidentity/kind、c
 
 ### 要件候補
 
-Domain identity・意味・状態とPattern関係を識別し、Domainの追加・分割・統合・退役後も既存relationの参照先を保持する。1.0 schemaで扱うSoftware Architecture、Application Architecture、Backend、Frontend、API / Integration、Data / Database、Infrastructure、Security、Visual Design、UX / Interactionを識別する一方、Reliability / Recovery、Performance、Observability、Testing / Quality、Operations / Maintenance、Accessibility等を全て初版で充実させる義務はない。初期Domainとして列挙された10件は全件を識別可能にし、成功条件を10/10のexact setで照合する。製品名・project名をDomainにしない。依存: BRAIN L1-001とConceptの機構境界。
+Domain identity・意味・状態とPattern関係を識別し、Domainの追加・分割・統合・退役後も既存relationの参照先を保持する。1.0 schemaで扱うSoftware Architecture、Application Architecture、Backend、Frontend、API / Integration、Data / Database、Infrastructure、Security、Visual Design、UX / Interactionを初期例として識別する一方、Reliability / Recovery、Performance、Observability、Testing / Quality、Operations / Maintenance、Accessibility等を全て初版で充実させる義務はない。初期例10件を識別可能にし、親の開いた候補列挙をclosed setへ変えない。製品名・project名をDomainにしない。依存: BRAIN L1-001とConceptの機構境界。
 
 **入力**：Domain候補・操作種別・既存relation利用者。
 
@@ -181,7 +181,7 @@ Domain identity・意味・状態とPattern関係を識別し、Domainの追加�
 
 ### 受入条件（AC候補）
 
-- **BRAIN-001-AC-01 — 正常**：候補Domainのmeaning/stateと変更案の影響、既存relation利用者を識別する。初期10 Domainをexact setとして保持する。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
+- **BRAIN-001-AC-01 — 正常**：候補Domainのmeaning/stateと変更案の影響、既存relation利用者を識別する。初期10 Domainの例示集合をsource/revision付きで保持し、親が開いた列挙としている候補の追加・意味変更は候補として扱う。固定10件を全時点のclosed setへしない。 固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
 - **BRAIN-001-AC-02 — 否定・失敗**：製品/project名、重複・不明なmeaning、既存利用者を消す分割・退役案は確定しない。meaning不明ならcandidateで止めL1-001へ戻す。
 
 ### 固定親句の被覆
@@ -378,7 +378,7 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 
 ### 受入条件（AC候補）
 
-- **BRAIN-005-AC-01 — 正常**：Authentication→Session→Frontend State→UX、Database→Performance→Infrastructure等のrelationをsourceとともに追跡する。7 relation種（requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_of）をexact setとして照合する。固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
+- **BRAIN-005-AC-01 — 正常**：Authentication→Session→Frontend State→UX、Database→Performance→Infrastructure等のrelationをsourceとともに追跡する。親が列挙するrelation種（requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_of）を各々照合し、後続の根拠付きrelation typeを除外するclosed setへ変えない。固定L2のscopeとownerを越えず、参照source/revisionを追跡できること。
 - **BRAIN-005-AC-02 — 否定・失敗**：unknown endpoint、根拠のないtype/meaning/name-only edgeは確定しない。方向・意味が決められない場合L1-005へ戻す。 unknown endpoint/meaningはunknownとして関係ownerへ戻す。
 
 ### 固定親句の被覆
@@ -386,7 +386,7 @@ Pattern/Unit/Part間のrequires、depends_on、compatible_with、conflicts_with�
 | 親L2/L11の要素 | 要件／AC | 対応L10 | 観測oracle |
 |---|---|---|---|
 | 入力・identity・source: Pattern/Unit/Part endpoints・typed relation・source | `BRAIN-005-FR-01 / AC-01` | `L10-BRAIN-005-C01` | 入力fieldとsource/revision保持 |
-| 正常出力・意味: Authentication→Session→Frontend State→UX、Database→Performance→Infrastructure等のrelationをsourceとともに追跡する。 | `BRAIN-005-FR-01 / AC-01` | `L10-BRAIN-005-C01` | 7 relation種を各々source/両端identityと共に保持し、exact set照合 |
+| 正常出力・意味: Authentication→Session→Frontend State→UX、Database→Performance→Infrastructure等のrelationをsourceとともに追跡する。 | `BRAIN-005-FR-01 / AC-01` | `L10-BRAIN-005-C01` | 列挙されたrelation種を各々source/両端identityと共に保持し、closed setにはしない |
 | 否定・failure: unknown endpoint、根拠のないtype/meaning/name-only edgeは確定しない。方向・意味が決められない場合L1-005へ戻す。 | `AC-02` | `L10-BRAIN-005-C02` | 不正/不足がcandidate/unknown/holdとなり誤成功しない |
 | owner・戻し先: unknown endpoint/meaningはunknownとして関係ownerへ戻す。 | `AC-02` | `L10-BRAIN-005-C02` | 停止理由と固定親ownerへ返す先 |
 | 依存・束ね条件: BRAIN L1-005、L2-001/002。PO束ね条件: §BRAIN-L1-005。 | `FR-01 / AC-01,02` | `L10-BRAIN-005-C01,C02` | dependency identity/sourceと戻し先を明示 |
@@ -1593,7 +1593,7 @@ UWJのfacts/candidate/constraint/counterevidenceは隣接起点として再導�
 ### 親revisionとauthority
 
 - PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L79`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L79), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-020-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:414–423` raw span SHA-256 `28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:60–60` raw span SHA-256 `a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
-- 依存: L1-007/009/010、L2-007/008/009/010、LABO evaluation contract。列挙契約のidentity/revisionと対象flowを照合し、INFRA-009/010/012/017、BRAIN-019/020/022、CORE/Runtime/LABO契約の欠落・stale・wrong-scopeは該当flowをholdする。全知識の実装完了をgateにしない。L2-INFRA-017は親条件に従い該当時のみ適用する。
+- 依存: L1-007/009/010、L2-007/008/009/010、LABO evaluation contract。列挙された契約のidentity/revisionと対象flowを照合し、該当flowだけをholdする。INFRA-009/010/012、BRAIN-019/020/022、CORE/Runtime契約はこの親の依存として追加しない（別親の依存を混ぜない）。INFRA-017は親がInfrastructure candidateのmaturityを扱う場合だけ同revisionで照合する。全知識の実装完了をgateにしない。
 
 ### 要件候補
 
@@ -1602,7 +1602,7 @@ LABOが結んだ対象revision・候補revision・scope・method・evidence・re
 ### 受入条件（AC候補）
 
 - **BRAIN-020-AC-01 — 正常**: 候補revision一致のLABO評価receiptにscope/method/evidence/result/failure/counterexample/unassessed rangeを全て含め、evaluation identityとsource/versionを結びcandidate inputへ登録する。resultは未成熟candidateのまま。 8評価relation (target rev, candidate rev, scope, method, evidence, result, failure/counterexample, unassessed range)を完全traceし、対象不一致または部分評価からの誤昇格0件を候補値にする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-020-AC-02 — 否定・境界**: 対象revision不一致、failure/counterexample/unassessed rangeいずれか欠落、評価resultだけの昇格を個別/併発で投入し、LABOへ返しOS state/BRAIN adoptionを変えない。 対象revision不一致/評価部分欠落はunknown candidateとして止めLABOへ返す。OS登録stateの正本はOS。INFRA-017はInfrastructure candidateのmaturityを扱う場合だけ同revisionで照合し、不足は該当candidateをholdする。
+- **BRAIN-020-AC-02 — 否定・境界**: 対象revision不一致、failure/counterexample/unassessed rangeいずれか欠落、評価resultだけの昇格を個別/併発で投入し、LABOへ返しOS state/BRAIN adoptionを変えない。対象revision不一致/評価部分欠落はunknown candidateとして止めLABOへ返す。OS登録stateの正本はOS。INFRA-017はInfrastructure candidateのmaturityを扱うと明示されたflowだけ同revisionで照合し、不足はそのcandidateだけをholdする。
 
 ### 固定親句の被覆
 
@@ -1750,7 +1750,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 ### 受入条件（AC候補）
 
 - **BRAIN-030-AC-01 — 正常**: 二つの選択Patternとrelation/conflict、required fieldの既知値と一つの未決値をqueryし、知識receiptは受領可能だが対応義務はopen、設計完了/実装準備はfalseであること、双方向trace、contract範囲を照合する。 常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。 contract missing/unknown/stale→connection保留。selected knowledge field/meaning欠落/矛盾→BRAIN。receiver scope/schema/obligation mapping欠落→HARNESS。
+- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、選択Pattern version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。contract missing/unknown/stale→connection保留。selected knowledge field/version/conflict/meaning欠落・矛盾や製品固有選択→BRAIN。receiver scope/schema/obligation mapping欠落→HARNESS。
 
 ### 固定親句の被覆
 
@@ -1790,7 +1790,7 @@ BRAINは設計知識をL2-019/022の契約に従って製品HELIX-HARNESS-CORE/H
 - **BRAIN-024-AC-01 — 設計知識の正常flow**：L2-019/022境界と製品CORE/HARNESS宛先が結ばれ、設計Patternと対象scope/revisionが渡る。Runtime実績や直接Runtime接続のreceiptはこのflowに混ぜない。
 - **BRAIN-024-AC-02 — 実績の正常flow**：Runtime owner→LABO評価→L2-020 candidate接続を同一source/scope/revisionでtraceする。受領状態は評価candidateとして保持し、単独で汎用知識採用・maturity・Runtime成功事実へ昇格しない。
 - **BRAIN-024-AC-03 — 迂回・情報境界の拒否**：BRAIN↔Infrastructure Runtime直接read/write/learning、またはserver/network/database state、provider account、credential、operation permission、raw log/metricsの保存・受領を試みるfixtureは拒否またはholdする。BRAINはRuntime状態を正本化せず、Runtime ownerへ戻す。
-- **BRAIN-024-AC-04 — missing/stale/誤結合**：Infrastructure L2-009/010/012/017、BRAIN L2-019/020/022、およびCORE/Runtime/LABO契約のidentity/revisionを、適用する知識・flowとの対応ごとに個別にmissing/stale/wrong-scopeにする。owner boundary receipt、source identity、LABO評価、L2-020 candidate receipt、target revision/scopeの欠落・誤結合もそれぞれ照合する。該当flowだけunknown/holdとし、他flowや候補状態で相殺せず、対応ownerへ戻す。全知識の実装完了は要求しない。
+- **BRAIN-024-AC-04 — missing/stale/誤結合**：Infrastructure L2-009/010/012/017、BRAIN L2-019/020/022、およびCORE/Runtime/LABO契約のidentity/revisionを、適用する知識・flowとの対応ごとに個別にmissing/stale/wrong-scopeにする。owner boundary receipt、source identity、LABO評価のmethod/evidence/result/failure/counterexample/unassessed range、L2-020 candidate receipt、target revision/scopeの欠落・誤結合もそれぞれ照合する。該当flowだけunknown/holdとし、他flowや候補状態で相殺せず、対応ownerへ戻す。INFRA-017はInfrastructure candidateのmaturityを扱うflowに限り適用し、全知識の実装完了は要求しない。
 
 ### BRAIN-024 固定親句の被覆
 
