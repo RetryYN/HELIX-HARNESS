@@ -38,7 +38,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - trade-off・失敗の仕方：
   - `PublishedFailed`や、commit後にprocessが落ちて残った`NotPublished`の行を後から再送する経路は、固定commitのsrc全体を`PublishedFailed`、`RetrieveEventLogsPendingToPublishAsync`、`TimesSent`でgrepしても見つからなかった。publishの起点は、そのtransaction IDを持つ直後の呼出しだけである。
   - `TimesSent`は加算されるが、加算値を読む利用者はmigration以外に見つからなかった。
-  - publishが成功し`Published`への更新が失敗した場合、またはその逆の場合は、送信が二重になるか欠けうる。これを防ぐ処理はこの範囲のコードに見当たらない（観察した事実であり、評価はしない）。
+  - `OrderingIntegrationEventService.cs` 行22–24の順序は、`InProgress`への更新 → `PublishAsync` → `Published`への更新である。publishが成功した後に`Published`への更新が失敗した場合や、その間でprocessが止まった場合は、行が`InProgress`のまま残る。publish自体が失敗した場合は`PublishedFailed`になる。どちらの場合も、上で述べたとおり後から再送する経路はsrc内で確認できていない。そのため、二重送信や欠落が実際に起きるかどうかは、再送経路の有無に依存し、この範囲では判定していない。
 - 反例・適用しない場合：DebeziumはrelayをDBの外（CDC）に出している（O02）。pyeventsourcingは、下流がupstreamのnotification logをpullするため、outboxの表を別に持たない（O09）。
 - 互換・非互換：O03（受信側の冪等化）と組で読む必要がある。O02とは、relayの位置が異なる別解である。
 - 限界：sample applicationであり、運用規模の前提は書かれていない。状態値・型名の規約は持ち込まない。
@@ -80,7 +80,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 必要な入力：request IDの発行元（呼出し側）、重複時に返す値。
 - trade-off・失敗の仕方：
   - integration event handlerの一つ（`OrderStockRejectedIntegrationEventHandler`）は、`IdentifiedCommand`で包まずに素のcommandを`mediator.Send`している（行15、24）。この経路では、重複配信への防御はaggregateの状態ガード（O04）に頼る形になる。
-  - 同じcommand handlerファイルには、作業時間を模したdelayがある（具体値は持ち込まない）。
+  - integration eventを受けて状態を変える別のcommand handler（`SetStockConfirmedOrderStatusCommandHandler.cs`、`SetStockRejectedOrderStatusCommandHandler.cs`、`SetPaidOrderStatusCommandHandler.cs` の各行22）には、作業時間を模したdelayがある（具体値は持ち込まない）。`IdentifiedCommandHandler.cs`にはない。
 - 反例・適用しない場合：pyeventsourcingは、別表のrequest IDではなく、処理位置（tracking）を一意制約付きで書き、同じtransactionに入れる（O09）。
 - 互換・非互換：O01、O02の後段に置くことが前提。O04と重ねて使っている。
 - 限界：IDの寿命や表の掃除は確認していない。
@@ -138,7 +138,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 何をしているか：
   - participantのcommand handlerは、pre-lockまたはreplyでlock対象（資源）を宣言できる。`claimLock`は`saga_lock_table`へのinsertを試みる。重複キーなら`SELECT ... FOR UPDATE`で所有者を確かめ、自分なら成功、他人なら失敗にする。
   - 失敗した場合、commandは`StashMessageRequiredException`で`saga_stash_table`へ退避する。replyには`REPLY_LOCKED`のheaderが付き、orchestratorはそれを「saga instanceが持つ資源」として覚える。
-  - saga終了時に`SagaUnlockCommand`を送る。`unlock`は所有者を照合し、stashがあれば最古の1件に所有を移してそのmessageを再処理し、なければlock行を消す。
+  - saga終了時に`SagaUnlockCommand`を送る。`SagaLockManagerImpl.unlock`（行71–103）は所有者を照合し、stashがあれば`ORDER BY message_id LIMIT 1`（`SagaLockManagerSql.java` 行23）で選んだ1件に所有を移して、そのmessageを返す。なければlock行を消す。ただし呼出し側の`SagaCommandDispatcher.java` 行35は`ifPresent(m -> super.messageHandler(message))`で、返されたstashのmessage `m`ではなく、unlockのmessage自体を渡している。stashしたmessageを再処理するという意図と、固定commitの実装の観察は一致しない。選択順はmessage_idの順で、作成時刻の順であるかは確認していない。
 - 解いている問題と前提：sagaにはisolationがないので、同じ資源を触る別sagaの割込みを、業務上のlockで直列化する（semantic lock）。前提はRDBの一意制約と行lock。
 - 必要な入力：lock対象の識別子の作り方（型＋ID。`LockTarget`）、どのcommandがlockを取るか。
 - trade-off・失敗の仕方：

@@ -23,7 +23,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 何をしているか：`scaleExecutor.RequestScale` は、trigger が active か（`isActive`）とerrorがあるか（`isError`）を受け取り、switch で場合分けします。KEDA自身が行うのは 0（または `IdleReplicaCount`）と最小値のあいだの移動（`scaleFromZeroOrIdle`／`scaleToZeroOrIdle`）だけです。コメントは「HPA will handle other scale in operations」と書いており、1↔N は HPA に任せています。HPAの安定化設定（`HorizontalPodAutoscalerBehavior`）は `AdvancedConfig.HorizontalPodAutoscalerConfig.Behavior` を通じて HPA にそのまま渡します。0へ縮める判断には `LastActiveTime` と `CooldownPeriod`／`InitialCooldownPeriod` を使い、cooldown 中は `ScalerCooldown` を condition に記録します。
 - 解いている問題と前提：イベント駆動の負荷（queue等）で 0 まで縮めたい一方、HPA は 0 replica で自分を無効化します（`getHPAHealth` のコメント 行146–157）。Kubernetes の scale subresource と HPA があることが前提です。
 - 必要な入力：trigger の定義、最小・最大・idle の replica 数、cooldown の長さ、HPA behavior（stabilization 等）。
-- trade-off・失敗の仕方：外部から scale されて `LastActiveTime` が nil の場合は cooldown を無視して縮めます（行220–221のコメント）。trigger の一部だけが error のときは `PartialTriggerError` で Ready を Unknown にし、scale しません（行81–84）。issue #7488（https://github.com/kedacore/keda/issues/7488、closed）では、0 へ縮めても以前の Fallback condition が残り、GitOps 側から失敗に見えたことが報告されています。
+- trade-off・失敗の仕方：`LastActiveTime` が nil の場合（外部から scale された場合、行220–221のコメント）は、cooldownの代わりに、ScaledObjectの作成時刻から `InitialCooldownPeriod` が過ぎたかで縮めるかを決めます（行222）。trigger が active で一部が error のときの switch（行77–87）は、最初の case（IdleReplicaCount が設定されて現在数が最小未満、または現在数が0）を先に評価します。その case に当たれば、error があっても `scaleFromZeroOrIdle` へ進みます。当たらない場合に限り、`PartialTriggerError` で Ready を Unknown にし、scale しません（行81–84）。issue #7488（https://github.com/kedacore/keda/issues/7488、closed）では、0 へ縮めても以前の Fallback condition が残り、GitOps 側から失敗に見えたことが報告されています。
 - 反例・適用しない場合：VPA（O03）は台数ではなく1台あたりの資源量を変えます。CA（O04）は pod ではなく node を扱い、0↔1 のような活性化の段を持ちません。
 - 互換・非互換：O02（fallback）と組み合わさります。O03 と同じ resource に同時に掛けた場合の扱いは今回読んだ範囲には出てきません。
 - 限界：polling 間隔、cooldown、既定の最小・最大値は持ち込みません。
@@ -43,7 +43,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 何をしているか：recommender は `ResourceEstimator` を decorator のように重ねて組み立てます。percentile 推定（`NewPercentileCPUEstimator`）に安全余裕（`WithCPUMargin`）を掛け、さらに履歴の長さに応じた信頼度係数（`WithCPUConfidenceMultiplier`）を掛けます。これを Target／LowerBound／UpperBound の3系統で別々に作ります。updater は、pod の現在の request が LowerBound と UpperBound の範囲外のとき（`OutsideRecommendedRange`）、または短時間で OOM が起きたときだけ更新します。範囲内なら、pod が一定以上の時間動いていて、差分も一定以上ある場合に限ります。実際の eviction は `PodsEvictionRestriction.CanEvict` が replica 群ごとの許容数で絞ります。
 - 解いている問題と前提：推奨値が揺れるたびに再起動が起きるのを防ぎます（範囲によるヒステリシス）。履歴の短い pod に強い変更を掛けないため、コメントは「履歴なしなら上限は無限大、下限は0」と説明しています。資源使用量の履歴（histogram）を持っていることが前提です。
 - 必要な入力：percentile、安全余裕、信頼度の係数と指数、更新を許す最小の差分と最小の稼働時間、eviction の許容割合。
-- trade-off・失敗の仕方：短時間の OOM でも resource が変わらなければ evict しません（行149–152）。`StartTime` がない pod は更新しません（TODO として残っています）。replica 数が最小値を下回る群は evict しません（`belowMinReplicas`）。
+- trade-off・失敗の仕方：短時間の OOM でも resource が変わらなければ evict しません（行149–152）。範囲内かつ quickOOM でない場合に限り（行133）、`StartTime` がない pod は更新しません（行134–137、TODO として残っています）。範囲外や quickOOM の pod にはこの条件は掛かりません。replica 数が最小値を下回る群は evict しません（`belowMinReplicas`）。
 - 反例・適用しない場合：KEDA や HPA は台数を変えるもので、1台の再起動を伴いません。CA は「unneeded 状態が続いた時間」で安定させ、範囲による帯は使いません（O04）。
 - 互換・非互換：O04（CA）とは、VPA が request を増やせば CA の scale-up 信号（unschedulable）になる、という形でつながります。
 - 限界：percentile、余裕、係数、時間の値（コメントにある具体値を含む）は持ち込みません。
@@ -63,9 +63,9 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 何をしているか：FAQ の方式では、低優先度の pause pod が容量を押さえておきます。本当の pod が来ると pause pod が preempt され、今度は pause pod が置けなくなるので CA の scale-up を引き起こします。`CapacityBuffer` CRD はこれを API にしたもので、`PodTemplateRef` と `ScalableRef` のどちらか一方で buffer 1単位の形を示し、`Replicas`／percentage／`limits` から buffer の量を決めます（最大を取ってから limits で上限を掛ける、とコメントにあります）。`ProvisioningStrategy` で使い方を切り替えます。
 - 解いている問題と前提：node の起動が遅いため、反応型の scale-up だけでは急な負荷に間に合わない、という問題です。priority と preemption があることが前提です。
 - 必要な入力：buffer 1単位の形、量の決め方（固定数か、cluster の大きさに比例か）、上限。
-- trade-off・失敗の仕方：FAQ は、cluster の大きさに比例させるには別の部品（cluster-proportional-autoscaler）が要ると書いています。空き容量の費用は O10 の idle cost になります。
+- trade-off・失敗の仕方：FAQ は、cluster の大きさに比例させるには別の部品（cluster-proportional-autoscaler）が要ると書いています。空き容量の費用は O11 の idle cost になります。
 - 反例・適用しない場合：KEDA の 0 への縮小（O01）は、反対に空き容量をなくす方向です。
-- 互換・非互換：O04 と組み合わさります。O10 では、この容量が配分対象（idle）として表に出ます。
+- 互換・非互換：O04 と組み合わさります。O11・O12 では、この容量が配分対象（idle）として表に出ます。
 - 限界：buffer の量は持ち込みません。
 
 ### P04-O06 協調型のbackpressure：利用側が throttler に問い合わせ、app ごとに比率・期限・除外を持つ
