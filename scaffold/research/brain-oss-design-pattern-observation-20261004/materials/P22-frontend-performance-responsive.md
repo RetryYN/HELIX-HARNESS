@@ -210,7 +210,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：P22-O12の値を入力にする。P22-O11のfieldの値に同じ形の予算を当てる仕組みは、読んだ範囲では見つからなかった。
 - 限界：予算の値は持ち込まない。Lighthouse CIのrepositoryは読んでおらず、`assert` の形式はissueの記述に限る。
 
-### P22-O14 layoutの応答性：viewport基準のbreakpointとcontainer queryを、同じtoken名前空間と順序付けで生成する
+### P22-O14 layoutの応答性：viewport基準のbreakpointとcontainer queryを、別々のtoken名前空間（`--breakpoint`と`--container`）から同じ順序付けの方式で生成する
 - 出典：tailwindcss、`packages/tailwindcss/src/variants.ts` 行1002–1110（https://github.com/tailwindlabs/tailwindcss/blob/fa81d697fe572a10ac150d18964a093a7a874081/packages/tailwindcss/src/variants.ts#L1002-L1110）、行1112–1221（https://github.com/tailwindlabs/tailwindcss/blob/fa81d697fe572a10ac150d18964a093a7a874081/packages/tailwindcss/src/variants.ts#L1112-L1221）、`packages/tailwindcss/src/utils/compare-breakpoints.ts` 行1–48（https://github.com/tailwindlabs/tailwindcss/blob/fa81d697fe572a10ac150d18964a093a7a874081/packages/tailwindcss/src/utils/compare-breakpoints.ts#L1-L48）、`packages/tailwindcss/src/utilities.ts` 行6064–6083（https://github.com/tailwindlabs/tailwindcss/blob/fa81d697fe572a10ac150d18964a093a7a874081/packages/tailwindcss/src/utilities.ts#L6064-L6083）。issue：tailwindlabs/tailwindcss#14204（https://github.com/tailwindlabs/tailwindcss/issues/14204、closed、v3系の報告）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   - viewport基準のbreakpointは、theme の `--breakpoint` 名前空間のtokenごとに静的variant（名前付き）を登録し、`@media (width >= 値)` を生成する。`min-*`／`max-*` は任意の値も受ける。

@@ -228,7 +228,7 @@ envoyは大きいため、sparse checkoutで次の範囲だけを取得した：
 - trade-off・失敗の仕方：
   - `invoke` の例外には、entry processorの中で呼んだsupplier自身の例外も含まれうる。その場合、fallbackでsupplierがもう一度呼ばれる（今回読んだcodeから読める経路で、issueでの報告は確認していない）。supplierが副作用を持つと二重に実行される。
   - cacheが落ちると、全呼出しが元の処理へ素通しされ、元の処理への負荷が一度に戻る。合流の仕組み（P17-O12）は無い。
-- 反例・適用しない場合：groupcache（P17-O12）は、miss時の読込みを合流させ、所有者だけが読む。
+- 反例・適用しない場合：groupcache（P17-O12）は、miss時の読込みをprocess内で合流させ（singleflight）、keyの所有者のpeerから取得することを優先する。所有者のpeerからの取得に失敗すると、所有者でないnodeも自分で読む（`getLocally`、`groupcache.go` 行275–299）。
 - 互換・非互換：P17-O12と対照。P17-O07（circuit breaker）と組み合わせると、cache障害時に素通しされた負荷を依存先側で止める構成になりうるが、そう組み合わせた例は今回のrepoで見ていない。
 - 限界：JCache側の期限・追出しの値は扱わない。
 
@@ -241,7 +241,7 @@ envoyは大きいため、sparse checkoutで次の範囲だけを取得した：
 | 依存先が壊れたときに止める仕組み | resilience4j：失敗率と遅い呼出し率による状態機械、half-openで試験（O07・O08） | envoy：資源数の上限（circuit breaker）とhostの除外（outlier検出、除外時間は回数で伸びる）（O10） | 同じ「circuit breaker」の語が別の仕組みを指す。process内の1依存先か、clusterの複数hostか |
 | retryの総量の抑制 | envoy：要求量に対する割合のretry budgetと下限（O10） | resilience4j：decoratorの順序で、retryがopenによる拒否を再試行するかが決まる（O07）。budgetは今回読んだ範囲で見ていない | retryをproxyが一元的に持つか、呼出し側のcodeが持つか |
 | 自身の資源が尽きそうなとき | envoy overload manager：monitor→trigger→action／load shed point、確率的に落とす（O11） | concurrency-limits：資源を直接は見ず、遅延の伸びで上限を下げる（O02） | 資源（memory等）を直接測れるか |
-| cache missの殺到 | groupcache：singleflightで合流し、所有者だけが読む。値は不変で無効化しない（O12） | resilience4j cache：合流なし。cache障害時は素通し（O14） | 値を不変にできるか。cacheを分散させるか |
+| cache missの殺到 | groupcache：process内のsingleflightで合流し、所有者のpeerからの取得を優先する（失敗時は所有者でないnodeも自分で読む）。値は不変で無効化しない（O12） | resilience4j cache：合流なし。cache障害時は素通し（O14） | 値を不変にできるか。cacheを分散させるか |
 | 接続の多重化 | pgbouncer：返す時点（session／transaction／statement）でsession状態の契約が決まる（O13） | envoy：protocolの多重化（HTTP/2・3のstream）と、worker×host×protocolごとのpool（O13） | session状態を持つprotocolか |
 
 ## 見つからなかったこと・gap

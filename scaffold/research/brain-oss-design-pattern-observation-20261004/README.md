@@ -101,12 +101,13 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
   - 独立review（PR #2569）で、条件付きの処理を一般化した記述と、初期設計の説明を保証として写した記述が見つかった。原文を読み直して訂正した（P14-O01 背景を宣言した役割色だけの実行時検査、P08-O11 Quartzの即時再実行、P15-O10 sonnerのissueとMDCの確認範囲の区別、P11-O04 atomicな表名切替と失敗時に元へ戻る保証の区別）。あわせて、P12-O07・O11に設計文書と実装の出典の区別を補った。
   - 第2弾は、permalinkの書き方を全文URLに揃えた（調査担当が接頭辞の略記で返したP08と、URLを省略したP10の5件を展開した）。
 - **第3弾（P16〜P23）の照合**：第1弾・第2弾と同じ手順で行い、内容の照合は書いた調査担当とは別の照合担当が行った。
-  - permalink 394件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - permalink 442件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典と、独立review（PR #2573）を受けて範囲ごとに付け直した出典を含む）。
   - 内容の抜き取り照合は各材料26〜113件、計413件。分岐条件、呼出し順、既定の挙動、保証の範囲、状態遷移など、誤りやすい主張を優先して選んだ。
     - 原文にない・逆の記述（WRONG）は2件だった。P17-O02はissueの唯一のcommentをmaintainerの回答と書いていた。P23-O06は、対応表の破棄時期が原文に書かれているのに「書かれていない」としていた。どちらも原文どおりに直した。
     - 主張の一部が原文と違うもの（PARTIAL）は50件だった。条件付きの処理の一般化、推論を事実として書いたもの、呼出し順の誤りが多かった。書いた調査担当が固定commitの原文を読み直し、全件を直した。原文が元の記述を支持したために変えなかったものはなかった。
     - 行のずれ（SHIFTED）9件、観察IDの相互参照の誤り6件、比較表と本文の食い違い4件も直した。
   - SPDXとarchivedの記載は、45 repositoryすべてでGitHub APIの値と一致した。
+  - 独立review（PR #2573、Codex）で、Major 4件・Minor 7件の指摘を受けた。条件付きの処理の一般化（P17-O14のgroupcache、P19-O11のblob）、引用元の範囲を越えた一般化（P20-O11）、暗号上の仕組みと組織上の前提の混同（P21-O02）、推論の区別（P19-O14）、見出しの表記、permalinkの付け方、bindingの照合件数の表記である。P19-O11は、作成側の照合を受けた修正で新しく入った誤りだった。原文を読み直して全件を直した。
 - **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾〜第3弾とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
 - **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。第3弾も同じ扱いで、`NOASSERTION`またはnullのもの（adr/madr、arc42/arc42-template、python/peps、pgbouncer/pgbouncer、cockroachdb/cockroach、PostHog/posthog、withastro/astro、18F/guides・methods・ux-guide、uswds/uswds-site、alphagov/govuk-design-system-backlog）はLICENSE fileの冒頭の文言を併記した。copyleftまたはshare-alikeのもの（facebook/rocksdb、matomo-org/matomo、arc42/arc42-template、ddd-crew/context-mapping）は、構造の観察だけにした。
 

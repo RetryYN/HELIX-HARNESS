@@ -104,8 +104,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "permalink 222件の固定commit上の実在と行範囲の機械照合",
-      "各材料8件以上の引用行の内容照合（抜き取り）",
+      "各材料に書かれた全permalinkについて、固定commit上のfileの実在と行範囲の機械照合（件数は弾ごとにREADMEの「照合」に記録）",
+      "各材料の引用行の内容照合（第1弾・第2弾は抜き取り、第3弾は作成者と別の照合担当による抜き取り。件数はREADMEの「照合」に記録）",
       "値・機密の形（hex色、px、ms、メールアドレス）のgrep",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py validate",

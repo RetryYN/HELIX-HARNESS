@@ -71,7 +71,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - 方法カード側は、募集先を「今使っている人／最近使った人／以前使った人／似た物を使う人」の近さの順に並べ、到達経路を別に並べる（recruiting.md 行21–30）。
 - 解いている問題と前提：誰から学ぶかで結果が変わる。手近な人（友人・同僚）に偏ると、本来の利用者を代表しない。届きにくい群は、関係を持つ組織を通さないと募集できない前提である。
 - 必要な入力：研究の問い、利用者群の仮説（既存のpersona等）、届きにくい群へ到達する経路、参加者への害の見立て。
-- trade-off・失敗の仕方：基準を細かくするほど募集に時間がかかる、というのは本書の推論である（原文に基準の細かさと時間の関係の記述はない）。原文は、相手機関が地域の組織・communityとの関係を持たない場合に、募集が設計調査で最も時間のかかる部分になりうる、と書く（plan.md 行259–263）。安全のために弱い状態の人を外すと、その状態の経験は間接的にしか得られない。
+- trade-off・失敗の仕方：基準を細かくするほど募集に時間がかかる、というのは本書の推論である（原文に基準の細かさと時間の関係の記述はない）。原文は、相手機関が地域の組織・communityとの関係を持たない場合に、募集が設計調査で最も時間のかかる部分になりうる、と書く（plan.md 行259–263、https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/plan.md#L259-L263）。安全のために弱い状態の人を外すと、その状態の経験は間接的にしか得られない。
 - 反例・適用しない場合：USWDS（P23-O13）は募集を常設のsign-up（参加候補者の名簿への登録）で受け、研究ごとの基準は頁に書いていない。GOV.UK（P23-O10）は「Design Systemを使う人なら職位・経験を問わない」常設の募集を、試行として置く（continuous-research 行10）。
 - 互換・非互換：P23-O02（研究の問い）に依存する。P23-O05（同意）とP23-O06（rosterと分離保管）が募集の後に続く。
 - 限界：属性の例示・年齢範囲・期間などの値は持ち込まない。米国の法令・行政命令への言及は観察の対象外とした。
@@ -91,7 +91,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 限界：撤回期限、謝礼額などの値は持ち込まない。法令名は米国固有である。
 
 ### P23-O06 記録とPII：rosterと研究dataの分離、participant code、共有分析の前の匿名化、共有前の録音削除
-- 出典：18F/guides、`content/ux-guide/research/plan.md` 行351–357（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/plan.md#L351-L357）、`content/ux-guide/research/privacy.md` 行28–60（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/privacy.md#L28-L60）、`content/ux-guide/research/make-research-actionable.md` 行72–74、133–137（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L133-L137）。信頼性ラベル：primary。本文確認：済
+- 出典：18F/guides、`content/ux-guide/research/plan.md` 行351–357（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/plan.md#L351-L357）、`content/ux-guide/research/privacy.md` 行28–60（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/privacy.md#L28-L60）、`content/ux-guide/research/make-research-actionable.md` 行72–74（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L72-L74）、133–137（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L133-L137）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   - 参加者の名前・連絡先と、連絡・実施・謝意の進み具合、参加辞退を表で持つ「roster」を作る。roster、質問guide、録画、notesを入れるfolderはcore teamだけがaccessできるようにし、共有するnotesでは参加者番号を使う（plan.md 行353–357）。
   - PIIは文脈で決まるとし、声・写真・動画は常にPII、連絡先は組み合わせでPIIになるとする。集めないことを第一にする（privacy.md 行32–33）。
@@ -118,7 +118,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 限界：道具名や契約手続きは18F固有で、観察に含めない。
 
 ### P23-O08 発見を判断に結び付ける：研究の問いに照らした意味づけ、成果物、次のsprintへの反映、品質の指標
-- 出典：18F/guides、`content/ux-guide/research/make-research-actionable.md` 行36–55、93–127、146–151（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L93-L127）、`content/ux-guide/resources/usability-test-quality-heuristics.md` 行28–58（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/resources/usability-test-quality-heuristics.md#L28-L58）、`content/ux-guide/research/plan.md` 行309–317（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/plan.md#L309-L317）。信頼性ラベル：primary。本文確認：済
+- 出典：18F/guides、`content/ux-guide/research/make-research-actionable.md` 行36–55（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L36-L55）、146–151（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L146-L151）、93–127（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/make-research-actionable.md#L93-L127）、`content/ux-guide/resources/usability-test-quality-heuristics.md` 行28–58（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/resources/usability-test-quality-heuristics.md#L28-L58）、`content/ux-guide/research/plan.md` 行309–317（https://github.com/18F/guides/blob/debc24b34f23686194d9fe42e391859d569bd39a/content/ux-guide/research/plan.md#L309-L317）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   - 研究計画の段で、outputs（共有のための文書・図）と outcomes（研究で起きると期待する変化。goalsに結び付ける）を分けて合意する。何が見つかるか分からないため、outputsを細かく約束しすぎないとする（plan.md 行309–317）。
   - 意味づけは常に計画で決めた研究の問い・問題記述に照らして行う（make-research-actionable.md 行36–55）。
@@ -133,7 +133,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 限界：優先順位づけの軸や枠組みは例示であり、持ち込まない。
 
 ### P23-O09 component・pattern頁の中に研究記録の節を固定する（研究の要約／既知の問題とgap／利用しているservice／次の調査）
-- 出典：alphagov/govuk-design-system-backlog、`docs/DESIGN_SYSTEM_CONTENT_PATTERN.md` 行1–11、42–84（https://github.com/alphagov/govuk-design-system-backlog/blob/4ce8cebd66dc2dcddd388d0e3de2ad8504e4aa43/docs/DESIGN_SYSTEM_CONTENT_PATTERN.md#L42-L84）。alphagov/govuk-design-system、`src/components/character-count/index.md` 行103–136（https://github.com/alphagov/govuk-design-system/blob/d1b51e67c01d841d7cba58a29ef1f74384cb7b34/src/components/character-count/index.md#L103-L136）。信頼性ラベル：primary。本文確認：済
+- 出典：alphagov/govuk-design-system-backlog、`docs/DESIGN_SYSTEM_CONTENT_PATTERN.md` 行9–11（https://github.com/alphagov/govuk-design-system-backlog/blob/4ce8cebd66dc2dcddd388d0e3de2ad8504e4aa43/docs/DESIGN_SYSTEM_CONTENT_PATTERN.md#L9-L11）、42–84（https://github.com/alphagov/govuk-design-system-backlog/blob/4ce8cebd66dc2dcddd388d0e3de2ad8504e4aa43/docs/DESIGN_SYSTEM_CONTENT_PATTERN.md#L42-L84）。alphagov/govuk-design-system、`src/components/character-count/index.md` 行103–136（https://github.com/alphagov/govuk-design-system/blob/d1b51e67c01d841d7cba58a29ef1f74384cb7b34/src/components/character-count/index.md#L103-L136）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   - 頁の記述patternは、Overview、When to use、How it works、Research on this [component/pattern] の順に節を置く。研究節は、研究の文脈（単独で試したか、prototypeの一部か、live serviceか）と、試した利用者の種類（障害のある利用者、digital literacyの低い利用者等）を要約し、より詳しい研究notesへのlinkで終える。そのnotesは公開の場所に置く（行42–52）。
   - 研究節の下に、`Known issues and gaps`（既知の問題と研究のgap）、`Services using this [component/pattern]`（利用しているserviceの例）、`Next steps`（残る調査や答えるべき問い）を置く（行54–84）。experimentalなものは冒頭で「さらなる研究が要る」と研究節へlinkする（行9–11）。

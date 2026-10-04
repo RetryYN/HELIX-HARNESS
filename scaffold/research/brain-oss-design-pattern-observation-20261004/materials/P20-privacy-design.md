@@ -11,7 +11,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 | ethyca/fides | https://github.com/ethyca/fides | e87f3ff835af368defc1ec42dc29ec545a288585（default branch: main） | Apache-2.0 | true | 2026-10-05 | dataの分類（category・use・subject）を宣言として持ち、宣言とpolicyの静的評価、利用目的による実行時のaccess判定、削除・開示要求のgraph実行、影響評価のschemaを1つのrepositoryで読める。GitHub APIでarchived=trueであり、固定commit時点の観察に限る |
 | microsoft/presidio | https://github.com/microsoft/presidio | d8847904621733f4eaad4f9bd977b96a11325c90（main） | MIT | false | 2026-10-05 | 非構造textから個人情報を検出し、匿名化・仮名化の操作を差し替え可能にしている。検出に保証がないことを明記している。repository内の`docs/project_transition.md`は、正式URLが別organizationへ移ったと書いている（本書は上記URLの固定commitを読んだ） |
 | opendp/opendp | https://github.com/opendp/opendp | c5debf254c914a8f9d03411c63a5de633fa94a9a（main） | MIT | false | 2026-10-05 | 差分プライバシーを、privacy loss（予算）の型付き写像と、予算を超える問合せを拒否するfilterで実装している。証明の検証が済んでいない部品をfeature flagで分けている |
-| PostHog/posthog | https://github.com/PostHog/posthog | 451ab38b007af543676d4414fb643ae394b5fa6d（master） | NOASSERTION（LICENSE冒頭：`ee/` 配下は `ee/LICENSE`、第三者部品は各原licenseに従い、それ以外は「MIT Expat」licenseとする旨の記載。本書が読んだpathはすべて `ee/` の外） | false | 2026-10-05 | 個人に帰属する行を持つ全tableを削除対象として1か所に登録し、TTLだけに任せる表を明示し、削除の到達を検証する設計文書と実装がある。削除要求の承認と自動承認の設計文書（plan）もある |
+| PostHog/posthog | https://github.com/PostHog/posthog | 451ab38b007af543676d4414fb643ae394b5fa6d（master） | NOASSERTION（LICENSE冒頭：`ee/` 配下は `ee/LICENSE`、第三者部品は各原licenseに従い、それ以外は「MIT Expat」licenseとする旨の記載。本書が読んだpathはすべて `ee/` の外） | false | 2026-10-05 | ClickHouseの中で個人に帰属する行を持つtableを削除対象として1か所に登録し、TTLだけに任せる表を明示し、削除の到達を検証する設計文書と実装がある。削除要求の承認と自動承認の設計文書（plan）もある |
 | matomo-org/matomo | https://github.com/matomo-org/matomo | 2053ecaffd849bbc0dd527aa7eb74ca73d705b2d（6.x-dev） | GPL-3.0 | false | 2026-10-05 | data subjectの削除・export、raw logと集計reportの別々の保持期間、遡及的な匿名化job、収集時点の匿名化を1つのpluginで持つ。copyleftのため構造の観察だけにした |
 
 ## 観察
@@ -59,7 +59,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：本人の識別子が直接書かれていないtableにも、参照をたどって届くことと、外部キーの都合で削除順が要るtableだけを順序付けることの両立。dataset側のfield参照と、identity fieldの注記が正しいことが前提である。
 - 必要な入力：datasetのfield間参照、identity fieldの指定、collectionごとの `erase_after`、要求の種類（開示／削除／同意）と、要求に含まれる識別子。
 - trade-off・失敗の仕方：参照の注記が欠けているtableには走査が届かない（届かないこと自体は、到達できないnodeとして扱われる。node filterで「この場面では無関係」と除外もできる。traversal.py 行101–103）。`erase_after` の誤りは循環・宙づり参照として実行前に止まるが、注記されていない順序依存は検出されない。
-- 反例・適用しない場合：全dataが1つのDBにあり外部キーのcascadeで消える構成では、graph走査は過剰になりうる。逆に、削除対象をtable registryで列挙する方式（P20-O11）は、走査ではなく「個人に帰属する列を持つ全table」を宣言で持つ。
+- 反例・適用しない場合：全dataが1つのDBにあり外部キーのcascadeで消える構成では、graph走査は過剰になりうる。逆に、削除対象をtable registryで列挙する方式（P20-O11）は、走査ではなく、ある保存基盤（PostHogではClickHouse）の中で個人に帰属する行を持つtableを宣言で持つ。
 - 互換・非互換：P20-O04（要求の状態機械）の実行部分にあたる。P20-O06（masking strategy）が削除の具体的な書換えを担う。P20-O11（PostHogの削除対象registry）、P20-O13（Matomoの削除順序の決め方）とは、到達範囲の決め方が異なる。P08（background job）のtask依存・失敗伝播と構造が近い。
 - 限界：`run_erasure_request` 以降の実行部、connectorごとの削除queryは読んでいない。
 
@@ -161,18 +161,18 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：P20-O09のcompositorと対になる。P10（rate limit）の「上限で拒否する」構造と似るが、ここで消費されるのは回数ではなくプライバシーの損失である。旧HELIXの「検査greenを完了とみなさない」（SCF-B-0155 D08-M02）と、「検証済みと未検証を利用時に区別する」点で関係しうる（照合はしていない）。
 - 限界：odometerの実装、`.tex` の証明、vettingの手続き（`contributing/proof-initiation.rst`）は読んでいない。
 
-### P20-O11 個人に帰属する行を持つ全tableを削除対象のregistryに1か所で登録し、TTLだけに任せる表を明示する。即時の削除経路では、削除が届かない場合に成功と報告せず失敗させる（定期の削除jobは報告に留まる）
+### P20-O11 個人に帰属する行を持つClickHouseのtableを削除対象のregistryに1か所で登録し、TTLだけに任せる表を明示する。即時の削除経路では、削除が届かない場合に成功と報告せず失敗させる（定期の削除jobは報告に留まる）
 - 出典：PostHog、`posthog/models/deletion_targets.py` 行1–12、45–59、68–137（https://github.com/PostHog/posthog/blob/451ab38b007af543676d4414fb643ae394b5fa6d/posthog/models/deletion_targets.py#L1-L137）、`docs/internal/clickhouse-deletion-coverage.md` 行1–29（https://github.com/PostHog/posthog/blob/451ab38b007af543676d4414fb643ae394b5fa6d/docs/internal/clickhouse-deletion-coverage.md#L1-L29）、行31–52（https://github.com/PostHog/posthog/blob/451ab38b007af543676d4414fb643ae394b5fa6d/docs/internal/clickhouse-deletion-coverage.md#L31-L52）、行105–140（https://github.com/PostHog/posthog/blob/451ab38b007af543676d4414fb643ae394b5fa6d/docs/internal/clickhouse-deletion-coverage.md#L105-L140）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
-  - module docstringは、個人のdataの削除はevents表の性質ではなく、個人に帰属する行を持つ全tableの性質であると書く。新たに個人のdataを持ち始めたtableは、監査で数か月後に見つかるのではなく、ここへ登録されるようにする（行1–5）。
+  - 対象の範囲はClickHouseのtableである。module docstringは「data deletionが掃除すべき物理的なClickHouse table」の一覧と題し（行1）、coverage文書も「data deletionがどのClickHouse tableに届くか」の説明と書く（行3）。そのうえでdocstringは、個人のdataの削除はevents表の性質ではなく、個人に帰属する行を持つすべてのtableの性質であると書く。新たに個人のdataを持ち始めたtableは、監査で数か月後に見つかるのではなく、ここへ登録されるようにする（行3–5）。Postgres側は、削除をqueueへ積む行（`AsyncDeletion`）を書き手が自分の削除と同じtransactionで入れる経路として、別に説明されている（coverage文書 行24–25）。本観察はPostHogの全保存先を網羅した仕組みとしては読んでいない。
   - 全targetは、全員が宣言する共通の列だけで作った条件で掃除される（行7–8）。それ以上を要する削除（propertyの書換え、person IDの付け替え）は、targetごとのcapability fieldで表す。docstringは、能力の無いtableに対して呼出し側が黙って飛ばすのではなく、大きな音で失敗するためと書く（行75–76）。
   - capability fieldには、property書換えの可否、person propertiesを保持しているか、person IDの付け替えを受けるか、uuidの候補として読むか、保持しうるevent名がある。property書換えはperson propertiesの保持を前提とし、組合せの不整合は `__post_init__` で拒否する（行132–137）。person IDの付け替えを受けない（`False`）のは、mergeで行が取り残されうるという決定であり、testがその決定の記録を求める（行118–124）。
   - errorの型を、到達できない（`UnreachableTargetError`）、到達できない別tableに行が残る（`UnsweepableRowsError`）、掃除が完了したのに行が読める（`UnsweptRowsError`）に分けている（行45–58）。
   - coverage文書は、TTLだけに任せる表を `TTL_ONLY_TABLES` として列挙し、それぞれが「削除が保持期間だけ遅れてよい」という決定であると書く（行105–108）。
   - 残存件数の数え直しの扱いは経路で異なる。即時のperson削除・event削除の掃除の後は `assert_sweep_complete` が残存を数え、届かなかった行があれば要求を失敗させる（行45）。定期の `deletes_job` は同じ数え直しをするが、gateにせず報告に留め、件数がゼロでなくても数えられなくても要求を検証済みにしてerror logを出す（行46、117–121）。文書は既知のgapとして、全件走査が読込み量の上限を使い切るため、gateにすると全要求が止まり、週ごとに悪化したと記録している（行123–131）。
   - person と adhoc の削除経路の条件は、取込み時刻（`inserted_at`）が要求の作成時刻以前（no later than。NULLは古い行として扱う）の行に限る。取込み時刻はserver側で付くため偽れず、後から取り込まれた行は新しい要求の対象とする。team削除の経路はこの限定を持たない（行46）。
-- 解いている問題と前提：保持先が増えたときに削除の漏れが生じることと、削除の仕組みが対象に届かないまま「成功」と報告することの両方を防ぐ。すべての保持先が登録されることが前提である（登録の漏れは、test等の別の仕組みで見つける）。
-- 必要な入力：個人に帰属する行を持つtableの一覧、各tableの能力（書換え・付け替えの可否）、TTLだけに任せる表とその理由、削除の範囲を区切る時刻、残存件数の検証方法。
+- 解いている問題と前提：ClickHouseに個人のdataを持つtableが増えたときに削除の漏れが生じることと、削除の仕組みが対象に届かないまま「成功」と報告することの両方を防ぐ。個人に帰属する行を持つClickHouseのtableがすべて登録されることが前提である（登録の漏れは、test等の別の仕組みで見つける）。ClickHouse以外の保存先（Postgres等）の削除は、このregistryの範囲外である。
+- 必要な入力：個人に帰属する行を持つClickHouseのtableの一覧（ClickHouse以外の保存先は別の経路で扱う）、各tableの能力（書換え・付け替えの可否）、TTLだけに任せる表とその理由、削除の範囲を区切る時刻、残存件数の検証方法。
 - trade-off・失敗の仕方：TTLだけに任せる表では、削除が保持期間だけ遅れる（文書が明示した決定。期間の値は持ち込まない）。定期の削除jobでは数え直しを報告に留めたため、残存があっても要求は検証済みになる（既知のgap）。personとadhocの経路は作成時刻で区切るため、後から取り込まれた同じ人のdataは別の要求が要る。
 - 反例・適用しない場合：保持先が1つのDBで、外部キーで全行に到達できる構成では、registryは過剰になりうる。
 - 互換・非互換：P20-O03（graph走査で到達範囲を決める）と対照的に、宣言の一覧で到達範囲を決める。P20-O13（Matomoの削除順序）とは、登録の単位が「table」で共通する。P11-O10（論理削除→確定削除の2段階）と、削除の確定のさせ方で関係する。
@@ -210,7 +210,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：P20-O11（PostHogのregistry）とは、対象tableを登録で持つ点が共通し、Matomoはpluginの参加をeventで行う点が異なる。P20-O03（fidesの `erase_after`）とは、削除順を明示の依存で持つか、結合経路から導くかで異なる。
 - 限界：本人を見つける検索（`findDataSubjects` 相当）、API層、export形式は読んでいない。GPL-3.0のためコードの転記はしていない。
 
-### P20-O14 保持期間をraw logと集計reportで別々に持ち、削除前に見積りを出す。遡及的な匿名化は要求者・期間・出力を持つjob行として記録し、収集時の匿名化は検出処理の後に行う
+### P20-O14 保持期間をraw logと集計reportで別々に持ち、削除前に見積りを出す。遡及的な匿名化は要求者・期間・出力を持つjob行として記録し、収集時の匿名化はIPの除外判定や参照元の種類の判定の後に行う
 - 出典：matomo、`plugins/PrivacyManager/LogDataPurger.php` 行48–102、104–137（https://github.com/matomo-org/matomo/blob/2053ecaffd849bbc0dd527aa7eb74ca73d705b2d/plugins/PrivacyManager/LogDataPurger.php#L48-L137）、`plugins/PrivacyManager/ReportsPurger.php` 行32–67、96–126（https://github.com/matomo-org/matomo/blob/2053ecaffd849bbc0dd527aa7eb74ca73d705b2d/plugins/PrivacyManager/ReportsPurger.php#L96-L126）、`plugins/PrivacyManager/Model/LogDataAnonymizations.php` 行44–62、239–301（https://github.com/matomo-org/matomo/blob/2053ecaffd849bbc0dd527aa7eb74ca73d705b2d/plugins/PrivacyManager/Model/LogDataAnonymizations.php#L239-L301）、`plugins/PrivacyManager/IPAnonymizer.php` 行33–54（https://github.com/matomo-org/matomo/blob/2053ecaffd849bbc0dd527aa7eb74ca73d705b2d/plugins/PrivacyManager/IPAnonymizer.php#L33-L54）、`plugins/PrivacyManager/Config.php` 行21–38（https://github.com/matomo-org/matomo/blob/2053ecaffd849bbc0dd527aa7eb74ca73d705b2d/plugins/PrivacyManager/Config.php#L21-L38）、`plugins/PrivacyManager/Tracker/RequestProcessor.php` 行61–80。信頼性ラベル：primary（GPL-3.0のため構造の観察だけ）。本文確認：済
 - 何をしているか：
   - raw logの保持（`LogDataPurger::purgeData`）は、日数を受け取り、それより古いvisitと関連行を消し、event `PrivacyManager.deleteLogsOlderThan` でpluginにも同じ期限で消させる。未使用のactionの削除は、table lockの権限がある場合にだけ行い、無ければ警告して飛ばす（行74–82）。
@@ -229,7 +229,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 | 問題 | repoA のやり方 | repoB のやり方 | 違いが生じる前提 |
 |---|---|---|---|
 | 目的の制限 | fides：宣言（category・use・subject）をpolicy ruleで静的に評価（O01） | fides PBAC：dataset等の目的とconsumerの目的の交差で、実行時のqueryを判定。未宣言はgap（O02） | 処理の目的を事前に宣言できるか、実行時のqueryから対象を取り出せるか |
-| 削除の到達範囲 | fides：identityを起点にfield参照のgraphを走査（O03） | PostHog：個人に帰属するtableのregistry＋capability（O11）。Matomo：log tableの結合経路から順序を導き、pluginはeventで参加（O13） | 参照が注記されているか、保持先が宣言で列挙できるか、拡張（plugin）があるか |
+| 削除の到達範囲 | fides：identityを起点にfield参照のgraphを走査（O03） | PostHog：ClickHouseの中で個人に帰属する行を持つtableのregistry＋capability。Postgres側は別経路（O11）。Matomo：log tableの結合経路から順序を導き、pluginはeventで参加（O13） | 参照が注記されているか、保持先が宣言で列挙できるか、拡張（plugin）があるか |
 | 削除の順序 | fides：`erase_after` の明示依存。宙づり・循環をerror（O03） | Matomo：結合経路から並べ替え、visit表を最後（O13） | 依存を人が書くか、schemaから導けるか |
 | 削除の検証・失敗の扱い | PostHog：到達不能はerror。残存の数え直しは即時経路では失敗させ、定期jobでは報告に留める（O11） | fides：失敗したnodeの下流を失敗にする（O03） | 全件の数え直しが費用的に可能か、失敗をtask graphで伝えるか |
 | 派生した集計への削除の反映 | Matomo：削除したvisitの日付の集計を無効化し、後で再計算させる（O13） | （他の4 repoでは、本書の範囲で見つからなかった） | 生のdataから集計を作り、長く保持しているか |
