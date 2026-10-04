@@ -267,7 +267,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：API版（サービス側の契約）とSDKの版（利用者が依存するpackage）の2つの版を、利用者が追えるように対応づける。SDKがAPI定義から生成されることが前提である。
 - 必要な入力：API版の識別子、SDKの版の方式、破壊的とみなす変更の線引き（実行時か型か）、previewの配布経路、古いmajor版の支援の範囲。
 - trade-off・失敗の仕方：minor版の更新で型errorが出うることを、方針として受け入れている。古いAPI版を使い続ける利用者は、型が合わない箇所を自分で抑止する必要がある（README 行125–135で`@ts-ignore`の使用を案内。https://github.com/stripe/stripe-node/blob/fe645f63d645011aca38dff9e245c1cf7b9ae60e/README.md#L125-L135 。本文は見出しと要旨だけ確認）。
-- 反例・適用しない場合：oasdiffは、response enumへの値の追加を`x-extensible-enum`を使った場合だけ許す（P32-O12）。stripe-nodeはopen enumという区分をSDKの型で表す。P10-O08のstripe/openapiは、enumの新しい値を月次の非破壊のchangelogに載せていた。
+- 反例・適用しない場合：oasdiffは、`x-extensible-enum`を使うとresponse enumへの値の追加を許すという扱いを文書化している（P32-O12。ほかの条件で追加を許すかは読んでいない）。stripe-nodeはopen enumという区分をSDKの型で表す。P10-O08のstripe/openapiは、enumの新しい値を月次の非破壊のchangelogに載せていた。
 - 互換・非互換：P32-O04（⚠️の項目の一例）、P32-O12（版番号と破壊的変更の照合）、P32-O13（生成SDK）。
 - 限界：古いmajor版の支援期間、Node.jsの支援方針の値は持ち込まない。changelogを生成する仕組み（`.hark/changes/`の断片fileの存在は確認した）の本体は読んでいない。
 
@@ -284,7 +284,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 | payloadの量 | standard-webhooks：thin／fullの比較（O08） | stripe-node：thin通知とsnapshotを別関数で受け、通知から本体を取得（O08） | 受信側がAPIの権限を持つか、監査したいか |
 | 廃止の告知（実行時） | deprecation-header：`Deprecation`＋link＋`Sunset`、hint扱い（O10） | P10-O07 K8s：`Warning` header・監査注釈・metric | 利用者のclientがheaderを読むか |
 | 廃止の告知（定義・CI） | oasdiff：`deprecated`＋`x-sunset`＋猶予期間を差分で検査（O11） | openapi-generator：`deprecated`を生成codeの廃止の印にする（O13） | 告知の受け手が提供者のCIか、SDKの利用者か |
-| 破壊的変更の線引き | oasdiff：定義の契約で判定、ERR／WARN／INFO、enum追加は`x-extensible-enum`のときだけ許す（O12） | stripe-node：実行時に壊れるかで判定し、型を弱める変更は非破壊、open enum（O14） | 型付きSDKの利用者を基準にするか、実行時を基準にするか |
+| 破壊的変更の線引き | oasdiff：定義の契約で判定、ERR／WARN／INFO、`x-extensible-enum`ならresponse enumへの追加を許すと文書化（O12） | stripe-node：実行時に壊れるかで判定し、型を弱める変更は非破壊、open enum（O14） | 型付きSDKの利用者を基準にするか、実行時を基準にするか |
 | 版番号の連動 | oasdiff：破壊的変更とsemverのmajorの照合（既定INFO）（O12） | stripe-node：API版の変更とSDKのmajor版、changelogに固定版と⚠️（O14）。openapi-generator：生成器自身のmajor／minor／patchの規則（O13） | 版の方式がsemverか日付か |
 
 ## 見つからなかったこと・gap

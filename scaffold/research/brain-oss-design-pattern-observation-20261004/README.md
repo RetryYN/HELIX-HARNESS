@@ -147,7 +147,7 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
     - 行のずれ（SHIFTED）2件も直した。
   - SPDXとarchivedの記載は、17 repositoryすべてでGitHub APIの値と一致した。
 - **第5弾のP32〜P33の照合**：P29〜P31と同じ手順で、別の照合担当が行った。
-  - permalink 240件の実在と行範囲を機械で照合し、不一致は0件だった。
+  - permalink 241件（独立reviewの指摘を受けて追加した出典を含む）の実在と行範囲を機械で照合し、不一致は0件だった。
   - 内容の抜き取り照合は計221件（P32 53件、P33 168件）。
     - 原文と逆・原文にない記述（WRONG）は0件だった。
     - 主張の一部が原文と違うもの（PARTIAL）は16件（P32 9件、P33 7件）だった。P32では、設定で切り替わるheader名を既定の挙動として書いたもの（Svixの`whitelabel_headers`）、原文の強さの変更（can be、important／recommendedの書き分け）、条件の取り違え（semverの判定、metadataの生成条件）、changelogの記述の言い換えである。P33では、原文の強さの変更（typically、can be forced、by defaultを一般化したもの）と、前提条件の脱落（接続が原子性を提供する前提）である。書いた調査担当が原文を読み直し、全件直した。
