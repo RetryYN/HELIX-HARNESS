@@ -260,9 +260,9 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **`L10-BRAIN-029-C01` — 正常（`BRAIN-029-AC-01`）**: fixture: 承認後編集禁止というgeneralized problemに関係する複数Pattern/Unit候補を投入し、problem/applicability/required input/constraint/tradeoff/negative/source/versionとconflicts_with/alternative_to/compatible_withの両端identityを含める。 **期待oracle**: unit compositionとrelation endpoint/sourceをtrace可能なcandidateで返し、今回製品の採用決定を生成しない。
 - **`L10-BRAIN-029-C02` — 否定・境界（`BRAIN-029-AC-02`）**: fixture: product-specific申請/API/permissionをshared knowledgeへ含める、incompatible relationを落とす、required input/source欠落、一回の製品適用で採用済みへ進める変異を個別/組合せで投入。 **期待oracle**: 根拠・入力不足はunknown/holdとしBRAIN L1-003/005/009または製品requirementはHARNESSへ戻す。
 - **`L10-BRAIN-029-C03` — 未見境界（`BRAIN-029-AC-03`）**: fixture: 試験側に伏せた別DomainのPattern/Unit組合せまたはrequired input欠落を投入する。 **期待oracle**: conditionベースでapplicabilityと`conflicts_with`を照合し、Domain/oracle scope不明は未評価のまま保持する。全Domain網羅や製品採用を主張しない。
-- **`L10-BRAIN-029-C04` — 選択入力元の依存条件（`BRAIN-029-AC-01,AC-02`）**: fixture: Product Core由来candidateを選択した場合と選択しない場合、LABO評価済みcandidateを選択した場合と選択しない場合を対比し、選択時のsource identity/revision/scope/required fieldsを一つずつ欠落・stale化する。 **期待oracle**: 選択時だけ対応するL2-018またはL2-020 contractを照合し、欠落した選択sourceだけをholdする。非選択sourceは未観測であり全source一律の完成を要求しない。
+- **`L10-BRAIN-029-C04` — 選択入力元の依存条件（`BRAIN-029-AC-01,AC-02,AC-03`）**: fixture: Product Core由来candidateを選択した場合と選択しない場合、LABO評価済みcandidateを選択した場合と選択しない場合を対比し、選択時のsource identity/revision/scope/required fieldsを一つずつ欠落・stale化する。 **期待oracle**: 選択時だけ対応するL2-018またはL2-020 contractを照合し、欠落した選択sourceだけをholdする。非選択sourceは未観測であり全source一律の完成を要求しない。
 - **観測点**: candidate composition/source trace・condition・conflict/unknown・owner。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
-- **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03の未見fixtureでunknown/未評価境界を保ち、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
+- **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03の未見fixtureでunknown/未評価境界を保ち、C04で選択入力元に応じた依存条件と候補ごとのholdを照合し、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
 
 ## Stage 2b: Infrastructure対検証
 

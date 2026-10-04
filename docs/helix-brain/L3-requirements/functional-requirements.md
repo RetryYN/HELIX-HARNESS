@@ -688,6 +688,7 @@ BRAIN unit candidateとして、generalized problem typeとPattern/Unit/Part ide
 | 依存・束ね条件: primary BRAIN L1-003/005/009、consumer HARNESS L1-009/001。常時L2-008/003/005、構成時L2-009、比較時L2-004、source選択に応じCORE L2-018、LABO-evaluated inputならL2-020。PO固定G15束ね条件はL11 source spanに従う。 | `FR-01 / AC-01,02` | `L10-BRAIN-029-C01,C02` | dependency identity/sourceと戻し先を明示 |
 | version / 1.0 | `FR-01 / AC-01,02` | `L10-BRAIN-029-C01,C02` | candidate versionを実装/release authorizationと混同しない |
 | 未見fixture・適用条件の評価状態 | `AC-03` | `L10-BRAIN-029-C03` | 未知/未定scopeをunknownまたは未評価として保つ |
+| 選択入力元に応じた依存条件 | `FR-01 / AC-01,AC-02,AC-03` | `L10-BRAIN-029-C04` | 選択sourceだけ契約を照合し、欠落した候補だけhold。非選択sourceは未観測 |
 
 ### 旧L3／対テスト設計の再利用・再導出
 
