@@ -1035,7 +1035,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 | case ID | FR / AC | 入力・操作 | 期待oracle |
 |---|---|---|---|
 | `CASE-LABO-L10-060-01` | `FR-LABO-L3-060` / `AC-LABO-L3-060-01` | 対応するsupport-on/off runに同一task snapshot、Worker/model/provider/version/effort、oracle、toolchain、protocolと各OS assignment/result receiptを与え、許可済みsupport-onで元Workerが修正し、元Worker・支援者とは異なるidentity/context/authorityのreviewerがreview、OS-L2-020同一oracle rerunを行ったreceiptを含める。支援側の実source・救援・人介入も添える。 | 支援有無だけ異なるpairと認定し、3者の分離とOS-L2-020の同一oracle検証を確認して、quality gateを保った群別結果・費用・人介入・再作業・欠測を返す。 |
-| `CASE-LABO-L10-060-02` | `FR-LABO-L3-060` / `AC-LABO-L3-060-02` | model/effort差、片群assignment欠落、oracle revision差、支援contextがoff群へ漏れる場合、支援者をreviewerにする場合を一つずつ投入する。別変異ではretry、救援/rework、人修正のcostを欠かし、missing priceまたは換算率のない人時間を0円にする。quality oracle失敗側へ低価格/短時間を与える対照も含める。 | 当該pairを比較不能または費用不完全にし、片群だけの結果から支援効果を主張しない。支援者reviewを独立検証扱いにせず、支援の実行や割当はLABOから開始しない。missing cost・人時間を0円にせず、低価格/短時間でquality failureを相殺しない。 |
+| `CASE-LABO-L10-060-02` | `FR-LABO-L3-060` / `AC-LABO-L3-060-02` | model/effort差、片群assignment欠落、oracle revision差、支援contextがoff群へ漏れる場合、支援者をreviewerにする場合を一つずつ投入する。別変異ではretry、救援/rework、review、人修正のcostを欠かし、missing priceまたは換算率のない人時間を0円にする。quality oracle失敗側へ低価格/短時間を与える対照も含める。 | 当該pairを比較不能または費用不完全にし、片群だけの結果から支援効果を主張しない。支援者reviewを独立検証扱いにせず、支援の実行や割当はLABOから開始しない。missing cost・人時間を0円にせず、低価格/短時間でquality failureを相殺しない。 |
 | `CASE-LABO-L10-060-03` | `FR-LABO-L3-060` / `AC-LABO-L3-060-03` | 支援on側の未選択sourceが不在でも実使用source一覧が明確な正常対照と、使用provenanceがunknownのpairを比較する。 | 未選択sourceを要求せず、unknown pairだけ未評価に残す。未選択を使ったことにも、比較成立にも推定しない。 |
 
 ### `HELIXLABO-L2-061` task・oracle隔離と履歴の完全性
