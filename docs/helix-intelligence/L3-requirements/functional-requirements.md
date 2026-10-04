@@ -330,13 +330,13 @@ POが採択した`MPR-RC-HELIXINTELLIGENCE-L2-078-001`のR-06/R-07/R-09/R-10/R-1
 
 **受入条件**
 
-- **`AC-INTELLIGENCE-L3-078-01` R-06 delta意味**：stable ID、source receipt revision/digest、HEAD/authority/environment、affected responsibilities、changed dimensions、previous/observed state、evidence/counterevidence、confidence/unknown、invalidation exact set、re-synthesis要否、delta digestの意味を保持する。field名/schema/encodingは固定しない。
+- **`AC-INTELLIGENCE-L3-078-01` R-06 delta意味**：stable ID、source receipt revision/digest、HEAD/authority/environment、affected responsibilities、changed dimensions、previous/observed state、evidence/counterevidence、confidence/unknown、invalidation exact set、re-synthesis要否、delta digestの意味を保持する。changed dimensionsのauthority、responsibility、runtime、provider、dependency、security、verification、capacity、cost、migration、releaseはそれぞれ別に識別し、異なる軸を一つへまとめない。field名/schema/encodingは固定しない。
 - **`AC-INTELLIGENCE-L3-078-02` R-07 再現・重複拒否**：source receipt/registry/policyが同一ならexact set/digestを再現し、stale revision、wrong HEAD/authority、missing receipt、duplicate changeを区別して不成立にする。retryや順序変更で別episodeを増殖させない。
 - **`AC-INTELLIGENCE-L3-078-03` R-09 snapshot join**：delta source identityをF0 Current State Snapshotの同一identity/revision/digestへjoinし、不一致/stale/不足をstaleまたはreobservation requiredとして扱う。
 - **`AC-INTELLIGENCE-L3-078-04` R-10 限定invalidation**：affected Future Type/assumption/projection/directiveのexact setだけstaleにし、必要範囲だけを再投影する。unaffected projectionをstale化/再生成しない。構造変更はproposal-onlyでcurrent-write parkingを解除しない。
 - **`AC-INTELLIGENCE-L3-078-05` R-11 stale/unknown/missing時抑止**：stale directive、unresolved unknown、missing source receiptの各条件でassignment/release/retire/requirement write/design writeを出さない。R-08のnon-write一般条件と混同しない。
 - **`AC-INTELLIGENCE-L3-078-06` R-12 journal replay**：repository authorityとevent journalからdelta/invalidation/intake projectionを再構築し、DB削除後および同じevent集合の順序変更後にも同一exact set/digestを示す。
-- **`AC-INTELLIGENCE-L3-078-08` 依存closure**：採択済みHARNESS-L2/L11-023の4区分を、常時必須・特定操作時のみ必須・選択sourceに応じて必須・参照資料のみへ分類する。scope/source/operation/契約版/authority/evidenceが同一ならeffective dependency closureと適用理由を同じにし、未選択sourceを推測で必須化せず、必要identity/owner/version-range/適用根拠が欠ける該当操作は保留して宣言ownerまたはauthority ownerへ戻す。
+- **`AC-INTELLIGENCE-L3-078-08` 依存closure**：採択済みHARNESS-L2/L11-023の4区分を、常時必須・特定操作時のみ必須・選択sourceに応じて必須・参照資料のみへ分類する。scope/source/operation/契約版/authority/evidenceが同一ならeffective dependency closureと適用理由を同じにする。このclosure判定はR-07のdelta exact set/digest再現とは独立に照合する。選択sourceの読取・revision・authority・qualificationが失敗しても別sourceへfallbackせず、未選択sourceを推測で必須化しない。適用条件unknownや必要identity/owner/version-range/適用根拠の欠落をfalse・非適用・参照資料のみへ読み替えず、該当操作を保留して宣言ownerまたはauthority ownerへ戻す。staleまたは非対応契約版を黙って現在版として読み替えない。
 - **境界**：HARNESS-L2/L11-023のdependency classificationに従う。AAFD旧schema/DB/event runtime/owner assignment、Issue/route、UIL/TER実装をこの要件から導出しない。
 - **`AC-INTELLIGENCE-L3-078-07` held-out正常／局所unknown**：未見snapshot/event combinationでもR-06/R-07/R-09–12に必要なidentity・receipt・authorityが揃う範囲は同じ各R oracleで照合し、欠けたpartだけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 
