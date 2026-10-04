@@ -21,7 +21,7 @@ POの発言（2026-10-04、原文）は次のとおり。
 第4弾の起点となったPOの発言（2026-10-05、原文）は次のとおり。テーマは、SCF-B-0155の§gapと、第3弾の各材料が「見つからなかったこと」に残したもののうち、まだ扱っていないものから選んだ。第4弾は「PRの原子性」に合わせて、P24〜P26とP27〜P28の2つのPRに分ける。
 > 「寝るからよろしく。BRAINは暇があったらガンガン強化していってくれ。」
 
-- 観察は計323件（第1弾80件、第2弾90件、第3弾111件、第4弾のP24〜P26で42件）で、131のrepositoryにわたる。テーマごとの件数は下表のとおり。
+- 観察は計323件（第1弾80件、第2弾90件、第3弾111件、第4弾のP24〜P26で42件）で、130のrepositoryにわたる。テーマごとの件数は下表のとおり。
 - 各観察には次を書いた。
   - 出典：repository、固定commit、path、行範囲、permalink、SPDXライセンス
   - 何をしているか、解いている問題と前提、必要な入力
@@ -60,7 +60,7 @@ POの発言（2026-10-04、原文）は次のとおり。
 | P25 browserの対応範囲と段階的な機能縮退 | [P25](materials/P25-browser-support-progressive-enhancement.md) | 14 | 5 | D04「browser対応」（P22で埋めきれなかった部分） |
 | P26 B-tree・WAL・MVCCを採る保存設計 | [P26](materials/P26-btree-wal-mvcc-storage.md) | 14 | 4 | D06「保存方式の比較」のB-tree側（P19で読めなかった部分） |
 
-dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendはP23ではmetadataだけ取得していたもので、P25で初めて本文を読んだ。P24〜P26の14 repositoryのうち新規は13で、重複を除いた合計は131である。
+dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。
 
 ## 置き場所と形の根拠
 
@@ -115,7 +115,8 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
   - SPDXとarchivedの記載は、45 repositoryすべてでGitHub APIの値と一致した。
   - 独立review（PR #2573、Codex）で、Major 4件・Minor 7件の指摘を受けた。条件付きの処理の一般化（P17-O14のgroupcache、P19-O11のblob）、引用元の範囲を越えた一般化（P20-O11）、暗号上の仕組みと組織上の前提の混同（P21-O02）、推論の区別（P19-O14）、見出しの表記、permalinkの付け方、bindingの照合件数の表記である。P19-O11は、作成側の照合を受けた修正で新しく入った誤りだった。原文を読み直して全件を直した。
 - **第4弾のP24〜P26の照合**：第3弾と同じ手順で行い、内容の照合は書いた調査担当とは別の照合担当が行った。
-  - permalink 178件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - permalink 182件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - 独立review（PR #2574、Codex）で、Major 1件・Minor 2件の指摘を受けた。P24-O06はrestartable init containerの要求の累積と、要求を省略したときの上限からのdefaultを落として一般化していた。P24-O01はstatusの主張に直接のpermalinkがなかった。README・PR本文のrepository数は、govuk-frontendをP07で読んでいたことを見落として数えていた。原文を読み直して全件を直した。
   - 内容の抜き取り照合は計262件（P24 39件、P25 54件、P26 169件）。
     - 原文と逆の記述（WRONG）は1件だった。P26-O02で、nbtreeの削除時に待つtransactionのXIDの有無を逆に書いていた。原文どおりに直した。
     - 主張の一部が原文と違うもの（PARTIAL）は22件だった。仕様の「MAY」を必須として書いたもの、条件付きの処理の一般化、推論を事実として書いたもの、設定の読込み順を実装と違えて書いたものが多かった。書いた調査担当が原文を読み直し、全件直した。

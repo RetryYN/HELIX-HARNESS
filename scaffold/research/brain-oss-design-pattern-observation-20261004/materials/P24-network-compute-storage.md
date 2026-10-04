@@ -30,7 +30,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：アプリ開発者が自分のnamespace内で、label（宣言）だけで通信の許可を書く。規則には「拒否」がなく、合成が加算（和集合）なので、policyの順序に依存しない。
 - 必要な入力：podとnamespaceのlabel設計、方向（ingress／egress）、port・protocol、CIDR。
 - trade-off・失敗の仕方：
-  - 型は宣言だけで、強制の場所を持たない。statusは廃止済みのtagとしてcommentで残されているだけである（行42–45）。適用されたかどうかをAPIから読めない。
+  - 型は宣言だけで、強制の場所を持たない。Status fieldは今の型には無い。commentでtombstoneされた形で残され、protobufのtag番号を予約している理由（将来statusを再実装する場合は別の名前とtagを使う）が書かれているだけである（行42–45、https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/staging/src/k8s.io/api/networking/v1/types.go#L42-L45）。適用されたかどうかをAPIから読めない。
   - `policyTypes` の既定がingressに寄るため、egress拒否を意図したpolicyが黙ってingressだけのpolicyになりうる（commentが明示的に注意している）。
   - 「拒否」と「cluster全体の規則」を表せない。後者はP24-O02の層で補う提案がある。
 - 反例・適用しない場合：Cilium（P24-O04）はdeny規則とcluster全体のpolicyを持つ。network-policy-api（P24-O02）は層と優先度で順序を導入する。
@@ -96,15 +96,22 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：P24-O06（資源のFilter）、P24-O08（preemptionはPostFilter）、P24-O09（affinity・spread）、P24-O12・O10（volumeの制約）は、この拡張点のどこかに置かれる。
 - 限界：PodGroup・Placement系の新しい拡張点（行604–611、804以降）は読んでいない。plugin構成の既定値は持ち込まない。
 
-### P24-O06 資源の「要求（requests）」で配置し、「上限（limits）」は配置に使わない：QoS classは両者の関係から導く
-- 出典：kubernetes、`pkg/scheduler/framework/plugins/noderesources/fit.go` 行296–333、654–692、740–766（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/scheduler/framework/plugins/noderesources/fit.go#L296-L333、https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/scheduler/framework/plugins/noderesources/fit.go#L654-L766）、`pkg/apis/core/v1/helper/qos/qos.go` 行38–42、105–120（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/apis/core/v1/helper/qos/qos.go#L38-L120）。信頼性ラベル：primary。本文確認：済
+### P24-O06 配置のfit比較は実効の要求（effective requests）で行い、上限（limits）を別の配置上限として直接は比べない：QoS classは要求と上限の関係から導く
+- 出典：kubernetes、`pkg/scheduler/framework/plugins/noderesources/fit.go` 行296–333、654–692、740–766（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/scheduler/framework/plugins/noderesources/fit.go#L296-L333、https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/scheduler/framework/plugins/noderesources/fit.go#L654-L766）、`pkg/apis/core/v1/helper/qos/qos.go` 行38–42、105–120（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/apis/core/v1/helper/qos/qos.go#L38-L120）、`staging/src/k8s.io/component-helpers/resource/helpers.go` 行253–287（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/staging/src/k8s.io/component-helpers/resource/helpers.go#L253-L287）、`staging/src/k8s.io/api/core/v1/types.go` 行3157–3159（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/staging/src/k8s.io/api/core/v1/types.go#L3157-L3159）、`pkg/apis/core/v1/defaults.go` 行170–197（https://github.com/kubernetes/kubernetes/blob/a35a8c1a36c8ec8c61256fb7fb7aef0b70806938/pkg/apis/core/v1/defaults.go#L170-L197）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
-  - `computePodResourceRequest` は、init containerは順に動くため各次元の最大を取り、通常のcontainerは同時に動くため合計を取る。Overheadの資源も足す（fit.go 行296–302）。計算は `resource.PodRequests` に委ねる（行325–329）。
+  - `computePodResourceRequest` のdoc commentは、init containerは順に動くため各次元の最大を取り、通常のcontainerは同時に動くため合計を取り、Overheadの資源も足すと説明している（fit.go 行296–302）。実際の計算は `resource.PodRequests` に委ねる（行325–329）。
+  - `resource.PodRequests` の計算では、通常のinit containerとrestartable init container（実行し続けるinit container）を区別する（helpers.go 行253–287）。
+    - restartable init containerの要求は、通常のcontainerの合計に加え、さらに累積していく。
+    - 通常のinit containerごとに、自分の要求に、それより前に並ぶrestartable init containerの累積を足した値を作る。
+    - その値の各次元の最大と、通常のcontainerの合計との、各次元の最大を取る。
+    - したがって「init containerは各次元の最大」と言えるのは、restartable init containerが無い場合に限られる。
+  - containerが要求（requests）を省略し、上限（limits）を明示した場合、要求は上限の値にdefaultされる（types.go 行3157–3159）。defaultは、v1.Podのdefault処理で、通常のcontainerとinit containerの両方について、上限にあって要求に無い資源を上限からcopyする形で行われる（defaults.go 行170–197。PodTemplateには適用しないとcommentにある）。
+  - このため、上限は、要求を省略したときの値の出どころとして、配置の比較に入りうる。比較そのものは、default後の実効の要求と、nodeの残りとの間で行われる。上限を、要求とは別の配置上限としてnodeと直接比べる処理は、今回読んだFilterの範囲には無かった。
   - Filterは、nodeの `Allocatable` から、そのnodeで既に要求された量（`GetRequested`）を引いた残りと、podの要求を比べる。足りない資源ごとに理由を残し、podの要求がnodeのAllocatable全体を超える場合は `Unresolvable` にする（行740–766、683–685）。実使用量ではなく要求量の合計で判断している。
   - QoS classは、全containerのcpu・memoryの要求と上限が等しく指定されていればGuaranteed、どれも指定されていなければBestEffort、それ以外はBurstableになる（qos.go 行38–42）。ただし、feature gate `PodLevelResources` が有効で、pod単位の資源（`pod.Spec.Resources`）が指定されている場合は、containerごとではなくpod単位の値で判定する分岐が先にある。この分岐には、別のfeature gateによる条件も加わる（行44–48）。資源ごとの判定は「要求と上限がどちらも0」「等しくない」「等しく0でない」で分ける（行105–120）。
-- 解いている問題と前提：配置時点で使用量は分からないため、宣言された要求で容量を予約する。上限は実行時の制限（今回読んだ範囲では、どこで強制するかのcodeは読んでいない）と、QoS classの導出に使われる。
-- 必要な入力：containerごとの要求と上限、init containerの有無、RuntimeClassのoverhead、nodeのAllocatable。
-- trade-off・失敗の仕方：要求を小さく宣言すると、実使用が要求を超えたpodがnode上に集まりうる。そのpodはnode圧迫時の追い出しで先に選ばれる（P24-O07）。要求を宣言しないpodはBestEffortになる。
+- 解いている問題と前提：配置時点で使用量は分からないため、宣言された要求（省略時は上限からdefaultされた値を含む）で容量を予約する。上限には、ほかに実行時の制限としての役割（今回読んだ範囲では、どこで強制するかのcodeは読んでいない）と、QoS classの導出への寄与がある。
+- 必要な入力：containerごとの要求と上限、init containerの有無と種別（通常かrestartableか）、RuntimeClassのoverhead、nodeのAllocatable。
+- trade-off・失敗の仕方：要求を小さく宣言すると、実使用が要求を超えたpodがnode上に集まりうる。そのpodはnode圧迫時の追い出しで先に選ばれる（P24-O07）。要求も上限も宣言しないpodはBestEffortになる。上限だけを宣言したcontainerでは、要求が上限からdefaultされるため、配置で予約される量は上限と同じになる。restartable init containerは、通常のcontainerと並んで要求が累積されるため、通常のinit containerより配置に必要な量を大きくしうる。
 - 反例・適用しない場合：DRA（動的資源割当て）で扱う資源は、`shouldDelegateResourceToDRA` でこのFilterの比較から外れる（行786–788。DRAの本体は読んでいない）。設定で無視する拡張資源も比較から外れる（行774–784）。
 - 互換・非互換：P24-O05のPreFilter／Filterに置かれる。P24-O07（追い出しの順位）とP24-O08（preemption）が、要求量を判断の基準として共有する。
 - 限界：fit.goのdoc commentにある資源量の例示は持ち込まない。score（least／most allocated等）の方式は読んでいない。
@@ -228,7 +235,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 | network policyの合成 | Kubernetes `v1.NetworkPolicy`：allowだけを加算で合成し、順序を持たない（O01） | network-policy-api：層（Admin／NetworkPolicy／Baseline）とpriority、Accept／Deny／Pass（O02）。Cilium：denyがallowに常に優先（O04） | 誰が書くか（開発者か管理者か）。拒否を表す必要があるか |
 | policyの強制の単位 | IP・CIDRのfilter（identity.rstが従来方式として挙げる） | Cilium：label由来のidentity（O03） | podのchurnの大きさ。identityを配るstoreを持てるか |
 | L7の強制 | Kubernetes `v1.NetworkPolicy`：L7を持たない（O01） | Cilium：L4規則に埋め込み、node-localのproxyで強制し、違反には応答を返す（O04） | proxyを経由できるか。dropと応答のどちらを失敗の形にするか |
-| 資源の割当て | scheduler：要求量の合計とAllocatableで配置（O06） | kubelet：実使用量と要求・優先度で追い出し（O07） | 判断の時点（配置前か実行中か） |
+| 資源の割当て | scheduler：実効の要求（省略時は上限からdefault。restartable init containerは累積）とAllocatableの残りで配置し、上限を別の配置上限として直接は比べない（O06） | kubelet：実使用量と要求・優先度で追い出し（O07） | 判断の時点（配置前か実行中か） |
 | 容量不足時の優先 | scheduler：優先度の低いpodを先取り。PDBは、node内では戻す順、node間では違反数の少ない候補の優先として扱い、違反は禁止しない（O08） | 先取りしない優先度（`PreemptionPolicy=Never`）でqueueの順序だけを上げる（O08） | 途中の仕事を捨ててよいか |
 | 配置の制約の強さ | hard／soft×配置時だけ（affinity、spread）（O09） | taint：effectごとに強制する部品が違う（scheduler／NodeController）（O09） | 実行中の変化に追従させるか |
 | volumeとnodeの到達範囲 | Kubernetes：`WaitForFirstConsumer` で作成を配置まで遅らせ、容量を公開して照合（O10） | CSI：requisite／preferredのtopology要求と、capabilityの申告（O11） | storageが全nodeから同じように届くか |
@@ -248,7 +255,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 
 ## 検索範囲と結果（読んだpath、検索した語、読んでいないもの）
 - 方法：5 repoを作業用の一時領域へ `git clone --filter=blob:none --no-checkout` し（core.hooksPathを無効化）、固定commitの必要なfileだけを `git show <sha>:<path>` で読んだ。build・test・script・hookは実行していない。SPDX・archived・default branchは `gh api repos/<owner>/<repo>` で取得した。
-- kubernetes：`staging/src/k8s.io/api/networking/v1/types.go`（25–206）、`staging/src/k8s.io/kube-scheduler/framework/interface.go`（440–470, 521–612, 654–740）、`pkg/scheduler/framework/plugins/noderesources/fit.go`（296–335, 650–790）、`pkg/apis/core/v1/helper/qos/qos.go`（commentの全体）、`pkg/kubelet/eviction/helpers.go`（679–730, 814–845）、`pkg/scheduler/framework/plugins/defaultpreemption/default_preemption.go`（280–300, 340–420, 448–490）、`staging/src/k8s.io/api/core/v1/types.go`（970–992, 3109–3118, 4223–4245, 4325–4410, 4655–4675, 5020–5080）、`staging/src/k8s.io/api/storage/v1/types.go`（30–125）、`pkg/scheduler/framework/plugins/volumerestrictions/volume_restrictions.go`（38–100, 174–340）、`pkg/scheduler/framework/preemption/preemption.go`（355–382, 455–536。照合担当の指摘を受けて読んだ範囲だけ）、`pkg/apis/core/v1/helper/qos/qos.go`（43–49）。読んでいないもの：`pkg/scheduler/framework/plugins/volumebinding/`、`nodevolumelimits/`、`podtopologyspread/`、`interpodaffinity/`、`dynamicresources/`、kubeletのcgroup・admission、`plugin/pkg/admission/priority`。
+- kubernetes：`staging/src/k8s.io/api/networking/v1/types.go`（25–206）、`staging/src/k8s.io/kube-scheduler/framework/interface.go`（440–470, 521–612, 654–740）、`pkg/scheduler/framework/plugins/noderesources/fit.go`（296–335, 650–790）、`pkg/apis/core/v1/helper/qos/qos.go`（commentの全体）、`pkg/kubelet/eviction/helpers.go`（679–730, 814–845）、`pkg/scheduler/framework/plugins/defaultpreemption/default_preemption.go`（280–300, 340–420, 448–490）、`staging/src/k8s.io/api/core/v1/types.go`（970–992, 3109–3118, 4223–4245, 4325–4410, 4655–4675, 5020–5080）、`staging/src/k8s.io/api/storage/v1/types.go`（30–125）、`pkg/scheduler/framework/plugins/volumerestrictions/volume_restrictions.go`（38–100, 174–340）、`pkg/scheduler/framework/preemption/preemption.go`（355–382, 455–536。照合担当の指摘を受けて読んだ範囲だけ）、`pkg/apis/core/v1/helper/qos/qos.go`（43–49）、`staging/src/k8s.io/component-helpers/resource/helpers.go`（240–289）、`staging/src/k8s.io/api/core/v1/types.go`（3150–3162）、`pkg/apis/core/v1/defaults.go`（165–215）。これら3つは独立reviewの指摘を受けて読んだ範囲だけで、`PodRequests` の前半（pod単位の資源、overhead、status由来の資源の分岐）とdefaults.goの他の関数は読んでいない。読んでいないもの：`pkg/scheduler/framework/plugins/volumebinding/`、`nodevolumelimits/`、`podtopologyspread/`、`interpodaffinity/`、`dynamicresources/`、kubeletのcgroup・admission、`plugin/pkg/admission/priority`。
 - container-storage-interface/spec：`spec.md`（19–33, 69–100, 164–215, 473–479, 640–680, 802–840, 984–1018, 1095–1135, 1180–1200, 2128–2170, 2709–2755）と見出し一覧。読んでいないもの：`csi.proto`、`lib/`、エラー表の全体、GroupController、SnapshotMetadata。
 - cilium：`Documentation/security/network/identity.rst`（全体）、`Documentation/security/policy/layer7.rst`（1–75）、`deny.rst`（全体）、`intro.rst`（1–75）、`pkg/policy/api/l4.go`（1–330）。読んでいないもの：`pkg/policy/api/rule.go`・`rules.go`、`pkg/policy/` の解決処理、`bpf/`、`pkg/identity/`、`Documentation/network/concepts/` の本文、`Documentation/security/policy/caveats.rst`。
 - kubernetes-sigs/network-policy-api：`apis/v1alpha2/clusternetworkpolicy_types.go`（1–210）、`npeps/npep-285-combine-crds.md`（1–80）と一覧。読んでいないもの：`apis/v1alpha1/`（ANP・BANP）、NPEP-122・126・133・137・187、conformance test。
