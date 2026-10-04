@@ -4,7 +4,7 @@
 
 ## 判定規約
 
-各caseは下記の該当L3 AC IDを一つ以上明示して対応する。複数caseが一つのACを異なる正常・反例境界から検証する場合も、対応表とcase見出しで追跡できるようにする。検証入力は固定revisionの宣言/receipt/test fixtureから組み立て、外部送信や実環境副作用を要求しない。実行時はHARNESSがtest scope、証拠、依存version、停止/再開を扱い、OS/SECURITYがそれぞれのstate/authorityを保有する。未観測はpassでなくunknown。全体の合否を一つのtransport successに還元しない。
+各caseは下記の該当L3 AC IDを一つ以上明示して対応する。複数caseが一つのACを異なる正常・反例境界から検証する場合も、対応表とcase見出しで追跡できるようにする。共通FRの受入条件が個別ACを補う場合は、その規則と固定L11句（L11-001行44、L11-003行56）を対応表・当該caseから追跡する。検証入力は固定revisionの宣言/receipt/test fixtureから組み立て、外部送信や実環境副作用を要求しない。実行時はHARNESSがtest scope、証拠、依存version、停止/再開を扱い、OS/SECURITYがそれぞれのstate/authorityを保有する。未観測はpassでなくunknown。全体の合否を一つのtransport successに還元しない。
 
 ## 親要件とL3/L10対応表
 
@@ -124,14 +124,14 @@
 
 ### HELIXCONNECT-L2-008（CONNECT-FR-008-01）
 
-- CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: catalogの各列挙profileを別々に選び、profile/config identity・revision・type、descriptor schema/version、typed capability、read-only probe descriptorを全てsource付きで与える。relationを再構成でき、operation spawnは0。他profileの入力/結果は不変。不正identity/config/descriptorはprofile提供元へ、policy/safetyのunknown・拒否はSECURITYへ返し、SECURITY-L2-034の採択やそのoracleを前提・pass根拠にしない。
-- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各列挙fieldを単独でmissing/stale/mismatch、configとdescriptorの型不一致、同一identityの異なる宣言、catalog未登録revisionに変異する。unknown profileを含め該当profileだけtarget未確定/unknown/staleとなり、拒否理由を記録し、default profileや古いcompatibleへfallbackしない。
-- CONNECT-CASE-008-03（AC CONNECT-AC-008-03）: descriptorあり・permissionなし、安全判定なし・実行可能と主張する反例。executable/safe/send eligibilityをfalseまたはunknownに留め、SECURITYへauthority照合を戻す。
+- CONNECT-CASE-008-01（AC CONNECT-AC-008-01）: catalogの各列挙profileを別々に選び、profile/config identity・revision・type、descriptor schema/version、typed capability、read-only probe descriptorを全てsource付きで与える。L11-001と同じdescriptor field（能力名、契約/成果物/依存版、scope、correlation ID、expiry、idempotency key、result state）も具体入力に含め、登録/構成成功から業務承認またはSECURITY許可を生成しない。relationを再構成でき、operation spawnは0。他profileの入力/結果は不変。不正identity/config/descriptorはprofile提供元へ、policy/safetyのunknown・拒否はSECURITYへ返し、SECURITY-L2-034の採択やそのoracleを前提・pass根拠にしない。
+- CONNECT-CASE-008-02（AC CONNECT-AC-008-02）: 各列挙fieldを単独でmissing/stale/mismatch、configとdescriptorの型不一致、同一identityの異なる宣言、catalog未登録revision、拒否理由/profile/revisionの欠落へ変異する。unknown profileを含め該当profileだけtarget未確定/unknown/staleとなり、拒否理由を記録し、default profileや古いcompatibleへfallbackしない。
+- CONNECT-CASE-008-03（AC CONNECT-AC-008-03）: descriptorあり・permissionなし、安全判定なし・実行可能と主張する反例、descriptor読出しから認可/probe/tool実行を生成する反例を別々に与える。executable/safe/send eligibilityをfalseまたはunknownに留め、SECURITYへauthority照合を戻す。実runtime/test/probeは起動せず、証拠不足はunknown、本候補から採択/実装/実行許可/034採択を生成しない。
 - CONNECT-CASE-008-04（AC CONNECT-AC-008-04）: raw secret・credential値をconfig/descriptorに含める反例をそれぞれ与え、拒否・値の非出力を確認する。同時に独立profileの正常descriptorが通ることを確認。
 
 ### HELIXCONNECT-L2-009（CONNECT-FR-009-01）
 
-- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。paired-bidirectionalの正常例ではforwardと独立宣言されたreverse feedbackへ別operation identity/digestを与え、correlation/因果lineageで関係づけ、各方向のauthorityを別々に照合する。未送信reverse edgeを送信済みと偽る変異は拒否。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。辺の一部成功を全体成功へ伝播する変異では全体完了を拒否し、未完edgeを保持する。
+- CONNECT-CASE-009-01（AC CONNECT-AC-009-01）: one-wayとpaired-bidirectionalを別々に与え、各方向のauthority/edgeを検査する。L11-003相当のenvelopeとして能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを入力し、各欠落/不一致を個別に変異する。paired-bidirectionalの正常例ではforwardと独立宣言されたreverse feedbackへ別operation identity/digestを与え、correlation/因果lineageで関係づけ、各方向のauthorityを別々に照合する。各envelope fieldの欠落/不一致では該当directionのedgeを拒否し、missing fieldとownerを記録する。未送信reverse edgeを送信済みと偽る変異は拒否する。serialでは宣言順と先行条件を保持し、必要な先行結果または宣言先行条件が未成立の後続edgeを止め、parallelではrequired input/terminal edgeを一つずつ欠落させjoin resultをholdし、全条件がある正常fixtureだけjoinを出す。方向またはfeedback endpoint/contract revision欠落を利用可能にする変異と、宣言のない順序/joinを使う変異は個別に拒否する。辺の一部成功を全体成功へ伝播する変異では全体完了を拒否し、未完edgeを保持する。
 - CONNECT-CASE-009-02（AC CONNECT-AC-009-02）: 初回辺のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictへ個別変異し、その辺の初回attempt 0、missing inputとownerの保持を照合する。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityの各同状態変異はfeedback送信だけhold、parallel join条件の各同状態変異はjoin/全体完了だけhold、ACK対応不明は既存attempt保持と受領/完了holdを照合し、独立eligibleな他操作を止めない。eligible first edge＋未送信feedback、ACK未着、feedback endpoint/reason/contract unknownを独立変異する。第一edgeはfeedback欠落で止めず、ACK未着ではattemptを保ったまま受領/完了だけholdし、loop条件欠落は追加retryだけ0となる。
 - CONNECT-CASE-009-03（AC CONNECT-AC-009-03）: retry/budget/deadline/terminal-owner/policy、累積attempt数、operation identityのmissing/unknown/stale/conflictを各個別に与える。追加attempt 0、既存attempt数保持、初回eligibility不変、owner別backflowをoracleとする。
 - CONNECT-CASE-009-04（AC CONNECT-AC-009-04）: 2反復目でattempt countをresetする反例、budget境界超過、deadline expiry、terminal owner不明を分ける。正常なbounded loopではforward operationと独立宣言されたreverse feedback operationに別々のidentity/digestを与え、共有correlation/因果lineageへ結ぶ。ACK/terminal receiptは対応するoperationへ付ける。同一logical operationのretry/resumeだけは同じidentity/digest/contract revisionを保つ。resume後に同一operation eventを再適用して二重効果を生む変異、retry digestだけの変更、共有correlationだけによるforward/reverse同一化を互いに独立して拒否する。冪等性は固定L2-004/005の同一operation契約に限り、新しい一般重複排除義務を設けない。因果traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retry 0、未解決と停止理由・未完義務をOS-040等の既存terminal ownerへ返す。累積attemptは単調に保持し、deadline/terminal不明でも新規retryを止める。
@@ -142,9 +142,9 @@
 
 固定L2/L11はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択本文で照合した。fixtureは宣言された構成体のedge集合に限定し、実端点送信はしない。
 
-- `CONNECT-CASE-007-01`（`CONNECT-AC-007-01`）: 3以上の機構・複数接続identityからなる正常構成を与え、edgeごとに能力名、契約revision、scope、順序、operation/correlation/idempotency identity、expiry/result、再送可否・上限・停止条件、SECURITY/data-use、owner/recovery先を割り当てる。宣言済みedge A→B handoffではB側のoperation mappingとauthorityを別に与える。oracle: required edgeごとの登録/互換/送受信/終端証拠が揃ったときだけ技術的構成体完了となり、宣言済みhandoffは許可された別operationとして追跡する。未宣言のoperationへの転用は拒否する。接続成功から業務成立を作らない。
+- `CONNECT-CASE-007-01`（`CONNECT-AC-007-01`）: 3以上の機構・複数接続identityからなる正常構成を与え、edgeごとに能力名、契約/成果物/依存revision、target scope、correlation ID、expiry、idempotency key、result state、順序、再送可否・上限・停止条件、SECURITY/data-use、owner/recovery先を割り当てる。宣言済みedge A→B handoffではB側のoperation mappingとauthorityを別に与える。oracle: required edgeごとの登録/互換/送受信/終端証拠が揃ったときだけ技術的構成体完了となり、宣言済みhandoffは許可された別operationとして追跡する。未宣言のoperationへの転用は拒否する。接続成功から業務成立を作らない。
 - `CONNECT-CASE-007-02`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: 中間edgeにstale、timeout、異digest衝突、期限切れ、取消、許可失効、partial successを各々独立に投入する。oracle: 各変異で後続の未許可送信/再送0、全体success 0、停止edgeと未完owner/recovery先を保持。辺の再送可否・上限・停止条件を単独で違反する変異も同じoperation identityと累積attemptへ結び、再送境界を越えた新規attemptを拒否する。先行edgeの観測済成功は消去しない。
-- `CONNECT-CASE-007-03`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: required edge登録、互換確認、operation mapping、相関/idempotency引継ぎ、終端結果、SECURITY/data-use reference、recovery ownerをそれぞれmissing/stale/wrong-revisionへ個別変異する。oracle: 該当edgeがunknown/unfinishedであり、別edgeのgreenやaggregate表示で補わない。
+- `CONNECT-CASE-007-03`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: required edge登録、能力名、契約/成果物/依存revision、target scope、correlation ID、expiry、idempotency key、result state、互換確認、operation mapping、SECURITY/data-use reference、recovery ownerの各fieldを、それぞれmissing/stale/wrong-revisionへ独立変異する。oracle: 欠落/不一致fieldを持つ該当edgeはunknown/unfinishedであり、別edgeのgreenやaggregate表示で補わない。欠落fieldと該当ownerを記録する。
 - `CONNECT-CASE-007-04`（`CONNECT-AC-007-01, CONNECT-AC-007-02`）: 既知fieldを満たす4+ edgeの未見構成と、全技術edgeが終端済みだが業務ownerの受入が未観測の対照fixtureを与える。oracle: 宣言契約を満たす未見構成は許容し、業務結果/承認は未観測のままにする。
 
 NFR候補 `CON-NFR-007-01` はCASE-007-01/03でrequired-edge単位の全field/terminal closureを測る。候補は100% coverageで、単一aggregate statusの案より欠落edgeを隠さない。`CON-NFR-007-02`はCASE-007-02でfailure mutationごとのfalse success/未許可後続attemptを測り、両方0件を候補とする。L2/L11にない共通latencyやretry capは起こさない。

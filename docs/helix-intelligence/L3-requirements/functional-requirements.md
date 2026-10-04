@@ -8,6 +8,19 @@ paired_l10: ../L10-verification/functional-verification.md
 
 本稿はfrontmatterのscopeに示すStage 2a・2c、Stage 3、Stage 4/5対象の固定L2/L11に根拠を置く部分草稿であり、機構全体のL3、実装、実行、採択・承認を意味しない。Stage 2cはPOの案B「支援・テスト生成を前倒し」に従い、作業前の指示・テスト候補と作業中の診断・相談を分ける。候補生成はassignment、相談実行、test実行、受入状態を作らない。親L2ごとにFR IDを分け、ACはL3正本に一度だけ定義し、L10は同じACを参照する。
 
+## CONNECT共通判定の参照（候補pair）
+
+固定L2がHELIX-CONNECT connectionを依存に指定する親は、consumer固有のconnection identity・admitted contract revision・scopeをreceiptと結果へ結び、次の共通候補pairを参照する。参照対象は同じ候補revisionの[CONNECT L3](../../helix-connect/L3-requirements/functional-requirements.md)、[CONNECT L10](../../helix-connect/L10-verification/functional-verification.md)内の具体IDである。
+
+| 接続条件 | CONNECT FR / AC / CASE |
+|---|---|
+| 登録identity | `CONNECT-FR-001-01` / `CONNECT-AC-001-01` / `CONNECT-CASE-001-01` |
+| revision互換性・stale | `CONNECT-FR-002-01` / `CONNECT-AC-002-01` / `CONNECT-CASE-002-01` |
+| envelope・operationの技術結果 | `CONNECT-FR-003-01` / `CONNECT-AC-003-01` / `CONNECT-CASE-003-01` |
+| 片側交換を扱う場合のみ | `CONNECT-FR-006-01` / `CONNECT-AC-006-01,02` / `CONNECT-CASE-006-01..05` |
+| 固定親が複数edge compositeを要求する場合のみ | `CONNECT-FR-007-01` / `CONNECT-AC-007-01,02` / `CONNECT-CASE-007-01..04` |
+
+**消費側ACの境界**：受領証跡は選択したconnection identity・admitted contract revision・scopeに束縛する。別scopeや旧revisionのCONNECT結果を流用しない。自由文やsource joinだけから通信判定を生成しない。CONNECT判定greenだけからconsumer業務の成功・acceptanceを生成しない。L10ではこの4条件を独立変異し、親固有の業務oracleとは別に照合する。CONNECTの候補参照はcontractの採択・実在を新たに主張しない。親L2/L11が定める業務failure・戻し先はそのまま維持し、接続failureとの優先規則は追加しない。
 
 ### `FR-INTELLIGENCE-L3-010` — `HELIXINTELLIGENCE-L2-010`
 
@@ -26,12 +39,12 @@ task type/domain/complexity/context/tool requirement、ticket identity、およ�
 
 INTELLIGENCE実装を使えない場合、人がL2-010と同じproposal contract/version・入力属性・evidence/未評価・scopeで配置候補を作り、human-authored provenance、根拠、除外理由、不確実性を付ける。OSはsource/contract revision・task/scope・作成actor/time・受領actor/timeをreceiptへ記録する。人代行入力はINTELLIGENCE生成結果、LABO評価、OS assignment、権限のいずれも生成しない。
 
-**責務／依存境界**：同一proposal contractはINTELLIGENCE-L2-010、LABO evidenceまたは未評価はLABO-L2-054/055、ticketとreceipt/assignmentはOS、contract versionはHARNESS-L2-010/011が所有する。INTELLIGENCE runtime自体は依存にしない。task属性不足はOS、evidence不足はLABO、schema/version不明はINTELLIGENCEへ戻す。
+**責務／依存境界**：同一proposal contractはINTELLIGENCE-L2-010、LABO evidenceまたは未評価はLABO-L2-054/055、ticketとreceipt/assignmentはOS、contract versionはHARNESS-L2-010/011が所有する。INTELLIGENCE runtime自体は依存にしない。task属性/ticket不足はOS、evidence不足はLABO、schema/contract identityまたはversion自体が不明ならINTELLIGENCEへ戻す。未見contract版または遅延receiptの互換性不明は別条件としてOSへ戻し、両条件を混同しない。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-066-01` 同一proposal契約**：人手案とINTELLIGENCE案を同じL2-010 schema/versionおよびtask/scope/evidence fixtureへ通し、必須fieldの意味・範囲が一致する。human provenanceはINTELLIGENCE provenanceと区別して保持する。
-- **`AC-INTELLIGENCE-L3-066-02` 受領receiptと欠損**：receiptにsource/contract revision、task/scope、根拠・除外理由・不確実性/未評価、作成/受領actorと時点を結び、field欠落・wrong receiver・revision/scope mismatchでは受領済み扱いにしない。同一proposalの重複を新しい根拠にしない。task属性/ticket不足はOSへ、Bench evidence・revision・scope不足はLABOへ、schema/contract version不明はINTELLIGENCEへ戻す。未見版・遅延receiptの互換性が不明な範囲だけunknownにし、戻し先を混同しない。
+- **`AC-INTELLIGENCE-L3-066-02` 受領receiptと欠損**：receiptにsource/contract revision、task/scope、根拠・除外理由・不確実性/未評価、作成/受領actorと時点を結び、field欠落・wrong receiver・revision/scope mismatchでは受領済み扱いにしない。同一proposalの重複を新しい根拠にしない。task属性/ticket不足はOSへ、Bench evidence・revision・scope不足はLABOへ、schema/contract identityまたはversion自体が不明ならINTELLIGENCEへ戻し、未見contract版・遅延receiptの互換性が不明ならL11:285どおりOSへ戻す。両者を別のfailureとして保持する。
 - **`AC-INTELLIGENCE-L3-066-03` authority状態の分離**：人手案のみではLABO qualified state、INTELLIGENCE出力状態、OS assignment/実行開始を生成しない。配置案だけでauthority/scope/branchを拡張せず、各々の別recordがあるときもactor・scopeと状態を混同しない。
 
 
@@ -84,8 +97,8 @@ Stage 3の22件はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択済み
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-002-01` 正常成立とtrace**：二つのdomainで異なる能力集合と一つの未構成domainを入力し、設定済み能力だけが適用され、未構成がunknownとして残ること。
-- **`AC-INTELLIGENCE-L3-002-02` 個別変異・owner境界**：能力一つの根拠欠落、別domain設定流用、unknownの暗黙true化を独立変異として拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
-- **`AC-INTELLIGENCE-L3-002-03` held-out正常／局所unknown**：未見domainを、根拠付き能力だけ設定された正常例と、設定根拠がない能力だけunknownとなる例で分ける。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+- **`AC-INTELLIGENCE-L3-002-02` 個別変異・owner境界**：能力一つの根拠欠落、別domain設定流用、unknownの暗黙true化を独立変異として拒否する。能力/sourceの不足は影響するdomainだけ未構成・unknownとして保持し、L11:265に記されたINTELLIGENCE構成ownerへ戻す。別domainの有効構成は保つ。
+- **`AC-INTELLIGENCE-L3-002-03` held-out正常／局所unknown**：未見domainを、根拠付き能力だけ設定された正常例と、設定根拠がない能力だけunknownとなる例で分ける。根拠不足の能力だけunknownとしてINTELLIGENCE構成ownerへ戻し、未見domainの有効な部分は同じ契約で評価する。未見性自体を失敗と扱わない。
 
 ### `FR-INTELLIGENCE-L3-003-01` — `HELIXINTELLIGENCE-L2-003`
 
@@ -393,7 +406,7 @@ SECURITY permission、Worker execution、HARNESS verification、OS acceptanceの
 
 #### HELIXINTELLIGENCE-L2-030〜033 共通接続依存
 
-各対象sourceはその機構の専用CONNECT admitted contractを通して読み、HARNESS-L2-010/011の共通pack identity・契約版・scope・compatibilityも照合する。source join単独では接続成立にしない。契約の交換時は新旧版の互換・対象scope・対の受入を再照合し、不一致またはstaleなら該当handoffを保留して既存rollback条件を適用する。失敗時はL2-030–033各親の固定戻し先（HARNESS／OS／BRAIN／矛盾したProduct CoreまたはHARNESS source owner）を保持し、admitted contractが宛先を明示する場合はその宛先を継承、宛先未指定ならunknown/保留としてownerを推測しない。各接続のsource/semantic ownerは移さない。
+各consumer receiptを選択connection identity・admitted contract revision・scopeへ束縛し、登録identity、revision互換性/stale、envelope/operation技術結果は冒頭のCONNECT候補pair対応表にある該当FR/AC/CASEを参照する。source joinだけから通信判定を作らず、親業務成立とも混同しない。L2-030–033に固定されたHARNESS／OS／BRAIN／Product CoreまたはHARNESS source ownerへの業務failure戻し先とsource/semantic ownerはその範囲で維持する。
 
 ### `FR-INTELLIGENCE-L3-030-01` — `HELIXINTELLIGENCE-L2-030`
 
@@ -416,7 +429,7 @@ OS ticket・state・dependencyをsource revision付きread-only observationと�
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-031-01` 正常成立**：OS ticket T-17のstate revision 8とdependency一覧を入力し、OS専用CONNECT admitted contractおよびHARNESS-L2-010/011 packで宣言された状態・event定義に従ってSituation Modelへ渡す。Situation Modelはsource revisionを表示し、OS sourceは不変に保つ。
-- **`AC-INTELLIGENCE-L3-031-02` 個別変異と失敗戻し先**：revision 8を読み込んだ後にrevision 7の遅延eventを投入する対では、遅延eventをstaleと識別してrevision 8のstateを保持し、rollbackしない。OS専用CONNECT/HARNESS common packがstaleまたは互換不一致の対はhandoff未成立としてOSへ戻し、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-031-02` 個別変異と失敗戻し先**：revision 8を読み込んだ後にrevision 7の遅延eventを投入する対では、遅延eventをstaleと識別してrevision 8のstateを保持し、rollbackしない。CONNECTの接続登録・契約互換・transport技術failureは上表の該当CONNECT-FR/AC/CASEを参照する。HARNESS-L2-010/011 common pack identity/revision/scope/provenance/compatibility不備は別のpack契約failureとしてhandoffを保留し、固定親に明示されたHARNESS/OS ownerへ戻し、明示がなければunknown/保留とする。別sourceやauthorityを代替しない。
 - **`AC-INTELLIGENCE-L3-031-03` 未見正常と局所unknown**：未見state value/eventでも、OS専用CONNECT admitted contractとHARNESS-L2-010/011 packの互換契約内で意味・遷移が定義されていれば、その定義どおりSituation Modelへ渡す。契約外または定義不明の種類だけOSへ照会してunknownとし、revision宣言だけでは受領成立にしない。
 
 ### `FR-INTELLIGENCE-L3-032-01` — `HELIXINTELLIGENCE-L2-032`
@@ -428,7 +441,7 @@ BRAIN Pattern/Unit/Part applicability、required input、relation、counterexamp
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-032-01` 正常成立**：現在scopeでcounterexampleが成立せず適用条件を満たすselected Patternについて、適用理由・Pattern identity/revision、required input・relation・counterexampleとscopeをsource-boundで返す。同名Patternはidentity/revisionで別々に保持する。専用BRAIN CONNECT admitted contractおよびHARNESS-L2-010/011 pack compatibilityも有効である。
-- **`AC-INTELLIGENCE-L3-032-02` 個別変異と失敗戻し先**：現在scopeで成立するcounterexampleは適用候補を棄却し、BRAINへ根拠を返す。counterexample根拠自体がunknownの場合に限り適用性をunknownにする。専用CONNECT/common pack stale・互換不一致はhandoff保留と既存rollback条件を適用し、知識正本は変更しない。戻し先はBRAINであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-032-02` 個別変異と失敗戻し先**：現在scopeで成立するcounterexampleは適用候補を棄却し、BRAINへ根拠を返す。counterexample根拠自体がunknownの場合に限り適用性をunknownにする。CONNECTの接続登録・契約互換・transport技術failureは上表の該当CONNECT-FR/AC/CASEを参照する。HARNESS-L2-010/011 common pack identity/revision/scope/provenance/compatibility不備は別のpack契約failureとしてhandoffを保留し、固定親に明示されたownerへ戻し、明示がなければunknown/保留とする。知識正本は変更せず、成立counterexampleのbusiness戻し先BRAINを維持し、別sourceやauthorityを代替しない。
 - **`AC-INTELLIGENCE-L3-032-03` 未見正常と局所unknown**：未見knowledge revisionは専用BRAIN CONNECT admitted contractとHARNESS-L2-010/011 pack双方の宣言済みcompatibilityに入り、条件・required input・反例を照合できる時だけ扱う。現在scopeで成立する反例がないと確認できた未見Patternは、適用理由とPattern identity/revisionを付けたcandidateにできる。反例根拠が不明な範囲だけunknownとしてBRAINへ戻す。未宣言/範囲外revisionもBRAINへ照会し、知識正本を変えない。
 
 ### `FR-INTELLIGENCE-L3-033-01` — `HELIXINTELLIGENCE-L2-033`
@@ -478,6 +491,7 @@ G12採択registrationは `docs/governance/audits/requirement-registration/intell
 | L2 identity | R2187 row / raw SHA-256 | 現行照合先 |
 |---|---|---|
 | `HELIXINTELLIGENCE-L2-001` | L264 `5f39147d38d867b308dd6719e188feb266c3e247a8cf65c2b609c10db655da9c` | `AC-INTELLIGENCE-L3-001-01/02/03`; `CASE-INTELLIGENCE-L10-001-01/02/03` |
+| `HELIXINTELLIGENCE-L2-002` | L265 `a57e3c3e79663cc8b32070a64b53cb04650b0fd16c56eb03db50dd68df1458bd` | `AC-INTELLIGENCE-L3-002-01/02/03`; `CASE-INTELLIGENCE-L10-002-01/02/03` |
 | `HELIXINTELLIGENCE-L2-060` | L281 `3029e03d7ab89a406922133fe447509a9da4e342627b830c0bb823a769b49fe4` | `AC-INTELLIGENCE-L3-060-01/02/03`; `CASE-INTELLIGENCE-L10-060-01/02/03` |
 | `HELIXINTELLIGENCE-L2-061` | L282 `5a8306f8f14bb3322fd5497fc502b29daf0e8c89b090b5365d0eb2d2ef04413b` | `AC-INTELLIGENCE-L3-061-01/02/03`; `CASE-INTELLIGENCE-L10-061-01/02/03` |
 | `HELIXINTELLIGENCE-L2-062` | L283 `47f48bfa892b386840ae0d2516a97f9acaeeb8abf43d677256b6a0f167235cea` | `AC-INTELLIGENCE-L3-062-01/02/03`; `CASE-INTELLIGENCE-L10-062-01/02/03` |
@@ -509,7 +523,7 @@ Stage 4 rosterから採択済み・`version_target: 1.0`のINTELLIGENCE対象の
 
 LABO evaluation, target scope, explicit unassessed state, failure/counterexample/evidenceを受け、scope不一致をWorker suitabilityへ読み替えない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：LABO producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示された宛先があるときだけそこへ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
+**接続・交換境界**：LABO producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。connector契約identity・admitted revision・scopeの技術failure判定とCONNECT側戻し先は冒頭のCONNECT候補pair対応表にある該当FR/AC/CASEを参照する。consumer receiptを他scope/旧revisionへ流用せず、固定L2/L11の親固有業務failure戻し先は別に維持する。
 
 **受入条件**
 
@@ -523,7 +537,7 @@ LABO evaluation, target scope, explicit unassessed state, failure/counterexample
 
 承認済みgoal・dependency・plan/placement/diagnosis/review/repair candidateをOSへ渡すがticket/assignmentを作らない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示された宛先があるときだけそこへ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
+**接続・交換境界**：INTELLIGENCE producer・OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。connector契約identity・admitted revision・scopeの技術failure判定とCONNECT側戻し先は冒頭のCONNECT候補pair対応表にある該当FR/AC/CASEを参照する。consumer receiptを他scope/旧revisionへ流用せず、固定L2/L11の親固有業務failure戻し先は別に維持する。
 
 **受入条件**
 
@@ -537,12 +551,12 @@ LABO evaluation, target scope, explicit unassessed state, failure/counterexample
 
 SECURITY permission/constraint/revocationをaction・actor・target・scope別に照合し、権限を発行・変更しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCEとSECURITYの双方の各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCEとSECURITYの双方の各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-036-01` 正常成立**：操作candidateのaction/actor/target/scopeとSECURITY許可revision/effective timeが実操作時点で一致する場合だけ当該操作candidateに照合結果を結ぶ。permission/constraint/revocationのsourceと発行authorityはSECURITYに残す。
-- **`AC-INTELLIGENCE-L3-036-02` 個別変異と失敗戻し先**：revoke済み、期限切れ、別actor/action/target/scopeの許可と、許可がunknownの各fixtureを分ける。該当操作をeligibleにせずSECURITYへ戻して実行しない。別action許可から未見actionを推論しない。
+- **`AC-INTELLIGENCE-L3-036-02` 個別変異と失敗戻し先**：revoke済み、期限切れ、別actor/action/target/scopeの許可と、許可がunknownの各fixtureを分ける。該当操作をeligibleにせずSECURITYへ戻して実行しない。別action許可から未見actionを推論しない。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通packのidentity/revision/scope/provenance/compatibility不備はpack契約failureとして分け、親に明示されたHARNESS ownerへ戻し、戻し先不明ならunknown/保留とする。固定親のsource/permission業務failure戻し先を維持する。
 - **`AC-INTELLIGENCE-L3-036-03` 未見正常と局所unknown**：INTELLIGENCEで未見のactionでも、SECURITY contractにそのaction固有の許可・scopeが明示されていれば完全一致で照合する。該当許可のないactionは別actionの許可から推論せずSECURITYへ戻し、scope許可自体がunknownなら保留する。
 
 ### `FR-INTELLIGENCE-L3-037-01` — `HELIXINTELLIGENCE-L2-037`
@@ -551,12 +565,12 @@ SECURITY permission/constraint/revocationをaction・actor・target・scope別�
 
 OS assignment後のticket-worker-version-scopeとresultを結び、未割当resultを受け入れず実行権限を作らない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：OS assignment producer、Worker result producer、INTELLIGENCE/OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：OS assignment producer、Worker result producer、INTELLIGENCE/OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-037-01` 正常成立**：OS-issued ticketとOS assignmentが指定したworker/version/task/scopeに一致するWorker actor/result receiptを同一ticketへ結び、実行主体はWorker、assignment ownerはOSのまま保持する。
-- **`AC-INTELLIGENCE-L3-037-02` 個別変異と失敗戻し先**：assignmentのないresult、別ticketのresult、scope不一致、stale/非互換worker versionを個別に投入し、割当済み結果として受領しない。ticket、assignment、task適合、Worker resultとの対応が不明/不一致の場合はassignment ownerのOSへ戻す。INTELLIGENCEから実行permissionを作らない。
+- **`AC-INTELLIGENCE-L3-037-02` 個別変異と失敗戻し先**：assignmentのないresult、別ticketのresult、scope不一致、stale/非互換worker versionを個別に投入し、割当済み結果として受領しない。ticket、assignment、task適合、Worker resultとの対応が不明/不一致の場合はassignment ownerのOSへ戻す。INTELLIGENCEから実行permissionを作らない。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通packのidentity/revision/scope/provenance/compatibility不備はpack契約failureとして分け、親に明示されたHARNESS ownerへ戻し、戻し先不明ならunknown/保留とする。固定親のassignment業務failure戻し先は維持する。
 - **`AC-INTELLIGENCE-L3-037-03` 未見正常と局所unknown**：未fixture worker versionでもOS assignmentがあり、宣言済みcompatibility/task/scope条件が一致するなら同じticketへのresultとして照合する。compatibilityまたはtask適合だけが不明な場合はOSへ戻し、INTELLIGENCEから許可しない。
 
 ### `FR-INTELLIGENCE-L3-038-01` — `HELIXINTELLIGENCE-L2-038`
@@ -565,12 +579,12 @@ OS assignment後のticket-worker-version-scopeとresultを結び、未割当resu
 
 exact HARNESS verification obligationをrequirement/oracle/expected failure/independent verification/consumer acceptance/backflowへ結び、修復で弱めない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：HARNESS producer・INTELLIGENCE/repair consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：HARNESS producer・INTELLIGENCE/repair consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-038-01` 正常成立**：requirement exact revisionに結び付くHARNESS oracle、expected failure、independent verification、consumer acceptance、backflow condition一式をrepair scope付きで渡し、実行後も同じobligation一式を照合する。
-- **`AC-INTELLIGENCE-L3-038-02` 個別変異と失敗戻し先**：oracle削除/弱化、expected failure欠落、independent verifier/consumer acceptance/backflow欠落、repairerによる新規obligation追加、stale requirement revisionを個別投入する。obligationを満たさないrepairを検証完了にせずHARNESSへ戻し、repairerが義務を削除・弱化・追加しない。戻し先はHARNESSであり、別sourceやauthorityを代替しない。
+- **`AC-INTELLIGENCE-L3-038-02` 個別変異と失敗戻し先**：oracle削除/弱化、expected failure欠落、independent verifier/consumer acceptance/backflow欠落、repairerによる新規obligation追加、stale requirement revisionを個別投入する。obligationを満たさないrepairを検証完了にせずHARNESSへ戻し、repairerが義務を削除・弱化・追加しない。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通pack固有のidentity/revision/scope/provenance/compatibility不備はpack契約failureとして既存HARNESS ownerへ戻し、戻し先不明ならunknown/保留とする。親固有の検証義務failureの戻し先はHARNESSに維持し、別sourceやauthorityで代替しない。
 - **`AC-INTELLIGENCE-L3-038-03` 未見正常と局所unknown**：新しいobligation種別も対応contractとHARNESSが判定できるoracleがあればrepair scopeへ結ぶ。結果を判定できない間は未充足を保ち、passへ昇格しない。
 
 ### `FR-INTELLIGENCE-L3-039-01` — `HELIXINTELLIGENCE-L2-039`
@@ -579,12 +593,12 @@ exact HARNESS verification obligationをrequirement/oracle/expected failure/inde
 
 candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhandoffし、OS acceptanceを独自に生成しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer、Worker/HARNESS result producer、OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCE producer、Worker/HARNESS result producer、OS consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-039-01` 正常成立**：同一repair scope/candidateのreceipt、Worker result、HARNESS verification resultを順序と相関ID付きで区別してOSへhandoffする。acceptance stateはOS sourceからのみ読み、OSが独自判断できる材料を残す。
-- **`AC-INTELLIGENCE-L3-039-02` 個別変異と失敗戻し先**：Worker successのみ、古いHARNESS result、順序逆転、duplicate receiptを別々に投入し、OS acceptanceを成立させない。evidence/verification欠落は各producerへ戻し、受入判断と進行はOSに残す。
+- **`AC-INTELLIGENCE-L3-039-02` 個別変異と失敗戻し先**：Worker successのみ、古いHARNESS result、順序逆転、duplicate receiptを別々に投入し、OS acceptanceを成立させない。evidence/verification欠落は各producerへ戻し、受入判断と進行はOSに残す。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通pack固有のidentity/revision/scope/provenance/compatibility不備はpack契約failureとして既存HARNESS ownerへ戻し、戻し先不明ならunknown/保留とする。親固有のevidence/verification failureとOS acceptance ownerは維持する。
 - **`AC-INTELLIGENCE-L3-039-03` 未見正常と局所unknown**：未見receipt versionでも相関ID/scope/互換契約が一致するedgeはhandoffへ残す。不一致のreceiptだけ未受領/unknownとしてproducer/OSへ戻し、他の独立edgeを消さない。
 
 ### `FR-INTELLIGENCE-L3-040-01` — `HELIXINTELLIGENCE-L2-040`
@@ -593,12 +607,12 @@ candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhand
 
 親L2が列挙するprediction・diagnosis・review・placement・repairの5種result（判断材料群の総称）を、種類・source revision・observation windowを保った別のsource-bound recordとして同一episode/scopeへ渡す。predictionとactual outcomeは別々に結び、比較差分も区別する。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示宛先がある場合だけその宛先へ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
+**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。consumer receiptは選択connection identity・admitted contract revision・scopeへ束縛する。HARNESS-L2-010/011共通packのidentity・revision・scope・compatibilityとpaired acceptance/既存rollback evidenceも照合する。CONNECT技術failureとCONNECT側戻し先は冒頭のCONNECT候補pair対応表の該当FR/AC/CASEを参照し、親固有のbusiness failure戻し先は別に維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-040-01` 正常成立**：親L2の判断材料として列挙されたprediction・diagnosis・review・placement・repairの各対象resultを種類ごとに入力し、source revision・観測window・evidence・assumption・falsificationまたはactualを同一episode/scopeへ結んでLABOへ渡す。判断はこの列挙result群の総称として扱い、各result種別と根拠を別々に追跡する。未取得actualは未評価のままにする。
-- **`AC-INTELLIGENCE-L3-040-02` 個別変異と失敗戻し先**：predictionをactualと称する、prediction/diagnosis/review/placement/repairの各resultを脱落・別種へ置換する、別episodeをjoinする、遅延/重複actualを別成功として数える、INTELLIGENCEが効果評価を自分で採択する変異を個別投入する。source revisionまたは実測結果が不足する場合は固定L2どおりINTELLIGENCE/LABOへ戻す。未対応actualは固定L11どおりLABOへunknownとして送る。episode不一致は該当する元episodeへ照合し、重複は追加successに数えない。connector/pack不一致はhandoffを保留してunknownを保持し、明示宛先がないownerは推測しない。
+- **`AC-INTELLIGENCE-L3-040-02` 個別変異と失敗戻し先**：predictionをactualと称する、prediction/diagnosis/review/placement/repairの各resultを脱落・別種へ置換する、別episodeをjoinする、遅延/重複actualを別成功として数える、INTELLIGENCEが効果評価を自分で採択する変異を個別投入する。source revisionまたは実測結果が不足する場合は固定L2どおりINTELLIGENCE/LABOへ戻す。未対応actualは固定L11どおりLABOへunknownとして送る。episode不一致は該当する元episodeへ照合し、重複は追加successに数えない。CONNECTの接続登録・契約互換・transport技術failureだけを冒頭のCONNECT候補pair対応表にある該当FR/AC/CASEで判定する。HARNESS-L2-010/011共通pack identity/revision/scope/provenance/compatibility/paired-acceptance不備はpack契約failureとして分け、固定親に明示されたownerへ戻し、明示がなければunknown/保留にする。source/実測不足の業務戻し先は固定L2/L11どおりINTELLIGENCE/LABOに維持する。
 - **`AC-INTELLIGENCE-L3-040-03` 未見正常と局所unknown**：episode/scope/source revisionとobservation windowが宣言済みなら未見windowも追跡する。まだ取得していないactualはpending/unassessedとし、未観測を成功/失敗の実績にしない。result種別またはそのsourceが特定できない入力は該当部分だけunknownとして保持し、判断材料群の総称を第6種resultにしない。
 
 ### `FR-INTELLIGENCE-L3-041-01` — `HELIXINTELLIGENCE-L2-041`
@@ -607,12 +621,12 @@ candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhand
 
 各connector/source mechanismを独立source identity・revision/scope/authorityとして保持し、同名fieldを併合しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：選択された各source mechanism producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：選択された各source mechanism producer・INTELLIGENCE consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-041-01` 正常成立**：admitted HARNESS/OS sourceごとにconnector identity、current revision、scope、authorityを別edgeとしてSituation Modelへ反映し、同名fieldでもsource-specific meaningを維持する。
-- **`AC-INTELLIGENCE-L3-041-02` 個別変異と失敗戻し先**：同名OS/HARNESS fieldを同一identityへmerge、scope/revision欠落を補完、未選択Web/WEB-OSを必須依存とする変異を個別に判定する。誤ったsource edgeを各source ownerへ戻す。未選択機構はunobservedのままで不存在とは断定しない。
+- **`AC-INTELLIGENCE-L3-041-02` 個別変異と失敗戻し先**：同名OS/HARNESS fieldを同一identityへmerge、scope/revision欠落を補完、未選択Web/WEB-OSを必須依存とする変異を個別に判定する。誤ったsource edgeを各source ownerへ戻す。未選択機構はunobservedのままで不存在とは断定しない。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通pack identity/revision/scope/provenance/compatibility不備はpack契約failureとして分け、親に明示されたownerへ戻し、戻し先不明ならunknown/保留とする。親固有のsource/業務failure戻し先は維持する。
 - **`AC-INTELLIGENCE-L3-041-03` 未見正常と局所unknown**：selected sourceの未見revisionもそのsource専用contractが有効ならtraceする。契約外revisionは該当source ownerへ戻し、未選択sourceはunobservedとして記録する。
 
 ### `FR-INTELLIGENCE-L3-044-01` — `HELIXINTELLIGENCE-L2-044`
@@ -621,7 +635,7 @@ candidate、Worker result、HARNESS resultを別identity/stateとしてOSへhand
 
 generic candidateとevidence/scopeをLABOへ渡し、BRAIN knowledgeへ直接writeしない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し、既存の有効contractに明示宛先がある場合だけその宛先へ戻す。宛先未指定ならunknown/保留としてownerを推測しない。
+**接続・交換境界**：INTELLIGENCE producer・LABO consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。consumer receiptは選択connection identity・admitted contract revision・scopeへ束縛する。HARNESS-L2-010/011共通packのidentity・revision・scope・compatibilityとpaired acceptance/既存rollback evidenceも照合する。CONNECT技術failureとCONNECT側戻し先は冒頭のCONNECT候補pair対応表の該当FR/AC/CASEを参照し、親固有のbusiness failure戻し先は別に維持する。
 
 **受入条件**
 
@@ -635,12 +649,12 @@ generic candidateとevidence/scopeをLABOへ渡し、BRAIN knowledgeへ直接wri
 
 Product Core issueをproduct/revision/ownerへ候補として返し、requirement/designを直接変更しない。本項は固定親の対象・owner・versionを具体化する部分草稿で、candidateの生成は下流状態や権限を生成しない。
 
-**接続・交換境界**：INTELLIGENCE producer・該当Product Core consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。source joinだけではhandoffを成立させず、交換時は対の受入と既存rollback evidenceを確認する。専用contractまたはpackの欠落・stale・非互換時はhandoffを保留し該当ownerへ戻す。
+**接続・交換境界**：INTELLIGENCE producer・該当Product Core consumerの各source/consumer専用HELIX-CONNECT admitted contract、HARNESS-L2-010/011共通packの版・scope・compatibilityを個別に照合する。交換時は対の受入と既存rollback evidenceを確認する。接続failureは上表の該当CONNECT-FR/AC/CASEで判定し、固定親に定めるsource・業務failureの戻し先はそれぞれ維持する。
 
 **受入条件**
 
 - **`AC-INTELLIGENCE-L3-045-01` 正常成立**：meaning矛盾/不足/improvement candidateを該当Product Core product/revision/ownerとsource revisionに結び、backflow candidateとして渡す。正本更新はProduct Core ownerに残す。
-- **`AC-INTELLIGENCE-L3-045-02` 個別変異と失敗戻し先**：target product/revision不明、owner不一致、source evidence欠落を個別投入し、別Product Coreへ誤routingせずunrouted candidateとして該当ownerへ照会する。INTELLIGENCEは正本を変更しない。
+- **`AC-INTELLIGENCE-L3-045-02` 個別変異と失敗戻し先**：target product/revision不明、owner不一致、source evidence欠落を個別投入し、別Product Coreへ誤routingせずunrouted candidateとして該当ownerへ照会する。INTELLIGENCEは正本を変更しない。CONNECTの接続登録・契約互換・transport技術failureだけを上表の該当CONNECT-FR/AC/CASEで判定する。HARNESS-L2-010/011共通pack identity/revision/scope/provenance/compatibility不備はpack契約failureとして分け、親に明示されたHARNESS ownerへ戻し、戻し先不明ならunknown/保留とする。親固有のsource/business failure戻し先は維持する。
 - **`AC-INTELLIGENCE-L3-045-03` 未見正常と局所unknown**：未見issue typeでもproduct/revision/ownerと既知のbackflow contractが特定できる場合は、その契約で解釈可能なissue candidateとして該当ownerへ正規handoffする。issue分類が未見であることだけでunroutedにしない。product/target identityまたはownerが不明な部分だけunrouted/unknownとして保持し、推測routingしない。
 
 ## Stage 4 追加親・旧source crosswalk（item単位）
@@ -703,7 +717,7 @@ LABOの過去評価、BRAIN汎用知識、INTELLIGENCEの今回判断、OS実行
 有効なL2-033 CORE/HARNESS input receipt、明示model/schema/rule/unitsとscenarioを用いた有限設計modelの条件付き計算候補を作る。仮想結果・仮定・trace・unknownを分離し、実測、Worker実行、設計正本を変更しない。L2-033 input receiptのみを計算前提とし、L2-070送達、L2-040 handoff、LABO-024受領は計算開始条件にも完了条件にも含めない。
 
 - **`AC-INTELLIGENCE-L3-069-01` 正常**：L11の有限queue/graph/numeric fixtureにsource-bound node/edge/rule/unitを与え、queue例は初期q=0、service cap 8 jobs/stepとする。baseline arrivals [5,5]ではstepごとにserved [5,5]・queue [0,0]、load scenario arrivals [5,10]ではserved [5,8]・queue [0,2]（final queueはそれぞれ0、2）となる。DB断例はDB dependencyのあるorder processingだけをblockedとし、明示されたretry_queue移送を行い、非依存reportingは不変、recovery未定義ならblocked/unknownのままとする。Worker fixtureはload 18 jobs、per-worker 3 jobs/min、shared DB ceiling 8 jobs/min、worker cost 0.20 credits/worker-min、DB cost 0.10 credits/minを使い、2 workers: throughput 6 jobs/min・elapsed 3 min・cost 1.50 credits、4 workers: throughput 8 jobs/min・elapsed 2.25 min・cost 2.025 creditsとなる独立算術と照合する。HARNESS-L2-010/011 packはidentity/revision/scope/provenanceを常時照合し、数値rate/price・DB failure rule・virtual worker capacityは該当scenario時だけ要求する。選択sourceのidentity/revision/scopeを固定し、未選択sourceは未観測とする。これらはsimulation fixtureで、実Worker数・環境を変更しない。
-- **`AC-INTELLIGENCE-L3-069-02` 欠落・不整合**：unknown schema/edge、unit不一致、source revision conflict、未定義recoveryを個別投入し、該当範囲だけunknown/unsupported/blockedとする。適用packの欠落/stale/non-compatible、選択sourceの欠落・不一致、未選択sourceへのfallback、参照資料の入力authority化も個別に変異し、該当ownerへ戻す。recoveryや費用を0として補完しない。
+- **`AC-INTELLIGENCE-L3-069-02` 欠落・不整合**：model/schema/rule/units/scenario/source revision・owner・permission・scopeを各々単独で欠落または不一致にし、failureの種類ごとに戻し先を分ける。source revision/owner/permission不足はProduct Core/HARNESS/SECURITY、未対応schema・遷移・domainはmodel owner、観測と推論の混同はsource owner、期待値検証operationだけのoracle不足はscenario author/source ownerへ戻してその検証をpauseする。deadline/resource不足またはstop到達ではpartial traceと打切り位置を残す。通常scenarioには期待値oracleを要求しない。CONNECTの接続登録・契約互換・transport技術failureは上表の該当CONNECT-FR/AC/CASEを参照する。HARNESS-L2-010/011共通pack identity/revision/scope/provenance/compatibility不備はpack契約failureとして影響する計算・handoffだけをholdし、固定親に明示されたHARNESS ownerへ戻し、未指定ならunknown/保留とする。固定親が宛先を指定する業務failureはそのownerへ戻す。recoveryや費用を0として補完しない。
 - **`AC-INTELLIGENCE-L3-069-03` 未見**：held-out finite modelでも宣言済み構造/rule内だけ計算し、未対応domain/edgeは局所unknownに保つ。小規模fixtureの結果から汎用適格性を主張しない。
 
 ### `FR-INTELLIGENCE-L3-070-01` — `HELIXINTELLIGENCE-L2-070`
@@ -711,7 +725,7 @@ LABOの過去評価、BRAIN汎用知識、INTELLIGENCEの今回判断、OS実行
 既存L2-033 CORE/HARNESS input receipt、L2-069 calculation result、L2-040 result handoff、LABO-024 consumer receiptを別段階としてsource/revision/scenario identityで結ぶ。段階receiptは順番に記録し、仮想結果を実測へ読み替えず、L2-033 payload/schemaを重複定義しない。
 
 - **`AC-INTELLIGENCE-L3-070-01` 正常**：同一source revision/scenarioのinput→calculation→send→consumer receiptを順に与え、各receiptのowner/版/scopeとsimulation status/assumption/unknownを往復traceする。適用HARNESS-L2-010/011 pack identity/revision/scope/provenanceと各段階の専用contractを常時照合し、選択sourceだけを使う。numeric price/rate等は指定された操作時のみ入力し、非選択sourceは未観測、背景資料は参照専用としてresult inputと区別する。
-- **`AC-INTELLIGENCE-L3-070-02` 欠落・反例**：入力契約不備、L2-040 send欠落、LABO-024 receipt不在、別revision/duplicate/out-of-order receiptを個別投入する。加えて適用packの欠落/stale/non-compatible、選択sourceの欠落・不一致、非選択sourceへのfallback、参照資料の入力authority化を独立に投入する。後段receiptで前段を補ったり、未受領をhandoff済みとしない。既存owner/contractへ戻す。
+- **`AC-INTELLIGENCE-L3-070-02` 欠落・反例**：入力契約不備、L2-040 send欠落、LABO-024 receipt不在、別revision/duplicate/out-of-order receiptを個別投入する。各receiptは選択connection identity・admitted contract revision・scopeに結び、別scope/旧revisionのCONNECT resultを拒否する。自由文だけまたはsource joinだけで通信判定を作らず、CONNECT greenだけでLABO business acceptanceを生成しない。接続技術判定は上表の該当003を参照し、複数edge compositeは固定親の範囲だけ007も参照する。HARNESS-L2-010/011共通pack identity/revision/scope/provenanceのmissing/stale/non-compatible、reference-only資料からの受領生成、fallbackによる補完を個別に拒否する。pack不備は影響するreceipt/stageだけunknown/holdにし、固定親に明示されたHARNESS ownerへ戻し、明示がなければunknown/保留とする。既存L2-033 payloadにtyped relationがなく適用可否不明なら新fieldを必須化せずunknownとしてsource/contract ownerへ戻す。data-use/permission failureはSECURITYへ、親固有のLABO receipt欠落はLABOへ戻す。後段receiptで前段を補ったり、未受領をhandoff済みとしない。
 - **`AC-INTELLIGENCE-L3-070-03` 未見**：compatibility範囲の未見receipt版は同じ段階モデルで扱い、unknown consumer fieldやscope mismatchだけ未受領/unknownとして返す。共通schema例から他sourceへ互換性を外挿しない。
 
 ### `FR-INTELLIGENCE-L3-071-01` — `HELIXINTELLIGENCE-L2-071`
@@ -719,7 +733,7 @@ LABOの過去評価、BRAIN汎用知識、INTELLIGENCEの今回判断、OS実行
 L2-033 inputから同一model revisionのbaseline/scenario条件を固定し、L2-069有限計算とL2-070段階送達を組み合わせた比較candidateを作る。条件変更、state/impact propagation、数値化できる差、未解決source/coefficientsを分けてLABOへsource-bound resultを渡す。単体計算・connectionの成功だけでcomposite成立としない。
 
 - **`AC-INTELLIGENCE-L3-071-01` 正常**：L11のbaseline/scenario fixture（arrival/service limit・仮想Worker/DB条件と単位を固定）を独立finite-model oracleと照合し、各variantのstate/throughput/time/costとbaseline差を示す。HARNESS-L2-010/011 pack identity/revision/scope/provenanceを常時照合し、数値rate/price・failure rule・仮想capacityは該当scenarioだけに与える。選択source/compatibilityを固定し、未選択sourceは未観測、参照資料はresult authorityにしない。順序は033 input→069 calculation→040 send→LABO-024 consumer receive（070 connection）である。予測結果はsimulationのまま、後続actual receiptは別段階とする。
-- **`AC-INTELLIGENCE-L3-071-02` 欠落・反例**：model revision、unit/rate/source、baseline、scenario change、stop condition、後段receiptを個別に欠落/不一致化する。適用pack不備、選択source不一致、silent fallback、参照資料昇格も個別に投入する。影響するscenarioのみholdし、recoveryやcostを捏造せず、未定義はunknown。別scenarioの有効結果はscopeを保って残す。
+- **`AC-INTELLIGENCE-L3-071-02` 欠落・反例**：model revision、unit/rate/source、baseline、scenario change、stop condition、後段receiptを個別に欠落/不一致化する。source revision/owner/permission不足はProduct Core/HARNESS/SECURITY、未対応model state/domainはmodel owner、source観測不足はsource owner、data-use違反はSECURITY、後段LABO receipt欠落はLABOへそれぞれ戻す。CONNECTの接続登録・契約互換・transport技術failureは上表の該当CONNECT-FR/AC/CASEを参照する。HARNESS-L2-010/011 common pack identity/revision/scope/provenance/compatibility不備は別のpack契約failureとして影響するscenario/handoffだけholdし、固定親に明示されたHARNESS ownerへ戻し、明示なしはunknown/保留とする。recoveryやcostを捏造せず、未定義はunknown。別scenarioの有効結果はscopeを保って残す。
 - **`AC-INTELLIGENCE-L3-071-03` 未見**：held-out finite modelの明示rule内は結果/traceを返し、未見edge/domainはunsupported/unknown、実測未取得は未比較とする。通常scenarioに期待値oracleを要求せず、期待値指定の検証operationでは独立oracleを使う。
 
 ### `FR-INTELLIGENCE-L3-074-01` — `HELIXINTELLIGENCE-L2-074`

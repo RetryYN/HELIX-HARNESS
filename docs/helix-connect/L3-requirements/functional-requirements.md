@@ -152,13 +152,13 @@
 
 ### CONNECT-FR-008-01 — MCP profile probe descriptor（親 HELIXCONNECT-L2-008）
 
-Probe descriptorはcatalogに列挙されたMCP profile identity/revision、configuration identity/revision/type、descriptor schema/version、typed operation/tool capability、read-only probe descriptorを結ぶ。異なる型のconfig/descriptor、同一identityの競合定義、catalog未登録revisionはtarget/profileを確定せず、raw secret・credential値をdescriptorへ含めない。profile/config/descriptorの一件の失敗を他profileへ波及させない。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchは拒否理由を記録してfail closedとし、default profileへfallbackせず、staleはHELIXCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。不正identity/config/descriptorの修正先はprofile提供元、policy/safetyのunknown・拒否はSECURITYへ区別して返す。SECURITY-L2-034の採択を前提・依存・pass根拠にしない。
+Probe descriptorはcatalogに列挙されたMCP profile identity/revision、configuration identity/revision/type、descriptor schema/version、typed operation/tool capability、read-only probe descriptorを結ぶ。異なる型のconfig/descriptor、同一identityの競合定義、catalog未登録revisionはtarget/profileを確定せず、raw secret・credential値をdescriptorへ含めない。profile/config/descriptorの一件の失敗を他profileへ波及させない。descriptorの存在は安全性、permission、実行可能性の証明ではない。profile unknown/mismatchは拒否理由とprofile/revisionを記録してfail closedとし、default profileへfallbackせず、staleはHELIXCONNECT-L2-002の再照合へ戻す。probe設計はoperation spawn、送信権限、SECURITY判断を作らない。不正identity/config/descriptorの修正先はprofile提供元、policy/safetyのunknown・拒否はSECURITYへ区別して返す。確認は文書と静的fixtureに限り、証拠がなければunknownとする。descriptorの読出しはauthorization/probe/tool起動を生まず、この候補の成立は要求採択、実装、実行許可またはSECURITY-L2-034採択を意味しない。SECURITY-L2-034の採択を前提・依存・pass根拠にしない。
 
 **受入条件**
 
-- CONNECT-AC-008-01: catalogの各列挙profileについてprofile/configuration/descriptor identityとrevision/type/schema、typed capability、read-only probeを結び、正常descriptorが実行を開始しないことを確認する。
-- CONNECT-AC-008-02: 同一identity競合、config/descriptor型違い、catalog未登録revision、および各列挙fieldのmissing/stale/mismatchを個別に与える。unknown profileも該当targetをunknown/staleにして拒否理由を記録し、default profileや古いcompatible記録へfallbackしない。他profileの結果は不変。
-- CONNECT-AC-008-03: descriptorの存在だけでpermission、安全、executableをtrueにする変異を拒否する。SECURITY authorityが無い場合もsend eligibilityを生成しない。
+- CONNECT-AC-008-01: catalogの各列挙profileについてprofile/configuration/descriptor identityとrevision/type/schema、typed capability、read-only probeを結び、正常descriptorが実行を開始しないことを確認する。L11-008のfixtureは静的文書のみで、実runtime/test/probeを実行しない。
+- CONNECT-AC-008-02: 同一identity競合、config/descriptor型違い、catalog未登録revision、および各列挙fieldのmissing/stale/mismatchを個別に与える。unknown profileも該当targetをunknown/staleにして拒否理由とprofile/revisionを記録し、default profileや古いcompatible記録へfallbackしない。他profileの結果は不変。
+- CONNECT-AC-008-03: descriptorの存在だけでpermission、安全、executableをtrueにする変異、descriptor読出しだけでauthorization/probe/tool実行を生成する変異を個別に拒否する。SECURITY authorityが無い場合もsend eligibilityを生成しない。確認は文書と静的fixtureに限り、証拠不足はunknownとし、本候補から要求採択・実装・実行許可・SECURITY-L2-034採択を生成しない。
 - CONNECT-AC-008-04: raw secret・credential値をdescriptor/config observationへ含める入力をそれぞれ拒否し、値を出力・保存しない。別profileの有効descriptorは独立に維持する。
 
 旧MCP profile調査 LEGACY-ASSET-1E45495250B6F9793189 はprofile特性の部分類例、旧gap audit DC0AE3267D63F3525BAEは旧L3該当が見つからなかった証拠、旧U-MCPPROFILE test FAAFFA616A44F65911EB は設計形式の参照に限る（正しいIDはFAAFFA616A44F65911EB）。旧test・runtimeは実行しない。
@@ -169,7 +169,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。forwardと独立宣言されたreverse feedback operationは別々のoperation identity/digestを持ち、共有correlation/因果lineage・reason/endpoint/revisionへ関係づける。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
+- CONNECT-AC-009-01: 能力名、契約/成果物/依存版、target scope、correlation ID、期限、idempotency key、result stateを含む送受envelopeを照合し、各field欠落/不一致を個別に拒否する。one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。forwardと独立宣言されたreverse feedback operationは別々のoperation identity/digestを持ち、共有correlation/因果lineage・reason/endpoint/revisionへ関係づける。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
 - CONNECT-AC-009-02: 初回送信のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictにする個別fixtureでは、該当辺の初回送信attemptを0にし、missing inputとownerを返す。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityを各状態へ個別変異するとfeedback送信だけを保留する。parallel join条件不明はjoin/全体完了だけを保留し、ACK対応不明は既存attemptを保持して受領/完了だけ保留する。独立してeligibleな他操作へ伝播しない。eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
 - CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policy、累積attempt数、operation identityをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
 - CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopではforward/reverse-feedback operationにそれぞれ独立宣言済みidentityとdigestを持たせ、共通correlation/因果lineageへ結び、ACK/terminal eventは対応operationへ記録する。同一operationのretry/resumeだけは同一identity・digest・contract revisionを保つ。resumeでそのoperationを二重効果化する変異、retry時だけdigestを変える変異、shared correlationだけでforwardとreverseを同一operation扱いする変異は個別に拒否する。新しい重複排除義務は設けない。因果event/receipt traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
@@ -210,7 +210,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、宣言されたrequired edge全ての終端が確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡する。宣言済みhandoffは次edgeのidentity/contract/authority条件に従って別operationとして受渡し可能とし、未宣言または異なるoperationへ同一attemptを無断転用する受渡しと再送境界超過を拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
+- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与え、各edgeについてL11-001のdescriptor必須field、すなわち能力名、契約/成果物/依存版、target scope、correlation ID、expiry、idempotency key、result state、SECURITY/data-use識別子を含む完全descriptorを個別に照合し、登録・互換照合・operation lineage・result/terminalが個別に追跡でき、宣言されたrequired edge全ての終端が確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡する。宣言済みhandoffは次edgeのidentity/contract/authority条件に従って別operationとして受渡し可能とし、未宣言または異なるoperationへ同一attemptを無断転用する受渡しと再送境界超過を拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。登録・構成体の技術完了から業務成立・業務承認またはSECURITY許可を生成しない。
 - `CONNECT-AC-007-02`: 中間edgeにstale、timeout、異digest衝突、expiry、cancel、authority revoke、partial successを個別に与える。後続edgeの未許可送信/再送を0にし、先行成功を消さずpartial/unknownを保ち、停止edge・未完owner・recovery先を出す。いずれも構成体成功・業務承認を生成しない。
 
 **責務と失敗時の戻し先**：edgeの登録・契約不一致は該当connection/両端ownerへ、SECURITY/data-use・expiryはSECURITYへ、operation/業務結果は元機構のownerへ戻す。後続edgeを実行済みにせず、先行の成功結果は保持する。

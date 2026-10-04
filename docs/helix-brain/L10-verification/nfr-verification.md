@@ -58,7 +58,7 @@
 | `CASE-BRAIN-L10-NFR-021-01` | `HELIXBRAIN-L2-021` | INTELLIGENCE向け材料: 対象課題・案件状態を示すquery identity、scope/source/version、runtime結論要求、BRAIN変更要求、各query identity/scope欠落 | 判断材料fieldと対象query identity/scopeのtrace、BRAIN mutation/runtime decision誤生成数、owner返却を固定oracleへ照合する。 | 稼働中判断品質や性能SLAではない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-022-01` | `HELIXBRAIN-L2-022` | HARNESS設計義務trace: Pattern input/dependencyからHARNESS-L2-009への完全/欠落/誤版forward/reverse fixture | 両方向edge coverage、orphan/wrong revision/product値誤決定数を固定oracleへ照合する。 | 製品設計の正しさを判定しない。候補測定、未実行。 |
 | `CASE-BRAIN-L10-NFR-023-01` | `HELIXBRAIN-L2-023` | 通常の汎用知識query/返却と、別個の利用・評価結果（LABO receiptあり/なし）を与え、Product Core固有screen/flow/tokenの混在も変異する。 | 汎用知識は既存受領contractで成立すること、利用・評価結果のLABO provenance、製品固有fieldの所有先、未評価candidate保持、誤昇格数を別々の固定oracleへ照合する。 | 画面UX品質を独立評価しない。候補測定、未実行。 |
-| `CASE-BRAIN-L10-NFR-030-01` | `HELIXBRAIN-L2-030` | BRAIN-HARNESS connector: contract/compatibility/query/receipt/scope/receiverの完全例、stale・非互換・field定義欠落・join-only | contract group coverage、義務receipt・open state・forward/reverse trace、join-only acceptance/false completion数を固定oracleへ照合する。 | 設計義務充足とknowledge receiptを区別する。候補測定、未実行。 |
+| `CASE-BRAIN-L10-NFR-030-01` | `HELIXBRAIN-L2-030` | BRAIN-HARNESS connector: contract/compatibility/query/receipt/scope/receiverの完全例、stale・非互換・knowledge meaning欠落・field定義欠落/矛盾・identity/revision/version不一致・join-only | contract group coverage、義務receipt・open state・forward/reverse traceを測定する。定義済fieldのvalue unknownはreceipt+open obligationで保持し設計義務未充足とし、field definition missingは通常受領不可/BRAIN戻しとして別測定する。範囲外/未宣言queryはhold。知識意味の欠落とfield定義の欠落/矛盾を別fixtureにし、知識意味の不整合をBRAIN返却先へ追加しない。 | 設計義務充足とknowledge receiptを区別する。候補測定、未実行。 |
 
 ### Stage 5 BRAIN-024/025測定候補
 

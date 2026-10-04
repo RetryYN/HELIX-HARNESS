@@ -80,7 +80,7 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 ### 受入条件（AC候補）
 
 - **INFRA-006-AC-01 — 正常・追跡**：HELIX-OS/通常control plane unavailableのとき、停止中control planeへ依存しないpathと別SECURITY authorityで親L2に列挙された点検・health確認・service停止・rollback・recovery起動の5操作を個別に確認し、対象revisionと残作業を含む結果を返す。
-- **INFRA-006-AC-02 — 異常・境界**：停止中OSへ修復を依頼する循環、通常権限の流用、credential/policy/target不明の実行、許可された範囲外operation、完全自動failoverを必須化した成功主張は不成立。安全に復旧できなければ停止し、最後に適格なrevisionと残workを記録する。
+- **INFRA-006-AC-02 — 異常・境界**：停止中OSへ修復を依頼する循環、通常権限の流用、credential/policy/target不明の実行、許可された範囲外operation、完全自動failoverを必須化した成功主張は不成立。安全に復旧できなければ停止し、最後に適格なrevisionと残workを記録する。停止・不明の戻し先は、特定できる独立経路/authority提供ownerとし、owner不明なら宛先を推測せずunknownを保つ。
 
 ### 固定親句の被覆
 
@@ -130,10 +130,10 @@ HELIX-OS/通常control planeが利用不能な状況で、独立resource pathか
 | 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
 |---|---|---|---|
 | 入力・提供: resource/model requirementとcapacity等の観測、Model Runtime全属性・common resource model・network/storage属性をsource/revisionへ結ぶ | `INFRA-003-FR-01 / INFRA-003-AC-01` | `L10-INFRA-003-C01,C02` | resource/environment/revision別requirement・available capacity |
-| 保証: 起動前capacity確認、queue/delay/alternative/reject/escalation情報、placement/costはowner外 | `INFRA-003-FR-01 / INFRA-003-AC-01,AC-02` | `L10-INFRA-003-C01,C02,C04` | 適格性情報とdecision ownerの分離 |
+| 保証: 起動前capacity確認、queue/delay/alternative/reject/escalation情報、placement/costはowner外 | `INFRA-003-FR-01 / INFRA-003-AC-01,AC-02` | `L10-INFRA-003-C01,C02,C03,C04` | 適格性情報とdecision ownerの分離 |
 | 否定: stale/unknown/計測不能と適用閾値・条件未設定を十分capacityにせず、無制限Job追加を認めない | `INFRA-003-FR-01 / INFRA-003-AC-02` | `L10-INFRA-003-C03` | unknown/unavailable/理由と観測source |
 | 戻し先: capacity source、OS/INTELLIGENCE decision owner、queue等未完義務 | `INFRA-003-FR-01 / INFRA-003-AC-02` | `L10-INFRA-003-C02,C03` | 不足snapshot・未完queue保持 |
-| 依存・版: L2-001、容量観測source、OS/INTELLIGENCE interface; version_target 1.0。高度autoscalingは後続 | `INFRA-003-FR-01 / INFRA-003-AC-01,AC-02` | `L10-INFRA-003-C01,C04` | L2-001/resource link。自動増減の必須化0 |
+| 依存・版: L2-001、容量観測source、OS/INTELLIGENCE interface; version_target 1.0。高度autoscalingは後続 | `INFRA-003-FR-01 / INFRA-003-AC-01,AC-02` | `L10-INFRA-003-C01,C03,C04` | L2-001/resource link。自動増減の必須化0 |
 
 ### 旧L3／対のtest designからの意味対応
 
@@ -161,7 +161,7 @@ TERから外部技術の観測・根拠付きdiff・unknown/staleのfail-close�
 ### 受入条件（AC候補）
 
 - **INFRA-004-AC-01 — 正常・追跡**：対象scopeの8 state（normal, degraded, unavailable, capacity_exhausted, dependency_failure, data/network_unavailable, security_isolation, unknown）を観測source/revision付きで個別に識別する。
-- **INFRA-004-AC-02 — 異常・境界**：telemetry欠測、collector failure、source/revision欠落・staleをhealthy/currentに読み替えない。承認済み定義がないseverity/causeを追加せず、L2-019の後続版freshness/confidence詳細を1.0へ要求しない。
+- **INFRA-004-AC-02 — 異常・境界**：telemetry欠測、collector failure、source/revision欠落・staleをhealthy/currentに読み替えない。unknown/unobservedはtelemetry/collector/source ownerへ、approved incident meaning不足はincident meaning ownerへ返す。承認済み定義がないseverity/causeを追加せず、L2-019の後続版freshness/confidence詳細を1.0へ要求しない。
 
 ### 固定親句の被覆
 
@@ -208,8 +208,8 @@ L2-001/002と対象state ownerが定めるretention/recovery要求、独立検�
 
 ### 受入条件（AC候補）
 
-- **INFRA-005-AC-01 — 正常・追跡**：対象state ownerが定めた保持期間・recovery要求（宣言がある場合）を、そのownerとsource revisionに結んで入力し、backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionを参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。保持期間の指定がない場合は値を補わず未指定として記録する。Infrastructure自身の保持期間要求として宣言せず、技術候補を提示する場合もowner要求から分けて未採択候補と明記する。rollback成功からincident closureやforward fix完了を生成せず、各ownerの別証拠を要求する。
-- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。保持期間要求のsource/ownerがmissing・unknownなら期間を推測せずunknownとして対象state/recovery ownerへ返し、宣言済み要求のowner/revisionが誤っている場合も一致扱いしない。Infrastructureが保持期間を所有すると扱う入力、または技術候補を採択済みowner要求として扱う入力も拒否する。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。rollback receiptのみでincidentをclosedにする反例を拒否し、元incident状態と未完義務を保持する。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
+- **INFRA-005-AC-01 — 正常・追跡**：対象state ownerが定めた保持期間・recovery要求（宣言がある場合）を、そのownerとsource revisionに結んで入力し、backup target/source revision/time/completeness/location/integrity/expiryとrestore environment/source revisionを参照できる。backup実行、実restore、rollback適格性が別々に記録され、restore integrity/dependency reconnection/startup/verificationおよびrollback target compatibility/procedureの証拠をscope内で再構成できる。保持期間ownerが分かり、owner要求に保持期間値が未指定なら、値を補わず未指定として記録する。owner自体がunknownなら期間もownerも推測せずholdとする。Infrastructure自身の保持期間要求として宣言せず、技術候補を提示する場合もowner要求から分けて未採択候補と明記する。rollback成功からincident closureやforward fix完了を生成せず、各ownerの別証拠を要求する。
+- **INFRA-005-AC-02 — 異常・境界**：backup不完全、restore不成立、integrity/dependency/startup/verification欠落、互換性不明、rollback target不明をsuccess stateにしない。保持期間要求のsource/ownerがmissing・unknownなら期間・ownerを推測せずunknown/holdとし、既知の失敗は固定L2/L11どおりrecovery design owner/OSへ返す。owner未特定のときは架空のownerへの返却を生成しない。宣言済み要求のowner/revisionが誤っている場合も一致扱いしない。Infrastructureが保持期間を所有すると扱う入力、または技術候補を採択済みowner要求として扱う入力も拒否する。変更前の適格state・failure・未完義務を保持してrecovery design owner/OSへ返す。rollback receiptのみでincidentをclosedにする反例を拒否し、元incident状態と未完義務を保持する。今回のscopeが指定しない汎用retention/RTO/RPO条件を一律追加しない。
 
 ### 固定親句の被覆
 
@@ -218,7 +218,7 @@ L2-001/002と対象state ownerが定めるretention/recovery要求、独立検�
 | 依存: L2-001/002、対象state ownerが定めるretention/recovery requirement、独立検証可能restore environment。保持期間ownerは対象state ownerでありInfrastructureではない。 | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C01,C02,C03` | ownerの宣言済み保持要求・owner/source revision、target/source revision/time/completeness/location/integrity/expiry。欠落/unknownは期間を補わずunknown。候補提示は採択済み要求と分離 |
 | 保証: backup→restore/rollback結果を対象scopeのstate/evidenceと対応し、rollbackだけからincident closure/forward fix完了を生成しない | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C01,C03,C05` | backup state、実restore、rollback eligibility、incident/forward fixの別owner証拠を分離 |
 | 否定: source欠落/stale/別版/部分復元を完全成功としない | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | integrity/dependency/startup/verification/compatibility failure |
-| 戻し先: source owner/recovery obligation owner、未完義務を保持 | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | previous eligible state、failure、未完義務、recovery design owner/OS |
+| 戻し先: source owner/recovery obligation owner、未完義務を保持 | `INFRA-005-FR-01 / INFRA-005-AC-02` | `L10-INFRA-005-C02,C03,C04,C05` | previous eligible state、failure、未完義務、recovery design owner/OS。ownerが未特定ならunknown/holdで返却先を推測しない |
 | 版境界: version_target 1.0の明示scope。今回のoperation-scoped restore/rollback判定は親記載のintegrity・dependency・startup・verification・compatibility・procedureで閉じるため、汎用RTO/RPO/retentionを成功条件に要しない。別scopeで技術値が必要なら、owner要求を根拠に、上流指定の有無に拘らず根拠・比較・測定方法付きの未採択候補としてL3に提示する。保持期間ownerをInfrastructureに移さない。 | `INFRA-005-FR-01 / INFRA-005-AC-01,AC-02` | `L10-INFRA-005-C04,C05` | 今回不要な汎用閾値を必須gateにせず、operation固有義務を判定。必要な別技術値は候補化可能 |
 
 ### 旧L3／対のtest designからの意味対応
@@ -247,7 +247,7 @@ L2-001/002/004/006とOSのversioned Work/Change interface/evidenceに依存し�
 ### 受入条件（AC候補）
 
 - **INFRA-009-AC-01 — 正常・追跡**：通常接続でOS ticket/changeとInfrastructure resource/runtime recordを相互に参照し、未完/stop/resume/rollbackを失わない。stage packを使うfixtureでは、stage IDとruntime revisionを分離し、同stage evidence内に適用条件を対応づける。
-- **INFRA-009-AC-02 — 異常・境界**：unknown target/revision/owner、部分適用、未完operation欠落を成功扱いしない。OS ticketをruntime stateの正本にせず、Infrastructureに作業承認させない。通常接続をstage release完成待ちにせず、全7製品や後続L1-015/023を開始条件にしない。
+- **INFRA-009-AC-02 — 異常・境界**：unknown target/revision/owner、部分適用、未完operation欠落を成功扱いしない。状態のsource/ownerが特定できない場合はunknown/holdとして返却先を推測せず、特定できるruntime/work ownerはOSまたはInfrastructureの該当ownerへ戻す。OS ticketをruntime stateの正本にせず、Infrastructureに作業承認させない。通常接続をstage release完成待ちにせず、全7製品や後続L1-015/023を開始条件にしない。
 
 ### 固定親句の被覆
 

@@ -22,5 +22,5 @@
 
 | 候補 | 入力・測定 | 判定候補 | 限界 |
 |---|---|---|---|
-| CON-NFR-007-01 | CASE-007-01/03の構成体manifest・required edgeごとの登録、互換、operation lineage、terminal evidence | 全required edgeのtrace closure 100%。aggregate-only案より、欠落edgeと未完ownerをedge単位に特定できる。 | 宣言済み構成体以外を分母へ足さない。業務successや性能SLAを含めない。 |
+| CON-NFR-007-01 | CASE-007-01/03の構成体manifest・required edgeごとの能力/契約/依存版/scope/correlation/expiry/idempotency/result/SECURITY/data-use識別子、登録、互換、operation lineage、terminal evidence | 全required edgeのfield/trace closure 100%、業務結果・承認を生成する誤判定0を候補測定する。aggregate-only案より、欠落field/edgeと未完ownerをedge単位に特定できる。 | 宣言済み構成体以外を分母へ足さず、業務successや性能SLAは生成しない。CASE-007-01/04で宣言済み正常fixtureと未観測業務受入対照を測る。 |
 | CON-NFR-007-02 | CASE-007-02の中間edge stale/timeout/digest conflict/expiry/cancel/permission revoke/partial success mutationと後続attempt trace | 各negative fixtureで後続未許可attempt 0、false composite success 0。 | 固定L2/L11のfailure列挙の範囲に限り、未指定retry capを追加しない。 |

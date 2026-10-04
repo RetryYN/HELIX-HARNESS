@@ -1715,7 +1715,7 @@ BRAINからVisual Design HARNESSへの汎用知識の提供は、Visual Design H
 ### 受入条件（AC候補）
 
 - **BRAIN-023-AC-01 — 正常**: Visual Design HARNESSの汎用知識query/返却が既存受領contractだけで成立する例と、別の利用・評価結果に同scope/source revisionのLABO evaluation receiptが結び付く例を分けて観測する。汎用candidateと条件/反例/input、製品固有fieldを分離し、LABO receiptが必要な昇格ではprovenance edgeをtraceする。generic/product-specific境界fieldの対応率100%・誤混入/誤昇格0件を根拠付き候補値とする（未承認・未実測）。
-- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入する変異、ならびにLABOを飛ばした利用・評価結果の昇格変異を別々に投入する。L2-006/007/009/011/012、Visual Design HARNESS receipt contract、または利用・評価flowを選んだ場合のLABO contractのidentity/revision/scopeをmissing/stale/wrong-scopeにする変異も加える。選択flowの依存契約がmissing/stale/wrong-scopeならそのflowだけをholdし、汎用知識提供まで止めない。製品固有要素は該当Product Coreへ返す。LABO経路のない結果は未評価candidateのまま保持して昇格を停止する。親が追加の返却先を指定していないため、LABOへ返す規則を新設しない。単なる汎用知識提供までLABO receipt必須にしない。
+- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入する変異、ならびにLABOを飛ばした利用・評価結果の昇格変異を別々に投入する。L2-006/007/009/011/012、Visual Design HARNESS receipt contract、または利用・評価flowを選んだ場合のLABO contractのidentity/revision/scopeをmissing/stale/wrong-scopeにする変異も加える。汎用知識提供に使う既存受領contractそのもの、またはidentity/revision/scopeがmissing/stale/wrong-scopeなら当該提供flowをholdする。LABO contractは利用・評価flow選択時だけ必要で、その不足は選択flowだけholdし、無関係なgeneric flowは止めない。製品固有要素は該当Product Coreへ返す。LABO経路のない結果は未評価candidateのまま保持して昇格を停止する。親が追加の返却先を指定していないため、LABOへ返す規則を新設しない。単なる汎用知識提供までLABO receipt必須にしない。
 
 ### 固定親句の被覆
 
@@ -1725,7 +1725,7 @@ BRAINからVisual Design HARNESSへの汎用知識の提供は、Visual Design H
 | 保証・出力: Visual Design HARNESSの汎用知識接続 | `BRAIN-023-FR-01` / `BRAIN-023-AC-01` | `L10-BRAIN-023-C01` | 全必須field・receipt・状態を維持 |
 | 否定条件・失敗時の戻し先 | `BRAIN-023-AC-02` | `L10-BRAIN-023-C02` | 選択flowの依存contract identity/revision/scopeがmissing/stale/wrong-scopeなら当該flowだけholdする。製品固有要素は該当Product Coreへ返し、LABO未経由の利用・評価結果は未評価candidateとして保持して昇格を止める。 |
 | 未見入力の境界 | `BRAIN-023-AC-01,BRAIN-023-AC-02` | `L10-BRAIN-023-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
-| 依存と版 | `BRAIN-023-FR-01` | `L10-BRAIN-023-C01,L10-BRAIN-023-C02` | L1-006/007/009、L2-006/007/009/011/012、Visual Design HARNESS及び選択flowのLABO connection contract。選択flowのcontract identity/revision/scope missing/stale/wrong-scopeは当該flowだけをholdし、汎用知識提供を止めない。版1.0 / Stage 4 |
+| 依存と版 | `BRAIN-023-FR-01` | `L10-BRAIN-023-C01,L10-BRAIN-023-C02` | L1-006/007/009、L2-006/007/009/011/012、Visual Design HARNESS及び選択flowのLABO connection contract。汎用提供の受領contract欠落・staleは提供flowをholdする。LABO connection contractは利用・評価flow選択時だけ必要で、その不足は選択flowのみholdし、無関係なgeneric提供は止めない。版1.0 / Stage 4 |
 | PO固定L11の例 | 固定L11全例 | `L10-BRAIN-023-C01,L10-BRAIN-023-C02,L10-BRAIN-023-C03` | 否定条件・停止・親が指定した戻し先を個別照合 |
 
 ### 旧L3／対test-designからの再利用・再導出
@@ -1742,7 +1742,7 @@ VDH Pattern Contract required/forbiddenとcommon/product value separationを限�
 
 ### 親revisionとauthority
 
-- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-030-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:575–586` raw span SHA-256 `a69172ac364108dd9d81f93ff86dd7673a47f993e81055a20e18bc3b2cdf12ee`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:97–114` raw span SHA-256 `bfb1d656431e49066bca208ecf52ffeff9d0bd88d7d85b939b185d66128115c4`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
+- PO採択根拠: [`docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89`](../../governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md#L89), decision full SHA-256 `fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a`; exact adopted registration `MPR-RC-HELIXBRAIN-L2-030-002` (main `633bf12` decision row only; later register metadata is not approval)。L2固定本文: `docs/helix-brain/L2-requirements/brain-requirements.md:575–586` raw span SHA-256 `a69172ac364108dd9d81f93ff86dd7673a47f993e81055a20e18bc3b2cdf12ee`, full SHA-256 `421eba418a3fa639fdb46bdd902b33d59854aed544f11712d494d7d2e12eaaaa`。L11固定本文: `docs/helix-brain/L11-acceptance/brain-acceptance.md:97–117` raw span SHA-256 `bfb1d656431e49066bca208ecf52ffeff9d0bd88d7d85b939b185d66128115c4`, full SHA-256 `833e80f6b27e6f20461f4c57dd8021d146badcd3a6296e2dd7148649a4389ed5`。version_target `1.0`、G0 sequence `Stage 4`。後続のregister metadataから承認を継承しない。
 - 依存: L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。
 
 ### 要件候補
@@ -1752,7 +1752,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 ### 受入条件（AC候補）
 
 - **BRAIN-030-AC-01 — 正常**: 二つの選択Patternとrelation/conflict、required fieldの既知値と一つの未決値をqueryし、知識receiptは受領可能だが対応義務はopen、設計完了/実装準備はfalseであること、双方向trace、contract範囲を照合する。 常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落またはfield定義自体の矛盾、選択Pattern identity/revision/version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。connector contract自体またはその版/互換がmissing/stale/unknownならqueryを保留する。選択Patternのidentity/revision/version/field定義の欠落・矛盾はBRAINへ返す。定義済みfieldの値未決はreceiptと未充足義務に保持する。Pattern意味・条件・関係の不整合は該当BRAIN親L1へ、receiver scope/schema/obligation mappingの欠落・不一致はHARNESSへ返し、routeを重複させない。別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
+- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落またはfield定義自体の矛盾、選択Pattern identity/revision/version欠落/不一致、知識意味の欠落、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。connector contract自体またはその版/互換がmissing/stale/unknownならqueryを保留する。選択Patternのidentity/revision/versionまたはfield定義の欠落・矛盾、および知識意味の欠落はBRAINへ返す。定義済みfieldの値未決はreceiptと未充足義務に保持する。Pattern意味・条件・関係の不整合は該当BRAIN親L1へ、receiver scope/schema/obligation mappingの欠落・不一致はHARNESSへ返し、routeを重複させない。別Pattern成功で穴を埋めず、候補受渡し・BRAIN内候補構成・LABO評価からPattern採択・承認・実装を生成しない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
 
 ### 固定親句の被覆
 
@@ -1760,7 +1760,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 |---|---|---|---|
 | Input・版・範囲 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
 | 保証・出力: BRAIN knowledgeからHARNESSへの単一接続 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 全必須field・receipt・状態を維持 |
-| 否定条件・失敗時の戻し先: connector contract自体またはidentity/version/compatibilityがmissing/stale/unknownならquery hold。選択Pattern identity/revision/version/field定義の欠落・矛盾はBRAINへ、Pattern意味/条件/relation不整合は該当BRAIN親L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。製品固有API/state/permissionの選択結果は拒否し、親が指定しない戻し先を推測しない。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | contract・identity/version/compatibilityそれぞれのmissing/stale/unknown query holdと4種類のrouteを別fixture化し、各owner/stateを照合し、採択/承認/実装を生成しない。 |
+| 否定条件・失敗時の戻し先: connector contract自体またはidentity/version/compatibilityがmissing/stale/unknownならquery hold。identity/revision/versionまたはfield定義の欠落・矛盾、および知識意味の欠落はBRAINへ、Pattern意味/条件/relation不整合は該当BRAIN親L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。知識意味の不整合に戻し先を追加しない。製品固有API/state/permissionの選択結果は拒否し、親が指定しない戻し先を推測しない。別Pattern成功で穴を埋めず、候補受渡し・BRAIN内候補構成・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | contract・identity/version/compatibilityそれぞれのmissing/stale/unknown query holdと4種類のrouteを別fixture化し、各owner/stateを照合し、採択/承認/実装を生成しない。 |
 | 未見入力の境界 | `BRAIN-030-AC-01,BRAIN-030-AC-02` | `L10-BRAIN-030-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
 | 依存と版 | `BRAIN-030-FR-01` | `L10-BRAIN-030-C01,L10-BRAIN-030-C02` | L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。 版1.0 / Stage 4 |
 | PO固定L11の例 | 固定L11全例 | `L10-BRAIN-030-C01,L10-BRAIN-030-C02,L10-BRAIN-030-C03` | 否定条件・停止・戻し先も個別照合 |

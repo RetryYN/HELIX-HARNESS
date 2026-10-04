@@ -2,6 +2,11 @@
 
 **状態：部分草稿・未承認・未実行。** `../L3-requirements/nfr-grade.md`の候補値を検証する測定設計。このStage 1/Stage 2a/Stage 2bおよびStage 4接続契約の確認に不要な性能SLAは追加しない。別の技術値が要件上必要な場合は、上流指定の有無にかかわらず根拠・比較・測定方法付きのL3候補として提示し、承認前の閾値をoracleへ適用しない。
 
+
+## 接続failureと業務failureのNFR oracle境界（L2-159/161）
+
+connector identity/revision/schema/provenanceの技術failure判定とCONNECT側戻し先は、候補のCONNECT FR/AC/CASE対応表（`../L3-requirements/functional-requirements.md` 冒頭）を参照する。consumer receiptのidentity・admitted revision・scopeを結び、他scope/旧revision流用、自由文/source joinだけの判定、CONNECT greenからの業務成功生成を独立fixtureで拒否する。L2-159/161の各packが持つ未完義務と明示戻し先、および親L2の業務failure routeは別fixture/別facetで保持する。L2-027/040の明示CONNECT routeは固定条件内で照合する。
+
 | 親L2 | 測定項目 | 入力・変異 | 判定材料 |
 |---|---|---|---|
 | `HELIXLABO-L2-001` | 20-field coverage / observed-status fidelity | source contractごとに20 fieldsを提供し、実在する各statusを個別投入。存在する1 field/statusずつ欠落/変換し、all-success snapshotも対照fixtureにする | 20 required field coverage、存在statusのdistinctness、source上の非success event脱落0、未発生statusの捏造0、unknown/not_observedのsuccess coercion 0。 |
@@ -37,8 +42,8 @@
 | `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務、co-timed unrelated eventsとcausality overclaimを個別/併発変異 | provenance/unknown保持、correlation-onlyからcausal conclusion 0、owner return |
 | `HELIXLABO-L2-013` | C01/C02〜04 | 分類軸、根拠、元episodeの個別欠落/矛盾 | 分類軸別trace、根拠欠落の検出 |
 | `HELIXLABO-L2-014` | C01/C02〜04 | original meaning/purpose/condition、candidate deltaの欠落/不整合 | original-to-candidateの意味差trace、unknown停止 |
-| `HELIXLABO-L2-015` | C01/C02〜04 | baseline/current・candidate・hybridの実験条件を選択状態別に変異し、L2-059のHELIXなし/旧/新cohortは独立fieldとする。選択条件欠落と未選択condition/cohort不在を分ける。 | 選択実験条件の一致/不成立を照合し、未選択cohortまたは条件の不在だけでは比較を不成立にしない。 |
-| `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落。connector mismatchも別failure classで与える。 | 各証拠状態を保持し、判定不能はoperation候補に保留。親/有効contractに明示された宛先がなければunknown/保留とする。 |
+| `HELIXLABO-L2-015` | C01/C02〜04 | baseline/current・candidate・hybridの実験条件を選択状態別に変異し、L2-059のHELIXなし/旧/新cohortは独立fieldとする。選択条件欠落と未選択conditionの不在を別fixtureで示し、cohort fieldは判定に用いない。 | 選択実験条件の一致/不成立を照合し、未選択conditionの不在だけでは比較を不成立にしない。cohort fieldはこの判定に使わない。 |
+| `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落。connector mismatchも別failure classで与える。 | 各証拠状態を保持し、判定不能はoperation候補に保留。connector technical failureは先頭CONNECT候補pair表を参照し、親/有効contractに明示された業務宛先がなければunknown/保留とする。 |
 | `HELIXLABO-L2-017` | C01/C02〜04 | guarantee/revision/unfinished obligation/ownerを個別に欠落 | switch 0、欠落理由とowner return |
 | `HELIXLABO-L2-018` | C01/C02〜04 | sample condition/evidence scope/counterexampleを欠落または追加 | supportされた最大scope、反例によるscope縮小 |
 | `HELIXLABO-L2-019` | C01/C02〜04 | target identity/evidence/target permissionを欠落・混在 | target別提案、unknown targetをOSへ返す |
@@ -50,11 +55,11 @@
 | `HELIXLABO-L2-025` | C01/C02〜04 | SECURITY data-use scope/permission/source revisionとrestricted fieldを個別操作 | unauthorized/restricted intake 0、SECURITYへreturn |
 | `HELIXLABO-L2-026` | C01/C02〜04 | INFRA resource/environment source versionをstale/unknown化 | stale/unknownをhealthyへ変換しない |
 | `HELIXLABO-L2-027` | C01/C02〜04 | 専用connection contract identity/revision/schema/traceを個別drift、implicit connector sharingも投入 | mismatch/unknownを可視化しCONNECT ownerへ返し、暗黙共有0 |
-| `HELIXLABO-L2-028` | C01/C02〜04 | Worker result identity、L2-006 experiment/target version、assignment/task class/source/statusと専用connector identity/revision/schema/provenanceを個別変異 | observedをevaluatedへ昇格0。assignment不一致だけはOS assignment ownerへ戻し、connector不一致は受領不成立・unknownとして保留してownerを推測しない |
+| `HELIXLABO-L2-028` | C01/C02〜04 | Worker result identity、L2-006 experiment/target version、assignment/task class/source/statusと専用connector identity/revision/schema/provenanceを個別変異 | observedをevaluatedへ昇格0。assignment不一致はOS assignment ownerへ戻す。connector technical failureはL3のCONNECT候補pair表を参照し、receipt不成立は保留する |
 | `HELIXLABO-L2-029` | C01/C02〜04 | CI target revision/test scope/statusを欠落、stale/not-run/interrupted化 | 未実行/古い結果のpass表記0 |
 | `HELIXLABO-L2-030` | C01/C02〜04 | Product Core source identity/version/scopeを混在、unselected sourceを必須化 | identity merge 0、unselected sourceはoptional |
-| `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/顧客固有ルール/unknown;専用connector identity/revision/schema/provenanceの個別不一致; 2.0 external input | internal evidence scope、connector不一致は受領不成立・unknownで保留、L2-009の戻し先は単一case/適用範囲不明に限定、1.0/2.0 boundary |
-| `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed omissionとconnector identity/revision/schema/provenance不一致; 052 full-collection/054 Bench claim mutation; learning/tuning request | 035 packet traceを052全量到達や054 Bench水準と混同せず、unassessed retained。connector mismatchは受領不成立・unknownとして保留しownerを推測しない、3.0+ execution 0 |
+| `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/顧客固有ルール/unknown;専用connector identity/revision/schema/provenanceの個別不一致; 2.0 external input | internal evidence scope、connector technical failureはL3のCONNECT候補pair表を参照してreceipt不成立を保留、L2-009の戻し先は単一case/適用範囲不明に限定、1.0/2.0 boundary |
+| `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed omissionとconnector identity/revision/schema/provenance不一致; 052 full-collection/054 Bench claim mutation; learning/tuning request | 035 packet traceを052全量到達や054 Bench水準と混同せず、unassessed retained。connector technical failureはL3のCONNECT候補pair表を参照しreceipt不成立を保留、3.0+ execution 0 |
 | `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0、selected scope/source/operation/versionの各変更 | selected-only dependency closureを変更時に再照合、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
 
 ## Stage 4 — 接続・受渡し契約の測定
