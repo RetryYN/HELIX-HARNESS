@@ -22,6 +22,7 @@ stage: 1
 - `HELIXINFRASTRUCTURE-L2-001`: `MPR-RC-HELIXINFRASTRUCTURE-L2-001-003`、semantic digest `sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6`、1.0 / Stage 1。固定L2 `infrastructure-requirements.md` §同ID、対L11 `infrastructure-acceptance.md` §同ID。
 - `HELIXINFRASTRUCTURE-L2-006`: `MPR-RC-HELIXINFRASTRUCTURE-L2-006-002`、semantic digest `sha256:546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc`、1.0 / Stage 1。固定L2/L11 §同ID。
 - `HELIXINFRASTRUCTURE-L2-005` は採択済みL2であり006の復旧責務が参照する親入力である。Stage 1のL3候補や未承認の候補要件として扱わず、本組では005自体を要件化しない。
+- L2-006の親scopeと別SECURITY authorityは固定L2-006/L11-006を根拠とする。Workerの実操作契約およびtarget/action/revision/scope/expiry入力の細目は、採択済みL2-010 `infrastructure-requirements.md` L126–134（特にL129、L132）を横断参照する。L2-010はこのStageの要件対象へ加えず、006の5操作・独立recovery条件を置き換えない。
 - 採択・L3承認・実装/実行許可は本候補から生成しない。人の判断が必要な要求変更は検出してL2へ戻す。技術パラメータごとの個別質問は作らない。
 
 ## 旧HELIXからの起点と項目別処置
@@ -45,15 +46,15 @@ stage: 1
 
 ### INFRA-001-FR-01-01 — resource identityとtopology
 
-宣言された対象scope内のHELIX本体resourceごとに、resource identity、role、environment、location、version、dependency、lifecycle stateを観測元とrevisionへ結び付ける。値を読めない項目はunknownとして残す。構成図や記録の存在だけで実体の状態を証明しない。
+宣言された対象scope内のHELIX本体resourceごとに、resource identity、role、environment、location、version、dependency、lifecycle stateを観測元とrevisionへ結び付ける。L2-001の単独成立依存である承認対象HELIX-HARNESS-CORE設計の参照revisionを入力として扱い、設計承認自体を本要件から生成しない。2026-09-26 PO判断に従い、旧Runner/Sandboxの実行能力は独立runtimeとして継承せずWorkerとして参照する。最低範囲13 Deployment versionのうちINFRASTRUCTUREが担うruntime revisionを記録し、OS stage release identityとは別の識別子として扱う。値を読めない項目はunknownとして残す。構成図や記録の存在だけで実体の状態を証明しない。
 
-**INFRA-001-AC-01**: 対象scope内の各resourceについて上記7属性の値または明示的unknownとsource/revisionが追跡できる。未登録・重複・不明identityを別resourceや既定値で補完しない。environment間のresourceを同一と推定しない。読み取り不能または部分更新時は、以前のobservationをcurrentと見なさず、未完の観測範囲を残す。
+**INFRA-001-AC-01**: 対象scope内の各resourceについて上記7属性の値または明示的unknownとsource/revisionが追跡できる。未登録・重複・不明identityを別resourceや既定値で補完しない。environment間のresourceを同一と推定しない。resource/owner/environment/location/version/dependencyが不明ならunknownのままresource sourceまたはCORE設計ownerへ返し、返却先owner自体が特定できない場合は停止して未解決ownerを記録する。読み取り不能または部分更新時は、以前のobservationをcurrentと見なさず、未完の観測範囲を残す。
 
 ### INFRA-001-FR-01-02 — environment分離
 
 development、verification、staging、production、recovery等の各environmentは独立identityを持つ。resource/config/network/credential scope/data/version/authorityの観測は対象environmentへ結び付け、別environmentの状態を対象environmentの成功証拠にしない。environment classの集合は親が宣言した対象範囲に限る。
 
-**INFRA-001-AC-02**: environment identityが合致する同一resourceの観測だけを対象stateとして扱う。scope、version、authority、sourceが不明または別environmentであれば一致/利用可能としない。
+**INFRA-001-AC-02**: environment identityが合致する同一resourceの観測だけを対象stateとして扱う。scope、version、authority、source、config、network、credential scope、dataの各軸を独立に照合する。いずれかが不明または別environmentであれば一致/利用可能としない。
 
 ### INFRA-001-FR-01-03 — network pathの実体記述
 
@@ -65,7 +66,7 @@ HELIX-CONNECTの論理接続identityとphysical/runtime network pathを別々に
 
 persistent stateとtemporary stateを区別する。対象storageごとに owner、durability、backup、retention、environment、confidentiality の6属性と、適用されるrecovery requirementへの参照を持ち、source/revisionへ結び付ける。CPU/RAM/GPU/VRAM/storage/networkおよび対象scopeに含まれるModel/Worker Runtimeの属性を記録する。Model Runtimeでは model、version、server、GPU-memory requirement、concurrency、latency、capacity、health、endpointを対象environment/source/revisionへ束ねる。未観測のruntimeを存在すると仮定せず、model capability、Worker ticket/assignment、security policyをINFRASTRUCTURE値にしない。
 
-**INFRA-001-AC-04**: 各対象storageの6属性およびrecovery参照は値またはunknownと追跡元を持つ。対象scopeに含むruntimeの列挙属性に未観測があればそのまま示す。Model/Worker能力評価やauthorityをこの結果から生成しない。
+**INFRA-001-AC-04**: 各対象storageの6属性およびrecovery参照は値またはunknownと追跡元を持つ。対象scopeに含むruntimeの列挙属性に未観測があればそのまま示す。resource lifecycle/environmentなどの観測値からSECURITY authorityまたはoperation許可を生成・代用しない。Model/Worker能力評価やauthorityをこの結果から生成しない。
 
 ## INFRA-006-FR-01 — HELIX独立Bootstrap・Recovery Path
 
@@ -73,15 +74,15 @@ persistent stateとtemporary stateを区別する。対象storageごとに owner
 
 ### INFRA-006-FR-01-01 — HELIX control planeから独立した判定経路
 
-通常のHELIX/HELIX-OS control planeが利用不能な状態でも、recovery対象、operation、resource/path revision、scope、既存SECURITY authorityを独立pathで照合できる。判定は停止中HELIXのticket、assignment、health応答、承認状態に依存しない。pathまたはauthorityを提供するownerが不明/利用不能なら復旧成功を示さず、その提供ownerへ戻す。独立pathとは別途作成する万能運用系を意味せず、L2-006の限定recovery経路を指す。
+通常のHELIX/HELIX-OS control planeが利用不能な状態でも、recovery対象、operation、resource/path revision、scope、SECURITYの別authorityを独立pathで照合できる。通常operation用authorityが有効でも、独立recoveryに適用される別authorityの代用にしない。判定は停止中HELIXのticket、assignment、health応答、承認状態に依存しない。pathまたはauthorityを提供するownerが特定できる場合はそこへ戻す。提供owner自体が不明なら復旧成功を示さず停止し、未解決ownerと義務を記録する。独立pathとは別途作成する万能運用系を意味せず、L2-006の限定recovery経路を指す。
 
-**INFRA-006-AC-01**: fixture上でHELIX/OS応答を利用不能にしても、対象/operation/scope/revision/expiryに適用される別SECURITY authorityを照合できる。通常Control Planeまたは停止中サービスを経由しない証拠があり、authority欠落/unknown/期限切れは拒否される。独立path/authorityを提供するownerが不明または利用不能なら復旧成功を示さず、該当する提供ownerへ戻す。
+**INFRA-006-AC-01**: fixture上でHELIX/OS応答を利用不能にしても、対象/operation/scope/revision/expiryに適用される通常operation authorityとは別のSECURITY authorityを照合できる。通常Control Planeまたは停止中サービスを経由しない証拠があり、別authorityの欠落/unknown/期限切れは拒否される。独立path/authorityを提供するownerが特定できる場合は該当ownerへ戻す。提供owner自体が不明なら復旧成功を示さず停止し、未解決ownerと残る義務を記録する。
 
 ### INFRA-006-FR-01-02 — 5種の限定operation
 
-独立pathはbootstrap、health check、service stop、rollback、recoveryの5種だけを、指定resource・revision・scopeに対するoperationとして判定する。各operationを許可するときはSECURITYの別authority、必要なresource/path状態、operation固有の前提と結果を記録する。state-changing operationは採択済みL2-005の当該actionに適用されるbackup/restore/rollback/recovery義務を参照し、不明または未充足なら保留する。無関係なread-only操作へ一律のbackup義務を加えない。SECURITY制約下のWorkerが実操作を行い、INFRASTRUCTUREはsecurity policyや認可を生成しない。
+独立pathはbootstrap、health check、service stop、rollback、recoveryの5種だけを、指定resource・revision・scopeに対するoperationとして判定する。各operationを許可するときはSECURITYの別authority、必要なresource/path状態、operation固有の前提と結果を記録する。実操作のWorker実行契約は採択済みL2-010（`infrastructure-requirements.md` L126–134）を参照する。これはL2-006の対象親を拡張せず、別authority条件も置き換えない。state-changing operationは採択済みL2-005の当該actionに適用されるbackup/restore/rollback/recovery義務を参照し、不明または未充足なら保留する。無関係なread-only操作へ一律のbackup義務を加えない。SECURITY制約下のWorkerが実操作を行い、INFRASTRUCTUREはsecurity policyや認可を生成しない。
 
-**INFRA-006-AC-02**: 5 operationを各々独立に許可/拒否fixtureで照合する。要求外operation、誤target、異revision、scope外、authority不一致、失効、recovery義務unknownはoperationを開始しない。読取health checkは状態を返すだけで変更操作を開始しない。rollback/recoveryの状態変更結果と未完義務を保持する。
+**INFRA-006-AC-02**: 5 operationを各々独立に許可/拒否fixtureで照合する。要求外operation、誤target、異revision、scope外、別authority不一致、失効、recovery義務unknownはoperationを開始しない。通常operation用authorityだけの提示では、通常operation上有効でも独立recovery operationを開始しない。読取health checkは状態を返すだけで変更操作を開始しない。rollback/recoveryの状態変更結果と未完義務を保持する。
 
 ### INFRA-006-FR-01-03 — operation状態と結果保持
 

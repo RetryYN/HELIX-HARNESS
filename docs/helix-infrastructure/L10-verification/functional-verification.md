@@ -30,10 +30,10 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 
 | Case | 対応AC | 入力と操作 | 観測点・合格材料 |
 |---|---|---|---|
-| L10-INFRA-001-C01 正常 | INFRA-001-AC-01, INFRA-001-AC-02 | 同一resourceをdevelopmentとstagingに別identityで宣言し、全属性とsource/revisionを観測する。 | 両identityとenvironmentが別々に記録され、各7属性に値または明示unknownがあり、source/revisionが辿れる。 |
-| L10-INFRA-001-C02 負例 | INFRA-001-AC-01, INFRA-001-AC-02 | 同一名のresourceを持つproduction fixtureにstaging observationを誤結合し、location/version欠落も注入する。 | cross-environment結合は拒否/unknown、欠落値はunknown。staging成功でproductionをhealthy/availableにしない。 |
+| L10-INFRA-001-C01 正常 | INFRA-001-AC-01, INFRA-001-AC-02 | HELIX-OS/BRAIN/LABO/INTELLIGENCE/SECURITY/CONNECT、Worker/Model Runtime（対象scopeに含む場合）、database/queue/artifact/evidence/log/metric storeのfixtureをenvironment別に宣言し、各identity/role/location/version/dependency/lifecycle、source/revision、network path、storage classを観測する。 | 宣言した全identityとenvironmentが別々に記録され、各resourceの7属性は値または明示unknown、source/revisionへ辿れる。Model/Worker能力、ticket、security policyをINFRASTRUCTURE所有値として出さない。 |
+| L10-INFRA-001-C02 負例 | INFRA-001-AC-01, INFRA-001-AC-02 | 同一名のresourceを持つproduction fixtureにstaging observationを誤結合する変異に加え、location、version、dependencyの欠落を各々独立に与える。別々の変異としてscope、authority、source、config、network、credential scope、dataの各environment軸を不一致またはunknownにする。 | cross-environment結合は拒否/unknown、欠落値はunknownのままresource sourceまたはCORE設計ownerへ返す。返却先ownerが識別できない変異では停止して未解決ownerを記録する。各軸の不一致/unknownを利用可能にせず、staging成功でproductionをhealthy/availableにしない。 |
 | L10-INFRA-001-C03 未見正常 | INFRA-001-AC-01, INFRA-001-AC-02 | 宣言済みscope内で未見のresource roleとrecovery environmentを加え、同じ属性契約で照合する。 | 型/roleが未見でもparent scope内なら列挙可能で、属性sourceとenvironmentが保持される。固定role一覧へのfallbackはない。 |
-| L10-INFRA-001-C04 owner戻し | INFRA-001-AC-01, INFRA-001-AC-02 | HELIX-HARNESS-COREのdesign revisionとInfrastructure observationが相反するfixtureを与える。 | Infrastructureは設計を修正せず不一致範囲を示しCORE design ownerまたは観測source ownerへ返す。 |
+| L10-INFRA-001-C04 owner戻し | INFRA-001-AC-01 | resource owner、location、dependencyのいずれかを不明にする。返却先ownerが識別できるfixtureとowner自体がunknownのfixtureを別々に与える。 | resource sourceまたはCORE設計ownerが識別できる場合は該当先へunknownを返す。owner自体がunknownなら停止し、未解決ownerを記録して成功/利用可能にしない。CORE設計と観測sourceのrevision不一致はL2-002の条件であり、本caseへ持ち込まない。 |
 | L10-INFRA-001-C05 正常 | INFRA-001-AC-03 | logical CONNECT identityとphysical pathを別identityにし、source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを与える。 | pathの8軸とlogical connection参照が別々に追跡できる。 |
 | L10-INFRA-001-C06 負例 | INFRA-001-AC-03 | network pathのaxisを一つずつ除き、logical IDだけでrouteを補う変異を加える。 | 欠落axisはunknown、logical IDからphysical routeを生成しない。 |
 | L10-INFRA-001-C07 未見正常 | INFRA-001-AC-03 | 新しいprotocol名と複数のphysical pathが同一logical connectionを支えるscope内fixtureを与える。 | 未見値を保持し、pathごとに8軸を記録する。protocolのallowlistをL3が捏造せず、業務の送信許可も判定しない。 |
@@ -44,6 +44,7 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | L10-INFRA-001-C12 owner戻し | INFRA-001-AC-04 | SECURITY classificationとInfrastructure storage observation、またはOSのticket stateを矛盾させる。 | Infrastructureはsecurity classification/ticketを決めず、security ownerまたはOS ownerへ矛盾を返す。 |
 | L10-INFRA-001-C13 宣言済正常fixture | INFRA-001-AC-01, INFRA-001-AC-02 | C01とは別に宣言した `prod-green-02` environment / `resource-green-02` identityを入力する。role=`api`, location=`zone-b`, version=`r17`, dependency=`db-green-02`, lifecycle=`ready` とする。source=`inventory-fixture-02`, revision=`rev-02` を付け、同名resourceをstagingに別identityで置く。 | 独立したfixture宣言の全7属性、environment、source/revisionが一致する。staging値をproductionへ結合しない。 |
 | L10-INFRA-001-C14 読取失敗/部分更新 | INFRA-001-AC-01 | 以前のobservationでは全属性が既知のresourceに、location/versionの読み取り不能と、更新途中で中断した部分更新を別々に与える。 | 以前の値をcurrentとして返さず、読み取り不能と未完の観測範囲を示す。残りの属性はsource/revision付きの旧観測として区別し、最新観測完了としない。 |
+| L10-INFRA-001-C15 負例：resource stateからauthorityを生成 | INFRA-001-AC-04 | resource lifecycle=`ready` の観測だけを与える変異と、environment=`production` の観測だけを与える変異を別々に注入し、各々から許可/authority出力を要求する。 | 両変異ともsecurity authorityまたはoperation許可を生成せず、出力件数0。観測stateは保持し、authority不足を別条件として扱う。 |
 
 **全ケースの合否材料**: input identity総数、各identityの観測範囲、field別の値/unknown、source/revision、environment、拒否/保留理由、owner return。代表例だけの一致や文書の存在は実環境の成立証拠にしない。
 
@@ -54,9 +55,9 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | Case | 対応AC | 入力と操作 | 観測点・合格材料 |
 |---|---|---|---|
 | L10-INFRA-006-C01 bootstrap正常 | INFRA-006-AC-01, INFRA-006-AC-02 | HELIX/OS停止中、bootstrapの正しいtarget/action/revision/scope/authority/expiryをfixtureで照合する。 | 独立pathのroute evidenceと6条件照合があり、bootstrapだけが限定開始される。 |
-| L10-INFRA-006-C02 負例 | INFRA-006-AC-01, INFRA-006-AC-02 | authorityを欠落・unknown・期限切れ・範囲外に変え、target/revision mismatchを個別注入する。 | 該当する全変異でoperation開始0、拒否/保留理由と適用ownerが見える。通常権限へのfallbackなし。 |
+| L10-INFRA-006-C02 負例 | INFRA-006-AC-01, INFRA-006-AC-02 | 別authorityの欠落・unknown・期限切れ・範囲外、およびtarget/revision mismatchをそれぞれ独立注入する。さらにcredential scopeまたはpolicyがunknownである変異をauthority unknownとは別々に与える。credential値は入力・記録しない。 | 全変異でoperation開始0、拒否/保留理由とSECURITYまたは該当resource/path ownerが見える。authority、credential scope、policyの不足を互いに代用せず、通常operation権限へfallbackしない。 |
 | L10-INFRA-006-C03 未見正常 | INFRA-006-AC-01, INFRA-006-AC-02 | 宣言済みrecovery resourceのうち未見の個体と、固定fixtureにない適用scope内revisionを与える。 | 事前規則に従ってresource/authorityを個別照合し、未見だけで拒否しない。登録外・未知authorityは利用可と推定しない。 |
-| L10-INFRA-006-C04 owner戻し | INFRA-006-AC-01, INFRA-006-AC-02 | SECURITY authorityとresource ownerのrevisionが相反する、または独立pathの所有者が不明なfixtureを与える。 | 操作を止め、authority問題はSECURITY、resource/path問題は該当INFRASTRUCTURE ownerへ返す。 |
+| L10-INFRA-006-C04 owner戻し | INFRA-006-AC-01, INFRA-006-AC-02 | SECURITY authorityとresource ownerのrevisionが相反する、または独立path/authorityを提供するownerが不明なfixtureを与える。 | 操作を止め、authority問題はSECURITY、resource/path問題は該当INFRASTRUCTURE ownerへ返す。提供owner自体を識別できない場合は循環して同じunknown ownerへ返さず、停止・未解決owner記録・残る義務を保持する。 |
 | L10-INFRA-006-C05 health check正常 | INFRA-006-AC-02 | health checkを別target・operation identityで照合し、read-only observationとして実行する。 | health checkの結果を記録し、状態変更を開始しない。 |
 | L10-INFRA-006-C06 service stop正常 | INFRA-006-AC-02 | service stopを許可scopeと別SECURITY authorityで照合し、操作前提と結果を記録する。 | 対象serviceだけを扱い、停止中のHELIX/OS control planeをrouteに用いない。 |
 | L10-INFRA-006-C07 rollback正常 | INFRA-006-AC-02 | rollbackを許可scope、resource revision、authority、および採択済L2-005が当該actionに適用する復旧義務で照合する。 | rollback固有の前提・結果・未完義務が記録され、read-only操作に義務を一般化しない。 |
@@ -69,6 +70,9 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | L10-INFRA-006-C14 負例：health checkから暗黙stop | INFRA-006-AC-02 | read-only health checkの実行fixtureに、health異常時の暗黙service stop変異を加える。 | health checkの観測結果だけを記録し、別operationのauthorityなしにservice stateを変更しない。 |
 | L10-INFRA-006-C15 負例：rollback復旧義務不明 | INFRA-006-AC-02 | rollbackに適用される採択済L2-005の復旧義務がunknownまたは未充足となるfixtureを与える。 | rollback開始0。対象義務とunknown/未充足理由を保持し、該当ownerへ返す。 |
 | L10-INFRA-006-C16 負例：停止control plane経由 | INFRA-006-AC-01 | HELIX/OS control planeが停止したfixtureで、service stopの唯一のrouteを停止中OS経由にする。 | operation開始0。独立path要件を満たさないrouteを拒否し、独立path ownerへ返す。 |
+| L10-INFRA-006-C17 負例：通常operation authorityの流用 | INFRA-006-AC-01, INFRA-006-AC-02 | 通常operationには有効だが、独立recovery operationには適用されないauthorityだけを提示する。target/action等の通常operation条件は一致させる。 | authorityが通常operation向けに有効でも独立recovery開始0。別SECURITY authorityの不足を示してSECURITYへ返す。 |
+| L10-INFRA-006-C18 負例：recovery義務unknown | INFRA-006-AC-02 | recovery operationに適用される採択済L2-005義務だけをunknownまたは未充足にする。rollback義務は正常に満たす。 | recovery開始0。recovery固有の未解決義務とownerを示す。C15のrollback欠落と独立に観測する。 |
+| L10-INFRA-006-C19 負例：完全自動failoverを1.0条件化 | INFRA-006-AC-02 | 5種の限定操作と別authorityを満たすfixtureへ、完全自動failover能力がないことだけを理由に失敗する判定変異を与える。 | 固定親外の完全自動failoverを1.0要件に加えず、5操作の適格性と分ける。既存の限定操作判定をこの変異だけで不合格にしない。 |
 
 **合否材料**: operationごとのtarget/action/revision/scope/authority/expiry、path独立性、実操作の有無、前後state、worker receipt、final eligible revision、結果状態、未完義務と差戻し先。
 
