@@ -3,7 +3,7 @@
 status: scaffold（調査材料。採否、要求、設計、実装、BRAINへの登録の決定ではない）
 authority_effect: none
 binding: [SCF-B-0156](../../bindings/SCF-B-0156.json)
-基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）
+基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）、第4弾のうちP24〜P26は`origin/main` `12bfc72eab068a672bfb5c9cc814c3c1e9eb6cd2`（2026-10-05）
 
 ## 何をしたか
 
@@ -18,7 +18,10 @@ POの発言（2026-10-04、原文）は次のとおり。
 第3弾の起点となったPOの発言（2026-10-05、原文）は次のとおり。テーマは、SCF-B-0155の§gapのうち、第1弾・第2弾で扱っていないものから選んだ。
 > 「BRAIN素材集めを進めよう。基本的にHARNESSとBRAINができればあとはOSでどう作業するかでしょ？」
 
-- 観察は計281件（第1弾80件、第2弾90件、第3弾111件）で、118のrepositoryにわたる。テーマごとの件数は下表のとおり。
+第4弾の起点となったPOの発言（2026-10-05、原文）は次のとおり。テーマは、SCF-B-0155の§gapと、第3弾の各材料が「見つからなかったこと」に残したもののうち、まだ扱っていないものから選んだ。第4弾は「PRの原子性」に合わせて、P24〜P26とP27〜P28の2つのPRに分ける。
+> 「寝るからよろしく。BRAINは暇があったらガンガン強化していってくれ。」
+
+- 観察は計323件（第1弾80件、第2弾90件、第3弾111件、第4弾のP24〜P26で42件）で、130のrepositoryにわたる。テーマごとの件数は下表のとおり。
 - 各観察には次を書いた。
   - 出典：repository、固定commit、path、行範囲、permalink、SPDXライセンス
   - 何をしているか、解いている問題と前提、必要な入力
@@ -53,8 +56,11 @@ POの発言（2026-10-04、原文）は次のとおり。
 | P21 鍵・秘密の管理 | [P21](materials/P21-key-secret-management.md) | 14 | 5 | D08「鍵・秘密の管理」 |
 | P22 frontendの性能とresponsive | [P22](materials/P22-frontend-performance-responsive.md) | 14 | 6 | D04「responsive」「frontendの性能」 |
 | P23 利用者調査の方法 | [P23](materials/P23-user-research-methods.md) | 14 | 6 | D10「利用者調査の方法」 |
+| P24 network・compute・storageの構成知識 | [P24](materials/P24-network-compute-storage.md) | 14 | 5 | D07「network・compute・storageの構成知識」 |
+| P25 browserの対応範囲と段階的な機能縮退 | [P25](materials/P25-browser-support-progressive-enhancement.md) | 14 | 5 | D04「browser対応」（P22で埋めきれなかった部分） |
+| P26 B-tree・WAL・MVCCを採る保存設計 | [P26](materials/P26-btree-wal-mvcc-storage.md) | 14 | 4 | D06「保存方式の比較」のB-tree側（P19で読めなかった部分） |
 
-dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。
+dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。
 
 ## 置き場所と形の根拠
 
@@ -108,8 +114,16 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
     - 行のずれ（SHIFTED）9件、観察IDの相互参照の誤り6件、比較表と本文の食い違い4件も直した。
   - SPDXとarchivedの記載は、45 repositoryすべてでGitHub APIの値と一致した。
   - 独立review（PR #2573、Codex）で、Major 4件・Minor 7件の指摘を受けた。条件付きの処理の一般化（P17-O14のgroupcache、P19-O11のblob）、引用元の範囲を越えた一般化（P20-O11）、暗号上の仕組みと組織上の前提の混同（P21-O02）、推論の区別（P19-O14）、見出しの表記、permalinkの付け方、bindingの照合件数の表記である。P19-O11は、作成側の照合を受けた修正で新しく入った誤りだった。原文を読み直して全件を直した。
-- **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾〜第3弾とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
-- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。第3弾も同じ扱いで、`NOASSERTION`またはnullのもの（adr/madr、arc42/arc42-template、python/peps、pgbouncer/pgbouncer、cockroachdb/cockroach、PostHog/posthog、withastro/astro、18F/guides・methods・ux-guide、uswds/uswds-site、alphagov/govuk-design-system-backlog）はLICENSE fileの冒頭の文言を併記した。copyleftまたはshare-alikeのもの（facebook/rocksdb、matomo-org/matomo、arc42/arc42-template、ddd-crew/context-mapping）は、構造の観察だけにした。
+- **第4弾のP24〜P26の照合**：第3弾と同じ手順で行い、内容の照合は書いた調査担当とは別の照合担当が行った。
+  - permalink 182件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
+  - 独立review（PR #2574、Codex）で、Major 1件・Minor 2件の指摘を受けた。P24-O06はrestartable init containerの要求の累積と、要求を省略したときの上限からのdefaultを落として一般化していた。P24-O01はstatusの主張に直接のpermalinkがなかった。README・PR本文のrepository数は、govuk-frontendをP07で読んでいたことを見落として数えていた。原文を読み直して全件を直した。
+  - 内容の抜き取り照合は計262件（P24 39件、P25 54件、P26 169件）。
+    - 原文と逆の記述（WRONG）は1件だった。P26-O02で、nbtreeの削除時に待つtransactionのXIDの有無を逆に書いていた。原文どおりに直した。
+    - 主張の一部が原文と違うもの（PARTIAL）は22件だった。仕様の「MAY」を必須として書いたもの、条件付きの処理の一般化、推論を事実として書いたもの、設定の読込み順を実装と違えて書いたものが多かった。書いた調査担当が原文を読み直し、全件直した。
+    - 行のずれ（SHIFTED）2件、観察IDの相互参照の誤り1件も直した。
+  - SPDXとarchivedの記載は、14 repositoryすべてでGitHub APIの値と一致した。
+- **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾〜第4弾とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
+- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。第3弾も同じ扱いで、`NOASSERTION`またはnullのもの（adr/madr、arc42/arc42-template、python/peps、pgbouncer/pgbouncer、cockroachdb/cockroach、PostHog/posthog、withastro/astro、18F/guides・methods・ux-guide、uswds/uswds-site、alphagov/govuk-design-system-backlog）はLICENSE fileの冒頭の文言を併記した。copyleftまたはshare-alikeのもの（facebook/rocksdb、matomo-org/matomo、arc42/arc42-template、ddd-crew/context-mapping）は、構造の観察だけにした。第4弾のP24〜P26では、`NOASSERTION`のもの（postgres/postgres、sqlite/sqlite、wiredtiger/wiredtiger）にLICENSE・COPYRIGHTの冒頭の文言を併記した。GPLのwiredtiger/wiredtigerは設計文書（`.dox`）の構造の観察だけにし、codeは読んでいない。
 
 ## 既存素材との境界
 
