@@ -126,7 +126,7 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
   - SPDXとarchivedの記載は、14 repositoryすべてでGitHub APIの値と一致した。
 - **第4弾のP27〜P28の照合**：P24〜P26と同じ手順で、別の照合担当が行った。
   - permalink 98件の実在と行範囲を機械で照合し、不一致は0件だった（修正で追加した出典を含む）。
-  - 独立review（PR #2575、Codex）で、Major 1件・Minor 4件の指摘を受けた。P27-O07はDataLoaderの位置対応の契約違反をbatch全体の失敗と書いていたが、runtimeが検出するのは形と長さだけで、長さが同じで順序が違う値は検出されない。ほかに、Railsの公開write／delete APIを無いとした一般化、Next.jsの警告後も再検証を登録する流れの見落とし、P09との出典の重なりの過少な開示、未読のfileに依る断定があった。原文を読み直して全件を直した。
+  - 独立review（PR #2575、Codex）で、Major 1件・Minor 4件の指摘を受けた。P27-O07はDataLoaderの位置対応の契約違反をbatch全体の失敗と書いていたが、runtimeが検出するのは形と長さだけで、長さが同じで順序が違う値は検出されない。ほかに、Railsの公開write／delete APIを無いとした一般化、Next.jsの警告後も再検証を登録する流れの見落とし、P09との出典の重なりの過少な開示、未読のfileに依る断定があった。原文を読み直して全件を直した。再reviewで、PgHeroの取込みの順序（取得→reset→reset成功時だけ保存）の書き方の誤り1件の指摘を受け、原文どおりに直した。
   - 内容の抜き取り照合は計233件（P27 114件、P28 119件）。
     - 原文と逆・原文にない記述（WRONG）は2件だった。P27-O04は、has_many以外の集合関連がstrictにならないと書いていたが、throughとHABTMも`:has_many`としてstrictになる。P28-O14は、P09と出典が重ならないと書いていたが、P09は同じfileの`CacheGroup`の範囲も引いていた。どちらも原文どおりに直した。
     - 主張の一部が原文と違うもの（PARTIAL）は10件だった。条件付きの処理の一般化（`references`のJOIN条件、prefetchの例外、`evict`の通知条件、`cancelRefetch`の条件）、handlerに求める契約を既定の実装の挙動として書いたもの、「要求ごと」を「権限ごと」と言い換えたものである。書いた調査担当が原文を読み直し、全件直した。
