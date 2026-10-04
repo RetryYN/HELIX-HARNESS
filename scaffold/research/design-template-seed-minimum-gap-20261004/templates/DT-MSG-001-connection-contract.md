@@ -41,7 +41,7 @@ authority_effect: none
 
 ### 完了条件
 
-辺ごとに§1〜§7が埋まっている、または理由付きのN/Aである。unknown・部分成功の扱いが成功へ丸められていない。値が未決の欄は「L3以降で導く」と未決の行き先が書かれている。各欄が検証（DT-VT-104・105の観点）へ結ばれている。**完了条件を満たしても、接続の設計が正しいこと・要求を満たすことを意味しない。**
+辺ごとに§1〜§7が埋まっている、または理由付きのN/Aである。§8（追跡）は、辺の結果を後から辿る必要がある場合はrequired、そうでなければ理由付きN/Aである。§9（検証への対応）は、埋めた節ごとにDT-VT-104・105の対象caseへ引き渡す行がある。unknown・部分成功の扱いが成功へ丸められていない。値が未決の欄は「L3以降で導く」と未決の行き先が書かれている。各欄が検証（DT-VT-104・105の観点）へ結ばれている。**完了条件を満たしても、接続の設計が正しいこと・要求を満たすことを意味しない。**
 
 ## 設計の要点
 
@@ -132,7 +132,7 @@ authority_effect: none
 | `LEGACY-ASSET-0327D0DF98618D3066FD` `docs/design/harness/L6-function-design/source-boundary-contracts.md` 38–39・60–70（SHA-256 `81ec7bb938d659e17ce59ddd7071f527511c585e71b89123be1c8bd505facd8a`） | timeout・nonzeroをsuccessにしない、partial targetをacceptedにしない、intentに冪等キー・期限を持たせる、送信後のdriftはuncertainとして返す | Node probe adapter、署名receipt、`O_EXCL`等の実装指定は持ち込まない | 実装方式はL5以降で選ぶ |
 | `LEGACY-ASSET-E2D57A016FBD3D312CFA` `docs/skills/api-contract.md` 33–48（SHA-256 `b839109625d6744a72570bd54c681b04bf63b3daf6e71877e6cd1cacb13f9ab4`） | provider・consumer・schema・error契約・互換class、L5で冪等性の保証を足す | 契約docの置き場所（`docs/design/<product>/L4-basic/`）は持ち込まない | 置き場所は新世代の文書構成で決める |
 
-旧HELIXに「方向・順序・timeout・再送・冪等性・部分失敗」を**一枚の接続契約template**として束ねた物は見つからなかった（検索範囲は`materials/legacy-source-inventory.md` §2）。旧HELIX自身も、設計文書種の台帳`LEGACY-ASSET-EC07511FF3E241F15359` `docs/design/design-catalog.yaml` 609–613（入出力設計書）・716–720（イベント・メッセージスキーマ設計書）・737–741（外部連携設計書）を`status: todo`（専用の設計templateが無い）としていた（SHA-256 `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864`）。束ね方（§1〜§8の並び）は新規案である。各欄の意味は上の旧sourceに根拠がある。
+旧HELIXに「方向・順序・timeout・再送・冪等性・部分失敗」を**一枚の接続契約template**として束ねた物は見つからなかった（検索範囲は`materials/legacy-source-inventory.md` §2）。旧HELIX自身も、設計文書種の台帳`LEGACY-ASSET-EC07511FF3E241F15359` `docs/design/design-catalog.yaml` 609–614（入出力設計書。614行のnote「汎用I/O設計テンプレは無い」を含む）・716–720（イベント・メッセージスキーマ設計書）・737–741（外部連携設計書）を`status: todo`（専用の設計templateが無い）としていた（SHA-256 `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864`）。束ね方（§1〜§8の並び）は新規案である。各欄の意味は上の旧sourceに根拠がある。
 
 ### 参考資料（PO提供の参照用ZIP。旧HELIXの資産ではない）
 

@@ -39,7 +39,7 @@ authority_effect: none
 | LEGACY-ASSET-EF44FCF2D722F986E609 | `.claude/agents/be-api.md` | 47–50、68–73 | `f4f9c9645c248a3e998ee5b92307ce0b04edc6421dc1eb4779820c867e489cbd` | 003 |
 | LEGACY-ASSET-5E22432B0A5A8F7CC8B3 | `docs/governance/ddd-tdd-rules.md` | 142–152 | `9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af` | 006 |
 | LEGACY-ASSET-70DA9B8C03E54A629039 | `docs/design/helix/L5-detail/design-reality-binding.md` | 26–36 | `57ddeea689e1c695ced8eca8469aa43930018967e8bb832521217128b2220ce4` | 006 |
-| LEGACY-ASSET-EC07511FF3E241F15359 | `docs/design/design-catalog.yaml` | 1–6、528–535、602–620、696–700、716–720、737–741 | `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864` | 001、002、003（旧で未充足だった設計文書種の根拠） |
+| LEGACY-ASSET-EC07511FF3E241F15359 | `docs/design/design-catalog.yaml` | 1–6、528–535、602–620、696–701、716–720、737–741 | `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864` | 001、002、003（旧で未充足だった設計文書種の根拠） |
 | LEGACY-ASSET-4F5A1F0739EC1111D91D | `docs/design/helix/L4-basic-design/design-template-json-authority.md` | 83–91 | `e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb` | 全件（契約の欄・完了条件の形。README） |
 | LEGACY-ASSET-98372FEE8A3AC8F9C299 | `docs/design/helix/L5-detail/design-template-json-authority.md` | 33–77、103–108 | `3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830` | 全件（同上） |
 

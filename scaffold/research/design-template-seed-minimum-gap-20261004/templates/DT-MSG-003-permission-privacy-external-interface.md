@@ -42,7 +42,7 @@ authority_effect: none
 
 ### 完了条件
 
-当たる節が埋まっている、または理由付きN/Aである。権限が欠けた・分からないときに許可しないことが書かれている。扱うdataの各項目が目的に結ばれている。外部interfaceは版と変更の手順を持つ。値が未決の欄は未決の行き先がある。**完了条件を満たしても、安全であること・法令に適合すること・要求を満たすことを意味しない。**
+当たる節が埋まっている、または理由付きN/Aである。権限が欠けた・分からないときに許可しないことが書かれている。扱うdataの各項目が目的に結ばれている。外部interfaceは版と変更の手順を持つ。値が未決の欄は未決の行き先がある。埋めた節ごとに、§6（検証への対応）でDT-VT-103〜105の対象caseへ引き渡す行がある。**完了条件を満たしても、安全であること・法令に適合すること・要求を満たすことを意味しない。**
 
 ## 設計の要点
 
@@ -127,7 +127,7 @@ authority_effect: none
 | `LEGACY-ASSET-7A6AE033EE171D1CE604` `docs/skills/harness-observability.md` 70–74（SHA-256 `5c29e78ac67741011e7bdad3837935d3cb329319e146c43e8c8bf884b9fcf240`） | 観測の記録にkey・token・credential・PII・promptの本文を保存しない、記録の前に伏せる段を置く | `projection-writer.ts`は持ち込まない | 実装の置き場所は現行で決める |
 | `LEGACY-ASSET-12A39A2481B480E18FE2` `docs/skills/test-thinking.md` 55–57（SHA-256 `853f22744fe2cad42f5cb586d84e7198daaf01c00acbcfac56c383c220a8d545`） | 「自分のもの以外」を常に試す（IDOR）、roleを一段下げて同じ操作 | テストの視点を、設計時に権限の欄へ書く問いとして使う | 設計の段で欄があれば検証の段で確かめられる（DT-MSG-006） |
 
-「data minimization（目的に要る分だけ取り、渡し、残す）」を製品設計のtemplateの欄として持つ物は、旧HELIXでは見つからなかった。旧HELIX自身も設計文書種の台帳`LEGACY-ASSET-EC07511FF3E241F15359` `docs/design/design-catalog.yaml` 696–700でプライバシー設計書を`status: todo`（「PIIはescalation対象として触れるがDPIA/ROPA相当の設計書は無い」）、737–741で外部連携設計書を`todo`としていた（SHA-256 `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864`）。近い記述は旧`product-data-connector.md` 142–154（allowlistと分類）と、現行HELIXSECURITY-L2-006（security-requirements.md 123–124、HELIX自身のegressのdata minimization）である。§2の「項目ごとに目的を結ぶ」欄は新規案である（検索範囲は`materials/legacy-source-inventory.md` §2）。STRIDEは一般の脅威分類（出典：Microsoft）であり、旧`threat-model.md`も用いていた。採用・手法の選定ではない。
+「data minimization（目的に要る分だけ取り、渡し、残す）」を製品設計のtemplateの欄として持つ物は、旧HELIXでは見つからなかった。旧HELIX自身も設計文書種の台帳`LEGACY-ASSET-EC07511FF3E241F15359` `docs/design/design-catalog.yaml` 696–701でプライバシー設計書を`status: todo`（「PIIはescalation対象として触れるがDPIA/ROPA相当の設計書は無い」）、737–741で外部連携設計書を`todo`としていた（SHA-256 `4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864`）。近い記述は旧`product-data-connector.md` 142–154（allowlistと分類）と、現行HELIXSECURITY-L2-006（security-requirements.md 123–124、HELIX自身のegressのdata minimization）である。§2の「項目ごとに目的を結ぶ」欄は新規案である（検索範囲は`materials/legacy-source-inventory.md` §2）。STRIDEは一般の脅威分類（出典：Microsoft）であり、旧`threat-model.md`も用いていた。採用・手法の選定ではない。
 
 ### 参考資料（PO提供の参照用ZIP。旧HELIXの資産ではない）
 

@@ -24,7 +24,7 @@ binding: [SCF-B-0154](../../bindings/SCF-B-0154.json)
 | 汎用の構造はHELIX-BRAIN、製品への適用はHELIX-HARNESS-CORE | `docs/helix-brain/candidates/design-template-system-requirements.md`「現行Conceptに照らした担当」（DST-HARNESS-002・005はBRAIN、001・003・004・006・007はHARNESS-CORE）。`docs/helix-harness/L2-requirements/product-requirements.md`「Design Templateと要求backflow」（62–68） |
 | scaffoldに置き、採否をしない | DST-HARNESS-005（seed template pack）は未採択の候補。AGENTS.md「仮の物は`scaffold/`名前空間に限り、Scaffold Bindingへ登録して置く」。先例はSCF-B-0152・0153。Bindingは[SCF-B-0154](../../bindings/SCF-B-0154.json) |
 | 各templateが持つ契約の項目 | DST-HARNESS-002（ID、version、applicability、必須input／section／field、relation、owner、negative oracle、measurement、completion、supersession）、DST-HARNESS-005（出典、採否、適用範囲、限界、negative case）、DST-HARNESS-006（適用判定と理由・判断者・対象revision・再評価条件）。SCF-B-0153が足した「区分」「対（V-pair）」「正例と境界の負例」「置き換え」の行もそろえた |
-| 旧HELIXの形との関係 | 旧 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md` 33–77・103–108（LEGACY-ASSET-98372FEE8A3AC8F9C299）、L4版 83–91（LEGACY-ASSET-4F5A1F0739EC1111D91D）。**保持する点**：template必須fieldの集合、completionの条件、supersession、未知をfail-closeにする考え方。**変更する点**：JSONを正本とせず、Markdownの表で持つ。**理由**：新世代のschemaはL3以降で選ぶ（design-template-system-requirements.md末尾）。SCF-B-0152・0153 READMEと同じ扱い |
+| 旧HELIXの形との関係 | 旧 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md` 33–77・103–108（LEGACY-ASSET-98372FEE8A3AC8F9C299）、L4版 83–91（LEGACY-ASSET-4F5A1F0739EC1111D91D）。**保持する点**：template必須fieldの集合、supersession、未知をfail-closeにする考え方。completion（旧L4 83–91）のうち、必須section／fieldのcoverage、requirement trace、negative oracle、measurementまたは根拠付きN/A、V-pairへの引渡し（各templateの「検証への対応」）、未決の欄に行き先を書くこと（旧の明示defer）を、各templateの完了条件に持つ。**変更する点**：JSONを正本とせず、Markdownの表で持つ。旧のcompletionのうち、source／template／instance revision digestの一致（旧L4 91、旧L5 76）、independent review（旧L5 76）、stale条件（旧L5 74）、閉じたdownstream artifact kind（旧L5 77）は、本seed候補では持たない。**理由**：digestの一致・staleの判定・artifact kindの閉集合は、template registryとinstanceの版管理の契約であり、DST-HARNESS-002（version、supersession）・DST-OS-001〜005（registry・適用の記録）として別に導く対象である。seed候補の段でMarkdownに写すと、registryの形を先に決めることになる（新世代のschemaはL3以降で選ぶ、design-template-system-requirements.md末尾）。independent reviewは現行の独立review（AGENTS.md）が持ち、templateの完了条件に重ねない。SCF-B-0152・0153 READMEと同じ扱い |
 | 各templateの「旧HELIXとの対応」 | AGENTS.md「再構築の原則」。templateごとに旧source（asset ID、path、行、全体SHA-256）、保持する点、変更する点、理由を書いた。旧に根拠が見つからない欄は、検索範囲と結果を`materials/legacy-source-inventory.md` §2に書き、templateの末尾で新規案と明示した |
 | ZIPの扱い | `archive/reference-sources/ハイブリッド設計ドキュメントv1-fixed.zip`は旧HELIXの資産ではなくPO提供の参照資料。章立てと欄の名前だけを参照し、`tools/`は実行せず、見本の値は写していない（`scaffold/research/design-pattern-inventory-20260925/README.md` 101–103 HVM-REJECT-01〜03） |
 
@@ -47,7 +47,7 @@ binding: [SCF-B-0154](../../bindings/SCF-B-0154.json)
 
 | 領域（79–82） | 語 | 扱うtemplate | 既存seedとの境界 |
 |---|---|---|---|
-| unit | behavior、input／output、failure、recovery | DT-MSG-004 | state・業務規則・異常系の4問・冪等性はDT-SDOP-004にある。DT-MSG-004は重ねず、SDOP-004を使うと適用条件に書いた |
+| unit | behavior、input／output、failure、recovery | DT-MSG-004 | state・業務規則・冪等性はDT-SDOP-004だけが持つ。事前・事後条件（SDOP-004 §1）、副作用（§3）、失敗と途中停止の問い（§4）は、DT-MSG-004 §2〜§5がその行を参照して詳細化する。同じ条件・回復判断の正本を二か所に作らない |
 | unit | state | DT-SDOP-004 §3（既存） | 新規に作らない |
 | connection | contract、direction、data meaning、ordering、timeout、retry、idempotency、partial failure | DT-MSG-001 | timeout・retry・circuit breakerの全体方針はDT-SDOP-002 A、冪等性の方式の選択はDT-SDOP-004 §5。DT-MSG-001は辺ごとの契約だけを持つ |
 | composite | architecture、boundary、dependency、end-to-end flow | DT-MSG-005 | — |
