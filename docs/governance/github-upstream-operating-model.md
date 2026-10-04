@@ -200,6 +200,7 @@ merge admissionの必須条件にしない。
 - **セッション開始時**：各GUIは自分のセッションがレーンに登録済みで、leaseが有効かを`status`で確かめる。失効していれば同じセッションを`bind`し直す。別セッションへの付替えは、利用者の指示またはセッションの交代のときに限る。
 - **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。通知の向きはレーンではなくそのPRの作成側（packetの`author`）とreview側（`reviewer`）で決まり、どちらのレーンが作成したPRでも同じ経路を使う。
 - **配送不成立の扱い**：宛先のleaseが失効していても、登録済みのセッションへは通知を積み、そのセッションの次の動作で届く。`send`の出力`receiver_lease_active`がfalseのとき、宛先のhookがGUIで信頼・読込されていないとき、ACKが返らないときは、配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。
+- **相手の応答を待つとき**：停止後に通知で起きられないruntime（現行のCodex。Stop hookは停止時に短く確かめるだけである）は、相手のreview結果、Ready化、mergeなど自分のゴールに必要な応答を待つ間、ターンを終えずに待受を続ける。1回を10分とし、各回の前に同じセッションを`bind`し直してleaseを保ち、`receive --wait 600`で通知箱を待ち、各回の後に対象PRの状態とPR commentを確かめる。通知を受けたら`inspect`で本文を読んでACKし、作業へ戻る。対象PRがmerge・closeされたとき、待つべき応答がなくなったとき、利用者が別の指示をしたときに待受を終える。待受は配送の手段であり、待っている間の経過や通知から承認やmerge admissionを生成しない。Claudeは`asyncRewake`のStop hookで停止後も通知により起きるため、この待受を要しない。
 - **指示の同期**：両runtimeの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。
 - **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、両GUIが実際に通知を受けてACKを返したことで行う。
 
@@ -209,6 +210,11 @@ SHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）の
 人の取次ぎを待たずに作成→review→mergeを回すことである。変更する点は、配送元を旧harness memory・DBから仮組みの通知箱へ替え、
 Codex側にも同じ待受と指示の同期を置くことである。変更の理由は、旧runtimeを起動しない現行の境界の下で、旧世代と同じく
 取次ぎなしで回すためである。新しい承認手続きは加えていない。
+
+応答を待つ間の待受は、上記`CLAUDE.md`の「GitHub 自走運用」（193行目「明示依頼を待たずpush→Draft PR→CI監視→self-heal→AI-B最終review→明示mergeまで継続する」）を旧sourceとする。
+- **保持する点**：相手の作業やCIを待つ間も作業を手放さず、mergeまで監視を続けること。
+- **変更する点**：監視の対象を旧CIと旧runtimeから、通知箱と対象PRの状態へ替えること。停止後に起きられないruntimeだけが、ターン内で10分ごとの待受を行う。
+- **変更の理由**：Codexの既存GUIセッションはターンを終えると通知では起きず、相手の応答を待つ間に止まると、利用者が声を掛けるまで作業が止まるためである。#2563と#2564では、Codexがreview結果やReady化を待つ間に停止し、利用者の声掛けまで進まなかった。新しい承認手続きは加えていない。
 
 通知の向きをPRごとの作成側・review側で決める点は、上記`CLAUDE.md`の「GitHub 自走運用」（AI-Aが作成・blocker修正・push、AI-Bがread-only収束review・merge判断）と、同じファイルの正規コマンド（`helix codex --role <role> --task "..."`と`helix claude --role <role> --task "..."`の両方向の委譲）を旧sourceとする。
 - **保持する点**：作成役とreview役をruntimeに固定せず、どちらのruntimeが作成しても、もう一方が独立にreviewしてmergeまで回すこと。
