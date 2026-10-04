@@ -3,7 +3,7 @@
 status: scaffold（調査材料。採否、要求、設計、実装、BRAINへの登録の決定ではない）
 authority_effect: none
 binding: [SCF-B-0156](../../bindings/SCF-B-0156.json)
-基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）、第4弾のうちP24〜P26は`origin/main` `12bfc72eab068a672bfb5c9cc814c3c1e9eb6cd2`（2026-10-05）、P27〜P28は`origin/main` `c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7`（2026-10-05）、第5弾のうちP29〜P31は`origin/main` `1880c422311a7f8321dbb0e2b98fa12c69449201`（2026-10-05）
+基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）、第3弾（P16〜P23）は`origin/main` `49318f1f1de5810dfc61fdfe3a2565b86509009d`（2026-10-05）、第4弾のうちP24〜P26は`origin/main` `12bfc72eab068a672bfb5c9cc814c3c1e9eb6cd2`（2026-10-05）、P27〜P28は`origin/main` `c2e4c2eb6ea29f69d9f8fa5e329adbf37c56acc7`（2026-10-05）、第5弾のうちP29〜P31は`origin/main` `1880c422311a7f8321dbb0e2b98fa12c69449201`（2026-10-05）、P32〜P33は`origin/main` `4f10325a4a27a8b0390be895b881d2596e56b261`（2026-10-05）
 
 ## 何をしたか
 
@@ -23,7 +23,7 @@ POの発言（2026-10-04、原文）は次のとおり。
 
 第5弾も同じ発言を起点にした。テーマは、SCF-B-0155の§gapのうち第4弾までで扱っていないものから選んだ。第5弾は、P29〜P31、P32〜P33、P34〜P35の3つのPRに分ける。
 
-- 観察は計392件（第1弾80件、第2弾90件、第3弾111件、第4弾70件、第5弾のP29〜P31で41件）で、151のrepositoryにわたる。テーマごとの件数は下表のとおり。
+- 観察は計420件（第1弾80件、第2弾90件、第3弾111件、第4弾70件、第5弾のP29〜P33で69件）で、162のrepositoryにわたる。テーマごとの件数は下表のとおり。
 - 各観察には次を書いた。
   - 出典：repository、固定commit、path、行範囲、permalink、SPDXライセンス
   - 何をしているか、解いている問題と前提、必要な入力
@@ -66,8 +66,10 @@ POの発言（2026-10-04、原文）は次のとおり。
 | P29 architectureの退化を時間経過で見る | [P29](materials/P29-architecture-erosion-fitness.md) | 14 | 6 | D01「architectureの退化（境界の侵食、依存の逆流）を時間経過で見る知識」 |
 | P30 状態を持つapplicationの責務の置き場 | [P30](materials/P30-stateful-application-state-placement.md) | 14 | 5 | D02「状態を持つapplication（session、cache、background job）の責務の置き場」 |
 | P31 時間に依存する処理 | [P31](materials/P31-time-timezone-clock.md) | 13 | 6 | D03「時間に依存する処理（timezone、締め、期限、clockのずれ）」 |
+| P32 外部へ公開するAPIの運用 | [P32](materials/P32-public-api-operations-webhooks.md) | 14 | 6 | D05「外部へ公開するAPIの運用（利用者への告知、SDK、portal、webhookの署名・再送）」 |
+| P33 data modelと永続化の写像 | [P33](materials/P33-data-model-persistence-mapping.md) | 14 | 5 | D06「data modelと永続化の写像（ORMの使い方、集約とtableの対応）」 |
 
-dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。P27〜P28では、vercel/next.jsをP22と別の箇所（無効化と再検証）で読んだ。TanStack/queryはP09と同じ機能（query keyの照合、staleの判定、無効化、fetch）を別の固定commitで再び観察しており、2つのrevisionの差は照合していない。apollographql/apollo-clientは、P09と同じ固定commitで、`entityStore.ts`の`CacheGroup`の範囲がP09の出典と重なる（P28では無効化の観点で読んだ）。P27〜P28の10 repositoryのうち新規は7で、重複を除いた合計は137である。第5弾のP29〜P31では、TNG/ArchUnitをP18と別の観点（違反の照合の算法、説明文をkeyにするstore、新しい違反の扱い）で、rails/railsとdjango/djangoをP27・P28と別の箇所（session）で読んだ。P29〜P31の17 repositoryのうち新規は14で、重複を除いた合計は151である。
+dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。第3弾では、prometheus/prometheus（P13ではobservability、P19ではTSDBの保存方式）とalphagov/govuk-design-system（P07ではform、P23では研究記録）を、前の弾と別の箇所で読んだ。第3弾の45 repositoryのうち新規は43で、3弾の重複を除いた合計は118である。第4弾のP24〜P26では、kubernetes/enhancementsをP16と別のKEP（容量追跡、先取りしない優先度、snapshot等）で読んだ。alphagov/govuk-frontendは、P07でerror summary・input・character countの本文を読んでおり（P23ではmetadataだけ取得）、P25ではbrowser対応とprogressive enhancementの文書という別の箇所を読んだ。P24〜P26の14 repositoryのうち新規は12で、重複を除いた合計は130である。P27〜P28では、vercel/next.jsをP22と別の箇所（無効化と再検証）で読んだ。TanStack/queryはP09と同じ機能（query keyの照合、staleの判定、無効化、fetch）を別の固定commitで再び観察しており、2つのrevisionの差は照合していない。apollographql/apollo-clientは、P09と同じ固定commitで、`entityStore.ts`の`CacheGroup`の範囲がP09の出典と重なる（P28では無効化の観点で読んだ）。P27〜P28の10 repositoryのうち新規は7で、重複を除いた合計は137である。第5弾のP29〜P31では、TNG/ArchUnitをP18と別の観点（違反の照合の算法、説明文をkeyにするstore、新しい違反の扱い）で、rails/railsとdjango/djangoをP27・P28と別の箇所（session）で読んだ。P29〜P31の17 repositoryのうち新規は14で、重複を除いた合計は151である。P32〜P33の11 repositoryはすべて新規で、重複を除いた合計は162である。P32はP10で読んだstripe/openapiを読まず、別のrepositoryのstripe/stripe-nodeでwebhook検証とSDKの版の箇所だけを読んだ。P33はP27で読んだORM（rails、django、prisma）と重ねていない。
 
 ## 置き場所と形の根拠
 
@@ -144,8 +146,14 @@ dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方
     - 主張の一部が原文と違うもの（PARTIAL）は15件だった。P30-O10は、Djangoの`login`で同じ利用者でもsessionのIDを替えると書いていたが、原文では同じ利用者でhashが一致すれば何もしない（この誤りは原文と逆向きなので、重要度の高いものとして直した）。ほかは、条件付きの処理の一般化（ArchUnitのstore更新、bettererのcache、LuxonのtsNow）、原文の強さの変更（Many downstream、probably、一部の誤りだけ例外）、refreezeを無いとした一般化、Goのtz探索を途中で打ち切ると読める書き方である。書いた調査担当が原文を読み直し、全件直した。
     - 行のずれ（SHIFTED）2件も直した。
   - SPDXとarchivedの記載は、17 repositoryすべてでGitHub APIの値と一致した。
-- **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾〜第4弾とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
-- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。第3弾も同じ扱いで、`NOASSERTION`またはnullのもの（adr/madr、arc42/arc42-template、python/peps、pgbouncer/pgbouncer、cockroachdb/cockroach、PostHog/posthog、withastro/astro、18F/guides・methods・ux-guide、uswds/uswds-site、alphagov/govuk-design-system-backlog）はLICENSE fileの冒頭の文言を併記した。copyleftまたはshare-alikeのもの（facebook/rocksdb、matomo-org/matomo、arc42/arc42-template、ddd-crew/context-mapping）は、構造の観察だけにした。第4弾のP24〜P26では、`NOASSERTION`のもの（postgres/postgres、sqlite/sqlite、wiredtiger/wiredtiger）にLICENSE・COPYRIGHTの冒頭の文言を併記した。GPLのwiredtiger/wiredtigerは設計文書（`.dox`）の構造の観察だけにし、codeは読んでいない。P27〜P28では、`NOASSERTION`のもの（HypoPG/hypopg、varnishcache/varnish-cache）にLICENSEの冒頭の文言を併記した。varnish-cacheはarchivedである。P29〜P31では、`NOASSERTION`のもの（tc39/proposal-temporal、eggert/tz）にLICENSEの冒頭の文言を併記した。GPLのjQAssistant/jqassistantは構造の観察だけにした。
+- **第5弾のP32〜P33の照合**：P29〜P31と同じ手順で、別の照合担当が行った。
+  - permalink 240件の実在と行範囲を機械で照合し、不一致は0件だった。
+  - 内容の抜き取り照合は計221件（P32 53件、P33 168件）。
+    - 原文と逆・原文にない記述（WRONG）は0件だった。
+    - 主張の一部が原文と違うもの（PARTIAL）は16件（P32 9件、P33 7件）だった。P32では、設定で切り替わるheader名を既定の挙動として書いたもの（Svixの`whitelabel_headers`）、原文の強さの変更（can be、important／recommendedの書き分け）、条件の取り違え（semverの判定、metadataの生成条件）、changelogの記述の言い換えである。P33では、原文の強さの変更（typically、can be forced、by defaultを一般化したもの）と、前提条件の脱落（接続が原子性を提供する前提）である。書いた調査担当が原文を読み直し、全件直した。
+    - 行のずれ（SHIFTED）4件も直した。
+- **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾〜第4弾と第5弾のP29〜P33とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
+- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。第3弾も同じ扱いで、`NOASSERTION`またはnullのもの（adr/madr、arc42/arc42-template、python/peps、pgbouncer/pgbouncer、cockroachdb/cockroach、PostHog/posthog、withastro/astro、18F/guides・methods・ux-guide、uswds/uswds-site、alphagov/govuk-design-system-backlog）はLICENSE fileの冒頭の文言を併記した。copyleftまたはshare-alikeのもの（facebook/rocksdb、matomo-org/matomo、arc42/arc42-template、ddd-crew/context-mapping）は、構造の観察だけにした。第4弾のP24〜P26では、`NOASSERTION`のもの（postgres/postgres、sqlite/sqlite、wiredtiger/wiredtiger）にLICENSE・COPYRIGHTの冒頭の文言を併記した。GPLのwiredtiger/wiredtigerは設計文書（`.dox`）の構造の観察だけにし、codeは読んでいない。P27〜P28では、`NOASSERTION`のもの（HypoPG/hypopg、varnishcache/varnish-cache）にLICENSEの冒頭の文言を併記した。varnish-cacheはarchivedである。P29〜P31では、`NOASSERTION`のもの（tc39/proposal-temporal、eggert/tz）にLICENSEの冒頭の文言を併記した。GPLのjQAssistant/jqassistantは構造の観察だけにした。P32〜P33では、`NOASSERTION`のもの（ietf-wg-httpapi/deprecation-header、jOOQ/jOOQ）にLICENSEの冒頭の文言を併記した。deprecation-headerはarchivedである。
 
 ## 既存素材との境界
 
