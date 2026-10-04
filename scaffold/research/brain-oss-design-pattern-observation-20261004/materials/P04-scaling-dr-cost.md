@@ -50,7 +50,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 
 ### P04-O04 node容量：需要信号（置けないpod）からの模擬配置、拡張先選択の戦略差し替え、全条件と継続時間による縮小
 - 出典：kubernetes/autoscaler、`cluster-autoscaler/FAQ.md` 行783–819（scale-up、https://github.com/kubernetes/autoscaler/blob/743cf902a6f761dd115280a3d2dfea6f4796e381/cluster-autoscaler/FAQ.md#L783-L819）、行821–877（scale-down）、行944–975（Expanders）。信頼性ラベル：primary（公式repo内の設計文書。実装は別repoで未読）。本文確認：済
-- 何をしているか：拡張は、scheduler が置けなかった pod（PodCondition が unschedulable）を信号にします。node group ごとに template node を作り、そこに pod が入るかを模擬します。複数の group が候補になると、expander（`random`／`most-pods`／`least-waste`／`least-nodes`／`price`／`priority`）で1つを選びます。縮小は、使用率が閾値未満、全 pod が他へ移せる、無効化の annotation がない、という条件がすべて成り立ち、その状態が一定時間続いた node を対象にします。非空 node は1台ずつ消し、空の node はまとめて消します。
+- 何をしているか：拡張は、scheduler が置けなかった pod（PodCondition が unschedulable）を信号にします。node group ごとに template node を作り、そこに pod が入るかを模擬します。複数の group が候補になると、expander（`random`／`most-pods`／`least-waste`／`least-nodes`／`price`／`priority`）で1つを選びます。縮小は、使用率が閾値未満、全 pod が他へ移せる、無効化の annotation がない、という条件がすべて成り立ち、その状態が一定時間続いた node を対象にします。非空 node は1台ずつ消し、空の node はまとめて消します。縮小の確認は、scale-up が不要なときに限って行われます（行823–824：https://github.com/kubernetes/autoscaler/blob/743cf902a6f761dd115280a3d2dfea6f4796e381/cluster-autoscaler/FAQ.md#L823-L824）。`price` expander は、文書の時点で一部の provider でしか動かないと書かれています（行970–972：https://github.com/kubernetes/autoscaler/blob/743cf902a6f761dd115280a3d2dfea6f4796e381/cluster-autoscaler/FAQ.md#L970-L972）。
 - 解いている問題と前提：同じ group の machine は同じ容量と label を持つ、という前提で模擬配置を簡略化しています（文書もそう書いています）。node の登録は CA の責務外と明記しています。
 - 必要な入力：node group の定義、拡張先の選択戦略、縮小の使用率閾値と継続時間、移せない pod の種類。
 - trade-off・失敗の仕方：模擬は実際の scheduler より単純で、全 pod が置かれるまで何度か反復が要ることがあります。シナリオ例（行866–877）では、A を消して pod を X へ移すと、同じ X を移動先にしていた B は条件を満たさなくなることがあると説明しています。依存のない C は続けて消せます。node が規定時間内に登録されなければ、模擬の対象から外して別の group を試します。
@@ -75,20 +75,20 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 必要な入力：対象の metric と閾値、監視する cell や tablet 種別、app 名の体系、優先や除外の方針。
 - trade-off・失敗の仕方：設計文書の「Caveats」は、最大の rate を探り続けるので上限を一時的に少し超えることがある、transaction の重さを区別しない、と書いています。throttler が disabled のときは、check に対して常に OK を返します（throttler.go 行540–541）。
 - 反例・適用しない場合：KEDA や HPA は容量を増やして応えます。この throttler は容量を固定したまま、要求側を遅らせます。
-- 互換・非互換：O07（resharding の copy・catchup 中の負荷）と同時に使う前提の設計です。
+- 互換・非互換：O07（resharding の copy・catchup 中の負荷）と組み合わさりうると見ていますが、これは本書の推論です。読んだ出典（設計文書と throttler のコード）に、O07 と同時に使う前提であるとの明記は確認していません。
 - 限界：lag の閾値や比率の値は持ち込みません。
 
 ### P04-O07 resharding：key range の被覆一致を検証し、書込み切替に「後戻りできない点」を置き、逆方向の複製を張る
 - 出典：vitessio/vitess、`go/vt/vtctl/workflow/resharder.go` 行73–142（https://github.com/vitessio/vitess/blob/fb653f2727a2afabe18e2b81999ba4ae69213b37/go/vt/vtctl/workflow/resharder.go#L73-L142）、`go/vt/topotools/split.go` 行28–50（`ValidateForReshard`）、`go/vt/key/key.go` 行54–125、`go/vt/vtctl/workflow/server.go` 行3156–3463（`switchWrites`、https://github.com/vitessio/vitess/blob/fb653f2727a2afabe18e2b81999ba4ae69213b37/go/vt/vtctl/workflow/server.go#L3156-L3463）、`doc/design-docs/VTGateBuffering.md` 行1–60。信頼性ラベル：primary。本文確認：済
 - 何をしているか：
   1. `buildResharder` は、移行元の shard が serving で、移行先の shard が非 serving であることを確かめます。`ValidateForReshard` は、移行元と移行先に同じ key range がないこと、両側の range を `KeyRangeAdd` で隣接結合した結果が一致することを検証します。
-  2. `switchWrites` は、移行元と移行先の両方の keyspace の lock を取ります。そのうえで、移行元の書込み停止 → stream 停止 → `LOCK TABLES`（MoveTables の場合）→ 位置の採取 → catchup 待ち → stream の移行 → sequence の再設定 → 逆方向 stream の作成、と進みます。journal を作る直前に「This is the point of no return」とコメントがあります（行3396–3397）。journal 作成の後は、移行先で書込みを許可し、routing rules を更新し、逆方向の workflow を開始し、workflow を freeze します。各段階で lock が保持されているかを再確認し、失敗すれば `cancelMigration` で戻します。
+  2. `switchWrites` は、移行元と移行先の両方の keyspace の lock を取ります。そのうえで、移行元の書込み停止 → stream 停止 → `LOCK TABLES`（MoveTables の場合）→ 位置の採取 → catchup 待ち → stream の移行 → sequence の再設定 → 逆方向 stream の作成、と進みます。journal を作る直前に「This is the point of no return」とコメントがあります（行3396–3397）。journal 作成の後は、移行先で書込みを許可し、routing rules を更新し、`EnableReverseReplication` が真のときだけ逆方向の workflow を開始し（行3444–3453：https://github.com/vitessio/vitess/blob/fb653f2727a2afabe18e2b81999ba4ae69213b37/go/vt/vtctl/workflow/server.go#L3444-L3453）、workflow を freeze します。失敗時の扱いは段階で分かれます（行3298–3463：https://github.com/vitessio/vitess/blob/fb653f2727a2afabe18e2b81999ba4ae69213b37/go/vt/vtctl/workflow/server.go#L3298-L3463）。(a) journal 前の特定の操作（書込み停止、catchup 待ち、sequence の初期化など）が失敗した場合は、`cancelMigration` を試みてから error を返します（行3285–3389 の各分岐）。利用者が cancel を要求した場合も、journal 前なら `cancelMigration` を呼びます（行3269–3270）。(b) 移行元の位置の採取の失敗（行3330–3332）や lock の喪失（行3334–3336、3398–3400）は、取消しを試みずに直接 error を返します。(c) journal が既にある場合は、cancel の要求を拒否し、残りの工程を完了させる経路に入ります（行3404–3418）。
   3. VTGate は切替中の query を buffer し、keyspace が一貫した状態に戻ってから再試行します（設計文書）。
 - 解いている問題と前提：書込みを止める時間を短くしつつ、データを失わず shard を分割・統合することです。GTID の位置と topo の lock service があることが前提です。
-- 必要な入力：sharding key（vindex）と key range の割当、移行元と移行先の shard 構成、catchup を待つ上限時間、逆方向の複製を張るかどうか。
+- 必要な入力：sharding key（vindex）と key range の割当、移行元と移行先の shard 構成、catchup を待つ上限時間、逆方向の複製を張るかどうか（`EnableReverseReplication`）。
 - trade-off・失敗の仕方：journal を作った後は取消しではなく「残りの工程を完了させる」経路になります（journal が既にあれば残りを続行する、行3404–3416）。lock の TTL を待ち時間の倍数より長く取る理由がコメントにあります（行3196–3200付近）。MoveTables では DeniedTables の変更が watch で通知されないため、SrvVSchema を作り直して代用している、と設計文書にあります。
-- 反例・適用しない場合：CNPG は sharding を持たず、1つの primary と replica の構成です（O08、O09）。
-- 互換・非互換：O06 と組み合わさります。逆方向の複製は、切替後に戻す（rollback）ための経路です。
+- 反例・適用しない場合：CNPG は sharding を持たず、1つの primary と replica の構成です（O09、O10）。
+- 互換・非互換：O06 と組み合わさりうる（下の O06 の注記を参照）。逆方向の複製は、`EnableReverseReplication` を指定した場合に限って張られる、切替後に戻す（rollback）ための経路です。
 - 限界：shard の数、timeout、lock を繰り返す回数は持ち込みません。
 
 ### P04-O08 failover の規則を「確実性優先・判断できなければ失敗」として文書で固定する
@@ -99,7 +99,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - 受信したが未適用の transaction を持つ tablet は昇格させない。
   - semi-sync の ack を返す側が足りず前に進めない候補は昇格させない（`canEstablishForTablet`）。
   - 明示指定した primary（`NewPrimaryAlias`）でも安全確認は省かない。
-  - split brain を解く override には運用者が明示して指定する必要があり、VTOrc のような自動の呼出し元には許さない。
+  - split brain を解く override（`--allow-split-brain-promotion`）は狭い用途に限られます。`--new-primary` で、事前に優越されていない（undominated）GTID 候補の一つを運用者が明示して選ぶ操作で、relay-log の適用、`MustNot`、cell、semi-sync、lock の guard は維持されます。任意の候補へ安全確認を飛ばす手段ではありません。VTOrc のような自動の呼出し元には許しません（行21–23：https://github.com/vitessio/vitess/blob/fb653f2727a2afabe18e2b81999ba4ae69213b37/doc/design-docs/EmergencyReparentShard.md#L21-L23）。
   - 昇格の記録を `PopulateReparentJournal` に必ず書く。
 - 解いている問題と前提：障害時の可用性回復を急ぎつつ、errant GTID や分岐した履歴を生まないことです。MySQL GTID と、durability policy（`policy.Durabler`）がすべての規則の出どころである、という前提です。
 - 必要な入力：durability policy、昇格の可否規則（`MustNot`、cell をまたぐ昇格の禁止）、各段階の上限時間。
@@ -117,7 +117,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   4. `failoverDelay` で、短い不安定のときに failover が早まるのを避けられます。
 - 解いている問題と前提：RTO と RPO の両立です。文書は、shutdown の待ち時間を長くすれば RPO 側に有利、短くすれば RTO 側に有利、と trade-off を明記しています（行200–234）。lease だけでは、API server から切り離されたまま健康な primary の split brain は防げないので、primary isolation check と併用せよ、と書いています（行97–121）。
 - 必要な入力：同期複製の方式と数、データ耐久性と可用性のどちらを優先するか、failover の遅延、shutdown の待ち時間。
-- trade-off・失敗の仕方：quorum を満たさなければ「昇格せずに待つ」。手動の `promote` は最後の手段とされています。`synchronous_commit` を local にした commit は保証外です。issue #8679（https://github.com/cloudnative-pg/cloudnative-pg/issues/8679、closed）は、instance 数による検証が quorum の理屈より厳しすぎるという報告です。
+- trade-off・失敗の仕方：quorum を満たさなければ「昇格せずに待つ」。手動の `promote` は最後の手段とされています。`synchronous_commit` を local にした commit は保証外です。issue #8679（https://github.com/cloudnative-pg/cloudnative-pg/issues/8679、closed）は、instance 数による検証が quorum の理屈より厳しすぎるという報告です（報告者の仮説を含みます）。closed であることから、maintainer が実装で解決したとは確認していません。
 - 反例・適用しない場合：Vitess ERS は最も進んだ候補を GTID で判定します（O08）。quorum の集合計算ではありません。
 - 互換・非互換：O10（backup と WAL archive）とつながっています。lease が守る対象は archive の終端です。
 - 限界：遅延、lease、timeout の値は持ち込みません。
@@ -148,9 +148,9 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ### P04-O12 配分は順序のある pipeline：idle 係数 → 共有係数 → filter → 分配
 - 出典：opencost/opencost、`core/pkg/opencost/allocation.go` 行39–48・1527–1552・1563–1625（https://github.com/opencost/opencost/blob/2b3962dc51040d79c860de4eadb0afb102cdce27/core/pkg/opencost/allocation.go#L1563-L1625）。関数全体は行1563–2225。信頼性ラベル：primary。本文確認：済
 - 何をしているか：`AllocationSet.AggregateBy(aggregateBy, *AllocationAggregationOptions)` は、冒頭のコメントで11段の順序を定めています。external・idle・shared の分離 → idle と共有の係数計算 → filter → idle の分配 → key を作って集計 → 共有資源に乗った idle の再分配 → 共有費の分配 → 残った idle の処理、の順です。option には `ShareIdle`、`ShareSplit`（`ShareWeighted`＝費用に比例、`ShareEven`＝均等、`ShareNone`）、`SharedNamespaces`／`SharedLabels`、`SharedHourlyCosts`（固定の overhead）、`IdleByNode`、`SplitIdle`、`Reconcile` があります。`ShareIdle` は `ShareWeighted` 以外なら `ShareNone` に正規化されます（行1622–1625）。idle の配り方は比例か配らないかの2択です。
-- 解いている問題と前提：filter を掛けたときでも、その部分集合が全体のときと同じ idle の取り分を受け取るようにすること（idle filtration coefficients）です。配分の結果が順序に依存するので、順序を固定しています。
+- 解いている問題と前提：filter を掛けたときでも、その部分集合が全体のときと同じ idle の取り分を受け取るようにすること（idle filtration coefficients）を目指しています。ただし、下の trade-off のとおり、filter・共有資源・共有 idle の併用時には過計上が残ります。配分の結果が順序に依存するので、順序を固定しています。
 - 必要な入力：集計の key、共有とみなす対象、idle と共有費の配り方、固定 overhead の額。
-- trade-off・失敗の仕方：係数が0になって配れない idle が残る場合の救済段（段10・11）があります。external の allocation が key を作れない場合は「otherwise... ignore them?」というコメントのまま残っています（未決のまま）。
+- trade-off・失敗の仕方：filter・共有資源・共有 idle を同時に有効にすると、filter した配分へ共有された分だけ idle を過大に数える、という既知の問題がコードの TODO と例で明記されています（行2173–2220：https://github.com/opencost/opencost/blob/2b3962dc51040d79c860de4eadb0afb102cdce27/core/pkg/opencost/allocation.go#L2173-L2220）。したがって、filter 下でも全体と同じ idle の取り分になる、という一貫性は、この組合せでは成り立ちません。係数が0になって配れない idle が残る場合の救済段（段10・11）があります。external の allocation が key を作れない場合は「otherwise... ignore them?」というコメントのまま残っています（未決のまま）。
 - 反例・適用しない場合：spec は独自 metric による配分を挙げていますが、今回読んだ option には対応する項目を確認できませんでした（gap）。
 - 互換・非互換：O11 を実装したものです。
 - 限界：固定費の額は持ち込みません。
@@ -162,9 +162,9 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 | 入力 metric が得られないとき | KEDA：失敗回数が閾値を超えたら、方針に従う代わりの値を合成する（O02） | VPA：履歴が短い間は信頼度係数で上限・下限を広げ、強い変更を抑える（O03） | 目的が欠損時の運転継続か、根拠不足時の変更抑制か |
 | 負荷が容量を超えたとき | CA／KEDA：容量を増やす（O01、O04）。先行容量で起動遅れを吸収する（O05） | Vitess：容量を固定して要求側を遅らせる（throttler の check、BEGIN 時の拒否）（O06） | 容量を伸ばせるか、遅延（lag）の上限を守ることが主目的か |
 | failover 先の決め方 | Vitess ERS：GTID で最も進んだ候補を確定し、確定できなければ error。override には運用者の指定が必要（O08） | CNPG：lease で早すぎる昇格を防ぎ、R+W>N を満たさなければ待つ（O09） | 複製の方式（GTID・semi-sync か、PostgreSQL の同期複製か）と、topology を持つ仕組み（topo lock か k8s Lease・CR か） |
-| 切替を戻す | Vitess：逆方向の複製を張ってから切り替える。journal の後は前へ進めるだけ（O07） | CNPG：降格 token を相手に渡して役割を入れ替える。token がなければ旧側を再構築（O10） | 移動の単位が shard・table か、cluster 全体か |
+| 切替を戻す | Vitess：指定があれば（`EnableReverseReplication`）逆方向の複製を張る。journal の後は前へ進めるだけで、journal 前は操作により取消しを試みるか直接 error（O07） | CNPG：降格 token を相手に渡して役割を入れ替える。token がなければ旧側を再構築（O10） | 移動の単位が shard・table か、cluster 全体か |
 | 費用と容量の判断のつながり | CA：拡張時の選択に price expander を使う（O04） | OpenCost：事後に配分し、idle を見えるようにする（O11、O12） | 判断が事前（調達）か事後（帰属）か |
-| 共有費・余剰の配り方 | OpenCost spec：均等・比例・独自 metric の3方式を挙げる（O11） | OpenCost 実装：idle は比例か配らないかに正規化。共有は比例か均等（O12） | spec は方式を挙げる文書、実装は filter 下での一貫性を優先している |
+| 共有費・余剰の配り方 | OpenCost spec：均等・比例・独自 metric の3方式を挙げる（O11） | OpenCost 実装：idle は比例か配らないかに正規化。共有は比例か均等。filter・共有・共有 idle の併用時に idle の過計上が既知（O12） | spec は方式を挙げる文書、実装は filter 下での一貫性を優先している |
 
 ## 見つからなかったこと・gap
 - Cluster Autoscaler の core 実装（scale-down の計画、expander のコード）は、固定commitでは kubernetes/autoscaler の外（`sigs.k8s.io/cluster-autoscaler`、repo kubernetes-sigs/cluster-autoscaler、main=1fa5ecd7e57a4b8757cd36144a7a93571b8ea8bc を確認しただけ）にあり、読んでいません。CA の観察は FAQ と API 型だけを根拠にしています。
