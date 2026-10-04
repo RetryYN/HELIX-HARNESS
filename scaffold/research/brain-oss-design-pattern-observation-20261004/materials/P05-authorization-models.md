@@ -8,7 +8,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ## 調べたrepository
 | repo | URL | 固定commit | ライセンス(SPDX) | archived | 取得日 | 選んだ理由 |
 |---|---|---|---|---|---|---|
-| openfga/openfga | https://github.com/openfga/openfga | 97943bf64d85ac3015272d90ab1145696db9ef5b | Apache-2.0 | false | 2026-10-04 | Zanzibar型ReBAC。consistency preferenceを持つが、zookieは持たない（issue #1777）。SpiceDBとの対照に使う |
+| openfga/openfga | https://github.com/openfga/openfga | 97943bf64d85ac3015272d90ab1145696db9ef5b | Apache-2.0 | false | 2026-10-04 | Zanzibar型ReBAC。consistency preferenceを持つ。zookieについては、issue #1777（2024-07-22起票）でmaintainerが当時未実装と述べている（固定commitの時点で無いことは、本書では確かめていない）。SpiceDBとの対照に使う |
 | authzed/spicedb | https://github.com/authzed/spicedb | dbc16016e92987c531658eae0770261c77434adf | Apache-2.0 | false | 2026-10-04 | Zanzibar型ReBAC。ZedToken（zookieの後継）、4種のconsistency、caveat、new enemyのe2eを持つ |
 | casbin/casbin | https://github.com/casbin/casbin | 524f3f2dc9baef696d748db491d49b3055d359d1 | Apache-2.0 | false | 2026-10-04 | ACL/RBAC/ABACをmodel設定とeffect式の組合せで表すlibrary型PDP |
 | open-policy-agent/opa | https://github.com/open-policy-agent/opa | 3f2d1bd96090b9ecf29c29fabe1eaf38883ea140 | Apache-2.0 | false | 2026-10-04 | 汎用policy engine。policyと判定の分離、Regoのtest機構、bundle revisionを持つ |
@@ -17,7 +17,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ## 観察
 
 ### P05-O01 effect結合式によるallow／denyの合成（Casbin PolicyEffect）
-- 出典：casbin、`effector/default_effector.go` 行35–111（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/effector/default_effector.go#L35-L111）、`constant/constants.go` 行28–34（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/constant/constants.go#L28-L34）、`enforcer.go` 行858–921（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/enforcer.go#L858-L921）、`examples/rbac_with_deny_model.conf` 行1–13（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/examples/rbac_with_deny_model.conf#L1-L13）。信頼性ラベル：primary（公式source repository）。本文確認：済
+- 出典：casbin、`effector/default_effector.go` 行35–111（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/effector/default_effector.go#L35-L111）、`constant/constants.go` 行28–34（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/constant/constants.go#L28-L34）、`enforcer.go` 行858–921（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/enforcer.go#L858-L921）、`examples/rbac_with_deny_model.conf` 行1–14（https://github.com/casbin/casbin/blob/524f3f2dc9baef696d748db491d49b3055d359d1/examples/rbac_with_deny_model.conf#L1-L14）。信頼性ラベル：primary（公式source repository）。本文確認：済
 - 何をしているか：model（`.conf`）は `request_definition`、`policy_definition`、`role_definition`、`policy_effect`、`matchers` の5区画を宣言する。`Enforcer.enforce` は、policy行ごとにmatcherを評価してmatch配列を作り、`p_eft` 列から `Allow`／`Deny`／`Indeterminate` のeffect配列を作る（`eft` 列がないときは `Allow` とみなす）。そのあと `DefaultEffector.MergeEffects` が `policy_effect` の文字列をもとに1つの判定へまとめる。対応する式は固定の5種で、allow-override、deny-override、allow-and-deny、priority、subjectPriority である。未対応の式は `Deny` とerrorを返す。最終的に、`effect == Allow` のときだけ `true` を返す（`Indeterminate` は拒否になる）。
 - 解いている問題と前提：同じenforcerでACL、RBAC、ABACを切り替えるために、合成規則をmodel側の宣言に置いている。policyはin-memoryに載ること、matcherは式評価器で評価されることが前提である。
 - 必要な入力：request tupleの列構成、policy行の列構成（`eft` 列を持つかどうか）、5種の結合式のどれを使うか。
@@ -46,12 +46,12 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 互換・非互換：O04（consistency）、O05（model ID）と組み合わせて使う。SpiceDBの差集合（O07）と構造が対応する。
 - 限界：製品固有の値は持ち込まない。
 
-### P05-O04 consistency preferenceの2値と、cache・replicaの迂回（OpenFGA）。zookieは未実装
+### P05-O04 consistency preferenceの2値と、cache・replicaの迂回（OpenFGA）。zookieは2024年のissue時点で未実装
 - 出典：openfga、`docs/caching.md` 行13–24（https://github.com/openfga/openfga/blob/97943bf64d85ac3015272d90ab1145696db9ef5b/docs/caching.md#L13-L24）、`pkg/storage/mysql/mysql.go` 行182–192（https://github.com/openfga/openfga/blob/97943bf64d85ac3015272d90ab1145696db9ef5b/pkg/storage/mysql/mysql.go#L182-L192）、`pkg/server/commands/check_command.go` 行108–125（https://github.com/openfga/openfga/blob/97943bf64d85ac3015272d90ab1145696db9ef5b/pkg/server/commands/check_command.go#L108-L125）、issue https://github.com/openfga/openfga/issues/1777 （本文と、maintainerのcommentを読んだ）。信頼性ラベル：primary。本文確認：済
 - 何をしているか：requestの `ConsistencyPreference` が `HIGHER_CONSISTENCY` のときは、check query cacheとiterator cacheを使わず（model・typesystemのcacheだけは常に使う）、cache invalidation時刻も計算しない。さらに、MySQL datastoreはprimary DBへ読みを回す。それ以外のときは、secondary DBが設定されていればそちらを読む。
 - 解いている問題と前提：遅延と鮮度を、requestごとに2値で選ばせること。cacheはreplicaごとのin-memoryで共有されない、と文書が明記している。
 - 必要な入力：呼び出し側が、どのrequestで新しさを必要とするかを判断すること。
-- trade-off・失敗の仕方：caching.md は、query cacheを有効にするとCheckとListObjectsが「eventually consistent」になると明記している。issue #1777 では、maintainerが次の2点を述べている。zookieは未実装であること。cacheを有効にするとnew enemy problemから守られないこと。また、zookieを使うと、利用者側でtokenを保存し、どのentityのtokenを送るかを選ぶ手間が増えること。代替として、既存の最終更新時刻とcache TTLの比較で、整合読みを選ぶ方法がcommentで示されている（TTLの値は持ち込まない）。
+- trade-off・失敗の仕方：caching.md は、query cacheを有効にするとCheckとListObjectsが「eventually consistent」になると明記している。issue #1777（2024-07-22起票。以下はその時点の発言で、固定commitの時点で同じかは確かめていない）では、maintainerが次の2点を述べている。zookieは未実装であること。cacheを有効にするとnew enemy problemから守られないこと。また、zookieを使うと、利用者側でtokenを保存し、どのentityのtokenを送るかを選ぶ手間が増えること。代替として、既存の最終更新時刻とcache TTLの比較で、整合読みを選ぶ方法がcommentで示されている（TTLの値は持ち込まない）。
 - 反例・適用しない場合：SpiceDB（O06）は、revisionを埋め込んだtokenで「少なくともこの時点より新しい」判定を指定できる。
 - 互換・非互換：O06とは、整合の指定方法が非互換である（2値の選択とtoken指定）。
 - 限界：製品固有の値（cache TTL、件数）は持ち込まない。
@@ -78,13 +78,13 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 解いている問題と前提：書込み後の判定が、その書込みを反映していること（new enemy problemの回避）。datastoreがMVCCのrevisionを持つことが前提である。
 - 必要な入力：書込みの応答で得たtokenを、呼び出し側がどこに保存し、どの判定に添えるか。
 - trade-off・失敗の仕方：exact snapshotは、GCされたrevisionではerrorになる（`CheckRevision`）。tokenの不一致の扱いを最小遅延にすると、警告logを出すだけで鮮度の保証を失う。`default` 分岐は、未対応のconsistencyを `Internal` errorにする（行217–218）。
-- 反例・適用しない場合：OpenFGA（O04）はtokenを持たず、2値の選択だけを提供する。Casbin（O02）は、判定とpolicy版を対応付けない。
+- 反例・適用しない場合：OpenFGA（O04）は、読んだ範囲では2値の選択だけを提供している（tokenは2024年のissue時点で未実装）。Casbin（O02）は、判定とpolicy版を対応付けない。
 - 互換・非互換：O07（new enemyのe2e）が、この仕組みの有効性を検証している。O04とは非互換である。
 - 限界：製品固有の値（prefix長など）は持ち込まない。
 
 ### P05-O07 差集合（exclusion）とcaveatによる三値の判定、およびnew enemyのe2e検証（SpiceDB）
-- 出典：spicedb、`internal/graph/check.go` 行1175–1253（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/graph/check.go#L1175-L1253）、`internal/graph/membershipset.go` 行156–173（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/graph/membershipset.go#L156-L173）、`internal/services/v1/permissions_queryplan.go` 行152–166（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/services/v1/permissions_queryplan.go#L152-L166）、`e2e/newenemy/README.md` 行1–23、行54–71（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/e2e/newenemy/README.md#L1-L71）。信頼性ラベル：primary。本文確認：済
-- 何をしているか：`difference` は、base子を評価してから、残りの子を順に差し引く。どれかの子がerrorなら、判定ではなくerrorを返す。`MembershipSet.Subtract` は、差し引く側にcaveatがなければ完全に除去し、caveatがあれば「base caveat AND NOT sub caveat」の式に置き換える。API応答は `HAS_PERMISSION`、`NO_PERMISSION`、`CONDITIONAL_PERMISSION`（不足contextを示す `PartialCaveatInfo` 付き）の三値である。e2eのnew enemy試験は、`permission allowed = direct - excluded` のschemaで、exclude書込み → direct書込み → 後者のrevisionでのcheck、が誤って許可されないことを確かめる。
+- 出典：spicedb、`internal/graph/check.go` 行1175–1253（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/graph/check.go#L1175-L1253）、`internal/graph/membershipset.go` 行156–173（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/graph/membershipset.go#L156-L173）、`internal/services/v1/permissions_queryplan.go` 行152–166（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/internal/services/v1/permissions_queryplan.go#L152-L166）、`e2e/newenemy/README.md` 行1–23、行54–71（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/e2e/newenemy/README.md#L1-L71）。`e2e/newenemy/newenemy_test.go` 行358–398（https://github.com/authzed/spicedb/blob/dbc16016e92987c531658eae0770261c77434adf/e2e/newenemy/newenemy_test.go#L358-L398）。信頼性ラベル：primary。本文確認：済
+- 何をしているか：`difference` は、base子を評価してから、残りの子を順に差し引く。どれかの子がerrorなら、判定ではなくerrorを返す。`MembershipSet.Subtract` は、差し引く側にcaveatがなければ完全に除去し、caveatがあれば「base caveat AND NOT sub caveat」の式に置き換える。API応答は `HAS_PERMISSION`、`NO_PERMISSION`、`CONDITIONAL_PERMISSION`（不足contextを示す `PartialCaveatInfo` 付き）の三値である。e2eのnew enemy試験は、実コード（`newenemy_test.go` 行358–398）では、exclude側の書込み → allow側の書込み → 後者の書込みが返したtokenによるexact snapshotでのCheck、の順で行い、誤って許可されないことを確かめる。README（行1–23、54–71）は`permission allowed = direct - excluded`のschemaで説明しているが、README内のSQLの例（行29–39）はexclusionとdirectのrelation名が説明と逆になっている。READMEの記述と実装を区別し、手順の根拠は実コードに置く。
 - 解いている問題と前提：除外規則（deny相当）と条件付き付与を、二値に潰さずに返すこと。分散DB（CockroachDB）でのclock skewを想定している。
 - 必要な入力：caveatの評価に必要なcontextを、呼び出し側が渡せるかどうか。
 - trade-off・失敗の仕方：README.md によると、CockroachDB上では特定の条件（rangeの分散、clock skew）でnew enemyが起こりうる。Zanzibarは、これをSpannerのTrueTimeで防いでいる（行59–71）。queryplan経路の `MissingRequiredContext` は、空配列とTODOコメントのままである（行159–163）。
@@ -162,7 +162,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 ## 同じ問題の解き方の比較
 | 問題 | repoA のやり方 | repoB のやり方 | 違いが生じる前提 |
 |---|---|---|---|
-| 新旧判定の整合（new enemy） | SpiceDB：revisionを埋め込んだZedTokenで `at_least_as_fresh`／`at_exact_snapshot` を指定する（O06） | OpenFGA：`HIGHER_CONSISTENCY` でcacheを迂回し、primary DBを読む。tokenはない（O04、#1777） | 利用者側でtokenを保存・選択する負担を受け入れるかどうか。datastoreがrevisionを公開するかどうか |
+| 新旧判定の整合（new enemy） | SpiceDB：revisionを埋め込んだZedTokenで `at_least_as_fresh`／`at_exact_snapshot` を指定する（O06） | OpenFGA：`HIGHER_CONSISTENCY` でcacheを迂回し、primary DBを読む。tokenは2024年のissue時点で未実装（O04、#1777） | 利用者側でtokenを保存・選択する負担を受け入れるかどうか。datastoreがrevisionを公開するかどうか |
 | policy版と判定の対応付け | OpenFGA：immutableなmodel IDを、responseのheaderに載せる（O05） | OPA：bundleのrevisionを、decision logに記録する（O08）。Casbin：watcherで再読込みするだけで、版は記録しない（O02） | policyを常駐サービスが持つか、library内のin-memoryが持つか |
 | deny優先の単位 | Cerbos：role単位ではdeny優先。roleをまたぐとallowが勝つ（O10） | Casbin：allow-and-denyは、match全行でdeny優先（O01）。SpiceDB／OpenFGA：exclusion（差集合）として表す（O03、O07） | roleを「独立した権限束」とみなすか、明示の除外をrelationとして持つか |
 | 既定拒否 | Cerbos：PDPがNO_MATCHをDENYにする（O10） | OPA：`default allow := false` をpolicy作成者が書く。書かないとundefinedになる（O08）。Casbin：deny-overrideは、denyがなければ許可する（O01） | 既定値をengineが持つか、policy記述者が持つか |
