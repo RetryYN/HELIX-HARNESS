@@ -54,6 +54,31 @@ class GuiChecks(unittest.TestCase):
         reply = g.claim(self.data, "codex", "codex-gui", self.now)
         g.ack(self.data, "response-1", "codex", "codex-gui", reply["digest"], reply["claim"]["nonce"], self.now)
 
+    def test_direction_follows_pr_roles_not_lanes(self):
+        # review_merge側が作成したPRも、作成側→review側の依頼と逆向きの指摘を同じ通知箱で届ける。
+        request = dict(self.request, author="claude", reviewer="codex")
+        g.send(self.data, "claude", "claude-gui", "reverse-1", "review_request", request, None, 60, self.now)
+        m = g.claim(self.data, "codex", "codex-gui", self.now)
+        self.assertEqual(m["payload"]["event_id"], "reverse-1")
+        r = {k:request[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+        r.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                 request_payload_sha256=request["payload_sha256"], result="no_findings", findings=[], unreviewed=[])
+        g.send(self.data, "codex", "codex-gui", "reverse-1-response", "review_response", request, r, 60, self.now)
+        self.assertEqual(g.claim(self.data, "claude", "claude-gui", self.now)["payload"]["event_id"], "reverse-1-response")
+        # 作成側でないruntimeの依頼、review側でないruntimeの指摘は拒否する。
+        with self.assertRaises(ValueError): g.send(self.data, "codex", "codex-gui", "x", "review_request", request, None, 60, self.now)
+        with self.assertRaises(ValueError): g.send(self.data, "claude", "claude-gui", "y", "review_response", request, r, 60, self.now)
+
+    def test_send_queues_for_lapsed_registered_session(self):
+        # 宛先leaseが切れても登録済みsessionへ積み、そのsessionのhook activityでleaseが戻れば受け取れる。
+        self.data["lanes"]["claude"]["expires"] = self.now - 1
+        self.assertEqual(self.send()["status"], "queued")
+        with self.assertRaises(ValueError): g.claim(self.data, "claude", "claude-gui", self.now)
+        self.data["lanes"]["claude"]["expires"] = self.now + 60
+        self.assertIsNotNone(g.claim(self.data, "claude", "claude-gui", self.now))
+        del self.data["lanes"]["claude"]
+        with self.assertRaises(ValueError): self.send("event-unregistered")
+
     def test_duplicate_and_atomic_claim(self):
         self.send()
         self.send("event-other")
