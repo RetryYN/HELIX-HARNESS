@@ -1,0 +1,9 @@
+# CONNECT Stage 1 source照合補足（2026-10-05）
+
+対象本文revisionは `3c4c85e5c8157cffee710a6d993fb722d810a647`、#2571の5親・6文書238行である。本記録は作成側の訂正であり、要求変更・独立review合格・PO承認を生成しない。
+
+同revisionの静的監査（SHA-256 `15a1df06ff6b7038bf7eeadea98521669e02c7346b7234c1819ae0d75af3cba5`）の`carried_review.root_additional_corrections`第一項「002被覆表のstale戻し先を固定契約ownerへ合わせ」は、sourceの範囲を広げた説明だった。ここで訂正し、過去監査のbytesは変更しない。
+
+固定L2 `633bf12ea8f948db8ba3d6600179c4a9507377a7:docs/helix-connect/L2-requirements/connect-requirements.md:78` は「契約不一致は接続設計・契約ownerへ」「読取りaccess条件は既存owner/authorityへ」「送信時許可scope/expiry問題はSECURITYへ」「比較不能はunknown/staleを記録し送信保留」を分けている。staleという状態だけの専用戻し先は明記しない。候補L10被覆表は契約不一致・比較不能の戻しと読取り/送信ownerを区別したが、stale全般のownerを上流指定と断定しない。CASE-002は固定親のfailure句と、再照合まで送信attempt 0を保持する。専用stale ownerの新設で補わない。
+
+Worker補助検収も6文書SHA/238行、5親のsource/AC/CASE、004のoperation義務/試行数とbusiness未完結果の分離、005の各証拠field欠落、採択HARNESS L2依存と未承認HARNESS L3非参照を限定確認した。これはClaudeの独立reviewではない。上記比較不能の返却解釈を含め、fixed sourceとcandidateの意味照合は独立reviewへ渡す。
