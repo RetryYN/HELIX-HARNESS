@@ -35,7 +35,7 @@ Stage 1だけを切り出す。L2-015はasset identity基盤、L2-016は分類�
 | `HELIXSECURITY-L2-020` | 58 | `936009544f55cf61502a3832013b4ed4b218576628bb45e79f28666cf7643750` |
 | `HELIXSECURITY-L2-028` | 66 | `abb2a405512392005f8baf77c854cdf330e1864da13e346d70db24623e8d7cec` |
 
-The ledger entry for `LEGACY-ASSET-EE5DBACC7F28F7D1F605` received a metadata-only correction on 2026-10-03; its source SHA and semantic content did not change. This note preserves that later ledger history without changing the historical asset record. Common fixed-source full-file SHA is recorded once: f6dad2a L2 `027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`, L11 `25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`.
+`LEGACY-ASSET-EE5DBACC7F28F7D1F605`の台帳項目には2026-10-03にmetadataだけの訂正が入ったが、source SHAと意味内容は変わっていない。この注記は過去の台帳recordを書き換えず、後日の訂正履歴を保持する。固定sourceの全体SHAは共通値として一度だけ記録する。f6dad2aのL2は`027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11は`25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
 | 旧source（archive相対path） | asset / source SHA-256 / 行 | Stage 1での処置と変更理由 |
 |---|---|---|
@@ -107,7 +107,7 @@ project/root/HEAD/revision/digest/owner/scopeに構成を束ねる。stale、未
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。 戻し先: 対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。
 
-**L3 acceptance (`SECURITY-AC-004-01`)**：全10構成種別（AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定）をそれぞれ独立fixtureで識別し、正しいproject/root/HEAD/revision/digest/owner/scopeだけを候補として返す。source revisionを含む各identity field、revision、digest、scopeの単独欠落/stale/別project変異を試し、内容差分とauthority差分を分離して示す。Owner unknownはunknownのまま出力し、欠落をdefaultで補わない。未知Hook/config、stale revision、他project由来設定、revision欠落を受け入れたら不合格。Concept構成版の識別と切戻し候補のsource/revision/evidenceも同じ比較結果に記録し、意味の決定は行わない。
+**L3 acceptance (`SECURITY-AC-004-01`)**：全10構成種別（AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定）をそれぞれ独立fixtureで識別し、正しいproject/root/HEAD/revision/digest/owner/scopeだけを候補として返す。source revisionを含む各identity field、revision、digest、scopeの単独欠落/stale/別project変異を試し、内容差分とauthority差分を分離して示す。owner unknownはunknownのまま出力し、欠落をdefaultで補わない。未知Hook/config、stale revision、他project由来設定、revision欠落を受け入れたら不合格。Concept構成版の識別と切戻し候補のsource/revision/evidenceも同じ比較結果に記録し、意味の決定は行わない。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-004`。
 

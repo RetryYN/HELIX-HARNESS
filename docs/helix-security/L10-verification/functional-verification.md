@@ -26,9 +26,9 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 | `HELIXSECURITY-L2-012` | `SECURITY-FR-012-01` | `SECURITY-AC-012-01` | `SECURITY-CASE-012-01` | 1.0 |
 | `HELIXSECURITY-L2-013` | `SECURITY-FR-013-01` | `SECURITY-AC-013-01` | `SECURITY-CASE-013-01` | 1.0 |
 | `HELIXSECURITY-L2-014` | `SECURITY-FR-014-01` | `SECURITY-AC-014-01` | `SECURITY-CASE-014-01` | 1.0 |
-| `HELIXSECURITY-L2-015` | `SECURITY-FR-015-01` | `SECURITY-AC-015-01` | `SECURITY-CASE-015-01` | 1.0 identity foundation; 1.x real-use protection |
-| `HELIXSECURITY-L2-016` | `SECURITY-FR-016-01` | `SECURITY-AC-016-01` | `SECURITY-CASE-016-01` | 1.0 classification foundation; 1.x public-sink enforcement |
-| `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard foundation 1.0; Bots only when needed |
+| `HELIXSECURITY-L2-015` | `SECURITY-FR-015-01` | `SECURITY-AC-015-01` | `SECURITY-CASE-015-01` | 1.0はidentity基盤、実利用保護は1.x |
+| `HELIXSECURITY-L2-016` | `SECURITY-FR-016-01` | `SECURITY-AC-016-01` | `SECURITY-CASE-016-01` | 1.0は分類記録基盤、公開sinkへの適用は1.x |
+| `HELIXSECURITY-L2-020` | `SECURITY-FR-020-01` | `SECURITY-AC-020-01` | `SECURITY-CASE-020-01` | Guard基盤は1.0、Botは必要時のみ |
 | `HELIXSECURITY-L2-028` | `SECURITY-FR-028-01` | `SECURITY-AC-028-01` | `SECURITY-CASE-028-01` | 1.0 |
 | `HELIXSECURITY-L2-033` | `SECURITY-FR-033-01` | `SECURITY-AC-033-01` | `SECURITY-CASE-033-01` | 1.0 |
 
@@ -66,6 +66,7 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 - **対象AC**: `SECURITY-AC-004-01`
 - **固定L11受入oracle**：正しいproject/root/HEAD/revision/digest/owner/scopeの構成だけを識別し、stale revision、未知Hook、他projectのMCP設定を受け入れない。構成の一部欠落を既定値で黙って補ったら不合格。
 - **fixture/oracle**: AGENTS.md、CLAUDE.md、Agent定義、Hook、Skill、MCP設定、runtime設定、Sandbox方針、system instruction、model設定の10種を各々識別し、各構成の現在値、stale、他project、unknown、field欠落を比較する。採用可能revisionとunknown/staleの比較結果、内容差分とauthority差分の別出力を観測し、既定値で穴埋めした状態はpassしない。
+- **fixture追加**：Concept構成版と、その構成版に対応する切戻し候補のsource/revision/evidenceが比較結果に記録される正常例を置く。owner欠落の独立fixtureではownerをunknownのまま出力して実行を止め、L1-004へ返す。切戻し候補のsource/revision/evidenceが欠落・stale・別project由来の場合も、候補を承認済みの切戻し先として扱わず、unknownと不足理由を記録する。
 - **未見の正常例**：未見の構成revisionでもproject/root/HEAD/digest/owner/scopeが一致すれば同じintegrity判定を返し、見慣れないことだけを理由に拒否しない。
 - **negative/boundary oracle**：stale revision、unknown hook/config、他project source、project/root/HEAD/revision/digest/owner/scope各欠落のいずれかを既定値補完して受入れたら不合格。
 - **owner oracle・失敗時の戻し先**：L2-003のidentityと、構成sourceのrevision/digest。Ownerが不明ならその不明を維持する。 失敗時は、対象のowner/scopeが不明ならL1-004へ戻し、実行を停止する。承認のない構成を推測採用しない。
@@ -75,9 +76,10 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 - **対象AC**: `SECURITY-AC-005-01`
 - **固定L11受入oracle**：raw credentialはcontext/log/artifactに現れず、範囲・operation・target・expiry付き利用だけが許可され、期限切れ/revoked credentialの後続利用が止まる。repository混入、直接Worker露出、egress漏れ、値入りreceiptがあれば不合格。
 - **fixture/oracle**: normal fixtureでは非公開scope付きcredential-useだけを呼び出し、actor/operation/target/environment/scope/expiry/purposeを既存credential-use/authority tupleと照合し、生値が全観測出力から除外される。各fieldの欠落/不一致、expired/revoked、直接store、値入りartifact/receiptは個別拒否。
+- **fixture追加**：実secretではない固定の合成secret markerを合成repository内へ置くfixtureを一つ作る。repository所属の検出結果で不合格とし、出力・receiptにはmarker値や混入file内容を複写しない。repository混入の有無は一般file/artifact内の値露出fixtureと分けて記録する。
 - **fixture追加**：複数consumerに同一canonical classifier identity/revisionを与える正常例と、consumer一つだけ独自判定を使う例、classifier版がstale/unknownの例、未知credential class、検査不能を個別に投入し、後二者もdeny/stopする。
 - **未見の正常例**：異なる種類の合成credential consumerでも、既存canonical classifierの同一identity/revisionと完全な既存authority tupleを使う場合は、raw値を受け渡さず同じclassification/use結果を得る。consumer種別が未見という理由だけでdenyせず、未結束classifierやunknown authorityを許可にしない。
-- **negative/boundary oracle**：raw secretがcontext/file/artifact/log/Tool result/egressに現れる、Workerへstoreを直接見せる、expired/revoked/mismatched useを続ける、秘密をreceiptへ書く、consumer別classifierを作る/同じinputの分類結果が食い違うfixtureは不合格。正しい非公開scoped credential-useを一律denyすることも不合格。
+- **negative/boundary oracle**：raw secretがcontext/file/artifact/log/Tool result/egressに現れる、Workerへstoreを直接見せる、expired/revoked/mismatched useを続ける、秘密をreceiptへ書く、consumer別classifierを作る/同じinputの分類結果が食い違うfixture、またはsynthetic repository混入fixtureを検出・拒否できない場合は不合格。repository混入は任意のartifact/file値露出とは別に判定する。正しい非公開scoped credential-useを一律denyすることも不合格。
 - **owner oracle・失敗時の戻し先**：L2-008 authority、L2-006 egress、Worker境界L2-007、INFRASTRUCTUREの安全な実資源境界。 失敗時は、欠落scope、期限切れ、未知のcredential class、検査不能はdeny/stop。方針の不足はL1-005へ、保存・注入境界はL2-024へ戻す。
 
 ### SECURITY-CASE-006-01 — egress
@@ -94,6 +96,8 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 - **対象AC**: `SECURITY-AC-007-01`
 - **固定L11受入oracle**：各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。以下の9制御fixture表で条件を個別に確認する。
 - **fixture/oracle**: 制約ごとにrequest→environment acknowledgement/evidenceを検査。欠落・unsupported・自己拡張を投入し、起動停止/unknownを確認する。read-onlyもscope内変更なしを観測。read-only labelだけでpost-state観測を省かず、拒否receiptは内容/secretを露出しない。rollback N/Aは変更なし確認時のみ。
+- **fixture追加（停止・rollback・再開可否）**：同じassignment、SECURITY policy revision、実行環境観測に束縛した正常例で、停止要否・rollback可否・再開可否を結果に明示し、それぞれの状態を根拠と対応づける。再開可否が既存条件と観測から確認できる例ではその可否を出力し、結果やWorker自己申告だけから決めない。
+- **negative追加（再開可否unknown）**：再開可否だけをunknownにした合成例を与え、他の制約がgreenでも再開を許可しない。unknown状態、対象revision、不足根拠、既存ownerへの戻し先を結果に保持する。再開可否を停止可否やrollback可否から推定した場合は不合格。
 - **未見の正常例**：新しいread-only assignmentでも、各適用可能な制約とowner宣言値・実適用観測がそろい、read-only変更なしを確認できる場合に同じ契約で扱う。
 - **negative/boundary oracle**：一つでもconstraint→実行環境適用が未確認/unsupported/unknownなのに開始、host fallback、Worker自身のscope拡張があれば不合格。read-onlyで変更があれば不合格。変更なしを確認したrollback N/Aだけ許す。
 - **owner oracle・失敗時の戻し先**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。 失敗時は、未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。
