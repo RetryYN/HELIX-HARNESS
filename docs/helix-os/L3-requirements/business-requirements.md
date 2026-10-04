@@ -28,7 +28,7 @@ paired_l10: ../L10-verification/business-verification.md
 
 ## 親・旧source crosswalk（item単位）
 
-Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 時点。現行採択はPO decision recordから読み、本文の候補metadataは履歴として保持する。test-designはoracle/failure consumerとして読んだ資料で、旧test/runtime/CLI/CIは実行していない。
+採択親とPO判断の固定基準は全Stageとも `633bf12ea8f948db8ba3d6600179c4a9507377a7` とする。crosswalkの `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 等は起草時のsource snapshotであり、現在の採択基準へ代替しない。現行採択はPO decision recordから読み、本文の候補metadataは履歴として保持する。test-designはoracle/failure consumerとして読んだ資料で、旧test/runtime/CLI/CIは実行していない。
 
 | identity／管理行 | PO判断・登録（path/行/SHA） | 固定L2（行・全文SHA-256・正規化節SHA-256） | 固定L11（行・raw節SHA-256・全文SHA-256） | 旧L3（asset/path/行/SHA） | 旧test-design（asset/path/行/SHA） | 判断 |
 |---|---|---|---|---|---|---|

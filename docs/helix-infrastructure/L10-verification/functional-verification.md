@@ -99,7 +99,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-005-C01**（AC `INFRA-005-AC-01`）: backup target/source revision/time/completeness/location/integrity/expiryとprocedureを与える。期待oracle:backup設定とbackup execution stateが別で、対象state ownerとsource revisionへ全fieldをtraceできる。
+- **L10-INFRA-005-C01**（AC `INFRA-005-AC-01`）: 対象state ownerが定めるretention/recovery要求とbackup target/source revision/time/completeness/location/integrity/expiry、procedureを入力する。期待oracle:backup設定とbackup execution stateが別で、retention/recovery要求および各fieldを対象state owner・source revisionへtraceできる。owner要求が欠落/unknownなら期間を補わずunknownとして保持する。
 - **L10-INFRA-005-C02**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: job successfulでもbackup completeness/integrity false、staleまたはtarget外revisionのfixture。期待oracle:backup存在/job成功だけからrestore可能とせず、failure/理由/変更前の適格stateを保持する。
 - **L10-INFRA-005-C03**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: compatible restore environmentで実restoreし、integrity、dependency reconnection、startup、verificationを全て照合する正常caseと、各条件を個別に欠落させるcase。期待oracle:実restore resultと検証結果を区別し、条件不足を成功にしない。
 - **L10-INFRA-005-C04**（AC `INFRA-005-AC-01`／`INFRA-005-AC-02`）: configuration/artifact/dependency/data compatibility不明またはrollback target/procedure不明のfixture。期待oracle:rollback適格性を保留し、previous eligible state/failure/未完義務をrecovery design owner/OSへ戻す。
@@ -107,7 +107,7 @@ L2/L11は要求量照合とunknown・不足の扱いを明示する。要求量�
 
 ### 観測点とoracle
 
-このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。技術上時間・保持期間の候補が必要と判断した場合は、固定L2/L11に値がなくても、運用目的、比較案、測定方法を添えてL3候補として提示できる。上流に明示されていない値は採択前の合否oracleにせず、汎用閾値を必須化しない。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
+このscopeはoperation-specific restore/recovery integrityを検証し、固定時間や保持期間を一律主張しない。技術上時間・保持期間の候補が必要と判断した場合は、固定L2/L11に値がなくても、運用目的、比較案、測定方法を添えてL3候補として提示できる。候補は対象state ownerのretention/recovery要求と照合し、owner要求が欠落/unknownなら値・期間を推測しない。上流に明示されていない値は採択前の合否oracleにせず、汎用閾値を必須化しない。各caseでは、要求field/state、source/revision、owner、unknown/partial、戻し先を照合し、成立していない状態を成功扱いしない。
 
 
 ## HELIXINFRASTRUCTURE-L2-009 — L10 oracle（対応 `INFRA-009-FR-01`）

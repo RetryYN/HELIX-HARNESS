@@ -37,7 +37,7 @@
 | `HELIXLABO-L2-012` | C01/C02〜04 | relation source/revision、unknown、欠落義務、co-timed unrelated eventsとcausality overclaimを個別/併発変異 | provenance/unknown保持、correlation-onlyからcausal conclusion 0、owner return |
 | `HELIXLABO-L2-013` | C01/C02〜04 | 分類軸、根拠、元episodeの個別欠落/矛盾 | 分類軸別trace、根拠欠落の検出 |
 | `HELIXLABO-L2-014` | C01/C02〜04 | original meaning/purpose/condition、candidate deltaの欠落/不整合 | original-to-candidateの意味差trace、unknown停止 |
-| `HELIXLABO-L2-015` | C01/C02〜04 | 親指定の3比較区分（baseline/current、candidate、hybrid）のversion/condition/oracleを個別にずらし、比較区分の欠落/統合も投入 | 各比較区分の条件一致/欠落と不成立理由を照合 |
+| `HELIXLABO-L2-015` | C01/C02〜04 | 選択された比較区分のversion/condition/oracleを個別にずらし、選択arm欠落と未選択区分不在を分けて投入 | 選択区分の条件一致/欠落と不成立理由を照合し、未選択群だけで二者比較を不成立にしない |
 | `HELIXLABO-L2-016` | C01/C02〜04 | comparison result/counterexample/oracle/interruptionを独立・併発欠落 | 各証拠状態の保持、判定不能のoperation return |
 | `HELIXLABO-L2-017` | C01/C02〜04 | guarantee/revision/unfinished obligation/ownerを個別に欠落 | switch 0、欠落理由とowner return |
 | `HELIXLABO-L2-018` | C01/C02〜04 | sample condition/evidence scope/counterexampleを欠落または追加 | supportされた最大scope、反例によるscope縮小 |
@@ -50,11 +50,11 @@
 | `HELIXLABO-L2-025` | C01/C02〜04 | SECURITY data-use scope/permission/source revisionとrestricted fieldを個別操作 | unauthorized/restricted intake 0、SECURITYへreturn |
 | `HELIXLABO-L2-026` | C01/C02〜04 | INFRA resource/environment source versionをstale/unknown化 | stale/unknownをhealthyへ変換しない |
 | `HELIXLABO-L2-027` | C01/C02〜04 | 専用connection contract identity/revision/schema/traceを個別drift、implicit connector sharingも投入 | mismatch/unknownを可視化しCONNECT ownerへ返し、暗黙共有0 |
-| `HELIXLABO-L2-028` | C01/C02〜04 | Worker result identity、L2-006 experiment/target version、assignment/task class/source/statusと専用connector identity/revision/schema/provenanceを個別変異 | observedをevaluatedへ昇格0。assignment/result不一致はOS assignment owner、connector不一致はfailure return destinationが契約で確定時だけ返し、未確定なら保留 |
+| `HELIXLABO-L2-028` | C01/C02〜04 | Worker result identity、L2-006 experiment/target version、assignment/task class/source/statusと専用connector identity/revision/schema/provenanceを個別変異 | observedをevaluatedへ昇格0。assignment不一致だけはOS assignment ownerへ戻し、connector不一致は受領不成立・unknownとして保留してownerを推測しない |
 | `HELIXLABO-L2-029` | C01/C02〜04 | CI target revision/test scope/statusを欠落、stale/not-run/interrupted化 | 未実行/古い結果のpass表記0 |
 | `HELIXLABO-L2-030` | C01/C02〜04 | Product Core source identity/version/scopeを混在、unselected sourceを必須化 | identity merge 0、unselected sourceはoptional |
-| `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/顧客固有ルール/unknown;専用connector identity/revision/schema/provenanceの個別不一致; 2.0 external input | internal evidence scope、connector不一致をBRAIN sourceへ返却、1.0/2.0 boundary |
-| `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed omissionとconnector identity/revision/schema/provenance不一致; learning/tuning request | packet trace complete、unassessed retained、connector mismatchはcontract上のfailure return destinationが確定時だけ返し、未確定なら保留、3.0+ execution 0 |
+| `HELIXLABO-L2-034` | C01/C02〜04 | multiple-product supported evidence vs single/product-specific/顧客固有ルール/unknown;専用connector identity/revision/schema/provenanceの個別不一致; 2.0 external input | internal evidence scope、connector不一致は受領不成立・unknownで保留、L2-009の戻し先は単一case/適用範囲不明に限定、1.0/2.0 boundary |
+| `HELIXLABO-L2-035` | C01/C02〜04 | revision/scope/unassessed omissionとconnector identity/revision/schema/provenance不一致; 052 full-collection/054 Bench claim mutation; learning/tuning request | 035 packet traceを052全量到達や054 Bench水準と混同せず、unassessed retained。connector mismatchは受領不成立・unknownとして保留しownerを推測しない、3.0+ execution 0 |
 | `HELIXLABO-L2-058` | C01〜05 | none, Worker-only, multi-source, selected missing, unknown selection, unauthorized no-selection payload, unselected/selected Web and external 2.0、selected scope/source/operation/versionの各変更 | selected-only dependency closureを変更時に再照合、unselected=unobserved、selected-missing never unselected、no unauthorized ingest、external 2.0を1.0へ混入0 |
 
 ## Stage 4 — 接続・受渡し契約の測定
@@ -67,7 +67,7 @@
 | `HELIXLABO-L2-039` | 許可Worker result identity/revision/route一致100%候補 | C01正常、C02 result/OS/SECURITY route個別欠落、C03 direct assignment、C04 stop/recovery正常 | 入力された許可結果を対象にし、assignment/executionはOS側 |
 | `HELIXLABO-L2-040` | connection identity/version/trace一致100%候補、mismatch success 0 | C01採択scope、C02 version/trace/identity独立変異、C03 contract write、C04別選択connection | CONNECTへ接続単位に返却。未選択connectorは要求しない |
 | `HELIXLABO-L2-041` | 選択Product Core target/version/connector一致100%候補、generic promotion 0 | C01単一正常target、C02 unknown/version/connector欠落、C03 cross-owner、C04別選択製品 | product meaningを該当Coreに返す。全Coreは常時必須ではない |
-| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptの全必須fieldおよびadmitted connector条件一致100%候補、assignment/authority 0 | C01同scope受領とadmitted connector、C02 payload/connector各field変異、C03 extrapolation/assignment、C04別unassessed class | payload/connector不一致を受領成功にせず、055/INTELLIGENCE/OS責務を分離し未評価状態を保持 |
+| `HELIXLABO-L2-054` | 055 payloadとINTELLIGENCE receiptの全必須fieldおよびadmitted connector条件一致100%候補、assignment/authority 0 | C01同scope受領とadmitted connector、C02 payload/connector各field変異、C03 extrapolation/assignment、C04別unassessed class | payload/connector不一致を受領成功にせず、055の水準生成側への戻しはpayload評価不足に限り、connector不一致はunknownで保留し、INTELLIGENCE/OS責務を分離 |
 | `HELIXLABO-L2-052` | 選択targetの035/source/receipt identity・revision・scope・status・unassessed・owner relation coverage 100%候補、誤受領0 | summary/部分edge照合と全required tuple/owner別traceを比較し、C01正常受領、C02 schema/revision/scope/receipt独立欠落、C03 training/bot mutation、C04未見材料種別を測る | required relationを分母として出力fieldからcoverageとmissing/mismatch誤受領を算出。未選択sourceを分母/必須にせず、035 contract再定義0、training/model change/placementを1.0化しない |
 
 ## Stage 5 — LABO-050/059/060/061/063/064/065/066/067/068/069/070/071 NFR case候補

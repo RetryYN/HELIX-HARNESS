@@ -66,8 +66,8 @@
 
 - **対象AC**: `CONNECT-AC-004-01`
 - **固定L11受入oracle**：同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する
-- **正常fixture**: 応答欠落と、接続契約上再送可能と宣言された別の技術的失敗を独立に与え、各々で同一logical operation identity/content digest/単一contract revisionを設定済み上限内で再送する。同じidentity+digestの再到着は二重効果なし。応答欠落だけをretry契機にしない。retry可否はその失敗の契約上の分類で決め、応答欠落そのものを全失敗のretry許可と読み替えない。異digestはidentity以外を変えず拒否し、business resultや契約上retry不可の失敗は再送せずownerへ返す。新revisionへ自動移行しない。
-- **negative/boundary oracle**：異digestの同一operation、契約上限を超えるattempt、再送不能business result、scope/expiry失効を投入して停止させる。retryableとされた技術失敗は契約上限内の再送対象とし、business resultおよび明示されたnon-retryable failureは再送しない。同一identity+digestの再到着は二重効果を生まず、新revisionへ自動移行しない。
+- **正常fixture**: 応答欠落と、接続契約上再送可能と宣言された別の技術的失敗を独立に与え、各々で同一logical operation identity/content digest/単一contract revisionを設定済み上限内で再送する。同じidentity+digestの再到着は二重効果なし。応答欠落だけをretry契機にしない。retry可否はその失敗の契約上の分類で決め、応答欠落そのものを全失敗のretry許可と読み替えない。同一operation identityで内容digestだけが異なる入力は衝突として拒否し、受信側の効果を増やさない。business resultや接続契約上retry不可に分類される失敗は再送せずownerへ返す。新revisionへ自動移行しない。
+- **negative/boundary oracle**：異digestの同一operation、契約上限を超えるattempt、再送不能business result、scope/expiry失効を投入して停止させる。retryableとされた技術失敗は契約上限内の再送対象とし、business resultおよび接続契約上retry不可に分類される失敗は再送しない。同一identity+digestの再到着は二重効果を生まず、新revisionへ自動移行しない。
 - **責務・失敗時の戻し先**：登録・互換照合・通信契約、受信側の同一identity重複排除契約。構成体や後続機構を必須にしない。 failure時は、digest衝突や再送上限到達は送信を停止し、connection operationのownerへ未完義務と試行数を返す。業務結果は元の業務ownerへ、許可期限切れはSECURITYへ戻す。新revisionへ自動混載再送しない。
 - **証拠**: fixture input、照合revision、event/receipt列、最終状態と未完owner。実通信payload自体は不要。
 

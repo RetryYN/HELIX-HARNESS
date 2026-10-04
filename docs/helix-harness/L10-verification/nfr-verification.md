@@ -96,7 +96,7 @@ Expiry境界のfixtureでは、既存contractが定める比較規則を用い�
 | L10 case ID | NFR候補 | 入力／比較 | 合格材料 | 失敗・未評価 |
 |---|---|---|---|---|
 | `CASE-HARNESS-L10-NFR-021-01` | `NFR-C-HARNESS-021-01` | 固定L2-021の一つの構成体全体の端から端relation、横断NFR、統合version/update/rollback/L12運用検証trace。個別release unitの選択範囲に閉じる案と全構成体義務のtrace案を比較。 | 固定L2-021の全構成体義務の未trace数0、rollback先と版対応が明示。 | scope不明は未評価。 |
-| `CASE-HARNESS-L10-NFR-025-01` | `NFR-C-HARNESS-025-01` | cross-element design graphと適用oracle、1 edge/invariantを順次除くmutation。 | 欠落/conflict見逃し各0。Pattern未選択は未観測。 | UI証拠適用性はUI条件に従う。 |
+| `CASE-HARNESS-L10-NFR-025-01` | `NFR-C-HARNESS-025-01` | cross-element design graphと適用oracleを与え、既知Pattern conflictの見落とし、候補代替の不変条件違反、意味変更案の採用提案を個別mutationする。対照正常例では制約・根拠・影響範囲を記録し、既知不変条件を全て保つ代替候補をoracleで比較する。conflict/scope/oracle自体が不明なfixtureも別に与える。 | relation欠落・既知conflict見逃し・不変条件を破る候補採用は個別にfail計数。意味変更案は採用候補にせずL2-008へ戻す。known violationとunknown/未評価を別集計する。 | 未選択Patternは未観測。unknownな適用scope/conflict/oracleはholdで、既知違反のfailと相殺しない。UI証拠適用性はUI条件に従う。 |
 | `CASE-HARNESS-L10-NFR-033-01` | `NFR-C-HARNESS-033-01` | candidate/reproduction/regression stagesのreceiptを一つずつ欠落し、同一failure oracleを比較。 | 各段階の欠落が成立claimに隠れず、誤claim0。 | 未実行run resultは未評価。 |
 | `CASE-HARNESS-L10-NFR-035-01` | `NFR-C-HARNESS-035-01` | source→candidate→acceptance graphと、scope拡張の複雑さ・公開面・運用負債各before/afterの欠落・旧revision・追加数のみのmutation。 | valid edges全件trace、循環を根拠成立に数えない。 | authority/予算unknownを未評価に保つ。 |
 | `CASE-HARNESS-L10-NFR-037-01` | `NFR-C-HARNESS-037-01` | 009-selected two-phase scope、両phase revision/L4/L9 receipt、片方欠落mutation。 | phase boundary/receipt欠落0、片phaseのみでmerge0。 | 009非適用は分母外、未見scopeは適用性unknown。 |

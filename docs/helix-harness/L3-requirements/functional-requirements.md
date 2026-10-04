@@ -98,7 +98,7 @@ paired_l10: ../L10-verification/functional-verification.md
 **受入条件**
 
 - **`AC-HARNESS-L3-022-01` 段階証拠の完全結束**：同一artifact revision/scopeについてL8/L9 evidenceでIntegrated、L10 system oracleと固有義務差分の照合でVerified、さらにL11内容oracleと利用者受入recordでAcceptedを別状態として確認する。
-- **`AC-HARNESS-L3-022-02` 誤昇格の拒否**：段階別検証契約と段階状態遷移契約はHARNESS-COREが所有し、artifact/trace/evidenceを含む各段階の個別成果・権限は該当service①〜⑦が所有する。下位単体/結合pass、CI green、単体pack green、artifact/trace/evidenceの存在だけでは接続・構成体固有義務を補えず、L10 passだけではAcceptedにならない。④なしでもCORE契約を利用でき、HELIX-OS検収を要しない。意味を保てる不一致は同じ段階を再検証し、左側へ一律に戻さない。L11 record欠落/wrong revision/内容oracle failureでは実際に満たした段階に留める。G12に定める共通前提として、field/evidenceの存在や体裁のみを品質合格oracleにしない。G13に基づき、改善scoreから要求承認・段階判断を生成せず、品質・security・acceptance oracleを該当段階ごとに判定する。
+- **`AC-HARNESS-L3-022-02` 誤昇格の拒否**：段階別検証契約と段階状態遷移契約はHARNESS-COREが所有し、この段階をサービス①〜⑦のいずれにも所有させない。テスト/CI運転・ticket発行・検収はHELIX管理下ではOS、利用者環境では利用者CI/受入手段が担い、HARNESSが実行主体を引き取らない。実行で生成された結果・証拠はその実行元に結び付け、外部から持ち込む結果・証拠は持込み元と元のsource identityを保つ。Verified→Acceptedの利用者受入recordはL11に置く。下位単体/結合pass、CI green、単体pack green、artifact/trace/evidenceの存在だけでは接続・構成体固有義務を補えず、L10 passだけではAcceptedにならない。④なしでもCORE契約を利用でき、HELIX-OS検収を必須にしない。意味を保てる不一致は同じ段階を再検証し、左側へ一律に戻さない。L11 record欠落/wrong revision/内容oracle failureでは実際に満たした段階に留める。G12に定める共通前提として、field/evidenceの存在や体裁のみを品質合格oracleにしない。G13に基づき、改善scoreから要求承認・段階判断を生成せず、品質・security・acceptance oracleを該当段階ごとに判定する。
 - **`AC-HARNESS-L3-022-03` 外部持込・差分戻し**：外部成果も同一revision・paired design/requirements/oracle/result/evidenceで段階評価し、不足は満たした段階に留める。振る舞いを保つ差分は同段階を再検証し、意味変更が要る差分はコードで合わせず親L2規則の戻し先へ返す。
 
 
@@ -427,8 +427,8 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 **受入条件**
 
 - AC-HARNESS-L3-026-01: 正常fixtureは009/010/011/022、CORE contract、BRAIN connector contract、Template contract、承認済L3、対象revision/scopeを区別して結び、014内部unitとしてL4/L5/L6とL9/L8/L7の対応成果をすべて持つ。各設計対象で適用されるoracleを各verification設計へ結ぶ。例として「承認後は申請を編集できない」の要求から承認state遷移、API/command precondition、actor別permission、UI編集拒否、DB不変条件へtraceし、014完了receiptが未発行でも候補を構成できる。
-- AC-HARNESS-L3-026-02: 各常時義務（009/010/011/022、CORE、BRAIN connector、template、各出力対のいずれか）を一つずつ欠落・stale・version不一致にする。該当必須義務がhold/uncoveredとなり、他義務で相殺しない。014 receipt欠落だけを理由にholdしてはならない。
-- AC-HARNESS-L3-026-03: UI操作と非UI操作、Pattern選択と未選択を対にする。UI操作ではprototype/非UI合意とscreen contractを条件付きで照合するが、oracleはUI/非UIを問わず各対象設計に適用される場合必須とする。選択Patternはidentity/version/compatibility/applicability/required input/relation/counterexampleを全て照合し、未選択Patternは未観測のままにする。競合する選択Patternは制約・根拠・影響・代替を示し、代替も要求不変条件oracleを満たす。
+- AC-HARNESS-L3-026-02: 各常時義務（009/010/011/022、CORE、BRAIN connector、template、各出力対のいずれか）と承認済みL3 authority/対象revisionを一つずつ欠落・stale・version不一致にする。異なる要求revisionを要素間で混在させる変異も与える。該当必須義務がhold/uncoveredとなり、他義務で相殺しない。026出力欠落・未完を014完了へ昇格させず、014 receipt欠落だけを026の開始阻害理由にしてはならない。
+- AC-HARNESS-L3-026-03: UI操作と非UI操作、Pattern選択と未選択を対にする。UI操作ではprototype/非UI合意とscreen contractを条件付きで照合するが、oracleはUI/非UIを問わず各対象設計に適用される場合必須とする。選択Patternはidentity/version/compatibility/applicability/required input/relation/counterexampleとHELIXBRAIN-L2-030 connection receiptを全て照合し、未選択Patternは未観測のままにする。025側が扱う構成体Pattern conflictを026へ重複帰属させない。
 - AC-HARNESS-L3-026-04: 026交換fixtureでは014 input/output version、scope、compatibility receipt、paired acceptanceを一つずつ欠落/stale/mismatchとする。014側提供をholdし、旧新contract混在や誤適合を成立扱いしない。要求や採否の変更を作らない。
 
 旧Design Registryと旧pillar L3のartifact/requirement trace形式を部分再利用する。sourceの完全なpath・行・hashと再利用範囲は下記source mapに記す。旧設計意味、旧Pattern選択規則、旧runtimeは再利用しない。
@@ -441,7 +441,7 @@ case/reproduction artifactのidentity、適用oracle/検証義務、source versi
 
 - AC-HARNESS-L3-027-01: fixtureのcodeがstatus != draftなら409で終了し、amount > maxなら422でpersistに到達せず、draftかつamount <= maxならpersist後200を返す構造を持つ場合、source revision/digest/scopeとread permissionを結び、guard、副作用順、各応答を根拠spanごとのobservation candidateとして出す。019 result-boundaryがない単独実装receipt、保存design、要求承認は入力に要求しない。
 - AC-HARNESS-L3-027-02: status条件、amount/max条件、persist順序のいずれかを一つずつ欠落/逆転させる。sourceに書かれた挙動の候補は実際の分岐とpersist到達/非到達に合わせて正確に変化する。原形の拒否branchはpersistへ到達しない。変更sourceで記述が変わった挙動を隠す/原形の期待で上書きしない。候補を要求正しさやruntime実測と誤表示しない。
-- AC-HARNESS-L3-027-03: 019のintake/result boundary、010/011のpack/call identity・version・scope・receipt、選択source revision、read authorization、data-use条件を各々missing/stale/wrong-scopeにする。必須入力はhold/unknown、未選択typeはunobservedとし、別sourceへのsilent fallbackや参照資料によるsource/許可の代替を拒否する。runtime、実顧客DB値、書込み、permission拡張は0。未対応構文・矛盾sourceはunsupported/conflictとして保持する。
+- AC-HARNESS-L3-027-03: 019のintake/result boundary、010/011のpack/call identity・version・scope・receipt、選択source revision、read authorization、data-use条件を各々missing/stale/wrong-scopeにする。必須入力はhold/unknown、未選択typeはunobservedとし、別sourceへのsilent fallbackや参照資料によるsource/許可の代替を拒否する。runtime、実顧客DB値、書込み、permission拡張は0。未対応構文・矛盾sourceはunsupported/conflictとして保持し、027のraw observationで保存設計との比較を行わない。
 
 旧UWJ/HILのsource identityとfailure-classは近接類例に限り、static extraction semanticsは現行L2から再導出する。下記source mapに直接・隣接根拠と検索限界を記録する。
 
@@ -531,9 +531,9 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 対象は一つの要求/L3 revisionと選択scopeに対する026設計unit出力の端から端整合である。026の個別unitを再生成せず、要求→画面/API/command/permission/state/domain data→適用oracleと対の検証設計を双方向に結び、要素間の横断invariant・failure pathを照合する。BRAIN connector契約は常時必須、選択Pattern利用時だけそのPatternのreceiptを追加する。選択されていない知識の実装完成を要求しない。UI証拠はUI scopeで条件付きだが、各設計対象に適用される個別oracleはUI/非UIを問わず必要。026は025の完了を待たず構成・出力でき、025は026結果を検査する。採択・承認・実装・利用者受入状態を生成しない。
 
 **受入条件**
-- `AC-HARNESS-L3-025-01`: 同じrevision/scopeで要求から設計要素、横断relation、不変条件、各適用oracleとverification designまで両方向traceできる正常例を照合する。026 receiptとBRAIN connector契約があり、Pattern非選択なら未観測を記録し、不要なPattern receiptを要求しない。
-- `AC-HARNESS-L3-025-02`: 片方向trace、要素間のpermission/state/data矛盾、承認後編集経路の一つ残存、または適用oracle一件の欠落をそれぞれ変異する。該当scopeをuncovered/holdとしunit成功をcomposite成功へ集約しない。UI evidence欠落はUI scopeでのみ不合格、非UIにUI evidenceを要求しない。
-- `AC-HARNESS-L3-025-03`: 026 receipt、常時BRAIN connector契約、対象revision/scopeの各欠落/staleを個別に与え、影響範囲をholdする。選択Patternを使う別fixtureではそのidentity/version/required relation/receiptを照合し、未選択知識は未観測とする。未知の設計要素でも既知の不変条件を保持すれば受け入れ、oracle/適用性が未定なら未評価とする。
+- `AC-HARNESS-L3-025-01`: 同じrevision/scopeで要求から設計要素、横断relation、不変条件、各適用oracleとverification designまで両方向traceできる正常例を照合する。026 receiptとBRAIN connector契約があり、Pattern非選択なら未観測を記録し、不要なPattern receiptを要求しない。Pattern間conflictが判明しているfixtureでは競合制約・根拠・影響範囲を記録し、要求の不変条件を全て保つ代替候補をoracleに照らして比較可能にする。
+- `AC-HARNESS-L3-025-02`: 片方向trace、要素間のpermission/state/data矛盾、承認後編集経路の一つ残存、適用oracle一件の欠落、既知Pattern conflictの見落とし、または不変条件を破る代替案を個別に変異する。既知の違反はfail/不合格とし、意味変更案を採用候補として返さずL2-008へ戻す。戻し先を、要求意味差→HARNESS-L2-008、L3要件差→既存L3 authority owner、汎用Pattern/relation意味差→BRAIN、設計contract/traceまたはpaired-design不備→HARNESS-L2-026/022の形成へ、それぞれ別に対応づける。未知のscope/oracleはこのfailへ混ぜず未評価/holdとする。UI evidence欠落はUI scopeでのみ不合格、非UIにUI evidenceを要求しない。
+- `AC-HARNESS-L3-025-03`: 026 receipt、常時BRAIN connector契約、対象revision/scopeの各欠落/staleを個別に与え、影響範囲をholdする。選択Patternを使う別fixtureではそのidentity/version/required relation/receiptを照合し、未選択知識は未観測とする。未知の設計要素でも既知の不変条件を保持すれば受け入れ、oracle/適用性またはconflictの有無が未確定なら未評価/holdとする。意味を変える代案の採用判断は生成せず、要求意味の変更が必要な場合はL2-008へ戻す。
 
 ### FR-HARNESS-L3-033 — failureから回帰候補までのtrace構成体（親 `HARNESS-L2-033`）
 
@@ -541,7 +541,7 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 
 **受入条件**
 - `AC-HARNESS-L3-033-01`: 選択unit、対象revision、022 oracle、source identity/version/scopeを結び、通常caseを生成する。incident inputがない通常operationに031を必須化せず、後続resultがない候補を「回帰成立」と表示しない。
-- `AC-HARNESS-L3-033-02`: incident operationでは許可/sanitization、副作用抑止、original failure identity、各reduction段階を保つ。別failure、oracle違い、同一failure未確認をそれぞれ変異し、再現確認を保留する。修正を選ぶfixtureだけ、別revisionの修正前failと修正後pass receiptを後段結果として加える。
+- `AC-HARNESS-L3-033-02`: incident operationでは許可/sanitization、副作用抑止、original failure identity、各reduction段階を保つ。別failure、oracle違い、同一failure未確認をそれぞれ変異し、再現確認を保留する。修正を選ぶfixtureだけ、別revisionの修正前failと修正後pass receiptを後段結果として加える。複数packを跨ぐtest/CI trace構成体はHELIX-HARNESS-COREが所有し、unit/接続成立と回帰成立を分ける。OS/利用者CIの実行、014/022の意味authorityを引き取らず、共有pack利用だけを理由に未選択service/OS内部構成を必須化しない。
 - `AC-HARNESS-L3-033-03`: 032を選択した場合だけ選択consumer/schema/version/permissionを照合し、delivery receiptとrun resultを区別する。032未選択はunobserved。consumer不一致、選択unit欠落、oracle unknownは該当段階をholdし、単体greenやreceiptから022 acceptanceを生成しない。
 
 ### FR-HARNESS-L3-035 — 要求候補の根拠と受入寄与（親 `HARNESS-L2-035`）
@@ -606,9 +606,9 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 | HARNESS-L2-017 | AC-HARNESS-L3-017-04 | L11:212 | Provisional成果とL2-022不適合な外部成果をVerified/Acceptedとして受け取らない。 |
 | HARNESS-L2-018 | AC-HARNESS-L3-018-04 | L11:213 | OS monitoring/recovery runtimeはこの単体要求の必須依存でない。設計/要求接続と実runtime運転を分ける。 |
 | HARNESS-L2-020 | AC-HARNESS-L3-020-04 | L11:215 | 単体unit passのみでconnection acceptanceを成立させない。 |
-| HARNESS-L2-022 | AC-HARNESS-L3-022-04 | L2:449; L11:217,298–304 | 段階検証contractと状態遷移契約はHARNESS-CORE所有、各段階のartifact/trace/evidenceを含む個別成果・authorityは該当serviceが所有する。④なし・OS検収なしの利用者CI契約を通し、service①〜⑦へCORE段階契約を所有させない。単体pack greenから接続・構成体成立を導かず、意味保持不一致は同stage再検証する。 |
+| HARNESS-L2-022 | AC-HARNESS-L3-022-04 | L2:449,457–460; L11:217,298–304 | 段階検証contractと状態遷移契約はHARNESS-CORE所有であり、段階をservice①〜⑦へ割り当てない。テスト/CI運転・ticket発行・検収はOSまたは利用者環境、実行結果・証拠は実行元、持込み成果の結果・証拠は持込み元とsource identityを保持し、利用者受入recordはL11。外部成果はsourceと同一revision・paired oracle/result/evidenceを保って段階評価する。④なし・OSを必須化しない利用者CIの適合fixtureを通し、単体pack greenから接続・構成体成立を導かず、意味保持不一致は同stage再検証する。 |
 | HARNESS-L2-024 | AC-HARNESS-L3-024-04 | L11:248,252–254,258 | 人間専決値を推測補完しない。timeout時にopen item・last event・owner・re-entryを保持し、stale回答を再利用せず、補助測定と要求形成入力を区別する。 |
-| HARNESS-L2-026 | AC-HARNESS-L3-026-05 | L2:530–558; L11:352–360 | 026は014内部unitであり、CORE/BRAIN connector/TemplateおよびL2-009/010/011/022との契約を常時照合し、各設計対象の適用oracleとL4/L5/L6・L9/L8/L7の対を出す。014完了receiptを開始条件にしない。各Patternのidentity/version/compatibility/applicability/required input/relation/反例を選択時に個別照合する。025のPattern conflict・構成体横断整合は025側で照合し、未実施ならその整合主張だけ保留する。個別適用oracleはUI/非UIを問わず要し、UI evidenceだけをUI scopeに限定する。 |
+| HARNESS-L2-026 | AC-HARNESS-L3-026-05 | L2:530–558; L11:336,338,340,352–360 | 026は014内部unitであり、CORE/BRAIN connector/TemplateおよびL2-009/010/011/022との契約を常時照合する。承認済みL3 authority/要求revisionを全設計要素へ結び、未承認入力・要素間の要求revision不一致は設計成立として受け入れない。各設計対象の適用oracleとL4/L5/L6・L9/L8/L7の対を出し、014完了receiptを開始条件にしない一方、026出力欠落/未完から014完了を作らない。選択Pattern時はidentity/version/compatibility/applicability/required input/relation/反例と030 connection receiptを照合し、未選択Patternは未観測。025のPattern conflict・構成体横断整合は025側で照合し、未実施ならその整合主張だけ保留する。個別適用oracleはUI/非UIを問わず要し、UI evidenceだけをUI scopeに限定する。 |
 | HARNESS-L2-028 | AC-HARNESS-L3-028-04 | L11:445–461; 393–402 | 027–029共通:019 intake/result、010/011、read authorization/data-useを維持する。028比較は003/004 traceと適用要求authorityを個別照合し、silent fallbackなし。未宣言の組合せはunknownのまま残し、unaffected/compatibleへ推定しない。共通部品を⑤専用にせず、CONNECT通信と業務比較を分離する。 |
 | HARNESS-L2-029 | AC-HARNESS-L3-029-04 | L11:447,453,459,461 | 正式manifestでidentity・owner候補・利用先・適用condition・依存区分・unknown・版・sourceを追跡する。HARNESS-COREが複数serviceのproposal bundleを所有し、同一packを複数serviceのownerへ割り当てず、各成果authorityは個別serviceに残す。共有packを理由に未選択service/OS内部を必須化せず、通信成功を実行成功とせず、所属labelで互換性/oracleを代替しない。 |
 | HARNESS-L2-030 | AC-HARNESS-L3-030-01,03,04 | L11:454,459 | HARNESS-COREが共有case/data/double generation packを所有し、選択serviceの入力と個別authorityを保つ。OS-020/利用者CIの実行はexecutor側であり、未選択service/OS内部を共有利用だけで必須化しない。 |

@@ -1480,12 +1480,12 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 
 **出力・責務**: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。
 
-**否定・戻し先**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
+**否定・境界**: 一回のinternal successまたはscope違いを普遍maturity根拠にする入力は不成立。評価不足はexperimental／observed candidateに留め、採用を推定しない。固定親は評価不足時の追加の戻し先を指定していないため、新たな返却先を確定しない。
 
 ### 受入条件（AC候補）
 
 - **BRAIN-INFRA-017-AC-01 — 正常**: Patternの利用実績、failure、反例、LABO評価をそれぞれ対象knowledge revisionへ結び、source/scope/version/結果とmaturity claimをtraceする。1回の成功、異なる条件を持つ複数評価、failure発見を別caseとして扱い、各candidate stateとclaim範囲を区別し、単独成功からuniversal maturityを推定しない。
-- **BRAIN-INFRA-017-AC-02 — 否定・境界**: experimental、observed、validated、mature、deprecated、retiredの6状態を区別し、利用実績・failure・反例・LABO評価を対象knowledge revisionへ結ぶ。別revision、欠落、stale、scope/version不一致、1回だけのinternal success、異条件評価の無差別集約でuniversal maturityへ誤昇格させない。評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。
+- **BRAIN-INFRA-017-AC-02 — 否定・境界**: experimental、observed、validated、mature、deprecated、retiredの6状態を区別し、利用実績・failure・反例・LABO評価を対象knowledge revisionへ結ぶ。別revision、欠落、stale、scope/version不一致、1回だけのinternal success、異条件評価の無差別集約でuniversal maturityへ誤昇格させない。評価不足はexperimental／observed candidateに留め、採用を推定しない。固定親に明示されない返却先を追加しない。
 
 ### 固定親句の被覆
 
@@ -1493,10 +1493,10 @@ experimental、observed、validated、mature、deprecated、retired等のmaturit
 |---|---|---|---|
 | Input/source: maturity claim・evidence/source・scope/version | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 入力identity/source/revision/scopeを照合 |
 | Guarantee/output: evidenceごとのsource/scope/version/結果とmaturity claimをtraceし、範囲を超えるclaimを限定する。 | `FR-01 / AC-01` | `L10-BRAIN-INFRA-017-C01` | 親の指定field・状態・責務を観測 |
-| Negative/failure: 利用実績・failure・反例・LABO評価は対象knowledge revisionに結ぶ。一回のinternal success、scope/version違い、異なる条件の複数評価は同一根拠にまとめない。 失敗時戻し先: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
+| Negative/failure: 利用実績・failure・反例・LABO評価は対象knowledge revisionに結ぶ。一回のinternal success、scope/version違い、異なる条件の複数評価は同一根拠にまとめない。 失敗時境界: 評価不足はexperimental／observed candidateに留め、採用を推定しない。固定親にない返却先は追加しない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | 不足/矛盾/unknownを成功や確定へ丸めない |
 | Held-out boundary: held-out scope/versionのevidenceと単一内部成功を用い、claim範囲を超えるmaturityを付けない。 | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C03` | source/condition scope外をunknown/未評価に保つ |
-| Owner/backflow: 評価不足はexperimental／observed candidateに留め、LABO評価へ戻し、採用を推定しない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | stop reasonとparent ownerを観測 |
-| Dependencies/PO bundling: 親L1-007/008; 常時 BRAIN L2-007/008/020/025。evidence/scope/versionとproject-use state分離。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-017-C01,C02` | dependency identity/sourceと戻し先を照合 |
+| Owner/backflow: 評価不足はexperimental／observed candidateに留め、採用を推定しない。固定親に追加の返却先指定はない。 | `AC-02` | `L10-BRAIN-INFRA-017-C02` | candidate stateと採用を推定しない境界を観測 |
+| Dependencies/PO bundling: 親L1-007/008; 常時 BRAIN L2-007/008/020/025。evidence/scope/versionとproject-use state分離。 | `FR-01 / AC-01,02` | `L10-BRAIN-INFRA-017-C01,C02` | dependency identity/sourceとcandidate stateを照合。親が指定しない返却先を追加しない。 |
 | Version candidate: 1.0 / Stage 2b | `AC-01,AC-02` | `L10-BRAIN-INFRA-017-C01,C02` | release/implementation authorizationと混同しない |
 | L11例・否定case | 親L11固定spanに記載 / AC-01,AC-02 | `L10-BRAIN-INFRA-017-C01,C02` | 正常・invalid conditionで行動oracleを検証 |
 
@@ -1715,7 +1715,7 @@ BRAINからVisual Design HARNESSへの汎用知識の提供は、Visual Design H
 ### 受入条件（AC候補）
 
 - **BRAIN-023-AC-01 — 正常**: Visual Design HARNESSの汎用知識query/返却が既存受領contractだけで成立する例と、別の利用・評価結果に同scope/source revisionのLABO evaluation receiptが結び付く例を分けて観測する。汎用candidateと条件/反例/input、製品固有fieldを分離し、LABO receiptが必要な昇格ではprovenance edgeをtraceする。generic/product-specific境界fieldの対応率100%・誤混入/誤昇格0件を根拠付き候補値とする（未承認・未実測）。
-- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入する変異、ならびにLABOを飛ばした利用・評価結果の昇格変異を別々に投入する。L2-006/007/009/011/012、Visual Design HARNESS receipt contract、または利用・評価flowを選んだ場合のLABO contractのidentity/revision/scopeをmissing/stale/wrong-scopeにする変異も加える。製品固有要素は該当Product Coreへ返す。LABO経路のない結果は未評価candidateのまま保持して昇格を停止し、LABOへ戻す。単なる汎用知識提供までLABO receipt必須にしない。
+- **BRAIN-023-AC-02 — 否定・境界**: screen/flow/token/Visual Identityをgeneric patternに混入する変異、ならびにLABOを飛ばした利用・評価結果の昇格変異を別々に投入する。L2-006/007/009/011/012、Visual Design HARNESS receipt contract、または利用・評価flowを選んだ場合のLABO contractのidentity/revision/scopeをmissing/stale/wrong-scopeにする変異も加える。製品固有要素は該当Product Coreへ返す。LABO経路のない結果は未評価candidateのまま保持して昇格を停止する。親が追加の返却先を指定していないため、LABOへ返す規則を新設しない。単なる汎用知識提供までLABO receipt必須にしない。
 
 ### 固定親句の被覆
 
@@ -1723,10 +1723,10 @@ BRAINからVisual Design HARNESSへの汎用知識の提供は、Visual Design H
 |---|---|---|---|
 | Input・版・範囲 | `BRAIN-023-FR-01` / `BRAIN-023-AC-01` | `L10-BRAIN-023-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
 | 保証・出力: Visual Design HARNESSの汎用知識接続 | `BRAIN-023-FR-01` / `BRAIN-023-AC-01` | `L10-BRAIN-023-C01` | 全必須field・receipt・状態を維持 |
-| 否定条件・失敗時の戻し先 | `BRAIN-023-AC-02` | `L10-BRAIN-023-C02` | 不足をunknown/holdにし、不足先をownerへ戻す |
+| 否定条件・失敗時の戻し先 | `BRAIN-023-AC-02` | `L10-BRAIN-023-C02` | 製品固有要素は該当Product Coreへ返す。LABO未経由の結果は未評価candidateとして保持して昇格を止める。 |
 | 未見入力の境界 | `BRAIN-023-AC-01,BRAIN-023-AC-02` | `L10-BRAIN-023-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
 | 依存と版 | `BRAIN-023-FR-01` | `L10-BRAIN-023-C01,L10-BRAIN-023-C02` | L1-006/007/009、L2-006/007/009/011/012、Visual Design HARNESS及びLABO connection contract。 版1.0 / Stage 4 |
-| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-023-C01,L10-BRAIN-023-C02,L10-BRAIN-023-C03` | 否定条件・停止・戻し先も個別照合 |
+| PO固定L11の例 | 固定L11全例 | `L10-BRAIN-023-C01,L10-BRAIN-023-C02,L10-BRAIN-023-C03` | 否定条件・停止・親が指定した戻し先を個別照合 |
 
 ### 旧L3／対test-designからの再利用・再導出
 
@@ -1752,7 +1752,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 ### 受入条件（AC候補）
 
 - **BRAIN-030-AC-01 — 正常**: 二つの選択Patternとrelation/conflict、required fieldの既知値と一つの未決値をqueryし、知識receiptは受領可能だが対応義務はopen、設計完了/実装準備はfalseであること、双方向trace、contract範囲を照合する。 常時必須4 contract groupと選択知識の全required field/relationについてforward/reverse trace coverage 100%、join-only/undefined-field acceptance/wrong scope/false completion 0件を候補とする。 これは根拠付き測定候補で、PO承認値・実測値ではない。
-- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、選択Pattern version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。BRAIN/HARNESSへ適切に返し、別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。contract version/compatibility unknown→query保留。知識identity/revision/version、意味またはfield定義の欠落・不一致、製品固有選択→BRAIN。Pattern意味・条件・関係の不整合→該当BRAIN親L1。receiver scope/schema/obligation mapping欠落→HARNESS。 一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
+- **BRAIN-030-AC-02 — 否定・境界**: connection contract missing/stale/unknown、compatibility範囲外、receipt/query schema違い、選択Pattern field定義欠落、選択Pattern version欠落/不一致、conflictを落とした入力、unknownを適用可能へ変換、義務identity/逆trace違い、未充足義務を閉じる変異を個別/併発で投入する。connector contract自体またはその版/互換がmissing/stale/unknownならqueryを保留する。選択Patternのidentity/revision/version/field定義またはknowledge meaningの欠落はBRAINへ、Pattern meaning/condition/relationの不一致は該当BRAIN親L1へ、receiver scope/schema/obligation mappingの欠落・不一致はHARNESSへ返し、routeを重複させない。別Pattern成功で穴を埋めない。製品固有API/state/permissionをBRAINが選択済みとして返す変異も拒否する。一般説明・旧例は参照資料のみとし、connector contract、required field、receipt、authorityを代替させない。
 
 ### 固定親句の被覆
 
@@ -1760,7 +1760,7 @@ BRAIN→HARNESS-CORE query/receipt接続で、connection contract identity/versi
 |---|---|---|---|
 | Input・版・範囲 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 固定L2/L11と一致するrevision/scopeを記録 |
 | 保証・出力: BRAIN knowledgeからHARNESSへの単一接続 | `BRAIN-030-FR-01` / `BRAIN-030-AC-01` | `L10-BRAIN-030-C01` | 全必須field・receipt・状態を維持 |
-| 否定条件・失敗時の戻し先: connector contract version/compatibility unknownはquery hold、知識identity/revision/version・意味/field定義の欠落や製品固有選択はBRAINへ、Pattern意味/条件/relation不整合は該当BRAIN親L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | 4種類のrouteを別fixture化し、各owner/stateを照合し、採択/承認/実装を生成しない。 |
+| 否定条件・失敗時の戻し先: connector contract自体またはidentity/version/compatibilityがmissing/stale/unknownならquery hold、知識identity/revision/version・意味/field定義の欠落や製品固有選択はBRAINへ、Pattern意味/条件/relation不整合は該当BRAIN親L1へ、受取scope/schema/HARNESS obligation結合不備はHARNESSへ。候補受渡し・LABO評価は採択/承認/実装を作らない。 | `BRAIN-030-AC-02` | `L10-BRAIN-030-C02` | contract・identity/version/compatibilityそれぞれのmissing/stale/unknown query holdと4種類のrouteを別fixture化し、各owner/stateを照合し、採択/承認/実装を生成しない。 |
 | 未見入力の境界 | `BRAIN-030-AC-01,BRAIN-030-AC-02` | `L10-BRAIN-030-C03` | 十分な未見入力は同契約で評価し、不足箇所だけunknown |
 | 依存と版 | `BRAIN-030-FR-01` | `L10-BRAIN-030-C01,L10-BRAIN-030-C02` | L1-003/005/012、HARNESS-L2-009, CORE/HARNESS connector contract。常時: contract/version/compatibility, scope/query/receipt schema, receiver contract。選択knowledge適用時のみ: applicability/required input/relation/negative case。 版1.0 / Stage 4 |
 | PO固定L11の例 | 固定L11全例 | `L10-BRAIN-030-C01,L10-BRAIN-030-C02,L10-BRAIN-030-C03` | 否定条件・停止・戻し先も個別照合 |

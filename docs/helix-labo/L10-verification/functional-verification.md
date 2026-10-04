@@ -473,26 +473,26 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 ### L10-LABO-015-C01 — 親指定比較条件の一致
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 親指定の3比較区分（baseline/current、candidate、hybrid）それぞれにsource revision、target version、適用条件、evaluation oracleを付ける。専用connector `HELIXLABO-L2-015` のadmitted contract identity/revision、schema version、source provenanceもfixtureへ結ぶ。
-- 期待oracle:3比較区分の比較条件を省略・統合せず再構成可能にし、条件差は候補構成として明示する。明示された別比較条件を本ACだけを根拠に排除せず、Worker実行は起動しない。`HELIXLABO-L2-015`のconnector contractと入力→出力が一致することを観測し、別connectorの契約で代替しない。
+- 入力fixture: 選択された比較区分（baseline/current、candidate、hybridの対象arm）それぞれにsource revision、target version、適用条件、evaluation oracleを付ける。二者比較fixtureと三者関係を主張するfixtureを分ける。専用connector `HELIXLABO-L2-015` のadmitted contract identity/revision、schema version、source provenanceもfixtureへ結ぶ。
+- 期待oracle:選択されたarmごとの比較条件を混同せず再構成し、条件差は候補構成として明示する。二者比較は二者の目的範囲で保持し、三者関係の主張だけ三者条件を要する。明示された別比較条件を本ACだけを根拠に排除せず、Worker実行は起動しない。`HELIXLABO-L2-015`のconnector contractと入力→出力が一致することを観測し、別connectorの契約で代替しない。
 
 ### L10-LABO-015-C02 — oracleまたは対象版の個別欠落
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 親指定の各比較区分中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。 専用connector `HELIXLABO-L2-015`のcontract revision/schema/provenance不一致または欠落を単独と併発で投入する。
-- 期待oracle:該当armの不備を示しexperiment comparisonを成立扱いせず、oracle/対象版ownerへ戻す。 connector不一致は接続成功とせず、`HELIXLABO-L2-015`の固定親が指定するownerへ返す。
+- 入力fixture: 選択armのoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。未選択区分だけがない対照も与える。 専用connector `HELIXLABO-L2-015`のcontract revision/schema/provenance不一致または欠落を単独と併発で投入する。
+- 期待oracle:選択armのoracleまたはtarget versionが欠けたfixtureだけを不成立として該当ownerへ戻す。未選択armがないだけの対照は、選択した目的の二者比較を成立のまま保持し不成立にしない。connector不一致は受領不成立として保留し、親が指定しないownerを推測しない。
 
 ### L10-LABO-015-C03 — 比較条件の混在
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 親指定の3比較区分（baseline/current、candidate、hybrid）のうち一つだけ適用条件をずらし、別fixtureではscopeとrevisionを組合せて不一致にする。
-- 期待oracle:一致しないarmを比較可能と扱わず、条件差を保持して実験ownerへ戻す。assignmentや実行を開始しない。
+- 入力fixture: 選択済みarmの一つだけ適用条件をずらし、別fixtureではscopeとrevisionを組合せて不一致にする。未選択armが存在しない比較も別に入力する。
+- 期待oracle:選択済みarm間の条件/scope/revisionが不一致なら比較不成立として差を保持する。未選択armの不在だけなら選択済み二者比較は成立のまま保ち、assignment/実行を開始しない。
 
 ### L10-LABO-015-C04 — 同一条件のheld-out正常
 
 - 対応: `LABO-015-AC-01`; 親: `HELIXLABO-L2-015`。
-- 入力fixture: 未見candidate transformationを親指定の3比較区分（baseline/current、candidate、hybrid）へ適用し、全比較区分でtarget version・oracle・適用条件を同一にする。
-- 期待oracle:比較条件を分離して追跡可能なcandidateとして返し、未見名を理由に排除しない。
+- 入力fixture: 未見candidate transformationを選択した比較armへ適用し、各armでtarget version・oracle・適用条件を対応づける。二者選択と三者関係の主張を分ける。
+- 期待oracle:選択した比較条件を分離して追跡可能なcandidateとして返し、未見名を理由に排除しない。未選択armの不在だけで二者比較を排除しない。
 
 ### L10-LABO-016-C01 — 比較証拠から二種類の評価材料へ
 
@@ -792,7 +792,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-028` / `LABO-028-AC-02`。
 - Input fixture: (a)assignment missing、(b)wrong task class、(c)Worker result revision staleを個別・併発。 選択親専用connector identity/revision/schema/provenanceのmissing、stale、mismatchを個別に投入する。
-- Observable oracle: resultはhold/unknownとしWorkerをauthority ownerにしない。assignment不明・assignment/result mismatchは親指定のOS assignment ownerへ戻す。専用connector contract mismatchは受領不成立のまま保留し、契約にfailure return destinationが確定している場合だけその記録先を使う。destination不明ならCONNECT/source ownerを新設せずunknownを維持する。別connectorへfallbackしない。
+- Observable oracle: resultはhold/unknownとしWorkerをauthority ownerにしない。assignment不明・assignment/result mismatchは親指定のOS assignment ownerへ戻す。専用connector contract mismatchは受領不成立・unknownとして保留する。固定親が指定するassignment不明のOS戻し先と区別し、connector不一致のownerを推測しない。別connectorへfallbackしない。
 
 ### L10-LABO-028-C03 — evaluation promotion否定
 
@@ -858,13 +858,13 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-034` / `LABO-034-AC-01`。
 - Input fixture: 複数の独立product/meaning/episode、scope evidence、counterexample、source revisionsを含むgeneric structure candidateを用意。 選択された当該親専用connector contract identity/revision/schema/provenanceも入力する。
-- Observable oracle: 1.0内部evidence candidateは支持範囲/反例/sourceを保持しBRAIN送付向けとして区別。外部取得/knowledge評価は行わない。受渡し条件一致時のみ受領し、missing/stale/schema/provenance mismatchは不成立として該当BRAIN source/consumerへ戻す。
+- Observable oracle: 1.0内部evidence candidateは支持範囲/反例/sourceを保持しBRAIN向けの構造candidateとして区別する。外部取得/knowledge評価は行わない。connector条件一致時のみ受領し、missing/stale/schema/provenance mismatchは受領不成立として保留する。connector mismatchは受領不成立・unknownとして保留し、L2-009の戻し先は一事例・適用範囲不明に限る。connector不一致の戻し先としてBRAIN source/consumerを推測しない。
 
 ### L10-LABO-034-C02 — single/product-specific failure
 
 - Parent/AC: `HELIXLABO-L2-034` / `LABO-034-AC-02`。
 - Input fixture: (a)single episode、(b)single product meaning、(c)顧客固有ルール、(d)unknown scopeを個別・併発。正常対照では複数meaning/product/episodeの根拠とgeneric候補を入力する。さらにBRAIN向け専用connectorのidentity欠落、revision stale、schema非対応、provenance不一致をそれぞれ独立に与える。
-- Observable oracle: single case/product-specific meaning/顧客固有ルール/unknown scopeからの候補はholdしL2-009へ戻し、正常対照だけ根拠・scope付きgeneric candidateとして出す。connector各変異は受領不成立として該当BRAIN source/consumerへ戻し、authority/ingestionを生成しない。
+- Observable oracle: single case/product-specific meaning/顧客固有ルール/unknown scopeからの候補はholdしL2-009へ戻し、正常対照だけ根拠・scope付きgeneric candidateとして出す。connector各変異は受領不成立・unknownとして保留する。固定親が指定しない宛先やownerは推測せず、authority/ingestionを生成しない。
 
 ### L10-LABO-034-C03 — version boundary
 
@@ -882,13 +882,13 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-035` / `LABO-035-AC-01`。
 - Input fixture: 判断精度/failure corpus/counterexample/model-provider compare/FP-FN/diagnosis-review-bot materialをsource revision/scope/unassessed state付きで入力。 選択された当該親専用connector contract identity/revision/schema/provenanceも入力する。
-- Observable oracle: evaluation-material packetをINTELLIGENCE境界へ渡す。L2-052は全材料/revision到達、L2-054はBench水準接続と役割分離。 source revision/scope/unassessed状態と当該接続の採択済みcontractが一致する場合だけ受領する。条件が不一致なら受領未成立として保留し、契約に明示されたfailure return destination以外のownerを推測しない。
+- Observable oracle: L2-035で扱う評価material packetをINTELLIGENCE境界へ渡す。052の全材料収集・同一revision到達が完了したとは表示せず、054のBench水準を035 payloadへ混ぜない。source revision/scope/unassessed状態と当該接続contractが一致する場合だけ受領する。connector mismatchは受領不成立・unknownとして保留し、固定L2-035が指定しないownerを推測しない。
 
 ### L10-LABO-035-C02 — scope/revision failure
 
 - Parent/AC: `HELIXLABO-L2-035` / `LABO-035-AC-02`。
 - Input fixture: (a)evidence source revision missing、(b)unassessed field omitted、(c)stale model/provider evaluationを個別・併発。さらにINTELLIGENCE向け専用connectorのidentity欠落、revision stale、schema非対応、provenance不一致をそれぞれ独立に与える。正常対照として全source/revision/scope/evaluation stateが宣言契約に適合するpayloadを入力する。
-- Observable oracle: unknown/unassessedを保持し、payload不一致は受領不成立として該当inputの既存source/consumer relationを記録する。専用connector mismatchは受領不成立のまま保留し、有効なconnection contractに記録されたfailure return destinationがある場合だけ使用する。未指定ならINTELLIGENCE consumerやHELIX-CONNECT/source ownerを推測せずunknownを保つ。正常対照だけ同一scopeの評価材料として受領し、current judgmentを偽装しない。
+- Observable oracle: unknown/unassessedを保持し、payload不一致は受領不成立として該当inputの既存source/consumer relationを記録する。専用connector mismatchは受領不成立・unknownとして保留する。固定L2-035が指定しないINTELLIGENCE consumerやHELIX-CONNECT/source ownerへ返さない。正常対照だけ同一scopeの評価材料として受領し、current judgmentを偽装しない。
 
 ### L10-LABO-035-C03 — learning/operation exclusion
 
@@ -900,7 +900,7 @@ L2-057/L11-057はack/trace/dedup/stale-stop/same-ID retry/unfinished obligation�
 
 - Parent/AC: `HELIXLABO-L2-035` / `LABO-035-AC-01`。
 - Input fixture: 異なる許可evaluation material typeだが同じ accepted connector/data scope/revision ruleに適合。
-- Observable oracle: unassessed state付きpacketとして受渡し、052/054 duplicate authorityを作らない。
+- Observable oracle: 未評価状態付きpacketとして受渡す。052の全材料到達や054のBench水準をこのpacketから主張せず、双方の責務を重複定義しない。
 
 ### L10-LABO-058-C01 — 単一選択source正常
 
