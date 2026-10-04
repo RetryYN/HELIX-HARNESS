@@ -3,16 +3,19 @@
 status: scaffold（調査材料。採否、要求、設計、実装、BRAINへの登録の決定ではない）
 authority_effect: none
 binding: [SCF-B-0156](../../bindings/SCF-B-0156.json)
-基準：`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`（2026-10-04）
+基準：第1弾（P01〜P07）は`origin/main` `6b4b5fd31714e9fbcbef77189efaed93261b86e3`、第2弾（P08〜P15）は`origin/main` `2c839d66839a3428a1507cd94f412293e67c67dc`（いずれも2026-10-04）
 
 ## 何をしたか
 
-[HELIX-BRAINの初期10領域の知識素材の棚卸し](../brain-domain-material-inventory-20261004/README.md)（SCF-B-0155）は、旧HELIXの資産に欠けている観点（gap）を各領域の§gapに記録した。本書は、そのgapのうち7つについて、公開OSSのrepositoryを固定commitで実際に読み、使われている設計の構造を観察として記録したものである。
+[HELIX-BRAINの初期10領域の知識素材の棚卸し](../brain-domain-material-inventory-20261004/README.md)（SCF-B-0155）は、旧HELIXの資産に欠けている観点（gap）を各領域の§gapに記録した。本書は、そのgapについて、公開OSSのrepositoryを固定commitで実際に読み、使われている設計の構造を観察として記録したものである。第1弾（P01〜P07）で7つのgapを扱い、第2弾（P08〜P15）で残りのgapのうち8つを扱った。
 
 POの発言（2026-10-04、原文）は次のとおり。
 > 「素材あつめ次に進めてくれ。実際のOSSやギットハブリポジトリとかからも探し出せてリバースエンジニアリングで設計のパターンを調べまくるのはどうかね？机上の空論ばかりあつめても仕方ないしな。」
 
-- 観察は計80件で、35のrepositoryにわたる。テーマごとの件数は下表のとおり。
+第2弾の起点となったPOの発言（2026-10-04、原文）は次のとおり。テーマは、SCF-B-0155の§gapと採択済みのHELIXBRAIN-L2-INFRA要求のうち、第1弾で扱っていないものから選んだ。
+> 「素材あつめはどんどん進めてくれ要求見ればわかるだろ？」
+
+- 観察は計170件（第1弾80件、第2弾90件）で、75のrepositoryにわたる。テーマごとの件数は下表のとおり。
 - 各観察には次を書いた。
   - 出典：repository、固定commit、path、行範囲、permalink、SPDXライセンス
   - 何をしているか、解いている問題と前提、必要な入力
@@ -31,8 +34,16 @@ POの発言（2026-10-04、原文）は次のとおり。
 | P05 認可model | [P05](materials/P05-authorization-models.md) | 13 | 5 | D08「認可modelの選び方」 |
 | P06 typography・grid・design token | [P06](materials/P06-typography-grid-tokens.md) | 10 | 5 | D09「typography・grid」 |
 | P07 formと情報構造 | [P07](materials/P07-forms-information-architecture.md) | 10 | 6 | D10「formと情報設計」 |
+| P08 background job・batch・並行制御 | [P08](materials/P08-background-jobs-concurrency.md) | 12 | 4 | D03「batch・background job」「並行制御」「時間に依存する処理」 |
+| P09 frontendの状態管理とdata取得 | [P09](materials/P09-frontend-state-data-fetching.md) | 10 | 5 | D04「状態管理の選択肢」「data取得の境界」「frontendの性能」 |
+| P10 API style・版・rate limit | [P10](materials/P10-api-style-versioning-rate-limit.md) | 12 | 6 | D05「API styleと版の方式の比較」「外部公開APIの運用」「rate limit」 |
+| P11 schemaの版の進化とdataのlifecycle | [P11](materials/P11-schema-evolution-data-lifecycle.md) | 10 | 5 | D06「schemaの版の進化」「dataのlifecycle」 |
+| P12 topology graph・provider抽象 | [P12](materials/P12-infra-topology-provider-abstraction.md) | 14 | 5 | D07「topology」（INFRA-012/013/014） |
+| P13 failure構造・observability・deployment | [P13](materials/P13-failure-observability-deployment.md) | 10 | 5 | D07「failureの型」（INFRA-005/007/009） |
+| P14 色の体系・motion・dashboard | [P14](materials/P14-color-motion-dashboard.md) | 11 | 6 | D09「色の体系」「motion」「dashboard」「visual hierarchy」 |
+| P15 feedbackとundo・多言語・touch | [P15](materials/P15-feedback-i18n-touch.md) | 11 | 5 | D10「feedbackとundo」「多言語」「mobile・touch」 |
 
-dotnet/eShopはP01とP03の両方で読んだ。repositoryの延べ数は36、重複を除くと35である。
+dotnet/eShopはP01とP03の両方で、adobe/react-spectrumはP07とP15の両方で読んだ（P15はpointer抽象とi18nで、P07とは別の箇所）。repositoryの延べ数は77、重複を除くと75である。
 
 ## 置き場所と形の根拠
 
@@ -70,8 +81,15 @@ dotnet/eShopはP01とP03の両方で読んだ。repositoryの延べ数は36、�
   - 行番号だけで出典fileが曖昧だったもの2件（P03）にfile名を足した。観察IDの相互参照の誤り2件（P07）も直した。
   - 10行を超えるコードの転記、採用値としての数値、メールアドレスやtokenは、いずれもなかった。
 - **独立reviewでの訂正**：作成側の照合の後、独立review（PR #2568）で、分岐条件・呼出し順・参照先を観察が正しく写していない箇所が見つかった（P03-O01・O03・O06、P04-O01・O03・O05）。原文を読み直して訂正した。行の範囲が合っていても、条件の写し方が誤ることがある。
-- **値・機密の検査**：hexの色、px、ms、メールアドレスの形をgrepし、該当0件だった。
-- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris）は、LICENSE fileの冒頭の文言を併記した。
+- **第2弾（P08〜P15）の照合**：第1弾と同じ手順で行った。
+  - permalink 233件の実在と行範囲を機械で照合し、不一致は0件だった。第1弾と合わせた15本の全permalink 471件でも0件である。
+  - 内容の抜き取り照合は各材料16〜26件、計176件。照合担当の指摘は、修正担当が固定commitの原文を読み直してから直した。
+    - 主張の一部が原文と違っていたもの5件（P08-O06 metadataのmergeがrunning以外の行にも及ぶ点、P09-O03 `'always'`の前提条件、P11-O10 indexの実体とコメント上の意図、P13-O02 `_OTHER`の主語、P15-O11 scrollによる取消がtest専用の分岐にある点）を直した。
+    - 行のずれ（SHIFTED）11件、出典fileが曖昧だったもの6件、観察IDの相互参照の誤り8件（P11 7件、P12 1件）を直した。
+    - 照合担当の指摘のうち2件（P13-O09のTODOの行、P12-O04の行範囲）は原文の方が元の記述を支持したため、変えていない。
+  - 第2弾は、permalinkの書き方を全文URLに揃えた（調査担当が接頭辞の略記で返したP08と、URLを省略したP10の5件を展開した）。
+- **値・機密の検査**：hexの色、px、ms、メールアドレスの形、作業領域のpathをgrepし、第1弾・第2弾とも該当0件だった。原典にある値（timeout、期間、比等）は、観察の中で「持ち込まない」と書いたうえで転記していない。
+- **license**：SPDXはGitHub APIの値をそのまま書いた。`NOASSERTION`のもの（final-form、eventuate-tram-core、eventuate-tram-sagas、Polaris、google.aip.dev）は、LICENSE fileの冒頭の文言を併記した。formatjsはrootのlicenseがnullで、package単位のSPDXを書いた。AGPL-3.0のgrafana/grafanaは、構造の観察だけにした。
 
 ## 既存素材との境界
 
