@@ -43,7 +43,7 @@ GitHubのIssue、PR、label、checkを追いかけて要求を推定する運用
 | `research_premise` | 一つの判断論点に対する前提確認または要求探索research | 親Concept／Vision／企画revision、調査scope、必要証拠 | 出典・版・時点・適用条件・限界・反例付きpremise packet | Concept／L1／要求／技術の採用、実装許可 |
 | `discovery_evidence` | 一つの要求候補を比較する限定PoCまたはUI・動画prototype | 親判断論点、仮説、timebox、使い捨てscope、評価方法、返却先 | 再現可能な試作証拠と要求候補・premiseへのbackflow | production pathへの取込、要求採用、設計freeze、製品完成 |
 | `requirement` | 一つの要求identityと対になるL11。分割案はsuccessor候補を列挙できるが、別identityを同じPRで確定しない | 親Concept／L1 exact revision、source、対象product、要求kind | 判断記録に束縛した一要求revision | 他要求、設計方式、実装、CI、受入pass |
-| `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |
+| `design_verification` | 一つの承認要求に対するL3とL10、または後続の一つのV-pair。L3／L10は一つの機構の一つのStageに属する承認要求のpair群までを一つのPRにまとめてよい（「PRの原子性」） | 承認要求revision、適用template、risk、未解決 | 対象pairのfreeze可能な設計・検証契約 | 実装完了、利用者受入、運用成立 |
 | `implementation` | 一つの承認・freeze済みticketが指定する成果と必要検証 | Feature Ticket、親要求、設計、oracle、許可、HEAD | 対象成果と検証証拠 | 無関係な要求・設計の変更、release、deployment |
 | `operation_change` | GitHub、CI、Worker、配布等の一つの外部運用変更 | HELIX-OS要求、操作authority、backup、rollback、read-after | 許可scope内の外部状態変更 | 要求意味、人間承認、別操作の許可 |
 
@@ -54,6 +54,63 @@ composite要求は組合せ固有の全体条件を一つのidentityとして扱
 premiseが承認済みConcept／Vision／L1と`conflict`または`stale`になった場合は、対象の`concept_revision`または`planning_revision`へbackflowしてから要求採否へ進む。`unknown`または`assumption`を残す場合は、影響範囲、判断者、再評価条件を記録する。PoC／prototypeは`discovery_evidence`としてproduction pathから隔離し、結果だけをpremiseまたは要求候補へ戻す。
 
 要求を降ろす順序は、単独で成立する`unit`、採用済みunit間の関係を定める`connection`、採用済みunit／connectionの集合に固有な結果を定める`composite`とする。後段要求は参照先のexact revisionを持ち、unitの成立からconnectionやcompositeの成立を推定しない。分割元の旧要求は、各successorを別PRで確定し、全意味atomの被覆を確認するまで`pending`を残す。要求revisionの承認後に管理が工程を推進へ渡し、推進がFeature Ticketを発行する。親要求、必要なconnection／composite、premise状態、HARNESS contract、停止条件のいずれかが未確定ならticketをReadyにしない。
+
+### PRの原子性
+
+一つのPRは、一つの変更目的と、上表のclassが定める一つの対象だけを扱う。`requirement`の対象は一つの要求identityである。
+`design_verification`のL3／L10は、POが承認する単位に合わせ、一つの機構の一つのStage（要求段階の対応順序案とその追補が定めるStage）に
+属する承認要求のpair群を上限とする。複数の機構、または複数のStageにまたがる要求のL3／L10を同じPRで起草・修正・確定しない。
+PRの中でも要求identityごとにL3とL10の対を分けて書き、別の要求の条件を混ぜない。
+
+対象PRが実際に参照する共通部品（template、共通規則、参照先の契約）が未確定なら、その共通部品を先行PRで閉じてmergeし、
+対象PRはそのexact revisionを参照する。対象PRは共通部品の規則を本文へ書き写さず参照し、その対象に固有の条件だけを書く。
+対象PRが参照しない共通部品のmergeを待つ必要はない。後段の内容を先行PRへ混載しない。
+
+人が読む本文の差分は200〜400行を目安とする。目安を超える場合は、PR本文に超える理由と、範囲をさらに分けられない理由を書く。
+監査・照合の証拠や機械生成の記録は行数の目安に含めないが、範囲を広げる理由にはしない。
+
+範囲を超えて作業した成果は、そのPRをmergeせず、範囲ごとのPRへ切り出す。切り出した各PRはexact HEADで独立reviewを受け直し、
+元PRには切り出し先PRの一覧と、元の範囲の全対象が切り出し先で被覆されたことを記録してからcloseする。被覆を確認するまで、
+元PRの範囲で未確定の対象を確定済みとして扱わない。
+
+レビュー対応側は、本文の句単位reviewの前に、PR class、範囲（`design_verification`では機構とStage）、変更目的の数を確かめる。
+範囲を超えるか変更目的が複数なら、範囲違反をblockerとして返し、句単位reviewには進まない。範囲違反のPRではmerge admissionは成立しない。
+
+旧sourceは次のとおりである。いずれも台帳上`unresolved`であり、本文を完全一致copyせず意味を再導出する。
+
+- `archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md`（`LEGACY-ASSET-20C14BB23C519C65E7BD`、
+  SHA-256 `4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d`）101–107行「原則5: 1 PR = 1 変更目的」：
+  複数の目的を1つのPRに詰め込まない、差分200〜400行の目安、巨大PRはreviewされない。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/github-operations-reference-audit-2026-07-18.md`（`LEGACY-ASSET-57E3CD5314D2CB4C2EF1`、
+  SHA-256 `c6f2c106ee33720b7664f3ac9f02ba1896b7b819cb4f57bc119f1ce817ff27a3`）41行：採用した「1 PR 1目的」と短命branch。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/l3-rebaseline-g3-freeze-packet.md`（`LEGACY-ASSET-269C287365D652DEAD93`、
+  SHA-256 `519be70ab005c875d57acab510869b67bea23bd3304f8f24d9b0223da37a2ebd`）340–342行：責務ごとに小PRで閉じ、
+  先行PRのmerge後に後段PRを別PRで閉じ、後段PRを先行PRへ混載しない。
+- `archive/legacy-generation-2026-09-14/root/docs/governance/github-issue-hierarchy-rules.md`（`LEGACY-ASSET-3BBD5A19BFD9A0FC7166`、
+  SHA-256 `c965a2744c99cbdfe69f071167fe009ade68337e31e0fb1de13377568084d1ca`）37行：1 PRは1 `task` Issueだけを閉じる。
+
+保持する点は、1 PR 1目的、行数の目安、後段の混載禁止である。変更する点は四つある。
+
+一つ目は、PRの範囲を旧sourceのPLAN・`task` Issue単位から、現行のPR class表が定める対象の単位へ置き換えることである。
+現行の工程はPLANやIssueから要求意味を生成しないためである。
+
+二つ目は、`design_verification`のL3／L10の範囲を、一つの承認要求から一つの機構の一つのStageへ広げることである。
+起点は利用者の起草指示`scaffold/review-handoff/local/codex-goals-2026-10-03-l3.md`（SHA-256
+`3561eb221023220ccd6dda9ace008882851eac343ca76611742b07b2e30703e5`）のL3-G1「機構ごとまたは依存のまとまりごとにPRを分けてよい」と、
+同「PO承認への渡し方」の「承認は機構またはStageのまとまりごとに受ける」である。2026-10-05にPOが、PRの単位の上限を
+機構×Stageとすることを選んだ（[判断記録](decisions/pr-atomicity-unit-po-decisions-2026-10-05.md)）。PRの範囲を承認の単位と揃え、承認単位をまたぐ一括PRを作らないためである。
+影響として、PR class表の`design_verification`行に範囲の上限を追記した。要求identityごとのL3／L10の対と、PO承認の記録方法は変えない。
+
+三つ目は、共通部品の先行mergeである。旧`l3-rebaseline-g3-freeze-packet.md:340–342`は、GitHubの五責務ごとにL4基本設計とL9結合oracleを閉じ、
+そのmerge後にL5詳細契約とL8単体oracleを閉じる層間の順序であり、共通部品一般の先行mergeを定めていない。本節はこの順序を、
+対象PRが実際に参照する未確定の共通部品へ一般化する。理由は、共通規則を対象ごとに書き写すと、規則の変更が全対象への手作業の同期になり、
+取りこぼしが再発するためである。影響として、対象PRは自分が参照する共通部品のmergeだけを待つ。参照しない共通部品は待たない。
+
+四つ目は、レビュー対応側が句単位reviewの前に範囲を確かめ、範囲違反をblockerとして返すことである。
+旧sourceは巨大PRがreviewされないことを心得として述べるだけだった。
+
+二つ目から四つ目の理由となった事例は#2564である。8機構・全Stageの274件のL3／L10を一つの`design_verification` PRで扱い、
+11回の往復でmajorを減らせなかった。毎回、規則の書き写しと兄弟対象の取りこぼしが再発した。新しい人間承認手続きは加えない。
 
 ## IssueとFeature Ticket
 
