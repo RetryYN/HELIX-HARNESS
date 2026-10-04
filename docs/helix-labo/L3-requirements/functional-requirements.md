@@ -288,7 +288,7 @@ OSから与えられたreturn finding、理由分類、対象ticket/scope/revisi
 
 #### LABO-036-FR-01 — HARNESS向け工程feedback candidate
 
-対象revisionとHARNESS connectorを伴う許可evidenceから、V-model、要求形成、design obligation、verification contract、backflow、境界調整、refactor、release criteria、ops-maintenanceに関するscope付きcandidateをHARNESSへ返す。要求・contractのcanonical内容は変更せず、実験結果は即時反映ではなく検討材料として残す。`LABO-036-AC-01`は有効なtarget revisionとconnector、根拠evidenceがそろう正常入力でcandidateとsource参照を保持する。`LABO-036-AC-02`はtarget不明、stale connector、または要求意味を直接書き換える変異で該当candidateをholdし、対象ownerへ戻す。意見の相違や候補自体の提示は許容し、候補提示を採択・変更と扱わない。
+対象revisionとHARNESS connectorを伴う許可evidenceから、V-model、要求形成、design obligation、verification contract、backflow、境界調整、refactor、release criteria、ops-maintenanceに関するscope付きcandidateをHARNESSへ返す。要求・contractのcanonical内容は変更せず、実験結果は即時反映ではなく検討材料として残す。`LABO-036-AC-01`は有効なtarget revisionとconnector、根拠evidenceがそろう正常入力でcandidateとsource参照を保持する。`LABO-036-AC-02`はtarget不明、stale connector、または要求意味を直接書き換える変異で該当candidateをholdし、target不明はOS routing候補へ、HARNESS contract/source不足はHARNESS ownerへ戻す。意見の相違や候補自体の提示は許容し、候補提示を採択・変更と扱わない。
 
 #### LABO-037-FR-01 — OS運転問題の提案
 
@@ -300,7 +300,7 @@ ticket、WIP、worker placement、priority、CI profile、inspection/integration
 
 #### LABO-039-FR-01 — Worker結果に関するtarget-routed candidate
 
-許可されたWorker execution/stop/recovery resultをWorker identity・result revisionに結び、OS/SECURITYのtarget routingを経由するcandidateとして保持する。LABOはWorker割当や実行を変更しない。`LABO-039-AC-01`は実行結果とOS/SECURITY routing identityが揃う場合に限りtarget-specific candidateを生成し、source resultへ遡れる。`LABO-039-AC-02`はWorkerへの直接割当・実行指示、routing欠落、結果identity不一致をholdしOS/SECURITYへ戻す。未選択Worker/sourceを毎回要求せず、fixtureで対象scopeに含めた許可sourceだけを検証し、入力にないWorker resultを推測で追加しない。
+許可されたWorker execution/stop/recovery resultをWorker identity・result revisionに結び、OS/SECURITYのtarget routingを経由するcandidateとして保持する。LABOはWorker割当や実行を変更しない。`LABO-039-AC-01`は実行結果とOS/SECURITY routing identityが揃う場合に限りtarget-specific candidateを生成し、source resultへ遡れる。`LABO-039-AC-02`はWorkerへの直接割当・実行指示、routing欠落、結果identity不一致をholdし、責務不明またはOS routing欠落は固定親どおりOSへ戻す。SECURITY routingが適用されるscopeではそのroute欠落をSECURITYへ戻す。未選択Worker/sourceを毎回要求せず、fixtureで対象scopeに含めた許可sourceだけを検証し、入力にないWorker resultを推測で追加しない。
 
 #### LABO-040-FR-01 — CONNECT接続単位feedback
 
@@ -312,7 +312,7 @@ ticket、WIP、worker placement、priority、CI profile、inspection/integration
 
 #### LABO-054-FR-01 — HELIX-Bench水準接続
 
-L2-055が生成したtask type/model class別のlevel、basis、applicability/evaluation scope、unassessed状態を同一identity・版・scopeでINTELLIGENCEへ渡し、INTELLIGENCE受領からLABO sourceまで追跡できるようにする。055が水準を生成し、配置案はINTELLIGENCE、指定・割当てはOSが担う。`LABO-054-AC-01`は同じ水準payloadとINTELLIGENCE receiptをscopeを変えずに結ぶ。`LABO-054-AC-02`はpayload/receiptのtask class、model class、scope、根拠、未評価状態の個別不一致、未知jobへの過去水準外挿、LABOによる割当・authority変更をそれぞれ不成立にする。未評価jobはunassessedのまま受け渡せる。
+L2-055が生成したtask type/model class別のlevel、basis、applicability/evaluation scope、unassessed状態を同一identity・revision・scopeでINTELLIGENCE connector経由の受渡しへ保持し、INTELLIGENCE receiptから元のLABO sourceを追跡できるようにする。055が水準を生成し、配置案はINTELLIGENCE、指定・割当てはOSが担う。`LABO-054-AC-01`は同じ水準payloadとINTELLIGENCE receiptをscopeを変えずに結ぶ。`LABO-054-AC-02`はpayload/receiptのtask class、model class、scope、根拠、未評価状態の個別不一致、未知jobへの過去水準外挿、LABOによる割当・authority変更をそれぞれ不成立にする。未評価jobはunassessedのまま受け渡せる。未評価または適用範囲不明を受領条件の不足として扱う場合はL2-055の水準生成側へ再評価を戻し、connector ownerという追加ownerを作らない。
 
 #### LABO-052-FR-01 — INTELLIGENCE評価材料循環
 
@@ -1460,7 +1460,7 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 ### 受入条件候補
 
 - **LABO-030-AC-01 — 正常・trace**：source/product identityと適用版/許可が観測ごとに追跡可能。 専用HELIX-CONNECT contract `HELIXLABO-L2-030` の採択済みidentity/revision・schema/provenanceを個別に照合し、親指定の接続意味（許可Product Core resultをproduct/source identity別にし、異なるproduct/meaning/authorityを統合しない）だけを成立させる。
-- **LABO-030-AC-02 — failure/owner boundary**：異なるsourceを統合、scope外を同一identityへ混入しない。 未採択source/productを暗黙必須化せず、製品stateを書換えない。 専用HELIX-CONNECT `HELIXLABO-L2-030` のcontract identity/revision/schema/provenance不一致もfailureとして個別照合し、該当Product Core ownerへ戻す。
+- **LABO-030-AC-02 — failure/owner boundary**：異なるsourceを統合、scope外を同一identityへ混入しない。未採択source/productを暗黙必須化せず、製品stateを書換えない。専用HELIX-CONNECT `HELIXLABO-L2-030` contractのidentity欠落/不一致、revision欠落/stale、不対応schema、provenance欠落/不一致をそれぞれ個別および併発で照合し、どのfieldが接続不成立かを保持して該当Product Core ownerへ戻す。
 
 ### 固定親句trace
 
@@ -1492,8 +1492,8 @@ SECURITYが許可したsafety/incident evidenceだけを範囲付きobservation�
 
 ### 受入条件候補
 
-- **LABO-034-AC-01 — 正常・trace**：複数の独立product/meaning/episodeを含むsupported structureのみ内部candidateとして渡しsource/scopeを保持。
-- **LABO-034-AC-02 — failure/owner boundary**：single case/product-specific meaning/unknown applicabilityからgeneric candidateを作らない。 BRAIN ingestion/authorityを作らず、外部knowledge/evaluation loopを1.0に含めない。
+- **LABO-034-AC-01 — 正常・trace**：複数の独立product/meaning/episodeを含むsupported structureのみ内部candidateとして渡しsource/scopeを保持し、採択された当該BRAIN接続専用connector contract identity/revision/schema/provenanceを照合する。
+- **LABO-034-AC-02 — failure/owner boundary**：single case/product-specific meaning/unknown applicabilityからgeneric candidateを作らない。BRAIN向け接続条件のmissing/stale/schema/provenance mismatchは接続不成立として該当するBRAIN source/consumerへ戻す。BRAIN ingestion/authorityを作らず、外部knowledge/evaluation loopを1.0に含めない。
 
 ### 固定親句trace
 
@@ -1525,8 +1525,8 @@ judgment accuracy、failure corpus、counterexample、model/provider comparison�
 
 ### 受入条件候補
 
-- **LABO-035-AC-01 — 正常・trace**：評価material packetはscope/source revision/unassessed stateを保持し、052/054 responsibilitiesと混ぜない。
-- **LABO-035-AC-02 — failure/owner boundary**：source/scope/revision unknownやunassessedを評価済み/learnedへ変えない。 INTELLIGENCEの学習/調整、model selection/placement/bot operationを実行しない。
+- **LABO-035-AC-01 — 正常・trace**：評価material packetはscope/source revision/unassessed stateを保持し、052/054 responsibilitiesと混ぜず、採択されたINTELLIGENCE接続専用connector contract identity/revision/schema/provenanceを照合する。
+- **LABO-035-AC-02 — failure/owner boundary**：source/scope/revision unknownやunassessedを評価済み/learnedへ変えない。INTELLIGENCE向け受渡しのmissing/stale/schema/provenance mismatchは不成立としてINTELLIGENCE consumerへ戻す。INTELLIGENCEの学習/調整、model selection/placement/bot operationを実行しない。
 
 ### 固定親句trace
 

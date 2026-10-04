@@ -98,7 +98,7 @@ paired_l10: ../L10-verification/functional-verification.md
 **受入条件**
 
 - **`AC-HARNESS-L3-022-01` 段階証拠の完全結束**：同一artifact revision/scopeについてL8/L9 evidenceでIntegrated、L10 system oracleと固有義務差分の照合でVerified、さらにL11内容oracleと利用者受入recordでAcceptedを別状態として確認する。
-- **`AC-HARNESS-L3-022-02` 誤昇格の拒否**：下位単体/結合pass、CI green、artifact/trace/evidenceの存在だけでは固有義務不足を補えず、L10 passだけではAcceptedにならない。L11 record欠落/wrong revision/内容oracle failureでは実際に満たした段階に留める。G12に定める共通前提として、field/evidenceの存在や体裁のみを品質合格oracleにしない。G13に基づき、改善scoreから要求承認・段階判断を生成せず、品質・security・acceptance oracleを該当段階ごとに判定する。
+- **`AC-HARNESS-L3-022-02` 誤昇格の拒否**：下位単体/結合pass、CI green、artifact/trace/evidenceの存在だけでは固有義務不足を補えず、L10 passだけではAcceptedにならない。④なしでもコア契約を利用でき、HELIX-OS検収を要せず、単体合格やサービス①〜⑦の所有から接続・構成体成立を導かない。意味を保てる不一致は同じ段階を再検証し、左側へ一律に戻さない。L11 record欠落/wrong revision/内容oracle failureでは実際に満たした段階に留める。G12に定める共通前提として、field/evidenceの存在や体裁のみを品質合格oracleにしない。G13に基づき、改善scoreから要求承認・段階判断を生成せず、品質・security・acceptance oracleを該当段階ごとに判定する。
 - **`AC-HARNESS-L3-022-03` 外部持込・差分戻し**：外部成果も同一revision・paired design/requirements/oracle/result/evidenceで段階評価し、不足は満たした段階に留める。振る舞いを保つ差分は同段階を再検証し、意味変更が要る差分はコードで合わせず親L2規則の戻し先へ返す。
 
 
@@ -125,7 +125,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-012-01`**：UI適用対象ではPrototypeの対象要求・画面範囲・合意状態をPoCの技術結果と別に追跡し、Prototype結果がL2へのbackflowへ結び付く。
 - **`AC-HARNESS-L3-012-02`**：非UI対象またはPoC不要の対象では各適用性を独立にN/Aとでき、理由・判定者・HEAD・影響・再評価条件のいずれか欠落を成功扱いしない。片方のN/Aを他方のN/Aへ伝播しない。
-- **`AC-HARNESS-L3-012-03`**：適用したPrototype／PoCの結果に未解決事項がある状態で要件化・production昇格を試みると停止し、該当要求へのbackflow候補を示す。要求scopeに対象記述があればStage 2bの他工程を要求しない。
+- **`AC-HARNESS-L3-012-03`**：適用したPrototype／PoCの結果は、未解決事項の有無にかかわらず該当要求へのbackflowと必要な2次形成へ結ぶ。適用結果が戻っていない、2次形成が終わっていない、またはDecideが終わっていない間は要件化・production成果化を進めない。未解決事項は該当要求ownerへ返し、結果が解決済みでもbackflow・2次形成・Decideの順を省略しない。要求scopeに対象記述があればStage 2bの他工程を追加要求しない。
 
 #### `FR-HARNESS-L3-013` — 要件定義の単体形成（親: `HARNESS-L2-013`）
 
@@ -135,7 +135,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 **不変条件**：1次形成と結果を戻した2次形成を区別し、欠落、企画外追加、矛盾、重複、過剰解釈、対象違い、scope逸脱、変更影響を可視化する。人の承認なしに要件を確定せず、草稿から要求authorityや操作権限を作らない。入力がHARNESS-L2-019由来の既存文書でも同じ条件を適用する。
 
-- **`AC-HARNESS-L3-013-01`**：入力scopeに必要な要素の欠落、矛盾、重複、企画外追加、non-goal逸脱を各々識別し、該当する入力箇所・影響先・backflow先を提示する。正常な未見要件は根拠が入力内にあれば排除しない。
+- **`AC-HARNESS-L3-013-01`**：入力scopeに必要な要素の欠落、矛盾、重複、企画外追加、non-goal逸脱、根拠のない過剰解釈、対象違い、scope違い、変更影響の見落としを各々識別し、該当する入力箇所・影響先・backflow先を提示する。正常な未見要件は根拠が入力内にあれば排除しない。
 - **`AC-HARNESS-L3-013-02`**：1次形成とPrototype／PoC結果を反映した2次形成を別revisionとして追跡し、前後差分と残存unknownを示す。結果が非適用の場合はN/Aの根拠を要求本文へ推測で補完しない。
 - **`AC-HARNESS-L3-013-03`**：出力4文書（L2/L11、L3/L10）のpair identityと相互traceが揃っても、PO判断・承認・authority状態はpendingのまま。単体要求の形成に他工程を必須化しない。
 
@@ -147,7 +147,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 **不変条件**：単体・接続・構成体それぞれの設計義務を別々に識別し、一方の成果で他方を満たしたことにしない。HARNESS-L2-019由来の入力はsource/revisionを保ち、単体・接続・構成体の各経路からtemplate設計義務へ対応づける。制約の記載・traceが揃っていても、設計結果がtenant境界や禁止side effect等の実制約に違反する場合、または変更影響を受ける必要検証が欠ける場合は合格にしない。templateが要求入力を補う場合は質問またはbackflow候補を上流へ返す。TemplateやBRAIN connectorは要求の意味・authorityを決めない。
 
-- **`AC-HARNESS-L3-014-01`**：同じkind・target・configuration・risk・domainの有効templateから単体・接続・構成体の各設計義務と各対の検証設計が別々に辿れ、HARNESS-L2-019由来の入力もsource/revisionを保って該当経路へ流れる。各設計義務について明示制約（tenant境界、禁止side effect等）の充足と変更影響集合をfixture oracleへ照合する。固定requirement/design/contract/test-oracle revision、artifact revision、dependency版、scope、実測結果を内容で照合し、template/trace/test/evidence fieldの存在だけを品質成功としない。template入力不足は未解決質問として示され、oracleまたはscopeが未提示なら未評価/Provisionalに留める。
+- **`AC-HARNESS-L3-014-01`**：同じkind・target・configuration・risk・domainの有効templateから単体・接続・構成体の各設計義務と各対の検証設計が別々に辿れ、HARNESS-L2-019由来の入力もsource/revisionを保って該当経路へ流れる。G12固定条件に従い、出力fieldの有無だけでなく固定requirement/design/contract/test-oracle revision、artifact revision、依存版、scope、内容結果を照合し、同scopeの未見正常例もoracle適合時に受け入れる。各設計義務について明示制約（tenant境界、禁止side effect等）の充足と変更影響集合をfixture oracleへ照合する。固定requirement/design/contract/test-oracle revision、artifact revision、dependency版、scope、実測結果を内容で照合し、template/trace/test/evidence fieldの存在だけを品質成功としない。template入力不足は未解決質問として示され、oracleまたはscopeが未提示なら未評価/Provisionalに留める。
 - **`AC-HARNESS-L3-014-02`**：templateの要求意味を変える指示、単体要件を別kindへ流用する入力、下位義務だけで上位義務を充足させる入力、tenant境界を越える設計、禁止side effectを含む設計、変更影響の必要検証を落とす入力を拒否し、根拠となる欠落／不一致とbackflow先を返す。oracle/scope/resultを欠くのにtraceやevidence fieldの存在のみでpassにする変異も拒否する。項目充足やtrace完備だけでは実制約違反を合格にしない。
 - **`AC-HARNESS-L3-014-03`**：connectorから得たtemplateまたは知識の出所・版が対応付く。connector出力だけでL3承認済みまたは設計確定にはならない。
 
@@ -161,7 +161,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-015-01`**：実装変更には対応するL6契約、L7検証、Red失敗、Green成立、局所refactor安全性、原子CI結果が同一revisionで結び付く。G12共通前提の固定oracle・scope・依存版と内容結果を照合し、G13の必要quality oracleを満たす正常結果だけを候補にする。費用・時間の改善で品質未達を相殺せず、Atomic CIやコード存在からeffect successを推定しない。正常な未見ケースは契約のoracleに合えば許容する。
 - **`AC-HARNESS-L3-015-02`**：refactorが外部契約・要求・architecture/state意味を変更した場合、単体開発として閉じず適切な上流設計／要求へbackflowする。テスト追加やCI成功のみでその変更を隠さない。
-- **`AC-HARNESS-L3-015-03`**：実行CIとticket上省略した検査を分け、未回収検査があれば状態をProvisionalのまま示す。Atomic CIやコードの存在だけから品質適合、effect success、Acceptedを推定しない。実際のCI運転はOS／利用者環境へ委ね、HARNESSが実行authorityを主張しない。
+- **`AC-HARNESS-L3-015-03`**：実行CIとticket上省略した検査を分け、未回収検査があれば状態をProvisionalのまま示す。Atomic CIやコードの存在だけから品質適合、system成立、利用者受入、effect success、Accepted、Releaseを推定しない。Integrated以降は022の段階証拠と固有義務照合を要する。実際のCI運転はOS／利用者環境へ委ね、HARNESSが実行authorityを主張しない。
 
 #### `FR-HARNESS-L3-016` — 意味を保つ単体refactor（親: `HARNESS-L2-016`）
 
@@ -173,7 +173,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-016-01`**：通常refactor前後のpublic contract・要求・architecture/state意味を対比し、意味差分0の範囲だけをrefactorとして受理する。
 - **`AC-HARNESS-L3-016-02`**：意味差分が見つかった場合は差分種別に応じL5/L4/L3・L2/L1へ返し、右側のみで上流内容を置換しない。対の設計・契約がないコードはHARNESS-L2-019へ戻し、④を追加前提にしない。変更なしの適格refactorを過剰に拒否しない。
-- **`AC-HARNESS-L3-016-03`**：Performance Refactorはbaseline等6入力が実測可能な形で開始前に揃うことを確認し、いずれか欠落ならperformance比較を未評価として止める。固定した全regression oracleも同じscope/revisionで判定し、局所改善で退行を隠さない。L2でpriority/toleranceが定まらない場合は勝敗を捏造せず判断ownerへ戻し、数値候補は根拠・比較・測定方法を添える。実測なしに達成扱いしない。
+- **`AC-HARNESS-L3-016-03`**：Performance Refactorはbaseline等6入力が実測可能な形で開始前に揃うことを確認し、いずれか欠落ならperformance比較を未評価として止める。固定した全regression oracleと観測済みbehaviorも同じscope/revisionで判定し、未見call sequenceを固定oracleへ照合する。局所改善で退行を隠さない。L2でpriority/toleranceが定まらない場合は勝敗を捏造せず判断ownerへ戻し、数値候補は根拠・比較・測定方法を添える。実測なしに達成扱いしない。
 
 #### `FR-HARNESS-L3-017` — 単体製品のリリース契約（親: `HARNESS-L2-017`）
 
@@ -184,7 +184,7 @@ paired_l10: ../L10-verification/functional-verification.md
 **不変条件**：必須Release Port条件を満たし、未回収検査がない対象だけをeligibleとする。同じ入力から再現可能な成果物と直前適格版へのrollbackを扱い、DeployedとObservedを区別する。これは利用者製品のrelease機構で、HELIX自身の段階release runtimeではない。配備実行はHELIX管理環境ならOS、利用者環境なら利用者の配備手段が担う。
 
 - **`AC-HARNESS-L3-017-01`**：Verified/Acceptedと開始時点のRelease Port条件が同じartifact revision/scopeへ結び付くpositive caseのみeligible候補となる。外部成果でも同じ証拠を提示できれば評価する。
-- **`AC-HARNESS-L3-017-02`**：未回収検査、必須条件欠落、別revisionのevidence、成果物identity不一致はeligibleにせず、不足条件を特定する。
+- **`AC-HARNESS-L3-017-02`**：未回収検査、必須条件欠落、別revisionのevidence、成果物identity不一致、Provisional成果物、HARNESS-L2-022条件に適合しない外部成果物はVerified/Acceptedとして受け取らずeligibleにしない。不足条件を特定する。
 - **`AC-HARNESS-L3-017-03`**：失敗時のrollback先と同一inputからのartifact再現性を比較し、配備済み状態から観測済み状態を推測しない。release packetは実際の配備を実行しない。
 
 #### `FR-HARNESS-L3-018` — 単体製品の運用・保守要求接続（親: `HARNESS-L2-018`）
@@ -197,7 +197,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-018-01`**：配備済みrevisionとowner承認済み運用要求／適用性が対応付く場合だけ観測設計を評価し、欠落・unknownをsuccessへ変換しない。
 - **`AC-HARNESS-L3-018-02`**：設計／実装／検証証拠だけを観測・運用済みとする入力を拒否し、観測値は対象revision、時点、要求ownerと結ぶ。
-- **`AC-HARNESS-L3-018-03`**：要求を満たさない観測や要求自体の不足を該当ownerへの再要求化候補として返す。根拠のないSLO・保持期間・費用閾値を補わず、正常なowner定義の個別基準を一律閾値不在で拒否しない。
+- **`AC-HARNESS-L3-018-03`**：要求を満たさない観測や要求自体の不足を該当ownerへの再要求化候補として返す。HELIX-OSの監視・復旧runtimeなしでも要求接続候補を扱い、runtime運転はOSへ残す。根拠のないSLO・保持期間・費用閾値を補わず、正常なowner定義の個別基準を一律閾値不在で拒否しない。
 
 #### `FR-HARNESS-L3-019` — 既存成果からの逆方向要求形成（親: `HARNESS-L2-019`）
 
@@ -220,7 +220,7 @@ paired_l10: ../L10-verification/functional-verification.md
 **不変条件**：前stage出力が次stage入力の契約を満たすことを接続単位で確認する。契約版不一致や必須field欠落は暗黙解釈せず保留し、未完義務を次の単位へ引き継いでも完了にしない。前stageを使わない外部成果もHARNESS-L2-019と同じ契約で照合する。単体開発④のProvisional出力は⑥へ直結させず、⑥にはHARNESS-L2-022でVerified/Acceptedとなった成果か外部で同じ条件を満たした成果だけを渡す。意味差は最上流の責任ownerへbackflowする。handoffは状態・authority・上流意味を書き換えず、release executionにもならない。stage番号の隣接だけで関連しない全stageの直列依存を追加しない。
 
 - **`AC-HARNESS-L3-020-01`**：互換する隣接契約・同一artifact/revision・必要evidenceのpositive caseで、全入力fieldの対応とownerを記録してhandoff候補を出す。未完検査等は継続義務として保持され、引継ぎだけでは完了にしない。
-- **`AC-HARNESS-L3-020-02`**：版不一致、必須入力欠落、異なるartifact/revision、責務外ownerを一つずつ変異させ、各欠落／不一致を特定して保留する。前stage未使用の外部成果でもHARNESS-L2-019と同じ入力契約を満たす正常caseは受け入れる。正規化可能な未知fieldは契約が許す範囲なら未見正常として受け入れる。
+- **`AC-HARNESS-L3-020-02`**：版不一致、必須入力欠落、異なるartifact/revision、責務外ownerを一つずつ変異させ、各欠落／不一致を特定して保留する。単体unit passだけがあり接続契約の対証拠がないfixtureは接続成功にしない。前stage未使用の外部成果でもHARNESS-L2-019と同じ入力契約を満たす正常caseは受け入れる。正規化可能な未知fieldは契約が許す範囲なら未見正常として受け入れる。
 - **`AC-HARNESS-L3-020-03`**：④のProvisional成果を⑥へ渡すnegativeと、L2-022 Verified/Acceptedの同一条件を満たす成果を渡すpositiveを比較する。前者は止まり後者だけがrelease-unit受渡し候補になる。handoffで前後stageのauthority/stateを変更せず、意味差は該当上流ownerへ戻し、成功をreleaseや全段階完了に読み替えない。
 
 #### `FR-HARNESS-L3-024` — 要求形成の質問優先と収束根拠（親: `HARNESS-L2-024`）
@@ -233,7 +233,7 @@ paired_l10: ../L10-verification/functional-verification.md
 
 - **`AC-HARNESS-L3-024-01` 優先順位と再現**：影響・不確実性・下流変更cost・人間専決度の根拠と同順位tie-breakを入力し、同じcandidate・既回答・revisionから質問と理由の順序を再現する。順位根拠または必要tie-breakがない場合は未確定としてownerへ戻す。
 - **`AC-HARNESS-L3-024-02` 重複・矛盾・再開**：同一scopeの既回答／open question、新根拠ありの合意再開、新根拠なしの再質問を比較する。既回答は重複せずopen itemを継続し、再開は影響identityだけをownerへ返す。理由なしの矛盾自動解消や全面stale化は不合格。
-- **`AC-HARNESS-L3-024-03` 形成不足と人間待ちの区別**：actor/task、normal/cancel/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能な履歴差分、該当時Prototype／非UI合意を個別に変異する。必須形成情報unknownは不足として示し、整ったdecision packetの人間確認待ちは候補として提示する。score・質問数・iteration回数・Issue/PR/沈黙から承認・要件採択・操作許可を生成しない。履歴がない／少ないことのみを不足にしない。
+- **`AC-HARNESS-L3-024-03` 形成不足と人間待ちの区別**：actor/task、normal/cancel/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能な履歴差分、該当時Prototype／非UI合意を個別に変異する。人間専決の入力値をAIが埋めず、timeoutではopen question/最後のevent/owner/re-entryを保持する。stale answerの再利用と補助計測の欠落を判別し、score等からauthorityを作らない。必須形成情報unknownは不足として示し、整ったdecision packetの人間確認待ちは候補として提示する。score・質問数・iteration回数・Issue/PR/沈黙から承認・要件採択・操作許可を生成しない。履歴がない／少ないことのみを不足にしない。
 
 L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`から親へtraceする。対のAC IDは `AC-HARNESS-L3-<親番号>-<連番>` とする。L10 case IDは `CASE-HARNESS-L10-<親番号>-<連番>` とし、双方に機構prefixと親番号を含めて重複を避ける。AC本文は本書を正本とし、L10は同じAC IDを参照する。この採番は文書内trace用で、新しい承認・admission gateではない。
 
@@ -267,7 +267,7 @@ L3要件は親L2と異なる識別子を持ち、`FR-HARNESS-L3-<親番号>`か�
 | `HARNESS-L2-040` / `FR-HARNESS-L3-040` | HARNESS-L1のrevisionとcanonical pair表から、L1〜L12各層の台帳種別・記録粒度・node/edge構造・権限・出所・入出力・開始/終了条件・template契約候補、および独立したL0 authority anchorを列挙する。L0をlayerまたは7番目pairにしない。OSのwriter/snapshot/ticket運転は定めない。 | `AC-HARNESS-L3-040-01`: 12層、6つのcanonical pair、L0 anchorをそれぞれ識別する。`AC-HARNESS-L3-040-02`: sample rowのsource/revision/owner/statusと上下左右edgeを逆引きし、片edge/staleを未完とする。`AC-HARNESS-L3-040-03`: 未提示契約を存在済みとせず、catalogのみから承認/登録/実行/完了を生成しない。 |
 | `HARNESS-L2-041` / `FR-HARNESS-L3-041` | L2-009で選択したactive template revision/scope、source span、ledger contract、extractor/versionから章/field/row/rule/done-when/pair-contractを原子的obligationまたは理由付きgapへ対応づける。HARNESSは抽出契約を持ち、template authority、writer、採択を持たない。 | `AC-HARNESS-L3-041-01`: 同一template/extractor inputから各対象obligationがatomまたはtyped gapへ個別対応しsource span/semantic digestを保持する。`AC-HARNESS-L3-041-02`: 空/TBD/未対応branch/extractor不能/重複/version-scopeずれを個別mutationしgapを提示する。`AC-HARNESS-L3-041-03`: 義務を分割または複数義務を束ねる変異でatomicityを失えば不合格。同一input/extractor semantic digestの一致を観測する。 |
 | `HARNESS-L2-042` / `FR-HARNESS-L3-042` | 対象revision/scope、変更前後のdesign/contract/requirement/oracle、consumer、dependency graph、機能追加有無、rollback前提を用いDesign Refactor候補または既存Backflow先を返す。semantic evidence不足はunknown。機能追加をDesign/Performance Refactor episodeへ混ぜず、新gateやownerを作らない。 | `AC-HARNESS-L3-042-01`: 振る舞い保持変更positiveとpublic contract/要求/state意味変更negativeを比較し既存routeへ送る。`AC-HARNESS-L3-042-02`: name-only類似、consumer列挙不足、oracle/dependency missing/staleを個別に変異し成功候補を返さない。`AC-HARNESS-L3-042-03`: 同episode機能追加を拒み別episode候補へ分け、performance時は016契約を参照し閾値を新設しない。 |
-| `HARNESS-L2-043` / `FR-HARNESS-L3-043` | active template/source revision、適用rule/branch分母、scope、oracle、risk根拠からrule/branchごとのpositive例とboundary-negative例、必要根拠があるrisk追加例をadequacy matrixへ結ぶ。例数だけで十分性を決めず、配置未決を新判断で解消しない。 | `AC-HARNESS-L3-043-01`: 各適用rule/branchにpositiveとboundary-negative、確認する条件/oracleを対応させる。`AC-HARNESS-L3-043-02`: branch、rule revision、risk根拠を個別mutationし、unknown分母をzero/N/Aにしない。`AC-HARNESS-L3-043-03`: scope内で根拠ある追加例を含めつつ、oracle適合の未見正常を拒否せず未選択scopeを混ぜない。 |
+| `HARNESS-L2-043` / `FR-HARNESS-L3-043` | active template/source revision、適用rule/branch分母、scope、oracle、risk根拠からrule/branchごとのpositive例とboundary-negative例、必要根拠があるrisk追加例をadequacy matrixへ結ぶ。所属はPO採択の57candidates候補48のBルートに従いHARNESS-COREへ置く。例数だけで十分性を決めない。 | `AC-HARNESS-L3-043-01`: 各適用rule/branchにpositiveとboundary-negative、確認する条件/oracleを対応させる。`AC-HARNESS-L3-043-02`: branch、rule revision、risk根拠を個別mutationし、unknown分母をzero/N/Aにしない。`AC-HARNESS-L3-043-03`: scope内で根拠ある追加例を含めつつ、oracle適合の未見正常を拒否せず未選択scopeを混ぜない。rule adequacy matrixはHARNESS-CORE所有とし、配置を再決定する新判断を生成しない。 |
 | `HARNESS-L2-044` / `FR-HARNESS-L3-044` | 選択scopeのrequirement atom/Design Obligation Graph/normative contract/対oracleと適用根拠からclass別割当、再利用/delta/new/根拠付きN/A、重複・未被覆を返す。025/026生成、041抽出、043例評価を置換せず、部品ownerを確定しない。 | `AC-HARNESS-L3-044-01`: 適用classごとのcontract traceを閉じ未被覆を識別する。`AC-HARNESS-L3-044-02`: 意味重複、根拠なしN/A、unknown/stale contractを変異し未完にする。`AC-HARNESS-L3-044-03`: 同義量産をfindingにする一方、単なる件数最小化で独立義務を落とさず、approval/writerを生成しない。 |
 | `HARNESS-L2-046` / `FR-HARNESS-L3-046` | workflow revision/style/scope/pair evidenceからtransition/loop/terminal/exception/permission/timeout/notification/audit/data/switching/routing/resource obligationを照合する。Full Vでは対象system workflowを適用するL1〜L5設計層で段階的に明確化・freezeし、対応V-pairでsystem全体の条件を検証する。Production Scrum選択scopeまたは許可済み合成内のScrum部分だけにslice delta、Reverse/backfill、SR4 pair-freezeを適用し、他styleへ拡張しない。 | `AC-HARNESS-L3-046-01`: Full Vで適用するL1〜L5設計層のfreezeと各workflow obligationのpair/evidenceを対応する。freeze欠落を未完とする。`AC-HARNESS-L3-046-02`: Scrum適用/非適用を比較し、Full VはL1〜L5 freezeを要求する一方、Scrum非選択scopeへslice delta、Scrum Reverse、SR0〜SR4/SR4 receiptを追加しない。`AC-HARNESS-L3-046-03`: Scrum scopeのdelta→Reverse→L1〜L5 workflow/design backfill→必要なSR0〜SR4 checkpoint/SR4 freezeを順に照合する。 |
 | `HARNESS-L2-047` / `FR-HARNESS-L3-047` | task/scope/revision/process/verification/oracle/domain/risk/judgment pack/single-worker comparison/LABO applicability evidenceからmuster candidate、existing role sufficient、unknown/deferを理由付きで区別し、必要時のみruntime-neutral contract candidateを作る。旧HIL-FR-59に沿いcontractはobjective、成果物schema、tool guidance、task boundary、context selectors、allowed/denied tool/path候補、model/effort class、budget、checkpoint、escalation、verification contractを持ち、input/output digest、generation rationale、guard validation結果に結ぶ。provider/model/worker数/共通閾値を定めない。 | `AC-HARNESS-L3-047-01`: benefitあり、single-worker十分、comparison unknownの3状態を理由付きで区別する。`AC-HARNESS-L3-047-02`: muster時だけ全contract fieldを生成し、各fieldの単独欠落/変更と同一入力・生成規則版の再生成を比較する。field coverage、input/output digest、generation rationale、guard結果の欠落や不整合はfindingとする。`AC-HARNESS-L3-047-03`: worker/verifier identity/context/authorityを分け、profile/lifecycle不明はdeferとする。同一provider/modelだけで独立性を判定しない。 |
@@ -390,7 +390,7 @@ Stage 1、Stage 2a、Stage 2bの固定親から独立したbusiness criterionを
 - **`AC-HARNESS-L3-030-01` 根拠とtrace**：各生成物が要件・対象revision/scope・L2-014設計・L2-022 oracle・選択source/contractのidentityと版へ追跡できる。同一固定入力と版を再評価しても、生成条件とcaseの意味を再現できる。欠けたsource identityは未観測として明示する。
 - **`AC-HARNESS-L3-030-02` oracle非創作**：選択されたoperationとその入力oracleで定義されたnormal/boundary/permission/cancellation/ordering familyだけを候補化する。特定operationの選択や仕様がない取消・権限familyを各runの必須caseにしない。選択されたfamily内で仕様のない期待応答、permission、state transitionを補う場合はその候補を拒否または未確定にし、coverage数やcase数で矛盾を相殺しない。
 - **`AC-HARNESS-L3-030-03` doubleの限定と非実行**：選択contractが定める応答・失敗・副作用条件に限るdoubleを生成し、実service接続を行わず、stubを実service全面同等と表示しない。生成物の存在を実行済み・合格と判定しない。
-- **`AC-HARNESS-L3-030-04` 共通依存の適合**：HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、caseのsource利用permissionとdata classが揃う場合だけ該当caseを確定する。いずれかの不足・unknown・不一致はcaseを保留し、010/011契約ownerまたはsource/SECURITY permission ownerへ理由付きで戻す。未選択sourceはunobservedとして必須依存にしない。
+- **`AC-HARNESS-L3-030-04` 選択scopeと共通依存の適合**：明示選択されたserviceのcase/data/doubleだけを候補化し、HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、caseのsource利用permissionとdata classが揃う場合だけ確定する。pack/contract更新後の旧candidateはstaleとして再結合・再生成対象にする。いずれかの不足・unknown・不一致はcaseを保留し、010/011契約ownerまたはsource/SECURITY permission ownerへ理由付きで戻す。未選択service/sourceはunobservedとして必須依存にしない。
 
 ### `FR-HARNESS-L3-031` — 許可入力からの最小再現・回帰候補（親: `HARNESS-L2-031`）
 
@@ -401,7 +401,7 @@ Stage 1、Stage 2a、Stage 2bの固定親から独立したbusiness criterionを
 - **`AC-HARNESS-L3-031-01` 入力許可・副作用抑止とsanitization**：合成入力または同scopeの許可済み入力から、secret/PIIを露出しないsanitized candidateを作る。入力再生で外部call/状態変更を再発生させない。許可、target revision結合、副作用抑止、sanitizationのいずれかがunknownなら入力処理とcandidate確定を保留し、取得元/permissionまたはoperation ownerへ戻す。
 - **`AC-HARNESS-L3-031-02` oracleを保つ縮小とunknown保持**：縮小前failure identity、各reduction段階、固定oracle、scope/source version、再現に必要なenvironment条件を記録する。後続の032経由executor receiptが同一対象で同じobservable failureを確認したときだけその段階を再現候補として確認済みにする。別failure・failureなし・oracle不一致は同一再現として扱わない。root causeがunknownでも根拠のあるreductionは候補として記録できるが、原因を補完しない。environment条件が不足する場合は未確認とし、不足証拠と戻し先を示す。
 - **`AC-HARNESS-L3-031-03` 候補と後段resultの分離**：修正後result receiptなしでも回帰candidateを生成できるが、修正後passや回帰成立を主張しない。後段で別revisionを実行したresultを別証拠として結び、rerun greenで元failureを消去・skipしない。
-- **`AC-HARNESS-L3-031-04` 共通依存の適合**：HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、入力取得permission、対象data classおよびsecurity/data-handling条件が一致する範囲だけを処理する。どれかが欠落・unknown・不一致なら機微inputを処理せず保留し、該当契約、sourceまたはSECURITY permission ownerへ戻す。未選択source/executorはunobservedとして必須依存にしない。
+- **`AC-HARNESS-L3-031-04` 選択scopeと共通依存の適合**：許可されたdevelopment/operations failureを含む明示選択scopeだけを候補化し、HARNESS-L2-010 pack revision、HARNESS-L2-011 call revision、入力取得permission、対象data classおよびsecurity/data-handling条件が一致する範囲だけを処理する。pack/contract更新後の旧candidateはstaleとして再生成対象にする。どれかが欠落・unknown・不一致なら機微inputを処理せず保留し、該当契約、sourceまたはSECURITY permission ownerへ戻す。未選択source/executorはunobservedとして必須依存にしない。
 
 ### `FR-HARNESS-L3-032` — 検証artifactの選択executor向けpacket化（親: `HARNESS-L2-032`）
 
@@ -590,3 +590,35 @@ PO判断根拠はdecision rowで、register IDは追跡用である。version ta
 | 037 | `LEGACY-ASSET-6B6C5CB0E481BE01088B` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md:59` (full `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`, span `8186024e25dbf09ba7b7288b8df88a69ffaa4a960a4bd15e059f44fe170879db`)、`LEGACY-ASSET-3B905BB196962E2BE624` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md:464` (full `e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b`, span `f1250ab44c078412cf875eefbb7f0a9104e7dd5326406d5eaa591d5834b55939`)、`LEGACY-ASSET-96CCD05C4CCA06F50D3D` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md:169` (full `3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88`, span `484e1f0f52f6718fc5763a9c3e302590673166f0db6bfac2b69f077c8f2bad62`)、`LEGACY-ASSET-809D616D0D7D844F5720` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md:250` (full `f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14`, span `234b96ee8aa737a0b8d79f56087ea8f928eeb574a96bef340a740dc3569986d4`)、`LEGACY-ASSET-978C267AADC50615A1E2` `archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md:64` (full `477c95b229b4ddffd4c2ed76fdfb99d8f3a4e8241b21ae7e883ffa2607d39dbf`, span `54d0eb07cd769ca336cd8f332fcd5b04cb57901e50e443adcf82ee7d14e68588`) は固定L2記載の旧asset identityを保持。Phase 1/2、対成果、合流、L11/L12 traceを再利用・再導出し、旧drive/API/phase schemaは置換。旧source実行はしない。 |
 
 旧L3の意味が直接同じであるとはみなさず、上記は対応する保持点だけの項目別再利用・再導出である。
+
+
+## 固定L11句別AC補足（Claude08修正）
+
+次のACは固定main `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL11条件を既存親の範囲内で明示する。新しい実装・承認・完了gateを作らず、各行のACは対応L10 fixtureと対で照合する。
+
+| 親 | 新AC | 固定source | AC条件 |
+|---|---|---|---|
+| HARNESS-L2-010 | AC-HARNESS-L3-010-04 | L11:205 | 関数またはfolder一覧だけをpack一覧として提示した入力を拒否する。pack identity/owner/release-unit単位と、関数folder catalogを分離する。 |
+| HARNESS-L2-011 | AC-HARNESS-L3-011-05 | L11:206 | HARNESS要求からWEB/HARNESS側の要求や設計を導出しない。対象外機構の意味を含む入力は対象境界を明示する。 |
+| HARNESS-L2-013 | AC-HARNESS-L3-013-04 | L11:208; L2:375 | 過剰解釈、対象違い、scope逸脱、変更影響の見落としを区別する。unit/connection/compositeを別identityで扱い、変更影響先を保つ。 |
+| HARNESS-L2-014 | AC-HARNESS-L3-014-04 | L11:280; L11:262–272 | G12 fixed input/revision/scope/content oracleと既知誤り・同scope held-out例の内容判定を保つ。field/evidence存在やtraceだけでは合格としない。 |
+| HARNESS-L2-015 | AC-HARNESS-L3-015-04 | L11:210,286; L11:262–272,317–325 | Atomic CIはsystem成立、品質、利用者受入、Releaseを示さず、G12/G13内容条件も保つ。 |
+| HARNESS-L2-016 | AC-HARNESS-L3-016-04 | L11:292,296 | 観測behaviorを固定oracleへ比較し、固定oracleにない未見call sequenceは別入力として観測・未評価範囲を保つ。 |
+| HARNESS-L2-017 | AC-HARNESS-L3-017-04 | L11:212 | Provisional成果とL2-022不適合な外部成果をVerified/Acceptedとして受け取らない。 |
+| HARNESS-L2-018 | AC-HARNESS-L3-018-04 | L11:213 | OS monitoring/recovery runtimeはこの単体要求の必須依存でない。設計/要求接続と実runtime運転を分ける。 |
+| HARNESS-L2-020 | AC-HARNESS-L3-020-04 | L11:215 | 単体unit passのみでconnection acceptanceを成立させない。 |
+| HARNESS-L2-022 | AC-HARNESS-L3-022-04 | L11:217,298–304 | CORE契約は④なしで利用でき、OS検収なしでも利用者CI契約で判定できる。完了成果をサービス①〜⑦へ所有させず、意味保持不一致は同stage再検証し、常に左へ戻さない。 |
+| HARNESS-L2-024 | AC-HARNESS-L3-024-04 | L11:248,252–254,258 | 人間専決値を推測補完しない。timeout時にopen item・last event・owner・re-entryを保持し、stale回答を再利用せず、補助測定と要求形成入力を区別する。 |
+| HARNESS-L2-026 | AC-HARNESS-L3-026-05 | L11:336,338 | 各design対象へ適用されるL3 approval authorityと相互要素の同一scope/revision/compatibilityを保持する。UI evidenceだけをUI適用条件に限定し、非UIの適用oracleは残す。 |
+| HARNESS-L2-027 | AC-HARNESS-L3-027-04 | L11:371 | unsupported/custom function observationを削除・書換えせずunknown/unsupportedとして保存し、任意のsaved-design revisionをraw observationへ混ぜない。 |
+| HARNESS-L2-028 | AC-HARNESS-L3-028-04 | L11:445–461; 393–402 | 027–029共通:019 intake/result、010/011、read authorization/data-useを維持する。028比較は003/004 traceと適用要求authorityを個別照合し、silent fallbackなし。未宣言の組合せはunknownのまま残し、unaffected/compatibleへ推定しない。共通部品を⑤専用にせず、CONNECT通信と業務比較を分離する。 |
+| HARNESS-L2-029 | AC-HARNESS-L3-029-04 | L11:445–461 | HARNESS-COREが複数serviceのproposal bundleを所有し、同一packを複数serviceのownerへ割り当てず、各成果authorityは個別serviceに残す。関連APIのみを提案し、必要時migration、custom logic保持と五bundleを維持する。 |
+| HARNESS-L2-032 | AC-HARNESS-L3-032-03 | L11:445–461 | 業務上のexecutor packet意味はCORE、選択時の通信・登録・retryはCONNECT。選択executorが実行と隔離を所有し、pack/contract更新時は旧packet適用を止める。 |
+| HARNESS-L2-033 | AC-HARNESS-L3-033-04 | L11:445–461 | 複数packを跨ぐtest/CI trace構成体はHARNESS-COREに置き、unit/connection成立と回帰成立を分離する。 |
+| HARNESS-L2-034 | AC-HARNESS-L3-034-04 | L11:470–481 | L11のNFR拒否類型①〜⑧を個別に保持: hard limit/budget混同、unknown→0/green、非AIへの不適用項目強制、必須query/projection percentileやlock/rebuild/soak欠落、根因のない断定、fault/race/crash不適用、手法のみで完成扱い、時系列/effect episode欠落。各ownerへ返す。 |
+| HARNESS-L2-036 | AC-HARNESS-L3-036-04 | L11:504–505,524–525 | 5つのfixed FE軸（mock-promotion, design-token-drift, a11y-regression, visual-regression, state-transition-drift）それぞれと、4 cross-detection（dependency/contract/connection/degradation）を独立計数する。screen ID/revision token、scope外image、expired oracle、理由なしN/Aは拒否。 |
+| HARNESS-L2-039 | AC-HARNESS-L3-039-04 | L11:648,658–664 | PoC、Full V、Scrum UI sliceの適用性を区別し、L1–L5 freeze/backfillと7 drift軸①③④⑤⑦の適用範囲を保持する。後段証拠未完はその段階だけ未完とし、候補開始を止めない。 |
+| HARNESS-L2-043 | AC-HARNESS-L3-043-04 | L11:728–750; PO 57candidates:48 | L2-043は条件付き採択B routeでHARNESS-COREに所属する。1.0に含めるかを別の新判断で再決定しない。 |
+| HARNESS-L2-047 | AC-HARNESS-L3-047-04 | L11:785,788 | runtime-neutral contract field一式とgeneration guardを照合し、worker/verifierはidentity/context/authorityを分ける。provider/model一致だけで独立性を否定しない。 |
+| HARNESS-L2-049 | AC-HARNESS-L3-049-04 | L11:802–816 | fixed checkごとの正常/異常結果型、未評価状態を分ける。精度候補はprecision/recallの数値を実測前に固定せず、案比較と根拠を記録する。 |
+| HARNESS-L2-054 | AC-HARNESS-L3-054-04 | L11:871–876 | provider/model属性だけで別identity/context/authorityの独立検証を否定せず、provider/model記録欠落と同一worker/verifierは別反例とする。既存role十分時は追加musterなし。 |

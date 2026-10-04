@@ -31,14 +31,14 @@
 
 ### 受入条件（AC候補）
 
-- **INFRA-001-AC-01 — 正常・追跡**：同一environmentのsource/revisionに結びついたresource群について列挙fieldとtopology/dependencyを参照でき、logical CONNECT edgeとphysical pathを区別する。対象scopeに含むModel Runtime属性はmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointを出典付きで示す。観測されない値はunknownとして示す。
-- **INFRA-001-AC-02 — 異常・境界**：staging/development等のresourceをproduction成立の証拠にする、logical connectorをphysical routeと同一視する、欠けたversion/dependencyを推定で埋める、security authorityをresource stateで代替する場合は不成立。部分更新・読取不能の範囲をcurrentと扱わず、未完観測としてsource/ownerへ戻す。
+- **INFRA-001-AC-01 — 正常・追跡**：同一environmentのsource/revisionに結びついたresource群について列挙fieldとtopology/dependencyを参照でき、logical CONNECT edgeとphysical pathを区別する。credentialは値ではなくowner付き参照とscope/classificationを記録する。対象scopeに含むModel Runtime属性はmodel/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpointを出典付きで示す。観測されない値はunknownとして示す。
+- **INFRA-001-AC-02 — 異常・境界**：staging/development等のresourceをproduction成立の証拠にする、logical connectorをphysical routeと同一視する、欠けたversion/dependencyを推定で埋める、security authorityをresource stateで代替する、credential valueを通常resource state/recordへ保存する場合は不成立。部分更新・読取不能の範囲をcurrentと扱わず、未完観測としてsource/ownerへ戻す。
 
 ### 固定親句の被覆
 
 | 固定L2/L11の句・条件 | 要件／AC | 対応L10 case | 観測する状態・動作 |
 |---|---|---|---|
-| resource入力・topology出力：identity/role/environment/location/version/dependency/lifecycleをenvironment/source/revision別に参照 | `INFRA-001-FR-01 / INFRA-001-AC-01` | `L10-INFRA-001-C01,C04,C06` | 各tupleをsource/revisionに結び、欠落・未観測値をunknownにする |
+| resource入力・topology出力：identity/role/environment/location/version/dependency/lifecycleをenvironment/source/revision別に参照 | `INFRA-001-FR-01 / INFRA-001-AC-01` | `L10-INFRA-001-C01,C04,C06` | 各tupleをsource/revisionに結び、欠落・未観測値をunknownにする。credentialは値を保存せずowner付き参照にする |
 | 環境境界：environment独立identity、resource/config/network/credential/data/version/authorityを混同せず別環境の成功をproduction証拠にしない | `INFRA-001-FR-01 / INFRA-001-AC-02` | `L10-INFRA-001-C01,C02` | cross-environment誤帰属0 |
 | 通信境界：CONNECT logical connectionとphysical/runtime pathを区別し、source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを結ぶ | `INFRA-001-FR-01 / INFRA-001-AC-01,AC-02` | `L10-INFRA-001-C03` | 両recordを分離し、route tuple欠落時はunknown、logical edgeだけでphysical到達を成功にしない |
 | state/storage：persistent/temporary、owner/durability/backup/retention/environment/confidentiality/recovery属性を保持 | `INFRA-001-FR-01 / INFRA-001-AC-01` | `L10-INFRA-001-C05` | 区分と全属性を確認し、未観測属性をunknownにする |

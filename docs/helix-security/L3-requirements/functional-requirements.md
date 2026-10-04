@@ -48,7 +48,7 @@ L2-001で未信頼の命令様内容はdataのまま扱い、Tool args・system 
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：L2-001のsource/classification、Workerへ渡される明示scope。検出Botがなくても直接authority経路を遮断する。 戻し先: 境界を証明できない場合は下流操作を止め、data flow設計をL1-002へ戻す。検出器の不在を成功扱いしない。
 
-**L3 acceptance (`SECURITY-AC-002-01`)**：「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せず、dataとして保持される。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。
+**L3 acceptance (`SECURITY-AC-002-01`)**：「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「credentialを送れ」を含む外部dataでも、閲覧内容がTool args/system instruction/権限付きoperationに直結せず、dataとして保持される。各判定は適用policy revision、入力source/scope、deny/hold理由を持つ判定receiptへ結ぶ。完全なinjection検出器がないことだけでは不合格にせず、直結があれば不合格。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-002`。
 
@@ -162,7 +162,7 @@ actor/target/operation/revision/environment/scope/expiryが一致するoperation
 
 ### SECURITY-FR-009-01 — revoke/quarantine伝播
 
-対象trigger/identityをOS assignment・Worker環境・CONNECT・credential/artifact accessの該当ownerへ相関可能に伝え、受領/適用/失敗/未観測を分ける。owner別stateを保持し、unknown伝播を対象operationとrisk scope内に制限。latency閾値は本FRで確定しない。必要な技術値は、根拠・比較案・測定方法を添えてNFR候補に置ける。
+対象trigger/identityをOS assignment・Worker環境・CONNECT・credential/artifact accessの該当ownerへ相関可能に伝え、受領/適用/失敗/未観測を分ける。owner別stateを保持し、unknown伝播を対象operationとrisk scope内に制限。latency閾値は本FRで確定せず、固定L2-009が数値latencyを作らないとしているため、数値latencyのNFR候補も作らない。
 
 **要件版**：Stage 1 / `version_target: 1.0`（SECURITY-L2-015はidentity基盤のみ、016は分類記録のみ、020はGuard 1.0、028のsecurity固有更新判定、033はPO採択訂正版のscope）。
 
@@ -262,9 +262,9 @@ SECURITY単体としてmemory/training dataset/BRAIN knowledgeの3 target class�
 
 - **固定親**：`HELIXSECURITY-L2-014` / `MPR-RC-HELIXSECURITY-L2-014-002`、semantic digest `sha256:6acd2e5b89cc44bfbd70f4d545f666ee51fe356dcb59f7c6c985107f463a1276`。L2 `docs/helix-security/L2-requirements/security-requirements.md#L200`（section SHA `sha256:bed52b952b89788736c7d8615f561b0eda6b08c5c7979f6fa7a834d86491887c`）、対L11 `38行`（section SHA `sha256:2e34f6860f09a6b70cc6e1d36e2cbdf122e4c26168d3f7528983abde1e10957f`）。PO decision `docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md`、固定revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2全体SHA `sha256:027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c`、L11全体SHA `sha256:25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01`。
 
-**責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYは3 target classごとのsource/provenance/classification判定と理由付きdecisionだけを所有する。入力metadataは各source owner、memory/training/BRAINへのhandoff・保存は各target owner、業務上の保存可否意味はL1-014のownerが正本を持ち、LABO評価とBRAIN登録を本unitに含めない。戻し先: provenance/classification欠落はhold/denyしてsource ownerへ補足を返す。判定対象・意味の変更はL1-014へ戻し、機構横断handoffはL2-027のownerへ返す。依存はSECURITY L2-014とL2-015/016のidentity/classification入力のみ。
+**責務・依存とfailure時の戻し先（固定L2の保持）**：SECURITYは3 target classごとのsource/provenance/classification判定と理由付きdecisionだけを所有する。入力metadataは各source owner、memory/training/BRAINへのhandoff・保存は各target owner、業務上の保存可否意味はL1-014のownerが正本を持ち、LABO評価とBRAIN登録を本unitに含めない。依存は固定L2-014に明記されたL2-001/002のsource trustとL2-015/016の1.0 identity/classification入力であり、1.x sink enforcementは含めない。provenance/classification欠落はhold/denyしてsource ownerへ補足を返す。判定対象・意味の変更はL1-014へ戻し、機構横断handoffはL2-027のownerへ返す。
 
-**L3 acceptance (`SECURITY-AC-014-01`)**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationにつながる入力も該当target classの判定理由として識別し、単体判定から保存・機構横断受渡しを主張しない。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
+**L3 acceptance (`SECURITY-AC-014-01`)**：SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、L2-001/002に基づくsource trustと、L2-015/016のidentity/classificationを照合する。source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationにつながる入力も該当target classの判定理由として識別し、単体判定から保存・機構横断受渡しを主張しない。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-014`。
 
@@ -356,7 +356,7 @@ HARNESS descriptorへSECURITY artifact identity/version/digest/dependency range/
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：OSはassignment/progression、Worker環境ownerは実行隔離/enforcement、SECURITYはauthorityとcredential/egress条件、HARNESSは共通task contract/証拠交換を所有する。CONNECTは伝送結果を所有するが送信authorityを生成しない。依存は既存assignment、L2-005/006/007/008、HARNESS共通契約に限る。bindingが欠落/unknown/stale/不一致ならdispatchを停止し、対象revisionと不足をOS assignment ownerへ返す。policy意味の変更は該当SECURITY L2 ownerへ戻す。
 
-**L3 acceptance (`SECURITY-AC-033-01`)**：主Workerの通常taskに、追加runtimeだけを対象とするL2-029のopt-out/public-only条件やL2-031のproposal-only/canonical no-access条件を本要件だけで課さない。選択した追加runtimeではL2-029/031と既存L2-005/006/007/008の条件を同時に適用する。各taskでは対象assignmentのWorker descriptor、dispatch時HEAD、既存authority、規則revision、task boundaryが一致し、適用されるL2-007制約を確認する。変更/未見入力は該当scope・revisionで再照合し、別HEADの成果を受け入れない。raw secret値またはsecret/機密task内容を渡す場合は拒否する。一方、PO採択P0訂正に従い、既存operation authorityと非公開・範囲付きcredential-use capabilityを使い、適用されるL2-007と該当egress条件を満たすtaskは、credential-useだけを理由に一律denyせず追加の毎回承認なしで起動可能とする。Worker出力単独からauthority、承認、assignment、要求状態、verified、canonical stateを生成しない。別の無関係taskを一律停止しない。
+**L3 acceptance (`SECURITY-AC-033-01`)**：主Workerの通常taskに、追加runtimeだけを対象とするL2-029のopt-out/public-only条件やL2-031のproposal-only/canonical no-access条件を本要件だけで課さない。選択した追加runtimeではL2-029/031と既存L2-005/006/007/008の条件を同時に適用する。各taskでは対象assignmentのWorker descriptor、dispatch時HEAD、既存authority、規則revision、task boundaryが一致し、適用されるL2-007制約を確認する。Worker version/config変更、target変更、規則revision変更、authority revision変更、assignment scope変更をそれぞれ独立に与え、各変化で以前のbindingを流用せず該当scope・revisionを再照合する。互換性が確認できない場合はunknown/denyとして対象dispatchを止め、既存OS assignment ownerへ返す。新しい固定schemaや別の承認者を補作しない。raw secret値またはsecret/機密task内容を渡す場合は拒否する。一方、PO採択P0訂正に従い、既存operation authorityと非公開・範囲付きcredential-use capabilityを使い、適用されるL2-007と該当egress条件を満たすtaskは、credential-useだけを理由に一律denyせず追加の毎回承認なしで起動可能とする。SECURITYがassignmentを決める、OSがauthorityを決める等のowner代行、または有効な既決authorityへ都度の人間承認を追加する変異は不合格とする。Worker出力単独からauthority、承認、assignment、要求状態、verified、canonical stateを生成しない。別の無関係taskを一律停止しない。
 
 **対応L11 acceptance**：`HELIXSECURITY-L2-033`。
 
@@ -404,13 +404,13 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 実行前にはpolicy/authority、assignment、runtime/config、payload manifest/digest、scope、execution constraintsを照合し、result/diff/完了receiptを開始前提にしない。実行後はWorker/INFRASTRUCTUREの観測とOSの既存assignment記録によりresult/diff receiptが作られ、HARNESSが選択済みoracleでproposalを再検証する。receiptは後続証拠であり、SECURITY判断、OS昇格、HARNESS受入を単独で生成しない。
 
-- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えて既存HELIXSECURITY-L2-009の停止伝播へ渡し、OSの既存assignment/未完義務記録へ返す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
+- **`SECURITY-AC-031-04` 順序・適用観測・担当**：結果receiptのない実行前入力でpolicy条件を照合できる。Worker環境/INFRASTRUCTUREがpolicyで指定された隔離・data/credential/egress条件の実適用観測を返し、SECURITYが同一対象revision/scopeとowner別責務へ突合する。deny/unknown後にhostへfallbackして実行した場合、またはpayload・credential条件・data classificationが変化したのに旧照合を流用した場合は不合格とする。SECURITYがcommitを決定する、OSがenforcerまたは実資源を代替する越境も拒否する。観測欠落・非適用・別revision/scope/assignment/runtime/target・誤owner・drift・scope外diff・egress逸脱・既存quota制限による失敗は対象runを成功扱いせず停止/隔離し、未完義務を添えて既存HELIXSECURITY-L2-009の停止伝播へ渡し、OSの既存assignment/未完義務記録へ返す。quota上限や新しいretry/routing規則は本要件で追加しない。SECURITY自身はenforcementや実行receiptを生成しない。OSはprogression/未完義務、Worker環境/INFRASTRUCTUREは実行・観測、HARNESSは既存oracle再検証を担当する。SECURITYはassignment、commit判断、実行、資源配置を所有しない。receiptだけでproposalをaccepted/canonical化したら不合格。
 
 ## Stage 3 — 選択operationのruntime・profile安全境界
 
 本節は採択済み1.0の029、030、032、034、035を親とする未承認草稿である。固定親の本文中の候補状態表示は、その後の対象revision付きPO判断と組で読む。035はPOが**scope A（追加runtimeだけ）・配置A（SECURITY policy、Worker強制、OS運転）**を選択済みであり、未決として再質問しない。032のdeny優先は主Workerと追加runtime双方に適用する。草稿は実runtime使用、bypass、MCP起動の許可を生成しない。
 
-各親が定める依存・適用範囲を個別に保つ。HARNESS-L2-023のdependency分類をSECURITY-029/031/035へ共通規則として適用せず、031で同親が参照形式として指定する場合に限り、その4区分をその親の分類どおり使う。旧runtime/tool/testは参照資料のみで、現行policy・authority・oracleを参照のみへ落とさない。
+各親が定める依存・適用範囲を個別に保つ。SECURITY-035は固定L2-035自身が定める4区分（常時、選択操作時、選択runtime入力時、参照資料のみ）を保持し、HARNESS-L2-023の分類例を別親へ移植しない。SECURITY-031も固定L2-031自身の4区分を使う。旧runtime/tool/testは参照資料のみで、現行policy・authority・oracleを参照のみへ落とさない。
 
 ### `SECURITY-FR-029-01` — 追加runtimeの委譲分類と型別ローカル証拠
 
@@ -418,9 +418,9 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 ローカル保証は同じtupleのsandbox適用、該当network operationのallowlistとegress実測、該当write operationのFS差分を型別に返す。全operationへ四型すべてを課さず、read-onlyは既存007のwrite禁止と対象scope不変oracleを使う。適用性unknownを非該当へ落とさない。provider UI・宣言・flagはopt-out申告の出所として残せるがローカル強制の代用にならず、ローカル成功はprovider訓練停止の証明でもない。SECURITYはpolicy、INFRASTRUCTURE/Workerは適用観測、OSはassignmentと未完義務を所有する。対象外の主Worker・未選択sourceを止めず、別tuple証拠への暗黙fallbackをしない。
 
-- **`SECURITY-AC-029-01` 分類・委譲・採用の分離**：publicと機密/secret/PII・unknown、およびopt-out完了/未完/不明を個別比較し、機密以上を遮断する。未完opt-out下の適格public委譲は採用完了へ昇格せず、有効な既存scoped credential-useだけを理由に拒否しない。
-- **`SECURITY-AC-029-02` 型別適用観測**：選択operationごとにsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、許可隔離環境の実適用状態を常時結び、各要素の欠落/stale/scope不一致を該当runの未完として扱う。加えてoperationに適用されるsandbox/allowlist/egress/FS差分を型別に独立照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分け、全operationへ未規定の制約を広げない。個別fixtureは`SECURITY-CASE-029-04`を参照する。
-- **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scopeの変更で旧証拠を流用せず、常時必須tupleまたは適用条件の不足をpolicy/実環境/data/runtimeの宣言ownerへ返す。provider申告とローカル適用観測を独立に保持する。追加runtimeが主Workerであると名乗るだけで029条件を逃れる変異と、主Worker通常taskへ029のopt-out/public-only・機密以上遮断を拡張する変異をいずれも拒否する。1.x Web強制を生成しない。CASE-029-04でtupleの個別欠落とこの戻し先を照合する。
+- **`SECURITY-AC-029-01` 分類・委譲・採用の分離**：publicと機密/secret/PII・unknown、およびopt-out完了/未完/不明を個別比較し、機密以上を遮断する。未完opt-out下の適格public委譲は採用完了へ昇格せず、有効な既存scoped credential-useだけを理由に拒否しない。これは追加runtimeだけに適用し、主Workerの許可済み非公開repository作業を029の追加制約だけで止めない。
+- **`SECURITY-AC-029-02` 型別適用観測**：選択operationごとにsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、許可隔離環境の実適用状態を常時結び、各要素の欠落/stale/scope不一致を該当runの未完として扱う。payloadまたはclassificationが変わった場合も旧判断・証拠を流用しない。加えてoperationに適用されるsandbox/allowlist/egress/FS差分を型別に独立照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分け、全operationへ未規定の制約を広げない。個別fixtureは`SECURITY-CASE-029-04`を参照する。
+- **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scope/payload/classificationの変更で旧証拠を流用せず、常時必須tupleまたは適用条件の不足をpolicy/実環境/data/runtimeの宣言ownerへ返す。provider申告とローカル適用観測を独立に保持する。追加runtimeが主Workerであると名乗るだけで029条件を逃れる変異と、主Worker通常taskへ029のopt-out/public-only・機密以上遮断を拡張する変異をいずれも拒否する。1.x Web強制を生成しない。CASE-029-04でtupleの個別欠落とこの戻し先を照合する。
 
 ### `SECURITY-FR-030-01` — agentic自動適用範囲の変更確認
 
@@ -435,7 +435,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 主Worker/追加runtimeを問わず、repository-level bypassを試みる操作へ、対象repository/operationと既存policy revision・適用状態、one-shot marker/provider flagを束縛する。有効なpermanent denyに下位機構から許可・解除を与えず、unknown/staleは既存fail-closeへ返す。deny非適用を確認した操作は既存008 authorityへ戻し、本要件から新しいallow/denyを発行しない。policyの変更主体・解除手続き・承認者は増設しない。
 
 - **`SECURITY-AC-032-01` 同一対象の優先**：主/追加Workerそれぞれに有効denyとone-shot/provider flagを個別入力し、下位機構後もdenyが維持される。
-- **`SECURITY-AC-032-02` 適用状態の分離**：unknown/staleと確認済み非適用を区別し、前者は未解決、後者は既存authorityへ戻す。無関係操作への一律denyや032から035のprimary適用を生成しない。
+- **`SECURITY-AC-032-02` 適用状態の分離**：主Workerと追加runtimeの対象操作について、unknown/staleと確認済み非適用を区別し、前者は既存fail-close状態で保持し、後者は既存authorityへ戻す。provider/runtime区分で適用漏れを作らず、無関係操作への一律deny、policy変更主体・失効主体・追加承認者の新設、旧runtime/enforcerの復帰、032から035のprimary適用を生成しない。
 
 ### `SECURITY-FR-034-01` — MCP profile別operation条件
 
@@ -443,7 +443,7 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 - **`SECURITY-AC-034-01` profile束縛とprobe**：同一profile/revisionのcapabilityとoperationを照合し、欠落/unknown/stale/不一致およびwrite可能probeをそのprofile operationでdeny/holdする。
 - **`SECURITY-AC-034-02` secret・egress・authority**：raw secret、未許可destination、authority tuple不成立を個別に拒否し、既存条件を満たすscoped credential-use正例を通す。
-- **`SECURITY-AC-034-03` ownerと未closure**：CONNECTのidentity/互換、SECURITYのpolicy、Worker/INFRASTRUCTUREの適用観測を分ける。未確定catalog/typed/probe意味は未closureとし、無関係profileや正常反復へ一律停止・毎回承認を追加しない。
+- **`SECURITY-AC-034-03` ownerと未closure**：CONNECTのidentity/互換、SECURITYのpolicy、Worker/INFRASTRUCTUREの適用観測を分ける。CONNECTがcredential/egress/tool safety policyを発行する、SECURITYがprofile registryまたは業務上の意味を所有する、Workerが制約を自己拡張する各変異は不合格とし、既存ownerへ戻す。未確定catalog/typed/probe意味は未closureとし、無関係profileや正常反復へ一律停止・毎回承認を追加しない。
 
 031の4区分は固定L2-031の分類をそのまま使う。常時必須は029、005、007、008、OS-018、INFRASTRUCTURE-010の該当契約。006は外部runtimeへの接続/data送信時、009は停止/逸脱時、022/023・該当HARNESS検証・OS promotion/handoffはproposalを検証・採択・昇格へ進めるstageで必須。選択sourceだけsource dependencyを閉じ、未選択sourceは未観測とする。旧runtime/tool/testとHARNESS-L2-023自体は参照資料のみだが、現行policy・authority・oracleを参照のみへ落とさない。missing/unknown/staleは該当operation/stageだけを未完とする。
 
@@ -453,9 +453,9 @@ L2-029のclassification、opt-out、secret/機密task遮断と、L2-005/007/008�
 
 選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置をcleanup成功にせず次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。
 
-- **`SECURITY-AC-035-01` 能力に応じた選択**：選択runtimeのallowlist能力とrepository policy適用状態は選択入力に応じて確認する。run開始/終端/cleanupはbypass系設定を選択した場合に限って照合し、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
+- **`SECURITY-AC-035-01` 能力に応じた選択**：固定L2-035自身の4区分を保持する。対象revision・既存operation authority・既存repository policy/deny状態は常時確認し、選択runtimeのallowlist能力とpolicy適用状態は選択入力に応じて確認する。run開始/終端/cleanupとdeny switch設定能力はbypass系設定を選択した場合に限って追加照合し、HR/HAC/HATはconsumer資料として保持する。非対応の確認と有効policyを持つ経過措置はrun限定として区別し、対応/能力unknownをYOLO許可へ丸めない。
 - **`SECURITY-AC-035-02` 全終端cleanup**：success/failure/cancel各終端でrun設定が除去され次runへ継承されない。残置/観測欠落は未完としWorker/OSへ返す。
-- **`SECURITY-AC-035-03` deny能力・優先・scope**：対象revisionの既存operation authorityと既存repository policy/deny状態は、bypass選択の有無にかかわらず常時入力し、該当operationへ適用される既存条件を照合する。選択runtimeについては選択入力に応じてallowlist能力とrepository policyの適用状態を追加確認する。repository deny switchの設定能力とcleanup後の維持はbypass選択runで追加照合し、032の同一対象deny優先を保つ。既存policy/deny状態をbypass選択時だけ確認する変異は不合格。bypassを選ばない通常operationは既存authorityと既存policyの判定だけに従い、allowlist能力unknownだけからdenyを作らない。既存policyの適用状態がunknownの場合も、その既存契約で定まる対象operationの結果だけを未確定として記録し、035だけの一律停止・新gateへ広げない。主Workerへの035四条件拡張や新gateは作らず、既存006/007/008/OS018条件を免除しない。
+- **`SECURITY-AC-035-03` deny能力・優先・scope**：対象revisionの既存operation authorityと既存repository policy/deny状態は、bypass選択の有無にかかわらず常時入力し、該当operationへ適用される既存条件を照合する。選択runtimeについては選択入力に応じてallowlist能力とrepository policyの適用状態を追加確認する。repository deny switchの設定能力とcleanup後の維持はbypass選択runで追加照合し、032の同一対象deny優先を保つ。別repository/runtimeの判定を流用せず、同一repository・runtime・revisionの根拠へ結び直す。既存policy/deny状態をbypass選択時だけ確認する変異は不合格。bypassを選ばない通常operationは既存authorityと既存policyの判定だけに従い、allowlist能力unknownだけからdenyを作らない。既存policyの適用状態がunknownの場合も、その既存契約で定まる対象operationの結果だけを未確定として記録し、035だけの一律停止・新gateへ広げない。主Workerへの035四条件拡張や新gateは作らず、既存006/007/008/OS018条件を免除しない。
 
 ### Stage 3固定親の出所とrevision
 
@@ -518,17 +518,17 @@ L11全文SHAは`e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0
 
 ### HELIXSECURITY-L2-021 — 外部情報の分類接続
 
-`SECURITY-FR-021-01` / version_target `1.0`。CONNECTのsource契約revisionと入力・出力identityを受け、SECURITYの分類・取扱条件・理由を同じ情報単位へ束縛してLABO/INTELLIGENCEへ渡す。伝送成功、外部sourceの主張、分類済みという状態からinstruction信頼・authority・永続化を生成しない。014/027の保存経路は別契約である。
+`SECURITY-FR-021-01` / version_target `1.0`。CONNECTのsource契約revisionとcontract version、入力・出力identityを受け、SECURITYの分類・取扱条件・理由を同じ情報単位へ束縛してLABO/INTELLIGENCEへ渡す。伝送成功、外部sourceの主張、分類済みという状態からinstruction信頼・authority・永続化を生成しない。014/027の保存経路は別契約である。
 
-- `SECURITY-AC-021-01` — sourceと分類の結合: source identity/revision、入力出力identity、分類判断と根拠を受領traceで結合し、別source/revisionの判断を流用しない。
+- `SECURITY-AC-021-01` — sourceと分類の結合: source identity/revision、CONNECT contract version、入力出力identity、分類判断と根拠を受領traceで結合し、contract versionの欠落または不一致、別source/revisionの判断流用をそれぞれ拒否する。
 - `SECURITY-AC-021-02` — deny・unknown伝播: deny/unknownをpublic/allowへ変換せず、受領側まで対象範囲と理由を維持する。CONNECTは再送・搬送、SECURITYは判断をそれぞれ所有する。
-- `SECURITY-AC-021-03` — 受領と利用の分離: 受領traceは信頼instruction・利用許可・保存成功の証拠にならず、LABO/INTELLIGENCEの利用判断と保存ownerの結果を別に保持する。CONNECTはsecurity policyや利用許可を作らず、SECURITYは通信再送・保存を所有しない。
+- `SECURITY-AC-021-03` — 受領と利用の分離: 受領traceは信頼instruction・利用許可・保存成功の証拠にならず、LABO/INTELLIGENCEの利用判断と保存ownerの結果を別に保持する。CONNECTはsecurity policyや利用許可を作らず、SECURITYは通信・再送・搬送・保存を所有しない。
 
 ### HELIXSECURITY-L2-022 — 判断・割当・強制の接続
 
 `SECURITY-FR-022-01` / version_target `1.0`。INTELLIGENCEの依頼をSECURITYのoperation判断へ渡し、OSが有効な判断に基づき割り当て、Workerが同じ条件を強制する。依頼、判定、assignment、適用結果を別ownerの出力として残す。
 
-- `SECURITY-AC-022-01` — 依頼から判断: actor/target/operation/revision/environment/scope/expiryを照合し、allow/deny/制約と理由を返す。INTELLIGENCE依頼だけからauthorityを作らない。
+- `SECURITY-AC-022-01` — 依頼から判断: actor/target/operation/revision/environment/scope/expiryを照合し、allow/deny/制約と理由を返す。INTELLIGENCE依頼だけからauthorityを作らず、SECURITY判断なしで依頼から実行へ進めない。
 - `SECURITY-AC-022-02` — 判断から割当: OS assignmentは同じ対象tupleと有効なSECURITY判断を参照し、SECURITYがWorkerを配置したりOSがdenyをoverrideしたりしない。
 - `SECURITY-AC-022-03` — 割当から適用: Workerの実適用観測を判断条件と照合し、宣言だけをenforcement完了にしない。開始後revokeも009の該当scopeへ返す。SECURITYはOS assignment、Worker配置、CONNECT通信・再送を所有せず、各ownerへ戻す。
 

@@ -173,7 +173,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - Dependency: BRAIN L1-006、L2-001/002/003、Visual Design HARNESS接続L2-023。PO回答: 1.0から扱う、Visual Design HARNESS連携。 L10はL3 ACを実装・追加せず観測する。
 - **`L10-BRAIN-006-C01` — 正常（`BRAIN-006-AC-01`）**: fixture: IA/Visual Hierarchy/Layout/Grid/Spacing/Typography/Navigation/Component Composition/Form/Feedback/Empty-Loading-Error/Responsive/Dashboard/Content Hierarchy/Accessibilityのknowledge fixtureに、製品固有「黒背景・青accent」、screen/flow/tokenを別source fieldとして添える。 **期待oracle**: 列挙されたknowledge elementがstructureとして返り、製品固有identity/contextが別fieldで維持される。
-- **`L10-BRAIN-006-C02` — 否定・境界（`BRAIN-006-AC-02`）**: fixture: 製品固有Visual Identity/screen/flow/tokenをshared fieldへcopy、source productを削除、またはSystem Design自体の意味と称するmutationを個別に投入。 **期待oracle**: 分離不能は共有候補にせずVisual Design HARNESSまたはProduct Coreへ戻す。
+- **`L10-BRAIN-006-C02` — 否定・境界（`BRAIN-006-AC-02`）**: fixture: 15知識例のうち一つを欠落させる、候補知識を装飾例だけに縮める、Visual DesignをSystem Design全体と称する、製品固有Visual Identity/screen/flow/tokenをshared fieldへcopy、source productを削除する各mutationを独立に投入。 **期待oracle**: 15例を扱える候補構造を保ち、装飾限定・System Design一般化・製品固有意味の共有化を拒否し、分離不能はVisual Design HARNESSまたはProduct Coreへ戻す。
 - **`L10-BRAIN-006-C03` — 未見境界（`BRAIN-006-AC-01,AC-02`）**: fixture: 未見の製品横断UX patternを伏せ、同時に製品固有identityを含むsourceを渡してfield分離できるか確認。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: 列挙例の要素種別、shared/product field分類、source。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
 - **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03では根拠が足りる未見入力を同じcontractで評価し、根拠が不足する箇所のみunknown/未評価として扱い、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
@@ -190,7 +190,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - Dependency: BRAIN L1-009、L2-005/007/025。PO束ね条件: §BRAIN-L1-009。 L10はL3 ACを実装・追加せず観測する。
 - **`L10-BRAIN-009-C01` — 正常（`BRAIN-009-AC-01`）**: fixture: Pattern AのUnit A1とPattern BのUnit B1に新relation candidateとsource/evaluation scopeを加える構成fixtureを投入。 **期待oracle**: 新relationを含むcomposite Pattern candidateとcomponent/source/evaluation scopeを返し、promotion前はcandidateのまま。
-- **`L10-BRAIN-009-C02` — 否定・境界（`BRAIN-009-AC-02`）**: fixture: unit/relation sourceを個別欠落、evaluation scope unknown、構成だけでestablished/adoptedへ遷移する変異を個別/組合せで投入。 **期待oracle**: component/relation evidenceが不足する場合はcandidateとしても適用せずBRAIN L1-009へ戻す。構成meaning不明も固定親のBRAIN L1-009へ戻す。
+- **`L10-BRAIN-009-C02` — 否定・境界（`BRAIN-009-AC-02`）**: fixture: unit/relation sourceまたはmeaningの欠落、evaluation scope unknown、構成だけでestablished/adoptedへ遷移する変異を独立に投入し、relation evidence/適用条件が未確定でも候補を作る正常fixtureと比較。 **期待oracle**: 未確定項目はunknownとしてcandidate内に残し、適用可能・確立済みにはしない。候補作成自体は止めず、meaning変更が必要な場合だけBRAIN L1-009へ戻す。昇格はLABO評価・OS登録/routing・BRAIN独立検証後の既存経路に限る。
 - **`L10-BRAIN-009-C03` — 未見境界（`BRAIN-009-AC-01,AC-02`）**: fixture: 伏せたUnit/relation組合せを与え、candidate traceを確認する。relation意味が定まらない組合せはunknownのままにする。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: component trace・relation根拠・candidate state。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
 - **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03では根拠が足りる未見入力を同じcontractで評価し、根拠が不足する箇所のみunknown/未評価として扱い、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
@@ -207,7 +207,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - Dependency: BRAIN L1-010、L2-003/005/007。PO束ね条件: §BRAIN-L1-010、DST-HARNESS-005 negative oracle。 L10はL3 ACを実装・追加せず観測する。
 - **`L10-BRAIN-010-C01` — 正常（`BRAIN-010-AC-01`）**: fixture: Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region/Zone Failure、Deployment/Backup/Restore Failure、configuration driftの条件付きfailure entriesをそれぞれ正常source付きで投入し、反例条件も一つずつ含める。 **期待oracle**: 各条件付きfailureとcounterexampleがsource/scopeへtraceされ、別条件へ自動適用されない。
-- **`L10-BRAIN-010-C02` — 否定・境界（`BRAIN-010-AC-02`）**: fixture: 各failure entryのcondition/provenanceを個別に削り、alternativeがない有効な条件付きAnti-Pattern、alternativeがある例、conditionだけ削ってuniversal banを要求するmutationを投入。 **期待oracle**: condition/provenance不足のfindingは未確定/LABOへ戻す。代替がないことだけでは有効な条件付き否定を止めず、alternativeがある場合は出力候補として保持する。conditionのないfindingをuniversal prohibitionにしない。
+- **`L10-BRAIN-010-C02` — 否定・境界（`BRAIN-010-AC-02`）**: fixture: L2/L11のfailure examplesを別々のcondition/scope/source付きで与え、condition、impact、counterexample、provenanceの各欠落、条件を消してuniversal banへ拡張する変異を独立に投入する。別正常fixtureではalternative未提示の有効な条件付きAnti-Patternと、alternativeが存在する例を与える。 **期待oracle**: 条件・scope・source・影響・反例が揃うfailure knowledgeはalternativeがなくても候補化できる。alternativeは存在時に限り関連付け、condition欠落を普遍禁止へ変えず、scope不明findingはLABOへ返す。
 - **`L10-BRAIN-010-C03` — 未見境界（`BRAIN-010-AC-01,AC-02`）**: fixture: held-out failure conditionと反例を伏せ、known failure categoryに適用scopeを外挿せず扱えるか確認。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: failure typeと条件、alternative/provenance、scope。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
 - **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03では根拠が足りる未見入力を同じcontractで評価し、根拠が不足する箇所のみunknown/未評価として扱い、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
@@ -224,7 +224,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - Dependency: BRAIN L1-011、L2-007/018/020/025。PO束ね条件: §BRAIN-L1-011。 L10はL3 ACを実装・追加せず観測する。
 - **`L10-BRAIN-011-C01` — 正常（`BRAIN-011-AC-01`）**: fixture: Product Core source「RetryYN管理画面では左側にこのmenu」を入力し、根拠付きで「高密度管理画面のpersistent navigation pattern」とsource/product contextを併記する一般化candidateを与える。 **期待oracle**: 共有可能構造候補と製品固有detail/sourceを分離し、一般化候補のsource linkが保たれる。
-- **`L10-BRAIN-011-C02` — 否定・境界（`BRAIN-011-AC-02`）**: fixture: 製品source/product identityを消したgeneralization、または個別product文を無変更でuniversal patternとして昇格するmutationを投入。 **期待oracle**: 分離不能は採用せず提供元CORE/LABOへ戻す。
+- **`L10-BRAIN-011-C02` — 否定・境界（`BRAIN-011-AC-02`）**: fixture: 製品source/product identityを消したgeneralization、またはproduct requirement/screen/business rule/user judgmentをそのままuniversal patternへ移すmutationを個別に投入。 **期待oracle**: 製品固有meaningの汎用化を拒否し、共有範囲の判断は既存ownerへ送り、分離不能は提供元CORE/LABOへ戻す。
 - **`L10-BRAIN-011-C03` — 未見境界（`BRAIN-011-AC-01,AC-02`）**: fixture: 別の未見product contextを伏せて渡し、sourceを保持したまま shared fieldとproduct fieldを分離可能か確認。 **期待oracle**: 未見fixtureでも提示source/conditionの範囲を越えて推定せず、根拠なしはunknownまたは未評価に保つ。
 - **観測点**: field別shared/product-specific区分、source provenance。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
 - **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03では根拠が足りる未見入力を同じcontractで評価し、根拠が不足する箇所のみunknown/未評価として扱い、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
@@ -262,6 +262,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **`L10-BRAIN-029-C03` — 未見境界（`BRAIN-029-AC-03`）**: fixture: 試験側に伏せた別DomainのPattern/Unit組合せまたはrequired input欠落を投入する。 **期待oracle**: conditionベースでapplicabilityと`conflicts_with`を照合し、Domain/oracle scope不明は未評価のまま保持する。全Domain網羅や製品採用を主張しない。
 - **`L10-BRAIN-029-C04` — 選択入力元の依存条件（`BRAIN-029-AC-01,AC-02,AC-03`）**: fixture: Product Core由来candidateを選択した場合と選択しない場合、LABO評価済みcandidateを選択した場合と選択しない場合を対比し、選択時のsource identity/revision/scope/required fieldsを一つずつ欠落・stale化する。 **期待oracle**: 選択時だけ対応するL2-018またはL2-020 contractを照合し、欠落した選択sourceだけをholdする。非選択sourceは未観測であり全source一律の完成を要求しない。
 - **L10-BRAIN-029-C05 — 参照資料のみ**（`BRAIN-029-AC-01,AC-02`）：背景説明・旧例だけを追加し、それをrelation根拠・required input・source/receipt・required field・authorityの代替にする変異を与える。参照資料だけでは候補を確定せず、必須source欠落はunknown/holdとする。
+- **`L10-BRAIN-029-C06` — relation endpointとconflict**（`BRAIN-029-AC-02,AC-03`）：conflicts_with、alternative_to、compatible_withを持つ各relationで、source/target endpoint identityの片側欠落、別revision endpoint、互換性未確定、明示conflictを個別に投入する。**期待oracle**：endpoint不明・revision不一致・conflictはunknown/conflictとして保持し、compatibleへ暗黙変換しない。対象relationと戻し先を示し、他の正常relationを無関係に失敗扱いしない。
+
 - **観測点**: candidate composition/source trace・condition・conflict/unknown・owner。比較するsource/revision、状態、応答、ownerを同一fixtureで保持する。
 - **判定**: C01が親の正常要求とowner境界を満たし、C02が否定/欠落条件を拒否またはunknownとして扱い、C03の未見fixtureでunknown/未評価境界を保ち、C04で選択入力元に応じた依存条件と候補ごとのholdを照合し、要求意味・責務・承認gateを増やさず、候補値は根拠・比較・測定方法を持つこと。実装実行・合格主張はこの草稿に含まない。
 
@@ -472,7 +474,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - Version candidate `1.0`, sequence `Stage 2b`; release/implementation authorizationではない。
 - Dependency: 親L1-005; 常時 BRAIN L2-005/INFRA-001/002。typed endpoint relation graph。 L10はL3 AC候補のsystem boundary behaviorを観測し、FRの意味を増やさない。
 - **`L10-BRAIN-INFRA-014-C01` — 正常** (`BRAIN-INFRA-014-AC-01`): fixture: Web→LB→App→DB→BackupおよびApp→Queue→Workerのnodesと9 typed relation examplesをsource付きで構成。 **期待oracle**: 親L2/L11が定める正常意味に沿って返却し、各field/関係（endpoint/type/meaning/sourceとunknown state）をcandidate stateに保持する。入力source/revision/scopeとownerを追跡でき、実resource operationは行わない。
-- **`L10-BRAIN-INFRA-014-C02` — 否定/境界** (`BRAIN-INFRA-014-AC-02`): fixture: depends_on、communicates_with、replicated_by、backed_up_by、monitored_by、failover_to、secured_by、deployed_on、scales_withの9 relationについてendpoint/type/meaning/sourceを各々欠落、name-only edge、runtime topology claimを個別/組合せ。 mutationを各々別fixtureと組合せfixtureに投入。 **期待oracle**: 実topology stateはRuntimeへ、edge type/direction/structural relation meaningはL1-005へ戻す。 missing/invalid/unknownをsuccessに丸めず、reasonとreturn ownerを観測。
+- **`L10-BRAIN-INFRA-014-C02` — 否定/境界** (`BRAIN-INFRA-014-AC-02`): fixture: depends_on、communicates_with、replicated_by、backed_up_by、monitored_by、failover_to、secured_by、deployed_on、scales_withの9 relationについてendpoint/type/meaning/sourceを各々欠落、name-only edge、runtime topology claimを個別/組合せで投入する。全component node一覧は揃うがedgeが一つもない別fixtureも与える。 **期待oracle**: component一覧だけではtopologyを成立させず、全edgeのendpoint/type/meaning/sourceを評価する。実topology stateはRuntimeへ、edge type/direction/structural relation meaningはL1-005へ戻す。missing/invalid/unknownをsuccessに丸めず、reasonとreturn ownerを観測。
 - **`L10-BRAIN-INFRA-014-C03` — 未見境界** (`BRAIN-INFRA-014-AC-01,AC-02`): fixture: 伏せた別component topologyとunknown endpoint relationを投入し、未確定endpointをruntimeで解決しない。 **期待oracle**: source/conditionが十分な未見入力は同じcontractで評価し、各evidenceとtarget revisionの対応を保つ。根拠が不足する箇所だけunknown/未評価として保持する。C03は既存AC境界のfixtureで新しいgate/meaningを追加しない。
 - **観測点**: endpoint/type/meaning/sourceとunknown state。parent revision、各field、scope、owner、返却state/sourceをfixture結果に残す。
 - **判定**: C01は親正常例、C02は個別+組合せinvalid、C03はitem固有held-out boundaryを照合する。要求意味・責務・承認gateを増やさず、必要な技術候補値は根拠・比較・計測方法付きで提示する。未実行設計でありpassを主張しない。
@@ -609,6 +611,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **`L10-BRAIN-025-C03` — verification findingとreturn owner**（`BRAIN-025-AC-03`）：独立検証finding/反例、unknown、stale/wrong target revisionを各々与える。期待oracleはowner付き未完義務を残し昇格を止め、source/evaluation→LABO、registration/routing→OS、意味→L1、change verification→BRAIN change ownerへ対応させる。
 - **`L10-BRAIN-025-C04` — scopeと条件付き依存**（`BRAIN-025-AC-04`）：product-specific meaningのgeneric promotion、意味を変えない技術差分への新approval要求、非Infrastructure候補へのINFRA-017一律要求を別々に試みる。製品固有意味の流入を拒否し、意味不変の技術差分には新gateを作らず、INFRA-017は実際にInfrastructure maturityをclaimするfixtureでだけ確認する。
 - **`L10-BRAIN-025-C05` — sequence/order boundary**（`BRAIN-025-AC-01`、`BRAIN-025-AC-05`）：candidate→LABO evaluation→OS registration/routing→BRAIN independent verification→adoptionの正常順を与え、evaluation前advance、各段階skip、逆順、別revisionのreceiptを一つずつ変異する。**期待oracle**：該当candidateだけを未完/holdにし、各段階のownerとsource revisionを保つ。未見candidateは同じ順序・契約で評価し、未見であることだけで拒否しない。
+- **`L10-BRAIN-025-C06` — 列挙依存のflow別照合**（`BRAIN-025-AC-05`）：L2-007/008/009/011/012/020およびLABO evaluation、OS registration/routing、BRAIN change verificationの各契約を、それぞれidentity/revision/scopeが一致する正常flowに結ぶ。別々のfixtureで各契約をmissing、stale、wrong-scopeにし、さらに別の非該当flowを与える。**期待oracle**：欠落契約に依存する当該flowだけholdし、非該当flowは継続可能。全知識実装済みの一括条件を追加しない。INFRA-017は固定L2が限定するInfrastructure maturity判定時だけ対象とする。
 
 各caseのoracleは状態/owner/source/revision・scopeをfixture単位で記録する。旧RCLSのruntime、旧Infrastructure acceptance、実operationは実行しない。
 

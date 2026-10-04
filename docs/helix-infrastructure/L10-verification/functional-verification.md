@@ -11,7 +11,7 @@
 
 ### 検証fixtureとcase
 
-- **L10-INFRA-001-C01**（AC `INFRA-001-AC-01`／`INFRA-001-AC-02`に対応）：複数environmentに同role resourceを置き、resource/config/network/credential/data/version/authority scopeも別にする。承認対象CORE設計参照とresource/environment/interface identityをfixtureへ結び、environment identityが混同されないことを確認する。 **期待oracle**：environmentごとの各resource/scope identityとrole/location/version/dependency/lifecycleを分け、各recordをsource/revisionへ結ぶ。
+- **L10-INFRA-001-C01**（AC `INFRA-001-AC-01`／`INFRA-001-AC-02`に対応）：複数environmentに同role resourceを置き、resource/config/network/credential/data/version/authority scopeも別にする。credentialは合成reference identityだけを入力し、secret valueを含む変異を通常resource state/recordへ保存しようとする反例も置く。承認対象CORE設計参照とresource/environment/interface identityをfixtureへ結び、environment identityが混同されないことを確認する。 **期待oracle**：environmentごとの各resource/scope identityとrole/location/version/dependency/lifecycleを分け、各recordをsource/revisionへ結ぶ。credentialはowner付き参照とscope/classificationのみ記録し、値は保存しない。
 - **L10-INFRA-001-C02**（AC `INFRA-001-AC-01`／`INFRA-001-AC-02`に対応）：stagingだけのresourceをproduction evidenceとして主張する。 **期待oracle**：staging/developmentのrecordはstaging/developmentに留まり、production成立を示す結果は返さない。
 - **L10-INFRA-001-C03**（AC `INFRA-001-AC-01`／`INFRA-001-AC-02`に対応）：logical CONNECT linkはあるがphysical pathがない/異なるcase。 **期待oracle**：logical CONNECT edgeとphysical/runtime routeを別recordにし、route各tuple欠落時はunknownとして補完しない。
 - **L10-INFRA-001-C04**（AC `INFRA-001-AC-01`／`INFRA-001-AC-02`に対応）：dependency/version欠落、stale observation、source読取不能を与える。 **期待oracle**：欠落version/dependencyまたはstale/read-failed sourceをunknown/未完観測として残し、resource source/設計ownerへ返す。sourceの部分更新で旧observationをcurrentとして示す変異も不合格とし、未完の観測範囲を保持する。

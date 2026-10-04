@@ -56,7 +56,7 @@ Stage 2a・2cの固定L2/L11親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` �
 | HELIXOS-L2-032 | 機能要件のみ。quarantineは受入価値や全体greenの指標ではない。 | HARNESS oracle / SECURITY policy authority。FR-OS-L3-032 AC-01..03。 |
 | HELIXOS-L2-033 | 機能要件のみ。再現receiptを品質合格KPIにしない。 | capability ownerが結果意味、OSがregistry/provenance。FR-OS-L3-033 AC-01..03。 |
 | HELIXOS-L2-034 | 機能要件のみ。disposition正当性やリスク受容をOSが評価しない。 | 元source/PO authority。FR-OS-L3-034 AC-01..04。 |
-| HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..04。 |
+| HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..05。 |
 | HELIXOS-L2-036 | 機能要件のみ。Retrofit成否の技術判定は各owner。 | OSはpreflight-plan/apply trace。FR-OS-L3-036 AC-01..03。 |
 | HELIXOS-L2-037 | 機能要件のみ。負債の価値・優先度はLABO/source owner。 | ticket登録はOS-L2-010。FR-OS-L3-037 AC-01..03。 |
 | HELIXOS-L2-038 | 機能要件のみ。snapshot/proposal appendは採択・coverage完了でない。 | HARNESS semantic contract owner。FR-OS-L3-038 AC-01..04。 |

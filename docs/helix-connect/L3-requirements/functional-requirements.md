@@ -80,7 +80,7 @@
 
 **責務・依存とfailure時の戻し先（固定L2の保持）**：登録・互換照合・通信契約、受信側の同一identity重複排除契約。構成体や後続機構を必須にしない。 戻し先: digest衝突や再送上限到達は送信を停止し、connection operationのownerへ未完義務と試行数を返す。業務結果は元の業務ownerへ、許可期限切れはSECURITYへ戻す。新revisionへ自動混載再送しない。
 
-**L3 acceptance (`CONNECT-AC-004-01`)**：同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する
+**L3 acceptance (`CONNECT-AC-004-01`)**：応答欠落後、既存operation identityと同一digestで設定済み上限内の再送だけを許し、受信側効果は一回分とする。異digest衝突、上限到達後の追加attempt、業務エラーまたは再送不能結果の再送は拒否し、未完結果を元operation ownerへ返す。新しい上限値・retry権限は作らない。
 
 **対応L11 acceptance**：`HELIXCONNECT-L11-004`。
 
@@ -106,7 +106,7 @@
 
 #### 固定親revisionとauthority
 
-- 採択登録: `MPR-RC-HELIXCONNECT-L2-006-002`。基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の`docs/governance/management-provisional-requirement-register.jsonl:337`、row SHA-256 `7c942e87dab797a4edff23da53f97b0b75ba27eecfdb5504f03bc9ba193854c0`、candidate semantic digest `sha256:876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7`。
+- 採択登録: `MPR-RC-HELIXCONNECT-L2-006-002`。基準main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の`docs/governance/management-provisional-requirement-register.jsonl:337`、row SHA-256（JSONL当該行bytesの終端LFを除外）`7c942e87dab797a4edff23da53f97b0b75ba27eecfdb5504f03bc9ba193854c0`、candidate semantic digest `sha256:876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7`。
 - PO判断: `docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md:48`。基準main633のdecision全文SHA-256 `82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69`はHELIXCONNECT-L2-001〜007を採択し、version_target 1.0と各適用条件を維持する。対象要求revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`。
 - 固定L2親: `docs/helix-connect/L2-requirements/connect-requirements.md` 115–125行、全文SHA-256 `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b`、inclusive raw-span SHA-256 `f5e21133232013d16d0306fd333c1c2e216c0163e3570f746242fd636b295db7`、heading「### HELIXCONNECT-L2-006 片側交換時の接続互換性（connection）」。
 - 固定L11親: `docs/helix-connect/L11-acceptance/connect-acceptance.md` line 37の一覧SHA-256とline 70の個別受入手順を固定L11全文SHA-256 `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad`から読む。L11-006はconnection受入であり、片側交換4類型ごとの試験、固定側不変、互換時の再照合後送信、未完operation/ACK/attempt/期限/義務のhandoff、非互換等の送信0を要求する。
@@ -172,7 +172,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 - CONNECT-AC-009-01: one-wayとpaired-bidirectionalの各方向のauthority/edgeを独立照合し、逆方向未送信を送信済みと扱わない。serialは宣言順を保持し、必要な先行resultまたは宣言された先行条件が未成立の後続edgeを実行せず、parallel joinは固定親の全join条件が揃った場合だけterminal resultを作る。両方の正常・未見複合入力をlineage/reason/endpoint/revisionへ結ぶ。方向またはfeedbackのendpoint/contract revision欠落を利用可能にする反例と、宣言のない順序/joinを許容する反例は個別に拒否する。辺の一部成功を全体成功へ伝播する反例も拒否する。
 - CONNECT-AC-009-02: 初回送信のendpoint、接続identity、契約revision、適用authorityをそれぞれmissing/unknown/stale/conflictにする個別fixtureでは、該当辺の初回送信attemptを0にし、missing inputとownerを返す。feedback送信のreason、source/target identity、契約revision、逆方向connection、適用authorityを各状態へ個別変異するとfeedback送信だけを保留する。parallel join条件不明はjoin/全体完了だけを保留し、ACK対応不明は既存attemptを保持して受領/完了だけ保留する。独立してeligibleな他操作へ伝播しない。eligibleな初回edgeとfeedback未送信、ACK未着、feedback endpoint/reason/contract欠落を個別fixtureにする。feedback欠落でも初回edgeは止めず、ACK未着はattemptを維持して受領/完了のみhold、loop条件欠落時は新規retryのみ0とする。
 - CONNECT-AC-009-03: retry/budget/deadline/terminal owner/policy、累積attempt数、operation identityをそれぞれmissing/unknown/stale/conflictにする。追加retryは0、独自cap/send permissionなしでpolicy ownerへ戻す。欠落があっても既存attemptを消去/初回eligibilityを遡及変更しない。
-- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopでは各反復を同じoperation lineageに結び、累積attemptを保持する。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
+- CONNECT-AC-009-04: 複数反復のattemptを累積し、次反復でbudget resetを試みるfixture、deadline超過、terminal owner不在を別々に与える。正常なbounded loopでは各forward/feedback/ACK/terminal eventを同じoperation identity・digest・lineageへ結び、attemptを累積して保持する。L2-004/005の既存冪等性・trace条件に反し同一eventをresumeで再適用して二重効果を生む変異は拒否するが、一般的な追加重複排除義務は設けない。因果event/receipt traceへraw business payload/secret/credential値を複製しない。既存上限到達では新規retryを0にして、未解決をOS-040等の既存terminal ownerへ返す。期限/terminal解決が不明でも新規retryを止め、未完義務・停止理由・ownerを保持する。
 
 旧UWJ-FR-006はfeedback loopの構造類例、HIL-NFR-04はbudgetの別owner類例、MIC-R-02は統合sequenceの類例として部分再利用する。方向・理由付きtyped relation自体は現行L2から再導出し、旧assetをCONNECT仕様とは見なさない。旧参照はUWJ `universal-workflow-ai-judgment-engine.md:50`、HIL `infinity-loop-platform-requirements.md:184`、MIC `management-integration-cell-requirements.md:62–68`（asset ID/full SHA/raw span SHAは以下の旧資産source mapに記録している）。
 
@@ -210,7 +210,7 @@ Probe descriptorはcatalogに列挙されたMCP profile identity/revision、conf
 
 **受入条件**
 
-- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、宣言されたrequired edgeの終端が確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡する。宣言済みhandoffは次edgeのidentity/contract/authority条件に従って別operationとして受渡し可能とし、未宣言または異なるoperationへ同一attemptを無断転用する受渡しと再送境界超過を拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
+- `CONNECT-AC-007-01`: 3つ以上の機構、複数の接続identity、およびedgeごとに異なる能力名/契約revision/scopeを持つ正常fixtureを与える。各edgeの登録・互換照合・operation lineage・result/terminalが個別に追跡でき、宣言されたrequired edge全ての終端が確認された場合だけ構成体の技術完了となる。edgeごとの再送可否・上限・停止条件とoperation identityを追跡する。宣言済みhandoffは次edgeのidentity/contract/authority条件に従って別operationとして受渡し可能とし、未宣言または異なるoperationへ同一attemptを無断転用する受渡しと再送境界超過を拒否する。単体接続のgreenを他edgeへ転用せず、辺の一部成功を全体成功へ伝播しない。
 - `CONNECT-AC-007-02`: 中間edgeにstale、timeout、異digest衝突、expiry、cancel、authority revoke、partial successを個別に与える。後続edgeの未許可送信/再送を0にし、先行成功を消さずpartial/unknownを保ち、停止edge・未完owner・recovery先を出す。いずれも構成体成功・業務承認を生成しない。
 
 **責務と失敗時の戻し先**：edgeの登録・契約不一致は該当connection/両端ownerへ、SECURITY/data-use・expiryはSECURITYへ、operation/業務結果は元機構のownerへ戻す。後続edgeを実行済みにせず、先行の成功結果は保持する。

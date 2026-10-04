@@ -19,8 +19,8 @@
 | `HELIXBRAIN-L2-001/002` | 初期Domain 10件と4段階構造の追跡 | 固定親が列挙する初期Domain 10件をsource/revision付きで各々投入し、identity/meaning/state、Domain→Pattern→Design Unit→Partのkindとparent edgeを照合する。重複/unknown/製品名/参照喪失を個別に変異 | 初期Domainのidentity/meaning/stateを10/10で照合し、4段階のkind/parent relationをtraceする。追加・分割・統合・退役可能性を閉じた集合にせず、候補一覧の充実義務は検証しない |
 | `HELIXBRAIN-L2-003/004` | descriptor and comparison completeness | applicability fieldを一つずつ欠落させ、複数候補のscope/weightを欠落 | field別にunknown/holdを確認し、推測適用・絶対順位がない |
 | `HELIXBRAIN-L2-005/009` | relation source trace | endpoint/type/meaning/sourceを持つedge、名称類似だけのedge、source欠落composite | 各edge/candidateからsourceへtraceでき、根拠なしedgeを確定しない |
-| `HELIXBRAIN-L2-006/011` | shared/product boundary | shared knowledgeとProduct Core固有fieldを混在し、source context欠落/除去 | 分離可能fieldの対応率と、分離不能時に停止することを記録 |
-| `HELIXBRAIN-L2-010` | conditional anti-pattern integrity | context/condition/impact/alternative/provenanceを個別欠落・条件外適用 | universal prohibitionへの誤一般化を拒否し、不足をunknownにする |
+| `HELIXBRAIN-L2-006/011` | shared/product boundary | 15 knowledge exampleをsource付きで一つずつ入力し、例の欠落、装飾限定、System Design一般化、Product Core固有field混入、source context欠落/除去を別々に変異 | 15例の識別とshared/product field境界を個別に観測。分離不能時は停止し、根拠のない一般化0を候補値として記録 |
+| `HELIXBRAIN-L2-010` | conditional anti-pattern integrity | context/condition/impact/counterexample/provenanceを個別欠落・条件外適用し、alternativeなしの条件付き例とalternativeありの例を比較 | universal prohibitionへの誤一般化を拒否し、不足をunknownにする。alternative欠如だけでは有効な条件付きfailure knowledgeを拒否しない |
 | `HELIXBRAIN-L2-012/029` | candidate/decision and unseen boundary | candidate response、unit composite、別owner adoption recordとheld-out別Domain/required-input-missing fixtureを投入 | BRAINのみで採択へ遷移せず、scope不明はunknown/未評価。追加actor/threshold/gateは検証条件にしない |
 
 ### Stage 2b Infrastructure measurement cases
