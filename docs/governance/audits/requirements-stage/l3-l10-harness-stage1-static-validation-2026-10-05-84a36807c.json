@@ -1,0 +1,702 @@
+{
+  "record_kind": "作成側の静的照合・独立review前",
+  "authority_effect": "none",
+  "content_source_commit": "84a36807c112b038ed7374de1de94b513ce08691",
+  "base_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+  "mechanism": "HELIX-HARNESS",
+  "stage": "Stage 1",
+  "parents": [
+    "HARNESS-L2-010",
+    "HARNESS-L2-011",
+    "HARNESS-L2-023"
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "sha256": "4c585e5581fadc2d79f2dcdc07656d8b3d9741dad9de8a46733f474fc4565ab4",
+      "line_count": 96
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "sha256": "b4747c9ee35dfa3b230e4c71dee7657397f2cb6241f48f8eea56aa56cf93a88e",
+      "line_count": 16
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "sha256": "d2b92f8826a151e9cdec766b61772c2ff7c3b35cfaa1437e4ab83bcb938618e2",
+      "line_count": 51
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "sha256": "39fa4ca31a4920e2540170525f5258a15b4cb9c6aa29939f20ef51a57818b227",
+      "line_count": 30
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "sha256": "f90f65b9544a1fdab5bf469e099027b5871773e9e95cdd85f5ce76262af676ff",
+      "line_count": 15
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "sha256": "230afe80078871bd88f8846137fcf9164cc2f506b82236fdc653f59a3d6575b7",
+      "line_count": 23
+    }
+  ],
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "role": "L2-010",
+      "physical_lines": [
+        340,
+        351
+      ],
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "raw_span_sha256_lf_inclusive": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "role": "L2-011",
+      "physical_lines": [
+        352,
+        362
+      ],
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "raw_span_sha256_lf_inclusive": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "role": "L2-023",
+      "physical_lines": [
+        463,
+        498
+      ],
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "raw_span_sha256_lf_inclusive": "cacb50daf962d62f6454da1ecff7a8fd7a7ec41f0eda17eadc1c0d7edf845fc9"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "role": "L11-010",
+      "physical_lines": [
+        205,
+        205
+      ],
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "raw_span_sha256_lf_inclusive": "ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "role": "L11-011",
+      "physical_lines": [
+        206,
+        206
+      ],
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "raw_span_sha256_lf_inclusive": "483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "role": "L11-023",
+      "physical_lines": [
+        223,
+        223
+      ],
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "raw_span_sha256_lf_inclusive": "f209dace6dd361437dd2f37785216ff7cdc3e69ef298ce760e1574033c4beaf4"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "role": "PO-010",
+      "physical_lines": [
+        39,
+        39
+      ],
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "raw_span_sha256_lf_inclusive": "b0590b4b97d8f4cbb91d4afe25ec420cc2296936adc4ce5d313af09bdd443672"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "role": "PO-011",
+      "physical_lines": [
+        40,
+        40
+      ],
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "raw_span_sha256_lf_inclusive": "0483eac110645b76fafa213b1a85ad7e3b4e286fa9630f6434c6d38713abc540"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "role": "PO-023",
+      "physical_lines": [
+        52,
+        52
+      ],
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "raw_span_sha256_lf_inclusive": "f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        16,
+        56
+      ],
+      "full_file_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256_lf_inclusive": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        119,
+        148
+      ],
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "raw_span_sha256_lf_inclusive": "4d7ef3be3bd9bf3f213c9cfdd9eaec43a8d44cfc3a0964a49c27a40d49e4e043"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        149,
+        172
+      ],
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "raw_span_sha256_lf_inclusive": "67efa712db4580844fe9133d90906213e11b92805a9f891cdc245ea3eb72f326"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        173,
+        196
+      ],
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "raw_span_sha256_lf_inclusive": "7f9f6383a21c5cd2a842470efdef65c8f1574de52e3d1e329b792fcfe5f82df5"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        257,
+        310
+      ],
+      "full_file_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "raw_span_sha256_lf_inclusive": "11a2d92dfa5759b4d50bd95aaa42ad297b68ad2c8e083a559b114938a464179a"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L3-acceptance-test-design.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        60,
+        66
+      ],
+      "full_file_sha256": "27a92c3be07aa06b9e8a598b7b2b7bcc357ccb6afa876e27e45cd85e7f3d00c1",
+      "raw_span_sha256_lf_inclusive": "c5aa00c80373b7f0c9f376b91bdaafc7f758c669690a084ddb54874159324c3e"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        21,
+        39
+      ],
+      "full_file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "raw_span_sha256_lf_inclusive": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        84,
+        104
+      ],
+      "full_file_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "raw_span_sha256_lf_inclusive": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        21,
+        34
+      ],
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        58,
+        81
+      ],
+      "full_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "raw_span_sha256_lf_inclusive": "092d9b2750c81d8c05857a45692cb1f64996554cc3e679cf7a6e74c6d0990838"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        60,
+        92
+      ],
+      "full_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "raw_span_sha256_lf_inclusive": "178e5f15cc2cbea899d35f6e1cfe5fe2aaeaf18e5ac5ff110fa3883c2587bd5d"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        127,
+        142
+      ],
+      "full_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "raw_span_sha256_lf_inclusive": "d22d8010fbab6e48fa418160f8fa5be456507729a5cbf55d8f3932a556ad9391"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        209,
+        212
+      ],
+      "full_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "raw_span_sha256_lf_inclusive": "e6740063038fa86eeddd2f6e5853a2b7ce334af7349269a237e06aa5d0012750"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        23,
+        46
+      ],
+      "full_file_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "raw_span_sha256_lf_inclusive": "03dd77acd1c25e46d788087588ee2106e224353f9383f5af2ab2445965369692"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        64,
+        67
+      ],
+      "full_file_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "raw_span_sha256_lf_inclusive": "5c0880ba5d92fbbed6ff32ff350ca6911a572f527a82f50fd975cf6ac0a729ac"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        37,
+        47
+      ],
+      "full_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "raw_span_sha256_lf_inclusive": "4b7d20a9fa03743111c11a3a60aa5c19701d4e625dd1dff25555e69fe67903fb"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        58,
+        58
+      ],
+      "full_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "raw_span_sha256_lf_inclusive": "9cb300199feaa51ce05e382762b741389f49e128adfcfae4d5fe1ea509e56941"
+    },
+    {
+      "source_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "role": "旧source実読範囲・意味の再導出/置換",
+      "physical_lines": [
+        73,
+        81
+      ],
+      "full_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "raw_span_sha256_lf_inclusive": "bf60afeb8833ef3f2d39dc7fd80164ee021891e226283d4b6465e589a4eb8176"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 17,
+      "literal": "| `HARNESS-L2-010` | #L39 / `MPR-RC-HARNESS-L2-010-001` | 340–351 / `5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0` | 205 / `ee2d89c797d8d07d917b68fca55d386d487e67caac0e9cf0873fe674846e33cf` | 個別印なし |",
+      "line_sha256_without_lf": "f39ffa1acbfefc7f387b1241d20524cefa05568497aa0b73b1b577192a56e042"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 18,
+      "literal": "| `HARNESS-L2-011` | #L40 / `MPR-RC-HARNESS-L2-011-001` | 352–362 / `65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090` | 206 / `483c86d30dbece9bce50732e5faf9480b6c70c93f6b625330d27cb7784a57188` | 個別印なし |",
+      "line_sha256_without_lf": "abd31c43e61b917a9f2bb2d5fb09c521436808e93c9e257c23f63cc3f18b0b2c"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 19,
+      "literal": "| `HARNESS-L2-023` | #L52 / `MPR-RC-HARNESS-L2-023-002` | 463–498 / `cacb50daf962d62f6454da1ecff7a8fd7a7ec41f0eda17eadc1c0d7edf845fc9` | 223 / `f209dace6dd361437dd2f37785216ff7cdc3e69ef298ce760e1574033c4beaf4` | `1.0` |",
+      "line_sha256_without_lf": "315029c5e0aad97e1336908421d9d959e5b5626fed20c8511589252f14da66e8"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 37,
+      "literal": "- **`AC-HARNESS-L3-010-01` 宣言と収載（FR-HARNESS-L3-010）**：各packのidentity、version/maturity、入力・出力、必須依存と版、検証範囲／oracle、単一owner class（release unit／component／core）、収載または非収載が追跡できる。release unit版と統合製品版はpack版と別fieldで照合する。未宣言依存、二重owner、未検証packの暗黙収載が一つでもあれば不合格。",
+      "line_sha256_without_lf": "52bc060df7c15bd22ecc2c03e0d40877ac6da1409f65d4bd770f56152e62141d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 38,
+      "literal": "- **`AC-HARNESS-L3-010-02` 単一pack差し替えの隔離（FR-HARNESS-L3-010）**：一つの対象packを置換した比較で、対象外packの版と証拠が完全に維持される。対象外の変化が一件でもあれば不合格。複数pack更新はこのACに混ぜない。",
+      "line_sha256_without_lf": "a8b92d4dac9321687def8c9ef4211d84d84100e4920a5081dcfb6c519aa97b9e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 39,
+      "literal": "- **`AC-HARNESS-L3-010-03` 再現・版境界・分割可能性（FR-HARNESS-L3-010）**：同じ宣言入力とpack版から同じ宣言成果物を得て、失敗時に直前の適格版または明示された置換先を特定できる。上位release unit／製品が未完でも適格packを一覧から隠さず、packの成功や差し替えから上位版の昇格を導かない。巨大で交換・更新不能なpackは合格にせずDesign-refactorの戻り先を示す。",
+      "line_sha256_without_lf": "69b0d10f550947cea9f1c2ca92e1838ca9d728df66b9e77874f212288eb2f833"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 41,
+      "literal": "- **`AC-HARNESS-L3-010-04` 関数／folder一覧の拒否（FR-HARNESS-L3-010）**：固定L11:205に基づき、関数またはfolder一覧だけをpack一覧として提示した入力を拒否し、pack identity/owner/release-unit単位と関数folder catalogを分離する。",
+      "line_sha256_without_lf": "c92a04cdc6bbb6166e83fb91f1d62a1f6458105ac5adf0add8b53038f5e45993"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 55,
+      "literal": "- **`AC-HARNESS-L3-011-01` 呼出し独立性と版（FR-HARNESS-L3-011）**：画面・GUI・local path・provider・CI製品を与えない入力でも宣言contractで呼び出せる。能力名・contract版・依存版を明示し、未対応版は同等扱いしない。",
+      "line_sha256_without_lf": "3dd5c0247b0a265b197d71222c1b4eab20d5eda55cd6ebb35e480059be525b7e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 56,
+      "literal": "- **`AC-HARNESS-L3-011-02` 受渡しscopeとowner境界（FR-HARNESS-L3-011）**：適用可能な既存authorityと呼出し元のscope/isolationをfixtureとして与え、packの動作範囲がそれを超えないことを確認する。HARNESS自身の要求はHARNESSの対象として扱う一方、この要求からWEBの要求・設計を導出しない。別tenant／未渡し権限／内部DB・鍵・内部統制を使う例は不合格。authorityの新規定義は本要件の範囲外。",
+      "line_sha256_without_lf": "022d800df479ca30204586b31cfff3e112c44c8bc8f5a681e145035d262785ee"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 57,
+      "literal": "- **`AC-HARNESS-L3-011-03` 相関付き結果（FR-HARNESS-L3-011）**：進行、終端または未完state、結果、証拠参照が同じ呼出しの相関IDで呼出し元へ返り、保存・表示や業務完了をHARNESSが代行しない。",
+      "line_sha256_without_lf": "749e932c40405da73d811ed5c29d0c5e2dde9d4645fccacb82775eab2d7c8c8e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 58,
+      "literal": "- **`AC-HARNESS-L3-011-04` 停止・再開・期限（FR-HARNESS-L3-011）**：同じ論理operationを同じ冪等keyと記録済み途中stateから再開できる。expiry前・境界・経過後を区別し、期限切れまたは中断を成功としない。retry上限やexpiry期間の値は上流で指定されたと扱わない。",
+      "line_sha256_without_lf": "88598fe775845b6290dc978271f01d801d0f22e4bb2cc907768b95422a453e35"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 79,
+      "literal": "- **`AC-HARNESS-L3-023-01` 4分類と条件束縛（FR-HARNESS-L3-023）**：4分類、owner、版／range、適用condition、対象operation/sourceがpack revisionに結び付く。各fixtureで分類を別の分類へ暗黙変換しない。",
+      "line_sha256_without_lf": "366173a07db1ac7e2a69911a6ea48c5a9d0a62caa6251804e475970bdd6b9dba"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 80,
+      "literal": "- **`AC-HARNESS-L3-023-02` 有効closureと状態区別（FR-HARNESS-L3-023）**：常時必須、成立したoperation条件、選択source条件だけを有効closureに含める。条件不成立、未選択／未観測、参照のみ、unknown/staleは別状態として出す。未選択sourceの成功や利用可能性を推測しない。選択sourceの失敗から同じ入力のまま別sourceへ暗黙fallbackしない。利用者がsourceを明示再選択した新入力は別要求として再評価する。単体packのgreenだけではserviceの接続・構成体を成立扱いしない。",
+      "line_sha256_without_lf": "c865ff1a7649216427d2aa92bdd19f893513badacecdb8f897e9a677f8f09d58"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "physical_line": 81,
+      "literal": "- **`AC-HARNESS-L3-023-03` 安全依存と決定性（FR-HARNESS-L3-023）**：該当条件下の安全依存は必須としてclosureに残し、unknownな条件は保留にする。人が代行する場合も既存の権限・隔離・版照合・検証・記録を省略せず、source／actor／revision／scope／受領／検証receiptを返す。口頭受領だけではclosure evidenceにならない。分類能力自体は全依存実装の存在を成立条件にせず、missing／unknown状態を出せる。後続版の依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いで削らない。同じinput・pack revisionの再評価でclosureと根拠が一致する。今回選択しなかった能力も、1.0全体に属する完成義務を削除・延期したことにはしない。",
+      "line_sha256_without_lf": "8493fb1f783c44fcf2c112e843be2f52c28bbcf9fdd5d5f79286052d0f90b895"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "physical_line": 12,
+      "literal": "| `HARNESS-L2-010` | 独立したbusiness requirementを導出しない | packのowner/release-unit分類はL2で定義済み。収益・製品優先順位・release decisionは本L3で決めない。 |",
+      "line_sha256_without_lf": "486f9dccccfdcf784b49464e964efddf1ae7bd7d2e8b69a1a1254612936e1700"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "physical_line": 13,
+      "literal": "| `HARNESS-L2-011` | 独立したbusiness requirementを導出しない | 呼出し側の保存・表示・業務上の完了判断をHARNESSへ移さない。権限はSECURITYが所有する。 |",
+      "line_sha256_without_lf": "743fa2f250671309b1be0cbbe34519516f4dce95a64c05b6df0ac7c2e3d4993d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "physical_line": 14,
+      "literal": "| `HARNESS-L2-023` | 独立したbusiness requirementを導出しない | 条件別dependency classificationから新しい利用方針やownerを作らない。 |",
+      "line_sha256_without_lf": "5581d74a9d54b66a62651929f99ae5ea0d05e77d20daf337b059d2a645743d2c"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 14,
+      "literal": "| `NFR-C-HARNESS-010-01` / `HARNESS-L2-010` | 同一の宣言inputとpack版に対する宣言成果物の予期しない差分は **0件**。比較基準はartifact bytes digest一致。 | 固定L2の「同じ入力と版から同じ成果物」をそのまま観測可能にした候補。案Bのsemantic digestは、宣言artifact contractが特定metadataを非意味項目として明記した場合だけ、その項目を除外してよい。contractに除外がなければ案Bは不採用で、bytes比較を緩めない。旧FR-03の4 artifact／12 edgeはこの値の根拠にしない。 | contractが宣言する成果物だけを比較し、上位release／製品の昇格は判定しない。digest algorithmや生成実装方式はここで固定しない。 |",
+      "line_sha256_without_lf": "10d0ee0f91b1ac8a0334929f4b14e2bba2868f9705cb1bf419220050f98ff7cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 15,
+      "literal": "| `NFR-C-HARNESS-010-02` / `HARNESS-L2-010` | 単一pack差し替えで、対象外packのversion/evidence変更は **0件**。 | L2/L11の「一つのpack差替えで他のpackの版と証拠が保たれる」を直接数える。案B（dependency closure由来なら対象外の変更を許容）はこの不変条件に反するため不採用比較案。複数packを同時に更新する操作は別scopeであり、このAC／候補値に混ぜない。 | 対象pack自身の明示された更新は比較対象。複数pack更新の意味や許可をこの要件で追加しない。 |",
+      "line_sha256_without_lf": "ad9abebd16c7ef330a31f377e301af6ca7e085176bc3741c3ebb0edcabb5416e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 16,
+      "literal": "| `NFR-C-HARNESS-011-01` / `HARNESS-L2-011` | 同一logical operationのresumeは **同一冪等key**を保持し、同じkeyの重複送達による追加処理効果は **0件**（効果は高々1回）。 | 固定L2/L11が要求する停止・再開、記録済state、同じ冪等keyを候補へ結ぶ。retryごとに新keyを作る案は重複防止と再開同一性を弱めるため不採用比較案。 | 冪等keyの生成方式、保持期間、全runtime共通の実装方式は指定しない。処理authorityとdata scopeは既存ownerに従う。 |",
+      "line_sha256_without_lf": "b569099097166dcad4388501100359d96d98e70a1f1f1776ec3196d088696c14"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 17,
+      "literal": "| `NFR-C-HARNESS-011-02` / `HARNESS-L2-011` | expiry経過後にsuccessと返るoperationは **0件**。dispatchおよび停止後resumeの各開始境界でexpiryを評価する。等号境界は既存contractに定義があればその値に従う。未定義の場合の比較候補は案A `now >= expiry`をexpired（有効区間 `[issued_at, expiry)`）、案B `now > expiry`をexpired（有効区間 `[issued_at, expiry]`）とする。 | expiry後をsuccessにしないL2/L11を観測する。等号で失効する案Aは期限ちょうどの曖昧な成功窓を作らない保守的候補であり、案Bは境界を含むため呼出し側とのtimestamp定義一致を要する。両案ともdispatchおよびresume開始時に評価し、直前／境界／直後と期限前開始・期限後結果fixtureで既存contractの結果を比較する。 | TTLや時計skew許容値はL2にないため設定しない。expiry authorityは呼出し側／SECURITYに残し、HARNESSは延長しない。 |",
+      "line_sha256_without_lf": "efaf347532f7e26bf0dd2e33662fd6c93fcdbecb42c193f486be28b335f7a76d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 18,
+      "literal": "| `NFR-C-HARNESS-023-01` / `HARNESS-L2-023` | 同一pack revision・同一入力条件の繰返し評価で、closureと理由の差分は **0件**。 | L2/L11が要求する同一input/revisionの有効closure再現と理由一致に対応。下記12行の有限fixture行列を全件確認する案と、条件数増加時のpairwise案を比べ、この固定行列を候補とする。分類能力自身は全依存実装を要求せず、missing/unknown状態を分類できる。 | closure件数上限や処理時間はこの親から導かない。未選択sourceの存在／成功を補完しない。 |",
+      "line_sha256_without_lf": "86e003937e0d8887ee6fbdf9ae4d192ff4e653a7b992824af2ff0070639332ab"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 26,
+      "literal": "| D1 | 常時必須・依存が有効 | closureに含む |",
+      "line_sha256_without_lf": "453065d478ebb866b553921718d845705f415ff932c9c3e51cb5b1ca79b2972f"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 27,
+      "literal": "| D2 | 常時必須・依存missing | 該当利用を保留、missing理由を出す |",
+      "line_sha256_without_lf": "375316476e698bf8eb38ba30c5ed81fbd2b6567f8926c3f2028bdff8e12311d9"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 28,
+      "literal": "| D3 | 常時必須・版stale／range不一致 | 該当利用を保留し、staleと互換range不一致を区別した理由を出す |",
+      "line_sha256_without_lf": "5ec8fc5d9097221e0cd8c3992fd644d9985f8775b10e1f65e3a89e1aea855b1e"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 29,
+      "literal": "| D4 | operation条件true・依存有効 | closureに含む |",
+      "line_sha256_without_lf": "e4ec87729c13070ee377dec5e6b0b1397aa9c04c2d79646a9a15dba050961941"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 30,
+      "literal": "| D5 | operation条件false | 当該operationを含まない要求に限りclosure外、条件不成立を記録 |",
+      "line_sha256_without_lf": "92daf9d860fd224d4548f0b1c076fcca6742a37ac649ad7b48b71d873a9211ac"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 31,
+      "literal": "| D6 | operation条件unknown | falseへ読み替えず保留 |",
+      "line_sha256_without_lf": "ac20a6bfdbf9d20f256ad05d7ee678afec1efbb55b4069475ef43eb827184dfa"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 32,
+      "literal": "| D7 | sourceを明示選択・依存有効 | 選択sourceのdependency closureに含む |",
+      "line_sha256_without_lf": "486013c4c981a45a12349df06105f69a68e88cb0f8fb99b176086fccced6cdd3"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 33,
+      "literal": "| D8 | sourceを明示選択・依存missing／stale | 該当利用を保留、別sourceへ暗黙fallbackしない |",
+      "line_sha256_without_lf": "5d60c012d384e108f4587f825d987b37eda1aea379a2c557ab17b45a6857279b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 34,
+      "literal": "| D9 | source未選択 | 未観測を記録し、存在・適格性・成功を推測しない |",
+      "line_sha256_without_lf": "b49e9bec84a22cd41a364ea5714a1ac6b9caed52deee2526725c2e02db846ce4"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 35,
+      "literal": "| D10 | D8で選択したsourceに失敗後、同一inputのまま別sourceへ自動変更を試行 | 暗黙fallbackを拒否し保留 |",
+      "line_sha256_without_lf": "f9542a2567473c5e8a400a3a72e51a0608688999dde2071b40e18b59a1a9bd6b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 36,
+      "literal": "| D11 | 利用者がsourceを明示再選択した新input/revision | 新しい選択条件でclosureを再評価し、新sourceの根拠を記録 |",
+      "line_sha256_without_lf": "69046e71c11af9c20b1546e1704bcca44c1f5a310f75176bf475c01dfb1fdebd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "physical_line": 37,
+      "literal": "| D12 | 参照資料のみ | 実行closure外。実行条件・成果・authority・oracle・安全制約に影響する資料をこの区分へ偽装した場合は保留 |",
+      "line_sha256_without_lf": "24a31932dd7dbfbdc974947258f28e0a3248357355ce47b8298b8bee1a497a6b"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 19,
+      "literal": "| `CASE-HARNESS-L10-010-01` | `FR-HARNESS-L3-010` | `AC-HARNESS-L3-010-01` | pack宣言にidentity、version/maturity、input/output contract、依存identity/版、verification scope/oracle、単一owner class（release unit／component／core）、収載／非収載、release unit版、統合製品版を用意する。input contractとoutput contract、identity/version、依存identity/版、verification scope/oracle、owner、収載の欠落を個別に変異し、複数ownerと未検証packの反例も与える。 | pack・release unit・製品の版が別々に追跡され、ownerと収載が一意。未完の上位構成が適格packを隠さず、宣言外依存や暗黙収載もない。 | 宣言欠落・複数owner・版の混同は不合格。比較不能はunknownとして未評価。 |",
+      "line_sha256_without_lf": "15893b569010eae2545a5c72aec4ac65002fc3c676df74c0e35e394117cb0b07"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 20,
+      "literal": "| `CASE-HARNESS-L10-010-02` | `FR-HARNESS-L3-010` | `AC-HARNESS-L3-010-02` | 基準pack集合のうち一つだけを別revisionへ差替え、前後の全pack identity/version/evidenceを比較。 | 対象packだけが予定どおり変化し、対象外packの版・証拠差分0件。 | 対象外差分が一件以上なら不合格。意図した複数pack更新は単一pack比較に混ぜない。 |",
+      "line_sha256_without_lf": "cb98c9231c8e58832c86b8d1bbcfd3461bc6d650328f4a71cf6326d8998adc96"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 21,
+      "literal": "| `CASE-HARNESS-L10-010-03` | `FR-HARNESS-L3-010` | `AC-HARNESS-L3-010-03` | 同一input・pack版から成果物を再生成し、失敗fixtureでは直前の適格版／明示replacementを与える。上位構成未完のまま適格packが見える状態と、交換不能な巨大packも観測。 | 成果物が一致し、復帰先を特定できる。適格packは上位未完でも示され、pack成功から上位昇格は起きない。巨大packはDesign-refactorへ戻される。 | 差分、復帰先不明、packからの上位昇格、または巨大packを交換可能と誤判定すれば不合格。 |",
+      "line_sha256_without_lf": "6cb71c3c59233947f54d514ddb850ed875f82cd3dbf66ec0628ed88a76a247c6"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 22,
+      "literal": "| `CASE-HARNESS-L10-011-01` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-01` | GUI、特定画面、local path、特定provider、CI製品を入力環境から除いたcontract call fixture。能力名とcontract/dependency版を明示し、未対応版とdependency版欠落も与える。 | 宣言contractのみで呼出しが記述でき、対応版で出力形が一致。未対応版を黙って読み替えない。 | 特定UI／provider／CIが必須なら不合格。未対応版の自動代替も不合格。環境条件が未提示なら未評価。 |",
+      "line_sha256_without_lf": "0a63dabdddfd8470ee7c8824815e72a1a011df41b4ca221d463d37e39d580d96"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 23,
+      "literal": "| `CASE-HARNESS-L10-011-02` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-02` | 有効な既存SECURITY authorityとproject／tenant／environment scopeをfixtureとして与え、同じ入力でscope外targetと未渡し権限の反例も与える。実credentialや実targetは使わない。 | 結果が入力されたscope内に制限され、authorityの発行・拡張をHARNESSが行わない。 | scope外アクセス、未渡し権限、内部DB／鍵／内部統制の共有を許すなら不合格。authority条件自体が不明なら該当operationを未評価／保留。 |",
+      "line_sha256_without_lf": "cbc0252679298ae97bd84312dee3be6e5170a927377a80f03068149557997573"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 24,
+      "literal": "| `CASE-HARNESS-L10-011-03` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-03` | 複数progress update、終端／未完state、result/evidenceを与え、相関と呼出し元への返却、resumeに必要な内部state記録を観測。 | 全結果・証拠が同一operationへ相関し呼出し元へ返る。途中state記録はresume用に許されるが、呼出し元の結果保存・表示責務をHARNESSが引き取らない。 | 相関欠落／交差、結果未返却、呼出し元の結果保存・表示責務の移管は不合格。resume用内部state記録だけは不合格にしない。 |",
+      "line_sha256_without_lf": "ef088a7c5121d0f8d59c3d7f40dd5d57f8b849efad6df9e5f6f07c7ef8a3717c"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 25,
+      "literal": "| `CASE-HARNESS-L10-011-04` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-04` | operationを途中stateで停止し、同じ冪等keyで再開。expiryの前・境界・経過後の同一operation fixtureを別々に照合する。 | resumeが記録済みstateと同じlogical operationへ結び付き、再送で重複効果がなく、expiry後／中断をsuccessにしない。 | key変更による別operation扱い、途中stateの欠落を完了扱い、expired successはいずれも不合格。固定TTL・retry回数が未指定でも測定は停止しない。 |",
+      "line_sha256_without_lf": "85f4416db3a55cc3280df4c301935d0ef64d95f87868072304784144867175f8"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 26,
+      "literal": "| `CASE-HARNESS-L10-023-01` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-01` | 4 dependency class、owner、version/range、pack revision、operation/source conditionの宣言fixtureを評価。未実装依存を含むclassification-only fixture、分類欠落・曖昧の反例も与える。 | 4区分とrevision結束が保たれ、dependency implementationが未存在でもmissing/unknown分類を出力できる。 | 別区分への暗黙変換、未宣言条件の推測、missing依存をsuccess扱いすれば不合格。 |",
+      "line_sha256_without_lf": "83bf86037e102be378abf5643eac36f22d6bc0d276e2de7f3c788dc5f10e0c41"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 27,
+      "literal": "| `CASE-HARNESS-L10-023-02` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-02` | operation条件true/false、selected/unselected source、reference-only、unknown/staleを別fixtureにする。出力は必要、条件不成立で対象外、未選択・未観測、参照のみ、unknown/stale・保留を区別する。単体pack greenのみと、必要service connection/composite evidenceを伴うfixtureも比較する。さらにsource選択を明示的に変更した新入力を別fixtureにし、closure/state/reasonを観測。pack契約の依存identity/区分/条件/版欠落は契約ownerへ、呼出し固有のoperation/source/scope/receipt不足は呼出しownerへ戻す。authorityまたは安全条件自体の不足・unknownは既存の該当authority ownerへ戻す。HARNESS-L1-005の利用境界の意味そのものが不明・矛盾する場合は、その境界の意味を持つPOへ戻す。いずれも根拠が揃うまで該当operationを保留する。 | 必須closure、条件不成立による対象外、未選択/未観測、参照のみ、unknown/stale・保留を区別する。未選択sourceは未観測。選択sourceが失敗しても同じ要求のまま別sourceへ移らず、明示再選択された新入力では新しいsourceの条件を再評価する。単体pack greenだけではconnection/compositeを成立扱いしない。欠落種別ごとの既存契約ownerへの戻し先を保持し、authorityまたは安全条件自体の不足・unknownは既存の該当authority ownerへ戻す。HARNESS-L1-005の利用境界の意味そのものが不明・矛盾する場合は、その境界の意味を持つPOへ戻す。 | unknownをfalse／optional／reference-onlyへ丸める、暗黙fallback、未選択sourceの成功推測、unit greenからconnection acceptanceを導くのは不合格。明示再選択を理由に拒否しない。 |",
+      "line_sha256_without_lf": "74256f5c47b272456dd90804289d73e6e6ae4b2d7a43ee8aed6ae4ea4aae61d2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 28,
+      "literal": "| `CASE-HARNESS-L10-023-03` | `FR-HARNESS-L3-023` | `AC-HARNESS-L3-023-03` | 権限・隔離・版・検証・記録が必要なsourceを人が代行するfixture、口頭のみの受領反例、後続版依存、1.0安全依存、依存unknown fixtureを評価し同じinput/revisionを反復する。現行利用で選択されていないが1.0全体の完成義務に属する能力も別scopeのfixtureとして与える。 | 人代行でもsource/actor/revision/scope/受領/検証receiptが返り、口頭のみは閉包根拠にならない。分類自体はmissing/unknownを出せる。後続版を1.0へ強制せず、1.0安全依存は必須。同一評価のclosure/reason差分0。今回未選択の能力も別途明示された1.0全体の完成義務から削除・延期されていない。 | 必要な義務・receipt欠落、安全依存削除、unknown実行可能扱い、再評価差分は不合格。authority定義は新設しない。 |",
+      "line_sha256_without_lf": "3bd9fe5c7d63c361dacb6a8bdabf3a055aca4d084c162806a0e4aa8c58631989"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 29,
+      "literal": "| `CASE-HARNESS-L10-010-04` | `FR-HARNESS-L3-010` | `AC-HARNESS-L3-010-04` | L11:205: function/folder一覧だけのfixtureとpack identity・owner・contract・release-unit収載のfixtureを比較する。 | pack identity・契約版・単一owner・release-unit収載が揃うfixtureだけ受理し、function/folder catalogはpack identityやownerの代替としない。 | function/folder一覧だけの入力は拒否し、不足箇所を示す。 |",
+      "line_sha256_without_lf": "c3f837562678c78708109f61eaefbd42a0e27d4cd0c7d5d85702ee3d21b1b511"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "physical_line": 30,
+      "literal": "| `CASE-HARNESS-L10-011-05` | `FR-HARNESS-L3-011` | `AC-HARNESS-L3-011-02` | L11:206: HARNESS要求だけの正常fixtureと、そこからWEB要求・設計を導出する変異を比較する。 | HARNESS要求は対象内とし、WEB要求・設計は導出しない。 | WEB導出は不合格。HARNESS正常scopeは拒否しない。 |",
+      "line_sha256_without_lf": "2245eff590329d9eda02b0239c4752adf9937a1e995216971c2dc8b807e91f69"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "physical_line": 13,
+      "literal": "| `HARNESS-L2-010` | 独立business oracleなし。pack owner/release-unit分類と版境界は機能ACの固定契約のみを確認する。 |",
+      "line_sha256_without_lf": "7bd90f53fade1abb750e4dc7df79b1ddda8bd49a34fa66e9e0b90abfad648b6b"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "physical_line": 14,
+      "literal": "| `HARNESS-L2-011` | 独立business oracleなし。呼出し元の保存・表示・業務完了判断をHARNESSへ移していないことを機能ACで確認する。 |",
+      "line_sha256_without_lf": "8b31cac4e9d5ab2711da09103e165c2a0254f894e63002dd393fad4058419a15"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "physical_line": 15,
+      "literal": "| `HARNESS-L2-023` | 独立business oracleなし。条件別dependency classificationから利用方針や新ownerを導出しないことを機能ACで確認する。 |",
+      "line_sha256_without_lf": "b159201c468f1aeec047bc10faeaf68348e46040c3e191f5c330744b551211f8"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 15,
+      "literal": "| `CASE-HARNESS-L10-NFR-010-01` | `NFR-C-HARNESS-010-01` | 同じ入力、pack version、宣言artifact contractで独立に生成した結果を固定する。 | 宣言成果物のbytes digestを比較し、予期しない差分0件を照合する。metadata除外はartifact contractに明示された項目だけを適用し、除外前後の差分を記録する。 | 未宣言の正規化で差分を隠したら不合格。fixtureに必要なcontract／versionがないとき未評価。 |",
+      "line_sha256_without_lf": "5ea5285127f7c0bbd6465df405c6cc58651051e4b74fb55becd1ffc95512a090"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 16,
+      "literal": "| `CASE-HARNESS-L10-NFR-010-02` | `NFR-C-HARNESS-010-02` | 一つの対象packのみ更新し、更新前後の全pack identity/version/evidenceを比較する。 | 対象外packの変更件数0を確認する。変更1件以上は単一pack差し替え不合格。 | 複数pack更新を混ぜたfixtureは候補値の判定に使わず、別scopeと記録する。 |",
+      "line_sha256_without_lf": "d7d7dcbad3d8b2fedac28653e41207fa50867c587290153053d6194486b3d718"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 17,
+      "literal": "| `CASE-HARNESS-L10-NFR-011-01` | `NFR-C-HARNESS-011-01` | 同じlogical operationを同一冪等keyと記録済stateでresume／再送する。効果のない中断と、効果を記録した後の重複送達を分ける。 | operation/correlation identityが保たれ、同じkeyによる追加effect 0件、処理効果が高々1回である証拠を照合する。 | 新keyによる別operation、同一keyで追加effectがあれば不合格。実際の副作用が入力にないfixtureは未評価ではなく、追加effectなしを設計上観測できるsynthetic oracleを使う。 |",
+      "line_sha256_without_lf": "ae51f1c5d7d61afcf448b0ebc6776bf328ef7c01e203a16a4ffcc4a19418769f"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 18,
+      "literal": "| `CASE-HARNESS-L10-NFR-011-02` | `NFR-C-HARNESS-011-02` | expiry直前・ちょうど・直後のdispatchおよびresume開始、期限前開始・期限後結果の各fixtureを比較する。等号扱いは既存contractの規則に従い、規則未定義時はNFR文書の候補A (`now >= expiry`) と候補B (`now > expiry`) を同一clock fixtureで比較する。 | expiry後にsuccessとなった件数0。各dispatch/attempt/resume開始時点とresult timeに適用されたexpiry、result stateを相関IDで記録する。expiry後successは既存contractの開始境界規則と照合し、成功扱いしない。 | 時計・expiry authorityがfixtureで固定されない場合は未評価。TTL／clock skew許容値を本測定で作らない。 |",
+      "line_sha256_without_lf": "25520ecd194b54e192c2111f0af3ffe2bad82f62fff9d52c48d740191814f022"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "physical_line": 19,
+      "literal": "| `CASE-HARNESS-L10-NFR-023-01` | `NFR-C-HARNESS-023-01` | NFR候補文書のD1–D12全fixture（常時必須valid/missing/stale、operation true/false/unknown、selected valid/missing/unselected、暗黙fallback拒否、明示再選択、reference-only）を同一pack revisionで評価する。人代行は権限・隔離・版・検証・記録・受領receiptを含め、未実装依存を分類する入力も与える。 | 各fixtureで表に記載したclosure/state/reasonを観測し、同じinput・revisionの2回評価で意味digest差分0。D9は未観測、D10は保留、D11は新入力として再評価。classification-onlyはmissing/unknownを返し依存実装を要求しない。 | 条件や依存の不足をfalse／successに丸める、D10で暗黙fallback、D11の明示再選択を拒否、人代行receipt欠落、安全依存のoptional化は不合格。scope外は未評価。 |",
+      "line_sha256_without_lf": "50eaeb5ae81d886042501bc697b86b0802fc3e30545d70b298c4823cb53ebacc"
+    }
+  ],
+  "legacy_asset_ledger_check": "9 asset ID/path/full SHA一致。本文の参照path/SHA/意味説明を起点sourceと照合。",
+  "checks": {
+    "FR": 3,
+    "AC_unique": 11,
+    "functional_CASE_unique": 12,
+    "NFR_pairs": 5,
+    "dependency_fixtures": 12,
+    "body_lines": 231,
+    "tables_relative_links": "PASS",
+    "scf_validate": "bindings147 fail0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "7622/57/58 PASS",
+    "diff_check": "PASS"
+  },
+  "creator_acceptance": [
+    "既存010-04をFR節へ統合して二重定義なし",
+    "023条件分類と状態分類を分離、owner別差戻し、未選択1.0完成義務を保持",
+    "未見正常と宣言項目個別欠落を対照",
+    "必要な定量値はL3で根拠付き候補化し対L10へ結ぶ"
+  ],
+  "carried_review": {
+    "source": "#2564 Claude13",
+    "unreviewed": "011/012–023のprevious missing clausesおよび全crosswalk/legacy。親別locator未特定を推測解消しない。切り出しexact HEADで固定L2/L11全文との独立再照合へ。",
+    "excluded": "M4/M5/M6および028–032は他Stageで持越し、当該3親の解消にしない。"
+  },
+  "limits": [
+    "独立review・PO L3承認未了",
+    "L10は設計のみ未実行",
+    "旧CI/runtime/test/Bun未実行",
+    "open PR2本のためlocal準備、push/PR未実施"
+  ]
+}
