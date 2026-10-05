@@ -1,0 +1,5 @@
+# HARNESS Stage 2b review02 Root検収追補
+
+本文revision `9de523cf9a07db4746ad22d911f3393e5a223132`、base `5acae384305b01d10e88eeb2e6406f847baf66df`。正式comment5999928201全文、Worker修正5文書の全差分と監査summaryを読んだ。新しい外部成果契約不一致CASE020-R022がNFR検証範囲から漏れていたためR001〜R022へ補正した。
+
+6文書の既承認prefix byte一致、CASE192件・重複0、NFR020範囲、git diff --checkを照合。6本文SHAは対のJSONに固定。Worker監査と過去記録は不変。旧source全量再読と正式review未確認3群の解消は主張しない。独立review・Fable合意・委任decisionは未成立。L10は設計のみ。
