@@ -268,11 +268,6 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 入力: 実行時点のpermissionは有効で、段階receiptの順序・target/revision/scopeは固定したまま、実行後の失効時刻だけを与える。
 期待oracle: 過去の有効実行証拠と成立済み完了判定を保持する。後日の失効は将来操作の判定へ使い、過去証拠を消さない。
 
-### CASE-INT-017-03b — 未見receipt到着順の照合正常（AC-INT-017-03）
-
-入力: target R18/scope S2について、操作時点で有効なSECURITY permission P2、Worker execution W2、HARNESS verification H2、OS acceptance O2を到着順 W2/P2/O2/H2で与える。各証拠は別source identity・revision・ownerを持ち、対象target/scopeだけが一致する。
-期待oracle: 受信順を段階順序の規則へ昇格させず、各receiptのsource/revision/target/scopeを個別に照合して一致する境界へ結ぶ。operation時点で有効なpermissionと各有効receiptがそろえば完了状態を保持する。既存の責務・権限・順序条件を追加しない。
-
 ### CASE-INT-017-04 — fieldごとのunknown/未宣言/範囲外（AC-INT-017-04）
 
 各行は独立したfixtureであり、他のsource/fieldはCASE-INT-017-01の有効値を保つ。
@@ -670,7 +665,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-035-02g` | 未選択connectorを必須依存として候補へ追加 | 未選択connectorは未観測のまま保持し、適用CONNECT contract ownerへ照会する。ticket/assignmentを生成しない。 |
 | `CASE-INT-035-02h` | candidate source scopeを別taskへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 この不完全なcandidateをticket化しない。 |
 | `CASE-INT-035-02k` | 目標未承認のcandidateをticket化可能としてOSへ渡す | 承認を創作せずcandidateを保留し、OS ticket/assignmentを成立させない。INTELLIGENCE candidate ownerへ戻す。 |
-| CASE-INT-035-02l | INTELLIGENCEがOS assignmentを生成・確定する | 不合格。INTELLIGENCEはplacement proposalまでとし、誤ったassignment生成はINTELLIGENCE candidate ownerへ戻す。assignmentの発行・確定はOSへ残す。 |
+| `CASE-INT-035-02l` | INTELLIGENCEがOS assignmentを生成・確定する | 不合格。INTELLIGENCEはplacement proposalまでとし、誤ったassignment生成はINTELLIGENCE candidate ownerへ戻す。assignmentの発行・確定はOSへ残す。 |
 
 ### CASE-INT-035-03 — 未見入力の親oracle（AC-INT-035-03）
 
