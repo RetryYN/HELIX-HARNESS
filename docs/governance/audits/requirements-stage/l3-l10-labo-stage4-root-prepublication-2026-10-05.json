@@ -1,0 +1,429 @@
+{
+  "files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "4401dd3df82465312f650e5910aedada6cf435894fa90a10a77c2676550e98c5",
+      "prefix_sha256": "417a229a2f29f90e141f72f99505d9ef90ce7d29cd4255eca5113f86ff7a74e0"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "prefix_sha256": "29bc13fb45be882b76e1c36e6f1f3f98b97b89ef92bdc63cc6ffda5b690ec2be"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "b1f33432b87a922a125ae6753452b45119152d2f7f6bf2245a7492472366b6d4",
+      "prefix_sha256": "b0139aac6e5a7d08772bdbb5c797c472f7cc4a19de04d78d2d2a2b636a8fb802"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "6a342b4fc45f2bcb03540504bf1f0c501e97d3f700bf1d639e662bb704996674",
+      "prefix_sha256": "c4337fc847a173148c17fec7be2a5f2022f73b40c4e42989fa3ba211e1689f14"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "prefix_sha256": "0338364f94216b99bdad2691feb61ad695717174520a777ca79ecd50086b3de3"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "87d537f9f29508a80e7d0d0be4cbc34b3e1702bafc0c3524c7fa286de1a6ef9e",
+      "prefix_sha256": "39a2dc9775b0a3c85ba69fc63b1a6e9946bb21e1e5f95e4a038814c4d7ddf42c"
+    }
+  ],
+  "source_pins": [
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      263,
+      266
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      87,
+      87
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      267,
+      270
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      88,
+      88
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      271,
+      274
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      89,
+      89
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      275,
+      278
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      90,
+      90
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      279,
+      282
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      91,
+      91
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      283,
+      286
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      92,
+      92
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      310,
+      315
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      102,
+      102
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L2-requirements/labo-requirements.md",
+      290,
+      295
+    ],
+    [
+      "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      94,
+      94
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      84,
+      84
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      85,
+      85
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      86,
+      86
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      87,
+      87
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      88,
+      88
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      89,
+      89
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      94,
+      94
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      91,
+      91
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      270,
+      270
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      271,
+      271
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      272,
+      272
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      273,
+      273
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      274,
+      274
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      275,
+      275
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      280,
+      280
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "docs/governance/management-provisional-requirement-register.jsonl",
+      277,
+      277
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      143,
+      160
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      31,
+      42
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      19,
+      36
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      96,
+      169
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      28,
+      41
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      148,
+      168
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      162,
+      170
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+      195,
+      207
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+      41,
+      41
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+      64,
+      64
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      15,
+      45
+    ],
+    [
+      "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      16,
+      56
+    ]
+  ],
+  "legacy_full_ledger_verified": 9,
+  "cases": [
+    "L10-LABO-036-CASE-01",
+    "L10-LABO-036-CASE-02",
+    "L10-LABO-036-CASE-03",
+    "L10-LABO-036-CASE-04",
+    "L10-LABO-036-CASE-05",
+    "L10-LABO-036-CASE-06",
+    "L10-LABO-037-CASE-01",
+    "L10-LABO-037-CASE-02",
+    "L10-LABO-037-CASE-03",
+    "L10-LABO-037-CASE-04",
+    "L10-LABO-037-CASE-05",
+    "L10-LABO-037-CASE-06",
+    "L10-LABO-037-CASE-07",
+    "L10-LABO-037-CASE-08",
+    "L10-LABO-038-CASE-01",
+    "L10-LABO-038-CASE-02",
+    "L10-LABO-038-CASE-03",
+    "L10-LABO-038-CASE-04",
+    "L10-LABO-038-CASE-05",
+    "L10-LABO-039-CASE-01",
+    "L10-LABO-039-CASE-02",
+    "L10-LABO-039-CASE-03",
+    "L10-LABO-039-CASE-04",
+    "L10-LABO-039-CASE-05",
+    "L10-LABO-039-CASE-06",
+    "L10-LABO-039-CASE-07",
+    "L10-LABO-039-CASE-08",
+    "L10-LABO-040-CASE-01",
+    "L10-LABO-040-CASE-02",
+    "L10-LABO-040-CASE-03",
+    "L10-LABO-040-CASE-04",
+    "L10-LABO-040-CASE-05",
+    "L10-LABO-040-CASE-06",
+    "L10-LABO-040-CASE-07",
+    "L10-LABO-041-CASE-01",
+    "L10-LABO-041-CASE-02",
+    "L10-LABO-041-CASE-03",
+    "L10-LABO-041-CASE-04",
+    "L10-LABO-041-CASE-05",
+    "L10-LABO-041-CASE-06",
+    "L10-LABO-052-CASE-01",
+    "L10-LABO-052-CASE-02",
+    "L10-LABO-052-CASE-03",
+    "L10-LABO-052-CASE-04",
+    "L10-LABO-052-CASE-05",
+    "L10-LABO-052-CASE-06",
+    "L10-LABO-052-CASE-07",
+    "L10-LABO-052-CASE-08",
+    "L10-LABO-052-CASE-09",
+    "L10-LABO-054-CASE-01",
+    "L10-LABO-054-CASE-02",
+    "L10-LABO-054-CASE-03",
+    "L10-LABO-054-CASE-04",
+    "L10-LABO-054-CASE-05",
+    "L10-LABO-054-CASE-06",
+    "L10-LABO-054-CASE-07",
+    "L10-LABO-054-CASE-08",
+    "L10-LABO-054-CASE-09",
+    "L10-LABO-054-CASE-10",
+    "L10-LABO-036-CASE-07",
+    "L10-LABO-036-CASE-09",
+    "L10-LABO-036-CASE-10",
+    "L10-LABO-037-CASE-09",
+    "L10-LABO-037-CASE-10",
+    "L10-LABO-037-CASE-11",
+    "L10-LABO-038-CASE-06",
+    "L10-LABO-038-CASE-07",
+    "L10-LABO-039-CASE-09",
+    "L10-LABO-040-CASE-08",
+    "L10-LABO-040-CASE-10",
+    "L10-LABO-041-CASE-07",
+    "L10-LABO-041-CASE-08",
+    "L10-LABO-052-CASE-10",
+    "L10-LABO-052-CASE-11",
+    "L10-LABO-052-CASE-12",
+    "L10-LABO-052-CASE-13",
+    "L10-LABO-054-CASE-11",
+    "L10-LABO-054-CASE-12",
+    "L10-LABO-054-CASE-13",
+    "L10-LABO-054-CASE-14",
+    "L10-LABO-054-CASE-15",
+    "L10-LABO-054-CASE-16"
+  ],
+  "case_count": 82,
+  "static": "validate0 stale0 residuals0 govcheckPASS diffcheckPASS",
+  "record_type": "root prepublication verification; candidate only",
+  "date": "2026-10-05",
+  "base": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "body_revision": "9a3167ec117b995d0a7c8a0fea72edddc22178ad",
+  "parents": [
+    "HELIXLABO-L2-036",
+    "HELIXLABO-L2-037",
+    "HELIXLABO-L2-038",
+    "HELIXLABO-L2-039",
+    "HELIXLABO-L2-040",
+    "HELIXLABO-L2-041",
+    "HELIXLABO-L2-052",
+    "HELIXLABO-L2-054"
+  ],
+  "corrections": [
+    "7 legacy disposition table trailing cells restored",
+    "054 CASE08 placement proposal remains INTELLIGENCE; designation/assignment remains OS",
+    "duplicate 03608/03910/03911/04009 removed; original cases retained; NFR refs aligned"
+  ],
+  "limits": [
+    "Document candidate checks only; no runtime/test/old CI execution",
+    "Independent review and L3 approval not performed",
+    "Prior worker records remain immutable and describe their recorded revisions"
+  ],
+  "immutable_prior_records": [
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage4-root-correction-2026-10-05.json",
+      "sha256": "40811912cb363c14ffbfcbfc97afeedc1d8f060a2a75812ffebb5a8d7844048a"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage4-root-correction-2026-10-05.md",
+      "sha256": "2ed4db7023f288020036ec93618a8ea3a39587dad3e7f4b5fc8e0507c5ec9f81"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage4-036-041-052-054-authoring-2026-10-05.json",
+      "sha256": "39dc438075565009e712c8b249f7857f3f2b443945642c4a838f0ce10cb357c7"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage4-036-041-052-054-authoring-2026-10-05.md",
+      "sha256": "350fb21a7548659ef28c6f9c111d6d628edac5a37c8d4f6aad01bb8547e32cd8"
+    }
+  ]
+}
