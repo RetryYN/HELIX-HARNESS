@@ -1,0 +1,1905 @@
+{
+  "record_kind": "security-stage4-l3-l10-authoring.v1",
+  "authority_effect": "none",
+  "status": "作成側起草完了。root検収待ち。独立review・L3承認・実行は未成立。",
+  "base_revision": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "body_revision": "87d16322001faa087715b65f0df3369b8aa69533",
+  "body_commits": [
+    "32f31c3993e631328bcab1c46f12ab2dcde50f80",
+    "87d16322001faa087715b65f0df3369b8aa69533"
+  ],
+  "stage": "Stage 4",
+  "mechanism": "HELIX-SECURITY",
+  "version_target": "1.0",
+  "included_parents": [
+    "HELIXSECURITY-L2-021",
+    "HELIXSECURITY-L2-022",
+    "HELIXSECURITY-L2-023",
+    "HELIXSECURITY-L2-024",
+    "HELIXSECURITY-L2-026"
+  ],
+  "excluded_scope": [
+    "HELIXSECURITY-L2-025",
+    "later-version semantic probing/exfiltration/Bot runtime",
+    "other mechanisms/stages"
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "label": "L3-FR",
+      "base_prefix_bytes": 100534,
+      "base_prefix_sha256": "8b0babb74dd5d5d2f7aee2742de5aecf07407c3029b1198ef6ad6d950fdf316b",
+      "current_full_sha256": "ef05c491441049dfac9ca497d7d8dedb160f16591004e736751bfacd865c4963",
+      "current_bytes": 117324,
+      "current_line_count": 543,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "4210385d1c8fad035abb4154c651bff9a29684e6393e6db171efb590d35add70",
+      "suffix_bytes": 16790
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "label": "L3-BR",
+      "base_prefix_bytes": 1958,
+      "base_prefix_sha256": "0b2894925bc80895ff61723377f27b14b4cca32289756747c566e35cba049dee",
+      "current_full_sha256": "d1c856e5d0a2d2cd2060ce63340cf63dbe424b81ad7ebf56d6e3cc498df99a83",
+      "current_bytes": 2644,
+      "current_line_count": 18,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "82f6ffe01856831a0d17eb60f947f6a58d06ed192999085fd59a3b2042fd71bf",
+      "suffix_bytes": 686
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "label": "L3-NFR",
+      "base_prefix_bytes": 12910,
+      "base_prefix_sha256": "abfb8ce0c2ec8f8baa035b301402f1f6e13b9ac31bfed27b27230d3daf2403cd",
+      "current_full_sha256": "5dc83d7fd4d42ac89841c1ab65bd16256ff75479c2142ff1a75e71b4c6141429",
+      "current_bytes": 16070,
+      "current_line_count": 86,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "3fbef4ffa337a451ebe863f3cf7c5eddd689f7a1bb9329ab53a7ff2dc67cd161",
+      "suffix_bytes": 3160
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "label": "L10-FV",
+      "base_prefix_bytes": 75382,
+      "base_prefix_sha256": "1047babfefeda159b7157dae4e7a718a325c46ccedac604eb34c629c7250d473",
+      "current_full_sha256": "76dbcb5999671e1cfa8e799aa7c860a3bb567b2ddda745946ad0c7313125e184",
+      "current_bytes": 95984,
+      "current_line_count": 656,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "912a31a3b7698cfe9ee861187fe2bd205bace1da5083c09c7c1f192ebe997580",
+      "suffix_bytes": 20602
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "label": "L10-BV",
+      "base_prefix_bytes": 1461,
+      "base_prefix_sha256": "8683764bb26d0d1f582828096c050c264df45a4f0fdc2c94e34bb4dbf9e1eb7a",
+      "current_full_sha256": "c29747d5ec7e9091ff9de01fd043f070b1e577097722edafa2a062e6b5627e2f",
+      "current_bytes": 2001,
+      "current_line_count": 17,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "2dd6134f51224aee930688ace02972116bd6da2bac13a3caafa25d3bfac98e9c",
+      "suffix_bytes": 540
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "label": "L10-NV",
+      "base_prefix_bytes": 9670,
+      "base_prefix_sha256": "ec648c78a3d4e164ab8ef8b4e23c30a2756cfed70b47c4514b3c0eb67db02be2",
+      "current_full_sha256": "b4714d3731b579cc90eb0e193d56005f61f4cb60302d5e3e07b8504530b4d500",
+      "current_bytes": 11568,
+      "current_line_count": 56,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "0879ea510958129e62392b3f7204bee3ef361dfb2422288f241621a7ba0017ae",
+      "suffix_bytes": 1898
+    }
+  ],
+  "fixed_parent_pins": [
+    {
+      "key": "fixed-L2-021",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        272,
+        281
+      ],
+      "line_count": 499,
+      "full_file_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_raw_lf_sha256": "cf27dfc9615353be1922f95922470126b14957e2d6cdb8ad25f8264ac4693b82",
+      "span_bytes": 1135
+    },
+    {
+      "key": "fixed-L11-021",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        45,
+        45
+      ],
+      "line_count": 222,
+      "full_file_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_raw_lf_sha256": "500f771536a55e1370038c36dd1bd6d8f007e1bc43e9fae93b24e457a32e4b3f",
+      "span_bytes": 297
+    },
+    {
+      "key": "PO-decision-021",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        59,
+        59
+      ],
+      "line_count": 80,
+      "full_file_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_raw_lf_sha256": "a94dd54aadd1aee89344916ac94f6ab6ffc5fc6c66349af5aa9806a77a00f2b8",
+      "span_bytes": 254
+    },
+    {
+      "key": "fixed-L2-022",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        282,
+        291
+      ],
+      "line_count": 499,
+      "full_file_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_raw_lf_sha256": "0e646922e4279d2a1f86400c4bdbf563146a21dddcb845fd90303096d44d37fd",
+      "span_bytes": 1286
+    },
+    {
+      "key": "fixed-L11-022",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        46,
+        46
+      ],
+      "line_count": 222,
+      "full_file_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_raw_lf_sha256": "c6e21bc9a77b828f3d5dccc6976468828b517af83d9c103c693c115e81003363",
+      "span_bytes": 303
+    },
+    {
+      "key": "PO-decision-022",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        60,
+        60
+      ],
+      "line_count": 80,
+      "full_file_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_raw_lf_sha256": "09e5dd4793db82ee402cf73374f3e7dd14d64ba178c98292f010a29dc17429f3",
+      "span_bytes": 178
+    },
+    {
+      "key": "fixed-L2-023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        292,
+        301
+      ],
+      "line_count": 499,
+      "full_file_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_raw_lf_sha256": "1915e008f9d96f3f4b9e45cbbf406f328563d4d88c4f07f89e6b6ed255c2c9ab",
+      "span_bytes": 1177
+    },
+    {
+      "key": "fixed-L11-023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        47,
+        47
+      ],
+      "line_count": 222,
+      "full_file_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_raw_lf_sha256": "ac72a6ebd9c56464050d76be9fc0f9d0765efcff17a0adb4a91597abd41760f7",
+      "span_bytes": 288
+    },
+    {
+      "key": "PO-decision-023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        61,
+        61
+      ],
+      "line_count": 80,
+      "full_file_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_raw_lf_sha256": "d3d0d3bfdc8148d32b79857dfa0f6837bcc117a7810495de09e299cd683ecedd",
+      "span_bytes": 178
+    },
+    {
+      "key": "fixed-L2-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        302,
+        311
+      ],
+      "line_count": 499,
+      "full_file_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_raw_lf_sha256": "873045e83bea3519766839557e281eb6d345be698f422ddf492ace8f095fc71b",
+      "span_bytes": 1231
+    },
+    {
+      "key": "fixed-L11-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        48,
+        48
+      ],
+      "line_count": 222,
+      "full_file_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_raw_lf_sha256": "efce6df4ce18371035b1b4772da986eaf88f065ed6224546b82afd15dd49aedd",
+      "span_bytes": 313
+    },
+    {
+      "key": "PO-decision-024",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        62,
+        62
+      ],
+      "line_count": 80,
+      "full_file_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_raw_lf_sha256": "8888e30aee8da8342ca7f34a4bbe1927228e630d886aa317f5b05d3e93794ba3",
+      "span_bytes": 179
+    },
+    {
+      "key": "fixed-L2-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        322,
+        331
+      ],
+      "line_count": 499,
+      "full_file_raw_lf_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "span_raw_lf_sha256": "6187c8fa6abec3a3ed307f923661c23d06db832007d7703a56a7b7c8692cc1df",
+      "span_bytes": 1154
+    },
+    {
+      "key": "fixed-L11-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        50,
+        50
+      ],
+      "line_count": 222,
+      "full_file_raw_lf_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "span_raw_lf_sha256": "29279c52cffa7deeca6a3d4353b495e006998d9f41587332d29df6d7635d2772",
+      "span_bytes": 288
+    },
+    {
+      "key": "PO-decision-026",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        64,
+        64
+      ],
+      "line_count": 80,
+      "full_file_raw_lf_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "span_raw_lf_sha256": "eb79912d9fdc74ab58c7d18edbd5332cb98093568f5dc106dc1c500b7412eb5b",
+      "span_bytes": 215
+    },
+    {
+      "key": "register-021",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        83,
+        83
+      ],
+      "line_count": 1077,
+      "full_file_raw_lf_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span_raw_lf_sha256": "f97977b1796190c838cdc2d6e76dfe6e363ca5b5ee2106c9a6af75897a18190f",
+      "span_bytes": 2449
+    },
+    {
+      "key": "register-022",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        84,
+        84
+      ],
+      "line_count": 1077,
+      "full_file_raw_lf_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span_raw_lf_sha256": "12a18373fbe0b7dc3fc0f458d1df3f6394733fe79485c36e5cb943914160dcc7",
+      "span_bytes": 2603
+    },
+    {
+      "key": "register-023",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        85,
+        85
+      ],
+      "line_count": 1077,
+      "full_file_raw_lf_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span_raw_lf_sha256": "948e3050834469a3e1a07ee57de3505bd941db1dfab9a3d4bbf457cae5e5a0c1",
+      "span_bytes": 2448
+    },
+    {
+      "key": "register-024",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        86,
+        86
+      ],
+      "line_count": 1077,
+      "full_file_raw_lf_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span_raw_lf_sha256": "cd35afcc49c86b2e0f8824c4f5df6f271003aaf1979576afea862d640046704a",
+      "span_bytes": 2449
+    },
+    {
+      "key": "register-026",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        88,
+        88
+      ],
+      "line_count": 1077,
+      "full_file_raw_lf_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "span_raw_lf_sha256": "d31bb41e8e89ad8939844b178f17897da5a400d86e68f5f9dc8e8d2814df1f33",
+      "span_bytes": 2449
+    },
+    {
+      "key": "g0-HELIXSECURITY-L2-021",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        20464,
+        20513
+      ],
+      "line_count": 21954,
+      "full_file_raw_lf_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "json_object_raw_sha256": "65d75740854f52d1b2fe9dc636597e6ba9d3f9831e0313c7946841df9094ec3f",
+      "object_bytes": 3911,
+      "stage": "Stage 4",
+      "version": "1.0",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-021-002",
+      "decision_locator": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L59"
+    },
+    {
+      "key": "g0-addendum-md-021",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        401,
+        401
+      ],
+      "line_count": 552,
+      "full_file_raw_lf_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_raw_lf_sha256": "5b8c1ec49e01366ed4c053578ca079a6da61556d55d15e658955e307e9e89cf3",
+      "span_bytes": 219
+    },
+    {
+      "key": "g0-HELIXSECURITY-L2-022",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        20514,
+        20563
+      ],
+      "line_count": 21954,
+      "full_file_raw_lf_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "json_object_raw_sha256": "201077a389763d3ac14695c344b104529c135d273fef8ec46f78d9868d23914a",
+      "object_bytes": 3843,
+      "stage": "Stage 4",
+      "version": "1.0",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-022-001",
+      "decision_locator": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L60"
+    },
+    {
+      "key": "g0-addendum-md-022",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        402,
+        402
+      ],
+      "line_count": 552,
+      "full_file_raw_lf_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_raw_lf_sha256": "3e3665edff9ba730f3afe0da3c33215997351648e400a996af979d5d82260e84",
+      "span_bytes": 219
+    },
+    {
+      "key": "g0-HELIXSECURITY-L2-023",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        20564,
+        20613
+      ],
+      "line_count": 21954,
+      "full_file_raw_lf_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "json_object_raw_sha256": "ed59ea8b9bcd052d219e4e00a8defadeaf5d6ffbbfe1a53673fb80e7be88d187",
+      "object_bytes": 3846,
+      "stage": "Stage 4",
+      "version": "1.0",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-023-001",
+      "decision_locator": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L61"
+    },
+    {
+      "key": "g0-addendum-md-023",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        403,
+        403
+      ],
+      "line_count": 552,
+      "full_file_raw_lf_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_raw_lf_sha256": "81188b00a822bbddd788b0ac5e8cb31dcd7adaccd975749df289650bc289f774",
+      "span_bytes": 219
+    },
+    {
+      "key": "g0-HELIXSECURITY-L2-024",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        20614,
+        20663
+      ],
+      "line_count": 21954,
+      "full_file_raw_lf_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "json_object_raw_sha256": "30b90fb3114a533265d396ae33cf063af5f2390103631e0c5ef64ab64ba14c9d",
+      "object_bytes": 3854,
+      "stage": "Stage 4",
+      "version": "1.0",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-024-001",
+      "decision_locator": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L62"
+    },
+    {
+      "key": "g0-addendum-md-024",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        404,
+        404
+      ],
+      "line_count": 552,
+      "full_file_raw_lf_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_raw_lf_sha256": "b7a546929e40691900bf726bbea0d891dee33b98cf1e79db9bd1b2a47383177a",
+      "span_bytes": 219
+    },
+    {
+      "key": "g0-HELIXSECURITY-L2-026",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.json",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        20714,
+        20763
+      ],
+      "line_count": 21954,
+      "full_file_raw_lf_sha256": "ec970df79eaaf693f8825045b235c43ea10aefa7925701b1fff2a974df3e4e0a",
+      "json_object_raw_sha256": "49ff78cde505b010ffe101e12b3e965d2179e50cd30f88a005ec8a4b18f4c47a",
+      "object_bytes": 3886,
+      "stage": "Stage 4",
+      "version": "1.0",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-026-001",
+      "decision_locator": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md#L64"
+    },
+    {
+      "key": "g0-addendum-md-026",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        406,
+        406
+      ],
+      "line_count": 552,
+      "full_file_raw_lf_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "span_raw_lf_sha256": "b6ae777bd203c4bcf17ef359fb32f906a69db9a54e94bdf6ce969266ecbff18e",
+      "span_bytes": 219
+    },
+    {
+      "key": "9-27-assignment-021",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "identity_or_asset": "HELIXSECURITY-L2-021",
+      "physical_lines": [
+        294,
+        294
+      ],
+      "line_count": 3439,
+      "full_file_raw_lf_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "span_raw_lf_sha256": "cb7b9ba4d4b619a43418cb01fba0c389808c6793e5a24ba94ef2b6e0242aeedf",
+      "span_bytes": 30
+    },
+    {
+      "key": "9-27-assignment-022",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "identity_or_asset": "HELIXSECURITY-L2-022",
+      "physical_lines": [
+        295,
+        295
+      ],
+      "line_count": 3439,
+      "full_file_raw_lf_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "span_raw_lf_sha256": "01c97fb0d509ccea1100212a647976a56c770272f0809e7f91bdd6eeb2ee7fa7",
+      "span_bytes": 30
+    },
+    {
+      "key": "9-27-assignment-023",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "identity_or_asset": "HELIXSECURITY-L2-023",
+      "physical_lines": [
+        296,
+        296
+      ],
+      "line_count": 3439,
+      "full_file_raw_lf_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "span_raw_lf_sha256": "5c9ea98953c47b88ec9a21701db907d4cb24a9c8e7f4b29c5d1f26c69f6b3ce1",
+      "span_bytes": 30
+    },
+    {
+      "key": "9-27-assignment-024",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "identity_or_asset": "HELIXSECURITY-L2-024",
+      "physical_lines": [
+        297,
+        297
+      ],
+      "line_count": 3439,
+      "full_file_raw_lf_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "span_raw_lf_sha256": "a69c131ff0752f637050373dd5efc6d9ada436d33ace4f962ebd831a7d266c22",
+      "span_bytes": 30
+    },
+    {
+      "key": "9-27-assignment-026",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+      "identity_or_asset": "HELIXSECURITY-L2-026",
+      "physical_lines": [
+        298,
+        298
+      ],
+      "line_count": 3439,
+      "full_file_raw_lf_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+      "span_raw_lf_sha256": "4dbfa60f2db957f4b640889c005f4633a4218318b76becf28737eec35d0bd96a",
+      "span_bytes": 29
+    },
+    {
+      "key": "old-process-full",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "identity_or_asset": "LEGACY-ASSET-F542125805B777D8A56A",
+      "physical_line_count": 284,
+      "full_raw_lf_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "bytes": 15617
+    },
+    {
+      "key": "old-process-span-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "identity_or_asset": "LEGACY-ASSET-F542125805B777D8A56A",
+      "physical_lines": [
+        148,
+        168
+      ],
+      "line_count": 284,
+      "full_file_raw_lf_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "span_raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "span_bytes": 1214
+    },
+    {
+      "key": "old-cap-full",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "identity_or_asset": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "physical_line_count": 176,
+      "full_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "bytes": 10302
+    },
+    {
+      "key": "old-cap-span-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "identity_or_asset": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "physical_lines": [
+        32,
+        66
+      ],
+      "line_count": 176,
+      "full_file_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "span_raw_lf_sha256": "1264815d13b92936d99191056d59a8a50f4b72bcb7d82a8cb69848e691f8ac65",
+      "span_bytes": 1751
+    },
+    {
+      "key": "old-cap-span-2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "identity_or_asset": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "physical_lines": [
+        68,
+        112
+      ],
+      "line_count": 176,
+      "full_file_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "span_raw_lf_sha256": "cfb8593a3bb4dc55bdaa2ae06d7af59f94354dcb2d05d0d6727221a0d9c73671",
+      "span_bytes": 2898
+    },
+    {
+      "key": "old-cap-span-3",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "identity_or_asset": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "physical_lines": [
+        116,
+        166
+      ],
+      "line_count": 176,
+      "full_file_raw_lf_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "span_raw_lf_sha256": "e15a979018200c0966c4689a81ad211f1fd52650535b644dbd9e88964dbe6529",
+      "span_bytes": 3690
+    },
+    {
+      "key": "old-cap-acceptance-full",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "identity_or_asset": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "physical_line_count": 59,
+      "full_raw_lf_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "bytes": 5198
+    },
+    {
+      "key": "old-cap-acceptance-span-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "identity_or_asset": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "physical_lines": [
+        18,
+        29
+      ],
+      "line_count": 59,
+      "full_file_raw_lf_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "span_raw_lf_sha256": "1c151e23defe9429c30264d9868ea89c6f148eb6bd57915ead415d682b4f1938",
+      "span_bytes": 2317
+    },
+    {
+      "key": "old-cap-acceptance-span-2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "identity_or_asset": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "physical_lines": [
+        42,
+        59
+      ],
+      "line_count": 59,
+      "full_file_raw_lf_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "span_raw_lf_sha256": "e8d172fa9f2a84cf3bfad5b1ae7c57d58f6de2f41340ab2abe9dc61e3ec3b11f",
+      "span_bytes": 1286
+    },
+    {
+      "key": "old-gh-admission-full",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "identity_or_asset": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "physical_line_count": 83,
+      "full_raw_lf_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "bytes": 5568
+    },
+    {
+      "key": "old-gh-admission-span-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "identity_or_asset": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "physical_lines": [
+        14,
+        75
+      ],
+      "line_count": 83,
+      "full_file_raw_lf_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "span_raw_lf_sha256": "2a9bb5d0cb98abfd61d606f1141f548e9aea2f492bab55c5831f18c260b96333",
+      "span_bytes": 4818
+    },
+    {
+      "key": "old-gh-paired-full",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md",
+      "identity_or_asset": "LEGACY-ASSET-EB421907D74CD002EA40",
+      "physical_line_count": 28,
+      "full_raw_lf_sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "bytes": 1697
+    },
+    {
+      "key": "old-gh-paired-span-1",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md",
+      "identity_or_asset": "LEGACY-ASSET-EB421907D74CD002EA40",
+      "physical_lines": [
+        14,
+        28
+      ],
+      "line_count": 28,
+      "full_file_raw_lf_sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "span_raw_lf_sha256": "4452530cd2d117fb61b663bb94f7ea5d5dfa79796c1527c2361b98d511d3d8e7",
+      "span_bytes": 1346
+    },
+    {
+      "key": "legacy-ledger-LEGACY-ASSET-F542125805B777D8A56A",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "identity_or_asset": "LEGACY-ASSET-F542125805B777D8A56A",
+      "physical_lines": [
+        2291,
+        2291
+      ],
+      "line_count": 4020,
+      "full_file_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_raw_lf_sha256": "73883376b2014725eb88baf3ac4c81313978bd219898e034fa2c6f1f94f6b73d",
+      "span_bytes": 1171
+    },
+    {
+      "key": "legacy-ledger-LEGACY-ASSET-B62E49D2E156232B8C63",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "identity_or_asset": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "physical_lines": [
+        482,
+        482
+      ],
+      "line_count": 4020,
+      "full_file_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_raw_lf_sha256": "c838ac8569a3d988db421153232a36ed85ee71b3e3474c764b04e54b9d15ea2f",
+      "span_bytes": 1200
+    },
+    {
+      "key": "legacy-ledger-LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "identity_or_asset": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "physical_lines": [
+        2842,
+        2842
+      ],
+      "line_count": 4020,
+      "full_file_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_raw_lf_sha256": "a0b980be1a2564d0bda914ea74074d7490353fc4103761566f9849c0f804e345",
+      "span_bytes": 1216
+    },
+    {
+      "key": "legacy-ledger-LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "identity_or_asset": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "physical_lines": [
+        455,
+        455
+      ],
+      "line_count": 4020,
+      "full_file_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_raw_lf_sha256": "45f0a365e3b40a39259d443ab782a3817b5cab8e4297ad9743040800a23ff728",
+      "span_bytes": 1202
+    },
+    {
+      "key": "legacy-ledger-LEGACY-ASSET-EB421907D74CD002EA40",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "identity_or_asset": "LEGACY-ASSET-EB421907D74CD002EA40",
+      "physical_lines": [
+        2820,
+        2820
+      ],
+      "line_count": 4020,
+      "full_file_raw_lf_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "span_raw_lf_sha256": "e5d4ee7be0156b4ac2929504a699e4366d4f26e9809569a39ba1b160be5ffd31",
+      "span_bytes": 1223
+    },
+    {
+      "key": "project-rule-AGENTS.md",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "AGENTS.md",
+      "identity_or_asset": null,
+      "physical_line_count": 47,
+      "full_raw_lf_sha256": "386d30378d49b96c055d237ccaa88ed02f3e43359ccfe006e4fd9c96bf5a595c",
+      "bytes": 6872
+    },
+    {
+      "key": "project-rule-CLAUDE.md",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "CLAUDE.md",
+      "identity_or_asset": null,
+      "physical_line_count": 18,
+      "full_raw_lf_sha256": "910635d193d29146e145b1543b8f1398e2b42bdf2bea412d57eddf88874f8d74",
+      "bytes": 1962
+    },
+    {
+      "key": "project-rule-docs/governance/new-generation-start-here.md",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/new-generation-start-here.md",
+      "identity_or_asset": null,
+      "physical_line_count": 121,
+      "full_raw_lf_sha256": "864274542beb009f331ebd7590a108c7c19cfde066c8552eba82fe1c3004b01f",
+      "bytes": 18161
+    },
+    {
+      "key": "project-rule-docs/governance/l3-l10-authoring-layout.md",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/l3-l10-authoring-layout.md",
+      "identity_or_asset": null,
+      "physical_line_count": 71,
+      "full_raw_lf_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "bytes": 12199
+    },
+    {
+      "key": "project-rule-docs/governance/legacy-asset-reuse-control.md",
+      "commit": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "identity_or_asset": null,
+      "physical_line_count": 89,
+      "full_raw_lf_sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "bytes": 7991
+    }
+  ],
+  "current_changed_literal_line_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 463,
+      "literal": "## Stage 4 — 接続・構成体の境界（5親、候補）",
+      "raw_lf_line_sha256": "8d404073e53d285cff9987943b2446a9d940628f934d0961c67f04d4e0c044d9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 469,
+      "literal": "PO decisionは `633bf12ea8f948db8ba3d6600179c4a9507377a7` のHELIX-SECURITY判断record rows 59–64にある各明示registrationを採択している。G0のStage 4は順序区分であり、PO採択・全Stage完了・実装またはreleaseを生成しない。021は1.0接続境界と対象別能力、022–024は1.0、026はGuard 1.0とsemantic接続の後続版境界を保持する。",
+      "raw_lf_line_sha256": "6219dfcb3f1311392755eaef6acfc08c8d08aeed899fd07edf4e9984a387e029"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 485,
+      "literal": "### SECURITY-FR-021-01 — 外部data接続の信頼境界",
+      "raw_lf_line_sha256": "558c05f1c3d560502b7356562b89b23d7da7eeb4effe0f4e53d7b0e5bdc24df3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 493,
+      "literal": "- **`SECURITY-AC-021-01` flow binding**：source、CONNECT contract/revision、SECURITY classification/decision、受領先contractを同一flow identityへ束縛し、receipt上で各stageの入力と出力を対応付ける。",
+      "raw_lf_line_sha256": "4fee034439452ba7d55c748e245d2901d9c8d05112a242d21cac26a922333262"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 494,
+      "literal": "- **`SECURITY-AC-021-02` trust non-promotion**：受信、transport成功、受領先ackだけを根拠に未信頼dataをinstruction/trusted data/authorityへ昇格しない。SECURITYの明示境界判断と受領結果を分離する。",
+      "raw_lf_line_sha256": "7a6b0f55019301bf73a8e2f076f23fc694c49bbad76bcb7a9bad8b973c9b3afd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 495,
+      "literal": "- **`SECURITY-AC-021-03` 含有条件**：候補は接続境界のtraceであり、L2-014/027の永続化・保存完了や接続先の個別機能をこの親へ追加しない。",
+      "raw_lf_line_sha256": "f6f4ee2f75449220149d8c0959611ef6ca0bdc5859d3f4497003e524340cad6a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 497,
+      "literal": "### SECURITY-FR-022-01 — operation authorityの段階間同一性",
+      "raw_lf_line_sha256": "0c567d4174b9e41e895c17b98e69ebe88f800c79f60e3bf8f2247fc7b9ec30fa"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 505,
+      "literal": "- **`SECURITY-AC-022-01` request is not grant**：request単独でallow/assignment/runを生成しない。decisionは既存の一致するoperation authorityとそのreasonを参照する。",
+      "raw_lf_line_sha256": "9eec6c62ba7d793e57232190c0e52ee22f8516d70f205bff9e615c6d336220e5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 506,
+      "literal": "- **`SECURITY-AC-022-02` binding continuity**：request→decision→assignment→effective scopeの同一subject/target/operation/revision/environment/scope/expiryを照合し、stageごとのreceiptを対応付ける。",
+      "raw_lf_line_sha256": "93ec9c196c2213f854dd6aa8e8b20203ffb1095317b0b7da435ef77852678a6c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 507,
+      "literal": "- **`SECURITY-AC-022-03` role separation**：SECURITYによるassignment/Worker placement、OSによるSECURITY decision上書き、Workerによる自己scope拡張を防ぎ、それぞれの不足を既存ownerへ戻す。",
+      "raw_lf_line_sha256": "0801108fcef5b58eee0b53c9cac22d79152d4de0f083db9d4cbab79db8046a9b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 509,
+      "literal": "### SECURITY-FR-023-01 — update admissionからpromotionの段階別receipt",
+      "raw_lf_line_sha256": "3aa469d6159a9957101e63decae1f54fde0edde51d448fefb984620383953ebd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 517,
+      "literal": "- **`SECURITY-AC-023-01` distinct stage state**：candidate→SECURITY admission→Worker execution→HARNESS verification→OS promotionの各状態とreceiptを別々に記録し、各境界の対象revisionと入力/出力identityを結ぶ。",
+      "raw_lf_line_sha256": "2d80349bc6145196ac1e4ecbc11c63644f9e8193cd7a25edffd35295fc056ad5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 518,
+      "literal": "- **`SECURITY-AC-023-02` no substitute success**：SECURITY acceptanceだけ、HARNESS greenだけ、OS ticketだけでは次段階の成功・promotionを生成しない。",
+      "raw_lf_line_sha256": "8986949c86a162a300f3684c7a436947dd264ff061fde18eacf1e91cc047aa07"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 519,
+      "literal": "- **`SECURITY-AC-023-03` failure propagation**：各段階のfailure/unknown/missing/stale evidenceは該当段階を未完として保持し、その後の段階を成功表示しない。戻し先ownerをそのfailure kindに対応させる。",
+      "raw_lf_line_sha256": "fc75f3d52ce3a410187e37bd77dffc9f466b6610ca9cdd742e10929a7cf666da"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 521,
+      "literal": "### SECURITY-FR-024-01 — policyと実資源状態の境界receipt",
+      "raw_lf_line_sha256": "12b83d69e37981dee70e3251bd6064901e6c27cac9b6b775ef103b5d5deda87c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 529,
+      "literal": "- **`SECURITY-AC-024-01` policy/effective state split**：SECURITY policy revision、INFRASTRUCTURE resource identity/revision/observed state、Workerのconstraint application stateを個別記録し、同一対象とscopeへ束縛する。",
+      "raw_lf_line_sha256": "3d1b7b2530983fa56560d2566d7325e400f47b2d47313095f85aed723ccd741e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 530,
+      "literal": "- **`SECURITY-AC-024-02` no owner inversion**：INFRASTRUCTUREがpolicyを作る/変更する、またはSECURITYがresource placement/stateを決める変異を不合格とし、各意味を既存ownerへ戻す。",
+      "raw_lf_line_sha256": "5456805dd42f3244e7bea9380489490cc0394b31afb1629a559c3d6188b3886a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 531,
+      "literal": "- **`SECURITY-AC-024-03` credential value exclusion**：合成fixtureでcredential valueを含めず、通常resource state/backup/snapshotへraw credential値を保存しない。credential-useの許否は既存L2-005/008に従う。",
+      "raw_lf_line_sha256": "f9e3c2f024790f7d26530c124e6b03bd8a16ed3907d2013f59f0b1dbd4542300"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 533,
+      "literal": "### SECURITY-FR-026-01 — deterministic Guardとsemantic判断の境界",
+      "raw_lf_line_sha256": "fc6e5e3409399ef284e35b2e82797210906c34df7c1db0e886d6fade1f50d0b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 541,
+      "literal": "- **`SECURITY-AC-026-01` Guard remains deterministic**：Guardに定義済みの決定的条件をBot不在時にも判定し、Bot response待ちを理由にルールを飛ばさない。",
+      "raw_lf_line_sha256": "0705c7bfab24bc5483b8b0ad4bc00db8a747e59191d276ea6cc8455a02d296ea"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 542,
+      "literal": "- **`SECURITY-AC-026-02` semantic input boundary**：必要時のsemantic inputは限定scope/由来/確度を識別するdecision inputとして区別し、Guard結果やauthorityそのものに変換しない。判断不能はunknown/制限とする。",
+      "raw_lf_line_sha256": "2885e262966e2884892ff3944de903708cd9125a8547afecefb9a5f5d5f30900"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 543,
+      "literal": "- **`SECURITY-AC-026-03` version and owner boundary**：semantic probing/exfiltration実利用とBot runtimeは1.xまたは必要な後続版として残す。全例示Botを1.0 runtime必須にせず、SECURITYがmodel/routingを選ばない。",
+      "raw_lf_line_sha256": "40fe111c8ebadcd8eeac7a5b4d904b5c23960da63c869fcb93bf0d20200b652b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "physical_line": 16,
+      "literal": "## Stage 4（HELIXSECURITY-L2-021/022/023/024/026）",
+      "raw_lf_line_sha256": "964000ab718c38fe57fd6c800a045eef9a603c0ffa06caf606f8d4f86d6b9191"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 74,
+      "literal": "## Stage 4 — 技術候補（5親）",
+      "raw_lf_line_sha256": "f9d0502bb2c45f71a02e18974b3091e3e1b171b6598af91a1b68721c4ea53e1b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 80,
+      "literal": "| `SEC-NFR-021-01` / `SECURITY-AC-021-01..03` | flow stage identity/revision/classification bindingの欠落・trust誤昇格候補0。 | 全体のtransport成功だけで閉じる案と、CONNECT/SECURITY/consumer receiptごとにtraceする案を比較し、L2-021の責務分離に対応する後者を候補とする。 | source、contract、decision、consumerを段階ごとに照合。未選択consumerは未観測で記録し、接続successからtrustを推定しない。 |",
+      "raw_lf_line_sha256": "8a3d6adecaa6cea49c45ce211c2ba3acd7386f0a8a79c9b8ce640a3c29a781ec"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 81,
+      "literal": "| `SEC-NFR-022-01` / `SECURITY-AC-022-01..03` | request単独allow、authority tuple drift許可、role inversionの候補0。 | request一つで許可とする案と、既存authority・OS assignment・Worker適用を別に照合する案を比較し、L2-022のoperation-specific boundaryを保つ後者を候補とする。 | actor/target/operation/revision/environment/scope/expiryは各独立fixture。通常有効scopeは追加approveなしで再利用する。 |",
+      "raw_lf_line_sha256": "915b5053a806c71390404b320413d9a4d593156e089ff9ffd79aae8bdc45efbf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 82,
+      "literal": "| `SEC-NFR-023-01` / `SECURITY-AC-023-01..03` | 4段階のstate/receipt欠落・failure後のsuccess/promotion誤表示候補0。 | 集約greenだけでpromotionする案と、SECURITY admission/Worker/HARNESS verification/OS promotionを別状態で連結する案を比較し、L2-023の別段階条件を満たす後者を候補とする。 | 各段階の入力/出力identityとrevision、failure/unknown、後段holdをCASE単位で照合。性能期限値は追加しない。 |",
+      "raw_lf_line_sha256": "fb9458f422595d67d682b997a91db43a04171b7ce13656c42ede80ddeea54329"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 83,
+      "literal": "| `SEC-NFR-024-01` / `SECURITY-AC-024-01..03` | policy/effective resource/enforcement evidenceの誤結合0、raw credential値のresource/backup/snapshot露出0。 | policy設定だけを実適用とみなす案と、INFRA/Workerの観測を別receiptとして束ねる案を比較し、L2-024の三者境界を保つ後者を候補とする。 | synthetic resource identity/revision、policy revision、Worker適用観測の結合を測る。secret markerは値を記録せず合成fixtureで検出する。 |",
+      "raw_lf_line_sha256": "1bd82d186f5c5f83174d90f4256d6aae0f1436c67ef959876cbeb70cf938f888"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "physical_line": 84,
+      "literal": "| `SEC-NFR-026-01` / `SECURITY-AC-026-01..03` | Bot不在による決定的Guard条件抜け0、semantic judgementをGuard/authorityへ昇格する誤分類0。 | Guardを常にBotへ委譲する案と、1.0 deterministic ruleを保持し必要時のsemantic inputを別に扱う案を比較し、固定L2-020/026に沿う後者を候補とする。 | Bot absent/optional input/unknown semantic resultを比較する。全Bot稼働率やsemantic runtimeの1.0完成は測定母集団に含めない。 |",
+      "raw_lf_line_sha256": "098ccc1eec7cd545a519a30aef4f2be4a912bc0312d6c87f4158867e18de64bc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 336,
+      "literal": "## Stage 4 — 接続・構成体の総合検証候補",
+      "raw_lf_line_sha256": "91e8765ac2887e69786fc4267dde815d07ce93993b693936a0aaaaef8df23cc3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 340,
+      "literal": "### SECURITY-CASE-021-01 — 外部data flow正常",
+      "raw_lf_line_sha256": "51531ad3e1e7bfe97ce558de9b682162fd6de111c6904e5ff4b36a93557ffe82"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 342,
+      "literal": "- **対象AC**：`SECURITY-AC-021-01/02/03`",
+      "raw_lf_line_sha256": "0ab8f8c737204c128c320f42c31b85102ec13b885f74887d206c0ec04749ceaa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 348,
+      "literal": "### SECURITY-CASE-021-02 — source identity欠落",
+      "raw_lf_line_sha256": "5801841866856cd6c461d69d1fd6c5aae45059551c128661851cd48cc5c7d6c2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 350,
+      "literal": "- **対象AC**：`SECURITY-AC-021-01`",
+      "raw_lf_line_sha256": "5a048bf8439dd03d7ebaead9093b27c16674cb32c14c9fc04942e97f8b098794"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 355,
+      "literal": "### SECURITY-CASE-021-03 — CONNECT contract revision不一致",
+      "raw_lf_line_sha256": "697fa17fdb7569c248cf79410d91367e0e6e4bc77dcab24875667f8bbd2b4826"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 357,
+      "literal": "- **対象AC**：`SECURITY-AC-021-01`",
+      "raw_lf_line_sha256": "5a048bf8439dd03d7ebaead9093b27c16674cb32c14c9fc04942e97f8b098794"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 362,
+      "literal": "### SECURITY-CASE-021-04 — classification unknown",
+      "raw_lf_line_sha256": "edb64421cae4aa86923ae22d4fcf906b14c9ccae13296c85a40629230b98cfd7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 364,
+      "literal": "- **対象AC**：`SECURITY-AC-021-02`",
+      "raw_lf_line_sha256": "a42da117c34baa2a688087c3e4a20b661f0e2f6e43e5f88211237480cc479e26"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 369,
+      "literal": "### SECURITY-CASE-021-05 — consumer receiptによるtrust昇格",
+      "raw_lf_line_sha256": "611048e02ecd540984e2c5edc0f10fab20831f56c357b48c6b91d05612d0570c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 371,
+      "literal": "- **対象AC**：`SECURITY-AC-021-02/03`",
+      "raw_lf_line_sha256": "3bf5bd0e7419f119dca3484aac7239911a0a115340d42d1d44d5b40175076317"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 376,
+      "literal": "### SECURITY-CASE-021-06 — CONNECTによるpolicy判断生成",
+      "raw_lf_line_sha256": "bcce5e0a812a62df1fc5a989042d539d201dde304474b2ee45da2832a15d0cf8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 378,
+      "literal": "- **対象AC**：`SECURITY-AC-021-02`",
+      "raw_lf_line_sha256": "a42da117c34baa2a688087c3e4a20b661f0e2f6e43e5f88211237480cc479e26"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 383,
+      "literal": "### SECURITY-CASE-021-07 — SECURITYによる再送所有",
+      "raw_lf_line_sha256": "02e883dabd19670a566633b9365ab6bf71e3714989a3e070607f10d0af1df393"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 385,
+      "literal": "- **対象AC**：`SECURITY-AC-021-03`",
+      "raw_lf_line_sha256": "0fe27c5046db010dfd7f282484c038f8ef5023261c89fe6a51776a7e451d9b8f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 390,
+      "literal": "### SECURITY-CASE-022-01 — authority flow正常",
+      "raw_lf_line_sha256": "2745e2ba3422f22419f7986afd72bc7b1e289863a38f780ca75ef06b306749ea"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 392,
+      "literal": "- **対象AC**：`SECURITY-AC-022-01/02/03`",
+      "raw_lf_line_sha256": "98fef86f1f224ef72d53857303f15e2bbc6dd1dccf500ca32bdebf170d0556de"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 398,
+      "literal": "### SECURITY-CASE-022-02 — request単独allow",
+      "raw_lf_line_sha256": "9e50d163dd7e28a3ba2847cace772b1b255f6088f0700056b1de0630bfab3b98"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 400,
+      "literal": "- **対象AC**：`SECURITY-AC-022-01`",
+      "raw_lf_line_sha256": "c854a91b3b3755322811b3e38427732a39291774adb75c07f7b4e47d505be73a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 405,
+      "literal": "### SECURITY-CASE-022-03 — subject不一致",
+      "raw_lf_line_sha256": "3e6c72004e8fcb5e6a637b0ec58e920f18e80481c9a20b95435a74056d2feb4c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 407,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 412,
+      "literal": "### SECURITY-CASE-022-04 — target不一致",
+      "raw_lf_line_sha256": "8f7693159c966134f30095bac2c96468055ddaf2202ad4a903b9e9c1bb443203"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 414,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 419,
+      "literal": "### SECURITY-CASE-022-05 — operation不一致",
+      "raw_lf_line_sha256": "47b10d69addbb369856d1cda843958dfbb2d8757b773b861efa66c772a4a0015"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 421,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 426,
+      "literal": "### SECURITY-CASE-022-06 — revision不一致",
+      "raw_lf_line_sha256": "feb514d216469f86e7fcbb2ba3ca3bb4d860f1c6dc67353f2576d29c67aa9970"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 428,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 433,
+      "literal": "### SECURITY-CASE-022-07 — environment不一致",
+      "raw_lf_line_sha256": "7c27a7ec8c497086cc4b1d2dff9fbfb0d98932904a7418f5d2d4cfdc783c4f55"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 435,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 440,
+      "literal": "### SECURITY-CASE-022-08 — scope不一致",
+      "raw_lf_line_sha256": "46c50a9ba864e1ea9e30ffe1a54b99fa4498e10d6c705af104d65c7f51d04aa1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 442,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 447,
+      "literal": "### SECURITY-CASE-022-09 — expiry後のauthority再利用",
+      "raw_lf_line_sha256": "a34bbcd986df447d37145b9fea81ae50b4abcf40627d3d783ed563a41597fe6e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 449,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 454,
+      "literal": "### SECURITY-CASE-022-10 — revoke後のauthority再利用",
+      "raw_lf_line_sha256": "88061886ec88bddb9ceccfd865e354fa0fa3baf00cadf31e8196329a40b5e11f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 456,
+      "literal": "- **対象AC**：`SECURITY-AC-022-02`",
+      "raw_lf_line_sha256": "8e85e4ee61d4e04bd3b7aa19870d5fb65d37d3f81634b34b42a158fce2401a96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 461,
+      "literal": "### SECURITY-CASE-022-11 — OSによるSECURITY decision上書き",
+      "raw_lf_line_sha256": "4ac56d4e4c3bbba2bb850723d0205b8381ac5da60b7dfed6a88f456c90aee0ee"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 463,
+      "literal": "- **対象AC**：`SECURITY-AC-022-03`",
+      "raw_lf_line_sha256": "979fd4bdbe2b622180ff0abc5ee8dff6e53125af82074566a40d19c13bf6fa6a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 468,
+      "literal": "### SECURITY-CASE-022-12 — SECURITYによるassignment生成",
+      "raw_lf_line_sha256": "e7e947e2327ab5e61795a21286b70f91099e1fa15012aebed0b5d4c6830f04ed"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 470,
+      "literal": "- **対象AC**：`SECURITY-AC-022-03`",
+      "raw_lf_line_sha256": "979fd4bdbe2b622180ff0abc5ee8dff6e53125af82074566a40d19c13bf6fa6a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 475,
+      "literal": "### SECURITY-CASE-022-13 — Worker effective scope不一致",
+      "raw_lf_line_sha256": "70e032723cbc6a17afaa6a6ebd9094cf3ed308024b1b8e8cab67d8d9e3c4d1a8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 477,
+      "literal": "- **対象AC**：`SECURITY-AC-022-03`",
+      "raw_lf_line_sha256": "979fd4bdbe2b622180ff0abc5ee8dff6e53125af82074566a40d19c13bf6fa6a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 482,
+      "literal": "### SECURITY-CASE-023-01 — admissionからpromotionまでの正常trace",
+      "raw_lf_line_sha256": "5db25bff4e623400311436a3cb913dd3736244774963413c837dc0ab613efafe"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 484,
+      "literal": "- **対象AC**：`SECURITY-AC-023-01/02/03`",
+      "raw_lf_line_sha256": "08b3e728f2ff32bc03b4772a8ef7bf893aa2aa30d514bbf31bd0ca45560cd587"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 490,
+      "literal": "### SECURITY-CASE-023-02 — SECURITY acceptance単独で実行/promotion",
+      "raw_lf_line_sha256": "1ad1b7aa077b8b4ad59b73adc6b8a953adcd8cdee3ba357523d7b1f48ad455a6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 492,
+      "literal": "- **対象AC**：`SECURITY-AC-023-02`",
+      "raw_lf_line_sha256": "79bc6ea424a213d6c69f08b17e65396b9b9b2f327df8207e537e82c94f93e129"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 497,
+      "literal": "### SECURITY-CASE-023-03 — Worker evidence欠落",
+      "raw_lf_line_sha256": "31c80b8a324907539bd05f326d06df4d86a3cc29b0c0c7c44427b2e7e13235c6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 499,
+      "literal": "- **対象AC**：`SECURITY-AC-023-01/03`",
+      "raw_lf_line_sha256": "db24b72f79df2a1575fe34bf01075f62c69abb27265b9e44e1d47d848ab58f50"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 504,
+      "literal": "### SECURITY-CASE-023-04 — candidate revision drift",
+      "raw_lf_line_sha256": "56a1ed1b6e556de12e2459dd25c1209d70e45d82c5318f1f80a8e4e0e8a4d654"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 506,
+      "literal": "- **対象AC**：`SECURITY-AC-023-01`",
+      "raw_lf_line_sha256": "eeee102903ae346a29d7dfaae129d0e01494967c0f7789394b4e1b2d3ccd3fa3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 511,
+      "literal": "### SECURITY-CASE-023-05 — HARNESS green単独でSECURITY admission代替",
+      "raw_lf_line_sha256": "f8718945ab7a4e1d76825ffcdd5306766aa3777921336fd831d381678d292675"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 513,
+      "literal": "- **対象AC**：`SECURITY-AC-023-02`",
+      "raw_lf_line_sha256": "79bc6ea424a213d6c69f08b17e65396b9b9b2f327df8207e537e82c94f93e129"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 518,
+      "literal": "### SECURITY-CASE-023-06 — verification failure後のpromotion",
+      "raw_lf_line_sha256": "273dcc637163f4642d08701f389431f5da845d22f6f8cfc49a3b571f26b717ba"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 520,
+      "literal": "- **対象AC**：`SECURITY-AC-023-03`",
+      "raw_lf_line_sha256": "afdf2c6528ed32103f7a49fd3ba6dddfb47d4dd299a869715ddacb46fbe1c447"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 525,
+      "literal": "### SECURITY-CASE-023-07 — OS ticket単独promotion",
+      "raw_lf_line_sha256": "c90c1ae370851e2ecf29afd21ffda5544acfeb0302022bb2c9d810d6518ea021"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 527,
+      "literal": "- **対象AC**：`SECURITY-AC-023-02`",
+      "raw_lf_line_sha256": "79bc6ea424a213d6c69f08b17e65396b9b9b2f327df8207e537e82c94f93e129"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 532,
+      "literal": "### SECURITY-CASE-023-08 — stage間identity不一致",
+      "raw_lf_line_sha256": "a7b4587b8bcef3bee7ac2e882b47a9041755e5f00882d63bee8a3783b28ca0d4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 534,
+      "literal": "- **対象AC**：`SECURITY-AC-023-01/03`",
+      "raw_lf_line_sha256": "db24b72f79df2a1575fe34bf01075f62c69abb27265b9e44e1d47d848ab58f50"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 539,
+      "literal": "### SECURITY-CASE-024-01 — policy/resource/enforcementの正常trace",
+      "raw_lf_line_sha256": "f7cb80da0431dadeacdcb82854af6fbfea6dae52edc695f5e4c6d95aa322313d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 541,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01/03`",
+      "raw_lf_line_sha256": "2c4adb079e83b4c6ee53e675a912eb1c0f8024c113d7793ebb6e292f2a69c0b7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 547,
+      "literal": "### SECURITY-CASE-024-02 — INFRASTRUCTUREによるsecurity policy作成",
+      "raw_lf_line_sha256": "cb052b0a8dc55592eaaedea79c1508d612419c46b237cbd3991c903cd0407883"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 549,
+      "literal": "- **対象AC**：`SECURITY-AC-024-02`",
+      "raw_lf_line_sha256": "8d77248f11805ec3678860a83dc877743f9ad4b340cb7662321f3f042ca22a7e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 553,
+      "literal": "### SECURITY-CASE-024-03 — SECURITYによるresource placement/state所有",
+      "raw_lf_line_sha256": "ae14a35ff372e315a35cbf132ae1302647ee6fa7830178f5788ffaa8a85610a3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 555,
+      "literal": "- **対象AC**：`SECURITY-AC-024-02`",
+      "raw_lf_line_sha256": "8d77248f11805ec3678860a83dc877743f9ad4b340cb7662321f3f042ca22a7e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 559,
+      "literal": "### SECURITY-CASE-024-04 — Worker enforcement evidence欠落",
+      "raw_lf_line_sha256": "a915e990f10ea49979da6729bf2df704fa94cd19201b23b746c2fa1dbac67f45"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 561,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01`",
+      "raw_lf_line_sha256": "85a76454862412335bbc1cc5a8f4d276fbfc2b66499268fd5080d663140d6214"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 566,
+      "literal": "### SECURITY-CASE-024-05 — INFRASTRUCTURE observation欠落",
+      "raw_lf_line_sha256": "2c1f81bbbd14c6fb0443aea736f5896bbf89a437024f74ca14a15822783fc4f7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 568,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01`",
+      "raw_lf_line_sha256": "85a76454862412335bbc1cc5a8f4d276fbfc2b66499268fd5080d663140d6214"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 573,
+      "literal": "### SECURITY-CASE-024-06 — resource identity不一致",
+      "raw_lf_line_sha256": "d519f2aac63a81af391b2c3a762cc9608791f09bd3fe679f8fa15c558a19795d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 575,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01`",
+      "raw_lf_line_sha256": "85a76454862412335bbc1cc5a8f4d276fbfc2b66499268fd5080d663140d6214"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 580,
+      "literal": "### SECURITY-CASE-024-07 — policy revision不一致",
+      "raw_lf_line_sha256": "72d67abb9e56a7abe2571a2b44350714f00efc11c63acfefc644d2f5f2088eae"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 582,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01`",
+      "raw_lf_line_sha256": "85a76454862412335bbc1cc5a8f4d276fbfc2b66499268fd5080d663140d6214"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 587,
+      "literal": "### SECURITY-CASE-024-08 — scope不一致",
+      "raw_lf_line_sha256": "f25e81bf2783c859cc5ce2776ace0874f6e79b395fec903187175837f8a6b4ce"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 589,
+      "literal": "- **対象AC**：`SECURITY-AC-024-01`",
+      "raw_lf_line_sha256": "85a76454862412335bbc1cc5a8f4d276fbfc2b66499268fd5080d663140d6214"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 594,
+      "literal": "### SECURITY-CASE-024-09 — raw credentialを通常resource stateへ保存",
+      "raw_lf_line_sha256": "59c6229e8c29b7b5a716a96f2e37c7463e9f4424596b4bff9173b6ef4721221f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 596,
+      "literal": "- **対象AC**：`SECURITY-AC-024-03`",
+      "raw_lf_line_sha256": "5328a1f787ccf085bbcc738fb619b50febd03e0482c2da903dfb26feb54cf069"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 601,
+      "literal": "### SECURITY-CASE-024-10 — raw credentialをbackup/snapshotへ保存",
+      "raw_lf_line_sha256": "49f24209c9aee8de9b89ba8073be1817593ae35bdfa3aa6a21c5db544e7bcd3c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 603,
+      "literal": "- **対象AC**：`SECURITY-AC-024-03`",
+      "raw_lf_line_sha256": "5328a1f787ccf085bbcc738fb619b50febd03e0482c2da903dfb26feb54cf069"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 608,
+      "literal": "### SECURITY-CASE-026-01 — deterministic Guard、Botなし",
+      "raw_lf_line_sha256": "72bebce533e0571baa94f0e0ed10fcddf62bb57bb577c6f6d7adb44457896891"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 610,
+      "literal": "- **対象AC**：`SECURITY-AC-026-01/03`",
+      "raw_lf_line_sha256": "c8722347553e0668423f0c2775f7d68da6fc075f7b7b856c0e8aa60b9dd22d82"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 616,
+      "literal": "### SECURITY-CASE-026-02 — Bot不在でGuard ruleを省略",
+      "raw_lf_line_sha256": "61e6e7cf4575f4f5ed6181a454b290c3a74bc1ccbfaebc7388f8bc594992f45a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 618,
+      "literal": "- **対象AC**：`SECURITY-AC-026-01`",
+      "raw_lf_line_sha256": "10e6a4e9a53b021a4f1e8be89e15bf3eaaa5db0b78d03e25116001444e8801cf"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 623,
+      "literal": "### SECURITY-CASE-026-03 — semantic inputをauthorityへ昇格",
+      "raw_lf_line_sha256": "e0b3e100c7deda208349da518fd58c3ca9d094f8cb5377b2bc12cb8058153cbf"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 625,
+      "literal": "- **対象AC**：`SECURITY-AC-026-02`",
+      "raw_lf_line_sha256": "b006e5319f0d8eea1f9a0aff2e3e114a792e5462fbc1277780f7b1ba1f5122c3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 630,
+      "literal": "### SECURITY-CASE-026-04 — semantic unknownをpass",
+      "raw_lf_line_sha256": "153ffa827b8e4e22fa48903cd7605d953696c51d2a5aa33b259a8d99ad0ac9c5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 632,
+      "literal": "- **対象AC**：`SECURITY-AC-026-02`",
+      "raw_lf_line_sha256": "b006e5319f0d8eea1f9a0aff2e3e114a792e5462fbc1277780f7b1ba1f5122c3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 637,
+      "literal": "### SECURITY-CASE-026-05 — SECURITYがmodel/routingを決める",
+      "raw_lf_line_sha256": "c7626ed3359283ea66333861d1da43f42f1d8375cc70de01d4acc0581d181aba"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 639,
+      "literal": "- **対象AC**：`SECURITY-AC-026-03`",
+      "raw_lf_line_sha256": "2ac7cc1d8ab543c153e24535ca6c19374c75522f20de21c6b63fcb2606417445"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 644,
+      "literal": "### SECURITY-CASE-026-06 — 全Botを1.0 runtime必須化",
+      "raw_lf_line_sha256": "da78fe5185be9a002db3dfe29b4871a7b8f9b458ef508e4871ad76f9325698c4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 646,
+      "literal": "- **対象AC**：`SECURITY-AC-026-03`",
+      "raw_lf_line_sha256": "2ac7cc1d8ab543c153e24535ca6c19374c75522f20de21c6b63fcb2606417445"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 651,
+      "literal": "### SECURITY-CASE-026-07 — 後続版semantic scopeを1.0へ前倒し",
+      "raw_lf_line_sha256": "878bcf13d6c986fc3ebf7fcab67968a8c4758ed0f71a1646caf29986f3fa5a71"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "physical_line": 653,
+      "literal": "- **対象AC**：`SECURITY-AC-026-03`",
+      "raw_lf_line_sha256": "2ac7cc1d8ab543c153e24535ca6c19374c75522f20de21c6b63fcb2606417445"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "physical_line": 15,
+      "literal": "## Stage 4の業務境界",
+      "raw_lf_line_sha256": "201e16b8c4ed49710e1246d8a61c1326d3fa1367b85dd92458e193b087d9996d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "physical_line": 46,
+      "literal": "## Stage 4 — 測定候補case",
+      "raw_lf_line_sha256": "11ed920b841bdd7dc2bdaabbbfcccdb59a14ffcb142b2bf5b88e3906e200a964"
+    }
+  ],
+  "coverage": {
+    "functional_requirement_count": 5,
+    "acceptance_criteria": [
+      "SECURITY-AC-021-01",
+      "SECURITY-AC-021-02",
+      "SECURITY-AC-021-03",
+      "SECURITY-AC-022-01",
+      "SECURITY-AC-022-02",
+      "SECURITY-AC-022-03",
+      "SECURITY-AC-023-01",
+      "SECURITY-AC-023-02",
+      "SECURITY-AC-023-03",
+      "SECURITY-AC-024-01",
+      "SECURITY-AC-024-02",
+      "SECURITY-AC-024-03",
+      "SECURITY-AC-026-01",
+      "SECURITY-AC-026-02",
+      "SECURITY-AC-026-03"
+    ],
+    "functional_case_count": 45,
+    "case_ids": [
+      "SECURITY-CASE-021-01",
+      "SECURITY-CASE-021-02",
+      "SECURITY-CASE-021-03",
+      "SECURITY-CASE-021-04",
+      "SECURITY-CASE-021-05",
+      "SECURITY-CASE-021-06",
+      "SECURITY-CASE-021-07",
+      "SECURITY-CASE-022-01",
+      "SECURITY-CASE-022-02",
+      "SECURITY-CASE-022-03",
+      "SECURITY-CASE-022-04",
+      "SECURITY-CASE-022-05",
+      "SECURITY-CASE-022-06",
+      "SECURITY-CASE-022-07",
+      "SECURITY-CASE-022-08",
+      "SECURITY-CASE-022-09",
+      "SECURITY-CASE-022-10",
+      "SECURITY-CASE-022-11",
+      "SECURITY-CASE-022-12",
+      "SECURITY-CASE-022-13",
+      "SECURITY-CASE-023-01",
+      "SECURITY-CASE-023-02",
+      "SECURITY-CASE-023-03",
+      "SECURITY-CASE-023-04",
+      "SECURITY-CASE-023-05",
+      "SECURITY-CASE-023-06",
+      "SECURITY-CASE-023-07",
+      "SECURITY-CASE-023-08",
+      "SECURITY-CASE-024-01",
+      "SECURITY-CASE-024-02",
+      "SECURITY-CASE-024-03",
+      "SECURITY-CASE-024-04",
+      "SECURITY-CASE-024-05",
+      "SECURITY-CASE-024-06",
+      "SECURITY-CASE-024-07",
+      "SECURITY-CASE-024-08",
+      "SECURITY-CASE-024-09",
+      "SECURITY-CASE-024-10",
+      "SECURITY-CASE-026-01",
+      "SECURITY-CASE-026-02",
+      "SECURITY-CASE-026-03",
+      "SECURITY-CASE-026-04",
+      "SECURITY-CASE-026-05",
+      "SECURITY-CASE-026-06",
+      "SECURITY-CASE-026-07"
+    ],
+    "per_parent_case_counts": {
+      "021": 7,
+      "022": 13,
+      "023": 8,
+      "024": 10,
+      "026": 7
+    },
+    "case_to_ac": [
+      {
+        "case": "SECURITY-CASE-021-01",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-02",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-03",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-04",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-05",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-06",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-021-07",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-01",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-02",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-03",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-04",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-05",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-06",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-07",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-08",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-09",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-10",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-11",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-12",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-022-13",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-01",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-02",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-03",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-04",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-05",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-06",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-07",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-023-08",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-01",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-02",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-03",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-04",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-05",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-06",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-07",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-08",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-09",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-024-10",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-01",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-02",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-03",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-04",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-05",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-06",
+        "declared_AC_refs": []
+      },
+      {
+        "case": "SECURITY-CASE-026-07",
+        "declared_AC_refs": []
+      }
+    ],
+    "business_identity_added": false,
+    "nfr_parent_candidates": 5
+  },
+  "source_disposition": {
+    "legacy_l3_process": "旧工程形式を再導出。asset/source atomsを現在のauthorityへ移管しない。",
+    "security_capability_broker": "typed bindingと理由/evidence境界だけ限定再利用。closed enum、broker runtime、hook/sandbox、全runtime AND gate、旧承認・DB/receipt schemaは置換/非継承。",
+    "security_capability_acceptance": "独立negative/evidence consumer形式を再導出。旧testは実行せず、合格証拠にしない。",
+    "github_security_admission": "revision/coverage driftの隣接参照だけ。GitHub固有scanner/severity/waiver/CI/deploy/settings/applyを親023へ移植しない。",
+    "github_security_paired_test": "段階別evidenceの比較資料。未実行。",
+    "legacy_asset_disposition": "Historical/unresolvedのまま。"
+  },
+  "static_checks": {
+    "git_diff_check": "PASS",
+    "all_6_canonical_prefixes_exact": true,
+    "functional_cases_unique": true,
+    "functional_case_count": 45,
+    "case_to_ac_all_resolved": true,
+    "per_parent_cases": {
+      "021": 7,
+      "022": 13,
+      "023": 8,
+      "024": 10,
+      "026": 7
+    },
+    "business_ac_added": false
+  },
+  "limitations": [
+    "要求承認・独立review・実装・実行・promotionを生成しない。",
+    "旧test/runtime/CI/CLI/hook/Bunは起動していない。",
+    "未見正常例・negativeは文書上のoracleで未実行。"
+  ]
+}
