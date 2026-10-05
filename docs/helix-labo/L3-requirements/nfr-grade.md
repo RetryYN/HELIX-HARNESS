@@ -100,7 +100,7 @@
 
 ## Stage 2b — 残22親のNFR候補
 
-以下は固定L2/L11に明記されたidentity・scope・列挙条件のtraceability候補であり、実測値、SLA、L3承認値ではない。率の母集団は計画した合成fixture全数とし、`N_planned=0`/不明では比率を出さない。各fixtureの観測状態（valid/failed/missing/censored）とoracle判定（pass/fail/unknown）を別軸にし、欠測を0や成功へ置き換えない。技術値候補はこの一括L3候補の一部として比較・測定し、個別parameterのPO gateを設けない。
+以下は固定L2/L11に明記されたidentity・scope・列挙条件のtraceability候補であり、実測値、SLA、L3承認値ではない。率の母集団は計画した合成fixture全数とし、`N_planned=0`/不明では比率を出さない。各fixtureの観測状態（valid/failed/missing/censored）とoracle判定（pass/fail/unknown）を別軸にし、欠測を0や成功へ置き換えない。技術値候補はこの一括L3候補の一部として比較・測定し、個別parameterのPO gateを設けない。同じCASEを複数測定行が参照しても一fixtureとして一度だけ数える。旧summary/index、集約説明、crosswalkの重複参照は独立fixture/negativeの追加件数に算入しない。negative件数は個別L10 CASE本文で一つの入力条件だけを変えたfixture単位で数え、複数変異をまとめたsummaryは個別negative数にしない。
 
 | 親 | 測定候補 | 入力・比較 | 判定材料 |
 |---|---|---|---|

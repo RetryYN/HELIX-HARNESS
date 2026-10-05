@@ -85,6 +85,8 @@
 
 ## Stage 2b — 残22親のNFR測定設計
 
+この22親追補では、各親のplanned denominatorはこの表に列挙したL10 CASE IDのうち本文に独立fixtureとして記述された各fixtureを単位とする。同じCASEを別測定軸から参照しても重複計上せず、旧summary/indexや集約説明だけを独立fixture・negativeとして数えない。negative件数は一つの入力条件だけを変えた個別CASEごとに数え、複数変異のsummaryを個別negativeへ展開した扱いにしない。
+
 [L3 NFR候補](../L3-requirements/nfr-grade.md)と同じ固定revision、合成fixture、scopeを使う。各行はNFR traceであって実行結果ではない。本文caseのIDは個別に検証し、集約表は個別caseの代用にならない。
 
 | 親 | NFR項目 | planned population / denominator | 独立L10 fixture・oracle |
