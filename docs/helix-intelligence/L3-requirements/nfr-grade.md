@@ -265,19 +265,19 @@ review08の機能測定追補：005未充足prerequisite1、016同scope未見結
 
 各CASE-NFRは対応する補完fixture全体をfixture母集団として、定義済み独立case数、結果別件数、owner return/unknown件数を数える。case行の存在だけを成立件数に数えず、実測性能や最低合格率は定めない。rateを算出する場合は実際のfixture件数を分母として示し、0件・欠測は算出値なしとする。
 
-- `NFR-INT-060-02`：CASE-INT-060-05a–05iの9 fixtureについて、四source、stop/fallback、依存異常の各入力変異と影響node/owner結果を別々に照合する。
+- `NFR-INT-060-02`：CASE-INT-060-05e–05iの5独立fixture（05a–05dは06a/06f/06i/06lへのindex）について、四source、stop/fallback、依存異常の各入力変異と影響node/owner結果を別々に照合する。
 - `NFR-INT-061-02`：CASE-INT-061-05a–05fの6 fixtureについて、互換評価、task scope、OS割当可否、receipt identity/revisionを別facetで数える。
 - `NFR-INT-062-02`：CASE-INT-062-04a–04iの9記録中、04c/04gは02d/02gのindex、04bは候補欠落indexとして独立計上せず、05a–05eの5独立fixtureと合わせて測る。
-- `NFR-INT-063-02`：CASE-INT-063-04a–04hの8 fixtureについて、LABO/BRAIN/OS/HARNESS source、時点、episode、戻し先を独立集計する。
+- `NFR-INT-063-02`：CASE-INT-063-04a–04hの8 fixtureについて、LABO/BRAIN/OSの固定戻し先、時点、episodeを独立集計する。HARNESS工程contractの戻し先はunknown。
 - `NFR-INT-069-02`：CASE-INT-069-06a–06uの21 pack/source field fixtureと07a–07fの6 operation fixtureを別母集団として報告する。HARNESS-L2-010/011のadopted pack contractを常時照合し、011 call固有inputだけをcall利用operationで測る。通常計算のoracleなし/後段receiptなしを正常母集団に含め、指定verificationのoracle欠落をnegativeへ含める。
-- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08b–08eの16 unique fixtureをcontract/consumer/data-use/measurement境界別に数え、送信と受領を一つの率に統合しない。
+- `NFR-INT-070-02`：CASE-INT-070-07a–07lと08b–08eの16 unique fixture（08aは05cへのindex）をcontract/consumer/data-use/measurement境界別に数え、送信と受領を一つの率に統合しない。
 - `NFR-INT-071-02`：CASE-INT-071-04a–04cの固定正常scenarioと04d–04jの7独立negativeに加え02hのscope mismatchを別分母で報告し、unknown/他正常scenarioを失敗数へまとめない。
-- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetとCASE-INT-074-05a–05zの25 unique fixture（05yは05jのindex、05w/xは正常fixture）を別母集団として数える。scope/evidence欠落を単一fixtureへ束ねず、proposalの正当性やWorker成功率は測定しない。
-- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26 fixtureをunknown補完4、直接変更5、receipt binding 12、source fallback/origin境界5の区分で集計し、consumer/owner未確定populationを埋めない。
+- `NFR-INT-074-02`：CASE-INT-074-04a–04cの3独立unknown facetとCASE-INT-074-05a–05aaの27定義行から05y indexを除いた26 unique fixture（05w/xは正常、05aaはnegative）を別母集団として数える。scope/evidence欠落を単一fixtureへ束ねず、proposalの正当性やWorker成功率は測定しない。
+- `NFR-INT-077-02`：CASE-INT-077-05a–05zの26定義行をunknown補完4、直接変更5、receipt binding 12、source fallback/origin境界5の区分で集計し、consumer/owner未確定populationを埋めない。
 
 
 ### Stage 5 review01補正fixtureの母集団（追補）
 
-本追補は既存9親の確認対象を、FV中の単独fixture行として追跡する測定候補である。fixture定義数とunique CASE ID数を分け、AC/NFR索引・旧複合例・別条件からの単なる参照は独立fixture分母へ加えない。review01補正差分の新規IDは独立補正表78件と既存表への追加20件の計98件である。既存表への追加は061-05f (1)、069-04h–04i (2)、069-06r–06u (4)、070-06a–06i (9)、071-02h (1)、077-03k–03m (3)。NFR参照集合に同じIDが現れても重複計上しない。
+本追補は既存9親の確認対象を、FV中の単独fixture行として追跡する測定候補である。fixture定義数とunique CASE ID数を分け、AC/NFR索引・旧複合例・別条件からの単なる参照は独立fixture分母へ加えない。review01時点の差分記録は独立補正表78行と既存表への追記行20件（unique CASE ID純増97件）を区別する。Root最終検収の139は補完fixture censusであり、全CASE定義数でも同じ範囲の差分件数でもない。既存表への追加は061-05f (1)、069-04h–04i (2)、069-06r–06u (4)、070-06a–06i (9)、071-02h (1)、077-03k–03m (3)。NFR参照集合に同じIDが現れても重複計上しない。
 
 測定はparentごとに宣言された入力field/runを母集団とし、missing、unknown、stale、mismatch、正常を別状態で数える。分母は当該operationで適用条件が成立し測定可能なrunだけとし、0件なら割合なし。未選択sourceは未観測であり成功・失敗へ推定配分しない。固定L11の069算術fixtureは値を再計算するoracleで、製品性能閾値ではない。HARNESS-L2-010/011契約照合は069の通常計算にも常時適用し、011 call固有inputのみ適用操作で評価する。いずれも実測・SLA・L3承認を意味しない。
