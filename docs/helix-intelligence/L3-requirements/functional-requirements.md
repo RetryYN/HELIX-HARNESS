@@ -289,7 +289,7 @@ Bugbot/Helpbot/Crawler等のBot candidateをINTELLIGENCEとは別identityで記�
 
 **受入条件（各ACの入力条件を対応CASEで照合）**
 
-- **`AC-INTELLIGENCE-L3-014-01` 正常成立とtrace**：separate Bot identityとpurpose/scope/input/output/allowed-action/stop/version全欄を持つmanifest candidateを入力する。各欄のsource/適用範囲が追え、OS assignmentなしでcandidate止まりとなること。
+- **`AC-INTELLIGENCE-L3-014-01` 正常成立とtrace**：反復可能で目的/scope/input/judgment/stopが限定されたtaskと、separate Bot identity及びpurpose/scope/input/output/allowed-action/stop/version全欄を持つmanifest candidateを入力する。各欄のsource/適用範囲が追え、OS assignmentなしでcandidate止まりとなること。
 - **`AC-INTELLIGENCE-L3-014-02` 個別変異・owner境界**：identity衝突と、purpose/scope/input/output/allowed action/stop condition/versionの各欠落・不一致を個別に照合する。manifest不成立なら通常判断候補へ戻し、OS assignment/実行を派生させない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
 - **`AC-INTELLIGENCE-L3-014-03` held-out正常／局所unknown**：未見Bot identityでもbounded manifestとOS assignment stateを区別し、manifest適用scope未解決ならそのscopeだけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
 ### `FR-INTELLIGENCE-L3-015-01` — `HELIXINTELLIGENCE-L2-015`
@@ -413,11 +413,11 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 | 親 | 追加AC | 固定oracleと判定範囲 |
 |---|---|---|
 | `001` | `AC-INTELLIGENCE-L3-001-04` | 固定 `L2 48–53; L11 62, 146, 264–265`: 責務を勝手に統合しない。明示共有責務だけを共有し、未定義capabilityのownerを作らない。固定enum・独立authorityを導入しない。 |
-| `002` | `AC-INTELLIGENCE-L3-002-04` | 固定 `L2 54–59; L11 63, 146, 264–265`: domainごとの能力だけを適用し、全能力を全domainへ広げない。未構成はunknown。 |
-| `003` | `AC-INTELLIGENCE-L3-003-04` | 固定 `L2 60–65; L11 64, 146, 156–157`: 別ticket dependencyを混ぜず、field欠落/順序変化を保持し、一覧・traceの存在だけで成功としない。 |
-| `004` | `AC-INTELLIGENCE-L3-004-04` | 固定 `L2 66–71; L11 65, 146, 157–158`: unknownを事実で補わず、別source表現の同じ根拠関係を許す。分類不能はL2既存ownerへ戻す。 |
+| `002` | `AC-INTELLIGENCE-L3-002-04` | 固定 `L2 54–59; L11 63, 146, 264–265`: domainごとの能力だけを適用し、全能力を全domainへ広げる変異を拒否する。未構成はunknown。 |
+| `003` | `AC-INTELLIGENCE-L3-003-04` | 固定 `L2 60–65; L11 64, 146, 156–157`: 別ticket dependencyを混ぜず、field欠落/順序変化を保持し、一覧・traceの存在だけで成功としない。modelをauthorityとして扱う変異を拒否する。 |
+| `004` | `AC-INTELLIGENCE-L3-004-04` | 固定 `L2 66–71; L11 65, 146, 157–158`: unknownを事実で補わず、別source表現の同じ根拠関係を許す。Derived InterpretationをObserved Factへ変換する誤りを拒否し、分類基準が未定なら判定不能として基準を人へ戻す。 |
 | `005` | `AC-INTELLIGENCE-L3-005-04` | 固定 `L2 72–77; L11 66, 146, 158–159`: A→Bの依存順を保ち、stale contractを未完とする。ticket発行/割当の権限を持たず、欠けたOS ticket情報は固定L2/L11上のOS側へ戻す。必要時に選択されたBRAIN knowledgeの根拠不足は当該knowledge ownerへ戻し、未選択時に依存を要求しない。 |
-| `006` | `AC-INTELLIGENCE-L3-006-04` | 固定 `L2 78–83; L11 67, 146, 159–160`: target/scope/windowを先に固定し、後続実測を別LABO recordで比較する。不一致/missing/stale/scopeずれは成功扱いせずunknown。予測は実測でなく、LABO送達は別条件。 |
+| `006` | `AC-INTELLIGENCE-L3-006-04` | 固定 `L2 78–83; L11 67, 146, 159–160`: target/scope/windowを先に固定し、後続実測を別LABO recordで比較する。不一致/missing/stale/scopeずれは成功扱いせずunknown。予測を実測事実へ昇格させず、実測値で事前predictionを上書きしない。LABO送達は別条件。 |
 | `007` | `AC-INTELLIGENCE-L3-007-04` | 固定 `L2 84–89; L11 68, 146, 160–161`: 追加観測・検査へ辿れること、反証無視・無関係検査指示を拒否すること。repair判断/実行はL2-007にないのでINTからOSへ生成しない。 |
 | `008` | `AC-INTELLIGENCE-L3-008-04` | 固定 `L2 90–95; L11 69, 146, 161–162`: review対象範囲に従いTP/FN/FPを分類し、scope外は未評価。seeded must-fix見逃し、clean artifact誤指摘、severity誤り、反例誤結合、route誤りをそれぞれ個別に拒否。 |
 | `009` | `AC-INTELLIGENCE-L3-009-04` | 固定 `L2 96–101; L11 70, 146, 162–163`: 固定L2のfinding型を保持し、UIL/TER/Future Synthesisの重複実装・根拠なしfinding・別finding反証結合を拒否。 |
