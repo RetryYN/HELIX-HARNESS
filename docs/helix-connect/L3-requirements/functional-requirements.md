@@ -151,20 +151,20 @@
 
 **責務・戻し先**：固定側/交換側の意味契約差分は両端owner、adapter/transportの技術互換はadapter owner、許可範囲・失効・不足はSECURITYへ戻す。固定L2-006で宛先が明示された区分だけを使いownerを新設しない。失敗時は通信停止を維持し、停止位置・現在/旧revision・未完義務・既存recovery先を記録する。業務結果や交換承認をCONNECT receiptから生成しない。
 
-**旧HELIXとの対応と差分**：旧L3工程定義`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`のFR+ACとL10対の構造を保持し、旧のUX受入/L12 gateを現行L10へ持ち込まず三canonical対へ再導出する。直接の旧CONNECT/片側交換要件は指定した旧L3フォルダで確認できなかった（探索語・範囲と限界をsource-pinsに記録）。隣接資産`LEGACY-ASSET-7F8960532611D89D03E1`（Technology Environment Reconciliation）はversion drift、evidence、adapter隔離の類例だけを再導出し、外部tech inventory/upgrade lifecycleを追加しない。`LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package release）は固定source/consumer分離・artifact identityの比較材料に限り、CONNECTの両端交換契約に読み替えない。旧の配布system testとTER acceptance、共通L3 test-designは正常/negative/oracleとtraceの形を参照するが、旧package release、環境更新、旧gate/CIの意味・値・実行を移さない。保持/再導出/置換の対応と各full/raw SHAはsource-pinsに記録する。
+**旧HELIXとの対応と差分**：旧L3工程定義`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`のFR+ACとL10対の構造を保持し、旧G3 gateを現行L10へ持ち込まず三canonical対へ再導出する。直接の旧CONNECT/片側交換要件は指定した旧L3フォルダで確認できなかった（探索語・範囲と限界をsource-pinsに記録）。隣接資産`LEGACY-ASSET-7F8960532611D89D03E1`（Technology Environment Reconciliation）はversion drift、evidence、adapter隔離の類例だけを再導出し、外部tech inventory/upgrade lifecycleを追加しない。`LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package release）は固定source/consumer分離・artifact identityの比較材料に限り、CONNECTの両端交換契約に読み替えない。旧の配布system testとTER acceptance、共通L3 test-designは正常/negative/oracleとtraceの形を参照するが、旧package release、環境更新、旧gate/CIの意味・値・実行を移さない。保持/再導出/置換の対応と各full/raw SHAはsource-pinsに記録する。
 
 **受入条件（AC候補）**
 
 - **CONNECT-AC-006-01 — 互換範囲内の一側交換**：4交換型を独立fixtureにし、各fixtureで登録済みconnection、変更側旧新revision、固定側機構・契約revision、scope、宣言互換条件を入力する。変更側を互換範囲内の新revisionへ交換し現在の両端契約を再照合した結果だけcompatibleとなり、同じconnection契約上の技術送受信ができる。固定側のidentity/content/revisionを前後で変更せず、業務意味/承認/許可を生成しない。未完operationがない場合は存在しない未完義務を作らない。
-- **CONNECT-AC-006-02 — 非互換・不明・stale fail-close**：各4交換型について、不一致revision、未登録revision、意味契約変更、unknown照合、stale照合receiptをそれぞれ独立に与える（4×5の独立fixture）。交換後の互換照合で不一致・unknown・staleを検出し得るが、すべて送信・再送attempt 0で、compatibleを推定せず、固定側revisionを書き換えず、交換側の適切な技術ownerまたは両端契約ownerへ該当failureを戻す。両側を同時変更するfixtureは片側交換の成功根拠にしない。
-- **CONNECT-AC-006-03 — revision/未完義務continuity**：交換前に未完operationがあるfixtureで、operation/ACK/attempt/expiry/義務を旧revisionと対応づけ、交換後receipt/handoff/rollback/recoveryにも欠落なく保持する。旧新revisionの混載・旧receipt流用を拒否し、現在の互換照合と既存restart/recovery条件が確認される前は再開・retry・送信を0にする。停止位置と既存recovery先を明示する。
+- **CONNECT-AC-006-02 — 非互換・不明・stale fail-close**：各4交換型について、不一致revision、未登録revision、意味契約変更、unknown照合、stale照合receiptをそれぞれ独立に与える（4×5の独立fixture）。交換後の互換照合で不一致・unknown・staleを検出し得るが、すべて送信・再送attempt 0で、compatibleを推定せず、固定側revisionを書き換えず、交換側の適切な技術ownerまたは両端契約ownerへ該当failureを戻す。両側を同時変更するfixtureはunknown/rejectとし、compatibleや片側交換の成功にせず、片側交換のpass計数から除外する。
+- **CONNECT-AC-006-03 — revision/未完義務continuity**：交換前に未完operationがあるfixtureで、旧revision→交換後revision→現在の互換照合receipt→connection/operation identity・attempt・技術結果を一続きのconnection traceで辿れるようにし、operation/ACK/attempt/expiry/義務を旧revisionと対応づけて交換後receipt/handoff/rollback/recoveryにも欠落なく保持する。旧新revisionの混載・旧receipt流用を拒否し、現在の互換照合と既存restart/recovery条件が確認される前は再開・retry・送信を0にする。停止位置と既存recovery先を明示する。
 - **CONNECT-AC-006-04 — authority/owner境界**：交換/復旧に適用するSECURITY許可が存在し有効な正常fixtureと、許可missing/unknown/expired/scope不一致の各反例を区別する。後者はexchange/sendを開始せず保留し、SECURITYへ戻す。契約意味の差分は両端owner、adapter/transport互換failureはadapter ownerへ戻し、receiptだけで両者の業務成立や承認を生成しない。
 
 ### 旧assetの意味区分
 
 | 旧asset | 今回の扱い |
 |---|---|
-| `LEGACY-ASSET-F542125805B777D8A56A`（旧L3 process definition） | FR+AC/paired verification形式を再利用。旧L12 gate・承認roleは現行へ再導出しない |
+| `LEGACY-ASSET-F542125805B777D8A56A`（旧L3 process definition） | FR+AC/paired verification形式を再利用。旧G3 gate・承認roleは現行へ再導出しない |
 | `LEGACY-ASSET-7F8960532611D89D03E1`（Technology Environment Reconciliation L3） | 双側revision drift/evidence/adapter分離の隣接類例のみ意味を再導出。CONNECT交換要件の完全一致sourceではない |
 | `LEGACY-ASSET-30FFE84409079C9B06D1`（同TER paired acceptance） | independent oracle/unknown/fail-closeの検証形式だけ再導出。外部provider lifecycleは対象外 |
 | `LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package L3） | 固定sourceとconsumer差分の隣接比較。artifact allowlist/release authorityを採用しない |

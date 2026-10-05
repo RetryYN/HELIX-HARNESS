@@ -86,7 +86,7 @@
 |---|---|---|---|
 | 4種類の一側交換、固定側/契約revisionを固定、互換時だけ同契約で送受信 | `CONNECT-AC-006-01` | `CONNECT-CASE-006-01`, `006-05` | 4型を独立に照合し、固定側変更0、互換receipt/送受信のidentity・revision束縛 |
 | 不一致・unknown・stale・意味契約変更は通信停止 | `CONNECT-AC-006-02` | `CONNECT-CASE-006-02` | 片側交換後に4型×5 failure classを照合し、各send/retry attempt 0。許可不備だけ交換開始前に停止 |
-| revision continuityと未完義務のhandoff/rollback/recovery | `CONNECT-AC-006-03` | `CONNECT-CASE-006-03` | operation/ACK/attempt/expiry/obligation保持、旧新mix 0、再照合前send/retry 0 |
+| revision continuityと未完義務のhandoff/rollback/recovery | `CONNECT-AC-006-03` | `CONNECT-CASE-006-03` | 旧revision→新revision→current comparison receipt→connection/operation/attempt/技術結果を一つのtraceで追跡し、未完義務を保持。旧新mix 0、再照合前send/retry 0 |
 | exchange/recovery権限、owner分離 | `CONNECT-AC-006-04` | `CONNECT-CASE-006-04` | 有効authorityとmissing/unknown/expired/wrong-scopeを区別し、該当ownerへ戻す |
 
 ### CONNECT-CASE-006-01 — 4型の互換内一側交換
@@ -99,13 +99,13 @@
 
 - **対象AC**: `CONNECT-AC-006-02`。
 - **negative fixtures**: 各交換variant (a)〜(d)ごとに、以下を別々のfixtureとして与える: (1)非互換revision、(2)未登録revision、(3)意味契約変更、(4)unknown compatibility result、(5)stale compatibility receipt。計20独立fixture。さらに固定側も同時更新する反例を与え、片側交換の証拠に含めない。
-- **期待oracle**: 20 fixtureすべてで交換後の互換結果を分類し、送信・再送attempt 0、compatibleへの推測昇格0、固定側identity/contract revision更新0。compatibility failureを検出するための片側交換・結果照合は許可反例でない限り開始を禁じない。staleはそのrevision組に再照合してcompatibleになるまで送信を保留する。技術互換の不一致はadapter owner、意味契約差分は両端ownerへ理由とrevisionを返し、既存停止/recovery先を記録する。許可があっても非互換/unknown/staleをoverrideしない。
+- **期待oracle**: 20 fixtureすべてで交換後の互換結果を分類し、送信・再送attempt 0、compatibleへの推測昇格0、固定側identity/contract revision更新0。固定側と交換側の両方が変化したfixtureはunknown/rejectとし、compatibleまたは片側交換成功にせず、片側交換のpass計数へ含めない。compatibility failureを検出するための片側交換・結果照合は許可反例でない限り開始を禁じない。staleはそのrevision組に再照合してcompatibleになるまで送信を保留する。技術互換の不一致はadapter owner、意味契約差分は両端ownerへ理由とrevisionを返し、既存停止/recovery先を記録する。許可があっても非互換/unknown/staleをoverrideしない。
 
 ### CONNECT-CASE-006-03 — 未完義務とrevision continuity
 
 - **対象AC**: `CONNECT-AC-006-03`。
-- **正常fixture**: 一側交換開始前に未完operationを置き、operation identity、ACK状態、過去attempt順、expiry、未完義務、停止位置、前後revisionと既存restart/recovery条件を入力する。互換内の交換で固定側を変更しない。**期待oracle**: 交換前後receiptとhandoff/rollback/recovery参照が同じ未完義務と旧新revisionを明示し、各義務の状態を失わない。再照合・既存再開条件が成立するまでは追加send/retryを0に保つ。
-- **negative fixtures**: expiry欠落/失効、旧revision receipt流用、新旧attemptの混合、ACK欠落、未完義務の一件欠落、固定側を新revisionと偽装、recovery先欠落を個別に与える。**期待oracle**: 完了扱いをせず停止、unknown/unfinishedとし、欠落理由・停止地点・当該既存owner/recovery先を保持する。未完義務不存在の場合に架空義務を要求しない。
+- **正常fixture**: 一側交換開始前に未完operationを置き、operation identity、ACK状態、過去attempt順、expiry、未完義務、停止位置、旧revision、交換後revision、現在の互換照合receiptと既存restart/recovery条件を入力する。互換内の交換で固定側を変更しない。**期待oracle**: 旧revision→交換後revision→現在の比較receipt→connection/operation identity・attempt・技術結果が一続きのtraceで結ばれ、交換前後receiptとhandoff/rollback/recovery参照が同じ未完義務と旧新revisionを明示し、各義務の状態を失わない。再照合・既存再開条件が成立するまでは追加send/retryを0に保つ。
+- **negative fixtures**: traceの途中でreceiptが欠落・他connection/operationまたは他revisionへ結び付くケースを個別に与える。さらに、(1)operation identity欠落、(2)過去attempt順序/履歴欠落、(3)現在の再照合receiptより前にretryを試みるケースを各々独立して与える。従来のexpiry欠落/失効、旧revision receipt流用、新旧attemptの混合、ACK欠落、未完義務の一件欠落、固定側を新revisionと偽装、recovery先欠落も個別に保持する。**期待oracle**: 各反例はpassにせず停止、unknown/unfinishedとし、send/retryは0、欠落理由・停止地点・当該既存owner/recovery先を保持する。未完義務不存在の場合に架空義務を要求しない。
 
 ### CONNECT-CASE-006-04 — 交換/復旧authorityとowner別戻し
 
