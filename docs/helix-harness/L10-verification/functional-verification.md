@@ -352,5 +352,7 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-029-57` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04 | proposalからcommitだけを自動実行する。 | commit実行を拒否して非実行proposalを保持する。 |
 | `CASE-HARNESS-L10-029-58` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-04 | proposalからreleaseだけを自動実行する。 | release実行を拒否して非実行proposalを保持する。 |
 | `CASE-HARNESS-L10-029-59` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | source authority stateだけをstaleにしapproved claimを与える。 | approved claimを拒否しsource/authority ownerへ戻す。 |
+| `CASE-HARNESS-L10-026-55` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | HARNESS-L2-009設計義務だけを欠落させ、Template等の別契約は有効に保つ。 | 対象設計の構成を保留し、HARNESS-L2-009の既存設計義務ownerへ戻す。Template存在だけで義務を補完しない。 |
+| `CASE-HARNESS-L10-026-56` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 承認済L3要件の対象revisionだけを構成対象と異なるrevisionへ変え、authority状態は有効に保つ。 | 別revisionの承認を流用せず対象構成を保留し、該当L3 authority ownerへ戻す。 |
 
 全caseの通常・negative・未見normalは固定parent revisionと選択scope内に限る。不足は各固定親の境界へ返す。026は要件意味/L2-008または既存L3 authority、template/L2-009、選択Pattern/BRAIN、pack・call/L2-010/011、設計契約/L2-014、pair/oracle/L2-022へfield別に返す。027は選択source/input ownerまたは019/010/011の該当ownerへ、028は027 source、saved-design authority/L2-014、requirement/L2-008、003/004 impact/backflowの該当ownerへ、029はL2-008/L3 authority、設計/API behavior/L2-014、oracle/L2-022、選択API/data authority/source ownerへ返す。参照資料の存在、fieldの有無、旧test合格だけで内容oracleを代替しない。
