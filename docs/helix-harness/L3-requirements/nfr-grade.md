@@ -109,3 +109,15 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 | `NFR-C-HARNESS-029-01` / `HARNESS-L2-029` | 選択proposal bundleの五要素間に必要なsource/scope/revision/owner traceの保持候補100%；選択済みoperation依存欠落、未選択operation依存の強制、proposalを実行/承認へ誤昇格する件数は各0。 | 固定L2-029/L11 383–392/395の五要素、CORE所有、proposal identity/scope・target requirement revision/authority、保存design authority不変、operationごとのAPI oracle・target implementation revision・schema・permission・loss oracleを、名称だけの案Aと実体・選択状態・依存traceを個別照合する案Bで比較する。CASE-029-25〜66を選択/非選択とfield別状態のplanned fixtureにする。 | 必須依存やoracleを固定sourceで特定できない場合は未評価/unknown。migration/APIの常時選択、任意の信頼度・coverage・性能閾値を作らない。 |
 
 必要な技術値は、固定親で判定境界が明示されない場合も起草を止めず、根拠・比較案・測定方法・分母/状態境界を添えた候補として対L10へつなぐ。要求の意味・scope・owner・versionを変える必要が生じる場合だけL2へ戻す。旧runtime/CLI/CIや旧schemaは実行・移植しない。
+
+## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
+
+本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+
+| NFR候補ID / 親 | 候補値 | 根拠・比較案 | 適用限界 |
+|---|---|---|---|
+| `NFR-C-HARNESS-017-01` / `HARNESS-L2-017` | Release Port必須条件の未充足をeligibleにする件数 **0**、同一input/revisionからのartifact identity/digest不一致 **0**。 | 固定親のeligible条件、同一入力からの再現、未回収検査の停止を観測する候補。例外昇格案は条件を弱めるため不採用。 | release rateやdeployment durationを加えず、eligible候補を実配備へ読み替えない。 |
+| `NFR-C-HARNESS-018-01` / `HARNESS-L2-018` | designed/implemented/verified/observed/operated間の誤状態遷移 **0件**。各観測recordに対象revision・時点・要求ownerの欠落 **0件**。 | 固定親の状態分離と観測・再要求経路の完全性を測る候補。stage存在を後続stage証明とする案は明示的に不採用。 | 可用性、信頼性、性能、容量、費用、retention等の数値は製品ownerの要求があるときだけその範囲で測定する。 |
+| `NFR-C-HARNESS-019-01` / `HARNESS-L2-019` | 入力sourceの変換可能範囲・unknown・不整合の未分類数 **0件**。変換候補からの承認／release自動生成 **0件**。 | 逆方向形成のtrace保全とauthority非生成を候補化する。全部成功/全部拒否のbinary案より、変換可能部分とunknownを分ける候補が部分入力に忠実。 | 入力stageごとの時間・変換率を要求閾値化しない。 |
+| `NFR-C-HARNESS-020-01` / `HARNESS-L2-020` | handoff対象の全必須fieldと契約版の対応欠落 **0件**、不整合入力の暗黙受理 **0件**、handoffによるupstream state変更 **0件**。 | 固定親のproducer/consumer契約一致と状態非書換えを直接観測する。汎用warningだけ返す案は個別不整合を隠すため不採用。 | 関係のない隣接stageへの一律依存や、handoff成功率を新しい業務目標にしない。 |
+| `NFR-C-HARNESS-024-01` / `HARNESS-L2-024` | 同一engine/pack/target revision・scope・既回答から、質問順・理由・状態の差分 **0件**。候補スコア単独による必須不足の見逃し・人間合意への昇格 **0件**。 | 固定親が同じ入力から同じ質問順序・理由・状態を要求し、score・質問数・iteration数だけで収束しないことを観測する。固定質問数や数値weightを足す案は不採用。 | 意味評価を単一accuracy閾値へ還元しない。履歴の最低件数や質問件数SLOを設けない。適用Prototype／非UIの合意状態は別々に検査する。 |

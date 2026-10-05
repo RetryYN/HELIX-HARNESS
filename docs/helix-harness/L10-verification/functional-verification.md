@@ -368,3 +368,163 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-026-62` | FR-HARNESS-L3-026 / AC-HARNESS-L3-026-02 | 同一正常tupleの他fieldを保持し、HARNESS-L2-009設計義務だけをmismatchにする。 | 設計構成を未完として当該状態と理由を保持し、HARNESS-L2-009/template ownerへ戻す。他fieldから補完しない。 |
 
 全caseの通常・negative・未見normalは固定parent revisionと選択scope内に限る。不足は各固定親の境界へ返す。026はUI対象の合意不足/既存L1・L2の該当owner、要件意味/L2-008または既存L3 authority、template/L2-009、選択Pattern/BRAIN、pack・call/L2-010/011、CORE契約/CORE owner、BRAIN connector契約/COREのBRAIN connector契約owner、設計contract/trace/HARNESS、pair/oracle/L2-022へfield別に返す。027は選択source/input owner、選択sourceのpermission ownerとsource/contract owner、未宣言組合せの当該pack/サービスowner、019/010/011の該当owner、過剰claimは027抽出pack単一主ownerへ、028は意味差の既存L1 owner、全体Reverse/reobservation候補、010/011 pack/call、019 input/result、authority/source、選択oracle/data/baseline、単一comparison pack/service owner、027 source、saved-design authority/L2-014、requirement/L2-008、003/004 impact/backflowの該当ownerへ、029は027抽出owner、028 comparison owner、影響serviceの既存owner、010/011 pack/call、003/004 impact/backflow、019 input/result、CORE所有029 proposal contract owner、L2-008/L3 authority、設計/API behavior/L2-014、oracle/L2-022、選択API/data authority/source ownerへ返す。参照資料の存在、fieldの有無、旧test合格だけで内容oracleを代替しない。
+
+## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
+
+本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+
+execution_status: designed_only_not_executed
+
+各行は一つの正常条件または一つの変異を識別する。判定に必要な入力をfixtureで確定できない場合は未評価とし、失敗入力を測れなかったことをpassにしない。旧test/CI/runtimeは実行しない。
+
+| CASE ID | FR / AC | 独立fixture入力 | 期待oracle・戻し先 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-017-R001` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-018-R001` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-019-R001` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-020-R001` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-024-R001` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-017-R002` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | external-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。出所だけを未見外部へ替える。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
+| `CASE-HARNESS-L10-017-R003` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | no-os-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。OSは未使用で利用者配備手段へ渡す。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
+| `CASE-HARNESS-L10-017-R004` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 未回収の省略検査：正常fixtureの未回収の省略検査だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R005` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | Release Port必須条件：正常fixtureのRelease Port必須条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R006` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact revision：正常fixtureのartifact revisionだけを別revisionにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R007` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact identity：正常fixtureのartifact identityだけを別identityにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R008` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 対象環境：正常fixtureの対象環境だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R009` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 依存条件：正常fixtureの依存条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R010` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | security条件：正常fixtureのsecurity条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R011` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 配備条件：正常fixtureの配備条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R012` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | reproduce：同じ宣言input/revisionで成果物を2回再構成する。 | 同じ成果物identityとdigestを得る。差を隠す正規化や別inputでの一致を再現性にしない。 |
+| `CASE-HARNESS-L10-017-R013` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback：直前適格版だけを未特定にする。 | rollback可能とせず該当ownerへ不足を返す。配備実行をこのfixtureで行わない。 |
+| `CASE-HARNESS-L10-017-R014` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | deployed-only：Deployed evidenceだけがありObserved evidenceは未着。 | Deployedを保持しObservedへ昇格しない。利用者製品releaseをHELIX自身のruntimeへ替えない。 |
+| `CASE-HARNESS-L10-018-R002` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性適用：配備済みrevisionとowner承認運用要求で可用性だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R003` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性非適用：配備済みrevisionとowner承認運用要求で可用性だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R004` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 可用性unknown：配備済みrevisionとowner承認運用要求で可用性だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R005` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性適用：配備済みrevisionとowner承認運用要求で信頼性だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R006` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性非適用：配備済みrevisionとowner承認運用要求で信頼性だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R007` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 信頼性unknown：配備済みrevisionとowner承認運用要求で信頼性だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R008` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能適用：配備済みrevisionとowner承認運用要求で性能だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R009` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能非適用：配備済みrevisionとowner承認運用要求で性能だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R010` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 性能unknown：配備済みrevisionとowner承認運用要求で性能だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R011` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量適用：配備済みrevisionとowner承認運用要求で容量だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R012` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量非適用：配備済みrevisionとowner承認運用要求で容量だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R013` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 容量unknown：配備済みrevisionとowner承認運用要求で容量だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R014` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用適用：配備済みrevisionとowner承認運用要求で費用だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R015` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用非適用：配備済みrevisionとowner承認運用要求で費用だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R016` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 費用unknown：配備済みrevisionとowner承認運用要求で費用だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R017` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | security適用：配備済みrevisionとowner承認運用要求でsecurityだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R018` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | security非適用：配備済みrevisionとowner承認運用要求でsecurityだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R019` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | securityunknown：配備済みrevisionとowner承認運用要求でsecurityだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R020` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacy適用：配備済みrevisionとowner承認運用要求でprivacyだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R021` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacy非適用：配備済みrevisionとowner承認運用要求でprivacyだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R022` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | privacyunknown：配備済みrevisionとowner承認運用要求でprivacyだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R023` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用適用：配備済みrevisionとowner承認運用要求で運用だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R024` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用非適用：配備済みrevisionとowner承認運用要求で運用だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R025` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 運用unknown：配備済みrevisionとowner承認運用要求で運用だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R026` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守適用：配備済みrevisionとowner承認運用要求で保守だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R027` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守非適用：配備済みrevisionとowner承認運用要求で保守だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R028` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 保守unknown：配備済みrevisionとowner承認運用要求で保守だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R029` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復適用：配備済みrevisionとowner承認運用要求で回復だけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R030` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復非適用：配備済みrevisionとowner承認運用要求で回復だけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R031` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | 回復unknown：配備済みrevisionとowner承認運用要求で回復だけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R032` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observability適用：配備済みrevisionとowner承認運用要求でobservabilityだけを適用へ設定し根拠と決定ownerを与える。 | 当該軸の適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R033` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observability非適用：配備済みrevisionとowner承認運用要求でobservabilityだけを非適用へ設定し根拠と決定ownerを与える。 | 当該軸の非適用を保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R034` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | observabilityunknown：配備済みrevisionとowner承認運用要求でobservabilityだけをunknownへ設定し根拠と決定ownerを与える。 | 当該軸のunknownを保持する。適用は当該owner基準で観測設計を評価し、非適用は適用外として記録し、unknownは未評価として決定ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R035` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 要求owner：正常な観測recordの要求ownerだけを欠落する。 | 観測/運用済みとせず不足を特定し、当該ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R036` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 観測evidence：正常な観測recordの観測evidenceだけを欠落する。 | 観測/運用済みとせず不足を特定し、当該ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R037` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 対象revision：正常な観測recordの対象revisionだけを欠落する。 | 観測/運用済みとせず不足を特定し、当該ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R038` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | 観測時点：正常な観測recordの観測時点だけを欠落する。 | 観測/運用済みとせず不足を特定し、当該ownerへ返す。 |
+| `CASE-HARNESS-L10-018-R039` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | designed：当該designedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |
+| `CASE-HARNESS-L10-018-R040` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | implemented：当該implementedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |
+| `CASE-HARNESS-L10-018-R041` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | verified：当該verifiedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |
+| `CASE-HARNESS-L10-018-R042` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | observed：当該observedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |
+| `CASE-HARNESS-L10-018-R043` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-02` | operated：当該operatedを支える根拠だけがあり、残る4状態の根拠はない。 | 根拠のある状態だけを示し、残る状態を推測しない。observedをoperatedと扱わない。 |
+| `CASE-HARNESS-L10-018-R044` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | backflow：同じ要求revisionのL12観測が製品ownerの個別基準に不適合。 | 当該revisionの再要求化候補・根拠・ownerへ結び、要求自体を勝手に変更しない。 |
+| `CASE-HARNESS-L10-018-R045` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | independent：①〜⑥、OS運転、LABO効果評価を使わず、外部配備済み製品とowner運用要求だけを与える。 | 契約候補と観測/再要求化経路を返す。先行工程や他機構runtimeの完成を追加条件にしない。 |
+| `CASE-HARNESS-L10-018-R046` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-03` | owner-criteria：共通RTO/RPO、保持期間、予算値はなく、製品ownerの個別基準はある。 | 個別基準を維持し、一律閾値なしだけで拒否しない。 |
+| `CASE-HARNESS-L10-019-R002` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | 要求：COREだけを使い、要求と既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |
+| `CASE-HARNESS-L10-019-R003` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | コード：COREだけを使い、コードと既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |
+| `CASE-HARNESS-L10-019-R004` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | PoC：COREだけを使い、PoCと既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |
+| `CASE-HARNESS-L10-019-R005` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | 未見リリース単位：COREだけを使い、未見リリース単位と既知source/revision/scopeを持ち込む。 | 入力traceを持つ要求・設計・検証pair候補を返し、入口先や先行単位実行を強制しない。 |
+| `CASE-HARNESS-L10-019-R006` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 由来不明：由来不明の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |
+| `CASE-HARNESS-L10-019-R007` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 旧資産：旧資産の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |
+| `CASE-HARNESS-L10-019-R008` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 設計trace欠落：設計trace欠落の既存成果と、変換できる部分のsource情報を与える。 | 全体Reverseの復旧候補と変換不能/unknown一覧を返す。由来を推定で埋めず、変換可能部分を捨てない。 |
+| `CASE-HARNESS-L10-019-R009` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | source：入力のsourceだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |
+| `CASE-HARNESS-L10-019-R010` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | revision：入力のrevisionだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |
+| `CASE-HARNESS-L10-019-R011` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | owner：入力のownerだけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |
+| `CASE-HARNESS-L10-019-R012` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-02` | 意味：入力の意味だけをunknownにし他の既知情報を維持する。 | 当該未知箇所と理由を保持し、既知部分のtraceを返す。 |
+| `CASE-HARNESS-L10-019-R013` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-03` | authority：pair候補を形成し、承認recordは与えない。 | 要求/設計の承認、実装・release可否を生成せず草稿として返す。 |
+| `CASE-HARNESS-L10-020-R002` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 省いた検査：互換する隣接リリース単位契約に省いた検査のidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |
+| `CASE-HARNESS-L10-020-R003` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 未解決事項：互換する隣接リリース単位契約に未解決事項のidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |
+| `CASE-HARNESS-L10-020-R004` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | unknown：互換する隣接リリース単位契約にunknownのidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |
+| `CASE-HARNESS-L10-020-R005` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | 人間判断待ち：互換する隣接リリース単位契約に人間判断待ちのidentity/owner/stateだけを残す。 | 同じ項目を継続義務として引継ぎ、合流先の回収証拠まで未完を保つ。引継ぎだけで閉じない。 |
+| `CASE-HARNESS-L10-020-R006` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 契約版：隣接契約の契約版だけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R007` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 必須field：隣接契約の必須fieldを一つだけ欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R008` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | artifact identity：隣接契約のartifact identityだけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R009` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | artifact revision：隣接契約のartifact revisionだけを不一致にし、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R010` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | owner：隣接契約のownerだけを欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R011` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | 必要evidence：隣接契約の必要evidenceを一つだけ欠落させ、他fieldを保つ。 | 具体的な不一致箇所を示しhandoffを保留する。暗黙版変換や単一汎用errorで差を消さない。 |
+| `CASE-HARNESS-L10-020-R012` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | external：前単位を実行せず、同じ入力契約とL2-019の条件を満たす外部成果を与える。 | 互換contractなら正常候補を返し、前単位実行を追加条件にしない。 |
+| `CASE-HARNESS-L10-020-R013` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | extension：宣言contractが許容する未見fieldだけを追加する。 | 契約が許す範囲で受け入れ、無関係な直列依存を追加しない。 |
+| `CASE-HARNESS-L10-020-R014` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | provisional：④のProvisionalだけを⑥へ渡す。 | handoffを止め、L2-022の必要検証・受入状態不足を返す。 |
+| `CASE-HARNESS-L10-020-R015` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | verified-accepted：L2-022のVerified/Acceptedまで同条件を満たした成果を⑥へ渡す。 | 受渡し候補だけを返し、release実行・全段階完了を生成しない。 |
+| `CASE-HARNESS-L10-020-R016` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-03` | backflow：接続contractに上流要求意味を変える差分を一つだけ与える。 | 下流で意味を変更せず、意味が変わる最上流の層とownerへBackflowする。 |
+| `CASE-HARNESS-L10-020-R017` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | unit-pass：各単体passだけを与え接続contractの照合evidenceを欠く。 | 接続固有義務を未完として保持し単体passから接続成功を推測しない。 |
+| `CASE-HARNESS-L10-024-R002` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 影響：同順位候補を含む正常入力の影響根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-024-R003` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 不確実性：同順位候補を含む正常入力の不確実性根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-024-R004` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 下流変更cost：同順位候補を含む正常入力の下流変更cost根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-024-R005` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | 人間専決度：同順位候補を含む正常入力の人間専決度根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-024-R006` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | versioned tie-break：同順位候補を含む正常入力のversioned tie-break根拠だけを欠落させる。 | 順位を捏造せず選択未確定を示しpack契約ownerへ不足を返す。 |
+| `CASE-HARNESS-L10-024-R007` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | determinism：同じcandidate・既回答・engine/pack/target revisionとscopeを2回与える。 | 質問順、理由、状態が同じになる。数値weightや質問数上限を新設しない。 |
+| `CASE-HARNESS-L10-024-R008` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | answered：同じrevision/scopeの既回答質問を別表現にする。 | 回答事実を残し再質問を拒否する。 |
+| `CASE-HARNESS-L10-024-R009` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | open：同じidentity/owner/stateの未回答open itemを与える。 | 新規重複発行せず同じopen itemを継続する。 |
+| `CASE-HARNESS-L10-024-R010` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | new-source：新source/revision/findingと影響scope、意味差分を明示する。 | 影響項目だけをownerへ理由付き照会し自動で合意を再開しない。 |
+| `CASE-HARNESS-L10-024-R011` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | no-source：合意済み項目を新根拠なしに再開しようとする。 | 再開/再確認を拒否し合意記録を消さない。 |
+| `CASE-HARNESS-L10-024-R012` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | contradiction：回答間の矛盾だけを理由なく自動解消する変異。 | 自動解消を拒否し該当矛盾とownerへ返す。 |
+| `CASE-HARNESS-L10-024-R013` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | unrelated-stale：一項目の変更で無関係な合意までstaleにする。 | 影響範囲に限定し無関係状態を保持する。 |
+| `CASE-HARNESS-L10-024-R014` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | actor：必須形成項目actorだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R015` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | task：必須形成項目taskだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R016` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 正常：必須形成項目正常だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R017` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 取消：必須形成項目取消だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R018` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | failure：必須形成項目failureだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R019` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | timeout：必須形成項目timeoutだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R020` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | recovery：必須形成項目recoveryだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R021` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | P0：必須形成項目P0だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R022` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | P1：必須形成項目P1だけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R023` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | implicit matrix：必須形成項目implicit matrixだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R024` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | defer owner：必須形成項目defer ownerだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R025` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | re-entry：必須形成項目re-entryだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R026` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 対象Concept/L1 revision：必須形成項目対象Concept/L1 revisionだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R027` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | source scope：必須形成項目source scopeだけをmissingにし他条件を保持する。 | 当該項目を具体的な形成資料不足として返し、整った資料で人間判断だけが残る状態と区別する。 |
+| `CASE-HARNESS-L10-024-R028` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 解決済み：当該領域を解決済みとし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |
+| `CASE-HARNESS-L10-024-R029` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 明示保留：当該領域を明示保留とし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |
+| `CASE-HARNESS-L10-024-R030` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 非適用：当該領域を非適用とし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |
+| `CASE-HARNESS-L10-024-R031` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | 必須事項unknown：当該領域を必須事項unknownとし、各状態の理由とactor/owner/revisionを与える。 | 4状態を混同しない。保留はowner/re-entry、非適用は理由・判断者・対象revision・再評価条件、unknownは不足を保持する。 |
+| `CASE-HARNESS-L10-024-R032` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-理由：非適用領域の理由だけを欠く。 | 根拠付き非適用を成立扱いせず当該資料不足を返す。 |
+| `CASE-HARNESS-L10-024-R033` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-判断者：非適用領域の判断者だけを欠く。 | 根拠付き非適用を成立扱いせず当該資料不足を返す。 |
+| `CASE-HARNESS-L10-024-R034` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-対象revision：非適用領域の対象revisionだけを欠く。 | 根拠付き非適用を成立扱いせず当該資料不足を返す。 |
+| `CASE-HARNESS-L10-024-R035` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | na-再評価条件：非適用領域の再評価条件だけを欠く。 | 根拠付き非適用を成立扱いせず当該資料不足を返す。 |
+| `CASE-HARNESS-L10-024-R036` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | empty-history：初回形成で既回答なしを明示的な空履歴とする。 | 履歴なしだけで拒否せず候補を形成する。 |
+| `CASE-HARNESS-L10-024-R037` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | lost-answer：既回答がある前提で記録だけを紛失する。 | 初回空履歴へ変換せず形成資料不足を返す。 |
+| `CASE-HARNESS-L10-024-R038` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | agreement-pending：prototype/非UIが適用され合意は未了だが候補資料は揃う。 | 候補・根拠・未決packetを返し合意待ちを保持する。 |
+| `CASE-HARNESS-L10-024-R039` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | lost-agreement：既存合意ありの前提でrecordだけを紛失する。 | 合意前とは区別した資料不足とし合意を捏造しない。 |
+| `CASE-HARNESS-L10-024-R040` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | non-ui-na：非UI合意が非適用で理由・actor・revision・再評価条件が揃う。 | 非適用根拠を返しprototypeを全対象へ強制しない。 |
+| `CASE-HARNESS-L10-024-R041` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | timeout-preserve：timeoutだけを発生させ、actor/scope/target/最後の確定revision/event/open item/owner/re-entryが記録されている。 | 進行停止し全記録を保持する。回答・合意・採択を作らない。 |
+| `CASE-HARNESS-L10-024-R042` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | resume：再入条件を満たす新しい回答eventだけを追記する。 | 元履歴を維持して影響差分だけ再評価する。 |
+| `CASE-HARNESS-L10-024-R043` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | unknown-impact：source変更による影響scopeだけがunknown。 | unknownを未影響とせず当該範囲の確定を保留する。 |
+| `CASE-HARNESS-L10-024-R044` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | score：他の必須未決を残しscoreだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R045` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 質問数：他の必須未決を残し質問数だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R046` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 訂正率：他の必須未決を残し訂正率だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R047` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | iteration数：他の必須未決を残しiteration数だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R048` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 無変更iteration：他の必須未決を残し無変更iterationだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R049` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | timeout：他の必須未決を残しtimeoutだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R050` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | Issue：他の必須未決を残しIssueだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R051` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | PR：他の必須未決を残しPRだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R052` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | CI：他の必須未決を残しCIだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R053` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 沈黙：他の必須未決を残し沈黙だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R054` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | same-fixture：固定した同一fixture母集団に質問量・訂正率・必須見逃しのoracleを付ける。 | engine/pack revision、scope、分母・測定方法を固定し再測定可能にする。実測値は未実行のまま。 |
+| `CASE-HARNESS-L10-024-R055` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | no-observation：訂正が未観測で値はunknown。 | 未観測を0にしない。 |
+| `CASE-HARNESS-L10-024-R056` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | omitted-question：質問量だけ下がるが必要な一質問を落とす。 | 改善成立とせず必須見逃しを保持する。 |
+| `CASE-HARNESS-L10-024-R057` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | human-value：金額/権限/法務等の人間専決値をengineが推定する。 | 原文/選択肢/推奨/影響候補付き判断待ちへ返し値やauthorityを確定しない。 |
+| `CASE-HARNESS-L10-024-R058` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | os-engine：OSに別engine/question service/approval ledgerの意味所有を追加する。 | 責務追加を拒否しHARNESS意味と既存OS event責務を分ける。 |
+| `CASE-HARNESS-L10-024-R059` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | unseen-fixture：同じscopeの未見fixture母集団を固定し質問量・訂正率・必須見逃しのoracleを付ける。 | same-fixture母集団と別に結果を対応し、engine/pack revision、scope、分母・測定方法で再測定可能にする。実測値は未実行のまま。 |

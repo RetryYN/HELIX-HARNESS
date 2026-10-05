@@ -80,3 +80,17 @@ plannedは総予定試行数。観測可否はvalid（判定できる観測が�
 | `CASE-HARNESS-L10-NFR-029-01` | `NFR-C-HARNESS-029-01` | 029五要素を個別planned obligationとして分類し、API repair/data migrationの選択・非選択、各source/owner/revision/compatibility条件とCASE-HARNESS-L10-029-25〜67（分割撤去した029-48は除く）のfield別fixtureを独立に比較する。 | 選択済み要素のtrace保持、未選択operationを強制する件数、proposalを実行/承認へ昇格する件数を別集計。五要素を一つのcoverage値で相殺しない。適用source/oracleなしは未評価。 |
 
 全率の分子・分母は対象revision/scopeに対する事前planned集合から数え、missing/unknown/stale/mismatch/unsupportedを分母から黙って除かない。各候補値はtrace完全性・誤分類防止の比較候補であり、固定親にない性能SLA、処理時間、閾値を加えない。
+
+## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
+
+本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+
+| NFR CASE ID | NFR候補 | 入力／比較 | 観測oracle | 限界 |
+|---|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-017-01` | `NFR-C-HARNESS-017-01` | `CASE-HARNESS-L10-017-R001`〜`CASE-HARNESS-L10-017-R014`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
+| `CASE-HARNESS-L10-NFR-018-01` | `NFR-C-HARNESS-018-01` | `CASE-HARNESS-L10-018-R001`〜`CASE-HARNESS-L10-018-R046`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
+| `CASE-HARNESS-L10-NFR-019-01` | `NFR-C-HARNESS-019-01` | `CASE-HARNESS-L10-019-R001`〜`CASE-HARNESS-L10-019-R013`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
+| `CASE-HARNESS-L10-NFR-020-01` | `NFR-C-HARNESS-020-01` | `CASE-HARNESS-L10-020-R001`〜`CASE-HARNESS-L10-020-R017`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
+| `CASE-HARNESS-L10-NFR-024-01` | `NFR-C-HARNESS-024-01` | `CASE-HARNESS-L10-024-R001`〜`CASE-HARNESS-L10-024-R059`の各単独fixture、同じL3 ACとinput revisionを対応づける。 | NFR候補の不適格成立・欠落・誤昇格・不一致件数を対象fixture内で計数する。同じinputを再評価する場合は出力identity/理由/stateの差分を照合する。 | fixture/oracle不足は未評価。分母不明を0とせず、候補値から実測達成・承認・全製品品質を生成しない。 |
+
+018の製品固有値はowner要求の範囲でのみ測定し、全製品共通SLOを追加しない。024の質問量・訂正率・必須見逃しは同じ／未見fixtureの別母集団として併記し、未観測を0にしない。
