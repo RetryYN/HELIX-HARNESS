@@ -553,7 +553,7 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 親`HELIXBRAIN-L2-011`（固定L2 `brain-requirements.md:194-204`、L11 `brain-acceptance.md:39`）。採択registration `MPR-RC-HELIXBRAIN-L2-011-002`、semantic digest `sha256:726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091`（PO採択main 633）。L1-011、L2-007/018/020/025に従う。束ねる条件はPO原文§BRAIN-L1-011に限り、要件のownerや意味を新設しない。製品CORE由来のsource contextから、根拠のある汎用構造候補と製品固有残余を分離し、元sourceと由来を保つ。分離不能ならBRAINへ受入せず提供元COREまたはLABOへ戻す。共有範囲について人の意味判断が必要な場合は既存の判断点を使い、ownerを推測で新設しない。
 
 - **BRAIN-011-AC-01 — 正常**：同一source内の再利用可能構造と製品固有残余を区別でき、一般化の根拠・scopeと製品固有sourceへのtraceを保持する。製品固有部分を消去または汎用事実化しない。
-- **BRAIN-011-AC-02 — 個別反例**：他要素を正常に保ち、製品名、product requirement、製品固有画面、業務規則、利用者判断の各一要素だけを汎用候補へ漏らすfixtureを独立に拒否する。元source/provenanceだけを失うfixtureも別に拒否する。
+- **BRAIN-011-AC-02 — 個別反例**：他要素を正常に保ち、製品名、product requirement、製品固有画面、業務規則、利用者判断の各一要素だけを汎用候補へ漏らすfixtureを独立に拒否する。元source/provenanceだけを失うfixture、再利用条件の根拠範囲を超えた一般化、一般化候補を根拠の確定なしに事実として扱う変異も、それぞれ別fixtureとして拒否する。
 - **BRAIN-011-AC-03 — unknownと戻し先**：分離できない意味はunknownのまま受入を止め、固定親にある提供元COREまたはLABOへ戻す。共有範囲の決定が必要なsourceは人の既存判断点へ送り、既存ownerへの自動割当やCORE/LABO返却で代替しない。未指定のownerを補わない。
 - **BRAIN-011-AC-04 — 未見**：未見の別製品sourceにも同じ根拠付き分離を適用する。一般化を支える条件がない場合はunknownを保持し、単一製品から普遍化しない。
 
@@ -577,7 +577,7 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 Pattern/Unit/Partのidentity・source/version、一般化された課題、applicability、required input、constraint、trade-off、negative/failure、relation候補を、端点と意味を保って構成candidateにする。relationの種類は`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を各々元sourceに沿って保持する。relationの根拠・方向・端点を捏造せず、unknownを互換や不成立に丸めない。汎用permission構造は候補として扱えるが、製品固有requirement値、製品固有screen/具体API名、製品固有permission値、採用設計、工程表を返さず、一候補を絶対解にしない。製品固有要件はHARNESSへ、知識意味・適用条件・relationは固定親のprimary L1-003/005/009へ戻す（項目別に適用条件=003、relation=005、候補構成/source結合=009）。L2-008 identity/version/provenance、L2-004比較条件、L2-009構成条件の不足も、L11:117の「BRAINの該当親L1へ」という句に従って構成candidateを止め、primary L1-009へ返す。これはL2-029が構成candidateを主対象とし、primary L1に003/005/009を列挙する固定親文脈に基づく割当であり、L1-004/008を追加の戻し先にしない。選択CORE sourceの製品固有要件はHARNESSへ戻す。選択LABO-evaluated sourceのL2-020 condition不明は評価済み扱いせずcandidate適用を止め、該当するknowledge condition/source結合としてprimary L1-003/009へ戻す。
 
 - **BRAIN-029-AC-01 — 正常**：L11の一般化課題「承認後は編集不可」に対し複数Pattern/Unit候補のproblem、applicability、required input、constraint、trade-off、negative case、汎用permission構造、source/versionを保ち、両端identity付き関係を追跡可能にする。構成はcandidateのまま。
-- **BRAIN-029-AC-02 — 個別反例**：製品固有term/screen/具体API/製品固有permission値の混入、required input欠落、選択source/version欠落、不整合な関係の互換扱い、意味または端点のないrelation確定、一回の製品適用による昇格をそれぞれ独立に拒否する。
+- **BRAIN-029-AC-02 — 個別反例**：製品固有term/screen/具体API/製品固有permission値の混入、required input欠落、選択source/version欠落、不整合な関係の互換扱い、意味または端点のないrelation確定、一回の製品適用による昇格をそれぞれ独立に拒否する。具体APIは製品固有screen/permission/requirementと別の入力要素として照合し、これらのいずれも汎用Patternの事実に混ぜない。
 - **BRAIN-029-AC-03 — relation例**：5種類それぞれのsource-backed edgeを独立に照合し、`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を同じ意味へ潰さない。relation type、両端identity、意味、source/versionと必要inputを保持する。
 - **BRAIN-029-AC-04 — unknownと戻し先**：required inputやrelation意味が不明なら適用可否をunknownのまま保持し、知識意味はBRAIN-L1-003/005/009、製品固有要件はHARNESSへ返す。未選択CORE/LABO sourceや説明資料から欠けた値を補わない。
 - **BRAIN-029-AC-05 — 未見**：L11の別Domain組合せまたはrequired input欠落例で同じsource/condition/endpoint照合を適用する。oracleまたはscope未定は未評価/unknownとし、合格や全Domain保証を作らない。

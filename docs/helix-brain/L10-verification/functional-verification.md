@@ -464,7 +464,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-011-C08` | `BRAIN-011-AC-03` | source meaningを分離不能にする。期待oracleはgeneric acceptanceを止め、固定親どおりprovider COREまたはLABOへ不足と理由を返す。ownerを推測しない。 |
 | `L10-BRAIN-011-C09` | `BRAIN-011-AC-04` | 未見の別製品sourceを用い、根拠のある範囲だけ分離する。期待oracleはgeneric candidateとproduct-specific residual双方にsource traceを残し、根拠のない普遍化をunknownにする。 |
 | `L10-BRAIN-011-C10` | `BRAIN-011-AC-03` | sourceから共有範囲の決定を要する意味が一つだけ未決のfixtureを与える。 | 人の既存判断点へ送る。既存CORE/LABO ownerへの自動割当や返却で代替した結果は不合格とし、共有範囲を確定しない。 |
-| `L10-BRAIN-011-C11` | `BRAIN-011-AC-02` | sourceが支える再利用条件を超えて一般化する、または一般化候補を確定事実として扱う一変異を与える。 | 過度一般化と候補事実化を不成立として検出し、根拠sourceと製品固有残余を保つ。 |
+| `L10-BRAIN-011-C11` | `BRAIN-011-AC-02` | 他要素を正常に保ち、sourceが支える再利用条件の根拠範囲を超えて一般化する変異だけを与える。 | 根拠を超えた一般化を不成立として検出し、一般化の根拠sourceと製品固有残余を保つ。 |
+| `L10-BRAIN-011-C12` | `BRAIN-011-AC-02` | 他要素を正常に保ち、未確定の一般化候補を確立済み事実として扱う変異だけを与える。 | 候補状態を維持し、確定事実化を不成立として検出する。候補sourceと製品固有残余を保つ。 |
 
 ### HELIXBRAIN-L2-012 — BRAIN-012-FR-01との対
 
@@ -496,7 +497,7 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 | `L10-BRAIN-029-C04` | `BRAIN-029-AC-03` | 選択edgeが`alternative_to`であるsource-backed fixtureを与える。期待oracleは両端identity、source/version、alternative meaningを保持し、どちらかの候補を選ばない。 |
 | `L10-BRAIN-029-C05` | `BRAIN-029-AC-03` | 選択edgeが`depends_on`であるsource-backed fixtureを与える。期待oracleはsourceの方向、依存先identity、meaningを保持し、逆方向へ入れ替えない。 |
 | `L10-BRAIN-029-C06` | `BRAIN-029-AC-03` | 選択edgeが`composed_of`であるsource-backed fixtureを与える。期待oracleは構成端点、meaning、source/versionを保持し、relationを別typeへ読み替えない。 |
-| `L10-BRAIN-029-C07` | `BRAIN-029-AC-02` | 製品名/screen/製品固有permission値または製品固有requirementを一つずつ汎用候補へ混入する独立fixture。期待oracleは当該要素だけを除外し、製品固有残余を保持してHARNESSへ返す。汎用permission構造は正常に保持する。 |
+| `L10-BRAIN-029-C07` | `BRAIN-029-AC-02` | 他条件を正常に保った5個の独立fixtureを与える：(a)製品名だけ、(b)製品固有screenだけ、(c)具体APIだけ、(d)製品固有permission値だけ、(e)製品固有requirementだけを汎用候補へ混入する。期待oracleは各fixtureで当該要素だけを汎用候補から除外し、製品固有残余と元source traceを保持してHARNESSへ返す。汎用permission構造は正常に保持する。 |
 | `L10-BRAIN-029-C08` | `BRAIN-029-AC-02` | 常時必須inputを一つだけ欠落させる。期待oracleは当該input名を不足として示し、未選択sourceから補完せずunknown/不成立を返す。 |
 | `L10-BRAIN-029-C09` | `BRAIN-029-AC-02` | 選択source identity欠落、選択source revision欠落、選択source identity不一致、選択source revision不一致を個別fixtureにする。期待oracleは欠落/stale/mismatchを区別し、誤ったsource結合をせずcandidate適用を止める。identity/version/provenanceの知識候補sourceはL2-029のprimary L1-009へ戻し、製品固有source問題はHARNESSへ返す。 |
 | `L10-BRAIN-029-C10` | `BRAIN-029-AC-02` | sourceが互換でないと示すrelationを`compatible_with`として扱う変異を与える。期待oracleはsource meaningと矛盾するedgeを拒否し、互換candidateを返さない。 |

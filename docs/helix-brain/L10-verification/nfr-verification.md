@@ -76,7 +76,7 @@
 |---|---|---|
 | `HELIXBRAIN-L2-009` / `BRAIN-009-NFR-01` | C01–C13で選択された各Unit/relationと必要source/scope/versionを分母候補にする。端点、relation根拠、owner別状態の一致数、unknown/欠落を誤昇格した数を別記する。 | relation名のみと全trace照合を比較。L2-025未完と成立の正常遷移を対で計る。未選択Unit/sourceは未観測。率の分母0では率なし。 |
 | `HELIXBRAIN-L2-010` / `BRAIN-010-NFR-01` | C01–C11の選択failure条件についてcondition/impact/counterexample/evidence/source/scopeを別項目として照合し、普遍禁止/適用への誤一般化を個別記録。 | failure名の一致だけと条件付き意味の照合を比較し、success-only保持とRegression固有条件欠落を別変異で照合。sourceにないfailure不存在を推定しない。 |
-| `HELIXBRAIN-L2-011` / `BRAIN-011-NFR-01` | C01–C11の選択sourceに含まれるproduct-specific要素と一般化根拠/provenanceを分母候補とし、各変異の漏れ・source喪失を独立計数。 | 語数だけとsource-linked分離を比較。共有範囲の人判断戻しと過度一般化を個別に照合する。未選択sourceは分母外かつ未観測。 |
+| `HELIXBRAIN-L2-011` / `BRAIN-011-NFR-01` | C01–C12の選択sourceに含まれるproduct-specific要素と一般化根拠/provenanceを分母候補とし、各変異の漏れ・source喪失・根拠超過（C11）・候補事実化（C12）を独立計数。 | 語数だけとsource-linked分離を比較。共有範囲の人判断戻しと過度一般化を個別に照合する。未選択sourceは分母外かつ未観測。 |
 | `HELIXBRAIN-L2-012` / `BRAIN-012-NFR-01` | C01–C13のselected queryで列挙output tuple各要素、候補状態、未決decisionを別々に照合。field欠落・誤authority生成を独立記録。 | 返却候補数だけとtuple/decision状態照合を比較し、request input欠落とresponse field欠落、sourceにないrelation/alternativeの正常不在を分ける。候補受領は採用oracleではない。 |
 | `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | C01–C53の選択構成を対象とし、identity/source/version、applicability、required input、constraint、trade-off、negative/failure、5 relation type/端点/意味の必要項目を列挙し、各項目のmissing/unknown/mismatchと誤適用を別記する。 | relation label数だけと条件付きtuple照合を比較。常時必須・操作時・選択source条件を分け、未選択source/参照資料は未観測。L2-030のreceipt義務は測定対象外。 |
 
