@@ -553,5 +553,7 @@ input observation identity/source revision；episode candidate identityとrelati
 | `L10-LABO-054-CASE-19` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：055 waterlineを別Bench定義へ置き換える。 | 固定055出力との同一性を保ち、別定義で成立させない。 | 誤判定：接続側で別waterline定義を採用する。 |
 | `L10-LABO-054-CASE-20` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE配置案とOS指定/割当を一状態へ統合する。 | 二つの状態を別々に保持し、配置案から指定/割当を生成しない。 | 誤判定：配置案をOS指定/割当と同一視する。 |
 | `L10-LABO-054-CASE-21` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：LABOがmodelを変更する。 | 変更を生成せず、配置案はINTELLIGENCE、指定/割当はOSへ残す。 | 誤判定：LABOのmodel変更を受け入れ、提案・指定・割当の境界を混同する。 |
-| `L10-LABO-052-CASE-19` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがreceiptを根拠にtrainingを実行・完了する。 | training実行結果を生成せず、材料受領とtraining許可を分離する。 | 誤判定：training実行/完了をLABO循環内の作用として受け入れる。 |
-| `L10-LABO-052-CASE-20` | `HELIXLABO-L2-052` / `LABO-052-AC-02` | 単独negative：LABOがreceiptを根拠に調整を実行・完了する。 | 調整実行結果を生成せず、材料受領と調整を分離する。 | 誤判定：調整実行/完了をLABO循環内の作用として受け入れる。 |
+| `L10-LABO-037-CASE-14` | `HELIXLABO-L2-037` / `LABO-037-AC-02` | 単独negative：LABOがOS operationを運転済みとして記録する。 | 運転済み記録を生成せずOS向け提案を保つ。 | 誤判定：提案をOS運転済みの記録に昇格する。 |
+| `L10-LABO-040-CASE-13` | `HELIXLABO-L2-040` / `LABO-040-AC-02` | 単独negative：選択connection接続の片側だけ成功する。 | 全体接続を成功扱いせず未完義務を保持する。 | 誤判定：片側成功だけで全体candidateの接続を成立扱いする。 |
+| `L10-LABO-054-CASE-22` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE専用接続へ別接続のconnectorを代用する。 | 固有connector不一致を拒否し同scopeの受渡しを成立させない。 | 誤判定：別connectorで専用接続を成立させる。 |
+| `L10-LABO-054-CASE-23` | `HELIXLABO-L2-054` / `LABO-054-AC-02` | 単独negative：INTELLIGENCE専用接続の片側だけ成功する。 | 全体受渡しを成功扱いせず未完義務を保持する。 | 誤判定：片側成功だけで全体受渡しを成立させる。 |

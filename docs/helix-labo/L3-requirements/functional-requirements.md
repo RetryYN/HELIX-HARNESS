@@ -462,7 +462,6 @@ HELIXLABO-L2-039の入力はWorker実行、停止、復旧に関する許可結�
 - OS routingを欠いた結果をtarget-specificとして受け入れる（L10-LABO-039-CASE-06）。target-specific candidateとして確定せずOSへ戻す。
 - SECURITY routingを要する結果で同routingを欠落させる（L10-LABO-039-CASE-07）。許可結果として確定せずSECURITYへ戻す。
 - Worker result identityだけが欠落する。resultをtarget-specificとせずunknownとしてOSへ戻す。
-- 親上必要なOSまたはSECURITY routingだけが欠落する。該当routing ownerへ戻し許可結果として確定しない。
 - 選択されたWorker接続に別接続のconnectorを代用する。固有connector一致を要求し代用を拒否する。
 - OS側だけが成功しSECURITY側が未完了、またはその逆のfixtureを作る。両方の親条件が適用される場合、片側だけで接続成功とせず未完義務を保持する。
 
@@ -471,13 +470,17 @@ HELIXLABO-L2-039の入力はWorker実行、停止、復旧に関する許可結�
 HELIXLABO-L2-040の入力は内外connection、retry、contract version、traceに関するevidence。出力はCONNECT向けFeedback candidateとする。選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。
 
 **LABO-040-AC-01 — 正常・未見正常**：選択されたconnection identityとその上流採択scopeのcontract versionに結び付くretry/trace evidenceをCONNECT candidateにする。未選択scopeを不成立にせず、未見正常条件では別の選択connectionのtraceを別identityのまま扱う。
-**LABO-040-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。接続契約不一致はCONNECTへ。選択scopeの版欠落・不一致はCONNECTへ、scope自体の不明はunknownとして保持しcandidateを確定しない。選択scopeに限って不足を検査し、未選択scope自体をfailureにしない。
+**LABO-040-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。接続契約不一致はCONNECTへ。版の不一致はCONNECTへ。選択scopeの版欠落は隠さずunknownとして保持しcandidateを完了扱いしない。scope自体の不明はunknownとして保持しcandidateを確定しない。選択scopeに限って不足を検査し、未選択scope自体をfailureにしない。
 - connection identityを欠落させる。 接続単位のcandidateとして確定せずunknownにする。
 - 選択connectionのcontract versionを別revisionへ差し替える。 異revision evidenceを成功扱いせずCONNECTへ戻す。
 - 上流採択scopeだけを欠落させる。scopeを推測せずunknownとして保持しcandidateを確定しない。
 - 接続traceを欠落させる。 trace欠落を保ち候補を完了扱いしない。
 - LABOがconnector contractを直接変更する。 contract変更を拒否しCONNECT ownerへ返す。
 - CONNECT connectorだけが欠落する。CONNECT先を推測せずcandidateを未完了として保持する。
+
+- 選択connectionのcontract versionだけが欠落する。欠落を隠さずunknownとして保持しcandidateを完了扱いしない。
+- 選択connectionに別connectionのconnectorを代用する。固有connector不一致を拒否しCONNECTへ戻す。
+- 選択connection接続の片側だけ成功する。接続全体を成功扱いせず未完義務を保持する。
 
 ### LABO-041-FR-01 — LABO → 該当Product Core
 
@@ -492,12 +495,15 @@ HELIXLABO-L2-041の入力はproduct固有meaning、要求、設計、domain、UX
 - 当該製品の個別connectorだけが欠落する。別製品へ迂回せず該当Product Core ownerへ戻す。
 - LABOがProduct Coreの正本へ直接書き込む。書込みを拒否し正本を製品側に残す。
 
+- 該当Product Core個別connectorへ別製品connectorを代用する。誤routeを拒否し製品identityに対応するconnectorを要求する。
+- 該当Product Core接続の片側だけ成功する。接続全体を成功扱いせず未完義務を保持する。
+
 ### LABO-052-FR-01 — INTELLIGENCE評価材料循環（L2-035 payload）
 
 HELIXLABO-L2-052の入力はL2-035で定義する評価済みsource revisionとpayload、適用範囲、未評価状態。出力はINTELLIGENCE側の受領証跡とLABO側から辿れる同一revisionの材料循環とする。035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。
 
 **LABO-052-AC-01 — 正常・未見正常**：035 payloadの境界を保ち、LABO source revisionからINTELLIGENCE receiptまで同一revision、適用scope、unassessed状態を対応づける。 未見正常条件として、別種の評価材料でも035 payloadとsame revision/scope/stateを保ち、受領を評価成功としない。
-**LABO-052-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。source identity自体の欠落は該当source/evidence ownerへ戻す。scope、revision、receiptの欠落・不一致はLABO再評価へ戻し、循環を未完了のまま保持する。
+**LABO-052-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。source identity自体の欠落は該当source/evidence ownerへ戻す。scope、revision、receiptの欠落・不一致はLABO再評価へ戻し、循環を未完了のまま保持する。この振分けはL2:312のsource/evidence戻しとL2:314の範囲・版・受領のLABO再評価を原因別に読むもので、別のownerを新設しない。
 - receiptのsource revisionを別revisionにする。revision不一致でreceipt照合を成立させずLABO再評価へ戻す。
 - receiptの適用scopeを別scopeにする。scope不一致で受領を成功扱いせずLABO再評価へ戻す。
 - payloadのunassessed状態だけをassessedへ変える。 状態を元のまま保持し評価済みへの昇格を拒否する。
@@ -510,8 +516,6 @@ HELIXLABO-L2-052の入力はL2-035で定義する評価済みsource revisionとp
 - 適用scopeだけが欠落する。scopeをunknownとして保持しLABO再評価へ戻す。
 - INTELLIGENCE receiptだけが欠落する。受領を成功扱いせずLABO再評価へ戻す。
 - receiptからtrainingまたは調整の実行・完了を循環成立の必須条件にする。必須化を拒否し、receiptと評価材料循環の境界を保つ。
-- LABOがtrainingを実行・完了する。実行結果を生成せず既存ownerへ残す。
-- LABOが調整を実行・完了する。実行結果を生成せず既存ownerへ残す。
 - LABOがINTELLIGENCEの現在判断を生成・所有する。判断をLABO成果として確定せずINTELLIGENCEへ戻す。
 - LABOがINTELLIGENCEの予測を生成・所有する。予測をLABO成果として確定せずINTELLIGENCEへ戻す。
 - LABOがINTELLIGENCEの配置案を生成・所有する。配置案をLABO成果として確定せずINTELLIGENCEへ戻す。
@@ -520,7 +524,7 @@ HELIXLABO-L2-052の入力はL2-035で定義する評価済みsource revisionとp
 
 HELIXLABO-L2-054の入力はL2-055が生成したwork-kind/model-class別の水準、根拠、適用範囲、未評価状態。出力は同じ作業種別・model class・評価範囲・根拠・未評価状態を保ったINTELLIGENCE向け受渡しとする。055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。LABOは親が持つ意味、operation、権限、割当、正本を変更せず、入力のsource identity/revision・適用scope・根拠を保つ。対象が未選択または未発生なら候補を捏造せず、親で定める適用範囲を保持する。
 
-**LABO-054-AC-01 — 正常・未見正常**：055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。 未見正常条件として、未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。
+**LABO-054-AC-01 — 正常・未見正常**：055の出力を同じwork kind、model class、評価範囲、根拠、unassessed状態でINTELLIGENCEへ渡す。INTELLIGENCE案とOS指定/割当てを別状態で保つ。 未見正常条件として、未見のwork-kind/model-classでも適用可能な既存055出力のみ受け渡し、unknownを成功実績へ外挿しない。
 **LABO-054-AC-02 — 不成立・owner境界**：次のfixtureは独立に不成立とし、原因を併発で代用しない。未評価またはscope不明は水準生成側へ戻して再評価する。配置案はINTELLIGENCE、指定/割当はOSへ残す。unknown jobの成功保証とscoreによるscope/branch/merge authorityの変更を拒否する。
 - 接続中に水準だけを変更する。 055の水準を不変に保ち不一致を不成立とする。
 - work-kindだけを別値へ変える。 別work kindへ水準を流用せず再評価へ戻す。
@@ -540,6 +544,9 @@ HELIXLABO-L2-054の入力はL2-055が生成したwork-kind/model-class別の水�
 - L2-055水準を別定義し、重複waterlineを生成する。水準生成を055へ残し接続で再定義しない。
 - 055水準を別のBench定義へ置き換える。接続対象を固定055出力と照合し、別定義で成立させない。
 - 配置案をOS指定/割当と同一状態へまとめる。INTELLIGENCE案とOS指定/割当を別状態で保持する。
+
+- INTELLIGENCE専用接続へ別接続のconnectorを代用する。固有connector不一致を拒否し同scopeの受渡しを成立させない。
+- INTELLIGENCE専用接続の片側だけ成功する。全体受渡しを成功扱いせず未完義務を保持する。
 
 ### Stage 4 共通の意味境界
 
