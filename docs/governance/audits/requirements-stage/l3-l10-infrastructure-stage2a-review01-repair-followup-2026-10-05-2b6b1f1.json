@@ -1,0 +1,130 @@
+{
+  "record_type": "append-only supplemental repair audit",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-INFRASTRUCTURE",
+    "stage": "2a",
+    "parent": "HELIXINFRASTRUCTURE-L2-010",
+    "supplement": "normal state-changing success requires distinct Worker result and actual-state evidence linked by target/action/revision"
+  },
+  "revisions": {
+    "base_approved_main": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+    "fixed_L11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "prior_repair_body": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+    "current_body": "2b6b1f1f115ebc6c07e48eeb6db582e5fcb1bd29",
+    "branch": "codex/l3-infra-stage2a-main-publication",
+    "published": false
+  },
+  "finding_resolution": {
+    "review_comment_id": 5987114642,
+    "finding": "L2-010 L11:133 requires result and actual state as separately linked evidence; the initial repair added a Worker-response-only negative, and this supplement makes the corresponding normal success oracle explicit in AC-04 and CASE-010-02.",
+    "status": "addressed",
+    "source_pin": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 128,
+      "physical_end_line": 139,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_lf_span_sha256": "5398ff95b9e275d5e1c8bdf91b4eab9a3612eed327323de9fe228df717a0f504",
+      "literal": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使い、通常OS/Worker operationと独立bootstrap/recovery operationを別fixtureにする。update/change actionは同じtarget/revision/scopeでSECURITY update-admission accepted/denied/unknown/mismatchを比較し、OS assignment/ticket、Worker result、Infrastructure before/after evidenceを対応づける。read-only fixtureは対象scope、read target、空のwrite-setと許可対象resourceのoperation前後値を定義する。\n- **成功条件**：Worker操作はSECURITYが認めたtarget/action/revision/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。更新・変更はupdate admission acceptedかつ通常authorityが有効な場合だけ許可範囲内で適用し、denied/unknown/mismatch/期限切れ/失効なら変更前に停止しSECURITYへ戻す。read-onlyではwrite禁止の適用と、宣言したscope/write-set内で当該操作が変更を起こしていないこと、許可対象resourceの前後状態を確認する。実行中の無関係な状態変化まで不変と要求しない。OS/通常Control Plane停止中の独立bootstrap/recoveryもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityが有効な場合に限り、通常OS ticket/assignmentやL2-009応答なしで限定された点検/停止/recoveryを開始できる。OS復旧後は結果を通常のWork/Change traceへ同期する。credential値は通常resource stateへ漏らさず、停止時・部分実行では実状態・未完操作と該当する復旧/rollback義務を引き継ぐ。\n- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。read-onlyの宣言だけでwrite禁止・対象scopeのbefore/after確認を省く、writeが許される、または全resource状態digestが不変でないことだけを理由に失敗とする場合も不合格。update admission欠如だけを理由にread-onlyを拒否しないが、read-onlyにも対象・action・scope・authority条件は適用する。\n- **失敗戻し先**：実行前のauthority不一致はSECURITY/OSへ戻す。部分実行はInfrastructure実状態と復旧責務のownerへ返す。\n- **最低範囲対応**：14 SECURITY connection、16 Worker execution。\n\n## 1.0構成体受入候補"
+    },
+    "current_line_pins": [
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+        "physical_line": 339,
+        "literal": "**INFRA-010-AC-04**: 完了normal fixtureではWorker result receiptと別個のactual-state observationをtarget/action/revision参照で結ぶ。Worker応答だけでactual stateを推定しない。mismatched authority/credential scope/target/revisionは個別negative fixtureで確認しoperation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。",
+        "raw_lf_sha256": "8f02e1d9289c95a3b69fcb9d5486103033c31edfdbe672dae8716d8b68b71b66",
+        "full_file_sha256": "48136f5991159c36e6d7af62e21383ee32f19e971e9869540d8feb4733f01774"
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+        "physical_line": 212,
+        "literal": "| CASE-INFRA-010-02 normal state-changing | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | 有効SECURITY authority/Worker contract/ticket/009 ref/update admission acceptedと、該当actionに適用される005 dutyを個別宣言し、Worker result receiptとは別のactual-state observationをtarget/action/revisionで相互参照する。 | 指定範囲のみ開始し、Worker resultとactual stateを別evidenceとして参照で結ぶ。適用不要な005義務は持ち込まない。 |",
+        "raw_lf_sha256": "06c6fe4ebab893e2e3c716f235e55ae9f22ee829d0e6f57c45ef761282e680ce",
+        "full_file_sha256": "6d692d4d1cea1faa93148af1ce0f4cea917882470b4efadabc8896441934e70b"
+      }
+    ]
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "full_sha256": "48136f5991159c36e6d7af62e21383ee32f19e971e9869540d8feb4733f01774",
+      "bytes": 54057,
+      "physical_lines": 339,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 26791,
+      "approved_prefix_sha256": "74b762b0200d38cac2c9a905a24cabb89b080d44099a9013822724538af85c98",
+      "approved_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "full_sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913",
+      "bytes": 4206,
+      "physical_lines": 37,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 3255,
+      "approved_prefix_sha256": "3266179c3434aae291d19fc48d5f6d739f387a27389173d0610e704e614bab4c",
+      "approved_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "full_sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a",
+      "bytes": 15721,
+      "physical_lines": 77,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 10848,
+      "approved_prefix_sha256": "33b7ca57fe358340d961f64d4c14173a9c16ceeaf6c6a66e44d7044fe186f828",
+      "approved_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "full_sha256": "6d692d4d1cea1faa93148af1ce0f4cea917882470b4efadabc8896441934e70b",
+      "bytes": 47195,
+      "physical_lines": 229,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 24579,
+      "approved_prefix_sha256": "3201b68d5538960c800db9bea40ae2dc0ecb7b1fb4b159616d56c2522abb2df3",
+      "approved_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "full_sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3",
+      "bytes": 3152,
+      "physical_lines": 33,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 2614,
+      "approved_prefix_sha256": "dc7938e18b325de4c61c7dbf1e23375dc5c33147ca4fac1eb0c31aaf79f2c68d",
+      "approved_prefix_exact": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "full_sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182",
+      "bytes": 14402,
+      "physical_lines": 70,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 9467,
+      "approved_prefix_sha256": "68e8a54bb53b0778ca5c2cea51d0160fff5dba978e7e0ac62f1630a5d8062d3a",
+      "approved_prefix_exact": true
+    }
+  ],
+  "prior_repair_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-review01-repair-2026-10-05-0885955.json",
+    "sha256": "00cecd03727afa43eb8d78c2510228fe3cf6df5d1bd47e3aace5e763c546b465",
+    "bytes": 190016,
+    "unchanged": true
+  },
+  "static_validation": {
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci": "not run"
+  },
+  "limitations": [
+    "作成側の補足記録であり独立reviewではない。",
+    "PO承認・再review未了。",
+    "pushなし。"
+  ]
+}

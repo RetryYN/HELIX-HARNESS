@@ -27,3 +27,7 @@ stage: 1
 対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
 
 固定親HELIXINFRASTRUCTURE-L2-002/007は三状態・差異比較と再構築結果を定め、独立business outcome/oracleはない。独立BR/業務ACは0件。機能正本INFRA-002/007-FR-01と対のL10 functional verification各case（002はC01〜C09、007はC01〜C08）へ参照を一本化し、incident close、配置/費用採否、release成功を生成しない。
+
+## Stage 2a 追加範囲 — business総合検証
+
+Stage 2a直接親 `HELIXINFRASTRUCTURE-L2-003/004/005/009/010` に独立business outcome/oracleはないため、独立BCASE、business KPI、incident severity、費用/配置の合否を新設しない。対象条件の総合検証は[機能要件FR/AC](../L3-requirements/functional-requirements.md)と[機能検証case](functional-verification.md)に一本化する。L10から要求やownerを追加せず、Business文書は重複定義の代わりに該当FR/ACを参照する。

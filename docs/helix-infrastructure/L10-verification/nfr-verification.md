@@ -51,3 +51,20 @@ stage: 1
 | INFRA-NFR-007-01 | 各C01〜08の宣言復旧scopeで4段階と必要input/version/authorityを固定。正常/未見正常、記録存在だけ、machine限定情報、各入力欠落、各段階failure/unknown、停止再開を独立投入。 | 4/4段階trace候補、元machine限定依存0、部分復元/未完/成功、入力版/実結果/owner戻しを観測。4段階の観測だけを合格へ代用せず、各既存oracle一致を別判定する。 |
 
 必要要素・変異をscopeから計画分母にし、missing/unknown/stale/未観測も保持。処理失敗、入力欠落、観測欠落、打切りは理由付きで同一観測を重ねない。 技術候補として予定観測単位ごとにprimary dispositionを一つ記録する。必要入力欠落をmissing-input、入力充足後の照合可能な処理失敗をfailed、処理失敗を確定できず観測期間が打ち切られたものをcensored、残る必要観測欠落をmissing-observation、照合可能な結果をobservedの順で分類する。併発理由は別fieldにすべて残し、primary countは重複させない。unknown/stale入力は欠落へ同一化せず理由を保持し、その結果が照合可能かで同じ分類に従う。この候補を理由別複数count案と比較し、分母保持・再計算可能性を確認する。正しいoracle不合格は照合可能で、可観測率と合格率を分離する。分母0なら率なし、適用不明なら分母不明。未実施の値を0や実測合格にしない。旧CLI/runtime/test/CIは実行しない。
+
+## Stage 2a 追加範囲 — NFR測定候補
+
+測定対象は[Stage 2a NFR candidates](../L3-requirements/nfr-grade.md)にある6候補。測定設計であり、実行結果、実装合否、product SLOの決定ではない。各candidateのsource/revisionとselected resource/operation scopeを固定してから計測する。normal/negative/unseen-normal/owner-returnを同じ具体fixtureの重複宣言にせず、field failureは個別にmutationする。
+
+| NFR / parent | 測定母集団・方法 | Normal / individual negative oracle | 未見正常 / owner return / 記録 |
+|---|---|---|---|
+| INFRA-NFR-003-01 / L2-003 | Selected source cyclesのevent/receipt timestamp、interval、clock uncertainty、decision-age。candidate 2×intervalをsource別比較。 | Normal: recent value/ageをsource owner ruleと照合しつつcandidate 2×intervalの測定結果を記録。Negative: missed sample、stale、clock uncertaintyを一つずつ注入し、無期限 freshnessをcurrentへ通さない。技術候補測定はowner maximum未定でも継続し、実operation eligibilityは既存source契約と分離する。 | 独立したsource identity/intervalで再測定。owner maximum未定でもcandidateを測定し、その値だけでoperation eligibilityを決めない。実operationのcurrentnessは既存source契約に従い、契約上未定ならその状態を記録する。raw timestampではなく匿名fixture; age, interval, contract currentness, revision, statusを記録。 |
+| INFRA-NFR-003-02 / L2-003 | Operationに必要な各declared resourceのcapacity/current utilization/queue/concurrencyと予測burst。20%を比較候補にし決定値としない。 | Normal: owner-declared limitとobservationを分けて記録。Negative: 0/20/30% headroom scenariosとunknown thresholdを比較し、candidateだけでacceptしない。 | 別resource type/new operation fixtureで同じ測定を行う。operation limit owner不明ならOS/INTELLIGENCEへunknown return。resource別false accept/reject/cost distributionとscopeを記録。 |
+| INFRA-NFR-003-03 / L2-003 | Idle, burst, sustained-load windowsのsample countとsource interval。3 samples/2 intervalsをcandidateとして評価。 | Normal: owner/source-defined labelとの一致を記録。Negative: single sample noise、2/3/4 consecutive samplesを比較し、stable labelだけでsafe-to-acceptを出さない。 | 未見source interval/resourceの独立fixtureを追加。label oracle owner不明ならsource ownerへ返す。samples, interval, saturation/rejection/backpressure correlationを記録。 |
+| INFRA-NFR-005-01 / L2-005 | Selected isolated reversible artifact restoreのphase elapsed（integrity, dependency reconnect, startup, verification）を複数実行で測る。1/5/15mを探索candidateとして比較し、5mを既定値としない。 | Normal: 全phase evidenceが揃い、1/5/15分の候補差を測る。Negative:各phase未完、各候補超過、未宣言scopeを個別注入。owner deadline未定でもcandidate測定を続け、timeoutだけでbusiness incident/operation ineligibilityを確定しない。 | 別source/revisionのrestore fixtureでowner deadline未定でも各candidateのdurationを再計測し、candidate測定と既存期限契約に基づく実operation eligibility/SLAを分け、個別owner承認/parameter gateを作らない。phase p50/p95、censoring、scope、source/revision、契約期限の有無を記録。 |
+| INFRA-NFR-005-02 / L2-005 | 独立restore runsのrepeatability。3 runsは比較案。 | Normal: 1/3 runsの結果を別々に残し全phase trace可能。Negative: 1,2,3回目で結果が異なるfixtureを作り平均でfailureを隠さない。 | 新しいtarget/revisionでrunを分離。必要反復数のoracle owner不明ならrecovery design ownerへ返し3をpass gateにしない。run identity、phase variance、resource costを記録。 |
+| INFRA-NFR-004-01 / L2-004 | Declared required fieldsをresource-type applicability matrixで分類しcoverage ratio算出。 | Normal: applicable required fields全件presentまたは明示unknown。Negative: required fieldごとに1つずつ欠落、optional N/Aと混同、100%未満をhealthy扱いするmutation。 | 新しいresource type/sourceで適用表を別宣言。required-field owner不明ならsource/collector ownerへ返す。分子/分母/optional N/A/source/revision/classificationを記録。 |
+
+L2-009/010用の数値候補は設定しない。対のL10では宣言済みselected scopeにおける必須参照/authority/duty/evidenceの個別充足・unknown・不一致と未完件数を記録し、分母0なら割合を算出しない。数値閾値や新しいowner判定は作らない。
+
+ここにbusiness pass/fail、incident severity、placement/cost acceptanceを追加しない。数値候補は通常のL3要件承認に付し、parameter別PO確認を作らない。
