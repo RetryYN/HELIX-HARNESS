@@ -995,10 +995,11 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `AC-OS-L3-031-01` | `HELIXOS-L2-031` | L2-031の全測定field（HEAD pair、obligation digest、profile、env/toolchain/artifact/cache/resource、time/interval、exit/output、population/window/exclusion、budget basis）を同一scopeへ束縛する。個別CASE: 031-01,02,06–07,08–25,52–63,074–075。|
 | `AC-OS-L3-031-02` | `HELIXOS-L2-031` | correctness/性能を独立保持し、escaped defect・mutation detection・flake・warm/cold cache・review HEAD driftも識別する。個別CASE: 031-03,04,26–28,30,082。|
 | `AC-OS-L3-031-03` | `HELIXOS-L2-031` | 4つのAC03弱化を別々に拒否し、さらにlease/fence・artifact binding・fallback・DAG/cancel・exactly-once・causal traceを個別照合する。個別CASE: 031-05,26–30,31–51,069。|
-| `AC-OS-L3-031-04` | `HELIXOS-L2-031` | L2固定のticket/source/base/obligationと測定scopeを束縛し、旧比較値、既決工程、独立する正しさ・性能・LABO/authority境界を保つ。個別CASE: 031-30,064/065/067/071/073/076/077/078–081/083–085。|
+| `AC-OS-L3-031-04` | `HELIXOS-L2-031` | L2固定のticket/source/base/obligationと測定scopeを束縛し、旧比較値、既決工程、独立する正しさ・性能・LABO/authority境界を保つ。個別CASE: 031-30,064/065/067/071/073/076/077/078–081/083–087。|
 | `AC-OS-L3-047-01` | `HELIXOS-L2-047` | reason/evidence/根拠source revisionを独立に必須にし、元ticketを不変保持してissuerへ返す。個別CASE: 047-01–03,08–10,037–038。|
 | `AC-OS-L3-047-02` | `HELIXOS-L2-047` | 新revisionを既存typed relationで結び、Assignment/Attempt/result/authorityを各々非継承にする。provider差だけでwork identityを変えず、旧証拠と新revision stateを分離する。個別CASE: 047-03,11–14,20,23。|
 | `AC-OS-L3-047-03` | `HELIXOS-L2-047` | target/returner/source/scope/relation unknownを単独化し、Ticket→artifact/artifact→Ticket参照を別々に拒否する。split/scope/backflowは既存ownerへ戻す。個別CASE: 047-15–19,21–22,24–26。|
+| `AC-OS-L3-047-04` | `HELIXOS-L2-047` | 元revisionのbytes・履歴と新revision identityを保持し、issuer/対象/理由・evidence/scope/revision、提案と発行、参照両方向を分ける。個別CASE: 047-027–036。|
 
 ### Functional CASE inventory
 
@@ -1199,20 +1200,22 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-031-065` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 対象ticket/source/baseは同一だが、選択/非選択検証集合digestだけが別scopeを示す。 | 別scopeの測定を対象runへ流用せず比較不能を保持する（L2-031:903）。|
 | `CASE-OS-L10-031-067` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | ticket/source/baseは同一だが、HARNESS義務集合とreceiptの選択/非選択digestだけが一致しない。 | HARNESSが要求した当該集合と測定結果を混同せず、同一runの比較根拠から外す（L2-031:903, 906）。|
 | `CASE-OS-L10-031-069` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | 性能改善案がHARNESSのrequired verification obligationを一項目だけ削る。 | 義務削減による短縮を改善として認めず、そのobligationを保持する（L2-031:906）。|
-| `CASE-OS-L10-031-071` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 修正後source HEADが変わったのに、測定・review receiptだけを旧HEADのまま流用する。 | 変更後HEADの測定・review根拠が揃うまで回収を閉じず、旧receiptを現runの証拠にしない（L2-031:903, 906）。|
+| `CASE-OS-L10-031-071` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 修正後source HEADの測定receiptは有効だが、review receiptだけを旧HEADのまま流用する。 | 変更後HEADのreview根拠が揃うまで回収を閉じず、旧review receiptを現runの証拠にしない。現HEADの測定証拠は保持する（L2-031:903, 906；L11-031:507）。|
 | `CASE-OS-L10-031-073` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | **正常回収**：同一ticket/source/base/required-setで、予算超過から改善し、独立review・同条件再検証・必須集合非縮退・安全指標・改善前後値を別証拠として持つ。 | 正しさと性能を別々に回収し、完了したepisodeだけを閉じる。merge許可を生成しない。|
 | `CASE-OS-L10-031-074` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 改善前値だけ欠落。 | 比較を未評価にし前回値で補わない。|
 | `CASE-OS-L10-031-075` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 改善後値だけ欠落。 | 回収を未評価にし改善値を推測しない。|
 | `CASE-OS-L10-031-076` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 改善に必要な資源だけ不足。 | 改善を完了扱いせずINFRASTRUCTUREへ返す。|
 | `CASE-OS-L10-031-077` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 不正に速い結果だけを新しいbaselineへ黙って採用。 | baseline更新を拒否し、原因と未完義務を保持する。|
 | `CASE-OS-L10-031-078` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧60秒/3分を現行の全run共通SLOへ転記する。 | 旧環境・検査集合に限定した比較値として保持し、適用scope不明を未評価にする（L2-031:908）。|
-| `CASE-OS-L10-031-079` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 上流で意味判断を要する旧数値の変更・廃止・緩和を、要求ownerへ戻さずL3計測案だけで確定する。 | 意味判断とL3測定具体化を分け、値の意味は既存source/要求ownerへ返す（L2-031:908）。|
+| `CASE-OS-L10-031-079` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値の数値そのものは保持し、適用対象の意味変更だけを要求ownerへ戻さずL3計測案で確定する。 | 意味判断とL3測定具体化を分け、値の意味は既存source/要求ownerへ返す（L2-031:908）。|
 | `CASE-OS-L10-031-080` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | ticketが定める必要義務・回収は記録されるが、固定nightly/full回収が未指定。 | 固定nightly/full runを追加要求せず、ticket駆動の義務・状態を保つ（L2-031:902, 908）。|
 | `CASE-OS-L10-031-081` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 夜間補完が未実施で、ticketが要求するobligationは未回収のまま残る。 | 夜間補完未実施を義務消去に使わず、未回収義務を保持する（L2-031:908）。|
 | `CASE-OS-L10-031-082` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | correctness greenのみを性能予算達成の根拠として渡す。 | 正しさ証拠を性能状態へ流用せず、性能測定・予算根拠を独立して保持する（L2-031:905）。|
 | `CASE-OS-L10-031-083` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | LABOの観測proposalだけを入力にCI設定を変更する。 | proposalからCI設定を変更せず、修正は既存ticket/assignmentと許可へ戻す（L2-031:909）。|
-| `CASE-OS-L10-031-084` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 観測結果だけを根拠にauthorityまたはHARNESS検証契約を変更する。 | 観測からauthority/検証契約を変更せず、既存ownerの契約を保持する（L2-031:907, 910）。|
-| `CASE-OS-L10-031-085` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値を根拠なく廃止または緩和する。 | 意味変更を現行の達成判定へ反映せず、既存source/要求ownerへ意味判断として返す（L2-031:908）。|
+| `CASE-OS-L10-031-084` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | HARNESS検証契約を保持したまま、観測結果だけを根拠にauthorityを変更する。 | 観測からauthorityを変更せず、既存authorityとHARNESS検証契約を保持する（L2-031:907, 910）。|
+| `CASE-OS-L10-031-085` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 他の比較条件を保持し、旧比較値だけを根拠なく廃止する。 | 意味変更を現行の達成判定へ反映せず、既存source/要求ownerへ意味判断として返す（L2-031:908；L11-031:508）。|
+| `CASE-OS-L10-031-086` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | 旧比較値を存続させたまま、数値だけを根拠なく緩和する。 | 緩和した値を達成判定へ反映せず、旧比較値を保持して既存source/要求ownerへ意味判断を返す（L2-031:908；L11-031:508）。|
+| `CASE-OS-L10-031-087` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | authorityを保持したまま、観測結果だけを根拠にHARNESS検証契約を変更する。 | 観測から検証契約を変更せず、HARNESSの既存契約とauthorityを保持する（L2-031:907, 910）。|
 | `CASE-OS-L10-047-027` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | r1 bytesだけ上書き。 | immutable違反として返却不成立、OS issuerへ戻す。|
 | `CASE-OS-L10-047-028` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | r1履歴だけ削除。 | lineage欠落として再発行を成立させず、当該ticketだけを未完としてOSへ返す。|
 | `CASE-OS-L10-047-029` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | 新r2だけをr1と同一revision identityにする。 | revision境界を拒否し、OS issuerへ戻す。|
