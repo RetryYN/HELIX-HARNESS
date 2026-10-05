@@ -23,3 +23,13 @@
 | `CON-NFR-006` / `CONNECT-AC-006-01..04` | L11が列挙する4交換型すべてを独立照合（4/4）。固定側identity/契約revision変更0、非互換・unknown・stale時のsend/retry attempt 0、許可不足時のexchange/send/retry attempt 0、旧新revision混載0。未完operation/ACK/attempt/expiry/義務は交換前後receipt間で全て保持し、未完operationの事前有無を問わず旧→新revision・current comparison receipt・operation/attempt・技術結果のtraceを一続きで追跡する。CASE-006-01でreceipt/operation/attempt/resultのtrace断絶をlinkごとにnegative測定し、operation identity欠落、attempt履歴欠落、再照合前retryもCASE-006-03で別々に測る。両側変更はunknown/rejectで片側交換のpass計数に含めない。 | 4型、互換時の固定側不変、失敗時停止、未完引継ぎは固定L2-006/L11-006の明示条件から採る。compatibility failureは片側交換後の照合で検出し得るため、交換自体を事前禁止せず送信・再送を0にする。交換開始禁止は該当する既存許可が不足するauthority反例に限る。共通latency、transport、compatibility range数値は親が定めていないため新しい値を置かず、端点ownerの宣言済み互換条件を入力する。これは測定候補で実装値やPO承認値ではなく、個別parameterごとの質問/gateを作らない。 | CASE-006-01の4正常型で旧新revisionから技術結果までのtraceを検証し、receipt/current comparison/operation/attempt/resultそれぞれの断絶をnegativeとして測る。failure class別send/retry attempt、未完義務、scope・許可も観測する。根拠不足/比較不能はunknown/staleで停止する。 |
 
 この追加はStage 1のNFR rowsに変更を加えない。意味・scope・owner・versionを変える必要が生じた場合のみL2/POへ戻す。
+
+
+## Stage 4 — 008/009の観測基準（候補・未実測）
+
+| 候補ID / AC | 母集団・観測と候補基準 | 根拠・比較境界 |
+|---|---|---|
+| `CON-NFR-008-01` / `CONNECT-AC-008-01` | 宣言catalog内のprofile/revisionと全typed descriptorの束縛不一致・欠落を個別に観測。usableとして返す不正組0件、別profileへの失敗伝播0件を候補基準とする。 | L2:278,282/L11:91,93の不正組拒否と局所失敗。全未知profileの網羅や共通registry技術を主張しない。 |
+| `CON-NFR-008-02` / `CONNECT-AC-008-02` | descriptor読出しfixtureから生成されるprobe/tool実行・authorizationとraw secret/credential混入を個別に数え、各0を候補基準とする。 | L11:89,91の供給/安全分離。実probe安全達成ではない。 |
+| `CON-NFR-009-01` / `CONNECT-AC-009-04` | 既存適用policyが定める上限の単位・budget・期限・停止/再開条件を入力し、到達前/到達/到達後の追加attemptとsession交代時の累積値を照合。欠落時・上限到達後の追加retry0、reset0を候補基準とする。 | L2:292/L11:97,102。CONNECTは共通回数・期限・budgetを候補値としても新設しない。上限のunit/初回を含むかは元契約の宣言を入力する。 |
+| `CON-NFR-009-02` / `CONNECT-AC-009-01/02/03/05` | 初回/feedback/loop/join/ACKの操作別状態を独立に観測し、missing inputによる範囲外の一括停止0、未成立受領/完了の生成0を候補基準とする。 | 訂正L11:100–104。技術latencyや共通timeout SLAを追加せず、対象操作の保留と他適格操作の維持を比較する。 |

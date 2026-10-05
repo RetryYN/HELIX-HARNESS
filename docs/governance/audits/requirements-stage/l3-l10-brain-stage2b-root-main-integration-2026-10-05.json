@@ -1,0 +1,58 @@
+{
+  "record_kind": "作成側検収・最新main統合と追補監査locator訂正",
+  "authority_effect": "なし。独立reviewと承認を生成しない。",
+  "exact_base": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "integration_head": "3654316121e8f924c933e71185b316fa881d871c",
+  "body_revision": "70afe6ecb47f079f04088bd8e9c194cd10d7a996",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "916e337b5da81c5f07629cd84dcd61ba21128867ae5f0200970ea68d47ba79f0",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "d40cab00a48a4f7003a0bb5d946524a3cd15a900150ab8dd6bb3f0c650b24b22",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "9611bdd30fa51549b9e85fcfddd2df45aa15050141ad571ee746a640bcb126e6",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "0d4cb09112b839b95d4def62454836440f0bc7a7aa21a395d6b41bb4b2945a3f",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "17d1d81df7e35c2ae05681cb75dcf81f2c250d2c7ed9974cc4f4d6eaeec0d64f",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "20e45244c385347a0d49995a3c8c29472800943447bef58a758c90ef5c8ea322",
+      "body_unchanged": true,
+      "approved_main_prefix_preserved": true
+    }
+  ],
+  "previous_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-review01-followup-2600-70afe6ecb.json",
+    "sha256": "e34fd63f6181fc0a3016bfb2814b721af67eec23bc0743b2b4deb1467b36468d"
+  },
+  "correction": {
+    "previous_field": "addressed_items[1].changes[1].line / current_line_pins purpose 029 C07",
+    "previous_line": 499,
+    "previous_actual_id": "L10-BRAIN-029-C06",
+    "correct_line": 500,
+    "correct_literal": "| `L10-BRAIN-029-C07` | `BRAIN-029-AC-02` | 他条件を正常に保った5個の独立fixtureを与える：(a)製品名だけ、(b)製品固有screenだけ、(c)具体APIだけ、(d)製品固有permission値だけ、(e)製品固有requirementだけを汎用候補へ混入する。期待oracleは各fixtureで当該要素だけを汎用候補から除外し、製品固有残余と元source traceを保持してHARNESSへ返す。汎用permission構造は正常に保持する。 |",
+    "correct_raw_lf_sha256": "a97346cb46333f669af323593e2cd16e40b2009bdc448da1cbc9168544cdba52"
+  },
+  "root_checks": "source4/full/raw-LF、本文6、current literal9、main prefix6、旧audit不変を再計算。旧監査を変更しない。"
+}

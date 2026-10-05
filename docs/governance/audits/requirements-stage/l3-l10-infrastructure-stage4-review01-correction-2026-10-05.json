@@ -1,0 +1,2041 @@
+{
+  "status": "draft_candidate",
+  "authority_effect": "none",
+  "base_revision": "0a150fba9c98fd99f491c79a0652ddb3bdf4434a",
+  "body_revision": "36db5874beb3c1f82ab26aa583e4a9c80afc155d",
+  "reviewed_head": "d733c84478d5f05345dd5dbac9bce93cd72fbee3",
+  "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2605#issuecomment-5991902030",
+  "scope": [
+    "HELIXINFRASTRUCTURE-L2-008",
+    "HELIXINFRASTRUCTURE-L2-025"
+  ],
+  "historical_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage4-main-publication-2026-10-05.json",
+    "sha256": "27fa7de9683f88a34d2da0a80135514edf0f453d817870aa97b93cdfaf57371f",
+    "immutable": true
+  },
+  "findings_addressed": {
+    "M1": "008 AC-02へ要求を含め、要求変更拒否CASE-72を追加。",
+    "M2": "025 AC-02に未完/元資源と移動時の移動先保持を追加。移動なしfixtureの移動先観測を条件付きに訂正。",
+    "M3": "025 FR-01/AC-01/02と正常入力へWorker実行契約を追加。CASE-93戻しを63–66と統一。",
+    "M4": "CASE-98/99のINTELLIGENCE戻しを削除し、欠如だけでは接続不合格にしないoracleへ訂正。",
+    "m1": "承認状態だけの生成をCASE-73として独立化。",
+    "m2": "依存002 L11:51を再導出根拠として記録。CASE-39戻しをactual観測ownerに訂正。",
+    "m3": "008対応表へ具体CASE範囲を記録。",
+    "m4": "CASE-97は010受入への代用拒否に限定。",
+    "m5": "025 AC-03へ契約適用する未見移動の正常句を追加。",
+    "m6": "025束ねる条件の対応行を追加。",
+    "m7": "CASE-19–42の変異は実資源観測でありWorker要求を正常に保つことを明記。",
+    "m8": "測定比較の名称を比較候補1/2へ変更。"
+  },
+  "canonical_files": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "5870331546272a2eaaac93738b66ad3994312e9ce426ebc3fcfc59e10bf2c137",
+      "bytes": 4041,
+      "prefix_bytes": 3152,
+      "prefix_sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "4b17567033e91c39f4f8dae1867ac1ace6438b01584d121b52b4aa9d22019df7",
+      "bytes": 112748,
+      "prefix_bytes": 51754,
+      "prefix_sha256": "8ddc97daf1f12aa3b4464078f186bbcb4b0631b6a009d6ad9f5bffba4b6ecb4d",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "f895dbdd8e74ac2d90016b098fd03edd8ae6391df05d4ca69d0902de04b04682",
+      "bytes": 16628,
+      "prefix_bytes": 14402,
+      "prefix_sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "346043f260c3f75cf826ba4a15ee2242b6e48c38be5c040641af5d7586f495c3",
+      "bytes": 5095,
+      "prefix_bytes": 4206,
+      "prefix_sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "1a8fb9915d5da9ad4ec9277ab2b1655b8eae4ed31fffa16fe4c663269345dbc5",
+      "bytes": 67681,
+      "prefix_bytes": 56174,
+      "prefix_sha256": "35c3ba6fc742ef29d53162eee5505b6bcc95d11395915a5d9c75b14897e0a08c",
+      "prefix_unchanged": true
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "48bfcbda956a3808aab109c9b529acc18ba9d541bde992074cca02abbc9c97ba",
+      "bytes": 17841,
+      "prefix_bytes": 15721,
+      "prefix_sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a",
+      "prefix_unchanged": true
+    }
+  ],
+  "literal_suffix_lines": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 34,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 35,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 36,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 37,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 38,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "line": 39,
+      "text": "固定008/025に独立business outcome/oracleはないため、独立BR/BCASEは追加しない。機能正本 INFRA-008-FR-01/AC-01/02、INFRA-025-FR-01/02・AC-01..04と対のL10を参照する。設計接続・資源対応・隔離・未完保持から業務成功、release、incident close、費用/配置採用を生成しない。",
+      "raw_sha256_lf_inclusive": "8238b6f49cc1f4f09ff224e1c7419b48d77e7fc2a8d9a0737b063bd2bdb46e45"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 238,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 239,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 240,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 241,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 242,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 243,
+      "text": "### Stage 4 fixtureとoracle",
+      "raw_sha256_lf_inclusive": "3c229fe1191ed7fbaa7ae61624309650bed93ae62530735173cb11f456299567"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 244,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 245,
+      "text": "対のL3 INFRA-008/025各ACをシステム境界で照合する設計であり、今回の実装試験結果ではない。合成・非secretのfixtureを用いる。各行は独立CASE IDを持ち、変異の成功を他行へ流用しない。normal、held-out normal、missing/unknown/stale/mismatch、owner戻しを別の入力identityで実行する。未見正常は契約に明示対応する新入力であり、適用不明なら正常ではない。stale判定は既存source契約に従い、新しい時間値やexpiry gateを作らない。固定親pin/旧source処置はL3機能本文と同時点監査へ結ぶ。",
+      "raw_sha256_lf_inclusive": "83a15268de3d53ed6b3b1d53bfb033e9dbb78a97944579aceb2fe4f3c271b708"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 246,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 247,
+      "text": "| CASE | AC trace | 種別 | 入力と操作 | 期待oracle・戻し先 |",
+      "raw_sha256_lf_inclusive": "f83afbc8ab83a63bfdf21248dc8f2266adfe1e98c14771b4fcc1b7737dc0ae72"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 248,
+      "text": "|---|---|---|---|---|",
+      "raw_sha256_lf_inclusive": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 249,
+      "text": "| CASE-INFRA-008-S4-01 | INFRA-008-AC-01, INFRA-008-AC-02 | 正常 | design-core-a/rev-d1/scope-a approved、versioned interface i1。target-a/rev-t4とactual-a/rev-a7を同対象参照で結ぶ。 | 設計/target/actualを別identity/revisionで追跡し、一致比較入力を提供。全canonical設計bytes不変。 |",
+      "raw_sha256_lf_inclusive": "a27bd555e030cd3dd92b69ccacb66d7d86fdf272861e564af667a5cbcd8b1f41"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 250,
+      "text": "| CASE-INFRA-008-S4-02 | INFRA-008-AC-02 | drift正常 | 正常とは別fixtureのapproved design-core-b、target-bとactual-bのconfig差。 | 差異を比較入力として保ち、actualをdesign/targetに書換えず変更提案を別状態に保持。 |",
+      "raw_sha256_lf_inclusive": "79af10f5eac573d74028d03c40b35a6ac97cd539e420b074644888a9f3b1b441"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 251,
+      "text": "| CASE-INFRA-008-S4-03 | INFRA-008-AC-01, INFRA-008-AC-02 | 未見正常 | held-out design-core-uと新resource/environment、支持されたinterfaceで別target/runtime revisionsを与える。 | 契約適用を照合できれば正常にtargetを結ぶ。未知の名前だけで拒否せず、revision文字列の同値を強制しない。 |",
+      "raw_sha256_lf_inclusive": "36147fa21d3b58c8741150e3b194ff1508bdeca097bc193d201ac79249b8f29c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 252,
+      "text": "| CASE-INFRA-008-S4-04 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをmissingにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "661a33ac9f29b0b157057eb0d2b1e9659911455d40df7cc7b18db707336241bd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 253,
+      "text": "| CASE-INFRA-008-S4-05 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをunknownにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "c498d8cc90403b9a9c55da0da859c808925da5a2b64a09756c726198ec80c12b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 254,
+      "text": "| CASE-INFRA-008-S4-06 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをstaleにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "a8f1e4803793c4b7c2b3a6fae19cf285e6ce64a42c6eec57900a90404001c731"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 255,
+      "text": "| CASE-INFRA-008-S4-07 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign identityだけをmismatchにする。他fieldは正常。 | design identityの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "2134e1cdcd4e5201964bdb477205193b4fc0b63295cd84982954024d33a2d4d8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 256,
+      "text": "| CASE-INFRA-008-S4-08 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをmissingにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "9689720994c5c8b8a806776c3aafdad6ca290ee0fd58e383af00404053b40db1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 257,
+      "text": "| CASE-INFRA-008-S4-09 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをunknownにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "a6cde57602933885fccaa1b12db28425f0df45678eba1a8af85f9a86eee243ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 258,
+      "text": "| CASE-INFRA-008-S4-10 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをstaleにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "f43adacc97b8375427fe6eadc9c5c0c30e9b8db671cfdb9886526dcb3e9f4d96"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 259,
+      "text": "| CASE-INFRA-008-S4-11 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign revisionだけをmismatchにする。他fieldは正常。 | design revisionの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "866a9dccbcac73a731a579e1febd81e7f95aab8e39c6e23647420dc7cf22f449"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 260,
+      "text": "| CASE-INFRA-008-S4-12 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをmissingにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "eaad5495229297eb986c58e57c40244052d6823676f438c0dd4ccf60fe0936ac"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 261,
+      "text": "| CASE-INFRA-008-S4-13 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをunknownにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "d5d7f7135f3e195e1f6bfc0bff45124235eafba3bf24118ae0548cc7c637568c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 262,
+      "text": "| CASE-INFRA-008-S4-14 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをstaleにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "fb5eccafbfe53c30562bb58dfb561d6953780d72656db4fa96329ffc421f2e71"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 263,
+      "text": "| CASE-INFRA-008-S4-15 | INFRA-008-AC-01 | 個別負例 | 正常入力のdesign scopeだけをmismatchにする。他fieldは正常。 | design scopeの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "26e24b0af6f40e23808e7fcbd22efc2ad4f9e39c22942828d859945209c67647"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 264,
+      "text": "| CASE-INFRA-008-S4-16 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをmissingにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "7c51d4a8fc696ef2719dc54900feb3f3aac09c588f919d8ad3e2a252fdfa0287"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 265,
+      "text": "| CASE-INFRA-008-S4-17 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをunknownにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "f4b961a67e4991e40b0a839fee486c052e677a300e5868265a1a52d5eab38883"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 266,
+      "text": "| CASE-INFRA-008-S4-18 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをstaleにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "28f1f110e71ee12692c593e005b3ac90263983df761b7a441a01ea9b283c6c48"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 267,
+      "text": "| CASE-INFRA-008-S4-19 | INFRA-008-AC-01 | 個別負例 | 正常入力の承認状態だけをmismatchにする。他fieldは正常。 | 承認状態の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "583e499a1fb059e26dd7867e54a6b0c5a1a9379d68060c4db6649cf310dc7770"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 268,
+      "text": "| CASE-INFRA-008-S4-20 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをmissingにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "ee40643feda8bf36e3945a1328924b68332dd9325e008f430984a2f79e5448fd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 269,
+      "text": "| CASE-INFRA-008-S4-21 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをunknownにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "80b8908309372c33eef249e852a0967219fc9ff0d25ad3d5b2651923f28c6032"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 270,
+      "text": "| CASE-INFRA-008-S4-22 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをstaleにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "87a034d8810d7f9c5f2023e159c31ea7e8e766a1bbbe1a9143b44b4ed2499e9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 271,
+      "text": "| CASE-INFRA-008-S4-23 | INFRA-008-AC-01 | 個別負例 | 正常入力のversioned design interfaceだけをmismatchにする。他fieldは正常。 | versioned design interfaceの問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "7ee2bdbaf7d10fcb8394471fa5ed44de677dab6333ef3a65d30642ae249cc379"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 272,
+      "text": "| CASE-INFRA-008-S4-24 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをmissingにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "321e9c3f70291d2cb591eefc799cfcb9dd108f634e49c9827bde1d3e89f38367"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 273,
+      "text": "| CASE-INFRA-008-S4-25 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをunknownにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "6112703374ccf30ec79e10d76322d389a6638ce873564776eaeb4ea63eaade3f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 274,
+      "text": "| CASE-INFRA-008-S4-26 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをstaleにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "1845baf24a48ffda84830fb3f7e9d0e288eefcec96c26afcf4c9292fbea7e8bc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 275,
+      "text": "| CASE-INFRA-008-S4-27 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-001 resource/environment参照だけをmismatchにする。他fieldは正常。 | L2-001 resource/environment参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "40a86010f42fdb60caf64b3004404c638779a941b4541788e5b561457b16d82a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 276,
+      "text": "| CASE-INFRA-008-S4-28 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをmissingにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "77bfc85338f6e83a232f1c116b05c603a311f83d8e7f5a8ed7607ed5b80d660e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 277,
+      "text": "| CASE-INFRA-008-S4-29 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをunknownにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "b83ab9281ecd85cb21b5b1ff5d0ad97d76a988b33727a04e64a221712c7e20ff"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 278,
+      "text": "| CASE-INFRA-008-S4-30 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをstaleにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "299c2397cd6f0cb8a2707b018fd6d1a72b74442b0dd83627ab520634fd0210db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 279,
+      "text": "| CASE-INFRA-008-S4-31 | INFRA-008-AC-01 | 個別負例 | 正常入力のL2-002 comparison参照だけをmismatchにする。他fieldは正常。 | L2-002 comparison参照の問題範囲でtarget確定/比較成立を保留し、CORE/上流design ownerへ返す。不足と未確認scopeを保持し補完しない。 |",
+      "raw_sha256_lf_inclusive": "8fe0f2ff1404275c624eeb864c4ac5bd4037fe59c69ad9ecec05479eeff1bd20"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 280,
+      "text": "| CASE-INFRA-008-S4-32 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 未承認designからtarget確定だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "57aa49ee0a9c13a4ec1e01b60a8d5640edddd500bbbe327833fa63367178d4db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 281,
+      "text": "| CASE-INFRA-008-S4-33 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | actual値をapproved designへ上書きだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "2a66f94e87023bd1746b8a5c2051ee5d155ea5a4cde07522658cd0cf77832588"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 282,
+      "text": "| CASE-INFRA-008-S4-34 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | drift解消としてtargetを無言上書きだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "3e7611c764ff1aea49a7afce67eb71588236c72be82d8a41484a6d0083b5827f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 283,
+      "text": "| CASE-INFRA-008-S4-35 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | INFRAへCORE設計意味ownerを移すだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "0bda4e18dba5b03ad44ef365c177ae5f726a3c59e5e8209c1b100e447459e9ee"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 284,
+      "text": "| CASE-INFRA-008-S4-36 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | COREをruntime actual ownerにするだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "d93783b67423d241fdde630cc2074d7c39dcbb7ccf60c25cc9c406e200e583b3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 285,
+      "text": "| CASE-INFRA-008-S4-37 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 変更提案だけで設計変更を実施だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "41f19851c88ca8e9e755cf8681feea05713e660f6f503aea3608052d867e61a4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 286,
+      "text": "| CASE-INFRA-008-S4-38 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 変更提案だけで実操作を実施だけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、CORE/design ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "72c5119036d94057f6e6046604a0acf3491b0df19b0c1dc23efcd5277556f781"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 287,
+      "text": "| CASE-INFRA-008-S4-39 | INFRA-008-AC-01, INFRA-008-AC-02 | 境界負例 | 別environmentのactualを対象比較へ結ぶだけを試みる。他の入力は適用可能。 | 該当誤確定/変更/owner移管/比較を成立扱いにせず、actualの資源source ownerへ返し比較保留と入力bytesを保持する。 |",
+      "raw_sha256_lf_inclusive": "f72762a672824d0a460544dcf91bc9633d655eece665d86bb086c83eba8ad1e0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 288,
+      "text": "| CASE-INFRA-025-S4-01 | INFRA-025-AC-01, INFRA-025-AC-02 | 正常 | Worker-w1とresource-r1を別identityにし、OS ticket-t1、要求-q1、責務-o1、Worker実行契約-wc1のsource/revision、必要CPU/memory/GPU/storage/network/process/container、capacity/state、SECURITY条件と実隔離source/revisionを与える。 | 実資源とWorkerを対応づけ、適用属性と実隔離を照合。OS/SECURITYと実資源の正本が分離する。 |",
+      "raw_sha256_lf_inclusive": "593ca131676dd7eb73214d386c2082d85500d53e38e567104f75cdd1a90064c1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 289,
+      "text": "| CASE-INFRA-025-S4-02 | INFRA-025-AC-01, INFRA-025-AC-02 | 未見正常 | 別宣言のWorker-uと新resource-r9、既存契約で適用を説明できる実行方式と実隔離証拠。 | 未見値を固定allowlistへ補完せず、同じ必要参照/条件を満たすscopeで接続成立。 |",
+      "raw_sha256_lf_inclusive": "c2553a7f02808b32899926d8a994f38dcca377a7566d5f0870fd4a5a219f7dee"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 290,
+      "text": "| CASE-INFRA-025-S4-03 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "8bd76cd1ba2d7f9aed76b61912673ffdf46058cd073051d2aac5b6e3f7731cb5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 291,
+      "text": "| CASE-INFRA-025-S4-04 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "8b1fcc62df122be1ad373bd9bda74703cafa9a30499377c73df2c74e86c2e67b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 292,
+      "text": "| CASE-INFRA-025-S4-05 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "e7ed5749193300d3a042e659d5127d1717570c462147f4bb128751d587a786f6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 293,
+      "text": "| CASE-INFRA-025-S4-06 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker identityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "dc049b719b70d77191f1543c70fc253b781a0ed42befdb2518f12de54fb14190"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 294,
+      "text": "| CASE-INFRA-025-S4-07 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "5ac0a63a2fba5078efdda6d8294a1fa607afcef304dd7d044969a63cd67248da"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 295,
+      "text": "| CASE-INFRA-025-S4-08 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "016f7bbc318ffb7c5e5bee7f0ce7e099428ee1646612d256150209a98f950a16"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 296,
+      "text": "| CASE-INFRA-025-S4-09 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "31f0d861e8c2fda7b9f3b75be43409839a52a1ccf7abb90984090d83a75261db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 297,
+      "text": "| CASE-INFRA-025-S4-10 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のOS ticket参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "80069ba8d3e86f43f67385ae0bc1469373c7bbd8ea6b50363e96247f39bf6686"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 298,
+      "text": "| CASE-INFRA-025-S4-11 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "cba15cfcc464182b437f6017ae2aea82abd167628ef10c8d08360bf3c05583cd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 299,
+      "text": "| CASE-INFRA-025-S4-12 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "1ec8fdf3f8da8b0fd67ada856949d79c1d054c077b715a11c027ccab06da5262"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 300,
+      "text": "| CASE-INFRA-025-S4-13 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "833bd7b57ed014ca424de848aa6bba350d203f579665649535383b0b91ee190b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 301,
+      "text": "| CASE-INFRA-025-S4-14 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の要求参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "f02e14ed49445aa8ebf879cd09b3029e63c834db29397406ff7e2da5d278bf14"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 302,
+      "text": "| CASE-INFRA-025-S4-15 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "221b5662a1dc30159b416f6a6737c2c36396690c6fcc5ef08fb575ec316cad02"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 303,
+      "text": "| CASE-INFRA-025-S4-16 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "79ab2d272797a7a831025d1d562eb5737e473817e47682c8e5e218ed79cbbc46"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 304,
+      "text": "| CASE-INFRA-025-S4-17 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "905a8c22cf23f8134ecb28634af0059674e02e5a65f13769363ff9ef4fcc7438"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 305,
+      "text": "| CASE-INFRA-025-S4-18 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の作業責務参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "433da50ee46f14db7f8ab0198031ae8f96465de0a656cf61310e60c8ece13708"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 306,
+      "text": "| CASE-INFRA-025-S4-19 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のCPUだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "dc456f327404506acee4037c22251b7ab95365f51d75c8d79b06aa0c99f751fd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 307,
+      "text": "| CASE-INFRA-025-S4-20 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のCPUだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "d4808669040f437e290569c84fc8eddda78c5cda2e127d446ae8b41bcc34b15e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 308,
+      "text": "| CASE-INFRA-025-S4-21 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のCPUだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "e52b87011d95ac7b873260677625305e68d552937dc8bc95b89e89d2a5964235"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 309,
+      "text": "| CASE-INFRA-025-S4-22 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のCPUだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "99cabf4e23224728df0fa39e35aa837bcf9687800dbe3d4dc74e69e8a06091dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 310,
+      "text": "| CASE-INFRA-025-S4-23 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のmemoryだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "5e2c87ac19806358338a474df618020cfeb069fbd3e5545c71597fb18e3e364f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 311,
+      "text": "| CASE-INFRA-025-S4-24 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のmemoryだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "7c7db4dabc8d77ac37b390de8af3e874d3e2487c0bdd7f6b863dad2741b8b79b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 312,
+      "text": "| CASE-INFRA-025-S4-25 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のmemoryだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "fd82738db3418914cc557969171f714608be6dcb35955c76a0b16a6d75fac28b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 313,
+      "text": "| CASE-INFRA-025-S4-26 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のmemoryだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "18391e883735e5d2f448224f7712683d0b75692efdea90529e901b713ca09df7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 314,
+      "text": "| CASE-INFRA-025-S4-27 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のGPUだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "ccf7ad8aa48b46f4a1c51f221050c423dc66c333f24ae558739f8a987b72e8e9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 315,
+      "text": "| CASE-INFRA-025-S4-28 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のGPUだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "243770f36c8b84c0e2d2c5191d52083e5c0c8c9f438a44282c76b8a3838e388b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 316,
+      "text": "| CASE-INFRA-025-S4-29 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のGPUだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "dc6547af4f651fc4d6e4f4407341a333cbcfd68c77ec4a3ae2768b069e54e8ff"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 317,
+      "text": "| CASE-INFRA-025-S4-30 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のGPUだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "88a5351497764eeb8ae4e14c3a315eab25d738263195b42945d3b5b298f561b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 318,
+      "text": "| CASE-INFRA-025-S4-31 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のstorageだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "ee46da70440a8fb16f60e148dd75dc4182e877c01aeedb15aa746d9b80b78cd1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 319,
+      "text": "| CASE-INFRA-025-S4-32 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のstorageだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "6f3aafd4d7fc9bf5c52586f272b654f33363e70fd4582a0cf20248eda3ce41d1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 320,
+      "text": "| CASE-INFRA-025-S4-33 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のstorageだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "e41d949b1474639a2a5f16325de3f6657a66252c259825883e8ebb425f90e7e6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 321,
+      "text": "| CASE-INFRA-025-S4-34 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のstorageだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "474e74d0f189e000002917150f7837719a38cc45fa692fcdb8c02608c2e89b3d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 322,
+      "text": "| CASE-INFRA-025-S4-35 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のnetworkだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "ac828df9626ba2dcfd537e69dd21cf8fe5f2c13b880a081883f1942c662fb84c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 323,
+      "text": "| CASE-INFRA-025-S4-36 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のnetworkだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "58ccadcf78202f146c4e1a9c6a587528eaddbf564b00533da93c33e3dfd73ec4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 324,
+      "text": "| CASE-INFRA-025-S4-37 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のnetworkだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "b31271e9c233d39b82973de5d9aa97cfb40060cb71d0477d038d073f5e3b4f39"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 325,
+      "text": "| CASE-INFRA-025-S4-38 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のnetworkだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "13a043947463133e4fdf7e075274d005aedd90b744a792695c26221e0261ec0e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 326,
+      "text": "| CASE-INFRA-025-S4-39 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のprocess/container環境だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "4853626617f908aced1f38081e399b519bcf3fc93a07c0a4eba2c2ceb8ea0d08"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 327,
+      "text": "| CASE-INFRA-025-S4-40 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のprocess/container環境だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "63f43fc0193fc36beefa77311c0fa786c60b5ff667b5b915a560cca3dcd5c48e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 328,
+      "text": "| CASE-INFRA-025-S4-41 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のprocess/container環境だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "77b22a13b73643570c9dfd8157d6f716e84d8e6db39571c11dae1521b2351b2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 329,
+      "text": "| CASE-INFRA-025-S4-42 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | Worker要求量/環境条件は正常に保ち、実資源側の観測value/source/revisionについて適用必須のprocess/container環境だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "bb34c3241d0fbd719bd0a4746dd8eb69fa2bc7beca3fbf31463a7422813a22a3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 330,
+      "text": "| CASE-INFRA-025-S4-43 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "33f2f4b86122e69cf44544abd51dc63dfe4ef173322a64361d76267c43ee1932"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 331,
+      "text": "| CASE-INFRA-025-S4-44 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "603d161abd62075634e733be1fb18bcbf72497b08fcc7266e538ad6fefba902c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 332,
+      "text": "| CASE-INFRA-025-S4-45 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "81c7409df9438c055f4a5246ea49bbc4eb223f46a312e10f4ffa7d357e4b671b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 333,
+      "text": "| CASE-INFRA-025-S4-46 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の実資源identityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "318b7332229fb8a9738aedcf9c3ec217800b4bc6f06a0c9230a31e903a396f5e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 334,
+      "text": "| CASE-INFRA-025-S4-47 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "f0ba602b894da1d690f49d6a117ec3beca13a76c2afc73b6887ac7bf74b2e4b5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 335,
+      "text": "| CASE-INFRA-025-S4-48 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "901ef4e539f00f11ca47ea6d9ed343a3d94136456630f0d88d65b149dbbc8a59"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 336,
+      "text": "| CASE-INFRA-025-S4-49 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "5ffa162c0fad6d9cbb4843d24dc1bfdb8653ce82351f56d4ef7003aad2133147"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 337,
+      "text": "| CASE-INFRA-025-S4-50 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のcapacityだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "c8d227024369d9135b539f478d65d3461bbf4621ee9c6121e5aec3007f31d444"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 338,
+      "text": "| CASE-INFRA-025-S4-51 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "dbc132c13fe02ced9f66a83f12a4e2e51da51ff017a69f52b29355e61abe4597"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 339,
+      "text": "| CASE-INFRA-025-S4-52 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "c418cd86a6e771c44ec92c70f452b265add80483979ab85d1b66c065b491c7db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 340,
+      "text": "| CASE-INFRA-025-S4-53 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "9578cc21954eefa38445966bfd6b58ddf87ec80301c11eaff0eb2be18e4ab3db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 341,
+      "text": "| CASE-INFRA-025-S4-54 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のstateだけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "8c69b2d9ea296bc4fc0d97908f76a7d1bcbf84206ed70757bb74551be1c0c9f4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 342,
+      "text": "| CASE-INFRA-025-S4-55 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "bc0dd45fa3203ca01906424d47b1a6399df7f1ee80d44aa8969853ae3a2a8b6a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 343,
+      "text": "| CASE-INFRA-025-S4-56 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "da16e57290bbd95dece976f6c30faa26daee2535a8bdad350b1dfd5d678b9477"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 344,
+      "text": "| CASE-INFRA-025-S4-57 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "3a355bf55c8a6a4fee3431566fc1658184e351650f5e9abce96dd545ccf2a816"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 345,
+      "text": "| CASE-INFRA-025-S4-58 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-001参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "2aa2fae089570d5ea070472972ceed03c6a4d85e004726f26c01fa98e7a1a3d1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 346,
+      "text": "| CASE-INFRA-025-S4-59 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "2fdc08aa258140b875e6efa7e0039969d8b4777b4052a0c81dd2456d56a9b400"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 347,
+      "text": "| CASE-INFRA-025-S4-60 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "8e1bbeac28efa482895989bf2ecc927f0d05bf7e908cd0408ab0bb3c3a9a0505"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 348,
+      "text": "| CASE-INFRA-025-S4-61 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "92c093a941a5289c3837a306f3e950bc887a2b14cd679dbf50b639ce716671fe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 349,
+      "text": "| CASE-INFRA-025-S4-62 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のL2-003参照だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "6a250f5651032307513691e8be5a2a1ace596ca83185b417cb03258cdd450010"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 350,
+      "text": "| CASE-INFRA-025-S4-63 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをmissingにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "3e2c5ebc666a85fe1aa87d62644b5d00336229c596c39d90aa4ffe5f8015e23e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 351,
+      "text": "| CASE-INFRA-025-S4-64 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをunknownにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "fd8cf73e0ece7dcc49bb7c2c97b3d84c6dcd3d094171ea4ef14cd6b9d1734069"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 352,
+      "text": "| CASE-INFRA-025-S4-65 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをstaleにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "0158604de55b96b9ae50351041ed10d53b19b2fd16676a71d618f172839088d8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 353,
+      "text": "| CASE-INFRA-025-S4-66 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のWorker実行契約だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "457d0d86a96c9553f24fe5d6b7194e48933db687ad81f724e4402ce4e13a27eb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 354,
+      "text": "| CASE-INFRA-025-S4-67 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをmissingにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "18ecc649b70b06fc69093cb9eb466e889080d097dd65150c637e7dd22147c82a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 355,
+      "text": "| CASE-INFRA-025-S4-68 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをunknownにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "bcbb7c3506b10b5385567b5b5fc5a2ae71307aeb0bd9ca3c51742aa633786fd7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 356,
+      "text": "| CASE-INFRA-025-S4-69 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをstaleにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "75522016420e11b90802ad5b4cab5162d6ef1e88eba5198c7fe6b3eb2960fd34"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 357,
+      "text": "| CASE-INFRA-025-S4-70 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須のSECURITY隔離条件だけをmismatchにし、他fieldを正常にする。 | 接続成立とせずSECURITYへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "90101efc936a73c4811114f01f4a8fb142d61d24f2a60693eabeadd303f21dbd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 358,
+      "text": "| CASE-INFRA-025-S4-71 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをmissingにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "f7a365f5065c613a2af663dc95dcdf3b8bc304c6caa4b3ae84e91228cf10918e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 359,
+      "text": "| CASE-INFRA-025-S4-72 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをunknownにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "95ad41fcb8ae44a81548d954be241f74dff6f46191a0d16aaf36341fb42296e6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 360,
+      "text": "| CASE-INFRA-025-S4-73 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをstaleにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "890580139381e75e6ddca498c2585d994bc581428c5e3c412be78701eeb2ce67"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 361,
+      "text": "| CASE-INFRA-025-S4-74 | INFRA-025-AC-01, INFRA-025-AC-02 | 個別負例 | 適用必須の隔離実適用観測だけをmismatchにし、他fieldを正常にする。 | 接続成立とせず資源ownerへ該当問題を戻す。未完作業と元資源の観測と、移動がある場合は移動先の観測を保持し、unknownを非適用や十分にしない。 |",
+      "raw_sha256_lf_inclusive": "bfe9ec12b29b3b00e86c46658250c8f2855d53e1f553367ec0a162d3be5ece80"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 362,
+      "text": "| CASE-INFRA-025-S4-75 | INFRA-025-AC-01 | 非適用正常 | 既存契約でGPU非適用を明示するCPU-only resourceとWorkerを別fixtureで与える。 | 非適用理由とsourceを保持。GPU不足の推定失敗を作らず、残る適用属性を照合する。 |",
+      "raw_sha256_lf_inclusive": "af99a2cf389765472de23cabc9b78f81586a8b271e857e42fe4b07a8c7bfed85"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 363,
+      "text": "| CASE-INFRA-025-S4-76 | INFRA-025-AC-02 | 資源不足 | 正常の実capacityだけを必要容量未満にする。 | 接続成立とせず資源ownerへ返す。OS作業参照と未完義務を保持する。 |",
+      "raw_sha256_lf_inclusive": "bdfcc1d8125f82b30c3c3242ad5cb5c3b1dd3eec90a5a00b32da38bfa35c8315"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 364,
+      "text": "| CASE-INFRA-025-S4-77 | INFRA-025-AC-02 | 隔離不能 | 他の入力は正常で、その資源方式ではSECURITY条件を実施できない。 | 接続成立とせずSECURITYへ戻し、利用資源の実状態と未完義務を保持。policyを変更しない。 |",
+      "raw_sha256_lf_inclusive": "a2eac72581947299acb23141af8820395498c2576b4f76549b94c222cb5e273e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 365,
+      "text": "| CASE-INFRA-025-S4-78 | INFRA-025-AC-02 | 宣言のみ | SECURITY条件と隔離宣言は存在するが実適用の観測を持たない。 | 宣言だけで隔離成立とせず実観測を担う資源ownerへ戻す。SECURITY条件自体が不明ならSECURITYへ返し、未観測を保持。 |",
+      "raw_sha256_lf_inclusive": "dfb989fadd88e480a47dfe9509ede4f6f7eb107bb7f6e7514556b34e7da8118d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 366,
+      "text": "| CASE-INFRA-025-S4-79 | INFRA-025-AC-03 | 移動正常 | 既存操作契約下で同じWorker/ticket/要求/責務をresource-r1からr2へ接続し、両resourceの前後source/revisionと未完作業を別々に記録。 | 作業参照を保持、元/移動先状態を区別し、資源変更でWorker責務を消さない。 |",
+      "raw_sha256_lf_inclusive": "260d76e71bd2459a0979a2b31e0dd6942af286db7a0cffece5271d4130f5da80"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 367,
+      "text": "| CASE-INFRA-025-S4-80 | INFRA-025-AC-03 | 移動未見正常 | 独立のWorker-u2と資源x/yへ同一作業参照を結び、既存契約に適用する移動結果を与える。 | 新資源名称だけで拒否せず、旧資源の成功を移動先へ転用せず各実状態を照合。 |",
+      "raw_sha256_lf_inclusive": "571b987ecd62f4e2e61c2e7254af054d1eed69f8557eaa41fc8f9e960f3b68eb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 368,
+      "text": "| CASE-INFRA-025-S4-81 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | ticket参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "f491c26f81fa967526f8686f6b9dd8161fc6940db364443cbc4e74532bbbfbad"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 369,
+      "text": "| CASE-INFRA-025-S4-82 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 要求参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "906db0112402a61d3e11e542819c6186f6bc330aa6cf7c6ebb42e240b7858625"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 370,
+      "text": "| CASE-INFRA-025-S4-83 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | Worker責務参照を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "e9f3439ef442ffbdf34d7c271c9f957deecf02928713809a1202725ee8cd6e4d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 371,
+      "text": "| CASE-INFRA-025-S4-84 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 未完義務を移動後に消去だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "f443c939ae413696ee22f46c37c6ad0d7b58747e399c41970a526cbd79c4eebc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 372,
+      "text": "| CASE-INFRA-025-S4-85 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 元資源状態を消去だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "0e798478080269c29433985253b8c0c9391af9bfb6a04c9eaf4ff93776dd17e0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 373,
+      "text": "| CASE-INFRA-025-S4-86 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 移動先状態を欠落だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "a4a5b4927e51e515bf0f8e179ea44ad00fb5d9baed5390e9e671551b4b895b39"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 374,
+      "text": "| CASE-INFRA-025-S4-87 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | 旧資源のsuccessを新資源currentへ流用だけを独立変異にする。 | 接続/移動成立とせず資源ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "fe50bbea24ac4436db58d8c780854a0f396aa7feb94f02302d26e7c9a11b9c7a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 375,
+      "text": "| CASE-INFRA-025-S4-88 | INFRA-025-AC-03, INFRA-025-AC-04 | 移動負例 | ticket正本をINFRAへ移管だけを独立変異にする。 | 接続/移動成立とせずOSまたは既存作業参照ownerへ該当問題を戻す。元/移動先と未完の既知情報を保持し、正本を移管しない。 |",
+      "raw_sha256_lf_inclusive": "eb848bb7c09ec4526164ee6b0b96bd79401345eb4d438d3f091ec7d2469d1c91"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 376,
+      "text": "| CASE-INFRA-025-S4-89 | INFRA-025-AC-03 | 移動状態 | 資源移動を失敗とする独立fixture。 | 失敗/部分/停止を成功にしない。同作業lineageと未完義務/両resource状態を保つ。revision変更時は新適用条件を照合し、資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |",
+      "raw_sha256_lf_inclusive": "cda894a9fa244c7d2876a5aaabd0d6db2557f6fbeca648ae2c1582843e1f4753"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 377,
+      "text": "| CASE-INFRA-025-S4-90 | INFRA-025-AC-03 | 移動状態 | 資源移動を部分移動とする独立fixture。 | 失敗/部分/停止を成功にしない。同作業lineageと未完義務/両resource状態を保つ。revision変更時は新適用条件を照合し、資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |",
+      "raw_sha256_lf_inclusive": "abae039f5e63c3690dd5700258a65452b6564873fad8bb969c729a6edfffa4a7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 378,
+      "text": "| CASE-INFRA-025-S4-91 | INFRA-025-AC-03 | 移動状態 | 資源移動を停止後同scope再開とする独立fixture。 | 停止中は未完を保持する。再開時に適用条件と両資源状態を再照合できれば同作業lineageで接続を再開し、失敗だけを資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |",
+      "raw_sha256_lf_inclusive": "8898669cdd622f99352539d44111d612d833e8a1ffa2480bfacbdcf77634526b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 379,
+      "text": "| CASE-INFRA-025-S4-92 | INFRA-025-AC-03 | 移動状態 | 資源移動を再開時revision変更とする独立fixture。 | 停止中は未完を保持する。再開時に適用条件と両資源状態を再照合できれば同作業lineageで接続を再開し、失敗だけを資源ownerまたはOS/SECURITYの該当ownerへ戻す。 |",
+      "raw_sha256_lf_inclusive": "1edeb3dcdb44a6f75f6581257688bd515ffc6b8593e49ad5114cc174cb670665"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 380,
+      "text": "| CASE-INFRA-025-S4-93 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | Workerをmachine identityへ同一化だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OSまたは既存作業参照ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |",
+      "raw_sha256_lf_inclusive": "97bdd51299823929fc2ed9b54e2f775f2be9aa0d63dc9298ed51f682640170a2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 381,
+      "text": "| CASE-INFRA-025-S4-94 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAがWorker assignmentを発行だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OSへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |",
+      "raw_sha256_lf_inclusive": "5040e7f5c427e8fba6afa6f3e35256c855ed4a7e903c2261dd8000fc7dba1783"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 382,
+      "text": "| CASE-INFRA-025-S4-95 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAがSECURITY policyを変更だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、SECURITYへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |",
+      "raw_sha256_lf_inclusive": "1089e17a5c6aa1599cb6fcd9d2d8dc58e24be4a666423a59a0394d479413f868"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 383,
+      "text": "| CASE-INFRA-025-S4-96 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | INFRAが操作authorityを発行だけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、SECURITYへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |",
+      "raw_sha256_lf_inclusive": "14aa91932eacddfe43ad535bf59705f74bb80557510efdac4409ac3213762bfb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 384,
+      "text": "| CASE-INFRA-025-S4-97 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 資源接続結果だけでL2-010構成体を受入だけを正常入力へ加える。 | 接続結果をL2-010の操作許可や構成体受入へ代用せず、接続とL2-010の検証を別に保持する。 |",
+      "raw_sha256_lf_inclusive": "3f7482973a8f5fb05bbc99966a29fa9dbb267c382e291392036029d9dfd375da"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 385,
+      "text": "| CASE-INFRA-025-S4-98 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 自動配置最適化欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 最適化/高度増減の欠如だけでは適格な接続を不合格にしない。接続の成立条件と観測結果を保持し、配置判断や別ownerへの戻しを生成しない。 |",
+      "raw_sha256_lf_inclusive": "0682641f36f4b49d38e4051bb0923b1214f8ab865c32c5e18c4042720f9ecbf0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 386,
+      "text": "| CASE-INFRA-025-S4-99 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 高度な自動増減欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 最適化/高度増減の欠如だけでは適格な接続を不合格にしない。接続の成立条件と観測結果を保持し、配置判断や別ownerへの戻しを生成しない。 |",
+      "raw_sha256_lf_inclusive": "b8637af7bea324e56db781775e8dad6e8b88cf49949da2fed03ff2a7342f5e29"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 387,
+      "text": "| CASE-INFRA-025-S4-100 | INFRA-025-AC-02, INFRA-025-AC-03 | owner不明 | 資源不足のsourceは判明しているが資源ownerを識別できない。 | 戻し先を推測せず未解決owner、未完作業、元資源と移動先の観測状態を保持し接続成立を示さない。 |",
+      "raw_sha256_lf_inclusive": "8929e7a9d690b639fd61395fd0f67148b90d10ba0771292447a1eb3a228e9f0c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 388,
+      "text": "| CASE-INFRA-008-S4-40 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "2a7d5447e1d0770defb335f0e2f3099f076e2292bdf4afb15425df0292f31149"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 389,
+      "text": "| CASE-INFRA-008-S4-41 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "e097a23336d2928667e8f14e58a216755c44a41a954a697f0ae68f44f9e99dd8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 390,
+      "text": "| CASE-INFRA-008-S4-42 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "25160ea927586115dce010885065d675f5540fff4c05e1f51d5d241306167b17"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 391,
+      "text": "| CASE-INFRA-008-S4-43 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "f76f8698a1251678bfe69a9ed718b8c93aae18bbca07ea506f7eb9aa7e4766a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 392,
+      "text": "| CASE-INFRA-008-S4-44 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "b4a54ff7c902cb04ebf1d5a24191074556b247e9e6fcebb89387d0dc063edbd5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 393,
+      "text": "| CASE-INFRA-008-S4-45 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "ae5316d8f08bac3a83ab2c78426702197d9f9047a62976e38fe3d2c9c2147e80"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 394,
+      "text": "| CASE-INFRA-008-S4-46 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "fc3a44c66197b585fa3ae86012bb5a023d806ca27b65bd61fddd799b5fce9f91"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 395,
+      "text": "| CASE-INFRA-008-S4-47 | INFRA-008-AC-02 | 比較入力負例 | target revisionだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "2c7d5bcd5a677a03dde592da8a0ff7126640c8d426656630faba673fc1222f81"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 396,
+      "text": "| CASE-INFRA-008-S4-48 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "805c821255723dac2be38fa4f8b3967b185021cfe2dab567d084d29e46926920"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 397,
+      "text": "| CASE-INFRA-008-S4-49 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "059fa0e06c5e64182458e2f5ec6fb65b02f15b45907a10033fe1c8eb3794916f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 398,
+      "text": "| CASE-INFRA-008-S4-50 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "cf321c33a5ca88d0e06ac2b30b883f447d21e7ae14ce94687910be48e4152056"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 399,
+      "text": "| CASE-INFRA-008-S4-51 | INFRA-008-AC-02 | 比較入力負例 | target scopeだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "e4a08a4926353bd3728c28c65b3b8bfe1a39aab33994564f68b88ff198cdf447"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 400,
+      "text": "| CASE-INFRA-008-S4-52 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "4e156488dd7ea5209572dafca0942f335338ee7c50e48585338a0e16eed1d9cd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 401,
+      "text": "| CASE-INFRA-008-S4-53 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "442c492d98f8b2a07f35529b60901f5b87fd3aa16b1fccad9a284888fbd4cb0f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 402,
+      "text": "| CASE-INFRA-008-S4-54 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "763a781f39f4109706b392647132a82f8c5c1aedfa170d9ccd36bed88f545f54"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 403,
+      "text": "| CASE-INFRA-008-S4-55 | INFRA-008-AC-02 | 比較入力負例 | target sourceだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "2d2f98fa83ed6d0fe317071e9ad667d694ad33658603da21b64db5cf9be7cfe8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 404,
+      "text": "| CASE-INFRA-008-S4-56 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "a0947c515b19b438eaac0fd496c89e3829e93869ef835fa1ee1158fe95138f05"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 405,
+      "text": "| CASE-INFRA-008-S4-57 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "feb02aa2caba7ab2e19987bd6463726354c5c0576a8519872f2374cfa17234a7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 406,
+      "text": "| CASE-INFRA-008-S4-58 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "ac9f167ce905dbff8d443107d2aa9571129800465294659621082065bba8c9f9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 407,
+      "text": "| CASE-INFRA-008-S4-59 | INFRA-008-AC-02 | 比較入力負例 | actual identityだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "a033dcc32919d063bf2814e69b071f20aa4b24d47099058381a386978c686682"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 408,
+      "text": "| CASE-INFRA-008-S4-60 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "c1e20af91cfcdc22dc1bb3bfcd9c9b2fa77b14cbfa5ba34c80c40b89d2248001"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 409,
+      "text": "| CASE-INFRA-008-S4-61 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "f66f08f446d31f1d865877bbf2e4075e0cedede2f859343b4437d1719d09d99f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 410,
+      "text": "| CASE-INFRA-008-S4-62 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "b3c5bc4a7b33eb1bcb065251c67a2b4d6ae70dd911dee2e43bc823d7e3474d6e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 411,
+      "text": "| CASE-INFRA-008-S4-63 | INFRA-008-AC-02 | 比較入力負例 | actual revisionだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "3637212f5cc602b7f36f5c04c8ee6617b7d8baeaa95b940fe895f7454eb516e3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 412,
+      "text": "| CASE-INFRA-008-S4-64 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "62b446a4594b2c4c0c09c8e2362c97b2280cb357c3e31c191f177782829f5c77"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 413,
+      "text": "| CASE-INFRA-008-S4-65 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "566e0d35e48a54965509462e2301bb38a959bd1167ed23823a7ad7b96156671d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 414,
+      "text": "| CASE-INFRA-008-S4-66 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "a0ba53e921788a806313fe3a4861d57e5c93f8302bac3527b764299e3fcd0415"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 415,
+      "text": "| CASE-INFRA-008-S4-67 | INFRA-008-AC-02 | 比較入力負例 | actual scopeだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "42d7bb25301687038e4ec975f8fbf6ddaa9ad977a05ba53d043cec5c3afbaae4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 416,
+      "text": "| CASE-INFRA-008-S4-68 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "aa92c3553f24ea220c9b7ed5680c422d0de013014bc1b86d5826728d86c132d2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 417,
+      "text": "| CASE-INFRA-008-S4-69 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "f57758f1547b25a7a30455b3a32efde15632b1f3629b86af450005340adc6c05"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 418,
+      "text": "| CASE-INFRA-008-S4-70 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "97cb0441c5fe03e5a54ccbb5e73ef40acb0aa1264eddb81530d209f532128df8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 419,
+      "text": "| CASE-INFRA-008-S4-71 | INFRA-008-AC-02 | 比較入力負例 | actual sourceだけをmismatchにし、designは適用可能に保つ。 | 当該比較を保留し、資源source ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |",
+      "raw_sha256_lf_inclusive": "06105667d7a5fdc20400a1d1679f10904defc5a3e3c44602ba525d9a7b6ea4db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 420,
+      "text": "| CASE-INFRA-008-S4-72 | INFRA-008-AC-02 | 要求変更負例 | 正常比較入力のactual値だけを根拠として上流要求のcanonical bytesを書き換えようとする。他の入力は正常。 | 要求変更を拒否し、全入力bytesを不変に保持してCORE/上流ownerへ返す。観測値から要求承認を生成しない。 |",
+      "raw_sha256_lf_inclusive": "3bc47db20dc5eb2d15bca3d7a02b1b301cb7871a3782751339b27b86583d0f97"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 421,
+      "text": "| CASE-INFRA-008-S4-73 | INFRA-008-AC-02 | 承認生成負例 | actual/design/targetのbytesは一切変更せず、actualにapproved designの承認状態だけを付ける。 | 承認状態の生成を拒否し、入力bytesと既存承認状態を保持してCORE/design ownerへ返す。actualを承認designへ昇格しない。 |",
+      "raw_sha256_lf_inclusive": "cc2d5b7681faab0f5cbed54fbc54ab59c9c51649dcce450b3049e7e8f6897a98"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 422,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "line": 423,
+      "text": "全CASEでinput/output identity、source/revision/scope、適用条件、対象owner、target確定/比較/接続の各状態、保持した未完義務を記録する。025移動は元資源と移動先を別に観測する。必要観測missingは設計上の期待拒否と、後続検証そのものの未実行を分ける。",
+      "raw_sha256_lf_inclusive": "795ea8bc9ba607ef6bc85fea597ecb9e13bf522c027a2e738197f959758ebad6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 71,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 72,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 73,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 74,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 75,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 76,
+      "text": "| 対NFR | 母集団・比較方法 | oracleと記録 |",
+      "raw_sha256_lf_inclusive": "d36dab06c0fb2db69155c26af34ad41dbb34a4af623b4264b08c65217f569fd5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 77,
+      "text": "|---|---|---|",
+      "raw_sha256_lf_inclusive": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 78,
+      "text": "| INFRA-NFR-008-S4 | 各CASE-INFRA-008-S4の宣言design/target/actual scopeで必要参照と対応ACを事前列挙。比較候補1（名前だけ照合）と比較候補2（全必須参照）を同じ入力集合で比較する。 | 分子は期待正常/拒否/保留を照合できた観測単位、分母は予定必須単位。missing/unknown/staleを除かない。0分母は率なし、適用不明は分母不明。可観測率とAC合格率を分け、canonical設計bytesとauthority不変を別観測する。未実行は未測定。 |",
+      "raw_sha256_lf_inclusive": "f1366d0762e21914545f1080fba2ef755ed29013a240c1ea5e414f0363c12ddd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 79,
+      "text": "| INFRA-NFR-025-S4 | 各CASE-INFRA-025-S4で選択Worker/資源の適用属性、隔離条件と観測、作業参照、移動前後の両資源状態/未完義務を事前列挙。比較候補1（Worker応答のみ）と比較候補2（実state/lineage観測）を比較する。 | 必須単位のvalue/unknown/source/revision、正常/保留/失敗ownerを各個別に観測する。非適用は既存契約と理由を別記し、不明を分母から除かない。未完義務消去/正本移管/unknown成立誤変換件数を記録。実隔離の可観測性を隔離合格に代用しない。 |",
+      "raw_sha256_lf_inclusive": "a03587204e4ed802f7b72e76242446a9d300af08176bb4b7bb46bdd639450217"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 80,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "line": 81,
+      "text": "予定単位をmissing-input、入力後の照合可能な結果、観測欠落、期間打切り等の主状態に重複なく分類し、併発理由を別に保つ。固定候補100%は可観測性の比較材料であり、未承認sourceを正常へ変えず、期待拒否の正しさを別判定する。1.0後のfreshness/confidence、自動配置/増減、business KPIをこの2親へ追加しない。旧test/runtime/CIを実行しない。",
+      "raw_sha256_lf_inclusive": "405ec541d3d8c8de3c1b624f86ff0f34e82bc0618cd25f35a17b9d72c77e855c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 38,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 39,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 40,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 41,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 42,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "line": 43,
+      "text": "固定008/025に独立business outcome/oracleはないため、独立BR/BCASEは追加しない。機能正本 INFRA-008-FR-01/AC-01/02、INFRA-025-FR-01/02・AC-01..04と対のL10を参照する。設計接続・資源対応・隔離・未完保持から業務成功、release、incident close、費用/配置採用を生成しない。",
+      "raw_sha256_lf_inclusive": "8238b6f49cc1f4f09ff224e1c7419b48d77e7fc2a8d9a0737b063bd2bdb46e45"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 340,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 341,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 342,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 343,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 344,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 345,
+      "text": "### 固定親と旧資産の処置",
+      "raw_sha256_lf_inclusive": "f510fed2dd7ee9af0e5e2d01357ddd19dc0e4c4c44ad6a07f18edf97ffe02e87"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 346,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 347,
+      "text": "L2全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、L11全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`。採択根拠は `docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md:48`。",
+      "raw_sha256_lf_inclusive": "a08dd996459e35ff30e4bac500027aab3fe982f6c022f1db9cf4ebabf01255d5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 348,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 349,
+      "text": "| 正規親 | 採用登録 / semantic digest | 固定L2 / 対L11行（633bf12） |",
+      "raw_sha256_lf_inclusive": "e5fd5f78ed44ec0000cf9a610b04b6e644d6402c151828abc9bfe75c0036628f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 350,
+      "text": "|---|---|---|",
+      "raw_sha256_lf_inclusive": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 351,
+      "text": "| `HELIXINFRASTRUCTURE-L2-008` | `MPR-RC-HELIXINFRASTRUCTURE-L2-008-002` / `sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925` | `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:104–113` / `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:106–115` |",
+      "raw_sha256_lf_inclusive": "d26e589071a7d2e6908a50e91982882351018721073dc219e170182d8b495e41"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 352,
+      "text": "| `HELIXINFRASTRUCTURE-L2-025` | `MPR-RC-HELIXINFRASTRUCTURE-L2-025-002` / `sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c` | `docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287–296` / `docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md:290–298` |",
+      "raw_sha256_lf_inclusive": "825f0dbf61448b6437bedd36029effe10e3fc2f3248ea341f6b99272f43502f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 353,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 354,
+      "text": "008は旧OPS-R-01/02/04とOPS-AC-001/002/004の環境・設計入力・deployment planと実結果の分離、曖昧target/unknown capability拒否を部分再導出する。現行のCORE設計意味owner、runtime target/actual ownerと変更提案の境界は固定008から導く。旧Manifest/Plan/Receipt schema、provider command、promotion/production apply、rollback義務や旧承認gateは008へ移植しない。025は旧WCC-FR-01/03/04とHAT-WCC-03/06のWorker identity・実隔離・宣言だけを証拠にしない意味を部分再導出し、旧Conceptの資源不足時に未完を失わず再配置する意味を比較する。Worker≠計算機、ticket/要求/責務のOS正本、利用資源の方式でSECURITY条件を適用する責務は固定025から導く。旧wrapper、sandbox option、禁止path、network default、provider制約を現行要求へ移さない。旧L3のFR+AC/三文書/検証pairという形式を再導出し、旧G3/UX受入layer定義は置換する。旧自律境界のAI起草と人の要件承認という分担を保持し、現在の委任承認は現行PO判断による。完全一致copyはない。",
+      "raw_sha256_lf_inclusive": "80a4a34f9d9e68af65acd1ed50d37010dc7969eacf8ef1f70f963eb1c31aadfb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 355,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 356,
+      "text": "| 旧asset | 読んだsource / 行 | 全文SHA-256 | raw span SHA-256（LF含む） |",
+      "raw_sha256_lf_inclusive": "4debb93862a32b16a2cf22830e538ce8fb843d4ab9cd3270bb8c6de3e22382a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 357,
+      "text": "|---|---|---|---|",
+      "raw_sha256_lf_inclusive": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 358,
+      "text": "| `LEGACY-ASSET-17C4BF78919578FEBB18` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68–79` | `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` | `acb16d0cc266a710a0f2aee3677954b25aa4837a2003b01830575944e999a370` |",
+      "raw_sha256_lf_inclusive": "09100aaffa2744b72dcb3c42e8745846aa50824aeb970cdb1998d76479f664ed"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 359,
+      "text": "| `LEGACY-ASSET-17C4BF78919578FEBB18` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:86–92` | `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0` | `2adc06537aa0e010b7f28b75dcb7fe0945628bc08b65eeb93a7672fe79792e39` |",
+      "raw_sha256_lf_inclusive": "cf55822274725575293b57fa2e5ac494c29659e6e3efe4e5448a477c89392d7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 360,
+      "text": "| `LEGACY-ASSET-F46AB11BD14F2C0469F4` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26–29` | `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58` | `b97936e170c2a450dac6d3c2d618105de2af24cabfaec450818c142f988f4663` |",
+      "raw_sha256_lf_inclusive": "feb636a8285925923ac27d00df1e0bb5c937a12bf56bf6ff0f9cffbac001977d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 361,
+      "text": "| `LEGACY-ASSET-9114D4E463E95B67DD0C` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md:55–58` | `773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290` | `bd9b513950c7a52195b507b04ef5cdd7b77216fc6011dc0119b37e00569d3752` |",
+      "raw_sha256_lf_inclusive": "3d59b7a0d0b2bf4059d3124ff4e46f74979d771bacda53e0ae3fcda81eab08e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 362,
+      "text": "| `LEGACY-ASSET-C6ADB99F1353965C5449` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md:31–34` | `c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d` | `636d42400dbd74350f4e2175119cd1a5af47e8219ab653cabf43731f8b85dc18` |",
+      "raw_sha256_lf_inclusive": "8308e07159e7d0324cef1443ad352cd111299764bad4deb47f56d2dee3d6537b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 363,
+      "text": "| `LEGACY-ASSET-235F57A4DC453383E6C7` | `archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md:234–238` | `ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475` | `801ef4f2b8b36fd779d4570fee866fd46f959ce0358c4f7c11ceea07ff7101bb` |",
+      "raw_sha256_lf_inclusive": "3501ffadf90304c2e58382a4bdba735bab1933f392538f08d7dc42acd57db95f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 364,
+      "text": "| `LEGACY-ASSET-F542125805B777D8A56A` | `archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148–168` | `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3` | `e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9` |",
+      "raw_sha256_lf_inclusive": "8cadece961f88416a193f817bbec8fb94f803a3100827b05c1019831272d6aa7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 365,
+      "text": "| `LEGACY-ASSET-6EBDB617A8104A7756D0` | `archive/legacy-generation-2026-09-14/root/CLAUDE.md:82–85` | `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb` | `fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785` |",
+      "raw_sha256_lf_inclusive": "55264a70a5fc2c0375fce0b322aef6bf15d82b5bb8ba77be1cbcb620a7c6c35c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 366,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 367,
+      "text": "### INFRA-008-FR-01 — CORE設計とdeployment targetの接続",
+      "raw_sha256_lf_inclusive": "8fb249f2a5ec4dbf849e4c349205db3e75af33169895dade2f7d8f7aa0d4edec"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 368,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 369,
+      "text": "CORE所有のapproved Infrastructure designのidentity/exact revision/scopeとversioned design interfaceを受け取り、同じ設計を根拠にdeployment targetとactualとの比較入力を提供する。target/runtime revisionは設計revisionと別identityで明示的に対応づける。同じSHA文字列であることを強制しない。L2-001/002のresource/environmentと三状態の比較契約を参照し、COREが設計意味、INFRASTRUCTUREがruntime target/actualを所有する。変更提案は設計変更と実行から別に保つ。",
+      "raw_sha256_lf_inclusive": "e478966921c8b7cf6a19812909420442dd713c44a4001d2bdcd73fe418987c42"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 370,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 371,
+      "text": "**INFRA-008-AC-01**：適用design identity/revision/scope・承認状態・interfaceを確認できる入力からだけtargetを導く。別revision、scope不一致、未承認、missing/unknown/stale、interface/contract不一致ではtarget確定と比較成立に進めず、CORE/上流design ownerへ返して比較保留を保持する。必要なL2-001/002参照が不明なら比較の未確認範囲を保持し、他resource/environmentや旧証拠で補完しない。sourceの既存currentness条件を照合し、独自expiry値は作らない。",
+      "raw_sha256_lf_inclusive": "76ba83ce856faca07693ec0a872c99e36026cdce94c0cd94658563d3a33d89ef"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 372,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 373,
+      "text": "**INFRA-008-AC-02**：targetとactualのidentity/revision/scope/sourceおよびCORE設計参照を追跡できる。いずれかが不足/不明/非current/不一致ならその比較を保留し、設計・target対応はCORE/design owner、actual観測は資源source ownerへ該当問題を戻す。同一対象の一致とdriftを分け、actualから要求/design/targetのcanonical bytesや設計承認を生成・変更しない。actual観測の資源source ownerへの戻しは依存L2-002の固定L11:51（欠落/stale observationはそのownerへ戻す）を再導出したものである。design意味ownerとruntime state ownerを移さず、変更提案だけでは設計変更・実操作を実施しない。適用する同じ契約に明示的に対応する未見design/target/actualでも、未見名称だけで拒否しない。",
+      "raw_sha256_lf_inclusive": "31c32a99b6e43848d3d3d963ebcc176959cb442d55401761dc6bb2e897e5e5e3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 374,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 375,
+      "text": "### INFRA-025-FR-01 — Workerと実資源の対応",
+      "raw_sha256_lf_inclusive": "f3d755c7edb4070c5570c3290d66ac69302b33907dafc85478daf9600fc094df"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 376,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 377,
+      "text": "Worker identity、Worker実行契約、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/networkとprocess/container等の実行環境、SECURITY隔離条件を受け取る。L2-001/003のresource identity、実際の容量・状態へWorkerを対応づける。Workerとresourceは別identityとして関連づけ、同じ名称でも混同しない。INFRASTRUCTUREは実資源/stateを所有し、その資源で利用できる方式で隔離条件を適用する。隔離policyの意味/認可はSECURITY、作業参照の正本はOS/要求・責務ownerに保持する。",
+      "raw_sha256_lf_inclusive": "2d7d4defcfddb3df929b9730440c127089a0111658d8c6f497746732b8929128"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 378,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 379,
+      "text": "**INFRA-025-AC-01**：Worker実行契約と必要な資源・環境の要求、実capacity/state/source/revisionをWorker参照へ結び、各CPU/memory/GPU/storage/network/process/container等の適用対象を宣言して照合する。非適用は既存契約で明示し、不明を非適用や十分へ丸めない。Workerを計算機のidentity/stateで置換しない。新たなWorker/resource種でも既存契約に適用できる場合は正常に対応づける。",
+      "raw_sha256_lf_inclusive": "ac0506260917ae46d9b5683ca273c531fe46a5d112df28a8ff99a63389c573fa"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 380,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 381,
+      "text": "**INFRA-025-AC-02**：対象資源で利用できる隔離方式による実適用の観測をSECURITY条件へ対応づける。宣言・policy存在・Worker応答だけでは隔離成立にしない。資源不足/容量・状態不明および隔離実適用の観測問題は資源owner、隔離不能/条件不明はSECURITY、ticket/要求/作業参照不明はOSまたはその既存参照ownerへ戻す。該当ownerを特定できなければ推測せず未解決を保持する。Worker実行契約の不足/不明/非current/不一致もOSまたは既存作業参照ownerへ返す。これらの状態では接続成立を示さず、未完作業と元資源の観測状態、移動がある場合は移動先の観測状態を保持する。",
+      "raw_sha256_lf_inclusive": "03d30d63d26a276f57e0eff5875f38b2fc7d49bcddabd6951ce2dfb7125fdea3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 382,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 383,
+      "text": "### INFRA-025-FR-02 — 資源移動時の作業lineage",
+      "raw_sha256_lf_inclusive": "25b6be842734b0e6e08361c8b85ec816766999ba44c31d4d2ed2e431e05eccf9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 384,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 385,
+      "text": "必要に応じ別資源へ移る場合も、ticket、要求、Worker責務、未完義務を同じ作業へ辿れるよう保持し、元資源と移動先の観測状態を別々に残す。計算機変更でWorker責務を消さず、INFRASTRUCTUREへticket正本を移さない。実操作の認可から実行までの構成体L2-010は別契約として参照し、本接続の検証で権限や新しい移動許可を生成しない。",
+      "raw_sha256_lf_inclusive": "8d7da79a939f5d53c2acffbadb115f5d1e3638c48c582681f5403750271ca714"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 386,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 387,
+      "text": "**INFRA-025-AC-03**：既存契約下の移動の前後でWorker、ticket、要求、責務、未完作業の参照を辿り、元資源/移動先のidentity/revision/状態を保持する。移動失敗・部分移動・停止/再開で義務を消さず、資源ownerまたはOS/SECURITYの原因に対応するownerへ戻す。旧資源の結果を移動先の現在状態へ流用しない。既存契約に適用できる未見Worker/資源の移動も、未見名称だけで拒否しない。",
+      "raw_sha256_lf_inclusive": "98a252045c198b71158ea40a6156919c7b6e5eb3c93ad0017df8132e4fcff012"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 388,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 389,
+      "text": "**INFRA-025-AC-04**：自動配置最適化や高度な自動増減の未成立だけで接続を不合格にしない。INFRASTRUCTUREがWorker assignment、SECURITY policy/authority、ticket/要求/責務の意味正本を所有する変異は成立させない。資源対応の正常結果をL2-010の操作許可や構成体受入へ代用しない。",
+      "raw_sha256_lf_inclusive": "fdf9a0a43f54d4a77861e1dce4c2131bcf38e3550bc8d498f846c0b126604d6b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 390,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 391,
+      "text": "| 親句 | FR/AC | 対L10 |",
+      "raw_sha256_lf_inclusive": "8bda7db554b3a23e39046a77c87968aadb62d34ec7bf4cb679e4485a78f6cd41"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 392,
+      "text": "|---|---|---|",
+      "raw_sha256_lf_inclusive": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 393,
+      "text": "| 008入力・依存・失敗戻し | INFRA-008-FR-01 / INFRA-008-AC-01 | CASE-INFRA-008-S4-01/03–32 |",
+      "raw_sha256_lf_inclusive": "f1823e57830b100e0a705b589230ccedea45f25b332cfc4a539ba4b3f02c6795"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 394,
+      "text": "| 008提供・設計/target/actual分離・提案境界 | INFRA-008-FR-01 / INFRA-008-AC-02 | CASE-INFRA-008-S4-01–03/33–39/40–73 |",
+      "raw_sha256_lf_inclusive": "2511d5409136355d7dd305e83e241330d92e9c49022e0eb46802698abbfbe3e5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 395,
+      "text": "| 025入力・capacity/state・資源/Worker区別 | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4の資源/参照fixture |",
+      "raw_sha256_lf_inclusive": "1612244054543097bff010e26e7b8cf0c45011e8eea32c9a2c0ff029107429f3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 396,
+      "text": "| 025隔離実適用・失敗owner | INFRA-025-FR-01 / INFRA-025-AC-02 | CASE-INFRA-025-S4の隔離/容量/作業参照の個別negative |",
+      "raw_sha256_lf_inclusive": "5d31457712065205f9a135f5317fbcc8616f3a367de47ed6b3b91a0feca3c5b9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 397,
+      "text": "| 025移動後の作業lineage・未完と両資源状態 | INFRA-025-FR-02 / INFRA-025-AC-03 | CASE-INFRA-025-S4の移動/失敗/再開fixture |",
+      "raw_sha256_lf_inclusive": "3cab936690103646ceb1c54e5132dc221aee484a93e849bf0f0a800db335728d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 398,
+      "text": "| 025版・最適化非依存・010別契約 | INFRA-025-FR-02 / INFRA-025-AC-04 | CASE-INFRA-025-S4の境界変異 |",
+      "raw_sha256_lf_inclusive": "3d6d37d161a6374fa94b421a0d71235e0d98e963152cf7447acb480e70eca9f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "line": 399,
+      "text": "| 025束ねる条件：最低項目7・16のWorker/資源区別と2026-09-26 Worker判断（固定L2:295） | INFRA-025-FR-01 / INFRA-025-AC-01 | CASE-INFRA-025-S4-01–02/93 |",
+      "raw_sha256_lf_inclusive": "f43a6bdb8304ea17d1a938dc6a9f24799a239a64403fc87c78109aa0cb0922a2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 78,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 79,
+      "text": "## Stage 4 追加範囲 — HELIXINFRASTRUCTURE-L2-008/025",
+      "raw_sha256_lf_inclusive": "c4aa8af1c2cf331d354eb0598d28e7ed3c4325121890e826d800b863693b519e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 80,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 81,
+      "text": "この追記は採択済み `HELIXINFRASTRUCTURE-L2-008` と `HELIXINFRASTRUCTURE-L2-025` の1.0候補である。固定要求意味はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のL2/L11、PO確認対象は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。既承認prefixのbytesを保ち、この追記の承認・実装結果は別に判断する。実装順序はG0案Bに従う。後続版、自動配置最適化、高度な自動増減、Web展開を受入条件へ加えない。",
+      "raw_sha256_lf_inclusive": "95b46a29286a8995014451d185ddc40b6e85ed9c6c0f1245c6e5e29d0e3d7a2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 82,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 83,
+      "text": "### Stage 4の測定候補",
+      "raw_sha256_lf_inclusive": "6576e714ebc0500080d16c64b4cce24e508c8cad205e801f8cf4f1eb48316c74"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 84,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 85,
+      "text": "| NFR / parent | 根拠と比較 | 測定候補 |",
+      "raw_sha256_lf_inclusive": "2bc19c6702576c07fa5c687bd0f5ea71f3384c5e05adce8af27785bb4c14b04b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 86,
+      "text": "|---|---|---|",
+      "raw_sha256_lf_inclusive": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 87,
+      "text": "| INFRA-NFR-008-S4 / 008 | 固定L2のdesign revision/scope・target/actual分離、L11の未承認/別revision負例。名前一致だけの比較候補1に対し、宣言scopeの全必須参照を照合する比較候補2を候補とする。 | 各fixtureの必要入力・参照・ACを事前に分母化し、照合可能率100%を技術候補として観測する。missing/unknown/staleを除かず、可観測率と合格率を分ける。設計無言変更/誤承認生成は0件の期待oracle。新latency/expiry値は設けない。 |",
+      "raw_sha256_lf_inclusive": "49cd2327f2dfec9dd0bba1a78049a75dc2ca684f90b8142f6176d670d2baac7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 88,
+      "text": "| INFRA-NFR-025-S4 / 025 | 固定L2/L11の資源/Worker区別、隔離、ticket/要求/責務/未完保持と元資源/移動先状態。Worker応答のみの比較候補1に対し、実stateと作業参照を別に追う比較候補2を候補とする。 | 選択Worker/resource/移動scopeの必要resource属性・隔離条件・lineage参照を事前に分母化し、全件のvalue/unknownとsource/revision追跡を候補とする。unknownを成立へ丸めた件数、未完義務消去、正本移管は0件。自動最適化の性能値は測らない。 |",
+      "raw_sha256_lf_inclusive": "67e00b17d9131c48b6dbf67fae7780718712bbc4b34719de0f22fc7e2e7c2429"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 89,
+      "text": "",
+      "raw_sha256_lf_inclusive": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "line": 90,
+      "text": "旧grade→測定→証拠という形式を再導出し、資源identityと実適用の意味根拠は機能本文の旧OPS/WCC/Conceptに限定する。既存NFRの数値をこの2親へ転用しない。候補値の判断は通常のL3承認へまとめ、parameter別PO質問は作らない。要求meaning/scope/owner/versionの変更は該当L2へ戻す。",
+      "raw_sha256_lf_inclusive": "6ee4c2f898cf15f1248d054fcb889a8cbdca88e690cddc6796361962cd220c85"
+    }
+  ],
+  "parent_pins": [
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-008",
+      "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-008-002",
+      "semantic_digest": "sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925",
+      "po": [
+        {
+          "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "physical_lines": {
+            "start": 48,
+            "end": 48
+          },
+          "raw_span_sha256_lf_inclusive": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+          "quoted_lines": [
+            "HELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026"
+          ]
+        }
+      ],
+      "register": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_lines": {
+          "start": 128,
+          "end": 128
+        },
+        "raw_span_sha256_lf_inclusive": "e4be76c6296d4845a5bf2f8413eb8a3e0d5e0d3624f1d505d907fec4158738b2",
+        "quoted_lines": [
+          "{\"registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-008-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-008-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINFRASTRUCTURE-L2-008\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-INFRASTRUCTURE\",\"candidate_source_path\":\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#helixinfrastructure-l2-008\",\"candidate_semantic_digest\":\"sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@39424db4c6e526f80a26b5d44d5f1b1225178b9d sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md@39424db4c6e526f80a26b5d44d5f1b1225178b9d sha256:1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37（draft_candidate、POの対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json#HELIXINFRASTRUCTURE-L2-008\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:13:49+09:00\",\"evidence_refs\":[\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md\",\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md\",\"docs/helix-infrastructure/sources/runtime-infrastructure-l1-po-original-2026-09-26.md\",\"docs/governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md\",\"docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json\"],\"correction_reason\":\"R2161-01: 親L1の省略表記をfull ID列挙へ改め、全40件の個別対応と後続拡張/1.0受け先を明示。要求の版範囲・意味を変更しない。\"}"
+        ]
+      },
+      "L2": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "physical_lines": {
+          "start": 104,
+          "end": 113
+        },
+        "raw_span_sha256_lf_inclusive": "841dc7e17255170394ce240dc10f263108e9e56b3c724de138eed92855812172",
+        "quoted_lines": [
+          "### HELIXINFRASTRUCTURE-L2-008 HARNESS-CORE設計からDeployment Targetへの接続",
+          "",
+          "- **親L1**：`HELIXINFRASTRUCTURE-L1-002`。機構間の接続はL1「接続の要求と構成体の要求として外へ出すもの」のCORE→INFRASTRUCTURE行に従う。",
+          "- **入力**：HELIX-HARNESS-COREが所有するapproved Infrastructure design exact revisionとscope。",
+          "- **提供**：設計から導いたdeployment target、およびtargetとobserved actual stateの比較入力。",
+          "- **保証**：INFRASTRUCTUREはCORE設計の意味を所有・変更せず、actual stateから要求/設計を直接書き換えない。",
+          "- **単独成立の依存・版**：L2-001/002、versioned design interface。`version_target: 1.0`。",
+          "- **失敗時の戻し先・未完義務**：design revision/contract不一致または未承認はtarget確定に進めずCORE/上流のdesign ownerへ返し、比較保留を維持する。",
+          "- **束ねる条件**：HRI-L1-002、および1.0項目4 (Design/Deployment Target/Actualの分離)。",
+          ""
+        ]
+      },
+      "L2_full": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+        "physical_lines": 430
+      },
+      "L11": [
+        {
+          "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "physical_lines": {
+            "start": 106,
+            "end": 115
+          },
+          "raw_span_sha256_lf_inclusive": "fac0236f782f4f888f8e5a923e20993edbda01d2912654021e2fa8e1af818bed",
+          "quoted_lines": [
+            "### HELIXINFRASTRUCTURE-L2-008 HARNESS-CORE設計からDeployment Targetへの接続",
+            "",
+            "- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-002`。",
+            "",
+            "- **受入手順**：CORE approved design revisionからInfrastructure deployment targetを導き、target/actual/driftを照合する。別revision、scope不一致、未承認designも入力する。",
+            "- **成功条件**：targetはCOREのdesign identity/revision/scopeと結びつき、COREが設計意味を所有し、Infrastructureがruntime target/actualを所有する。変更提案はdesign変更や実行と別である。",
+            "- **反例・失敗条件**：Infrastructureが設計値を書き換える、actualを承認designにする、またはCORE revision mismatchでもtargetを確定する場合は不合格。",
+            "- **失敗戻し先**：CORE/design ownerへ返し、deployment target確定を保留する。",
+            "- **最低範囲対応**：4 Design/Deployment Target/Actual separation。",
+            ""
+          ]
+        }
+      ],
+      "L11_full": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "physical_lines": 318
+      }
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-025",
+      "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-025-002",
+      "semantic_digest": "sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c",
+      "po": [
+        {
+          "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "physical_lines": {
+            "start": 48,
+            "end": 48
+          },
+          "raw_span_sha256_lf_inclusive": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+          "quoted_lines": [
+            "HELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026"
+          ]
+        }
+      ],
+      "register": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_lines": {
+          "start": 145,
+          "end": 145
+        },
+        "raw_span_sha256_lf_inclusive": "d55ccda9a829f6eb46849c3a4996849df4648c1c2049b95700b0c8e152d630d1",
+        "quoted_lines": [
+          "{\"registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-025-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXINFRASTRUCTURE-L2-025-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXINFRASTRUCTURE-L2-025\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-INFRASTRUCTURE\",\"candidate_source_path\":\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md#helixinfrastructure-l2-025\",\"candidate_semantic_digest\":\"sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@39424db4c6e526f80a26b5d44d5f1b1225178b9d sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md@39424db4c6e526f80a26b5d44d5f1b1225178b9d sha256:1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37（draft_candidate、POの対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json#HELIXINFRASTRUCTURE-L2-025\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行L1/POからの新L2候補の起草。旧sourceは意味比較資料として参照し、旧atomを候補へ移管・採択・retireしない。入力旧atom集合は空集合であり、no_lossは空集合についてのみ。現行L1/POの条件対応はparent_source_conditionsと本文/L11を独立照合する。旧資産全体の被覆を主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:13:50+09:00\",\"evidence_refs\":[\"docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md\",\"docs/helix-infrastructure/L1-planning/infrastructure-intent.md\",\"docs/helix-infrastructure/sources/runtime-infrastructure-l1-po-original-2026-09-26.md\",\"docs/governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md\",\"docs/governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json\"],\"correction_reason\":\"R2161-01: 親L1の省略表記をfull ID列挙へ改め、全40件の個別対応と後続拡張/1.0受け先を明示。要求の版範囲・意味を変更しない。\"}"
+        ]
+      },
+      "L2": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "physical_lines": {
+          "start": 287,
+          "end": 296
+        },
+        "raw_span_sha256_lf_inclusive": "57341fdb5ed91f80eba13c50345e47483818d40c4135d28c301e1d44369e3c59",
+        "quoted_lines": [
+          "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続",
+          "",
+          "- **親L1**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。",
+          "- **入力**：Worker identity、OS ticket・要求・作業責務の参照、必要なCPU/memory/GPU/storage/network、process/container等の実行環境、SECURITYの隔離条件。",
+          "- **提供**：Workerと実際の実行資源・容量・状態の対応、および資源が変わった場合も作業の参照を失わない接続。",
+          "- **保証**：Workerは計算機そのものではない。INFRASTRUCTUREは実資源と状態を所有し、その資源で利用できる方式で隔離条件を適用する。Workerが必要に応じ別資源へ移る場合もticket、要求、Workerの責務を保持し、それらの正本をINFRASTRUCTUREへ移さない。資源の同一性とWorkerの同一性を混同しない。",
+          "- **依存・版**：L2-001/003、Worker実行契約、OSの作業参照、SECURITY隔離条件。`version_target: 1.0`。自動配置最適化や高度な自動増減を依存にしない。",
+          "- **失敗時・未完義務**：資源不足・隔離不能・ticket対応不明なら接続成立とせず、資源ownerまたはOS/SECURITYへ戻す。未完作業と元資源・移動先の観測状態を保持する。",
+          "- **束ねる条件**：最低項目7（Model/Worker Runtime）・16（Worker execution）のWorkerと資源の区別。2026-09-26 Worker判断をL1接続表に従って適用する。実操作の認可から実行までの構成体はL2-010と別に検証する。",
+          ""
+        ]
+      },
+      "L2_full": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+        "physical_lines": 430
+      },
+      "L11": [
+        {
+          "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "physical_lines": {
+            "start": 290,
+            "end": 298
+          },
+          "raw_span_sha256_lf_inclusive": "199e879c05ce07661cabaabd7df55efa29697cc20b51bf55339d738558d52a88",
+          "quoted_lines": [
+            "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続",
+            "",
+            "- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。",
+            "",
+            "- **入力・手順**：同じWorkerとticketを、異なる実資源へ対応づけるcase、資源不足、隔離不能、作業参照の欠落caseを用意する。",
+            "- **成功条件**：CPU/memory/GPU/storage/networkとprocess/containerの資源・状態がWorkerと区別される。必要時の移動後もticket、要求、作業責務、未完義務が同じ作業へ辿れ、資源で利用できる隔離がSECURITY条件に対応する。",
+            "- **反例**：計算機変更をWorkerの責務消失とする、INFRASTRUCTUREへticket状態を移管する、隔離不能でも成立扱いする、自動配置最適化を本受入の必須条件にする。",
+            "- **失敗戻し先**：資源/OS/SECURITYの該当owner。元資源と移動先の状態、未完作業を保持する。",
+            ""
+          ]
+        }
+      ],
+      "L11_full": {
+        "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "physical_lines": 318
+      }
+    }
+  ],
+  "legacy_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "start": 68,
+      "end": 79,
+      "full_file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "raw_span_sha256_lf_inclusive": "acb16d0cc266a710a0f2aee3677954b25aa4837a2003b01830575944e999a370"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "start": 86,
+      "end": 92,
+      "full_file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "raw_span_sha256_lf_inclusive": "2adc06537aa0e010b7f28b75dcb7fe0945628bc08b65eeb93a7672fe79792e39"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F46AB11BD14F2C0469F4",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "start": 26,
+      "end": 29,
+      "full_file_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "raw_span_sha256_lf_inclusive": "b97936e170c2a450dac6d3c2d618105de2af24cabfaec450818c142f988f4663"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "start": 55,
+      "end": 58,
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_span_sha256_lf_inclusive": "bd9b513950c7a52195b507b04ef5cdd7b77216fc6011dc0119b37e00569d3752"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "start": 31,
+      "end": 34,
+      "full_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "raw_span_sha256_lf_inclusive": "636d42400dbd74350f4e2175119cd1a5af47e8219ab653cabf43731f8b85dc18"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-235F57A4DC453383E6C7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_v0.1.md",
+      "start": 234,
+      "end": 238,
+      "full_file_sha256": "ab9d93f843875c1cd9b61049721c455ae067548196c216e64168711156afd475",
+      "raw_span_sha256_lf_inclusive": "801ef4f2b8b36fd779d4570fee866fd46f959ce0358c4f7c11ceea07ff7101bb"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "start": 148,
+      "end": 168,
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256_lf_inclusive": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "start": 82,
+      "end": 85,
+      "full_file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "raw_span_sha256_lf_inclusive": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785"
+    }
+  ],
+  "additional_derivation_pin": {
+    "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+    "line": 51,
+    "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+    "raw_sha256_lf_inclusive": "622215f9a65e4b1ae198622a3b0e4ac003cd68408db572eb9a97e65aad36fed8",
+    "text": "- **失敗戻し先**：stale/欠落したdesign・target・observationのownerへ返し、drift判定を保留する。"
+  },
+  "static_checks": {
+    "validate": "147/fail0",
+    "stale": 0,
+    "residuals": 0,
+    "govcheck": "7622 atoms/57 requirements/58 files",
+    "diff_check": "PASS",
+    "prefix": "6/6 PASS",
+    "table_headers_separators_widths": "PASS",
+    "case_unique_ac_refs": "173/173 PASS",
+    "fixed_pin_spans": 8,
+    "legacy_pins": "8/8 PASS"
+  },
+  "limits": [
+    "作成側静的検収であり独立review結果ではない。",
+    "CASE oracle実行・実装完了・L3承認を生成しない。",
+    "G0案Bは実装順序記録を指し、NFR比較候補1/2とは別の名称。"
+  ]
+}

@@ -1,0 +1,1046 @@
+{
+  "record_kind": "作成側修正・正式再review指摘対応のappend-only監査記録",
+  "language": "ja",
+  "date": "2026-10-05",
+  "mechanism": "HELIX-BRAIN",
+  "stage": "Stage 2b",
+  "authority_effect": "なし。作成側による#2600 review02修正と静的検証を記録する。独立review closure、L3/L10承認、PO追加判断、実装許可、Stage完了、Ready化、merge admissionを生成しない。",
+  "baseline": {
+    "previous_content_head": "f1003f95f3f0674aaa2da0e2f930ec2ce7dcf3a1",
+    "previous_content_head_role": "review02修正開始時の内容HEAD",
+    "previous_body_sha256_by_file": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+        "sha256": "916e337b5da81c5f07629cd84dcd61ba21128867ae5f0200970ea68d47ba79f0"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.md",
+        "sha256": "d40cab00a48a4f7003a0bb5d946524a3cd15a900150ab8dd6bb3f0c650b24b22"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+        "sha256": "9611bdd30fa51549b9e85fcfddd2df45aa15050141ad571ee746a640bcb126e6"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.md",
+        "sha256": "0d4cb09112b839b95d4def62454836440f0bc7a7aa21a395d6b41bb4b2945a3f"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+        "sha256": "17d1d81df7e35c2ae05681cb75dcf81f2c250d2c7ed9974cc4f4d6eaeec0d64f"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+        "sha256": "20e45244c385347a0d49995a3c8c29472800943447bef58a758c90ef5c8ea322"
+      }
+    ],
+    "new_body_commit": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+    "formal_review_comment_id": "5990062450",
+    "formal_review_url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2600#issuecomment-5990062450",
+    "formal_review_body_sha256_raw_utf8_lf": "36579eed4975ae3020a759694ff41c338d17da6c3140c1ccf3cb6835afde1c9c",
+    "formal_review_body_bytes": 11828,
+    "formal_review_body_lines": 134,
+    "local_full_review_copy_byte_identical": true,
+    "fixed_requirement_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "adopted_po_registration_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "accepted_main_prefix_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c"
+  },
+  "scope": [
+    "HELIXBRAIN-L2-001",
+    "HELIXBRAIN-L2-002",
+    "HELIXBRAIN-L2-004",
+    "HELIXBRAIN-L2-005",
+    "HELIXBRAIN-L2-006",
+    "HELIXBRAIN-L2-009",
+    "HELIXBRAIN-L2-011",
+    "HELIXBRAIN-L2-012",
+    "HELIXBRAIN-L2-029"
+  ],
+  "formal_findings": [
+    {
+      "id": "M1",
+      "finding": "Major: 12行の4セル表行で期待oracleがGitHub表示から落ちる",
+      "disposition": "修正済み（作成側）",
+      "evidence": "入力と期待oracleを3列目の同一セルへ統合。対象CASEを明示的に列挙し全て3列であることを照合。",
+      "current_target_rows": [
+        {
+          "physical_line": 437,
+          "case_ids": [
+            "009-C12"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 438,
+          "case_ids": [
+            "009-C13"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 453,
+          "case_ids": [
+            "010-C10"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 454,
+          "case_ids": [
+            "010-C11"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 463,
+          "case_ids": [
+            "011-C04"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 469,
+          "case_ids": [
+            "011-C10"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 470,
+          "case_ids": [
+            "011-C11"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 471,
+          "case_ids": [
+            "011-C12"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 487,
+          "case_ids": [
+            "012-C11"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 488,
+          "case_ids": [
+            "012-C12"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 489,
+          "case_ids": [
+            "012-C13"
+          ],
+          "cells": 3
+        },
+        {
+          "physical_line": 549,
+          "case_ids": [
+            "029-C53"
+          ],
+          "cells": 3
+        }
+      ]
+    },
+    {
+      "id": "m1",
+      "finding": "L2-002孤立/誤種別unknownと旧3種negativeを分離",
+      "disposition": "修正済み（作成側）",
+      "evidence": "file/CODE/UI-onlyをC10–C12へ独立、orphan/wrong-kindをC13/C14 unknown・候補保留・L1-002返却、未見正常C15。ACと親句trace表を同期。"
+    },
+    {
+      "id": "m2",
+      "finding": "L2-001 4変更操作をAC-01本文で明示",
+      "disposition": "修正済み（作成側）",
+      "evidence": "追加・分割・統合・退役をAC-01と正常CASE/C15–C18へ明示。"
+    },
+    {
+      "id": "m3",
+      "finding": "001 stateをsource宣言値へ、004 returnを固定戻し先へ",
+      "disposition": "修正済み（作成側）",
+      "evidence": "C001はfixture source宣言stateを照合し、C004-C11の戻し先はHARNESS-CORE/INTELLIGENCE/人間の適切な判断先。"
+    },
+    {
+      "id": "m4",
+      "finding": "旧business/NFR根拠と句trace",
+      "disposition": "修正済み（作成側）",
+      "evidence": "旧business asset/path/full/span SHAをBR/BVへ、DB669 NFR source/path/full/spanをStage2b 001–006のL3/L10 NFRへ固定。FRの親句→AC説明はこの文書の親句trace表とL10親別表へ導くよう修正。trace表へ005/006を加えた。"
+    },
+    {
+      "id": "m5",
+      "finding": "009正常次状態positive oracleをACとCASEへ",
+      "disposition": "修正済み（作成側）",
+      "evidence": "AC-01へ、LABO評価/OS登録/BRAIN独立検証と既存L2-025経路の成立時にのみその経路で次状態へ移るpositive oracleを記載。BRAIN自身による昇格決定はしない。C12へtrace。"
+    },
+    {
+      "id": "m6",
+      "finding": "009-C09 BRAIN change ownerの固定根拠",
+      "disposition": "修正済み（作成側）",
+      "evidence": "C09 returnをBRAIN change owner（L2-025:471）とし、FRに導出根拠を記録。"
+    },
+    {
+      "id": "m7",
+      "finding": "metadata-only registration successor注記",
+      "disposition": "修正済み（作成側）",
+      "evidence": "FR注記にStage2b対象全親のsuccessor番号を列挙。"
+    },
+    {
+      "id": "m8",
+      "finding": "005/006 NFR固定列挙母集団",
+      "disposition": "修正済み（作成側）",
+      "evidence": "005はL2-005/L11:33の7 relation種と二relation chain、006はL2-006/L11:34の15知識例を固定母集団と明記。"
+    },
+    {
+      "id": "m9",
+      "finding": "011一般化候補の事実化を無条件で拒否",
+      "disposition": "修正済み（作成側）",
+      "evidence": "AC/C12の根拠確定等の限定句を除去。"
+    },
+    {
+      "id": "m10",
+      "finding": "012 input欠落句とC12 trace",
+      "disposition": "修正済み（作成側）",
+      "evidence": "FR-01へ必要知識領域input欠落時の不足表示を追補。C12のfixture traceをAC-03へ訂正。"
+    },
+    {
+      "id": "m11",
+      "finding": "029 CORE source returnのL2-018根拠",
+      "disposition": "修正済み（作成側）",
+      "evidence": "L2-018:397–401/L11:117により製品固有要件または選択CORE sourceのidentity/revision/provenanceはHARNESS-COREへ戻す導出をFRに記録。"
+    },
+    {
+      "id": "m12",
+      "finding": "029 AC-02 CASE failure return destinations",
+      "disposition": "修正済み（作成側）",
+      "evidence": "固定L2:573由来の知識条件L1-003/005/009・製品固有要件HARNESSへのreturnをAC-02と対象CASEへ同期。"
+    },
+    {
+      "id": "m13",
+      "finding": "029 NFR stale measurement category",
+      "disposition": "修正済み（作成側）",
+      "evidence": "L3/L10 NFR-029にstaleをunknown/mismatch等と区別して明示。"
+    },
+    {
+      "id": "m14",
+      "finding": "旧6da監査のfalse-addressed主張の訂正",
+      "disposition": "この新時点記録で訂正。6da監査自体は不変。",
+      "evidence": "旧m2/m4(002)/m8/m14/m19は本文と一致しないaddressed記述だったため、本記録で現本文の修正箇所を明示する。独立closureではない。"
+    }
+  ],
+  "prior_immutable_audits": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-review01-repair-2026-10-05-6da7a773.json",
+      "sha256": "4b4ef483a672850e18c8ea463ce34d9586d57656ee9b14b5ee6a61935e131357",
+      "immutable": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-review01-followup-2600-70afe6ecb.json",
+      "sha256": "e34fd63f6181fc0a3016bfb2814b721af67eec23bc0743b2b4deb1467b36468d",
+      "immutable": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-root-main-integration-2026-10-05.json",
+      "sha256": "9107eb062f610c2e6e63c5988f23b904ba3800cfe6c1e2c3cdaa421ca827497b",
+      "immutable": true
+    }
+  ],
+  "corrected_prior_audit_claims": [
+    {
+      "prior_finding": "m2",
+      "prior_claim_status": "addressed",
+      "correction": "prior AC-01 lacked all four change operations; this body explicitly adds them."
+    },
+    {
+      "prior_finding": "m4 for L2-002",
+      "prior_claim_status": "addressed",
+      "correction": "prior C10 lacked unknown treatment; this body separates file/code/UI-only and orphan/wrong-kind cases."
+    },
+    {
+      "prior_finding": "m8",
+      "prior_claim_status": "addressed",
+      "correction": "prior AC-01 lacked different-Pattern positive; current AC/C12 now states different Patterns and valid L2-025 next-state transition."
+    },
+    {
+      "prior_finding": "m14",
+      "prior_claim_status": "addressed",
+      "correction": "prior C12 traced to AC-02; current C12 traces AC-03."
+    },
+    {
+      "prior_finding": "m19",
+      "prior_claim_status": "addressed",
+      "correction": "prior NFR-029 omitted stale; current L3/L10 NFR row enumerates stale."
+    }
+  ],
+  "fixed_source_pins": [
+    {
+      "label": "L2-001",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 84,
+      "physical_line_end": 94,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "0cf2064672270ac0848848a6907e42b8abdab3f417fb1f0a9b550cef7cf5f259",
+      "span_bytes": 1436
+    },
+    {
+      "label": "L2-002",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 95,
+      "physical_line_end": 105,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "eaf7e9caf32537bd81df68203b5fd40150a05e419ef1519d03756a09e0d22665",
+      "span_bytes": 903
+    },
+    {
+      "label": "L2-004",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 117,
+      "physical_line_end": 127,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "193100e6119ce9c87cce9edfbc29813337368b840d159c1cc09aa50aa5fa41fa",
+      "span_bytes": 955
+    },
+    {
+      "label": "L2-005",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 128,
+      "physical_line_end": 138,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "2c6d2f6c24076429749a2303fe59dffe9c91f1a64fa0f8716bbf4740cbd917fa",
+      "span_bytes": 905
+    },
+    {
+      "label": "L2-006",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 139,
+      "physical_line_end": 149,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "b0047df45ccdd705ebf1eae090a70184a07fe107ab649b4c5d69ca152ba3be8e",
+      "span_bytes": 1358
+    },
+    {
+      "label": "L2-009",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 172,
+      "physical_line_end": 182,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "ee09a8532ea8f1340c016c54098d90dffe7b2f8cd8e41401f7968362a44f7c7f",
+      "span_bytes": 839
+    },
+    {
+      "label": "L2-011",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 194,
+      "physical_line_end": 204,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "c85e5ab4be064db02eef9d05ef174f2754446afba55c99946ac5220c8c6ee198",
+      "span_bytes": 1143
+    },
+    {
+      "label": "L2-012",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 205,
+      "physical_line_end": 216,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "387defeaec7125d039172c5c931df493c2fbd98f0322c162208d2dcbadd34991",
+      "span_bytes": 1093
+    },
+    {
+      "label": "L2-018",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 397,
+      "physical_line_end": 401,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "175d8bd81284b8cef225fdd2130c76de141ea485a6334f20b4f49817cb2b7ac8",
+      "span_bytes": 1254
+    },
+    {
+      "label": "L2-025",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 462,
+      "physical_line_end": 471,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "abea532ef1708cc13d1472aa7678f864cba8999c566db716ee0eafd001992a62",
+      "span_bytes": 1616
+    },
+    {
+      "label": "L2-029",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "physical_line_start": 564,
+      "physical_line_end": 574,
+      "full_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+      "span_sha256_raw_lf": "79ed972f758fddbe5d6488a67de19bd951562d4eccbc9c45ab86027d87493259",
+      "span_bytes": 2742
+    },
+    {
+      "label": "L11-001",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 29,
+      "physical_line_end": 29,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "ec39e3a80fddc529db9431b6124817f0eef9d5b0cdf291ff4bcfa8926add1834",
+      "span_bytes": 507
+    },
+    {
+      "label": "L11-002",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 30,
+      "physical_line_end": 30,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "7d42d53aa64d43765a52521af16a924cfaf74a8e232f102161869c767cb82756",
+      "span_bytes": 284
+    },
+    {
+      "label": "L11-004",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 32,
+      "physical_line_end": 32,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "7d5f1bc00d42a6a0d0582a43f6db0d86f037c4c875fcaf0d805e3e57f35c14ac",
+      "span_bytes": 335
+    },
+    {
+      "label": "L11-005",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 33,
+      "physical_line_end": 33,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "e147986e41c25adbfa95ad2c395658058922f921fd9214b5a08cb802ca1c1917",
+      "span_bytes": 284
+    },
+    {
+      "label": "L11-006",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 34,
+      "physical_line_end": 34,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "afd2970a8b0cf6ba6c990baea59f6768ffec47d2388ebd4a741d11dc2bf136a9",
+      "span_bytes": 434
+    },
+    {
+      "label": "L11-009",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 37,
+      "physical_line_end": 37,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "e547ea632dbfa78b7cbc732642ad6c860ee072dfa4e6a73c8a3053533d627817",
+      "span_bytes": 260
+    },
+    {
+      "label": "L11-011",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 39,
+      "physical_line_end": 39,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "0f6702b067bacfd28d5ceca6cd3c046edae2deb10cd4ed701647aac37a1e93c8",
+      "span_bytes": 303
+    },
+    {
+      "label": "L11-012",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 40,
+      "physical_line_end": 40,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "f332f7974002d1d73fe5bc5b12c24d988913fd66717e4d6915dacc6eea238a27",
+      "span_bytes": 303
+    },
+    {
+      "label": "L11-029",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 87,
+      "physical_line_end": 95,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "b5355a8dc68d145c5154bc0aadfd46fbbc914ee0a2d23d5e36053d372d623acf",
+      "span_bytes": 1705
+    },
+    {
+      "label": "L11-common-117",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "physical_line_start": 117,
+      "physical_line_end": 117,
+      "full_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+      "span_sha256_raw_lf": "a0f664d002d6ae72a6ff995d93489ba5b5059f4e78dc597aa7182c98df74cbca",
+      "span_bytes": 442
+    },
+    {
+      "label": "PO decision adopted L2 registration rows",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+      "physical_line_start": 48,
+      "physical_line_end": 60,
+      "full_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+      "span_sha256_raw_lf": "438ed5d1400e2a1b6c5a550c5780c8116ab4e8ec99b2f2546f50456d77f4f59c",
+      "span_bytes": 922
+    }
+  ],
+  "legacy_source_pins": [
+    {
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "physical_line_start": 21,
+      "physical_line_end": 39,
+      "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "span_sha256_raw_lf": "ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e",
+      "span_bytes": 1602
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+      "physical_line_start": 84,
+      "physical_line_end": 104,
+      "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+      "span_sha256_raw_lf": "f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f",
+      "span_bytes": 1876
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_line_start": 21,
+      "physical_line_end": 34,
+      "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "span_sha256_raw_lf": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007",
+      "span_bytes": 2105
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+      "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "physical_line_start": 58,
+      "physical_line_end": 74,
+      "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "span_sha256_raw_lf": "74f6a44aeab7e88f1f97b615b6be52001e852f27f790cdba9f1cee4228f87268",
+      "span_bytes": 1375
+    }
+  ],
+  "current_changed_line_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 435,
+      "literal": "設計知識のDomain identity・意味・状態とPattern参照を保持する。初期10領域を識別し、一覧を固定enumにせず追加・分割・統合・退役を表す。各変更後も既存relationの利用者と参照先を識別する。追加・分割・統合・退役の4操作を個別に表現できる。製品/projectをDomain化せず、追加候補6領域の初版充実を必須にしない。",
+      "line_sha256_raw_lf": "20211df50c620cd9e97abd50e40b898bca80af1653cb15780042e3fc7f8e97e6"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 444,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "139d1e2e2de693dfa237e52388ffbc7d536e3b6819ad81b6e9af9dd7af68f3b5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 453,
+      "literal": "- **BRAIN-002-AC-02 — 反例**：fileのみ、code片のみ、UI component集のみをPatternとして返す各入力を不合格とする。identity欠落も項目別に検出する。孤立・誤種別はunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。",
+      "line_sha256_raw_lf": "dfab5f32eb2f85b1d4ac989bfb1533728dcf75c6443b89e639db4b11282b1a1a"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 454,
+      "literal": "- **BRAIN-002-AC-03 — 不明と戻し先**：階層または要素の意味を決められない項目、孤立項目、誤種別項目をunknown/候補保留として保持し、HELIXBRAIN-L1-002へ返す。",
+      "line_sha256_raw_lf": "2a8f9fdacb83ad955658cd7e31db1587efcae4f955dbec4b9a37ecdb25e5fccc"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 459,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "139d1e2e2de693dfa237e52388ffbc7d536e3b6819ad81b6e9af9dd7af68f3b5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 474,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "139d1e2e2de693dfa237e52388ffbc7d536e3b6819ad81b6e9af9dd7af68f3b5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 489,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "139d1e2e2de693dfa237e52388ffbc7d536e3b6819ad81b6e9af9dd7af68f3b5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 504,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "139d1e2e2de693dfa237e52388ffbc7d536e3b6819ad81b6e9af9dd7af68f3b5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 519,
+      "literal": "親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙fieldおよびL11反例はAC-02と各個別case、製品固有要素を分離できない境界caseの戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。",
+      "line_sha256_raw_lf": "f09ec03b6d0534b4fe2dab450139c903a9d198e5d0a9c3181d46b8974fb3585e"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 523,
+      "literal": "**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（001–012の各`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。",
+      "line_sha256_raw_lf": "34db255d44f3159a1b52ed8d934cdb87446fc167fb24691df0556ac7e747adc5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 531,
+      "literal": "親`HELIXBRAIN-L2-009`（固定L2 `brain-requirements.md:172-182`、L11 `brain-acceptance.md:37`）。採択registration `MPR-RC-HELIXBRAIN-L2-009-002`、semantic digest `sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01`（PO採択main 633）。L1-009とL2-005/007/025を前提とする。既存PatternのUnit、source/evaluation scope、新relation案から、両端identityと構成根拠が追跡できるcandidate Patternを返す。Unit自体またはrelation根拠のどちらかが不明な構成はcandidateとしても適用せず、該当するL1-009へ戻す。構成candidateの生成を確立済みPatternへの昇格と同一視しない。LABO評価・OS登録・BRAIN独立検証とL2-025の既存経路が成立した場合は、既存経路が定める次状態への遷移を確認するが、BRAIN自身は昇格を決定しない。LABO評価・OS登録・BRAIN独立検証とL2-025 promotion経路は、candidate作成を阻止する前提条件ではなく、昇格時に満たす既存条件である。",
+      "line_sha256_raw_lf": "e0b9343e5f5d509254b3ce5713aa71341d4203ed5a6ca5fbf8b6746edc77557a"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 534,
+      "literal": "- **BRAIN-009-AC-02 — 個別反例**：relation端点欠落、relation意味の根拠欠落、必須Unit自体のsource/根拠欠落、選択source/versionの欠落または不一致をそれぞれ独立に検出する。L2-025昇格経路の未完はBRAIN change owner（固定L2-025:471）へ返し、他ownerの状態で代用しない。LABO評価前、OS登録前、BRAIN独立検証／L2-025経路前の昇格要求も各々独立に拒否し、他ownerの状態で代用しない。",
+      "line_sha256_raw_lf": "a774c5e629882f85f0b99032a3bc26313221da5a720442d2324d9374623e29a2"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 556,
+      "literal": "- **BRAIN-011-AC-02 — 個別反例**：他要素を正常に保ち、製品名、product requirement、製品固有画面、業務規則、利用者判断の各一要素だけを汎用候補へ漏らすfixtureを独立に拒否する。元source/provenanceだけを失うfixture、再利用条件の根拠範囲を超えた一般化、一般化候補を確立済み事実として扱う変異も、それぞれ別fixtureとして拒否する。",
+      "line_sha256_raw_lf": "cbcd20b68312caff3c42c7cf585a4a933e3ba0698325bc7183a448fe30b87433"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 564,
+      "literal": "親`HELIXBRAIN-L2-012`（固定L2 `brain-requirements.md:205-215`、L11 `brain-acceptance.md:40`）。採択registration `MPR-RC-HELIXBRAIN-L2-012-002`、semantic digest `sha256:f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f`（PO採択main 633）。L1-012、L2-019/021/022に従う。束ねる条件はPO原文§BRAIN-L1-012とConceptのBRAIN/INTELLIGENCE/OS境界に限る。利用要求/問い合わせのdesign contextと必要な知識領域を受け取り、必要知識領域inputが欠落した場合は不足として示し、sourceに存在するPattern candidate、required input、relation、alternative、constraint、evidenceおよび各版を返す。sourceにalternativeまたはrelationが存在しない場合は、その不在だけで不成立にしない。採用決定はHARNESS-CORE、INTELLIGENCE、人など該当する既存ownerに残り、BRAINは製品固有選択や案件のruntime判断を返さない。",
+      "line_sha256_raw_lf": "cadc85aec18bca1dd86f66be65e44c4b9be3e20a5a8e2325b3ac458381fefd23"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 577,
+      "literal": "Pattern/Unit/Partのidentity・source/version、一般化された課題、applicability、required input、constraint、trade-off、negative/failure、relation候補を、端点と意味を保って構成candidateにする。relationの種類は`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を各々元sourceに沿って保持する。relationの根拠・方向・端点を捏造せず、unknownを互換や不成立に丸めない。汎用permission構造は候補として扱えるが、製品固有requirement値、製品固有screen/具体API名、製品固有permission値、採用設計、工程表を返さず、一候補を絶対解にしない。製品固有要件と選択CORE sourceのidentity/revision/provenance不整合は、固定L2-018:401の戻し先である製品COREへ返す。これはL2-018:397–401とL11:117のHARNESS受取契約に基づく。知識意味・適用条件・relationは固定親のprimary L1-003/005/009へ戻す（項目別に適用条件=003、relation=005、候補構成/source結合=009）。L2-008 identity/version/provenance、L2-004比較条件、L2-009構成条件の不足も、L11:117の「BRAINの該当親L1へ」という句に従って構成candidateを止め、primary L1-009へ返す。これはL2-029が構成candidateを主対象とし、primary L1に003/005/009を列挙する固定親文脈に基づく割当であり、L1-004/008を追加の戻し先にしない。選択CORE sourceの製品固有要件はHARNESSへ戻す。選択LABO-evaluated sourceのL2-020 condition不明は評価済み扱いせずcandidate適用を止め、該当するknowledge condition/source結合としてprimary L1-003/009へ戻す。",
+      "line_sha256_raw_lf": "405fdabf84e153520e2807189ee5f7add615ff062923c53be1c0572c7b7653bd"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 580,
+      "literal": "- **BRAIN-029-AC-02 — 個別反例**：製品固有term/screen/具体API/製品固有permission値の混入、required input欠落、選択source/version欠落、不整合な関係の互換扱い、意味または端点のないrelation確定、一回の製品適用による昇格をそれぞれ独立に拒否する。具体APIは製品固有screen/permission/requirementと別の入力要素として照合し、これらのいずれも汎用Patternの事実に混ぜない。候補構成が不成立の場合、知識意味・適用条件・relationの不足はBRAIN-L1-003/005/009へ、製品固有要件と選択CORE sourceの不足・不整合はHARNESS-COREへ返す。選択CORE sourceのidentity/revision/provenance戻し先は固定L2-018:401およびL11:117から導く。",
+      "line_sha256_raw_lf": "ce5a375bca442ad452f2f15758bbaa8f786a5b8b96f201e6076938abedbec8fc"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 587,
+      "literal": "### 固定親句→FR/AC→CASE trace（Stage 2b 001–006）",
+      "line_sha256_raw_lf": "63eacc251377a2659be427a770ef4274248ddbc2e6cf33ddbedb9a28ad22a0c6"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 592,
+      "literal": "| HELIXBRAIN-L2-002 | L2:95–105 / L11:30（main 633 fixed bytes） | FR-01、AC-01〜04。4階層、parent/責務、孤立/誤種別unknownを対応 | C01–C15。構成/項目反例はC02–C09、file/code/UI componentだけの反例はC10–C12、孤立/誤種別unknownはC13/C14、未見はC15 |",
+      "line_sha256_raw_lf": "de9b18361286219dcf4be6b6fcb0d012b66c8a7faab69f80743e2b53444d78ae"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 595,
+      "literal": "| HELIXBRAIN-L2-005 | L2:128–138 / L11:33（main 633 fixed bytes） | FR-01、AC-01〜04。7 relation種、2 relation chain、端点/方向/意味/unknownを保持 | C01–C13。7 relation種C01–C08、独立反例C09/C12/C13、不明C10、未見C11 |",
+      "line_sha256_raw_lf": "02659a26845b0cee4766eeddb2e260b946e0c3100b7cb760ef741e1f637c27c3"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "physical_line": 596,
+      "literal": "| HELIXBRAIN-L2-006 | L2:139–149 / L11:34（main 633 fixed bytes） | FR-01、AC-01〜04。15知識例、製品固有要素、Visual Design HARNESSとの責務境界 | C01–C19。15例C01–C16、独立反例C17、戻し先C18、未見C19 |",
+      "line_sha256_raw_lf": "79e30e84dfd8249a889bdb0fb7c87088a422008606f7cd3f18ccf76d61884b63"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 279,
+      "literal": "| `L10-BRAIN-001-C01` | `BRAIN-001-AC-01` | 10初期領域を別identity/意味/状態で与え、各Domainのstateもfixture sourceが宣言するstateと照合し、各Patternの参照先を確認する。Visual DesignとUX / Interactionも初期集合に残る。 | 入力sourceの値と対象scopeに対する実出力を項目別に照合し、identity/意味/条件と責務の対応を確認する。候補の表示を採用/実行のreceiptにしない。 |",
+      "line_sha256_raw_lf": "684df44cf3990313525d8ea744c5ee0710e3227e4e38e754e3ad8464e594a5c9"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 316,
+      "literal": "| `L10-BRAIN-002-C10` | `BRAIN-002-AC-02` | 他の正常条件を保ち、fileのみをPattern知識として返す変異を与える。 | fileの存在だけをPattern成立とせず、不成立理由を特定する。 |",
+      "line_sha256_raw_lf": "14b2b9f8095224d54e0fe3b6d2b9ecbd3743d327c55819101ef2373700779cc1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 317,
+      "literal": "| `L10-BRAIN-002-C11` | `BRAIN-002-AC-02` | 他の正常条件を保ち、code snippetのみをPattern知識として返す変異を与える。 | code snippetの存在だけをPattern成立とせず、不成立理由を特定する。 |",
+      "line_sha256_raw_lf": "72661e1b255da2eb75dcc2dd07a08f37d2d7d6aa9c895f5a8983254ccd0d6b51"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 318,
+      "literal": "| `L10-BRAIN-002-C12` | `BRAIN-002-AC-02` | 他の正常条件を保ち、UI component集のみをPattern知識として返す変異を与える。 | UI component集の存在だけをPattern成立とせず、不成立理由を特定する。 |",
+      "line_sha256_raw_lf": "f4569ddf53c74e64dc8ee3afa856752221f5b50661efdef99754f6a931e04833"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 319,
+      "literal": "| `L10-BRAIN-002-C13` | `BRAIN-002-AC-03` | 有効な親階層を持たない孤立要素だけを与える。 | 要素をunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。孤立をpassにも確定失敗にも丸めない。 |",
+      "line_sha256_raw_lf": "498d48dda91318409c096f27a9ff2006457b4d645d647c0c4a7a962262ce32e2"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 320,
+      "literal": "| `L10-BRAIN-002-C14` | `BRAIN-002-AC-03` | 正常階層の要素一つだけを誤種別にする。 | 当該要素をunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。誤種別を正しい型へ推測しない。 |",
+      "line_sha256_raw_lf": "e009e8ce040de1c603304879f3d2476c92f0f289b0c121b573b10f6d99b38451"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 321,
+      "literal": "| `L10-BRAIN-002-C15` | `BRAIN-002-AC-04` | 正常fixtureにないidentity/組合せを使うが、適用条件・meaning source・必要参照を親契約どおりに揃える。未見の正当な構成にも同じidentity/親/責務照合を適用する。 | AC-01と同じ条件で照合する。親の必要入力が不明な枝は未見正常と偽らずAC-03へ分類する。 |",
+      "line_sha256_raw_lf": "5cae598ec9176750644e9bf1592e89a598e4c1e7e98e05b250b28941d0f78153"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 369,
+      "literal": "| `L10-BRAIN-004-C11` | `BRAIN-004-AC-02` | BRAINが稼働案件の選択を確定する一変異を与える。 | 選択確定を拒否し、「HARNESS-CORE／INTELLIGENCE／人間の適切な判断先」への未決状態を保つ。 |",
+      "line_sha256_raw_lf": "76d3dca1f61c37c2a4c8a237ff16f5ce5a22ec139f1d53db77979dd28ee26d23"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 434,
+      "literal": "| `L10-BRAIN-009-C09` | `BRAIN-009-AC-02` | C01の他条件を維持し、L2-025の昇格経路だけを未完にする。期待oracleはcandidateを維持し、未完のL2-025経路を独立理由として示し、BRAIN change owner（固定L2-025:471）へ戻す。 |",
+      "line_sha256_raw_lf": "00f9313924b854bee43b2429fff6ae7b8650f0ea1cf42fc34f42e1fd92712728"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 437,
+      "literal": "| `L10-BRAIN-009-C12` | `BRAIN-009-AC-01` | C01と同じ二Unit/relation候補でLABO評価・OS登録・BRAIN独立検証が各々成立し、既存L2-025 promotion経路の全条件が成立した入力を与える。 期待oracle：L2-025が定める既存の次状態への遷移をpositive oracleとして観測し、各owner結果と同一candidate identity/revisionの結合を確認する。新しい遷移条件や承認を作らない。 |",
+      "line_sha256_raw_lf": "db74aa5af141f7247fc8e6c175b167a695d01751117eb7da9c9892bbd7e3b40a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 438,
+      "literal": "| `L10-BRAIN-009-C13` | `BRAIN-009-AC-02` | C01のrelationは根拠付きのまま、一方の必須Unitだけsource/根拠を欠落させる。 期待oracle：Unit根拠欠落だけでcandidate適用を止め、該当不足をL1-009へ返す。relation正常で欠落Unitを補完しない。 |",
+      "line_sha256_raw_lf": "3fef3737b05394a8357f33cc869f70367fd0c0f75b0fe3d37edd4b0c8735fc32"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 453,
+      "literal": "| `L10-BRAIN-010-C10` | `BRAIN-010-AC-02` | 成功fixtureだけをknowledgeとして保存し、source提供の反例を落とす一変異を与える。 期待oracle：成功だけの保持を不成立とし、sourceにある反例と条件を保つ。 |",
+      "line_sha256_raw_lf": "a74b082b29cae27a054a1b4705debdf1f53da903995628d2ebfcae4987a6e247"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 454,
+      "literal": "| `L10-BRAIN-010-C11` | `BRAIN-010-AC-02` | Regression caseの固有source/evidence/成立条件だけを欠落させる。 期待oracle：Regression caseを他failure familyや成功例で代用せず、欠落を個別理由として保持する。 |",
+      "line_sha256_raw_lf": "4a680dfcb3ec2b2fa16b84d62160861c8bef626eb1c67415c8f1dbc2953e84eb"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 463,
+      "literal": "| `L10-BRAIN-011-C04` | `BRAIN-011-AC-02` | 製品固有screenだけを汎用候補へ漏らす。 期待oracle：screen混入を拒否し、製品固有残余と元source traceを保持する。 |",
+      "line_sha256_raw_lf": "da4919c24f1026a4390ff50d5eca26f8e116bcb73970f73b28ba22200c81102f"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 469,
+      "literal": "| `L10-BRAIN-011-C10` | `BRAIN-011-AC-03` | sourceから共有範囲の決定を要する意味が一つだけ未決のfixtureを与える。 期待oracle：人の既存判断点へ送る。既存CORE/LABO ownerへの自動割当や返却で代替した結果は不合格とし、共有範囲を確定しない。 |",
+      "line_sha256_raw_lf": "745034fd2fbc7a7337a11ba8d88688a7937f159001eaab852ecafd27102751c3"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 470,
+      "literal": "| `L10-BRAIN-011-C11` | `BRAIN-011-AC-02` | 他要素を正常に保ち、sourceが支える再利用条件の根拠範囲を超えて一般化する変異だけを与える。 期待oracle：根拠を超えた一般化を不成立として検出し、一般化の根拠sourceと製品固有残余を保つ。 |",
+      "line_sha256_raw_lf": "4640ddb2fe034ad54a95ff34b7fefecf62df0f213fc173647dad610e58c54957"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 471,
+      "literal": "| `L10-BRAIN-011-C12` | `BRAIN-011-AC-02` | 他要素を正常に保ち、一般化候補を確立済み事実として扱う変異だけを与える。 期待oracle：候補状態を維持し、確定事実化を不成立として検出する。候補sourceと製品固有残余を保つ。 |",
+      "line_sha256_raw_lf": "6a75ba39e975d5b2987cf0c0db5779131c494b474ea7876688af02f382a74d45"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 487,
+      "literal": "| `L10-BRAIN-012-C11` | `BRAIN-012-AC-01` | 利用要求/問い合わせのdesign contextはあるが必要知識領域inputの一つが欠落したrequestを与える。 期待oracle：決定を生成せず、sourceにあるcandidateとrequired inputの不足を返す。C05–C08の返却field欠落とは異なるinput-side fixtureとして照合する。 |",
+      "line_sha256_raw_lf": "8c99bfaa4bfe58aa1ac3253daf4e7276e4e409dad1bcbc71e5d31f5a4464a718"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 488,
+      "literal": "| `L10-BRAIN-012-C12` | `BRAIN-012-AC-03` | BRAINのknowledge shortageを理由に新しいadoption/operation authorityを発生させる一変異を与える。 期待oracle：authority拡張を拒否し、既存判断ownerへ返す。 |",
+      "line_sha256_raw_lf": "830d211c62d4ff91c10ef4bbd07a1f0f44ceeec3084a4d504fa3bfe1ed86795d"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 489,
+      "literal": "| `L10-BRAIN-012-C13` | `BRAIN-012-AC-01` | request contextと必要知識領域を満たし、sourceにrelationまたはalternativeがないcandidateを返す。 期待oracle：sourceにないedge/valueを創作せず、そのfieldの不在を表したcandidateとrequired inputを返す。decisionは未決のまま。 |",
+      "line_sha256_raw_lf": "4a5b66012e85280bf3fd341c2cccc6f57636700d3c9edfac12d1ba6b1d733997"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 532,
+      "literal": "| `L10-BRAIN-029-C36` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のmissing変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけを欠落させる独立fixture。期待oracleは選択sourceを未充足としてcandidate適用を止め、HARNESS-COREへ返す。 |",
+      "line_sha256_raw_lf": "9c422b7686c04376e4e7ffd6b1dfb604fd1a60aa6e0d524ae2a4c430d22ce08e"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 533,
+      "literal": "| `L10-BRAIN-029-C37` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のunknown変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけをunknownにする独立fixture。期待oracleは未解決を保持しcandidate適用を止め、HARNESS-COREへ返す。 |",
+      "line_sha256_raw_lf": "414632e76d583e4b8ca328511a67cb36ab2e75703164da23e78682e8e10387b4"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 534,
+      "literal": "| `L10-BRAIN-029-C38` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のstale変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 sourceだけをstaleにする。期待oracleは古いsourceを流用せずcandidate適用を止め、HARNESS-COREへ返す。 |",
+      "line_sha256_raw_lf": "a50004da6143fb8b3c8be9141671f1a66716c6b1614a76c1b8c3c3d55f116a90"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 535,
+      "literal": "| `L10-BRAIN-029-C39` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のrevision mismatch変異を他条件を正常に保って単独投入する。CORE source revisionだけを要求revisionと不一致にする。期待oracleは別revisionを流用せずcandidate適用を止め、HARNESS-COREへ返す。 |",
+      "line_sha256_raw_lf": "cfa4994ee47a66953d1c43f7d3965cec809a1613995992dd0dd79483bed035f2"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "physical_line": 549,
+      "literal": "| `L10-BRAIN-029-C53` | `BRAIN-029-AC-02` | sourceが互換不能と示す二Patternを選び、relation edgeを記録せず同じ構成candidateへ入れる。 期待oracle：L11:91の反例を個別検出し、関係のない二候補をcompatibleと推定せず構成成立を止める。 |",
+      "line_sha256_raw_lf": "21e9ed523867f5d5fb666b695a71aff42a9f2e52b72cd0606cb05bcf49f51126"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "physical_line": 44,
+      "literal": "旧業務分類の形式比較元：`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）。分類の分離形式だけを再導出し、BR-21/HM-08/学習・計測条件をBRAINへ移さない。",
+      "line_sha256_raw_lf": "ff78069ebaf9a352a5bad2f5eb851dc8a1ec071c48e7be0a5224e0b4e5018528"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "physical_line": 45,
+      "literal": "",
+      "line_sha256_raw_lf": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "physical_line": 62,
+      "literal": "固定L2/L11の各親にfunctional behaviorを越える独立business outcome、KPIまたはbusiness ownerはない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）のBR-21、HM-08、Learning Engine、計測条件をBRAINへ移さない。旧business分離の形式は再導出するが、分類名だけからBRAIN業務義務を作らない。",
+      "line_sha256_raw_lf": "8949b89461398b8afed301874b7768b88029237b626e54e5a863200466b5d9f4"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "physical_line": 42,
+      "literal": "旧業務分類の形式比較元：`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）。分類の分離形式だけを再導出し、BR-21/HM-08/学習・計測条件をBRAINへ移さない。",
+      "line_sha256_raw_lf": "ff78069ebaf9a352a5bad2f5eb851dc8a1ec071c48e7be0a5224e0b4e5018528"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "physical_line": 43,
+      "literal": "",
+      "line_sha256_raw_lf": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "physical_line": 48,
+      "literal": "- `HELIXBRAIN-L2-002`：`BRAIN-002-AC-01`〜`BRAIN-002-AC-04`を機能総合検証C01–C15で照合。独立business oracleを旧HARNESS BR21/HM08から移さない。",
+      "line_sha256_raw_lf": "f319685bd201117004151ee2aa89ce6e40510d21e7920226cfb46cd696d6b71f"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "physical_line": 60,
+      "literal": "固定L2/L11から、functional behaviorを越える独立business成果・KPI・business ownerは確認できない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）のBR-21/HM-08/集計条件をBRAINへ適用しない。下表はfunctional AC/L10への参照であり、business判定を追加しない。",
+      "line_sha256_raw_lf": "a4db4f758666a65624dab6a627023d19fd5d8a898b722099d828011f2b8b467d"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "physical_line": 45,
+      "literal": "形式比較元は旧`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。001–006では測定・判定構造だけを再導出し、旧IPA値・pass条件・runtimeは置換する。",
+      "line_sha256_raw_lf": "66620a43ed1be7513c4b70f0ce33ab7ad343ac8f96c1dab89f655c1b05912ce5"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "physical_line": 46,
+      "literal": "",
+      "line_sha256_raw_lf": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "physical_line": 75,
+      "literal": "根拠：固定HELIXBRAIN-L2-005とL11:33の7 relation種、およびL2:135/L11:33の二つのrelation chain。比較案Aは件数/名称だけ、案Bは各relationのidentity/source/意味/状態/戻し先を照合する。Bを候補とし、7種と二つのchainを母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。",
+      "line_sha256_raw_lf": "8a81d1bd46fae7519380d45929f5fc30df8f5272cf8666967e699e0a4414405f"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "physical_line": 81,
+      "literal": "根拠：固定HELIXBRAIN-L2-006とL11:34の15知識例。比較案Aは件数/名称だけ、案Bは各知識例のidentity/source/意味/状態/戻し先を照合する。Bを候補とし、15例を母集団に含め、fixture選択で狭めない。全製品・全欠陥の性能保証ではない。必要項目の有限集合を各々照合（対象内100%候補）し、missing/unknown/意味不整合を成功に丸める件数0を候補判定とする。未選択のsource/将来候補は必須母集団へ足さない。",
+      "line_sha256_raw_lf": "7ec95942dd4f2ab2216db259e91b90785e13b448163c597bc2671b0dd2f65c35"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "physical_line": 95,
+      "literal": "| `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | 案A:構成数とrelation labelだけを見る。案B:選択したPattern/Unit/Part tuple（identity/source/version、applicability、required input、constraint、trade-off、negative/failure、relation type/endpoint/meaning）を追跡し、unknown・stale・矛盾とowner境界を別軸で照合する。列挙されたrelation例とL2-003/005/008の必須条件を直接検査できるBを候補とする。 | C01–C53の選択構成fixture。5 relation typeと各必須情報を独立に照合し、missing/unknown/stale/mismatchを区別する。未選択CORE/LABO sourceは未観測。参照資料は分母・oracleにしない。 |",
+      "line_sha256_raw_lf": "acf00b1c8f171528f9e77a1cc7515b7fd1914e532c0ce7d6192bfb7d373d18ad"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "physical_line": 45,
+      "literal": "001–006の測定・判定構造の形式比較元は旧`LEGACY-ASSET-DB669724249A14A665F0`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA-256 `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`）。測定構造だけを再導出し、旧IPA値・pass条件・runtimeは置換する。",
+      "line_sha256_raw_lf": "c9c321be99e3acdfca1b090dbba227fe0a69ca0d088370fbb0051f63928f2932"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "physical_line": 46,
+      "literal": "",
+      "line_sha256_raw_lf": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "physical_line": 67,
+      "literal": "対応 `BRAIN-005-NFR-01`、`BRAIN-005-AC-01`〜`BRAIN-005-AC-04`。L2-005/L11:33の7 relation種と、L2:135/L11:33の二つのrelation chainを全て必須母集団に含め、機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。",
+      "line_sha256_raw_lf": "52075f750b7b440fcf0bec3015dc6408525becda88faa39a62d77c2950742d64"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "physical_line": 71,
+      "literal": "対応 `BRAIN-006-NFR-01`、`BRAIN-006-AC-01`〜`BRAIN-006-AC-04`。固定L2-006/L11:34の15知識例を全て必須母集団に含め、機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。",
+      "line_sha256_raw_lf": "34dbb3bacc1568783c2d15408c7b9452bfe8ae0a6c2af4c51d1aba5adc8f47d0"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "physical_line": 83,
+      "literal": "| `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | C01–C53の選択構成を対象とし、identity/source/version、applicability、required input、constraint、trade-off、negative/failure、5 relation type/端点/意味の必要項目を列挙し、各項目のmissing/unknown/stale/mismatchと誤適用を別記する。 | relation label数だけと条件付きtuple照合を比較。常時必須・操作時・選択source条件を分け、未選択source/参照資料は未観測。L2-030のreceipt義務は測定対象外。 |",
+      "line_sha256_raw_lf": "23b3868c397e0ab11ba2217adfad7a8b0d650f31647d0fdb3a40521207af34d8"
+    }
+  ],
+  "current_body_file_pins": [
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "06a30a274427681e95f0e63d20a8c33e77a1f58e30d05710d11989a6a4084b1f",
+      "bytes": 132998,
+      "physical_lines": 598
+    },
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "346084c2ac08fd20acd2d7ae94b5fd0c5de563bbbda8a74466d2fba93d1f52f8",
+      "bytes": 131137,
+      "physical_lines": 549
+    },
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "8ec6476187972fbc4def388dd5a5340d98664b8930729d77789efe5fbaf5fbe5",
+      "bytes": 9302,
+      "physical_lines": 70
+    },
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "fa4fbd2b22d42b8650c8f681ac79d05ff42197fd0b1e40c58a7473683493cf91",
+      "bytes": 8293,
+      "physical_lines": 68
+    },
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "63aee755e3e9c6f6257741e5c9e0c9785cf4c7afb2960cf0258cd6cebb17ec22",
+      "bytes": 28536,
+      "physical_lines": 97
+    },
+    {
+      "revision": "98b2d2a5ec004a804c67275bb495ca0aebbc3cd5",
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "d6b3b29248018076288d621b783c39d439025068d6a3c17711b0807b65c218f3",
+      "bytes": 20264,
+      "physical_lines": 85
+    }
+  ],
+  "accepted_main_prefix_byte_checks": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "1b74ae392d8c27a84741970f6c38e7c1910a52522c64808e50f032e443ea945d",
+      "current_full_sha256": "06a30a274427681e95f0e63d20a8c33e77a1f58e30d05710d11989a6a4084b1f",
+      "base_bytes": 97617,
+      "current_starts_with_entire_base_bytes": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "2a614f3a3bc365a1e6cad0507f33c6cafa7c4cb5cf16034aaff11abe1d466a50",
+      "current_full_sha256": "346084c2ac08fd20acd2d7ae94b5fd0c5de563bbbda8a74466d2fba93d1f52f8",
+      "base_bytes": 58900,
+      "current_starts_with_entire_base_bytes": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e",
+      "current_full_sha256": "8ec6476187972fbc4def388dd5a5340d98664b8930729d77789efe5fbaf5fbe5",
+      "base_bytes": 5658,
+      "current_starts_with_entire_base_bytes": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "405840ceb9442a769498c9cfe77e0611ec6b282742076e945b3199adaaaa6019",
+      "current_full_sha256": "fa4fbd2b22d42b8650c8f681ac79d05ff42197fd0b1e40c58a7473683493cf91",
+      "base_bytes": 4751,
+      "current_starts_with_entire_base_bytes": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "51dd748ff58bc89252badbcb1496e83c259a6987d543e285bef8cad79961c7ea",
+      "current_full_sha256": "63aee755e3e9c6f6257741e5c9e0c9785cf4c7afb2960cf0258cd6cebb17ec22",
+      "base_bytes": 12083,
+      "current_starts_with_entire_base_bytes": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "base_full_sha256": "c61d51bfc050cb13247c0b52f9ea575ddd6b415b1230a6f376a9e9316fe88a87",
+      "current_full_sha256": "d6b3b29248018076288d621b783c39d439025068d6a3c17711b0807b65c218f3",
+      "base_bytes": 10102,
+      "current_starts_with_entire_base_bytes": true
+    }
+  ],
+  "counts": {
+    "functional_case_rows": 205,
+    "unique_functional_case_ids": 205,
+    "duplicate_case_ids": [],
+    "functional_case_rows_by_parent": {
+      "001": 21,
+      "002": 15,
+      "003": 23,
+      "004": 12,
+      "005": 13,
+      "006": 19,
+      "009": 13,
+      "010": 11,
+      "011": 12,
+      "012": 13,
+      "029": 53
+    },
+    "m1_oracle_rows": 12,
+    "m1_all_targets_have_three_cells": true
+  },
+  "static_checks": {
+    "python3 -B scaffold/tools/scfctl.py validate": "PASS (147 bindings, 0 fail)",
+    "python3 -B scaffold/tools/scfctl.py stale": "PASS (0)",
+    "python3 -B scaffold/tools/scfctl.py residuals": "PASS (0)",
+    "python3 -B scaffold/governance/tools/govcheck.py": "PASS (7622 atoms, 57 requirements, 58 files)",
+    "git diff --check before audit authoring": "PASS"
+  },
+  "limits": [
+    "作成側による所見修正の記録で、Opus/Claude/Fableの独立再reviewではない。",
+    "review02が未確認とした旧RDJ-FR-009本文および旧FR:442置換記述は本修正作業で照合していない。",
+    "旧CLI/runtime/test/CI/Bunを実行していない。",
+    "push/PR/Ready/mergeを行っていない。"
+  ]
+}
