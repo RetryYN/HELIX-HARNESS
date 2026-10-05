@@ -1,0 +1,433 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "0f3ae318af1730f37123667e3efd914dda38dbda",
+  "review_content_head": "add748608127fad51801148501476979bb01e4bf",
+  "body_revision": "f3e5f40a55be02ad7a92668dced4e32619a75ae0",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5992425780,
+      "bytes": 2610,
+      "sha256": "a402a92a16dde3eabcf6ab070086dbfb5c5380baf3a5bf12cd9ef114fa3951c8"
+    },
+    {
+      "id": 5992555620,
+      "bytes": 12513,
+      "sha256": "a2ed12e16b87daf80bdf20934ba8aaa208e24100d95749edcf2f405327423d44"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXOS-L2-032",
+      "registration_id": "MPR-RC-HELIXOS-L2-032-001",
+      "semantic_digest": "sha256:a506a984a1ef3e16895b5ed9d7c311093d66d64a3400a017239a007e6d4dd202",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 55,
+          "end": 55
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "5f98a0421541fd210a79eff7b3c68da5ef81b9d20291d2401e1934a7f214c186",
+        "bytes": 594,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 499,
+        "raw_lf_sha256": "12a7cc31e36e308d7a962f927d05638fe032d27f8f0004bc14b54a5af5387285",
+        "no_lf_sha256": "4abc49701912e0937edd9b8fdd5e927a3490dc8b3ccdb990f08704f9428e5a8f"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-033",
+      "registration_id": "MPR-RC-HELIXOS-L2-033-001",
+      "semantic_digest": "sha256:580778c8ef3c0e4c4676d13de203c821f990893e9aa078d8d1d2f0b8901d2dbc",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 56,
+          "end": 56
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "1b2f3e8bd602b488a4af5f20db36de7674359673da3b3dcb0ed4f2f09df6855a",
+        "bytes": 594,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 500,
+        "raw_lf_sha256": "0a1ac584663f024381b8b594a8740c95d87b02d78fe624bb8dcd44477da63b7c",
+        "no_lf_sha256": "f99fd0ec160de7cab34063d08055456083ab8fc62f5186c33c401da3baa9faad"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-034",
+      "registration_id": "MPR-RC-HELIXOS-L2-034-003",
+      "semantic_digest": "sha256:6b019294047fce2e1c8b5d1b5e8d379fa9111f5912274f6dca918ffd81c0e1e8",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-30-live26.md",
+        "physical_lines": {
+          "start": 51,
+          "end": 51
+        },
+        "full_file_sha256": "8249447f758f5b9157f69684ffa6d8fcbcdabd6dd80683e2ed77e302f60ee145",
+        "raw_lf_inclusive_span_sha256": "33000708725de32e3fad97b4edb9ef4e893edef98adab92b145bfa263d27147a",
+        "bytes": 244,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 617,
+        "raw_lf_sha256": "d6840367a714759cc31fe427c3a9e0e1c4827d18086e93cafb21e6725ac140bd",
+        "no_lf_sha256": "54017211ab892bfd9d660df1edc3584b2be31b4224b38b8d3f6d8e21f5bdf0b6"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-035",
+      "registration_id": "MPR-RC-HELIXOS-L2-035-001",
+      "semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 58,
+          "end": 58
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "f4a5dec58d237ed7836aac99488ea08fde6bb48cfad1155fea4442ce8a1fce2c",
+        "bytes": 592,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 517,
+        "raw_lf_sha256": "c40d5472a6d7e6048fc690dde2cbe5770be8b51990ca0336ca9c9c8e1cf4b4da",
+        "no_lf_sha256": "6f8a1bbfcaf1f141e28a6a801f4240565f5c3d784b5351a69026a04d75a50764"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-036",
+      "registration_id": "MPR-RC-HELIXOS-L2-036-001",
+      "semantic_digest": "sha256:82c3fc7c25b023604463f4c44c284440b9666342a0cf8a3bd6b1996394cb33b9",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 59,
+          "end": 59
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "288fe20e56430ca686b47c544a04903048bf909a2d11ced346682e403cb1cf43",
+        "bytes": 593,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 524,
+        "raw_lf_sha256": "016fddddc8537f7f4d7b110d7a5ba540d0c9da48835d9937ccd04bfc1d2cada5",
+        "no_lf_sha256": "b8d5e7fada54b3593bb25f6cd3d42e16d9720c9d09f67863466ff508063d8799"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-037",
+      "registration_id": "MPR-RC-HELIXOS-L2-037-001",
+      "semantic_digest": "sha256:29563f1fdde0d9ace0b0850a5fc57bc6f6b595f460a5caa293c7eefb60905d64",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 60,
+          "end": 60
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "6532ef241d34bb91ad1bdad3dad16e17c53d3325bc943b9122c01eb26c8292ea",
+        "bytes": 587,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 528,
+        "raw_lf_sha256": "c2fd3fc728c34680a52a492ec14fa2e23e265b4f304f985aae090f584e4eeb06",
+        "no_lf_sha256": "4d1d6a8500bca33b26b16944d1c064d1e058cbc39eeb6fc5159669e32147f209"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-038",
+      "registration_id": "MPR-RC-HELIXOS-L2-038-002",
+      "semantic_digest": "sha256:c3b0424bd39ac7c91166c87738fbefc1b20a11b904012d9ada768a113ccbe013",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-11candidates.md",
+        "physical_lines": {
+          "start": 35,
+          "end": 35
+        },
+        "full_file_sha256": "6e10127a65a775b0a7554ccb359abdfc1221d17a2c48fb79321d59369df127c5",
+        "raw_lf_inclusive_span_sha256": "6957adc3c5651e5012aba7b8797ae0d8b3d8e210f31e857ce1894a1f0ff9d8b8",
+        "bytes": 616,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 602,
+        "raw_lf_sha256": "a49fec1ecbcc79ac90bb413a1874878f102e2ae4f30a830692bcf1bf3df1a89b",
+        "no_lf_sha256": "41ff930e78fd24ca7fedfdf976a30c5afc9d787b52aae763900032b6334ceb77"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-040",
+      "registration_id": "MPR-RC-HELIXOS-L2-040-001",
+      "semantic_digest": "sha256:dfd272b75826d37333671f7152a0a58d2d013f0bd13a3f3957a76a39dcdfad80",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 63,
+          "end": 63
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "8ee43287268f9f7e1671784e691d8dd8cab3980c8c146e07a492ac53896d022e",
+        "bytes": 600,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 553,
+        "raw_lf_sha256": "3dd6d235203f60c1970f823279472ed733da1955ea838595fcc0178114a8649b",
+        "no_lf_sha256": "a942f0638ad7f1d2d5bac30760c67f285f0144ff0ca4615f33a9a2f1af55798b"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-041",
+      "registration_id": "MPR-RC-HELIXOS-L2-041-001",
+      "semantic_digest": "sha256:a43e3eda819e37ef81db0c60c5add5cebce5e3d17ca858c1446c27ac4db80c48",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 64,
+          "end": 64
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "9bf71ec705cd88aaaf272f91b30095a7e617d872492cdc3b83c75eb681a72fb4",
+        "bytes": 599,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 556,
+        "raw_lf_sha256": "213b30db4a88fd03d05fe391739584cda04aa81f744a85115f84f9c68def7e56",
+        "no_lf_sha256": "ae21c9108f017cc6ee9797e12fdd7d5d497d1f5e5c1cb180f19854b599e05209"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-042",
+      "registration_id": "MPR-RC-HELIXOS-L2-042-001",
+      "semantic_digest": "sha256:75e8b9f72eaa777f25e38335664cb2527da8c56c1445a3eca181de27cc258e71",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 65,
+          "end": 65
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "782fdc2c74e3a36d9c109d06e8d229aea8ea3c7dba78e786fc370bd043593152",
+        "bytes": 594,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 560,
+        "raw_lf_sha256": "b9de95fac3f6dda7f01dca5ab6eaf2da651bba585b6aaf837aece9829cfa5a48",
+        "no_lf_sha256": "8823feabdd10436644d231217ab3dea959e04442d0460b4ec989bb9fdafe9780"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-043",
+      "registration_id": "MPR-RC-HELIXOS-L2-043-002",
+      "semantic_digest": "sha256:e286b34a9805a690f324ebe37ee0936691f636082b49350ee9dc5183787d9a68",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 66,
+          "end": 66
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "447242619b0df9a56db3a5e0948c2f8ea8d3ee38466842a4cac59b0b4e9fc2bc",
+        "bytes": 607,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 563,
+        "raw_lf_sha256": "1c059fbec2e97efb3f9967400d22af201915af8834a56a619f79e4f899f8ce1b",
+        "no_lf_sha256": "630b71e525547739316b2b6d37d27ec679b413474f22dcc8d05c25eeed965ed0"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-044",
+      "registration_id": "MPR-RC-HELIXOS-L2-044-001",
+      "semantic_digest": "sha256:45ec39bee8dc441f040b0b571f2c62be900d9619eaa1facda5f9017f97678289",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 67,
+          "end": 67
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "bd00123dd927c76e73dc4c135408a405f4fbcfdb06d143db932467474c579afc",
+        "bytes": 608,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 565,
+        "raw_lf_sha256": "09dd1c637c988c433132739b32916ca6f63cd212ac00ebc526d80b79f59dc89f",
+        "no_lf_sha256": "b97166abc0822eac6e4bb9359744dce5d42a32140c2ad24f213751d024aa78ed"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-049",
+      "registration_id": "MPR-RC-HELIXOS-L2-049-003",
+      "semantic_digest": "sha256:e9372f19e5064cb5470141fef25a3212aa65cede5d44ecfff8c9ed86da83668b",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 72,
+          "end": 72
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "d687c78415c220eeb40b695e4c6126951712eb1680e064be2dc87501edc8da5a",
+        "bytes": 810,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 598,
+        "raw_lf_sha256": "c6c522a09cc2be92562de7cbd2f97604559b2d82b626292b84fac5cfa783f677",
+        "no_lf_sha256": "aaa81f8c2b109575115720a089ed0840ef3badfa8cab2277731046b2613dd484"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-050",
+      "registration_id": "MPR-RC-HELIXOS-L2-050-003",
+      "semantic_digest": "sha256:fab5fdfae9cfd2211f8c2fd6dfad5ce7b065e007ef11ca62f55420baa5033b6d",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 73,
+          "end": 73
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "5a0a4db9008e24c78edaa7215b52d466158f7317529c2a7986261e562c18718a",
+        "bytes": 841,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 599,
+        "raw_lf_sha256": "816990960623c75bc539bd327d556658be803183f9a1cedbe7542b6a6dc2dd2b",
+        "no_lf_sha256": "e2b8e73c7e195060c8af05b002d6dc96188db6613f61f05ec0569c1a47415b6f"
+      }
+    },
+    {
+      "parent": "HELIXOS-L2-051",
+      "registration_id": "MPR-RC-HELIXOS-L2-051-002",
+      "semantic_digest": "sha256:54fd39fbeb3786bc739560856afb14e3cf892b1bb717d98ceb1212df09fe7f2b",
+      "po": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+        "physical_lines": {
+          "start": 74,
+          "end": 74
+        },
+        "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+        "raw_lf_inclusive_span_sha256": "65e1362c1f2c78e95e409b3ce5adadf99b71adc1a4b94ec956a910dadd8ff152",
+        "bytes": 728,
+        "role": "PO decision row"
+      },
+      "register": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "line": 589,
+        "raw_lf_sha256": "b603f09041fd60cb5b923dcd4502365cd5d9bdf11ccfa9dd7233b1b3a546d707",
+        "no_lf_sha256": "c2f3e29ce0a9cb33c391213f95b99742ac61888ae539d2e8aeda3984305b60bb"
+      }
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "e47646114f696ca3284a143b65cc36d61253587f81e0ba439aa890f4e391db0a",
+      "bytes": 152230,
+      "prefix_bytes": 78655,
+      "prefix_sha256": "ca5242813debd8ba7c253fca7eab03a33d41afd8629aa4bd49cb607358f56426"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "cb510502fdc387dab5cbd212c3d9b6c9d56a4fee2e542c4ab9b9afb5790db125",
+      "bytes": 14618,
+      "prefix_bytes": 11491,
+      "prefix_sha256": "962e1e8e69ed1741df81e8cbde8d6e3dd2b20065fdd3fbd6a670ad9fc4e14320"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "c766bd6e73521f93c5973df56255a96f55b4839b2e41d5c7bef449365d66c7e1",
+      "bytes": 22679,
+      "prefix_bytes": 16041,
+      "prefix_sha256": "7bc05bf76903ac81705d333f4c5183d9d04b3a30e4429fde6903e2455abcf681"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "3fa371924de7bbfbefcfe78a12fe9b8eae159337dcaa0d3deb90be8d7752219d",
+      "bytes": 131707,
+      "prefix_bytes": 89649,
+      "prefix_sha256": "a925e5c84143cecb4e479f8f5bfb36f84515cfdc69effad3192a2dcc88da427c"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "2829e339489fe717b22c3dd4a322fbb51b2eb6e72d1336fe4d7c0c1bb83c96d6",
+      "bytes": 10663,
+      "prefix_bytes": 7937,
+      "prefix_sha256": "b609bd995910f89c25bc2fed790463c4573509ed5b331f7716395d6c5fdb657a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "f68c1ac1c9b23ad81d138f89b8bd1d5316c18ab7d758b70257232d1bc4531a60",
+      "bytes": 19587,
+      "prefix_bytes": 14456,
+      "prefix_sha256": "37a5ce98c2d7a868b6c951e6bc1cea3a95b2010c23651e1129625ba0958c539c"
+    }
+  ],
+  "authority_effect": "effective_when_decision_record_admitted_to_main",
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage3-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "48f590122e1c9237e9f1e787c97edb53217cf85a91f703b1d16ad1fb26f816a6"
+  }
+}
