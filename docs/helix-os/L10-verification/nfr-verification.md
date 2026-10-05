@@ -98,3 +98,25 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-049-02 | NFR-OS-L3-049-01 | configured capacity × 有効な経過秒を時間分母として別記し、assignment/task count、unused capacity、unfinished lineageを独立集計する。時間0/欠測capacityは算出不能、分母が有効でcount 0なら実測0。 |
 | CASE-OS-L10-NFR-050-02 | NFR-OS-L3-050-01 | 同期間のtyped metricとeligible reviewer capacityを集計し、cause unknown/metric missing/lease staleは分母から除外せず未評価数として別表示。評価値だけでquality/merge stateを作らない。 |
 | CASE-OS-L10-NFR-051-02 | NFR-OS-L3-051-01 | scope/class/revisionごとの適格evidence件数を母集団にし、期限欠測・source stale・availability unknownを別状態で報告する。provider名は適格性の代理値にしない。 |
+
+## Stage 4：NFR測定case（6件）
+
+各NFR集計caseは同親のsummary CASEと下表の独立fixture CASE群から観測値を得る。各独立CASEは機能CASEの個別変異を一つだけ含み、集約行を各negativeの代用・追加件数にしない。
+
+| NFR CASE | 実際に照合するfunctional CASE ID | 範囲 |
+|---|---|---|
+| `CASE-OS-L10-NFR-021-01` | `CASE-OS-L10-021-01`, `CASE-OS-L10-021-02`, `CASE-OS-L10-021-03`, `CASE-OS-L10-021-03a`–`CASE-OS-L10-021-03al` | `AC-OS-L3-021-01`, `AC-OS-L3-021-02`, `AC-OS-L3-021-03`、サービス別適格性とbinding各変異 |
+| `CASE-OS-L10-NFR-022-01` | `CASE-OS-L10-022-01`–`CASE-OS-L10-022-03`, `CASE-OS-L10-022-03a`–`CASE-OS-L10-022-03w` | `AC-OS-L3-022-01`, `AC-OS-L3-022-02`, `AC-OS-L3-022-03`、eventから再観測までの各edge/owner |
+| `CASE-OS-L10-NFR-024-01` | `CASE-OS-L10-024-01`–`CASE-OS-L10-024-03`, `CASE-OS-L10-024-03a`–`CASE-OS-L10-024-03ab` | `AC-OS-L3-024-01`, `AC-OS-L3-024-02`, `AC-OS-L3-024-03`、permission・分類・revision・scope・依存 |
+| `CASE-OS-L10-NFR-046-01` | `CASE-OS-L10-046-01`–`CASE-OS-L10-046-03`, `CASE-OS-L10-046-02a`–`CASE-OS-L10-046-02f`, `CASE-OS-L10-046-03a`–`CASE-OS-L10-046-03j` | `AC-OS-L3-046-01`, `AC-OS-L3-046-02`, `AC-OS-L3-046-03`、遷移bindingと既存免除境界 |
+| `CASE-OS-L10-NFR-048-01` | `CASE-OS-L10-048-01`–`CASE-OS-L10-048-03`, `CASE-OS-L10-048-01a`–`CASE-OS-L10-048-01k`, `CASE-OS-L10-048-02a`–`CASE-OS-L10-048-02n`, `CASE-OS-L10-048-03a`–`CASE-OS-L10-048-03g` | `AC-OS-L3-048-01`, `AC-OS-L3-048-02`, `AC-OS-L3-048-03`、finding・resolution・再発行後評価 |
+| `CASE-OS-L10-NFR-052-01` | `CASE-OS-L10-052-01`–`CASE-OS-L10-052-03`, `CASE-OS-L10-052-01a`–`CASE-OS-L10-052-01m`, `CASE-OS-L10-052-02a`–`CASE-OS-L10-052-02i`, `CASE-OS-L10-052-03a`–`CASE-OS-L10-052-03q` | `AC-OS-L3-052-01`, `AC-OS-L3-052-02`, `AC-OS-L3-052-03`、cleanup所有・post-merge再照合・返却境界 |
+
+| case ID | NFR候補ID | 入力／比較 | oracle／測定 | 失敗・未評価 |
+|---|---|---|---|---|
+| `CASE-OS-L10-NFR-021-01` | `NFR-OS-L3-021-01` | 適格選択構成のpositiveと、7サービス個別evidenceの欠落/入替、component/artifact/digest/scope/authorityの単一変異、他project未完の対照を用いる。 | 選択target内のbinding mismatch=0、service evidence誤代用=0、scope外導入=0。 | source/適格性が不明なら未評価・owner返却。複数選択normal、後続version_target、成熟度/impact/再現性/運用証拠の各独立欠落も照合する。 |
+| `CASE-OS-L10-NFR-022-01` | `NFR-OS-L3-022-01` | source eventから再観測までの完全trace、LABOの独立評価/提案/比較実験依頼の個別欠落、各edge欠落、candidate件数だけのprojectionを、件数のみで改善効果を主張する変異と比較する。 | 既知fixture上のedge trace 100%、candidate/eventからの誤authority変更0、OS/LABO/判断ownerの誤role 0。 | LABO効果評価が未着ならその状態を未評価とし、OSで補わない。移管済みL2-012/013をOS ownerへ戻さない。return destination/re-evaluation conditionの欠落も独立に照合する。 |
+| `CASE-OS-L10-NFR-024-01` | `NFR-OS-L3-024-01` | permission/data class/target revision/scope/evaluation rangeを独立に変異する。 | 非許可data送信0、提供/評価/採否state混同0。 | 適用可能scopeまたは許可条件が不明なら未評価・差戻し。 |
+| `CASE-OS-L10-NFR-046-01` | `NFR-OS-L3-046-01` | authority/HEAD/base/scope/contract各一変異と無関係scope対照。 | required binding一致100%、変更後の古い証拠流用0、無関係scopeの誤stale0。 | 適用contractを特定できない遷移は未完として測定外へ理由付き分離。 |
+| `CASE-OS-L10-NFR-048-01` | `NFR-OS-L3-048-01` | existing resolution conditionを満たす完全evidence、各field欠落、stale/wrong scope/prose-only、再発行後同条件LABO評価、closed-ticket追補、window未満/未追跡/打切り観測を比較。 | false resolution=0、original closure上書き=0、censored/untracked observationからのdefect 0誤認=0。 | resolution適格性・evaluation population unknownは成功分母へ混ぜず、unacknowledged/unevaluated/finding disappearance/別scope successを別々に照合する。 |
+| `CASE-OS-L10-NFR-052-01` | `NFR-OS-L3-052-01` | owner/other-use/open-work/remote-authority/実施者の対象・作用・結果の記録経路、content HEAD/base/review pairを一つずつ変異し、cleanupを反復する。trial merge/stale/dependencyの個別unknownとreview bindingのmissingも与える。new HEAD review欠落、blocker残存、merge admission欠落、notification/ACK/merge event/ancestryだけのreceipt誤認も個別fixtureで測る。base変更後にpair一致/stale=0/依存維持する対照は保持可能状態として観測し、reviewed pair一致後の一律returnを要求しない。 | 不適格資源誤削除=0、実不一致後のold-review利用=0、eligible local cleanup再実行で副作用なし。read-afterとcleanup記録の混同0、旧CIによる代替0。 | ownership/未完/authority unknownは削除せず未評価へ。authorityがあっても記録経路欠落なら削除せずcleanup未完理由を該当ownerへ返す。最新base再照合後にreviewed pair一致・stale=0・依存維持の場合は、既存stateを保持可能な状態として報告する。 |
