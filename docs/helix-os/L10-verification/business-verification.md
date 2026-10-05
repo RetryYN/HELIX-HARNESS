@@ -12,4 +12,4 @@
 
 ## Stage 2c — HELIXOS-L2-028 / HELIXOS-L2-029 business scope
 
-固定L2-028/029に独立したbusiness outcomeは定義されていないため、このpairはbusiness caseを作らない。機能要件/受入とのtrace参照は `../L3-requirements/functional-requirements.md` の FR-OS-028/029、AC-OS-028-01、AC-OS-028-02、AC-OS-028-03、AC-OS-028-04、AC-OS-029-01、AC-OS-029-02、AC-OS-029-03、AC-OS-029-04、AC-OS-029-05、AC-OS-029-06を参照する。functional CASEはfunctional-verification.mdだけに宣言し、この文書はbusiness CASEを宣言しない。新BR/BCASE、業務KPI、独立owner、business pass条件を追加しない。ここから別のbusiness outcomeを推定しない。
+固定L2-028/029に独立したbusiness outcomeは定義されていないため、このpairはbusiness caseを作らない。機能要件/受入とのtrace参照は `../L3-requirements/functional-requirements.md` の FR-OS-028/029、AC-OS-028-01、AC-OS-028-02、AC-OS-028-03、AC-OS-028-04、AC-OS-028-05、AC-OS-028-06、AC-OS-028-07、AC-OS-029-01、AC-OS-029-02、AC-OS-029-03、AC-OS-029-04、AC-OS-029-05、AC-OS-029-06を参照する。functional CASEはfunctional-verification.mdだけに宣言し、この文書はbusiness CASEを宣言しない。新BR/BCASE、業務KPI、独立owner、business pass条件を追加しない。ここから別のbusiness outcomeを推定しない。
