@@ -274,7 +274,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 
 | CASE | 単独変異 | 期待結果・戻し先 |
 |---|---|---|
-| `CASE-INT-017-04a` | SECURITY permissionの状態がunknown | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-017-04a` | 操作時点のSECURITY permission authorityを確認できない（他の三段階は有効） | 該当fieldだけunknown/incompleteとして推測を止め、SECURITY permission/isolation ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04b` | Worker execution receiptのrevisionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、Worker execution/result ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04c` | HARNESS obligation適用scopeがunknown | 該当fieldだけunknown/incompleteとして推測を止め、HARNESS verification ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-017-04d` | OS acceptance対象revisionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS acceptance ownerへ戻す。無関係な正常source/operationは保持する。 |
@@ -526,7 +526,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-033-02e` | scopeを異なるProduct Coreへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerへ戻す。他の正常source/operationは維持する。 |
 | `CASE-INT-033-02f` | 二sourceのrevisionを取り違える | 二sourceのrevision取り違えを拒否し、元の各sourceを保持してそのsourceを所有するProduct Core/HARNESS ownerへ別々に戻す。 |
 | `CASE-INT-033-02g` | 受領時に未選択connectorを必須依存として追加 | 未選択connectorを使用/追加せず未観測として保持し、適用CONNECT contract ownerへ照会する。 |
-| `CASE-INT-033-02h` | Product Coreの意味変更をINTELLIGENCEが確定 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当Product Core ownerへ戻す。他の正常source/operationは維持する。 |
+| `CASE-INT-033-02h` | 有効なProduct Core/HARNESS入力のまま、INTELLIGENCEがProduct Coreの意味変更を確定する | 意味変更の確定を拒否し、Product Coreの意味・正本を不変に保つ。判断はProduct Core ownerへ返し、INTELLIGENCEは解釈候補を確定事実へ昇格させない。他の正常source/operationは維持する。 |
 
 ### CASE-INT-033-03 — 未見入力の親oracle（AC-INT-033-03）
 
@@ -666,6 +666,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-035-02h` | candidate source scopeを別taskへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 この不完全なcandidateをticket化しない。 |
 | `CASE-INT-035-02k` | 目標未承認のcandidateをticket化可能としてOSへ渡す | 承認を創作せずcandidateを保留し、OS ticket/assignmentを成立させない。INTELLIGENCE candidate ownerへ戻す。 |
 | `CASE-INT-035-02l` | INTELLIGENCEがOS assignmentを生成・確定する | 不合格。INTELLIGENCEはplacement proposalまでとし、誤ったassignment生成はINTELLIGENCE candidate ownerへ戻す。assignmentの発行・確定はOSへ残す。 |
+| `CASE-INT-035-02m` | 他のcandidate入力は有効なまま、INTELLIGENCE自身がOS ticketを生成・発行する | ticket生成・発行を拒否し、ticket authorityをOSに残す。candidateはINTELLIGENCE candidate ownerへ戻し、OS ticket/assignment成立として扱わない。 |
 
 ### CASE-INT-035-03 — 未見入力の親oracle（AC-INT-035-03）
 
@@ -837,7 +838,8 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-037-04d` | Worker result provenanceがunknown | 該当fieldだけunknown/incompleteとして推測を止め、Worker execution/result ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-037-04e` | selected connector contract identityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、該当CONNECT contract ownerへ戻す。無関係な正常source/operationは保持する。 |
 | `CASE-INT-037-04f` | Worker version/assignment/declared compatibilityは有効だがtask適合の確認だけがない | task適合をunknownに保ちOSへ戻す。INTELLIGENCEから実行許可を追加せずWorker実行へ渡さない。 |
-| `CASE-INT-037-04g` | OS assignment・task scopeは有効だがWorker版compatibility rangeが未宣言またはunknown | compatibilityをunknownとして保持しOSへ戻す。実行許可を足さずWorker実行へ渡さない。 |
+| `CASE-INT-037-04g` | OS assignment・task scopeは有効だがWorker版compatibility rangeが未宣言 | compatibilityをunknownとして保持しOSへ戻す。実行許可を足さずWorker実行へ渡さない。 |
+| `CASE-INT-037-04h` | compatibility rangeは宣言済みだがWorker版とのcompatibility値だけがunknown | compatibilityだけunknownとして保持しOSへ戻す。実行許可を足さずWorker実行へ渡さない。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-037-02）
 
@@ -949,7 +951,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-039-02d` | OS acceptance receiptをINTELLIGENCEが生成 | 生成を拒否し、OS acceptanceを成立させない。OS acceptance authorityをOS ownerに保持し、INTELLIGENCEはacceptance receiptを作らない。 |
 | `CASE-INT-039-02e` | 別scopeのevidenceを同じ候補へ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、該当evidence producer ownerへ戻す。他の正常source/operationは維持する。  OS acceptanceを成立させない。 |
 | `CASE-INT-039-02f` | stale HARNESS resultをcurrent扱い | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、HARNESS verification ownerへ戻す。他の正常source/operationは維持する。  OS acceptanceを成立させない。 |
-| `CASE-INT-039-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、適用CONNECT contract ownerへ照会し、未選択connectorは未観測のまま保持する。他の正常source/operationは維持する。 |
+| `CASE-INT-039-02g` | 未選択connectorを必須依存として提案へ追加 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、適用CONNECT contract ownerへ照会し、未選択connectorは未観測のまま保持する。他の正常source/operationは維持する。OS acceptanceは成立させない。 |
 | `CASE-INT-039-02h` | 重複receiptを新しいacceptance evidenceにする | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、OS acceptance ownerへ戻す。他の正常source/operationは維持する。  OS acceptanceを成立させない。 |
 | `CASE-INT-039-02i` | receiptの到着順が逆であることだけを根拠に新しいacceptance evidenceとして採用 | OS acceptanceを生成せず、別段階receiptと順序を保持してOSへ戻す。 |
 
@@ -979,7 +981,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-039-04b` | execution evidence producer/revisionがunknown | 該当fieldだけunknown/incompleteとして推測を止め、Worker execution/result ownerへ戻す。無関係な正常source/operationは保持する。  OS acceptanceを成立させない。 |
 | `CASE-INT-039-04c` | HARNESS verification applicabilityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、HARNESS verification ownerへ戻す。無関係な正常source/operationは保持する。  OS acceptanceを成立させない。 |
 | `CASE-INT-039-04d` | OS acceptance targetがunknown | 該当fieldだけunknown/incompleteとして推測を止め、OS acceptance ownerへ戻す。無関係な正常source/operationは保持する。  OS acceptanceを成立させない。 |
-| `CASE-INT-039-04e` | selected connector contract identityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、該当CONNECT contract ownerへ戻す。無関係な正常source/operationは保持する。 |
+| `CASE-INT-039-04e` | selected connector contract identityがunknown | 該当fieldだけunknown/incompleteとして推測を止め、該当CONNECT contract ownerへ戻す。無関係な正常source/operationは保持する。OS acceptanceは成立させない。 |
 
 ### 共通HARNESS-L2-010/011 pack — 個別field negative（AC-INT-039-02）
 
@@ -1267,8 +1269,8 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-045-02f` | candidateを既決修正として扱う | 既決修正への昇格を拒否してcandidateを保持し、該当Product Core ownerへ確認を戻す。正本は変更しない。 |
 | `CASE-INT-045-02g` | 未選択connectorを必須依存として提案へ追加 | 未選択connectorを未観測のまま保ち必須依存追加を拒否し、CONNECT contract ownerへ契約照会を戻す。 |
 | `CASE-INT-045-02h` | source identityを欠落（target identity/ownerは有効） | source identityをunknownとして保持したbackflow candidateを既知の該当Product Core ownerへ返す。target identityをunrouted/未識別へ変えない。 |
-| `CASE-INT-045-02i` | source revisionを欠落 | source revisionだけunknownとして保持し、candidateを既知の該当Product Core ownerへ返す。 |
-| `CASE-INT-045-02j` | source scopeを欠落 | source scopeだけunknownとして保持し、candidateを既知の該当Product Core ownerへ返す。 |
+| `CASE-INT-045-02i` | source revisionを欠落（target identity/ownerは有効） | source revisionだけunknownとして保持し、candidateを既知の該当Product Core ownerへ返す。 |
+| `CASE-INT-045-02j` | source scopeを欠落（target identity/ownerは有効） | source scopeだけunknownとして保持し、candidateを既知の該当Product Core ownerへ返す。 |
 | `CASE-INT-045-02k` | target Product Core identity/owner/revisionは既知だが、backflow candidateを経ず直接routeする | 不合格。直接routeを拒否し、該当Product Core owner向けbackflow candidateとして渡す。既知targetのowner特定照会は追加しない。 |
 | `CASE-INT-045-02l` | target owner不明のcandidateを別Product Coreへrouteしようとする | 不合格。routeを拒否してunroutedを保持し、Product Core ownerへ照会する。target revision等の他fieldは有効のまま保つ。 |
 | `CASE-INT-045-02m` | target owner/identityは有効なままtarget revisionだけunknownのcandidateを別Product Coreへrouteしようとする | 不合格。別Product Coreへのrouteを拒否し元targetとunknown revisionを保持してProduct Core ownerへ照会する。 |
