@@ -1,0 +1,160 @@
+{
+  "record_kind": "creator-intelligence-stage2c-C13-carry-scope-correction.v1",
+  "status": "body committed; root inspection pending; correction is historical/status classification only; no independent review closure",
+  "mechanism": "HELIX-INTELLIGENCE",
+  "stage": "Stage 2c",
+  "scope": [
+    "C13-M7",
+    "C13-M10",
+    "C13-M12",
+    "Minor INT-010",
+    "Minor INT-060-078",
+    "C13-U-INT-NFR-060-078",
+    "C13-U-all-crosswalk-and-legacy"
+  ],
+  "body_parent_commit": "a73b4ae2cceb0965ad9ea3e0ea5dce86cfbed3a4",
+  "body_commit": "f0debdad3ad979a380a3e680df3ecc6c29b51285",
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 491,
+        "end": 506
+      },
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_span_sha256_lf_inclusive": "152bd91c5e660815f0ac6cabcfc501d527adb18973db329f95c0d16e544a02d9",
+      "asset_id": null,
+      "role": "fixed L2-068 clauses; scope context only"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 201,
+        "end": 209
+      },
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_span_sha256_lf_inclusive": "f9733900a979eebc6058056ea6b51370f4acd5b602955988985bb1dbf97b3d26",
+      "asset_id": null,
+      "role": "fixed L11-068 heading plus its acceptance atoms"
+    }
+  ],
+  "C13_primary_record": {
+    "artifact": "/tmp/pr2564-claude13-comment-full.txt",
+    "comment_identity": "RH-PR2564-L3L10-274-13",
+    "sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "bytes": 32525,
+    "physical_lines": 270,
+    "span_pins": [
+      {
+        "physical_lines": {
+          "start": 110,
+          "end": 113
+        },
+        "raw_span_sha256_lf_inclusive": "3b79d585ad79488a3a96a101a4b2b11d1b7ecd1ea1754cabc4ffea2450fc2c2b",
+        "role": "C13-M7: L2-066 fixed L11 return and receipt-field issue"
+      },
+      {
+        "physical_lines": {
+          "start": 150,
+          "end": 152
+        },
+        "raw_span_sha256_lf_inclusive": "f6722d0446293d748090671ed8da46188d4cb2cc4470f285088b9e656a1678ca",
+        "role": "C13-M10: L2-010 fixed return destinations"
+      },
+      {
+        "physical_lines": {
+          "start": 164,
+          "end": 172
+        },
+        "raw_span_sha256_lf_inclusive": "39bdaacdba9acbf506986c03317da9ebbadb8f3081601178a8f49e057d4278b8",
+        "role": "C13-M12: cross-mechanism report/source mismatch including INTELLIGENCE 068 and explicit correction instructions"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "70b5ee77c19109515d98c82505a19ad50c3df4fa842839e5c4904576c7c7dbd0",
+      "bytes": 18813,
+      "physical_lines": 58
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "adc15e2f4217d0271fc6db1ac90f5810fbeea8705808c771cd72266eef89bc2f",
+      "bytes": 2074,
+      "physical_lines": 16
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "e2585be9f3e27184f30b62a645816f000612ea0760e26e00dc08e28a44b7d22e",
+      "bytes": 7927,
+      "physical_lines": 26
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "37135ee8b5c49a8a6c99870f33ecf2b2c12def02f2f8785447a698fd5b551146",
+      "bytes": 15063,
+      "physical_lines": 99
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "b6df5e718a41779bcd02a9b1dfa7ab6b6560657c90e50a604249989e1b656bfc",
+      "bytes": 1832,
+      "physical_lines": 16
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "9a261ee29c0dd0f504770f04dc469fca93c7d4b5736d80d12a92c84a799c6eb6",
+      "bytes": 6171,
+      "physical_lines": 25
+    }
+  ],
+  "current_line_pins": [
+    {
+      "content_commit": "f0debdad3ad979a380a3e680df3ecc6c29b51285",
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "physical_line": 58,
+      "literal": "以下は旧reviewのscope別carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M7（L2-066）、C13-M10（L2-010）、Minor INT-010はStage 2aで扱った親範囲の履歴として記録する。C13-M12は複数機構・stageにまたがる監査記録整合性のfindingであり、INTELLIGENCE L2-068に関するcomment line 168の指摘はStage 2c本文で解消したとは扱わず、未解消のまま残す。Minor INT-060-078は複数親にまたがる範囲で、Stage 2aで扱った部分だけから全範囲を解消・確認済みとはしない。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も共通監査の未確認範囲であり、L2-068に関わる未確認はStage 2cを含め引き続きopenである。この本文と監査は独立reviewやfinding closureを意味しない。",
+      "raw_line_sha256_lf_inclusive": "4f9033c986b6137ad745f5eb8cef2b1bcf10a7355457e7b126ed845ed2d27d7f"
+    },
+    {
+      "content_commit": "f0debdad3ad979a380a3e680df3ecc6c29b51285",
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "physical_line": 58,
+      "literal": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:491-506` と同固定revisionのL11 `intelligence-acceptance.md:202-209` を条件別に読み、FR/ACと本CASEへ配置した。L11:201は `HELIXINTELLIGENCE-L2-068` 見出しであり、条件atomとして扱わない。C13実comment `RH-PR2564-L3L10-274-13`（SHA-256 `4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c`）のM12・line 168「068のatomをheadingだけにしない」は、Stage 2cでsource条件を本CASEへ展開したことだけではclosureとならず、共通監査findingとして未解消のまま残す。この対応表は独立review/closureではない。句ごとのsource/raw pinとcrosswalkはhandoff監査記録に収録する。",
+      "raw_line_sha256_lf_inclusive": "fbe3a29d63d71c8d790cc18ff39d83f73ab694d1feccf0efa816358cb0176db8"
+    }
+  ],
+  "prior_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-intelligence-stage2c-review01-repair-ad7afd6e4-static-validation-2026-10-05.json",
+    "source_commit": "a73b4ae2cceb0965ad9ea3e0ea5dce86cfbed3a4",
+    "sha256": "ed50da4c649ed94fc9231579572b0c736b038fdef6c0f1a2d861b36486ebb0dc",
+    "bytes": 185812,
+    "unchanged": true,
+    "correction_target": "Its m3 assessment says C13 carry was specifically Stage 2a history and outside Stage 2c. That is too broad for cross-stage M12/Uall and INT-060-078 identities; this follow-up narrows the classification without altering that historical audit."
+  },
+  "carry_classification": {
+    "stage2a_history_only": [
+      "C13-M7 (L2-066 / receipt and fixed L11:285 issue)",
+      "C13-M10 (L2-010 / wrong parent return route in NFR-010-02)",
+      "Minor INT-010 (only the 010-linked Stage 2a portion)"
+    ],
+    "cross_stage_open": [
+      "C13-M12 audit/report consistency is shared across mechanisms/stages; its INTELLIGENCE comment line 168 subfinding about L2-068 remains unresolved/open in Stage 2c. The existence of L2-068 atom coverage in current FV is not independent review or closure.",
+      "C13-U-INT-NFR-060-078 and C13-U-all-crosswalk-and-legacy remain shared unreviewed scope. L2-068 relevant portions remain open, including across Stage 2c.",
+      "Minor INT-060-078 spans multiple parents/stages. Stage 2a handling covers only that stage’s applicable subset and makes no claim that the entire range, including L2-068, is reviewed or closed."
+    ],
+    "boundary": "This correction classifies historical review scope only. It creates no new requirement, acceptance condition, owner, or parent dependency."
+  },
+  "verification": {
+    "git_diff_check": "pass",
+    "old_runtime_tests_ci_bun": "not run",
+    "independent_review": "pending"
+  },
+  "limits": [
+    "This record does not reproduce the entire Claude13 audit or close any C13 finding.",
+    "Only the INTELLIGENCE portions stated above were classified; other mechanisms retain their own status and review scope."
+  ]
+}
