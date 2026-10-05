@@ -54,7 +54,7 @@ resourceの意味上の設計はCORE、資源と観測stateはINFRASTRUCTURE、�
 
 | 親 / NFR ID | 根拠・比較案 | 測定候補と対のL10 |
 |---|---|---|
-| L2-002 / INFRA-NFR-002-01 | TER-R-02/05の宣言・実効分離とversion不変driftを部分再導出。固定親の9差異類型を独立照合する案Bと、versionだけを比べる案Aを比較しBを候補とする。 | C01〜07の宣言scopeで9/9類型識別、design/target/actual三state無言変更0、unknownから一致0を候補として測る。freshness時間や全環境SLAは新設しない。 |
-| L2-007 / INFRA-NFR-007-01 | 旧distributionのclean consumer/入力版/実結果照合を隣接例として部分再導出。backup/文書存在だけの案Aに対し、再構築・再接続・起動・検証の4段階を結ぶ案Bを候補とする。 | C01〜06で4/4段階source trace、元machineにしかない必要情報依存0、未完から誤success0を測る。固定RTO/RPO・機種値や旧release standing authorizationを継承しない。 |
+| L2-002 / INFRA-NFR-002-01 | TER-R-02/05の宣言・実効分離とversion不変driftを部分再導出。固定親の9差異類型を独立照合する案Bと、versionだけを比べる案Aを比較しBを候補とする。 | C01〜09の宣言scopeで9/9類型識別、design/target/actual三state無言変更0、unknownから一致0を候補として測る。freshness時間や全環境SLAは新設しない。 |
+| L2-007 / INFRA-NFR-007-01 | 旧distributionのclean consumer/入力版/実結果照合を隣接例として部分再導出。backup/文書存在だけの案Aに対し、再構築・再接続・起動・検証の4段階を結ぶ案Bを候補とする。 | C01〜08で4/4段階source trace、元machineにしかない必要情報依存0、未完から誤success0を測る。固定RTO/RPO・機種値や旧release standing authorizationを継承しない。 |
 
 各scopeで契約上必要なfield/段階/変異を結果より前に分母化し、missing/unknown/stale/未観測を除かない。適用条件そのものが不明なら分母不明であり0/非適用へ丸めない。可観測と合格を分け、正しい拒否も照合可能な結果に数える。未実行は未測定。別の技術値が必要なら根拠・比較・測定方法付き候補として通常L3承認へまとめる。
