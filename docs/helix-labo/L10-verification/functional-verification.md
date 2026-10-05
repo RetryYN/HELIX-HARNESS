@@ -574,14 +574,14 @@ input observation identity/source revision；episode candidate identityとrelati
 | `HELIXLABO-L2-019` / `MPR-RC-HELIXLABO-L2-019-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L67 / `sha256:e7a90eba26b101083aa9fa449b220ea53d5c8230eed1f82980797cdabbb51d65` | L195–198 `2c931ae3ef60fcd739ce16a8c03e1ddc1c80462b4c791b8f8a79ec4ff3707670` | `LABO-019-FR-01`, `LABO-019-AC-01/02`; 個別fixture: `L10-LABO-019-C01`, `L10-LABO-019-C04`, `L10-LABO-019-C05`, `L10-LABO-019-C06`, `L10-LABO-019-C07`, `L10-LABO-019-C08`, `L10-LABO-019-C09`, `L10-LABO-019-C10`, `L10-LABO-019-C11`|
 | `HELIXLABO-L2-020` / `MPR-RC-HELIXLABO-L2-020-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L68 / `sha256:61ae506fe25a2218b3c2581e47eb76a167f8344cc792d5c27d4895bd65121501` | L199–202 `1de241d1126644a0f5bdf4775b091ae87977920a7552ea999b5094bc52480082` | `LABO-020-FR-01`, `LABO-020-AC-01/02`; 個別fixture: `L10-LABO-020-C01`, `L10-LABO-020-C04`, `L10-LABO-020-C05`, `L10-LABO-020-C06`, `L10-LABO-020-C07`, `L10-LABO-020-C08`, `L10-LABO-020-C09`, `L10-LABO-020-C10`, `L10-LABO-020-C11`, `L10-LABO-020-C12`|
 | `HELIXLABO-L2-021` / `MPR-RC-HELIXLABO-L2-021-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L69 / `sha256:00dda7b8a7675bba719585e6fbb94e43a2f273146b195d00daae5718f3f1fc9e` | L203–206 `2a420b02039e3701f61387f78236753dfd59924b05bc4f0dfaa3215fec12a50b` | `LABO-021-FR-01`, `LABO-021-AC-01/02`; 個別fixture: `L10-LABO-021-C01`, `L10-LABO-021-C04`, `L10-LABO-021-C05`, `L10-LABO-021-C06`, `L10-LABO-021-C07`, `L10-LABO-021-C08`, `L10-LABO-021-C09`, `L10-LABO-021-C10`, `L10-LABO-021-C11`, `L10-LABO-021-C12`, `L10-LABO-021-C16`, `L10-LABO-021-C13`|
-| `HELIXLABO-L2-022` / `MPR-RC-HELIXLABO-L2-022-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L70 / `sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783` | L207–210 `c9de9a9d703d3a2605715ecd57511cea1cc8625891eafadea5eb2b01b6a3837d` | `LABO-022-FR-01`, `LABO-022-AC-01/02`; 個別fixture: `L10-LABO-022-C01`, `L10-LABO-022-C04`, `L10-LABO-022-C05`, `L10-LABO-022-C06`, `L10-LABO-022-C07`, `L10-LABO-022-C08`, `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11`, `L10-LABO-022-C12`, `L10-LABO-022-C13`, `L10-LABO-022-C14`, `L10-LABO-022-C16`, `L10-LABO-022-C15`, `L10-LABO-022-C17`, `L10-LABO-022-C18`|
+| `HELIXLABO-L2-022` / `MPR-RC-HELIXLABO-L2-022-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L70 / `sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783` | L207–210 `c9de9a9d703d3a2605715ecd57511cea1cc8625891eafadea5eb2b01b6a3837d` | `LABO-022-FR-01`, `LABO-022-AC-01/02`; 個別fixture: `L10-LABO-022-C01`, `L10-LABO-022-C04`, `L10-LABO-022-C05`, `L10-LABO-022-C07`, `L10-LABO-022-C08`, `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11`, `L10-LABO-022-C12`, `L10-LABO-022-C13`, `L10-LABO-022-C14`, `L10-LABO-022-C16`, `L10-LABO-022-C15`, `L10-LABO-022-C17`, `L10-LABO-022-C18`|
 | `HELIXLABO-L2-023` / `MPR-RC-HELIXLABO-L2-023-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L71 / `sha256:aafe6d1641624bd7986d5fd6c6a1c67644221c9df0f4503433f442c98f26a36b` | L211–214 `c9cf147b928712f82694042c22cb9951530186f1dc3036ed36c19b2b1c487cc1` | `LABO-023-FR-01`, `LABO-023-AC-01/02`; 個別fixture: `L10-LABO-023-C01`, `L10-LABO-023-C04`, `L10-LABO-023-C05`, `L10-LABO-023-C06`, `L10-LABO-023-C07`, `L10-LABO-023-C08`, `L10-LABO-023-C09`, `L10-LABO-023-C11`, `L10-LABO-023-C12`, `L10-LABO-023-C16`, `L10-LABO-023-C13`|
 | `HELIXLABO-L2-024` / `MPR-RC-HELIXLABO-L2-024-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L72 / `sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4` | L215–218 `300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7` | `LABO-024-FR-01`, `LABO-024-AC-01/02`; 個別fixture: `L10-LABO-024-C01`, `L10-LABO-024-C04`, `L10-LABO-024-C05`, `L10-LABO-024-C06`, `L10-LABO-024-C07`, `L10-LABO-024-C08`, `L10-LABO-024-C09`, `L10-LABO-024-C16`, `L10-LABO-024-C17`|
 | `HELIXLABO-L2-025` / `MPR-RC-HELIXLABO-L2-025-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L73 / `sha256:e6cc467c72635a5fb91257cfb90f6a1039654d8f34a28454353566e3f3c28bf3` | L219–222 `11ddd89eb4195637bea7e61ef1af9b2e6096603ab2b601da4f35aaac4ccafac0` | `LABO-025-FR-01`, `LABO-025-AC-01/02`; 個別fixture: `L10-LABO-025-C01`, `L10-LABO-025-C04`, `L10-LABO-025-C05`, `L10-LABO-025-C06`, `L10-LABO-025-C07`, `L10-LABO-025-C08`, `L10-LABO-025-C09`, `L10-LABO-025-C10`, `L10-LABO-025-C16`|
 | `HELIXLABO-L2-026` / `MPR-RC-HELIXLABO-L2-026-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L74 / `sha256:64944055712d4d2c8ad4817624c5eeacba241c5bf7a008da18b2cfcdb53ec150` | L223–226 `a47b3ed9e39ae16dac5c50ab0d87282b5109c20874830693e5019e38742428ae` | `LABO-026-FR-01`, `LABO-026-AC-01/02`; 個別fixture: `L10-LABO-026-C01`, `L10-LABO-026-C04`, `L10-LABO-026-C05`, `L10-LABO-026-C06`, `L10-LABO-026-C07`, `L10-LABO-026-C08`, `L10-LABO-026-C09`, `L10-LABO-026-C16`|
 | `HELIXLABO-L2-027` / `MPR-RC-HELIXLABO-L2-027-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L75 / `sha256:ee444d777dfa4e45646584941998a8fa812b0070d62261e0c9ae3249928b8bab` | L227–230 `23833b323d44a786c302f054e22ead8a33e41ecdf66ff54fa1068ae1ac1eb30d` | `LABO-027-FR-01`, `LABO-027-AC-01/02`; 個別fixture: `L10-LABO-027-C01`, `L10-LABO-027-C04`, `L10-LABO-027-C05`, `L10-LABO-027-C06`, `L10-LABO-027-C07`, `L10-LABO-027-C08`, `L10-LABO-027-C09`, `L10-LABO-027-C10`, `L10-LABO-027-C11`, `L10-LABO-027-C12`, `L10-LABO-027-C16`|
 | `HELIXLABO-L2-028` / `MPR-RC-HELIXLABO-L2-028-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L76 / `sha256:f51b751526a581ca0cd80821dfdb9b558d3e2d4d0d3cb123420ea7391e45564e` | L231–234 `672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd` | `LABO-028-FR-01`, `LABO-028-AC-01/02`; 個別fixture: `L10-LABO-028-C01`, `L10-LABO-028-C03`, `L10-LABO-028-C04`, `L10-LABO-028-C05`, `L10-LABO-028-C06`, `L10-LABO-028-C07`, `L10-LABO-028-C08`, `L10-LABO-028-C09`, `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12`, `L10-LABO-028-C13`, `L10-LABO-028-C14`, `L10-LABO-028-C15`, `L10-LABO-028-C16`|
-| `HELIXLABO-L2-029` / `MPR-RC-HELIXLABO-L2-029-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L77 / `sha256:c37e1dbc85f2c6fcfb9b55e28d867faf9c4727a3615bd36882a71353eed3c89f` | L235–238 `10ee9155ebdbcb711715fddb6bddc644421559d8be4a3c404e22fdf3eedfdb29` | `LABO-029-FR-01`, `LABO-029-AC-01/02`; 個別fixture: `L10-LABO-029-C01`, `L10-LABO-029-C04`, `L10-LABO-029-C05`, `L10-LABO-029-C06`, `L10-LABO-029-C07`, `L10-LABO-029-C09`, `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`, `L10-LABO-029-C17`, `L10-LABO-029-C18`, `L10-LABO-029-C19`|
+| `HELIXLABO-L2-029` / `MPR-RC-HELIXLABO-L2-029-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L77 / `sha256:c37e1dbc85f2c6fcfb9b55e28d867faf9c4727a3615bd36882a71353eed3c89f` | L235–238 `10ee9155ebdbcb711715fddb6bddc644421559d8be4a3c404e22fdf3eedfdb29` | `LABO-029-FR-01`, `LABO-029-AC-01/02`; 個別fixture: `L10-LABO-029-C01`, `L10-LABO-029-C04`, `L10-LABO-029-C05`, `L10-LABO-029-C06`, `L10-LABO-029-C07`, `L10-LABO-029-C09`, `L10-LABO-029-C10`, `L10-LABO-029-C11`, `L10-LABO-029-C12`, `L10-LABO-029-C16`, `L10-LABO-029-C17`, `L10-LABO-029-C18`, `L10-LABO-029-C19`|
 | `HELIXLABO-L2-030` / `MPR-RC-HELIXLABO-L2-030-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L78 / `sha256:79a9ed7a30f650e949b2f092958a3e84c428e7ff84c0e6409fd056196d4c1e50` | L239–242 `9631b221fb6c1cb7b135324e0f914084146031297e2b82b95d64e14cc0df3613` | `LABO-030-FR-01`, `LABO-030-AC-01/02`; 個別fixture: `L10-LABO-030-C01`, `L10-LABO-030-C04`, `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08`, `L10-LABO-030-C09`, `L10-LABO-030-C10`|
 | `HELIXLABO-L2-034` / `MPR-RC-HELIXLABO-L2-034-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L82 / `sha256:3d6fa067472bd28ce86fa0da805972e817170bde8602652a2e070b9af572cdbf` | L255–258 `ca533b2327c362fa9c455470b9e3a524ffb883f43b2641d897d5b133b8db3231` | `LABO-034-FR-01`, `LABO-034-AC-01/02`; 個別fixture: `L10-LABO-034-C01`, `L10-LABO-034-C03`, `L10-LABO-034-C04`, `L10-LABO-034-C05`, `L10-LABO-034-C06`, `L10-LABO-034-C07`, `L10-LABO-034-C08`, `L10-LABO-034-C09`, `L10-LABO-034-C10`, `L10-LABO-034-C11`, `L10-LABO-034-C12`|
 | `HELIXLABO-L2-035` / `MPR-RC-HELIXLABO-L2-035-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L83 / `sha256:8cdd8f7cbbdeb905ea12b600ff007e25ad5f0bb6196c70009402ef1453662bfd` | L259–262 `deba00a65917db6a1d3663472a52aaf23ea7a586fd4035e14ed7e72f2afcfb44` | `LABO-035-FR-01`, `LABO-035-AC-01/02`; 個別fixture: `L10-LABO-035-C01`, `L10-LABO-035-C04`, `L10-LABO-035-C05`, `L10-LABO-035-C06`, `L10-LABO-035-C07`, `L10-LABO-035-C08`, `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C11`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15`, `L10-LABO-035-C16`, `L10-LABO-035-C17`, `L10-LABO-035-C18`, `L10-LABO-035-C19`|
@@ -1289,7 +1289,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
 - 独立fixture（一条件だけ変更）: OS実行証拠・対象revision・検査scope・result stateは有効のまま、HARNESS verification contractだけを現行対象よりstaleにする。
-- 期待oracle: passを生成せず固定L2-029にないOS実行証拠ownerへのroutingは生成せず、実行証拠不一致として拒否・unknownを保持する。CIを起動しない。
+- 期待oracle: HARNESS verification contractのstaleを現行契約へ読み替えずpassを生成しない。OS実行証拠は有効に保持し、契約不成立をunknownとして残す。追加routingを生成せずCIを起動しない。
 
 
 
@@ -1495,10 +1495,11 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-022-AC-02`。親: `HELIXLABO-L2-022`。
 - 入力fixture: 許可OS運転recordからticket identityだけを欠落させる。期待：ticket帰属を推測せずOS ownerへ戻す。
 
-### L10-LABO-022-C06 — revision stale
+### L10-LABO-022-C06 — source contract／revision stale索引
 
-- 対応AC: `LABO-022-AC-02`。親: `HELIXLABO-L2-022`。
-- 入力fixture: OS source contract/revisionだけをstaleにする。期待：currentとして受けずOS ownerへ戻す。
+- 区分: family/summary索引。個別fixture・negative件数・NFR分母に算入しない。
+- 対応: `LABO-022-AC-02`。固定親: `HELIXLABO-L2-022`。
+- 個別fixture: contractだけstaleは `L10-LABO-022-C17`、source revisionだけstaleは `L10-LABO-022-C18` を照合する。各変異のunknown保持とOS source ownerへの戻しを別々に確認する。
 
 ### L10-LABO-022-C07 — 未完状態の完了化
 
@@ -2062,7 +2063,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-035-AC-02`。固定親: `HELIXLABO-L2-035`。
 - 独立fixture（変更は一条件だけ）: 評価payloadを保ち、LABO自身がmodel placementを実行する要求だけを加える。
-- 期待oracle: 配置を実行せずINTELLIGENCE/OSの既存分担を維持する。
+- 期待oracle: 配置を実行せずINTELLIGENCE境界に残す。
 
 ### L10-LABO-035-C14 — bot execution生成
 
@@ -2098,7 +2099,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 独立fixture（変更は一条件だけ）: source/operationを保ち、selected scopeだけをreceipt後に変更する。
-- 期待oracle: scope条件で再closureし旧receiptを流用しない。固定L2-058で個別の戻し先が定まらないため拒否・unknown保持のみとする。
+- 期待oracle: scope条件で再closureし旧receiptを流用しない。scope変更による既存receipt不一致は固定L2:413に従い当該選択source ownerへ返す。
 
 ### L10-LABO-058-C17 — contract version変更後に旧receipt流用
 
@@ -2213,13 +2214,13 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-019-AC-02`。固定親: `HELIXLABO-L2-019`。
 - 独立fixture（変更は一条件だけ）: target別Feedback候補を維持しLABOからtarget ownerを変更する要求だけを加える。
-- 期待oracle: owner変更を生成せずtarget責務を維持し既存OS routing候補へ返す。
+- 期待oracle: owner変更要求を拒否し、既知targetの責務と候補を保持する。この変異からOS routingを生成しない。
 
 ### L10-LABO-019-C11 — 責務区分混合
 
 - 対応AC: `LABO-019-AC-02`。固定親: `HELIXLABO-L2-019`。
 - 独立fixture（変更は一条件だけ）: target identityとevidenceを保ちgeneric/product-specific/OS/INTELLIGENCEの責務区分だけを統合する。
-- 期待oracle: 各責務とtarget別候補を保持し既存OS routing候補へ戻す。
+- 期待oracle: 責務の混合を拒否し、既知targetごとの責務と候補を保持する。この変異からOS routingを生成しない。
 
 ### L10-LABO-021-C11 — source revision unknown
 
@@ -2456,22 +2457,22 @@ input observation identity/source revision；episode candidate identityとrelati
 - 期待: 当該入力を成立させずCONNECTの当該connector ownerへ不足を戻す。別source connectorの暗黙共用をしない。
 
 
-### Review04 individual single-mutation fixtures（未実行）
+### review04 独立一条件変異fixture（未実行）
 
 ### L10-LABO-016-C11 — oracle欠落
 
-- 対応AC: `LABO-016-AC-01`。固定親: `HELIXLABO-L2-016`。
+- 対応AC: `LABO-016-AC-02`。固定親: `HELIXLABO-L2-016`。
 - 入力/期待oracle: 他の比較可能性・反例・結果を保ちoracle identityだけ欠落。欠落のみunknownとして保持しsystem適格性を導かない。固定L2にowner routeがないためunknownで停止。
 
 ### L10-LABO-017-C11 — system/operation適格性入力欠落
 
 - 対応AC: `LABO-017-AC-02`。固定親: `HELIXLABO-L2-017`。
-- 入力/期待oracle: 他のcurrent rule、保証、owner結果、例外、未完義務を保ち適格性材料だけ欠落。候補を成立させず、明記のないownerを設けない。
+- 入力/期待oracle: 他のcurrent rule、保証、owner結果、例外、未完義務を保ち適格性材料だけ欠落。候補を成立させず、固定L2:189の依存L2-007が持つ適格性sourceへ不足を返す。
 
 ### L10-LABO-017-C12 — system/operation条件欠落
 
 - 対応AC: `LABO-017-AC-02`。固定親: `HELIXLABO-L2-017`。
-- 入力/期待oracle: 他の入力を保ちsystem/operation条件だけ欠落。条件を推定せずunknownで保持し切替候補を成立させない。
+- 入力/期待oracle: 他の入力を保ちsystem/operation条件だけ欠落。条件を推定せずunknownで保持し切替候補を成立させない。固定L2:189の依存L2-007の適格性sourceへ不足を返す。
 
 ### L10-LABO-017-C13 — system永続固定
 
@@ -2491,7 +2492,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-022-C17 — OS source contract stale
 
 - 対応AC: `LABO-022-AC-02`。固定親: `HELIXLABO-L2-022`。
-- 入力/期待oracle: ticket/assignment/receipt/revisionを保ちcontract versionだけstale。current contractへ結び直さずunknownで停止。
+- 入力/期待oracle: ticket/assignment/receipt/revisionを保ちcontract versionだけstale。current contractへ結び直さずunknownを保持し、固定L2:209に従ってOS source ownerへstaleを戻す。
 
 ### L10-LABO-022-C18 — OS source revision stale
 
@@ -2516,27 +2517,27 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-034-C11 — BRAIN connector欠落
 
 - 対応AC: `LABO-034-AC-02`。固定親: `HELIXLABO-L2-034`。
-- 入力/期待oracle: generic evidence/scopeを保ちBRAIN individual connector receiptだけ欠落。candidate送付済みとせずunknownで停止。新owner routeなし。
+- 入力/期待oracle: generic evidence/scopeを保ちBRAIN個別connector契約だけを欠落させる。candidate送付済みにせずunknownを保持し、固定L2:159–162/257の個別connector依存から再導出したCONNECTの当該connector契約ownerへ不足を返す。
 
-### L10-LABO-034-C12 — BRAIN connector不一致
+### L10-LABO-034-C12 — BRAIN connector契約版stale
 
 - 対応AC: `LABO-034-AC-02`。固定親: `HELIXLABO-L2-034`。
-- 入力/期待oracle: 他のgeneric evidence/scopeを保ちconnector contract identity/revisionだけ不一致。受渡し済みとせずunknown保持。
+- 入力/期待oracle: 他のgeneric evidence/scopeを保ちconnector契約版だけをstaleにする。受渡し済みとせずunknownを保持し、固定L2:159–162/257に基づくCONNECTの当該connector契約ownerへstaleを返す。
 
 ### L10-LABO-035-C18 — INTELLIGENCE connector欠落
 
 - 対応AC: `LABO-035-AC-02`。固定親: `HELIXLABO-L2-035`。
-- 入力/期待oracle: payload/revision/unassessedを保ちINTELLIGENCE connector receiptだけ欠落。受渡し済みとせず停止し、新owner routeを作らない。
+- 入力/期待oracle: payload/revision/unassessedを保ちINTELLIGENCE個別connector契約だけを欠落させる。受渡し済みとせずunknownを保持し、固定L2:159–162/261に基づくCONNECTの当該connector契約ownerへ不足を返す。
 
 ### L10-LABO-035-C19 — INTELLIGENCE connector不一致
 
 - 対応AC: `LABO-035-AC-02`。固定親: `HELIXLABO-L2-035`。
-- 入力/期待oracle: payload/revision/unassessedを保ちconnector contract identity/revisionだけ不一致。受渡し済みとせずunknown。L2-052 revision到達不一致とは別。
+- 入力/期待oracle: payload/revision/unassessedを保ちconnector契約identityだけを宣言と不一致にする。契約版を保持し、受渡し済みとせずunknownを保持して、固定L2:159–162/261に基づくCONNECTの当該connector契約ownerへ不一致を返す。L2-052の到達revision不一致とは別。
 
 ### L10-LABO-058-C40 — 選択source scope欠落
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
-- 入力/期待oracle: 選択source/version/permission/receiptを保ちscopeだけ欠落。当該取込を完了せずunknownで停止。固定親に一意なownerがないため新設しない。
+- 入力/期待oracle: 選択source/version/permission/receiptを保ちscopeだけ欠落。当該取込を完了せずunknownを保持し、固定L2:413に従い当該選択source ownerへscope不足を返す。
 
 ### L10-LABO-025-C10 — SECURITY finding disposition変更
 
