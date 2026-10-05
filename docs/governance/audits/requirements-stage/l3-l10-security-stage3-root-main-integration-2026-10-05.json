@@ -1,0 +1,72 @@
+{
+  "record_kind": "security-stage3-root-main-integration",
+  "authority_effect": "none",
+  "base_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "body_revision": "95d7194ddeee444eae702557135ea3227ec40fba",
+  "merge_revision": "4a8edb684b412d1e9a5748d403556cd67a49da4d",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "113295a93b57021f73e61914f6783954f59b19756a71be1d782290d46a531321",
+      "bytes": 100196,
+      "approved_main_prefix_sha256": "8e4c5064a0ab84345c31d6abf6a764c84eb34ad2c4ee41405c074507e175b165",
+      "approved_main_prefix_bytes": 76904,
+      "body_unchanged": true,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "b9fb7edeb791ffa666ea1695c8bd87750836b117e67e9fbaa1bbf91b6c72d275",
+      "bytes": 74145,
+      "approved_main_prefix_sha256": "f679d21ad0b707ac450473f6b21d1d1feb29d8c2982ed83c6d67133dc2ffe507",
+      "approved_main_prefix_bytes": 62505,
+      "body_unchanged": true,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "0b2894925bc80895ff61723377f27b14b4cca32289756747c566e35cba049dee",
+      "bytes": 1958,
+      "approved_main_prefix_sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9",
+      "approved_main_prefix_bytes": 1430,
+      "body_unchanged": true,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "8683764bb26d0d1f582828096c050c264df45a4f0fdc2c94e34bb4dbf9e1eb7a",
+      "bytes": 1461,
+      "approved_main_prefix_sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933",
+      "approved_main_prefix_bytes": 933,
+      "body_unchanged": true,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "e08bdd84397a11766a2828c66ceb56b7d8e9ec4f3b0071993ce8cac4a94ed4ed",
+      "bytes": 12906,
+      "approved_main_prefix_sha256": "bc2476eafc5922b451a7c967e9d05aa477e6649c58b77427cd24ed1d4de12427",
+      "approved_main_prefix_bytes": 9983,
+      "body_unchanged": true,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "0b808d2216e75cbd34905513139409a9b5d6f281f07c2767c890ff917cf883bc",
+      "bytes": 9640,
+      "approved_main_prefix_sha256": "683fd29048418b6e8d1e78ab27bc727dc026d7c5555c7a63662d27da7746fd18",
+      "approved_main_prefix_bytes": 7420,
+      "body_unchanged": true,
+      "prefix_exact": true
+    }
+  ],
+  "checks": [
+    "10 fixed source pins/full/raw verified",
+    "superseded and corrected historical source full/raw/literal verified",
+    "all changed line pins and previous immutable record hashes verified"
+  ],
+  "limits": [
+    "独立再レビューと委任判断は未了。旧判断は継承しない。",
+    "上流意味・範囲・担当・版を変更しない。下流実装は対象外。"
+  ]
+}

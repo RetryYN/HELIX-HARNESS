@@ -1,0 +1,3513 @@
+{
+  "record_kind": "root_stage4_connect_authoring_audit",
+  "authority_effect": "none; drafting and source pins only",
+  "source_main": "54d8724a601115914793e03b2d8361f3a563d2a7",
+  "body_revision": "0c667b635a2be0c963e09cdfbeff6fc542915015",
+  "fixed_requirements_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "parents": [
+    "HELIXCONNECT-L2-008",
+    "HELIXCONNECT-L2-009"
+  ],
+  "registration_ids": [
+    "MPR-RC-HELIXCONNECT-L2-008-002",
+    "MPR-RC-HELIXCONNECT-L2-009-002"
+  ],
+  "fixed_source_pins": [
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "physical_lines": {
+        "start": 274,
+        "end": 284
+      },
+      "raw_span_sha256_lf_inclusive": "4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813",
+      "quoted_lines": [
+        "### HELIXCONNECT-L2-008 MCP profile catalogとtyped descriptorの供給（unit、単体追補候補、version_target: 1.0）",
+        "",
+        "本項はHELIX-CONNECT L1-001に接続する未採択・未実装の要求候補であり、既存L2-001〜007の登録、接続、通信、認可または実装を変更しない。候補は、利用可能として宣言されたMCP profileを列挙し、profile identityとrevisionに束縛された設定契約、operation/tool capability descriptor、および安全・read-only probe descriptorを型付きで供給する。descriptorの存在は実際の安全性、実行資格、許可を証明しない。",
+        "",
+        "profile identity、revision、設定契約、型付きdescriptorの組が欠落・不明・競合する場合、そのprofileを利用可能として返さない。未登録・未知profile、重複identityに異なる宣言、設定型またはdescriptorの不一致は拒否理由と対象revisionを記録し、暗黙の既定profileや互換性の推定へfallbackしない。登録済みprofileの契約revisionが変わった場合は既存HELIXCONNECT-L2-002のstale・再照合条件に従い、再検証まで当該revisionを適格として扱わない。",
+        "",
+        "read-only probeについてCONNECTが供給するのは、操作の型・対象profile/revision・read-only宣言を識別するdescriptorまでである。CONNECTはprobeを起動せず、権限・policy・authorizationを生成または代替しない。操作の安全性と実行可否はSECURITYの責務であり、採択済みSECURITY-L2-005〜008の範囲に従う。関連するSECURITY-L2-034は独立した未採択候補であり、本候補はその採択を前提・依存としない。profile catalog、identity、設定契約および型付きdescriptorの供給はCONNECT、policyとread-only operation safetyはSECURITYが所有し、業務上のprobe意味は元の機構に残す。",
+        "",
+        "不正identity・設定・descriptorの修正先はprofile提供元へ返す。policyまたはoperation safetyの不明・拒否はSECURITYへ返し、CONNECTが判定を上書きしない。失敗は対象profile/revisionと理由に結び付け、無関係なprofileの状態を変更しない。具体的なschema表現、registry技術、provider/runtime、secret値、tool実行方式は本候補で定めない。`version_target: 1.0`は要求候補の対象版であり、採択・実装許可を意味しない。",
+        "",
+        "旧v1.3 HYB-002のS01/S02/S04について、archive revisionと6fabd125 baseline revisionの計6 lineage atomを候補入力に対応づける。S03/S05/S06の6 atomは別のSECURITY-034候補入力であり、本候補の対象外。source-linesとcoverage receiptはこの6 atomに限る。原要求のsource holding `MPR-SH-SUPPLEMENTARY-003` と `MPR-SH-V13-BASELINE-001` は両方とも生存し、HYB-002全体または意味条件のclosureを主張しない。"
+      ],
+      "full_file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "source_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "physical_lines": {
+        "start": 87,
+        "end": 93
+      },
+      "raw_span_sha256_lf_inclusive": "09dcbb00bee7d4a1680a16176d9f0bbe0c0d385a7d27a4fec61950f5c636b50e",
+      "quoted_lines": [
+        "### HELIXCONNECT-L11-008 MCP profile catalogとtyped descriptorの供給",
+        "",
+        "静的fixtureで、登録済みprofile identity/revisionの列挙、設定契約の型、operation/tool capability descriptor、安全・read-only probe descriptorが同じprofile/revisionへ束縛されることを確認する。descriptorにraw secretまたはcredential値が含まれず、descriptorの読出しがauthorization、probe起動、tool実行を生まないことを確認する。",
+        "",
+        "未登録・未知profile、同一identityの競合宣言、未登録revision、誤った設定型、欠落または型違いdescriptor、変更後にstaleなrevisionをfixtureへ与え、各々が利用可能状態にならず、reasonとprofile/revisionが記録されることを確認する。既定profileへのfallbackや安全性の推定がないことを確認する。read-only descriptorがあっても、それ自体でprobe実行・認可が可能にならないことを確認し、operation safetyの判定先がSECURITYであることを示す。SECURITY-L2-034の未採択候補に属するpolicy oracleをこの候補のpass根拠にしない。",
+        "",
+        "不正identity/config/descriptorの修正先がprofile提供元、policy/safetyのunknownまたは拒否の戻し先がSECURITYと区別され、対象外profileへ失敗が伝播しないfixtureを確認する。確認は文書と静的fixtureの受入 oracle に限定し、旧runtime・旧testや現行MCP runtimeの起動、実probe、tool操作を行わない。証拠がない場合はpassではなくunknownとする。本受入候補の成立は要求の採択、実装、実行許可またはSECURITY-L2-034採択を意味しない。"
+      ],
+      "full_file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 94,
+        "end": 94
+      },
+      "raw_span_sha256_lf_inclusive": "71dfba9e65926882b18cf9645aa5d302feadb4a0f2020ab63f2e7e2c22fa3732",
+      "quoted_lines": [
+        "| `HELIXCONNECT-L2-008` | 条件付き採択：A配置（供給はCONNECT、安全判定はSECURITY）、registration -002を対象。 | `MPR-RC-HELIXCONNECT-L2-008-002` | `docs/helix-connect/L2-requirements/connect-requirements.md` | `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1` | `sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813` | `HELIXCONNECT-L11-008` | `docs/helix-connect/L11-acceptance/connect-acceptance.md` | `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9` | `sha256:09dcbb00bee7d4a1680a16176d9f0bbe0c0d385a7d27a4fec61950f5c636b50e` | `docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json` |"
+      ],
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "physical_lines": {
+        "start": 574,
+        "end": 574
+      },
+      "raw_span_sha256_lf_inclusive": "eb137303fd68a4d92c5765b984c2a7b8709942cf6e6e659478dc6521b39b3730",
+      "quoted_lines": [
+        "{\"registration_id\":\"MPR-RC-HELIXCONNECT-L2-008-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXCONNECT-L2-008-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXCONNECT-L2-008\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-CONNECT\",\"candidate_source_path\":\"docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-008\",\"candidate_semantic_digest\":\"sha256:4b5028444f8dfecc3ddad03d94c7de666e716e63974a2851123285af77472813\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept bytes。候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-connect/L1-planning/connect-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70（PO判断が固定したL1親bytes。候補採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-source-lines-2026-09-29.jsonl#HELIXCONNECT-L2-008\",\"source_atom_set_digest\":\"sha256:ab1a8c0b752f9bf59671484b198f07308897c5c8e61143dc396a97b102f08cd6\",\"source_atom_count\":6,\"source_collection_scope\":\"旧v1.3 HYB-002のS01/S02/S04をarchiveと6fabd125 baselineの別revision atomとして6件対応。S03/S05/S06の6 atomは別SECURITY-034候補に留め、line全体のclosureを主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[\"V13-ARCHIVE-L0286-HR-FR-HYB-002-S01\",\"V13-ARCHIVE-L0286-HR-FR-HYB-002-S02\",\"V13-ARCHIVE-L0286-HR-FR-HYB-002-S04\",\"V13-BASE-6FAB-L0271-S01\",\"V13-BASE-6FAB-L0271-S02\",\"V13-BASE-6FAB-L0271-S04\"],\"preserved_pending_registration_refs\":[\"MPR-SH-SUPPLEMENTARY-003\",\"MPR-SH-V13-BASELINE-001\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-29T00:38:39+09:00\",\"evidence_refs\":[\"docs/concept/helix-concept.md\",\"docs/helix-connect/L1-planning/connect-intent.md\",\"docs/helix-connect/L2-requirements/connect-requirements.md\",\"docs/helix-connect/L11-acceptance/connect-acceptance.md\",\"docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-source-lines-2026-09-29.jsonl\",\"docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json\",\"docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md\",\"docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl#REQSRC-SUP-00213\",\"docs/governance/management-provisional-requirement-register.jsonl#MPR-SH-SUPPLEMENTARY-003,MPR-SH-V13-BASELINE-001\"],\"correction_reason\":\"R2283-02: initial -001 candidate_semantic_digest was not reproducible by the recorded L2 section-to-EOF rule. Append corrected -002 with exact section digest; also point source_atom_set_ref to the six selected source-lines and correct HYB-002 source item evidence to REQSRC-SUP-00213. Candidate text, atom set, authority and source holding are unchanged.\"}"
+      ],
+      "full_file_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "physical_lines": {
+        "start": 285,
+        "end": 295
+      },
+      "raw_span_sha256_lf_inclusive": "d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f",
+      "quoted_lines": [
+        "### HELIXCONNECT-L2-009 接続方向・実行順序属性とfeedback relation（connection候補、version_target: 1.0）",
+        "",
+        "- **親・状態**：採択済み`HELIXCONNECT-L1-001`へ接続する未採択候補。CONNECT-L2-001の接続identity・方向・両端契約、L2-002のstale再照合、L2-004の再送上限、L2-005の接続単位trace、L2-007の複数機構構成体を組み合わせるrelation契約の候補である。既存の接続登録・通信・再送・構成体要求を置換しない。",
+        "- **提供するもの**：接続identityごとに、端点間のdirection、必要なら構成内のexecution order、feedback/return relationの端点・理由・operation lineageを明示する。現行L2-001がすでに方向を接続identityの一部として要求しているため、方向概念そのものを新設・重複定義しない。本候補では方向の宣言値と双方向の表現を明確化する。",
+        "- **方向と権限**：`one_way`は宣言された一方向だけを表す。逆向き通信は別の明示direction/connectionと、その操作時に適用される既存SECURITY authority／scopeが成立した場合だけ可能である。`paired_bidirectional`を使う場合は、二方向を個別に識別し、それぞれのendpoint contract・scope・operation-time authorityを確認する。一方向の登録、受信、ACK、feedback eventから逆向き送信権限を推論しない。CONNECTは許可を発行・拡張しない。",
+        "- **順序**：構成体での`serial`／`parallel`は、接続辺または構成体ownerが宣言したexecution topologyとして保持する。serialでは先行辺の必要結果と契約条件を満たす前に後続辺を実行しない。parallelは各辺が独立したidentity・scope・契約・operation/resultを持ち、join条件が宣言済みのときだけ並行実行できる。欠落した順序・join・依存条件は推測せずunknown/unfinishedにする。具体的なworkflow順序の所有者は既存HARNESS/OS contractとし、CONNECTがOS ticket計画を置き換えない。",
+        "- **feedback/return relation**：feedbackは新たな一方向のtyped relation edgeとし、source connection/operation、target connection/owner、reason codeまたは根拠への参照、correlation/operation lineage、関係するcontract revision、停止・再開状態を識別する。自由文だけのfeedbackはrelation成立やfinding解決にならない。relation edgeの記録・伝送は受領、解決、承認、task完了を意味しない。",
+        "- **loop終端**：loopは明示されたforward edge、feedback edge、既存ownerの再試行／budget／停止条件の参照、終端時のrouteで構成するbounded compositeとして扱う。回数・budgetは既存の適用可能なpolicy/契約から読み、CONNECTが新たな上限値や解決条件を定義しない。終了条件、既存policy参照、累積attempt数、期限、operation identityが欠落・unknown・staleなら、そのloopを開始／継続しない。反復ごとにsessionを変えて上限・budgetをリセットしない。上限到達時は既存ownerへ未完状態と理由を返す。",
+        "- **traceと失敗**：方向、辺順序、forward/feedback relation、各operation/attempt、contract revision、endpoint receipt、停止／終端状態を一つの因果traceから辿れる。辺の部分成功やACKなし、互換stale、authority unknown、join不成立は全体成功へ昇格しない。L2-007の「途中失敗時に構成体全体を成功と報告しない」を維持する。",
+        "- **境界**：CONNECTは送信許可、逆方向許可、業務上の解決、要求採択、ticket発行、budget policy、feedback内容の判断を生成しない。端点、契約revision、適用権限、reason、retry/stop contract、結果またはACKの欠落はunknown/unfinishedとして保持し、該当endpoint／contract／authority ownerへ返す。raw secret・credential・不要なpayloadをtraceへ複製しない。",
+        "- **旧sourceから保持する意味／新規案**：旧UWJ-FR-006のloopにおけるreturn/continue/stop・上限・terminal、旧HIL-NFR-04のloop上限・停止理由・再開checkpoint、旧MIC-R-02のserial merge後のbase drift再判定は一般的なworkflow／統合の意味として参照し、既存ownerへ結ぶ。旧sourceにCONNECT固有のdirection/order属性・typed feedback edge・terminationを一体化したrelation contractは確認できず、本候補のtype構成は新規案である。参照範囲・asset identity・検索上限はcoverage receiptに記録する。"
+      ],
+      "full_file_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "source_commit": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "physical_lines": {
+        "start": 94,
+        "end": 104
+      },
+      "raw_span_sha256_lf_inclusive": "07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1",
+      "quoted_lines": [
+        "### HELIXCONNECT-L11-009 接続方向・実行順序属性とfeedback relationの受入候補",
+        "",
+        "- **正常例（片方向）**：A→Bを`one_way`として登録し、同じoperation/correlation lineage上の結果と一方向feedback B→Aを記録する。B→Aの伝送を実行する場合は、独立して宣言された逆方向connectionとそのoperationに適用される既存authorityを照合する。許可がなければfeedbackは未送信のreturn relationとして記録され、送信成功に見せない。",
+        "- **正常例（bounded loop）**：前向き辺A→Bと、理由・source/target identity・revisionを持つfeedback edge B→A、既存のretry/budget policy参照、期限、終端ownerを与える。各反復のattempt countとoperation lineageを累積し、既存上限到達で停止してOS-040等の既存ownerへ未解決として返す。prose feedbackだけでresolvedにしない（OS-044境界）。",
+        "- **正常例（順序）**：複数edgeをserial指定した場合は宣言順と先行条件を維持する。parallel指定では独立するedgeをそれぞれ追跡し、宣言されたjoinの全条件が満たされるまでcompositeを完了扱いしない。",
+        "- **拒否例**：one-way A→BからB→Aの送信権を推論する、paired bidirectionalの片方向だけauthority確認する、方向またはfeedbackのendpoint/contract revisionを欠いたrelationを利用可能扱いする、理由なしfeedbackをresolutionとして扱う、termination policyなしのloop、反復ごとのretry budget reset、宣言のない順序/join、辺の一部成功を全体成功へ伝播する場合は不合格。",
+        "- **unknown例（初回送信）**：送信する辺のendpoint、接続identity、契約revision、またはその送信に適用される既存authorityがmissing・unknown・stale・conflictなら、その辺の初回送信をeligibleにせず、missing inputとownerを記録する。feedback reason、loop policy、parallel join条件、ACKの欠落だけでは、独立して適格な初回送信を止めない。",
+        "- **unknown例（feedback送信）**：feedbackを送る操作に必要なreason、source/target identity、契約revision、独立した逆方向connection、またはその送信に適用されるauthorityがmissing・unknown・stale・conflictなら、feedback送信だけを保留し、未送信のreturn relationとmissing input、ownerを記録する。これを初回送信の不成立やfeedback解決済みへ読み替えない。",
+        "- **unknown例（loop）**：loopのretry上限／budget、期限、停止時の戻し先ownerまたは参照する既存termination policyがmissing・unknown・stale・conflictなら、追加retryを行わずloopを未解決で保留する。これらの欠落だけでは、すでに適格な初回辺の送信可否を遡って変えない。",
+        "- **unknown例（並列合流）**：parallel compositeに宣言されたjoin条件がmissing・unknown・stale・conflictなら、joinとcomposite完了だけを保留する。各辺の送信適格性は独立に判定し、join条件の欠落だけで適格な辺の送信を一括停止しない。",
+        "- **unknown例（ACKと完了）**：ACKが未着、またはACKのoperation/接続identity/契約revisionとの対応がmissing・unknown・stale・conflictなら、送信attempt自体はACK待ちとして保持し、受領確認・operation完了・composite完了を成立させない。missing inputと確認先ownerを記録し、未確認を成功へ丸めない。"
+      ],
+      "full_file_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 15,
+        "end": 15
+      },
+      "raw_span_sha256_lf_inclusive": "afb9cb199f0dec098566ef76c00a5ea4cb77df69c7a1b32314e5a7dbc1bc40cb",
+      "quoted_lines": [
+        "> HELIXOS-L2-049/-050、HELIXCONNECT-L2-009の受入条件はPR #2294で訂正済み。訂正後のL11 revision、MPR登録revision、file SHA、section digestを下表に固定する。"
+      ],
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 95,
+        "end": 95
+      },
+      "raw_span_sha256_lf_inclusive": "765d6070ed419f678b00e0e7367d7a6048febb4002d04ced1baf1858cd3a4260",
+      "quoted_lines": [
+        "| `HELIXCONNECT-L2-009` | 条件付き採択：A。direction/orderは属性、feedbackは型付き戻り辺。操作ごとのunknown停止条件を分ける（訂正L11 `HELIXCONNECT-L11-009-002`）。 | `MPR-RC-HELIXCONNECT-L2-009-002` | `docs/helix-connect/L2-requirements/connect-requirements.md` | `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1` | `sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f` | `HELIXCONNECT-L11-009` | `docs/helix-connect/L11-acceptance/connect-acceptance.md` | `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9` | `sha256:07e639a165d02d32deb8ae820418aadc9893837b5d3cab5b8387287cd3283ca1` | `docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json` |"
+      ],
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": {
+        "start": 136,
+        "end": 136
+      },
+      "raw_span_sha256_lf_inclusive": "e32974192cc6d7266908d8c7c517435c83e6e60e3d1f02059dbee745139b4a75",
+      "quoted_lines": [
+        "- `MPR-RC-HELIXCONNECT-L2-009-002` → `MPR-RC-HELIXCONNECT-L2-009-001`"
+      ],
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad"
+    },
+    {
+      "source_commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "physical_lines": {
+        "start": 600,
+        "end": 600
+      },
+      "raw_span_sha256_lf_inclusive": "04cab31d2f2a3c99e91249d850ca5431a93c3e4c4b8f3227459a4791844c35de",
+      "quoted_lines": [
+        "{\"registration_id\":\"MPR-RC-HELIXCONNECT-L2-009-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXCONNECT-L2-009-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXCONNECT-L2-009\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-CONNECT\",\"candidate_source_path\":\"docs/helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-009\",\"candidate_semantic_digest\":\"sha256:d2fc48f4ce3049a078203b281a69a2d211789456ef4fa6a25cd074f96c04712f\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（固定Concept bytes。候補採択は継承しない）\",\"parent_planning_revision\":\"docs/helix-connect/L1-planning/connect-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc sha256:9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70（PO判断が固定したL1親bytes。候補採択は継承しない）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29.json#candidate_input_atom_refs\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"新規案。O7 ops-loop依頼は作業起点でありauthority sourceではない。archive限定検索範囲に一致するCONNECT relation/type source atomは見つからなかった。関連する旧一般意味5行はreference-onlyでcandidate inputではない。空の直接legacy atom集合のdigest/no_lossを記録し、検索外のarchive closureを主張しない。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-29T18:00:00+09:00\",\"evidence_refs\":[\"docs/concept/helix-concept.md\",\"docs/helix-connect/L1-planning/connect-intent.md\",\"docs/helix-connect/L2-requirements/connect-requirements.md\",\"docs/helix-connect/L11-acceptance/connect-acceptance.md\",\"docs/governance/audits/requirement-registration/connect-o7-direction-feedback-source-lines-2026-09-29.jsonl\",\"docs/helix-connect/L2-requirements/connect-requirements.md#HELIXCONNECT-L2-001/002/004/005/007\",\"docs/helix-harness/L2-requirements/product-requirements.md:182\",\"docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-040/044\",\"/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/codex-goals-2026-09-28-ops-loop.md@sha256:ebaec80c40d2f410b7edef555b941b6a57bab4632084c8ee6af4f8e08106b39b#L107-L118\",\"docs/governance/audits/requirements-stage/ops-o7-request-source-snapshot-2026-09-29.md\",\"docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json\"],\"correction_reason\":\"R-PO-L11-CONNECT-009: Split unknown handling by initial send, feedback send, loop retry, parallel join, and ACK/completion so each missing field gates only its relevant operation. L2 and empty legacy input are unchanged.\"}"
+      ],
+      "full_file_sha256": "e7dc1180361869379966fb33f4ab263cabdfe1137ceea32dedc2b6edfea388d1"
+    }
+  ],
+  "legacy_atoms": [
+    {
+      "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S01",
+      "parent_line_atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "REQSRC-SUP-00213",
+      "source_revision": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 286,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "profile列挙、設定",
+      "source_span_sha256": "sha256:f43991829c2e95f0ff69b7a23accca7857fdc0704d90a69fecd30e5f45a82822",
+      "source_clause_kind": "catalog_profile_identity_and_configuration",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "archive/current-file-sha",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S02",
+      "parent_line_atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "REQSRC-SUP-00213",
+      "source_revision": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 286,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "safety、read-only probeを型付きで提供",
+      "source_span_sha256": "sha256:110d64ef4eddc210031bb42bac95cc6c246f7ec1f636d25efcbde70f51feb5f1",
+      "source_clause_kind": "typed_safety_and_read_only_probe_supply",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "archive/current-file-sha",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002-S04",
+      "parent_line_atom_id": "V13-ARCHIVE-L0286-HR-FR-HYB-002",
+      "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "REQSRC-SUP-00213",
+      "source_revision": "archive",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line": 286,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "未登録profile",
+      "source_span_sha256": "sha256:8659190c94464b3e5088f65269a0fcbd646bcf91e89ad76b4ddc68a5f8977958",
+      "source_clause_kind": "reject_unregistered_profile",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "archive/current-file-sha",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0271-S01",
+      "parent_line_atom_id": "V13-BASE-6FAB-L0271",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "V13-BASE-6FAB-L0271",
+      "source_revision": "baseline",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 271,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "profile列挙、設定",
+      "source_span_sha256": "sha256:f43991829c2e95f0ff69b7a23accca7857fdc0704d90a69fecd30e5f45a82822",
+      "source_clause_kind": "catalog_profile_identity_and_configuration",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0271-S02",
+      "parent_line_atom_id": "V13-BASE-6FAB-L0271",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "V13-BASE-6FAB-L0271",
+      "source_revision": "baseline",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 271,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "safety、read-only probeを型付きで提供",
+      "source_span_sha256": "sha256:110d64ef4eddc210031bb42bac95cc6c246f7ec1f636d25efcbde70f51feb5f1",
+      "source_clause_kind": "typed_safety_and_read_only_probe_supply",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "V13-BASE-6FAB-L0271-S04",
+      "parent_line_atom_id": "V13-BASE-6FAB-L0271",
+      "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+      "legacy_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "source_item_id": "V13-BASE-6FAB-L0271",
+      "source_revision": "baseline",
+      "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+      "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "source_line": 271,
+      "source_line_sha256": "sha256:ea40461f32edf4af5c4635f9fb7b4bb108401b3b34347dc85492044175a3884c",
+      "source_text": "| `HR-FR-HYB-002` | MCP profile catalogはprofile列挙、設定、safety、read-only probeを型付きで提供し、credential、egress、tool capabilityをprofile単位でfail-closeする | `HR-AC-HYB-002`: 未登録profile、secret要求、write可能probeを拒否する |",
+      "source_span_text": "未登録profile",
+      "source_span_sha256": "sha256:8659190c94464b3e5088f65269a0fcbd646bcf91e89ad76b4ddc68a5f8977958",
+      "source_clause_kind": "reject_unregistered_profile",
+      "atomization_rationale": "一つの表行にカタログ供給契約とprofile単位のsecurity fail-close、受入oracleが併記されているため、節の境界で別atom化する。source line全体を同じownerへ移さない。",
+      "disposition": "candidate_routed; adoption_pending",
+      "candidate_input": true,
+      "relation": "このCONNECT-L2-008候補へprofile列挙/設定、typed safety/read-only descriptorまたは未登録profile拒否の範囲を対応づける。元のsource holdingを解消せず、SECURITY policy判定も代替しない。",
+      "condition_status": "unresolved",
+      "audit_ref": "docs/governance/audits/requirements-stage/legacy-v13-semantic-condition-audit-2026-09-28.json#REQSRC-SUP-00213",
+      "source_revision_ref": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "raw_lf_line_sha256": "27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-v13-hyb-002-profile-supply-coverage-receipt-2026-09-29.json"
+    },
+    {
+      "atom_id": "O7-LEGACY-UWJ-FR-006-L0050",
+      "legacy_asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_line": 50,
+      "source_file_sha256": "sha256:e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "source_line_sha256": "sha256:21e664a7fd4afa4085c2a1f62a2497de925ae21a9fe6e0aeb5609bae45f13b17",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "General workflow loop return/continue/stop, limit, terminal, and resume contract; reference only, not CONNECT relation semantics.",
+      "raw_lf_line_sha256": "9a90b00908df1d4ba84ad2719cf354575dd6797b34b4d03ed03956edbefb046c",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json"
+    },
+    {
+      "atom_id": "O7-LEGACY-HIL-NFR-04-L0184",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 184,
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "sha256:6294259dd37af26ddd6f86e404be637b29c341c80d344d4eae2253daff8490fe",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "General loop iteration/time/token/cost cap, stop reason, and resume checkpoint; reference only, not connector relation semantics.",
+      "raw_lf_line_sha256": "5c9f6a2b8121965a3c5a0742599921971bb89f7b3bc4f2315fc51df9bdb6b68d",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json"
+    },
+    {
+      "atom_id": "O7-LEGACY-HIL-BR-25-L0077",
+      "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "source_line": 77,
+      "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_line_sha256": "sha256:5f6245bdc3312264b8e3ff4ba5589f71fa97f8bcbe4b7ff055e0070b54de2fd6",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Bidirectional relation between adjacent layers/V-pairs; not inter-mechanism CONNECT direction or send authority.",
+      "raw_lf_line_sha256": "fbf62d8ff2b8dd9e77bd69801555a152398a06d01ac19ee2964abe724cc81da0",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json"
+    },
+    {
+      "atom_id": "O7-LEGACY-MIC-R-02-L0066",
+      "legacy_asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "source_line": 66,
+      "source_file_sha256": "sha256:f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "source_line_sha256": "sha256:7775aa4943f269d8bbba9dbc198de37a029bb6a1e8186795e0368887a74183bd",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Serial merge followed by remaining-lane base-drift recheck; integration control, not connector-edge ordering.",
+      "raw_lf_line_sha256": "d621ad2ae428533d0ab310342ebf5e834a8afe8a7e2aedad17b72a62bde45878",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json"
+    },
+    {
+      "atom_id": "O7-LEGACY-MIC-FLOW-L0132",
+      "legacy_asset_id": "LEGACY-ASSET-23D3D9769B093AFDCC25",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md",
+      "source_line": 132,
+      "source_file_sha256": "sha256:f840e16cab80b88fa4e4730ed49f47f0afeee2050cad309a3d87da4cce057ec6",
+      "source_line_sha256": "sha256:9ace7e580dc064b86250c8cb88a991ab8bff812c6c4edec3e0d0a14fdeff143f",
+      "disposition": "reference_only",
+      "candidate_input": false,
+      "relation": "Serial main merge in old orchestration flow; general workflow sequence, not a CONNECT connection kind.",
+      "raw_lf_line_sha256": "3d82588b943bdc4a61c45c23e2d4f24184741ffb10d9584e1fe7f81e3794dbc4",
+      "receipt_path": "docs/governance/audits/requirement-registration/connect-o7-direction-feedback-coverage-receipt-2026-09-29-r2.json"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "682ee13c350966d8edf28e05aae6ce1940b12301cc42a61c1d0ff7c6633983c2",
+      "bytes": 1832,
+      "main_prefix_bytes": 1457,
+      "main_prefix_sha256": "b91e6ba4d37f515ce0e99ebd7de0605a73eccc406d45fb47fd5f656418341829"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "4bac83daf7de2583fb60faf4f355660a892d5cd80e2fe7e1ffc4a2b7d17b65ac",
+      "bytes": 45336,
+      "main_prefix_bytes": 34514,
+      "main_prefix_sha256": "392501cf2dc215506b3eede2829985535a38f7d412039886ca41609c30fcec89"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "57312a3c288c4580dd7a6c8c0bda694285509ad497fd6e78634a3173cf14cc74",
+      "bytes": 8346,
+      "main_prefix_bytes": 6673,
+      "main_prefix_sha256": "a0e6135104df9c05f6d4c9830ab58f0f112f543d12d36adc912d26c86ce6c13b"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "236544161821415904f6eb4dd176e371b5f23852f4d589fd374890762475b42e",
+      "bytes": 1486,
+      "main_prefix_bytes": 1102,
+      "main_prefix_sha256": "cbe7776259524b7490aa7b9925614e394531a3b163d3909bbc6d6bd16acec387"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "69ae15f9487aedc5f6151d2283bfaa099c0742477f892aa590905c03d842d484",
+      "bytes": 67153,
+      "main_prefix_bytes": 25071,
+      "main_prefix_sha256": "5e24bc4aa7c0d396d50331035653a928446aa9814d2610fb1200ae361c124d7a"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "0b8bd69cc86d24f692c48e6bdff46ef10bb08e99569667bf4cf9d97925a3dd73",
+      "bytes": 7298,
+      "main_prefix_bytes": 5768,
+      "main_prefix_sha256": "3dfbbf3d809ecd8ee93fca5aabb92e4fcd4f550f5f7fc12b778c4f7327ea3eb8"
+    }
+  ],
+  "suffix_literal_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "d880efb84abfdff2b2f10574e02d138a2cb00d9aa6fcbac499bd43010165010b",
+      "literal": "## Stage 4 — 008/009"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "a25ff066a027269e20b7afe86485a5614adff8d14706ae5fdfa735fcdebdc6e0",
+      "literal": "profile catalog/typed descriptorとdirection/order/feedback relationは技術契約であり、独立business criterionを新設しない。供給・技術eventから業務解決・要求採択・ticket発行・許可を生成しない。L3機能AC-008-02および009-03/05とL10個別CASEで境界を確認し、業務意味は元ownerへ残す。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 173,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 174,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 175,
+      "raw_lf_sha256": "cce1d51a6642bd682b8e937acd06bb4aebf920a375d9c61bb04db2170aef933c",
+      "literal": "## Stage 4 — profile供給と方向・feedback relation（008/009、1.0草稿）"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 176,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 177,
+      "raw_lf_sha256": "52ee22710abe48592fe7c54fc5e171c3fde0c05770bcfc455039cd83ffb5b939",
+      "literal": "対象は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `HELIXCONNECT-L2-008`（登録002、L2:274–284、L11:87–93）と `HELIXCONNECT-L2-009`（登録002、L2:285–295、訂正L11:94–104）。L2 full SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、L11 full SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`。PO `po-decision-2026-09-29-57candidates.md:15,94–95` の008配置A（供給CONNECT、安全SECURITY）、009案A（direction/order属性、feedback型付き戻り辺、操作別unknown停止）を保持する。既承認本文を更新せず追補した草稿で、実装・実送信・probe起動の許可ではない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 178,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 179,
+      "raw_lf_sha256": "aab73b6b4543195354ea66e82e22e26f03bc73a3a4cbd07424a45a865fc92fd7",
+      "literal": "### CONNECT-FR-008-01 — profile catalogとtyped descriptor"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 180,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 181,
+      "raw_lf_sha256": "124164c5b59b42eec7607febaea92fdd5299ace8e35461577bdf418f8cac807e",
+      "literal": "入力は利用可能として宣言された登録profile identity/revision、同profile/revisionに束縛した設定契約と型、operation/tool capability descriptor、安全・read-only probe descriptor。出力は宣言を列挙したcatalogと型付きdescriptor、拒否またはunknownの理由・対象profile/revision・修正先である。必須の組の欠落、不明、競合、不一致を利用可能にせず、既定profileや互換推定で埋めない。登録契約revision変更はL2-002のstale再照合へ結び、再検証まで当該revisionを適格にしない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 182,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 183,
+      "raw_lf_sha256": "7139f07d159060ce3ca689f718e18091b900d70cfb997ba9ee5ecf7fece93e0b",
+      "literal": "CONNECTはdescriptorを供給し、probe・toolを起動せず、実安全性・資格・authorizationを判定しない。SECURITY-L2-005〜008の既存policy/authorityを代替せず、別親034の採択やpolicy oracleを008の成立条件にしない。descriptorはraw secret/credential値を含まず、業務上のprobe意味は元機構に残す。identity/config/descriptor不備はprofile提供元、policy/safety不明・拒否はSECURITYへ返す。失敗を対象profile/revisionへ束縛し、無関係なprofileの状態を変えない。具体schema、registry、provider/runtime、tool実行方式は本要件で確定しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 184,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 185,
+      "raw_lf_sha256": "6f4ad9e4b9e7386f770846c26f9466df2642fbf84eae291d414b62cb8e0a0eba",
+      "literal": "- `CONNECT-AC-008-01`：登録済み同profile/revisionの設定型・operation/tool capability・安全/read-only descriptorの全組が列挙・供給される。未登録/未知profile、競合宣言、未登録revision、設定型不一致、descriptor欠落/型違い/束縛違いはusableにならず、対象と理由を残す。未見profileも同じ登録・型・束縛で照合し、名前から補完しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 186,
+      "raw_lf_sha256": "73f44228e0814f5c2fec2b004fea0167dc7813b37f15531efe6195362e219099",
+      "literal": "- `CONNECT-AC-008-02`：descriptorの存在・読出しからauthorization/probe起動/tool実行/実安全性/実行資格を生成せず、raw secret/credentialを含めない。安全判定はSECURITY、業務probe意味は元機構に残る。034の別policy oracleや採択を必須とせず、供給と実行を分離する。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 187,
+      "raw_lf_sha256": "c0224cf6905a5277be650e70fa52af588f66c60d349fcbb79f9bafdd53b96323",
+      "literal": "- `CONNECT-AC-008-03`：契約revision変更後はstaleで再照合し、正しい新revision組だけ再検証する。不備はprofile提供元、policy/safety不明・拒否はSECURITYへ区別して返し、無関係なprofileは維持する。証拠なしはunknownでpassにしない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 188,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 189,
+      "raw_lf_sha256": "3133f79e141aeaf73e9eb1dac66a943db3f1b431d3d4be99b79e1d2a1c43f383",
+      "literal": "**旧HELIX項目対応**：旧v1.3 HYB-002 `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:286`（asset `LEGACY-ASSET-02319C2481B9E01698D5`、full SHA `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）とbaseline `docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:271`（full SHA `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`）のS01列挙/設定、S02typed safety/read-only供給、S04未登録拒否、各2revision計6atomを意味再導出する。旧同じ行のS03/S05/S06 credential/egress/tool capability安全判定はSECURITY側に残し、CONNECTへ移さない。旧source holding2件は保持しHYB-002全体のclosureを主張しない。旧固定runtime/schemaや実probe実行は置換し、今回の宣言descriptorと静的oracleへ分ける。変更理由は固定親の供給/安全owner分離と操作境界である。対consumerは同じ旧行のHR-AC-HYB-002の未登録拒否だけを008へ再導出し、secret要求/write可能probeの安全判定を供給の合格証拠に移さない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 190,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 191,
+      "raw_lf_sha256": "3cea02aaf8dbc2bd08e5111d5d6792f4e1ae9a76aada6709bd00529b8ed8d635",
+      "literal": "### CONNECT-FR-009-01 — direction/order属性とtyped feedback edge"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 192,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 193,
+      "raw_lf_sha256": "1fe58149592b839ad0a4875eebf39a154e8f177062abd6831740c8905d271b56",
+      "literal": "入力はL2-001の接続identity・方向・両端契約、L2-002のrevision照合、L2-005の因果traceであり、再送/loop時にL2-004の既存再送契約、構成体時にL2-007を照合する。適用しないloop/join/feedback条件を初回辺の必須入力にしない。各操作に必要なscope/authorityを既存契約で照合し、direction、必要時のserial/parallel属性、feedbackのsource connection/operation・target connection/owner・reasonまたは根拠参照・correlation/operation lineage・contract revision・停止/再開状態を返す。directionは既存identityの属性を明確化し、別の接続種や送信許可を作らない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 194,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 195,
+      "raw_lf_sha256": "53165a166d352110e4c48fb90291249541c2d86f8587dc134f6cf77b4aadd8a9",
+      "literal": "`one_way`は宣言一方向だけ。逆送信には独立した逆方向connection/directionとそのoperationの既存SECURITY scope/authorityが必要。`paired_bidirectional`は二方向を別識別し、両方向のendpoint contract/scope/operation-time authorityを個別照合する。登録・受信・ACK・feedback eventから逆方向許可を推論しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 196,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 197,
+      "raw_lf_sha256": "338dec8b6a8e1695af915b7fdab8754d9450c36bcbc92806a33923405d69a40f",
+      "literal": "serialは宣言順と先行結果/契約条件を保持する。parallelは独立identity/scope/contract/operation/resultを持つ辺と宣言join条件で構成し、join全条件成立までcompositeを完了しない。順序・依存・join不足はunknown/unfinishedで、HARNESS/OSのworkflow/ticket計画を代替しない。feedbackは新たな一方向typed edgeであり、自由文だけでrelation成立・finding解決にしない。edge記録/伝送は受領・解決・承認・task完了を生成しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 198,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 199,
+      "raw_lf_sha256": "520de9c49b18ab61ab3f4b94425e3b398976e45450afa55e94928fd5c8ac7661",
+      "literal": "bounded loopはforward/feedback辺と既存ownerのretry/budget/stop policy参照・期限・終端routeを持つ。上限値を新設せず既存適用契約から読む。終了条件、policy、累積attempt、期限、operation identityの欠落/unknown/staleでは開始/継続せず、session交換で累積上限をresetしない。上限到達で既存ownerへ未完・理由・累積試行を返す。方向、辺順序、operation/attempt、revision、endpoint receipt、停止/終端は一つの因果traceで辿る。部分成功/ACKなし/互換stale/authority unknown/join不成立を全体成功にしない。CONNECTは送信/逆送信許可、業務解決、要求採択、ticket発行、budget policy、feedback内容判断を生成しない。traceにraw secret/credential/不要payloadを複製しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 200,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 201,
+      "raw_lf_sha256": "1212e8255787fa904fc1d74df0ba02d15719768168c0d2cd3b1b84fe34f5fd92",
+      "literal": "- `CONNECT-AC-009-01`：片方向は登録方向のみ。feedback未送信を保持し、逆送信は独立connectionと適用authority成立時だけ可能。双方向は二方向を個別確認する。初回送信のendpoint/connection identity/revision/authority不足は当該辺をeligibleにせずmissing inputと該当endpoint/contract/authority ownerを記録する。feedback reason/loop policy/join/ACK不足だけで独立適格な初回辺を止めない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 202,
+      "raw_lf_sha256": "9c96c258e5eba3e81e61f595824bd0e1ed2f0d1af8c1953e58e7af2c76d3f16e",
+      "literal": "- `CONNECT-AC-009-02`：serialの宣言順・先行必要結果を保持し、parallelの独立辺を個別追跡する。join不足はjoin/composite完了だけ保留し、適格な各辺を一括停止しない。順序/依存を推測せず該当構成体/contract ownerへ返す。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 203,
+      "raw_lf_sha256": "98eb18a46c3f1ec8ac7c45a49bf6b3ce730a4ec770859d6a2b2b3c6c4279955b",
+      "literal": "- `CONNECT-AC-009-03`：typed feedbackは全束縛を持ち、記録/伝送と受領/解決/承認/完了を区別する。reason/source/target/revision/独立逆connection/適用authority不足はfeedback送信だけ保留し未送信relation・missing input・該当ownerを記録する。初回送信不成立や解決済みに読み替えない。自由文をtyped relationやresolvedへ変換しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 204,
+      "raw_lf_sha256": "096b2c1609205b6e3c8a4b4c0a98a54a5986f92ad4c307a35e43a5e2b37cd1fd",
+      "literal": "- `CONNECT-AC-009-04`：既存retry上限/budget/期限/termination policy/終端owner/累積attempt/operation identityを照合し、欠落・unknown・stale・conflictでは追加retryを行わず未解決で保留する。適格だった初回辺を遡って不成立にしない。session交換でresetせず上限到達時OS-040等の既存適用ownerへ未完・理由・累積attemptを返す。新上限・budget policy・解決条件を作らない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 205,
+      "raw_lf_sha256": "7184bb4bdf4ac5acd67a9bdf188f0eba0eb5383f49481889eea0bd9548c5c002",
+      "literal": "- `CONNECT-AC-009-05`：ACK未着またはoperation/connection identity/revisionとの対応不足はattemptをACK待ちで保持し、受領/operation完了/composite完了を成立させずmissing inputと確認先ownerを記録する。因果traceの方向/辺順序/forward-feedback/attempt/revision/endpoint receipt/停止終端が追跡可能で、部分成功を全体成功にしない。技術eventから業務解決・要求採択・ticket発行・許可・budgetを生成せずraw secret/credential/不要payloadをtraceへ複製しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 206,
+      "raw_lf_sha256": "3fff7747c069c339138438353c222a51601c6b616125a34e3d1d40e9a86fc8e9",
+      "literal": "- `CONNECT-AC-009-06`：未見の同契約内辺・revision・topologyでも上記操作別oracleを適用する。契約不明や宣言外はunknown/unfinishedのまま該当ownerへ戻し外挿しない。endpoint/contract/authority/順序/feedback/policy変更は既存L2-002の再照合へ戻し、新revisionだけで旧未完や累積試行を消さない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 207,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "physical_line": 208,
+      "raw_lf_sha256": "923da16112bda98ea826a1470a37a76275b392d06ec8deed71da4ad10bf865e2",
+      "literal": "**旧HELIX項目対応**：CONNECT固有typed relationの旧一致定義はL2:295とcoverage receiptの限定検索では未発見。新規type構成はPO採択登録002を起点に再導出し、旧sourceの不在を承認と読み替えない。旧UWJ-FR-006 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:50`（asset `LEGACY-ASSET-5EE032D657C221184B00`）のreturn/continue/stop/上限/terminal/再開はloop形状の隣接比較、旧HIL-NFR-04 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184`（asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）の停止理由/checkpointは既存owner参照へ意味再導出する。旧MIC-R-02とflow `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:66,132`（asset `LEGACY-ASSET-23D3D9769B093AFDCC25`）のserial後base再照合は隣接failure形状だけを保持し、TL/DB/CI運用をCONNECTへ移さない。旧HIL-BR-25同L1:77の上下/左右pair双方向は層の関係であり、機構間方向・送信authorityの根拠に置換しない。各5旧lineはreference-onlyで直接candidate input0件。旧engineのUWJ-AC-006形状は新L11操作別oracleへ置換し、旧実行/合格を証拠にしない。検索限界はL3-requirements/governance-candidates/L1-requirementsの既存receipt範囲でありarchive全体の不在を主張しない。"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "dc89b8ee7a89cf0570c3f1605ceda1cfc1cc4a957c1ae4db01f51ef19ca3a209",
+      "literal": "## Stage 4 — 008/009の観測基準（候補・未実測）"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "d0fc21985b2f1b4dec1cfd48950785221655094dde414895fc96daeca040351d",
+      "literal": "| 候補ID / AC | 母集団・観測と候補基準 | 根拠・比較境界 |"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+      "literal": "|---|---|---|"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "2a93f4adc47145a6ad020dba86d6296e33f9376c65b4a0f97514ee2ce0b76471",
+      "literal": "| `CON-NFR-008-01` / `CONNECT-AC-008-01` | 宣言catalog内のprofile/revisionと全typed descriptorの束縛不一致・欠落を個別に観測。usableとして返す不正組0件、別profileへの失敗伝播0件を候補基準とする。 | L2:278,282/L11:91,93の不正組拒否と局所失敗。全未知profileの網羅や共通registry技術を主張しない。 |"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "c7dfe1d4da664dbcc52d8656b40e57d50174f877490a0d5ef0dfa76bd3c8dd4d",
+      "literal": "| `CON-NFR-008-02` / `CONNECT-AC-008-02` | descriptor読出しfixtureから生成されるprobe/tool実行・authorizationとraw secret/credential混入を個別に数え、各0を候補基準とする。 | L11:89,91の供給/安全分離。実probe安全達成ではない。 |"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "cfa6941ca1cb01a7e063d45e9aad5f0b96eb252410c358cfad376985627ba163",
+      "literal": "| `CON-NFR-009-01` / `CONNECT-AC-009-04` | 既存適用policyが定める上限の単位・budget・期限・停止/再開条件を入力し、到達前/到達/到達後の追加attemptとsession交代時の累積値を照合。欠落時・上限到達後の追加retry0、reset0を候補基準とする。 | L2:292/L11:97,102。CONNECTは共通回数・期限・budgetを候補値としても新設しない。上限のunit/初回を含むかは元契約の宣言を入力する。 |"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "physical_line": 35,
+      "raw_lf_sha256": "9094b4b65e5e0e4a0a1ec53648a5fd67ad9243cf194f5be16c998d4ba2817492",
+      "literal": "| `CON-NFR-009-02` / `CONNECT-AC-009-01/02/03/05` | 初回/feedback/loop/join/ACKの操作別状態を独立に観測し、missing inputによる範囲外の一括停止0、未成立受領/完了の生成0を候補基準とする。 | 訂正L11:100–104。技術latencyや共通timeout SLAを追加せず、対象操作の保留と他適格操作の維持を比較する。 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "d880efb84abfdff2b2f10574e02d138a2cb00d9aa6fcbac499bd43010165010b",
+      "literal": "## Stage 4 — 008/009"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "aa5039641bf8a7c2722c8be29b50f1216960cf1069d01fbf3d23052d4553d2ae",
+      "literal": "独立business ACを新設せず、L3業務分類を照合する。008のdescriptorからの許可/実行生成、009のedge記録/伝送からの解決/承認/完了生成および技術eventからの業務解決/要求採択/ticket発行を、機能検証の各個別CASEで拒否する。未実行の検証設計であり業務完了を宣言しない。"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 122,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 123,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 124,
+      "raw_lf_sha256": "f7aff93a2a38bf2910a20854bace6aed08f9c0bf4f1e75474f0ca4d38e64ad3b",
+      "literal": "## Stage 4 — 008/009の総合検証設計（未実行）"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 125,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 126,
+      "raw_lf_sha256": "36950a17ef0eea5ac354e92968688d78a6eeb0e6a4dd12a1a1a0d620c3e5a7b8",
+      "literal": "上記Stage 1の承認本文を保持し、採択済み008/009の1.0草稿に対する静的fixture設計を追補する。下表のCASE IDは個別変異を一意に識別し、一つのACに結ぶ。正常入力はL3各FRの全宣言を持ち、変異行は指定fieldだけを変えて他入力を正常に維持する。suffix M/U/S/Cはmissing/unknown/stale/conflictの独立fixtureである。expectedは判定oracleであり実行結果ではない。証拠はfixture ID、対象operation/profile/connection、revision、照合条件、reason、技術状態、未完・戻し先を持つ。実送信・MCP/probe/旧test/runtimeを起動せず、実許可や実安全性達成を生成しない。"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 127,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 128,
+      "raw_lf_sha256": "0a47bef630deb9960ab30592b6a13bfea447768e95bc6ce0f6824e0b527d73ea",
+      "literal": "固定sourceはL3と同じ633bf12 L2/L11、009の訂正後L11登録002を用いる。旧HYB-002のHR-AC（未登録profile拒否）とUWJ loop/停止形状を起点に、現行L11の操作別範囲へ再導出する。旧serial merge/CI/DBや層pairを機構間接続の実証にしない。"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 129,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 130,
+      "raw_lf_sha256": "156f49c62e8a68daf7cf38e1cf823cd7f44d4fd3a3141e7574c13d85f31d1628",
+      "literal": "| CASE ID | L3 AC | 固定親句 | fixture / 独立変異 | 期待oracle | 戻し先 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 131,
+      "raw_lf_sha256": "386dd7132ff82a3235473307d1e9d483ef7e0a9ae30607085abe2edd440cdcf7",
+      "literal": "|---|---|---|---|---|---|"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 132,
+      "raw_lf_sha256": "2fd5eecea0cf89e7face3edec3b0de069e245d24e684ca93d8c83ed53236a93b",
+      "literal": "| `CONNECT-CASE-008-01` | `CONNECT-AC-008-01` | L11:89 | 同profile/revisionの登録・設定型・operation/tool capability・安全/read-only descriptorが揃う | catalogと全typed descriptorが同じ組に束縛される。供給だけ | CONNECT供給 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 133,
+      "raw_lf_sha256": "a1b082c1f54e52499f94671652b7a6ba15f9872f65779a9ec6f0f2c948e9199f",
+      "literal": "| `CONNECT-CASE-008-02` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未登録profileだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 134,
+      "raw_lf_sha256": "017423c2a3416381d69932680393849a3172c2b184b8b82afce289325a143678",
+      "literal": "| `CONNECT-CASE-008-03` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未知profileだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 135,
+      "raw_lf_sha256": "aacb3a726ad536b314c707722eaa8dc1cc5f43b39a909ca59d9df9e8ade5c09a",
+      "literal": "| `CONNECT-CASE-008-04` | `CONNECT-AC-008-01` | L2:278/L11:91 | 同identityの競合宣言だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 136,
+      "raw_lf_sha256": "4b9862687d6196deb69a59e29971433fcbe557e06fc15d95e45e612a6a225793",
+      "literal": "| `CONNECT-CASE-008-05` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未登録revisionだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 137,
+      "raw_lf_sha256": "9efa78dcfa6951fcce71a4fc03a6437faaead2c66e07194cf8e818b654c959cd",
+      "literal": "| `CONNECT-CASE-008-06` | `CONNECT-AC-008-01` | L2:278/L11:91 | 誤った設定型だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 138,
+      "raw_lf_sha256": "292e5f1e8a2ea6d755f3592291e34447e1d2243e1b58a8c3b00962abf4a37bfb",
+      "literal": "| `CONNECT-CASE-008-07` | `CONNECT-AC-008-01` | L2:278/L11:91 | operation/tool descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 139,
+      "raw_lf_sha256": "4acb8cd08bbdbb07de38ad830ea58da151412b10e8018d73fc91deee3482e023",
+      "literal": "| `CONNECT-CASE-008-08` | `CONNECT-AC-008-01` | L2:278/L11:91 | operation/tool descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 140,
+      "raw_lf_sha256": "ce61943b72b51d5afec498f22e8b1d50e76a052876ea97814f1f5296374e8d15",
+      "literal": "| `CONNECT-CASE-008-09` | `CONNECT-AC-008-01` | L2:278/L11:91 | 安全descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 141,
+      "raw_lf_sha256": "72748247f9acd673253b080ba4354df11d6d9b76cb8d58c1ba6423b0da1f55f8",
+      "literal": "| `CONNECT-CASE-008-10` | `CONNECT-AC-008-01` | L2:278/L11:91 | 安全descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 142,
+      "raw_lf_sha256": "5d76d8df54bfc78dfe240531b502ad34214dd02864b6954a3db3df066bb2c070",
+      "literal": "| `CONNECT-CASE-008-11` | `CONNECT-AC-008-01` | L2:278/L11:91 | read-only descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 143,
+      "raw_lf_sha256": "f907a01ab336564f0970832ad2e6a78d60ed08177d6333c398ffac4c3fe9d1e0",
+      "literal": "| `CONNECT-CASE-008-12` | `CONNECT-AC-008-01` | L2:278/L11:91 | read-only descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 144,
+      "raw_lf_sha256": "60058b160cb6cd118f31bcd96f65a69736ff973cc5f892f52c8d9badceeac2bd",
+      "literal": "| `CONNECT-CASE-008-13` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別profile束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 145,
+      "raw_lf_sha256": "27a40892380ba6c0908da26cde3cf5f3b9fbf8fd97373b4a92d1788022c5f237",
+      "literal": "| `CONNECT-CASE-008-14` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別revision束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 146,
+      "raw_lf_sha256": "d466facca5cbc851a7d3a29d177fcf7b7ac49ad6e679b9cfe0319abb467eeee3",
+      "literal": "| `CONNECT-CASE-008-15` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからauthorizationを生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 147,
+      "raw_lf_sha256": "2e1b9696995ec4480fb8a9eebf4aed340df6fbcacbc66c88588e1fba74604d3d",
+      "literal": "| `CONNECT-CASE-008-16` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからprobe起動を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 148,
+      "raw_lf_sha256": "e9f1691ad9c325ca488877ce449c2c0735f0f5ad58a8e3329fd7fd7e810d2a51",
+      "literal": "| `CONNECT-CASE-008-17` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからtool実行を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 149,
+      "raw_lf_sha256": "166b5ad756c1d2415ecebb54540389339646da760490d8d0071bf1772bb197fc",
+      "literal": "| `CONNECT-CASE-008-18` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実安全性を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 150,
+      "raw_lf_sha256": "e6d6d430214e215cdc84100ed40b307f1630cebeedd529f50203b7aac524ba42",
+      "literal": "| `CONNECT-CASE-008-19` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実行資格を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 151,
+      "raw_lf_sha256": "707e8b64354599a1e9f69d0ae78a4d6ed2ea28223ee6856fd35c911f48eb7985",
+      "literal": "| `CONNECT-CASE-008-20` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成raw secret markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 152,
+      "raw_lf_sha256": "1cabdbce271e245c0b0506c0d3ddeb5570e666d185d128afbfed482df8868a15",
+      "literal": "| `CONNECT-CASE-008-21` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成credential値 markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 153,
+      "raw_lf_sha256": "251ffb9448ef02b0423f6e4b09077e2c977495d2788685006c50f9e08fc81d4d",
+      "literal": "| `CONNECT-CASE-008-22` | `CONNECT-AC-008-02` | L2:280/L11:91 | 034の別policy oracleまたはその採択を008のpass必須にする | 008供給oracleとして使用しない。SECURITY safetyは既存責務で別照合 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 154,
+      "raw_lf_sha256": "28e764d8145613fab51c554b1b50349690622fc921fc62371a819ec5b555ee95",
+      "literal": "| `CONNECT-CASE-008-23` | `CONNECT-AC-008-03` | L2:278/L11:91 | 登録契約revisionだけを更新、旧descriptorは残す | 当該revisionはstale。再照合前はusable/適格にせず正しい新組だけ解除 | profile提供元/契約owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 155,
+      "raw_lf_sha256": "db58c38aa1485ce5f71e700773a21c40944975d8de91c1eb7cee4740e55f6cac",
+      "literal": "| `CONNECT-CASE-008-24` | `CONNECT-AC-008-03` | L2:282/L11:93 | identity不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 156,
+      "raw_lf_sha256": "ee274c68b3828cd1c6519c7e0944737a55ff39be65cb6d690ce0b16caf433a52",
+      "literal": "| `CONNECT-CASE-008-25` | `CONNECT-AC-008-03` | L2:282/L11:93 | config不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 157,
+      "raw_lf_sha256": "b25953b835ded051251b9e70edac2bdabda7b1104d1e8a77d8c11f0801163ee8",
+      "literal": "| `CONNECT-CASE-008-26` | `CONNECT-AC-008-03` | L2:282/L11:93 | descriptor不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 158,
+      "raw_lf_sha256": "00d91b2d0254180e701621a5952f8bbc19bdabe99c59b7df6c31320e232652d0",
+      "literal": "| `CONNECT-CASE-008-27` | `CONNECT-AC-008-03` | L2:282/L11:93 | policy unknownをprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 159,
+      "raw_lf_sha256": "6be48f9e84f9e145fdad9be9cbc2c0e59c15e8cca4f630008ba3125366df3306",
+      "literal": "| `CONNECT-CASE-008-28` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety unknownをprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 160,
+      "raw_lf_sha256": "ffceade8ca63baf00f4ba7b7fac58902308fffbdfce8568254ed0b45b12e36d5",
+      "literal": "| `CONNECT-CASE-008-29` | `CONNECT-AC-008-03` | L2:282/L11:93 | policy拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 161,
+      "raw_lf_sha256": "84cab5ce0e4c51d34844990b308b24b03274999865d566d405e1035bc7bcf84e",
+      "literal": "| `CONNECT-CASE-008-30` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 162,
+      "raw_lf_sha256": "f15203d0828b252d24bcb32b18612a5a91a42ecf1e00ccfc0558af4a1d5de4be",
+      "literal": "| `CONNECT-CASE-008-31` | `CONNECT-AC-008-03` | L11:93 | 供給証拠が未観測 | unknown、passにしない。実probe/runtimeを要求しない | profile提供元/CONNECT供給owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 163,
+      "raw_lf_sha256": "905d090214b3d8c22e7edff9b3073acc37e538981a7ef79d22efd658e2734d7b",
+      "literal": "| `CONNECT-CASE-008-32` | `CONNECT-AC-008-01` | L2:278/L11:91 | 伏せた新profile名で同契約の正しい登録組／別fixtureで未登録 | 登録組は同oracleで供給、未登録はunknownでusableにせず名前から推定しない | profile提供元 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 164,
+      "raw_lf_sha256": "9f199e4820342be246ac8a9fe38866ea4f9021c16ab80b2e119f7a67b322c6d5",
+      "literal": "| `CONNECT-CASE-009-01` | `CONNECT-AC-009-01` | L11:96 | A→B one_way正常、B→A feedbackは逆connection/許可なし | 初回辺は独立eligible、feedbackは未送信return relationで送信成功にしない | 逆endpoint/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 165,
+      "raw_lf_sha256": "7bcf0f6303f4cbe4454b2ae34c46192ec57a636a490390e163af725e2b1eb35e",
+      "literal": "| `CONNECT-CASE-009-02` | `CONNECT-AC-009-01` | L2:289/L11:96 | 独立逆connection・contract/scope/適用authorityを成立させB→Aを宣言 | 宣言二方向を別識別し各操作を照合。前向きだけの権限を使い回さない | 両endpoint/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 166,
+      "raw_lf_sha256": "952b14d9c085745e0cd7f0b0cae2b47a5883304c96a73d51c72827e86a81ff20",
+      "literal": "| `CONNECT-CASE-009-03` | `CONNECT-AC-009-01` | L2:289/L11:99 | one_way登録だけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 167,
+      "raw_lf_sha256": "f33410ee71ac94b8579d30d44bda11193e12db9eda22862adf197d1aac47405f",
+      "literal": "| `CONNECT-CASE-009-04` | `CONNECT-AC-009-01` | L2:289/L11:99 | 受信だけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 168,
+      "raw_lf_sha256": "1acd25a18555a06a4a7da7be497339de1b78febd78085a65c6fd4c8826eee6fa",
+      "literal": "| `CONNECT-CASE-009-05` | `CONNECT-AC-009-01` | L2:289/L11:99 | ACKだけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 169,
+      "raw_lf_sha256": "3711bdfd31abf8a347ca2633c3dba5691f66a123dc5c273bbfd78c0933f3740d",
+      "literal": "| `CONNECT-CASE-009-06` | `CONNECT-AC-009-01` | L2:289/L11:99 | feedback eventだけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 170,
+      "raw_lf_sha256": "702d15060ccf25ea278bde7653a54c438e0ef5486fba6efaec7147045d46ef06",
+      "literal": "| `CONNECT-CASE-009-07` | `CONNECT-AC-009-01` | L11:99 | paired_bidirectionalの片方向だけauthority確認 | 未確認方向はeligibleにせず両方向照合を要求 | 当該endpoint/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 171,
+      "raw_lf_sha256": "452e0d7d4e9aadb5527d8669f5a47ef7c07a2d115b92a49099de1bf2471f0a29",
+      "literal": "| `CONNECT-CASE-009-08-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 172,
+      "raw_lf_sha256": "4a9648a17c7649fd542d3cf4ca697dcd6a678cda02e37ad1d910ce23da33f918",
+      "literal": "| `CONNECT-CASE-009-08-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 173,
+      "raw_lf_sha256": "b25ab5e5d7cbcc89b269797fff4c29f6a59546df376afd8d7d02a0fe7fd20dbc",
+      "literal": "| `CONNECT-CASE-009-08-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 174,
+      "raw_lf_sha256": "2255efd9cfd8e467365b9e5c78bd567b3c91c73ca1844d99147c004ed901ee05",
+      "literal": "| `CONNECT-CASE-009-08-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 175,
+      "raw_lf_sha256": "9bab56d4f367de90a88d895bca74fb45c4805af7f668b906a035bb18c063dd7d",
+      "literal": "| `CONNECT-CASE-009-09-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 176,
+      "raw_lf_sha256": "dd520b34f900144affd155dd787f4a9bbd51e8281f35733cab6cde17d64c125f",
+      "literal": "| `CONNECT-CASE-009-09-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 177,
+      "raw_lf_sha256": "7f2e3d942f47b5f5a1dea507a2da18d744241b482e514915964d5589a373beff",
+      "literal": "| `CONNECT-CASE-009-09-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 178,
+      "raw_lf_sha256": "d3e3834836818915c57a5fbf509bbf6ff07bd15d5ff78386d7ad963c6ef75301",
+      "literal": "| `CONNECT-CASE-009-09-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 179,
+      "raw_lf_sha256": "aaf95ae47b0faa21ebdf2a01eef9af571b00b16293333ef77a634f6b4d2b5ddc",
+      "literal": "| `CONNECT-CASE-009-10-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 180,
+      "raw_lf_sha256": "660984a9310987b76ceb820fafe056c1bde97a7c340e67bb307b9ac3968ea98f",
+      "literal": "| `CONNECT-CASE-009-10-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 181,
+      "raw_lf_sha256": "b213edd94ecc147c5981f541e159e945d2d5ead53323bb2a9e956da576213f9a",
+      "literal": "| `CONNECT-CASE-009-10-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 182,
+      "raw_lf_sha256": "d69202db14931cef10115aeabbc4c896fb4891cf1e1afa2e9fe6b5e0d3292b0a",
+      "literal": "| `CONNECT-CASE-009-10-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 183,
+      "raw_lf_sha256": "74d6e7f8cbd2e231b8626150081eae537d934d0317b496df36d843cc0c681ba0",
+      "literal": "| `CONNECT-CASE-009-11-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 184,
+      "raw_lf_sha256": "3a5296b26eb4aaee86dc057a4befb8860baa5b20e22a12760ae3e88fa6d32708",
+      "literal": "| `CONNECT-CASE-009-11-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 185,
+      "raw_lf_sha256": "08f56790cf70504e24c3a45430527edf49efde46ed24e77ce4b6ca8ac328c4c5",
+      "literal": "| `CONNECT-CASE-009-11-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 186,
+      "raw_lf_sha256": "f9fbffc815fe10a3674159db112d1fca28c44e1137a8b4f2347465493dade45d",
+      "literal": "| `CONNECT-CASE-009-11-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 187,
+      "raw_lf_sha256": "fd75e4782e2642c397d59ad112ce410f0ac4392141f9856ab7a829e4ccb045d6",
+      "literal": "| `CONNECT-CASE-009-12` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でfeedback reasonだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 188,
+      "raw_lf_sha256": "57da9612172e1cd0e4752929aed1499d051fdcd242065ecb177c393a115e1e30",
+      "literal": "| `CONNECT-CASE-009-13` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でloop policyだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 189,
+      "raw_lf_sha256": "2231852ff4467a2259c0b1af2987958fe98d673f384f72b221eb2acc715cbea7",
+      "literal": "| `CONNECT-CASE-009-14` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でparallel joinだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 190,
+      "raw_lf_sha256": "2b4d58908f9867106bee62b01472035a93d7db9d3e60cd08e3ef10ce7ae8b8af",
+      "literal": "| `CONNECT-CASE-009-15` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でACKだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 191,
+      "raw_lf_sha256": "155f16b1902c40854baddb09655522033f145314853834928572a2a972492db6",
+      "literal": "| `CONNECT-CASE-009-16` | `CONNECT-AC-009-02` | L11:98 | serialで先行必要結果成立後に宣言後続辺 | 宣言順と先行条件成立をtrace。先行未成立を正常にしない | 構成体/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 192,
+      "raw_lf_sha256": "675861aea8f18987f5b7f270c3bde7f819abbf617b3d7ba85e69514c97209864",
+      "literal": "| `CONNECT-CASE-009-17` | `CONNECT-AC-009-02` | L2:290/L11:99 | serial先行必要結果だけ欠落 | 後続辺を実行せずunknown/unfinished、先行結果ownerへ | 先行endpoint/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 193,
+      "raw_lf_sha256": "ed999cdb257b69eef3b4436f9e64ff2826063c55a1fb82afb6cff943291d4e23",
+      "literal": "| `CONNECT-CASE-009-18` | `CONNECT-AC-009-02` | L11:98 | parallel独立辺がそれぞれ成立し宣言join全条件成立 | 独立operation/resultを追跡しjoin成立後だけcomposite完了 | 構成体owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 194,
+      "raw_lf_sha256": "a972f395e3acf984ea3b5f5adfccef3d265294988af2140032bd4764582b6259",
+      "literal": "| `CONNECT-CASE-009-19` | `CONNECT-AC-009-02` | L2:290/L11:99 | execution orderだけ欠落 | 推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない | HARNESS/OS既存contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 195,
+      "raw_lf_sha256": "7e377b31424aa51ce0ab6b8270393f832d1914ddc81c570e50aa57a05eaeeb65",
+      "literal": "| `CONNECT-CASE-009-20` | `CONNECT-AC-009-02` | L2:290/L11:99 | 依存条件だけ欠落 | 推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない | HARNESS/OS既存contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 196,
+      "raw_lf_sha256": "4435344874f982ed6e287571ebf6cbb4a19df310604c1dc9f0cbfc719131f260",
+      "literal": "| `CONNECT-CASE-009-21-M` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけmissing | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 197,
+      "raw_lf_sha256": "1ccfb570fa7082c6e57ce83145aeb26b3b7b38ee09b4dc453785cb5d11f9d143",
+      "literal": "| `CONNECT-CASE-009-21-U` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけunknown | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 198,
+      "raw_lf_sha256": "0c118e61e003eeac0cd67df48c4cf5bd59cdc4f308d16ac1c83a0690a86e2a84",
+      "literal": "| `CONNECT-CASE-009-21-S` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけstale | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 199,
+      "raw_lf_sha256": "47d99d0d28526583dac1f59f555ebf9f894b2a65a004269b87ad8be649a2461f",
+      "literal": "| `CONNECT-CASE-009-21-C` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけconflict | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 200,
+      "raw_lf_sha256": "f2f6d30569eadfabf0927c972e92364ae2a71e0a490a4fdad143497d8b152a52",
+      "literal": "| `CONNECT-CASE-009-22` | `CONNECT-AC-009-02` | L11:99 | 一部辺成功だけでcomposite完了にする | 全体成功へ昇格しない、未完辺とjoin義務を保持 | 構成体owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 201,
+      "raw_lf_sha256": "09ab51e5ea31727749152af816ed4a85909c594009758d41554b79495d81e14e",
+      "literal": "| `CONNECT-CASE-009-23` | `CONNECT-AC-009-03` | L2:291/L11:97 | typed feedback全束縛が同operation lineageへ結ぶ | 一方向relationを記録、受領/解決/承認/task完了は生成しない | feedback target owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 202,
+      "raw_lf_sha256": "28c99a08bae268944c57e5bc2af16c0c159a0b59790d039ce96a50427638af29",
+      "literal": "| `CONNECT-CASE-009-24-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 203,
+      "raw_lf_sha256": "9b2f11daf53242a66e291163a223b5ce9ec045220fc2c158b165597fef9cb566",
+      "literal": "| `CONNECT-CASE-009-24-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 204,
+      "raw_lf_sha256": "d2359ce0d2295c39db915e5bfdbfa684562702dd8bd6b6892134583606503b9a",
+      "literal": "| `CONNECT-CASE-009-24-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 205,
+      "raw_lf_sha256": "3a23155fb116d4269fd238b0e9095fa1e5a54dff0133ae26ef4f397e867b73ac",
+      "literal": "| `CONNECT-CASE-009-24-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 206,
+      "raw_lf_sha256": "b2d13b1deeaa4a02791b731cd0d93cb2cef06d5e93e20bd5561d42e37d3d369c",
+      "literal": "| `CONNECT-CASE-009-25-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 207,
+      "raw_lf_sha256": "6cf06c8d59936f2ac15f415f5f2398d7ddfbd884424edbf96d3387379e1cf20c",
+      "literal": "| `CONNECT-CASE-009-25-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 208,
+      "raw_lf_sha256": "b007983e2402cf4686b25045d8497bca40fa1157ddace6080f826b95885a349e",
+      "literal": "| `CONNECT-CASE-009-25-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 209,
+      "raw_lf_sha256": "9107ca00e7a985d53bd92b1adf1f4d8e919ef706cd07cee3bacd883c261f3b45",
+      "literal": "| `CONNECT-CASE-009-25-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 210,
+      "raw_lf_sha256": "8a5d07b2b1f55df3c92ce0e249474d28a96c894681958fa858caa50f32148b62",
+      "literal": "| `CONNECT-CASE-009-26-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 211,
+      "raw_lf_sha256": "082a3d9b0012e524049f33a446415ba4e696d085353e8db0b4e2be376252f6ae",
+      "literal": "| `CONNECT-CASE-009-26-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 212,
+      "raw_lf_sha256": "1d8de556e06bd8fca2fb010f071acdb929da1ef6d5e22518fd45be1b29a10e6f",
+      "literal": "| `CONNECT-CASE-009-26-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 213,
+      "raw_lf_sha256": "5bd5f5cdb69d1598fc32d44a590999e4dcb72399df4f58b4c0b899826a8dd50d",
+      "literal": "| `CONNECT-CASE-009-26-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 214,
+      "raw_lf_sha256": "f3f30278b2432432951249de097c5b8a5e8c87764cf3bfb2e8a1d00ee86d943e",
+      "literal": "| `CONNECT-CASE-009-27-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 215,
+      "raw_lf_sha256": "84d687895509640a6b542214c5c3bc62ab482f7e4102278ab7cc44db2c8bc4e5",
+      "literal": "| `CONNECT-CASE-009-27-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 216,
+      "raw_lf_sha256": "2ed438f8b613afd467641a3287944ab1e51107fe06b1d5873badc89d42ba4a95",
+      "literal": "| `CONNECT-CASE-009-27-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 217,
+      "raw_lf_sha256": "1c94779cd43b0bd704c546100ff57a2178717a533ffc4c230769e09737cabf44",
+      "literal": "| `CONNECT-CASE-009-27-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 218,
+      "raw_lf_sha256": "fc5b01db7ff7b8d534d803bf399881609f5790032aaeb5af19d5df7ed4455ee1",
+      "literal": "| `CONNECT-CASE-009-28-M` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 219,
+      "raw_lf_sha256": "2780c86701de44703dd138b9af8a89adb73f04c963cbed7cfe4732fcf73fb745",
+      "literal": "| `CONNECT-CASE-009-28-U` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 220,
+      "raw_lf_sha256": "f7ea743db9a31fe703cff63e787653e9f618212ac292375c68983e66b15abbf4",
+      "literal": "| `CONNECT-CASE-009-28-S` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 221,
+      "raw_lf_sha256": "3c7da9bcca10ed0f4a2c63ada1812386ffd566762148566fd22eb8eb76c10ce2",
+      "literal": "| `CONNECT-CASE-009-28-C` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 222,
+      "raw_lf_sha256": "f3245a46ef1015ece8da7903cbb2f4594cb6b66eb648a3b1e164db5d0189e459",
+      "literal": "| `CONNECT-CASE-009-29-M` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 223,
+      "raw_lf_sha256": "973f8155235f071cc603d531107f2e0973392158b73b62b9402e9580e1685285",
+      "literal": "| `CONNECT-CASE-009-29-U` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 224,
+      "raw_lf_sha256": "6c50acfa361e9b72957be57ca5996203fefe0a3239605a4a9295ddfe9022f7a4",
+      "literal": "| `CONNECT-CASE-009-29-S` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 225,
+      "raw_lf_sha256": "c2fa9d64e298702dd46991016f0def6f8880604f56212e3f97dfefdd481723ac",
+      "literal": "| `CONNECT-CASE-009-29-C` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 226,
+      "raw_lf_sha256": "0dc634033d90a609b9469e0fe2f5f1f0820192fcf0b8d2cd59a9afbca7be966b",
+      "literal": "| `CONNECT-CASE-009-30` | `CONNECT-AC-009-03` | L2:291 | correlation/operation lineageだけ欠落 | typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ | feedback contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 227,
+      "raw_lf_sha256": "d519172188365f8b855ee1a133e57dc2d7b632fcb4c4a620760bdc1dfbf51edf",
+      "literal": "| `CONNECT-CASE-009-31` | `CONNECT-AC-009-03` | L2:291 | 停止/再開状態だけ欠落 | typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ | feedback contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 228,
+      "raw_lf_sha256": "0195f71d90db09818f5dedb3437cda7da5de0bb769c6356c3473a99fef345df0",
+      "literal": "| `CONNECT-CASE-009-32` | `CONNECT-AC-009-03` | L2:291/L11:99 | 自由文feedbackだけをtyped edge/resolvedにする | relation成立/解決にしない、findingと未完を保持 | 元finding/target owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 229,
+      "raw_lf_sha256": "573823b3fcf2646c68a2067092c5bf1da6bb85fe02196d1b469dd4c96a17897b",
+      "literal": "| `CONNECT-CASE-009-33` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで受領を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 230,
+      "raw_lf_sha256": "bb400300b44fae61451a52d1c0badd2b861957fb5fce5fe551d5211cf655d249",
+      "literal": "| `CONNECT-CASE-009-34` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで解決を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 231,
+      "raw_lf_sha256": "9d38bb2a05e354943548e0870515e5496c62596bd7baf8a1d1e41bda9e95ba45",
+      "literal": "| `CONNECT-CASE-009-35` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで承認を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 232,
+      "raw_lf_sha256": "3e76cc5833f2e7163d5811fb5694e11607a7bcf51ef25d428129d1e34d01f4c1",
+      "literal": "| `CONNECT-CASE-009-36` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけでtask完了を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 233,
+      "raw_lf_sha256": "49ee1b6f46dbb3dfd2ba8a9fd182562f1fbd0a04ff96fc843e9ed9eba2e3884e",
+      "literal": "| `CONNECT-CASE-009-37` | `CONNECT-AC-009-04` | L11:97 | forward/feedback、既存上限budget/期限/policy/終端owner、累積attemptが揃う | 追加attemptは既存条件内のみ。境界到達で未完・理由・累積試行を返す | OS-040等既存適用owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 234,
+      "raw_lf_sha256": "b17d6b15cccfea8178f164f80272c7959eab82130f470f1cbe3da29c81cbd10a",
+      "literal": "| `CONNECT-CASE-009-38-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 235,
+      "raw_lf_sha256": "34b11cb39f0e90d772a425552c08f8024e9a5dc7884a1075a39c4c57869a3de2",
+      "literal": "| `CONNECT-CASE-009-38-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 236,
+      "raw_lf_sha256": "2a702fc07cbc0c03587e54d81995eaaa056deb5bd09e59e5c25e8b6e7f744920",
+      "literal": "| `CONNECT-CASE-009-38-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 237,
+      "raw_lf_sha256": "db19e9ca381dc98ee9f61e484329f831391781430bfa9fc4aef519725f217bae",
+      "literal": "| `CONNECT-CASE-009-38-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 238,
+      "raw_lf_sha256": "79ea0bc5514c8c1f1bf6cbdab1d74656ff944b9d913617a15f7c7bc7dd30ce42",
+      "literal": "| `CONNECT-CASE-009-39-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 239,
+      "raw_lf_sha256": "11b155e7e0644896260afa3eccfe14477c8f53e6e0021c286bd6faa85c35f803",
+      "literal": "| `CONNECT-CASE-009-39-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 240,
+      "raw_lf_sha256": "1f19e9c43ca048d08f2f90c6d32b5a9779a431a57571c02ffd7f2beac7c5dc9e",
+      "literal": "| `CONNECT-CASE-009-39-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 241,
+      "raw_lf_sha256": "81ba139cdae871f8d309734eb314cadbb38558551ae3e38213f9711787d075c6",
+      "literal": "| `CONNECT-CASE-009-39-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 242,
+      "raw_lf_sha256": "f8bf4aa6a24980a9bede85a10706269b28c868c6499002fb1ff00af3ca59faed",
+      "literal": "| `CONNECT-CASE-009-40-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 243,
+      "raw_lf_sha256": "cd9ec796fcea0ad24ae45f09d6b17c13e121a880da28bc6c84da7c08103377da",
+      "literal": "| `CONNECT-CASE-009-40-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 244,
+      "raw_lf_sha256": "d2ec8e7fc97c033812820a2b4f7b6da55ac0654515963d4168baa7ad97f9115f",
+      "literal": "| `CONNECT-CASE-009-40-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 245,
+      "raw_lf_sha256": "831a8ded69e2653fd176a35e5c72f587fb3a3da2db258b8635064dee2b5918fb",
+      "literal": "| `CONNECT-CASE-009-40-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 246,
+      "raw_lf_sha256": "3b184828f8043d3c42be0c42a9acb857894877a035b12d144b3e634f720ecf52",
+      "literal": "| `CONNECT-CASE-009-41-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 247,
+      "raw_lf_sha256": "b2c88cce20e7a90913dce349c4dcfd76693a3beaf9ca8a6ffb0e8ba86d4081e8",
+      "literal": "| `CONNECT-CASE-009-41-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 248,
+      "raw_lf_sha256": "55d5a65b756420de5d67a7338330e6dc951da19c7093721865079649e20ef9f9",
+      "literal": "| `CONNECT-CASE-009-41-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 249,
+      "raw_lf_sha256": "698bda656f3385667ea38ab6ba4fa4dfbc3a81a4f97d5325b689f0f7e9ef199d",
+      "literal": "| `CONNECT-CASE-009-41-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 250,
+      "raw_lf_sha256": "c5ee4b70410f7d7500d3daea6d780a97644538ebb5241182c4f44156b2741ab6",
+      "literal": "| `CONNECT-CASE-009-42-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 251,
+      "raw_lf_sha256": "78ddaa3a7d2d3467e59744cb00c9029341d88bf4edaf60df8856ac71fec3f4c1",
+      "literal": "| `CONNECT-CASE-009-42-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 252,
+      "raw_lf_sha256": "473a95c1a3c4335794798abaa49cf4cdce3c2286bbe204be1c705d8ce989f76b",
+      "literal": "| `CONNECT-CASE-009-42-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 253,
+      "raw_lf_sha256": "87f528b41ce196b5fba30d5652d464d848ba65ea35f2aa4af1646d62aeef1b8b",
+      "literal": "| `CONNECT-CASE-009-42-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 254,
+      "raw_lf_sha256": "465ac4bbfd02a9c84b4f747aa19d0aaef6095273674b77a1a38b5fcd0a31a925",
+      "literal": "| `CONNECT-CASE-009-43-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 255,
+      "raw_lf_sha256": "ede450a4c145b5b73cdf2545c89a3c0e83ca799f6d388ba144f5d2ea5ecae4d7",
+      "literal": "| `CONNECT-CASE-009-43-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 256,
+      "raw_lf_sha256": "d36cd2d034f22f4bf8958fdbf6b1c3daf92206eff45067e1d2f359f5f4948c6e",
+      "literal": "| `CONNECT-CASE-009-43-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 257,
+      "raw_lf_sha256": "4de8a1cd362517af10e1ac389f7fd1520abf3c736c34492a31a1cc8dce51a493",
+      "literal": "| `CONNECT-CASE-009-43-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 258,
+      "raw_lf_sha256": "a3eac7ab08fd0ae6d39a7b6a2516d5fe097ec333592a97f8b28662cbbbfb2aef",
+      "literal": "| `CONNECT-CASE-009-44-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 259,
+      "raw_lf_sha256": "c30a0920ef398e10ab219a5b429f5d0433b018bbbb11584c203cadf50c24744b",
+      "literal": "| `CONNECT-CASE-009-44-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 260,
+      "raw_lf_sha256": "a131a3598babb1e89e62b83af22f5a4d2c69721c80e3433465f8f0d3651df57c",
+      "literal": "| `CONNECT-CASE-009-44-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 261,
+      "raw_lf_sha256": "2a65a983012157f440f4a82608e661ca484d90a08663fd2ef96cd676e6a7a8a1",
+      "literal": "| `CONNECT-CASE-009-44-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 262,
+      "raw_lf_sha256": "0dc667f4714d54f10eeabf144c3a907d1558e8b4941e2b639e0cf44502cac332",
+      "literal": "| `CONNECT-CASE-009-45` | `CONNECT-AC-009-04` | L2:292/L11:99 | sessionだけ交換して累積attempt/budgetをreset | reset拒否、元operationの累積値を維持 | 既存retry/budget owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 263,
+      "raw_lf_sha256": "444a4540ad642c705b010cd0c03b93fb52ab234e8924f4dd695d751f449b2a6b",
+      "literal": "| `CONNECT-CASE-009-46` | `CONNECT-AC-009-04` | L2:292/L11:97 | 既存上限到達後に追加attempt要求 | 追加retry0、未完・理由・試行数・再開停止状態を既存routeへ | OS-040等既存適用owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 264,
+      "raw_lf_sha256": "9bccb3ca3aea3fc6b2faada8ee608a74a44c482a80eacb6c5c412114d6e266d6",
+      "literal": "| `CONNECT-CASE-009-47` | `CONNECT-AC-009-04` | L2:292 | CONNECTが新retry上限/budget policy/解決条件を発行 | 発行を拒否、既存契約参照に限定 | 既存policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 265,
+      "raw_lf_sha256": "1aec1e61e74042aff63512961a7d44226134ce083f7442bda6926b4a6f40fa2d",
+      "literal": "| `CONNECT-CASE-009-48` | `CONNECT-AC-009-05` | L11:104 | ACK未着 | attemptはACK待ち、受領/operation完了/composite完了は未成立、確認先owner記録 | endpoint ACK owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 266,
+      "raw_lf_sha256": "04a9e6387bd42705af9f1526b2ec5b138d9e73ede865444416d8954d4730cadc",
+      "literal": "| `CONNECT-CASE-009-49-M` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 267,
+      "raw_lf_sha256": "4fb5f0d021a6114c870ef83ab83fcbfd9af98daf94fc2efd5fd088edccc76920",
+      "literal": "| `CONNECT-CASE-009-49-U` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 268,
+      "raw_lf_sha256": "0f851ac6d4e758831c1c3fce9e6d354ac239ed8377178fe809a6803d4e744d48",
+      "literal": "| `CONNECT-CASE-009-49-S` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 269,
+      "raw_lf_sha256": "25654594588c25373cdeab846f53b26e68593779f4c3b07953f855fa0d3bbf66",
+      "literal": "| `CONNECT-CASE-009-49-C` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 270,
+      "raw_lf_sha256": "07794271e9036b931e2f0180737d796e4483231ae3ecf9699d1ca8479ad6b49d",
+      "literal": "| `CONNECT-CASE-009-50-M` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 271,
+      "raw_lf_sha256": "43b04c3ceb87fc174842ae10d8f1a4335ac1413673d33ffabad8d9e9fe6eab96",
+      "literal": "| `CONNECT-CASE-009-50-U` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 272,
+      "raw_lf_sha256": "f04e968ddeb1c3681cc36c45e907ca80ecd4fccd1a862f8c673578d965af8ff7",
+      "literal": "| `CONNECT-CASE-009-50-S` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 273,
+      "raw_lf_sha256": "ee4d00920a18fff2d6f65fecf20e750ddd4c51cdda9e3c2240a9e526c61521b2",
+      "literal": "| `CONNECT-CASE-009-50-C` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 274,
+      "raw_lf_sha256": "0667fe25bd8a65638eabc414d6b08433d9fb8b3ec254d47df8403af14edac96b",
+      "literal": "| `CONNECT-CASE-009-51-M` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 275,
+      "raw_lf_sha256": "75fb511e816fef2b5711693e757cfeeaa4e0a6bb27e99515357650ff7972be8f",
+      "literal": "| `CONNECT-CASE-009-51-U` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 276,
+      "raw_lf_sha256": "85e0b8a48875aa8f8181b1713adee6c56a91319551dc5006201a221ea4a03f0b",
+      "literal": "| `CONNECT-CASE-009-51-S` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 277,
+      "raw_lf_sha256": "fb3ae1f6c975fab12979aa9fd8ce83b2c14d72d0dfde7dcac5c9285782a6db5a",
+      "literal": "| `CONNECT-CASE-009-51-C` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 278,
+      "raw_lf_sha256": "3aac1ed9f13cd9b282ec3c9c413065ca400acc269cdc339667cab827c1357fe6",
+      "literal": "| `CONNECT-CASE-009-52` | `CONNECT-AC-009-05` | L2:293 | 因果traceの方向だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 279,
+      "raw_lf_sha256": "c9e45fb27361705165597c26c34a8b9b074d5408f008de3048c327168b3aca5e",
+      "literal": "| `CONNECT-CASE-009-53` | `CONNECT-AC-009-05` | L2:293 | 因果traceの辺順序だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 280,
+      "raw_lf_sha256": "e11f8e2c0347e3565789943efecd19c06c8be966aa1d6f65edb2974845980fd1",
+      "literal": "| `CONNECT-CASE-009-54` | `CONNECT-AC-009-05` | L2:293 | 因果traceのforward/feedback relationだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 281,
+      "raw_lf_sha256": "afa60e0c9959689b86112fcf000e54e609a34b0efea22e420789177b80eeca58",
+      "literal": "| `CONNECT-CASE-009-55` | `CONNECT-AC-009-05` | L2:293 | 因果traceのoperation/attemptだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 282,
+      "raw_lf_sha256": "5a5a15f64ecb53e17573fb953a1ea571dd05f2a7f292ab40aa6cf4b69f1d7d87",
+      "literal": "| `CONNECT-CASE-009-56` | `CONNECT-AC-009-05` | L2:293 | 因果traceのcontract revisionだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 283,
+      "raw_lf_sha256": "fe609b684e954454a17fdfef72b8cfef8bdae41090648b3382388df359cd7060",
+      "literal": "| `CONNECT-CASE-009-57` | `CONNECT-AC-009-05` | L2:293 | 因果traceのendpoint receiptだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 284,
+      "raw_lf_sha256": "4ab735cb5b74d16dd7f71317f984927eccadcd11f29df02b235d5b471a663baa",
+      "literal": "| `CONNECT-CASE-009-58` | `CONNECT-AC-009-05` | L2:293 | 因果traceの停止/終端状態だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 285,
+      "raw_lf_sha256": "1e115f45ea5c1e08b0f62c1f0560822a1094de06d8327fdfd2957fd09001f346",
+      "literal": "| `CONNECT-CASE-009-59` | `CONNECT-AC-009-05` | L2:293 | 既存traceに辺部分成功だけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 286,
+      "raw_lf_sha256": "38d1818ee1b20cf605c685603600e0ae8b71f6c00199b85d9c459a71836ed73c",
+      "literal": "| `CONNECT-CASE-009-60` | `CONNECT-AC-009-05` | L2:293 | 既存traceに互換staleだけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 287,
+      "raw_lf_sha256": "e052bcac88e23db578ed070cfe5ed66b9507367c5c75ac07ac68a7834755be7f",
+      "literal": "| `CONNECT-CASE-009-61` | `CONNECT-AC-009-05` | L2:293 | 既存traceにauthority unknownだけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 288,
+      "raw_lf_sha256": "0b074d409da4472c0614a4c1240acc3c4f81f2cc5b13925d83cb9d567f810b59",
+      "literal": "| `CONNECT-CASE-009-62` | `CONNECT-AC-009-05` | L2:293 | 既存traceにjoin不成立だけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 289,
+      "raw_lf_sha256": "c8d8b69ef20d91c14e963be5c5b231ecf2e97b85ecdff646ef3c93cc928c0feb",
+      "literal": "| `CONNECT-CASE-009-63` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけから業務解決を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 290,
+      "raw_lf_sha256": "7387936d903ad6b5f1e937a96657b0b8cfa1d81b74671cf3df13907a1d009d89",
+      "literal": "| `CONNECT-CASE-009-64` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけから要求採択を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 291,
+      "raw_lf_sha256": "939809059e345e8314312498b8f7561bd8947c83865835a7c150b39b9ca9b648",
+      "literal": "| `CONNECT-CASE-009-65` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからticket発行を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 292,
+      "raw_lf_sha256": "0ab30466f45604ccd57987c87421eac8c1858e96d5926e6f073503ee7ed66613",
+      "literal": "| `CONNECT-CASE-009-66` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからbudget policyを生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 293,
+      "raw_lf_sha256": "216294019bc1bbc36a2154279a94fbe751316f74951cd2e9c0bb6909bbbbe3c6",
+      "literal": "| `CONNECT-CASE-009-67` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからfeedback内容判断を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 294,
+      "raw_lf_sha256": "024da5c46d368634d8f6b8029fac9af6e3966027f0e90083dec6e78fd7f8ff0d",
+      "literal": "| `CONNECT-CASE-009-68` | `CONNECT-AC-009-05` | L2:294 | 合成raw secret markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 295,
+      "raw_lf_sha256": "ac97733563bb5f4b28b92b8233b2a9c34e4ac5f7c6131b0a8b6294abeaf4ea71",
+      "literal": "| `CONNECT-CASE-009-69` | `CONNECT-AC-009-05` | L2:294 | 合成credential markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 296,
+      "raw_lf_sha256": "2c1d46eb07dcbb30ce3664bc8dcb7bcfaad1bbabfd3466460a82f7798f9cea52",
+      "literal": "| `CONNECT-CASE-009-70` | `CONNECT-AC-009-05` | L2:294 | 合成不要payload markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 297,
+      "raw_lf_sha256": "09d99c0ed2da01811880fbfb8c4d2e84c5c6cbac526df811a474bb9af05dfc2e",
+      "literal": "| `CONNECT-CASE-009-71` | `CONNECT-AC-009-06` | L2:290,294/L11:100–104 | 伏せた同scope新endpoint/topologyで宣言契約成立／別fixtureは宣言外 | 成立範囲は同操作別oracle、宣言外はunknownで外挿しない | 該当endpoint/contract owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 298,
+      "raw_lf_sha256": "dd8ab058eace6d04bcfbedbd10f83d204d714956f06dc05543b6257d8c553a9c",
+      "literal": "| `CONNECT-CASE-009-72` | `CONNECT-AC-009-06` | L2:287,294 | endpointだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 299,
+      "raw_lf_sha256": "82ff76714afbc7dd96add4bf175f960786357111e5bff1d8b9246701ad517cb8",
+      "literal": "| `CONNECT-CASE-009-73` | `CONNECT-AC-009-06` | L2:287,294 | contract revisionだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 300,
+      "raw_lf_sha256": "5e44730caf6a0440ff7412556f1a559cc7c9d0ec49fa86c8d5908955db76168c",
+      "literal": "| `CONNECT-CASE-009-74` | `CONNECT-AC-009-06` | L2:287,294 | authorityだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 301,
+      "raw_lf_sha256": "484d7ad6bea3bcc0d0724a73e317a6ac02ecded7c7f2607460fe9b3055791bd4",
+      "literal": "| `CONNECT-CASE-009-75` | `CONNECT-AC-009-06` | L2:287,294 | execution topologyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 302,
+      "raw_lf_sha256": "e8d08378b6655b531952efb8d09d951cbcbc6e714bacd6685603edbee423ecb0",
+      "literal": "| `CONNECT-CASE-009-76` | `CONNECT-AC-009-06` | L2:287,294 | feedback bindingだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "physical_line": 303,
+      "raw_lf_sha256": "fe77cecda0003afd101983da1b5fa76eab9443c99cc933e161b07d8e7c99513f",
+      "literal": "| `CONNECT-CASE-009-77` | `CONNECT-AC-009-06` | L2:287,294 | termination policyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "4c4246ff603a7655bd640b224e84be124a6c95495b4e3be66d32d78a6e793b2e",
+      "literal": "## Stage 4 — 008/009のNFR観測設計（未実行）"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "literal": ""
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "a058f544f6375e26812630a6b5578d76f0eaf619bb7bd4075f74db3fb047963d",
+      "literal": "| 候補ID / L3 AC | 測定fixtureと方法 | 判定境界・戻し先 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea",
+      "literal": "|---|---|---|"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "5a4c10d591b74ff3234124e35dfe65f3cfddf3f70962684c33bd56e648b992af",
+      "literal": "| `CON-NFR-008-01` / `CONNECT-AC-008-01` | L10の008 catalog/欠落/型/束縛CASEでprofile/revision別usable数を数え、別正常profile対照と比較する。 | 不正組usable0・失敗伝播0。理由/対象不明はunknown、profile提供元へ。未見も同組oracleで照合する。 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "c3df1ea8b72e16f620ffab510df0592483dfc9b9f1ac79bfb775e0f8abd241d0",
+      "literal": "| `CON-NFR-008-02` / `CONNECT-AC-008-02` | 008のdescriptor読出しからの各状態生成CASEと合成marker混入CASEを別測定する。 | 各実行/許可生成0・各混入0。CONNECTは安全判定を行わずSECURITYへ返す。値を出力しない。 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "1366799370b4259f609202253fce691b162784be606a6badd5f84872a9c123ba",
+      "literal": "| `CON-NFR-009-01` / `CONNECT-AC-009-04` | 既存policy上限を入力し、到達前/到達/到達後、session交換、各欠落state CASEで追加retryと累積attemptを観測する。policy単位・期限・routeも同revisionに束縛する。 | 欠落/上限到達後の追加retry0・session交換reset0。未完/理由/累積試行をOS-040等の既存適用ownerへ、初回適格性は遡って変えない。技術値を新設しない。 |"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "1af9145ca8164a060ab47997500774547cf2ea524f4159581298f48a55c3af63",
+      "literal": "| `CON-NFR-009-02` / `CONNECT-AC-009-01/02/03/05` | 操作別missing/unknown/stale/conflict CASEで保留範囲と独立適格な対照初回辺を観測し、ACK待ちと完了を区別する。 | 範囲外一括停止0・未成立受領/完了生成0。初回、feedback、loop、join、ACKの該当ownerを別々に記録。未観測は達成でなくunknown。 |"
+    }
+  ],
+  "case_ac_mapping": [
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-01",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L11:89",
+      "fixture": "同profile/revisionの登録・設定型・operation/tool capability・安全/read-only descriptorが揃う",
+      "expect": "catalogと全typed descriptorが同じ組に束縛される。供給だけ",
+      "owner": "CONNECT供給"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-02",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "未登録profileだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-03",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "未知profileだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-04",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "同identityの競合宣言だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-05",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "未登録revisionだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-06",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "誤った設定型だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-07",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "operation/tool descriptor欠落だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-08",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "operation/tool descriptor型違いだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-09",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "安全descriptor欠落だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-10",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "安全descriptor型違いだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-11",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "read-only descriptor欠落だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-12",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "read-only descriptor型違いだけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-13",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "descriptorの別profile束縛だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-14",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "descriptorの別revision束縛だけを正常fixtureへ変異",
+      "expect": "usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-15",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:276,280/L11:89,91",
+      "fixture": "descriptor存在・読出しだけからauthorizationを生成する",
+      "expect": "生成を拒否。descriptor供給状態とSECURITY判定/実行は別",
+      "owner": "SECURITY/元probe意味owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-16",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:276,280/L11:89,91",
+      "fixture": "descriptor存在・読出しだけからprobe起動を生成する",
+      "expect": "生成を拒否。descriptor供給状態とSECURITY判定/実行は別",
+      "owner": "SECURITY/元probe意味owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-17",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:276,280/L11:89,91",
+      "fixture": "descriptor存在・読出しだけからtool実行を生成する",
+      "expect": "生成を拒否。descriptor供給状態とSECURITY判定/実行は別",
+      "owner": "SECURITY/元probe意味owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-18",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:276,280/L11:89,91",
+      "fixture": "descriptor存在・読出しだけから実安全性を生成する",
+      "expect": "生成を拒否。descriptor供給状態とSECURITY判定/実行は別",
+      "owner": "SECURITY/元probe意味owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-19",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:276,280/L11:89,91",
+      "fixture": "descriptor存在・読出しだけから実行資格を生成する",
+      "expect": "生成を拒否。descriptor供給状態とSECURITY判定/実行は別",
+      "owner": "SECURITY/元probe意味owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-20",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L11:89",
+      "fixture": "descriptorへ合成raw secret markerを混入",
+      "expect": "不合格、値を証拠へ出さず元入力のownerへ返す",
+      "owner": "profile提供元/SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-21",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L11:89",
+      "fixture": "descriptorへ合成credential値 markerを混入",
+      "expect": "不合格、値を証拠へ出さず元入力のownerへ返す",
+      "owner": "profile提供元/SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-22",
+      "ac": "CONNECT-AC-008-02",
+      "source": "L2:280/L11:91",
+      "fixture": "034の別policy oracleまたはその採択を008のpass必須にする",
+      "expect": "008供給oracleとして使用しない。SECURITY safetyは既存責務で別照合",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-23",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:278/L11:91",
+      "fixture": "登録契約revisionだけを更新、旧descriptorは残す",
+      "expect": "当該revisionはstale。再照合前はusable/適格にせず正しい新組だけ解除",
+      "owner": "profile提供元/契約owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-24",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "identity不正をprofile Aへ入力、Bは正常",
+      "expect": "Aは理由付き不成立で提供元へ、無関係B状態は維持",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-25",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "config不正をprofile Aへ入力、Bは正常",
+      "expect": "Aは理由付き不成立で提供元へ、無関係B状態は維持",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-26",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "descriptor不正をprofile Aへ入力、Bは正常",
+      "expect": "Aは理由付き不成立で提供元へ、無関係B状態は維持",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-27",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "policy unknownをprofile Aへ入力、Bは正常",
+      "expect": "SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-28",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "safety unknownをprofile Aへ入力、Bは正常",
+      "expect": "SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-29",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "policy拒否をprofile Aへ入力、Bは正常",
+      "expect": "SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-30",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L2:282/L11:93",
+      "fixture": "safety拒否をprofile Aへ入力、Bは正常",
+      "expect": "SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-31",
+      "ac": "CONNECT-AC-008-03",
+      "source": "L11:93",
+      "fixture": "供給証拠が未観測",
+      "expect": "unknown、passにしない。実probe/runtimeを要求しない",
+      "owner": "profile提供元/CONNECT供給owner"
+    },
+    {
+      "parent": "008",
+      "case": "CONNECT-CASE-008-32",
+      "ac": "CONNECT-AC-008-01",
+      "source": "L2:278/L11:91",
+      "fixture": "伏せた新profile名で同契約の正しい登録組／別fixtureで未登録",
+      "expect": "登録組は同oracleで供給、未登録はunknownでusableにせず名前から推定しない",
+      "owner": "profile提供元"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-01",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:96",
+      "fixture": "A→B one_way正常、B→A feedbackは逆connection/許可なし",
+      "expect": "初回辺は独立eligible、feedbackは未送信return relationで送信成功にしない",
+      "owner": "逆endpoint/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-02",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L2:289/L11:96",
+      "fixture": "独立逆connection・contract/scope/適用authorityを成立させB→Aを宣言",
+      "expect": "宣言二方向を別識別し各操作を照合。前向きだけの権限を使い回さない",
+      "owner": "両endpoint/SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-03",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L2:289/L11:99",
+      "fixture": "one_way登録だけから逆送信許可を生成",
+      "expect": "逆送信不可。初回辺の独立適格性は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-04",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L2:289/L11:99",
+      "fixture": "受信だけから逆送信許可を生成",
+      "expect": "逆送信不可。初回辺の独立適格性は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-05",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L2:289/L11:99",
+      "fixture": "ACKだけから逆送信許可を生成",
+      "expect": "逆送信不可。初回辺の独立適格性は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-06",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L2:289/L11:99",
+      "fixture": "feedback eventだけから逆送信許可を生成",
+      "expect": "逆送信不可。初回辺の独立適格性は維持",
+      "owner": "SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-07",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:99",
+      "fixture": "paired_bidirectionalの片方向だけauthority確認",
+      "expect": "未確認方向はeligibleにせず両方向照合を要求",
+      "owner": "当該endpoint/SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-08-M",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のendpointだけをmissingにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-08-U",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のendpointだけをunknownにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-08-S",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のendpointだけをstaleにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-08-C",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のendpointだけをconflictにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-09-M",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のconnection identityだけをmissingにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-09-U",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のconnection identityだけをunknownにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-09-S",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のconnection identityだけをstaleにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-09-C",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺のconnection identityだけをconflictにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-10-M",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の契約revisionだけをmissingにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-10-U",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の契約revisionだけをunknownにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-10-S",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の契約revisionだけをstaleにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-10-C",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の契約revisionだけをconflictにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-11-M",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の適用authorityだけをmissingにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-11-U",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の適用authorityだけをunknownにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-11-S",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の適用authorityだけをstaleにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-11-C",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "初回辺の適用authorityだけをconflictにする",
+      "expect": "当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない",
+      "owner": "endpoint/contract/authorityの当該owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-12",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "独立適格な初回辺でfeedback reasonだけ欠落",
+      "expect": "初回送信を止めず対応する後続操作だけ保留",
+      "owner": "当該feedback/policy/join/ACK owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-13",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "独立適格な初回辺でloop policyだけ欠落",
+      "expect": "初回送信を止めず対応する後続操作だけ保留",
+      "owner": "当該feedback/policy/join/ACK owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-14",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "独立適格な初回辺でparallel joinだけ欠落",
+      "expect": "初回送信を止めず対応する後続操作だけ保留",
+      "owner": "当該feedback/policy/join/ACK owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-15",
+      "ac": "CONNECT-AC-009-01",
+      "source": "L11:100",
+      "fixture": "独立適格な初回辺でACKだけ欠落",
+      "expect": "初回送信を止めず対応する後続操作だけ保留",
+      "owner": "当該feedback/policy/join/ACK owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-16",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:98",
+      "fixture": "serialで先行必要結果成立後に宣言後続辺",
+      "expect": "宣言順と先行条件成立をtrace。先行未成立を正常にしない",
+      "owner": "構成体/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-17",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L2:290/L11:99",
+      "fixture": "serial先行必要結果だけ欠落",
+      "expect": "後続辺を実行せずunknown/unfinished、先行結果ownerへ",
+      "owner": "先行endpoint/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-18",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:98",
+      "fixture": "parallel独立辺がそれぞれ成立し宣言join全条件成立",
+      "expect": "独立operation/resultを追跡しjoin成立後だけcomposite完了",
+      "owner": "構成体owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-19",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L2:290/L11:99",
+      "fixture": "execution orderだけ欠落",
+      "expect": "推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない",
+      "owner": "HARNESS/OS既存contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-20",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L2:290/L11:99",
+      "fixture": "依存条件だけ欠落",
+      "expect": "推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない",
+      "owner": "HARNESS/OS既存contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-21-M",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:103",
+      "fixture": "parallel joinだけmissing",
+      "expect": "join/composite完了だけ保留。各適格辺は独立に送信可能",
+      "owner": "構成体/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-21-U",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:103",
+      "fixture": "parallel joinだけunknown",
+      "expect": "join/composite完了だけ保留。各適格辺は独立に送信可能",
+      "owner": "構成体/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-21-S",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:103",
+      "fixture": "parallel joinだけstale",
+      "expect": "join/composite完了だけ保留。各適格辺は独立に送信可能",
+      "owner": "構成体/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-21-C",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:103",
+      "fixture": "parallel joinだけconflict",
+      "expect": "join/composite完了だけ保留。各適格辺は独立に送信可能",
+      "owner": "構成体/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-22",
+      "ac": "CONNECT-AC-009-02",
+      "source": "L11:99",
+      "fixture": "一部辺成功だけでcomposite完了にする",
+      "expect": "全体成功へ昇格しない、未完辺とjoin義務を保持",
+      "owner": "構成体owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-23",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291/L11:97",
+      "fixture": "typed feedback全束縛が同operation lineageへ結ぶ",
+      "expect": "一方向relationを記録、受領/解決/承認/task完了は生成しない",
+      "owner": "feedback target owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-24-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのreasonだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-24-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのreasonだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-24-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのreasonだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-24-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのreasonだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-25-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのsource connection/operationだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-25-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのsource connection/operationだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-25-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのsource connection/operationだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-25-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのsource connection/operationだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-26-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのtarget connection/ownerだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-26-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのtarget connection/ownerだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-26-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのtarget connection/ownerだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-26-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのtarget connection/ownerだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-27-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのcontract revisionだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-27-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのcontract revisionだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-27-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのcontract revisionだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-27-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackのcontract revisionだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-28-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの独立逆connectionだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-28-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの独立逆connectionだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-28-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの独立逆connectionだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-28-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの独立逆connectionだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-29-M",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの適用authorityだけmissing",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-29-U",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの適用authorityだけunknown",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-29-S",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの適用authorityだけstale",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-29-C",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L11:101",
+      "fixture": "feedbackの適用authorityだけconflict",
+      "expect": "feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない",
+      "owner": "fieldに対応するendpoint/contract/authority owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-30",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "correlation/operation lineageだけ欠落",
+      "expect": "typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ",
+      "owner": "feedback contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-31",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "停止/再開状態だけ欠落",
+      "expect": "typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ",
+      "owner": "feedback contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-32",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291/L11:99",
+      "fixture": "自由文feedbackだけをtyped edge/resolvedにする",
+      "expect": "relation成立/解決にしない、findingと未完を保持",
+      "owner": "元finding/target owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-33",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "edge記録/伝送だけで受領を生成",
+      "expect": "状態生成を拒否。技術伝送とownerの判定を分離",
+      "owner": "当該状態owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-34",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "edge記録/伝送だけで解決を生成",
+      "expect": "状態生成を拒否。技術伝送とownerの判定を分離",
+      "owner": "当該状態owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-35",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "edge記録/伝送だけで承認を生成",
+      "expect": "状態生成を拒否。技術伝送とownerの判定を分離",
+      "owner": "当該状態owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-36",
+      "ac": "CONNECT-AC-009-03",
+      "source": "L2:291",
+      "fixture": "edge記録/伝送だけでtask完了を生成",
+      "expect": "状態生成を拒否。技術伝送とownerの判定を分離",
+      "owner": "当該状態owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-37",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L11:97",
+      "fixture": "forward/feedback、既存上限budget/期限/policy/終端owner、累積attemptが揃う",
+      "expect": "追加attemptは既存条件内のみ。境界到達で未完・理由・累積試行を返す",
+      "owner": "OS-040等既存適用owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-38-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのretry上限だけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-38-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのretry上限だけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-38-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのretry上限だけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-38-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのretry上限だけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-39-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのbudgetだけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-39-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのbudgetだけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-39-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのbudgetだけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-39-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのbudgetだけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-40-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの期限だけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-40-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの期限だけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-40-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの期限だけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-40-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの期限だけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-41-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのtermination policyだけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-41-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのtermination policyだけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-41-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのtermination policyだけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-41-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのtermination policyだけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-42-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの終端ownerだけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-42-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの終端ownerだけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-42-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの終端ownerだけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-42-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの終端ownerだけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-43-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの累積attempt数だけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-43-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの累積attempt数だけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-43-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの累積attempt数だけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-43-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopの累積attempt数だけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-44-M",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのoperation identityだけmissing",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-44-U",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのoperation identityだけunknown",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-44-S",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのoperation identityだけstale",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-44-C",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:102",
+      "fixture": "loopのoperation identityだけconflict",
+      "expect": "追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録",
+      "owner": "既存retry/budget/termination contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-45",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:99",
+      "fixture": "sessionだけ交換して累積attempt/budgetをreset",
+      "expect": "reset拒否、元operationの累積値を維持",
+      "owner": "既存retry/budget owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-46",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292/L11:97",
+      "fixture": "既存上限到達後に追加attempt要求",
+      "expect": "追加retry0、未完・理由・試行数・再開停止状態を既存routeへ",
+      "owner": "OS-040等既存適用owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-47",
+      "ac": "CONNECT-AC-009-04",
+      "source": "L2:292",
+      "fixture": "CONNECTが新retry上限/budget policy/解決条件を発行",
+      "expect": "発行を拒否、既存契約参照に限定",
+      "owner": "既存policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-48",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACK未着",
+      "expect": "attemptはACK待ち、受領/operation完了/composite完了は未成立、確認先owner記録",
+      "owner": "endpoint ACK owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-49-M",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのoperation対応だけmissing",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-49-U",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのoperation対応だけunknown",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-49-S",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのoperation対応だけstale",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-49-C",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのoperation対応だけconflict",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-50-M",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのconnection identity対応だけmissing",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-50-U",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのconnection identity対応だけunknown",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-50-S",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのconnection identity対応だけstale",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-50-C",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKのconnection identity対応だけconflict",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-51-M",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKの契約revision対応だけmissing",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-51-U",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKの契約revision対応だけunknown",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-51-S",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKの契約revision対応だけstale",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-51-C",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L11:104",
+      "fixture": "ACKの契約revision対応だけconflict",
+      "expect": "ACK待ち保持、受領/operation/composite完了は未成立、missing input記録",
+      "owner": "endpoint ACK/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-52",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceの方向だけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-53",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceの辺順序だけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-54",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceのforward/feedback relationだけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-55",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceのoperation/attemptだけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-56",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceのcontract revisionだけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-57",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceのendpoint receiptだけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-58",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "因果traceの停止/終端状態だけ欠落",
+      "expect": "一つの因果traceで辿れずunknown/unfinished、全体成功不可",
+      "owner": "該当event/operation owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-59",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "既存traceに辺部分成功だけを与え全体成功へ昇格",
+      "expect": "全体成功にしない、対象未完と観測済み部分結果を保持",
+      "owner": "該当endpoint/contract/authority/composite owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-60",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "既存traceに互換staleだけを与え全体成功へ昇格",
+      "expect": "全体成功にしない、対象未完と観測済み部分結果を保持",
+      "owner": "該当endpoint/contract/authority/composite owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-61",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "既存traceにauthority unknownだけを与え全体成功へ昇格",
+      "expect": "全体成功にしない、対象未完と観測済み部分結果を保持",
+      "owner": "該当endpoint/contract/authority/composite owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-62",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:293",
+      "fixture": "既存traceにjoin不成立だけを与え全体成功へ昇格",
+      "expect": "全体成功にしない、対象未完と観測済み部分結果を保持",
+      "owner": "該当endpoint/contract/authority/composite owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-63",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "技術eventだけから業務解決を生成",
+      "expect": "CONNECTは生成せず元の意味/判断ownerへ戻す",
+      "owner": "各既存owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-64",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "技術eventだけから要求採択を生成",
+      "expect": "CONNECTは生成せず元の意味/判断ownerへ戻す",
+      "owner": "各既存owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-65",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "技術eventだけからticket発行を生成",
+      "expect": "CONNECTは生成せず元の意味/判断ownerへ戻す",
+      "owner": "各既存owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-66",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "技術eventだけからbudget policyを生成",
+      "expect": "CONNECTは生成せず元の意味/判断ownerへ戻す",
+      "owner": "各既存owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-67",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "技術eventだけからfeedback内容判断を生成",
+      "expect": "CONNECTは生成せず元の意味/判断ownerへ戻す",
+      "owner": "各既存owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-68",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "合成raw secret markerをtraceへ複製",
+      "expect": "不合格、値を証拠へ出さず元source/SECURITYへ返す",
+      "owner": "source/SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-69",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "合成credential markerをtraceへ複製",
+      "expect": "不合格、値を証拠へ出さず元source/SECURITYへ返す",
+      "owner": "source/SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-70",
+      "ac": "CONNECT-AC-009-05",
+      "source": "L2:294",
+      "fixture": "合成不要payload markerをtraceへ複製",
+      "expect": "不合格、値を証拠へ出さず元source/SECURITYへ返す",
+      "owner": "source/SECURITY"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-71",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:290,294/L11:100–104",
+      "fixture": "伏せた同scope新endpoint/topologyで宣言契約成立／別fixtureは宣言外",
+      "expect": "成立範囲は同操作別oracle、宣言外はunknownで外挿しない",
+      "owner": "該当endpoint/contract owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-72",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "endpointだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-73",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "contract revisionだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-74",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "authorityだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-75",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "execution topologyだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-76",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "feedback bindingだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    },
+    {
+      "parent": "009",
+      "case": "CONNECT-CASE-009-77",
+      "ac": "CONNECT-AC-009-06",
+      "source": "L2:287,294",
+      "fixture": "termination policyだけ変更して旧receiptを再使用",
+      "expect": "既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない",
+      "owner": "変更したendpoint/contract/authority/policy owner"
+    }
+  ],
+  "counts": {
+    "parents": 2,
+    "functional_AC": 9,
+    "functional_CASE": 172,
+    "legacy_atoms": 11,
+    "fixed_pins": 10,
+    "literal_lines": 248
+  },
+  "old_source_disposition": {
+    "008": "semantic rederive S01/S02/S04 from archive and baseline; SECURITY S03/S05/S06 not moved; source holdings retained",
+    "009": "5 reference-only lines, direct legacy candidate input zero; adopted new relation type rederived from fixed L2/L11; legacy layer bidirectionality and MIC serial merge not CONNECT authority"
+  },
+  "verification": {
+    "six_main_prefixes": "exact bytes",
+    "case_IDs": "unique",
+    "case_ACs": "resolved",
+    "tables": "header width and terminal pipe all matched",
+    "source_sha": "full and raw LF pins verified; legacy original line SHA strips LF and raw LF recorded separately",
+    "static": "validate147/fail0 stale0 residuals0 govcheck/diff-check PASS"
+  },
+  "limits": [
+    "No runtime/test/CI/probe execution or result",
+    "Source receipt historical candidate labels do not override later fixed PO adoption",
+    "Legacy bounded search is not archive-wide absence",
+    "Authoring audit does not produce finding closure or L3 approval"
+  ]
+}
