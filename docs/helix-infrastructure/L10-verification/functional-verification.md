@@ -424,933 +424,690 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-このL10候補はINFRA-011-FR-01 / AC-01..04と対を成す。固定親は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` のL2/L11、Stage5 scopeはregistration `MPR-RC-HELIXINFRASTRUCTURE-L2-011-003`。候補設計であり実行結果ではない。
+対象は `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5。以下は実装・実行・配布を許可しない合成fixture設計候補であり、旧runtime/test/CIは起動しない。各CASEは基準scope `infra-011-stage5-sim`、親source revision `sim-r1` に束縛し、同一CASE内では明示した単独変異だけを適用する。ownerが固定親で特定されない場合はunknown。
 
-### CASE-INFRA-011-S5-001–126 — 18項目×7 variant
+CASE集合: 76件（unit 54、operation 4、recovery 9、connection/composite 9）。
 
-各行は単独fixtureで、当該項目のvariantだけを変える。正常行は同じ契約に適合する未見identity/typeでも、未見名称だけを理由に拒否しない。負例は他入力を正常に固定し、期待拒否/保留と未完義務をsource-qualifiedに確認する。
+#### CASE-INFRA-011-S5-001 — 項目01 資源identity / 正常
 
-#### CASE-INFRA-011-S5-001 — 項目01 資源identity / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5
+- oracle: resource identity/type/role/location/version/dependency/lifecycleをそのsource/revisionで照合し、CORE design参照と同一scopeを記録する。operation permissionや別項目の成立は生成しない。
+- owner/戻し先: resource source ownerは固定親で未特定=unknown。CORE design参照の問題はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
 
 #### CASE-INFRA-011-S5-002 — 項目01 資源identity / missing
 
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-003 — 項目01 資源identity / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-004 — 項目01 資源identity / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-005 — 項目01 資源identity / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-006 — 項目01 資源identity / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-007 — 項目01 資源identity / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目01「資源identity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: resource identity・type・role・source/revision・CORE design identity/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-008 — 項目02 Topology / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-009 — 項目02 Topology / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-010 — 項目02 Topology / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-011 — 項目02 Topology / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-012 — 項目02 Topology / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-013 — 項目02 Topology / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-014 — 項目02 Topology / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目02「Topology」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared topology・dependency・scope・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE topology source owner / CORE design owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-015 — 項目03 Environment / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-016 — 項目03 Environment / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-017 — 項目03 Environment / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-018 — 項目03 Environment / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-019 — 項目03 Environment / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-020 — 項目03 Environment / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-021 — 項目03 Environment / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目03「Environment」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: environment identity・resource mapping・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE environment source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-022 — 項目04 Desired/Actual分離 / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-023 — 項目04 Desired/Actual分離 / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-024 — 項目04 Desired/Actual分離 / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-025 — 項目04 Desired/Actual分離 / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-026 — 項目04 Desired/Actual分離 / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-027 — 項目04 Desired/Actual分離 / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-028 — 項目04 Desired/Actual分離 / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目04「Desired/Actual分離」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: desiredとactualの別identity・revision・scope・source。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE desired/design owner / INFRASTRUCTURE actual resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-029 — 項目05 Drift / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-030 — 項目05 Drift / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-031 — 項目05 Drift / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-032 — 項目05 Drift / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-033 — 項目05 Drift / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-034 — 項目05 Drift / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-035 — 項目05 Drift / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目05「Drift」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: expected/actual comparison input・revision・difference evidence。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; CORE approved expected-state owner / INFRASTRUCTURE actual source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-036 — 項目06 Compute/Network/Storage / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-037 — 項目06 Compute/Network/Storage / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-038 — 項目06 Compute/Network/Storage / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-039 — 項目06 Compute/Network/Storage / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-040 — 項目06 Compute/Network/Storage / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-041 — 項目06 Compute/Network/Storage / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-042 — 項目06 Compute/Network/Storage / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目06「Compute/Network/Storage」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: 適用resource属性・network path・storage state・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE resource/path/storage owner; CONNECT path contract where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-043 — 項目07 Model/Worker Runtime / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-044 — 項目07 Model/Worker Runtime / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-045 — 項目07 Model/Worker Runtime / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-046 — 項目07 Model/Worker Runtime / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-047 — 項目07 Model/Worker Runtime / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-048 — 項目07 Model/Worker Runtime / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-049 — 項目07 Model/Worker Runtime / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目07「Model/Worker Runtime」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime/model/Worker identity・version・resource relationship・source。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime/resource owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-050 — 項目08 Capacity / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-051 — 項目08 Capacity / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-052 — 項目08 Capacity / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-053 — 項目08 Capacity / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-054 — 項目08 Capacity / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-055 — 項目08 Capacity / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-056 — 項目08 Capacity / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目08「Capacity」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: declared capacity・observation・source/revision・decision reference。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE measurement owner / OS or INTELLIGENCE decision owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-057 — 項目09 Observability / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-058 — 項目09 Observability / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-059 — 項目09 Observability / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-060 — 項目09 Observability / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-061 — 項目09 Observability / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-062 — 項目09 Observability / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-063 — 項目09 Observability / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目09「Observability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: observation value or explicit unknown・source/revision・coverage。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; observation source/collector owner; INFRASTRUCTURE state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-064 — 項目10 Incident state / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-065 — 項目10 Incident state / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-066 — 項目10 Incident state / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-067 — 項目10 Incident state / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-068 — 項目10 Incident state / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-069 — 項目10 Incident state / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-070 — 項目10 Incident state / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目10「Incident state」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: approved source classification・incident reference・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; approved incident-meaning owner / INFRASTRUCTURE observation source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-071 — 項目11 Backup/Restore / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-072 — 項目11 Backup/Restore / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-073 — 項目11 Backup/Restore / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-074 — 項目11 Backup/Restore / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-075 — 項目11 Backup/Restore / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-076 — 項目11 Backup/Restore / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-077 — 項目11 Backup/Restore / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目11「Backup/Restore」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: backup artifact and separate actual restore evidence・scope/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; state owner / recovery design owner; INFRASTRUCTURE evidence source owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-078 — 項目12 Rollback / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-079 — 項目12 Rollback / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-080 — 項目12 Rollback / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-081 — 項目12 Rollback / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-082 — 項目12 Rollback / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-083 — 項目12 Rollback / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-084 — 項目12 Rollback / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目12「Rollback」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: eligible rollback target・procedure・result・unfinished duty。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; recovery design owner / OS operation owner where applicable。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-085 — 項目13 Deployment version / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-086 — 項目13 Deployment version / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-087 — 項目13 Deployment version / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-088 — 項目13 Deployment version / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-089 — 項目13 Deployment version / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-090 — 項目13 Deployment version / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-091 — 項目13 Deployment version / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目13「Deployment version」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: runtime revision distinct from OS stage release identity。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE runtime version owner / OS stage identity owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-092 — 項目14 Security connection / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-093 — 項目14 Security connection / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-094 — 項目14 Security connection / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-095 — 項目14 Security connection / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-096 — 項目14 Security connection / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-097 — 項目14 Security connection / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-098 — 項目14 Security connection / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目14「Security connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: separate SECURITY authority reference・condition・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-099 — 項目15 OS connection / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-100 — 項目15 OS connection / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-101 — 項目15 OS connection / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-102 — 項目15 OS connection / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-103 — 項目15 OS connection / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-104 — 項目15 OS connection / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-105 — 項目15 OS connection / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目15「OS connection」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: OS ticket/reference and runtime-state link・source/revision。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; OS work/change owner / INFRASTRUCTURE runtime state owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-106 — 項目16 Runner execution (current Worker) / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-107 — 項目16 Runner execution (current Worker) / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-108 — 項目16 Runner execution (current Worker) / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-109 — 項目16 Runner execution (current Worker) / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-110 — 項目16 Runner execution (current Worker) / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-111 — 項目16 Runner execution (current Worker) / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-112 — 項目16 Runner execution (current Worker) / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目16「Runner execution (current Worker)」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: Worker identity and execution contract / resource mapping / authority refs。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; Worker contract owner / OS work owner / SECURITY authority owner / INFRASTRUCTURE resource owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-113 — 項目17 Bootstrap/Out-of-Band Recovery / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-114 — 項目17 Bootstrap/Out-of-Band Recovery / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-115 — 項目17 Bootstrap/Out-of-Band Recovery / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-116 — 項目17 Bootstrap/Out-of-Band Recovery / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-117 — 項目17 Bootstrap/Out-of-Band Recovery / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-118 — 項目17 Bootstrap/Out-of-Band Recovery / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-119 — 項目17 Bootstrap/Out-of-Band Recovery / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目17「Bootstrap/Out-of-Band Recovery」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: independent path/resource・separate authority・Worker contract・result。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE recovery-path owner / SECURITY authority owner / Worker contract owner。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-120 — 項目18 Rebuildability / normal
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 対象source/current revisionを固定し、項目固有の必要入力を全て提示。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: その項目だけをsource-qualifiedで照合し、他項目の成立へ代用しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-121 — 項目18 Rebuildability / missing
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の必須入力を1つだけ除く。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: 欠落を明示し、その項目を未完として該当ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-122 — 項目18 Rebuildability / unknown
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有の値をunknownにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: unknownを正常/非適用/availableへ昇格しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-123 — 項目18 Rebuildability / unobserved
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 必要な観測結果だけを未観測にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: unobservedをhealthy/成功へ丸めず、観測範囲を残す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-124 — 項目18 Rebuildability / stale
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有source/evidenceを既存のcurrentness条件に対してstaleにする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: staleをcurrentとして採用せず、該当source ownerへ返す。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-125 — 項目18 Rebuildability / mismatch
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目固有identity/revision/scopeの一つだけを不一致にする。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: 不一致を明示し、別revision/環境の証拠で補完しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-#### CASE-INFRA-011-S5-126 — 項目18 Rebuildability / unauthorized
-
-- 親/版: `HELIXINFRASTRUCTURE-L2-011`, 1.0 / Stage 5。対象source/revision/scopeを固定し、項目18「Rebuildability」だけを変異する。他17項目と適用connectionは固定。
-- 入力: 項目の意味/source/state ownerまたは必要な適用authorityを無権限sourceへ置換する。必須evidence: rebuild input inventory・dependency reconnection・startup verification・result。
-- 期待結果: 無権限入力で項目成立・意味変更・操作許可を生成しない。
-- AC / 差戻し: `INFRA-011-AC-01`; INFRASTRUCTURE rebuild/recovery owner; CORE/OS/SECURITY/Worker owners by input。入力・source revision・観測・未完義務を記録し、別項目の成功で補完しない。
-
-### 4 operation-specific oracle — 個別CASE
-
-| CASE | 操作 | 入力と単独判定 | 期待結果 / 戻し先 |
-|---|---|---|---|
-| `CASE-INFRA-011-S5-127` | 通常read-only / no-change | 既存許可範囲内のread-only要求。operation前後のstate/revisionを別記し、operationに適用されないbackup/restore義務をこの操作の前提にしない。 | state不変を確認。要求外のread/write/operationを推定しない。観測不能はunknownとして該当source ownerへ戻す。 |
-| `CASE-INFRA-011-S5-128` | 適用recovery duty付きstate change | state-changing requestと、そのoperationに適用される既存recovery dutyだけを入力する。duty input、実行、結果を別に追跡する。 | 適用dutyが未完/unknownならoperation/compositeを成功にせず未完義務を保持し、recovery design/state ownerへ戻す。無関係なrecovery要件を追加しない。 |
-| `CASE-INFRA-011-S5-129` | 許可済みupdate | L2-010に基づくtarget/action/revision/scope、別SECURITY authority、Worker契約、許可とresultを個別入力する。 | 既存契約で許可されたupdateだけを照合。いずれか欠落/unknown/stale/mismatch/unauthorizedなら拒否しSECURITY/Worker/OS/resourceの該当ownerへ返す。L3候補から許可を生成しない。 |
-| `CASE-INFRA-011-S5-130` | OS停止中independent recovery | OS ticket/assignment/通常L2-009 responseは前提にしない。OS停止中にも利用可能な独立path/resource、別SECURITY authority、SECURITY制約下のWorker契約、recovery action/resultを入力する。再起動後のOS operation/result同期は独立に観測する。 | 停止OS経由を要求せず独立経路を評価する。SECURITY authority/path/Worker欠落は該当ownerへ戻す。OS復帰後syncが欠ければcomposite完了扱いせず未完義務を保持する。ticket不要は他操作のticket/authorityを免除しない。 |
-
-### Recovery/composite境界の固定反例
-
-| CASE | 単独変異 | oracle |
-|---|---|---|
-| `CASE-INFRA-011-S5-131` | backup artifact/job successだけを提示しrestore resultを欠く | backup evidenceと実restoreを別に判定。backupだけではrestore成功にしない。state/recovery ownerへrestore evidence不足を返す。 |
-| `CASE-INFRA-011-S5-132` | backup成功、restore integrity/reconnect/startup/verificationのうち1結果だけ失敗 | restore failureを記録し、成功・rollback完了へ昇格しない。recovery design ownerへ戻し未完を保持する。 |
-| `CASE-INFRA-011-S5-133` | artifact backup/restore成功を保ったままindependent bootstrap/recovery pathを欠落させる | restore successからindependent recoveryを推定せず、L2-006 ownerへpath欠落を戻す。 |
-| `CASE-INFRA-011-S5-134` | restoreとindependent recoveryを保ち、rebuild dependency reconnectionまたはstartup verificationだけ失敗させる | rebuildabilityを別oracleで失敗にし、部分結果と未完義務をrebuild/recovery ownerへ戻す。 |
-| `CASE-INFRA-011-S5-135` | OS ticketを欠く一方でOS停止中の独立recoveryの全契約入力/証拠を提示 | ticket欠落だけでindependent recoveryを拒否しない。OS復帰後のoperation/result syncは別に要求する。 |
-| `CASE-INFRA-011-S5-136` | independent routeのSECURITY authorityを欠落 | route/Worker結果があっても許可された独立recoveryとしない。SECURITY ownerへ戻す。 |
-| `CASE-INFRA-011-S5-137` | recovery resultはあるがOS復帰後同期だけ欠落 | recovery実行結果を保持するがcomposite closureは保留し、OS connection ownerへ未同期義務を戻す。 |
-| `CASE-INFRA-011-S5-138` | stage対象外の通常受入でOS-014 evidenceを要求 | OS-014を通常受入条件にせずscopeを維持。実際にOS Stage releaseへ収載する場合のみ該当収載証拠を別照合。 |
-| `CASE-INFRA-011-S5-139` | WEB顧客runtimeまたは後続version機能を1.0 inputへ追加 | 対象外scopeの追加を拒否し、L2-011 1.0 scopeを保持する。上流意味を変更しない。 |
-
-18項目それぞれの正常/6 variant全CASEは上記001–126で行単位に定義する。全CASEでresultに加えsource/revision、owner、unknown/unfinished state、期待拒否と未実施を区別して記録する。旧CLI、runtime、test、CIは起動しない。
-
-### Connection/composite独立fixture
-
-| CASE | connection | 単独入力とoracle |
-|---|---|---|
-| `CASE-INFRA-011-S5-140` | CORE design | design identity/revision/scope参照を一つずつ欠落/unknown/stale/mismatchにする。CORE connectionだけを保留し、CORE design ownerへ返す。 |
-| `CASE-INFRA-011-S5-141` | OS work/change | OS work referenceを欠落させる。OS connectionを保留するが、OS停止中独立recoveryのCASE-130にticket必須を追加しない。 |
-| `CASE-INFRA-011-S5-142` | SECURITY | separate authorityだけを欠落/unknown/mismatchにする。許可されたconnection/operationとして扱わずSECURITY ownerへ返す。 |
-| `CASE-INFRA-011-S5-143` | Worker | Worker execution contractだけを欠落/unknown/staleにする。resource unit成功だけでWorker connectionを成立させない。 |
-| `CASE-INFRA-011-S5-144` | composite | 18項目すべての必須evidenceと適用connectionを同じ対象scope/revisionへ束縛し、部分成功/未完義務がない正常入力を与える。composite判定を個別unit結果と別に記録する。 |
-
-**CASE-INFRA-011-S5-145**：composite正常入力から項目11のrestore evidenceだけを除く。backup/他17項目/connectionを維持し、compositeを保留してstate/recovery ownerへ返す。
-
-**CASE-INFRA-011-S5-146**：composite正常入力からCORE design revisionだけを不一致にする。unit項目結果を保持しつつCORE connectionとcompositeを保留する。
-
-**CASE-INFRA-011-S5-147**：composite正常入力で項目8 capacity値は観測できるがdecision ownerの判断は未提示にする。観測とOS/INTELLIGENCE採否を分け、INFRASTRUCTUREからcapacity approvalを生成しない。
-
-**CASE-INFRA-011-S5-148**：composite全体の入力・各item result・owner/revision traceが揃っても、外部承認/実行/配布状態は生成しない。L3候補から実装許可やoperation executionを推定しない。
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: resource_idだけを空欄にする（他fieldは固定）
+- 入力: resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5
+- oracle: identity未完として保留し、resource source owner=unknownへ返す。
+- owner/戻し先: resource source ownerは固定親で未特定=unknown。CORE design参照の問題はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-003 — 項目01 資源identity / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: core_design.revisionだけをsim-r6へ変更する
+- 入力: resource_id=api-db-sim-01; type=database; role=api-state; environment=verification-sim; location=zone-sim-a; resource_revision=sim-r17; dependencies=[db-sim]; lifecycle=active-sim; source=infra-catalog-sim; source_revision=sim-r1; core_design=core-infra-sim@sim-r5
+- oracle: 別設計revisionを合成せずCORE design接続を保留する。
+- owner/戻し先: resource source ownerは固定親で未特定=unknown。CORE design参照の問題はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-004 — 項目02 Topology / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1
+- oracle: api→dbの宣言edgeと8 path axesを記録し、入力graph内のdependencyと一致する。
+- owner/戻し先: topology source owner=unknown。宣言設計の不一致はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-005 — 項目02 Topology / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: edge.purposeだけを空欄にする
+- 入力: nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1
+- oracle: 接続目的不明としてtopology照合を保留しsource owner=unknownへ返す。
+- owner/戻し先: topology source owner=unknown。宣言設計の不一致はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-006 — 項目02 Topology / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: edge.destinationだけをcache-simへ変更する
+- 入力: nodes=[api-sim,db-sim]; edge=api-sim→db-sim; source=api; destination=db; protocol=tcp; endpoint=db-sim:sim-port; direction=outbound; purpose=state-read; security_boundary=app-to-data; dependency=db-sim; revision=sim-r1
+- oracle: 宣言graphとの差を1件として報告し、CORE design ownerへ戻す。
+- owner/戻し先: topology source owner=unknown。宣言設計の不一致はCORE design owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-007 — 項目03 Environment / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1
+- oracle: verification resource mappingとdevelopment/staging/production/recoveryの各config/network/credential-scope/data/version/authority参照を分離したまま記録する。credential値は含めない。
+- owner/戻し先: environment/resource mapping source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-008 — 項目03 Environment / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: resource_environment_mappingだけを空欄にする
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1
+- oracle: 所属を推定せずenvironment mappingを未完としてsource owner=unknownへ返す。
+- owner/戻し先: environment/resource mapping source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-009 — 項目03 Environment / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: mapping.environmentだけをproduction-simへ変更する
+- 入力: environment_id=verification-sim; resource_id=api-db-sim-01; mapping=verification-sim/api-db-sim-01; environment_refs={development=dev-sim,verification=verification-sim,staging=staging-sim,production=production-sim,recovery=recovery-sim}; config_refs={verification=cfg-ver-sim,production=cfg-prod-sim}; network_refs={verification=net-ver-sim,production=net-prod-sim}; credential_scope_refs={verification=cred-scope-ver-sim,production=cred-scope-prod-sim}; data_refs={verification=data-ver-sim,production=data-prod-sim}; version_refs={verification=sim-r17,production=sim-r16}; authority_refs={verification=auth-ver-sim,production=auth-prod-sim}; source_revision=sim-r1
+- oracle: verification対象とproduction mappingを混同せず不一致として保留する。
+- owner/戻し先: environment/resource mapping source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-010 — 項目04 Desired/Actual分離 / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1
+- oracle: design/target/actualのrecord identityは別々に保ち、同じ対象resource/scopeへの参照を照合する。actualをdesign承認済み状態へ昇格しない。
+- owner/戻し先: desired side CORE design owner。actual resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-011 — 項目04 Desired/Actual分離 / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: actual.resource_idだけをapi-db-sim-02へ変更する
+- 入力: design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1
+- oracle: desired/actualの別記録を保ち差異を表示。expected-state owner=CORE design owner、actual source owner=unknownへ戻す。
+- owner/戻し先: desired side CORE design owner。actual resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-012 — 項目04 Desired/Actual分離 / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: actual.observationだけをunknownにする
+- 入力: design={record=design-sim@sim-r5,resource=api-db-sim-01,scope=verification-sim}; target={record=target-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; actual={record=actual-sim@sim-r7,resource=api-db-sim-01,scope=verification-sim}; source_revision=sim-r1
+- oracle: unknownから一致・driftなしを結論せず、actual source owner=unknownへ返す。
+- owner/戻し先: desired side CORE design owner。actual resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-013 — 項目05 Drift / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config
+- oracle: expected/actualの各比較fieldを記録し、示されたconfig差分だけをdriftとして返す。capacity採否や自動修正を生成しない。
+- owner/戻し先: expected-state CORE design owner。actual source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-014 — 項目05 Drift / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: actual.config_revisionだけをunknownにする
+- 入力: expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config
+- oracle: drift有無を結論せずunknownを保持しactual source owner=unknownへ返す。
+- owner/戻し先: expected-state CORE design owner。actual source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-015 — 項目05 Drift / stale
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: expected.source_revisionだけをsim-r6へ戻す
+- 入力: expected={version=sim-r7,config=cfg-sim-r7,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; actual={version=sim-r8,config=cfg-sim-r8,network=net-sim-a,permission=perm-sim-a,capacity_ref=capacity-sim-r1,dependencies=[db-sim]}; comparison_source=sim-compare@sim-r1; difference=config
+- oracle: 現行性を推定せず比較を保留しCORE design ownerへ返す。
+- owner/戻し先: expected-state CORE design owner。actual source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-016 — 項目06 Compute/Network/Storage / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1
+- oracle: compute/network/persistent/temporary storageの別属性をsource付きで記録し、永続storageのrecovery refを保持する。
+- owner/戻し先: resource/path/storage source owner=unknown。適用CONNECT path契約は当該CONNECT owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-017 — 項目06 Compute/Network/Storage / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: persistent_storage.recovery_refだけを空欄にする
+- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1
+- oracle: 永続storageのrecovery参照を未完としてsource owner=unknownへ返す。
+- owner/戻し先: resource/path/storage source owner=unknown。適用CONNECT path契約は当該CONNECT owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-018 — 項目06 Compute/Network/Storage / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: network.security_boundaryだけをunknownにする
+- 入力: compute={resource=worker-host-sim,cpu=2-vCPU,memory=4-GiB}; network={path=api-to-db-sim,protocol=tcp,direction=outbound,purpose=state-read,boundary=app-to-data}; persistent_storage={id=state-vol-sim,kind=persistent,size=10-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=recovery-sim-01}; temporary_storage={id=cache-vol-sim,kind=temporary,size=2-GiB,location=zone-sim-a,integrity=sim-ok,expiry=sim-policy-ref,recovery_ref=not-applicable-sim}; source_revision=sim-r1
+- oracle: 境界を補作せずnetwork path照合を保留し、該当CONNECT ownerが特定できなければunknown。
+- owner/戻し先: resource/path/storage source owner=unknown。適用CONNECT path契約は当該CONNECT owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-019 — 項目07 Model/Worker Runtime / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1
+- oracle: model/runtime/Worker identity、contract revision、resource bindingを別fieldで照合し、modelの存在でWorker実行を推定しない。
+- owner/戻し先: Worker contract owner。runtime/resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-020 — 項目07 Model/Worker Runtime / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: binding.resourceだけを空欄にする
+- 入力: model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1
+- oracle: Worker応答をresource bindingへ代用せずWorker contract ownerとresource source owner=unknownへ戻す。
+- owner/戻し先: Worker contract owner。runtime/resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-021 — 項目07 Model/Worker Runtime / stale
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: worker.contract.revisionだけをsim-r2へ変更する
+- 入力: model={id=model-sim,revision=model-r2}; worker={id=worker-sim,contract=worker-contract-sim@sim-r3}; binding={worker=worker-sim,resource=worker-host-sim}; source_revision=sim-r1
+- oracle: current contractと照合できないためWorker contract ownerへ返す。
+- owner/戻し先: Worker contract owner。runtime/resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-022 — 項目08 Capacity / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none
+- oracle: capacity/utilization/queue/concurrency/saturation/rejection/backpressureの観測値を記録し、数値から安全性・配置・費用採否を結論しない。
+- owner/戻し先: capacity measurement source owner=unknown。採否判断ownerはL2に基づくOSまたはINTELLIGENCE。fixture値は閾値/採否ではない
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-023 — 項目08 Capacity / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: capacity_observation.queue_depthだけをunknownにする
+- 入力: capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none
+- oracle: 安全受入/配置採否を導かず、queue観測unknownを保持してmeasurement source owner=unknownへ返す。
+- owner/戻し先: capacity measurement source owner=unknown。採否判断ownerはL2に基づくOSまたはINTELLIGENCE。fixture値は閾値/採否ではない
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-024 — 項目08 Capacity / unobserved
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: capacity_observation.cpu_usedだけを未観測にする
+- 入力: capacity_observation={resource=worker-host-sim,cpu_used=1-vCPU,cpu_capacity=2-vCPU,memory_used=2-GiB,memory_capacity=4-GiB,utilization=sim-observation-50pct,queue_depth=3-sim-observation,concurrency=1-sim-observation,saturation=sim-observation-low,rejection=sim-observation-none,backpressure=sim-observation-active,source=capacity-sim@sim-r1}; decision_ref=none
+- oracle: 可観測性欠落として保持し、safe capacityを結論しない。
+- owner/戻し先: capacity measurement source owner=unknown。採否判断ownerはL2に基づくOSまたはINTELLIGENCE。fixture値は閾値/採否ではない
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-025 — 項目09 Observability / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope
+- oracle: 列挙したsignalとcollector state、coverageを同一source/revisionで記録する。synthetic error signal不在を実環境のerror-zero保証にしない。
+- owner/戻し先: observation/collector source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-026 — 項目09 Observability / unobserved
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: collector.stateだけをunobservedへ変更する
+- 入力: signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope
+- oracle: 観測不能を正常/error-zeroへ変換せず、未観測scopeを記録してcollector source owner=unknownへ返す。
+- owner/戻し先: observation/collector source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-027 — 項目09 Observability / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: coverageだけをunknownにする
+- 入力: signals={health=sim-healthy,metric=sim-metric,log=sim-log,resource=api-db-sim-01,dependency=db-sim,queue=sim-queue,error=sim-no-signal,latency=sim-observation}; collector={id=collector-sim,state=available}; deployment_revision=sim-r1; coverage=declared-sim-scope
+- oracle: 代表範囲を推定せずcoverage unknownを保持する。
+- owner/戻し先: observation/collector source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-028 — 項目10 Incident state / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1
+- oracle: 分類参照は入力されたapproved policy source/revisionに結び、incident declaration/severity/closureを独自生成しない。
+- owner/戻し先: approved incident-meaning ownerが入力で特定できればそのowner、特定できなければunknown。observation source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-029 — 項目10 Incident state / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: incident_classification.valueだけをunknownにする
+- 入力: incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1
+- oracle: severity/incident宣言を生成せず分類unknownを保持する。
+- owner/戻し先: approved incident-meaning ownerが入力で特定できればそのowner、特定できなければunknown。observation source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-030 — 項目10 Incident state / unauthorized
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: classification.sourceだけをunapproved-source-sim@sim-r1へ変更する
+- 入力: incident_classification={value=sim-approved-classification,source=approved-policy-sim@sim-r2,revision=sim-r2}; observation=sim-signal-01@sim-r1
+- oracle: 未承認分類からincident meaning/severityを生成せずmeaning owner=unknownへ返す。
+- owner/戻し先: approved incident-meaning ownerが入力で特定できればそのowner、特定できなければunknown。observation source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-031 — 項目11 Backup/Restore / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim
+- oracle: backup artifact/job metadataとrestore integrity/reconnect/startup/verificationを別resultとして記録し、この合成例のrestore結果をverification済みとする。
+- owner/戻し先: state owner / recovery design owner（固定L2の役割）。個別source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-032 — 項目11 Backup/Restore / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: restore.verificationだけを欠落させる
+- 入力: backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim
+- oracle: backup成功をrestore成功へ代用せずrestoreを未完にしrecovery design ownerへ返す。
+- owner/戻し先: state owner / recovery design owner（固定L2の役割）。個別source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-033 — 項目11 Backup/Restore / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: restore.target_revisionだけをsim-r6へ変更する
+- 入力: backup={artifact=backup-sim-01,source_revision=sim-r7,time=sim-time-01,completeness=sim-complete,location=sim-location,integrity=sim-ok,expiry=sim-policy-ref}; restore={target=api-db-sim-01,revision=sim-r7,integrity=sim-ok,dependency_reconnect=sim-ok,startup=sim-ok,verification=sim-ok}; scope=verification-sim
+- oracle: backup source revisionとの不一致を保持しrecovery design ownerへ返す。
+- owner/戻し先: state owner / recovery design owner（固定L2の役割）。個別source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-034 — 項目12 Rollback / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none
+- oracle: rollback targetとartifact/config/dependency/data/procedure/resultをcurrent revisionに対して照合し、未完義務なしの合成結果を示す。
+- owner/戻し先: recovery design owner。OS operation ownerは適用され入力で特定できる場合、その他はunknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-035 — 項目12 Rollback / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: rollback.target_revisionだけをsim-r6へ変更する
+- 入力: rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none
+- oracle: 現行/適格targetとの不一致でrollback完了を示さずrecovery design ownerへ返す。
+- owner/戻し先: recovery design owner。OS operation ownerは適用され入力で特定できる場合、その他はunknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-036 — 項目12 Rollback / unknown
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: rollback.resultだけをunknownにする
+- 入力: rollback={target_revision=sim-r7,artifact=artifact-sim-r7,config=cfg-sim-r7,dependency=dep-sim-r7,data_ref=data-sim-r7,procedure=rollback-sim-r7,result=sim-verified}; current_revision=sim-r8; unfinished_duty=none
+- oracle: rollback実行成功を推定せず未完を保持する。
+- owner/戻し先: recovery design owner。OS operation ownerは適用され入力で特定できる場合、その他はunknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-037 — 項目13 Deployment version / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1
+- oracle: runtime revision/artifactとOS stage release identityを別fieldで記録し、OS stage IDをruntime versionに代用しない。
+- owner/戻し先: runtime version source owner=unknown。stage収載時のOS stage identity owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-038 — 項目13 Deployment version / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: runtime_revisionだけをos-stage-sim@sim-r4へ置換する
+- 入力: runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1
+- oracle: runtime revisionとOS stage releaseを同一視せずversion照合を保留する。
+- owner/戻し先: runtime version source owner=unknown。stage収載時のOS stage identity owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-039 — 項目13 Deployment version / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: runtime_revisionだけを空欄にする
+- 入力: runtime_revision=infra-runtime-sim@sim-r17; runtime_artifact=artifact-sim-r17; os_stage_release=os-stage-sim@sim-r4; identifiers_are_distinct=true; source_revision=sim-r1
+- oracle: OS stage idからruntime versionを推定せずsource owner=unknownへ返す。
+- owner/戻し先: runtime version source owner=unknown。stage収載時のOS stage identity owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-040 — 項目14 Security connection / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim
+- oracle: scopeに対応する別SECURITY authority reference/condition/source/revisionを記録する。単なるresource観測から権限を生成しない。
+- owner/戻し先: SECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-041 — 項目14 Security connection / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: authority.refだけを空欄にする
+- 入力: authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim
+- oracle: 接続/operationを許可済みとせずSECURITY authority ownerへ戻す。
+- owner/戻し先: SECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-042 — 項目14 Security connection / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: authority.condition.scopeだけをproduction-simへ変更する
+- 入力: authority={ref=security-authority-sim-01,source=SECURITY-sim@sim-r3,revision=sim-r3,condition=scope-verification-sim}; resource=api-db-sim-01; action=inspect-sim
+- oracle: 他scope authorityを流用せず接続を保留しSECURITY ownerへ戻す。
+- owner/戻し先: SECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-043 — 項目15 OS connection / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17
+- oracle: OS work/change参照とruntime resource/revision linkを別ownerのsource付きで追跡する。ticketをruntime状態の正本にしない。
+- owner/戻し先: OS work/change owner。runtime source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-044 — 項目15 OS connection / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: work.ticketだけを空欄にする
+- 入力: work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17
+- oracle: OS work/change linkを成立扱いせずOS work/change ownerへ返す。
+- owner/戻し先: OS work/change owner。runtime source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-045 — 項目15 OS connection / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: link.runtime_revisionだけをinfra-runtime-sim-r16へ変更する
+- 入力: work={ticket=os-work-sim-01,change=os-change-sim-01,revision=os-rev-sim-4,scope=verification-sim}; runtime={id=api-db-sim-01,revision=infra-runtime-sim-r17}; link=work-sim-01→runtime-sim-r17
+- oracle: 別runtime revisionで補完せずOS connectionを保留する。
+- owner/戻し先: OS work/change owner。runtime source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-046 — 項目16 Runner execution (Worker) / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
+- oracle: Worker contract/assignment、resource mapping、SECURITY/OS referencesを別参照として記録し、resource availabilityだけでexecution成立を推定しない。
+- owner/戻し先: Worker contract owner; 適用時のOS work/change ownerとSECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-047 — 項目16 Runner execution (Worker) / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: worker.contractだけを空欄にする
+- 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
+- oracle: resourceの正常だけでWorker接続を成立させずWorker contract ownerへ返す。
+- owner/戻し先: Worker contract owner; 適用時のOS work/change ownerとSECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-048 — 項目16 Runner execution (Worker) / stale
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: worker.contract.revisionだけをsim-r2へ変更する
+- 入力: worker={id=worker-sim,contract=worker-contract-sim@sim-r3,assignment=assignment-sim-01}; resource={id=worker-host-sim,revision=sim-r1}; mapping=worker-sim→worker-host-sim; authority_ref=security-authority-sim-01; work_ref=os-work-sim-01
+- oracle: stale contractをcurrentとして採用せずWorker contract ownerへ返す。
+- owner/戻し先: Worker contract owner; 適用時のOS work/change ownerとSECURITY authority owner。resource source owner=unknown
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-049 — 項目17 Bootstrap/Out-of-Band Recovery / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded
+- oracle: OSに依存しないpath/resource、別authority、Worker contract、recovery resultとOS復帰後syncを個別に記録する。OS ticketは前提にしない。
+- owner/戻し先: path source owner=unknown; SECURITY authority owner; Worker contract owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-050 — 項目17 Bootstrap/Out-of-Band Recovery / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: path.depends_on_osだけをtrueにする
+- 入力: path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded
+- oracle: OS停止中の独立pathと認めずrecoveryを保留しpath owner=unknownへ返す。
+- owner/戻し先: path source owner=unknown; SECURITY authority owner; Worker contract owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-051 — 項目17 Bootstrap/Out-of-Band Recovery / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: authority.refだけを空欄にする
+- 入力: path={id=oob-path-sim-01,resource=oob-host-sim,depends_on_os=false}; authority={ref=security-authority-sim-oob,source=SECURITY-sim@sim-r3}; worker={contract=worker-contract-oob-sim@sim-r3}; recovery={action=bootstrap-sim,result=sim-verified}; os_ticket=none; post_recovery_sync=sim-recorded
+- oracle: independent path/Worker結果があっても許可済みrecoveryと扱わずSECURITY ownerへ返す。
+- owner/戻し先: path source owner=unknown; SECURITY authority owner; Worker contract owner
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-052 — 項目18 Rebuildability / 正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 基準入力。記載field/valueをそのまま提示し、他項目・共通scope・source revisionは固定。
+- 入力: rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17
+- oracle: artifact/config/data inputs、dependency reconnection、startup verification、resultを同じruntime revisionへ結び、文書/backupの存在だけでrebuildableとしない。
+- owner/戻し先: rebuild/recovery ownerは固定親で未特定=unknown。該当dependency責務ownerはinputで特定できる範囲だけ
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-053 — 項目18 Rebuildability / missing
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: dependency_reconnectだけを欠落させる
+- 入力: rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17
+- oracle: input/document存在からrebuildabilityを推定せず未完を保持、該当dependency ownerが不明ならunknown。
+- owner/戻し先: rebuild/recovery ownerは固定親で未特定=unknown。該当dependency責務ownerはinputで特定できる範囲だけ
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-054 — 項目18 Rebuildability / mismatch
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: rebuild.revisionだけをsim-r16へ変更する
+- 入力: rebuild={inputs=[artifact-sim-r17,config-sim-r17,data-sim-r17]; dependency_reconnect=sim-ok; startup_verification=sim-ok; result=sim-verified}; scope=verification-sim; revision=sim-r17
+- oracle: 別revisionのrebuild evidenceを流用せずrebuild/recovery owner=unknownへ返す。
+- owner/戻し先: rebuild/recovery ownerは固定親で未特定=unknown。該当dependency責務ownerはinputで特定できる範囲だけ
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-055 — 操作別 通常read-only
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `request={action=inspect-sim,target=api-db-sim-01,scope=verification-sim}; before=sim-r1; after=sim-r1`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。
+- 入力: request={action=inspect-sim,target=api-db-sim-01,scope=verification-sim}; before=sim-r1; after=sim-r1
+- oracle: operation前後のstate/revision不変を別確認する。backup/restore/recovery dutyを操作に適用される根拠なく前提にしない。観測不能はunknown。ownerは該当sourceが特定できなければunknown。
+- owner/戻し先: source ownerが親で特定できない=unknown（正常時は戻し先なし）
+- trace: `INFRA-011-AC-01`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-056 — 操作別 適用recovery duty付きstate change
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `request={action=replace-sim,target=api-db-sim-01,scope=verification-sim}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。
+- 入力: request={action=replace-sim,target=api-db-sim-01,scope=verification-sim}; applicable_duty=restore-check-sim; duty_result=sim-verified; before=sim-r1; after=sim-r2
+- oracle: このoperationへ適用される固定recovery dutyの入力・実行・結果のみ別追跡する。duty欠落/unknownなら成功扱いせず未完義務を残す。無関係dutyは加えない。
+- owner/戻し先: recovery design owner（適用dutyの根拠が親/入力で特定できなければunknown）
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-057 — 操作別 既存契約に基づくupdate
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `request={target=api-db-sim-01,action=update-sim,revision=sim-r2,scope=verification-sim}; security_authority=security-authority-sim-01; worker_contract=worker-contract-sim@sim-r3; os_work=os-work-sim-01; result=sim-applied`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。
+- 入力: request={target=api-db-sim-01,action=update-sim,revision=sim-r2,scope=verification-sim}; security_authority=security-authority-sim-01; worker_contract=worker-contract-sim@sim-r3; os_work=os-work-sim-01; result=sim-applied
+- oracle: L2-010既存条件のtarget/action/revision/scope、別SECURITY authority、Worker契約、作業参照、resultを別照合する。候補文書から許可を作らない。不一致時の各ownerは当該入力の正本owner、未特定はunknown。
+- owner/戻し先: 変異した参照の正本owner。authorityならSECURITY、Worker契約ならWorker、OS作業ならOS。固定親で特定できない対象はunknown。
+- trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-058 — 操作別 OS停止中のindependent recovery
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `os_state=down-sim; os_ticket=none; path={id=oob-path-sim-01,depends_on_os=false}; security_authority=security-authority-sim-oob; worker_contract=worker-contract-oob-sim@sim-r3; action=bootstrap-sim; result=sim-verified; after_os_up_sync=sim-recorded`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 操作専用入力だけを適用し、18 unit itemの値をこのCASEで再判定しない。
+- 入力: os_state=down-sim; os_ticket=none; path={id=oob-path-sim-01,depends_on_os=false}; security_authority=security-authority-sim-oob; worker_contract=worker-contract-oob-sim@sim-r3; action=bootstrap-sim; result=sim-verified; after_os_up_sync=sim-recorded
+- oracle: 停止OS ticketを要求しない。path/SECURITY authority/Worker契約/実結果を別に確認し、復帰後syncを独立確認する。欠落ownerは特定できなければunknown。ticket不要は通常操作の条件を変えない。
+- owner/戻し先: 変異fieldに対応するpath source owner=unknown、SECURITY authority owner、Worker contract owner。復帰後sync欠落時はOS work/change owner。
+- trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-059 — 復旧境界 backupだけ
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup.job=sim-success; backup.artifact=backup-sim-01; restore.result=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: backup.job=sim-success; backup.artifact=backup-sim-01; restore.result=missing
+- oracle: backupとrestoreを別判定し、restore成功に昇格しない。戻し先: state/recovery design owner（source owner不明ならunknown）。
+- owner/戻し先: state owner / recovery design owner（固定L2が役割を示す。個別source ownerはunknown）
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-060 — 復旧境界 restore integrity失敗
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup=sim-success; restore.integrity=sim-failed; reconnect/startup/verification=sim-ok`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: backup=sim-success; restore.integrity=sim-failed; reconnect/startup/verification=sim-ok
+- oracle: restore失敗を保持し成功/rollback完了にしない。戻し先: recovery design owner。
+- owner/戻し先: recovery design owner（固定親で特定されない具体ownerはunknown）
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-061 — 復旧境界 dependency reconnect未確認
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup=sim-success; restore.integrity=sim-ok; dependency_reconnect=unobserved; startup/verification=sim-ok`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: backup=sim-success; restore.integrity=sim-ok; dependency_reconnect=unobserved; startup/verification=sim-ok
+- oracle: 未観測を成功へ丸めずrestore/rebuild未完。dependency ownerが入力から不明ならunknown。
+- owner/戻し先: 該当dependency責務ownerが入力から不明ならunknown。recovery state owner。
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-062 — 復旧境界 independent path欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `backup=sim-success; restore=sim-verified; oob_path=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: backup=sim-success; restore=sim-verified; oob_path=missing
+- oracle: restoreからbootstrap/recoveryを推定しない。L2-006経路ownerは未特定ならunknown。
+- owner/戻し先: 独立recovery path source owner=unknown
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-063 — 復旧境界 rebuild startup失敗
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `inputs=complete-sim; dependency_reconnect=sim-ok; startup_verification=sim-failed`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: inputs=complete-sim; dependency_reconnect=sim-ok; startup_verification=sim-failed
+- oracle: rebuildabilityを別判定で失敗とし部分結果を残す。rebuild/recovery owner=unknown（親未特定）。
+- owner/戻し先: rebuild/recovery ownerは固定親で未特定=unknown
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-064 — 復旧境界 OS停止中ticketなし
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `os_state=down-sim; ticket=none; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; result=sim-verified`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: os_state=down-sim; ticket=none; independent_path=sim-available; security_authority=sim-authorized; worker_contract=sim-current; result=sim-verified
+- oracle: ticket欠落を独立recovery拒否理由にしない。OS復帰後同期はCASEで別確認する。
+- owner/戻し先: SECURITY authority owner
+- trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-065 — 復旧境界 independent authority欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `os_state=down-sim; independent_path=sim-available; security_authority=missing; worker_contract=sim-current; result=sim-present`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: os_state=down-sim; independent_path=sim-available; security_authority=missing; worker_contract=sim-current; result=sim-present
+- oracle: 許可済みrecoveryと扱わずSECURITY authority ownerへ返す。
+- owner/戻し先: OS work/change owner（同期source ownerが特定できなければunknown）
+- trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-066 — 復旧境界 復旧後同期欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `recovery.result=sim-verified; os_state=up-sim; operation_sync=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: recovery.result=sim-verified; os_state=up-sim; operation_sync=missing
+- oracle: recovery結果は保持するが接続compositeは未完。OS work/change ownerへ戻す。
+- owner/戻し先: 戻し先なし。通常受入ではOS-014非適用。OS Stage収載時のownerはそのstageの既存OS owner。
+- trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-067 — 復旧境界 scope境界
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `scope=infra-011-stage5-1.0; requested_evidence=os-014-or-later-web-runtime`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つの境界fieldだけを変える。他の列挙結果は固定。
+- 入力: scope=infra-011-stage5-1.0; requested_evidence=os-014-or-later-web-runtime
+- oracle: 通常1.0受入へOS-014を要求しない。OS Stage release収載時のみ別照合し、Web後続版は対象外。
+- owner/戻し先: 戻し先なし。対象外scopeであり、追加許可やownerを作らない。
+- trace: `INFRA-011-AC-04`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-068 — 接続/合成 CORE design参照欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `unit fields stay normal; core_design.revision=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: unit fields stay normal; core_design.revision=missing
+- oracle: CORE接続だけ保留しCORE design ownerへ戻す。
+- owner/戻し先: CORE design owner
+- trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-069 — 接続/合成 OS work/change参照欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `runtime state remains observed; os_work.ticket=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: runtime state remains observed; os_work.ticket=missing
+- oracle: OS connectionを保留しOS work/change ownerへ戻す。CASE operation-4のOS停止中独立recoveryへticket要件を足さない。
+- owner/戻し先: OS work/change owner
+- trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-070 — 接続/合成 SECURITY authority欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource and action stay fixed; authority.ref=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: resource and action stay fixed; authority.ref=missing
+- oracle: 許可済みconnection/operationとせずSECURITY authority ownerへ戻す。
+- owner/戻し先: SECURITY authority owner
+- trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-071 — 接続/合成 Worker contract欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `resource mapping stays present; worker.contract=missing`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: resource mapping stays present; worker.contract=missing
+- oracle: 資源対応の成功でWorker connectionを成立させずWorker contract ownerへ戻す。
+- owner/戻し先: Worker contract owner
+- trace: `INFRA-011-AC-02`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-072 — 接続/合成 composite正常
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `18 unit item results each have their normal values above; applicable CORE/OS/SECURITY/Worker refs are same scope=verification-sim and revision=sim-r1; no unfinished duty`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: 18 unit item results each have their normal values above; applicable CORE/OS/SECURITY/Worker refs are same scope=verification-sim and revision=sim-r1; no unfinished duty
+- oracle: unit/connectionと別のcomposite結果を記録。独立business outcome/approval/release/executionは生成しない。
+- owner/戻し先: 正常時は戻し先なし。未完時は該当CORE/OS/SECURITY/Worker contract owner、特定不能ならunknown。
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-073 — 接続/合成 composite CORE revision不一致
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `composite normal; core_design.revision=sim-r6 while expected=sim-r5`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: composite normal; core_design.revision=sim-r6 while expected=sim-r5
+- oracle: unit resultは保持しCORE connection/compositeを保留。CORE design ownerへ戻す。
+- owner/戻し先: CORE design owner
+- trace: `INFRA-011-AC-02/03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-074 — 接続/合成 composite restore証拠欠落
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `composite normal; restore.verification=missing; backup and other inputs unchanged`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: composite normal; restore.verification=missing; backup and other inputs unchanged
+- oracle: backup/他項目の部分成功は保持しcompositeを保留。recovery design ownerへ戻す。
+- owner/戻し先: recovery design owner（具体ownerは固定親で未特定ならunknown）
+- trace: `INFRA-011-AC-03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-075 — 接続/合成 capacity採否owner判断なし
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `capacity observations are present as synthetic readings; decision_ref=none`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: capacity observations are present as synthetic readings; decision_ref=none
+- oracle: infra観測の記録は可能。OS/INTELLIGENCE採否を要求/代行せず、compositeから採否を生成しない。
+- owner/戻し先: 戻し先なし。capacity採否はOSまたはINTELLIGENCE decision ownerの既存所管で、本fixtureは判断を要求しない。
+- trace: `INFRA-011-AC-01/03`。合成fixtureの設計候補であり未実行。
+
+#### CASE-INFRA-011-S5-076 — 接続/合成 外部authority非生成
+
+- 対象/版: `HELIXINFRASTRUCTURE-L2-011` 1.0 / Stage 5、fixture `all item results and traces are present; external_approval=none; execution_state=not_requested`。対象scopeは `infra-011-stage5-sim`、親source revisionは `sim-r1`。
+- 変異: 表示した一つのconnection/composite fieldだけを変える。
+- 入力: all item results and traces are present; external_approval=none; execution_state=not_requested
+- oracle: L3候補から承認・実装・操作・配布状態を生成しない。
+- owner/戻し先: 戻し先なし。authority/approval/実行stateはこのL3候補から生成しない。
+- trace: `INFRA-011-AC-01..04`。合成fixtureの設計候補であり未実行。

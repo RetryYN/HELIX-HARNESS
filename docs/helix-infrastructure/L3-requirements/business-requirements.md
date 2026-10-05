@@ -44,4 +44,6 @@ stage: 1
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-固定親 `HELIXINFRASTRUCTURE-L2-011` はruntime infrastructureの1.0最低要件閉包を定めるが、独立business outcome/oracleを定義しない。独立BR、business KPI、業務成功caseは追加せず、INFRA-011-FR-01 / AC-01..04と対のfunctional verificationを参照する。18項目の技術状態、connection、backup/restore/recovery/rebuildabilityからincident closure、費用/配置採否、release成功、業務承認を生成しない。
+固定L2-011に独立business outcome/oracleはないため、独立BR、KPI、業務成功CASEを設けない。機能判定は `INFRA-011-FR-01 / AC-01..04` と対のfunctional CASEを参照する。
+
+functional CASE集合は `CASE-INFRA-011-S5-001`–`CASE-INFRA-011-S5-076` (76件)である。技術状態、connection、backup/restore/recovery/rebuildabilityからbusiness success、incident closure、費用/配置採否、OS release収載、実行許可を生成しない。

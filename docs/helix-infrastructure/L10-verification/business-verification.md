@@ -40,4 +40,4 @@ Stage 2a直接親 `HELIXINFRASTRUCTURE-L2-003/004/005/009/010` に独立business
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-L2-011に独立business outcome/oracleはないため、独立BCASE/KPI/業務受入を設けない。functional pair `INFRA-011-FR-01 / AC-01..04`、`CASE-INFRA-011-S5-001–148`へ参照を一本化する。機能証拠からbusiness success、incident close、復旧完了、OS release収載、実行許可を生成しない。
+固定L2-011に独立business outcome/oracleはないため、Stage 5に独立business CASE/KPIを追加しない。技術的なfixture設計は [functional requirements](functional-requirements.md) の `INFRA-011-FR-01 / AC-01..04` と [functional verification](functional-verification.md) の `CASE-INFRA-011-S5-001`–`CASE-INFRA-011-S5-076` (76件)へ一本化する。これらからbusiness pass/fail、incident severity/closure、費用/配置採否、release収載、実行許可を生成しない。

@@ -91,11 +91,11 @@ Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごと�
 
 ## Stage 5 追加範囲 — HELIXINFRASTRUCTURE-L2-011
 
-L2-011 1.0に数値SLO、時間/回数閾値、performance thresholdは追加しない。最低18項目の適用scope・source/revision・unit/connection/composite結果を、FR/ACと対のL10で照合する設計候補だけを置く。測定実行やruntimeの実態を示さない。
+L2-011 1.0に数値SLO、時間/回数threshold、性能保証を追加しない。以下は固定L2/L11へ追跡するfixture設計・静的分類候補であり、未実行である。合成値は測定値ではない。
 
-| 候補 | 測定母集団と方法 | oracle境界と記録 |
+| 候補 | 分母/層別 | oracleと記録 |
 |---|---|---|
-| `INFRA-NFR-011-S5-01` | CASE-INFRA-011-S5-001–126の予定単独観測、CASE-127–139のoperation/recovery観測、CASE-140–148のconnection/composite観測の操作/recovery観測を、親項目・variant・operation別に固定する。必要入力と観測結果を別記し、unknown/stale/unobservedを分母から除かない。 | 固定L11:146が明示する誤成立（missing/unobserved/unknown/stale/mismatch/unauthorizedをpass扱い）の期待誤成立件数0を静的分類候補として照合する。これは実測結果・runtime保証・数値SLOではない。可観測性とoracle合致を分離し、分母0は率なし、未実施は未測定とする。 |
-| `INFRA-NFR-011-S5-02` | 18項目のsource/owner/revision参照、unit/connection/compositeの別判定、部分結果/未完義務の保持をfixture単位で追跡する。 | 計画fixture集合を分母として欠落・unknown・stale・不一致・無権限・未観測を理由別に記録する。owner不明はunknownのまま残す。OS ticket不要のindependent recoveryと復帰後syncを別観測する。実行なしの率・閾値・合格を報告しない。 |
+| `INFRA-NFR-011-S5-01` | functional CASE集合の全76件をunit/operation/recovery/connection-composite別、item/variant別に列挙。unknown/unobserved/stale/mismatchを分母から除かず、適用外には固定根拠と理由を記録する。 | 可観測な入力/期待/結果の有無とoracle一致を別記。L11:146が拒否するfalse acceptance分類の期待件数0は静的候補に限り、実測・runtime保証としない。分母0は率なし、未実行は未測定。|
+| `INFRA-NFR-011-S5-02` | 18最低項目、該当connectionとoperation/recoveryのsource/revision/owner/unfinished-duty参照をCASEごとに追跡。 | owner不明はunknown。OS停止中ticket不要と復帰後syncは別CASE。capacity観測をOS/INTELLIGENCE採否へ換算しない。率・閾値・合格を未実行で報告しない。|
 
-技術候補は既存L2/L11から再導出した測定設計であり、別のparameter approvalや新しいowner/authorityを作らない。旧NFR sourceの数値、旧runtime/test/CIを再利用・実行しない。
+この候補は個別PO質問、追加owner/authority、閾値または実装scopeを作らない。
