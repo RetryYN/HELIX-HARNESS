@@ -2553,5 +2553,5 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-058-C41 — 058補足を001実行の再帰前提にしない
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
-- 入力fixture: L2-001の必須入力・選択source・適用される安全/版条件は満たすが、058 supplement自体は入力・実行結果として存在しない。変異は058 supplementの有無のみ。
+- 入力fixture: L2-001の必須入力・選択source・適用される安全/版条件は満たし、058 supplementは未実行で存在しない正常baselineを固定する。001の実行判定条件だけに「058 supplementが必須」という再帰前提を追加する一変異を与える。
 - 期待oracle: supplementがないことだけで001固有の有効な観測を拒否しない。同時に、058を実行済み、採択済み、または他のsource dependencyを満たしたと扱わない。固定L2:058に戻し先が指定されていないため追加しない。
