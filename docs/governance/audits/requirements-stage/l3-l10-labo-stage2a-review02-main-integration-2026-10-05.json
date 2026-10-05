@@ -1,0 +1,30 @@
+{
+  "record_kind": "labo-stage2a-review02-main-integration-root-check.v1",
+  "authority_effect": "none",
+  "base_commit": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "integration_commit": "b366745f99b14b6facebda8940386515e1ff0cc8",
+  "body_revision": "1e0d6c8f2e43414e904007a95e1215eeb7856049",
+  "six_body_bytes_unchanged": true,
+  "six_latest_main_prefix_exact": true,
+  "review02_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2a-review02-repair-2026-10-05-1e0d6c8f.json",
+    "sha256": "59a1fbc7b5912325eb2e443217d8df4b84f19f394f960446ba4a73c2fc254f9c",
+    "unchanged": true
+  },
+  "root_verified_counts": {
+    "source_pins": 40,
+    "current_line_pins": 194,
+    "canonical_documents": 6,
+    "immutable_prior_records": 5
+  },
+  "historical_metadata_corrections": {
+    "trace_followup_crosswalk_row_line": {
+      "copied_old": 170,
+      "current": 171
+    },
+    "prior_cutout_source_pin_count_correction": "旧35→36+2=38は前revisionの訂正履歴。今回historical candidate2追加でcurrent40。",
+    "authority_note": "Stage1 prefixは現在main承認済み。未採択Stage1草稿はStage2a親authorityではない。"
+  },
+  "root_scope": "本文4文書全差分、固定親、復元旧NFR4行、40source full/raw、194literal行、6SHA/prefix/suffix、旧5記録を照合。",
+  "status": "独立review・L3承認は未成立。旧finding closureなし。"
+}
