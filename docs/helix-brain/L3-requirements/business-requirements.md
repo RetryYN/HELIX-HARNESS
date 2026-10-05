@@ -57,12 +57,12 @@
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029
 
-固定L2/L11の各親にfunctional behaviorを越える独立business outcome、KPIまたはbusiness ownerはない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`business-detail.md:21-37`）のBR-21、HM-08、Learning Engine、計測条件をBRAINへ移さない。旧business分離の形式は再導出するが、分類名だけからBRAIN業務義務を作らない。
+固定L2/L11の各親にfunctional behaviorを越える独立business outcome、KPIまたはbusiness ownerはない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`business-detail.md:21–39,84–104`）のBR-21、HM-08、Learning Engine、計測条件をBRAINへ移さない。旧business分離の形式は再導出するが、分類名だけからBRAIN業務義務を作らない。
 
 | 親L2 | business成果 | 正本参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-009` | 固定親に独立成果なし。 | `BRAIN-009-FR-01`、AC-01〜04と機能L10 C01〜C11 |
-| `HELIXBRAIN-L2-010` | 固定親に独立成果なし。 | `BRAIN-010-FR-01`、AC-01〜04と機能L10 C01〜C09 |
-| `HELIXBRAIN-L2-011` | 固定親に独立成果なし。 | `BRAIN-011-FR-01`、AC-01〜04と機能L10 C01〜C09 |
-| `HELIXBRAIN-L2-012` | 固定親に独立成果なし。 | `BRAIN-012-FR-01`、AC-01〜04と機能L10 C01〜C10 |
-| `HELIXBRAIN-L2-029` | 固定親に独立成果なし。 | `BRAIN-029-FR-01`、AC-01〜05と機能L10 C01〜C52 |
+| `HELIXBRAIN-L2-009` | 固定親に独立成果なし。 | `BRAIN-009-FR-01`、AC-01〜04と機能L10 C01〜C13 |
+| `HELIXBRAIN-L2-010` | 固定親に独立成果なし。 | `BRAIN-010-FR-01`、AC-01〜04と機能L10 C01〜C11 |
+| `HELIXBRAIN-L2-011` | 固定親に独立成果なし。 | `BRAIN-011-FR-01`、AC-01〜04と機能L10 C01〜C11 |
+| `HELIXBRAIN-L2-012` | 固定親に独立成果なし。 | `BRAIN-012-FR-01`、AC-01〜04と機能L10 C01〜C13 |
+| `HELIXBRAIN-L2-029` | 固定親に独立成果なし。 | `BRAIN-029-FR-01`、AC-01〜05と機能L10 C01〜C53 |

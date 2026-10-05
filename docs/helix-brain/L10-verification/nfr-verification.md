@@ -46,19 +46,19 @@
 
 ### L10-BRAIN-001-NFR-01 — 列挙意味条件と誤確定の観測
 
-対応 `BRAIN-001-NFR-01`、`BRAIN-001-AC-01`〜`BRAIN-001-AC-04`。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
+対応 `BRAIN-001-NFR-01`、`BRAIN-001-AC-01`〜`BRAIN-001-AC-04`。固定10 Domain全てと4変更操作を別母集団で用い、追加候補6領域を必須化せず、fixture選択で固定列挙を狭めない。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
 
 ### L10-BRAIN-002-NFR-01 — 列挙意味条件と誤確定の観測
 
-対応 `BRAIN-002-NFR-01`、`BRAIN-002-AC-01`〜`BRAIN-002-AC-04`。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
+対応 `BRAIN-002-NFR-01`、`BRAIN-002-AC-01`〜`BRAIN-002-AC-04`。固定4階層と各identity/parent/relation/responsibilityを全て母集団に残し、fixture選択で狭めない。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
 
 ### L10-BRAIN-003-NFR-01 — 列挙意味条件と誤確定の観測
 
-対応 `BRAIN-003-NFR-01`、`BRAIN-003-AC-01`〜`BRAIN-003-AC-04`。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
+対応 `BRAIN-003-NFR-01`、`BRAIN-003-AC-01`〜`BRAIN-003-AC-04`。親のdescriptor 12要素を全て必須母集団に含め、fixture選択で狭めない。required inputおよび充足/不充足/unknownは別状態軸で記録する。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
 
 ### L10-BRAIN-004-NFR-01 — 列挙意味条件と誤確定の観測
 
-対応 `BRAIN-004-NFR-01`、`BRAIN-004-AC-01`〜`BRAIN-004-AC-04`。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
+対応 `BRAIN-004-NFR-01`、`BRAIN-004-AC-01`〜`BRAIN-004-AC-04`。固定3例×6比較軸を全て母集団に残し、fixture選択で例/軸を狭めない。選択権と軸の欠落は別に照合する。機能CASE表の正常・項目別変異・未見・owner戻しfixtureを使用する。実出力の値がfixture source/期待oracleと一致するNchecked、選択された必須項目Nrequired、missing/unknown/意味不整合を誤成功へ変換したNfalse、各不足理由/戻し先を照合する。件数だけ/名称だけの案Aが意味変異を見逃すかを案Bと比較する。未選択sourceを分母に加えず、入力必須欠落を未適用扱いにしない。Nplannedのvalid/failed/missing/censored分類、単位、分母0、valid0、未測定をL3候補どおりに観測する。実行済みの測定値はまだなく、候補の成立を断定しない。
 
 ### L10-BRAIN-005-NFR-01 — 列挙意味条件と誤確定の観測
 
@@ -74,10 +74,10 @@
 
 | 親L2／candidate | 入力母集団とoracle | 判定と限界 |
 |---|---|---|
-| `HELIXBRAIN-L2-009` / `BRAIN-009-NFR-01` | C01–C11で選択された各Unit/relationと必要source/scope/versionを分母候補にする。端点、relation根拠、owner別状態の一致数、unknown/欠落を誤昇格した数を別記する。 | relation名のみと全trace照合を比較。未選択Unit/sourceは未観測。率の分母0では率なし。 |
-| `HELIXBRAIN-L2-010` / `BRAIN-010-NFR-01` | C01–C09の選択failure条件についてcondition/impact/counterexample/evidence/source/scopeを別項目として照合し、普遍禁止/適用への誤一般化を個別記録。 | failure名の一致だけと条件付き意味の照合を比較。sourceにないfailure不存在を推定しない。 |
-| `HELIXBRAIN-L2-011` / `BRAIN-011-NFR-01` | C01–C09の選択sourceに含まれるproduct-specific要素と一般化根拠/provenanceを分母候補とし、各変異の漏れ・source喪失を独立計数。 | 語数だけとsource-linked分離を比較。未選択sourceは分母外かつ未観測。 |
-| `HELIXBRAIN-L2-012` / `BRAIN-012-NFR-01` | C01–C10のselected queryで列挙output tuple各要素、候補状態、未決decisionを別々に照合。field欠落・誤authority生成を独立記録。 | 返却候補数だけとtuple/decision状態照合を比較。候補受領は採用oracleではない。 |
-| `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | C01–C52の選択構成を対象とし、identity/source/version、applicability、required input、constraint、trade-off、negative/failure、5 relation type/端点/意味の必要項目を列挙し、各項目のmissing/unknown/mismatchと誤適用を別記する。 | relation label数だけと条件付きtuple照合を比較。常時必須・操作時・選択source条件を分け、未選択source/参照資料は未観測。L2-030のreceipt義務は測定対象外。 |
+| `HELIXBRAIN-L2-009` / `BRAIN-009-NFR-01` | C01–C13で選択された各Unit/relationと必要source/scope/versionを分母候補にする。端点、relation根拠、owner別状態の一致数、unknown/欠落を誤昇格した数を別記する。 | relation名のみと全trace照合を比較。L2-025未完と成立の正常遷移を対で計る。未選択Unit/sourceは未観測。率の分母0では率なし。 |
+| `HELIXBRAIN-L2-010` / `BRAIN-010-NFR-01` | C01–C11の選択failure条件についてcondition/impact/counterexample/evidence/source/scopeを別項目として照合し、普遍禁止/適用への誤一般化を個別記録。 | failure名の一致だけと条件付き意味の照合を比較し、success-only保持とRegression固有条件欠落を別変異で照合。sourceにないfailure不存在を推定しない。 |
+| `HELIXBRAIN-L2-011` / `BRAIN-011-NFR-01` | C01–C11の選択sourceに含まれるproduct-specific要素と一般化根拠/provenanceを分母候補とし、各変異の漏れ・source喪失を独立計数。 | 語数だけとsource-linked分離を比較。共有範囲の人判断戻しと過度一般化を個別に照合する。未選択sourceは分母外かつ未観測。 |
+| `HELIXBRAIN-L2-012` / `BRAIN-012-NFR-01` | C01–C13のselected queryで列挙output tuple各要素、候補状態、未決decisionを別々に照合。field欠落・誤authority生成を独立記録。 | 返却候補数だけとtuple/decision状態照合を比較し、request input欠落とresponse field欠落、sourceにないrelation/alternativeの正常不在を分ける。候補受領は採用oracleではない。 |
+| `HELIXBRAIN-L2-029` / `BRAIN-029-NFR-01` | C01–C53の選択構成を対象とし、identity/source/version、applicability、required input、constraint、trade-off、negative/failure、5 relation type/端点/意味の必要項目を列挙し、各項目のmissing/unknown/mismatchと誤適用を別記する。 | relation label数だけと条件付きtuple照合を比較。常時必須・操作時・選択source条件を分け、未選択source/参照資料は未観測。L2-030のreceipt義務は測定対象外。 |
 
 各測定の計画母集団を`Nplanned`、契約scope内の必須要素数を`Nrequired`、期待oracleと照合できた数を`Nchecked`、unknown/欠落を成功へ誤変換した数を`Nfalse`として記録する。処理失敗、入力欠落、観測欠落、打切りは重ねず理由付きで分ける。正しいoracle不合格も判定可能な観測に含め、処理失敗へ隠さない。`Nrequired=0`では率を算出せず、欠けた必須条件を対象外にしない。未実施は未測定。時間測定には根拠ある開始/終了条件と単位を要し、valid時間標本0なら分位値なしとする。固定SLA、最低標本数、追加承認gateは設けない。

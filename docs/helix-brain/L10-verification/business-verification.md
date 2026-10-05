@@ -59,8 +59,8 @@
 
 | 親L2 | 独立business outcome | 検証参照 |
 |---|---|---|
-| `HELIXBRAIN-L2-009` | なし。 | `BRAIN-009-AC-01`〜`AC-04`、functional C01–C11 |
-| `HELIXBRAIN-L2-010` | なし。 | `BRAIN-010-AC-01`〜`AC-04`、functional C01–C09 |
-| `HELIXBRAIN-L2-011` | なし。 | `BRAIN-011-AC-01`〜`AC-04`、functional C01–C09 |
-| `HELIXBRAIN-L2-012` | なし。 | `BRAIN-012-AC-01`〜`AC-04`、functional C01–C10 |
-| `HELIXBRAIN-L2-029` | なし。 | `BRAIN-029-AC-01`〜`AC-05`、functional C01–C52 |
+| `HELIXBRAIN-L2-009` | なし。 | `BRAIN-009-AC-01`〜`AC-04`、functional C01–C13 |
+| `HELIXBRAIN-L2-010` | なし。 | `BRAIN-010-AC-01`〜`AC-04`、functional C01–C11 |
+| `HELIXBRAIN-L2-011` | なし。 | `BRAIN-011-AC-01`〜`AC-04`、functional C01–C11 |
+| `HELIXBRAIN-L2-012` | なし。 | `BRAIN-012-AC-01`〜`AC-04`、functional C01–C13 |
+| `HELIXBRAIN-L2-029` | なし。 | `BRAIN-029-AC-01`〜`AC-05`、functional C01–C53 |
