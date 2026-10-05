@@ -661,7 +661,7 @@ L2-075へAAFD-R-04 detector優先/direct-projection要件を加えるfixture要�
 | `CASE-INT-035-02c` | 停止条件を欠落 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 この不完全なcandidateをticket化しない。 |
 | `CASE-INT-035-02d` | stale candidateをcurrentとして提示 | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 この不完全なcandidateをticket化しない。 |
 | `CASE-INT-035-02e` | OS ticket mappingが未宣言なのに推測 | ticket mapping unknownを保ち、INTELLIGENCE candidateをticket化しない。mapping/発行はOSに残し、mapping candidateの不備はINTELLIGENCE candidate ownerへ戻す。 |
-| `CASE-INT-035-02f` | INTELLIGENCEがticketを発行 | 発行を拒否し、ticket authorityをOSに保つ。candidateが不完全ならINTELLIGENCE candidate ownerへ戻す。新しい戻し先やticket化を生成しない。 |
+| `CASE-INT-035-02f` | INTELLIGENCE candidate receiptだけをOS ticketとして扱う。他candidate入力は有効で、OS ticketは未発行。 | candidate receiptからのticket昇格を拒否し、候補を候補のまま保持する。INTELLIGENCE candidate ownerへ誤った昇格を戻し、mapping/発行authorityをOSに残す。ticketを生成・発行しない。 |
 | `CASE-INT-035-02g` | 未選択connectorを必須依存として候補へ追加 | 未選択connectorは未観測のまま保持し、適用CONNECT contract ownerへ照会する。ticket/assignmentを生成しない。 |
 | `CASE-INT-035-02h` | candidate source scopeを別taskへ結ぶ | 当該一項目だけをinvalid/incompleteにし、完了/権限/状態変更へ昇格させない。理由と不足fieldを特定し、INTELLIGENCE candidate ownerへ戻す。他の正常source/operationは維持する。 この不完全なcandidateをticket化しない。 |
 | `CASE-INT-035-02k` | 目標未承認のcandidateをticket化可能としてOSへ渡す | 承認を創作せずcandidateを保留し、OS ticket/assignmentを成立させない。INTELLIGENCE candidate ownerへ戻す。 |
