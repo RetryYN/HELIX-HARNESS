@@ -572,20 +572,20 @@ input observation identity/source revision；episode candidate identityとrelati
 | `HELIXLABO-L2-017` / `MPR-RC-HELIXLABO-L2-017-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L65 / `sha256:34ceade9563b09db94ef5d031c66df4c2741db3d13aa126ca0aa74b9a92b5440` | L187–190 `0a6fa1d91e9d1fd88e191ba8594b0348b092e82e1517fa68edc801bd8210c763` | `LABO-017-FR-01`, `LABO-017-AC-01/02`, `L10-LABO-017-C01..09` |
 | `HELIXLABO-L2-018` / `MPR-RC-HELIXLABO-L2-018-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L66 / `sha256:d1b31fb8d379f9dcfcdc6213ac4d7fcb193e20d7d59276e231f548f3db9dcfdd` | L191–194 `582e5b71bc97b9fe10e7ab1b22498b9dd023e91c393aaee3af8cedede135fd29` | `LABO-018-FR-01`, `LABO-018-AC-01/02`, `L10-LABO-018-C01..10` |
 | `HELIXLABO-L2-019` / `MPR-RC-HELIXLABO-L2-019-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L67 / `sha256:e7a90eba26b101083aa9fa449b220ea53d5c8230eed1f82980797cdabbb51d65` | L195–198 `2c931ae3ef60fcd739ce16a8c03e1ddc1c80462b4c791b8f8a79ec4ff3707670` | `LABO-019-FR-01`, `LABO-019-AC-01/02`, `L10-LABO-019-C01..11` |
-| `HELIXLABO-L2-020` / `MPR-RC-HELIXLABO-L2-020-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L68 / `sha256:61ae506fe25a2218b3c2581e47eb76a167f8344cc792d5c27d4895bd65121501` | L199–202 `1de241d1126644a0f5bdf4775b091ae87977920a7552ea999b5094bc52480082` | `LABO-020-FR-01`, `LABO-020-AC-01/02`, `L10-LABO-020-C01..10` |
-| `HELIXLABO-L2-021` / `MPR-RC-HELIXLABO-L2-021-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L69 / `sha256:00dda7b8a7675bba719585e6fbb94e43a2f273146b195d00daae5718f3f1fc9e` | L203–206 `2a420b02039e3701f61387f78236753dfd59924b05bc4f0dfaa3215fec12a50b` | `LABO-021-FR-01`, `LABO-021-AC-01/02`, `L10-LABO-021-C01..11` |
-| `HELIXLABO-L2-022` / `MPR-RC-HELIXLABO-L2-022-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L70 / `sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783` | L207–210 `c9de9a9d703d3a2605715ecd57511cea1cc8625891eafadea5eb2b01b6a3837d` | `LABO-022-FR-01`, `LABO-022-AC-01/02`, `L10-LABO-022-C01..11` |
-| `HELIXLABO-L2-023` / `MPR-RC-HELIXLABO-L2-023-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L71 / `sha256:aafe6d1641624bd7986d5fd6c6a1c67644221c9df0f4503433f442c98f26a36b` | L211–214 `c9cf147b928712f82694042c22cb9951530186f1dc3036ed36c19b2b1c487cc1` | `LABO-023-FR-01`, `LABO-023-AC-01/02`, `L10-LABO-023-C01..10` |
+| `HELIXLABO-L2-020` / `MPR-RC-HELIXLABO-L2-020-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L68 / `sha256:61ae506fe25a2218b3c2581e47eb76a167f8344cc792d5c27d4895bd65121501` | L199–202 `1de241d1126644a0f5bdf4775b091ae87977920a7552ea999b5094bc52480082` | `LABO-020-FR-01`, `LABO-020-AC-01/02`, `L10-LABO-020-C01..11` |
+| `HELIXLABO-L2-021` / `MPR-RC-HELIXLABO-L2-021-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L69 / `sha256:00dda7b8a7675bba719585e6fbb94e43a2f273146b195d00daae5718f3f1fc9e` | L203–206 `2a420b02039e3701f61387f78236753dfd59924b05bc4f0dfaa3215fec12a50b` | `LABO-021-FR-01`, `LABO-021-AC-01/02`, `L10-LABO-021-C01..12` |
+| `HELIXLABO-L2-022` / `MPR-RC-HELIXLABO-L2-022-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L70 / `sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783` | L207–210 `c9de9a9d703d3a2605715ecd57511cea1cc8625891eafadea5eb2b01b6a3837d` | `LABO-022-FR-01`, `LABO-022-AC-01/02`, `L10-LABO-022-C01..14` |
+| `HELIXLABO-L2-023` / `MPR-RC-HELIXLABO-L2-023-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L71 / `sha256:aafe6d1641624bd7986d5fd6c6a1c67644221c9df0f4503433f442c98f26a36b` | L211–214 `c9cf147b928712f82694042c22cb9951530186f1dc3036ed36c19b2b1c487cc1` | `LABO-023-FR-01`, `LABO-023-AC-01/02`, `L10-LABO-023-C01..12` |
 | `HELIXLABO-L2-024` / `MPR-RC-HELIXLABO-L2-024-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L72 / `sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4` | L215–218 `300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7` | `LABO-024-FR-01`, `LABO-024-AC-01/02`, `L10-LABO-024-C01..09` |
-| `HELIXLABO-L2-025` / `MPR-RC-HELIXLABO-L2-025-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L73 / `sha256:e6cc467c72635a5fb91257cfb90f6a1039654d8f34a28454353566e3f3c28bf3` | L219–222 `11ddd89eb4195637bea7e61ef1af9b2e6096603ab2b601da4f35aaac4ccafac0` | `LABO-025-FR-01`, `LABO-025-AC-01/02`, `L10-LABO-025-C01..09` |
+| `HELIXLABO-L2-025` / `MPR-RC-HELIXLABO-L2-025-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L73 / `sha256:e6cc467c72635a5fb91257cfb90f6a1039654d8f34a28454353566e3f3c28bf3` | L219–222 `11ddd89eb4195637bea7e61ef1af9b2e6096603ab2b601da4f35aaac4ccafac0` | `LABO-025-FR-01`, `LABO-025-AC-01/02`, `L10-LABO-025-C01..10` |
 | `HELIXLABO-L2-026` / `MPR-RC-HELIXLABO-L2-026-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L74 / `sha256:64944055712d4d2c8ad4817624c5eeacba241c5bf7a008da18b2cfcdb53ec150` | L223–226 `a47b3ed9e39ae16dac5c50ab0d87282b5109c20874830693e5019e38742428ae` | `LABO-026-FR-01`, `LABO-026-AC-01/02`, `L10-LABO-026-C01..09` |
 | `HELIXLABO-L2-027` / `MPR-RC-HELIXLABO-L2-027-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L75 / `sha256:ee444d777dfa4e45646584941998a8fa812b0070d62261e0c9ae3249928b8bab` | L227–230 `23833b323d44a786c302f054e22ead8a33e41ecdf66ff54fa1068ae1ac1eb30d` | `LABO-027-FR-01`, `LABO-027-AC-01/02`, `L10-LABO-027-C01..12` |
 | `HELIXLABO-L2-028` / `MPR-RC-HELIXLABO-L2-028-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L76 / `sha256:f51b751526a581ca0cd80821dfdb9b558d3e2d4d0d3cb123420ea7391e45564e` | L231–234 `672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd` | `LABO-028-FR-01`, `LABO-028-AC-01/02`, `L10-LABO-028-C01..15` |
 | `HELIXLABO-L2-029` / `MPR-RC-HELIXLABO-L2-029-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L77 / `sha256:c37e1dbc85f2c6fcfb9b55e28d867faf9c4727a3615bd36882a71353eed3c89f` | L235–238 `10ee9155ebdbcb711715fddb6bddc644421559d8be4a3c404e22fdf3eedfdb29` | `LABO-029-FR-01`, `LABO-029-AC-01/02`, `L10-LABO-029-C01..12` |
 | `HELIXLABO-L2-030` / `MPR-RC-HELIXLABO-L2-030-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L78 / `sha256:79a9ed7a30f650e949b2f092958a3e84c428e7ff84c0e6409fd056196d4c1e50` | L239–242 `9631b221fb6c1cb7b135324e0f914084146031297e2b82b95d64e14cc0df3613` | `LABO-030-FR-01`, `LABO-030-AC-01/02`, `L10-LABO-030-C01..10` |
-| `HELIXLABO-L2-034` / `MPR-RC-HELIXLABO-L2-034-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L82 / `sha256:3d6fa067472bd28ce86fa0da805972e817170bde8602652a2e070b9af572cdbf` | L255–258 `ca533b2327c362fa9c455470b9e3a524ffb883f43b2641d897d5b133b8db3231` | `LABO-034-FR-01`, `LABO-034-AC-01/02`, `L10-LABO-034-C01..09` |
-| `HELIXLABO-L2-035` / `MPR-RC-HELIXLABO-L2-035-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L83 / `sha256:8cdd8f7cbbdeb905ea12b600ff007e25ad5f0bb6196c70009402ef1453662bfd` | L259–262 `deba00a65917db6a1d3663472a52aaf23ea7a586fd4035e14ed7e72f2afcfb44` | `LABO-035-FR-01`, `LABO-035-AC-01/02`, `L10-LABO-035-C01..15` |
-| `HELIXLABO-L2-058` / `MPR-RC-HELIXLABO-L2-058-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L98 / `sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17` | L403–415 `b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf` | `LABO-058-FR-01`, `LABO-058-AC-01/02`, `L10-LABO-058-C01..31` |
+| `HELIXLABO-L2-034` / `MPR-RC-HELIXLABO-L2-034-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L82 / `sha256:3d6fa067472bd28ce86fa0da805972e817170bde8602652a2e070b9af572cdbf` | L255–258 `ca533b2327c362fa9c455470b9e3a524ffb883f43b2641d897d5b133b8db3231` | `LABO-034-FR-01`, `LABO-034-AC-01/02`, `L10-LABO-034-C01..10` |
+| `HELIXLABO-L2-035` / `MPR-RC-HELIXLABO-L2-035-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L83 / `sha256:8cdd8f7cbbdeb905ea12b600ff007e25ad5f0bb6196c70009402ef1453662bfd` | L259–262 `deba00a65917db6a1d3663472a52aaf23ea7a586fd4035e14ed7e72f2afcfb44` | `LABO-035-FR-01`, `LABO-035-AC-01/02`, `L10-LABO-035-C01..17` |
+| `HELIXLABO-L2-058` / `MPR-RC-HELIXLABO-L2-058-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L98 / `sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17` | L403–415 `b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf` | `LABO-058-FR-01`, `LABO-058-AC-01/02`, `L10-LABO-058-C01..36` |
 
 ### L10-LABO-012-C01 — Correlate episodeから分類対象へ
 
@@ -681,7 +681,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
 - 入力fixture: 3 arm中のoracleを一つだけ欠落させるfixtureと、target versionを一つだけ欠落させるfixtureを別々に与える。
-- 期待oracle:該当armの不備を示しexperiment comparisonを成立扱いせず、oracle/対象版ownerへ戻す。
+- 期待oracle:該当armの不備を示しexperiment comparisonを成立扱いせず、当該比較の評価oracle/source ownerへ戻す。
 
 ### L10-LABO-015-C03 — 比較条件の混在
 
@@ -689,7 +689,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応: `LABO-015-AC-02`; 親: `HELIXLABO-L2-015`。
 - 入力fixture: arm間の適用条件を一つだけずらし、別fixtureではscopeとrevisionを組合せて不一致にする。
-- 期待oracle:一致しないarmを比較可能と扱わず、条件差を保持して実験ownerへ戻す。assignmentや実行を開始しない。
+- 期待oracle:一致しないarmを比較可能と扱わず、条件差を保持して当該比較の評価oracle/source ownerへ戻す。assignmentや実行を開始しない。
 
 ### L10-LABO-015-C04 — 同一条件のheld-out正常
 
@@ -1047,6 +1047,8 @@ input observation identity/source revision；episode candidate identityとrelati
 - 入力fixture: 単一successful Worker outputだけでeligible/qualified/evaluated claimを追加。
 - 期待oracle: 観測は保持するが評価済みclaim 0。
 
+- 失敗時戻し先: 当該Worker result source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-028-C04 — held-out正常
 
 - Parent/AC: `HELIXLABO-L2-028` / `LABO-028-AC-01`。
@@ -1239,33 +1241,37 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-014-AC-02`。親: `HELIXLABO-L2-014`。
 - 入力fixture: 元目的・構造・条件を保ち、candidateが変更する部分だけを記載しない。期待：差分を補作せず未確定candidateにする。
 
+- 失敗時戻し先: 既存L1/source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-014-C07 — candidateの自動昇格
 
 - 対応AC: `LABO-014-AC-02`。親: `HELIXLABO-L2-014`。
 - 入力fixture: 有効な差分candidateを与え、candidate→変更済み正本の状態遷移だけを要求する。期待：正本変更は行わず候補状態を保つ。
 
+- 失敗時戻し先: このCASEは要求された変更・実行の拒否と正本不変を照合する。追加の戻し先は生成しない。
+
 ### L10-LABO-015-C05 — baseline版の不一致
 
 - 対応AC: `LABO-015-AC-02`。親: `HELIXLABO-L2-015`。
 - 入力fixture: 他arm条件を保ち、baseline/current armの対象版だけをcandidate armと不一致にする。期待：比較成立としない。
-- 失敗時戻し先: experiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: 当該比較の評価oracle/source ownerへ不足・不一致を返す。LABOはsource正本を変更しない。
 
 ### L10-LABO-015-C06 — oracleの欠落
 
 - 対応AC: `LABO-015-AC-02`。親: `HELIXLABO-L2-015`。
-- 入力fixture: 同一scope・対象版・条件を保ち、評価oracle identityだけを欠落させる。期待：experiment成立を主張せずoracle ownerへ戻す。
+- 入力fixture: 同一scope・対象版・条件を保ち、評価oracle identityだけを欠落させる。期待：experiment成立を主張せず当該比較の評価oracle/source ownerへ戻す。
 
 ### L10-LABO-015-C07 — scopeの不一致
 
 - 対応AC: `LABO-015-AC-02`。親: `HELIXLABO-L2-015`。
 - 入力fixture: 版・oracle・条件を保ち、1 armのscopeだけを異ならせる。期待：異なるscopeを同一比較としない。
-- 失敗時戻し先: experiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: 当該比較の評価oracle/source ownerへ不足・不一致を返す。LABOはsource正本を変更しない。
 
 ### L10-LABO-015-C08 — 条件の不一致
 
 - 対応AC: `LABO-015-AC-02`。親: `HELIXLABO-L2-015`。
 - 入力fixture: scope・版・oracleを保ち、比較条件の1項目だけを変更する。期待：条件差を隠さず比較不能を記録する。
-- 失敗時戻し先: experiment evaluationへ不足・不一致を返す。LABOはsource正本を変更しない。
+- 失敗時戻し先: 当該比較の評価oracle/source ownerへ不足・不一致を返す。LABOはsource正本を変更しない。
 
 ### L10-LABO-016-C05 — 反例の脱落
 
@@ -1298,6 +1304,8 @@ input observation identity/source revision；episode candidate identityとrelati
 
 ### L10-LABO-017-C07 — owner運転結果の欠落
 
+- 区分: `L10-LABO-017-C03`の索引。個別fixture・negative件数・NFR分母に算入しない。
+
 - 対応AC: `LABO-017-AC-02`。親: `HELIXLABO-L2-017`。
 - 入力fixture: 現行版・保証・適格性を保ち、operation ownerの運転結果だけを未提出にする。期待：未完義務を保持しそのownerへ結果を戻す。
 
@@ -1305,6 +1313,8 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-017-AC-02`。親: `HELIXLABO-L2-017`。
 - 入力fixture: 全再評価材料が揃ったcandidateについて切替実行だけを要求する。期待：LABOは候補を返すが運用切替を行わない。
+
+- 失敗時戻し先: このCASEは要求された変更・実行の拒否と正本不変を照合する。追加の戻し先は生成しない。
 
 ### L10-LABO-018-C05 — 標本条件の欠落
 
@@ -1345,15 +1355,21 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-019-AC-02`。親: `HELIXLABO-L2-019`。
 - 入力fixture: 別identityの二targetを一つのfeedback candidateへ統合する変異だけを与える。期待：targetごとのcandidate identityを分けて保持する。
 
+- 失敗時戻し先: このCASEは要求された変更・実行の拒否と正本不変を照合する。追加の戻し先は生成しない。
+
 ### L10-LABO-020-C05 — 旧rule版の欠落
 
 - 対応AC: `LABO-020-AC-02`。親: `HELIXLABO-L2-020`。
 - 入力fixture: 復帰後resultとnew rule revisionを保ち、pre-fallback rule revisionだけを欠落させる。期待：前後版比較を完成扱いしない。
 
+- 失敗時戻し先: source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-020-C06 — 復帰後resultの欠落
 
 - 対応AC: `LABO-020-AC-02`。親: `HELIXLABO-L2-020`。
 - 入力fixture: 旧新rule版を保ち、post-operation resultだけを欠落させる。期待：新observationを生成したと主張しない。
+
+- 失敗時戻し先: source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-020-C07 — 未完義務の脱落
 
@@ -1364,6 +1380,8 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-020-AC-02`。親: `HELIXLABO-L2-020`。
 - 入力fixture: 復帰後観測をsource canonical stateへ書き戻す変異だけを与える。期待：書戻しを拒否し、観測とsourceを分離する。
+
+- 失敗時戻し先: このCASEは要求された変更・実行の拒否と正本不変を照合する。追加の戻し先は生成しない。
 
 ### L10-LABO-021-C05 — source identity欠落
 
@@ -1433,10 +1451,14 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-024-AC-02`。親: `HELIXLABO-L2-024`。
 - 入力fixture: 正確な過去評価をcurrent authorityとして表示する変異だけを与える。期待：historical labelを保持し現在の判断へ昇格しない。
 
+- 失敗時戻し先: INTELLIGENCE ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-024-C07 — 観測事実と判断の混同
 
 - 対応AC: `LABO-024-AC-02`。親: `HELIXLABO-L2-024`。
 - 入力fixture: source observationとdecision resultを別入力にし、出力でdecisionをfactへ置き換える変異だけを与える。期待：両者を区別して保持する。
+
+- 失敗時戻し先: INTELLIGENCE ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-025-C05 — data-use scope欠落
 
@@ -1448,10 +1470,14 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-025-AC-02`。親: `HELIXLABO-L2-025`。
 - 入力fixture: 合成fixtureのrestricted-marker fieldだけを通常observationへ含める。秘密値は使わない。期待：該当inputを拒否しSECURITY境界を保つ。
 
+- 失敗時戻し先: SECURITY ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-025-C07 — authority移転
 
 - 対応AC: `LABO-025-AC-02`。親: `HELIXLABO-L2-025`。
 - 入力fixture: 許可済み安全性evidenceのsource authorityだけをLABOへ移す出力変異を与える。期待：authority transferを拒否する。
+
+- 失敗時戻し先: SECURITY ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-026-C05 — resource revision stale
 
@@ -1463,10 +1489,14 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-026-AC-02`。親: `HELIXLABO-L2-026`。
 - 入力fixture: resource stateのunknownだけをavailable/successへ変える。期待：unknownを保ちresource availabilityを確定しない。
 
+- 失敗時戻し先: INFRASTRUCTURE source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-026-C07 — resource authority移転
 
 - 対応AC: `LABO-026-AC-02`。親: `HELIXLABO-L2-026`。
 - 入力fixture: 有効observationとともにresource authorityをLABOへ移す変異だけを与える。期待：source authorityをINFRASTRUCTUREに保持する。
+
+- 失敗時戻し先: INFRASTRUCTURE source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-027-C05 — connection identity欠落
 
@@ -1490,6 +1520,8 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-027-AC-02`。親: `HELIXLABO-L2-027`。
 - 入力fixture: 一つの有効recordと一つのdrifted recordを与え、drifted側だけをcurrentに含める変異を与える。期待：有効recordを保ち、drifted recordは別にunknownとする。
 
+- 失敗時戻し先: 当該CONNECT/source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-028-C05 — assignment identity欠落
 
 - 対応AC: `LABO-028-AC-02`。親: `HELIXLABO-L2-028`。
@@ -1500,6 +1532,8 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-028-AC-02`。親: `HELIXLABO-L2-028`。
 - 入力fixture: assignmentとresultを保ちtask classだけを不一致にする。期待：異なるclassの結果を同一評価へ結合しない。
 
+- 失敗時戻し先: 当該Worker result source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-028-C07 — Worker result revision stale
 
 - 対応AC: `LABO-028-AC-02`。親: `HELIXLABO-L2-028`。
@@ -1509,6 +1543,8 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-028-AC-02`。親: `HELIXLABO-L2-028`。
 - 入力fixture: ticket identityだけ異なる二resultを一つのexperimentへ結合する変異だけを与える。期待：別ticket/experimentを分離する。
+
+- 失敗時戻し先: 当該Worker result source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-029-C05 — 未実行をpass化
 
@@ -1528,6 +1564,8 @@ input observation identity/source revision；episode candidate identityとrelati
 - 入力fixture: test resultとtarget revisionを保ちinspection scopeだけを欠落させる。期待：範囲不明の合格を主張せずsource ownerへ戻す。
 
 ### L10-LABO-029-C08 — 中断をpass化
+
+- 区分: `L10-LABO-029-C09`の索引。個別fixture・negative件数・NFR分母に算入しない。
 
 - 対応AC: `LABO-029-AC-02`。親: `HELIXLABO-L2-029`。
 - 入力fixture: 実行途中のcancelled/interrupted statusだけをpassへ変換する。期待：中断状態を保持しpassを生成しない。
@@ -1549,10 +1587,14 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-030-AC-02`。親: `HELIXLABO-L2-030`。
 - 入力fixture: meaningが異なる二product sourceを一identityへ統合する変異だけを与える。期待：product/sourceごとのobservationを分離する。
 
+- 失敗時戻し先: 当該Product Core source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-030-C08 — product authority移転
 
 - 対応AC: `LABO-030-AC-02`。親: `HELIXLABO-L2-030`。
 - 入力fixture: product resultを受け、Product Core meaning/authorityを書き換える出力変異だけを与える。期待：source authority/meaningを変更しない。
+
+- 失敗時戻し先: 当該Product Core source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-034-C05 — 単一episodeのgeneric化
 
@@ -1574,20 +1616,24 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
 - 入力fixture: 同じ評価packetのunassessed stateだけを欠落させる。期待：評価済みと扱わず元状態を保持する。
 
+- 失敗時戻し先: 当該source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-035-C06 — 評価payload field欠落
 
 - 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
 - 入力fixture: 当該packetが含むと宣言したFP/FNまたはcounterexample fieldのうち一fieldだけを欠落させる。期待：宣言済みpacket fieldの欠落をunknownのまま明示し、列挙項目すべてを毎回必須化しない。
+
+- 失敗時戻し先: 当該source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-035-C07 — 学習許可への変換
 
 - 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
 - 入力fixture: 完全な評価packetの受渡しを学習/調整許可へ変換する変異だけを与える。期待：材料受渡しと学習権限を分離し許可を生成しない。
 
-### L10-LABO-035-C08 — LABOによる判断/配置
+### L10-LABO-035-C08 — LABOによるcurrent判断実行
 
 - 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
-- 入力fixture: INTELLIGENCE用材料からcurrent judgementまたはplacementをLABOが実行する変異だけを与える。期待：判断/配置を行わずINTELLIGENCE境界へ残す。
+- 入力fixture: INTELLIGENCE用材料からcurrent judgementをLABOが実行する要求だけを加える。期待：判断を実行せずINTELLIGENCE境界へ残す。
 
 ### L10-LABO-058-C06 — 選択条件unknown
 
@@ -1659,11 +1705,15 @@ input observation identity/source revision；episode candidate identityとrelati
 - 独立fixture（変更は一条件だけ）: 有効なproduct固有分類を汎用へ置き換える一変数だけを行う。
 - 期待oracle: product固有meaningを保持し、根拠のない汎用化を拒む。
 
+- 失敗時戻し先: 元source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-013-C12 — system化候補とoperation候補を混同
 
 - 対応AC: `LABO-013-AC-02`。固定親: `HELIXLABO-L2-013`。
 - 独立fixture（変更は一条件だけ）: 他の分類を固定し、system化候補field一つをoperation候補へ入れ替える。
 - 期待oracle: 分類軸の混同を拒み、各候補を別軸・別根拠で維持する。
+
+- 失敗時戻し先: 元source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-013-C13 — operationで補う候補の欠落
 
@@ -1677,11 +1727,15 @@ input observation identity/source revision；episode candidate identityとrelati
 - 独立fixture（変更は一条件だけ）: classification stateのunknownだけをunnecessaryへ変える。
 - 期待oracle: unknownとunnecessaryを別状態で保持し、未確定を不要にしない。
 
+- 失敗時戻し先: 元source ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-013-C15 — 不要を採用へ読み替え
 
 - 対応AC: `LABO-013-AC-02`。固定親: `HELIXLABO-L2-013`。
 - 独立fixture（変更は一条件だけ）: 明示されたunnecessaryだけを採用/positiveへ変える。
 - 期待oracle: unnecessaryを保持し、二択採否へ丸めない。
+
+- 失敗時戻し先: 元source ownerへこのCASEの不足・不整合を返す。
 
 ### L10-LABO-013-C16 — 反証の脱落
 
@@ -1705,7 +1759,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-015-AC-02`。固定親: `HELIXLABO-L2-015`。
 - 独立fixture（変更は一条件だけ）: baseline/current、candidate、hybridの他条件を維持しtarget versionだけを欠落させる。
-- 期待oracle: 3-arm比較を成立扱いせずtarget版不足を保持し、固定L2-015の既存評価oracle/source ownerへ戻す。
+- 期待oracle: 3-arm比較を成立扱いせずtarget版不足を保持し、固定L2-015に基づく当該比較の評価oracle/source ownerへ戻す。
 
 ### L10-LABO-016-C08 — 有効なcounterexampleの正常保持
 
@@ -1717,12 +1771,12 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-018-AC-02`。固定親: `HELIXLABO-L2-018`。
 - 独立fixture（変更は一条件だけ）: sample condition・counterexample・scopeを保ち、comparison result revisionだけをtarget/current revisionより古くする。
-- 期待oracle: stale resultで適用範囲を支持せずunknown/未確定を保持しL2-006のexperiment evidence ownerへ戻す。
+- 期待oracle: stale resultで適用範囲を支持せずunknown/未確定を保持し実験評価へ戻す。
 
 ### L10-LABO-019-C09 — target responsibility owner変更
 
 - 対応AC: `LABO-019-AC-02`。固定親: `HELIXLABO-L2-019`。
-- 独立fixture（変更は一条件だけ）: target identity/scope/evidenceを保ち、responsibility owner fieldだけを別ownerへ差し替える。
+- 独立fixture（変更は一条件だけ）: target identity/scope/evidenceを保ち、responsibility owner fieldだけをtarget evidenceと不整合なowner指定へ差し替える。
 - 期待oracle: 旧ownerまたは入力された別ownerへproposalを流さずtarget/ownerをunknownとして保持し、既存OS routing ownerへtarget責務を確認する。存在しないownerを新設しない。
 
 ### L10-LABO-020-C09 — new rule version欠落
@@ -1741,13 +1795,15 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-021-AC-02`。固定親: `HELIXLABO-L2-021`。
 - 独立fixture（変更は一条件だけ）: 有効なobservation以外を保ち、選択HARNESS inputのsource contract envelope一つだけを欠落させる。
-- 期待oracle: observation成立を拒み欠落をunknown/contract defectとしてHARNESS既存source/connection ownerへ戻す。
+- 期待oracle: observation成立を拒み欠落をunknown/contract defectとしてHARNESS ownerへ戻す。
 
 ### L10-LABO-021-C10 — HARNESS source authority移管
 
 - 対応AC: `LABO-021-AC-02`。固定親: `HELIXLABO-L2-021`。
 - 独立fixture（変更は一条件だけ）: 選択source contractのidentity/version/scopeは保ち、authority owner fieldだけをLABOへ移す。
 - 期待oracle: authority移管を拒み元HARNESS authorityを保持する。
+
+- 失敗時戻し先: このCASEは要求された変更・実行の拒否と正本不変を照合する。追加の戻し先は生成しない。
 
 ### L10-LABO-022-C09 — OS assignment欠落
 
@@ -1841,6 +1897,8 @@ input observation identity/source revision；episode candidate identityとrelati
 - 独立fixture（変更は一条件だけ）: 有効な単一source connectionを保ち、未選択sourceにも同一connector契約が適用済みとするclaimだけを追加する。
 - 期待oracle: 選択scope外のsource共有を推定せず、各source contractを別々に扱う。
 
+- 失敗時戻し先: 当該CONNECT connector ownerへこのCASEの不足・不整合を返す。
+
 ### L10-LABO-028-C09 — L2-006 experiment/target identity正常
 
 - 対応AC: `LABO-028-AC-01`。固定親: `HELIXLABO-L2-028`。
@@ -1913,11 +1971,11 @@ input observation identity/source revision；episode candidate identityとrelati
 - 独立fixture（変更は一条件だけ）: 評価statusだけをunassessedのままにし、他のevidence fieldは有効にする。
 - 期待oracle: unassessedを成功/適性へ変えず、その状態のまま評価材料としてINTELLIGENCE境界へ渡す。欠落・不一致などsource defectがない限り、未評価だけを理由にsourceへ差戻ししない。
 
-### L10-LABO-035-C13 — learning placement生成
+### L10-LABO-035-C13 — LABOによる配置実行
 
 - 対応AC: `LABO-035-AC-02`。固定親: `HELIXLABO-L2-035`。
-- 独立fixture（変更は一条件だけ）: 評価payloadを保ち、LABO出力だけからlearning placementを生成する試行を加える。
-- 期待oracle: 配置/学習判断を生成せずINTELLIGENCE/OSの既存分担を維持する。
+- 独立fixture（変更は一条件だけ）: 評価payloadを保ち、LABO自身がmodel placementを実行する要求だけを加える。
+- 期待oracle: 配置を実行せずINTELLIGENCE/OSの既存分担を維持する。
 
 ### L10-LABO-035-C14 — bot execution生成
 
@@ -2104,7 +2162,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-028-AC-02`。固定親: `HELIXLABO-L2-028`。
 - 独立fixture（変更は一条件だけ）: 有効assignment/receipt/sourceを保ちresult state unknownをqualifiedとするclaimだけを加える。
-- 期待oracle: unknownを維持し評価済みにせずLABO experiment evaluationへ戻す。
+- 期待oracle: unknownを維持し評価済みにせず、当該Worker result source ownerへ根拠不足を戻す。
 
 ### L10-LABO-029-C10 — LABOからCI実行起動
 
@@ -2134,7 +2192,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 独立fixture（変更は一条件だけ）: 正常call成功へBench assessed claimだけを加える。
-- 期待oracle: callの観測成立だけを保持しBench評価済みを生成せずLABO Bench評価へ戻す。
+- 期待oracle: callの観測成立だけを保持し、Bench評価済みclaimを拒否する。このCASEでは戻し先を追加せず、Bench評価済みを生成しないことを照合する。
 
 ### L10-LABO-058-C27 — call成功を割当許可化
 
@@ -2201,3 +2259,99 @@ input observation identity/source revision；episode candidate identityとrelati
 - 対応AC: `LABO-012-AC-02`。固定親: `HELIXLABO-L2-012`。
 - 独立fixture（変更は一条件だけ）: 有効episode/evidenceを保ちLABOから上流relation authorityを変更する要求だけを加える。
 - 期待oracle: relation authorityを不変にし訂正sourceへ戻す。
+
+### L10-LABO-020-C11 — 復帰後観測の版統合
+
+- 対応AC: `LABO-020-AC-02`。親: `HELIXLABO-L2-020`。
+- 入力fixture: pre-fallback rule revision R1、post-operation rule revision R2、復帰後result、未完義務、source ownerが揃う正常入力を保持し、出力の復帰後観測だけを旧版R1と同じ版へ統合する。
+- 期待: 統合を拒否し、R1/R2と復帰後観測・未完義務を別に保持する。版の不一致をsource ownerへ返し、新しいrule版を捏造しない。
+
+### L10-LABO-021-C12 — data scope unknown
+
+- 対応AC: `LABO-021-AC-02`。親: `HELIXLABO-L2-021`。
+- 入力fixture: 許可されたHARNESS source identity/revision、source contract、個別connectorを保持し、data scopeだけをunknownにする。
+- 期待: 取込成功にせずunknownを保持し、HARNESS ownerへdata scopeの不足を返す。既知不許可のC07と区別し、許可範囲を推測しない。
+
+### L10-LABO-023-C11 — BRAIN正本authorityのLABO移管
+
+- 対応AC: `LABO-023-AC-02`。親: `HELIXLABO-L2-023`。
+- 入力fixture: BRAIN source identity/revision、利用permission/scope、許可された利用結果を保持し、source canonical owner/authorityの所在だけをLABOへ移すclaimを加える。
+- 期待: 移管を拒否し、正本とauthorityの所在をBRAINに保持する。LABO observationの取得を正本移管に変換しない。BRAIN source ownerへ不整合を返す。
+
+### L10-LABO-035-C16 — 適用scope unknown
+
+- 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
+- 入力fixture: 正常evaluation packetのsource identity/revision・評価状態・connectorを保持し、適用scopeだけをunknownにする。
+- 期待: 評価済みへ変えずscope unknownを保持し、当該source ownerへ不足を戻す。
+
+### L10-LABO-035-C17 — 適用scope欠落
+
+- 対応AC: `LABO-035-AC-02`。親: `HELIXLABO-L2-035`。
+- 入力fixture: 正常evaluation packetのsource identity/revision・評価状態・connectorを保持し、適用scope fieldだけを欠落させる。
+- 期待: 受渡しを完成扱いせず、当該source ownerへ適用scopeの欠落を戻す。
+
+### L10-LABO-058-C32 — Web明示選択正常
+
+- 対応AC: `LABO-058-AC-01`。親: `HELIXLABO-L2-058`。
+- 入力fixture: Web sourceを明示選択し、既存L2-031の採択source contract、個別connector、安全・permission・scope・revision・receiptを同じ対象へ有効に束縛する。
+- 期待: 選択Web sourceの条件だけでobservation候補を照合する。実際のWeb採択・稼働を成立させず、Web未選択の1.0呼出しへ条件を追加しない。
+
+### L10-LABO-058-C33 — Web選択contract未採択
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: C32の選択と他の安全・接続条件を保持し、選択Web source contractの採択状態だけを未採択にする。
+- 期待: 当該Web入力を成立させず、source ownerへ未採択contractを戻す。他の有効sourceと未選択source状態を保持する。
+
+### L10-LABO-058-C34 — Web選択connector欠落
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: C32の選択・採択source contract・安全条件を保持し、当該Web sourceの個別connectorだけを欠落させる。
+- 期待: 当該入力を成立させずCONNECTの当該connector ownerへ不足を戻す。別source connectorの暗黙共用をしない。
+
+### L10-LABO-022-C12 — receipt欠落
+
+- 対応AC: `LABO-022-AC-02`。親: `HELIXLABO-L2-022`。
+- 入力fixture: 有効ticket/source identity・revisionとassignmentを保持し、receiptだけを欠落させる。
+- 期待: 未完を保持し、受領済みや完了へ変換せずOSへreceipt不足を戻す。
+
+### L10-LABO-022-C13 — ticket stale
+
+- 対応AC: `LABO-022-AC-02`。親: `HELIXLABO-L2-022`。
+- 入力fixture: 有効assignment/receiptとsource契約を保持し、ticket revisionだけを現行対象よりstaleにする。
+- 期待: 旧ticketをcurrentとして取り込まず、未完と不一致をOSへ戻す。
+
+### L10-LABO-022-C14 — assignment stale
+
+- 対応AC: `LABO-022-AC-02`。親: `HELIXLABO-L2-022`。
+- 入力fixture: 有効ticket/source/receiptを保持し、assignment revisionだけを現行対象よりstaleにする。
+- 期待: 旧assignmentで受領や完了を成立させずOSへ不一致を戻す。
+
+### L10-LABO-023-C12 — knowledge use既知不許可
+
+- 対応AC: `LABO-023-AC-02`。親: `HELIXLABO-L2-023`。
+- 入力fixture: BRAIN source identity/revision、source契約、利用scopeを保持し、permissionだけを既知不許可にする。
+- 期待: knowledge useを受理せず、既知不許可をunknownと混同せずSECURITY permission ownerへ戻す。
+
+### L10-LABO-034-C10 — LABO観測をBRAIN取込済み化
+
+- 対応AC: `LABO-034-AC-02`。親: `HELIXLABO-L2-034`。
+- 入力fixture: 有効なgeneric structure candidateとsource evidenceを保持し、LABO観測のみを根拠にBRAIN取込済み/authority成立とするclaimだけを加える。
+- 期待: claimを拒否しcandidateを保持する。BRAIN取込済み・authorityを生成しない。このCASEは拒否のみを照合し追加ownerを作らない。
+
+### L10-LABO-058-C35 — 001観測本文変更
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: 正常callの他条件を保持し、既存001の観測本文の状態区分一つだけを書き換える要求を加える。
+- 期待: 既存001観測本文を不変に保持しLABO001契約へ差分を戻す。
+
+### L10-LABO-058-C36 — 001責務変更
+
+- 対応AC: `LABO-058-AC-02`。親: `HELIXLABO-L2-058`。
+- 入力fixture: 正常callの他条件を保持し、001の観測責務だけをsource正本変更責務へ変更する要求を加える。
+- 期待: 責務変更を拒否し001の観測責務とsource正本を保持してLABO001契約へ戻す。
+
+### L10-LABO-025-C10 — SECURITY finding disposition変更
+
+- 対応AC: `LABO-025-AC-02`。親: `HELIXLABO-L2-025`。
+- 入力fixture: 許可されたSECURITY evidenceとsource authorityを保持し、LABOからsource finding dispositionを書き換える要求だけを加える。
+- 期待: disposition変更を拒否し元のSECURITY findingを保持する。SECURITY ownerへ不整合を返し、LABO observationをsource findingの決定に変換しない。
