@@ -10,3 +10,8 @@
 ## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
 
 `HELIXCONNECT-L2-006`はconnection技術互換・片側交換の要求であり、独立したbusiness outcome/ACを追加しない。compatibleな技術送受信、handoff、rollback/recovery receiptから接続先業務結果、業務承認、業務完了を生成しない。意味契約差分は両端owner、接続先の業務結果は当該business owner、許可はSECURITYに残す。L2-006の技術条件と失敗経路は[機能要件](functional-requirements.md#L137)および[L10 case 006-01〜05](../L10-verification/functional-verification.md#L92)で照合する。前段Stage 1本文は変更しない。
+
+
+## Stage 4 — 008/009
+
+profile catalog/typed descriptorとdirection/order/feedback relationは技術契約であり、独立business criterionを新設しない。供給・技術eventから業務解決・要求採択・ticket発行・許可を生成しない。L3機能AC-008-02および009-03/05とL10個別CASEで境界を確認し、業務意味は元ownerへ残す。
