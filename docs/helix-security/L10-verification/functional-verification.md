@@ -539,7 +539,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 ### SECURITY-CASE-024-01 — policy/resource/enforcementの正常trace
 
 - **対象AC**：`SECURITY-AC-024-01/03`
-- **固定L11 oracle**（L2-024、L11:48）：SECURITY policy/authority、INFRASTRUCTURE resource state/観測、Worker physical enforcementをreceiptで対応付ける。INFRASTRUCTUREがpolicyを作らず、secret値をordinary resource state/backupへ保存しない。
+- **固定L11 oracle**（L2-024、L11:48）：SECURITY policy/authority、INFRASTRUCTURE resource state/観測、Worker physical enforcementをreceiptで対応付ける。INFRASTRUCTUREがpolicyを作らず、credential値を通常資源状態/backupへ保存しない。L2-024:307のsnapshot条件は「無条件に保存しない」であり、L11にないsnapshot絶対禁止は加えない。
 - **正常fixture/oracle**：synthetic resource identity/revision、SECURITY policy revision、Workerの制約適用状態とINFRASTRUCTURE観測を同じ対象/scopeへ束縛し、宣言と実状態を別に返す。credentialは存在しない合成markerのみを用いる。
 - **未見正常例**：別のsynthetic resource/環境でも各ownerのstateを照合し、SECURITYが配置を所有せず、INFRAがpolicyを作らない。
 - **owner oracle・戻し先**：policy/authorityはSECURITY、実resource/state/観測はINFRASTRUCTURE、physical enforcementはWorker。意味差はSECURITY L1、資源state/適用観測差はINFRASTRUCTURE L1/L2へ返す。
@@ -591,19 +591,26 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **期待oracle**：異なるscopeのevidenceを同一証拠にしない。
 - **owner戻し**：policy/assignment該当ownerへ返す。
 
-### SECURITY-CASE-024-09 — raw credentialを通常resource stateへ保存
+### SECURITY-CASE-024-09 — raw credentialの通常resource state保存
 
 - **対象AC**：`SECURITY-AC-024-03`
-- **negative変異**：通常resource stateにraw credential値が含まれる状態を作ろうとする。
-- **期待oracle**：fixtureは実値を使わず合成markerで検出し、保存を許さない。receiptにも値を記録しない。
+- **negative変異**：通常resource stateに合成credential markerを保存する。
+- **期待oracle**：固定L11:48の通常資源状態保存条件に照らして不合格とする。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。
 - **owner戻し**：credential boundaryはSECURITY、resource handlingはINFRASTRUCTUREへ返す。
 
-### SECURITY-CASE-024-10 — raw credentialをbackup/snapshotへ保存
+### SECURITY-CASE-024-10 — raw credentialのbackup保存
 
 - **対象AC**：`SECURITY-AC-024-03`
-- **negative変異**：通常resource stateを保ち、backup/snapshot経路だけに合成markerを加える。
-- **期待oracle**：backup/snapshot出力先で露出を拒否し、raw valueを保存しない。
+- **negative変異**：通常resource stateを保ち、backupだけに合成markerを置く。
+- **期待oracle**：固定L11:48のbackup保存条件に照らして不合格。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。
 - **owner戻し**：SECURITY/INFRASTRUCTUREの既存ownerへ返す。
+
+### SECURITY-CASE-024-11 — raw credentialのsnapshot保存境界
+
+- **対象AC**：`SECURITY-AC-024-03`
+- **negative変異**：通常resource stateとbackupを変えず、snapshotだけへcredential-use capability/authorityのみを根拠に合成markerを無条件で保存する。
+- **期待oracle**：固定L2-024:307の「無条件に保存しない」に照らし不合格とする。固定L11:48はsnapshotを列挙しないため、それをsnapshotへの絶対禁止へ拡張しない。実値を使わずreceiptにも値を記録せず、新しい保存許可も生成しない。
+- **owner戻し**：credential boundaryはSECURITY、snapshot resource stateはINFRASTRUCTUREへ返す。
 
 ### SECURITY-CASE-026-01 — deterministic Guard、Botなし
 
@@ -654,3 +661,24 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **negative変異**：semantic exfiltration/probing実利用またはBot runtimeを1.0の成立条件へ加える。
 - **期待oracle**：不合格。1.0はGuard/Bot境界だけを照合する。
 - **owner戻し**：1.x/後続版を保持し、要求の意味・version変更が必要な場合だけL2へ戻す。
+
+### SECURITY-CASE-026-08 — 必要時の限定INTELLIGENCE Worker input
+
+- **対象AC**：`SECURITY-AC-026-02`
+- **条件付き正常fixture**：semantic judgementが必要な合成入力について、契約記述上INTELLIGENCE発行・目的/authority限定Workerの境界を保ち、その結果を限定scope/由来/確度付きのdecision inputとしてGuard結果と分離する。Bot runtimeの実装・稼働は実行せず、1.0成功条件にも含めない。
+- **期待oracle**：固定L2-026の発行元・Worker・authority境界が保たれ、入力がGuard rule/operation authorityにならない。必要条件がそろう契約記述だけを正常とし、Botの不存在は通常の1.0 Guard正常fixtureの妨げにならない。
+- **owner戻し**：semantic judgement/Bot発行契約はINTELLIGENCEへ、Guard/operation authorityはSECURITYへ返す。
+
+### SECURITY-CASE-026-09 — INTELLIGENCE以外が発行したBot input
+
+- **対象AC**：`SECURITY-AC-026-02`
+- **negative変異**：他条件を保ち、Bot発行元だけをINTELLIGENCE以外としてsemantic inputに使う。
+- **期待oracle**：固定L2-026の発行元境界と不一致のため有効なINTELLIGENCE semantic inputとして扱わず、Guard/authorityへ昇格しない。Bot runtimeを1.0で実行して拒否することは要求しない。
+- **owner戻し**：発行契約はINTELLIGENCE、Guard/authorityはSECURITYへ返す。
+
+### SECURITY-CASE-026-10 — Botへ独立包括authorityを与える
+
+- **対象AC**：`SECURITY-AC-026-02/03`
+- **negative変異**：Botのauthority scopeだけを目的限定Workerの範囲から独立の包括権限へ広げる。
+- **期待oracle**：固定L2-026境界に反するためsemantic inputのauthority化を不合格とする。対象Bot runtimeを1.0へ実装・稼働必須化しない。
+- **owner戻し**：目的/発行契約はINTELLIGENCE、operation authorityはSECURITYへ返す。
