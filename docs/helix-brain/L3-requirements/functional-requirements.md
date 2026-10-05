@@ -520,7 +520,7 @@ Pattern/Unit/Part間のrelationを種類、方向、意味、両端identity付�
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029の部分草稿
 
-**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。
+**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（011/012の`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。
 
 旧L3定義`LEGACY-ASSET-F542125805B777D8A56A`（`docs/process/forward/L00-L06-design-phase.md:148-168`）と旧L3層README `LEGACY-ASSET-9A772391C7FB1298D45F`（`docs/design/harness/L3-functional/README.md:16-56`）から、FR+AC、business/NFRの区分、対の検証へtraceする形だけを再導出する。旧HELIXのBRAIN専用L3要件・対testは、archiveのdocs inventoryを`brain`で絞り、旧L3 functional FR/README/acceptance designとUI Domain Pattern Profile設計・testのPattern/failure/product/consumer関連範囲を検索した限り見つからなかった。これはその検索範囲の結果であり、旧資産全体の不存在を主張しない。旧HARNESS FR/AC、ATと旧UI profileを構造上の類例として参照し、BRAINの意味authorityにはしない。旧G3/runtime、UI固有schema/enum、旧ID、旧閾値・gate・実行結果は継承しない。各親別のsource、物理行、full/raw-LF pin、再利用・再導出・置換理由は対応する固定時点source-pins記録にある。
 
