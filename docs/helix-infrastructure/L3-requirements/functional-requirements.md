@@ -159,3 +159,181 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 両親のL2-001 identity/environment契約、002の比較入力と007のL2-005/006参照を個別にmissing/unknown/stale/異revisionにする依存negativeは各L10 C06へ結ぶ。007の復旧実行は既存authorityとWorker契約を使い、比較/再構築結果から権限や操作を生成しない。
 
 002の未見正常は独立fixtureのL10-INFRA-002-C07でAC-01を照合し、C02の個別差異変異と分ける。
+
+## Stage 2a 追加範囲 — L2-003/004/005/009/010
+
+この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1とStage 2bの6文書prefixはbytesそのまま保持するが、その承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。
+
+### 旧source起点・項目別処置
+
+旧L3 process `LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`, SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`) のFR+AC、3区分、対の検証という**形式の意味を再導出**する。旧G3、sub-gate、runtime、旧test実行経路は置換する。旧`OPS-R-01` (`LEGACY-ASSET-17C4BF78919578FEBB18`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68-73`, file SHA `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0`)と`OPS-AC-001` (`LEGACY-ASSET-F46AB11BD14F2C0469F4`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26`, file SHA `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58`)は、environment/resource identity、曖昧target拒否、credential referenceを保持してsecret値を保持しない意味を**部分再利用**し、適用scopeと現行ownerを再導出する。旧操作方式やauthority経路は移さない。旧OPS-R-01/OPS-AC-001はsecret値を保持しないと無限定に記す一方、固定L2-010は通常resource stateへの保存を無条件に禁じ、backup/snapshotは適用されるSECURITY条件に従わせる。この差を保ち、旧記述の無限定禁止をbackup/snapshotへ拡張しない。SECURITY条件の適用が不明ならSECURITYへ返す。旧`OPS-R-03`同L3 file `:81-85` と`OPS-AC-003`同acceptance `:28` はrollback plan/receiptとincident closureを分ける形を**部分再利用**し、現在のL2-005 scopeへ再導出する。旧tech-environment reconciliation、lifecycle state separation、security broker等の旧資産はversion/source mismatch、unknown、owner境界を持つfixtureの形だけを意味再導出し、旧schema/state taxonomy/CLI/DB/CI/runtime/valueは置換する。
+
+### 親句→FR/AC trace
+
+| 固定親句の意味 | FR/AC | 主な受入境界 |
+|---|---|---|
+| L2-003: common resource modelとlocal/VPS/dedicated/cloud/container/GPU/Worker各resource type | INFRA-003-FR-01 / INFRA-003-AC-01 | 7種を固定allowlistにせず、宣言された対象scopeのresource identity/type/source/revisionを追跡する。 |
+| L2-003: Network path 8軸（source/destination/protocol/endpoint/direction/purpose/security boundary/dependency） | INFRA-003-FR-01 / INFRA-003-AC-02 | 各軸はvalueまたはunknown。論理connectionからphysical routeを推定しない。 |
+| L2-003: persistent/temporary database/evidence-artifact/queue/cache/log-metric/model storeとowner/durability/backup/retention/environment/confidentiality/recovery attributes | INFRA-003-FR-02 / INFRA-003-AC-03 | 各宣言categoryを区別し、各6属性と該当recovery referenceを追う。storage categoryを網羅済と推定しない。 |
+| L2-003: Model/server/version/GPU-memory/concurrency/latency/capacity/health/endpoint; external model API/local LLM/GPU server/distributed model server/tuned model; intelligence qualityは別owner | INFRA-003-FR-03 / INFRA-003-AC-04 | Model Runtime各fieldと5つの明示model種を対象environment/source/revisionへ束ねる。Workerは適用するresource fieldsだけを資格化し、Worker操作権限/version authorityや知能評価を作らない。 |
+| L2-003: launch前capacity確認、不足時queue/delay等をOS/INTELLIGENCEへ渡す、unbounded job/placement/cost決定禁止 | INFRA-003-FR-04 / INFRA-003-AC-05 | 不足を`capacity unavailable`としてdecision ownerへ返し、無制限Job・未承認node移動/cost選択を成立扱いしない。 |
+| L2-003: missing/stale/unmeasurable/unknownでsafe-to-acceptを返さず、queue/snapshotを保持 | INFRA-003-FR-05 / INFRA-003-AC-06 | 独立missing/stale/unmeasurable/partial-updateを拒否/unknown化し、前回値をcurrentにせず未完範囲を保持。 |
+| L2-004: observation stateとnormal/degraded/unavailable/capacity/dependency/data-network/security-isolation/unknown、unknown≠healthy | INFRA-004-FR-01 / INFRA-004-AC-01 | 観測分類を既存parent wordingへ限定し、無観測をhealthyへ昇格しない。 |
+| L2-004: incident meaning/severityはapproved sourceだけ、独自定義しない | INFRA-004-FR-02 / INFRA-004-AC-02 | 正常・未見正常と未承認severity追加を個別照合し、原因を推測しない。 |
+| L2-004: source/target revision保持、staleをcurrent化しない。L2-019 detailed freshnessは後続版 | INFRA-004-FR-03 / INFRA-004-AC-03 | source/currentnessを照合し、019のfreshness/confidenceを1.0 gateへ追加しない。 |
+| L2-004: telemetry/source/collector failureはunknown/unobservedでownerへ戻し、pending evaluation保持 | INFRA-004-FR-04 / INFRA-004-AC-04 | source欠落とcollector failureを別negativeにし、未確認範囲と評価待ちを残す。原因は推測で確定しない。 |
+| L2-005: backup source/target revision/time/completeness/location/integrity/expiry、state ownerのretention requirement。configured/success/existenceを分離 | INFRA-005-FR-01 / INFRA-005-AC-01, INFRA-005-AC-02 | owner保持期間と適用recovery requirementを保持し、owner/retention/recovery requirementの欠落・unknownとjob-success-onlyを独立negativeにする。recovery requirement不足はstate owner、restore failureはrecovery design owner/OSへ戻す。 |
+| L2-005: actual restoreでintegrity/reconnect/startup/verification、L2-001/002依存と独立restore environment | INFRA-005-FR-02 / INFRA-005-AC-02 | 4 evidenceとdependency参照/独立環境を別々に照合し、failure時はrecovery design owner/OSへ戻す。 |
+| L2-005: rollback targetをinfra version/config/artifact/dependency/data compatibilityとprocedureへ結び、rollback≠incident closure | INFRA-005-FR-03 / INFRA-005-AC-03 | 対象適格性とreceiptを保持し、rollbackだけでincidentを閉じない。 |
+| L2-005: failure/unknownでsuccessを出さずrecovery design owner/OSへ、prior eligible state/failure/unfinished dutyを保持 | INFRA-005-FR-04 / INFRA-005-AC-04 | 戻し先をACに明記し、失敗・部分復旧で未完義務を消さない。 |
+| L2-009: versioned OS Work/Changeとresource-state view、ownershipを分離 | INFRA-009-FR-01 / INFRA-009-AC-01 | OS work/change IDとINFRA runtime/resource IDをversioned referenceでつなぎ二重正本にしない。 |
+| L2-009:通常接続はstage release不要、条件付きstageはOS-L2-014、stage ID≠runtime revision | INFRA-009-FR-02 / INFRA-009-AC-02 | stageなし正常例を独立させ、stage例は条件付き・別fixtureとする。 |
+| L2-009: mismatch/partial/unknownはchange successでない、OS/INFRA ownerへ、stage/runtime/rollback/pending保持 | INFRA-009-FR-03 / INFRA-009-AC-03 | cause別ownerへ戻し、適格状態と未完操作を残す。 |
+| L2-010: 全operationはtarget/action/revision/scope/expiryに適用されるSECURITY authorityとSEC Worker。read-only/state-changingは区別 | INFRA-010-FR-01 / INFRA-010-AC-01 | read-onlyにはwrite権限を要求せず、mutating actionは該当005 dutyだけを確認。normal stateへのsecret値保存は無条件に拒否し、backup/snapshotは該当SECURITY条件に従う。unbounded ShellとINFRA発行authorityは独立に拒否しSECURITY/OSへ戻す。 |
+| L2-010: normal operationはOS assignment/ticket+009、update-admissionは変更適用時のみ | INFRA-010-FR-02 / INFRA-010-AC-02 | read-onlyと更新を別fixtureにし、更新時の欠落/拒否/unknown/mismatch/expired/revoked admissionだけを変更前に拒否。 |
+| L2-010: independent bootstrap/recoveryは006 path+別authority、OS停止時ticket/009不要、復旧後OSへresult sync | INFRA-010-FR-03 / INFRA-010-AC-03 | OS停止中の限定操作を独立判定し、復旧後のresult同期証拠はこの010句だけから導出。006へ一般化しない。 |
+| L2-010: authority/credential-scope/target/revision mismatchは事前拒否、partial runは成功でなくactual state/recovery duty保持 | INFRA-010-FR-04 / INFRA-010-AC-04 | 個別mismatchとpartial resultを分離し、SECURITY/OS/INFRA ownerと未完義務を保持。 |
+
+### Stage 2a owner / condition / version guard
+
+| Parent | Owner boundary | 固定条件・版 |
+|---|---|---|
+| L2-003 | observationはresource/capacity source owner、capacity/launch判断はOS/INTELLIGENCE | L2-001 snapshotと実際の観測sourceが必要。高度なautoscalingを含まず`version_target: 1.0`。 |
+| L2-004 | observation source/collector owner、incident meaning/severityの承認済み上流owner | L2-001、既存approved incident meaning/sourceが必要。L2-019 detailed freshness/confidenceは1.0 gateにせず`version_target: 1.0`を保つ。 |
+| L2-005 | recovery design owner/OS | L2-001/002、state owner/retention/recovery requirement、restore environmentを参照。automatic failoverを含まず`version_target: 1.0`。 |
+| L2-009 | mapping mismatchの責務に応じOSまたはINFRA owner | L2-001/002/004/006とOS Work/Change interface。stage release依存はstage packへ実際に収載するときだけOS-L2-014を適用。`version_target: 1.0`。 |
+| L2-010 | authority/update admissionはSECURITY/OS、partial actual stateは該当INFRA owner | 全operationでL2-001と適用可能SECURITY authority/Worker。normal routeはOS+009、mutationだけupdate-admission、state changeに適用する005 duties、独立recoveryは006 path+別authority。`version_target: 1.0`。 |
+
+上のStage 1 scope境界はStage 1候補の対象限定としてそのまま保持する。Stage 2aの直接対象は本節の5採択親だけであり、Stage 1境界文を保持し、承認済みStage 1／Stage 2b prefixの承認を今回のStage 2a候補revisionへ継承しない。全5親の適用条件は固定L2/L11とPO採択revisionに従い、Stage 2a候補から要求の意味/scope/owner/versionを拡張しない。
+
+### HELIXINFRASTRUCTURE-L2-003 — resource topology / capacity
+
+#### INFRA-003-FR-01 — 共通resource modelとnetwork path
+
+対象scopeに宣言されたlocal machine、VPS、dedicated server、cloud VM、container runtime、GPU node、Worker node等を共通resource modelで識別し、CPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityをresource type、environment、source/revisionに結び付ける。Network pathはsource、destination、protocol、endpoint、direction、purpose、security boundary、dependencyの8軸をphysical path identityに結び付け、論理CONNECT identityとは分ける。
+
+**INFRA-003-AC-01**: distinct resource type/identity/environment/version/dependency fixtureで全宣言resourceのCPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityを値またはunknownとsource/revision付きで追跡できる。未見typeは宣言scope内なら個別identityのまま保持する。
+
+**INFRA-003-AC-02**: 8 network軸の各fieldにvalueまたはunknownがあり、各fieldを一つずつ欠落/ambiguousにしたnegativeでpathを既知・健全・許可済みとしない。CONNECT logical identityからphysical pathを補完しない。
+
+#### INFRA-003-FR-02 — storage categoriesと属性
+
+固定L2が列挙するpersistent/temporary database、evidence/artifact store、queue、cache、log/metric store、model storeごとにstorage identity、owner、durability、backup、retention、environment、confidentialityおよび該当recovery attribute/referenceをsource/revisionとともに記録する。persistentとtemporaryを同一分類へ畳み込まない。
+
+**INFRA-003-AC-03**: 各宣言categoryの全6属性とrecovery referenceにvalueまたはunknownとsource/revisionがある。個々の属性欠落をnegativeにし、temporary cache/queueでpersistent backup要件を満たしたとしない。未見categoryを既知に推定しない。
+
+#### INFRA-003-FR-03 — Model RuntimeとWorker resource qualification
+
+対象environment/scopeに含まれるModel Runtimeについてmodel、server、version、GPU-memory requirement、concurrency、latency、capacity、health、endpointをsource/revisionと共に記録する。親が明示するmodel種はexternal model API、local LLM、GPU server、distributed model server、tuned modelであり、各種をscope内のmodel type/resource classとして識別する。Worker nodeは該当するCPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityのresource nodeとして扱う。知能品質、Worker capability/version authority、operation authorizationは本親から導出しない。
+
+**INFRA-003-AC-04**: scopeにModel Runtimeを含むnormal fixtureでは上記全fieldをvalueまたはunknownとしてtraceし、external model API、local LLM、GPU server、distributed model server、tuned modelの各typeをそれぞれ分類・照合する。個別missing/stale fieldまたはtype/class不一致でqualification incompleteを示す。scope外runtimeを存在すると仮定せず、知能score/Worker authorityを発行しない。
+
+#### INFRA-003-FR-04 — capacity observationとdecision handoff
+
+CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementとcapacity/utilization/queue/concurrency/saturation/rejection/backpressureの対象revisionを、launch requestの前に観測する。known shortage/unknown capacityはOS/INTELLIGENCEのdecision interfaceへ情報として返す。Infrastructureはcapacity sufficiencyの未承認閾値、placement/cost choice、無制限Job追加を作らない。
+
+**INFRA-003-AC-05**: 十分と宣言されたknown fixtureは、参照可能なsource/revisionとcapacity fieldsを伴ってdecision interfaceへ渡る。shortageは`capacity unavailable`としてOS/INTELLIGENCEのdecision ownerへ返し、queue/delay/reject/escalationはそのownerが判断する。別node候補や低費用候補を含むfixtureでもInfrastructureはnode/costを選択しない。無制限Job追加または未承認node移動/cost選択を個別に試みるnegativeでは、成立/採用扱いにしない。threshold未設定ならsufficiency=unknownであり、採用判定を生成しない。
+
+#### INFRA-003-FR-05 — 欠落・stale・計測不能時の保留
+
+Resource/capacity observationがmissing、stale、unmeasurable、unknown、read-failureまたはpartial-updateの場合、safe-to-accept/availableを返さず、対象snapshot、queue/delay中要求、未完の観測範囲を保持してsource ownerまたはOS/INTELLIGENCEへ戻す。失敗/partial read後の以前のobservationをcurrentと扱わない。
+
+**INFRA-003-AC-06**: missing、stale、unmeasurable、明示unknown、読取失敗、途中更新を独立fixtureで照合する。いずれもsafe-to-acceptを返さず、旧observationをcurrentへ昇格しない。失敗範囲、snapshot、pending requestを追跡し、resource/source状態は該当source owner、作業判断はOS/INTELLIGENCEへ戻す。ownerがunknownなら未解決を保持し、戻し先を推測しない。
+
+### HELIXINFRASTRUCTURE-L2-004 — observability / incident state
+
+#### INFRA-004-FR-01 — versioned observation分類
+
+Health、metric、log、resource use、dependency、queue、error、latency、deployment revision、recovery observationをsource/target revisionに結び、fixed L2のnormal/degraded/unavailable/capacity/dependency/data-network/security-isolation/unknownを区別する。無観測・collector未完はhealthyへ変換しない。
+
+**INFRA-004-AC-01**: normal観測がsource/revisionと結び付く。列挙categoryごとの負例とtelemetry欠落はそれぞれ該当state/unknownとして保持し、未定義severityを割り当てない。
+
+#### INFRA-004-FR-02 — 既存incident meaningのみ
+
+Incident meaning/severityは既に承認されたsource/requirementとrevisionから参照する。INFRASTRUCTUREはseverity taxonomy、business影響、原因、incident close条件を独自定義しない。
+
+**INFRA-004-AC-02**: approved meaning sourceがあるnormal fixtureは、そのID/revisionと適用されたmeaning/severityを辿れる。approved schema内の未見normal sourceも同じoracleで照合する。未承認severityを独自追加する単独negativeでは分類を確定せず、意味のsource/ownerへ戻す。原因を推測で確定しない。
+
+#### INFRA-004-FR-03 — source/current revision境界
+
+各observationのsource revisionと対象runtime/deployment revisionを保持し、stale sourceをcurrentへ昇格しない。L2-019の詳細freshness/confidenceを1.0受入gateへ追加しない。
+
+**INFRA-004-AC-03**: current source/revision fixtureは対象に結び付き、stale/mismatched revision fixtureはcurrentでない状態として扱う。未見sourceの正常値は保持し、L2-019を依存親にしない。
+
+#### INFRA-004-FR-04 — telemetry failureとowner return
+
+Telemetry欠落、source不明、collector failureをunknown/unobservedにし、原因を推測確定せず観測source/collector ownerへ戻す。未確認resource、評価待ちincident、未完のobservationを保持する。
+
+**INFRA-004-AC-04**: missing telemetry、unknown source、collector failureを独立negativeにし、health/incident successへ転換しない。原因を推測で確定せず、telemetryはsource/collector ownerへ、incident meaning/severityは承認済みmeaning ownerへ戻した記録とpending evaluationを追跡できる。
+
+### HELIXINFRASTRUCTURE-L2-005 — backup / restore / rollback
+
+#### INFRA-005-FR-01 — backup stateの独立記録
+
+Backupごとにsource/target revision、time、completeness、location、integrity、expiryと実行stateを記録する。expiry/保持期間は対象state ownerの既存retention要求を参照し、Infrastructureがownerまたは保持期間を新設しない。owner/retention要求が欠落・unknownなら保持適格性をunknownにする。backup configured、job success、backup artifact existenceを別stateにし、いずれも実restore可能性と同一視しない。
+
+**INFRA-005-AC-01**: completeかつ対象revision/integrity/locationが合致するbackup recordを正常に追跡し、expiryはstate ownerの既存retention要求と照合する。owner欠落、retention要求欠落/unknown、適用されるrecovery requirementの欠落/unknown、incomplete、wrong revision/target、integrity mismatch、expiry、configured-only、backup-job-success-onlyをそれぞれ独立negativeにし、いずれもrestoreable/successへ昇格しない。recovery requirement不足は該当state ownerへ確認し、ownerを特定できなければ未解決のまま保留する。別resource用に同schemaを宣言した未見normal fixtureも個別評価する。
+
+#### INFRA-005-FR-02 — actual restore検証
+
+Restoreを実行した対象とrevisionについてintegrity、dependency reconnection、startup、verification evidenceを別々に記録する。backup metadataや手順書だけではrestore成功を示さない。
+
+**INFRA-005-AC-02**: 採択済みL2-001/002のsource/target snapshot、revision、compatibility referenceと適用されるrecovery requirement identity/revisionが条件を満たすnormal fixtureで、独立restore environment上の4 evidenceを追跡する。適用recovery requirementのmissing/unknownは独立negativeとし、復旧成功を出さずstate ownerまたはrecovery design owner/OSへ戻して未完義務を保持する。dependency参照のmissing/stale/revision mismatchと、restore環境が独立していない状態を別々にnegative化する。integrity、dependency reconnect、startup、verification failureも別々に注入し、いずれもrestore successにしない。failure/未完はrecovery design ownerまたはOSへ戻す。未見のrestore targetでも同じ条件を照合する。
+
+#### INFRA-005-FR-03 — eligible rollback targetとprocedure
+
+Rollback targetをInfrastructure version/configuration/artifact/dependency/data compatibilityおよびrecovery procedureへ束縛し、実行結果とincident stateを別記録する。rollback successはincident closureやforward-fix completionを意味しない。
+
+**INFRA-005-AC-03**: known compatible target/procedureの正常fixtureを追跡する。unknown target、各incompatibility、unbound procedureを個別negativeとし、incident stateは未解決のまま保持する。未見targetでも同じeligibility fieldsを要求する。
+
+#### INFRA-005-FR-04 — failure/partial recovery保持と戻し先
+
+Backup/restore/rollback/recoveryがfailure、unknown、partialならsuccessを発行せず、変更前の最終適格state、failure evidence、未完recovery/verification dutyを保持し、recovery design ownerまたはOSへ戻す。
+
+**INFRA-005-AC-04**: owner destinationと未完義務がACにある。failure/partial/unknownを独立fixtureで入力し、変更前state/failure/dutyが残る。回復設計はrecovery design owner、OS上の作業状態はOSへ戻す。該当ownerが不明なら未解決のまま保留し、循環的な未定義ownerへ戻さない。
+
+### HELIXINFRASTRUCTURE-L2-009 — OS Work/Change と runtime resource state
+
+#### INFRA-009-FR-01 — versioned state接続とowner分離
+
+OS Work/Change actor/identity、target、revision、start/stop/resume、evidence referenceをInfrastructure topology/actual/deployment/recovery revisionへversioned referenceで接続する。OSはwork/change state、Infrastructureはresource/runtime stateの正本を持つ。
+
+**INFRA-009-AC-01**: 別IDのOS ticket/changeとInfrastructure resource/runtime stateを明示revision referencesで正常に接続し、二重正本化しない。未見のticket/resource pairでも同じidentity契約を適用する。
+
+#### INFRA-009-FR-02 — stage releaseから独立した通常接続
+
+通常Work/Change-to-resource connectionはHELIX全体のstage release構成体や後続版HRI-L1-015を待たず成立する。stage packへ収載するときだけHELIXOS-L2-014の契約を用い、stage IDとruntime revisionを分ける。
+
+**INFRA-009-AC-02**: stageなしの通常fixtureを個別に成立させ、HELIX全体stage release、後続版HRI-L1-015、全7製品/L1-023完成を待たない。条件付きstage fixtureでは、同一stageの構成証拠、必要なInfrastructure依存、更新/rollback evidenceの3種をそれぞれsource/revisionへ結び、stage ID/pack identityとruntime revisionを別fieldとして相互参照する。部分更新、rollback失敗、未完operationは独立negativeとし、stage未使用を失敗扱いしない。OS ticketをruntime stateの正本にすること、Infrastructureが作業承認を発行すること、全体完成をstage開始gateにすることもそれぞれnegativeで拒否する。failure/partial時はOSまたはInfrastructureの該当state ownerへ戻し、稼働中stage、runtime revision、適格rollback先、停止中operationを保持する。
+
+#### INFRA-009-FR-03 — mapping失敗時の保留と戻し先
+
+Ticket/target/runtime revision/state mappingがunknown、mismatch、partialならresource changeをsuccessとせず、原因に応じOSまたはInfrastructure ownerへ戻す。適用時はcurrent stage、runtime revisions、eligible rollback target、pending operationを保持する。
+
+**INFRA-009-AC-03**: wrong target/revision, stage-ID conflation, partial mappingを個別negativeにする。change successを出さず、cause-based owner returnと既存適格state/rollback/pending operationを記録する。
+
+### HELIXINFRASTRUCTURE-L2-010 — SECURITY authority / Worker operation
+
+#### INFRA-010-FR-01 — operation-scoped authorityとread/write義務分離
+
+全operationのtarget/project/action/revision/scope/expiryに適用される有効SECURITY authorityと、SECURITY制約下のWorker execution contractを照合する。Read-onlyとstate-changing operationを分け、state-changingに限り、そのactionへ適用される採択済みL2-005のbefore/after、backup/restore/rollback/recovery dutyを確認する。credential値は通常resource stateへ無条件に保存しない。backup/snapshotは固定L2の「無条件に保存しない」を保ち、該当SECURITY条件を伴わない保存を拒否する。条件または適用可否がunknownならSECURITYへ返す。Workerはunbounded Shell主体でなく、operation-scoped contractに従う。INFRASTRUCTUREはpolicy/authority/credentialを発行しない。
+
+**INFRA-010-AC-01**: read-only normalはdeclared target/scope/read target、空のwrite-set、適用可能なread authorityを確認する。当該operationのwriteを拒否し、declared target resourcesのbefore/after不変を確認するが、無関係なresourceの変化をfailureにしない。不要なwrite authority/005 dutyを強制しない。mutating normalは該当する005 dutyを別fixtureで確認する。wrong target/project/action/revision/scope/expiredまたはrevoked authorityは個別に拒否する。credential値を通常resource stateへ保存する変異は無条件に拒否する。backup/snapshotへSECURITY条件なしに保存する変異は個別negativeとし、条件がunknownならSECURITYへ戻す。read-only宣言だけでwrite禁止の適用証跡を欠くfixture、および宣言targetのbefore/after証拠を欠くfixtureも個別negativeにし、開始/成功扱いせずSECURITY/OSへ返す。unbounded Shell実行とINFRAによるpolicy/authority発行は開始前に拒否し、違反と未完義務を保持してSECURITY/OSへ返す。Worker成功返答だけで実状態変更を受け入れず、実状態証拠の欠落は実状態を担うInfrastructure ownerへ戻す。Read-only outcomeと変更結果を混同しない。
+
+#### INFRA-010-FR-02 — normal OS/Worker routeとupdate admission
+
+通常操作はOS assignment/ticketとINFRA-009 Work/Change connectionを用いる。該当義務がunknownまたは未充足ならstate-changing operationを保留する。Update-admissionはresource変更を適用するoperationに限り追加条件とする。未accepted/unknown/mismatched admissionは当該変更を開始前に停止する。停止・回収時は実state、未完operation、該当義務を保持してOSへ返す。OS復旧後のresult同期は独立bootstrap/recovery routeに限るINFRA-010-FR-03へ置く。
+
+**INFRA-010-AC-02**: 有効なassignment/ticket/referenceと充足済み適用義務を持つnormal fixtureを記録する。通常routeのticket欠落、assignment欠落、義務unknown、義務未充足をそれぞれ独立negativeにして変更を保留する。別mutating fixtureではaccepted admissionのみ変更開始可能で、denied/unknown/mismatch/expired/revokedを個別negativeにする。同じ条件下のread-only operationはupdate admission不在だけで拒否しない。通常operationがindependent recoveryの免除を流用する変異も拒否する。停止・回収時のactual state、未完操作、義務を保持してOSへ返す。独立recovery routeの復旧後result同期はFR-03/AC-03に限定する。
+
+#### INFRA-010-FR-03 — independent bootstrap/recovery route
+
+OS/Control Plane停止中のbootstrap/recoveryはINFRA-006の限定resource/pathと別SECURITY authorityで開始する。停止中OS ticket/assignmentまたは通常INFRA-009応答を開始条件にしないが、通常operationに対する一般免除ではない。OS復旧後はoperation/resultを通常Work/Change traceへ同期する。この同期義務はこのL2-010句に由来し、INFRA-006要件へ加えない。
+
+**INFRA-010-AC-03**: OS/CP停止中の独立route、対象operation/authority照合、制限された操作結果を正常fixtureで記録する。停止中通常routeのみを唯一とするnegativeでは実行しない。復旧後のresult-to-OS sync receiptは010のみに対応づけ、006だけから要求しない。
+
+#### INFRA-010-FR-04 — mismatch / partial execution
+
+Authority、credential scope、target、revisionの不一致は実行前に拒否する。部分実行はsuccessとせず、実際のstate、operation receipt、未完operation、適用されるrecovery/rollback dutyを保持する。
+
+**INFRA-010-AC-04**: 完了normal fixtureではWorker result receiptと別個のactual-state observationをtarget/action/revision参照で結ぶ。Worker応答だけでactual stateを推定しない。mismatched authority/credential scope/target/revisionは個別negative fixtureで確認しoperation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。
