@@ -1364,19 +1364,19 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 他の比較材料を保ち、固定scope内のcounterexampleだけを出力から欠落させる。期待：評価材料不成立を記録し、反例を保持する。
-- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を評価材料（出力）に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-016-C06 — oracleと結果の不一致
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 比較結果を保ち、oracle判定だけが結果と矛盾するfixtureにする。期待：判定不能を維持しsystem適格へ昇格しない。
-- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を評価材料（出力）に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-016-C07 — 中断状態の消去
 
 - 対応AC: `LABO-016-AC-02`。親: `HELIXLABO-L2-016`。
 - 入力fixture: 一つの比較armを中断し、その状態だけを未記録にする。期待：中断と未取得結果を記録し、比較完了としない。
-- 失敗時戻し先: operation候補として保留し、不足・不一致を結果に記録する。LABOはsource正本を変更しない。
+- 失敗時戻し先: operation候補として保留し、不足・不一致を評価材料（出力）に記録する。LABOはsource正本を変更しない。
 
 ### L10-LABO-017-C05 — 現行rule版の欠落
 

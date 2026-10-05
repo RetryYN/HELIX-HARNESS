@@ -1343,7 +1343,7 @@ Workerを機構・authority ownerにしない。
 ### 受入条件候補
 
 - **LABO-030-AC-01 — 正常・trace**：source/product identityと適用版/許可が観測ごとに追跡可能。
-- **LABO-030-AC-02 — failure boundary**：product identity欠落、source revision不一致、異なるsource統合、authority移管、source contract欠落を成功扱いしない。親が戻し先を定めないidentity欠落・source統合・authority移管は拒否のみとし、返却先を新設しない。選択Product Core sourceのrevision不一致・source contract欠落の返却は、L2-030が001へ渡す入力接続であることと固定L2-058:413のsource条件から再導出し、該当Product Core source ownerの接続契約へ戻す。L2-030単独に明記のない返却先を推定しているものではない。未採択source/productを暗黙必須化せず製品stateを書き換えない。
+- **LABO-030-AC-02 — failure boundary**：product identity欠落、source revision不一致、異なるsource統合、authority移管、source contract欠落を成功扱いしない。親が戻し先を定めないidentity欠落・source統合・authority移管は拒否のみとし、返却先を新設しない。選択Product Core sourceのrevision不一致・source contract欠落の返却は、L2-030が001へ渡す入力接続であること、固定L2-001:73の欠落時source責務への返却、L2-058:410の選択source接続条件、L2-058:413のversion/scope/許可/receipt条件から再導出し、該当Product Core source ownerへ戻す（接続契約の不足として）。L2-030単独に明記のない返却先を推定しているものではない。未採択source/productを暗黙必須化せず製品stateを書き換えない。
 
 ### 補正ACと個別fixtureの対応
 
