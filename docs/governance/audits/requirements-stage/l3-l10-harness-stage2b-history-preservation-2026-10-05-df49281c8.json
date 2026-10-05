@@ -1,0 +1,392 @@
+{
+  "record_type": "l3-l10-harness-stage2b-history-preservation",
+  "authority_effect": "none",
+  "scope": [
+    "HARNESS-L2-012",
+    "HARNESS-L2-013",
+    "HARNESS-L2-014",
+    "HARNESS-L2-015",
+    "HARNESS-L2-016"
+  ],
+  "stage": "2b",
+  "current_cutout_body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+  "current_cutout_audit_commit": "93accb60e5b3319922ac1f5d16899da3aa2c57e0",
+  "current_cutout_audit_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-public-cutout-2026-10-05-df49281c8.json",
+  "current_cutout_audit_sha256": "94eb7f7eb7adb02cfac55973cb0ae12c0e1b9d2eccc1832fb6ddb79b03d9d143",
+  "current_cutout_summary_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-public-cutout-2026-10-05-df49281c8-summary.md",
+  "current_cutout_summary_sha256": "dee5cb8574b4d3fb5d444d0126442ad787c30b34487315bc2cf8be5620c66858",
+  "current_cutout_documents": [
+    {
+      "document": "FR",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "b17ff76db4a0fe4c2672e815ca9c567b0021b8b5209f9aa3946957819504ac1b",
+      "bytes": 52355
+    },
+    {
+      "document": "BR",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "ae00c0dda32ce2b95213a1be008339c569f892f4a0249a96e9b901cdb70a8f6f",
+      "bytes": 3885
+    },
+    {
+      "document": "NFR",
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "d6f10a26dd11b9bf8b6ceb1d3a4bab7ee2f5865949cb5708598c9283fc69ebd8",
+      "bytes": 17264
+    },
+    {
+      "document": "L10FR",
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "303fbaa5075b140f0053d57ba162d2b26e6b6b958b336b55811ac59e7b7ad6e7",
+      "bytes": 32609
+    },
+    {
+      "document": "L10BR",
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "eeb40a6b192fdc8c29e9fb2913814b4f32d1c9b960c5f2cfcea1c9b91cc133da",
+      "bytes": 2493
+    },
+    {
+      "document": "L10NFR",
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "body_revision": "df49281c8576207cf46b5651c05cf91ac13587c5",
+      "full_file_sha256": "6603ca923d28c22f9b68fdb401f2f1a26850a6966ce03a14776679bbfac8d8df",
+      "bytes": 10718
+    }
+  ],
+  "history_source_tree_commit": "416c5351e33c218368dba86cccc0a3c8e2310a1a",
+  "source_tree_semantics": "Historical records below were present at this exact accepted-source tree commit but absent from the public cutout tree. The original artifacts describe drafts/static authoring checks; they do not create PO approval, independent review, or execution evidence.",
+  "preserved_record_groups": [
+    {
+      "group": "012/013 初回草稿",
+      "source_commit": "47e816b62a6b1ba8f1862ab2b1de975a33f1ef33",
+      "source_body_revision": "c9329194d37ec98a86ad05ddcaa99b3cb17ddcde",
+      "scope": [
+        "HARNESS-L2-012",
+        "HARNESS-L2-013"
+      ],
+      "files": [
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-po-summary-2026-10-05-c9329194d.md",
+          "source_commit": "47e816b62a6b1ba8f1862ab2b1de975a33f1ef33",
+          "blob_sha256": "d3319a9e8bc73d4238740d28cca29cc403e174306ac6e7fdc89235000469b61b",
+          "bytes": 2624,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-po-summary-2026-10-05-c9329194d.md"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-c9329194d.json",
+          "source_commit": "47e816b62a6b1ba8f1862ab2b1de975a33f1ef33",
+          "blob_sha256": "91d48ca671deda83194075a30835636f70f3d73aec558124621e8a3766ab4503",
+          "bytes": 2628116,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-c9329194d.json"
+        }
+      ],
+      "prior_six_document_sha256": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_file_sha256": "e1a2c1b8e719e5e818b795d6ae7f67808691911bd8e065b41ac7da5576b9aa3f"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_file_sha256": "375ee38f05d0fd6c527096116361d647cb57a80e8ff707637499a3190c62fa86"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_file_sha256": "99e406711c73b053c20c8dec44491ca6e6168c566af0ea1082ee86d3e3926e49"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_file_sha256": "fcaf483550ae6a62c60ed9634e2c30cb0e04583efc54f506a445d948943569f5"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_file_sha256": "4d32df2b83ff46b85e5765bb69f7dea03f7391b81aac22f8ce6cc45b378d6449"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_file_sha256": "01d85f42e48955561d0002c24a46db717b89b084027370235d2860272a3d4f8a"
+        }
+      ],
+      "remote_reachability": {
+        "source_commit_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_body_revision_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_commit_sha": "47e816b62a6b1ba8f1862ab2b1de975a33f1ef33",
+        "source_body_revision_sha": "c9329194d37ec98a86ad05ddcaa99b3cb17ddcde"
+      }
+    },
+    {
+      "group": "012/013 修正候補の静的監査",
+      "source_commit": "bac855383dfc24330b3fec35e8864358f7812315",
+      "source_body_revision": "6c787542372013aa63b9dd8c1ccc6a66f78e0752",
+      "scope": [
+        "HARNESS-L2-012",
+        "HARNESS-L2-013"
+      ],
+      "files": [
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-po-summary-2026-10-05-6c7875423.md",
+          "source_commit": "bac855383dfc24330b3fec35e8864358f7812315",
+          "blob_sha256": "89bd17432af3771b27f33591d2285bc63be672410ce4954f063d26e7c05663fc",
+          "bytes": 3111,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-po-summary-2026-10-05-6c7875423.md"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-6c7875423.json",
+          "source_commit": "bac855383dfc24330b3fec35e8864358f7812315",
+          "blob_sha256": "168ee56d5414472a0b6d99d5ac9646ce9919e1fd8c8a880f1d398856f3c893ed",
+          "bytes": 2647536,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-6c7875423.json"
+        }
+      ],
+      "prior_six_document_sha256": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_file_sha256": "c436e37935b4238f1d7c7f0cdd080206e202fbbb01b9e0001793c9202cce960b"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_file_sha256": "375ee38f05d0fd6c527096116361d647cb57a80e8ff707637499a3190c62fa86"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_file_sha256": "01490f676993430c985c9345fe02223aa0023acb74a7d24251a73284d315dab8"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_file_sha256": "386355bfc8655cee84351e457cb1c4a61e022a75095f91428f8ef89d8101ca9c"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_file_sha256": "4d32df2b83ff46b85e5765bb69f7dea03f7391b81aac22f8ce6cc45b378d6449"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_file_sha256": "1c94cbf246a2f9811a3e03a5bd308b8401303eb89a7f2fe251b3f10df091e176"
+        }
+      ],
+      "remote_reachability": {
+        "source_commit_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_body_revision_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_commit_sha": "bac855383dfc24330b3fec35e8864358f7812315",
+        "source_body_revision_sha": "6c787542372013aa63b9dd8c1ccc6a66f78e0752"
+      }
+    },
+    {
+      "group": "012/013 root確認後のWorker静的照合receipt",
+      "source_commit": "a496e20ac375010cd82a19225e55b7a76cc1bb58",
+      "source_body_revision": "aaaed8d53133be3d2d25cc82f51e62c2f44ac844",
+      "scope": [
+        "HARNESS-L2-012",
+        "HARNESS-L2-013"
+      ],
+      "files": [
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-2026-10-05-aaaed8d.json",
+          "source_commit": "a496e20ac375010cd82a19225e55b7a76cc1bb58",
+          "blob_sha256": "c824f341926190d382d5d4857e3eff5d88d3110562736b0fcb098681cc6babac",
+          "bytes": 2649797,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-2026-10-05-aaaed8d.json"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-summary-2026-10-05-aaaed8d.md",
+          "source_commit": "a496e20ac375010cd82a19225e55b7a76cc1bb58",
+          "blob_sha256": "7335a39c03b9ca7d7f34a7c9537a9f6a2cb9b60b707d45276cc7cfdbcfada35b",
+          "bytes": 1996,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-summary-2026-10-05-aaaed8d.md"
+        }
+      ],
+      "prior_six_document_sha256": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_file_sha256": "62df535b91587219992e3a84ceecfa8d875e98d2af38fa2e30ab82d3f8ba184e"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_file_sha256": "375ee38f05d0fd6c527096116361d647cb57a80e8ff707637499a3190c62fa86"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_file_sha256": "01490f676993430c985c9345fe02223aa0023acb74a7d24251a73284d315dab8"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_file_sha256": "386355bfc8655cee84351e457cb1c4a61e022a75095f91428f8ef89d8101ca9c"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_file_sha256": "4d32df2b83ff46b85e5765bb69f7dea03f7391b81aac22f8ce6cc45b378d6449"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_file_sha256": "1c94cbf246a2f9811a3e03a5bd308b8401303eb89a7f2fe251b3f10df091e176"
+        }
+      ],
+      "remote_reachability": {
+        "source_commit_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_body_revision_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_commit_sha": "a496e20ac375010cd82a19225e55b7a76cc1bb58",
+        "source_body_revision_sha": "aaaed8d53133be3d2d25cc82f51e62c2f44ac844"
+      }
+    },
+    {
+      "group": "014/015/016 Worker静的照合receipt",
+      "source_commit": "0be485397928b3340076f3926d8747d074cfee8b",
+      "source_body_revision": "30637031b5e029f0b1b5efbc96ba7caeb794e7ca",
+      "scope": [
+        "HARNESS-L2-014",
+        "HARNESS-L2-015",
+        "HARNESS-L2-016"
+      ],
+      "files": [
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-2026-10-05-30637031b.json",
+          "source_commit": "0be485397928b3340076f3926d8747d074cfee8b",
+          "blob_sha256": "cb813510498e9ce16e258712e520481d5d19f442e3445d13cd6bd6cb398c37f8",
+          "bytes": 142285,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-2026-10-05-30637031b.json"
+        },
+        {
+          "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-summary-2026-10-05-30637031b.md",
+          "source_commit": "0be485397928b3340076f3926d8747d074cfee8b",
+          "blob_sha256": "b6b2e6cf100f5c31e60fefd488a0b7d3f482cceb3431dfadf1d8a0041af7ec59",
+          "bytes": 3094,
+          "content": "raw git blob bytes unchanged",
+          "published_path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-worker-validation-summary-2026-10-05-30637031b.md"
+        }
+      ],
+      "prior_six_document_sha256": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+          "full_file_sha256": "f6afeae6575bd339a304dff3953709a0f6ed0021a4c1e249d9769379574f2251"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+          "full_file_sha256": "6bf5ac300b21d04deacff58a64119c56f122c52c9fcdd1ad3120177967e2064f"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+          "full_file_sha256": "f32bc5ea8c2dfae3dea62a00f7056f40a71716f8eaa7570e02c078bbbe36f55e"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.md",
+          "full_file_sha256": "fa45c41519fb7c68882c05905b373ba7d8de00805b7a8827b32e3e448bb9c71e"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.md",
+          "full_file_sha256": "98c665c66340a54a308dc3cee93a61c33ec43454f6fb4276e3184c6ab94faa1e"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+          "full_file_sha256": "a3c21a79d941dccfd76de07b7cad752419ee1a7e54295586d8c6f009a5351fc0"
+        }
+      ],
+      "remote_reachability": {
+        "source_commit_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_body_revision_status": "local-only; GitHub REST returned HTTP 422 No commit found for SHA",
+        "source_commit_sha": "0be485397928b3340076f3926d8747d074cfee8b",
+        "source_body_revision_sha": "30637031b5e029f0b1b5efbc96ba7caeb794e7ca"
+      }
+    }
+  ],
+  "preservation_method": "Copy raw Git blob bytes from each recorded source commit into the same repository-relative audit path; do not edit or normalize historical bytes.",
+  "verification": {
+    "all_historical_paths_absent_at_cutout_head": true,
+    "all_historical_source_commits_ancestors_of_source_tree": true,
+    "all_source_blobs_full_read_and_sha256_recorded": true,
+    "current_cutout_body_sha_checked_from_git_show": true,
+    "old_records_are_not_authority_or_independent_review": true,
+    "stage2a_stage2c_or_other_stage_records_added": false,
+    "remote_reachability_checked": true,
+    "remote_reachability_result": "All 11 listed source/tree/body/cutout commit SHA queries returned HTTP 422 No commit found for SHA against RetryYN/HELIX-HARNESS on 2026-10-05; historical objects remain local-only."
+  },
+  "limits": [
+    "Historical body revisions are identified by full commit and six-document SHA values recorded in the paired static audit; historical body files themselves are not copied in this preservation patch.",
+    "This preservation record only makes the referenced audit/summary artifacts available at the same repository paths; it does not certify semantic correctness or approval."
+  ],
+  "remote_reachability": {
+    "remote_main_observed": "72fa2f08ccd7a87733112f918659464d5f5cb6c5",
+    "checked_on": "2026-10-05",
+    "method": "GitHub REST GET /repos/RetryYN/HELIX-HARNESS/commits/{sha}",
+    "interpretation": "Every queried historical body/source/audit commit below returned HTTP 422 No commit found for SHA. These source objects are local-only at this check; byte-preserved files are included here so reviewers can read them without remote commit reachability.",
+    "local_only_commits": [
+      {
+        "role": "accepted source tree",
+        "sha": "416c5351e33c218368dba86cccc0a3c8e2310a1a",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 initial source/audit commit",
+        "sha": "47e816b62a6b1ba8f1862ab2b1de975a33f1ef33",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 initial body revision",
+        "sha": "c9329194d37ec98a86ad05ddcaa99b3cb17ddcde",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 revised source/audit commit",
+        "sha": "bac855383dfc24330b3fec35e8864358f7812315",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 revised body revision",
+        "sha": "6c787542372013aa63b9dd8c1ccc6a66f78e0752",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 worker receipt source/audit commit",
+        "sha": "a496e20ac375010cd82a19225e55b7a76cc1bb58",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "012/013 worker receipt body revision",
+        "sha": "aaaed8d53133be3d2d25cc82f51e62c2f44ac844",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "014/015/016 worker receipt source/audit commit",
+        "sha": "0be485397928b3340076f3926d8747d074cfee8b",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "014/015/016 worker receipt body revision",
+        "sha": "30637031b5e029f0b1b5efbc96ba7caeb794e7ca",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "cutout body revision",
+        "sha": "df49281c8576207cf46b5651c05cf91ac13587c5",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      },
+      {
+        "role": "initial cutout audit commit",
+        "sha": "93accb60e5b3319922ac1f5d16899da3aa2c57e0",
+        "http_status": 422,
+        "response": "No commit found for SHA"
+      }
+    ]
+  }
+}
