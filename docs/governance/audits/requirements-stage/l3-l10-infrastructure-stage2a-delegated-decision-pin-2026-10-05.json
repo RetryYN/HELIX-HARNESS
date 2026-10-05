@@ -1,0 +1,60 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none",
+  "base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "reviewed_head": "b24b093f3d2c96fcdfbadbea3c5d73327b814a7f",
+  "body_revision": "e7d83ef8b439945efd9f2f3c3f3bd271804fe217",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5988082463,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2590#issuecomment-5988082463",
+      "body_utf8_bytes": 3824,
+      "body_sha256": "4b3cb94159449640fa23d9d7784f82be74d0facdd10f53193b6aea8016f318c4"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5988159495,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2590#issuecomment-5988159495",
+      "body_utf8_bytes": 15179,
+      "body_sha256": "4f1fd05d70376a18fc26bbc3ce7fa329ae35af87a90c8ad9942629d22f8a1c05"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "sha256": "8ddc97daf1f12aa3b4464078f186bbcb4b0631b6a009d6ad9f5bffba4b6ecb4d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "sha256": "35c3ba6fc742ef29d53162eee5505b6bcc95d11395915a5d9c75b14897e0a08c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-infrastructure-stage2a-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "e14a02a6ce6a0289a945ff4a98404cf3e7925f820c4a6be043f59d0abf569f39"
+  },
+  "prior_record_correction": "review02 md:19のFRへの追加という記述は不正確で、FR-010-FR-01は不変。revocationはAC-010-01・CASE-010-03とAC-010-02・CASE-010-22で扱う。",
+  "verification": "6本文は両独立確認後も本文revision・reviewed HEADとbyte一致、6 main prefix保持。旧時点監査不変。"
+}
