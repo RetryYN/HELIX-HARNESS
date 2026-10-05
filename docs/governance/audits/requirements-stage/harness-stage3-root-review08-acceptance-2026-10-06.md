@@ -1,0 +1,7 @@
+# HARNESS Stage3 review08 Root検収 — 2026-10-06
+
+本文revision `a88f6d7ef9bad20b846d3cc72757cf2c1e47b86c`。正式review08のMajor3・Minor9を固定L2/L11と照合して補正した。画面合意記録欠落とdigest一致の別scope外挿を独立CASEとして追加し、既存の適用性unknown反例は保持した。LABO保留7条件と不足evidence・既存owner・未完条件・contract/OS停止を同期した。
+
+全1127 CASE一意、公開済みCASE消失0、参照欠落0、AC不在0。6本文main prefix一致、末尾LFを含む本文全行とCASEを固定した。前回Worker監査の047 addressedは一部解消だったこと、SHAのraw_lf名が末尾LF除外だったことを追補し、過去監査は変更しない。054の採択はPO判断記録34行を明示する。
+
+最新main合成木validate/stale/residuals終了値0。旧source全consumerとPO/register全量再読は未確認を保持し、独立review・L3承認・L10実行・実装許可を生成しない。
