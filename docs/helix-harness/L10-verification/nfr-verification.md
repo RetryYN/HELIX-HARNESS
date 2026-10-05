@@ -21,3 +21,22 @@ execution_status: designed_only_not_executed
 ## 限界
 
 比較digestは試験内のoracleであり、正本schemaや実装方式を新設しない。fixture、固定revision、contract、適用authorityのいずれかが不足する場合は未評価として記録する。expiry比較は既存contractを優先し、未定義の場合のみL3 NFRの案A/Bを同じclock fixtureで比較する。preflight/dispatch前期限切れのblockedとdispatch後結果不確実のuncertainは旧sourceから部分再導出した候補判定であり、現行実装方式を指定しない。TTL、clock-skew、retry count等の値をこの測定で作らない。
+
+## Stage 2c suffix — HARNESS-L2-030/031/032 NFR候補の測定
+
+測定は固定親revisionと選択scope内の明示必須obligationを母集団とする。planned, valid, failed, missing, stale/mismatch, unknown, censored, unselected/unmeasuredを区別して記録し、除外した結果も母集団を偽らない。分母0は割合なし／測定対象なしとする。以下は設計のみで実測値ではない。
+
+| L10 case ID | L3候補 | 入力・集計母集団 | 観測oracle・判定境界 |
+|---|---|---|---|
+| `CASE-HARNESS-L10-NFR-030-01` | `NFR-C-HARNESS-030-01` | 選択scopeにおいて親が明示する必要case field、requirement/design/oracle/source/scope traceをplanned母集団とし、各fieldをvalid/missing/conflict/unknown/unselectedで記録。同一input/source revision/scope/seedの生成proposalを比較する。 | 必須宣言field/trace保持率は定義された母集団上100%、根拠のないexpected value/permission/boundaryまたは未選択source推論は0件。case bytes同一を要求せず、意味digestを比較する場合も試験内oracleと明記。分母0では率なし。 |
+| `CASE-HARNESS-L10-NFR-031-01` | `NFR-C-HARNESS-031-01` | 選択reduction operationのplanned stepごとにsource/revision/scope/permission/sanitization/oracle/result receiptとsymptom stateを記録。future fix/passと未選択stepを分母に混ぜない。 | 必須trace/receipt保持率100%、receiptなしまたは症状違いのsame-failure assertion 0件、original deletion 0件。valid/failed/missing/unknown/censoredを別集計し、同じoracleのreceiptがないstepはsame-failure確認済みに数えない。planned denominator=0なら率なし。 |
+| `CASE-HARNESS-L10-NFR-032-01` | `NFR-C-HARNESS-032-01` | 選択packet obligationごとにartifact/source/revision/scope/oracle/consumer schema/permission/receipt-slotをplanned fieldとして分類。unselected consumersはunmeasuredと別記する。 | planned selected packet obligationsの必須trace保持率100%、unknown/incompatible/undeclared contractをvalid connection扱い0件、handoffからrun/pass推論0件。failed/missing/stale/mismatch/unknown/censoredを残す。分母0では割合なし。 |
+
+未見正常fixtureは固定親が宣言するscopeと適用可能なoracle内でのみ測定する。source・oracle・permission・compatibility rangeが不足するfixtureは判定不能/未評価で記録し、未選択範囲を失敗にも成功にも数えない。case count、mutation threshold、reduction ratio、latency/throughput/SLA等の固定親にない数量は設けない。結果は測定候補を評価する設計であり、L3承認、実測達成、release判定を生成しない。
+
+
+### Stage 2c測定分類の補足
+
+Nrequiredは対象revision/scopeで選択操作に適用する契約必須項目の集合であり、missing/unknown/不一致も分母に残す。Nmatchedはsource/意味/版/範囲がoracleと一致して保持された項目数、保持率候補はNmatched/Nrequired。名前やpresenceだけの案Aと、意味/source tupleまで照合する案Bを比較し、意味差分を見逃さないBを候補とする。契約必須項目の定義自体が不明な状態をNrequired=0へ変換しない。既知の対象集合が0なら率なし、必須定義不足なら未評価と理由を別記する。
+
+plannedは総予定試行数。観測可否はvalid（判定できる観測が得られた、不合格も含む）、failed（処理エラーで判定可能な観測を得られない）、missing（必要入力/結果がない）、censored（停止/打切りで観測未完）を排他的に記録し、Nplanned=Nvalid+Nfailed+Nmissing+Ncensoredを確認する。意味状態のvalid/missing/stale/mismatch/conflict/unknownは別軸で、観測状態の件数へ重ねて加算しない。未選択consumer/sourceは未観測の背景として別記し選択操作の分母外。未実施は未測定、欠測/停止を0の観測や成功にしない。

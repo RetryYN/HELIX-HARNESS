@@ -14,3 +14,15 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-023` | 独立したbusiness requirementを導出しない | 条件別dependency classificationから新しい利用方針やownerを作らない。 |
 
 旧business-detailは機能要件へ一括移植せず、意味とownerを現在の固定L2で再導出する。3親の境界は上表のとおりで、収益、製品優先順位、release decision、条件別利用方針を追加しない。
+
+## Stage 2c suffix — HARNESS-L2-030/031/032
+
+固定030/031/032から独立したbusiness requirement、business owner、価値閾値または事業判断を導出しない。機能contractと業務境界は[functional-requirements.md](functional-requirements.md)の親別FR/ACで確認する。これはHELIX-HARNESS全体にbusiness要件がないことを意味しない。
+
+| 親L2 | business要件への扱い | 境界 |
+|---|---|---|
+| `HARNESS-L2-030` | 独立business requirementなし。test case proposalとprovenanceは機能要件で確認する。 | 生成case数・coverageを事業価値、品質証明、利用者受入と読み替えない。 |
+| `HARNESS-L2-031` | 独立business requirementなし。許可failure inputからのcandidateとoriginal failure保持は機能要件で確認する。 | production incident限定、severity/KPI、事業効果の新しいownerや閾値を追加しない。 |
+| `HARNESS-L2-032` | 独立business requirementなし。選択consumerへのschema-bound packet handoffは機能要件で確認する。 | deliveryを業務完了、run/pass、ticket、承認または利用者受入と扱わない。CONNECTの責務を032 business ownerへ移さない。 |
+
+旧business-detailは参考範囲を読んだが、BR-21/HM-08/Learning Engineの業務意味・owner・KPIはこれら固定親に対応しないため移さない。Stage 2c草稿から商業価値や追加承認条件を作らない。
