@@ -61,6 +61,8 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 
 ## Stage 4 — source/contract trace候補
 
+共通HARNESS-L2-010/011 packのfield母集団は全対象operationで照合する。例外として、L2-017/036/039は当該operationがpackを実際に消費する場合だけ該当fieldを必須分母へ含める。
+
 親が有限個で明示するrequired source/field/ownerを照合するNFR候補。技術値は全required fieldの充足率100%候補と、誤ったsource/owner bind 0候補（親の完全保持条件から導出）に限定し、既定SLA、minimum sample、runtime latencyを新設しない。missing/unknown/stale/conflictは別stateで保持し、未選択sourceを母集団へ入れない。
 
 ### NFR-INT-017-01 — required source binding completeness候補
