@@ -47,8 +47,8 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 
 | CASE ID | 親と参照AC | 観測・期待 | 対象外 |
 |---|---|---|---|
-| CASE-OS-L10-BIZ-032 | HELIXOS-L2-032 / FR-OS-L3-032 AC-01..05 | eligible/failure/unknownを分け、quarantineから全体greenを導かない。 | failure解消目標 |
-| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..05 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
+| CASE-OS-L10-BIZ-032 | HELIXOS-L2-032 / FR-OS-L3-032 AC-01..06 | eligible/failure/unknownを分け、quarantineから全体greenを導かない。 | failure解消目標 |
+| CASE-OS-L10-BIZ-033 | HELIXOS-L2-033 / FR-OS-L3-033 AC-01..06 | 選択scope再現receiptと未評価を分ける。 | detector精度KPI |
 | CASE-OS-L10-BIZ-034 | HELIXOS-L2-034 / FR-OS-L3-034 AC-01..05 | 原event/disposition/appeal履歴を保ち、OSがrisk acceptanceを確定しない。 | risk appetite |
 | CASE-OS-L10-BIZ-035 | HELIXOS-L2-035 / FR-OS-L3-035 AC-01..05 | job登録と監査実施・finding解消を別状態にする。 | 監査時間SLO |
 | CASE-OS-L10-BIZ-036 | HELIXOS-L2-036 / FR-OS-L3-036 AC-01..04 | preflight/plan/applyを別状態にする。 | Retrofit投資効果 |
@@ -57,8 +57,8 @@ fixtureと実観測を分けて記録し、各親についてtrace正確性、un
 | CASE-OS-L10-BIZ-040 | HELIXOS-L2-040 / FR-OS-L3-040 AC-01..06 | retry routeを回復済みと数えない。 | 旧ticket taxonomy |
 | CASE-OS-L10-BIZ-041 | HELIXOS-L2-041 / FR-OS-L3-041 AC-01..04 | source再取得とcoordination-only未完を分ける。 | resume KPI |
 | CASE-OS-L10-BIZ-042 | HELIXOS-L2-042 / FR-OS-L3-042 AC-01..06 | strict/relaxed検証と再検証結果を分ける。 | output accept率目標 |
-| CASE-OS-L10-BIZ-043 | HELIXOS-L2-043 / FR-OS-L3-043 AC-01..05 | request/call/resultのstatusを独立表示する。 | throughput KPI |
+| CASE-OS-L10-BIZ-043 | HELIXOS-L2-043 / FR-OS-L3-043 AC-01..06 | request/call/resultのstatusを独立表示する。 | throughput KPI |
 | CASE-OS-L10-BIZ-044 | HELIXOS-L2-044 / FR-OS-L3-044 AC-01..03 | prose handoverとevidence-backed resolutionを分ける。 | finding closure KPI |
 | CASE-OS-L10-BIZ-049 | HELIXOS-L2-049 / FR-OS-L3-049 AC-01..05 | configured capacity・実行状態・割当候補を別集計する。 | utilization目標 |
 | CASE-OS-L10-BIZ-050 | HELIXOS-L2-050 / FR-OS-L3-050 AC-01..05 | 原因別backpressureとreview assignmentを分ける。 | merge pass rate |
-| CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..06 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |
+| CASE-OS-L10-BIZ-051 | HELIXOS-L2-051 / FR-OS-L3-051 AC-01..09 | suitability evidenceと配置案をreview結果から分ける。 | provider優劣score |

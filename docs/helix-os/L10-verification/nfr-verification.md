@@ -81,14 +81,14 @@ NFR候補は計測対象と比較値であり、POごとのparameter gateでは�
 | CASE-OS-L10-NFR-036-01 | NFR-OS-L3-036-01 | 複数upgrade ticketの全Retrofit upgradeごとにplan前/apply直前のsource/authority capture。upgrade単位境界網羅率・stale pass数。 |
 | CASE-OS-L10-NFR-037-01 | NFR-OS-L3-037-01 | 旧BR §3.3/FR-L1-11の週次観測についてReverse/Backflow経路と負債分類後のLABO/OS経路を分ける。fixtureの連続週・週境界・missing/staleを比較し、欠測をno-driftとした件数を観測する。週次は親の保持条件、fixture期間数は測定設計。 |
 | CASE-OS-L10-NFR-038-01 | NFR-OS-L3-038-01 | proposal ID重送とappend/snapshot/receipt各中断点、041-003非原子的finding・same-input nondeterminism。row増分、current update、snapshot bytes/digest一致、部分成功claim数。 |
-| CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | fixed parentが与える既存retry policy上限に対する到達/未到達、ledger欠落、同一lineage、実験budget分離を個別fixtureで照合する。OSがretry回数候補を追加しない。 |
+| CASE-OS-L10-NFR-040-01 | NFR-OS-L3-040-01 | 入力された適用中retry policy上限に対する到達/未到達、ledger欠落、同一lineage、実験budget分離を個別fixtureで照合する。OSがretry回数候補を追加しない。 |
 | CASE-OS-L10-NFR-041-01 | NFR-OS-L3-041-01 | restart/resumeごとcanonical sourceをdriftさせる。reacquisition coverage、stale continuation数。 |
 | CASE-OS-L10-NFR-042-01 | NFR-OS-L3-042-01 | strict failureと、選択済み既存契約が実際にexpiryを指定する場合だけその期限の境界前後を比較する。期限/適用scope/再検証欠落による誤昇格を観測し、新期限値は設けない。 |
 | CASE-OS-L10-NFR-043-01 | NFR-OS-L3-043-01 | request必須operationのrequest/call/result順序・correlation欠落と、request不要operationの許可済みcall/result対照を入力。chain completeness、誤approval数、不要request件数。 |
 | CASE-OS-L10-NFR-044-01 | NFR-OS-L3-044-01 | prose-only handoverと固定された既存source lifecycle/evidence conditionを比較する。unknown/stale/conflictの保留と理由保持を観測し、source HEAD mismatchを新たな判定条件にしない。 |
-| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認。無根拠dispatchと誤状態数。 |
+| CASE-OS-L10-NFR-049-01 | NFR-OS-L3-049-01 | 同task traceを15/60min bucketで比較しlimitとstate countsを別確認し、成果・予算・未完義務のlineageを保持する。無根拠dispatchと誤状態数。 |
 | CASE-OS-L10-NFR-050-01 | NFR-OS-L3-050-01 | fixed parent/sourceから入力された設定閾値・capacity・縮退条件の通常/境界/spike/downstream blocker fixtureを比較。親にない数値やbucket境界は追加しない。誤増枠・backpressure漏れを観測する。 |
-| CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | 既存sourceが期限を持つ場合だけそのexpiry、期限を持たない場合は適用条件unknownを使い、scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |
+| CASE-OS-L10-NFR-051-01 | NFR-OS-L3-051-01 | expiryを持つsourceではその値を照合し、持たないsourceではexpiry条件を課さず適用scope/class/revisionで判定する。scope change・同名別providerを個別fixtureで照合する。freshness日数を新設しない。 |
 
 #### 追加NFR測定ケース
 

@@ -58,8 +58,8 @@
 
 | 親L2 | 分類とbusiness扱い | owner境界・参照する機能AC |
 |---|---|---|
-| HELIXOS-L2-032 | 機能要件のみ。quarantineは受入価値や全体greenの指標ではない。 | HARNESS oracle / SECURITY policy authority。FR-OS-L3-032 AC-01..05。 |
-| HELIXOS-L2-033 | 機能要件のみ。再現receiptを品質合格KPIにしない。 | capability ownerが結果意味、OSがregistry/provenance。FR-OS-L3-033 AC-01..05。 |
+| HELIXOS-L2-032 | 機能要件のみ。quarantineは受入価値や全体greenの指標ではない。 | HARNESS oracle / SECURITY policy authority。FR-OS-L3-032 AC-01..06。 |
+| HELIXOS-L2-033 | 機能要件のみ。再現receiptを品質合格KPIにしない。 | capability ownerが結果意味、OSがregistry/provenance。FR-OS-L3-033 AC-01..06。 |
 | HELIXOS-L2-034 | 機能要件のみ。disposition正当性やリスク受容をOSが評価しない。 | 元source/PO authority。FR-OS-L3-034 AC-01..05。 |
 | HELIXOS-L2-035 | 機能要件のみ。job登録数を監査完了率に読み替えない。 | OS-L2-010 ticket owner、HARNESS接続は別scope。FR-OS-L3-035 AC-01..05。 |
 | HELIXOS-L2-036 | 機能要件のみ。Retrofit成否の技術判定は各owner。 | OSはpreflight-plan/apply trace。FR-OS-L3-036 AC-01..04。 |
@@ -68,7 +68,7 @@
 | HELIXOS-L2-040 | 機能要件のみ。retryを回復成功と数えない。 | 既存typed return owner。FR-OS-L3-040 AC-01..06。 |
 | HELIXOS-L2-041 | 機能要件のみ。resumeを未完義務解消と数えない。 | OS-L2-009、正本/authority owner。FR-OS-L3-041 AC-01..04。 |
 | HELIXOS-L2-042 | 機能要件のみ。output validationは独立acceptanceでない。 | Worker output contract owner、authorityはSECURITY。FR-OS-L3-042 AC-01..06。 |
-| HELIXOS-L2-043 | 機能要件のみ。request/call/result件数を承認・成功KPIにしない。 | operation authority owner。FR-OS-L3-043 AC-01..05。 |
+| HELIXOS-L2-043 | 機能要件のみ。request/call/result件数を承認・成功KPIにしない。 | operation authority owner。FR-OS-L3-043 AC-01..06。 |
 | HELIXOS-L2-044 | 機能要件のみ。prose handoverをresolution率へ算入しない。 | feedback/finding source owner。FR-OS-L3-044 AC-01..03。 |
 | HELIXOS-L2-049 | 独立business outcomeなし。configured pool・利用率をproductivity/throughputと同一視しない。 | FR-OS-L3-049 AC-01..05を参照。 |
 | HELIXOS-L2-050 | 機能要件のみ。review capacity増枠はquality/merge acceptanceを意味しない。 | HARNESS independence/admission、OS queue/assignment。FR-OS-L3-050 AC-01..05。 |
