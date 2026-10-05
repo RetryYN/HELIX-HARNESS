@@ -222,8 +222,8 @@ bounded loopはforward/feedback辺と既存ownerのretry/budget/stop policy参�
 
 依存は構成体を成す全辺の固定L2-001..005、HARNESS-L2-010/011の宣言I/O・依存版・統合検証範囲・構成更新/切戻し/未完義務、各ownerの意味契約と適用SECURITY条件である。既承認の001..005機能ACを辺ごとに参照して再定義しない。特定transport/GUI/provider/CI製品、共通latency/retry数、DB/schema、業務完了、Web後続機能を定めない。接続の具体的revision/期限/retryはowner契約の入力で、未知を候補上の確定値に補わない。意味・scope・owner・版変更が必要な場合だけL2へ戻す。
 
-- `CONNECT-AC-007-01`：全宣言辺の入力と登録・現在互換receiptを個別に照合し、終端までのtraceが揃う場合だけ技術complete。13必須入力の単独欠落を推測で補わず未完とし、同契約内の未見機構/辺は適合なら拒否しない。
-- `CONNECT-AC-007-02`：端点/契約revision/operation/correlation/scope/idempotency/SECURITY許可識別子/data-use識別子/送受信結果を辺ごとに束縛し、各一つだけの取り違えを拒否する。順序・再送境界・終端を一つのtraceへ結び、他辺のreceiptで補完しない。
+- `CONNECT-AC-007-01`：全宣言辺の入力と登録・現在互換receiptを個別に照合し、辺ごとのSECURITY/data-use識別子と送信結果・受信結果を期待fixture receiptと突合できるtraceが揃う場合だけ技術complete。13必須入力の単独欠落を推測で補わず未完とし、同契約内の未見機構/辺は適合なら拒否しない。
+- `CONNECT-AC-007-02`：端点/契約revision/operation/correlation/scope/idempotencyを辺ごとに束縛し、各一つだけの取り違えを拒否する。順序・再送境界・終端を一つのtraceへ結び、他辺のreceiptで補完しない。
 - `CONNECT-AC-007-03`：固定L11の7中間failureとunknownを独立fixtureにする。全体成功を止め、先行成功と後続未実行を保持し、停止位置/未完辺/義務/owner/recoveryを個別に照合する。後続の未許可send/retryを発行せず既存ownerへ返す。
 - `CONNECT-AC-007-04`：全辺技術completeから業務成立・結果承認・送信許可を生成しない。HARNESS010/011の共通pack境界を保ち、GUIの不在だけで契約適合fixtureを拒否しない。
 
