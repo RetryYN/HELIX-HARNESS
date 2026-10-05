@@ -1,0 +1,7 @@
+# INTELLIGENCE Stage3 review11監査記述訂正
+
+本文7c39f1fc0553114214bb582e60297c62d61f3283と六SHAを変更せず、正式comment6004124962のMinor2件を訂正する。旧監査は不変。
+
+FVのStage3表先頭列定義は946一意、六文書のStage3 CASE ID集合は990一意。旧985値は撤回する。補正前後のFV集合は同一で追加削除0を確認。
+
+旧root-review08のL2:143空行pinのrevisionは633bf12ea8f948db8ba3d6600179c4a9507377a7であり、67ef7d435ではない。raw LFとSHAを再計算し一致した。CASEは未実行、委任承認未成立。

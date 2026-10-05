@@ -1,0 +1,144 @@
+{
+  "record_type": "root_review03_correction",
+  "authority_effect": "none",
+  "body_revision": "af0c0641c9b6df37a0742bbb9325d868db3e815a",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "previous_head": "88e0dfcfe0bbaa81368f0aa5b6b131e83b5fe0aa",
+  "findings": {
+    "m1": "依存136/戻し先137へ訂正。旧immutable MD135/136は本記録で訂正し旧bytes保持。",
+    "m2": "正常01/未見正常02に再送境界・終端結果のtrace照合追加。",
+    "m3": "36/37戻し先のみSECURITY余分句除去。38保持。"
+  },
+  "formal_comment": {
+    "id": 6003010494,
+    "sha256": "a35a2658e75865905a4f6395246a3ba0f66ab8aa141cb67ba782274a55cd1101",
+    "literal": "## review03（independent review、HEAD 88e0dfcfe0bbaa81368f0aa5b6b131e83b5fe0aa、body c9deffa1f6499aca9c162b3bdc9770d4830600b2）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。本roundは差分が小さいためreviewer本人が全差分を固定親と照合し、委任承認に向けてFable advisor（6本文・固定L2:128〜138／L11:74〜77・L2-005:111・review01/02・監査を実読）の見解を取得。merge-base 5acae3843（= main）、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2615 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Worker補正 `connect-stage5-review02-correction-2026-10-06.json`：published/current全文SHA・suffix SHA・span pin すべて一致、review02 comment（6002495422）SHA一致。Root検収 `connect-stage5-root-review02-acceptance-2026-10-06.json` pin 6/6一致。CASE 43一意・6列、6本文はbody c9deffa1fと同一bytes、main prefix一致。\n- m2（検索件数）の再計数：同範囲でexact-token 388/77/134/1/0、substring 433/108/205/1/0を再現（監査の定義と一致）。\n\n### review02所見の解消\n- **M1解消**：CASE-007-41（e2送信結果のみ欠落）、42（受信結果のみ欠落）、43（送受信結果状態の相互不一致）。各1変異、AC-007-01へtrace、他方の有効receiptと先行成功を保持し全体completeと未許可後続send/retryを拒否。FR:219・AC-007-01・NV・BR/BVを同期。戻し先e2 connection owner。\n- **m1解消**：CASE-007-40の戻し先を「SECURITY/source owner」とし、L2-007の依存→L2-005:111からの導出をFRとFVに明記（ただし行番号は下記m1）。\n- **m2解消**：token境界定義（ASCII英数字/underscore、case-insensitive、CJK隣接は境界）をJSONに固定し再計数。旧411/94/196はsubstring行数と訂正。\n\n### Fable見解（advisor、本文c9deffa1f・HEAD 88e0dfcfe、6本文と固定親・監査・review comment実読）\n結論行（原文のまま）：「**承認してよい**（Minor 3件のみ。承認を止める問題はないが、m1は本文の事実誤りなので承認前の修正を推奨）」。付随所見3件は下記m1〜m3と同内容。\n\n### 所見（Major 0／Minor 3）\n- **m1（本文のL2-007行pinが1行ずれ）**：FR:226「L2-007:135が依存する…L2-005:111」「L2-007:136の経路」、FV:358（CASE-007-40 oracle）「L2-007:135の依存先L2-005:111」。固定親f6dad2a33のL2-007は134＝入力、135＝出力、136＝依存、137＝戻し先。依存→136、戻し先→137が正しい（L2-005:111は正しい）。Worker JSON `fixed_parent/l2_raw_line_pins` は136/137を正しくpinしており、監査md statementと本文だけがずれる。導出の意味は正しく戻し先の妥当性は変わらないが、freeze対象本文の事実誤りなので承認前に3箇所（FR:226、FV:358、監査md）を直す。review01/02のreviewer commentにも「L2:136の戻し先」「L2:130/135」の同じずれがあった（reviewer側の誤り。commentは書き換えず本記録で開示）。\n- **m2（正常側oracleが固定L2:130の「再送境界」を照合しない）**：L2:130「各operationの対応関係、再送境界、終端結果を一つの構成体の追跡から辿れる」、FR:219・AC-007-02（FR:227）も「再送境界」をtraceへ結ぶとするが、FV Stage5の43行に「再送境界」は0件。CASE-007-01のoracleは「辺順・operation lineage・端点・revision・結果」まで。CASE-23（異digest再送衝突）は再送境界の一側面で正常traceの照合ではない。L11:76は再送境界を明示しないため固定L11未被覆ではなく、L2:130に対しCASE-01（必要なら02）のoracleがわずかに弱い。辿る対象に「再送境界・終端結果」を加える。\n- **m3（CASE-007-36／37の戻し先列に変異と無関係な句）**：FV:354〜355の戻し先は36〜38共通で「元業務owner／承認主体。送信許可はSECURITY」。「送信許可はSECURITY」が該当するのはCASE-38のみ。review01 m2（21〜28）と同型。36／37は「元業務owner／承認主体」のみに。\n\n### 判定\nblocker 0、Major 0、Minor 3。Readyは未可。m1〜m3は6本文（FR/FV）の変更を伴うため、次revisionでOpus `no_findings`（未確認範囲0）とFable見解を再成立させる。本HEADでのFable見解「承認してよい」は本commentに記録。merge admissionは本commentから生成しない。\n"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "sha256": "ecfe151650418d88e69726d3102f542bb43e75faeb8737224f1e04c4181dfec0",
+      "bytes": 1950
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "sha256": "fdff7c3edba7be7c7a169a92c72b1befe697dc3c3af39ec7733315ec20fa2d2f",
+      "bytes": 100547
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48",
+      "bytes": 8472
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925",
+      "bytes": 2305
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "sha256": "85e3186fbb82d8f61a12351f567a118850b856473b7928a334cea1e5f28464a4",
+      "bytes": 52326
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa",
+      "bytes": 9340
+    }
+  ],
+  "fixed_source": {
+    "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+    "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+    "raw_lf_lines": [
+      {
+        "line": 111,
+        "sha256": "f8a78d47c46192f437ab5f24b99e4873d75aa0036897dd62a74406e87296a393",
+        "literal": "- **失敗時の戻し先**：traceの欠落/順序不明はoperationをunknownとしてconnection operation ownerへ返し、業務完了を止める。data-useや許可の不明はSECURITY/source ownerへ戻す。"
+      },
+      {
+        "line": 130,
+        "sha256": "43df8375ba821dfafcb2fc4043c314c2defcbed672add67c1c16aec5fbb3c82e",
+        "literal": "複数の接続identityで連なる機構間処理について、各辺の端点と契約revision、接続順序、各operationの対応関係、再送境界、終端結果を一つの構成体の追跡から辿れる。全ての必須辺が個別に登録・互換確認され、operationの受渡しが終端まで確認される場合だけ、構成体の技術的通信完了を報告する。途中の辺がstale、失敗、部分成功、unknownの場合は全体成功にせず、停止位置と未完の引継ぎ先を示す。CONNECTは連続処理の業務上の成立、結果の承認を判定しない。"
+      },
+      {
+        "line": 136,
+        "sha256": "092f28fe4f27fcfe47856f7419abbc00b4bc7c7a57ad84f368c759c74f51b440",
+        "literal": "- **単独で成り立つための依存**：当該構成体を成す全辺のL2-001..005契約、HARNESS-L2-010/011の構成・依存・未完義務契約、各ownerの意味契約とSECURITY適用条件。CONNECTは業務承認主体を代替しない。"
+      },
+      {
+        "line": 137,
+        "sha256": "1223ece1605a07f851b7431bd4b0aad0be0ee519e645111d4394e81097e4be7e",
+        "literal": "- **失敗時の戻し先**：失敗辺のconnection ownerへ返し、業務判断/再計画は元の機構/OS等ownerへ返す。後続辺を実行済みとせず、先行成功も消さずpartial/unknownを維持する。"
+      }
+    ]
+  },
+  "immutable_old_md": {
+    "path": "docs/governance/audits/requirements-stage/connect-stage5-review02-correction-2026-10-06.md",
+    "sha256": "868219db8cdd6daf8e8bc71e2ea7382d1bc8b00f980fb6ea1d5dfeeebff567d8",
+    "unchanged": true
+  },
+  "cases": [
+    "CONNECT-CASE-007-01",
+    "CONNECT-CASE-007-02",
+    "CONNECT-CASE-007-03",
+    "CONNECT-CASE-007-04",
+    "CONNECT-CASE-007-05",
+    "CONNECT-CASE-007-06",
+    "CONNECT-CASE-007-07",
+    "CONNECT-CASE-007-08",
+    "CONNECT-CASE-007-09",
+    "CONNECT-CASE-007-10",
+    "CONNECT-CASE-007-11",
+    "CONNECT-CASE-007-12",
+    "CONNECT-CASE-007-13",
+    "CONNECT-CASE-007-14",
+    "CONNECT-CASE-007-15",
+    "CONNECT-CASE-007-16",
+    "CONNECT-CASE-007-17",
+    "CONNECT-CASE-007-18",
+    "CONNECT-CASE-007-19",
+    "CONNECT-CASE-007-20",
+    "CONNECT-CASE-007-21",
+    "CONNECT-CASE-007-22",
+    "CONNECT-CASE-007-23",
+    "CONNECT-CASE-007-24",
+    "CONNECT-CASE-007-25",
+    "CONNECT-CASE-007-26",
+    "CONNECT-CASE-007-27",
+    "CONNECT-CASE-007-28",
+    "CONNECT-CASE-007-29",
+    "CONNECT-CASE-007-30",
+    "CONNECT-CASE-007-31",
+    "CONNECT-CASE-007-32",
+    "CONNECT-CASE-007-33",
+    "CONNECT-CASE-007-34",
+    "CONNECT-CASE-007-35",
+    "CONNECT-CASE-007-36",
+    "CONNECT-CASE-007-37",
+    "CONNECT-CASE-007-38",
+    "CONNECT-CASE-007-39",
+    "CONNECT-CASE-007-40",
+    "CONNECT-CASE-007-41",
+    "CONNECT-CASE-007-42",
+    "CONNECT-CASE-007-43"
+  ],
+  "static_checks": {
+    "validate": {
+      "exit": 0,
+      "last_line": "bindings=147 fail=0"
+    },
+    "stale": {
+      "exit": 0,
+      "last_line": "stale=0"
+    },
+    "residuals": {
+      "exit": 0,
+      "last_line": "residuals=0"
+    }
+  },
+  "limits": [
+    "静的文書照合。L10実行、実測、旧runtime/CI実行なし。",
+    "このroundは6変更行と固定親・出典を照合。旧consumer網羅の再監査ではない。"
+  ]
+}

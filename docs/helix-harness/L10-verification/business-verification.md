@@ -32,6 +32,12 @@ execution_status: designed_only_not_executed
 
 固定4親に独立business requirement/oracleはないため、別個のbusiness acceptance caseを追加しない。各親の設計対応、source observation、saved-design comparison、proposal境界は対の[functional-verification.md](functional-verification.md)にある同一FR/AC/CASEで照合する。これらの候補を利用者価値、商業成果、業務完了、受入やreleaseへ読み替えず、旧business-detailのowner/KPIを追加しない。
 
+## Stage 2b 残件追補 — HARNESS-L2-017/018/019/020/024
+
+本追補5親は未承認の起草。既承認prefixを変更せず、実行結果や下流許可を生成しない。
+
+この5親から独立business requirement/oracleを導出しない。release/運用ownerの判断、Reverseの草稿、handoff、形成資料の十分性と人間の合意状態は対のfunctional FR/AC/CASEで確認する。販売・顧客優先順位、共通SLO、配備decision、事業価値・合意を追加しない。旧business-detailの別事業意味を本scopeへ移さない。検証対不在の一覧、引継いだ義務の回収証拠、形成資料が揃った人の確認待ちも同じ機能CASEで観測し、復旧・回収・候補提示から業務完了や承認を生成しない。
+
 ## Stage 3（1.0対象13親）の業務総合検証境界
 
 固定親 HARNESS-L2-034/036/038/039/040/041/042/043/044/046/047/049/054 には独立business criterion/oracleを導出しない。functional ACごとの正常・独立反例・未評価は対の[functional-verification.md](functional-verification.md)を同じIDで用いる。この判断はHARNESS全体のbusiness requirementを否定せず、ROI・市場価値・利用者受入・採否を技術証拠から生成しない。
