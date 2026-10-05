@@ -18,11 +18,11 @@
 
 ### CASE-NFR-OS-015-01 — authority completeness
 
-親 `HELIXOS-L2-015`; Candidate 1の全required field presence/valueを対象fixture全数で照合する。source identity/revision/digest/decision source/actor/time/raw event/correction chainのmissing/mismatchをfield別に数える。欠落0期待は固定L2/L11 contract oracle。母集団外targetや日数で合否を作らない。
+親 `HELIXOS-L2-015`; Candidate 1の全required field presence/valueを対象fixture全数で照合する。管理record schema revision、結果のtarget revision・実行者actor・根拠・使用したHARNESS契約版、source identity/revision/digest/decision source/actor/time/raw event/correction chainのmissing/mismatchをfield別に数える。各negative CASEの対象field以外を正常に保ち、source/decision owner routeとraw event保持を記録する。Candidate 2は同じ明示scopeのsource/revisionについて訂正からcanonical sourceまでのtrace経路をrevision更新前後で比較する。欠落0期待は固定L2/L11 contract oracle。母集団外targetや日数で合否を作らない。
 
 ### CASE-NFR-OS-016-01 — portfolio edge/state census
 
-親 `HELIXOS-L2-016`; fixed portfolio scopeが明示する全対象/edgeをcensusし、unit/connection/composite state、owner/dependency/diff/verification missing、unknown/staleを数える。未提示範囲の全体coverageを推定しない。candidate比較は同一scope/revisionで行う。
+親 `HELIXOS-L2-016`; fixed portfolio scopeが明示する全対象/edgeをcensusし、unit/connection/composite state、owner/dependency/diff/verification missing、unknown/staleを数える。Candidate 2では同じ対象edgeのrevision更新前後state、stale reason、unresolved edgeを対応比較し、更新前後の対象集合が異なる場合は差を明記する。cross-project流用、CI/ticket-plan-only readiness、resume時stale reason脱落は独立negativeとして扱う。未提示範囲の全体coverageを推定しない。candidate比較は同一scope/revisionで行う。
 
 ### CASE-NFR-OS-017-01 — ticket binding and workload ratios
 
@@ -30,15 +30,15 @@
 
 ### CASE-NFR-OS-018-01 — attempt binding/cumulative-control census
 
-親 `HELIXOS-L2-018`; 全fixtureで重複claim/run、counter reset、binding欠落/不一致を数える。各停止について停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36ではdefault逸脱の理由、予定対応/実施対応、結果の各記録fieldが揃うか検査する。新しいfailure cap/default/orderは置かない。
+親 `HELIXOS-L2-018`; HIL-NFR-36追補 `MPR-RC-HELIXOS-L2-018-002`（main633 PO decision row 34。L2 physical locator 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`、L11 physical locator 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`）を固定f6dad2a本文と別pinで適用する。全fixtureで重複claim/run、counter reset、binding欠落/不一致、SECURITY/INFRA stateのOS代替、実行中のbudget/deadline超過停止を数える。各停止について停止理由と最初のOS管理/推進受領recordを照合し、外部sourceの不足/不一致がある場合はそのrecordを起点にした既存ownerへの訂正依頼も記録する。実測ではticket/revision/scopeごとに消費budgetと許可budget値を別記し、許可値が存在して0より大きい場合のみ比率を算出する。zero/missing budgetは算出不可として扱う。期限はabsolute deadline表現と経過時間を分け、現在のticket契約入力に計測開始点・単位付きduration/windowが明示されている場合だけ同単位の比率を算出する。absolute deadline、duration/windowのzero/missing、開始点/単位不明は算出不可とする。attempt/failure数を層別する。HIL-NFR-36では適用sourceの選択/不選択、revision-bound deviation receipt、実際に通った各step/順序、結果/理由、未選択consult/support receipt不生成を検査する。新しいfailure cap/default/orderは置かない。
 
 ### CASE-NFR-OS-019-01 — event/replay classification
 
-親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、raw eventからのreconstructed episodeとの差分を示す。実timestampがある場合のreplay durationは観測候補として表示し、保持日数/復旧時間のcutoffにしない。
+親 `HELIXOS-L2-019`; fixture eventをmissing/duplicate/stale/denied/not-run/success別に数え、fixed L2が指定する失敗位置からreplayしたreconstructed episodeとの差分を示す。実timestampがある場合のreplay durationは観測候補として表示し、保持日数/復旧時間のcutoffにしない。
 
 ### CASE-NFR-OS-020-01 — applicable verification obligation census
 
-親 `HELIXOS-L2-020`; HARNESS契約・対象diffから適用義務を定め、applicable/selected/executed/missingを全数照合。exact head/oracle/environment/run bindingを別に検査する。required obligationのmissingは固定契約違反。候補test数/段数/実行時間thresholdは発明しない。
+親 `HELIXOS-L2-020`; HARNESS契約・対象diffから適用義務を定め、applicable/selected/executed/missingを全数照合。exact head/oracle/environment/run binding、監視/隔離境界、中断・失敗時に再開へ渡す同じbindingとunfinished stateを別に検査する。required obligationのmissingは固定契約違反。候補test数/段数/実行時間thresholdは発明しない。
 
 ### CASE-NFR-OS-023-01 — handoff binding census
 
@@ -46,7 +46,7 @@
 
 ### CASE-NFR-OS-027-01 — eligibility/evaluation evidence
 
-親 `HELIXOS-L2-027`; six eligibility conditionsとoperation authorityを別fieldで照合し、weighted scoreではなく全条件のconjunctionで判定する。LABO評価候補資料には実在sample n、scope/task/model class/revision、success/failure/rework/latency/cost/reliability、uncertainty/counterexample/unknownとoracle revision/criterionを記録する。L2/L11はuniversal minimum N/score cutoffを定めず、一回のsuccessだけではassessedにしない。候補値は比較資料で、PO per-parameter approvalや新gateではない。
+親 `HELIXOS-L2-027`; six eligibility conditionsとoperation authorityを別fieldで照合し、weighted scoreではなく全条件のconjunctionで判定する。LABO評価候補資料には実在sample n、scope/task/model class/revision、success/failure/rework/latency/cost/reliability、uncertainty/counterexample/unknownとoracle revision/criterionを記録する。分類・authority・applicability evidenceのunknown/missing/stale/conflict、output classification/scope逸脱、各result status、requested oracle/duty保持、人代行binding、実行中budget/deadline、L2:836の2 return routeをfunctional CASEごとに照合する。L2/L11はuniversal minimum N/score cutoffを定めず、一回のsuccessだけではassessedにしない。候補値は比較資料で、PO per-parameter approvalや新gateではない。
 
 ### L10測定記録
 
