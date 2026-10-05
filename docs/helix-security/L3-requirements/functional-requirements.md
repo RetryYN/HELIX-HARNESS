@@ -374,7 +374,7 @@ runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、
 - **`SECURITY-AC-029-02` 型別適用観測**：同じtupleで適用対象のsandbox、allowlist、egress、FS差分を独立に照合し、一型の欠落/不一致/unknownを他型で相殺しない。read-onlyやnetworkなしの根拠付き非該当と適用unknownを分ける。
 - **`SECURITY-AC-029-03` 出所・版・owner**：runtime/config/target/scopeの変更で旧証拠を流用せず、不足をpolicy（SECURITY）、実環境観測（INFRASTRUCTURE）、強制（Worker）、data/runtime条件の該当ownerへ返す。provider申告とローカル観測を独立に保持し、主Workerへの条件拡張・1.x Web強制を生成しない。目的とexpiryは入力へ含め、既存authorityを再利用する。no-trainingの別方式を同値な代替とせず、通常作業へ毎回の人間承認を追加しない。
 
-- **`SECURITY-AC-029-04` 依存条件の区分**：常時条件としてsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、SECURITY-007 isolation/applicability、既存006/007条件とL2-016 asset分類記録を同一判定へ束ねる。分類記録のowner/source/revisionは資産identityに束縛する。credential-use requestがある場合は既存L2-005 tupleを照合し、credential-useがない操作へ未発生request fieldを要求しない。network allowlist/egressはnetwork operation時、FS差分はwrite operation時だけ要求する。L2:413の005/006/007/016依存を適用し、既存の有効scoped credential-useを拒否しない。
+- **`SECURITY-AC-029-04` 依存条件の区分**：常時条件としてsource/target revision、runtime identity/version/config、OS-018 assignment、029 scope、SECURITY-007 isolation/applicability、既存006/007条件とL2-016 asset分類記録を同一判定へ束ねる。分類記録のowner/source/revisionは資産identityに束縛する。credential-use requestがある場合は既存L2-005 tupleを照合し、credential-useがない操作へ未発生request fieldを要求しない。network allowlist/egressはnetwork operation時、FS差分はwrite operation時だけ要求する。L2:413の005/006/007/016依存を適用し、既存の有効scoped credential-useを拒否しない。参照資料のみの旧runtime、provider UI、HR/HAC/HAT-HIL-23は実行dependencyでも適合proofでもない。
 - **`SECURITY-AC-029-05` 主Workerとcredential-use**：追加runtimeがmain Workerを偽装して追加runtime条件を迂回する入力、および主Workerの既存006/007/016条件を欠く入力を別々に拒否する。029は主Workerの既存条件を免除も拡大もしない。有効な既存scoped credential-useを一律に拒否しない。
 - **`SECURITY-AC-029-06` 公開コード・変化入力**：public codeでも送信先、目的、authority、expiry、isolationを免除しない。別runtime、classification変化、検査不能payload、確認evidence喪失は個別にrisk zero化せず、該当fieldをunknown/holdとして返す。
 
@@ -390,7 +390,7 @@ runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、
 
 ### `SECURITY-FR-032-01` — Worker操作のpermanent deny優先
 
-主Worker/追加runtimeを問わず、repository-level bypassを試みる操作へ、対象repository/operationと既存policy revision・適用状態、one-shot marker/provider flagを束縛する。有効なpermanent denyに下位機構から許可・解除を与えず、unknown/staleは既存fail-closeへ返す。deny非適用を確認した操作は既存008 authorityへ戻し、本要件から新しいallow/denyを発行しない。既存Worker実行環境を下位機構から迂回しない。OSは新しいpolicy actor/解除手続き/承認者を作らず、既存assignmentと未完義務を扱う。
+主Worker/追加runtimeを問わず、repository-level bypassを試みる操作へ、対象repository/operationと既存policy revision・適用状態、one-shot marker/provider flagを束縛する。有効なpermanent denyに下位機構から許可・解除を与えず、unknown/staleは既存fail-closeへ返す。deny非適用を確認した操作は既存008 authorityへ戻し、本要件から新しいallow/denyを発行しない。既存Worker実行環境を下位機構から迂回しない。候補はpolicyの変更・失効主体、解除手順、追加承認、bypass許可を定義しない。OSは本要件から新しいpolicy actor/解除手続き/承認者を作らず、既存assignmentと未完義務を扱う。
 
 - **`SECURITY-AC-032-01` 同一対象の優先**：主/追加Workerそれぞれに有効denyとone-shot/provider flagを個別入力し、下位機構後もdenyが維持される。
 - **`SECURITY-AC-032-02` 適用状態の分離**：unknown/staleと確認済み非適用を区別し、前者は未解決、後者は既存authorityへ戻す。無関係操作への一律denyや032から035のprimary適用を生成しない。
@@ -411,13 +411,13 @@ runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、
 
 対象はPO scope Aの追加runtimeで、policy/authorityはSECURITY、適用・cleanup強制はWorker、run/assignmentはOSである。常時依存は同一target revision、既存operation authority、現在のrepository policy/deny state。allowlist対応の正常例でも既存policy/deny stateを照合する。選択runtimeのallowlist能力、repository deny switchの設定能力と適用状態、既存authority、run開始/終端/cleanup観測を受ける。明示allowlist対応ならdeny既定+allowlistを使い、YOLO代替を選ばない。非対応と確認できるruntimeだけ、既存policy内で選ばれた経過措置をそのrunに限定できる。bypass利用許可や経過期限・runtime一覧を新設しない。
 
-選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置をcleanup成功にせず次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。
+選ばれたbypass/YOLO/auto-approve設定はsuccess/failure/cancelの各終端で除去し、未確認/残置は当該runの完了を成功扱いせず、次runへ持ち越さない。repositoryから恒久denyを設定でき、その適用がcleanup後も維持されることを観測する。032の優先順位は再利用するが、優先順位の成立だけでswitch能力を証明しない。能力・policy・適用状態unknown/staleは該当選択を保留し既存ownerへ戻す。bypass非選択の通常操作を本要件だけで新規gateへ置かない。
 
 - **`SECURITY-AC-035-01` 能力に応じた選択**：allowlist対応はallowlist使用、非対応の確認と有効policyを持つ経過措置はrun限定として区別する。対応/能力unknownをYOLO許可へ丸めない。
 - **`SECURITY-AC-035-02` 全終端cleanup**：success/failure/cancel各終端でrun設定が除去され次runへ継承されない。残置/観測欠落は当該runの完了を成功扱いせず、Worker/OSおよびpolicy ownerのSECURITYへ返す。
 - **`SECURITY-AC-035-03` deny能力・優先・scope**：repository deny能力/適用を別個に照合し、032の同一対象deny優先を保ちcleanup後もdenyを維持する。主Workerへ035の四条件を拡張せず、通常操作や既存006/007/008/OS018条件を免除しない。
 
-- **`SECURITY-AC-035-04` 同一scope・証拠の非流用**：対象revision不一致、別repositoryのdeny適用state流用、別runtimeのallowlist能力流用をそれぞれ独立negativeとする。旧repository設定/provider UI/宣言/remote flagだけのdeny能力・適用申告はunknownとして扱う。allowlist正常fixtureは現行対象revision、既存authority、repository policy/deny stateを含む。既存006/007/OS-018の失敗を035成功で相殺しない。
+- **`SECURITY-AC-035-04` 同一scope・証拠の非流用**：対象revision不一致、別repositoryのdeny適用state流用、別runtimeのallowlist能力流用をそれぞれ独立negativeとする。旧repository設定/provider UI/宣言/remote flagだけのdeny能力・適用申告、および実適用の観測なしに適用状態だけを申告する変異はunknownとして扱う。allowlist正常fixtureは現行対象revision、既存authority、repository policy/deny stateを含む。既存006/007/008/OS-018の失敗を035成功で相殺しない。
 
 ### Stage 3固定親の出所とrevision
 

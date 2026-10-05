@@ -39,6 +39,6 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 | `CASE-NFR-SECURITY-030-01` | `SEC-NFR-030-01` | CASE-030-01..04で独立条件欠落と正常反復を対照にし、誤昇格・新規都度approve要求を計数する。 | 候補0件。意味上のrisk/owner/監視不明は未評価。総合点で不足を相殺しない。 |
 | `CASE-NFR-SECURITY-032-01` | `SEC-NFR-032-01` | CASE-032-01..03の主/追加各marker/flag、policy適用状態を個別に比較する。 | 上書き・非適用時新規許否候補0。policy/適用観測なしはunknown。035のswitch能力はこの測定から生成しない。CASE-032-03ではWorker迂回、新actor、旧runtime、031結果流用を個別に拒否する。 |
 | `CASE-NFR-SECURITY-034-01` | `SEC-NFR-034-01` | CASE-034-01..04でprofile/revision/capability/egress/authorityを一項目ずつ変え、scoped credential-useと未知正常profileを対照にする。 | 流用・write-probe誤認・正常credential-use追加deny候補0。能力/供給意味の未完は未closure。CASE-034-04の越境/実read-only超過/1.x代用も照合する。 |
-| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04で全三終端と次run、allowlist能力、deny設定能力/適用を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。CASE-035-04はtarget/repository/runtime間binding、申告のみの能力、非相殺条件を分離する。 |
+| `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04で全三終端と次run、allowlist能力、deny設定能力/適用、006/007/008/OS-018非相殺を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。CASE-035-04はtarget/repository/runtime間binding、申告のみの能力、非相殺条件を分離する。 |
 
 値は根拠付き候補であり、実測達成・L3承認・実runtime使用許可を表さない。fixtureは合成入力と観測契約の設計に限り、秘密値や実runtimeを使った測定は行っていない。
