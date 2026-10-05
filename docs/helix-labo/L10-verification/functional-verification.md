@@ -2099,7 +2099,7 @@ input observation identity/source revision；episode candidate identityとrelati
 
 - 対応AC: `LABO-058-AC-02`。固定親: `HELIXLABO-L2-058`。
 - 独立fixture（変更は一条件だけ）: source/operationを保ち、selected scopeだけをreceipt後に変更する。
-- 期待oracle: scope条件で再closureし旧receiptを流用しない。scope変更による既存receipt不一致は固定L2:413に従い当該選択source ownerへ返す。
+- 期待oracle: scope条件で再closureし旧receiptを流用しない。scope変更による既存receipt不一致は固定L2:413に従い当該選択source owner／SECURITYへ返す。
 
 ### L10-LABO-058-C17 — contract version変更後に旧receipt流用
 
@@ -2502,7 +2502,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-023-C13 — BRAIN source contract欠落
 
 - 対応AC: `LABO-023-AC-02`。固定親: `HELIXLABO-L2-023`。
-- 入力/期待oracle: source identity/version/scope/permissionを保ちcontractだけ欠落。利用成功とせずBRAIN source contract ownerへ戻す。BRAIN正本は移管しない。
+- 入力/期待oracle: source identity/version/scope/permissionを保ちcontractだけ欠落。利用成功とせず固定L2-023の依存であるBRAIN source contract不成立として拒否/unknownを保持する。source identity不明の場合だけ固定L2-023に明記されたBRAINへ戻す。BRAIN正本は移管しない。
 
 ### L10-LABO-024-C17 — INTELLIGENCE正本書戻し要求
 
