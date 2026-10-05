@@ -618,7 +618,7 @@ HELIX-HARNESS-COREから受け取る入力を、抽出済みの汎用Pattern/Uni
 Product Coreの対象課題、required input、constraint、参照可能なknowledge identity/versionを受け、Pattern/Unit/Part候補ごとに適用条件、alternative、relation、trade-off、counterexample、evidence、maturity、exact versionを比較可能な判断材料として返す。複数成立候補を消さず、選択・採用はProduct Core等の既存接続先に残す。unknownは推薦へ変換しない。
 
 - **BRAIN-019-AC-01 — 正常**：scopeとrequired inputを備えるqueryに対し、候補ごとの固定親必須fieldとidentity/versionを返し、利用側の選択・採用stateを未決で保つ。
-- **BRAIN-019-AC-02 — 個別反例**：scope欠落、required input欠落、候補identity欠落、version/revision不一致を個別に与え、不足queryはProduct Coreへ、knowledge meaning/version矛盾はBRAIN L1-003/008または該当知識ownerへ返す。alternative、relation、trade-off、counterexample、evidence、maturityの各field欠落、unknownの推薦化、候補返却の採用昇格をそれぞれ独立に拒否する。
+- **BRAIN-019-AC-02 — 個別反例**：scope欠落、required input欠落、候補identity欠落、version/revision不一致、query constraint欠落、参照knowledge identity欠落、参照version欠落を個別に与え、不足queryはProduct Coreへ、knowledge meaning/version矛盾はBRAIN L1-003/008または該当知識ownerへ返す。alternative、relation、trade-off、counterexample、evidence、maturity、適用条件、required input、constraintの各field欠落、複数成立候補の消去、unknownの推薦化、候補返却の採用昇格をそれぞれ独立に拒否する。
 - **BRAIN-019-AC-03 — 未見正常/局所unknown**：未見課題でquery必須fieldがそろい、一候補の適用可否だけunknownのfixtureでは、既知候補の情報を保って当該候補だけ保留し、未知を不存在・適用可能と推定しない。
 
 旧UWJのfact/candidate/condition/alternative/counterevidenceの区分とpaired acceptanceのfield欠落oracleを再導出する。旧interview schema、score、固定質問、承認階層は現行candidate-only境界に置換し、provider固定・精度/性能閾値を追加しない。
@@ -627,8 +627,8 @@ Product Coreの対象課題、required input、constraint、参照可能なknowl
 
 LABO evaluation receiptの対象revisionとcandidate revision、scope、method、evidence、result、failure、counterexample、unassessed rangeを、source/version/evaluation identityに結んで候補入力として保持する。部分評価の範囲を保ち、単一成功、AI生成、評価resultのみでPattern確立・採用・成熟に進めない。OS登録・振分け、BRAIN内独立検証、採否を先取りしない。L2-INFRA-017はInfrastructure candidateのmaturityを扱う場合だけ参照する。
 
-- **BRAIN-020-AC-01 — 正常**：対象revisionが一致するevaluation receiptの全列挙要素と未評価範囲をsource/version/evaluation identityに結び、candidate input receiptとして返す。
-- **BRAIN-020-AC-02 — 個別反例**：target/candidate revision不一致、scope/method/evidence/result/failure/counterexample/unassessed range各単独欠落、単一成功だけの昇格、AI生成だけの昇格、receiptからOS登録stateを決める変異をそれぞれ個別に拒否する。evaluation不足・不一致はLABOへ返し、OS登録stateはOSへ返す。
+- **BRAIN-020-AC-01 — 正常**：対象revisionが一致するevaluation receiptの全列挙要素と未評価範囲をsource/version/evaluation identityに結び、candidate input receiptとして返す。Infrastructure candidateのmaturityを扱う場合だけINFRA-017 state/evidenceを同revisionへ対応付ける。
+- **BRAIN-020-AC-02 — 個別反例**：target/candidate revision不一致、scope/method/evidence/result/failure/counterexample/unassessed range各単独欠落、単一成功だけの昇格、AI生成だけの昇格、receiptからOS登録stateを決める変異、評価resultだけの昇格、BRAIN内独立検証省略をそれぞれ個別に拒否する。source/version/evaluation identity各単独欠落はLABOへ返す。Infrastructure candidateのmaturityを扱うときだけL2-INFRA-017のstate/evidenceを同revisionに照合し、不一致や欠落を昇格に使わない。evaluation不足・不一致はLABOへ返し、OS登録stateはOSへ返す。
 - **BRAIN-020-AC-03 — 未見正常/未評価範囲**：未見scopeの測定済部分と未評価部分を区分し、同candidate revisionに結ぶ。未評価部分からscope全体へ一般化しない。
 
 旧HELIX-Benchのscope/method/failure/missing保持とself-reported score拒否を類例として再導出する。旧benchmark数値、category、runner/provider、admission thresholdは置換し、runtimeは実行しない。
@@ -665,11 +665,11 @@ Visual Design HARNESSの課題と製品scopeから、汎用Visual Design/UX Patt
 
 ### BRAIN-030-FR-01 — BRAIN知識からHARNESS-COREへのconnection receipt
 
-BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection contract identity/version/compatibility、query schema、receipt schema、scope/correlation identity、receiver HARNESS-L2-009 contractを照合する。選択知識についてのみknowledge identity/version/source/applicability/required input/relation/negative caseを照合して設計義務材料receiptへ結び、未充足input/relationを保持する。定義済fieldの値unknownはreceipt可能だが義務はopen、field定義欠落は通常受領しない。未選択knowledgeは未観測、参照資料は背景のみ。receiptは義務充足・connection/design complete・implementation readyを意味しない。製品固有API/state/permission/design conclusionは返さない。
+BRAIN→HARNESS-CORE query/receipt接続において、常時必須のconnection contract identity/version/compatibility、query schema、receipt schema、scope/correlation identity、receiver HARNESS-L2-009 contractを照合し、HARNESS-COREがBRAIN connectorを使う常時契約と、009の設計義務への対応付けを区別する。選択知識についてのみknowledge identity/version/source/applicability/required input/relation/negative caseを照合して設計義務材料receiptへ結び、未充足input/relationを保持する。定義済fieldの値unknownはreceipt可能だが義務はopen、field定義欠落は通常受領しない。未選択knowledgeは未観測、参照資料は背景のみ。receiptは義務充足・connection/design complete・implementation readyを意味しない。製品固有screen/API/DB/state/permission/design conclusionは返さない。
 
 - **BRAIN-030-AC-01 — 正常**：常時contract群がそろったfixtureで、選択knowledgeなしを未観測として処理できる。別fixtureでは複数選択Patternのidentity/version/sourceと全required fieldsをHARNESS-L2-009へ対応付け、未決fieldと未充足義務を残したreceiptを返す。
 - **BRAIN-030-AC-02 — 個別negative**：常時contractのidentity missing、version missing/stale/unknown、compatibility mismatch、query schema欠落、不一致、receipt schema欠落、不一致、scope/correlation identity欠落、不一致、receiver L2-009 contract欠落、不一致を個別変異する。各々呼出しを保留しconnection contract ownerまたはHARNESSへ戻す。
-- **BRAIN-030-AC-03 — 選択knowledge negative**：選択knowledge identity、version、source、applicability、required-field definition、required value、relation、negative caseについてmissing/stale/mismatchを別々に試す。定義欠落を値unknownとして受領せず、知識意味/field不足はBRAIN、receiver scope/schema/mappingはHARNESSへ返す。
+- **BRAIN-030-AC-03 — 選択knowledge negative**：選択knowledge identity、version、source、applicability、required-field definition、relation、negative caseの各単独欠落、knowledge versionのstale/mismatch、source identity不一致、field定義不一致、relation矛盾を別々に試す。定義済required valueの未設定はAC-05の受領可能/open条件で扱い、field定義欠落と混同しない。定義欠落を値unknownとして受領せず、知識意味/field不足はBRAIN、receiver scope/schema/mappingはHARNESSへ返す。
 - **BRAIN-030-AC-04 — traceと未完義務**：Pattern/Unit/Part/inputからHARNESS obligationへのforward trace、およびobligationから同じknowledge revision/fieldへのreverse traceをそれぞれ単独で欠落・誤結合させる。未充足義務を閉じる、receiptを設計完成/実装準備に昇格する、別Pattern成功で穴を相殺する変異を個別に拒否する。
 - **BRAIN-030-AC-05 — unknown/未見**：選択knowledgeのfield定義がある値unknown fixtureではreceiptとfield identity/理由を保ち義務openとする。定義不在fixtureは受領不可としてBRAINへ返す。未見互換pairは固定sourceに宣言済範囲があるときだけ照合し、未宣言rangeはunknownで停止する。未選択knowledgeは常に未観測のままとする。
 
