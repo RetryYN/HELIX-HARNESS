@@ -555,7 +555,7 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 **AC-OS-L3-026-01 — 導出結果と証拠の分離**：validな入力では目的、scope、要求revision、許容分担、境界、依存と安全依存、閉包、未立証、代替比較を同一入力revisionへ束縛して返す。導出能力の確認を実構成の実行・復旧・composite受入へ読み替えない。
 
-**AC-OS-L3-026-02 — 欠落・不整合の独立保持**：要求source identity/revision、HARNESS contract version/互換、復旧条件、permission、owner、人の許容工程を一項目ずつ、さらに通常/安全依存のmissing/unknown/stale/conflictを独立に変異させ、当該不足を特定ownerへ返して成立構成を主張しない。空集合unknown、必須安全dependency省略、未決境界pack、未撤去working tree、別stage bootstrap cycleを保持し、trace参照cycleと実行前提cycleを区別する。
+**AC-OS-L3-026-02 — 欠落・不整合の独立保持**：要求source identity/revision、HARNESS contract version/互換、復旧条件、permission、owner、人の許容工程を一項目ずつ、さらに通常/安全依存のmissing/unknown/stale/conflictを独立に変異させ、当該不足を特定ownerへ返して成立構成を主張しない。空pack集合の候補除外、必須安全dependency省略、未決境界pack、未撤去working tree、別stage bootstrap cycleを保持し、trace参照cycleと実行前提cycleを区別する。
 
 **AC-OS-L3-026-03 — 最小性の境界**：候補空間または適格条件・代替比較が不足した例を、閉包状態を保持した「最小性未立証」とする。代替比較がある通常例でも、固定L2が定めない段階数、pack数、taxonomyを追加せず、stage採択や外部作用を生成しない。
 

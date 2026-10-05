@@ -987,7 +987,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 |---|---|---|
 | `AC-OS-L3-025-01` | `HELIXOS-L2-025` | 各unit（サービス①〜⑦を個別に含む）、選択connection、composite正常、部分未見正常を別identityで照合する。個別CASE: 025-01,03,05–13。|
 | `AC-OS-L3-025-02` | `HELIXOS-L2-025` | 一つの対象projectの単独成立と7製品/別project/構成体の未完を分け、unknown/stale/未許可/human-waitを隠さず、後続版前倒し・OS外部製品化・LABO移管戻しを拒否する。個別CASE: 025-02,04,14–21。|
-| `AC-OS-L3-026-01` | `HELIXOS-L2-026` | 同一revisionへ束縛したvalid入力から候補、closed dependency/safety set、除外、比較範囲を返す。空集合unknownや最小性誤導出を拒否する。個別CASE: 026-01,04–06,25–30。|
+| `AC-OS-L3-026-01` | `HELIXOS-L2-026` | 同一revisionへ束縛したvalid入力から候補、closed dependency/safety set、除外、比較範囲を返す。空pack集合の除外と最小性誤導出を拒否する。個別CASE: 026-01,04–06,25–30。|
 | `AC-OS-L3-026-02` | `HELIXOS-L2-026` | source identity/revision、contract version/compatibility、recovery、permission/owner/human-processと通常/安全依存の各missing/unknown/stale/conflictを単独化する。個別CASE: 026-02,03,07–24。|
 | `AC-OS-L3-026-03` | `HELIXOS-L2-026` | 未決pack境界・未撤去working tree・別stage bootstrap cycleを閉包不足として保持し、局所的な1層削除だけのminimum主張を拒否する。trace-only cycleは誤判定しない。個別CASE: 026-04,05,25–30。|
 | `AC-OS-L3-031-01` | `HELIXOS-L2-031` | L2-031の全測定field（HEAD pair、obligation digest、profile、env/toolchain/artifact/cache/resource、time/interval、exit/output、population/window/exclusion、budget basis）を同一scopeへ束縛する。個別CASE: 031-01,02,06–07,08–25,29,52–63。|
@@ -1065,7 +1065,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-026-22` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 安全dependency一項目だけをunknownにする。 | unknownをclosed/optionalへ変更しない。 |
 | `CASE-OS-L10-026-23` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 安全dependency一項目だけをstaleにする。 | 安全closureをstaleのまま保ち、旧権限で補完しない。 |
 | `CASE-OS-L10-026-24` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 安全dependency一項目だけをconflictにする。 | 競合を保ち安全closure成立を拒否する。 |
-| `CASE-OS-L10-026-25` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | dependency集合が空であることだけを入力し、他の候補情報は正常。 | 空集合を成立configurationにせず、dependency status unknownの不足を示す。 |
+| `CASE-OS-L10-026-25` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 導出した候補pack集合だけを空集合にし、目的・scope・要求revision・依存宣言と他入力は正常。 | 空のpack集合を候補から除外し、成立構成や最小構成と表示しない。既知のdependency stateをunknownへ変更しない。 |
 | `CASE-OS-L10-026-26` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 通常機能は閉じているが必須安全dependencyを省く一変異。 | 省略を拒否し、安全closure不成立を表示する。 |
 | `CASE-OS-L10-026-27` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 候補pack境界だけが未決である。 | packを仮分割せず、境界/ownerをunknownとして戻す。 |
 | `CASE-OS-L10-026-28` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 起動対象に未撤去working treeを含める一変異。 | working treeをstage prerequisiteへ扱わず、L2-014の独立起動条件との衝突を未完にする。 |
@@ -1108,12 +1108,12 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-047-09` | `HELIXOS-L2-047` / `AC-OS-L3-047-01` | 根拠evidence identity/digestだけを欠落させる。 | 返却根拠をunknownにし旧ticketを不変保持する。 |
 | `CASE-OS-L10-047-10` | `HELIXOS-L2-047` / `AC-OS-L3-047-01` | root ticket revisionだけを欠落させる。 | causal parentを特定できず新revisionを発行済みとしない。 |
 | `CASE-OS-L10-047-11` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧Assignmentだけを継承する。 | 明示的適格化がなければAssignmentを継承せず新revision stateを独立させる。 |
-| `CASE-OS-L10-047-12` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧Attemptだけを継承する。 | Attemptを再利用せず旧Attemptは旧revisionに保持する。 |
-| `CASE-OS-L10-047-13` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧resultだけを継承する。 | 旧resultを新revisionの結果にしない。 |
-| `CASE-OS-L10-047-14` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧authorityだけを継承する。 | authority scope/対象revisionを推定せず新revisionをoperation-readyにしない。 |
+| `CASE-OS-L10-047-12` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧Attemptだけを継承する。新revisionの現行契約による当該項目の明示適格化はない。他項目と旧revisionは保持する。 | 明示適格化なしのAttempt継承を拒否し、旧Attemptは旧revisionに保持する。 |
+| `CASE-OS-L10-047-13` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧resultだけを継承する。新revisionの現行契約による当該項目の明示適格化はない。他項目と旧revisionは保持する。 | 旧resultを新revisionの結果にしない。 |
+| `CASE-OS-L10-047-14` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | new revisionに旧authorityだけを継承する。新revisionの現行契約による当該項目の明示適格化はない。他項目と旧revisionは保持する。 | authority scope/対象revisionを推定せず新revisionをoperation-readyにしない。 |
 | `CASE-OS-L10-047-15` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | target ticket identityだけをunknownにする。 | 該当ticketを未完としてOS issuerへ戻す。 |
 | `CASE-OS-L10-047-16` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | returner identityだけをunknownにする。 | actor/returnerを推測せず因果関係未完を保持する。 |
-| `CASE-OS-L10-047-17` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | evidence source identityだけをunknownにする。 | source ownerが同定されるまで返却を未完にする。 |
+| `CASE-OS-L10-047-17` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | evidence source identityだけをunknownにする。 | source identityの不足を発行元OSへ返し、当該ticketを未完として保持する。source ownerを推測しない。 |
 | `CASE-OS-L10-047-18` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | requested scopeだけをunknownにする。 | scope外への返却・再発行を行わず未完で戻す。 |
 | `CASE-OS-L10-047-19` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | existing typed relationだけをunknownにする。 | 新relation型を作らず再発行・lineage確定を保留する。 |
 | `CASE-OS-L10-047-20` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | providerだけが変わりticket meaning, target, scope, relationは同じ。 | provider運用属性だけでは仕事identity/ticket semantic revisionを増やさない。 |
@@ -1126,6 +1126,8 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 #### L2-031 measurement and recovery closure single-field fixtures
 
+| CASE ID | 親 / AC | 入力・単独変異 | 期待oracle |
+|---|---|---|---|
 | `CASE-OS-L10-031-41` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | 改善候補から独立review receiptだけを除く。 | 非縮退完了・closureを認定せず、review義務を未完で保持する。 |
 | `CASE-OS-L10-031-42` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | 改善候補からpost-review re-verification receiptだけを除く。 | 改善closureを未完に保ち、別receiptで補完しない。 |
 | `CASE-OS-L10-031-43` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | stateful resource runからlease evidenceだけを除く。 | stateful jobの安全な並列性を成立扱いしない。 |
