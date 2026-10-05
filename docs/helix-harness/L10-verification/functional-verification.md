@@ -320,3 +320,15 @@ Stage 1 prefixはmain 28b3d3645e6298c159758700c2edd3d396c336f5の既存bytesを�
 | `CASE-HARNESS-L10-027-36` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | selected DB definitionのtarget version contractだけを欠落させる。 | DB observationを完了扱いせずsource/contract ownerへ戻す。 |
 | `CASE-HARNESS-L10-027-37` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | source observation候補から既存requirement/design本文を書換える単独変異。 | 書換えを拒否し、source observationと要求/設計authorityを分離する。 |
 | `CASE-HARNESS-L10-027-38` | FR-HARNESS-L3-027 / AC-HARNESS-L3-027-06 | static code observationだけからbehaviorを要求として確定する単独変異。 | Requirement claimを拒否し、観測候補と既存要求を分ける。 |
+| `CASE-HARNESS-L10-028-32` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | 選択baselineのsource/design digestだけを別値へmismatchにする。 | comparisonを保留しbaseline ownerへ戻す。 |
+| `CASE-HARNESS-L10-028-33` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | baselineを選択しない正常fixtureへ未選択baselineの内容を「差分なし」として追加する。 | 未選択baselineは未観測のまま保ち、no-difference claimを拒否する。 |
+| `CASE-HARNESS-L10-028-34` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | API comparisonを選択しない同scope normalへAPI-specific contractを強制する。 | 不要な選択operation contractの強制を拒否し、他の選択済みcomparisonは評価する。 |
+| `CASE-HARNESS-L10-028-35` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | migration impact comparisonを選択しない同scope normalへmigration contractを強制する。 | migration依存を強制せず、他の選択済みcomparisonを評価する。 |
+| `CASE-HARNESS-L10-028-36` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | behavior/state-specific comparisonを選択しない同scope normalへ個別oracleを強制する。 | 未選択operationの個別契約を強制しない。 |
+| `CASE-HARNESS-L10-028-37` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | behavior/state-specific comparisonを選択し、その対象design/oracle contractを与える。 | 選択operation内だけでcomparisonするnormal。 |
+| `CASE-HARNESS-L10-028-38` | FR-HARNESS-L3-028 / AC-HARNESS-L3-028-06 | 選択behavior/state comparisonのoracle contractだけをmissingにする。 | 該当比較をunknown/保留し既存oracle ownerへ返す。 |
+| `CASE-HARNESS-L10-029-49` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | proposal bundleからdata migration completed claimだけを生成する。 | claimを拒否し、migration案と実移行状態を分ける。 |
+| `CASE-HARNESS-L10-029-50` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | 一つのscope proposalから全製品への適用性を主張する。 | universal claimを拒否し対象product/scopeに限定する。 |
+| `CASE-HARNESS-L10-029-51` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-07 | 一つの親候補の成立からVersion 1全体の完成をclaimする。 | 全体完成claimを拒否し選択した親/scopeに限る。 |
+| `CASE-HARNESS-L10-029-52` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-05 | saved requirement meaningだけを変更したproposalを候補として閉じる。 | meaning changeを採択せず既存L2-008/upstream ownerへ戻す。 |
+| `CASE-HARNESS-L10-029-53` | FR-HARNESS-L3-029 / AC-HARNESS-L3-029-02 | source authority stateだけをunknown/staleにしapproved claimを与える。 | approved claimを拒否しsource/authority ownerへ戻す。 |
