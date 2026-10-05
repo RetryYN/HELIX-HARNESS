@@ -1,0 +1,103 @@
+{
+  "record_kind": "creator_review03_acceptance",
+  "authority_effect": "none",
+  "exact_base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "content_head": "4871262448465395ee259ecc3d26c7c20747175a",
+  "body_revision": "a93a99d16b18d04f0ae2eee6265600b1576434df",
+  "verified": {
+    "source_full_and_raw_span_pins": 42,
+    "current_literal_raw_pins": 194,
+    "six_whole_sha_and_main_prefix_and_suffix": true,
+    "prior_review02_record_unchanged": true,
+    "root_read": "4 canonical complete diffs plus fixed L11:149–157 and two prior d1ef NFR spans"
+  },
+  "review03_record": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2a-review03-repair-2026-10-05-a93a99d.json",
+    "sha256": "2299411b544b368333372040ee1ce6705c5088eccd8b22bcfbbc609e4d5146dd"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "bytes": 36273,
+      "lines": 169,
+      "body_sha256": "0b03404387d363026a5ea134cc69e30a08aff26ad08b604b27f33b522c599931",
+      "stage1_prefix_bytes": 22967,
+      "stage1_prefix_sha256": "6a2909c6163350025eadaa8fe028b9ab50376ebb07b6f2bd7666c17540261fb8",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 13306,
+      "stage2a_suffix_lines": 52,
+      "stage2a_suffix_sha256": "5dcdc6d1c886e82739d69aa1ed90cc4ee4b604d83cfd7420cc397689a3d91200"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "bytes": 1580,
+      "lines": 9,
+      "body_sha256": "ce1a51a7448aef29aefb59edaadaf41eef2df4b53514285fe69330392eff5e83",
+      "stage1_prefix_bytes": 522,
+      "stage1_prefix_sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 1058,
+      "stage2a_suffix_lines": 6,
+      "stage2a_suffix_sha256": "3fafd2c6e6bd8a0295d8ae078da0fa4ef1c8c02c615e7ef761538861ff1a541f"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "bytes": 9030,
+      "lines": 28,
+      "body_sha256": "ef66b0090e50683a7a52886487d98b92c8ede284983788a89a88be68d26c36ac",
+      "stage1_prefix_bytes": 3200,
+      "stage1_prefix_sha256": "95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 5830,
+      "stage2a_suffix_lines": 13,
+      "stage2a_suffix_sha256": "e574ee1283fa1b0d22b8fd73688927b2ea9f5fec4b4bdab32831f10bc2f033b8"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "bytes": 41694,
+      "lines": 182,
+      "body_sha256": "e43dc297863a47efdc007394cf6b04b9bda88788dbfcc6e45aa492f6ca22ad36",
+      "stage1_prefix_bytes": 15814,
+      "stage1_prefix_sha256": "79a5e56ca68681136355c1f2d62bff8e9b8bb0b119565edeb4c75a71fad6e8d8",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 25880,
+      "stage2a_suffix_lines": 106,
+      "stage2a_suffix_sha256": "e252a6dc462db4edcdc0d944d47cce8b30d613837a432522a8d60fdd8a2217a2"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "bytes": 982,
+      "lines": 7,
+      "body_sha256": "dcf067f11abe2bb114b4250e521d8745b77a255403e77e3705c74fc4b805a166",
+      "stage1_prefix_bytes": 529,
+      "stage1_prefix_sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 453,
+      "stage2a_suffix_lines": 4,
+      "stage2a_suffix_sha256": "8c1b373f97179fa9412538d5b09b3cf795530980747c42b04023b9ffe2ade0b4"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "bytes": 7309,
+      "lines": 26,
+      "body_sha256": "cf3c02adbcd23d36d11b65a8cb2afc2531a1a82ddeffe32fc3252e8bac256559",
+      "stage1_prefix_bytes": 3298,
+      "stage1_prefix_sha256": "97545f30c540e63141e8cb53e27969b9f3d094d12580be03c99836086b7bc4eb",
+      "stage1_prefix_byte_identical_to_approved_main": true,
+      "stage2a_suffix_bytes": 4011,
+      "stage2a_suffix_lines": 13,
+      "stage2a_suffix_sha256": "8120a49d22e61e122d5722215b114cb2cf32a6f1534f471d5a1e6dc5a3f2e1d9"
+    }
+  ],
+  "historical_metadata_note": "review03 JSONのcomposition.current_body_commit/current_suffix等とauthority.current_approved_main_prefix_revisionは継承したreview02/旧base歴史値。現本文はbody_commitとdocumentsが指すa93a99d、現baseは本記録exact_base。古いcomposition値を現SHA照合証拠に使わない。",
+  "summary_locator_correction": {
+    "summary_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2a-current-po-summary-a93a99d.md",
+    "incorrect_text": "このsummaryと同じstemのJSON監査",
+    "actual_json_path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage2a-review03-repair-2026-10-05-a93a99d.json",
+    "summary_sha256": "7aa560ab74397e5d798c384fc52fb2ee14a5fbbf9a58d9fdad6cde6339638499",
+    "old_summary_unchanged": true
+  },
+  "limitations": [
+    "独立reviewと委任承認は未完了。"
+  ]
+}
