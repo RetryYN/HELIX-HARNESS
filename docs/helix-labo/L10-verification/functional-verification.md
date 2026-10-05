@@ -1219,12 +1219,6 @@ input observation identity/source revision；episode candidate identityとrelati
 - 独立fixture（一条件だけ変更）: 復帰後result・old/new rule version・未完義務は有効なまま、LABOへfallback/運用切替の実行だけを要求する。
 - 期待oracle: LABOは実行せず復帰後observationと前後版を保持する。運用実行をLABOへ割り当てない。
 
-### L10-LABO-013-C18 — source evidence欠落の戻し先
-
-- 対応AC: `LABO-013-AC-02`。固定親: `HELIXLABO-L2-013`。
-- 独立fixture（一条件だけ変更）: 比較結果と他分類軸を保ち、一分類軸のsource evidenceだけを欠落させる。
-- 期待oracle: 当該軸をunknownのまま保持し、不足をsource evidenceへ戻す。LABOはsourceを補作しない。
-
 ### L10-LABO-016-C10 — 比較可能性だけを落とす
 
 - 対応AC: `LABO-016-AC-02`。固定親: `HELIXLABO-L2-016`。
@@ -1288,7 +1282,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-029-C17 — OS実行証拠だけが欠落
 
 - 対応AC: `LABO-029-AC-02`。固定親: `HELIXLABO-L2-029`。
-- 独立fixture（一条件だけ変更）: HARNESS verification contract・対象revision・検査scope・未実行状態は有効のまま、OS実行証拠だけを欠落させる。
+- 独立fixture（一条件だけ変更）: HARNESS verification contract・対象revision・検査scope・実行済みresult stateを有効のまま保持し、OS実行証拠だけを欠落させる。未実行状態との複合変異にしない。
 - 期待oracle: passを生成せずOS実行証拠ownerへ不足を戻す。CIを起動しない。
 
 ### L10-LABO-029-C18 — HARNESS verification contractだけがstale
@@ -1316,7 +1310,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-013-C05 — 一分類根拠の欠落
 
 - 対応AC: `LABO-013-AC-02`。親: `HELIXLABO-L2-013`。
-- 入力fixture: 比較結果と他の分類軸を保ち、1軸のsource evidenceだけを欠落させる。期待：欠落軸だけunknownとし、他の有効軸を保持する。
+- 入力fixture: 比較結果と他の分類軸を保ち、1軸のsource evidenceだけを欠落させる。期待：欠落軸だけunknownとし、他の有効軸を保持する。不足は固定L2-013のsource evidenceへ戻し、LABOが根拠を補作しない。
 
 ### L10-LABO-013-C06 — unknownの成功化
 
