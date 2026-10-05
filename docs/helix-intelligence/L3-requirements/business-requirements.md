@@ -66,6 +66,37 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 
 本表とbusiness-verificationのCASE列は機能oracleの参照一覧であり、NFR coverage分母ではない。NFR-INT-045-01ではtarget identity欠落02a・unknown04aと、未見identityをunroutedのまま保つCASE-INT-045-03を分母外のunrouted反例として別記録する。target identity既知でowner不明の04bと直接routeの02kは分母に含め、NFR適用required fieldをfixtureごとに数える。
 
+## Stage 3 — 採択22親の業務境界
+
+固定L2に独立した業務成果基準がないため、このStage 3範囲で新たなbusiness requirement/KPI/事業ownerを導出しない。各親の機能条件はfunctional L3へ参照し、機能成立を事業価値達成・利用者受入と読み替えない。
+
+| 親L2 | 扱い | 機能参照 | 境界 |
+|---|---|---|---|
+| `HELIXINTELLIGENCE-L2-001` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-001-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-002` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-002-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-003` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-003-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-004` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-004-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-005` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-005-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-006` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-006-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-007` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-007-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-008` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-008-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-009` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-009-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-011` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-011-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-012` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-012-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-013` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-013-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-014` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-014-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-015` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-015-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-016` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-016-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-018` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-018-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-019` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-019-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-020` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-020-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-067` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-067-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-072` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-072-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-073` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-073-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+| `HELIXINTELLIGENCE-L2-078` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-078-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+
+review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
+
 
 ## Stage 5 — business outcome範囲（INTELLIGENCE 9親）
 
