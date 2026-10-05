@@ -925,6 +925,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-048-03d` | `AC-OS-L3-048-03` | feedbackだけでauthority変更 | 変更せず既存SECURITY/decision ownerへ返す。 |
 | `CASE-OS-L10-048-03e` | `AC-OS-L3-048-03` | feedbackだけでrequirement meaning変更 | 変更せず既存判断ownerへ返す。 |
 | `CASE-OS-L10-048-03f` | `AC-OS-L3-048-03` | feedbackだけでpriority変更 | 変更せず既存判断ownerへ返す。 |
+| `CASE-OS-L10-048-03g` | `AC-OS-L3-048-03` | 再発行が必要な返却のrouting先だけを欠落 | OS-047と既存ticket契約へ返し、独自の再発行経路を生成しない。 |
 | `CASE-OS-L10-052-01g` | `AC-OS-L3-052-01` | 適格local cleanup/read-after成立のnormal | 適格資源だけ自動・冪等cleanup。read-after結果とcleanupを別記録。 |
 | `CASE-OS-L10-052-01h` | `AC-OS-L3-052-01` | 旧CI greenだけをread-after代替 | 旧CIを代用せずread-after未完を保持しcleanupを先行しない。 |
 | `CASE-OS-L10-052-02f` | `AC-OS-L3-052-02` | trial merge resultだけunknown/missing | rechainを成立表示せず未評価をownerへ返す。 |

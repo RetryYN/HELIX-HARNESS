@@ -491,7 +491,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 ### `FR-OS-L3-048` — `HELIXOS-L2-048`
 
-ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。L2-007、L2-020、L2-047と既存ticket契約に依存する。OSは運転・検証観測をevidence付きcandidateとしてLABOへ渡す。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
+ticket返却、検証不能、oracle/input不足のfindingを、finding identity、ticket/assignment、target HEAD/revision/scope、根拠・不足条件、発生元、既存resolution条件へ結び、既存L2-007 lifecycleでpending/evidence-backed resolutionを保つ。L2-007、L2-020、L2-047と既存ticket契約に依存する。OSは運転・検証観測をevidence付きcandidateとしてLABOへ渡す。OSはintake/routing/statusとticket運転、LABOはfindingの理由分類・scope・counterexample・再評価条件を含む評価、INTELLIGENCEはLABO評価済みでtask scopeが適合する場合の次回配置案、HARNESSはoracle/verification義務を所有する。OSだけが再発行/割当を決め、返却が再発行を要する場合はOS-047と既存ticket契約へ戻す。再発行後のresultを元findingへ因果relationで結び、LABOが同一条件での成立状況を評価する。閉じたticketは保持し、後日findingを因果relation付き追補assessmentとして扱う。
 
 **責務／依存境界**：OSは新しいevent schema、status、resolution十分条件、priorityまたはapprovalを作らない。LABO評価やINTELLIGENCE案からticket/assignmentを発行しない。自由文handover、同じpathまたは時間的近さだけでresolution/因果関係を断定せず、ownerに既存条件を照合させる。
 
@@ -499,7 +499,7 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 - **`AC-OS-L3-048-01` finding traceと評価受渡し**：ticket返却findingとoracle不足findingの両方で対象revision/scope、ticket/assignment、発生元、理由、不足入力、既存resolution条件が保持される。OSがevidence付きcandidateをLABOへ渡し、LABOの分類、適用scope、counterexample、再評価条件を含む評価結果が届き、かつtask scopeが合う場合だけINTELLIGENCEは次回配置案を返せる。finding identityは欠落させない。OSはその案を自動実行せず、LABO/INTELLIGENCEからticket/assignmentを作らない。feedbackだけでauthority、要求意味、priorityを変更しない。
 - **`AC-OS-L3-048-02` pending/resolution境界**：自由文だけ、未評価、未ack、evidence不足、別scope/revision、比較不能、評価母数unknownではpending/未評価を維持する。観測window未満、未追跡、打切りはdefect 0としない。既存L2-007 resolution条件を満たすcurrent evidenceがある場合だけresolvedとし、LABO/INTELLIGENCE/OSのowner境界を維持する。
-- **`AC-OS-L3-048-03` 再発行後評価・後日finding**：LABO評価済みでtask scope適合のfixtureではINTELLIGENCE配置案をOSが判断し、OSが元findingへの因果relation付きticket/assignmentを再発行する。再発行resultをLABOが同じ条件で評価し、未評価・不一致なら未解決を保つ。既に閉じたticketへの後日findingはclosureを保持して追補assessmentとし、source/scope/因果関係がunknown/staleなら該当ownerへ返す。
+- **`AC-OS-L3-048-03` 再発行後評価・後日finding**：LABO評価済みでtask scope適合のfixtureではINTELLIGENCE配置案をOSが判断し、OSが元findingへの因果relation付きticket/assignmentを再発行する。再発行resultをLABOが同じ条件で評価し、未評価・不一致なら未解決を保つ。既に閉じたticketへの後日findingはclosureを保持して追補assessmentとし、source/scope/因果関係がunknown/staleなら該当ownerへ返す。返却・再発行のrouting先が欠落する場合はOS-047と既存ticket契約へ戻す。
 
 ### `FR-OS-L3-052` — `HELIXOS-L2-052`
 
