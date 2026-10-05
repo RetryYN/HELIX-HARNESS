@@ -127,7 +127,7 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 | 親の句 | AC | L10 case | 観測 |
 |---|---|---|---|
 | 全復旧入力から実環境再構築 | `INFRA-007-AC-01` | `L10-INFRA-007-C01,C02` | source版・再構築・再接続・起動・oracle実結果 |
-| 特定machine内への情報閉込めを避ける | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C03` | 元machine喪失時の入力取得可否 |
+| 特定machine内への情報閉込めを避ける | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C08` | 元machine喪失時の入力取得可否 |
 | 文書のみ・backupのみと成功を別判定 | `INFRA-007-AC-02` | `L10-INFRA-007-C03,C07` | 文書のみとbackupのみの各入力で再構築成功にしない |
 | machine内情報のみとowner戻し | `INFRA-007-AC-02` | `L10-INFRA-007-C08` | 消失machineに閉じた情報を不足として返す |
 | 欠落ownerへ返却・未完verification保持 | `INFRA-007-AC-02` | `L10-INFRA-007-C04,C05` | 復元部分、残義務、owner、再開時の版対応 |
