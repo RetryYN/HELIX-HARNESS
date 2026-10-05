@@ -1,0 +1,405 @@
+{
+  "record_type": "immutable_stage5_review02_root_correction_audit",
+  "record_date": "2026-10-06",
+  "language": "ja",
+  "authority_effect": "none",
+  "review_state": "根拠照合と著述補正の記録。Root最終検収と独立reviewは未完。承認・実測合格・Ready・merge admissionを生成しない。",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "stage": "Stage5",
+    "parents": [
+      "025",
+      "026",
+      "031",
+      "047"
+    ],
+    "documents": 6,
+    "source_main": "64086f7f03b283247d0cfd18a5b729420caadf29",
+    "starting_head": "ae05c7ed6ceb2048b663d6d46ef3cffbd6630bcd"
+  },
+  "formal_review": {
+    "comment_id": 6003599627,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2616#issuecomment-6003599627",
+    "body_utf8_bytes": 5803,
+    "body_sha256": "52eb2d638a1f6faa6c28b5f1ada2969f94b182f3bd0787f6c37e54e483d125b2",
+    "local_copy": "/tmp/pr2616-review02-comment6003599627.md"
+  },
+  "body": {
+    "body_commit": "39ed4ad7ddd7967c625c3240bae29cb0ded14da3",
+    "parent_commit": "39ed4ad7ddd7967c625c3240bae29cb0ded14da3^",
+    "documents": [
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.md",
+        "main_prefix_bytes": 13908,
+        "main_prefix_sha256": "6063e4694f6a98c129695a7a998212cc3254054fc1e9a1ff50d5e16ec141f12a",
+        "body_bytes": 16708,
+        "body_sha256": "6fa691ae97efcc1dc51502e6948e137f75fedb95fa846f954930261e716d2a0b",
+        "prefix_exact": true
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.md",
+        "main_prefix_bytes": 172981,
+        "main_prefix_sha256": "06a1dd3c3eef91021d49c50c67d4e7a4734bafa2069104034e9f6769e90d3036",
+        "body_bytes": 219657,
+        "body_sha256": "3b2774bb918b1d99f26e8bdc4f6ba0440056c6ece605092186dbcb378a854e40",
+        "prefix_exact": true
+      },
+      {
+        "path": "docs/helix-os/L10-verification/nfr-verification.md",
+        "main_prefix_bytes": 25056,
+        "main_prefix_sha256": "0e7fa36b1c35ae03e88615c241bacec720c08b86f98944e59d31d4a635501cdd",
+        "body_bytes": 28432,
+        "body_sha256": "60c42c874309e8de20d14f86c58406a82caf64a89b8689d64c01d5ffbdcfd474",
+        "prefix_exact": true
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/business-requirements.md",
+        "main_prefix_bytes": 15886,
+        "main_prefix_sha256": "97241e3df82379170f748131b6599de73de9e75d075238f2b9dc3f3844cd3350",
+        "body_bytes": 19006,
+        "body_sha256": "a7c69d8c1b7860d62a5f78aa5954efe1f8aef7dea0007950fa28166d497841ac",
+        "prefix_exact": true
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+        "main_prefix_bytes": 175353,
+        "main_prefix_sha256": "18160d64d5bfd2c9f55b4538b88ed81905bedbf7c465ef6f2be87b306fa4bb35",
+        "body_bytes": 194636,
+        "body_sha256": "159defbe6687337d0d73efc998a3ce3f019b026c8f60ec08aaf4eaff52a73f95",
+        "prefix_exact": true
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+        "main_prefix_bytes": 27067,
+        "main_prefix_sha256": "acd847f2a2d670ed4c326b51ee9747249054f0ab60ff195121b5d6ed096c92a4",
+        "body_bytes": 31530,
+        "body_sha256": "4c7a51d7cad13e3e65276d0d552fecbcace4869d10dd33f357eec6766bd0bede",
+        "prefix_exact": true
+      }
+    ],
+    "prefix_exact_all_six": true
+  },
+  "fixed_source_spans": [
+    {
+      "role": "固定L2-025",
+      "commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+      "line_start": 742,
+      "line_end": 806,
+      "span_bytes": 10835,
+      "span_raw_lf_sha256": "b17cbca4178e2745aa8d2d7bfc23f7902a2c57f23c30fc403b320ac5433d70b4",
+      "literal": "### HELIXOS-L2-025 HELIX-OS統合運転（構成体候補）\n\n- **親L1**：HELIXOS-L1-001〜010。L1-011/012の移管済み研究・横断診断をOS機能として含めない。\n- **入力**：採用済み対象revision、選択されたHARNESS構成版、L2-015〜024の各identity/revision/state/evidence、既存人間判断と停止条件。\n- **提供**：HELIX自身と性質の異なる複数projectについて、要求形成・authorityからticket、Worker、検収、提供/運用、LABO評価、OS還流までを説明・統制する構成体の状態。\n- **保証**：単体・connection・compositeは別identity。1.0全体の確認ではHARNESSの7製品それぞれの単体成立、選択構成のconnection、構成体固有の端から端の受入を個別に確認する。各種未完・unknown・stale・未許可・人判断待ちを隠さず、2.0/3.0/4.0/5.0の能力を1.0条件の前提にしない。\n- **単独成立の依存**：L2-015〜024の該当revision、Conceptと対象別L1/L2、HARNESS/周辺機構の必要な接続契約、許可された資源。version_target: 1.0の全体到達確認に限る。個別の初期配布や単体成立は全7製品の完成待ちを要さない。\n- **失敗時の戻し先／未完義務**：端から端のtraceやconnectionが欠ける場合、欠けたsource/unit/connectionへ返し、未完の受入義務を保持する。構成体の状態をunit単独成功で上書きしない。\n- **束ねる既存条件**：HELIXOS-L2-001〜011／014のうち統合固有条件。HELIXOS-L2-012/013は対象外でありLABO移管状態を維持する。\n\n### 既存ID対応index\n\n| 既存要求 | 新候補の参照先 | 追跡する原条件 |\n|---|---|---|\n| HELIXOS-L2-001 | 015／016／019／023／025 | 正本・判断出所・revision・trace |\n| HELIXOS-L2-002 | 016／019／021／023／024／025 | 要求から運用までの欠落/stale/競合、release kanban状態 |\n| HELIXOS-L2-003 | 015／017／023 | 共通統制とproduct方式の分離、変更影響の伝播 |\n| HELIXOS-L2-004 | 018／019／023 | Worker割当・実行・回収、scope/予算/依存/review制約 |\n| HELIXOS-L2-005 | 022／024／025 | 観測、LABO評価、Feedback、採否後ticketと再検証 |\n| HELIXOS-L2-006 | 021／024／025 | 7製品の提供・更新・復旧、および許可された受渡し |\n| HELIXOS-L2-007 | 015／016／019／023／024 | 共通証拠、provenance、相関ID、data-use、欠落/stale |\n| HELIXOS-L2-008 | 016／020／023／025 | HARNESS検証義務、CI組立・隔離実行・再開、review/受入分離 |\n| HELIXOS-L2-009 | 018／019／023／025 | 中断・交代時の制約/budget/期限/未完義務、二重実行防止 |\n| HELIXOS-L2-010 | 017／018／020／023／025 | 管理・推進・検収・Workerの責務分担、ticket workflow |\n| HELIXOS-L2-011 | 016／017／020／023／025 | 統合順・単位・検証計画、実候補/base更新の再計画 |\n| HELIXOS-L2-012 | 対象外。LABOの研究候補を参照 | 技術調査のownerをOSへ戻さず、HELIX-LABOへの移管状態を保つ |\n| HELIXOS-L2-013 | 対象外。LABOの横断診断候補を参照 | 効果・横断診断のownerをOSへ戻さず、LABOおよびINTELLIGENCE/SECURITY等との責務境界を保つ |\n| HELIXOS-L2-014 | 016／024／025。021は対象project配布との接続だけを参照 | HELIX自身（全機構パック）の段階稼働構成と候補/稼働版・切戻し。021のHARNESS構成版配布とidentity/判定を分ける |\n\nこのindexは既存条件の参照であり、既存本文の置換・圧縮ではない。要求IDの意味を変える、削減・分割・統合・retireする人間判断はここから生成しない。\n\n### 旧source basisと現行L2保持箇所の根拠確認\n\n旧sourceは現行L2の要求意味を保持している根拠の確認に用いる。次表は旧atomを新候補へ割り当てるcrosswalkではなく、新候補が既存L2の保持箇所を参照する際の根拠確認である。現行保持箇所は既存のHELIXOS-L2-001〜014の節・条件を示す。015〜025への新旧atom割当て、旧source atomの完全集合、意味変更・retireはここから主張しない。source atomの完全な無損失traceは別途のcarry-forward receiptで管理する。旧実装・workflow・CLI・DB・test・受入結果は移行せず、合格証拠にもしない。asset ID、archive path、source SHA-256は資産台帳と照合して記録する。\n\n| 旧asset ID・source | SHA-256 | 旧sourceで確認した主題 | 現行L2に既にある保持箇所と変更境界 |\n|---|---|---|---|\n| `LEGACY-ASSET-18F7940E7994634D39A1` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | L46-67のHBR-P0/P1/P2/P3/P4/P6/P7/P8/P9にある逸脱・工程復帰、合意範囲継続、Worker、検証、改善、配布、記録、外部境界、traceの主題。 | 既存L2-001〜014のauthority・共通統制・Worker・改善還流・提供・証拠・検収・復旧・workflow・統合計画の条件を確認する根拠。旧自動修復・外部検索・memory・CI/gated-push実装は現行保持箇所とせず、旧sourceの方式を現行条件へ割り当てない。 |\n| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | L38-47、L49-79のHIL-BR-01〜28にある画面適用、workflow/ticket、trace、source/authority/scopeの主題。 | 既存L2-001／002／003／004／007／009／010／011／014のauthority・trace・scope・handoff・recovery・段階構成条件を確認する根拠。旧Issue/harness.db/Claude hook/固定agent構成は保持箇所としない。 |\n| `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | L18-185、L186-289、L376-508の旧ticket input/identity/dependency/admission/assignment/attempt/retry/review/evidence/lifecycle/projection/replay/security/release/management条件。 | 現行の保持箇所として、既存L2-004／007／008／009／010／011／014と、HXT-RQ／HXT-TYPE／HXT-FLOW／HXT-SYS／HXT-USEの現行本文を確認する根拠。旧候補IDを現行IDと同一視せず、旧runtime実装・DBを移さない。Worker/SECURITY/INFRASTRUCTURE/LABOの現行責務境界は現行L2本文による。 |\n| `LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md` | `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` | L21-67のFRS-BR-001〜009にある機能単位の独立確認、明示収載/除外、成熟度、impact、再現配布/rollback、安全依存、構成体の独立受入。 | 既存L2-002／006／008／011／014のportfolio trace、対象projectへの提供/復旧、検収、統合計画、HELIX段階構成条件を確認する根拠。旧Slice/Module/Bundle名・channel・個数を保持条件へしない。 |\n| `LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md` | `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` | L31-219のFRS-FR-001〜006/R-01〜24にあるidentity/lifecycle、ownership、admission/recovery、impact/CI、manifest/replay、要求coverageの主題。 | 既存L2-002／006／008／011／014のtrace・HARNESS構成版の配布/更新/復旧・検収・統合計画・HELIX段階構成条件を確認する根拠。旧Module/Bundle構成やchannelを現行の要求identityにしない。 |\n| `LEGACY-ASSET-2B0DE689AA572DE66181` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | `0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe` | L1/L2のresident execution/lane/assignment/queue/continuity候補。 | 既存L2-004／007／009／010のWorker実行、記録、continuity、handoff条件を確認する根拠。旧常駐/provider固有方式は保持条件としない。 |\n| `LEGACY-ASSET-A6926200F28B26300432` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md` | `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765` | L1/L2の複数laneによる作成/review/承認分離候補。 | 既存L2-004／007／009／010のlane/Worker区別、独立review、authority、handoff条件を確認する根拠。旧provider数や3社固定を現行条件としない。 |\n\nこの根拠確認表は既存L2保持箇所の説明であり、旧atomから新候補への割当て、receiptの代替、要求意味の新規移管ではない。\n\n保持位置はbase `719e05d579584ac961256bdb8b11f8fc7b643a14` の本書で次の行に固定する。今回もこれらの行は同一bytesで残る。\n\n| 根拠source | 現行で保持する行・節 |\n|---|---|\n| pillar-requirements | 54〜62行（001〜009）、286〜305行（Worker・学習・ログ・CIの具体条件） |\n| infinity-loop-platform-requirements | 103〜168行（ticketと上流作業・finding還流）、425〜457行（要求形成・人間反応） |\n| execution-ticket-requirements | 534〜609行（Execution Ticket、HXT-RQ-01〜07、HXT-TYPE-01〜21、HXT-FLOW-01〜09、HXT-SYS-01、HXT-USE-01） |\n| functional-release-slice-requests / requirements | 459〜493行（提供・再編の具体条件と保持/不採用範囲）、611〜633行（HELIX自身の段階リリースの別identity） |\n| resident-lane-orchestration / three-lane-cloud-governance | 57・62行（004/009）、219〜229行（Worker capacity）、293・298行（Worker/記録）、396〜423行（継続と再構成）、534〜609行（割当てと試行・handoff） |\n\n### 人の判断が残る点\n\n- 親Concept/L1の現行本文は未承認candidate revisionであり、そのexact revisionを採るかはこの候補から決めない。\n- L2-015〜025と既存L2-001〜014の対応・束ねは、原要求意味の削減・縮退・retireやtarget adoptionを承認しない。source atomの意味変更・retire等が必要なものは対応する人間decisionへ残す。\n- Conceptの版境界1.0/1.x/2.0/3.0/4.0/5.0を改訂しない。後続版能力を前版の成立条件にしない。個別配布は選択された適格サービスと必要安全依存を対象にし、7製品全体の完成判定と混ぜない。\n\n## 段階リリース範囲の要求導出（G8・未採択）\n"
+    },
+    {
+      "role": "固定L2-026",
+      "commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "full_sha256": "97f9158bea0d5c39821bb6538887b909d04687798c8e836d151681ebb06f9bf7",
+      "line_start": 807,
+      "line_end": 822,
+      "span_bytes": 8574,
+      "span_raw_lf_sha256": "e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374",
+      "literal": "### HELIXOS-L2-026 段階リリース構成の要求導出（単体能力候補）\n\n[PO原文](../../helix-connect/sources/connect-l1-po-original-2026-09-27.md)の「段階リリースは機能として成立する部分を決めてだからほかの要求から導出する仕組みだろ」を受けた候補である。`version_target: 1.0の構築過程から`。v0.1はその過程の構成識別子であり、1.0到達判定や外部公開版を意味しない。\n\n- **種別**：unit。入力要求から構成案と不足を返すOSの導出能力を一単位として扱う。出力される段階構成のcomposite受入はHELIXOS-L2-014の別判定であり、本能力の受入成功へ畳み込まない。\n- **親L1**：HELIXOS-L1-002／HELIXOS-L1-005／HELIXOS-L1-007／HELIXOS-L1-008。HELIX自身の段階構成を管理・追跡し、要求・projectionの欠落や不整合を把握する企画意図に接続する。現行Conceptを親とし、L1はdraft_candidateの対象revision確認待ちである。本候補からL1の確認やL2の採択を生成しない。\n- **親L2・契約**：HELIXOS-L2-014の段階構成条件、HARNESS-L2-010のpack境界、HARNESS-L2-011の呼出し・権限・隔離・中断再開条件、HARNESS-L2-022の検証と受入契約を参照する。G1〜G7で起こした各機構の単体・接続・構成体候補を導出入力として扱う。候補の存在・ID・記載だけを要求の採択、依存の充足、pack成立の証拠にしない。\n- **受け取るもの**：対象revisionとsource authority、目的・仕事範囲、候補要求identityとその状態、要求ごとの入出力・契約版・依存・安全条件・検証範囲、使える環境・権限・人が担う工程と許容分担、候補pack境界、更新・復旧条件。これらと比較基準を同じrevisionへ束縛する。\n- **提供するもの**：同じ目的・仕事範囲・許容分担・候補pack境界の下で要求から導いたpack集合とその依存・安全依存の閉包、各packの版・適用対象・収載/除外・入出力・検証条件、要求確認→作業→検証→結果記録まで閉じる経路、成立していない能力の「できないこと」、未解決依存・不足入力・人の担当・戻し先、比較対象の代替構成と再現・更新・切戻しに要る情報。\n- **導出規則**：要求に必要な機能を目的達成に必要な範囲で含み、要求・契約・安全依存を全て閉じ、HELIXOS-L2-014の範囲で一周の仕事が成立する集合を比較する。最小性を論じる際は、目的、仕事範囲、許容人分担、候補pack境界、適格性条件、比較基準を固定し、成立する代替構成の候補空間と比較結果を示す。ある集合からpackを一つずつ除いて成立しないことだけでは、候補空間全体に対する最小性の証明としない。代替構成の探索範囲・境界根拠・比較が不足する場合は「最小候補／未立証」と表示し、最小性が証明済みの選定結果とは扱わない。依存閉包の成立可否、実行・受入証拠の充足、最小性の立証を別々に記録し、最小性の未立証だけで既に確かめた依存閉包まで否定しない。空集合、安全依存の省略、境界・分割・所有・版が未決のpackを仮分割した集合は候補から除外する。依存・安全依存がunknown、欠落、conflict、stale、または互換性不明なら不足として保持し、依存が閉じた成立構成としては扱わない。\n- **保証する分離**：後の版の能力を前段階の必要条件へしない。段階の起動・更新・復旧を、開発中の未release作業tree、後続段階、または稼働中の別段階なしで成立させる（HELIXOS-L2-014）。要求間のsource trace参照と、起動・更新・復旧に必要な実行前提の依存を分け、trace上の循環だけから実行上の自己依存と断定しない。実行前提が自己bootstrappingの循環を作る場合は不足として示す。pack単体、接続、構成体の証拠を別々に追い、単体成功から接続・構成体の成功を生成しない。段階構成候補の導出、段階の採択、実装・受入、外部配布・tagを別状態・別判断として保持し、本要求や導出結果だけから後続状態・外部作用を発生させない。\n- **失敗時の戻し先／未完義務**：要求・authorityの不明は該当sourceまたは要求ownerへ、pack境界・入出力・契約の不明は当該機構とHARNESSへ、依存・安全条件の不明は依存ownerまたはSECURITYへ、資源・復旧条件の不明はINFRASTRUCTUREへ返す。検証失敗は検収・要求の戻し先へ返し、未完義務・証拠・状態・復旧先を保持する。いずれの場合も成功構成と表示せず、空集合や暗黙の代替packで穴を埋めない。\n- **通常例と反例**：要求の確認から記録までに必要なOS管理・Worker実行・HARNESS検証と該当する権限/実行環境の安全依存を明示し、そのexact setと人の担当工程を示すのが通常例である。許容された人が一部機能を代行しても、その機能に課された依存契約と安全義務は閉包から除かない。無関係な機構一式を完成待ちに加える、候補が存在するだけで依存済みとする、検証を人の未定分担へ暗黙に押し出す、依存不明を省略する、単に小さい／空の集合を最小と称する、未決packを独断で分割する、代替構成の比較なしに最小と断定する、後の版の能力を前提にする、起動・更新・復旧が未release tree/別段階を要する、対象製品HARNESSの配布とHELIX自身の段階構成を同一化するものは反例である。\n- **単独成立の依存**：HELIXOS-L2-014、HARNESS-L2-010／011／022および対象に関係する採択済み要求revision、G1〜G7の該当候補revision、各所有機構の明示された接続・安全契約、許可された資源と人の分担。候補revisionしかない入力は候補導出に限り、要求確認・実行・受入の成立根拠として扱わない。\n- **束ねる既存条件**：HELIXOS-L2-014の依存・安全閉包、狭い範囲の端から端の仕事、自己依存禁止、できないこと・更新・切戻し。HARNESS-L2-010／011／022の独立pack、呼出し契約、検証・受入。G1〜G7各機構の単体・接続・構成体要求。旧HELIXの対応source、保持点と変更理由はG8判断・audit資料に参照を記録し、旧runtime、旧分類名、固定構成数は再利用しない。\n- **旧HELIXとの対応・保持点と変更点**：`LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md` SHA-256 `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` のL23-67（FRS-BR-001/002/004/005/007/009）と、`LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md` SHA-256 `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` のL31-219（機能単位・依存・検証・manifest/replay・要求coverage）、`LEGACY-ASSET-67ADFAB856D954B3C5D2` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md` SHA-256 `bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee` のL32-59（依存追跡・unknown fail-close・安全閉包・構成体固有受入）を起点にする。保持するのは独立した機能境界、明示収載/除外、依存と安全の閉包、unknown/staleを成功扱いしないこと、再現・rollback、構成体を個別機能の成功と分ける意味である。変更するのは、旧Slice/Module/Bundle・channelを現在のidentityや前提にせず、HARNESSの現行pack契約とG1〜G7要求候補からOS段階構成を導くこと、候補空間と代替構成の比較を求め証明不足を「最小候補／未立証」とすること、旧実装・runtime・CLI・CIを持ち込まないことである。変更理由は、現行Concept/L1とHARNESS-L2-010／011／022の責務・契約を用いて要求から段階構成を導出するためであり、旧sourceの不在や実装状態によるものではない。"
+    },
+    {
+      "role": "固定L11-025",
+      "commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "line_start": 394,
+      "line_end": 399,
+      "span_bytes": 1160,
+      "span_raw_lf_sha256": "4fc6622e1bac457871fb23f84e693944fee7a9acebe90996c9e14ab86adb0c1f",
+      "literal": "### HELIXOS-L2-025 HELIX-OS統合運転の受入\n\n- **入力・版**：採用済み対象revision、HARNESS構成版、L2-015〜024の該当identity/state/evidence、既存人間判断、停止条件を使う（1.0。後続2.0/3.0/4.0/5.0は前提にしない）。\n- **成功条件**：HELIX自身と性質の異なる複数projectで、要求authorityからticket/Worker/検収/提供・運用/LABO評価/OS還流までのtraceを確認する。各unit・connection・composite固有条件を分けて評価する。1.0全体判定ではHARNESS 7製品の各単体成立、選択構成の接続、構成体の端から端の受入を確認する。\n- **反例**：文書・機構の存在や単体passだけで全体を完成扱いする。unknown/stale/未許可/人判断待ちを隠す。7製品全体完成を個別の初期配布の前提にする。後続版能力を1.0の成功条件にする。HELIX-OSを外販製品と扱う。\n- **失敗時・未完義務**：欠けたunit/connection/sourceへ戻し、構成体未完を維持する。未決authorityと残る義務を後続受入へ引き継ぐ。L1-011/012のLABO移管をOSへ戻さない。"
+    },
+    {
+      "role": "固定L11-026",
+      "commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "full_sha256": "40b2d902a2ed321c337d6982d3d61443e77e9d50d078bf698c3208038c9f6997",
+      "line_start": 430,
+      "line_end": 440,
+      "span_bytes": 4895,
+      "span_raw_lf_sha256": "a52f3386616340d841fe8de620d030897fa20c375c7efd9df2659d8621ecd8ea",
+      "literal": "### HELIXOS-L2-026 段階リリース構成の要求導出の受入\n\nHELIXOS-L2-026（unit：構成案と不足を返す導出能力）に対する未実行の受入候補。出力構成そのものの実行・復旧・運用受入は014の別判定に残す。不足付きの候補案を返す経路では、判明した不足・未立証を正確に記録して成立表示を拒むことを確認し、導出能力の確認を実構成の成立に読み替えない。要求revision、入力候補revision、HARNESS契約版、依存・安全依存の状態、目的・仕事範囲、許容分担、候補pack境界、導出結果を同じ対象へ束縛する。G1〜G7の候補や本受入の記述は要求採択・実装許可・段階成立・配布許可を生成しない。\n\n- **入力**：一周させる仕事の目的・scope、要求identityとauthority/revision、候補pack境界、各候補の入力・出力・契約version・所有・依存・安全条件・検証範囲・互換範囲、後続版印、自己依存候補、人の工程と許容分担、環境・権限・更新/rollback条件を与える。比較基準とHARNESS-L2-010／011／022、HELIXOS-L2-014のexact revisionも固定する。\n- **導出結果**：要求から導いたpack集合、依存と安全の閉包、収載・除外、単体/接続/構成体のidentityと境界、要求確認→作業→検証→記録の経路、適用版・設定/data形式・環境、検証証拠、できること/できないこと、人の分担、更新/復旧先、比較した代替構成、未解決不足と戻し先を同一条件から再確認できる。\n- **成功条件**：目的・仕事範囲・許容分担・候補pack境界・適格性条件・比較基準を固定する。候補空間の根拠と比較範囲を示し、成立する代替構成との比較から最小性を説明できる。集合からpackを一つずつ除いた結果だけで全体最小としない。比較空間や探索根拠が不足する場合は「最小候補／未立証」と表示し、最小性を証明済みの選定結果として扱わない。依存閉包の成立可否、実行・受入証拠、最小性の立証が別々に記録され、未立証の最小性を既確認の依存閉包の否定へ読み替えていないことを確かめる。成立構成は非空で、必要な要求・契約・安全依存がすべて同じrevisionで閉じ、要求確認から結果記録までの仕事が一周する。明示的に除外した能力はできないことに現れる。各pack・connection・compositeは別々の入力/出力・依存・検証証拠を持ち、正常経路と失敗時の戻し先・未完義務・復旧先を辿れる。\n- **反例**：空集合を成立扱いする。必要な安全依存を除外する。境界未決のpackを仮分割する。未知・欠落・conflict・stale依存を満たした扱いにする。候補の存在やIDを要求成立の証拠にする。人が担う検証工程が分担にない。後の版の能力を前提にする。起動・更新・復旧が未release treeや別段階を必要とする実行依存を残す。source traceの循環だけを理由に実行依存と判定する、または実行依存循環を見逃す。単体greenだけで接続/構成体を成立扱いする。できない能力を「できること」へ含める。代替構成を比較せず一つずつ除く比較だけで全体最小と断定する。対象製品のHARNESS配布、段階構成の採択、実装、受入、tag、外部配布を導出成功から発生させる。\n- **失敗・戻し条件**：目的・scope・要求authority/revision不足はsource/要求ownerへ、境界や契約不明はpack owner/HARNESSへ、依存・安全条件不足は依存owner/SECURITYへ、資源・復旧不足はINFRASTRUCTUREへ戻す。検証不合格は該当要求または検収へ戻す。不足を記録し、未完義務と証拠を保持したまま構成成立を拒む。\n- **通常反例対**：OS管理・Worker・HARNESS検証を含む仕事を、権限と隔離の安全依存込みで端から端まで組み、人が担う判断・操作等を明示した構成が通常例となる。許容された人が機能を代行する場合も依存契約と安全義務は残る。必要な検証を外したより小さい構成は同じ目的・条件・人分担を満たさないため不適格である。無関係な機構を追加した過大構成も比較基準の下で不適格となる。依存が未知で比較不能な場合はどちらも成立判定せず不足として残す。\n- **状態分離**：要求導出結果、個別採択、段階構成の受入、実装完了、tag/外部配布の各状態が独立している。導出案またはこのL11の静的確認だけでは段階を成立・公開しない。"
+    },
+    {
+      "role": "PO採択記録",
+      "commit": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+      "full_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+      "line_start": 46,
+      "line_end": 52,
+      "span_bytes": 849,
+      "span_raw_lf_sha256": "f8bdf5935e2a66f2f9729ed0b1ec9edf0d30d0ae8c62bc01858e856c8ed060bc",
+      "literal": "POは以下の全16件を、確認資料に記載された各version_targetと適用条件を保持して採用した。\n\nHELIXOS-L2-014, HELIXOS-L2-015, HELIXOS-L2-016, HELIXOS-L2-017, HELIXOS-L2-018, HELIXOS-L2-019, HELIXOS-L2-020, HELIXOS-L2-021, HELIXOS-L2-022, HELIXOS-L2-023, HELIXOS-L2-024, HELIXOS-L2-025, HELIXOS-L2-026, HELIXOS-L2-027, HELIXOS-L2-028, HELIXOS-L2-029\n\nL2-014のv0.x→v1.0段階候補、L2-017のcore 1.0・動的外部workflow 4.0、L2-026の1.0構築過程から、その他の各version_targetと適用条件を確認packetの候補表どおり維持する。017の4.0機能を1.0必須にせず、026は1.0構築過程のcandidateとして扱う。\n\n後続版または条件付きの能力を1.0へ前倒ししない。固定L2/L11本文に定めた操作条件・例外・適用条件を要約で置き換えない。"
+    }
+  ],
+  "key_dispositions": [
+    {
+      "finding": "M2",
+      "parent": "025",
+      "check": "CASE-OS-L10-025-022 のHARNESS owner返却を除去。固定L2-025は欠けたsource/unit/connectionへ返却し、構成版欠落は構成情報のsourceへ戻す意味に合う。HARNESSという新返却先を立てない。",
+      "fixed_basis": [
+        "L2-025:747,751",
+        "L11-025:396,399"
+      ],
+      "result": "固定親との矛盾なし"
+    },
+    {
+      "finding": "m7",
+      "parent": "025",
+      "check": "CASE-OS-L10-025-031は既存人間判断のreceiptのみ欠落させ、対象revision・構成版・unit状態/証拠・停止条件を有効に保つ。欠けた既存判断sourceへ返し、未完義務と他unit状態を保持する。receiptは既存判断の入力証拠であり、新しい承認者・判断・gateを作らない。",
+      "fixed_basis": [
+        "L2-025:747,751",
+        "L11-025:396,398-399"
+      ],
+      "result": "固定親との矛盾なし"
+    },
+    {
+      "finding": "M1/m2",
+      "parent": "026",
+      "check": "環境・権限は導出入力。利用可能環境/資源の不足をunknownとしてINFRASTRUCTUREへ返す文は固定L2/L11の環境入力および資源・復旧条件の戻し先と一致。source/requirement, pack/HARNESS, dependency/SECURITY の各戻し先も別記。",
+      "fixed_basis": [
+        "L2-026:814,818-819",
+        "L11-026:434,438"
+      ],
+      "result": "固定親との矛盾なし。generic environment ownerは設けていない"
+    },
+    {
+      "finding": "m7 prior-audit correction",
+      "parent": "026",
+      "check": "旧Worker review01 audit M4 evidenceがCASE-026-053/054を一括して「resource return and bad-baseline cases」と記したのは誤り。現本文053は必要資源不足→INFRASTRUCTURE。054は必要な検証結果のみ不合格→構成成立拒否、未完義務/証拠保持、検収・要求の既存戻し先であり、031固有baseline失敗ではない。旧Worker/Root audit bytesは変更しない。",
+      "fixed_basis": [
+        "L2-026:818",
+        "L11-026:438"
+      ],
+      "result": "新しい記録で旧監査の誤記を訂正"
+    }
+  ],
+  "case_census": {
+    "scope": "L10 functional verification table rows for Stage5 parents 025/026/031/047; not all references in all six docs",
+    "before_definition_ids": 197,
+    "after_definition_ids": 198,
+    "added_ids": [
+      "CASE-OS-L10-025-031"
+    ],
+    "removed_ids": [],
+    "count_by_parent_after": {
+      "025": 31,
+      "026": 54,
+      "031": 77,
+      "047": 36
+    },
+    "alias_ids": [
+      "CASE-OS-L10-031-25",
+      "CASE-OS-L10-047-20"
+    ],
+    "alias_targets": {
+      "CASE-OS-L10-031-25": "CASE-OS-L10-031-06",
+      "CASE-OS-L10-047-20": "CASE-OS-L10-047-04"
+    },
+    "independent_fixture_count_before": 195,
+    "independent_fixture_count_after": 196,
+    "total_definition_rows_after": 198,
+    "count_rule": "Definition rows/IDs include aliases; independent fixture denominator excludes the two explicit index aliases. This is documentation census, not implementation/test completion."
+  },
+  "current_changed_line_pins": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "line": 103,
+      "literal": "| `CASE-OS-L10-BIZ-025-01` | 025 / CASE-025-01〜31 | 個別入力束縛・単位境界のみ。fixture行数を製品完成率へ換算しない。|",
+      "raw_lf_sha256": "cc019f3dd9a8c83f2e98d93a322da6198b29dea7ea8e7a052bd66215a734a602"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 996,
+      "literal": "| `AC-OS-L3-047-01` | `HELIXOS-L2-047` | reason/evidence/根拠source revisionを独立に必須にし、元ticketを不変保持してissuerへ返す。個別CASE: 047-01–03,08–10。|",
+      "raw_lf_sha256": "e73f7477840c2329c0061a1eab6df96abad3cea64ada0d14ca524516354b148b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1161,
+      "literal": "| `CASE-OS-L10-025-022` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 他入力を維持し選択HARNESS構成版だけ欠落。 | 成立させず欠けた構成版の既存sourceへ返す。|",
+      "raw_lf_sha256": "8219a55544117413279efdbb96a24012bf92de1cd65d1b3d55bd2c7fdb86e619"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1165,
+      "literal": "| `CASE-OS-L10-025-026` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 一つのunit revisionだけ欠落。 | revisionをunknownのまま保持し当該unit ownerへ返す。|",
+      "raw_lf_sha256": "056c2f34f59b3dee6d2fb4d3395ce4d1cab46443762e82d160bf40f88e45d484"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1175,
+      "literal": "| `CASE-OS-L10-026-036` | `HELIXOS-L2-026` / `AC-OS-L3-026-01` | 導出成功だけからtagを生成する。 | tagを発生させず固定authority境界を保持。|",
+      "raw_lf_sha256": "e3fb27a72ec2bb78dde5c5434822ab839008f788615b6d80f3ad0051bc210c19"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1176,
+      "literal": "| `CASE-OS-L10-026-037` | `HELIXOS-L2-026` / `AC-OS-L3-026-01` | 導出成功だけから外部配布を生成する。 | 導出成功から外部配布を発生させない。固定親にない返却先を新設しない。|",
+      "raw_lf_sha256": "a955e27efe06e5bc5670e9b458298e2cad248abca049e3e88cf58781396c97fd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1185,
+      "literal": "| `CASE-OS-L10-026-046` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 利用可能環境だけ欠落。 | 実行適合性をunknownにし、利用可能な環境・資源不足としてINFRASTRUCTUREへ返す。|",
+      "raw_lf_sha256": "e14554061a0a52e5a435db41fc8e813e11f316096d4dc116a0a56e5617183aa1"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1187,
+      "literal": "| `CASE-OS-L10-026-048` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 候補適格性条件だけ欠落。 | 候補を成立扱いせず、適格性条件の不足を該当sourceまたは要求ownerへ返す。|",
+      "raw_lf_sha256": "f5b4b813abbb81d4ef482fe39b364a5748ba4178ba9a2bbba4315ea8ad3e0f40"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1188,
+      "literal": "| `CASE-OS-L10-026-049` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 一つのrequired inputだけ欠落。 | 入出力契約の不足を当該機構とHARNESSへ返す。|",
+      "raw_lf_sha256": "ba97d5f29bf80f87c9ec9d0307dbce977f38fead0f74839836a5aaf5f62965b0"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1189,
+      "literal": "| `CASE-OS-L10-026-050` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 一つのrequired outputだけ欠落。 | 入出力契約の不足を当該機構とHARNESSへ返す。|",
+      "raw_lf_sha256": "3bedc4ec6ed4e53fd455963b71d621bb7bf849abf53ce93b535559154db3c8f0"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1190,
+      "literal": "| `CASE-OS-L10-026-051` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | 更新条件だけ欠落。 | update成立を推測せず、更新・復旧条件の不足をINFRASTRUCTUREへ返す。|",
+      "raw_lf_sha256": "8cd8a69f0734bf7058fdab90db923dc5cba2d73a62cff6e2c84f9e292f0576e2"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1191,
+      "literal": "| `CASE-OS-L10-026-052` | `HELIXOS-L2-026` / `AC-OS-L3-026-04` | rollback条件だけ欠落。 | recovery成立を推測せず復旧条件の不足をINFRASTRUCTUREへ返す。|",
+      "raw_lf_sha256": "b37fad39b389df1d1d5be88df3d59701121cb8e090a90354ce2a004764b7037f"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1203,
+      "literal": "| `CASE-OS-L10-031-073` | `HELIXOS-L2-031` / `AC-OS-L3-031-04` | **正常回収**：同一ticket/source/base/required-setで、予算超過から改善し、独立review・同条件再検証・必須集合非縮退・安全指標・改善前後値を別証拠として持つ。 | 正しさと性能を別々に回収し、完了したepisodeだけを閉じる。merge許可を生成しない。|",
+      "raw_lf_sha256": "d11ba669b314f4fc56797d0bc8481d37e4a876fb1a8d515b04cc5582da35badc"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1209,
+      "literal": "| `CASE-OS-L10-047-028` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | r1履歴だけ削除。 | lineage欠落として再発行を成立させず、当該ticketだけを未完としてOSへ返す。|",
+      "raw_lf_sha256": "f4b19a3fde9fc1891a6a7f8aad7bce37b52f821409d525d437c5243378d9bd03"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1212,
+      "literal": "| `CASE-OS-L10-047-031` | `HELIXOS-L2-047` / `AC-OS-L3-047-04` | evidence revisionだけを別revisionにする。 | 別revisionの証拠流用を拒否し、当該ticketだけを未完としてOSへ返す。|",
+      "raw_lf_sha256": "5627ef8069746c3278a5abe9b9722fe4bf42cd3858d2f202ed4a5617c6fbf0fb"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1220,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1221,
+      "literal": "| CASE ID | 親 / AC | 入力・単独変異 | 期待oracle・戻し先 |",
+      "raw_lf_sha256": "d38e7179b0841b7e85340c8c334b108f122bcabc15c6e8863728ae55af95b6c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1222,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "line": 1223,
+      "literal": "| `CASE-OS-L10-025-031` | `HELIXOS-L2-025` / `AC-OS-L3-025-03` | 必要な既存人間判断のreceiptだけ欠落。対象revision・HARNESS構成版・全unit状態/証拠・停止条件は有効。 | 判断を捏造せず当該義務を未完として保持し、欠けた判断sourceへ返す。他unitの有効状態を保持し追加の判断者・承認を作らない。 |",
+      "raw_lf_sha256": "2ac958a6532ce47c65718f235a1eb0de7fe5b6a9b72f15e05f7f1c6546c2f0b9"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "line": 134,
+      "literal": "| `CASE-OS-L10-NFR-047-01` | `NFR-OS-L3-047-01` | `CASE-OS-L10-047-01`–`26` | reason/evidence/根拠source revisionの独立欠落、Assignment/Attempt/result/authority非継承、unknown軸、双方向参照・owner backflowをCASE別集計する。|",
+      "raw_lf_sha256": "3cd87332e18bcd6c504d6d5d098379fc7d5be60d1f2bad3c0de292c625341d42"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "line": 144,
+      "literal": "| `CASE-OS-L10-NFR-025-01` | 025 / NFR-025-01 / AC-025-01〜03 | CASE-025-01〜31、aliasなし | 固定L2入力の個別欠落、unit・connection・composite区分、document/mechanism existenceのみの誤成立。|",
+      "raw_lf_sha256": "6be67091ae7eaec78e9157c568033887ad352e545d8cf878ab3fa774f763b229"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "line": 104,
+      "literal": "| `HELIXOS-L2-047` | 独立BRなし | reason/evidence/根拠source revision、assignment/attempt/result/authority非継承、provider-only変更、参照両方向、旧証拠とnew revision、split/scope/backflow既存ownerを独立照合する。|",
+      "raw_lf_sha256": "ca08026d320b1e2fb6a1ef170764dd3c7265b5a34aecbdedf10d19f8935c340a"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "line": 114,
+      "literal": "| 025 | 独立BRなし | CASE-025-01〜31 | target/version/unit状態の欠落、document/mechanismの存在だけによる誤成立を区別し、構成体の未完義務を保持し、HELIX-OSを外販製品と誤分類しない。|",
+      "raw_lf_sha256": "9716ec767497c8382564b077e6239cbc3854702ef2440832e5ea463c77f59227"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "line": 582,
+      "literal": "**AC-OS-L3-047-03 — unknownとTicket非参照境界**：reason/evidence/根拠source revisionを別々に欠落させ、Assignment/Attempt/result/authorityの非継承を各々独立に確かめる。target/returner/source/scope/relationをそれぞれ単独でunknown/staleにした場合、当該ticketだけ未完として発行元へ返す。provider差だけでは仕事identityを変えない。Ticket→artifactとartifact→Ticketの参照を別々に拒否し、旧証拠/new revision stateを分離し、split/scope/backflowは既存ownerへ戻す。Issue/PR状態のみの完了推定も拒否する。",
+      "raw_lf_sha256": "1d00e03a865ec85d1382a5fd4ae73108167d701cf05f6b5f49100f123a9ff351"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "line": 601,
+      "literal": "**AC-OS-L3-031-04 — 対象・証拠の再照合**：base HEAD、scope、authority、HARNESS contractの変化ごとに影響する既存証拠だけをstale/未完にし、無関係scopeの状態を保つ。回収成功には固定L2が要求する修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。資源不足はINFRASTRUCTUREへ返し、誤った高速化を新baselineとして採用しない。",
+      "raw_lf_sha256": "69abaa7ac8eb69bfdcc8a1a33dfb42b0cde970e98a0854744a212052c052ef60"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "line": 605,
+      "literal": "**Stage 5 review01 CASE→AC対応補正**：既存CASE-025-01〜21は既存の`AC-OS-L3-025-01/02`への割当を保ち、CASE-025-022〜031を`AC-OS-L3-025-03`へ結ぶ。026では`AC-OS-L3-026-01`をCASE-026-01/06および031〜038・040〜042、`AC-OS-L3-026-02`を02〜04・07〜29、`AC-OS-L3-026-03`を05・30・039へ、`AC-OS-L3-026-04`を043〜054へ対応させる（CASE-026-040のunit/connection境界は`AC-OS-L3-026-01`にも参照する）。031では`AC-OS-L3-031-01`を測定入力CASEと074/075へ、`AC-OS-L3-031-02`を03/04へ、`AC-OS-L3-031-03`を05・26〜30・31〜51・069/070へ、`AC-OS-L3-031-04`を30・064〜068・071/072/073・076/077へ対応させる。CASE-031-29を`AC-OS-L3-031-01`から外して`AC-OS-L3-031-03`へ移し、CASE-031-30はreview HEAD変化を`AC-OS-L3-031-03/04`の双方で追跡する。047では`AC-OS-L3-047-01`を返却/元revision、`AC-OS-L3-047-02`を新revision/非継承、`AC-OS-L3-047-03`をunknown/stale、`AC-OS-L3-047-04`をCASE-047-027〜036へ対応させる。既存の未trace割当はL10 overlayの個別CASE定義に従い、同じCASEを複数の独立fixtureとして重複計上しない。",
+      "raw_lf_sha256": "59fb160b8ad0b69e3e5693e242b21503cf0011e9f52e489876bc4619bbda0c44"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "line": 128,
+      "literal": "| `NFR-OS-L3-047-01` | `HELIXOS-L2-047`; `AC-OS-L3-047-01..03` | original/successor ticket identity、reason/evidence/owner relation、旧assignment/result/authorityの保持または明示適格化を結ぶcoverage候補。 | 運用属性だけの差分による意味revision増加、または旧revisionの上書き・暗黙継承はfixture内で0。reason/evidence/根拠source revisionと各非継承軸、双方の参照方向・backflow boundaryをfixture別に記録する。新しいgraph・relation型・運用KPIを作らない。|",
+      "raw_lf_sha256": "0afe5220e4bedef84f51c562c205b76d4d1ffa3383b5662ccf0bb76e2bfa9709"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "line": 138,
+      "literal": "| `NFR-OS-L3-025-01` | AC-025-01〜03 | CASE-025-01〜31。ただしCASE-025-022〜031はreview01補正個別fixture。 | target revision、選択構成版、unit identity/revision/state/evidence、既存判断/停止条件の束縛をfixtureごとに観測。doc/mechanism existenceのみの誤成立は0候補。全運転達成率ではない。|",
+      "raw_lf_sha256": "eea3667db04e2ee20c995e607daa828bfbf65c6310f69735cd78a1342d906052"
+    }
+  ],
+  "prior_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-review01-correction-2026-10-06.json",
+      "bytes": 156099,
+      "sha256": "19fa75c15cbbc8cb1ed27e7a381e3c80a97d184f6838cf157574ae8875cf868f",
+      "mutable": false
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/helix-os-stage5-root-review01-acceptance-2026-10-06.json",
+      "bytes": 7674,
+      "sha256": "fcae479db690908489d220fb2b3973e9a0f9293128796590ac5c0cacc544d131",
+      "mutable": false
+    }
+  ],
+  "static_checks": {
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "git_diff_check": "clean",
+    "old_runtime_ci_bun": "not run",
+    "independent_review": "pending"
+  },
+  "limits": [
+    "この作業はRootの修正差分・固定根拠の補助検証であり、独立reviewではない。",
+    "旧legacy sourceのCASE単位照合はこの作業範囲で実施していない。",
+    "Stage5 case count is table-row count for the stated four parents, not acceptance/implementation completion."
+  ]
+}
