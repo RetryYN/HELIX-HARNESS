@@ -1,0 +1,242 @@
+{
+  "record_type": "append-only limited correction record",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-HARNESS",
+    "stage": "2b",
+    "parent": "HARNESS-L2-016",
+    "artifact": "docs/helix-harness/L10-verification/nfr-verification.md",
+    "case_id": "CASE-HARNESS-L10-NFR-016-01",
+    "change": "Input列に固定L11が列挙するregression oracleを1項目追加した。その他本文や6 prefixに変更なし。"
+  },
+  "revision": {
+    "preserved_base": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+    "old_body_revision": "75017bb2b68460314e0d8dc936dfb30fe9329ace",
+    "new_body_revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+    "branch": "codex/harness-stage2b-pub",
+    "published": false
+  },
+  "reason": {
+    "finding": "旧input列がperformance comparisonの5 fieldのみを列挙していた。fixed f6 L11 G13 row 324はbaseline/budget/workload/profile/statistical condition/regression oracleの全6条件を求める。",
+    "resolution": "列挙をfixed parentと一致させ、既存CASE oracleの6性能測定条件field保持候補100%と整合。性能以外のpaired requirements/contract/behavior/consumer oracleは従前どおり別に保持。",
+    "scope_change": false,
+    "owner_or_version_change": false,
+    "new_approval_gate": false
+  },
+  "source_pins": {
+    "fixed_L2_016": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_line_start": 395,
+      "physical_line_end_inclusive": 401,
+      "full_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+      "raw_lf_inclusive_span_sha256": "3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+      "line_count": 689,
+      "raw_span_bytes": 1140,
+      "literal": "### HARNESS-L2-016 ⑤ リファクタリング（単体）\n\n- **受け取るもの**：実装済みのコード、対の設計と契約、構造を改善する理由（finding、密結合、性能の退行等）。\n- **提供するもの**：境界を保ったきれいなコード。\n- **保証すること**：振る舞い・契約・要求を保てる変更だけをRefactorする。詳細の契約が違えばL5へ、architectureや境界が違えばL4へ、要求や受入が違えばL3／L2へ、製品の価値が違えばL1へBackflowし、右側が左側のauthorityを黙って書き換えない。Performance Refactorはbaseline・budget・workload・profile・統計条件・回帰oracleを先に固定する。\n- **単独で成り立つための依存**：対の設計と契約がないコードは、先にHARNESS-L2-019で設計へ戻してから扱う。④を必須にしない。\n- 束ねる既存の条件：HARNESS-L2-003／004（右側のRefactorとBackflow、Refactor／Design-refactor／Performance-refactor）、HARNESS-L2-002／003（Scrum ReverseのSR0–SR4）、「構造改善に適用する変更条件」。"
+    },
+    "fixed_L11_G13_016": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_line_start": 324,
+      "physical_line_end_inclusive": 324,
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "raw_lf_inclusive_span_sha256": "8e77a8454e27988137d9c67c3b76f1df4a29200ceab7ad2d42bda81844758d54",
+      "line_count": 461,
+      "raw_span_bytes": 498,
+      "literal": "| `HARNESS-L2-016` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003`） | performance比較は既存baseline/budget/workload/profile/statistical condition/regression oracleに従い、対象scopeのbefore/after結果と契約回帰を示す。費用・時間改善でbehavior/contract/requirement退行を相殺しない。 | profile対象の局所改善でregressionを隠す／性能oracleなしに「速い」とする／右側で上流意味を変更する。 |"
+    },
+    "fixed_L11_G13_context_015_016": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_line_start": 323,
+      "physical_line_end_inclusive": 324,
+      "full_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+      "raw_lf_inclusive_span_sha256": "e2513d5678e00d778de56059c9614d9ad173deb14963a60c6bd318d388d16951",
+      "line_count": 461,
+      "raw_span_bytes": 917,
+      "literal": "| `HARNESS-L2-015` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-001`, `HARNESS-L1-004`） | 開発単体の出力をProvisionalに保ち、品質firstのoracle結果と省略検査を明示する。費用・時間が改善しても必要qualityを満たさないrunは改善成功にしない。 | Atomic CI/コード存在だけで品質適合・effect success・Acceptedとする。 |\n| `HARNESS-L2-016` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003`） | performance比較は既存baseline/budget/workload/profile/statistical condition/regression oracleに従い、対象scopeのbefore/after結果と契約回帰を示す。費用・時間改善でbehavior/contract/requirement退行を相殺しない。 | profile対象の局所改善でregressionを隠す／性能oracleなしに「速い」とする／右側で上流意味を変更する。 |"
+    },
+    "legacy_HR_FR_HIL_16": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "physical_line_start": 50,
+      "physical_line_end_inclusive": 50,
+      "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "raw_lf_inclusive_span_sha256": "636bf050b8a9523e41735710af74de1a1b0711936385a0a16d6b8b501b4a66e0",
+      "line_count": 95,
+      "raw_span_bytes": 490,
+      "literal": "| HR-FR-HIL-16 | HIL-BR-21, HIL-FR-39, HIL-FR-40, HIL-NFR-24, HIL-NFR-25 | DesignRefactor候補をsemantic/consumer/oracle同等性で評価し、behavior保存はRefactor、contract変更はRedesign、state変更はRetrofitへ送る | before graph/oracle/consumer/role catalog → 最小plan、pair/oracle/rollback | lexical-only rename、根拠なし抽象化、誤route、consumer漏れ / signatures、graph、oracle、role/name、route receipt | HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c |"
+    },
+    "legacy_HAT_HIL_16": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "physical_line_start": 48,
+      "physical_line_end_inclusive": 48,
+      "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "raw_lf_inclusive_span_sha256": "4bc22a27b12b1c807fc14ea945a0e69599eca8f938f469e7fae30f0e7f641b93",
+      "line_count": 63,
+      "raw_span_bytes": 253,
+      "literal": "| HAT-HIL-16 | HR-FR-HIL-16 / HAC-HIL-16a, HAC-HIL-16b, HAC-HIL-16c | HST-HIL-025, HST-HIL-026 | design refactorとdomain namingをrouting | semantic signature、consumer/oracle、role/name、rollback | lexical-only、根拠なし抽象化、誤route |"
+    },
+    "legacy_SRV_FR_007": {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
+      "physical_line_start": 27,
+      "physical_line_end_inclusive": 27,
+      "full_file_sha256": "0c5dd33f48710ae692c5ae71b63996f0ba2f8aab1af417cf33d5c02260c76c73",
+      "raw_lf_inclusive_span_sha256": "8cbceb00e927b97806be7fc0cc552c1e38e2a474f94e57556136a4d0fe37844d",
+      "line_count": 40,
+      "raw_span_bytes": 149,
+      "literal": "| SRV-FR-007 | Performance Refactorはbaseline、NFR budget、代表workload、統計条件、回帰oracleを変更前にfreezeする | SRV-AC-007 |"
+    }
+  },
+  "canonical_prefixes": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "c63150540d6a1dce2ee8e566eaee4d518dd1fa868fd6af3cfb75b7df408f8ac7",
+      "prefix_bytes": 26819,
+      "prefix_line_count": 97,
+      "current_starts_with_prefix_exactly": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "4edda6e444179db716442eaa39bffb8783eb3a8440b87dda5723c54aeb6294f3",
+      "prefix_bytes": 1738,
+      "prefix_line_count": 16,
+      "current_starts_with_prefix_exactly": true
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "d291fab1f81b8adb76d6cbfbcb0ca274105338b2e6a7fed3c4dbb1443d2f9bd2",
+      "prefix_bytes": 10657,
+      "prefix_line_count": 54,
+      "current_starts_with_prefix_exactly": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "9ec6d90c517535550bad43ba56abb6fba0eac0a62a766f9144b5277e69c6946c",
+      "prefix_bytes": 14788,
+      "prefix_line_count": 30,
+      "current_starts_with_prefix_exactly": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "30942ad3414982c13016e7f196cae20f4a6dbe3e53b4175165f2505fb8be92bb",
+      "prefix_bytes": 1424,
+      "prefix_line_count": 15,
+      "current_starts_with_prefix_exactly": true
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "base_commit": "fa642cddc3c4446e3635f1c6badd90209862cfac",
+      "prefix_sha256": "c04ad3e124cac5f659f0a03ff22eea79a8e7ca8b0998921d037b77185a01f078",
+      "prefix_bytes": 5244,
+      "prefix_line_count": 23,
+      "current_starts_with_prefix_exactly": true
+    }
+  ],
+  "current_documents": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "d405e5b28bc0cf58b81e499ccc38740f6fe4ded0c4b5a0b3359646e0e2b99c44",
+      "physical_line_count": 203,
+      "byte_length": 54545
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "ae00c0dda32ce2b95213a1be008339c569f892f4a0249a96e9b901cdb70a8f6f",
+      "physical_line_count": 37,
+      "byte_length": 3885
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "df45327fde1957c45cf40a7cd8d7693d7bbf90e6f4519c8bacbdddb5710692e3",
+      "physical_line_count": 73,
+      "byte_length": 17619
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "9e8e44f612d886049438a507b703ad2ba007e2e249d7c87310b1c98c5c039b71",
+      "physical_line_count": 101,
+      "byte_length": 39318
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "eeb40a6b192fdc8c29e9fb2913814b4f32d1c9b960c5f2cfcea1c9b91cc133da",
+      "physical_line_count": 23,
+      "byte_length": 2493
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+      "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+      "full_file_sha256": "7d238316fea24f0b16d6a3a8d36ffee564016205f2bfd49a56e779b95788ceb3",
+      "physical_line_count": 44,
+      "byte_length": 11156
+    }
+  ],
+  "current_line_pin": {
+    "path": "docs/helix-harness/L10-verification/nfr-verification.md",
+    "revision": "08174bd78e4c6c3400af1b0c1d88bf6b8114313e",
+    "physical_line": 44,
+    "literal": "| `CASE-HARNESS-L10-NFR-016-01` | `NFR-C-HARNESS-016-01` | paired before/after scopeのrequirements/contract/behavior/consumer oracleと、性能を選ぶ場合のbaseline/budget/workload/profile/statistical condition/regression oracleを列挙。案Aの局所benchmark/変更量と案Bのpaired regression＋比較可能性能観測を比較する。 | 案Bを候補とし、必要oracle/trace保持候補100%、既知回帰/誤Backflow 0、6性能測定条件field保持候補100%を状態別に記録する。費用/時間の改善とbehavior/contract/requirement regressionが同時にあるfixtureでは回帰を相殺せずfailureとして数える。 | 選択されない性能改善は未測定。具体的改善閾値・環境許容差・SLAは発明しない。oracleや比較可能性が不足すれば未評価。 |",
+    "line_sha256_without_lf": "cb1a14bba7b8769a39465035d304acbfb7584d9f1594ab6c55a79a1d923f2df2",
+    "line_raw_lf_inclusive_sha256": "00cf0b26d4df6ae7958ac5d8b26a96cf490b6e18fb714a30bd4ec412442f1d27",
+    "previous_line_sha256_without_lf": "4e52a7b0432e00653e6888b92f65efcf8bc0e0c1ba828e471c5caa971d81fa13"
+  },
+  "previous_immutable_audit_reference": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-review01-correction-2026-10-05-633ec430a.json",
+    "revision": "75017bb2b68460314e0d8dc936dfb30fe9329ace",
+    "full_file_sha256": "43003e34bdd761aca8d1ca21d94bb4c6aa09094a801d4470e0b84c932a5d575a",
+    "scope": "前回27件finding対応の訂正監査。書換えなし。"
+  },
+  "other_previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-review01-correction-2026-10-05-633ec430a.md",
+      "revision": "75017bb2b68460314e0d8dc936dfb30fe9329ace",
+      "full_file_sha256": "50241c2ced9f8ab9b99f159cfd5eccc9145954936a41610ea7f66c697f44d87a",
+      "byte_length": 1430,
+      "carried_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-c9329194d.json",
+      "revision": "75017bb2b68460314e0d8dc936dfb30fe9329ace",
+      "full_file_sha256": "91d48ca671deda83194075a30835636f70f3d73aec558124621e8a3766ab4503",
+      "byte_length": 2628116,
+      "carried_unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-harness-stage2b-static-validation-2026-10-05-6c7875423.json",
+      "revision": "75017bb2b68460314e0d8dc936dfb30fe9329ace",
+      "full_file_sha256": "168ee56d5414472a0b6d99d5ac9646ce9919e1fd8c8a880f1d398856f3c893ed",
+      "byte_length": 2647536,
+      "carried_unchanged": true
+    }
+  ],
+  "static_checks": {
+    "revision": "body 08174bd78e4c6c3400af1b0c1d88bf6b8114313e plus new audit/summary tree",
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS; body correction relative to 75017 is one line in the named NFR case only",
+    "runtime_test_ci": "not run; outside document/static validation scope"
+  },
+  "limits": [
+    "これはroot作成側の限定補正・機械証拠で、独立reviewではない。",
+    "固定L2/L11の意味・対象・owner・versionは変更しない。",
+    "旧HR/HAT/SRV sourceは判断史の起点としてpinし、旧test/runtimeは実行しない。",
+    "要求承認、実装結果、performance improvement/SLAを生成しない。"
+  ]
+}

@@ -1,0 +1,3870 @@
+{
+  "record_kind": "作成側主査の時点静的検収。Claude独立review・PO承認の代替ではない。",
+  "body_revision": "e12514cb9666c1ae4e9daff658b4f2f92827672a",
+  "prefix_revision": "2459dae25c78b3a8802f3fe78d28f6400fcd2ec9",
+  "scope": [
+    "HELIXINFRASTRUCTURE-L2-002",
+    "HELIXINFRASTRUCTURE-L2-007"
+  ],
+  "version_target": "1.0",
+  "counts": {
+    "FR": 2,
+    "AC": 4,
+    "functional_CASE": 13,
+    "NFR": 2,
+    "measurement_CASE": 2,
+    "BR": 0
+  },
+  "source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        42,
+        51
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc",
+      "kind": "fixed_parent_or_dependency"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        92,
+        101
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "29820e63b84ed4119c171e12b127b5f1eb3ff0bada5b693cfd0bf860b2934959",
+      "kind": "fixed_parent_or_dependency"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        32,
+        41
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+      "kind": "fixed_parent_or_dependency"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "lines": [
+        72,
+        91
+      ],
+      "full_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_span_sha256": "f85c5c5d796784b9d08edff08b882a4a9f85203b156d3abd185f5a8db5bd3773",
+      "kind": "fixed_parent_or_dependency"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        44,
+        53
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+      "kind": "fixed_L11"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "lines": [
+        94,
+        103
+      ],
+      "full_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "raw_span_sha256": "671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b",
+      "kind": "fixed_L11"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "lines": [
+        26,
+        52
+      ],
+      "full_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "raw_span_sha256": "13ba8153894b8fb075614fc62b2803dfca7d939206aa1e993c751fda6bfa7d41",
+      "kind": "PO_fixed_revision"
+    },
+    {
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "lines": [
+        163,
+        163
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256": "af089cc9b5e5a002d242c10313bd9ea9c127035c5547a7b1fa8a5bd989002ac5",
+      "kind": "sequence_only"
+    },
+    {
+      "revision": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "lines": [
+        168,
+        168
+      ],
+      "full_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_span_sha256": "6a39442f356b8347ab6d6c1d7901fe78a42ccc3d57afece492daefb9f3b4c14f",
+      "kind": "sequence_only"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "lines": [
+        148,
+        168
+      ],
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "kind": "legacy_comparison"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/README.md",
+      "lines": [
+        16,
+        56
+      ],
+      "full_sha256": "949b0da00d2a417e1b36d3679b89735de7adadf831f567dbe383dfe6337f19e4",
+      "raw_span_sha256": "fbb50e1ed591235cba594d8b8a10d5f1c55be865e3df9c9daf75f3814a18ab6a",
+      "kind": "legacy_comparison"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/technology-environment-reconciliation-requirements.md",
+      "lines": [
+        32,
+        70
+      ],
+      "full_sha256": "65bef49aa5ee9dd84481684f359cbb28d1a41ad34f85aa3826854fb6e9c560bc",
+      "raw_span_sha256": "c58abfe822a6c95a70d11c10e6355ef14f032c4c6cf9993c24f6eb24f41d4477",
+      "kind": "legacy_comparison"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/technology-environment-reconciliation-acceptance.md",
+      "lines": [
+        16,
+        39
+      ],
+      "full_sha256": "aa61d626e7e5d5ee61f6bc96532cec931da4a1dbd104be805e4c03a0c9a2fd7d",
+      "raw_span_sha256": "672efe8812416fa909f5d391b362be23d4631b42bdbc2015918bfe59b184df85",
+      "kind": "legacy_comparison"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "lines": [
+        24,
+        83
+      ],
+      "full_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "raw_span_sha256": "60f558ed4c14b1b235e060dad063c8a07c202b02868a1004ae8f4855671e6c2e",
+      "kind": "legacy_comparison"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "lines": [
+        1,
+        58
+      ],
+      "full_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "raw_span_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "kind": "legacy_comparison"
+    }
+  ],
+  "canonical_documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "full_sha256": "75f18f49778e6d44a78efcb872a5be5fc8ace4335c0ed70b9f706890627faef3",
+      "physical_lines": 333,
+      "prefix_bytes": 37763,
+      "prefix_sha256": "1d664098e9ad7d44f8488b9105fd31da0bff28f9afcc41f924cfa895cf14d501",
+      "suffix_sha256": "a6d62d03068f223091afcb1334a1079532d5d4cf810cec36ab9f81191b3b3897"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "full_sha256": "731afe867b990f704f1a74b2ea9dbf2e95d07e427c19d4039fd779b72e420ac2",
+      "physical_lines": 34,
+      "prefix_bytes": 2903,
+      "prefix_sha256": "5bf1a11da8596bfe770c61d61766b3a144311f8facc28f8988d1d1d431e91f7f",
+      "suffix_sha256": "3cd4ebb40aba979f0007f28d629b574300f84c62f0164e7cda87010eeb3536cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "full_sha256": "1674f63572a4666b8f9110dbdbff5c2e1140a1f61871f8ae16eef9a8e860bb40",
+      "physical_lines": 74,
+      "prefix_bytes": 12228,
+      "prefix_sha256": "d7b8f75dcbc1c6b722bd250f85fce801fc5ad32315d814037398f7a73834832b",
+      "suffix_sha256": "49b9c4314ea9a08b2fe9d592078153a8dc5c934dfec024b0233c4cac68bd97c4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "full_sha256": "f514d8cf472be2f980248c363390829abcc9a7c64b9c8eb15193fe80e0dff389",
+      "physical_lines": 186,
+      "prefix_bytes": 28150,
+      "prefix_sha256": "40fc8e971d3fe6446b47fdc6404964402eff1929d550a80b610853e4c66153c2",
+      "suffix_sha256": "4e9841a6301558ed5200c30f86b447ac408c4e347978c99785eaba69d586e283"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "full_sha256": "2ff06eaa9e9c7f7a3da2b2d5b074671a43370a67b8763a31721f3cf0847d3378",
+      "physical_lines": 30,
+      "prefix_bytes": 1831,
+      "prefix_sha256": "bdebf4f6e6bce665cbe1f6a187eb9727ffc421f898113cc066bb88f8715778a4",
+      "suffix_sha256": "3cd4ebb40aba979f0007f28d629b574300f84c62f0164e7cda87010eeb3536cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "full_sha256": "27145b64b11f969c8d487f2d1ef3f33c50c07b0c982a52db95838fc48906667f",
+      "physical_lines": 65,
+      "prefix_bytes": 10005,
+      "prefix_sha256": "e6e21bcff9741bdac28eb8dd1c952543d3df941ae625a7d343c90c34372f6c7b",
+      "suffix_sha256": "94db4e24aa6fb8336d208868b432dd44fe67c7a9b70e085eb363f8d5700092d1"
+    }
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "3720bd17031c2baa7ea2cc54636861475949e9ea8d14360683a7af4ed68ccf1a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "7ada9466731a1e75e6acc9c1f44cf584ea6e0caee58de2733e92b792b5a4e71a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "04cee3032f64178500edd624fcbc2cba6f2ec0c8d4e7ea1e78aa6468972cda9d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "c865bf53230d5ca27392820f7b795ada472cc0897b991268069ad924e5ea47dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "dab24435558cf8988025f289832c3023901d71d45263971fe3f6fa9be29bba83"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "0746010002704f0737cac7887ec03a78f2ded0e25b6e73eb6706c310c808237b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "f28b2e6dfa0e19830a2af439f081f7f27b1cf1d9a94450def39584863d6b92dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "341a5d1bad7dffed1136202e20bd05feca6af50c4593edcd0f31d67b845d3fa3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "a0f18a7cac586f47241b1b46ca01bdd6dde4c11c55748228f164a5998362c6da"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "a584341f232d75b1b5de00aa816a53fdb5b6356f0e0dbe2d63dc0cfea4ba3431"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "ced152966b089c04cacf95954ac77e6f00872ce85aaecd64f98b840b53c56000"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "a8a2e98e282a0a45a90b1355df0ee865b58531c666946096045f4cdc204b7960"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "1062fbc7ab85e86d3db98475a411bdb735fd51f8659c79ab9f7c17b913b28b25"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "0987a8ab3305946234855a7d148ac7a27d06c077a4f85ac3210c2f8d29a45565"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "093a1e3dd9a322f893b04ee8308a5cdb356c9882be40102dc7ad885c91340c13"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "2518ed671d0b99f13103a602678cbff0052bc89756c0b48b68d81d19c26c4d4f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "65c13f8b645fd52d4c312c92cc9950a14ef7b6b740f16e77ff8bc28491079859"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 35,
+      "raw_lf_sha256": "c9ba28d4ea3d999244d4282867a6618a6986d2537a3e6ec053074a5e68ab8f5f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 36,
+      "raw_lf_sha256": "328296ef3316d1bb4b0c23a71bd06704bf9bd666a37f3e23c67e11382d88bb35"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 37,
+      "raw_lf_sha256": "fa223529fb3a81dcd826cc7b2924f1cfb5cd272d1f65f082415966ea3323b4a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 38,
+      "raw_lf_sha256": "c1a21b7dbe52bc5377f9afb40873070ed747681e38b8fbefe74c3e94c4ba47d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 40,
+      "raw_lf_sha256": "d0e34183812022c03323556a29267d8e5d664899250598ea2f928b521c08866f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 41,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 42,
+      "raw_lf_sha256": "90dd9c6e801953bb1019591f32fc77c97f42f1743cbdf6d3c209dbe998c2f1de"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 43,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 44,
+      "raw_lf_sha256": "19f3e72a25a0bac4b10d2e2321ddb5b11803fc33ea4edddb8869c7b685c0f521"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 45,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 46,
+      "raw_lf_sha256": "5a57d1e4b9435db108f2ca84796f32050ff76618ff8ca0a915e36b6eacfa25d3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "4dd4c31ff154422c173d0e31ee28211347122e5644f55fca76333080f7b93692"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "0aa172eaef19ff75b2c45fdbd9d6f980bea2ba8b4dbe75617b7396118703bfc1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "a356555009386b667803f690a8becefa8fbc4a1bdf5ccff258aff729cf3e69eb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 54,
+      "raw_lf_sha256": "4d86a37127265610f77a105a88f2bbb4739334dba9fdc899bac03d3a350df62a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 55,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 56,
+      "raw_lf_sha256": "05a8fcb8706f05a10b5009dcb553b4bcd015c802e3bc91a41a2cba34c598efe3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 57,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 58,
+      "raw_lf_sha256": "e90a094ae83fe29fd8360994b4761db047a29185c12520b1096bfa51ce740f1a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 59,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 60,
+      "raw_lf_sha256": "424800bb269335f4a2603f21f9030c26b54c264705aa6fffd53cb0e07a0e3094"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 61,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 62,
+      "raw_lf_sha256": "7f657acde6c2dde6c7615b5e1450b9653905baf20617bd8cd3b05c456ae0d08e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 63,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 64,
+      "raw_lf_sha256": "fd0b849a372a58b649e2ac3620e69d1b910f5f3d7009cc156baa287066ad2f4b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 65,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 66,
+      "raw_lf_sha256": "6edd30a296d2db8c179aaacf1367eeec1967507d48e11dc93d0638ef3e5b7c47"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 67,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 68,
+      "raw_lf_sha256": "98e1131e764f972b011fbb490ea954c9ce225610727a4f194f13ec4916fbd0fc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 69,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 70,
+      "raw_lf_sha256": "da80c5039b4adaa41d12cd0daf419583e4026b0ab663784e30a26046566305c4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 71,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 72,
+      "raw_lf_sha256": "569f76e71922afefa2824b943f079cf25b06e0c01108489baa29cf9749e1b629"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 73,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 74,
+      "raw_lf_sha256": "f54546ed2706986f4308a95d54ce9f9280d6af7703da97a955ec93cf5f5e73c7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 75,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 76,
+      "raw_lf_sha256": "fff1f428b5075d244b23c928b711f32e48c207e8e733ae04aa04fd84a2618680"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 77,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 78,
+      "raw_lf_sha256": "37e882206934a770d8981c231a38b9222f4e46f07ec9f43657f337aaac93fb4e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 79,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 80,
+      "raw_lf_sha256": "571aa34434e74d5bd6fab85c03b6583670d1cd4ad13cc33b1b7f3cb4cd1f86a8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 81,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 82,
+      "raw_lf_sha256": "933558859de44c0711bb17f90071d213d8630a29db0e6c2d2561da337f731107"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 83,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 84,
+      "raw_lf_sha256": "c0dd00de6a1b20ceb9b67c84481b3df803a89eed7a7e950d433835e00963c1b1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 85,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 86,
+      "raw_lf_sha256": "96845cc04512dcfce281d86baa3c12d9298a9f0037e34f286fa29fe7e0a98c9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 87,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 88,
+      "raw_lf_sha256": "2625c08dd93fab2cb6891a4e1ad3b50eb80fc88f88481438bf4871b83fae8d76"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 89,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 90,
+      "raw_lf_sha256": "f915fa265bd57baf6b7836a8102aadabbec778fb7ab1bd81e88526f26d0eccbd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 91,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 92,
+      "raw_lf_sha256": "722ed2bcd63843b210546adc60d0aca1aef8f002634cab40626b3494e7ca59f8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 93,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 94,
+      "raw_lf_sha256": "0bd6e0ac1d0e09e23fa8d2cf8a01ee536d74e65f606e7f1294e80bd2c2054d6d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 95,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 96,
+      "raw_lf_sha256": "92a4cf5e2dd7e74e6fc8443907c10b1c06c52651a2704e320f185b171c477988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 97,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 98,
+      "raw_lf_sha256": "9b5585dac69d899a854b0f4250abff5f2c8adc91312484ad1cf2732bea63af8f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 99,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 100,
+      "raw_lf_sha256": "878c7155f94983d6116225929ba7bb8d97cd0687059c9bfc2d2e7051966059b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 101,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 102,
+      "raw_lf_sha256": "57c0eae80f93ed221ff778d44bbf4665a85cac7946eed115003098ce018cef9d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 103,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 104,
+      "raw_lf_sha256": "c058d95810efa88c719d27ff734bdff583db1b7703896378ae18b710940c60cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 105,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 106,
+      "raw_lf_sha256": "8fe39ea04536d1dfc620edd78a81b5df2754d4f4f20c88f868d8d16df5f45c8b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 107,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 108,
+      "raw_lf_sha256": "d8f539435e9cee0a572413f2f25701f9a9722a33a2d7a11f69ba0821b61c3b6a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 109,
+      "raw_lf_sha256": "0ebff2cc092a8bdcf9b02f8f5ef7c07ad922d6943df6c823cca7a812da5a5e12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 110,
+      "raw_lf_sha256": "5dd8bf4b8787c08b01e36e564ae965cabd0a63d4e3048e68a6ec3e5d5671a734"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 111,
+      "raw_lf_sha256": "582c92fe10e90a55634b2409241c3cb26d63a36eb3d981dd3cadbd19c205822a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 112,
+      "raw_lf_sha256": "9497995469e4c8f519fdcdd2b7737a7707595f81996067d41d711d45cb106b77"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 113,
+      "raw_lf_sha256": "b97a46d7b2585cded7d70d449cd38045890fbb7685f6b09bb9dce6342c4f26af"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 114,
+      "raw_lf_sha256": "e41c193529e11b59478abd97d59beed1362ede6779a4f782ed7ea8c492ce47b7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 115,
+      "raw_lf_sha256": "a7a71c65c50fbd75d193ea8047aab7d1828e508553622eafd5c7facf8a4e2e11"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 116,
+      "raw_lf_sha256": "20e6586ee84bfa1337daefea2ea9cb3c902892e03febf50dbec49c8fd64e9b3a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 117,
+      "raw_lf_sha256": "dd7e636c7cbd30c76948370de8336bbd14d6d2f156143b597a053a2ccf16e795"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 118,
+      "raw_lf_sha256": "c7772b931fe3e356044a7c879884339d4e26dd3bb33330beac1fbc88abe13aa0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 119,
+      "raw_lf_sha256": "db278fb8830ac57f5c6f1e959bf7e05c762ebf4c104f1d16d01fbb0fc5ceb396"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 120,
+      "raw_lf_sha256": "17c381cc5380fa8efebc49d3a84baf7120a22217336cba70012476a1c9e40b7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 121,
+      "raw_lf_sha256": "ccee9d8adec8a70ac33d7b98553b503dc9727846e3fa0587a1fb0edfda06319b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 122,
+      "raw_lf_sha256": "b636c64f498390347baabafb4b0c8cee2e2f7428e6eae4798de073ba0dd72596"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 123,
+      "raw_lf_sha256": "8837d8c6ce80cec33b00c0895d363393aee8b6a205867917a589a17ffbf50433"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 124,
+      "raw_lf_sha256": "e8c0983800856bd07c3935bbc6ae9a824a91999ff541fd44d23c8790badb54a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 125,
+      "raw_lf_sha256": "dda63cd8e9c1bf187ba56731925051a923666dccf4bc355039f8e9135172649a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 126,
+      "raw_lf_sha256": "716e898dc76cc8eeded6e2a174e63e89808d88d0ea54503b1a62080364dec0d3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 127,
+      "raw_lf_sha256": "7935e23d23235e39b48b3ae901a68e1221920c2fee587d1ea8f42f64b4c009cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 128,
+      "raw_lf_sha256": "f5b15ef3f46a99951b35627607815d278080dd964aff388dc01ad565d821f0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 129,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 130,
+      "raw_lf_sha256": "915d8ff9fb9eb1ed0d2399f540732041e3aa0903838e902e6034c4e8c42c918a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 131,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 132,
+      "raw_lf_sha256": "3872274380a22a92987140145b87a6b5fe0bc8028c437b7c5829094eaa7d64b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 133,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 134,
+      "raw_lf_sha256": "0e27f40299ddeb9f0816a9a27a83c31691e8af331a4b044a913ddb319dcc9700"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 135,
+      "raw_lf_sha256": "885c2377ae6d14f464530f1f8f12a758eff25b08516d6fb85bbfe160710830e6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 136,
+      "raw_lf_sha256": "9d1b51f9723a17a0862d7d5191919d87166e87e3bb64b50723b673e163c72f62"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 137,
+      "raw_lf_sha256": "361553cd9600936fd68b93d2399f5159d38fe938819c3649db773cc3a5efc460"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 138,
+      "raw_lf_sha256": "3ac953979c7b8902b37d68680f18042f8420c29e10f56b75b062de7402c4cc44"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 139,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 140,
+      "raw_lf_sha256": "a98da06ce988dda82f94c0a7f56a7e53d6ce401292ab4f578245b94504614905"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 141,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 142,
+      "raw_lf_sha256": "d1487e6de98218dfb2e685bfb2cdd8f1df6d1eb811519c738f0514aa5554d9a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 143,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 144,
+      "raw_lf_sha256": "33e3335eb07214f6226f48430a6275b5a01d61316533a0ea0d3cde05d217587c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 145,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 146,
+      "raw_lf_sha256": "2750fda99f8f13ae6f5183ead44226cc01fe794a73e38ac7553e8f7109065c71"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 147,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 148,
+      "raw_lf_sha256": "e6406f6e814af3ab5b0725a2d853eebdb063791daa7f56499d2d03cb080d5e1c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 149,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 150,
+      "raw_lf_sha256": "7c7ba413b84537e25b0a464017cdca10bbcf4f5069326a75bd4a05537d85681a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 151,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 152,
+      "raw_lf_sha256": "5977dccd4ef5941721e1ae0b81265c4ac5f483c9598f04c86f7d5abe3621091f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 153,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 154,
+      "raw_lf_sha256": "accc19c1fc0c671ca09d33c65b34c9cf90fe3af1615e16369e40162c5c8b4593"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 155,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 156,
+      "raw_lf_sha256": "13fadb9d5c7108fd8883d25b64fc07ad59228a5c82037c780a7591bf4841a83d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 157,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 158,
+      "raw_lf_sha256": "7f31d7be928b937989d750ec65b593f0650819916e4312147059f2f704e61e4c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 159,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 160,
+      "raw_lf_sha256": "96b200f22ba006932f4d47eb960d9129f574c84a43e476abf1e998e3bf271026"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 161,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 162,
+      "raw_lf_sha256": "d5e55c1e52196fc3e45d040ccdd0feda4d1f6f7b608bff4331c124e9cb22f2a2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 163,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 164,
+      "raw_lf_sha256": "7eb0bead504e48a2724563c17dfa52196b0fd75f2ffcce62b20cc24835752b21"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 165,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 166,
+      "raw_lf_sha256": "0b819c790f9744cfe2d14a3b0d5c4523d0e5ed7e224198af9602453aa750fe6e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 167,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 168,
+      "raw_lf_sha256": "beb33de3cb3a7e05343da1c6f3503057f8603d8e94936f31ad2ef25f8b5701a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 169,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 170,
+      "raw_lf_sha256": "00662bc9ee36386c8363ee2682e821fb76e23f8e104eb34b96abdfc33b74aade"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 171,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 172,
+      "raw_lf_sha256": "25300110a71676b2b5a3135aece79b801c1d58bed741d1572e97292edbb3bb8b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 173,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 174,
+      "raw_lf_sha256": "72ef4c54f5b74c446fb1278dd33a523c3301e6cec8d23f4d2b7568efa1d4214b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 175,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 176,
+      "raw_lf_sha256": "e0d49046266a52fd3a90efc7618bd2dc13c612270aebd4c50353e1882a8b52be"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 177,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 178,
+      "raw_lf_sha256": "393ae87031663c0f20f2faa2425c8f3a2c28792a52ccbdda0b4bd2a5835c2086"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 179,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 180,
+      "raw_lf_sha256": "a3753bc6c96e6d09bf031590b51bc5a1ef0caaafb1ba7c6f5e0394ed85005dd5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 181,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 182,
+      "raw_lf_sha256": "d92e712f446d87b014f78da1937e56e8aed8a7364e8a06b07670910d38a291d9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 183,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 184,
+      "raw_lf_sha256": "410529c550a775c7680d152ac2c06ce1c77f46b40fb11b518c6841c0f33be4bb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 185,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 186,
+      "raw_lf_sha256": "903f5f9c8a4e2ae2772754e6fc77b0a1a733e4d8bbff518c6dea907d8192992c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 187,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 188,
+      "raw_lf_sha256": "ac21f70bd7caa23aefbae7998c93bd81ca3ff0a0cd15d1a5ac66e78b9a8634cc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 189,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 190,
+      "raw_lf_sha256": "2944d7ee9687648cf81b1c4f9ea7bcbe22eca25d917865652d886e26df29cd7d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 191,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 192,
+      "raw_lf_sha256": "f2b06597558cff39eca0d51f9da2240880faebbaa8835515caa5c9948271e1c2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 193,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 194,
+      "raw_lf_sha256": "14a7df2ae74ecd7cafe13ca0bc703027a13735eb07fb80de14bd42707d7e7261"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 195,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 196,
+      "raw_lf_sha256": "00fd4eee2430e95bc707b7e29b807d3bf5733a7a40ef37a99d7e3426466e87dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 197,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 198,
+      "raw_lf_sha256": "655da8781621dfa637bf4eb5fe73f11f5297fff042b5575a4ed234a0328e58e2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 199,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 200,
+      "raw_lf_sha256": "0dcfc01cf05fb2a9378d5ec26ab8b897a3cccee8519139a38c664419eb79342e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 201,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 202,
+      "raw_lf_sha256": "1d9ad0ea1a058c9bede8007beec38875e3beabe8b2f8c2e1bf68807a3a9e016f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 203,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 204,
+      "raw_lf_sha256": "17edb942b9b19f0b60bb846e5e2745646fda4ff215b21a652dc7b99d53f862ac"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 205,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 206,
+      "raw_lf_sha256": "81d97efad7bfeca132c0e04f12d476efe2a409b44ebfa293ead1129f68680ac8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 207,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 208,
+      "raw_lf_sha256": "662b772413ba635510247b41a3a2b9e4de66046884265117b0b59f9fd425f9b7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 209,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 210,
+      "raw_lf_sha256": "2206fa2dd9412afb2bb2acabec6bfd2d3eec918a3db3bcdfe067dab23bdf7f1f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 211,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 212,
+      "raw_lf_sha256": "aaf4f8b22f2d77768cce73977607a3b86ca8848b02e6e4cbeeee82fb868b9f09"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 213,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 214,
+      "raw_lf_sha256": "f8f8959adae40f937e6a2e164b52f01956f64b308f72bfc85381f65821121420"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 215,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 216,
+      "raw_lf_sha256": "716578cd16229de82a6e12bf82a5b6e340aa67772063d8ad41284a4f437ccf09"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 217,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 218,
+      "raw_lf_sha256": "608564815f74fd7725483ddcd5303cbdf437479a784fcdf58ceda1e32a39e1a4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 219,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 220,
+      "raw_lf_sha256": "7528b597f0a0d731d8722b3b0db15adde49521017526e6a81787c1b8f71ea081"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 221,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 222,
+      "raw_lf_sha256": "571dd7dfe826ce6011eaca774db6cd2c8feb7b0770ad40e76fd25822390d2fbe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 223,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 224,
+      "raw_lf_sha256": "f1561cd4f5c64cec847d3eca2560f31d14c75e188e5f2434a7f5116a64248d88"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 225,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 226,
+      "raw_lf_sha256": "af9a886d4abd13e968ca6f95dbe1a298e73613e4f61295ed99d16d1139bcc6f8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 227,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 228,
+      "raw_lf_sha256": "62b838eea70030b46d9977ce362d6483cf2823bbb64c830d6882a6f4dd233b9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 229,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 230,
+      "raw_lf_sha256": "b4498b20586ff95ac87560442015bf7df7ba2aee79b32c7e6fa33938edca9ebd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 231,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 232,
+      "raw_lf_sha256": "2c403f93df8a0e362a200d01e12e33cd3488bf865e790f71c1a719d498a8ef52"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 233,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 234,
+      "raw_lf_sha256": "53b94de2f322d75c53a2446d781c428b10c4030199efc2d503e4e945de749162"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 235,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 236,
+      "raw_lf_sha256": "0adf0fc197a38132cbd7d0de75b779f8037cb5d0218cbeb114efe65b5cd978a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 237,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 238,
+      "raw_lf_sha256": "7e84ddd535b2e7f31a1c03608d14f669d6f96deaf7111f68ae452c6dbf8a4fc4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 239,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 240,
+      "raw_lf_sha256": "ec83916c8a9061bc908db48a77ca16443c7c446c8666ee920eb3ccfbe6dac3e2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 241,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 242,
+      "raw_lf_sha256": "f7b9aeac260c9e0691ea3e6949c78d7a8c48c359d7c00babf4f7fdfe7ed777f2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 243,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 244,
+      "raw_lf_sha256": "8fdce8e517e7353bcfae647cd77303928043ecae0e035d5820ba05bca8019a9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 245,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 246,
+      "raw_lf_sha256": "a8bb6daa9bb34e624eefe7592b2219ca53aec8bbb5463d96b1a95318e3adf349"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 247,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 248,
+      "raw_lf_sha256": "8998e8559b87ef102d69c2c94b3594c8bb8fb682fec81832829141991bb1537f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 249,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 250,
+      "raw_lf_sha256": "d1982081d3bf598c71dd9ce516db9dc282582acc6e2f3bbec381cd80bc39a289"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 251,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 252,
+      "raw_lf_sha256": "cec68193d8af263e1f40c5a05b60d8a5a9f375d1ae9dcd14c1deb298f72b50f5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 253,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 254,
+      "raw_lf_sha256": "8078b7e760eae69107a15058f9db6e0cb189323c0670a4b7e825865ed1582a39"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 255,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 256,
+      "raw_lf_sha256": "6a0380b1a5092d52a77a5c5d52a14d63f96071d41667a2edfbcab09dd7047abf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 257,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 258,
+      "raw_lf_sha256": "353a618f82c846396299812570866a73fe9742aebf1f46b9940e0b828d1bc368"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 259,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 260,
+      "raw_lf_sha256": "ca8f318a2b7d9c1c348afebaf99d739f6039e9f7d7adcc99b80309c8dd3ffcd0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 261,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 262,
+      "raw_lf_sha256": "f68a835cde9e7993853672714aada264e25c6179c31614ac7dcef21fa918abaa"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 263,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 264,
+      "raw_lf_sha256": "0e03d4ac6b65a789dc239387c96bbeef4964d3fe6309af0c8f736e68ae9de859"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 265,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 266,
+      "raw_lf_sha256": "dc5dbe902670fcfb1f3d28548e76bc1d5828d92a4333ec6fe2d77a3b1e577d74"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 267,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 268,
+      "raw_lf_sha256": "60267f929e3e334ca25c91174b6f25e42650f7d2b059d3ea273da21db95a5e84"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 269,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 270,
+      "raw_lf_sha256": "03c9044f84ffd61fbf0cbd4f81f7eba0bcf58d5fb548333faca69788136735f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 271,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 272,
+      "raw_lf_sha256": "6896042fda433e3c8cd4d5d8317d54f6f58bf5e2b78606244414a4bd09dd0bfe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 273,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 274,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 275,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 276,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 277,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 278,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 279,
+      "raw_lf_sha256": "b7c49d4b0d5f1adf674fcf99b99e9f492113e1a548ba7a1a36e6d849fb3e2a13"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 280,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 281,
+      "raw_lf_sha256": "2714013857aadc2e5e9a64784824fa90a55775bf3c724e9b5eb4600c76564442"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 282,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 283,
+      "raw_lf_sha256": "8e66ea61099fd1e5c6118ad84015460c13609a4238759be8be4665b1656ff9f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 284,
+      "raw_lf_sha256": "5f5fc406ba3ce68ac3c50a68d30f51b5a9623d6930d46886ac993d0db108341e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 285,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 286,
+      "raw_lf_sha256": "2dce15852ab18048849a791605d09e563f17e184e18fc30f66ce85626570e71b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 287,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 288,
+      "raw_lf_sha256": "93d7069701cfa41a4775729e24e23da22d2845a79352a4b8f5d8e977cc4095ef"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 289,
+      "raw_lf_sha256": "0453c4e6b415ee057d0e19e3e07fec301adfac69d7541c798a0fb08b912c081c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 290,
+      "raw_lf_sha256": "e0f4ee36edb0271ff5971a10b2e7e342e832d51d9af90b0ee7d38c4b8aba84a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 291,
+      "raw_lf_sha256": "70f09cca77417062c469d57d575e32b92fd6b8d0d042b25e5f049df0636dd900"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 292,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 293,
+      "raw_lf_sha256": "5784ed92b38b12a2d4fbe8265851ead174d91ca71640f9e3d5364dbe59d44afc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 294,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 295,
+      "raw_lf_sha256": "29ad9075320a44aa79c9641822515330b8370cbaca8f16004080f974e9606d69"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 296,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 297,
+      "raw_lf_sha256": "3f85659757ab80f57033961ba22669c01016b6d398a32b7cd2c788d53a6c195c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 298,
+      "raw_lf_sha256": "c93b66e0fef413c0c2e67dbbc1e3678e176652308be16734ef78b57166ea0268"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 299,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 300,
+      "raw_lf_sha256": "2dce15852ab18048849a791605d09e563f17e184e18fc30f66ce85626570e71b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 301,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 302,
+      "raw_lf_sha256": "2981162eeeb0538bd025b77cff4661f14c4f8bac24b3ace5e86078edee12d5bf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 303,
+      "raw_lf_sha256": "3bf822496957910e2bf897d9bcde14e7bb879d06e352a7fcf619b5c2a93521d6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 304,
+      "raw_lf_sha256": "adbd438d2de914c3add49eb3daa56f8633dc7b8019611288230e6dacb44b136c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 305,
+      "raw_lf_sha256": "2e070d7f883dbf83e3b0949bb37aad85d70140186fc9807de6c80be467910051"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 306,
+      "raw_lf_sha256": "5e8a6bd1c92232cbe55a027d24be3078f6fd04767dc44003332aaf7175a85cc0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 307,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 308,
+      "raw_lf_sha256": "af676e11104a94967bd79697c58bc6f24a829b8fb47777d8e4c70c3b9a788fbe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 309,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 310,
+      "raw_lf_sha256": "9b85e13b8276a4873608a742a47dda293282156c85963b764ac14a4ccf12b873"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 311,
+      "raw_lf_sha256": "595ada588de7eec6316c6a537e5cd64fb200baf8582fc1e17a19b28139e390b1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 312,
+      "raw_lf_sha256": "d2a67f795fc0cc152441642443f6ac8ce68583804b72127fee9ba5fe2526fec6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 313,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 314,
+      "raw_lf_sha256": "7adf1ca340c450a1a6fb8e6eccf612d313d975d95cab035204eaf35ee07f35ca"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 315,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 316,
+      "raw_lf_sha256": "27a396bd9eeafbcf897989b92cad2bf222d6748a01dd2b0c72cc5e03f90012ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 317,
+      "raw_lf_sha256": "afb674f17de2d1b605c4ea893e9c2d53851b513fab24c9fb69726423c8bd598f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 318,
+      "raw_lf_sha256": "aa7c000dbf644e6ba08805bed4bf842b8be55b57ba6cd1da9d145bf52a53df67"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 319,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 320,
+      "raw_lf_sha256": "6cc41bcd7ba78e155c31b01e0d6e1617b8df4188466895d01bc8de7e34208ad4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 321,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 322,
+      "raw_lf_sha256": "b47d96c9eabc90b51094159f3ab6c716a7cd323580f714baf964ac03d0a020b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 323,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 324,
+      "raw_lf_sha256": "5627f685470a6ddfe3b97d85100250a9578d69e93de11620431332e9d1696093"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 325,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 326,
+      "raw_lf_sha256": "737e5764b747f082450f5220b9798107fed5192e7e4af1b155208ccf683c5ddf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 327,
+      "raw_lf_sha256": "9dfe91d3291118d4d27d942f17a9f8ec1eb4c900e9a8af05c373aa60d6be123f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 328,
+      "raw_lf_sha256": "d2458184eaf9791913af6d4947d074eab5b691dbc866955d7ca3af06b77814c9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 329,
+      "raw_lf_sha256": "b2a40332e461a3bff77450499f6082c2fa69fa39ae6ac5ef020d7b77d05f31e0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 330,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 331,
+      "raw_lf_sha256": "54b0a42434167638ccc5e18609e597d57cd780065338088b1552b2ffc3dbb0e3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 332,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 333,
+      "raw_lf_sha256": "d2fc0956a72314628fcdd7fce5e67d3d06e00b9174f34ce48a3cb88100671fe8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "7de60510b0b7edc547253267ee194850c640f6903b4555b985912059911ffec3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "7ada9466731a1e75e6acc9c1f44cf584ea6e0caee58de2733e92b792b5a4e71a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "04cee3032f64178500edd624fcbc2cba6f2ec0c8d4e7ea1e78aa6468972cda9d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "4a3b9ff10e1e9ac1481a76d8a1628027db28ee9923841ec1ba601062c483a600"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "41025645c96cac5b5832b8ea88d32aa1c6494008f1f08fad40ee78996ee6649e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "449c1c2128f6472f1540bb0434b2f8da509f1bdb65e21c33523204e1d7e2e0e0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "157e5cb42505238df87c5824ffad2410d68eb85f2e7722c7c98864597a544f24"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "bb91e719d8595517c5dd6b3a2c0686ac0c9386db4499fe795e8258c79f541ede"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "2afbb7511563801ad5abf4d04db7b3d571eb49b555c147305ab4b385a83c1684"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "fe77de26052237988dc13f46c69b305c9ef9c815e6048daefb50ac20cbe4de30"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "9df33a21ca5bfa29ef677deb0c6fa2183b5655e8e55de16429059c4c45b10119"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "dddd14256ae12c210a2cb9811ccf9a843c00d56d948155e5378e126d65952e7b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "c3e06a78e2ba255cb0869e85407f740f3239f2610795865a28c72e2465b514e7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "0998ef3adf7830c19d285c14663ed6ff8692e4ac1bb52175847aefdbcb0f47dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "05e17f64c49d8ef5e24758dd4bc2e5a34cdcd8da3091873c2cccd5869719d48d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "7ada9466731a1e75e6acc9c1f44cf584ea6e0caee58de2733e92b792b5a4e71a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "04cee3032f64178500edd624fcbc2cba6f2ec0c8d4e7ea1e78aa6468972cda9d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "5ab1b45c870a40c649925349439648d9dee18dfb0157ba6d591f964cf3f82edb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "7866791ff26afdaeb672a825a90f5e4e9e1e2fbc53cb3a4cbf7b31caa410ca17"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "c5294fb39e5f9ae70902a9641a36301aa139acf8409ea443cbd54519b31d65a4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "94241958afed84afdba73d8ce832ce5cf63331fdd0ebf410fc1e34929898ddf2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "3e522ec86e6c4872ff535fd9cf9f3fa268ab6851c786955ef16027dcefa37851"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "f484bdefbbb302b327b2b3d2e2b53a4c07a44438a69bfec1179eb388a60825d5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "51665cc19c7c096bd2bccf75ae0c9224302e4912ee8b4e7fa2bca6b10f360004"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "7f87e63e0e427cc698e3e1c3b3f7b84c354f4c79673916dd66fc368012cbfb38"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "940ce3a8a2338ab145e40796a53d3a5bdd8069c18e8190a6fe9a0a25ad632355"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "5d1139fa87e4aa289919f6e7c688c1eb3e07fa5a913af80a4523851357eed00e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "211e2fa0558b20d68c63e63cc26f2205346a3c2eb51208a6dbcea98181c2ce21"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "31cd4034be6616952f397b33cfc0c020e90c37f7b07936b79abef907c58ab464"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "7c4a04c5da158af98add262ec2db1724fa37f49271be083692775ec40f567731"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 35,
+      "raw_lf_sha256": "e4fa6f6165daa8e3e46a032a14baa32415f3bc6587d8acb63a26097583cab739"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 36,
+      "raw_lf_sha256": "cd6e2728bbd639eaff057c000358127f599477a35e523f4f1bcd1453483c251f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 37,
+      "raw_lf_sha256": "9db271aa9dbb46f36925646738d3575c386e8851d00c8c817b7b4a94519b725b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 38,
+      "raw_lf_sha256": "56c1de7b846a36ff2b4d43876205f6ba933aaae2b3d5963c63528362a9f85f1c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 39,
+      "raw_lf_sha256": "945b5c2a2181109993f0f464b7bdf41ffea341d6f1ef6b847ae983c773efd12a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 40,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 41,
+      "raw_lf_sha256": "dbedd10777cf61f4ba1b4f52775cd1aff4d4b0bd68effb360cbeec19b1a605ba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 42,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 43,
+      "raw_lf_sha256": "1068f6cd768588c2d3ed59d197dec408a97126ceee49b69ade58202bfbb1e52f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 44,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 45,
+      "raw_lf_sha256": "3995f34bb20c6d4335cb29b09ab0d04e84d56c30b405907c9baca24bab06f3ef"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 46,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "df243c18742b45394b03b507e28a666266e8198ba806f72be2c4d9919aa3f98c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "26ff4ec8ebcceb6edd889d839b3c21c7b741b070a1c7028b159340ef7c3166ca"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "637e1915b1043acb735262ac5a42f602e4f632c9859d02f6ff755452117a67bc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "58a1aef6e735abc44d89bc26c85169d5b01b377e2301c916cfc18dab2d291121"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 54,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 55,
+      "raw_lf_sha256": "1e6c4a066c0ab2a84f2dee1b071a2e1a11a07e5e0d4af6dc7dca80f303cb2c0e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 56,
+      "raw_lf_sha256": "0ae467c0c0c5c65a24a807fa5f8afa632dfa2db9be934bd5b6510802ed1db614"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 57,
+      "raw_lf_sha256": "b084739f62728ec012eb5541153281c3cc36f5ec9fe06634058eeaa0eef5f1b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 58,
+      "raw_lf_sha256": "4a1c709fefbc44eb4a3e59d0d3f5b12f20209ea65a2aba87defba57a6033a4f3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 59,
+      "raw_lf_sha256": "cac47a1acb429630aae5e5098d300e7c5a42f94f2b93a1a3c089b6a94d796d44"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 60,
+      "raw_lf_sha256": "21f35bec1caba4a68b455c5303527359bae6cc5ac0fa5542a7a125a21105c709"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 61,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 62,
+      "raw_lf_sha256": "cc85900fe8b065f1118f51c6f80a1242e6faffbca8fe19e588d189809ece36ba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 63,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 64,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 65,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 66,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 67,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 68,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 69,
+      "raw_lf_sha256": "1735f7a9f8f8b11af1a55ba43993f6a9fc39025f18ee6e6c03a4428a36551674"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 70,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 71,
+      "raw_lf_sha256": "232d7baad74d859f3deb1420a5e7d1eee0cd505fc0e7a17d8235ec9a5c549f12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 72,
+      "raw_lf_sha256": "4c10ef7d452bd1595b99164aadb58cd85130b87a94b90f203b8e6d7474e8b9cd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 73,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 74,
+      "raw_lf_sha256": "23cfd829c2207c71feadac436939ffa54e6694456bced703137c8e231a2b2f38"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "509fecb04f7598bb432091484621e675862b176f5c79334eb872b594d169fd85"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "35450f19574f316204bf77c990ed4766f5db9ca86bf947b5dbfbc3c60ddc0fd1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "ac57734c3e1d631d1c55c08517270de48e83aa1170707d183c090dfc7a24a988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "bc48fc3848c574c19b395a3c765f537ade19f0b1d0e89df5f4d6a986f9762b7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "7367e9712c88585cc5f2dde03700cc616bfa7e7edf5db2ecf8b0a347f9551dcb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "fd0461eb29be1e7a1723b9fbe53a89c3ce6925ea0c68f58fa8627520042e8f8b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "98e60671938287118eb01c0e8a16ba2e3eb506645a9614b726fc828ae3a3d1fb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "195a294469cf04d760558580f7ef7e56162ebdbce0b4639c5066d8d7d48e37fb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "1d11c3124dda80132effb8c07c584ccf6e4fc6a7678588952914ea7022d82b89"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "c206675fc134317852dc6ea534571483df363b970d3e51c2b7408009bff638b8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "72af9ac67810fd487b0310013b65018f1b3fd54ea9e5a7401a972c47cc94fbda"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "72b432a552a10c5ec7e42a2d03bc4b170bacc0ba9b1d1018ee152e769bcac910"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "5d597534e300025795c31fcac789383fa313184d256e0623bf3a552aaea2c59f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "370b6fb412f4887516be3e66a3d1a73f6e4b23d01b67e7191b2d5433113a32fe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "98209757dd938b61a830ff2d5bc616dc99486933c6a2bbcb6dd6fc92270873fd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "843cf4aeecb1d6a0b0fc2bbecefdd76bdc9839463f5134c70afabf0c359154b7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "e25ba50cd96475cad84d4c2cb2ef8b4b74a63456fa368f8ee25778221485a9ad"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 35,
+      "raw_lf_sha256": "ba96e8dec0593e29d0ad0d61389012830c9b965c3d05eb6f0896b076ac2d74e7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 36,
+      "raw_lf_sha256": "4535deab7c319e92e5545db88aea313569af8490fd5793fb08cb94519db2d9a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 37,
+      "raw_lf_sha256": "fb36bbabe495976b4c28fc32c91ea1079a2cf48506c4adfa1634b96ec0343939"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 38,
+      "raw_lf_sha256": "ee15fd86a400e9a2d78b0beca078f065bb79feda0896da13f12dea165866385a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 39,
+      "raw_lf_sha256": "6ff76db90caee1dec9ef8bffc6223ca4b18492d954c06150f28af2ce03ebcce3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 40,
+      "raw_lf_sha256": "de8de6a4b7a389f85969d2f21398b9df9d55e62f1158f3d5dffba29836e37ced"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 41,
+      "raw_lf_sha256": "c10accd1131d6205f505dcac99f06220748603ab24c51ac13df8adeca58dba0f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 42,
+      "raw_lf_sha256": "9240e30c4f062247e68e0a35fae5d10f7d0160c2685c16628c3e41b50502582c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 43,
+      "raw_lf_sha256": "e8f32e5d13b21a5de9c84c90bef97b020da9edc455f75b7648c7fbd92db11fd9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 44,
+      "raw_lf_sha256": "c6bc6187d0e45e7f9bd9561ef34263d0ffafaedaf7dd508606619a1f007d0ad7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 45,
+      "raw_lf_sha256": "b9e8e653e849dcbd17881691d056f215a1bd48fe155209351050c27e47e21263"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 46,
+      "raw_lf_sha256": "eb5d34a22ecb6d679e1d70e3cdf3c0051c53a8f84d59472c23f172ca61b16373"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "8a80ba2b9af2014dc1825d6c1966b2eb2b46ffe96297c1020425586f1bb8265d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "49f20f88921790faf9939b0342284c351cf375211c3b2d0b3a7a1d9c47f04c18"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "1a8cc18ccdea562c6ca34edecaf31f229a411bccaea66740d1eaf1f9c4199e40"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 54,
+      "raw_lf_sha256": "98209757dd938b61a830ff2d5bc616dc99486933c6a2bbcb6dd6fc92270873fd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 55,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 56,
+      "raw_lf_sha256": "09b03ce244d420d11fa6225c915651301132cdaede645157ccb118693c99d606"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 57,
+      "raw_lf_sha256": "f4783b9d09ac021c66232cc54722a21e22af0d692c2740ac3065572924240a0c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 58,
+      "raw_lf_sha256": "52253064a185ff13945ed0dce31da104e218b76bde1878a4e417174b15a2b67e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 59,
+      "raw_lf_sha256": "25db03fdd67c74af9f80b25075f052de44d2e734f75b23e32473e44d62744236"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 60,
+      "raw_lf_sha256": "f1005a77cdb2d5729f0343687082cf232db2e9e1cf7e644b10173d1e18c01284"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 61,
+      "raw_lf_sha256": "45080db1293f7e65f5c5efdf4f819722b70153b771a1474da769168be59b3f4b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 62,
+      "raw_lf_sha256": "58078c196aa7f4107b3059f271d53ae406d5b47a821880c8bad080229f0e8e72"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 63,
+      "raw_lf_sha256": "fd25249bbb8893c52664273cb8b48a0dba2c883eb01852e65968af766969f0a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 64,
+      "raw_lf_sha256": "a3255c496e30c34140453b5d0a3077e14dc109ddb0334da30e2a4b30e36fe361"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 65,
+      "raw_lf_sha256": "e388f4e453e75607d3dbfdf79b817861c538d06b17dccf3648b691a9d5437996"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 66,
+      "raw_lf_sha256": "5aaa6b472d12b28c3ad47b6fc9e42873662180db19b636cd6c38d98882cefeb4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 67,
+      "raw_lf_sha256": "5154479ed84fd84352b5a5eed8a8cfdc85ff564ea9f2bb085fc643bbae6ee788"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 68,
+      "raw_lf_sha256": "cd0a174c896d89510e7d3958a649b325be5af488e11a865905c99478ead50f65"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 69,
+      "raw_lf_sha256": "1ba5073cbb520abc4c7ac3c02fcde3ca82c5c6ba20b61134a3e7e934927657e2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 70,
+      "raw_lf_sha256": "6d509bef373c313f73c64a97cc35da7048b1852011a19cb86163eb01fbc0c73d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 71,
+      "raw_lf_sha256": "203d87f6e7c6c6c0a23f9da811b0c354330217b33673a6676d5fe87da7e7cd72"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 72,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 73,
+      "raw_lf_sha256": "29384c474a669bff80f3202e5bce561560a04c14693aa02136e48eb25b43d378"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 74,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 75,
+      "raw_lf_sha256": "e4b6962ff4e7b1a890e9fd1c8314908372c0d08d3ec7fef2a86ad56f0afcf1cf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 76,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 77,
+      "raw_lf_sha256": "92a4cf5e2dd7e74e6fc8443907c10b1c06c52651a2704e320f185b171c477988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 78,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 79,
+      "raw_lf_sha256": "a9ccee02a3c1a76f1b59a211ed6b0d32fa8ee392361b6ee584488177943ac010"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 80,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 81,
+      "raw_lf_sha256": "b066c94dcaf37178219942125dc3859dd6a64fd52b5f9ec0df2c2ae588869aad"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 82,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 83,
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 84,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 85,
+      "raw_lf_sha256": "2bfc092baff673b19f425a4616dff98f3982c3c6d25bd1fc173535b0517ae3b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 86,
+      "raw_lf_sha256": "48f3611ebe8ecf0c00ccd98b67476a0ea1d3852a12932315db0faf6e8d390ad9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 87,
+      "raw_lf_sha256": "f6757b6e2474c63efe5529544d07665da65db11246401307b01bd291c513c66a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 88,
+      "raw_lf_sha256": "9f09cc04ebb745975ff2f0f5a430b1cf503de48da36d5e5aa1009444abb09bf5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 89,
+      "raw_lf_sha256": "e6db567789088beb4521f6c8d426912528338d77f1d90c7ff70137e8672c40f9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 90,
+      "raw_lf_sha256": "f28ba28ff5cae27f1a53f8ce0bb25bd1eca3bd56461c94d2c1e8ff50037a1fc6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 91,
+      "raw_lf_sha256": "0023ecf07f29882756c70b820f2cfb3fac073b2d9bdec421c4889c6c11ff5a74"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 92,
+      "raw_lf_sha256": "452e0375a385423ef53954312eaece0e56ca0b6dc5963ec3c0b21a84eaf0349b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 93,
+      "raw_lf_sha256": "7005e50b2008815ca3372f0698ef17bd7cbe7e6dc9a0dd71444171bf5835f5c8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 94,
+      "raw_lf_sha256": "ad9f3afdb2a97c90f7143721eed02a1395ad8f10de8d02164f2217b77087cebd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 95,
+      "raw_lf_sha256": "54d4f94261082d25df3915fd0f946c904dc87294711c95096d5247a472eca303"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 96,
+      "raw_lf_sha256": "a8d188edc2aef10cdf6d0458a79058a5ef2e988c67f811887e43ad1495128b18"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 97,
+      "raw_lf_sha256": "ddadcbac0c70d2f037b6c7ef61afa8e8748e9ba4360ade037c65d2c6621c498c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 98,
+      "raw_lf_sha256": "b7214da8df89c72850c6f20801cff0ec654b7a09fedf93201c5bb7093a7c6402"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 99,
+      "raw_lf_sha256": "cc5dff56d0ff31279982d01d85cb7f719e6149d93e23c8848df39217774ca07b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 100,
+      "raw_lf_sha256": "c5738f1a412aa78552fd6c4c1485886c50e35a801d6c356ef39c68a924a5756d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 101,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 102,
+      "raw_lf_sha256": "df9b8fe4a7e0bcf5f8c9498c6f7dfd2a39003a9a8869ec40c77585d784998562"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 103,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 104,
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 105,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 106,
+      "raw_lf_sha256": "85b87ce0b7e3c742caf94605045d311cbd6300530883985e6c381650a007de3a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 107,
+      "raw_lf_sha256": "5520c435428182a4942ecd31fb00d6e0cda44ddbd64e55fe20e32fafba434f9f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 108,
+      "raw_lf_sha256": "1f9c1c846633a5f1dc2142eaea0ae84dd3c80ca87a4d289bcce32b90a3f519df"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 109,
+      "raw_lf_sha256": "204a04da2f82c1d851a94eb5427d1fd3b1829e07594b25e49126acd805c0586d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 110,
+      "raw_lf_sha256": "09c2834c3f38d42c981438b65f72546b2b8046e1e229b0f1d5e9692b82ba47a3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 111,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 112,
+      "raw_lf_sha256": "5b07613d77f172bf67069c0d9bcd1e6e8f449402b055c683256f2d3f431a6f12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 113,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 114,
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 115,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 116,
+      "raw_lf_sha256": "7607ecd2c98eb9854c373b4915cabf507bbe8c97429153e9e13ac66c70401184"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 117,
+      "raw_lf_sha256": "732de47f3194661d02512a890eb748bfaeecabc7354e0d7151df95140c949818"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 118,
+      "raw_lf_sha256": "a156bfc2d1245c5efcdc13611fde541f37a77eeae7f6bea8a743577dda24f50e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 119,
+      "raw_lf_sha256": "3cc417ddc392dd56530c4674f2543d3691db81b57566981f4d7336bb84f8c59f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 120,
+      "raw_lf_sha256": "18bcbec2ed316d211b43a85ef75a00847010792419fbc0a12034a1e5e4006e5d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 121,
+      "raw_lf_sha256": "0cd30d378d578e393810958d25c1f98654aba0c6dac2f425912c115236224203"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 122,
+      "raw_lf_sha256": "1540a8995e729f6b68205cfed90786d8d9af7b343e53d79de14075933b0eba8d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 123,
+      "raw_lf_sha256": "7f07acd79c146596145c69bac05d45b65bcbe8aa188789a786112df66cb3dcc1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 124,
+      "raw_lf_sha256": "95c791ca7ee89b7cc8064a94602ca2f994c155d046e05670f8e125eb5a34ead9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 125,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 126,
+      "raw_lf_sha256": "bdfa6f3d292033c44dcbd88ad963d8432c952264ac989badb04eba5e3249d2ba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 127,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 128,
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 129,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 130,
+      "raw_lf_sha256": "b764961fe83d9c20d2c8c273a39e08244fd04e8c4e7c9b0e269f623959b6f08a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 131,
+      "raw_lf_sha256": "518ee8bcc138dc5bc3de00ea2267855dfa161c94ed4236ac114b27fe2624822e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 132,
+      "raw_lf_sha256": "b880a86c360cafb8513b82eb014cbd54d6c02f25e46e09b6421409a0aed7053c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 133,
+      "raw_lf_sha256": "ef0d11e0cb81e9ec52044a652b16c5ab7d22c80ce5f46b9b62e5df23f5e01a7b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 134,
+      "raw_lf_sha256": "cd14c371a052ea45de15378ac178e6a518a9412d29f5230ffbd15e68a9c1fc33"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 135,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 136,
+      "raw_lf_sha256": "b3f9c68386b9ca25884c19953a0ce866f2d2ccf2ba94e51a98156f275a3ebc47"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 137,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 138,
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 139,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 140,
+      "raw_lf_sha256": "97e9a80caf3b9a71ac3ad2c94f03eccbf6b130a368d7c0a68cfea1f4aa3f54f9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 141,
+      "raw_lf_sha256": "9239385efcd1a7b834de37fc53bbec35cd5fef0c71ed313fd3213117098733ae"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 142,
+      "raw_lf_sha256": "ef99327dbd5e83d285c0acfaab7e08d071a5168ab5527f2bc6caf3611f4b61a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 143,
+      "raw_lf_sha256": "01030173b3c11f0d30429179c402c473a24fb4a1df8ad800da51827b20006ed9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 144,
+      "raw_lf_sha256": "51f991940ce37803533d685df339347cb51137c96aadfd491ef64d54f69a2388"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 145,
+      "raw_lf_sha256": "862bb9582c976abcacafa23d3df0392562e3c98f40cc6eff4e28ed43ad9c5aed"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 146,
+      "raw_lf_sha256": "1879d73221a0ab55a9d370771272ce210de688f39ceef580e1f47865fc4fe9cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 147,
+      "raw_lf_sha256": "924d90273ad045ceb29c16c42e0b20db97810f71f2162036a8a2f2837e1a0cab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 148,
+      "raw_lf_sha256": "0bba52c603dabb25ed2642f9302015ed327124ce2fa93a89b87837b1812ce2ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 149,
+      "raw_lf_sha256": "f72ed22ec824174aef76ef57d670a4b5c02fac130922a2cfa4ad00fe03741737"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 150,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 151,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 152,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 153,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 154,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 155,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 156,
+      "raw_lf_sha256": "8a54e28e07dfab185a753cb950f1d31c3d55a2cbff4e7dbe9411d385a0f03209"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 157,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 158,
+      "raw_lf_sha256": "6495a8dafd8beeec30f5c3555be51af554c73b5387afe82581e974dc575bd27a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 159,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 160,
+      "raw_lf_sha256": "ee03882ee4fe6c90e3b19d5266fe937e4702bb6f61b5210fe4a3b43d08519d82"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 161,
+      "raw_lf_sha256": "b1c015e4237c1720df25d39ea93f181092385f1a14737cc959358cac157ac884"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 162,
+      "raw_lf_sha256": "6dc18834720ebafdef6862655ad0a06f6225a38115433c22b8924ab9d8836724"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 163,
+      "raw_lf_sha256": "6a4d05645f4fcebada7ba2ca373bd1b02bf1297bef87a1d9c255b28dc922c1f7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 164,
+      "raw_lf_sha256": "fc78b877cd8b94f733e08cdf7ba7191bb62fc0c4aeba2b9150992eb2f2506bf3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 165,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 166,
+      "raw_lf_sha256": "15d923e8ea6b5a2c7ff34fd4be7d84cf52a4fa95f5c03700f64eb79f8a2e9e35"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 167,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 168,
+      "raw_lf_sha256": "1367e3d8838919e79ca96e0e7699ad41d380eb8ed4eb7d9f123025f84a34cca6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 169,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 170,
+      "raw_lf_sha256": "ed3e140e588abe67526072a98e96f4ce865ae6fdf2dd6e5ca0c921c81a4812b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 171,
+      "raw_lf_sha256": "f0e26790b642601e3b7681b019c0582d07b2dff450b0e87bef3908124c4744bb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 172,
+      "raw_lf_sha256": "1e1a99f9f84b30599f89d82af225ae0fee23bf5c0c33420fb0539996848f2e18"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 173,
+      "raw_lf_sha256": "cddbd45c205ce366f23ea1fcdff6571e226d7aa75fb6d10dec54dfdb61f1f67a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 174,
+      "raw_lf_sha256": "253159e53560749df42e0c47bd4a54daeda9789ecec93d8d9a4927c3b68a2255"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 175,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 176,
+      "raw_lf_sha256": "8776d7a83b6df64708c7ab1876bd7aef1fddb66a1640f288ef921952eb23475b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 177,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 178,
+      "raw_lf_sha256": "bd81fbae94b5b1c5aeb5b6a6ceba88f71c7c4fbf3af4cb34c468ed110892fb55"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 179,
+      "raw_lf_sha256": "74572a08e31c74551531406334476f193295bcf0e8c006cb195c3a060ac80393"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 180,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 181,
+      "raw_lf_sha256": "c5b813ede9a783325f06d77d463cc4b5dc2b44d3ca109476d9c7e053f3d77289"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 182,
+      "raw_lf_sha256": "5f005ea15e8714111b438839beff2c18d2a3c9a822e0c6b2ec21531d3d9c5418"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 183,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 184,
+      "raw_lf_sha256": "04855cc2d7746c667ca8cab8570a60a5a508974b60db622e9f4c8890566aa4ea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 185,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 186,
+      "raw_lf_sha256": "5d2c52bfb39413519b7b8c663cd3717726c2fd5a7a55555f31b69249a028ad19"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "fcf2c0033f2f0f404127f806c8864ab2789e1cb78ef71d0f5c2354edcee4a64b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "35450f19574f316204bf77c990ed4766f5db9ca86bf947b5dbfbc3c60ddc0fd1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "ac57734c3e1d631d1c55c08517270de48e83aa1170707d183c090dfc7a24a988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "bc48fc3848c574c19b395a3c765f537ade19f0b1d0e89df5f4d6a986f9762b7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "7367e9712c88585cc5f2dde03700cc616bfa7e7edf5db2ecf8b0a347f9551dcb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "fa6d9efa2aaa965b731dc3d570a48b6e4a72eeb4e287bdf6b2b80a93988ee01d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "0ea5e8e5b3cd37fd58559175db3c863d34a137a668d366c497d0c0ba36df6066"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "9b97d82f06160167ba3ddad37960ebb5e2c7a1a6612e89391b4218fd98ef9088"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "99bd72ebbfef14f955e663b6f2b3216a64e9487175f4914728f18c6b0a8ec788"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "78bdcdfae9386e6423f7fe56b9ce2a3fc839c9ebfef90ffb97dc48510d9c064d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "2f7b302c328e0d0bbe4cf4116a6abebd92e30147aae1b639beeab9d2c89d1aee"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "dddd14256ae12c210a2cb9811ccf9a843c00d56d948155e5378e126d65952e7b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 1,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 2,
+      "raw_lf_sha256": "b92cb25fc7268f9f507866a71edaa4a8fa05bb3887c901b793d1c40afa2902aa"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 3,
+      "raw_lf_sha256": "52787172d6c4a8982894cc088a58dc1df0a0e1b47b96f2cf816f8799e64cfda2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 4,
+      "raw_lf_sha256": "35450f19574f316204bf77c990ed4766f5db9ca86bf947b5dbfbc3c60ddc0fd1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 5,
+      "raw_lf_sha256": "ac57734c3e1d631d1c55c08517270de48e83aa1170707d183c090dfc7a24a988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 6,
+      "raw_lf_sha256": "bc48fc3848c574c19b395a3c765f537ade19f0b1d0e89df5f4d6a986f9762b7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 7,
+      "raw_lf_sha256": "7367e9712c88585cc5f2dde03700cc616bfa7e7edf5db2ecf8b0a347f9551dcb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 8,
+      "raw_lf_sha256": "b8e0419afbe1b1eea382ff37243bd4cc306439e777c20b65ae2f96126c8bf0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 9,
+      "raw_lf_sha256": "6ca290e7ca032d298a3bdb69ff17821880e9537fdb9d0895e41a19d782b56826"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 10,
+      "raw_lf_sha256": "e576f1180042a81f3da9f8266f8330755a8e09ecb1d97015f673b2ce9471915b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 11,
+      "raw_lf_sha256": "044a115824dc4e6a68285fefd063110d1989a5dc15e29f2010d17530a2ea77f4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 12,
+      "raw_lf_sha256": "7b91931a377b0a5c254f20d157b7f7261b8f379779961b8cbe41300bf50f473a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 13,
+      "raw_lf_sha256": "f52d711103d50a437830c6fbcd04fb4bab49a0f82f6d26d1c791c6e8488dd090"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 15,
+      "raw_lf_sha256": "0abc7c20dc1be73e61885a27f8388998cf9c91ae96cfe39d47766fe3d9d6bfe4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 17,
+      "raw_lf_sha256": "d7b9fee6681eff097eb597067655f848f872e085d70f4043342007ca22fc7a58"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 19,
+      "raw_lf_sha256": "1d11c3124dda80132effb8c07c584ccf6e4fc6a7678588952914ea7022d82b89"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 21,
+      "raw_lf_sha256": "3332d7aa45e0e7126d26cc63fd8c759225638c148b7741c27d4910840cc2cd3b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 23,
+      "raw_lf_sha256": "6b763e3ab6b8c68e6e11e50b79f2b66bf8e0ddb3ccc0e84973d30f958b5b5ced"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 24,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 25,
+      "raw_lf_sha256": "bcbf2dc4f1f4116daa80e51fa59db8303cd906b69c4ad9abf02a4b3d4105fa0a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 26,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 27,
+      "raw_lf_sha256": "9ef61b6a807a54dee5abaed9e19680a6d08ad6b1c8c7249e47537181474a3413"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 28,
+      "raw_lf_sha256": "cb6f982dcf737764d0e3b596e8c80e5fc7631982ce2f5e7cfcb1e39b62e8dafc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 29,
+      "raw_lf_sha256": "d7f96b1b400df4d3bd22617b5490a6910d5e20b9e8bda7556614d022c6a3f3ea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 30,
+      "raw_lf_sha256": "de3f00f3942125670d8f5c0b5d1baffd84157a6a1a647d76c85c8bd7659a4c76"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 31,
+      "raw_lf_sha256": "c58d5924a90cbd050fe50e4788178ecb3435aa2d0599ed1a2215ecb264c009d5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 32,
+      "raw_lf_sha256": "2f0d353a283c7ae2968559edd2fff23e888dfa9504916148dc24630fbd8926e1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 33,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 34,
+      "raw_lf_sha256": "466c7adfcb502a601290e847d3d262b4c8462a67b5243438f403c2f771a6f613"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 35,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 36,
+      "raw_lf_sha256": "e7edc89f14aa7a3b2fc0bbd9ccac96e916e3e2383dd1765d117fab22c9995f39"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 37,
+      "raw_lf_sha256": "9b7beae9751760f955cdd852a2727ff794b96ad4a823d66cea202a6e33386b88"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 38,
+      "raw_lf_sha256": "2a987619d13d6d5c113d3a06d67c730d03eb8ca5d6ceb202670f5bb2dce1a208"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 39,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 40,
+      "raw_lf_sha256": "db540d3b2a02e15575a199e647d4a1e8a1fc511e8b683f8924983ab3ae8acc22"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 41,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 42,
+      "raw_lf_sha256": "35df90a677a15cac851b1482ed6e7aa633f02c6d27776dfb2471dae499633f3d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 43,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 44,
+      "raw_lf_sha256": "ba9ec16838878b886a0e0d51b3314a0bafccb355a6452bc76e52159ec27e38d7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 45,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 46,
+      "raw_lf_sha256": "3ee05318c030f35fb39f078d5a0a018903fd5fd7ac15dfbd9037cf35cdfd433c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 47,
+      "raw_lf_sha256": "b58ca9a160c9408765cb934dfd8e464d1672d7ebf771d53d5b17a6dfcd2e0592"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 48,
+      "raw_lf_sha256": "0fdf91b06d767c3a8f408900dc5640437251710160eb24fd0f48423ef3c61234"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 49,
+      "raw_lf_sha256": "dda6425744b091d8c7d56fb7c63b0196d9268148d746652a18f53134c52af092"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 50,
+      "raw_lf_sha256": "679b05b8772e8c39d5b2c1c3f4907107ae2051b3de014a31aaa7b1a2b977077a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 51,
+      "raw_lf_sha256": "69bd17b8729a950f2935b3d0f12e007f97aa0f989365647ef2e14a35d04419e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 53,
+      "raw_lf_sha256": "e8b00c9529aee838fd6f437e59ed8c3deb18a99c77bc4151b797487d09dda7a0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 55,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 56,
+      "raw_lf_sha256": "338fa3ff32214d601b4c6f7e504cd571bfc4f48b75db1ddb7e8281a491580b15"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 57,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 58,
+      "raw_lf_sha256": "8b6aed8607c1c7e0525c7cbcac8f837288799d75fce509854b177b083738023b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 59,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 60,
+      "raw_lf_sha256": "08ded94155391a4ffc862659884fc7763dee61c92e971ba529fa81ff5f26d7f7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 61,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 62,
+      "raw_lf_sha256": "7ef03f57acacca9eac168cd6fbe8363c54810958e6102c7e433e39fa173db036"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 63,
+      "raw_lf_sha256": "dbd5f39f2715499cfba767a4dcf0eecf8cdab45217445a07c198e2c44f612db2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 64,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 65,
+      "raw_lf_sha256": "86708b525187758f7d118676c3f058230f322cb24781a16f5c50706c6723dca3"
+    }
+  ],
+  "helper_review": {
+    "path": "/tmp/pr257x-infra-stage2b-root-review01.md",
+    "sha256": "a9de25dae5120091c574c454256f538f220455430efb734353275e1df2d82c5e",
+    "original_body": "6856529fa8793e4bad51c80e0eb458dfaeafcbf9",
+    "clarifications": [
+      "007既存verification sourceのidentity/revision/scope/期待結果と不足時unknownを明示",
+      "測定primary dispositionの排他的候補と比較案を明示"
+    ]
+  },
+  "checks": {
+    "validate": "bindings=147 fail=0",
+    "stale": 0,
+    "residuals": 0,
+    "diff_check": "PASS",
+    "source_full_span_bounds": "PASS",
+    "prefix_bytes": "6/6 PASS"
+  },
+  "limits": [
+    "L3未承認・Claude正式review未成立",
+    "L10設計のみ。実行・実測なし",
+    "旧runtime/test/CI/Bun不実行。push/PRなし",
+    "要求意味・scope・owner・版を変更しない。技術候補を通常L3承認へ渡す"
+  ]
+}

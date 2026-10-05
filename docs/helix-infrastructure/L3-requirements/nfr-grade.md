@@ -43,3 +43,18 @@ stage: 1
 resourceの意味上の設計はCORE、資源と観測stateはINFRASTRUCTURE、作業/change stateはOS、authority/credential/network/isolationはSECURITY、実操作はSECURITY制約下のWorker、配置/容量判断案はINTELLIGENCE、効果評価はLABOが所有する。NFR候補はこれらの境界を移さない。
 
 `HELIXINFRASTRUCTURE-L2-005` は採択済み入力であり、006復旧時に当該操作へ適用される復旧義務を参照する。005のL3未着手を理由に006の親revisionを未採択/未承認扱いしない。逆に、006が005のbackup/restore/rollback L3やL10まで本Stageで完成させたとも扱わない。Fully automatic failover、autoscaling、multi-cloud、L2-012以降のversion holdは1.0要件/受入条件に含めない。
+
+## Stage 2b suffix — HELIXINFRASTRUCTURE-L2-002/007 NFR候補
+
+状態：候補のみ。対象は採択済み HELIXINFRASTRUCTURE-L2-002/007、version_target 1.0。固定L2/L11が要求意味のauthority、PO決定は親identity/revision/versionの採択登録、G0は実装順序のみを記録する。このL3/L10本文は未承認・未実行であり、実装・実行・配布の許可を生成しない。対象範囲とsource pinsは[Stage2b公開cutout監査](../../governance/audits/requirements-stage/l3-l10-infra-stage2b-main-publication-cutout-2026-10-05-72fa2f08.json)に固定する。
+
+### 対象・適用範囲 — HELIXINFRASTRUCTURE-L2-002/007
+
+対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
+
+| 親 / NFR ID | 根拠・比較案 | 測定候補と対のL10 |
+|---|---|---|
+| L2-002 / INFRA-NFR-002-01 | TER-R-02/05の宣言・実効分離とversion不変driftを部分再導出。固定親の9差異類型を独立照合する案Bと、versionだけを比べる案Aを比較しBを候補とする。 | C01〜09の宣言scopeで9/9類型識別、design/target/actual三state無言変更0、unknownから一致0を候補として測る。freshness時間や全環境SLAは新設しない。 |
+| L2-007 / INFRA-NFR-007-01 | 旧distributionのclean consumer/入力版/実結果照合を隣接例として部分再導出。backup/文書存在だけの案Aに対し、再構築・再接続・起動・検証の4段階を結ぶ案Bを候補とする。 | C01〜08で4/4段階source trace、元machineにしかない必要情報依存0、未完から誤success0を測る。固定RTO/RPO・機種値や旧release standing authorizationを継承しない。 |
+
+各scopeで契約上必要なfield/段階/変異を結果より前に分母化し、missing/unknown/stale/未観測を除かない。適用条件そのものが不明なら分母不明であり0/非適用へ丸めない。可観測と合格を分け、正しい拒否も照合可能な結果に数える。未実行は未測定。別の技術値が必要なら根拠・比較・測定方法付き候補として通常L3承認へまとめる。
