@@ -166,7 +166,7 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 
 ### 旧source起点・項目別処置
 
-旧L3 process `LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`, SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`) のFR+AC、3区分、対の検証という**形式の意味を再導出**する。旧G3、sub-gate、runtime、旧test実行経路は置換する。旧`OPS-R-01` (`LEGACY-ASSET-17C4BF78919578FEBB18`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68-73`, file SHA `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0`)と`OPS-AC-001` (`LEGACY-ASSET-F46AB11BD14F2C0469F4`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26`, file SHA `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58`)は、environment/resource identity、曖昧target拒否、credential referenceを保持してsecret値を保持しない意味を**部分再利用**し、適用scopeと現行ownerを再導出する。旧操作方式やauthority経路は移さない。旧`OPS-R-03`同L3 file `:81-85` と`OPS-AC-003`同acceptance `:28` はrollback plan/receiptとincident closureを分ける形を**部分再利用**し、現在のL2-005 scopeへ再導出する。旧tech-environment reconciliation、lifecycle state separation、security broker等の旧資産はversion/source mismatch、unknown、owner境界を持つfixtureの形だけを意味再導出し、旧schema/state taxonomy/CLI/DB/CI/runtime/valueは置換する。
+旧L3 process `LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`, SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`) のFR+AC、3区分、対の検証という**形式の意味を再導出**する。旧G3、sub-gate、runtime、旧test実行経路は置換する。旧`OPS-R-01` (`LEGACY-ASSET-17C4BF78919578FEBB18`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68-73`, file SHA `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0`)と`OPS-AC-001` (`LEGACY-ASSET-F46AB11BD14F2C0469F4`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26`, file SHA `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58`)は、environment/resource identity、曖昧target拒否、credential referenceを保持してsecret値を保持しない意味を**部分再利用**し、適用scopeと現行ownerを再導出する。旧操作方式やauthority経路は移さない。旧OPS-R-01/OPS-AC-001はsecret値を保持しないと無限定に記す一方、固定L2-010は通常resource stateへの保存を無条件に禁じ、backup/snapshotは適用されるSECURITY条件に従わせる。この差を保ち、旧記述の無限定禁止をbackup/snapshotへ拡張しない。SECURITY条件の適用が不明ならSECURITYへ返す。旧`OPS-R-03`同L3 file `:81-85` と`OPS-AC-003`同acceptance `:28` はrollback plan/receiptとincident closureを分ける形を**部分再利用**し、現在のL2-005 scopeへ再導出する。旧tech-environment reconciliation、lifecycle state separation、security broker等の旧資産はversion/source mismatch、unknown、owner境界を持つfixtureの形だけを意味再導出し、旧schema/state taxonomy/CLI/DB/CI/runtime/valueは置換する。
 
 ### 親句→FR/AC trace
 
@@ -262,7 +262,7 @@ Incident meaning/severityは既に承認されたsource/requirementとrevision�
 
 #### INFRA-004-FR-04 — telemetry failureとowner return
 
-Telemetry欠落、source不明、collector failureをunknown/unobservedにし、観測source/collector ownerへ戻す。未確認resource、評価待ちincident、未完のobservationを保持する。
+Telemetry欠落、source不明、collector failureをunknown/unobservedにし、原因を推測確定せず観測source/collector ownerへ戻す。未確認resource、評価待ちincident、未完のobservationを保持する。
 
 **INFRA-004-AC-04**: missing telemetry、unknown source、collector failureを独立negativeにし、health/incident successへ転換しない。原因を推測で確定せず、telemetryはsource/collector ownerへ、incident meaning/severityは承認済みmeaning ownerへ戻した記録とpending evaluationを追跡できる。
 
@@ -304,7 +304,7 @@ OS Work/Change actor/identity、target、revision、start/stop/resume、evidence
 
 通常Work/Change-to-resource connectionはHELIX全体のstage release構成体や後続版HRI-L1-015を待たず成立する。stage packへ収載するときだけHELIXOS-L2-014の契約を用い、stage IDとruntime revisionを分ける。
 
-**INFRA-009-AC-02**: stageなしの通常fixtureを個別に成立させ、HELIX全体stage release、後続版HRI-L1-015、全7製品/L1-023完成を待たない。条件付きstage fixtureでは同一stageの構成証拠、Infrastructure依存、更新/rollback evidenceを確認し、stage ID/pack identityとruntime revisionを別fieldとして相互参照する。部分更新/rollback/未完operationは独立negativeとし、stage未使用を失敗扱いしない。OS ticketをruntime stateの正本にすること、Infrastructureが作業承認を発行すること、全体完成をstage開始gateにすることもそれぞれnegativeで拒否する。
+**INFRA-009-AC-02**: stageなしの通常fixtureを個別に成立させ、HELIX全体stage release、後続版HRI-L1-015、全7製品/L1-023完成を待たない。条件付きstage fixtureでは、同一stageの構成証拠、必要なInfrastructure依存、更新/rollback evidenceの3種をそれぞれsource/revisionへ結び、stage ID/pack identityとruntime revisionを別fieldとして相互参照する。部分更新、rollback失敗、未完operationは独立negativeとし、stage未使用を失敗扱いしない。OS ticketをruntime stateの正本にすること、Infrastructureが作業承認を発行すること、全体完成をstage開始gateにすることもそれぞれnegativeで拒否する。failure/partial時はOSまたはInfrastructureの該当state ownerへ戻し、稼働中stage、runtime revision、適格rollback先、停止中operationを保持する。
 
 #### INFRA-009-FR-03 — mapping失敗時の保留と戻し先
 
@@ -316,15 +316,15 @@ Ticket/target/runtime revision/state mappingがunknown、mismatch、partialな�
 
 #### INFRA-010-FR-01 — operation-scoped authorityとread/write義務分離
 
-全operationのtarget/project/action/revision/scope/expiryに適用される有効SECURITY authorityと、SECURITY制約下のWorker execution contractを照合する。Read-onlyとstate-changing operationを分け、state-changingに限り、そのactionへ適用される採択済みL2-005のbefore/after、backup/restore/rollback/recovery dutyを確認する。credential値は通常resource state、backup、snapshotへ無条件に保存しない。Workerはunbounded Shell主体でなく、operation-scoped contractに従う。INFRASTRUCTUREはpolicy/authority/credentialを発行しない。
+全operationのtarget/project/action/revision/scope/expiryに適用される有効SECURITY authorityと、SECURITY制約下のWorker execution contractを照合する。Read-onlyとstate-changing operationを分け、state-changingに限り、そのactionへ適用される採択済みL2-005のbefore/after、backup/restore/rollback/recovery dutyを確認する。credential値は通常resource stateへ無条件に保存しない。backup/snapshotは固定L2の「無条件に保存しない」を保ち、該当SECURITY条件を伴わない保存を拒否する。条件または適用可否がunknownならSECURITYへ返す。Workerはunbounded Shell主体でなく、operation-scoped contractに従う。INFRASTRUCTUREはpolicy/authority/credentialを発行しない。
 
-**INFRA-010-AC-01**: read-only normalはdeclared target/scope/read target、空のwrite-set、適用可能なread authorityを確認する。当該operationのwriteを拒否し、declared target resourcesのbefore/after不変を確認するが、無関係なresourceの変化をfailureにしない。不要なwrite authority/005 dutyを強制しない。mutating normalは該当する005 dutyを別fixtureで確認する。wrong target/project/action/revision/scope/expired authorityは個別に拒否する。credential値を通常resource state・backup・snapshotへ保存しようとする3変異、unbounded Shell実行、Worker成功返答だけで実状態変更を受け入れる変異、INFRAがpolicy/authorityを発行する変異は個別negativeにし、いずれも拒否する。Read-only outcomeと変更結果を混同しない。
+**INFRA-010-AC-01**: read-only normalはdeclared target/scope/read target、空のwrite-set、適用可能なread authorityを確認する。当該operationのwriteを拒否し、declared target resourcesのbefore/after不変を確認するが、無関係なresourceの変化をfailureにしない。不要なwrite authority/005 dutyを強制しない。mutating normalは該当する005 dutyを別fixtureで確認する。wrong target/project/action/revision/scope/expiredまたはrevoked authorityは個別に拒否する。credential値を通常resource stateへ保存する変異は無条件に拒否する。backup/snapshotへSECURITY条件なしに保存する変異は個別negativeとし、条件がunknownならSECURITYへ戻す。read-only宣言だけでwrite禁止の適用証跡を欠くfixture、および宣言targetのbefore/after証拠を欠くfixtureも個別negativeにし、成功扱いせずSECURITY/OSへ返す。unbounded Shell実行、Worker成功返答だけで実状態変更を受け入れる変異、INFRAがpolicy/authorityを発行する変異も個別negativeとする。Read-only outcomeと変更結果を混同しない。
 
 #### INFRA-010-FR-02 — normal OS/Worker routeとupdate admission
 
-通常操作はOS assignment/ticketとINFRA-009 Work/Change connectionを用いる。該当義務がunknownまたは未充足ならstate-changing operationを保留する。Update-admissionはresource変更を適用するoperationに限り追加条件とする。未accepted/unknown/mismatched admissionは当該変更を開始前に停止する。停止中はoperation stateと未完義務を保持し、OS復旧後に結果を同期する。
+通常操作はOS assignment/ticketとINFRA-009 Work/Change connectionを用いる。該当義務がunknownまたは未充足ならstate-changing operationを保留する。Update-admissionはresource変更を適用するoperationに限り追加条件とする。未accepted/unknown/mismatched admissionは当該変更を開始前に停止する。停止・回収時は実state、未完operation、該当義務を保持してOSへ返す。OS復旧後のresult同期は独立bootstrap/recovery routeに限るINFRA-010-FR-03へ置く。
 
-**INFRA-010-AC-02**: 有効なassignment/ticket/referenceと充足済み適用義務を持つnormal fixtureを記録する。通常routeのticket欠落、assignment欠落、義務unknown、義務未充足をそれぞれ独立negativeにして変更を保留する。別mutating fixtureではaccepted admissionのみ変更開始可能で、denied/unknown/mismatch/expiredを個別negativeにする。同じ条件下のread-only operationはupdate admission不在だけで拒否しない。通常operationがindependent recoveryの免除を流用する変異も拒否する。停止/回収後のactual state、未完操作、義務を保持してOSへ同期する。
+**INFRA-010-AC-02**: 有効なassignment/ticket/referenceと充足済み適用義務を持つnormal fixtureを記録する。通常routeのticket欠落、assignment欠落、義務unknown、義務未充足をそれぞれ独立negativeにして変更を保留する。別mutating fixtureではaccepted admissionのみ変更開始可能で、denied/unknown/mismatch/expiredを個別negativeにする。同じ条件下のread-only operationはupdate admission不在だけで拒否しない。通常operationがindependent recoveryの免除を流用する変異も拒否する。停止・回収時のactual state、未完操作、義務を保持してOSへ返す。独立recovery routeの復旧後result同期はFR-03/AC-03に限定する。
 
 #### INFRA-010-FR-03 — independent bootstrap/recovery route
 
