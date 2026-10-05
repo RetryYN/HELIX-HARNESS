@@ -745,7 +745,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-037-S5-021` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L3 approval authorityだけunknown。 | Phase2 L4を保留し該当authority ownerへ。 |
 | `CASE-HARNESS-L10-037-S5-022` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | 同じL2 identity文字列を両phaseに含むが、Phase2 decision evidenceはPhase2 scope/revisionに明示適用され各phase L3/L4/L9も別に追えるnormal。 | identity一致だけで失敗にしない。authority/scope/revision evidenceで判定。 |
 | `CASE-HARNESS-L10-037-S5-023` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2に適用されるdecision evidenceなしにPhase1 applicability/authority judgmentを別Phase2 scopeへ流用。 | merge保留しPhase2 requirement formation ownerへ。same identity自体は変異条件ではない。 |
-| `CASE-HARNESS-L10-037-S5-024` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 scopeだけPhase1 scopeとmismatch。 | Phase2 decisionを流用せずPhase2 requirement ownerへ。 |
+| `CASE-HARNESS-L10-037-S5-024` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2対象scopeをagent-scope@r1に保持し、Phase2 decision evidenceの適用scopeだけを別のagent-scope@r2へ変更。他のauthority/revision/receiptは正常。 | 対象scopeに適用できないdecisionを流用せず合流を保留し、Phase2 requirement ownerへ戻す。Phase1とPhase2のscope差自体は失敗条件にしない。 |
 | `CASE-HARNESS-L10-037-S5-025` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L3 authority revisionだけstale。 | Phase2 L4/merge保留しL3 authority ownerへ。 |
 | `CASE-HARNESS-L10-037-S5-026` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L4 exists but its own applicable L9 receipt is not yet produced. | L4を保持、mergeは保留しOS/選択済みexecutorが出す後段receiptを待つ。 |
 | `CASE-HARNESS-L10-037-S5-027` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L9 scopeだけmerge scopeとmismatch。 | merge保留しOS/選択済みexecutorのphase source ownerへ。 |
