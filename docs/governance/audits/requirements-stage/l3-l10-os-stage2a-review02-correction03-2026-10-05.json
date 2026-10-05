@@ -1,0 +1,128 @@
+{
+  "record_kind": "OS Stage 2a review02 follow-up corrective supplement 03",
+  "record_date": "2026-10-05",
+  "authority_effect": "none",
+  "meaning_scope_owner_version_changed": false,
+  "body_parent_revision": "eba140c3ff482d4089402c8e9717a229ff0b5eac",
+  "body_revision": "6fcc25ac9c646bac43cf83f7c140d66f140196d0",
+  "supersedes_correction_scope": "Adds three post-review02 consistency corrections and distinguishes public C13 comment bytes from a historical local snapshot reference; prior records are immutable and unchanged.",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "full_sha256": "c49988f32a89332b1b11eb80b249f03f6711fc7891edb1de086c015a6ff6c318",
+      "bytes": 58422,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 12600,
+      "approved_stage2b_prefix_sha256": "cb82838b9e18ac8df5e02b48b65f1c318b90c08aec3cecd67a5d97193e827ab5",
+      "prefix_bytes_match": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "full_sha256": "f687c6ffb47b80471f3075823bfba9f58718a3efe31f4980598bf8de37a1f24f",
+      "bytes": 10912,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 855,
+      "approved_stage2b_prefix_sha256": "235787ab8c96e15ac91eec955ed5650a49a0993636e8523d006dc587f6d9a863",
+      "prefix_bytes_match": true
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "full_sha256": "0ab4279e9c3dbdd8de8e7a28e9e1c8fdf7321f8b2a824c11d2ab1d37519cb248",
+      "bytes": 11752,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 2732,
+      "approved_stage2b_prefix_sha256": "0c87bdde3491124ed8e6e8888115802f91ca1897e0760b44273d395967180326",
+      "prefix_bytes_match": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "full_sha256": "48b651a01786761241777c46c1c3a403c096dd86b79def6af63abca1097c687b",
+      "bytes": 68368,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 19873,
+      "approved_stage2b_prefix_sha256": "6dcafdd7f88ad6acde046702d4c0b681c9d94973f2967f24625bf5264cb24476",
+      "prefix_bytes_match": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "full_sha256": "5e222a75a2390824e64979ec4f8a8998673dca95e2b2be2fde1278a52afcc36c",
+      "bytes": 7131,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 891,
+      "approved_stage2b_prefix_sha256": "ffed2d5b4b688dd22aa8d3aae0b3b9faadd01a6074af530c8630da602f513629",
+      "prefix_bytes_match": true
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "full_sha256": "436a58b7e2b8c9b744a75d6c0ca5e2735480b697a7c3bf416f85fbb7011a6545",
+      "bytes": 10832,
+      "approved_stage2b_prefix_revision": "6276adb92b3056b1e53055cd56f214ebc5d87158",
+      "approved_stage2b_prefix_bytes": 2608,
+      "approved_stage2b_prefix_sha256": "2c0060eaa9efc027d34011f1948d18cdec66665e17b8a5b2e9b9b29d9fb29748",
+      "prefix_bytes_match": true
+    }
+  ],
+  "body_corrections": [
+    {
+      "finding": "CASE-OS-027-02f",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "change": "Removed unsupported qualifier 「小」 from 取り消せる成果物.",
+      "reason": "Preserve the root-requested correction without changing the case condition."
+    },
+    {
+      "finding": "CASE-OS-018-05 crosswalk",
+      "paths": [
+        "docs/helix-os/L3-requirements/business-requirements.md",
+        "docs/helix-os/L10-verification/business-verification.md"
+      ],
+      "change": "Added CASE-OS-018-05 to BR-OS-018 acceptance and BV-OS-018 trace lists.",
+      "reason": "Synchronize the existing functional case across business requirement and business verification traces."
+    }
+  ],
+  "changed_current_line_pins": [
+    {
+      "identity": "CASE-OS-027-02f",
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "physical_line": 353,
+      "literal": "| `CASE-OS-027-02f` | 取り消せる成果物を不可逆変更/release/tag/distribution/rollback不能へ変更 | start拒否、OS/authority ownerへ戻す。人確認で免除しない |",
+      "raw_lf_line_sha256": "60201327fccd65466969aaa199dc2f50df26cf32c6fcc246fad5a306225e01ed",
+      "raw_byte_length": 190
+    },
+    {
+      "identity": "BR-OS-018",
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "physical_line": 29,
+      "literal": "固定親 `HELIXOS-L2-018` version target `1.0` の成果は、Worker作業と独立reviewを分離し、assignment、attempt、scope、cumulative budget/deadline/failure countと未完義務を辿れること。OSはSECURITY認可、INFRA資源状態、LABO評価を代行しない。追加決定 `MPR-RC-HELIXOS-L2-018-002` は`docs/governance/decisions/po-decision-2026-10-03-additions10.md` row 34で採択されており、追補L2 span 1604–1619 registered semantic digest `5e2a621be8b4bda140bd796a48bedf2b3369daf5fad2665060ac41aa1a3174d2`（raw LF-inclusive span SHA-256 `634b700e1ed79c60f53235f6fb0e73348b7cc07264d4e4f8afb69e107aa1996d`）、L11 span 1259–1276 registered semantic digest `e32e45319a3ac91004e3e1a985c7ff44e91b9e86f05b85c266d6b8d67acf87b5`（raw LF-inclusive span SHA-256 `ba303351c99a385506d9f151d0b51c03fb08922ce7d2848ffb3b1f485c4c221c`）をf6固定本文とは別に参照する。適用sourceがある場合だけ該当receipt facetを記録する。receipt facetのmissing/unknown/stale/conflict/scope-unknownはそのfacetを未完に保ち、assignmentの可否・継続は既存authority/制約で別判定する。receipt欠落だけを理由に事前gateまたは全assignment停止を加えない。適用sourceのある場合だけ予定/実績・逸脱理由を記録し、quality eventなしでconsult/supportが未選択ならreceiptを生成しない。選択scopeに適用するdefault/order sourceが特定できなければ、facetをunknown/未完にして元のdecision/policy meaning ownerへ返し、適用外/逸脱なしにしない。Acceptanceは `AC-OS-018-01`, `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-018-04` と `CASE-OS-018-01`, `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-018-04a`, `CASE-OS-018-04b`, `CASE-OS-018-04c`, `CASE-OS-018-04d`, `CASE-OS-018-04e`, `CASE-OS-018-04f`, `CASE-OS-018-04g`, `CASE-OS-018-04h`, `CASE-OS-018-04i`, `CASE-OS-018-04j`, `CASE-OS-018-04k`, `CASE-OS-018-04l`, `CASE-OS-018-05` を参照する。",
+      "raw_lf_line_sha256": "a22e92c6ecc36f258bae215df36fbc3022a568de0a2ab0fee6e67abc1cbf8ff9",
+      "raw_byte_length": 2273
+    },
+    {
+      "identity": "BR-OS-018",
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "physical_line": 22,
+      "literal": "| `BR-OS-018` | assignment/attempt/review責務を分け、累積制約を保ち、停止理由を管理/推進へ戻して外部sourceの訂正先をその記録から辿る。実/予定対応を区別 | `FR-OS-018`; `AC-OS-018-01`, `AC-OS-018-02`, `AC-OS-018-03`, `AC-OS-018-04` | `CASE-OS-018-01`, `CASE-OS-018-02a`, `CASE-OS-018-02b`, `CASE-OS-018-02c`, `CASE-OS-018-02d`, `CASE-OS-018-02e`, `CASE-OS-018-02f`, `CASE-OS-018-02g`, `CASE-OS-018-02h`, `CASE-OS-018-02i`, `CASE-OS-018-02j`, `CASE-OS-018-02k`, `CASE-OS-018-02l`, `CASE-OS-018-02m`, `CASE-OS-018-02n`, `CASE-OS-018-02o`, `CASE-OS-018-02p`, `CASE-OS-018-03`, `CASE-OS-018-04a`, `CASE-OS-018-04b`, `CASE-OS-018-04c`, `CASE-OS-018-04d`, `CASE-OS-018-04e`, `CASE-OS-018-04f`, `CASE-OS-018-04g`, `CASE-OS-018-04h`, `CASE-OS-018-04i`, `CASE-OS-018-04j`, `CASE-OS-018-04k`, `CASE-OS-018-04l`, `CASE-OS-018-05` |",
+      "raw_lf_line_sha256": "a4c99d10cca1a932ccbe4917a7fdbe2ccff249d2e2058788c1f30a104bf6dc52",
+      "raw_byte_length": 870
+    }
+  ],
+  "C13_comment_pin_correction": {
+    "comment_id": 5981101754,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2564#issuecomment-5981101754",
+    "retrieval": "GitHub API issues/comments/5981101754; SHA over decoded body UTF-8 bytes, excluding API JSON framing.",
+    "public_raw_body_utf8_bytes": 32524,
+    "public_raw_body_sha256_utf8": "ec73191641cef5fc5135049f6243212dd2e3972291800b50bced366da87ab6d2",
+    "historical_local_snapshot_sha256_reported_by_prior_record": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "distinction": "The local snapshot hash is a historical local artifact hash and is not the public comment body hash. Earlier immutable records that conflated them remain unchanged; this supplement corrects the provenance distinction.",
+    "finding_status": "carry-forward remains unreviewed/unresolved here; no independent closure is asserted."
+  },
+  "prior_immutable_record": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-review02-correction-2026-10-05.json",
+    "sha256": "9bb1eb6bc8f4f31142c5fc32ca876b815cb19229a428c240992a6e8d40743436",
+    "changed": false
+  },
+  "checks": {
+    "all_six_stage2b014_prefixes_match": true,
+    "static_validation": "validate 147 bindings fail=0; stale=0; residuals=0; govcheck atoms=7622 requirements=57 files=58; git diff --check passed",
+    "legacy_runtime_tests_ci_bun": "not run"
+  }
+}

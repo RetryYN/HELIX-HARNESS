@@ -1,0 +1,82 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none; pin record only",
+  "latest_main": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "review_base": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+  "reviewed_head": "c73d5efbc9807c8e6bc77edb2678d07985db0550",
+  "body_revision": "5ade9866f0b184e6f3da78551e123e2b33b5859c",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "3b63e2a99f82d83e8ad76e9b33dc1199924f9a7c",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5990032428,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2593#issuecomment-5990032428",
+      "body_utf8_bytes": 2089,
+      "body_sha256": "9bf91ef987a6807137e0ba16667e4fad89c66d0bf9c749620d1e63f5f2c7c0df"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5990081205,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2593#issuecomment-5990081205",
+      "body_utf8_bytes": 8146,
+      "body_sha256": "e3a0ced5a83c5c1d840d37c3b881dae0ed26c284d191eaaa595d0890a7be91fc"
+    }
+  ],
+  "approved_parents": [
+    "HELIXOS-L2-015",
+    "HELIXOS-L2-016",
+    "HELIXOS-L2-017",
+    "HELIXOS-L2-018",
+    "HELIXOS-L2-019",
+    "HELIXOS-L2-020",
+    "HELIXOS-L2-023",
+    "HELIXOS-L2-027"
+  ],
+  "fixed_requirements": {
+    "basic_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "additional_018_registration": "MPR-RC-HELIXOS-L2-018-002"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.md",
+      "sha256": "b609bd995910f89c25bc2fed790463c4573509ed5b331f7716395d6c5fdb657a",
+      "bytes": 7937
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.md",
+      "sha256": "a925e5c84143cecb4e479f8f5bfb36f84515cfdc69effad3192a2dcc88da427c",
+      "bytes": 89649
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.md",
+      "sha256": "37a5ce98c2d7a868b6c951e6bc1cea3a95b2010c23651e1129625ba0958c539c",
+      "bytes": 14456
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.md",
+      "sha256": "962e1e8e69ed1741df81e8cbde8d6e3dd2b20065fdd3fbd6a670ad9fc4e14320",
+      "bytes": 11491
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.md",
+      "sha256": "ca5242813debd8ba7c253fca7eab03a33d41afd8629aa4bd49cb607358f56426",
+      "bytes": 78655
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.md",
+      "sha256": "7bc05bf76903ac81705d333f4c5183d9d04b3a30e4429fde6903e2455abcf681",
+      "bytes": 16041
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-os-stage2a-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "529811783824d0ffec315481b8f27b8304412a1070cb53c59ae283dc8147135f"
+  },
+  "excluded_scope": "C13 identity unresolved/unreviewed carry; already approved 014/028/029 are preserved prefixes",
+  "verification": "root fetched raw UTF-8 formal comments; six body/head/current bytes and approved main prefixes matched"
+}
