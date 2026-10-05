@@ -113,3 +113,292 @@ C13-M10、C13-M7、C13-M12 audit-record correction、Minor INT-010、Minor INT-0
 ## Stage 2a（PR #2594）carry-forward記録
 
 以下は旧reviewのscope別carry状態を示す時点説明であり、Stage 2cの要求・受入条件・親依存ではない。C13-M7（L2-066）、C13-M10（L2-010）、Minor INT-010はStage 2aで扱った親範囲の履歴として記録する。C13-M12は複数機構・stageにまたがる監査記録整合性のfindingであり、INTELLIGENCE L2-068に関するcomment line 168の指摘はStage 2c本文で解消したとは扱わず、未解消のまま残す。Minor INT-060-078は複数親にまたがる範囲で、Stage 2aで扱った部分だけから全範囲を解消・確認済みとはしない。`C13-U-INT-NFR-060-078`と`C13-U-all-crosswalk-and-legacy`も共通監査の未確認範囲であり、L2-068に関わる未確認はStage 2cを含め引き続きopenである。この本文と監査は独立reviewやfinding closureを意味しない。
+
+## Stage 3 — 採択済み22親の機能要件
+
+状態: L3承認前の要件候補。対象はmain 633bf12採択のStage 3 / version_target 1.0の22親だけ。PO決定行を対象revisionの採択根拠とし、後続登録metadataはそのscopeを拡張しない。L3候補は実装・実行・release許可を生成しない。
+
+旧HELIXの旧L3定義・shared FR/ACとpaired L10 oracleのtrace形を再導出する。INT専用sourceがある項目は旧source/consumerの対応箇所を親別に読み、保持・再導出・置換と理由を表へ記録した。旧runtime、CLI、score、workflow、approval gateを現行authorityへ移さない。対象Stage外の候補全文はコピーしない。
+
+### 親別source disposition
+
+| 親 | PO登録 (1.0) | 固定L2/L11 | 旧source asset / span | 再利用・再導出・置換の判断 |
+|---|---|---|---|---|
+| `001` | `MPR-RC-HELIXINTELLIGENCE-L2-001-002` Stage 3 / 1.0 | L2 48–53; L11 62–62 | LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34 | 再利用stable identity/lifecycle graphの意味。L2 domain対象へ再導出し、旧route registry/fixed enumは置換対象。 / |
+| `002` | `MPR-RC-HELIXINTELLIGENCE-L2-002-002` Stage 3 / 1.0 | L2 54–59; L11 63–63 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 | 再利用capability/source linkの意味。domainごとの必要能力・未構成unknownをL2から再導出し、旧global capability rulesを置換対象。 / |
+| `003` | `MPR-RC-HELIXINTELLIGENCE-L2-003-003` Stage 3 / 1.0 | L2 60–65; L11 64–64 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 | 再利用source revision/provenance graph。Situation Model全field結合は現行親句から再導出し、旧snapshot/runtimeを置換対象。 / |
+| `004` | `MPR-RC-HELIXINTELLIGENCE-L2-004-003` Stage 3 / 1.0 | L2 66–71; L11 65–65 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-AD746F4F3487103519F9 16–33 | 再利用fact/candidate/evidence trace。4値分類はL2語彙へ再導出し、旧scoring/state schemaを置換対象。 / |
+| `005` | `MPR-RC-HELIXINTELLIGENCE-L2-005-003` Stage 3 / 1.0 | L2 72–77; L11 66–66 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42 | 再利用candidate-vs-authority separationとplan trace。OS ticket境界や現行requirements contractから再導出し、旧workflow compiler/routeを置換対象。 / |
+| `006` | `MPR-RC-HELIXINTELLIGENCE-L2-006-003` Stage 3 / 1.0 | L2 78–83; L11 67–67 | LEGACY-ASSET-F1F753F31DB8D874EF21 40–68; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-BEAB5EE27CD04F5E866F 25–42; LEGACY-ASSET-A952A3A175EB82A4781B 19–46 | 再利用assumption/counterevidence/falsification evidence。現行risk categoryとLABO handoffを再導出し、legacy prediction score/SLOを置換対象。 / |
+| `007` | `MPR-RC-HELIXINTELLIGENCE-L2-007-003` Stage 3 / 1.0 | L2 84–89; L11 68–68 | LEGACY-ASSET-17C4BF78919578FEBB18 129–160; LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-901CD182B52024593E41 1–30 | 再導出は採択済みL2のepisode境界・不完全/矛盾証拠下のdiagnosisとLABO長期history分担を起点に行う。BBGはsource/generator/output/consumer区分の隣接例だけ。BBR candidateはdiagnosisとrepairの分離参照に限り、既存incident/repair runtimeは置換対象。 / |
+| `008` | `MPR-RC-HELIXINTELLIGENCE-L2-008-003` Stage 3 / 1.0 | L2 90–95; L11 69–69 | LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-C6ADB99F1353965C5449 18–60; LEGACY-ASSET-A952A3A175EB82A4781B 19–46 | 再利用revision-bound review evidence/counterexample。review result non-authorityを固定親から再導出し、old merge/release gate mechanicsを置換対象。 / |
+| `009` | `MPR-RC-HELIXINTELLIGENCE-L2-009-003` Stage 3 / 1.0 | L2 96–101; L11 70–70 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46 | 再利用typed finding/provenance/backflow atoms。current mechanismsとexact HEAD ownerを固定親から再導出し、Census全工程/UIL/TER runtime移管を置換対象。 / |
+| `011` | `MPR-RC-HELIXINTELLIGENCE-L2-011-004` Stage 3 / 1.0 | L2 108–113; L11 72–72 | LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 | 再利用controlled comparison dimensionsとhistorical cohort separation。L2 same corpus/scopeへ再導出し、legacy benchmark scoring/qualification thresholdsを置換対象。 / |
+| `012` | `MPR-RC-HELIXINTELLIGENCE-L2-012-003` Stage 3 / 1.0 | L2 114–119; L11 73–73 | LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34; LEGACY-ASSET-AD746F4F3487103519F9 16–33 | 再利用uncertainty-preserving source attribution。L2 uncertainty labels/next-evidence routesへ再導出し、legacy confidence score-as-authorityを置換対象。 / |
+| `013` | `MPR-RC-HELIXINTELLIGENCE-L2-013-003` Stage 3 / 1.0 | L2 120–125; L11 74–74 | LEGACY-ASSET-C6936A5DA79A6DAE4FE4 27–82; LEGACY-ASSET-5EE032D657C221184B00 41–63; LEGACY-ASSET-BBD687399574FEE23807 22–54; LEGACY-ASSET-6FFD7F4E58066D08B053 15–34 | 再利用trace edges and inspectability. L2 fields/data-use boundaryへ再導出し、full regeneration/schema/runtime mechanicsを置換対象。 / |
+| `014` | `MPR-RC-HELIXINTELLIGENCE-L2-014-003` Stage 3 / 1.0 | L2 126–131; L11 75–75 | LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-C6ADB99F1353965C5449 18–60; LEGACY-ASSET-901CD182B52024593E41 1–30 | Bot候補のidentity/OS assignmentは採択済みL2から再導出する。BBGは定型生成のsource/generator/output/consumer境界だけ隣接参照し、BBR candidateは下流の限定修復scope/許可境界比較のみ。old Bot CLI/automatic authoringは置換対象。 / |
+| `015` | `MPR-RC-HELIXINTELLIGENCE-L2-015-003` Stage 3 / 1.0 | L2 132–137; L11 76–76 | LEGACY-ASSET-9B6FC1ED349F96394497 34–75; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-658FF8439F9F8E694710 15–42; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-901CD182B52024593E41 1–30 | 既存sourceを固定親へ再導出し、旧runtime/authorityを現行へ移さない。 |
+| `016` | `MPR-RC-HELIXINTELLIGENCE-L2-016-003` Stage 3 / 1.0 | L2 138–143; L11 77–77 | LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-17C4BF78919578FEBB18 129–160; LEGACY-ASSET-D881AF6AFD277B1DE934 1–79; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46; LEGACY-ASSET-F46AB11BD14F2C0469F4 1–53; LEGACY-ASSET-901CD182B52024593E41 1–30 | 既存sourceを固定親へ再導出し、旧runtime/authorityを現行へ移さない。 |
+| `018` | `MPR-RC-HELIXINTELLIGENCE-L2-018-003` Stage 3 / 1.0 | L2 144–149; L11 78–78 | LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-02D897E62EF2FA267267 41–201; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-0B5B38F146D9538C9A36 16–46 | 再利用historical cohort/time-series separation. Current/historical labelsとLABO/OS/target-owner dutiesを再導出し、old self-improvement adoption loopを置換対象。 / |
+| `019` | `MPR-RC-HELIXINTELLIGENCE-L2-019-003` Stage 3 / 1.0 | L2 150–155; L11 79–79 | LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-899A61905AFBC415F595 34–53; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 | 旧BRAIN専用同一要件なし。隣接worker/memoryは用語照合だけに再利用し、Pattern/Unit/Part適用とBRAIN/LABO backflowは固定L2から再導出、BRAIN runtime/writebackは移さない。 / |
+| `020` | `MPR-RC-HELIXINTELLIGENCE-L2-020-003` Stage 3 / 1.0 | L2 156–161; L11 80–80 | LEGACY-ASSET-E78B8D68CC327AA00991 26–90; LEGACY-ASSET-335176749F6322C3CD8D 35–58; LEGACY-ASSET-AD746F4F3487103519F9 16–33; LEGACY-ASSET-879D95C07B789C9502CF 15–43 | 既存sourceを固定親へ再導出し、旧runtime/authorityを現行へ移さない。 |
+| `067` | `MPR-RC-HELIXINTELLIGENCE-L2-067-001` Stage 3 / 1.0 | L2 466–490; L11 199–199 | LEGACY-ASSET-50CA1C554747F12266D3 663–666; LEGACY-ASSET-28FB139B26CD61CC51EE 21–148; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-437A6A68F9A9E0AE1B9E 43–43; LEGACY-ASSET-A952A3A175EB82A4781B 19–46; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 | 再利用RLO-FR-040/AC-030のscope-bound effort/evidence atomsとBench comparisons。PO採択L2-067でsource applicability/priority decision and existing LABO 034 handoffへ再導出し、old ranker/route/worker executionは置換対象。 / |
+| `072` | `MPR-RC-HELIXINTELLIGENCE-L2-072-005` Stage 3 / 1.0 | L2 561–598, 673–687; L11 289–314, 398–434 (6 part) | LEGACY-ASSET-719D5EC9C06FC4AAD0FF 81–81; LEGACY-ASSET-9114D4E463E95B67DD0C 47–137; LEGACY-ASSET-C6ADB99F1353965C5449 18–60 | 再利用HIL-BR-29 versioned pack/shadow/non-force atoms。fixed adopted 005 scopeへINT candidate, HARNESS common contract, OS state, LABO effect separationを再導出し、old placement/runtime/hard gate mechanicsは移さない。 / |
+| `073` | `MPR-RC-HELIXINTELLIGENCE-L2-073-002` Stage 3 / 1.0 | L2 601–608; L11 317–326 | LEGACY-ASSET-EB3700B0088F311C2295 45–46; LEGACY-ASSET-CAC0C64EB7540180B1FE 1–47 | 再利用AAFD-R-04 detector-priority/direct-projection constraints as historical candidate semantics only。採択PO parent L2-009/073 scopeへ再導出し、old probe/UIL runtime, issue/CI/merge routesを置換対象。 / |
+| `078` | `MPR-RC-HELIXINTELLIGENCE-L2-078-001` Stage 3 / 1.0 | L2 646–658; L11 363–382 | LEGACY-ASSET-EB3700B0088F311C2295 71–104; LEGACY-ASSET-CAC0C64EB7540180B1FE 1–47 | 再利用AAFD R-06/07/09-12 semantic atoms per old source span; current parent L2-009/012 plus accepted HARNESS-023 dependency classificationへ再導出し、old schema/DB/event runtime/owner assignmentを置換対象。 / |
+
+L2-072のPO digestは列挙順6 partの個別raw spanに結び、単独全文hashで代替しない。L2-073/078の旧candidate metadataと後続PO決定は分離する。
+
+### `FR-INTELLIGENCE-L3-001-01` — `HELIXINTELLIGENCE-L2-001`
+
+**要件：Domain identity lifecycle**
+
+新domainの安定identityを付与し、split/merge時は旧identityとの関係を記録し、retire後も参照可能な履歴を保つ。identity語彙や別authorityは固定しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-001-01` 正常成立とtrace**：add/split/merge/retireの各操作と参照履歴を個別に投入し、対象Domainと旧identityの関係が追えること。
+- **`AC-INTELLIGENCE-L3-001-02` 個別変異・owner境界**：identity欠落、active domain間のidentity衝突、split/merge後のrelation消失・履歴混同を個別に変異させる。誤ったrelationを候補確定しない。正当なlifecycle候補やretired identityの再利用を一律禁止しない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-001-03` held-out正常／局所unknown**：別名の未見domain IDを使う正常例と、split後の片側identity relation欠落例を比較する。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-002-01` — `HELIXINTELLIGENCE-L2-002`
+
+**要件：Domain別能力構成**
+
+各domainについてUnderstand/Plan/Predict/Diagnose/Review/Recommendの適用可否・根拠・未構成を個別に保持する。domainに根拠のない能力を全体既定として補わない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-002-01` 正常成立とtrace**：二つのdomainで異なる能力集合と一つの未構成domainを入力し、設定済み能力だけが適用され、未構成がunknownとして残ること。
+- **`AC-INTELLIGENCE-L3-002-02` 個別変異・owner境界**：能力一つの根拠欠落、別domain設定流用、unknownの暗黙true化を独立変異として拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-002-03` held-out正常／局所unknown**：未見domainを、根拠付き能力だけ設定された正常例と、設定根拠がない能力だけunknownとなる例で分ける。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-003-01` — `HELIXINTELLIGENCE-L2-003`
+
+**要件：Situation Modelのsource結合**
+
+target、要求/設計revision、ticket/state、dependency/evidence/finding、worker/model/provider/environment、cost/budget/risk/time、known/unknownを各source revisionへ結合する。source truthが優先し欠落/staleを可視化する。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-003-01` 正常成立とtrace**：互いに異なるsource revisionを含む一状況を入力し、全関係がsource identity/revisionへ結び、source値を改変せず再現すること。
+- **`AC-INTELLIGENCE-L3-003-02` 個別変異・owner境界**：必須source欠落、stale revision、矛盾値、dependency孤立を個別・併発投入し、推測補完せず該当関係をunknownにする。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-003-03` held-out正常／局所unknown**：未見worker/provider環境でも全source revisionが整合する正常joinと、dependency revisionだけ未取得の局所unknownを分ける。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-004-01` — `HELIXINTELLIGENCE-L2-004`
+
+**要件：観測と推論の区別**
+
+Observed Fact、Derived Interpretation、Hypothesis、Unknownを根拠source/revisionとともに区別し、推論を観測事実へ昇格させない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-004-01` 正常成立とtrace**：sourceに明記された値とそこから導いた解釈、仮説、未取得fieldを同じrecordで分離し、各由来を辿れること。
+- **`AC-INTELLIGENCE-L3-004-02` 個別変異・owner境界**：仮説をObserved Factへ変更、source/revision欠落、unknownを成功として扱う変異をそれぞれ検知する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-004-03` held-out正常／局所unknown**：未見の根拠種別でも出典が特定できる事実は同じ分類契約で保持し、出典未解決の解釈だけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-005-01` — `HELIXINTELLIGENCE-L2-005`
+
+**要件：計画candidateの必須関係**
+
+goal/target、prerequisite/dependency/order、並列可能性、期待結果、risk/uncertainty、stop/fallbackを承認済み要求・現行contract revisionに結び、OS ticket/authorityを生成しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-005-01` 正常成立とtrace**：承認済みtargetと依存2件を与えた候補で順序・並列・停止条件を明示し、candidate状態のまま返すこと。
+- **`AC-INTELLIGENCE-L3-005-02` 個別変異・owner境界**：未承認/stale要求、dependency欠落、fallback欠落を個別変異し、計画を確定せず該当ownerへ返す。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-005-03` held-out正常／局所unknown**：未見dependency構成でもapproved target/current contractが揃う候補は同契約で扱い、stop条件のみ欠ける部分は未確定にする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-006-01` — `HELIXINTELLIGENCE-L2-006`
+
+**要件：予測と実測の分離**
+
+予測ごとにassumption/evidence/uncertainty/falsificationを示し、将来の測定結果・長期効果をLABO評価として分離する。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-006-01` 正常成立とtrace**：同一scopeのevidenceから予測と反証可能条件を作り、後続観測を別LABO recordへ結ぶこと。
+- **`AC-INTELLIGENCE-L3-006-02` 個別変異・owner境界**：evidence欠落、反証条件なし、実測を予測値に上書きする変異を検知し、確度を捏造しない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-006-03` held-out正常／局所unknown**：未見の予測対象でevidence/assumption/falsificationが揃えば同じprediction contractを使い、反証材料だけ不足する範囲をunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-007-01` — `HELIXINTELLIGENCE-L2-007`
+
+**要件：episode診断とrepair提案の分離**
+
+現在episodeの症状・source・反証を使い、証拠不完全/矛盾ならprobableまたはunknownとする。長期履歴はLABO、repairは独立candidateで、診断がrepairを許可しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-007-01` 正常成立とtrace**：同一episode内の複数証拠が一原因を支持する正常例と、診断だけのrepairなし例を区別し、確定範囲とownerを示す。
+- **`AC-INTELLIGENCE-L3-007-02` 個別変異・owner境界**：単一相関、矛盾証拠、欠落sourceを個別/併発で投入し、root cause断定・repair実行・長期評価を発生させない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-007-03` held-out正常／局所unknown**：未見episodeでもsourceが一致する活動中diagnosisは評価し、反証sourceが未取得の原因候補だけprobable/unknownに留める。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-008-01` — `HELIXINTELLIGENCE-L2-008`
+
+**要件：revision-bound review finding**
+
+findingにtarget revision/scope/evidence/reproduction/counterexample/severity候補/routeを結び、review結果単独でmerge/requirement/release/acceptanceを変更しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-008-01` 正常成立とtrace**：一致するtarget HEADと再現可能なfindingを入力し、証拠・counterexample・routeを同一revisionへ結ぶこと。
+- **`AC-INTELLIGENCE-L3-008-02` 個別変異・owner境界**：HEAD/scopeずれ、再現欠落、反例の隠蔽を別々に投入し、findingを受入やmerge状態へ昇格させない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-008-03` held-out正常／局所unknown**：未見finding種別でもtarget revisionと再現材料が揃えば同じreview contractで扱い、counterexample未取得部分は未確定とする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-009-01` — `HELIXINTELLIGENCE-L2-009`
+
+**要件：全体監査findingの追跡**
+
+audit findingをtarget HEAD、authority、producer、evidence、reproduction、falsificationへ型付きで結ぶ。AAFDはcandidate、UIL/TER等の既存責務を再実装しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-009-01` 正常成立とtrace**：同じHEAD/authorityの監査材料と反証例を入力し、findingと各sourceを往復追跡できること。
+- **`AC-INTELLIGENCE-L3-009-02` 個別変異・owner境界**：authority/HEAD/provenance欠落や自由文によるauthority変更を個別に投入し、unknownで止めownerへ戻す。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-009-03` held-out正常／局所unknown**：未見responsibility対象でもHEAD/authority/evidenceが揃う監査findingを同様に追跡し、owner root欠落部分だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-011-01` — `HELIXINTELLIGENCE-L2-011`
+
+**要件：同一scope比較**
+
+同じcorpus/responsibility scope/run versionでprovider/model候補を比較し、findings・false positives/misses・reproducibility・latency/costを並べる。winner選定や自動切替をしない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-011-01` 正常成立とtrace**：同一corpus・同一責務・同一版の候補A/Bに測定結果を結び、軸別差と未評価を示すこと。
+- **`AC-INTELLIGENCE-L3-011-02` 個別変異・owner境界**：corpus/scope/versionの一つずつをずらし、比較成立にせずwinnerや自動swapを出さない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-011-03` held-out正常／局所unknown**：未見provider pairでcorpus/scope/versionが揃う場合は同一比較を行い、未観測cost軸だけ未評価とする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-012-01` — `HELIXINTELLIGENCE-L2-012`
+
+**要件：不確実性と次の必要情報**
+
+known/probable/uncertain/unknown/contradictoryを根拠とともに表し、次に要る証拠またはowner decisionを示す。unknownはsafe/success/no-issueを意味しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-012-01` 正常成立とtrace**：既知fieldと不足fieldの混在入力で、既知範囲を保持し不足fieldごとに必要証拠/decisionを示すこと。
+- **`AC-INTELLIGENCE-L3-012-02` 個別変異・owner境界**：unknownをsafe/success/no-issueへ写す変異、矛盾を隠す変異を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-012-03` held-out正常／局所unknown**：未見状況でも根拠のあるknown範囲は保持し、必要な次証拠が未指定の範囲だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-013-01` — `HELIXINTELLIGENCE-L2-013`
+
+**要件：重要判断trace**
+
+重要判断からinput revisions、rules、BRAIN knowledge、observations、assumptions、model/provider/version、reasoning、uncertainty、rejected alternativesを辿れるようにする。data-use classを保持するがtraining permissionを生成しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-013-01` 正常成立とtrace**：完全な判断traceを入力し、各参照が該当revisionとdecisionへ結び、必要情報を追跡できること。
+- **`AC-INTELLIGENCE-L3-013-02` 個別変異・owner境界**：根拠revision欠落、alternative省略、data-use classからtraining permissionを推論する変異を検知する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-013-03` held-out正常／局所unknown**：未見判断種別でもsource/rule/model/version/alternativeが揃えば同じtrace、未取得revisionだけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-014-01` — `HELIXINTELLIGENCE-L2-014`
+
+**要件：Bot identityとmanifest境界**
+
+Bugbot/Helpbot/Crawler等のBot candidateをINTELLIGENCEとは別identityで記述し、purpose、scope、input、output、allowed action、stop condition、versionの各manifest要素とsource/revisionを結ぶ。scope/判断/stopが限定できない場合は通常の判断candidateへ戻す。実作業は特定目的のWorkerとしてOSが割当て、Bot identity/manifestはauthorityを追加しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-014-01` 正常成立とtrace**：separate Bot identityとpurpose/scope/input/output/allowed-action/stop/version全欄を持つmanifest candidateを入力する。各欄のsource/適用範囲が追え、OS assignmentなしでcandidate止まりとなること。
+- **`AC-INTELLIGENCE-L3-014-02` 個別変異・owner境界**：identity衝突と、purpose/scope/input/output/allowed action/stop condition/versionの各欠落・不一致を個別に照合する。manifest不成立なら通常判断候補へ戻し、OS assignment/実行を派生させない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-014-03` held-out正常／局所unknown**：未見Bot identityでもbounded manifestとOS assignment stateを区別し、manifest適用scope未解決ならそのscopeだけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-015-01` — `HELIXINTELLIGENCE-L2-015`
+
+**要件：反復事象からのBot candidacy**
+
+CI/実行failure historyからpattern、reproducibility、machine detectability、false-positive、scope、repairabilityをそれぞれ根拠付きで評価する。複数episodeの条件を満たさない単発failureは恒久Botへ昇格せず、machine detectabilityまたはscopeがunknownならcandidateで止める。repairabilityは評価対象だが、それだけでBot候補triggerにしない。BBGはtyped input/source-generator-output-consumer境界の隣接起点に限る。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-015-01` 正常成立とtrace**：複数独立episodeのpattern、再現材料、machine-detectability evidence、false-positive evidence、scope、repairabilityを別欄で評価し、欠けた条件を可視化したBugbot candidateを返すこと。単一eventは恒久Bot候補にしない。
+- **`AC-INTELLIGENCE-L3-015-02` 個別変異・owner境界**：pattern、reproducibility、machine detectability、false-positive evidence、scope、repairabilityを個別に欠落/反証/異scope化する。repairabilityだけの入力と単一eventも独立fixtureとし、candidate状態と評価不足を分ける。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-015-03` held-out正常／局所unknown**：未見episode群で固定L2の反復scopeとfalse-positive evidenceが揃えば同じ候補判定を行い、対象履歴不足だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-016-01` — `HELIXINTELLIGENCE-L2-016`
+
+**要件：bounded repair candidate**
+
+repair candidateと修復結果の照合を区別する。candidateではtarget revision・actor・write-set・side effect・budget・deadline・retry・impact scope・recoveryを全てsourceに結び、期待効果と境界を記述する。結果評価では既存authority/OS assignment/Worker resultから得た実結果だけを受け、同じtarget/write-set/side effect/budget/recovery境界、成功・失敗・回復/事後検証を照合する。要求/設計/verification obligationの意味差は差分とownerを示して上流へ返し、候補記述を可能なまま確定/実行しない。candidate登録から実行許可は生成しない。旧BBR候補は比較起点に限る。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-016-01` 正常成立とtrace**：candidate inputで9束縛（target revision, actor, write-set, side effect, budget, deadline, retry, impact scope, recovery）と期待結果を明示する。別fixtureで既存authority/OS assignmentに対応するWorker resultを受け、実target差分・write-set内外・side effect・実budget/deadline/retry結果・recovery/post-checkをcandidateの宣言と照合する。候補生成は結果検証を前提とせず、結果検証は実行/許可を作らない。
+- **`AC-INTELLIGENCE-L3-016-02` 個別変異・owner境界**：candidate入力では9束縛を一つずつ欠落/不一致にする。result fixtureではstale target、scope外書込、循環、二重実行、予算超過、不明副作用を個別に投入し、Worker result/after-state/recovery evidenceを観測する。要求/設計/verification obligationの意味差はcandidate上のdiffと上流ownerを示す。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-016-03` held-out正常／局所unknown**：未見targetでも9束縛が揃う場合はcandidateを作り、別に既存assignmentに結ぶresult fixtureがある場合だけ結果照合を行う。actual result/recoveryが欠ける場合はcandidate状態を維持し、結果だけunknownにする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-018-01` — `HELIXINTELLIGENCE-L2-018`
+
+**要件：現在判断と長期効果の境界**
+
+現在のINTELLIGENCE判断とLABOのhistorical effectを別に保持する。OSはproposalを登録し、対象ownerが意味変更を判断する。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-018-01` 正常成立とtrace**：同じ方法のcurrent proposalと複数時点のLABO測定を入力し、時点/scope/ownerを保持して別statusで表示すること。
+- **`AC-INTELLIGENCE-L3-018-02` 個別変異・owner境界**：古い効果をcurrent truthへ昇格、INTELLIGENCEが自己改善を採択、owner判断なしの変更を起こす変異を拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-018-03` held-out正常／局所unknown**：未見期間のLABO historyでもsource/scopeが揃う範囲をcurrent proposalから分離して示し、比較期間欠落だけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-019-01` — `HELIXINTELLIGENCE-L2-019`
+
+**要件：BRAIN applicability candidate**
+
+BRAIN知識の適用性を根拠付きcandidateとして評価し、knowledgeの正本はBRAIN、汎用評価はLABOへ戻す。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-019-01` 正常成立とtrace**：Pattern/Unit/Partのsourceと対象scopeが揃う例を候補評価し、適用根拠をBRAIN sourceへ結ぶこと。
+- **`AC-INTELLIGENCE-L3-019-02` 個別変異・owner境界**：domain/scope不一致、根拠不足、INTELLIGENCEによるBRAIN knowledge書換え、LABO評価の代行を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-019-03` held-out正常／局所unknown**：未見Pattern/Unit/PartでもBRAIN sourceと適用scopeが一致する正常候補を評価し、source欠落部分だけunknownとしてBRAINへ戻す。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-020-01` — `HELIXINTELLIGENCE-L2-020`
+
+**要件：Product Core meaning/backflow candidate**
+
+Product Coreとの意味整合・backflow候補をsource/target revision付きで示し、要求・design authorityの変更は上流ownerに残す。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-020-01` 正常成立とtrace**：同一Product Core meaningと対象revisionの差分proposalを入力し、参照根拠・差分・戻し先ownerを示すこと。
+- **`AC-INTELLIGENCE-L3-020-02` 個別変異・owner境界**：meaning source欠落、異版を同一視、INTELLIGENCEが要求/designを直接変更する変異を拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-020-03` held-out正常／局所unknown**：未見Product Core対象でも双方のmeaning revisionが揃う差分候補を扱い、片側revision未解決ならその差分だけunknownとする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-067-01` — `HELIXINTELLIGENCE-L2-067`
+
+**要件：既決品質/順序入力のproposal反映**
+
+すでに決定済みのquality/order inputとLABO evidenceをscope-boundに既存L2-010 proposalへ反映する。新router/ranker/assignmentは作らない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-067-01` 正常成立とtrace**：決定済みの優先入力・適用scope・LABO evidenceを既存proposal contractへ渡し、適用可能性と根拠を追跡できること。
+- **`AC-INTELLIGENCE-L3-067-02` 個別変異・owner境界**：未決入力、異scope、LABO evidence欠落を別々に変異し、新しい順位決定やassignmentを生成しない。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-067-03` held-out正常／局所unknown**：未見のquality/order inputでも既に決定済みでL2-010 scopeに適合すれば既存proposalへ反映し、未決/異scopeだけ未確定にする。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-072-01` — `HELIXINTELLIGENCE-L2-072`
+
+**要件：versioned judgment-pack candidate**
+
+judgment packのversion/applicability/shadow/review/rollback義務を示し、強制適用しない。HARNESS/OS/LABO ownerと3.0 learning境界を保持し、L2-004/005の6 partsを別々に追う。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **6-part親保持**：PO採択済み`-005`の6つのaccepted partsを個別に保持する。L2-004既存4-part/shadow layoutとL2-005のselected-source stale facetを一つの条件へ畳まず、後発PO追加partは追加判断記録のexact sourceに結ぶ。
+- **`AC-INTELLIGENCE-L3-072-01` 正常成立とtrace**：適用scopeとpack revisionが一致するshadow candidateを入力し、review/rollback条件とnon-force状態、004と005各partを保つこと。
+- **`AC-INTELLIGENCE-L3-072-02` 個別変異・owner境界**：stale applicability、review欠落、rollback根拠欠落、forced state、004/005 partの混同を独立に変異する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-072-03` PO固定6-part追跡**：PO採択digest `sha256:d8376dc314dc4aebe7b413a40d4855e3147d6e5ec870d9790395825c5f8cc775`を、`docs/governance/decisions/po-decision-2026-10-03-additions10.md`の合成規則どおり6 partの正規化bytes（各末尾空行を除いてLF終端、列挙順、part間区切りなし）から再現する。partは順に、(1) L2 original `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:561–589` `sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2`（004のpack candidate scope/version/依存）、(2) L2 supplement同path`:592–598` `sha256:08d3915feb65dfe071ce69f56fb97070822e08e5cd7f30a92b4d42e22953cf8b`（pack構成/FR57・58の保持・版境界）、(3) L11 original `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:289–303` `sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f`（004の前提・正常/失敗/未見oracle）、(4) L11 supplement同path`:306–314` `sha256:8d9514cc6964d617928abe6dacaece211004f754c337fbe8d78bda678ab187c8`（未完正常、同条件比較、独立review、rollback/active、3.0境界oracle）、(5) L2 NFR-34 supplement `docs/helix-intelligence/L2-requirements/intelligence-requirements.md:673–687` `sha256:511c0083b8aaeab292ab348f488367b197516a9faaf92a44a27df1e80c6f21d8`（005の選択source stale意味）、(6) L11 NFR-34 supplement `docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:398–434` `sha256:9884a284fbaecc0134936e0b3772871974d5eb24d78c4ebbef22ebf2c6bbb194`（source別 stale/unknown/owner戻しのoracle）。旧004の最初4 partを不変保持し、005の追加2 partを別途traceする。L2/L11のfull-file SHAや単独semantic SHAは補助locatorに限り、6 partの代替にしない。各ACはL2 original/supplementとL11 original/supplementを`AC-072-01/-02/-06/-07/-08`へ、005追加2 partを`AC-072-05`へ結び、L10 `CASE-072-01/-02/-05/-06/-07/-08`でそれぞれのpin・meaning・oracleを照合する。
+- **`AC-INTELLIGENCE-L3-072-04` held-out正常／局所unknown**：未見pack revisionでもapplicability/shadow/review/rollback evidenceが揃う候補を同じcontractで評価し、005 selected-source facetだけstaleならそのfacetの適用を止める。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+- **`AC-INTELLIGENCE-L3-072-05` 選択sourceごとのstale**：scope、requirement、template、skill、model catalog、allowlistの各source tupleを独立に選択したfixtureに対し、そのsource identity/revision/digestだけを個別変更する。実際に選択したsourceの該当candidate/shadow facetだけstaleへ変え、source ownerへ照合を戻す。非選択source変更では当該facetをstaleと断定せず、選択状態不明はunknownにする。
+- **`AC-INTELLIGENCE-L3-072-06` 構成edgeと競合保持**：同じpackへ重複source edgeを束ねる場合も各identity/version/applicability edgeを保持し、意味の異なるrequirement/evidence/反証/停止条件が競合したときはconflict/unknownと未解決部分を残す。INTELLIGENCEが優先順や意味を創作しない。
+- **`AC-INTELLIGENCE-L3-072-07` same-case比較とrollback**：同じ対象scope/revision/case/oracleでcandidateあり/なしのshadow結果を対にし、false-positive/false-negative/unknown/反例とrollback先・戻し条件・rollback evidenceを同じversionへ結ぶ。比較条件不一致やrollback根拠欠落は未完であり、閾値やrollback方式を新設しない。
+- **`AC-INTELLIGENCE-L3-072-08` candidate生成と独立reviewの段階分離**：scope/sourceだけでcandidate identity/versionを作成でき、shadow/review receiptが未取得なら後続義務として未完保持する。reviewを実施する場合は作成側と異なるreviewer identity/context/authority/routeを記録する。作成側が起用したsubagentは独立reviewerに数えない。provider/modelの一致だけで独立性を否定/肯定しない。全証拠完了後も既存ownerの採択記録なしにactive/gateへしない。
+### `FR-INTELLIGENCE-L3-073-01` — `HELIXINTELLIGENCE-L2-073`
+
+**要件：AAFD R-04検出境界**
+
+採択済みL2-073に従うdetector priorityを適用し、free textからIssue/Requirement/CI/mergeへ直接投影しない。
+
+**受入条件（各ACの入力条件を対応CASEで照合）**
+
+- **`AC-INTELLIGENCE-L3-073-01` 正常成立とtrace**：detector対象/priorityが宣言された入力で判定をcandidateとして出し、対応根拠を保持すること。
+- **`AC-INTELLIGENCE-L3-073-02` 個別変異・owner境界**：自由文や低優先detectorからIssue等へ直接生成、priority不定、evidence欠落を個別に拒否する。不足時は該当source/責務ownerへ戻し、別責務の状態を生成しない。
+- **`AC-INTELLIGENCE-L3-073-03` held-out正常／局所unknown**：未見free-text findingでもdetector/priority根拠が揃うcandidateは同一契約で評価し、priority未解決だけunknownとしてIssue等へ投影しない。 未見性自体を失敗と扱わず、親contractで成立する部分を評価する。
+### `FR-INTELLIGENCE-L3-078-01` — `HELIXINTELLIGENCE-L2-078`
+
+**要件：AAFD delta意味・再現性・境界**
+
+固定親R-06/R-07/R-09/R-10/R-11/R-12のdelta意味、同入力再現、snapshot join、影響範囲限定invalidation、stale/unknown/missing時のwrite抑止、journal replayを、親に列挙されたsource identity/revision/digestへ結びつけてcandidate化する。保存schema、物理column、field名、digest encoding、runtime、producer/consumer/owner assignmentは新設しない。古いL2本文の「未採択候補」metadataは対象revisionの状態根拠ではなく、later35のexact PO decisionを読む。
+
+**受入条件**
+
+- **`AC-INTELLIGENCE-L3-078-01` R-06 delta意味**: 変更次元を authority / responsibility / runtime / provider / dependency / security / verification / capacity / cost / migration / release の11個として区別する。各次元について前状態と観測状態、そのsource receipt revision/digest、対象HEAD/authority/environment identity、affected responsibility、evidence/counterevidence、confidence/unknown、invalidation exact set、re-synthesis要否を意味要素として保ち、存在しない値を埋めない。各dimensionのnormal・missing・unknown・stale・mismatchを個別CASEで評価する。
+- **`AC-INTELLIGENCE-L3-078-02` R-07 再現・重複拒否**: 同一source receipt/registry/policyならdelta exact set/digestを再現する。stale revision、wrong HEAD、wrong authority、missing receipt、duplicate changeを分け、retryやevent順序変更で別episodeを増殖させない。
+- **`AC-INTELLIGENCE-L3-078-03` R-09 snapshot join**: delta source identityと同一identity/revision/digestを持つF0 snapshotだけを一致として扱い、不一致・stale・不足はstale/reobservation requiredへ分ける。
+- **`AC-INTELLIGENCE-L3-078-04` R-10 限定invalidation**: affected Future Type/assumption/projection/directiveのexact setだけをstaleにし、unaffected projectionを保つ。構造変更はproposal-onlyとしcurrent-write parkingを解除しない。
+- **`AC-INTELLIGENCE-L3-078-05` R-11 stale/unknown/missing時抑止**: stale directive、unresolved unknown、missing source receiptそれぞれからassignment/release/retire/requirement write/design writeを出さない。R-08 non-write境界へ畳まない。
+- **`AC-INTELLIGENCE-L3-078-06` R-12 journal replay**: repository authority/event journalからdelta/invalidation/intake projectionを再構築する同一event集合の順序変更でもexact set/digestを比較する。DB種別・実装は固定しない。
+- **`AC-INTELLIGENCE-L3-078-07` 未見正常／局所unknown**: 未見snapshot/eventでも必要identity/receipt/authorityが揃う範囲を同じ親oracleで扱い、欠けたpartだけunknownとする。
+- 不足または不一致は影響fieldだけunknown/incompleteとして保持し、固定source/責務上の既存ownerが特定できる場合はそこへ戻す。ownerをsourceから特定できなければowner名を作らずunknownを残す。
