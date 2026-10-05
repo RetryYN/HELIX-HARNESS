@@ -89,10 +89,10 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-055-CASE-04 negative (oracle unavailable/out of scope)** — 結果state・group identityは固定し、独立subfixtureごとに評価oracle未提示、または適用scope外とする。期待：履歴と証拠充足状態は保持するが、oracle由来の対応可能性水準は生成せず未評価とする。確認 LABO-055-AC-02。
 - **L10-LABO-055-CASE-05 negative (authority leakage)** — 履歴からWorker選択/割当/permission変更を出力させる要求。期待：それらを出力しない。identity不足はOS/元source、許可/classification不足はSECURITYへ戻す。確認 LABO-055-AC-03。
 - **L10-LABO-055-CASE-06 unseen normal** — 既存fixtureにないtask type×model classの許可履歴を与えるが、固定L11が定める採用する評価oracle/基準はその組合せを含む明示scopeを適用可能とし、評価結果・根拠・revision・receiptも提供する。期待：独立groupとしてtraceし、証拠充足状態とoracle/基準由来水準を分けて記録する。scope外へ成功を一般化しない。確認 LABO-055-AC-01, LABO-055-AC-02。
-- **L10-LABO-055-CASE-07 normal denominator reconstruction** — 同一許可済source receiptから、明示scopeのeligible result集合、算入結果、missing/failure/refusal/stopped/unknown各dispositionと理由、計算規則、scorer/oracle revisionを再構成する。期待：数値metric/集約水準とその分母が一致し、定性的水準も適用条件・根拠・未評価部分へ戻れる。確認 LABO-055-AC-04。
+- **L10-LABO-055-CASE-07 normal denominator reconstruction** — 同一許可済source receiptから、結果確認前に固定した明示scopeのeligible result集合・集計対象、算入結果、missing/failure/refusal/stopped/unknown各dispositionと理由、計算規則、scorer/oracle revisionを再構成する。期待：数値metric/集約水準とその分母が一致し、定性的水準も適用条件・根拠・未評価部分へ戻れる。確認 LABO-055-AC-04。
 - **L10-LABO-055-CASE-08 negative unjustified exclusion** — 他のfixture内容を固定し、eligibleなfailure 1件だけを理由なく分母から除く。期待：水準を受け入れず、当該結果と欠落理由不備を残す。確認 LABO-055-AC-04。
 - **L10-LABO-055-CASE-09 negative missing cost zero** — 他のfixture内容を固定し、missing費用だけを0として集計する。期待：集計を拒否し、費用missingを保持する。確認 LABO-055-AC-04。
-- **L10-LABO-055-CASE-10 negative post-result denominator change** — 結果確認後に対象分母だけを変更する。期待：同一receiptから再構成できない集計として拒否する。確認 LABO-055-AC-04。
+- **L10-LABO-055-CASE-10 negative post-result denominator change** — 他条件を固定し、結果確認後に事前固定されたeligible denominatorまたは集計対象だけを変更する。期待：同一receiptから再構成できない集計として拒否する。確認 LABO-055-AC-04。
 - **L10-LABO-055-CASE-11 negative scorer revision omitted** — metric値は同一のままscorer/oracle revisionだけを欠落させる。期待：数値だけを出した水準を受け入れず、採点根拠不足を保持する。確認 LABO-055-AC-04。
 - **L10-LABO-055-CASE-12 negative mean cancels failure** — 他条件を固定し重大なquality/scope/security/data-loss failureだけを平均値で相殺する。期待：相殺された水準を不成立とし、failureを失敗のまま残す。確認 LABO-055-AC-04。
 - **L10-LABO-055-CASE-13 negative failure rounded to unassessed** — known failureだけをunassessedへ置換し他は固定する。期待：失敗の観測を保持し、未評価へ丸めた結果を拒否する。確認 LABO-055-AC-02, LABO-055-AC-04。
@@ -149,13 +149,14 @@ input observation identity/source revision；episode candidate identityとrelati
 - **L10-LABO-057-CASE-15 unseen normal** — 未見ticket/task/attempt identityだが必須項目完全なCONNECT receipt。期待：同じACで往復一致し受領。新しいfield/義務を足さない。確認 LABO-057-AC-01, LABO-057-AC-02。
 - **L10-LABO-057-CASE-16 negative delivery-success promotion** — receipt到達は成功だが、評価oracle適用/結果判定だけ未完了。期待：履歴化先は記録してもassessedへ昇格しない。確認 LABO-057-AC-04。
 - **L10-LABO-057-CASE-17 negative assignment** — 受領成功後にLABOがWorker assignmentを出す要求を与える。期待：assignmentなし、OS責務を保持。確認 LABO-057-AC-04。
-- **L10-LABO-057-CASE-18 negative CONNECT absent** — human receiptを固定し、採択CONNECT contractだけを不在にする。期待：CONNECT方式で成立を主張せず未受領を保持。確認 LABO-057-AC-02, LABO-057-AC-03。
-- **L10-LABO-057-CASE-19 negative CONNECT unknown** — human receiptを固定し、CONNECT contractの有効性だけunknownにする。期待：有効な契約と推測せず未受領を保持。確認 LABO-057-AC-02, LABO-057-AC-03。
-- **L10-LABO-057-CASE-20 negative human receipt absent** — CONNECT contractを固定し、human receiptだけを不在にする。期待：human receipt方式で成立を主張せず未受領を保持。確認 LABO-057-AC-02, LABO-057-AC-03。
-- **L10-LABO-057-CASE-21 negative human receipt unknown** — CONNECT contractを固定し、human receiptの有効性だけunknownにする。期待：receipt成立と推測せず未受領を保持。確認 LABO-057-AC-02, LABO-057-AC-03。
+- **L10-LABO-057-CASE-18 negative CONNECT absent** — 他条件と有効なhuman receipt fixtureを固定し、採択CONNECT contractだけを不在にする。期待：CONNECT方式を成立根拠に数えず、同義務を満たすhuman receiptにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
+- **L10-LABO-057-CASE-19 negative CONNECT unknown** — 他条件と有効なhuman receipt fixtureを固定し、CONNECT contractの有効性だけunknownにする。期待：CONNECT方式を成立根拠に数えず、有効なhuman receiptにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
+- **L10-LABO-057-CASE-20 negative human receipt absent** — 他条件と有効なCONNECT contract fixtureを固定し、human receiptだけを不在にする。期待：human receipt方式を成立根拠に数えず、有効なCONNECT contractにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
+- **L10-LABO-057-CASE-21 negative human receipt unknown** — 他条件と有効なCONNECT contract fixtureを固定し、human receiptの有効性だけunknownにする。期待：human receipt方式を成立根拠に数えず、有効なCONNECT contractにより受領成立する。確認 LABO-057-AC-02, LABO-057-AC-03。
 - **L10-LABO-057-CASE-22 negative source/delivery mismatch** — source identityとdelivery identityだけ不一致にし、受領receipt一致は保つ。期待：OSへ戻し、受領成立にしない。確認 LABO-057-AC-03。
 - **L10-LABO-057-CASE-23 negative send/receive receipt mismatch** — sourceとdeliveryは一致、送信receiptと受領receiptだけ不一致にする。期待：OS/LABOへ戻し、原記録と未完義務を保持する。確認 LABO-057-AC-03。
 - **L10-LABO-057-CASE-24 normal receipt return/history destination** — CONNECT契約とhuman receiptを別々の正常fixtureで成立させる。期待：LABO受領receiptを返し、後続の履歴化先を各方式で示して追跡できる。評価済みへの昇格やassignmentはしない。確認 LABO-057-AC-04。
+- **L10-LABO-057-CASE-25 negative neither method establishes receipt** — 3つの独立subfixtureを与える：(a) CONNECT contractとhuman receiptがともに不在、(b) ともにunknown、(c) 一方が不在で他方がunknown。期待：いずれも有効な方式がなく、受領成功を主張せず未受領と元の未完義務を保持する。各subfixtureは他条件を固定し、片方式だけ有効なCASE-18〜21と区別する。確認 LABO-057-AC-02, LABO-057-AC-03、固定L11:154。
 
 ### 親句→FR/AC→CASE crosswalk
 
@@ -171,10 +172,10 @@ input observation identity/source revision；episode candidate identityとrelati
 | 056oracle/criteria identity+revision・task/model class/scope・根拠/比較/result/反例/unknown/評価者/時点/receipt適用範囲 | LABO-056-FR-01; LABO-056-AC-03 | L10-LABO-056-CASE-07, L10-LABO-056-CASE-09, L10-LABO-056-CASE-10, L10-LABO-056-CASE-11 |
 | 056不足/矛盾/stale、owner戻し先、source authority、qualification禁止 | LABO-056-FR-01; LABO-056-AC-01, LABO-056-AC-02, LABO-056-AC-03, LABO-056-AC-04 | L10-LABO-056-CASE-08, L10-LABO-056-CASE-13, L10-LABO-056-CASE-14 |
 | 057 exact receipt identity/scope/state/unfinished duty | LABO-057-FR-01; LABO-057-AC-01 | L10-LABO-057-CASE-01, L10-LABO-057-CASE-02, L10-LABO-057-CASE-03, L10-LABO-057-CASE-04, L10-LABO-057-CASE-05, L10-LABO-057-CASE-06, L10-LABO-057-CASE-07, L10-LABO-057-CASE-08 |
-| 057 CONNECT/human receipt両方式の同等義務 | LABO-057-FR-01; LABO-057-AC-02 | L10-LABO-057-CASE-01, L10-LABO-057-CASE-02, L10-LABO-057-CASE-09, L10-LABO-057-CASE-10, L10-LABO-057-CASE-11, L10-LABO-057-CASE-12, L10-LABO-057-CASE-13 |
+| 057 CONNECTまたはhuman receiptの代替方式と同等義務、どちらも不在/unknownなら未受領（固定L11:154） | LABO-057-FR-01; LABO-057-AC-02, LABO-057-AC-03 | L10-LABO-057-CASE-01, L10-LABO-057-CASE-02, L10-LABO-057-CASE-09, L10-LABO-057-CASE-10, L10-LABO-057-CASE-11, L10-LABO-057-CASE-12, L10-LABO-057-CASE-13, L10-LABO-057-CASE-18, L10-LABO-057-CASE-19, L10-LABO-057-CASE-20, L10-LABO-057-CASE-21, L10-LABO-057-CASE-25 |
 | 057 receipt返却/履歴化先、delivery成功から評価済み・assignmentを生成しない | LABO-057-FR-01; LABO-057-AC-04 | L10-LABO-057-CASE-16, L10-LABO-057-CASE-17, L10-LABO-057-CASE-24 |
 | 057 source/送達不一致はOSへ、送受receipt不一致はOS/LABOへ戻す | LABO-057-FR-01; LABO-057-AC-03 | L10-LABO-057-CASE-22, L10-LABO-057-CASE-23 |
-| 057 OS-027 optional、receipt/delivery mismatch・failure未成立・owner別戻し | LABO-057-FR-01; LABO-057-AC-03 | L10-LABO-057-CASE-03, L10-LABO-057-CASE-04, L10-LABO-057-CASE-05, L10-LABO-057-CASE-06, L10-LABO-057-CASE-07, L10-LABO-057-CASE-08, L10-LABO-057-CASE-09, L10-LABO-057-CASE-10, L10-LABO-057-CASE-11, L10-LABO-057-CASE-12, L10-LABO-057-CASE-13, L10-LABO-057-CASE-14, L10-LABO-057-CASE-18, L10-LABO-057-CASE-19, L10-LABO-057-CASE-20, L10-LABO-057-CASE-21, L10-LABO-057-CASE-22, L10-LABO-057-CASE-23 |
+| 057 OS-027 optional、receipt/delivery mismatch・どちらも成立しない失敗・owner別戻し | LABO-057-FR-01; LABO-057-AC-03 | L10-LABO-057-CASE-03, L10-LABO-057-CASE-04, L10-LABO-057-CASE-05, L10-LABO-057-CASE-06, L10-LABO-057-CASE-07, L10-LABO-057-CASE-08, L10-LABO-057-CASE-09, L10-LABO-057-CASE-10, L10-LABO-057-CASE-11, L10-LABO-057-CASE-12, L10-LABO-057-CASE-13, L10-LABO-057-CASE-14, L10-LABO-057-CASE-18, L10-LABO-057-CASE-19, L10-LABO-057-CASE-20, L10-LABO-057-CASE-21, L10-LABO-057-CASE-22, L10-LABO-057-CASE-23, L10-LABO-057-CASE-25 |
 
 ### 共通判定とowner戻し先
 
