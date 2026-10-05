@@ -1,0 +1,231 @@
+{
+  "record_kind": "delegated_l3_l10_decision_pin",
+  "review_base": "29e814a92af2aa52afcbcdd60549b32a2448513a",
+  "review_content_head": "6682dfaf70340b29b7c1aba5038bb322a6014011",
+  "body_revision": "86e28720610d80756161d3693de67a84354dfb99",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "id": 5994343761,
+      "bytes": 3218,
+      "sha256": "b2e75626d153c4a65bb20031057ef918bb953605e7955c3d62ae12039ab52c97"
+    },
+    {
+      "id": 5994469069,
+      "bytes": 11643,
+      "sha256": "9a4ec8955fb94fa9c26fbd1bf8ab9043bf6ab0687503030a4dfa38c63d5540bc"
+    }
+  ],
+  "approved_parents": [
+    {
+      "parent": "HELIXLABO-L2-036",
+      "registration_id": "MPR-RC-HELIXLABO-L2-036-001",
+      "semantic_digest": "sha256:c39cf807fbf13b0af8089cf1bfbdf30f23dd9c8c2df0385ced7cc786827e4632",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 84,
+        "raw_lf_sha256": "3bcb5efceda6af4459f6e2735af7608b64f5c914dd1e306c5fc5cbbb43f88a94",
+        "literal": "| `HELIXLABO-L2-036` | `MPR-RC-HELIXLABO-L2-036-001` | connection / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 270,
+        "raw_lf_sha256": "ba9110ed27e92f883376029da7f9132b1a35142b021f0b00ff66fa92c75fc0b9",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-036-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-036\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-036\",\"candidate_semantic_digest\":\"sha256:c39cf807fbf13b0af8089cf1bfbdf30f23dd9c8c2df0385ced7cc786827e4632\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-036\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-037",
+      "registration_id": "MPR-RC-HELIXLABO-L2-037-001",
+      "semantic_digest": "sha256:dc0518a71c488c47e5667a7a42ec6690b0a25a4cd576ffb9e16c80505f21375f",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 85,
+        "raw_lf_sha256": "e64c89565cf9d9079b6aab0c089fee28e51dda687716ebece7a41c530e05c88a",
+        "literal": "| `HELIXLABO-L2-037` | `MPR-RC-HELIXLABO-L2-037-001` | connection / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 271,
+        "raw_lf_sha256": "19a87760e4888e6822cb8dcdf654707ee814062b552127dda92bf7d1b99247ba",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-037-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-037\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-037\",\"candidate_semantic_digest\":\"sha256:dc0518a71c488c47e5667a7a42ec6690b0a25a4cd576ffb9e16c80505f21375f\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-037\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-038",
+      "registration_id": "MPR-RC-HELIXLABO-L2-038-001",
+      "semantic_digest": "sha256:0b136320b842e354a9051bef54a0af4a9ba3a56dc72b0087568457ca9a464750",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 86,
+        "raw_lf_sha256": "ac0c72113fbe6430faa1e9598b2d9398204e07c2d1a44e36bac90d786ec53aec",
+        "literal": "| `HELIXLABO-L2-038` | `MPR-RC-HELIXLABO-L2-038-001` | connection / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 272,
+        "raw_lf_sha256": "7ea5eff93e179707d3a2e807f594c1c18c7a10e7b0ff2e97429193506234b6b0",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-038-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-038\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-038\",\"candidate_semantic_digest\":\"sha256:0b136320b842e354a9051bef54a0af4a9ba3a56dc72b0087568457ca9a464750\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-038\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-039",
+      "registration_id": "MPR-RC-HELIXLABO-L2-039-001",
+      "semantic_digest": "sha256:c151457d618aa1a32cd5369b2144396e24643ed13a487f520188a47627e95183",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 87,
+        "raw_lf_sha256": "a68f9804c35dcfb0ea0676039f1344017e920777274b3a62b0fd870a62b6531f",
+        "literal": "| `HELIXLABO-L2-039` | `MPR-RC-HELIXLABO-L2-039-001` | connection / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 273,
+        "raw_lf_sha256": "77578e1f06a9ece76ca42d73bec0bce232d595b4bf001516be4abedd9bf8893b",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-039-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-039\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-039\",\"candidate_semantic_digest\":\"sha256:c151457d618aa1a32cd5369b2144396e24643ed13a487f520188a47627e95183\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-039\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-040",
+      "registration_id": "MPR-RC-HELIXLABO-L2-040-001",
+      "semantic_digest": "sha256:2beb40acf8391b6cbc263c21e20c015b1cbe8abddc5e9504f8243d3f064593d6",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "上流採択scopeに従う",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 88,
+        "raw_lf_sha256": "dc428193c52d9c6d09da776db25e1255683ccebd0ca6fd0e16da5392d06f5dd1",
+        "literal": "| `HELIXLABO-L2-040` | `MPR-RC-HELIXLABO-L2-040-001` | connection / 上流決定に従う; Feedback接続の対象scopeに限定 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 274,
+        "raw_lf_sha256": "ed7346edffeebb35374fd505d66ec44ba85f0bff6551027a4f1ac13b11089b08",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-040-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-040\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-040\",\"candidate_semantic_digest\":\"sha256:2beb40acf8391b6cbc263c21e20c015b1cbe8abddc5e9504f8243d3f064593d6\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-040\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-041",
+      "registration_id": "MPR-RC-HELIXLABO-L2-041-001",
+      "semantic_digest": "sha256:74b141f510ecfed2a47f3083275cc4c89697f4b930021341a1aa11af22d2a5cf",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "上流採択scopeに従う",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 89,
+        "raw_lf_sha256": "cea6d10bb13055c0a3bef1d4d467c968c0cf705cb56765d3cb0accda34d45df7",
+        "literal": "| `HELIXLABO-L2-041` | `MPR-RC-HELIXLABO-L2-041-001` | connection / 上流決定に従う; Feedback接続の対象scopeに限定 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 275,
+        "raw_lf_sha256": "733d5c92593d077dd7551e58c921c094fcb84352c8dcefa76034278f758ef666",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-041-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-041\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-041\",\"candidate_semantic_digest\":\"sha256:74b141f510ecfed2a47f3083275cc4c89697f4b930021341a1aa11af22d2a5cf\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-041\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-052",
+      "registration_id": "MPR-RC-HELIXLABO-L2-052-001",
+      "semantic_digest": "sha256:4c785ecb6f8f402ebb96c9f1e9452aea184b387c23dc6fc52425541d5a19f917",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 94,
+        "raw_lf_sha256": "73eefcd7dc548f72fed1b9e92bd6feddd63bf5b6c6882c37c091483d613cc31e",
+        "literal": "| `HELIXLABO-L2-052` | `MPR-RC-HELIXLABO-L2-052-001` | composite / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 280,
+        "raw_lf_sha256": "fe377e3cb66bcdad925b950542cc85320fc533366e5c20663b078c0d1389f0e4",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-052-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-052\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-052\",\"candidate_semantic_digest\":\"sha256:4c785ecb6f8f402ebb96c9f1e9452aea184b387c23dc6fc52425541d5a19f917\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-052\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    },
+    {
+      "parent": "HELIXLABO-L2-054",
+      "registration_id": "MPR-RC-HELIXLABO-L2-054-001",
+      "semantic_digest": "sha256:6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c",
+      "fixed_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "version_target": "1.0",
+      "po": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "physical_line": 91,
+        "raw_lf_sha256": "5c88fc9942b8490e0cf71558c321b244b8c904cc79b0ad26db1741d130ade846",
+        "literal": "| `HELIXLABO-L2-054` | `MPR-RC-HELIXLABO-L2-054-001` | connection / 1.0 |\n"
+      },
+      "register": {
+        "path": "docs/governance/management-provisional-requirement-register.jsonl",
+        "physical_line": 277,
+        "raw_lf_sha256": "fbc1075aee1e325aadc1da22ede90986528eacf892076ed4f33b90e940846b3e",
+        "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-054-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-054\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-054\",\"candidate_semantic_digest\":\"sha256:6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-054\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}\n"
+      }
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "full_sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "bytes": 105136,
+      "main_prefix_bytes": 76942,
+      "main_prefix_sha256": "417a229a2f29f90e141f72f99505d9ef90ce7d29cd4255eca5113f86ff7a74e0",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "full_sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "bytes": 4234,
+      "main_prefix_bytes": 3523,
+      "main_prefix_sha256": "29bc13fb45be882b76e1c36e6f1f3f98b97b89ef92bdc63cc6ffda5b690ec2be",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "full_sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "bytes": 31278,
+      "main_prefix_bytes": 26719,
+      "main_prefix_sha256": "b0139aac6e5a7d08772bdbb5c797c472f7cc4a19de04d78d2d2a2b636a8fb802",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "full_sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "bytes": 145671,
+      "main_prefix_bytes": 98614,
+      "main_prefix_sha256": "c4337fc847a173148c17fec7be2a5f2022f73b40c4e42989fa3ba211e1689f14",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "full_sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "bytes": 3291,
+      "main_prefix_bytes": 2647,
+      "main_prefix_sha256": "0338364f94216b99bdad2691feb61ad695717174520a777ca79ecd50086b3de3",
+      "prefix_byte_equal": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "full_sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "bytes": 29799,
+      "main_prefix_bytes": 22096,
+      "main_prefix_sha256": "39a2dc9775b0a3c85ba69fc63b1a6e9946bb21e1e5f95e4a038814c4d7ddf42c",
+      "prefix_byte_equal": true
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+    "sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911"
+  },
+  "authority_effect": "effective_when_decision_record_admitted_to_main"
+}
