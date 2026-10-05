@@ -1,0 +1,188 @@
+{
+  "record_type": "append-only authoring-boundary correction record",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-INFRASTRUCTURE",
+    "stage": "2a",
+    "files": [
+      "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "docs/helix-infrastructure/L10-verification/nfr-verification.md"
+    ],
+    "direct_parents": [
+      "HELIXINFRASTRUCTURE-L2-003",
+      "HELIXINFRASTRUCTURE-L2-004",
+      "HELIXINFRASTRUCTURE-L2-005",
+      "HELIXINFRASTRUCTURE-L2-009",
+      "HELIXINFRASTRUCTURE-L2-010"
+    ],
+    "direct_parent_count": 5,
+    "change": "Stage 1の現行承認状態の説明を、承認済みStage 1 prefixのbytes保持と、その承認を新しいStage 2a候補revisionへ継承しない境界に限定修正。Functional FR内のsuffix 2行のみ。"
+  },
+  "revisions": {
+    "base_main": "4058f9d6ae72764de9483acb7882994e943d2167",
+    "pre_correction_body": "50edd9069f46fdeb33b558d3ecbd187e0711390f",
+    "corrected_body": "493f2d06315a74f016c0dd657cae225b9210b4de",
+    "prior_cutout_audit_commit": "2a79db62cf6604bb474651981f5839f6a0c5aea5",
+    "branch": "codex/l3-infra-stage2a-main-publication",
+    "published": false
+  },
+  "correction": {
+    "old_physical_lines": [
+      99,
+      141
+    ],
+    "pins": [
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+        "physical_line": 99,
+        "literal": "この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1の6文書prefixはbytesそのまま保持するが、そのStage 1承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。",
+        "line_sha256_without_lf": "8a2f1fba85f569c299d36cc8fe00fc1d7849ab1a2a0806073ec2167478989563",
+        "line_sha256_raw_lf": "c494324f3117c5a07a6b9337ca0925e9f4798937ab53193af91ac92b2386dfc5"
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+        "physical_line": 141,
+        "literal": "上のStage 1 scope境界はStage 1候補の対象限定としてそのまま保持する。Stage 2aの直接対象は本節の5採択親だけであり、Stage 1境界文を保持し、承認済みStage 1 prefixの承認を今回のStage 2a候補revisionへ継承しない。全5親の適用条件は固定L2/L11とPO採択revisionに従い、Stage 2a候補から要求の意味/scope/owner/versionを拡張しない。",
+        "line_sha256_without_lf": "4671edc3380b35846cac2526a7e2bc5beb2a88a4aabafa66c2d01dd5072936fc",
+        "line_sha256_raw_lf": "ffdb0af21239d856618157f6912c30a2251f3263b4afc6678a281342b49605e0"
+      }
+    ],
+    "meaning": "main 4058上のStage 1 001/006承認済prefixをbyte単位で保持する。Stage 2aの003/004/005/009/010候補revisionへStage 1承認を移さない。Stage 2aの親identity・意味・scope・owner・versionは変更しない。",
+    "only_suffix_wording_changed": true
+  },
+  "main_prefixes_and_current_documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "4f67ed9044970dddcd40d14d21dbb7d9e4555c6e42a3bc450d1f881f695b8f14",
+      "byte_length": 39873,
+      "physical_line_count": 273,
+      "preserved_stage1_prefix_bytes": 16146,
+      "preserved_stage1_prefix_sha256": "22d90beb7fcec36e33b63cc3fa7921e224ff6ced66ea8f9a5f2fdb71570d28b6",
+      "stage2a_suffix_line_start": 97,
+      "stage2a_suffix_line_end": 273,
+      "stage2a_suffix_sha256": "c7477527493a20b742dc62fb60fbba7a101c7f0b568c9598f104c7772cf9b731"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "5bf1a11da8596bfe770c61d61766b3a144311f8facc28f8988d1d1d431e91f7f",
+      "byte_length": 2903,
+      "physical_line_count": 27,
+      "preserved_stage1_prefix_bytes": 1952,
+      "preserved_stage1_prefix_sha256": "c2b22bc5af8bf721c9f6e4594e81046dde2ed2a9555fa0643accb76f8a37f97e",
+      "stage2a_suffix_line_start": 23,
+      "stage2a_suffix_line_end": 27,
+      "stage2a_suffix_sha256": "4dd10b6f7c63e2ce460b7bb76153590730f30b8439fd5e6bfa3711253aaafd35"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "9a4ef4677f378c49c7fce4b139fe37c2c658bfbbc5ffee93550af9866b3c6939",
+      "byte_length": 13011,
+      "physical_line_count": 62,
+      "preserved_stage1_prefix_bytes": 8514,
+      "preserved_stage1_prefix_sha256": "a381b4b88fe6b5621fecf1195470b45bd5fbfd1f1dc88fee7dc3cf259abbb3ab",
+      "stage2a_suffix_line_start": 47,
+      "stage2a_suffix_line_end": 62,
+      "stage2a_suffix_sha256": "05428890d3874ab895c2a7709266c425b60daa186092ec25d133477a65de3c2f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "875f28f77fcaf1ad1498b429e11e4295ce2061c125568e77e71ed0289a46b9fd",
+      "byte_length": 31340,
+      "physical_line_count": 153,
+      "preserved_stage1_prefix_bytes": 15888,
+      "preserved_stage1_prefix_sha256": "e9e3132d779e3ea9c8e4cfef2d066d0f5394cfb76069cb2af90468c4930172a7",
+      "stage2a_suffix_line_start": 81,
+      "stage2a_suffix_line_end": 153,
+      "stage2a_suffix_sha256": "c7666570d73a6e09710e6e28fe0d318256e2419725558e876bdbb1179e86f079"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "bdebf4f6e6bce665cbe1f6a187eb9727ffc421f898113cc066bb88f8715778a4",
+      "byte_length": 1831,
+      "physical_line_count": 23,
+      "preserved_stage1_prefix_bytes": 1293,
+      "preserved_stage1_prefix_sha256": "8801b848f6b16d5214a45b3652446a228e829c687f9203e50c02ad2bf5ddbe70",
+      "stage2a_suffix_line_start": 21,
+      "stage2a_suffix_line_end": 23,
+      "stage2a_suffix_sha256": "56e9b24efa256715b91505db2511466fd3f98b272f116646dececdfdb0150232"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "revision": "493f2d06315a74f016c0dd657cae225b9210b4de",
+      "full_file_sha256": "8502f5bdb6193018c27b525f94dbbdeb500ac854364885d60d2a69af5ada3b4d",
+      "byte_length": 11048,
+      "physical_line_count": 53,
+      "preserved_stage1_prefix_bytes": 6449,
+      "preserved_stage1_prefix_sha256": "562545cfb95e81bce5db29628b5fbb3a82c20fbb41db6867364ff60b2c84c63a",
+      "stage2a_suffix_line_start": 40,
+      "stage2a_suffix_line_end": 53,
+      "stage2a_suffix_sha256": "f56b76a5624785eafc06470f52f62d0242b59c1b2d446b470e310eb24587228b"
+    }
+  ],
+  "previous_immutable_records": [
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-static-validation-2026-10-05-9a3129898.json",
+      "sha256": "9cc3f466a97ff46f58a731e24f52fbf13030ff084e19acd2e88472249ffb9d25",
+      "bytes": 140443,
+      "unchanged_from_pre_correction_cutout_commit": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-po-review-2026-10-05-9a3129898.md",
+      "sha256": "73418380234154aba3631c233968a61c4737ca20b87ddfa33fb5515a592b72b5",
+      "bytes": 2878,
+      "unchanged_from_pre_correction_cutout_commit": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-publication-cutout-2026-10-05-4058f9d6.json",
+      "sha256": "f7e8e0b2a90daac1ef2ccc25798fde0fac4ec59a1c89d2213a9ec3315c57a2d9",
+      "bytes": 139276,
+      "unchanged_from_pre_correction_cutout_commit": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-publication-cutout-2026-10-05-4058f9d6.md",
+      "sha256": "55dc7c3d614070214037873f19aeedf3cedb95dfe4f594d1291b201f1562bfc9",
+      "bytes": 1488,
+      "unchanged_from_pre_correction_cutout_commit": true
+    }
+  ],
+  "source_history_observations": [
+    {
+      "commit": "9a3129898f95a1e7a487fa34dadc7bac9be7fb98",
+      "role": "source Stage2a body revision",
+      "method": "GitHub REST GET /repos/RetryYN/HELIX-HARNESS/commits/{sha}",
+      "observed_http_status": 422,
+      "response": "No commit found for SHA; GitHub API status 422"
+    },
+    {
+      "commit": "2459dae25c78b3a8802f3fe78d28f6400fcd2ec9",
+      "role": "source Stage2a audit/summary commit",
+      "method": "GitHub REST GET /repos/RetryYN/HELIX-HARNESS/commits/{sha}",
+      "observed_http_status": 422,
+      "response": "No commit found for SHA; GitHub API status 422"
+    }
+  ],
+  "source_records_disposition": "Source body and prior audit/summary remain unchanged in original local source history. Original audit and source bytes are already copied unchanged into this publication cutout. These API 422 responses mean public commit API lookup did not find either source SHA; no remote recoverability is claimed.",
+  "validation": {
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_show_check": "PASS",
+    "tests_runtime_ci": "not run"
+  },
+  "limitations": [
+    "作成側の追補記録であり独立reviewではない。",
+    "POによるStage 2a L3候補承認は未了。",
+    "pushなし。"
+  ]
+}

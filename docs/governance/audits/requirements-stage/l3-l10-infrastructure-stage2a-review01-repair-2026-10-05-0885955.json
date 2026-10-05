@@ -1,0 +1,2714 @@
+{
+  "record_type": "append-only independent-review repair audit",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none",
+  "review_source": {
+    "pr": 2590,
+    "comment_id": 5987114642,
+    "exact_base": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+    "reviewed_head": "9ee7ce7f6c794abadc0f9cd28754d56ec6e4104d",
+    "review_body": "7a4322b55342e56b8ef6631afa1ba38d33ba26d1",
+    "finding_count": 29,
+    "findings": [
+      {
+        "id": "M003-1",
+        "severity": "Major",
+        "finding": "unbounded jobs / unauthorized node movement / cost selection were bundled or absent",
+        "corrected_at": "FR-003-AC-05; FV CASE-INFRA-003-17/18/19",
+        "paired_oracle": "isolated mutations, no selection/admission, capacity unavailable/owner handoff",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M003-2",
+        "severity": "Major",
+        "finding": "L2-001 snapshot missing/stale/revision mismatch negative absent",
+        "corrected_at": "FV CASE-INFRA-003-20",
+        "paired_oracle": "each dependency state separately yields unknown/pending, owner return",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M004-1",
+        "severity": "Major",
+        "finding": "approved severity normal/unseen and unapproved-severity negative incomplete",
+        "corrected_at": "FR-004-AC-02; FV CASE-INFRA-004-06/07/08",
+        "paired_oracle": "normal and unseen contract retained; unapproved value rejected",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M004-2",
+        "severity": "Major",
+        "finding": "L2-001 snapshot dependency negative absent",
+        "corrected_at": "FV CASE-INFRA-004-09",
+        "paired_oracle": "missing/stale/revision mismatch separately held unknown",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M005-1",
+        "severity": "Major",
+        "finding": "state owner retention requirement only appeared in guard",
+        "corrected_at": "FR-005-FR/AC-01; FV CASE-INFRA-005-10",
+        "paired_oracle": "expiry refers to existing owner requirement; missing owner/request unknown",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M005-2",
+        "severity": "Major",
+        "finding": "backup job success alone did not have individual negative",
+        "corrected_at": "FR-005-AC-01; FV CASE-INFRA-005-11",
+        "paired_oracle": "job success without actual restore never passes",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M005-3",
+        "severity": "Major",
+        "finding": "independent restore environment and L2-001/002 dependency negatives missing",
+        "corrected_at": "FR-005-AC-02; FV CASE-INFRA-005-12/13",
+        "paired_oracle": "non-independent environment and each missing/stale/revision mismatch rejected",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M009-1",
+        "severity": "Major",
+        "finding": "three L11 counterexamples lacked individual negatives",
+        "corrected_at": "FR-009-AC-02; FV CASE-INFRA-009-06",
+        "paired_oracle": "OS ticket truth, INFRA approval, whole-release gate variants separated",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M009-2",
+        "severity": "Major",
+        "finding": "later HRI-L1-015 and L1-023 gates absent",
+        "corrected_at": "FR-009-FR/AC-02; FV CASE-INFRA-009-06",
+        "paired_oracle": "ordinary route excludes later-version/whole-products gates",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M009-3",
+        "severity": "Major",
+        "finding": "conditional stage success evidence and partial update/rollback oracle absent",
+        "corrected_at": "FR-009-AC-02; FV CASE-INFRA-009-02/06",
+        "paired_oracle": "composition/dependencies/update/rollback evidence; unfinished/partial does not pass",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M010-1",
+        "severity": "Major",
+        "finding": "credential secret non-persistence across three planes and legacy exclusion error",
+        "corrected_at": "FR-010-FR/AC-01; FV CASE-INFRA-010-11; legacy disposition",
+        "paired_oracle": "normal state/backup/snapshot independent negative; OPS-AC-001 now partial reuse",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M010-2",
+        "severity": "Major",
+        "finding": "unbounded Shell negative absent",
+        "corrected_at": "FR-010-FR/AC-01; FV CASE-INFRA-010-12",
+        "paired_oracle": "unbounded execution rejected before start",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M010-3",
+        "severity": "Major",
+        "finding": "Worker success response without actual state evidence negative absent",
+        "corrected_at": "FR-010-AC-01; FV CASE-INFRA-010-13",
+        "paired_oracle": "actual state remains unknown; no success",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M010-4",
+        "severity": "Major",
+        "finding": "INFRA issuing its own policy/authority lacked AC/case negative",
+        "corrected_at": "FR-010-AC-01; FV CASE-INFRA-010-14",
+        "paired_oracle": "authority invalid and operation rejected",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "M010-5",
+        "severity": "Major",
+        "finding": "unknown/unmet duty, normal ticket/assignment and recovery exemption reuse incomplete",
+        "corrected_at": "FR-010-FR/AC-02; FV CASE-INFRA-010-15/16/17",
+        "paired_oracle": "state change held; normal route still needs OS; recovery exception not reused",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m003-1",
+        "severity": "Minor",
+        "finding": "capacity unavailable return and low-cost/alternate-node case unclear",
+        "corrected_at": "FR-003-AC-05; FV CASE-INFRA-003-13/19",
+        "paired_oracle": "return to OS/INTELLIGENCE; no placement/cost choice",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m003-2",
+        "severity": "Minor",
+        "finding": "AC-06 lacked return owner",
+        "corrected_at": "FR-003-AC-06; FV CASE-INFRA-003-16/20",
+        "paired_oracle": "source state to source owner, work decision to OS/INTELLIGENCE",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m004-1",
+        "severity": "Minor",
+        "finding": "cause not guessed was absent from FR-04 and AC-04",
+        "corrected_at": "FR-004-FR/AC-04; FV CASE-INFRA-004-04/08",
+        "paired_oracle": "no inferred cause; use existing meaning owner",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m004-2",
+        "severity": "Minor",
+        "finding": "AC-04 lacked concrete telemetry return destination",
+        "corrected_at": "FR-004-AC-04; FV CASE-INFRA-004-04",
+        "paired_oracle": "telemetry to source/collector; pending evaluation preserved",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m005-1",
+        "severity": "Minor",
+        "finding": "AC-02 lacked return destination",
+        "corrected_at": "FR-005-AC-02; FV CASE-INFRA-005-12/13",
+        "paired_oracle": "restore failure to recovery design owner/OS",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m005-2",
+        "severity": "Minor",
+        "finding": "AC-04 lacked explicit recovery design owner/OS return",
+        "corrected_at": "FR-005-AC-04; FV CASE-INFRA-005-12/13",
+        "paired_oracle": "unfinished duties and prior state preserved, owner explicit",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m005-3",
+        "severity": "Minor",
+        "finding": "NFR-005-01 comparison was qualitative",
+        "corrected_at": "NG/NV INFRA-NFR-005-01",
+        "paired_oracle": "1/5/15 minutes, measurement and censoring comparison, no SLA",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m009-1",
+        "severity": "Minor",
+        "finding": "L2-006 missing from dependency guard",
+        "corrected_at": "FR Stage2a guard L2-009",
+        "paired_oracle": "L2-001/002/004/006 listed; apply OS-L2-014 only for selected pack",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m009-2",
+        "severity": "Minor",
+        "finding": "FR-009-01 actor missing",
+        "corrected_at": "FR-009-FR-01",
+        "paired_oracle": "OS Work/Change actor included",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m009-3",
+        "severity": "Minor",
+        "finding": "stage completion wait only normal positive",
+        "corrected_at": "FR-009-AC-02; FV CASE-INFRA-009-06",
+        "paired_oracle": "non-required global stage completion has explicit negative",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m010-1",
+        "severity": "Minor",
+        "finding": "CASE-010-04 must explicitly exercise expired update admission",
+        "corrected_at": "FR-010-AC-02; FV CASE-INFRA-010-04",
+        "paired_oracle": "expired admission is an independent negative",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m010-2",
+        "severity": "Minor",
+        "finding": "project mismatch and read-only authority applicability need explicit cases",
+        "corrected_at": "FV CASE-INFRA-010-03/18",
+        "paired_oracle": "project/scope authority mismatch tested; read-only applies",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "m010-3",
+        "severity": "Minor",
+        "finding": "stop/recovery clause and post-recovery sync negative missing",
+        "corrected_at": "FR-010-FR-02/03; FV CASE-INFRA-010-19",
+        "paired_oracle": "retain actual/unfinished state and reject missing/mismatched sync receipt",
+        "status": "addressed in repair body"
+      },
+      {
+        "id": "mNFR-1",
+        "severity": "Minor",
+        "finding": "009/010 named in grade preface with no row/values",
+        "corrected_at": "NG/NV Stage2a NFR section",
+        "paired_oracle": "explicit no numeric candidates; qualitative source-qualified completeness only",
+        "status": "addressed in repair body"
+      }
+    ],
+    "retrieved_body_sha256": "32021b1997932cde383e90d72224a1638f31f69be7085312a695643342a9d789",
+    "retrieved_body_bytes": 9000,
+    "retrieved_from": "GitHub REST issue comment 5987114642; full body stored at /tmp/pr2590-review01-full-again.md during repair"
+  },
+  "scope": {
+    "mechanism": "HELIX-INFRASTRUCTURE",
+    "stage": "2a",
+    "direct_parents": [
+      "HELIXINFRASTRUCTURE-L2-003",
+      "HELIXINFRASTRUCTURE-L2-004",
+      "HELIXINFRASTRUCTURE-L2-005",
+      "HELIXINFRASTRUCTURE-L2-009",
+      "HELIXINFRASTRUCTURE-L2-010"
+    ],
+    "counts": {
+      "FR": 20,
+      "AC": 21,
+      "CASE": 67,
+      "NFR_candidate": 6,
+      "independent_business_requirement": 0,
+      "independent_business_case": 0,
+      "per_parent": {
+        "003": {
+          "FR": [
+            "INFRA-003-FR-01",
+            "INFRA-003-FR-02",
+            "INFRA-003-FR-03",
+            "INFRA-003-FR-04",
+            "INFRA-003-FR-05"
+          ],
+          "AC": [
+            "INFRA-003-AC-01",
+            "INFRA-003-AC-02",
+            "INFRA-003-AC-03",
+            "INFRA-003-AC-04",
+            "INFRA-003-AC-05",
+            "INFRA-003-AC-06"
+          ],
+          "CASE": [
+            "CASE-INFRA-003-01",
+            "CASE-INFRA-003-02",
+            "CASE-INFRA-003-03",
+            "CASE-INFRA-003-04",
+            "CASE-INFRA-003-05",
+            "CASE-INFRA-003-06",
+            "CASE-INFRA-003-07",
+            "CASE-INFRA-003-08",
+            "CASE-INFRA-003-09",
+            "CASE-INFRA-003-10",
+            "CASE-INFRA-003-11",
+            "CASE-INFRA-003-12",
+            "CASE-INFRA-003-13",
+            "CASE-INFRA-003-14",
+            "CASE-INFRA-003-15",
+            "CASE-INFRA-003-16",
+            "CASE-INFRA-003-17",
+            "CASE-INFRA-003-18",
+            "CASE-INFRA-003-19",
+            "CASE-INFRA-003-20"
+          ],
+          "NFR": [
+            "INFRA-NFR-003-01",
+            "INFRA-NFR-003-02",
+            "INFRA-NFR-003-03"
+          ],
+          "NFR_CASE_REFERENCES": [
+            "INFRA-NFR-003-01",
+            "INFRA-NFR-003-02",
+            "INFRA-NFR-003-03"
+          ]
+        },
+        "004": {
+          "FR": [
+            "INFRA-004-FR-01",
+            "INFRA-004-FR-02",
+            "INFRA-004-FR-03",
+            "INFRA-004-FR-04"
+          ],
+          "AC": [
+            "INFRA-004-AC-01",
+            "INFRA-004-AC-02",
+            "INFRA-004-AC-03",
+            "INFRA-004-AC-04"
+          ],
+          "CASE": [
+            "CASE-INFRA-004-01",
+            "CASE-INFRA-004-02",
+            "CASE-INFRA-004-03",
+            "CASE-INFRA-004-04",
+            "CASE-INFRA-004-05",
+            "CASE-INFRA-004-06",
+            "CASE-INFRA-004-07",
+            "CASE-INFRA-004-08",
+            "CASE-INFRA-004-09"
+          ],
+          "NFR": [
+            "INFRA-NFR-004-01"
+          ],
+          "NFR_CASE_REFERENCES": [
+            "INFRA-NFR-004-01"
+          ]
+        },
+        "005": {
+          "FR": [
+            "INFRA-005-FR-01",
+            "INFRA-005-FR-02",
+            "INFRA-005-FR-03",
+            "INFRA-005-FR-04"
+          ],
+          "AC": [
+            "INFRA-005-AC-01",
+            "INFRA-005-AC-02",
+            "INFRA-005-AC-03",
+            "INFRA-005-AC-04"
+          ],
+          "CASE": [
+            "CASE-INFRA-005-01",
+            "CASE-INFRA-005-02",
+            "CASE-INFRA-005-03",
+            "CASE-INFRA-005-04",
+            "CASE-INFRA-005-05",
+            "CASE-INFRA-005-06",
+            "CASE-INFRA-005-07",
+            "CASE-INFRA-005-08",
+            "CASE-INFRA-005-09",
+            "CASE-INFRA-005-10",
+            "CASE-INFRA-005-11",
+            "CASE-INFRA-005-12",
+            "CASE-INFRA-005-13"
+          ],
+          "NFR": [
+            "INFRA-NFR-005-01",
+            "INFRA-NFR-005-02"
+          ],
+          "NFR_CASE_REFERENCES": [
+            "INFRA-NFR-005-01",
+            "INFRA-NFR-005-02"
+          ]
+        },
+        "009": {
+          "FR": [
+            "INFRA-009-FR-01",
+            "INFRA-009-FR-02",
+            "INFRA-009-FR-03"
+          ],
+          "AC": [
+            "INFRA-009-AC-01",
+            "INFRA-009-AC-02",
+            "INFRA-009-AC-03"
+          ],
+          "CASE": [
+            "CASE-INFRA-009-01",
+            "CASE-INFRA-009-02",
+            "CASE-INFRA-009-03",
+            "CASE-INFRA-009-04",
+            "CASE-INFRA-009-05",
+            "CASE-INFRA-009-06"
+          ],
+          "NFR": [],
+          "NFR_CASE_REFERENCES": []
+        },
+        "010": {
+          "FR": [
+            "INFRA-010-FR-01",
+            "INFRA-010-FR-02",
+            "INFRA-010-FR-03",
+            "INFRA-010-FR-04"
+          ],
+          "AC": [
+            "INFRA-010-AC-01",
+            "INFRA-010-AC-02",
+            "INFRA-010-AC-03",
+            "INFRA-010-AC-04"
+          ],
+          "CASE": [
+            "CASE-INFRA-010-01",
+            "CASE-INFRA-010-02",
+            "CASE-INFRA-010-03",
+            "CASE-INFRA-010-04",
+            "CASE-INFRA-010-05",
+            "CASE-INFRA-010-06",
+            "CASE-INFRA-010-07",
+            "CASE-INFRA-010-08",
+            "CASE-INFRA-010-09",
+            "CASE-INFRA-010-10",
+            "CASE-INFRA-010-11",
+            "CASE-INFRA-010-12",
+            "CASE-INFRA-010-13",
+            "CASE-INFRA-010-14",
+            "CASE-INFRA-010-15",
+            "CASE-INFRA-010-16",
+            "CASE-INFRA-010-17",
+            "CASE-INFRA-010-18",
+            "CASE-INFRA-010-19"
+          ],
+          "NFR": [],
+          "NFR_CASE_REFERENCES": []
+        }
+      }
+    }
+  },
+  "revisions": {
+    "base_approved_main": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+    "fixed_L2_L11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "PO_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "pre_repair_body": "9ee7ce7f6c794abadc0f9cd28754d56ec6e4104d",
+    "repaired_body": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+    "branch": "codex/l3-infra-stage2a-main-publication",
+    "published": false
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "6d6a1177e6555023deb5ee64a4818f545c5d1bc56ce57c2138bfe4034170f145",
+      "bytes": 53880,
+      "physical_lines": 339,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 26791,
+      "approved_prefix_sha256": "74b762b0200d38cac2c9a905a24cabb89b080d44099a9013822724538af85c98",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 163,
+      "stage2a_suffix_sha256": "979ce24f83b4c7339c1387b8de2ef46e354f963d96afed9b3721170c4843c925",
+      "stage2a_suffix_bytes": 27088
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "832674b0d826631cb157b0e9a0525f8f694391dcaedd8c39783f99bce0e23913",
+      "bytes": 4206,
+      "physical_lines": 37,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 3255,
+      "approved_prefix_sha256": "3266179c3434aae291d19fc48d5f6d739f387a27389173d0610e704e614bab4c",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 33,
+      "stage2a_suffix_sha256": "a69ed33a55472b5c72d005faa5047c8d5bf480fbb00b9c449874da8dfb56c741",
+      "stage2a_suffix_bytes": 950
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "9fa10204c08312b34f17f5cdc77cf0a859aafc914fcbf1d359d202ec5631a98a",
+      "bytes": 15721,
+      "physical_lines": 77,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 10848,
+      "approved_prefix_sha256": "33b7ca57fe358340d961f64d4c14173a9c16ceeaf6c6a66e44d7044fe186f828",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 62,
+      "stage2a_suffix_sha256": "fb2250f854cac3ef56f7a4c88e6d1684e6423168200a026cee7b0406cfa083b8",
+      "stage2a_suffix_bytes": 4872
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "4a2fce59a39b824896c92f50affc83a270a6705623a08311bf1e174186231f16",
+      "bytes": 47014,
+      "physical_lines": 229,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 24579,
+      "approved_prefix_sha256": "3201b68d5538960c800db9bea40ae2dc0ecb7b1fb4b159616d56c2522abb2df3",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 126,
+      "stage2a_suffix_sha256": "f1ec3782d08448932c661452dab9fbe9ce5bdef076e14a0da81e8808045aff3b",
+      "stage2a_suffix_bytes": 22434
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "296eb72a0fafd12cdd579d391eabf9f91827646f3cfb029522ad21d57f874fe3",
+      "bytes": 3152,
+      "physical_lines": 33,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 2614,
+      "approved_prefix_sha256": "dc7938e18b325de4c61c7dbf1e23375dc5c33147ca4fac1eb0c31aaf79f2c68d",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 31,
+      "stage2a_suffix_sha256": "b2294bcbcd42060879403eab0f64aa0091e1a3f92b8eb592d21ea7e7541c2629",
+      "stage2a_suffix_bytes": 537
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "body_revision": "0885955fbf688552ae7e8f8bb94d1e7a568d184d",
+      "full_sha256": "d5173bc4ccd6c321e441e3801d76a034874e7afcb3ef35e7d3159a97ea083182",
+      "bytes": 14402,
+      "physical_lines": 70,
+      "approved_prefix_revision": "f5d2b2defa4c9287410f3108ba03019cdd6dec90",
+      "approved_prefix_bytes": 9467,
+      "approved_prefix_sha256": "68e8a54bb53b0778ca5c2cea51d0160fff5dba978e7e0ac62f1630a5d8062d3a",
+      "approved_prefix_exact": true,
+      "suffix_start_line": 55,
+      "stage2a_suffix_sha256": "05e7940d5af179f99de7a7f47ef86754f1cfafa6860a546c8d7e08cdd7a1ee21",
+      "stage2a_suffix_bytes": 4934
+    }
+  ],
+  "current_stage2a_line_pins": [
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 163,
+      "literal": "## Stage 2a 追加範囲 — L2-003/004/005/009/010",
+      "raw_lf_sha256": "92a4cf5e2dd7e74e6fc8443907c10b1c06c52651a2704e320f185b171c477988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 164,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 165,
+      "literal": "この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1とStage 2bの6文書prefixはbytesそのまま保持するが、その承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。",
+      "raw_lf_sha256": "9c8c0a4b57e7ff16c8b6e6c518d6aa1f4fbb721ecba9494d189e4a89a3e875ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 166,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 167,
+      "literal": "### 旧source起点・項目別処置",
+      "raw_lf_sha256": "878c7155f94983d6116225929ba7bb8d97cd0687059c9bfc2d2e7051966059b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 168,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 169,
+      "literal": "旧L3 process `LEGACY-ASSET-F542125805B777D8A56A` (`archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md:148-168`, SHA-256 `9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3`) のFR+AC、3区分、対の検証という**形式の意味を再導出**する。旧G3、sub-gate、runtime、旧test実行経路は置換する。旧`OPS-R-01` (`LEGACY-ASSET-17C4BF78919578FEBB18`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md:68-73`, file SHA `ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0`)と`OPS-AC-001` (`LEGACY-ASSET-F46AB11BD14F2C0469F4`, `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md:26`, file SHA `19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58`)は、environment/resource identity、曖昧target拒否、credential referenceを保持してsecret値を保持しない意味を**部分再利用**し、適用scopeと現行ownerを再導出する。旧操作方式やauthority経路は移さない。旧`OPS-R-03`同L3 file `:81-85` と`OPS-AC-003`同acceptance `:28` はrollback plan/receiptとincident closureを分ける形を**部分再利用**し、現在のL2-005 scopeへ再導出する。旧tech-environment reconciliation、lifecycle state separation、security broker等の旧資産はversion/source mismatch、unknown、owner境界を持つfixtureの形だけを意味再導出し、旧schema/state taxonomy/CLI/DB/CI/runtime/valueは置換する。",
+      "raw_lf_sha256": "83cbf98722387763dbb6f948687e6d2b2e20df1fda488b624f89d73017e06a07"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 170,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 171,
+      "literal": "### 親句→FR/AC trace",
+      "raw_lf_sha256": "c058d95810efa88c719d27ff734bdff583db1b7703896378ae18b710940c60cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 172,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 173,
+      "literal": "| 固定親句の意味 | FR/AC | 主な受入境界 |",
+      "raw_lf_sha256": "8fe39ea04536d1dfc620edd78a81b5df2754d4f4f20c88f868d8d16df5f45c8b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 174,
+      "literal": "|---|---|---|",
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 175,
+      "literal": "| L2-003: common resource modelとlocal/VPS/dedicated/cloud/container/GPU/Worker各resource type | INFRA-003-FR-01 / INFRA-003-AC-01 | 7種を固定allowlistにせず、宣言された対象scopeのresource identity/type/source/revisionを追跡する。 |",
+      "raw_lf_sha256": "d8f539435e9cee0a572413f2f25701f9a9722a33a2d7a11f69ba0821b61c3b6a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 176,
+      "literal": "| L2-003: Network path 8軸（source/destination/protocol/endpoint/direction/purpose/security boundary/dependency） | INFRA-003-FR-01 / INFRA-003-AC-02 | 各軸はvalueまたはunknown。論理connectionからphysical routeを推定しない。 |",
+      "raw_lf_sha256": "0ebff2cc092a8bdcf9b02f8f5ef7c07ad922d6943df6c823cca7a812da5a5e12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 177,
+      "literal": "| L2-003: persistent/temporary database/evidence-artifact/queue/cache/log-metric/model storeとowner/durability/backup/retention/environment/confidentiality/recovery attributes | INFRA-003-FR-02 / INFRA-003-AC-03 | 各宣言categoryを区別し、各6属性と該当recovery referenceを追う。storage categoryを網羅済と推定しない。 |",
+      "raw_lf_sha256": "5dd8bf4b8787c08b01e36e564ae965cabd0a63d4e3048e68a6ec3e5d5671a734"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 178,
+      "literal": "| L2-003: Model/server/version/GPU-memory/concurrency/latency/capacity/health/endpoint; external model API/local LLM/GPU server/distributed model server/tuned model; intelligence qualityは別owner | INFRA-003-FR-03 / INFRA-003-AC-04 | Model Runtime各fieldと5つの明示model種を対象environment/source/revisionへ束ねる。Workerは適用するresource fieldsだけを資格化し、Worker操作権限/version authorityや知能評価を作らない。 |",
+      "raw_lf_sha256": "582c92fe10e90a55634b2409241c3cb26d63a36eb3d981dd3cadbd19c205822a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 179,
+      "literal": "| L2-003: launch前capacity確認、不足時queue/delay等をOS/INTELLIGENCEへ渡す、unbounded job/placement/cost決定禁止 | INFRA-003-FR-04 / INFRA-003-AC-05 | 不足を`capacity unavailable`としてdecision ownerへ返し、無制限Job・未承認node移動/cost選択を成立扱いしない。 |",
+      "raw_lf_sha256": "e2bbfb849013cc65bc9055f2d945313e2e15b7d6333029d3ec26ea9875ee864b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 180,
+      "literal": "| L2-003: missing/stale/unmeasurable/unknownでsafe-to-acceptを返さず、queue/snapshotを保持 | INFRA-003-FR-05 / INFRA-003-AC-06 | 独立missing/stale/unmeasurable/partial-updateを拒否/unknown化し、前回値をcurrentにせず未完範囲を保持。 |",
+      "raw_lf_sha256": "b97a46d7b2585cded7d70d449cd38045890fbb7685f6b09bb9dce6342c4f26af"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 181,
+      "literal": "| L2-004: observation stateとnormal/degraded/unavailable/capacity/dependency/data-network/security-isolation/unknown、unknown≠healthy | INFRA-004-FR-01 / INFRA-004-AC-01 | 観測分類を既存parent wordingへ限定し、無観測をhealthyへ昇格しない。 |",
+      "raw_lf_sha256": "e41c193529e11b59478abd97d59beed1362ede6779a4f782ed7ea8c492ce47b7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 182,
+      "literal": "| L2-004: incident meaning/severityはapproved sourceだけ、独自定義しない | INFRA-004-FR-02 / INFRA-004-AC-02 | 正常・未見正常と未承認severity追加を個別照合し、原因を推測しない。 |",
+      "raw_lf_sha256": "bd4534cb1c9847d19beac63cae338dbb803806fba16acfb5cafee2de6c476377"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 183,
+      "literal": "| L2-004: source/target revision保持、staleをcurrent化しない。L2-019 detailed freshnessは後続版 | INFRA-004-FR-03 / INFRA-004-AC-03 | source/currentnessを照合し、019のfreshness/confidenceを1.0 gateへ追加しない。 |",
+      "raw_lf_sha256": "20e6586ee84bfa1337daefea2ea9cb3c902892e03febf50dbec49c8fd64e9b3a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 184,
+      "literal": "| L2-004: telemetry/source/collector failureはunknown/unobservedでownerへ戻し、pending evaluation保持 | INFRA-004-FR-04 / INFRA-004-AC-04 | source欠落とcollector failureを別negativeにし、未確認範囲と評価待ちを残す。原因は推測で確定しない。 |",
+      "raw_lf_sha256": "5eee6d808547dac440c82564811072ba68d98044b34b5fa51754428f6a511dd3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 185,
+      "literal": "| L2-005: backup source/target revision/time/completeness/location/integrity/expiry、state ownerのretention requirement。configured/success/existenceを分離 | INFRA-005-FR-01 / INFRA-005-AC-01 | owner保持期間を参照し、owner/retention欠落とjob-success-onlyを独立negativeにする。 |",
+      "raw_lf_sha256": "5af7b5e749c02907d822b2424f3102d15c49d17ada7d57a709bd7f55b1c37eea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 186,
+      "literal": "| L2-005: actual restoreでintegrity/reconnect/startup/verification、L2-001/002依存と独立restore environment | INFRA-005-FR-02 / INFRA-005-AC-02 | 4 evidenceとdependency参照/独立環境を別々に照合し、failure時はrecovery design owner/OSへ戻す。 |",
+      "raw_lf_sha256": "0a67fcf0b5c245e4659d38d2cc777229d9ac9bab491f974a9949175eadc5b53c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 187,
+      "literal": "| L2-005: rollback targetをinfra version/config/artifact/dependency/data compatibilityとprocedureへ結び、rollback≠incident closure | INFRA-005-FR-03 / INFRA-005-AC-03 | 対象適格性とreceiptを保持し、rollbackだけでincidentを閉じない。 |",
+      "raw_lf_sha256": "17c381cc5380fa8efebc49d3a84baf7120a22217336cba70012476a1c9e40b7e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 188,
+      "literal": "| L2-005: failure/unknownでsuccessを出さずrecovery design owner/OSへ、prior eligible state/failure/unfinished dutyを保持 | INFRA-005-FR-04 / INFRA-005-AC-04 | 戻し先をACに明記し、失敗・部分復旧で未完義務を消さない。 |",
+      "raw_lf_sha256": "ccee9d8adec8a70ac33d7b98553b503dc9727846e3fa0587a1fb0edfda06319b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 189,
+      "literal": "| L2-009: versioned OS Work/Changeとresource-state view、ownershipを分離 | INFRA-009-FR-01 / INFRA-009-AC-01 | OS work/change IDとINFRA runtime/resource IDをversioned referenceでつなぎ二重正本にしない。 |",
+      "raw_lf_sha256": "b636c64f498390347baabafb4b0c8cee2e2f7428e6eae4798de073ba0dd72596"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 190,
+      "literal": "| L2-009:通常接続はstage release不要、条件付きstageはOS-L2-014、stage ID≠runtime revision | INFRA-009-FR-02 / INFRA-009-AC-02 | stageなし正常例を独立させ、stage例は条件付き・別fixtureとする。 |",
+      "raw_lf_sha256": "8837d8c6ce80cec33b00c0895d363393aee8b6a205867917a589a17ffbf50433"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 191,
+      "literal": "| L2-009: mismatch/partial/unknownはchange successでない、OS/INFRA ownerへ、stage/runtime/rollback/pending保持 | INFRA-009-FR-03 / INFRA-009-AC-03 | cause別ownerへ戻し、適格状態と未完操作を残す。 |",
+      "raw_lf_sha256": "e8c0983800856bd07c3935bbc6ae9a824a91999ff541fd44d23c8790badb54a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 192,
+      "literal": "| L2-010: 全operationはtarget/action/revision/scope/expiryに適用されるSECURITY authorityとSEC Worker。read-only/state-changingは区別 | INFRA-010-FR-01 / INFRA-010-AC-01 | read-onlyにはwrite権限を要求せず、mutating actionは該当005 dutyだけを確認。3面のsecret値非保存、unbounded ShellとINFRA発行authorityをnegative化。 |",
+      "raw_lf_sha256": "edf7c9e5103864ae66d8153f3c6f58d59d64c35b38d4bc08d5ffa0c03a42cc0f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 193,
+      "literal": "| L2-010: normal operationはOS assignment/ticket+009、update-admissionは変更適用時のみ | INFRA-010-FR-02 / INFRA-010-AC-02 | read-onlyと更新を別fixtureにし、更新時の欠落/拒否/unknown admissionだけを変更前に拒否。 |",
+      "raw_lf_sha256": "716e898dc76cc8eeded6e2a174e63e89808d88d0ea54503b1a62080364dec0d3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 194,
+      "literal": "| L2-010: independent bootstrap/recoveryは006 path+別authority、OS停止時ticket/009不要、復旧後OSへresult sync | INFRA-010-FR-03 / INFRA-010-AC-03 | OS停止中の限定操作を独立判定し、復旧後のresult同期証拠はこの010句だけから導出。006へ一般化しない。 |",
+      "raw_lf_sha256": "7935e23d23235e39b48b3ae901a68e1221920c2fee587d1ea8f42f64b4c009cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 195,
+      "literal": "| L2-010: authority/credential-scope/target/revision mismatchは事前拒否、partial runは成功でなくactual state/recovery duty保持 | INFRA-010-FR-04 / INFRA-010-AC-04 | 個別mismatchとpartial resultを分離し、SECURITY/OS/INFRA ownerと未完義務を保持。 |",
+      "raw_lf_sha256": "f5b15ef3f46a99951b35627607815d278080dd964aff388dc01ad565d821f0dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 196,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 197,
+      "literal": "### Stage 2a owner / condition / version guard",
+      "raw_lf_sha256": "915d8ff9fb9eb1ed0d2399f540732041e3aa0903838e902e6034c4e8c42c918a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 198,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 199,
+      "literal": "| Parent | Owner boundary | 固定条件・版 |",
+      "raw_lf_sha256": "3872274380a22a92987140145b87a6b5fe0bc8028c437b7c5829094eaa7d64b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 200,
+      "literal": "|---|---|---|",
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 201,
+      "literal": "| L2-003 | observationはresource/capacity source owner、capacity/launch判断はOS/INTELLIGENCE | L2-001 snapshotと実際の観測sourceが必要。高度なautoscalingを含まず`version_target: 1.0`。 |",
+      "raw_lf_sha256": "0e27f40299ddeb9f0816a9a27a83c31691e8af331a4b044a913ddb319dcc9700"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 202,
+      "literal": "| L2-004 | observation source/collector owner、incident meaning/severityの承認済み上流owner | L2-001、既存approved incident meaning/sourceが必要。L2-019 detailed freshness/confidenceは1.0 gateにせず`version_target: 1.0`を保つ。 |",
+      "raw_lf_sha256": "885c2377ae6d14f464530f1f8f12a758eff25b08516d6fb85bbfe160710830e6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 203,
+      "literal": "| L2-005 | recovery design owner/OS | L2-001/002、state owner/retention/recovery requirement、restore environmentを参照。automatic failoverを含まず`version_target: 1.0`。 |",
+      "raw_lf_sha256": "9d1b51f9723a17a0862d7d5191919d87166e87e3bb64b50723b673e163c72f62"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 204,
+      "literal": "| L2-009 | mapping mismatchの責務に応じOSまたはINFRA owner | L2-001/002/004/006とOS Work/Change interface。stage release依存はstage packへ実際に収載するときだけOS-L2-014を適用。`version_target: 1.0`。 |",
+      "raw_lf_sha256": "e5acd73c0897a9b61c257632958419cdb3cab64418ee1623d2091e273243efc5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 205,
+      "literal": "| L2-010 | authority/update admissionはSECURITY/OS、partial actual stateは該当INFRA owner | 全operationでL2-001と適用可能SECURITY authority/Worker。normal routeはOS+009、mutationだけupdate-admission、state changeに適用する005 duties、独立recoveryは006 path+別authority。`version_target: 1.0`。 |",
+      "raw_lf_sha256": "3ac953979c7b8902b37d68680f18042f8420c29e10f56b75b062de7402c4cc44"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 206,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 207,
+      "literal": "上のStage 1 scope境界はStage 1候補の対象限定としてそのまま保持する。Stage 2aの直接対象は本節の5採択親だけであり、Stage 1境界文を保持し、承認済みStage 1／Stage 2b prefixの承認を今回のStage 2a候補revisionへ継承しない。全5親の適用条件は固定L2/L11とPO採択revisionに従い、Stage 2a候補から要求の意味/scope/owner/versionを拡張しない。",
+      "raw_lf_sha256": "5ea70fafdb245e4c3f97a1890fb953ed121d490415d3ab0de3039c8d31c2f049"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 208,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 209,
+      "literal": "### HELIXINFRASTRUCTURE-L2-003 — resource topology / capacity",
+      "raw_lf_sha256": "d1487e6de98218dfb2e685bfb2cdd8f1df6d1eb811519c738f0514aa5554d9a5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 210,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 211,
+      "literal": "#### INFRA-003-FR-01 — 共通resource modelとnetwork path",
+      "raw_lf_sha256": "33e3335eb07214f6226f48430a6275b5a01d61316533a0ea0d3cde05d217587c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 212,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 213,
+      "literal": "対象scopeに宣言されたlocal machine、VPS、dedicated server、cloud VM、container runtime、GPU node、Worker node等を共通resource modelで識別し、CPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityをresource type、environment、source/revisionに結び付ける。Network pathはsource、destination、protocol、endpoint、direction、purpose、security boundary、dependencyの8軸をphysical path identityに結び付け、論理CONNECT identityとは分ける。",
+      "raw_lf_sha256": "2750fda99f8f13ae6f5183ead44226cc01fe794a73e38ac7553e8f7109065c71"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 214,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 215,
+      "literal": "**INFRA-003-AC-01**: distinct resource type/identity/environment/version/dependency fixtureで全宣言resourceのCPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityを値またはunknownとsource/revision付きで追跡できる。未見typeは宣言scope内なら個別identityのまま保持する。",
+      "raw_lf_sha256": "e6406f6e814af3ab5b0725a2d853eebdb063791daa7f56499d2d03cb080d5e1c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 216,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 217,
+      "literal": "**INFRA-003-AC-02**: 8 network軸の各fieldにvalueまたはunknownがあり、各fieldを一つずつ欠落/ambiguousにしたnegativeでpathを既知・健全・許可済みとしない。CONNECT logical identityからphysical pathを補完しない。",
+      "raw_lf_sha256": "7c7ba413b84537e25b0a464017cdca10bbcf4f5069326a75bd4a05537d85681a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 218,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 219,
+      "literal": "#### INFRA-003-FR-02 — storage categoriesと属性",
+      "raw_lf_sha256": "5977dccd4ef5941721e1ae0b81265c4ac5f483c9598f04c86f7d5abe3621091f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 220,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 221,
+      "literal": "固定L2が列挙するpersistent/temporary database、evidence/artifact store、queue、cache、log/metric store、model storeごとにstorage identity、owner、durability、backup、retention、environment、confidentialityおよび該当recovery attribute/referenceをsource/revisionとともに記録する。persistentとtemporaryを同一分類へ畳み込まない。",
+      "raw_lf_sha256": "accc19c1fc0c671ca09d33c65b34c9cf90fe3af1615e16369e40162c5c8b4593"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 222,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 223,
+      "literal": "**INFRA-003-AC-03**: 各宣言categoryの全6属性とrecovery referenceにvalueまたはunknownとsource/revisionがある。個々の属性欠落をnegativeにし、temporary cache/queueでpersistent backup要件を満たしたとしない。未見categoryを既知に推定しない。",
+      "raw_lf_sha256": "13fadb9d5c7108fd8883d25b64fc07ad59228a5c82037c780a7591bf4841a83d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 224,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 225,
+      "literal": "#### INFRA-003-FR-03 — Model RuntimeとWorker resource qualification",
+      "raw_lf_sha256": "7f31d7be928b937989d750ec65b593f0650819916e4312147059f2f704e61e4c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 226,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 227,
+      "literal": "対象environment/scopeに含まれるModel Runtimeについてmodel、server、version、GPU-memory requirement、concurrency、latency、capacity、health、endpointをsource/revisionと共に記録する。親が明示するmodel種はexternal model API、local LLM、GPU server、distributed model server、tuned modelであり、各種をscope内のmodel type/resource classとして識別する。Worker nodeは該当するCPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityのresource nodeとして扱う。知能品質、Worker capability/version authority、operation authorizationは本親から導出しない。",
+      "raw_lf_sha256": "96b200f22ba006932f4d47eb960d9129f574c84a43e476abf1e998e3bf271026"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 228,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 229,
+      "literal": "**INFRA-003-AC-04**: scopeにModel Runtimeを含むnormal fixtureでは上記全fieldをvalueまたはunknownとしてtraceし、external model API、local LLM、GPU server、distributed model server、tuned modelの各typeをそれぞれ分類・照合する。個別missing/stale fieldまたはtype/class不一致でqualification incompleteを示す。scope外runtimeを存在すると仮定せず、知能score/Worker authorityを発行しない。",
+      "raw_lf_sha256": "d5e55c1e52196fc3e45d040ccdd0feda4d1f6f7b608bff4331c124e9cb22f2a2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 230,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 231,
+      "literal": "#### INFRA-003-FR-04 — capacity observationとdecision handoff",
+      "raw_lf_sha256": "7eb0bead504e48a2724563c17dfa52196b0fd75f2ffcce62b20cc24835752b21"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 232,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 233,
+      "literal": "CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementとcapacity/utilization/queue/concurrency/saturation/rejection/backpressureの対象revisionを、launch requestの前に観測する。known shortage/unknown capacityはOS/INTELLIGENCEのdecision interfaceへ情報として返す。Infrastructureはcapacity sufficiencyの未承認閾値、placement/cost choice、無制限Job追加を作らない。",
+      "raw_lf_sha256": "0b819c790f9744cfe2d14a3b0d5c4523d0e5ed7e224198af9602453aa750fe6e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 234,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 235,
+      "literal": "**INFRA-003-AC-05**: 十分と宣言されたknown fixtureは、参照可能なsource/revisionとcapacity fieldsを伴ってdecision interfaceへ渡る。shortageは`capacity unavailable`としてOS/INTELLIGENCEのdecision ownerへ返し、queue/delay/reject/escalationはそのownerが判断する。別node候補や低費用候補を含むfixtureでもInfrastructureはnode/costを選択しない。無制限Job追加または未承認node移動/cost選択を個別に試みるnegativeでは、成立/採用扱いにしない。threshold未設定ならsufficiency=unknownであり、採用判定を生成しない。",
+      "raw_lf_sha256": "91c80acc800e49051558938dcbaec75c019b8c40f24ea5b1aaffa77e259bf602"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 236,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 237,
+      "literal": "#### INFRA-003-FR-05 — 欠落・stale・計測不能時の保留",
+      "raw_lf_sha256": "00662bc9ee36386c8363ee2682e821fb76e23f8e104eb34b96abdfc33b74aade"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 238,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 239,
+      "literal": "Resource/capacity observationがmissing、stale、unmeasurable、unknown、read-failureまたはpartial-updateの場合、safe-to-accept/availableを返さず、対象snapshot、queue/delay中要求、未完の観測範囲を保持してsource ownerまたはOS/INTELLIGENCEへ戻す。失敗/partial read後の以前のobservationをcurrentと扱わない。",
+      "raw_lf_sha256": "25300110a71676b2b5a3135aece79b801c1d58bed741d1572e97292edbb3bb8b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 240,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 241,
+      "literal": "**INFRA-003-AC-06**: missing、stale、unmeasurable、明示unknown、読取失敗、途中更新を独立fixtureで照合する。いずれもsafe-to-acceptを返さず、旧observationをcurrentへ昇格しない。失敗範囲、snapshot、pending requestを追跡し、resource/source状態は該当source owner、作業判断はOS/INTELLIGENCEへ戻す。ownerがunknownなら未解決を保持し、戻し先を推測しない。",
+      "raw_lf_sha256": "b221474e715b93c45138ee2d791d390d6897e71c82f9602715ab83110493acb9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 242,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 243,
+      "literal": "### HELIXINFRASTRUCTURE-L2-004 — observability / incident state",
+      "raw_lf_sha256": "e0d49046266a52fd3a90efc7618bd2dc13c612270aebd4c50353e1882a8b52be"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 244,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 245,
+      "literal": "#### INFRA-004-FR-01 — versioned observation分類",
+      "raw_lf_sha256": "393ae87031663c0f20f2faa2425c8f3a2c28792a52ccbdda0b4bd2a5835c2086"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 246,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 247,
+      "literal": "Health、metric、log、resource use、dependency、queue、error、latency、deployment revision、recovery observationをsource/target revisionに結び、fixed L2のnormal/degraded/unavailable/capacity/dependency/data-network/security-isolation/unknownを区別する。無観測・collector未完はhealthyへ変換しない。",
+      "raw_lf_sha256": "a3753bc6c96e6d09bf031590b51bc5a1ef0caaafb1ba7c6f5e0394ed85005dd5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 248,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 249,
+      "literal": "**INFRA-004-AC-01**: normal観測がsource/revisionと結び付く。列挙categoryごとの負例とtelemetry欠落はそれぞれ該当state/unknownとして保持し、未定義severityを割り当てない。",
+      "raw_lf_sha256": "d92e712f446d87b014f78da1937e56e8aed8a7364e8a06b07670910d38a291d9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 250,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 251,
+      "literal": "#### INFRA-004-FR-02 — 既存incident meaningのみ",
+      "raw_lf_sha256": "410529c550a775c7680d152ac2c06ce1c77f46b40fb11b518c6841c0f33be4bb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 252,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 253,
+      "literal": "Incident meaning/severityは既に承認されたsource/requirementとrevisionから参照する。INFRASTRUCTUREはseverity taxonomy、business影響、原因、incident close条件を独自定義しない。",
+      "raw_lf_sha256": "903f5f9c8a4e2ae2772754e6fc77b0a1a733e4d8bbff518c6dea907d8192992c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 254,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 255,
+      "literal": "**INFRA-004-AC-02**: approved meaning sourceがあるnormal fixtureは、そのID/revisionと適用されたmeaning/severityを辿れる。approved schema内の未見normal sourceも同じoracleで照合する。未承認severityを独自追加する単独negativeでは分類を確定せず、意味のsource/ownerへ戻す。原因を推測で確定しない。",
+      "raw_lf_sha256": "3d92953c75e84707e700814a12bfe5ca09b4b70678c7823dff95c9a7e5560367"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 256,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 257,
+      "literal": "#### INFRA-004-FR-03 — source/current revision境界",
+      "raw_lf_sha256": "2944d7ee9687648cf81b1c4f9ea7bcbe22eca25d917865652d886e26df29cd7d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 258,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 259,
+      "literal": "各observationのsource revisionと対象runtime/deployment revisionを保持し、stale sourceをcurrentへ昇格しない。L2-019の詳細freshness/confidenceを1.0受入gateへ追加しない。",
+      "raw_lf_sha256": "f2b06597558cff39eca0d51f9da2240880faebbaa8835515caa5c9948271e1c2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 260,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 261,
+      "literal": "**INFRA-004-AC-03**: current source/revision fixtureは対象に結び付き、stale/mismatched revision fixtureはcurrentでない状態として扱う。未見sourceの正常値は保持し、L2-019を依存親にしない。",
+      "raw_lf_sha256": "14a7df2ae74ecd7cafe13ca0bc703027a13735eb07fb80de14bd42707d7e7261"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 262,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 263,
+      "literal": "#### INFRA-004-FR-04 — telemetry failureとowner return",
+      "raw_lf_sha256": "00fd4eee2430e95bc707b7e29b807d3bf5733a7a40ef37a99d7e3426466e87dd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 264,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 265,
+      "literal": "Telemetry欠落、source不明、collector failureをunknown/unobservedにし、観測source/collector ownerへ戻す。未確認resource、評価待ちincident、未完のobservationを保持する。",
+      "raw_lf_sha256": "655da8781621dfa637bf4eb5fe73f11f5297fff042b5575a4ed234a0328e58e2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 266,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 267,
+      "literal": "**INFRA-004-AC-04**: missing telemetry、unknown source、collector failureを独立negativeにし、health/incident successへ転換しない。原因を推測で確定せず、telemetryはsource/collector ownerへ、incident meaning/severityは承認済みmeaning ownerへ戻した記録とpending evaluationを追跡できる。",
+      "raw_lf_sha256": "e0974be4cb8719c36951fca34f401d443c9c1e0396b60d2ba672a38d7b9a7631"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 268,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 269,
+      "literal": "### HELIXINFRASTRUCTURE-L2-005 — backup / restore / rollback",
+      "raw_lf_sha256": "1d9ad0ea1a058c9bede8007beec38875e3beabe8b2f8c2e1bf68807a3a9e016f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 270,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 271,
+      "literal": "#### INFRA-005-FR-01 — backup stateの独立記録",
+      "raw_lf_sha256": "17edb942b9b19f0b60bb846e5e2745646fda4ff215b21a652dc7b99d53f862ac"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 272,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 273,
+      "literal": "Backupごとにsource/target revision、time、completeness、location、integrity、expiryと実行stateを記録する。expiry/保持期間は対象state ownerの既存retention要求を参照し、Infrastructureがownerまたは保持期間を新設しない。owner/retention要求が欠落・unknownなら保持適格性をunknownにする。backup configured、job success、backup artifact existenceを別stateにし、いずれも実restore可能性と同一視しない。",
+      "raw_lf_sha256": "a14851a63e1485d81b10c4c8090d01c2f00d8d8490fcf8b133e97df2cf4b0fc9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 274,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 275,
+      "literal": "**INFRA-005-AC-01**: completeかつ対象revision/integrity/locationが合致するbackup recordを正常に追跡し、expiryはstate ownerの既存retention要求と照合する。owner欠落とretention要求欠落/unknown、incomplete、wrong revision/target、integrity mismatch、expiry、configured-only、backup-job-success-onlyをそれぞれ独立negativeにし、いずれもrestoreable/successへ昇格しない。別resource用に同schemaを宣言した未見normal fixtureも個別評価する。",
+      "raw_lf_sha256": "57f0190472ca85abe2324ebbfaf4f90b0fa3d77b46a84e6213d3e20b318aa9d6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 276,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 277,
+      "literal": "#### INFRA-005-FR-02 — actual restore検証",
+      "raw_lf_sha256": "2206fa2dd9412afb2bb2acabec6bfd2d3eec918a3db3bcdfe067dab23bdf7f1f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 278,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 279,
+      "literal": "Restoreを実行した対象とrevisionについてintegrity、dependency reconnection、startup、verification evidenceを別々に記録する。backup metadataや手順書だけではrestore成功を示さない。",
+      "raw_lf_sha256": "aaf4f8b22f2d77768cce73977607a3b86ca8848b02e6e4cbeeee82fb868b9f09"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 280,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 281,
+      "literal": "**INFRA-005-AC-02**: 採択済みL2-001/002のsource/target snapshot、revision、compatibility referenceが適用条件を満たすnormal fixtureで、独立restore environment上の4 evidenceを追跡する。dependency参照のmissing/stale/revision mismatchと、restore環境が独立していない状態を別々にnegative化する。integrity、dependency reconnect、startup、verification failureも別々に注入し、いずれもrestore successにしない。failure/未完はrecovery design ownerまたはOSへ戻す。未見のrestore targetでも同じ4条件を照合する。",
+      "raw_lf_sha256": "b2570c7df46a64647bcd4640e7025932311b95eea997c81f7345c985a0798a19"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 282,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 283,
+      "literal": "#### INFRA-005-FR-03 — eligible rollback targetとprocedure",
+      "raw_lf_sha256": "716578cd16229de82a6e12bf82a5b6e340aa67772063d8ad41284a4f437ccf09"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 284,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 285,
+      "literal": "Rollback targetをInfrastructure version/configuration/artifact/dependency/data compatibilityおよびrecovery procedureへ束縛し、実行結果とincident stateを別記録する。rollback successはincident closureやforward-fix completionを意味しない。",
+      "raw_lf_sha256": "608564815f74fd7725483ddcd5303cbdf437479a784fcdf58ceda1e32a39e1a4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 286,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 287,
+      "literal": "**INFRA-005-AC-03**: known compatible target/procedureの正常fixtureを追跡する。unknown target、各incompatibility、unbound procedureを個別negativeとし、incident stateは未解決のまま保持する。未見targetでも同じeligibility fieldsを要求する。",
+      "raw_lf_sha256": "7528b597f0a0d731d8722b3b0db15adde49521017526e6a81787c1b8f71ea081"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 288,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 289,
+      "literal": "#### INFRA-005-FR-04 — failure/partial recovery保持と戻し先",
+      "raw_lf_sha256": "571dd7dfe826ce6011eaca774db6cd2c8feb7b0770ad40e76fd25822390d2fbe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 290,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 291,
+      "literal": "Backup/restore/rollback/recoveryがfailure、unknown、partialならsuccessを発行せず、変更前の最終適格state、failure evidence、未完recovery/verification dutyを保持し、recovery design ownerまたはOSへ戻す。",
+      "raw_lf_sha256": "f1561cd4f5c64cec847d3eca2560f31d14c75e188e5f2434a7f5116a64248d88"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 292,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 293,
+      "literal": "**INFRA-005-AC-04**: owner destinationと未完義務がACにある。failure/partial/unknownを独立fixtureで入力し、変更前state/failure/dutyが残る。回復設計はrecovery design owner、OS上の作業状態はOSへ戻す。該当ownerが不明なら未解決のまま保留し、循環的な未定義ownerへ戻さない。",
+      "raw_lf_sha256": "d51c73023557e4feb16cb5f2d33312a64a8337b8212a7e3bb4836af747cc9857"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 294,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 295,
+      "literal": "### HELIXINFRASTRUCTURE-L2-009 — OS Work/Change と runtime resource state",
+      "raw_lf_sha256": "62b838eea70030b46d9977ce362d6483cf2823bbb64c830d6882a6f4dd233b9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 296,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 297,
+      "literal": "#### INFRA-009-FR-01 — versioned state接続とowner分離",
+      "raw_lf_sha256": "b4498b20586ff95ac87560442015bf7df7ba2aee79b32c7e6fa33938edca9ebd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 298,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 299,
+      "literal": "OS Work/Change actor/identity、target、revision、start/stop/resume、evidence referenceをInfrastructure topology/actual/deployment/recovery revisionへversioned referenceで接続する。OSはwork/change state、Infrastructureはresource/runtime stateの正本を持つ。",
+      "raw_lf_sha256": "34349e85aa8c2c95fda75fac7e80a56edd71663b87f77e5b3b3083c215498cd3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 300,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 301,
+      "literal": "**INFRA-009-AC-01**: 別IDのOS ticket/changeとInfrastructure resource/runtime stateを明示revision referencesで正常に接続し、二重正本化しない。未見のticket/resource pairでも同じidentity契約を適用する。",
+      "raw_lf_sha256": "53b94de2f322d75c53a2446d781c428b10c4030199efc2d503e4e945de749162"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 302,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 303,
+      "literal": "#### INFRA-009-FR-02 — stage releaseから独立した通常接続",
+      "raw_lf_sha256": "0adf0fc197a38132cbd7d0de75b779f8037cb5d0218cbeb114efe65b5cd978a6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 304,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 305,
+      "literal": "通常Work/Change-to-resource connectionはHELIX全体のstage release構成体や後続版HRI-L1-015を待たず成立する。stage packへ収載するときだけHELIXOS-L2-014の契約を用い、stage IDとruntime revisionを分ける。",
+      "raw_lf_sha256": "9ae28ca69343dd12f9dd1bab15dc2a326cd785b6bcaf14b91d818b1fe1f073e6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 306,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 307,
+      "literal": "**INFRA-009-AC-02**: stageなしの通常fixtureを個別に成立させ、HELIX全体stage release、後続版HRI-L1-015、全7製品/L1-023完成を待たない。条件付きstage fixtureでは同一stageの構成証拠、Infrastructure依存、更新/rollback evidenceを確認し、stage ID/pack identityとruntime revisionを別fieldとして相互参照する。部分更新/rollback/未完operationは独立negativeとし、stage未使用を失敗扱いしない。OS ticketをruntime stateの正本にすること、Infrastructureが作業承認を発行すること、全体完成をstage開始gateにすることもそれぞれnegativeで拒否する。",
+      "raw_lf_sha256": "2a47d3c66bf3bcdd5b0da95725c5fc9d02283a048c0bc71e1c04810a24680af3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 308,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 309,
+      "literal": "#### INFRA-009-FR-03 — mapping失敗時の保留と戻し先",
+      "raw_lf_sha256": "f7b9aeac260c9e0691ea3e6949c78d7a8c48c359d7c00babf4f7fdfe7ed777f2"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 310,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 311,
+      "literal": "Ticket/target/runtime revision/state mappingがunknown、mismatch、partialならresource changeをsuccessとせず、原因に応じOSまたはInfrastructure ownerへ戻す。適用時はcurrent stage、runtime revisions、eligible rollback target、pending operationを保持する。",
+      "raw_lf_sha256": "8fdce8e517e7353bcfae647cd77303928043ecae0e035d5820ba05bca8019a9c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 312,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 313,
+      "literal": "**INFRA-009-AC-03**: wrong target/revision, stage-ID conflation, partial mappingを個別negativeにする。change successを出さず、cause-based owner returnと既存適格state/rollback/pending operationを記録する。",
+      "raw_lf_sha256": "a8bb6daa9bb34e624eefe7592b2219ca53aec8bbb5463d96b1a95318e3adf349"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 314,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 315,
+      "literal": "### HELIXINFRASTRUCTURE-L2-010 — SECURITY authority / Worker operation",
+      "raw_lf_sha256": "8998e8559b87ef102d69c2c94b3594c8bb8fb682fec81832829141991bb1537f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 316,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 317,
+      "literal": "#### INFRA-010-FR-01 — operation-scoped authorityとread/write義務分離",
+      "raw_lf_sha256": "d1982081d3bf598c71dd9ce516db9dc282582acc6e2f3bbec381cd80bc39a289"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 318,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 319,
+      "literal": "全operationのtarget/project/action/revision/scope/expiryに適用される有効SECURITY authorityと、SECURITY制約下のWorker execution contractを照合する。Read-onlyとstate-changing operationを分け、state-changingに限り、そのactionへ適用される採択済みL2-005のbefore/after、backup/restore/rollback/recovery dutyを確認する。credential値は通常resource state、backup、snapshotへ無条件に保存しない。Workerはunbounded Shell主体でなく、operation-scoped contractに従う。INFRASTRUCTUREはpolicy/authority/credentialを発行しない。",
+      "raw_lf_sha256": "69f2d7f1323268d608043286e73d5bcc3f4616622d018c76830d82a265541af6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 320,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 321,
+      "literal": "**INFRA-010-AC-01**: read-only normalはdeclared target/scope/read target、空のwrite-set、適用可能なread authorityを確認する。当該operationのwriteを拒否し、declared target resourcesのbefore/after不変を確認するが、無関係なresourceの変化をfailureにしない。不要なwrite authority/005 dutyを強制しない。mutating normalは該当する005 dutyを別fixtureで確認する。wrong target/project/action/revision/scope/expired authorityは個別に拒否する。credential値を通常resource state・backup・snapshotへ保存しようとする3変異、unbounded Shell実行、Worker成功返答だけで実状態変更を受け入れる変異、INFRAがpolicy/authorityを発行する変異は個別negativeにし、いずれも拒否する。Read-only outcomeと変更結果を混同しない。",
+      "raw_lf_sha256": "662fdd5a73f9e5b6a645634704bfd8d684f47db5e6249f45c56a517caf5e7097"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 322,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 323,
+      "literal": "#### INFRA-010-FR-02 — normal OS/Worker routeとupdate admission",
+      "raw_lf_sha256": "6a0380b1a5092d52a77a5c5d52a14d63f96071d41667a2edfbcab09dd7047abf"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 324,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 325,
+      "literal": "通常操作はOS assignment/ticketとINFRA-009 Work/Change connectionを用いる。該当義務がunknownまたは未充足ならstate-changing operationを保留する。Update-admissionはresource変更を適用するoperationに限り追加条件とする。未accepted/unknown/mismatched admissionは当該変更を開始前に停止する。停止中はoperation stateと未完義務を保持し、OS復旧後に結果を同期する。",
+      "raw_lf_sha256": "02d8ebadeb233c3093bad2c0f650248289dd65eeae4446dd798f24100aff450d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 326,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 327,
+      "literal": "**INFRA-010-AC-02**: 有効なassignment/ticket/referenceと充足済み適用義務を持つnormal fixtureを記録する。通常routeのticket欠落、assignment欠落、義務unknown、義務未充足をそれぞれ独立negativeにして変更を保留する。別mutating fixtureではaccepted admissionのみ変更開始可能で、denied/unknown/mismatch/expiredを個別negativeにする。同じ条件下のread-only operationはupdate admission不在だけで拒否しない。通常operationがindependent recoveryの免除を流用する変異も拒否する。停止/回収後のactual state、未完操作、義務を保持してOSへ同期する。",
+      "raw_lf_sha256": "b8e62d5372a28f520678675017ff4dc1ce1a944175be079a81ca3cb8db987e86"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 328,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 329,
+      "literal": "#### INFRA-010-FR-03 — independent bootstrap/recovery route",
+      "raw_lf_sha256": "f68a835cde9e7993853672714aada264e25c6179c31614ac7dcef21fa918abaa"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 330,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 331,
+      "literal": "OS/Control Plane停止中のbootstrap/recoveryはINFRA-006の限定resource/pathと別SECURITY authorityで開始する。停止中OS ticket/assignmentまたは通常INFRA-009応答を開始条件にしないが、通常operationに対する一般免除ではない。OS復旧後はoperation/resultを通常Work/Change traceへ同期する。この同期義務はこのL2-010句に由来し、INFRA-006要件へ加えない。",
+      "raw_lf_sha256": "0e03d4ac6b65a789dc239387c96bbeef4964d3fe6309af0c8f736e68ae9de859"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 332,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 333,
+      "literal": "**INFRA-010-AC-03**: OS/CP停止中の独立route、対象operation/authority照合、制限された操作結果を正常fixtureで記録する。停止中通常routeのみを唯一とするnegativeでは実行しない。復旧後のresult-to-OS sync receiptは010のみに対応づけ、006だけから要求しない。",
+      "raw_lf_sha256": "dc5dbe902670fcfb1f3d28548e76bc1d5828d92a4333ec6fe2d77a3b1e577d74"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 334,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 335,
+      "literal": "#### INFRA-010-FR-04 — mismatch / partial execution",
+      "raw_lf_sha256": "60267f929e3e334ca25c91174b6f25e42650f7d2b059d3ea273da21db95a5e84"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 336,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 337,
+      "literal": "Authority、credential scope、target、revisionの不一致は実行前に拒否する。部分実行はsuccessとせず、実際のstate、operation receipt、未完operation、適用されるrecovery/rollback dutyを保持する。",
+      "raw_lf_sha256": "03c9044f84ffd61fbf0cbd4f81f7eba0bcf58d5fb548333faca69788136735f0"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 338,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.md",
+      "physical_line": 339,
+      "literal": "**INFRA-010-AC-04**: mismatched authority/credential scope/target/revisionを個別negative fixtureで確認し、operation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。",
+      "raw_lf_sha256": "6896042fda433e3c8cd4d5d8317d54f6f58bf5e2b78606244414a4bd09dd0bfe"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 33,
+      "literal": "## Stage 2a 追加範囲 — business要件",
+      "raw_lf_sha256": "2afbb7511563801ad5abf4d04db7b3d571eb49b555c147305ab4b385a83c1684"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 34,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 35,
+      "literal": "このStage 2a追記で直接扱う採択済み親は `HELIXINFRASTRUCTURE-L2-003`、`-004`、`-005`、`-009`、`-010` である。これらの固定親は資源観測、runtime state、recovery、OS Work/Changeとの接続、SECURITY authority下の操作責務を定めるが、独立したbusiness outcomeまたは業務成功oracleを定義しない。したがってStage 2aにも独立BR、業務成功条件、business受入caseは追加しない。親に基づく機能要件と検証は[機能要件](functional-requirements.md)のFR/ACおよび対の[L10機能検証](../L10-verification/functional-verification.md)を参照する。",
+      "raw_lf_sha256": "fe77de26052237988dc13f46c69b305c9ef9c815e6048daefb50ac20cbe4de30"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 36,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.md",
+      "physical_line": 37,
+      "literal": "旧business文書の分離配置は維持する。旧BRの分類・metric・owner・承認動作を現行business outcomeへ移さない。scope/ownerの変更が必要になれば対応するL2へ戻し、技術候補だけの個別PO質問は作らない。",
+      "raw_lf_sha256": "9df33a21ca5bfa29ef677deb0c6fa2183b5655e8e55de16429059c4c45b10119"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 62,
+      "literal": "## Stage 2a 追加範囲 — 根拠付き技術NFR候補",
+      "raw_lf_sha256": "df243c18742b45394b03b507e28a666266e8198ba806f72be2c4d9919aa3f98c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 63,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 64,
+      "literal": "下記は採択済み003/004/005/009/010の機能境界を測る技術候補であり、現行実装の合格値、L2の数値、business oracleではない。009/010は固定L2/L11に根拠付けられる数値候補がなく、数値NFRを追加しない。選択scope内のFR/AC/CASEをsource-qualifiedに追跡し、未解決義務・未完operationを保持する質的検証を対にする。候補値のscopeは対象source/resource/operationに限定する。現行source ownerのauthorized SLA/limitがある場合はそれを参照し、独立したparameterごとのPO質問は作らない。要求のmeaning/scope/owner/versionが変わる場合だけ該当L2へ差し戻す。L2-019の詳細freshness/confidenceや後続版を1.0 gateへ入れない。",
+      "raw_lf_sha256": "142a1cb5acc4e75cde561c7cd729f560272412ad1b6e94140211704f1901b204"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 65,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 66,
+      "literal": "旧`nfr-grade.md`のgrade→測定→証拠を結ぶ書式は意味再導出し、旧IPA grade、数値、CI/runtime、pass thresholdは置換する。旧source pin: `LEGACY-ASSET-8CC5ABFC98C0D00183CA`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md:1-73`, SHA-256 `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3`。",
+      "raw_lf_sha256": "637e1915b1043acb735262ac5a42f602e4f632c9859d02f6ff755452117a67bc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 67,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 68,
+      "literal": "| Candidate / parent | 候補値とscope | 根拠・比較 | 測定方法・oracle境界 |",
+      "raw_lf_sha256": "58a1aef6e735abc44d89bc26c85169d5b01b377e2301c916cfc18dab2d291121"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 69,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 70,
+      "literal": "| INFRA-NFR-003-01 / L2-003 | Per-source observation age candidate = 2× declared sample interval; cap unset. owner maximum未定でも候補値の比較・測定・起草を行う。これは技術候補の測定であり、実operationのcurrentness/eligibilityは既存source契約で別に決め、未定義を新gateや個別owner承認にしない。 | 003 source/revision, 004 stale-not-currentが根拠。1×はjitterでfalse stale、2×は1 missed sampleを許容、unboundedはstale混入。L2-019詳細freshnessは後続版。 | event/receipt timestamp、sample interval、clock uncertainty、判断時ageをsource class別cycleで測定。1 missed sampleを注入してunknown境界を見る。thresholdをglobal固定しない。 |",
+      "raw_lf_sha256": "1e6c4a066c0ab2a84f2dee1b071a2e1a11a07e5e0d4af6dc7dca80f303cb2c0e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 71,
+      "literal": "| INFRA-NFR-003-02 / L2-003 | Selected operationの候補headroom 20% free capacity。親またはowner limitがない限り、この値だけでsafe-to-acceptを決めない。 | 0%は即時saturation risk、20%はburst reserve候補、30%はscarce GPUなどのresource消費増候補。いずれも親規定値でない。 | recorded utilization/queue/concurrencyとburst traceでresource type別false accept/rejectとcostを比較。許可owner thresholdが無ければ観測candidateに留める。 |",
+      "raw_lf_sha256": "0ae467c0c0c5c65a24a807fa5f8afa632dfa2db9be934bd5b6510802ed1db614"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 72,
+      "literal": "| INFRA-NFR-003-03 / L2-003 | stable observation label candidate: 3 consecutive samples across at least 2 source intervals. | Single sampleは安価だがnoisy、3はtransient依存を減らす候補、長窓は遅延し短いspikeを隠す。親はcountを指定していない。 | idle/burst/sustained load windowsを測り既存source label/saturation/rejection/backpressureと比較。安定性は記述値で自動accept oracleにしない。 |",
+      "raw_lf_sha256": "b084739f62728ec012eb5541153281c3cc36f5ec9fe06634058eeaa0eef5f1b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 73,
+      "literal": "| INFRA-NFR-005-01 / L2-005 | Isolated reversible artifact restoreでexploratory timeout candidate 5 minutes。一般deadlineではなく、他operationへ適用しない。 | Parentはintegrity/reconnect/startup/verificationを求めるがtimeout値なし。1分はfalse timeout増加、5分は初期候補、15分は完了を長く塞ぐリスクとして比較する。候補は親規定値でない。 | 同じ合成artifact/scope/revisionを用いた独立restoreで各phase elapsedを測り、1/5/15分のtimeout結果・phase別censoringを比較する。owner期限未定でも測定し、既存期限契約があるoperationのeligibility/SLAとは分離する。timeout超過だけでincident/business failureを生成しない。 |",
+      "raw_lf_sha256": "0d2af42bfab770f762a44de0141da493edeeb9371bb110279c26204b831ed71d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 74,
+      "literal": "| INFRA-NFR-005-02 / L2-005 | Restore repeatability candidate: 3 independent runs。採択済みpass thresholdではない。 | 1 runは一回の成立のみ、3はintermittent behaviorを見つける候補だがresource costが増える。L2/L11に回数指定なし。 | 各runのsource/revision/resultを独立記録し、phase pass consistency/varianceを測定。3回未達だけでrestore可否/incident closureを決めない。 |",
+      "raw_lf_sha256": "cac47a1acb429630aae5e5098d300e7c5a42f94f2b93a1a3c089b6a94d796d44"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 75,
+      "literal": "| INFRA-NFR-004-01 / L2-004 | Telemetry coverage = required applicable fieldsの100%。scope applicabilityでoptional fieldはN/Aとして分母から分ける。 | Global all-field completenessは非該当fieldでfalse failure、any-fieldはblind spotを通す。L2はmissing telemetryをhealthyとしないが全signalを全resourceに適用しない。 | Resource type別applicability matrixを宣言し、required fieldごとのmissing mutationを注入してunknown/unobservedとowner returnを確認。割合をbusiness health scoreへ変えない。 |",
+      "raw_lf_sha256": "21f35bec1caba4a68b455c5303527359bae6cc5ac0fa5542a7a125a21105c709"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 76,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.md",
+      "physical_line": 77,
+      "literal": "Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごとの個別PO承認を新設しない。",
+      "raw_lf_sha256": "cc85900fe8b065f1118f51c6f80a1242e6faffbca8fe19e588d189809ece36ba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 126,
+      "literal": "## Stage 2a 追加範囲 — L2-003/004/005/009/010",
+      "raw_lf_sha256": "92a4cf5e2dd7e74e6fc8443907c10b1c06c52651a2704e320f185b171c477988"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 127,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 128,
+      "literal": "このStage 2a検証候補は [L3 FR/AC](../L3-requirements/functional-requirements.md) と同じ固定親句・identityに結ぶ。採択済みL2-005もこのStage 2aでは直接の対象親であり、Stage1の006用依存入力扱いを拡張しない。全caseは合成・非secret fixtureで設計し、現在の実装、実credential、production、recoveryの実成功を証明しない。未見正常fixtureは既存例の入力値を使い回さず、独立して宣言する。failure/partialの戻し先はACとcaseの双方に置く。",
+      "raw_lf_sha256": "a9ccee02a3c1a76f1b59a211ed6b0d32fa8ee392361b6ee584488177943ac010"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 129,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 130,
+      "literal": "### L2-003 resource/capacity cases",
+      "raw_lf_sha256": "b066c94dcaf37178219942125dc3859dd6a64fd52b5f9ec0df2c2ae588869aad"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 131,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 132,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 133,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 134,
+      "literal": "| CASE-INFRA-003-01 normal | INFRA-003-FR-01 / INFRA-003-AC-01 | local/VPS/dedicated/cloud/container/GPU/Worker resourceを別identityで宣言し、source/revisionを付ける。 | 宣言resourceとtype/fieldを同一視せず追跡。未見typeはunknownを残す。 |",
+      "raw_lf_sha256": "2bfc092baff673b19f425a4616dff98f3982c3c6d25bd1fc173535b0517ae3b4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 135,
+      "literal": "| CASE-INFRA-003-02 negative / field-by-field | INFRA-003-FR-01 / INFRA-003-AC-02 | Network path各8軸を一軸ずつ欠落/ambiguousにする。logical CONNECT IDしかないfixtureも分ける。 | 欠落軸はunknown、routeは補完しない。security/purpose等を推測しない。 |",
+      "raw_lf_sha256": "48f3611ebe8ecf0c00ccd98b67476a0ea1d3852a12932315db0faf6e8d390ad9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 136,
+      "literal": "| CASE-INFRA-003-03 unseen normal | INFRA-003-FR-01 / INFRA-003-AC-01, INFRA-003-AC-02 | 別に宣言した `resource-violet-04` と新protocolのpathを使い、8軸にsource/revisionを付ける。 | 未見名称でもscope内の型付き観測を保持。既存CASEの具体例を流用しない。 |",
+      "raw_lf_sha256": "f6757b6e2474c63efe5529544d07665da65db11246401307b01bd291c513c66a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 137,
+      "literal": "| CASE-INFRA-003-04 owner return | INFRA-003-FR-01 / INFRA-003-AC-02 | logical pathとphysical path/security boundaryのowner情報が衝突する。 | path実状態を消さず、logical contractはCONNECT、security boundaryはSECURITY、source不明は観測元ownerへ返す。 |",
+      "raw_lf_sha256": "9f09cc04ebb745975ff2f0f5a430b1cf503de48da36d5e5aa1009444abb09bf5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 138,
+      "literal": "| CASE-INFRA-003-05 normal | INFRA-003-FR-02 / INFRA-003-AC-03 | persistent/temporary DB, evidence/artifact, queue, cache, log/metric, model storeを別宣言し6属性+recovery refを与える。 | 各category・attribute・source/revisionを識別。 |",
+      "raw_lf_sha256": "e6db567789088beb4521f6c8d426912528338d77f1d90c7ff70137e8672c40f9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 139,
+      "literal": "| CASE-INFRA-003-06 negative / storage fields | INFRA-003-FR-02 / INFRA-003-AC-03 | owner, durability, backup, retention, environment, confidentiality, recovery refの欠落を一つずつ試す。persistent/temporary誤結合も別試験。 | いずれもunknown/incomplete。temporary storeでbackup/recovery義務を満たしたとしない。 |",
+      "raw_lf_sha256": "f28ba28ff5cae27f1a53f8ce0bb25bd1eca3bd56461c94d2c1e8ff50037a1fc6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 140,
+      "literal": "| CASE-INFRA-003-07 unseen normal | INFRA-003-FR-02 / INFRA-003-AC-03 | CASE-003-05と異なる独立identity/fixtureで、同一categoryの新しいlog/metric storeを宣言する。 | 固定値を継承せず6属性とrecovery referenceを新fixtureで照合する。 |",
+      "raw_lf_sha256": "0023ecf07f29882756c70b820f2cfb3fac073b2d9bdec421c4889c6c11ff5a74"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 141,
+      "literal": "| CASE-INFRA-003-08 owner return | INFRA-003-FR-02 / INFRA-003-AC-03 | recovery reference ownerとstorage ownerのsource revisionが衝突する。 | storage観測を保持し、recovery requirement ownerへ矛盾を戻す。 |",
+      "raw_lf_sha256": "452e0375a385423ef53954312eaece0e56ca0b6dc5963ec3c0b21a84eaf0349b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 142,
+      "literal": "| CASE-INFRA-003-09 normal | INFRA-003-FR-03 / INFRA-003-AC-04 | scope内Model Runtimeのmodel/server/version/GPU-memory/concurrency/latency/capacity/health/endpointを各source-qualifiedで与える。external model API、local LLM、GPU server、distributed model server、tuned modelを各独立type fixtureとして分類する。Worker nodeは該当resource fieldsのみ与える。 | 全field/source/revisionを対象environmentへ結ぶ。知能scoreや操作authorityを出さない。 |",
+      "raw_lf_sha256": "7005e50b2008815ca3372f0698ef17bd7cbe7e6dc9a0dd71444171bf5835f5c8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 143,
+      "literal": "| CASE-INFRA-003-10 negative / runtime fields | INFRA-003-FR-03 / INFRA-003-AC-04 | 上記Model Runtime fieldを一つずつ欠落/staleにする。各5 model typeでtype/class不一致のfixtureを個別に置く。別fixtureではscope外にModel Runtimeを置く。 | incomplete/unknownを維持。scope外runtimeの存在を仮定せずWorker資格を生成しない。 |",
+      "raw_lf_sha256": "ad9f3afdb2a97c90f7143721eed02a1395ad8f10de8d02164f2217b77087cebd"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 144,
+      "literal": "| CASE-INFRA-003-11 unseen normal | INFRA-003-FR-03 / INFRA-003-AC-04 | 独立の宣言scopeに新Model Runtime identityと未知のserver/version値を入れる。 | 未見値を保持し適用fieldのsource/revisionを追跡する。 |",
+      "raw_lf_sha256": "54d4f94261082d25df3915fd0f946c904dc87294711c95096d5247a472eca303"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 145,
+      "literal": "| CASE-INFRA-003-12 owner return | INFRA-003-FR-03 / INFRA-003-AC-04 | Model quality値をresource capacityとして渡すmutationを加える。 | capacity observationとINTELLIGENCE/LABOのquality ownershipを分け、quality評価ownerへ返す。 |",
+      "raw_lf_sha256": "a8d188edc2aef10cdf6d0458a79058a5ef2e988c67f811887e43ad1495128b18"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 146,
+      "literal": "| CASE-INFRA-003-13 normal | INFRA-003-FR-04 / INFRA-003-AC-05 | known, source-qualified capacityと起動要求、適用される判定閾値の宣言有無を入力する。 | thresholdが無ければunknownを返し、あれば観測情報をOS/INTELLIGENCEへ渡す。配置/cost判断は生成しない。 |",
+      "raw_lf_sha256": "ddadcbac0c70d2f037b6c7ef61afa8e8748e9ba4360ade037c65d2c6621c498c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 147,
+      "literal": "| CASE-INFRA-003-14 negative / capacity | INFRA-003-FR-04, INFRA-003-FR-05 / INFRA-003-AC-05, INFRA-003-AC-06 | shortage、unknown, stale, unmeasurable capacityを個別入力する。 | safe-to-acceptを返さず`capacity unavailable`としてOS/INTELLIGENCE decision ownerへ戻す。queue/pending/snapshotを保持。 |",
+      "raw_lf_sha256": "1db5b90c07405666cc3144e02958e0a5d50bdc84efbd90d96148587343320cd9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 148,
+      "literal": "| CASE-INFRA-003-15 unseen normal | INFRA-003-FR-04 / INFRA-003-AC-05 | 独立fixture `task-scope-05` に新resource typeと十分と宣言されたcapacityを与える。 | scope/source/decision-thresholdを個別照合して情報をhand offし、resource typeを選定しない。 |",
+      "raw_lf_sha256": "cc5dff56d0ff31279982d01d85cb7f719e6149d93e23c8848df39217774ca07b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 149,
+      "literal": "| CASE-INFRA-003-16 read/partial failure + owner return | INFRA-003-FR-05 / INFRA-003-AC-06 | 既知observation後にread failureとpartial updateを別々に注入し、別fixtureでsource owner不明を与える。 | 以前の値をcurrentにせず、失敗範囲・未完observation・queueを保持し、source ownerまたはOS/INTELLIGENCEへ戻す。 |",
+      "raw_lf_sha256": "c5738f1a412aa78552fd6c4c1485886c50e35a801d6c356ef39c68a924a5756d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 150,
+      "literal": "| CASE-INFRA-003-17 negative / unbounded job | INFRA-003-FR-04 / INFRA-003-AC-05 | shortageだけのfixtureでjob上限を外し、他のfieldはknownとする。 | 無制限Job追加を成立扱いせず、capacity unavailableとpending requestをdecision ownerへ返す。 |",
+      "raw_lf_sha256": "86fa128ea319d62543e67fb747b873997c7ad0c10448c23159b9c36c703b4a50"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 151,
+      "literal": "| CASE-INFRA-003-18 negative / unauthorized placement | INFRA-003-FR-04 / INFRA-003-AC-05 | 他node配置だけを未承認選択として変異する。 | nodeを選択・移動せず、作業判断ownerへ戻す。 |",
+      "raw_lf_sha256": "1b89351dff8a4f331126c341ac290cc6d79999a0b1b585a6579ad04e8f900eba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 152,
+      "literal": "| CASE-INFRA-003-19 negative / unauthorized cost choice | INFRA-003-FR-04 / INFRA-003-AC-05 | 低費用nodeと別nodeの双方がsource-qualified候補であるが、cost/placement決定権が入力されないfixtureを使う。 | Infrastructureはcost/nodeを選択せず、capacity unavailableまたは未解決判断をOS/INTELLIGENCEへ返す。 |",
+      "raw_lf_sha256": "fdf21cb6043c28780ab6652f989bf64871768a15a4bfce457bed27dce1221945"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 153,
+      "literal": "| CASE-INFRA-003-20 negative / snapshot dependency | INFRA-003-FR-04, INFRA-003-FR-05 / INFRA-003-AC-05, INFRA-003-AC-06 | 必要なL2-001 snapshotをmissing、stale、target revision mismatchの各独立fixtureにする。 | capacity判定を成立扱いにせずunknown/pendingを保持し、source ownerまたはOS/INTELLIGENCEへ戻す。 |",
+      "raw_lf_sha256": "cd695347868aba7542830332146cc056696c489d802765b205a6a625340f9436"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 154,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 155,
+      "literal": "### L2-004 observability cases",
+      "raw_lf_sha256": "df9b8fe4a7e0bcf5f8c9498c6f7dfd2a39003a9a8869ec40c77585d784998562"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 156,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 157,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 158,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 159,
+      "literal": "| CASE-INFRA-004-01 normal | INFRA-004-FR-01, INFRA-004-FR-03 / INFRA-004-AC-01, INFRA-004-AC-03 | source/revision付きnormal resource/dependency/queue/runtime observationを独立に宣言する。 | state/source/target revisionを保持し、承認済みsourceにある分類だけを使う。 |",
+      "raw_lf_sha256": "85b87ce0b7e3c742caf94605045d311cbd6300530883985e6c381650a007de3a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 160,
+      "literal": "| CASE-INFRA-004-02 negative / classifications | INFRA-004-FR-01 / INFRA-004-AC-01 | degraded/unavailable/capacity/dependency/data-network/security-isolation/unknownを個別入力し、unknownをhealthyにする変異を別で試す。 | 各親定義stateを区別、unknownのhealthy昇格は拒否。 |",
+      "raw_lf_sha256": "5520c435428182a4942ecd31fb00d6e0cda44ddbd64e55fe20e32fafba434f9f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 161,
+      "literal": "| CASE-INFRA-004-03 unseen normal | INFRA-004-FR-01, INFRA-004-FR-03 / INFRA-004-AC-01, INFRA-004-AC-03 | 異なるsource IDだが同じapproved observation contractに適合するnormal fixtureを新規宣言する。 | 新source/revisionを別identityで保持し、未見であることだけで失敗にしない。 |",
+      "raw_lf_sha256": "1f9c1c846633a5f1dc2142eaea0ae84dd3c80ca87a4d289bcce32b90a3f519df"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 162,
+      "literal": "| CASE-INFRA-004-04 owner return | INFRA-004-FR-02, INFRA-004-FR-04 / INFRA-004-AC-02, INFRA-004-AC-04 | incident meaning/severity owner不明とcollector failureを別fixtureにする。 | meaning/severityはunknownで該当approved meaning ownerへ返す。collector failureはsource/collector ownerへ返しpending evaluationを保つ。 |",
+      "raw_lf_sha256": "204a04da2f82c1d851a94eb5427d1fd3b1829e07594b25e49126acd805c0586d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 163,
+      "literal": "| CASE-INFRA-004-05 negative / stale or missing | INFRA-004-FR-03, INFRA-004-FR-04 / INFRA-004-AC-03, INFRA-004-AC-04 | stale target revision、missing telemetry、unknown sourceをそれぞれ独立入力。L2-019詳細freshness fieldsは入力gateにしない。 | staleをcurrentにせずunknown/unobserved、L2-019を依存にしない。未確認resourceを保持。 |",
+      "raw_lf_sha256": "09c2834c3f38d42c981438b65f72546b2b8046e1e229b0f1d5e9692b82ba47a3"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 164,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 165,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 166,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 167,
+      "literal": "| CASE-INFRA-004-06 normal approved severity | INFRA-004-FR-02 / INFRA-004-AC-02 | 承認済みmeaning source/revisionとseverityを持つ新source identityを独立宣言する。 | sourceの既存severity meaningを保持し、未見であることだけで失敗にしない。 |",
+      "raw_lf_sha256": "2ed188d30f0a3b7eaf90ad935933b963bbe0d64cf86dfcc1a083ae1a4a3f228d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 168,
+      "literal": "| CASE-INFRA-004-07 unseen normal approved schema | INFRA-004-FR-02 / INFRA-004-AC-02 | 未見のseverity valueだが同じ承認済みschema/revision内で宣言されたfixtureを使う。 | 新規taxonomyを作らず承認済みmeaning sourceで照合する。 |",
+      "raw_lf_sha256": "147d26fad32815e325d5f0e383ab8209788afe47c60525046172a706fba4151b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 169,
+      "literal": "| CASE-INFRA-004-08 negative / unapproved severity | INFRA-004-FR-02 / INFRA-004-AC-02 | 他の観測は正常のまま、未承認severityの追加だけを変異する。 | severityを確定せずmeaning ownerへ返し、原因を推測しない。 |",
+      "raw_lf_sha256": "d3ce9b01aaccb8fe19a5fbc583eb8d32eb7b50dc86ea3cc5fbd3b7dc6f81c8db"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 170,
+      "literal": "| CASE-INFRA-004-09 negative / snapshot dependency | INFRA-004-FR-02, INFRA-004-FR-03 / INFRA-004-AC-02, INFRA-004-AC-03 | L2-001 snapshot referenceを欠落、stale、target revision不一致に各々独立変更する。 | meaning/severity/sourceを補完せずunknownで保留し、source/meaning ownerへ返す。 |",
+      "raw_lf_sha256": "b801059168c6678120e746e7dabe4897b9718619e0ba7a846cc09274cb97fed7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 171,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 172,
+      "literal": "### L2-005 backup/restore/rollback cases",
+      "raw_lf_sha256": "5b07613d77f172bf67069c0d9bcd1e6e8f449402b055c683256f2d3f431a6f12"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 173,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 174,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 175,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 176,
+      "literal": "| CASE-INFRA-005-01 normal | INFRA-005-FR-01 / INFRA-005-AC-01 | 対象/source revision、time、complete location、integrity、expiryが宣言されたbackupを独立fixtureとして記録する。 | backup recordの完全性だけを確認しrestoreableを推定しない。 |",
+      "raw_lf_sha256": "7607ecd2c98eb9854c373b4915cabf507bbe8c97429153e9e13ac66c70401184"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 177,
+      "literal": "| CASE-INFRA-005-02 negative / backup fields | INFRA-005-FR-01 / INFRA-005-AC-01 | incomplete, wrong target/revision, integrity mismatch, expired, configured-only, artifact-exists-onlyを個別に注入する。 | 各々を別stateとし、restore successへ昇格しない。 |",
+      "raw_lf_sha256": "732de47f3194661d02512a890eb748bfaeecabc7354e0d7151df95140c949818"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 178,
+      "literal": "| CASE-INFRA-005-03 unseen normal | INFRA-005-FR-01 / INFRA-005-AC-01 | 異なるDB/resource identityを新規宣言し同じbackup fieldsを埋める。 | 新fixtureでsource/revision等を照合。CASE-005-01を重複宣言として再利用しない。 |",
+      "raw_lf_sha256": "a156bfc2d1245c5efcdc13611fde541f37a77eeae7f6bea8a743577dda24f50e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 179,
+      "literal": "| CASE-INFRA-005-04 owner return | INFRA-005-FR-01, INFRA-005-FR-04 / INFRA-005-AC-01, INFRA-005-AC-04 | backup source/target ownerが不明なpartial recordを入力する。 | success不可。欠落fieldとrecovery design owner/OSへの戻し先を表示し、未完 dutyを残す。 |",
+      "raw_lf_sha256": "3cc417ddc392dd56530c4674f2543d3691db81b57566981f4d7336bb84f8c59f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 180,
+      "literal": "| CASE-INFRA-005-05 normal actual restore | INFRA-005-FR-02 / INFRA-005-AC-02 | 独立restore環境でintegrity/reconnect/startup/verification evidenceを段階別に与える。 | 4 evidenceのsource/revisionが揃った場合にのみrestore resultをcompleteと記録する。 |",
+      "raw_lf_sha256": "18bcbec2ed316d211b43a85ef75a00847010792419fbc0a12034a1e5e4006e5d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 181,
+      "literal": "| CASE-INFRA-005-06 negative / restore steps | INFRA-005-FR-02 / INFRA-005-AC-02 | integrity, dependency reconnect, startup, verification failureを一項目ずつ別fixtureで注入する。 | 対応evidenceの欠落を個別に検出しrestore success不可。failure stateと未完義務を保持。 |",
+      "raw_lf_sha256": "0cd30d378d578e393810958d25c1f98654aba0c6dac2f425912c115236224203"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 182,
+      "literal": "| CASE-INFRA-005-07 normal eligible rollback | INFRA-005-FR-03 / INFRA-005-AC-03 | version/config/artifact/dependency/data-compatible targetとrecovery procedureを結んだ別rollback fixtureを使う。 | eligible target/resultを追跡し、incident stateは変更しない。 |",
+      "raw_lf_sha256": "1540a8995e729f6b68205cfed90786d8d9af7b343e53d79de14075933b0eba8d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 183,
+      "literal": "| CASE-INFRA-005-08 negative / rollback | INFRA-005-FR-03, INFRA-005-FR-04 / INFRA-005-AC-03, INFRA-005-AC-04 | incompatible fieldごと、unknown target、procedureなし、rollback後未確認を個別に入れる。 | rollback eligibility/success不可、incident close不可。recovery design owner/OSへ返し prior state保持。 |",
+      "raw_lf_sha256": "7f07acd79c146596145c69bac05d45b65bcbe8aa188789a786112df66cb3dcc1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 184,
+      "literal": "| CASE-INFRA-005-09 partial/unknown owner return | INFRA-005-FR-04 / INFRA-005-AC-04 | 部分restore後に未完verificationとowner ambiguityを与える。 | last eligible state/failure/unfinished dutiesを保持し、ownerを推測せず停止。 |",
+      "raw_lf_sha256": "95c791ca7ee89b7cc8064a94602ca2f994c155d046e05670f8e125eb5a34ead9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 185,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 186,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 187,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 188,
+      "literal": "| CASE-INFRA-005-10 negative / retention owner | INFRA-005-FR-01 / INFRA-005-AC-01 | state ownerを欠落/unknown、またはownerのretention要求を欠落/unknownに一つずつ変異する。 | expiry適格性をunknownにし、保持期間/ownerをInfrastructureが推定しない。 |",
+      "raw_lf_sha256": "7beea864f089342af4415bfcce9df41a2858f127b628a7b5e74dc1915382a3c8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 189,
+      "literal": "| CASE-INFRA-005-11 negative / backup job only | INFRA-005-FR-01, INFRA-005-FR-02 / INFRA-005-AC-01, INFRA-005-AC-02 | backup job successだけを記録し、actual restore evidenceは与えない。 | restore pass/successへ昇格しない。 |",
+      "raw_lf_sha256": "ae9b95603df42c2895d62fb1f14af969083d80284e69152d49f65f910e59641f"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 190,
+      "literal": "| CASE-INFRA-005-12 negative / non-independent restore | INFRA-005-FR-02 / INFRA-005-AC-02 | restore environmentをsource/backup作成環境と独立でないものにする。 | restore検証として成立させずrecovery design owner/OSへ戻す。 |",
+      "raw_lf_sha256": "bb85ed434bf20784b14792dae485afceacea516ebad23d2bd4d5fb0bdda3d5d6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 191,
+      "literal": "| CASE-INFRA-005-13 negative / dependency reference | INFRA-005-FR-02 / INFRA-005-AC-02 | L2-001/002 dependency/snapshot参照をmissing、stale、revision mismatchの各独立fixtureにする。 | restore成功にせず、不一致と未完範囲を保持してrecovery design owner/OSへ戻す。 |",
+      "raw_lf_sha256": "c464570f943f32ddab60cf90fcedb6bec71c02f83c9712ea36f48640468202e9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 192,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 193,
+      "literal": "### L2-009 Work/Change integration cases",
+      "raw_lf_sha256": "bdfa6f3d292033c44dcbd88ad963d8432c952264ac989badb04eba5e3249d2ba"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 194,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 195,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 196,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 197,
+      "literal": "| CASE-INFRA-009-01 normal no-stage | INFRA-009-FR-01, INFRA-009-FR-02 / INFRA-009-AC-01, INFRA-009-AC-02 | 独立宣言のOS Work/Change identityとInfrastructure runtime/resource identityをversioned refsで結び、stage releaseを使わない。 | 通常接続は成立し、二重正本もstage待ちも発生しない。 |",
+      "raw_lf_sha256": "b764961fe83d9c20d2c8c273a39e08244fd04e8c4e7c9b0e269f623959b6f08a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 198,
+      "literal": "| CASE-INFRA-009-02 conditional stage normal | INFRA-009-FR-02 / INFRA-009-AC-02 | 別fixtureで明示的にOS-L2-014 stage packへ収載し、stage ID/pack revision/runtime revisionを別々に与える。 | conditionがあるときだけstage contractを参照し、identityの混同をしない。 |",
+      "raw_lf_sha256": "518ee8bcc138dc5bc3de00ea2267855dfa161c94ed4236ac114b27fe2624822e"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 199,
+      "literal": "| CASE-INFRA-009-03 negative / mapping fields | INFRA-009-FR-01, INFRA-009-FR-03 / INFRA-009-AC-01, INFRA-009-AC-03 | target/runtime revision/Work ID/evidence refを一つずつ欠落・mismatch、stage IDとruntime revisionの誤併合を個別注入。 | resource change success不可。stage/current/rollback/pendingを保持。 |",
+      "raw_lf_sha256": "b880a86c360cafb8513b82eb014cbd54d6c02f25e46e09b6421409a0aed7053c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 200,
+      "literal": "| CASE-INFRA-009-04 unseen normal | INFRA-009-FR-01, INFRA-009-FR-02 / INFRA-009-AC-01, INFRA-009-AC-02 | 新しいwork/change identityとresourceを独立fixture宣言でstage無しに接続する。 | 新規identityでも通常接続契約を照合できる。 |",
+      "raw_lf_sha256": "ef0d11e0cb81e9ec52044a652b16c5ab7d22c80ce5f46b9b62e5df23f5e01a7b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 201,
+      "literal": "| CASE-INFRA-009-05 owner return | INFRA-009-FR-03 / INFRA-009-AC-03 | mismatch causeをWork/Change ownerとInfrastructure runtime ownerで別々に切替える。 | causeに対応OSまたはINFRA ownerへ戻し、状態と未完operationを残す。 |",
+      "raw_lf_sha256": "cd14c371a052ea45de15378ac178e6a518a9412d29f5230ffbd15e68a9c1fc33"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 202,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 203,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 204,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 205,
+      "literal": "| CASE-INFRA-009-06 negative / stage ownership and completion | INFRA-009-FR-01, INFRA-009-FR-02 / INFRA-009-AC-01, INFRA-009-AC-02 | (a) OS ticketをruntime stateの正本にする、(b) Infrastructureが作業承認を発行する、(c) 後続版HRI-L1-015を通常接続で必須化する、(d) 全7製品/L1-023完成までstage startを待つ、を各独立変異にする。別正常fixtureでは同一stage構成・INFRA依存・更新/rollback evidenceを与える。 | (a)(b)(c)(d)を各拒否しowner分離を維持。通常接続は全体release不要で成立し、条件付きstageの部分更新/rollback/未完操作は成功にしない。OS/INFRA ownerへ戻す。 |",
+      "raw_lf_sha256": "8215c998b80a7ec5da541f4ef8e490162968555f3d78380822c2fd28f8c08312"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 206,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 207,
+      "literal": "### L2-010 authorized Worker operations",
+      "raw_lf_sha256": "b3f9c68386b9ca25884c19953a0ce866f2d2ccf2ba94e51a98156f275a3ebc47"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 208,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 209,
+      "literal": "| Case | FR/AC trace | Fixture・操作 | Oracle / owner |",
+      "raw_lf_sha256": "babb94b2a68474c8069b4ff61902f6f787f0c453ff1fe2712c5484763af074d4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 210,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 211,
+      "literal": "| CASE-INFRA-010-01 normal read-only | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | declared target/scope/read target、空write-set、適用可能なread authority、valid OS ticket/assignment、009 refを持つread-only observation。 | read-only観測を許し、operationからのwriteを拒否する。declared target resourcesのbefore/after不変を確認し、無関係resource変化はfailureにしない。write authority/005 dutyを要求しない。 |",
+      "raw_lf_sha256": "97e9a80caf3b9a71ac3ad2c94f03eccbf6b130a368d7c0a68cfea1f4aa3f54f9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 212,
+      "literal": "| CASE-INFRA-010-02 normal state-changing | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | 有効SECURITY authority/Worker contract/ticket/009 ref/update admission acceptedと、該当actionに適用される005 dutyを個別宣言。 | 指定範囲のみ開始。適用不要な005義務は持ち込まない。 |",
+      "raw_lf_sha256": "9239385efcd1a7b834de37fc53bbec35cd5fef0c71ed313fd3213117098733ae"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 213,
+      "literal": "| CASE-INFRA-010-03 negative / authority | INFRA-010-FR-01, INFRA-010-FR-04 / INFRA-010-AC-01, INFRA-010-AC-04 | wrong target/project/action/revision/scope, expiry, credential scope mismatchを一項目ずつ独立negative fixtureにする。 | 各 mismatchで開始前拒否、SECURITY/OSへ返却、secret値は記録しない。 |",
+      "raw_lf_sha256": "fca1bcd50685b6c6d4510e184a10ca2f1660288b9694c19789f748a3c4f94895"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 214,
+      "literal": "| CASE-INFRA-010-04 negative / update admission | INFRA-010-FR-02 / INFRA-010-AC-02 | state-changing operationだけにdenied/unknown/mismatch/expired admissionを一つずつ与える。read-only対照fixtureは同じく有効なread authorityのままにする。 | mutating operation開始0。read-onlyはupdate admission不在だけでは拒否しない。 |",
+      "raw_lf_sha256": "01030173b3c11f0d30429179c402c473a24fb4a1df8ad800da51827b20006ed9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 215,
+      "literal": "| CASE-INFRA-010-05 independent recovery normal | INFRA-010-FR-03 / INFRA-010-AC-03 | OS/CP停止中に006独立path/別authorityを使うbootstrap/recovery fixtureを宣言し、復旧後result sync receiptも別段で与える。 | 開始時に停止OS ticket/009応答を要求しない。復旧後の同期は010 traceへ記録。 |",
+      "raw_lf_sha256": "51f991940ce37803533d685df339347cb51137c96aadfd491ef64d54f69a2388"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 216,
+      "literal": "| CASE-INFRA-010-06 negative / dependency route | INFRA-010-FR-03 / INFRA-010-AC-03 | OS停止中に通常OS/009 routeだけが利用可能なfixture、または006 path/authority欠落を個別に与える。 | operation開始0。006 path/SECURITY authorityの提供ownerへ返す。006側へresult sync義務は追加しない。 |",
+      "raw_lf_sha256": "862bb9582c976abcacafa23d3df0392562e3c98f40cc6eff4e28ed43ad9c5aed"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 217,
+      "literal": "| CASE-INFRA-010-07 unseen normal | INFRA-010-FR-01, INFRA-010-FR-03 / INFRA-010-AC-01, INFRA-010-AC-03 | 新しいresource identityとscope内の同じ限定bootstrap/recovery actionを独立宣言する。 | 未見resourceだけで拒否せず、全 authority条件を照合する。操作集合を増やさない。 |",
+      "raw_lf_sha256": "1879d73221a0ab55a9d370771272ce210de688f39ceef580e1f47865fc4fe9cb"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 218,
+      "literal": "| CASE-INFRA-010-08 partial execution/owner return | INFRA-010-FR-04 / INFRA-010-AC-04 | operation途中のfailureで一部stateだけ変わったfixtureを入力し、責務原因はSECURITY/OS/INFRAごとに別case。 | success不可。actual before/after、receipt、未完recovery/rollback dutyを保持し原因ownerへ返す。 |",
+      "raw_lf_sha256": "924d90273ad045ceb29c16c42e0b20db97810f71f2162036a8a2f2837e1a0cab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 219,
+      "literal": "| CASE-INFRA-010-09 negative / read-only write attempt | INFRA-010-FR-01 / INFRA-010-AC-01 | CASE-INFRA-010-01と同じdeclared target/scope/read targetを使い、read-only operationから対象resourceへのwriteを試行する。 | writeを適用前に拒否し、operation起因の対象resource変更を認めない。read-onlyの分類をmutatingとして通さない。 |",
+      "raw_lf_sha256": "0bba52c603dabb25ed2642f9302015ed327124ce2fa93a89b87837b1812ce2ab"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 220,
+      "literal": "| CASE-INFRA-010-10 negative contrast / unrelated state change | INFRA-010-FR-01 / INFRA-010-AC-01 | read-only operation中にdeclared read target外の無関係resourceだけが独立に変化するfixtureを用いる。declared target resourcesは変化させない。 | 無関係resourceのglobal digest差だけではread-only operationを失敗にしない。判定対象はdeclared target resourcesのbefore/afterとoperationのwrite-setに限る。 |",
+      "raw_lf_sha256": "f72ed22ec824174aef76ef57d670a4b5c02fac130922a2cfa4ad00fe03741737"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 221,
+      "literal": "| CASE-INFRA-010-11 negative / credential persistence planes | INFRA-010-FR-01 / INFRA-010-AC-01 | 同じsynthetic credential referenceについて、normal resource state・backup・snapshotへの値保存を各独立変異で試す。秘密値はfixtureへ書かない。 | 各面への値保存を拒否し、credential reference/必要metadataのみを保持する。 |",
+      "raw_lf_sha256": "47ca6044921fec51798d9d56d822040772d13245edb33fa4b0aa5690ab34f3e9"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 222,
+      "literal": "| CASE-INFRA-010-12 negative / unbounded shell | INFRA-010-FR-01 / INFRA-010-AC-01 | Worker requestからoperation-scoped command境界を外し、unbounded Shell実行だけを変異する。 | 開始前に拒否し、SECURITY/Worker contract ownerへ戻す。 |",
+      "raw_lf_sha256": "b4ebc37149da78e7ddea9d619783e63842e312139b67ec3ad90309f6747cdb16"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 223,
+      "literal": "| CASE-INFRA-010-13 negative / worker reply without state evidence | INFRA-010-FR-01, INFRA-010-FR-04 / INFRA-010-AC-01, INFRA-010-AC-04 | Worker success replyだけを与え、別のactual before/after state evidenceを欠落させる。 | 変更成功と扱わずactual state unknown、operation receiptと未完義務を保持する。 |",
+      "raw_lf_sha256": "8b2b9c95401078059454b778cadadf797bca37525c54722e2870bf6865fa14dc"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 224,
+      "literal": "| CASE-INFRA-010-14 negative / INFRA authority issuance | INFRA-010-FR-01 / INFRA-010-AC-01 | 他条件正常のままINFRAがpolicy/authorityを自分で発行する変異を与える。 | authorityを無効として開始前拒否し、SECURITY authority ownerへ戻す。 |",
+      "raw_lf_sha256": "c3c16bf99706704bfb314154b5f2cb0a769fb51b671728dc7b8556508eedc512"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 225,
+      "literal": "| CASE-INFRA-010-15 negative / duty unknown or unmet | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | 適用されるL2-005 dutyをunknown、または未充足にそれぞれ独立変更する。 | state-changing operationを保留し、適用duty owner/OSへ戻す。 |",
+      "raw_lf_sha256": "776330b86c30ae76dddac9c6ff0565716350746531d75ff5a73df671d9f175a8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 226,
+      "literal": "| CASE-INFRA-010-16 negative / normal ticket and assignment | INFRA-010-FR-02 / INFRA-010-AC-02 | 通常routeでticket欠落とassignment欠落を別々に与える。 | operationを開始せずOSへ戻す。 |",
+      "raw_lf_sha256": "413be007d7d9e9ae201088680ebdca9203cd4131b659361e13f2cbdbbb11d892"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 227,
+      "literal": "| CASE-INFRA-010-17 negative / recovery exemption reuse | INFRA-010-FR-02, INFRA-010-FR-03 / INFRA-010-AC-02, INFRA-010-AC-03 | OS稼働中の通常operationへ独立recovery routeのticket exemptionを流用する。 | 通常route条件を満たさないため開始しない。 |",
+      "raw_lf_sha256": "61f1712c3ad8ee18e80e1884549229c1c040b57e35de4c74e2f477270c2ab110"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 228,
+      "literal": "| CASE-INFRA-010-18 negative / read-only authority applicability | INFRA-010-FR-01 / INFRA-010-AC-01 | read-only scopeに対しproject mismatch authorityを与え、他fieldを一致させる。 | read-onlyにもauthority scopeを適用し、開始前拒否する。 |",
+      "raw_lf_sha256": "09bcb2d688fbe6a01c5402cc91063180dd6f7ce5f6b7fd482cdc09c4ba2e5c90"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.md",
+      "physical_line": 229,
+      "literal": "| CASE-INFRA-010-19 negative / stop and post-recovery sync | INFRA-010-FR-03, INFRA-010-FR-04 / INFRA-010-AC-03, INFRA-010-AC-04 | operation途中stop後、OS復旧後の同期receiptを欠落またはrevision不一致にする。 | successを確定せずactual state/unfinished operation/recovery dutyを保持しOSへ戻す。 |",
+      "raw_lf_sha256": "f06274da4238c41ba1e8e185a8ec205664736a610bdbf0c229f36bf640fa56ae"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 31,
+      "literal": "## Stage 2a 追加範囲 — business総合検証",
+      "raw_lf_sha256": "78bdcdfae9386e6423f7fe56b9ce2a3fc839c9ebfef90ffb97dc48510d9c064d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 32,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.md",
+      "physical_line": 33,
+      "literal": "Stage 2a直接親 `HELIXINFRASTRUCTURE-L2-003/004/005/009/010` に独立business outcome/oracleはないため、独立BCASE、business KPI、incident severity、費用/配置の合否を新設しない。対象条件の総合検証は[機能要件FR/AC](../L3-requirements/functional-requirements.md)と[機能検証case](functional-verification.md)に一本化する。L10から要求やownerを追加せず、Business文書は重複定義の代わりに該当FR/ACを参照する。",
+      "raw_lf_sha256": "2f7b302c328e0d0bbe4cf4116a6abebd92e30147aae1b639beeab9d2c89d1aee"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 55,
+      "literal": "## Stage 2a 追加範囲 — NFR測定候補",
+      "raw_lf_sha256": "db540d3b2a02e15575a199e647d4a1e8a1fc511e8b683f8924983ab3ae8acc22"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 56,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 57,
+      "literal": "測定対象は[Stage 2a NFR candidates](../L3-requirements/nfr-grade.md)にある6候補。測定設計であり、実行結果、実装合否、product SLOの決定ではない。各candidateのsource/revisionとselected resource/operation scopeを固定してから計測する。normal/negative/unseen-normal/owner-returnを同じ具体fixtureの重複宣言にせず、field failureは個別にmutationする。",
+      "raw_lf_sha256": "35df90a677a15cac851b1482ed6e7aa633f02c6d27776dfb2471dae499633f3d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 58,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 59,
+      "literal": "| NFR / parent | 測定母集団・方法 | Normal / individual negative oracle | 未見正常 / owner return / 記録 |",
+      "raw_lf_sha256": "ba9ec16838878b886a0e0d51b3314a0bafccb355a6452bc76e52159ec27e38d7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 60,
+      "literal": "|---|---|---|---|",
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 61,
+      "literal": "| INFRA-NFR-003-01 / L2-003 | Selected source cyclesのevent/receipt timestamp、interval、clock uncertainty、decision-age。candidate 2×intervalをsource別比較。 | Normal: recent value/ageをsource owner ruleと照合しつつcandidate 2×intervalの測定結果を記録。Negative: missed sample、stale、clock uncertaintyを一つずつ注入し、無期限 freshnessをcurrentへ通さない。技術候補測定はowner maximum未定でも継続し、実operation eligibilityは既存source契約と分離する。 | 独立したsource identity/intervalで再測定。owner maximum未定でもcandidateを測定し、その値だけでoperation eligibilityを決めない。実operationのcurrentnessは既存source契約に従い、契約上未定ならその状態を記録する。raw timestampではなく匿名fixture; age, interval, contract currentness, revision, statusを記録。 |",
+      "raw_lf_sha256": "3ee05318c030f35fb39f078d5a0a018903fd5fd7ac15dfbd9037cf35cdfd433c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 62,
+      "literal": "| INFRA-NFR-003-02 / L2-003 | Operationに必要な各declared resourceのcapacity/current utilization/queue/concurrencyと予測burst。20%を比較候補にし決定値としない。 | Normal: owner-declared limitとobservationを分けて記録。Negative: 0/20/30% headroom scenariosとunknown thresholdを比較し、candidateだけでacceptしない。 | 別resource type/new operation fixtureで同じ測定を行う。operation limit owner不明ならOS/INTELLIGENCEへunknown return。resource別false accept/reject/cost distributionとscopeを記録。 |",
+      "raw_lf_sha256": "b58ca9a160c9408765cb934dfd8e464d1672d7ebf771d53d5b17a6dfcd2e0592"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 63,
+      "literal": "| INFRA-NFR-003-03 / L2-003 | Idle, burst, sustained-load windowsのsample countとsource interval。3 samples/2 intervalsをcandidateとして評価。 | Normal: owner/source-defined labelとの一致を記録。Negative: single sample noise、2/3/4 consecutive samplesを比較し、stable labelだけでsafe-to-acceptを出さない。 | 未見source interval/resourceの独立fixtureを追加。label oracle owner不明ならsource ownerへ返す。samples, interval, saturation/rejection/backpressure correlationを記録。 |",
+      "raw_lf_sha256": "0fdf91b06d767c3a8f408900dc5640437251710160eb24fd0f48423ef3c61234"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 64,
+      "literal": "| INFRA-NFR-005-01 / L2-005 | Selected isolated reversible artifact restoreのphase elapsed（integrity, dependency reconnect, startup, verification）を複数実行で測る。1/5/15mを探索candidateとして比較し、5mを既定値としない。 | Normal: 全phase evidenceが揃い、1/5/15分の候補差を測る。Negative:各phase未完、各候補超過、未宣言scopeを個別注入。owner deadline未定でもcandidate測定を続け、timeoutだけでbusiness incident/operation ineligibilityを確定しない。 | 別source/revisionのrestore fixtureでowner deadline未定でも各candidateのdurationを再計測し、candidate測定と既存期限契約に基づく実operation eligibility/SLAを分け、個別owner承認/parameter gateを作らない。phase p50/p95、censoring、scope、source/revision、契約期限の有無を記録。 |",
+      "raw_lf_sha256": "ef4a69ea7e736960e4eb7e6dd2bb2950d66a443b5cc4750d8198b543152fa65c"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 65,
+      "literal": "| INFRA-NFR-005-02 / L2-005 | 独立restore runsのrepeatability。3 runsは比較案。 | Normal: 1/3 runsの結果を別々に残し全phase trace可能。Negative: 1,2,3回目で結果が異なるfixtureを作り平均でfailureを隠さない。 | 新しいtarget/revisionでrunを分離。必要反復数のoracle owner不明ならrecovery design ownerへ返し3をpass gateにしない。run identity、phase variance、resource costを記録。 |",
+      "raw_lf_sha256": "679b05b8772e8c39d5b2c1c3f4907107ae2051b3de014a31aaa7b1a2b977077a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 66,
+      "literal": "| INFRA-NFR-004-01 / L2-004 | Declared required fieldsをresource-type applicability matrixで分類しcoverage ratio算出。 | Normal: applicable required fields全件presentまたは明示unknown。Negative: required fieldごとに1つずつ欠落、optional N/Aと混同、100%未満をhealthy扱いするmutation。 | 新しいresource type/sourceで適用表を別宣言。required-field owner不明ならsource/collector ownerへ返す。分子/分母/optional N/A/source/revision/classificationを記録。 |",
+      "raw_lf_sha256": "69bd17b8729a950f2935b3d0f12e007f97aa0f989365647ef2e14a35d04419e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 67,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 68,
+      "literal": "L2-009/010用の数値候補は設定しない。対のL10では宣言済みselected scopeにおける必須参照/authority/duty/evidenceの個別充足・unknown・不一致と未完件数を記録し、分母0なら割合を算出しない。数値閾値や新しいowner判定は作らない。",
+      "raw_lf_sha256": "2e99962e4659bb894effbb8b58a91e9311a3041b7de6c7e50db7a2a25a678fd4"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 69,
+      "literal": "",
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.md",
+      "physical_line": 70,
+      "literal": "ここにbusiness pass/fail、incident severity、placement/cost acceptanceを追加しない。数値候補は通常のL3要件承認に付し、parameter別PO確認を作らない。",
+      "raw_lf_sha256": "e8b00c9529aee838fd6f437e59ed8c3deb18a99c77bc4151b797487d09dda7a0"
+    }
+  ],
+  "fixed_parent_source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-003/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_start_line": 52,
+      "physical_end_line": 61,
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "byte_length": 60825,
+      "physical_line_count": 430,
+      "raw_lf_span_sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
+      "raw_lf_span_bytes": 2313,
+      "literal": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。\n- **入力**：L2-001の資源snapshot、CPU/RAM/GPU/VRAM/storage/network/runtime/model requirement、capacity/utilization/queue/concurrency/saturation/rejection/backpressureの観測、起動要求。\n- **提供**：共通資源モデル、利用可能性・飽和の観測、および新Job/Worker/Model/CIを起動するための資源可用性情報。\n- **保証**：local machine、VPS、dedicated server、cloud VM、container runtime、GPU node、Worker nodeをcommon resource modelで参照し、CPU/RAM/GPU/VRAM/storage/runtime/capacity/health/availabilityを記録する。Network pathのsource/destination/protocol/endpoint/direction/purpose/security boundary/dependency、およびpersistent/temporary database, evidence/artifact store, queue, cache, log/metric store, model storeのowner/durability/backup/retention/environment/confidentiality/recovery属性はL2-001/003で追跡する。external model API/local LLM/GPU server/distributed model server/tuned modelのmodel/server/version/GPU-memory needs/concurrency/latency/capacity/health/endpointをruntime resourceとして記録するが、知能評価はINTELLIGENCE/LABOへ分ける。起動前に容量を確認し、不足時はqueue/delay、低費用または別node候補、reject、人へのescalationに情報を渡す。無制限なJob追加を成立扱いせず、配置・費用をInfrastructureが採否しない。\n- **単独成立の依存・版**：L2-001、資源/容量の観測元、OS/INTELLIGENCEへのcapacity/decision interface。`version_target: 1.0`。L1で記された高度なautoscalingは後続版であり依存しない。\n- **失敗時の戻し先・未完義務**：観測値不足・古い値・計測不可・capacity unknownでは安全に受入可能と返さず、起動要求をOS/INTELLIGENCEへ戻す。queue待ち等の未完状態とresource snapshotを保持する。\n- **束ねるL1/PO条件**：HRI-L1-005/006/007/009/010/011。最低範囲6 (Compute/Network/Storage)、7 (Model/Worker Runtime)、8 (Capacity)。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-004/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_start_line": 62,
+      "physical_end_line": 71,
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "byte_length": 60825,
+      "physical_line_count": 430,
+      "raw_lf_span_sha256": "eec7bc7e7e6f7bb710fd2a191195c6fd656b81d78a8c8aff2bb76b26bca7a2a8",
+      "raw_lf_span_bytes": 1390,
+      "literal": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`。\n- **入力**：health/metric/log/resource usage/dependency/queue/error/latency/deployment revision/recovery state、異常観測と参照要求。\n- **提供**：HELIX本体Infrastructureの最低限のobservabilityと通常/劣化/利用不能/容量枯渇/依存失敗/data・network unavailable/security isolation/unknownを区別したruntime/incident state。\n- **保証**：観測不能をhealthyへ変換しない。incidentの意味/severityは承認済み要求を参照し、INFRASTRUCTUREが独自定義しない。観測結果はsourceと対象revisionを保つ。\n- **単独成立の依存・版**：L2-001、対象の観測sourceと既存要求上のincident meaning。`version_target: 1.0`。より細かなfreshness/collector-confidence stateはHELIXINFRASTRUCTURE-L2-019 (`version_target: 1.0より後（版は未定）`)へ保全し、1.0の受入条件として増やさない。\n- **失敗時の戻し先・未完義務**：telemetry欠測・collector failure・source不明ならunknown/unobservedとして観測元へ戻し、原因を推測確定しない。未確認resourceとincident評価待ちを維持する。\n- **束ねるL1/PO条件**：HRI-L1-014/016。最低範囲9 (Observability)、10 (Incident state)。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-005/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_start_line": 72,
+      "physical_end_line": 81,
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "byte_length": 60825,
+      "physical_line_count": 430,
+      "raw_lf_span_sha256": "4d2e826d42920d60b234a0cd1f23be671829fb052e9235a46fc1a36426acff5f",
+      "raw_lf_span_bytes": 1387,
+      "literal": "### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`。\n- **入力**：重要state、backup target/source revision/time/completeness/location/integrity/expiry、configuration/artifact/dependency/data compatibility、復旧procedureと検証結果。\n- **提供**：backup実行state、restore実行結果、適格なrollback targetとrecovery procedureの独立記録。\n- **保証**：backup設定とbackup成功、backup存在とrestore可能、rollbackとincident closureを分ける。restoreでintegrity、dependency reconnection、startup、verificationを確認する。rollback先にはInfrastructure版・設定・artifact・依存・data互換・procedureを結ぶ。\n- **単独成立の依存・版**：L2-001/002、対象stateのowner/retention/recovery要求、独立検証できるrestore environment。`version_target: 1.0`。故障単位を用いる自動failoverは依存しない。\n- **失敗時の戻し先・未完義務**：backup不完全、restore不成立、互換不明、rollback target不明時は成功stateを発行せず、復旧設計owner/OSへ戻す。変更前の適格state、失敗記録、未完復旧・検証義務を保持する。\n- **束ねるL1/PO条件**：HRI-L1-017/018/019。最低範囲11 (Backup/Restore)、12 (Rollback)。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-009/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_start_line": 114,
+      "physical_end_line": 125,
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "byte_length": 60825,
+      "physical_line_count": 430,
+      "raw_lf_span_sha256": "7ac49b6972c973ff395a1e3dbbf391157cbae9af7c836ee1a58e5465bff4762b",
+      "raw_lf_span_bytes": 2227,
+      "literal": "### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXOS-L1-005`、`HELIXOS-L1-007`、`HELIXOS-L1-008`。\n- **入力**：OS ticket/change identity、対象資源・target、revision、操作開始/停止/再開・evidence参照、およびInfrastructureのresource topology/actual state/deployment revision/recovery state。\n- **提供**：OSの作業・変更stateとInfrastructureのresource-stateを関連づけたversioned view。必要な場合は、HELIX自身の段階releaseの組成・更新・切戻しにも両正本を接続する。\n- **保証**：OSは何を変更するか、ticket/actor/evidence/stop-resumeを持ち、Infrastructureは何が存在しどこでどの版・状態かを持つ。同じstateを二重正本にせず、HELIXOS-L2-014のstage release IDとInfrastructureのruntime revisionを同一視しない。最小の接続にHRI-L1-015のepisode-to-LABO correlation（後続版）を必須化しない。\n- **単独成立の依存・版**：L2-001/002/004/006、OSのversioned Work/Change interface/evidence。通常のresource-state接続はHELIX全体のstage release構成体に依存せず成立する。HELIX自身のstage releaseへ組み込む場合に限り、そのstageの構成・更新・復旧はHELIXOS-L2-014の契約に従い、stage IDとruntime revisionを区別する。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：ticket/target/runtime revisionや状態の対応が不明ならresource changeを成立扱いせず、OSまたはInfrastructureの該当ownerへ返す。stage pack利用時は段階識別も記録し、現在稼働版、rollback先、未完操作を引き継ぐ。\n- **束ねる条件**：原文minimum item 15 (OS connection)、HRI-L1-001/002/014/022。InfrastructureをHELIX自身の段階releaseへ収載する場合に限りHELIXOS-L2-014のstage構成・更新・復旧・同版構成証拠条件を参照する。通常のOS resource-state connectionはstage release構成体に依存しない。\n\n## 1.0操作構成体"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-010/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_start_line": 126,
+      "physical_end_line": 137,
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "byte_length": 60825,
+      "physical_line_count": 430,
+      "raw_lf_span_sha256": "2852abf8795fcd5c4fb09d791e2cc38941ba7bc730f215d8a8f9d211febf8eeb",
+      "raw_lf_span_bytes": 2885,
+      "literal": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体\n\n- **親L1**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n- **入力**：INFRASTRUCTUREの限定操作要求（target/project/action/revision/scope/expiry）、SECURITYのauthority/credential/network/isolation/egress条件、通常OS/Worker経路ではOS assignment/ticket、実行後のWorker結果receipt。結果receiptは開始前の入力ではなく後段で受け取る。更新・変更を適用するoperationに限り、該当target/revision/scopeのSECURITY update-admission状態を受ける。独立bootstrap/recovery operationではL2-006のresource/pathと別SECURITY authorityを入力にし、停止中OSのticketを開始条件にしない。\n- **提供**：SECURITYで認可された範囲だけをWorkerが実行し、操作対象、scope、before/after resource state、結果/evidenceへ接続する実操作経路。\n- **保証**：INFRASTRUCTUREがsecurity policyや自身のauthorityを作らず、credential valueをresource normal state、backup、snapshotへ無条件に保存しない。Workerは無制限Shell主体にならない。実操作はOS/SECURITY/Workerの役割を越えずに停止・回収できる。\n- **単独成立の依存・版**：全operationでL2-001の対象resource/actual stateと、対象・action・revision・scope・expiryに適用される有効なSECURITY authorityを照合する。全実操作はSECURITY制約下のWorker実行契約を通す。通常OS/Worker経路ではOS assignment/ticketとL2-009 Work/Change接続を用いる。更新・変更を適用する場合のみ、該当target/revision/scopeのSECURITY update admissionがacceptedであることを追加条件とする。state-changing operationでは、そのactionに適用されるL2-005のbefore/after、backup/restore/rollback/recovery義務を確認し、該当義務が不明または未充足なら変更を保留する。無関係な復旧義務を全操作へ一律要求しない。bootstrap/recovery operationもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityを開始条件とする。OS/通常Control Plane停止中にそのticketまたは通常L2-009応答を必須にせず、復旧後はoperation/resultをOSへ同期する。この限定は通常operation ticket/authorityの一般免除ではない。`version_target: 1.0`。\n- **失敗時の戻し先・未完義務**：authority/credential scope/target/revision不一致なら実行前に拒否しSECURITY/OSへ返す。部分実行は成功にせず、実際の状態と未完操作、復旧/rollback obligationsを記録する。\n- **束ねる条件**：原文minimum item 14 (SECURITY connection)、16 (Worker execution)、HRI-L1-021/028/029/039。\n\n## 1.0構成体"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-003/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 54,
+      "physical_end_line": 63,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "byte_length": 40777,
+      "physical_line_count": 318,
+      "raw_lf_span_sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db",
+      "raw_lf_span_bytes": 2018,
+      "literal": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。\n\n- **受入手順**：CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementを持つresource snapshotと、十分、境界不明、容量不足、古いobservationの起動要求を使う。対象scopeのModel Runtimeがあれば、model/version/server/GPU-memory requirement/concurrency/latency/capacity/health/endpoint各属性のsource/revisionと観測範囲も照合する。capacity/utilization/queue/concurrency/saturation/rejection/backpressureの各入力がどの対象版に属するか確認する。\n- **成功条件**：資源と容量情報がsource/revision付きで参照でき、Model Runtime属性も対象版に対応する。属性やcapacityの未観測/stale/unknownをhealthyまたは十分なcapacityとしない。既知の不足はcapacity unavailableとしてOS/INTELLIGENCEへ返され、queue/delay、代替候補、人へのescalation、reject等の判断経路へ渡せる。Infrastructure自身は配置や費用の選択を承認しない。実測できた値はsource/revision付きで保持する。容量の十分性を判定する閾値・適用条件が未設定なら、その判定をunknownとして戻し、観測値の存在だけで適格とせず、fixtureから製品閾値を新設しない。\n- **反例・失敗条件**：未知・古いcapacityを受入可とする、無制限にJobを追加する、またはInfrastructureが承認なしにnode移動/cost選択を実行する場合は不合格。\n- **失敗戻し先**：capacity observation sourceとOS/INTELLIGENCEのdecision owner。待機中要求・snapshot・未完義務を維持する。\n- **対応する1.0 minimum**：6 Compute/Network/Storage、7 Model/Worker Runtimeのresource側、8 Capacity。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-004/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 64,
+      "physical_end_line": 73,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "byte_length": 40777,
+      "physical_line_count": 318,
+      "raw_lf_span_sha256": "c2a55878949b2659e2000c847df3aa263bbc69ad407b3097e694a1c138631013",
+      "raw_lf_span_bytes": 1142,
+      "literal": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`。\n\n- **受入手順**：health/metric/log/resource/dependency/queue/error/latency/deployment/recovery observationを入力し、正常、劣化、利用不能、容量枯渇、依存失敗、data/network unavailable、security isolation、collector欠測の各ケースを区別する。\n- **成功条件**：記録は対象revision/sourceへ結びつき、観測不能をhealthyとしない。incident meaning/severityは承認済み要求に従い、定義元が追える。\n- **反例・失敗条件**：telemetry欠測をhealthyへ変換する、未承認severityを追加する、古いsourceをcurrentとして表示する場合は不合格。L1-033/034にある詳細freshness・confidence stateが無いことだけを理由に1.0を失格にしてはならない。\n- **失敗戻し先**：観測source/collector ownerまたはincident meaningを持つ上流owner。未観測状態を保持する。\n- **対応する1.0 minimum**：9 Observability、10 Incident state。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-005/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 74,
+      "physical_end_line": 83,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "byte_length": 40777,
+      "physical_line_count": 318,
+      "raw_lf_span_sha256": "7a26bfaffee4f4b526deb40fb24536531672dceefc243f340c78a44c11d5d408",
+      "raw_lf_span_bytes": 1107,
+      "literal": "### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`。\n\n- **受入手順**：成功/不完全backup、対象外revision、integrity不一致、互換restore、dependency reconnect失敗、rollback target不明のfixturesを用い、backup状態、実restore、verification、rollback適格性を別々に評価する。\n- **成功条件**：backupの存在のみではrestore可能と判定されず、実restoreでintegrity、dependency reconnection、startup、verification evidenceが揃う。rollback targetはartifact/config/dependency/data compatibilityとprocedureへ結びつく。\n- **反例・失敗条件**：backup jobが成功しただけでrestore pass、rollback実行だけでincident closure、未確認互換targetを適格とする場合は不合格。\n- **失敗戻し先**：recovery design owner/OSへ戻す。変更前の適格状態、失敗理由、未完復旧義務を維持する。\n- **対応する1.0 minimum**：11 Backup/Restore、12 Rollback。"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-009/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 116,
+      "physical_end_line": 127,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "byte_length": 40777,
+      "physical_line_count": 318,
+      "raw_lf_span_sha256": "666ff48ab4ece586bd66110cebc022977fc2719336d919225ec0e35ba0e62fe9",
+      "raw_lf_span_bytes": 2131,
+      "literal": "### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXOS-L1-005`、`HELIXOS-L1-007`、`HELIXOS-L1-008`。\n\n- **受入手順**：通常のOS work/changeとInfrastructure resource-stateを結ぶ接続を、stage release未使用のcaseと、HELIXOS-L2-014のstage packへ収載するcaseに分ける。双方でticket/change/actor/evidence/stop-resumeとresource/runtime revision/deployment/recovery stateの相互参照を確認し、部分更新・rollback・未完操作も試す。\n- **成功条件**：通常接続はOS Work/Change interfaceとInfrastructure resource-state contractだけで独立して成立する。stage packへ収載する場合はOS stage release ID、Infrastructure pack/contract/artifact/dependency version、runtime revisionを別identityのまま同一stageの構成証拠で対応させ、必要なInfrastructure依存と更新・rollback evidenceを持つ。OSはwork/changeを、Infrastructureはresource/runtimeを正本とする。\n- **反例・失敗条件**：通常接続をHELIX全体stage releaseの完成待ちにする、stage IDをruntime revisionとして流用する、OS ticketをruntime stateの正本にする、Infrastructureが作業承認を出す、未知のtargetで部分適用を成功扱いする、未完operationを落とす場合は不合格。また全7製品や後続版Infrastructure-L1-023の完成を、独立した安全なstage releaseの開始条件にした場合も不合格。\n- **失敗戻し先**：状態の所有者であるOSまたはInfrastructureへ戻す。稼働中stage（stage利用時）、runtime revision、適格rollback先、停止中operationを保持する。\n- **最低範囲対応**：13 Deployment version、15 OS connection。HELIXOS-L2-014 stage identity/contractはstage packとして使う場合の条件であり、通常のresource-state connectionの必須依存ではない。\n\n## 1.0操作構成体の受入"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "role": "fixed L2-010/L11 acceptance clause",
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "physical_start_line": 128,
+      "physical_end_line": 139,
+      "full_file_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "byte_length": 40777,
+      "physical_line_count": 318,
+      "raw_lf_span_sha256": "5398ff95b9e275d5e1c8bdf91b4eab9a3612eed327323de9fe228df717a0f504",
+      "raw_lf_span_bytes": 2870,
+      "literal": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体\n\n- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。\n\n- **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使い、通常OS/Worker operationと独立bootstrap/recovery operationを別fixtureにする。update/change actionは同じtarget/revision/scopeでSECURITY update-admission accepted/denied/unknown/mismatchを比較し、OS assignment/ticket、Worker result、Infrastructure before/after evidenceを対応づける。read-only fixtureは対象scope、read target、空のwrite-setと許可対象resourceのoperation前後値を定義する。\n- **成功条件**：Worker操作はSECURITYが認めたtarget/action/revision/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。更新・変更はupdate admission acceptedかつ通常authorityが有効な場合だけ許可範囲内で適用し、denied/unknown/mismatch/期限切れ/失効なら変更前に停止しSECURITYへ戻す。read-onlyではwrite禁止の適用と、宣言したscope/write-set内で当該操作が変更を起こしていないこと、許可対象resourceの前後状態を確認する。実行中の無関係な状態変化まで不変と要求しない。OS/通常Control Plane停止中の独立bootstrap/recoveryもSECURITY制約下のWorker実行契約を通し、L2-006の独立resource/pathと別SECURITY authorityが有効な場合に限り、通常OS ticket/assignmentやL2-009応答なしで限定された点検/停止/recoveryを開始できる。OS復旧後は結果を通常のWork/Change traceへ同期する。credential値は通常resource stateへ漏らさず、停止時・部分実行では実状態・未完操作と該当する復旧/rollback義務を引き継ぐ。\n- **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。read-onlyの宣言だけでwrite禁止・対象scopeのbefore/after確認を省く、writeが許される、または全resource状態digestが不変でないことだけを理由に失敗とする場合も不合格。update admission欠如だけを理由にread-onlyを拒否しないが、read-onlyにも対象・action・scope・authority条件は適用する。\n- **失敗戻し先**：実行前のauthority不一致はSECURITY/OSへ戻す。部分実行はInfrastructure実状態と復旧責務のownerへ返す。\n- **最低範囲対応**：14 SECURITY connection、16 Worker execution。\n\n## 1.0構成体受入候補"
+    }
+  ],
+  "PO_decision_pin": {
+    "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+    "role": "PO decision registration for parent identities",
+    "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+    "physical_start_line": 48,
+    "physical_end_line": 48,
+    "full_file_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+    "byte_length": 6241,
+    "physical_line_count": 64,
+    "raw_lf_span_sha256": "4c8d971350ada77c36cb15632dcfc06c6342d61c3b329909bca8d289ec9cba49",
+    "raw_lf_span_bytes": 727,
+    "literal": "HELIXINFRASTRUCTURE-L2-001, HELIXINFRASTRUCTURE-L2-002, HELIXINFRASTRUCTURE-L2-003, HELIXINFRASTRUCTURE-L2-004, HELIXINFRASTRUCTURE-L2-005, HELIXINFRASTRUCTURE-L2-006, HELIXINFRASTRUCTURE-L2-007, HELIXINFRASTRUCTURE-L2-008, HELIXINFRASTRUCTURE-L2-009, HELIXINFRASTRUCTURE-L2-010, HELIXINFRASTRUCTURE-L2-011, HELIXINFRASTRUCTURE-L2-012, HELIXINFRASTRUCTURE-L2-013, HELIXINFRASTRUCTURE-L2-014, HELIXINFRASTRUCTURE-L2-015, HELIXINFRASTRUCTURE-L2-016, HELIXINFRASTRUCTURE-L2-017, HELIXINFRASTRUCTURE-L2-018, HELIXINFRASTRUCTURE-L2-019, HELIXINFRASTRUCTURE-L2-020, HELIXINFRASTRUCTURE-L2-021, HELIXINFRASTRUCTURE-L2-022, HELIXINFRASTRUCTURE-L2-023, HELIXINFRASTRUCTURE-L2-024, HELIXINFRASTRUCTURE-L2-025, HELIXINFRASTRUCTURE-L2-026"
+  },
+  "legacy_source_pins": [
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "role": "legacy OPS-R-01 secret retention + target binding",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "physical_start_line": 70,
+      "physical_end_line": 72,
+      "full_file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "byte_length": 13712,
+      "physical_line_count": 209,
+      "raw_lf_span_sha256": "3716bbcbb950a25712b8b1dd36000c523514d81eda332f5d65e1689935a91a14",
+      "raw_lf_span_bytes": 461,
+      "literal": "環境ごとにenvironment ID、class、provider adapter ID／version、current state digest、endpoint reference、resource constraint、permission、\ncredential reference、network sink、data classification、dependency resource、owner、expiryを保持する。secret値は保持しない。\ntargetを一意に物理同定できない場合、logical targetとphysical targetが不一致の場合、credentialが期限切れの場合はfail-closeする。"
+    },
+    {
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "role": "legacy OPS-AC-001 secret-value negative",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/product-lifecycle-operations-acceptance.md",
+      "physical_start_line": 26,
+      "physical_end_line": 26,
+      "full_file_sha256": "19c75a442154b4d17e645143f4adaaa23791a1043caa73178e5d75cc468b7d58",
+      "byte_length": 4865,
+      "physical_line_count": 53,
+      "raw_lf_span_sha256": "f14b760580d8ec6a8b1a01bd0d4ef197a9b9b670fb8201f4ff8c1c8630b20657",
+      "raw_lf_span_bytes": 202,
+      "literal": "| `OPS-AC-001` | `OPS-FR-001`, `OPS-R-01` | environment identity、provider adapter、resource、permission、credential referenceがexact | ambiguous／logical-only target、secret値保存を拒否 |"
+    }
+  ],
+  "legacy_audit_correction": {
+    "prior_static_audit_path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-static-validation-2026-10-05-9a3129898.json",
+    "prior_cutout_audit_path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-publication-cutout-2026-10-05-4058f9d6.json",
+    "prior_integration_audit_path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-main-integration-2026-10-05-7a4322b55.json",
+    "old_disposition_claim": "OPS-AC-001 secret-storage rule excluded",
+    "corrected_disposition": "部分再利用。OPS-R-01:70-72 と OPS-AC-001:26 はcredential referenceを保ちsecret値を保持しない意味で固定L2-010と一致する。権限/操作方式は移さない。既存監査は変更せず、この追補が誤りを訂正する。",
+    "prior_records": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-static-validation-2026-10-05-9a3129898.json",
+        "sha256": "9cc3f466a97ff46f58a731e24f52fbf13030ff084e19acd2e88472249ffb9d25",
+        "bytes": 140443,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-po-review-2026-10-05-9a3129898.md",
+        "sha256": "73418380234154aba3631c233968a61c4737ca20b87ddfa33fb5515a592b72b5",
+        "bytes": 2878,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-publication-cutout-2026-10-05-4058f9d6.json",
+        "sha256": "f7e8e0b2a90daac1ef2ccc25798fde0fac4ec59a1c89d2213a9ec3315c57a2d9",
+        "bytes": 139276,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-publication-cutout-2026-10-05-4058f9d6.md",
+        "sha256": "55dc7c3d614070214037873f19aeedf3cedb95dfe4f594d1291b201f1562bfc9",
+        "bytes": 1488,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-main-integration-2026-10-05-7a4322b55.json",
+        "sha256": "ab209108320f47e4ac759d21c7040ba3321e460e9060cf22da91f533d4fa9f30",
+        "bytes": 253625,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-main-integration-2026-10-05-7a4322b55.md",
+        "sha256": "e83456870424fbfc0b5072104c315fe8bab6afeee50afc79f9a51d84fc524975",
+        "bytes": 1007,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-approval-boundary-correction-2026-10-05-493f2d063.json",
+        "sha256": "f5bdac4c1174f61eba3c27c073559b3c774dc298ab78326e7c3560c65c5f6a7e",
+        "bytes": 10256,
+        "unchanged_at_repair_base": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-infrastructure-stage2a-approval-boundary-correction-2026-10-05-493f2d063.md",
+        "sha256": "b05f6ce09b6504c0772b38b3d30c1cbd4aeea8a2e9f4e0679a4b22655834571a",
+        "bytes": 1491,
+        "unchanged_at_repair_base": true
+      }
+    ]
+  },
+  "validation": {
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "legacy_runtime_test_ci": "not run"
+  },
+  "limitations": [
+    "作成側による指摘対応と時点記録であり独立reviewではない。",
+    "Stage2a PO承認および再review未完了。",
+    "未承認・未実行候補であり実装/実行/配布許可を生成しない。",
+    "pushなし。"
+  ]
+}
