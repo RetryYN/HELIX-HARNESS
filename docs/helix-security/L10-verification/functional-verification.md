@@ -371,7 +371,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-021-02/03`
 - **negative変異**：consumer受領receiptだけでsource classificationをtrustedへ変えた主張を与える。
 - **期待oracle**：不合格。受領状態とSECURITY判断を別に保ち、永続化は021の成功に含めない。
-- **owner戻し**：trust判断はSECURITY、保存/handoffはL2-027とconsumer ownerへ戻す。
+- **owner戻し**：trust境界の意味不足はSECURITY L1-001/002へ返す。選択consumerはdeny receiptの受領先としてのみ記録し、受領をtrustや保存の根拠にしない。永続化経路はL2-014/027へ戻す。
 
 ### SECURITY-CASE-021-06 — CONNECTによるpolicy判断生成
 
@@ -458,11 +458,18 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **期待oracle**：revoke後の判定を許可に使わず、該当停止を反映する。
 - **owner戻し**：SECURITY authority、OS進行/停止伝播へ戻す。
 
-### SECURITY-CASE-022-11 — OSによるSECURITY decision上書き
+### SECURITY-CASE-022-11 — OSによるSECURITY deny上書き
 
 - **対象AC**：`SECURITY-AC-022-03`
-- **negative変異**：SECURITY deny/constrainをOSがallowへ変更した状態にする。
-- **期待oracle**：不合格。OS ticketはSECURITY判定を代替しない。
+- **negative変異**：他のdecision fieldを保ち、SECURITY denyだけをOSがallowへ変更する。
+- **期待oracle**：不合格。OS ticketはSECURITY判定を代替せず、拒否状態を維持する。
+- **owner戻し**：OS assignment/progressionとSECURITY policyへ個別に返す。
+
+### SECURITY-CASE-022-19 — OSによるSECURITY constrain上書き
+
+- **対象AC**：`SECURITY-AC-022-03`
+- **negative変異**：denyではないconstrain decisionを保ち、OSだけがallowへ変更する。
+- **期待oracle**：不合格。constrain条件を消さず、OS ticketからallowを生成しない。
 - **owner戻し**：OS assignment/progressionとSECURITY policyへ個別に返す。
 
 ### SECURITY-CASE-022-12 — SECURITYによるassignment生成
@@ -529,12 +536,19 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **期待oracle**：不合格。ticketは上流failure/unknownを閉じない。
 - **owner戻し**：OS progression ownerへ返す。
 
-### SECURITY-CASE-023-08 — stage間identity不一致
+### SECURITY-CASE-023-08 — HARNESS receipt identity不一致
 
 - **対象AC**：`SECURITY-AC-023-01/03`
-- **negative変異**：HARNESSまたはOS receiptのcandidate identityだけを異なるcandidateへ変える。
-- **期待oracle**：receipt chainを分断し、該当段階を未完とする。異なるcandidateのevidenceを合成しない。
-- **owner戻し**：identity差の発生した段階ownerへ返す。
+- **negative変異**：他のreceiptを保持し、HARNESS verification receiptのcandidate identityだけを別candidateへ変える。
+- **期待oracle**：HARNESS段階とのreceipt chainを分断し、その段階を未完にする。別candidateのevidenceを合成しない。
+- **owner戻し**：HARNESS verification contractへ返す。
+
+### SECURITY-CASE-023-12 — OS receipt identity不一致
+
+- **対象AC**：`SECURITY-AC-023-01/03`
+- **negative変異**：他のreceiptを保持し、OS promotion receiptのcandidate identityだけを別candidateへ変える。
+- **期待oracle**：OS段階とのreceipt chainを分断しpromotionを未完にする。別candidateのevidenceを合成しない。
+- **owner戻し**：OS promotion stateへ返す。
 
 ### SECURITY-CASE-024-01 — policy/resource/enforcementの正常trace
 
@@ -561,7 +575,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-024-01`
 - **negative変異**：他のreceiptを保ち、Worker effective enforcement evidenceだけを欠落させる。
 - **期待oracle**：policy宣言やINFRASTRUCTURE観測だけで実適用successにせず、該当状態をunknown/unfinishedとして保持する。
-- **owner戻し**：実適用の観測不足をWorker/INFRASTRUCTURE既存ownerへ返す。
+- **owner戻し**：実適用観測・resource stateの不足をINFRASTRUCTURE L1/L2へ返す。Workerはconstraint enforcementの観測主体であり、別の戻し先ownerを新設しない。
 
 ### SECURITY-CASE-024-05 — INFRASTRUCTURE observation欠落
 
@@ -575,14 +589,14 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-024-01`
 - **negative変異**：resource identityだけをreceipt間で不一致にする。
 - **期待oracle**：異なるresource receiptを結合せず、該当対象をunknownとして保持する。
-- **owner戻し**：INFRASTRUCTUREへ返す。
+- **owner戻し**：resource identity/stateの不足をINFRASTRUCTURE L1/L2へ返す。
 
 ### SECURITY-CASE-024-07 — policy revision不一致
 
 - **対象AC**：`SECURITY-AC-024-01`
 - **negative変異**：policy revisionだけをreceipt間で不一致にする。
 - **期待oracle**：stale/mismatch policy receiptを流用せずunknownとして保持する。
-- **owner戻し**：SECURITY policy ownerへ返す。
+- **owner戻し**：policy meaning/revisionの不足をSECURITY L1へ返す。
 
 ### SECURITY-CASE-024-08 — scope不一致
 
@@ -596,21 +610,21 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-024-03`
 - **negative変異**：通常resource stateに合成credential markerを保存する。
 - **期待oracle**：固定L11:48の通常資源状態保存条件に照らして不合格とする。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。
-- **owner戻し**：credential boundaryはSECURITY、resource handlingはINFRASTRUCTUREへ返す。
+- **owner戻し**：credential境界の意味不足はSECURITY L1、resource state/handling差はINFRASTRUCTURE L1/L2へ返す。
 
 ### SECURITY-CASE-024-10 — credential値のbackup保存
 
 - **対象AC**：`SECURITY-AC-024-03`
 - **negative変異**：通常resource stateを保ち、backupだけに合成markerを置く。
 - **期待oracle**：固定L11:48のbackup保存条件に照らして不合格。実値は使わずreceiptにも値を記録しない。credential-use capability/authorityだけから保存許可を導かない。
-- **owner戻し**：SECURITY/INFRASTRUCTUREの既存ownerへ返す。
+- **owner戻し**：credential boundaryの意味不足はSECURITY L1、backupを含むresource state/handling差はINFRASTRUCTURE L1/L2へ返す。
 
 ### SECURITY-CASE-024-11 — credential値のsnapshot保存境界
 
 - **対象AC**：`SECURITY-AC-024-03`
 - **negative変異**：通常resource stateとbackupを変えず、snapshotだけへcredential-use capability/authorityのみを根拠に合成markerを無条件で保存する。
 - **期待oracle**：固定L2-024:307の「無条件に保存しない」に照らし不合格とする。固定L11:48はsnapshotを列挙しないため、それをsnapshotへの絶対禁止へ拡張しない。実値を使わずreceiptにも値を記録せず、新しい保存許可も生成しない。
-- **owner戻し**：credential boundaryはSECURITY、snapshot resource stateはINFRASTRUCTUREへ返す。
+- **owner戻し**：無条件保存境界の意味不足はSECURITY L1、snapshot resource state/handling差はINFRASTRUCTURE L1/L2へ返す。
 
 ### SECURITY-CASE-026-01 — deterministic Guard、Botなし
 
@@ -688,7 +702,7 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-021-01`
 - **negative変異**：正常flowのSECURITY boundary decisionだけをdenyにする。
 - **期待oracle**：同一flowでdeny receiptを選択consumerへ伝播し、LABO/INTELLIGENCEへのdata受領を成功扱いせず該当受渡しを停止する。
-- **owner戻し**：SECURITY L1-001/002、選択consumer受領ownerへ返す。
+- **owner戻し**：trust policy意味の不足はSECURITY L1-001/002へ返す。選択consumerはdeny receiptの受領先として扱い、受領先ownerをtrust判断の戻し先にしない。
 
 ### SECURITY-CASE-022-14 — SECURITYによるWorker配置
 
@@ -721,8 +735,8 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 ### SECURITY-CASE-023-09 — admission unknownをgreen代替
 
 - **対象AC**：`SECURITY-AC-023-02`
-- **negative変異**：他正常fieldを保持しSECURITY admissionだけをunknownにする。
-- **期待oracle**：HARNESS greenでunknownを代替せずWorkerとpromotionを未実行/未完に保つ。
+- **negative変異**：他の正常fieldを保ちSECURITY admissionだけをunknownにする。Worker evidenceは未実行とし、HARNESS verificationとOS promotionも未実行のfixtureとする。
+- **期待oracle**：admission unknownを保持し、後続Worker、HARNESS green、OS ticket/promotionのいずれでも代替・成功化しない。
 - **owner戻し**：SECURITY L1-010〜013へ返す。
 
 ### SECURITY-CASE-023-10 — verification unknown
@@ -738,6 +752,14 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **negative変異**：candidate revisionとcapability deltaを保持し、candidate provenanceだけを欠落させる。
 - **期待oracle**：admission unknownを保持しWorkerは未実行、後段を成功にしない。
 - **owner戻し**：SECURITY L1-010〜013へ返す。
+
+### SECURITY-CASE-023-13 — capability delta欠落
+
+- **対象AC**：`SECURITY-AC-023-01/03`
+- **正常条件**：candidate identity/revisionとprovenance、他stage receiptは有効に保つ。
+- **negative変異**：capability deltaだけを欠落させる。
+- **期待oracle**：欠落をunknownとして保持しSECURITY admissionを未完にする。Workerを未実行に保ち、後段のgreen/ticketから補わない。
+- **owner戻し**：L2-023:299に従いSECURITY L1-010〜013へ返す。
 
 ### SECURITY-CASE-024-12 — 適用失敗を観測
 
@@ -758,27 +780,27 @@ HIL-BR-32、HR-FR-HIL-23/HAC-HIL-23a/b/c、HAT-HIL-23、P2-05/HAT、WCCの対応
 - **対象AC**：`SECURITY-AC-024-01`
 - **negative変異**：INFRASTRUCTURE resource state receiptだけをOS Work/Change Stateの正本として記録する。
 - **期待oracle**：混入を拒否し実資源stateの正本はINFRASTRUCTUREに保持する。OS作業stateを生成しない。
-- **owner戻し**：INFRASTRUCTURE L1/L2、OS作業state ownerへ返す。
+- **owner戻し**：実資源state/観測の正本差をINFRASTRUCTURE L1/L2へ返す。OS作業stateは混入を拒否する対象であり、このCASEの戻し先にしない。
 
 ### SECURITY-CASE-026-11 — 判断由来欠落
 
 - **対象AC**：`SECURITY-AC-026-02`
 - **negative変異**：条件付き正常inputからjudgement originだけを欠落させ、confidenceを保持する。
-- **期待oracle**：由来不足をunknown/制限として保持しconfidenceを由来の代替に使わない。
+- **期待oracle**：由来不足のdecision inputを有効として受理せず、unknown/制限を保持する。confidenceを由来の代替に使わずINTELLIGENCE意味責務へ返す。
 - **owner戻し**：INTELLIGENCE意味判断責務へ返す。
 
 ### SECURITY-CASE-026-12 — 判断確度欠落
 
 - **対象AC**：`SECURITY-AC-026-02`
 - **negative変異**：条件付き正常inputからconfidenceだけを欠落させ、originを保持する。
-- **期待oracle**：確度不足をunknown/制限として保持しoriginを確度の代替に使わない。
+- **期待oracle**：確度不足のdecision inputを有効として受理せず、unknown/制限を保持する。originを確度の代替に使わずINTELLIGENCE意味責務へ返す。
 - **owner戻し**：INTELLIGENCE意味判断責務へ返す。
 
 ### SECURITY-CASE-026-13 — 判断由来と確度の混同
 
 - **対象AC**：`SECURITY-AC-026-02`
 - **negative変異**：正常origin/confidenceを保持したままoriginをconfidence判定そのものとして解釈する。
-- **期待oracle**：由来と確度の混同を不合格とし別field/判断材料として保持する。
+- **期待oracle**：混同したinputを有効なdecision inputとして受理せず、unknown/制限を保持しINTELLIGENCE意味責務へ返す。originとconfidenceは別fieldとして保持する。
 - **owner戻し**：INTELLIGENCE意味判断責務へ返す。
 
 ### SECURITY-CASE-022-18 — 実行前denyの停止伝播
