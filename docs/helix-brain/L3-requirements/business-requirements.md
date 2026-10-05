@@ -11,3 +11,30 @@
 | `HELIXBRAIN-L2-028` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-028-FR-01` / `BRAIN-028-AC-01,AC-02` |
 
 後続の承認済みL2が独立business outcomeを与えた場合に限り、通常のL3起草内で本書へ配置する。旧HARNESS業務値をBRAINへ移さない。
+
+
+## Stage 2b — 業務分類の確認（INFRA-001〜017）
+
+固定L2/L11のINFRA-001〜017は設計知識、分類、relation、根拠、owner境界を要求し、functional/system conditionと独立したbusiness outcome・指標・ownerを定義していない。旧HELIXのHARNESS業務detailはこの機構の意味根拠ではない。旧区分の保持点は「business項目を独立に確認する」構造のみとし、BRAINのbusiness内容は固定親から再導出した結果なしに追加しない。
+
+| 親L2 | 業務分類 | 機能正本 |
+|---|---|---|
+| `HELIXBRAIN-L2-INFRA-001` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-001-FR-01` / `BRAIN-INFRA-001-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-002` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-002-FR-01` / `BRAIN-INFRA-002-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-003` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-003-FR-01` / `BRAIN-INFRA-003-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-004` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-004-FR-01` / `BRAIN-INFRA-004-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-005` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-005-FR-01` / `BRAIN-INFRA-005-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-006` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-006-FR-01` / `BRAIN-INFRA-006-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-007` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-007-FR-01` / `BRAIN-INFRA-007-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-008` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-008-FR-01` / `BRAIN-INFRA-008-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-009` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-009-FR-01` / `BRAIN-INFRA-009-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-010` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-010-FR-01` / `BRAIN-INFRA-010-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-011` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-011-FR-01` / `BRAIN-INFRA-011-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-012` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-012-FR-01` / `BRAIN-INFRA-012-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-013` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-013-FR-01` / `BRAIN-INFRA-013-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-014` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-014-FR-01` / `BRAIN-INFRA-014-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-015` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-015-FR-01` / `BRAIN-INFRA-015-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-016` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-016-FR-01` / `BRAIN-INFRA-016-AC-01, AC-02` |
+| `HELIXBRAIN-L2-INFRA-017` | 固定L2/L11に独立business outcomeなし。追加・複製なし。 | `BRAIN-INFRA-017-FR-01` / `BRAIN-INFRA-017-AC-01, AC-02` |
+
+旧business起点は`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、該当span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）。これはHARNESS固有のBR-21/HM-08である。旧business分類の分離だけを比較し、旧HARNESS BR-21、HM-08、Learning Engine評価、screen/mode/drive条件は移植しない。businessの独立成果が現行固定親に現れないため、通常のL3承認対象はfunctional ACで示す親条件に限る。

@@ -14,3 +14,28 @@
 | `HELIXBRAIN-L2-028` descriptor/knowledge axis separation | descriptor fieldとBRAIN knowledge identity/revision/version/stateを独立照合し、cross-substitutionによる誤受理0を候補とする。 | descriptorとknowledge各fieldを個別変異し、identityおよび各version軸に互いに異なる合成値を置いた入替え変異を独立投入する。応答tuple、該当field、期待軸、BRAIN（L2-008）／HARNESS ownerへの戻し先を観測。 | 独自schema/digest/timeoutは未指定。BRAINは共通exchange/update/rollback/unfinished-obligation lifecycleを再定義しない。 |
 
 候補値は未実測であり、測定できない/fixture未充足/契約値が不明な場合を成功としない。旧数値を自動継承しない。
+
+
+## Stage 2b — INFRA親のNFR候補
+
+**状態：候補・未測定。** 以下は要求された情報の被覆・識別を検証する候補で、製品SLO、RTO/RPO、費用、performance targetではない。固定L2の明示集合を分母とし、候補境界は列挙義務100%被覆・誤受理0件。95%重み付き集計は必須field欠落を隠し得るため採らない。fixtureで合成fieldは宣言し、unknown/missing/stale/conflictを成功へ含めない。parameterごとにPO判断を求めない。
+
+| 親 | NFR測定候補・根拠付き候補値 | L10測定方法・分母 | 比較・限界 |
+|---|---|---|---|
+| `HELIXBRAIN-L2-INFRA-001` | 20初期subdomainと追加/分割/統合/退役の4操作を識別する被覆100%候補、固定enum化やRuntime inventoryへの誤固定0件候補。根拠は親が20分類と4変更可能性を明示すること。 | 20分類と4操作を個別に観測し、Runtime resource一覧への固定変異もC03で測る。missing/unknown/stale/wrong-targetを別stateで記録。 | 95%平均では特定要素の欠落を隠す。製品resource実数やperformanceは外挿しない。 |
+| `HELIXBRAIN-L2-INFRA-002` | Domain 2、Pattern 2、Part 8および固定例の全relation endpointの保持候補。固定L2例の構造を明示できる分母として採る。 | nodeと各endpointを個別欠落/誤型/unknownにし、Domain 2・Pattern 2・Part 8・endpointを区別して記録。 | node数だけの4-level totalではendpoint欠落を隠すため不採用。実装設定の網羅ではない。 |
+| `HELIXBRAIN-L2-INFRA-003` | L2 20 atomic fieldとL11 18 groupを各100%照合する候補。trade-offとevidenceは別group。根拠は固定列挙。 | 20 fieldと18 groupを別分母にし、各欠落・stale・対象違いを個別測定。FRとC01/C04を文書照合し、親にないfield別evidence/scope義務を要件へ追加していないことを確認する（fixture mutationには数えない）。 | 重み付き総合値は欠落を相殺するため使わない。 |
+| `HELIXBRAIN-L2-INFRA-004` | 10 NFR characteristicと親記載のPattern/Input relationの保持候補100%。NIO-L3-01/02のtyped input/design obligationを類例にする。 | characteristic、Pattern、Input/relationの個別欠落・unknownを測る。要求閾値は新設しない。 | evidence義務やNFR ownerをNIOから移さない。 |
+| `HELIXBRAIN-L2-INFRA-005` | 13 failure×6観点=78 cellを保持する候補100%。正常構成と同一knowledge identity/hierarchy/relationで結ぶことも照合。 | 各cellと正常構成relationの欠落を独立変異し、未見failure候補は別normal fixtureで測る。 | 設計候補の存在を実incident証拠とみなさない。 |
+| `HELIXBRAIN-L2-INFRA-006` | 10 recovery候補と予防/復旧区分の保持候補100%。INFRA-010 relation unknownでも独立評価できる。 | 各候補/区分を個別欠落し、C06でunknown relation保持と誤った010完成gateを対にして測る。 | 他親完成待ちや実復旧成功の尺度にしない。 |
+| `HELIXBRAIN-L2-INFRA-007` | 6 deployment方式×6比較軸=36 cellの保持候補100%。 | 各方式/軸を変異し、release actionと段階/state進行を別々に負例測定。 | NIO-L10-05はrollback/permanent-fix区別の類例に限る。実deploy結果を測らない。 |
+| `HELIXBRAIN-L2-INFRA-008` | 8候補×6軸=48 cellの保持候補100%。根拠のない負荷閾値と特定規模値の創作を独立に拒否する候補。 | 各cellを欠落/unknown/stale/wrong-targetへ変異し、根拠のない負荷閾値の創作と特定規模値の創作を独立fixtureで測る。workload未指定normalも別に保持する。 | workload/SLO閾値や自動scaling実行能力を追加しない。 |
+| `HELIXBRAIN-L2-INFRA-009` | 11 design observation pointとPattern/failure relationの保持候補100%。 | 各点/relation欠落、raw telemetry知識化、missing/stale/collector停止の誤healthy化を個別測定。 | 固定親外のsecret/PII処理契約は設けない。 |
+| `HELIXBRAIN-L2-INFRA-010` | backup-only、restore verification、required recovery conditionsの3状態を別に識別する候補。3条件が揃う時だけRecoverability Evidence Candidateを作る。 | 3条件の独立欠落と根拠のない一律RTO/RPO創作をC02/C03の独立fixtureで測り、candidate記録は実復旧可能性の確定と区別する。 | RTO/RPOを製品値として創作せず、成功率や運用SLAを導出しない。 |
+| `HELIXBRAIN-L2-INFRA-011` | 7 cost groupsと8 atomic characteristicsの別々の保持候補100%。価格を含む時だけprovider/time/sourceを価格へ結ぶ。 | 7 group/8 atomicを別分母。provider/time/sourceの個別変異は具体価格fixtureだけに適用し、恒久定数化をnegativeにする。 | 構造cost比較は価格なしで成立。scopeは要件外、予算/価格閾値を作らない。 |
+| `HELIXBRAIN-L2-INFRA-012` | 1 abstract pattern identityと固定4 implementation example identities/関係を区別して保持。provider-specific factはevidenceと版を結ぶ。 | 4実装例のidentity/relation/evidence/versionを個別に欠落させ、固定列挙外implementationの未見normal（C05）とS3→GCS swap normal（C06）を別fixtureで照合。 | C05/C06とも未確認互換性はunknown。列挙外fixtureは親の4例分母へ追加せず、provider approval gateを作らない。 |
+| `HELIXBRAIN-L2-INFRA-013` | 6 resource classesとabstract capability relationを保持し、provider/compute classを固定しない候補。 | 6 class/relationの欠落とprovider固定・compute固定の独立negative、未見edge-device normalを測る。 | 実resource state/credential/操作権限を要件にしない。 |
+| `HELIXBRAIN-L2-INFRA-014` | 9 relation typeのtype/endpoints/meaning、および固定2 topology例を保持する候補。 | 2例・relation fieldを照合し、unlisted topologyでも未指定edgeをunknownで保持するか測る。 | actual topologyの正しさを測定しない。 |
+| `HELIXBRAIN-L2-INFRA-015` | 固定Domain-pair relationのdirection/evidence/uncertaintyを保持する候補。根拠のないassertive relationを誤受理0候補とする。 | endpoint/direction欠落とunlisted pairを測り、may-affect＋unknownは許容、causesへの根拠ない強化をnegativeとする。 | relationの全件適用率や新しいevidence gateは作らない。 |
+| `HELIXBRAIN-L2-INFRA-016` | 11 anti-pattern×4要素(condition/manifestation/detection clue/alternative)=44 cellを照合する候補。L11 signalはmanifestationとdetection clueの双方へ対応。 | 44 cellとsignalの二つの対応先を別々に欠落変異し、条件外のuniversal banをnegativeにする。 | legacy NIO-L10-06 secret/PIIは独立要件にせず、固定INFRA-016親外として除外。 |
+| `HELIXBRAIN-L2-INFRA-017` | 6 maturity states、BRAIN version、project usage version、および利用実績/failure/反例/LABO評価の固定4入力を保持する候補。 | 3軸・4入力をそれぞれ欠落/不一致変異し、C06の一回success保持/誤昇格とC08のfailure保持/隠蔽を対にして測る。 | scopeを新規必須入力にしない。state閾値や普遍適用基準を作らない。 |
