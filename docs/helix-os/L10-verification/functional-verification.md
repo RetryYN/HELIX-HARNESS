@@ -1001,27 +1001,27 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 
 | CASE ID | 親 / AC | 入力・単独変異 | 期待oracle |
 |---|---|---|---|
-| `CASE-OS-L10-025-01` | 025 / AC-01 | 複数projectの異なる対象revisionで、各unit・明示接続・composite evidenceが揃う正常例。 | 3種類のstate/ownerを別々にtraceし、単位証拠の合算でcomposite条件を代替しない。|
-| `CASE-OS-L10-025-02` | 025 / AC-02 | 一つのproject/serviceだけで独立成立し、他の製品と別projectは未完のままの個別初期作業。 | 選択scopeを扱い、全7製品完了待ちを追加しない。全体1.0成立も主張しない。|
-| `CASE-OS-L10-025-03` | 025 / AC-01 | 選択connection evidenceだけを一つ欠落させる。 | 当該connectionとcompositeのみ未完にし、source/connection ownerへ戻す。他unit成功は保持。|
-| `CASE-OS-L10-025-04` | 025 / AC-02 | unit成功をcomposite成功に昇格する一変異。 | 構成体固有義務の未完を保持し、成功上書きを拒否。|
-| `CASE-OS-L10-026-01` | 026 / AC-01 | 必要候補・依存・安全・owner・復旧・比較根拠が固定された導出normal。 | candidate set、closed dependencies、excluded scope、同じrevisionのsourceを返す。L2-014実構成受入とは区別。|
-| `CASE-OS-L10-026-02` | 026 / AC-02 | 一つの通常dependencyだけをunknownにする。 | closureを成立扱いせず該当dependency ownerへ返す。|
-| `CASE-OS-L10-026-03` | 026 / AC-02 | 一つの安全dependencyだけをmissingにする。 | security closure不成立を保持しSECURITY/依存ownerへ返す。|
-| `CASE-OS-L10-026-04` | 026 / AC-03 | trace参照は循環するが起動/更新/復旧の実行前提は循環しない例。 | trace cycleだけで自己依存とはせず、両依存型を分けて記録。|
-| `CASE-OS-L10-026-05` | 026 / AC-03 | 代替pack候補空間の一部しか探索・適格化していない例。 | dependency closure結果は保持し、minimum claimだけ「未立証」にする。固定数・taxonomyを追加しない。|
-| `CASE-OS-L10-026-06` | 026 / AC-02 | G1〜G7にcandidateが存在するだけでrequired dependencyを満たした扱いにする一変異。 | candidate存在を採択/closure証拠にせず、要求source ownerへ返す。|
-| `CASE-OS-L10-031-01` | 031 / AC-01 | 旧検査集合/profile/environmentを保持した限定比較計測。 | source-derived thresholdは旧母集団の比較値として分離し、現行共通SLOにしない。|
-| `CASE-OS-L10-031-02` | 031 / AC-01 | 適用予算の根拠だけを欠落させる。 | p95を達成/未達と推測せず、budget unknown/未評価を返す。|
-| `CASE-OS-L10-031-03` | 031 / AC-02 | correctness greenのまま明示された性能予算を超過する。 | correctness証拠を保持しPerformance Recovery obligationを同episodeへ返す。merge判断は生成しない。|
-| `CASE-OS-L10-031-04` | 031 / AC-02 | 性能内だがrequired oracleが失敗する。 | performance状態を保持しつつcorrectness不成立を別記。|
-| `CASE-OS-L10-031-05` | 031 / AC-03 | 必須検証集合を一項目だけ削って高速化した改善案。 | 改善完了を拒否し、required obligationを変更しない。|
-| `CASE-OS-L10-031-06` | 031 / AC-01 | internal CI receiptを外部CI環境の測定結果として転用する。 | 環境/receipt不一致で別々に未評価とする。|
-| `CASE-OS-L10-031-07` | 031 / AC-01 | durationはあるが標本母集団・期間・除外理由が欠落する。 | p50/p95不明を保持し、0や他期間の値を補わない。|
-| `CASE-OS-L10-047-01` | 047 / AC-01 | Workerの返却理由、条件、source/revisionと元ticket/assignmentを示す。 | issuer OSへの因果返却を記録し元revision bytesを不変保持。|
-| `CASE-OS-L10-047-02` | 047 / AC-01 | ticket本文に変更を直接書き込む一変異。 | 返却不成立。受け手が元ticketを変更しない。|
-| `CASE-OS-L10-047-03` | 047 / AC-02 | 根拠に対処した新revisionを既存relationで結ぶ。 | 旧revision・結果を保持し、適格化されないassignment/result/authorityを継承しない。|
-| `CASE-OS-L10-047-04` | 047 / AC-02 | providerだけを変えるがbehavior contractは同一。 | 新しい意味revisionを作らず運用属性差として分離。|
-| `CASE-OS-L10-047-05` | 047 / AC-03 | source revisionがstaleという単独変異。 | 当該ticketを未完でissuerへ返し、再発行を推測しない。|
-| `CASE-OS-L10-047-06` | 047 / AC-03 | Issue/PRをcloseしてticket返却・再発行完了とみなす。 | projection stateだけから意味・完了を生成しない。|
-| `CASE-OS-L10-047-07` | 047 / AC-03 | Ticketが成果物参照の結節点になり、成果物がTicketを唯一の要求根拠として参照する。 | 非参照境界を満たさず、要求/設計/契約正本へ戻す。特定のgraphへの新規配置は要求しない。|
+| `CASE-OS-L10-025-01` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 複数projectの異なる対象revisionで、各unit・明示接続・composite evidenceが揃う正常例。 | 3種類のstate/ownerを別々にtraceし、単位証拠の合算でcomposite条件を代替しない。|
+| `CASE-OS-L10-025-02` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | 一つのproject/serviceだけで独立成立し、他の製品と別projectは未完のままの個別初期作業。 | 選択scopeを扱い、全7製品完了待ちを追加しない。全体1.0成立も主張しない。|
+| `CASE-OS-L10-025-03` | `HELIXOS-L2-025` / `AC-OS-L3-025-01` | 選択connection evidenceだけを一つ欠落させる。 | 当該connectionとcompositeのみ未完にし、source/connection ownerへ戻す。他unit成功は保持。|
+| `CASE-OS-L10-025-04` | `HELIXOS-L2-025` / `AC-OS-L3-025-02` | unit成功をcomposite成功に昇格する一変異。 | 構成体固有義務の未完を保持し、成功上書きを拒否。|
+| `CASE-OS-L10-026-01` | `HELIXOS-L2-026` / `AC-OS-L3-026-01` | 必要候補・依存・安全・owner・復旧・比較根拠が固定された導出normal。 | candidate set、closed dependencies、excluded scope、同じrevisionのsourceを返す。L2-014実構成受入とは区別。|
+| `CASE-OS-L10-026-02` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 一つの通常dependencyだけをunknownにする。 | closureを成立扱いせず該当dependency ownerへ返す。|
+| `CASE-OS-L10-026-03` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | 一つの安全dependencyだけをmissingにする。 | security closure不成立を保持しSECURITY/依存ownerへ返す。|
+| `CASE-OS-L10-026-04` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | trace参照は循環するが起動/更新/復旧の実行前提は循環しない例。 | trace cycleだけで自己依存とはせず、両依存型を分けて記録。|
+| `CASE-OS-L10-026-05` | `HELIXOS-L2-026` / `AC-OS-L3-026-03` | 代替pack候補空間の一部しか探索・適格化していない例。 | dependency closure結果は保持し、minimum claimだけ「未立証」にする。固定数・taxonomyを追加しない。|
+| `CASE-OS-L10-026-06` | `HELIXOS-L2-026` / `AC-OS-L3-026-02` | G1〜G7にcandidateが存在するだけでrequired dependencyを満たした扱いにする一変異。 | candidate存在を採択/closure証拠にせず、要求source ownerへ返す。|
+| `CASE-OS-L10-031-01` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 旧検査集合/profile/environmentを保持した限定比較計測。 | source-derived thresholdは旧母集団の比較値として分離し、現行共通SLOにしない。|
+| `CASE-OS-L10-031-02` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | 適用予算の根拠だけを欠落させる。 | p95を達成/未達と推測せず、budget unknown/未評価を返す。|
+| `CASE-OS-L10-031-03` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | correctness greenのまま明示された性能予算を超過する。 | correctness証拠を保持しPerformance Recovery obligationを同episodeへ返す。merge判断は生成しない。|
+| `CASE-OS-L10-031-04` | `HELIXOS-L2-031` / `AC-OS-L3-031-02` | 性能内だがrequired oracleが失敗する。 | performance状態を保持しつつcorrectness不成立を別記。|
+| `CASE-OS-L10-031-05` | `HELIXOS-L2-031` / `AC-OS-L3-031-03` | 必須検証集合を一項目だけ削って高速化した改善案。 | 改善完了を拒否し、required obligationを変更しない。|
+| `CASE-OS-L10-031-06` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | internal CI receiptを外部CI環境の測定結果として転用する。 | 環境/receipt不一致で別々に未評価とする。|
+| `CASE-OS-L10-031-07` | `HELIXOS-L2-031` / `AC-OS-L3-031-01` | durationはあるが標本母集団・期間・除外理由が欠落する。 | p50/p95不明を保持し、0や他期間の値を補わない。|
+| `CASE-OS-L10-047-01` | `HELIXOS-L2-047` / `AC-OS-L3-047-01` | Workerの返却理由、条件、source/revisionと元ticket/assignmentを示す。 | issuer OSへの因果返却を記録し元revision bytesを不変保持。|
+| `CASE-OS-L10-047-02` | `HELIXOS-L2-047` / `AC-OS-L3-047-01` | ticket本文に変更を直接書き込む一変異。 | 返却不成立。受け手が元ticketを変更しない。|
+| `CASE-OS-L10-047-03` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | 根拠に対処した新revisionを既存relationで結ぶ。 | 旧revision・結果を保持し、適格化されないassignment/result/authorityを継承しない。|
+| `CASE-OS-L10-047-04` | `HELIXOS-L2-047` / `AC-OS-L3-047-02` | providerだけを変えるがbehavior contractは同一。 | 新しい意味revisionを作らず運用属性差として分離。|
+| `CASE-OS-L10-047-05` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | source revisionがstaleという単独変異。 | 当該ticketを未完でissuerへ返し、再発行を推測しない。|
+| `CASE-OS-L10-047-06` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | Issue/PRをcloseしてticket返却・再発行完了とみなす。 | projection stateだけから意味・完了を生成しない。|
+| `CASE-OS-L10-047-07` | `HELIXOS-L2-047` / `AC-OS-L3-047-03` | Ticketが成果物参照の結節点になり、成果物がTicketを唯一の要求根拠として参照する。 | 非参照境界を満たさず、要求/設計/契約正本へ戻す。特定のgraphへの新規配置は要求しない。|
