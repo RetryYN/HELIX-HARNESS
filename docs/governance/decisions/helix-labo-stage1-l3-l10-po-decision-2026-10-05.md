@@ -25,7 +25,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 | Opus（Claude `review_merge` lane）：Blocker 0／Major 0／Minor 0、未確認範囲なし | [PR #2580 comment 5986031028](https://github.com/RetryYN/HELIX-HARNESS/pull/2580#issuecomment-5986031028) | exact base `4f10325a4a27a8b0390be895b881d2596e56b261`、content HEAD `80f9b213c76f0af88748b804a093234295d0aef1`、本文revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7`; UTF-8 body 3,081 bytes, SHA-256 `27ebd3df35d717b8f3fbd7153a91111d997df1f2163bd7972a53a00b35b8122a` |
 | Fable（Claude advisor）：承認してよい、承認を止める問題なし | [PR #2580 comment 5986332682](https://github.com/RetryYN/HELIX-HARNESS/pull/2580#issuecomment-5986332682) | 同じexact HEAD `80f9b213c76f0af88748b804a093234295d0aef1`・本文revision `8fb2ae97960ad0f7a84380e3d52ab99920ee2dc7`; UTF-8 body 5,922 bytes, SHA-256 `9fe9ef94570fc8542ca91cea582a3cf4e37a7b75ed1638e40cb8e5a1358469bc` |
 
-Opus commentは前回4所見の解消、固定親への追跡、6本文のno-change、全静的検査の結果を同じHEADについて報告している。Fable commentは6本文のSHA、固定L2/L11、参照先、責務・戻し先・値・PO gateの境界を自ら照合したうえで承認可能とした。Opus commentの照合節は、C13の「固定L2-159」表記を固定親と照合し、意味に影響しないため返却不要と判断している。Fable commentはこの表記についてOpusの判断に委ねている。
+Opus commentは前回4所見の解消、固定親への追跡、6本文のno-change、全静的検査の結果を同じHEADについて報告している。Fable commentは6本文のSHA、固定L2/L11、参照先、責務・戻し先・値・PO gateの境界を自ら照合したうえで承認可能とした。comment `5986332682` のOpus照合節は、C13の「固定L2-159」表記を固定親と照合し、意味に影響しないため返却不要と判断している。Fable commentはこの表記についてOpusの判断に委ねている。
 
 ## 承認対象本文
 
