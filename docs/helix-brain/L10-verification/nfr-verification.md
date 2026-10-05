@@ -99,3 +99,15 @@
 | `BRAIN-030-NFR-01` | `L10-BRAIN-030-C01`, `L10-BRAIN-030-C02`, `L10-BRAIN-030-C03`, `L10-BRAIN-030-C04`, `L10-BRAIN-030-C05`, `L10-BRAIN-030-C06`, `L10-BRAIN-030-C07`, `L10-BRAIN-030-C08`, `L10-BRAIN-030-C09`, `L10-BRAIN-030-C10`, `L10-BRAIN-030-C11`, `L10-BRAIN-030-C12`, `L10-BRAIN-030-C13`, `L10-BRAIN-030-C14`, `L10-BRAIN-030-C15`, `L10-BRAIN-030-C16`, `L10-BRAIN-030-C17`, `L10-BRAIN-030-C18`, `L10-BRAIN-030-C19`, `L10-BRAIN-030-C20`, `L10-BRAIN-030-C21`, `L10-BRAIN-030-C22`, `L10-BRAIN-030-C23`, `L10-BRAIN-030-C24`, `L10-BRAIN-030-C25`, `L10-BRAIN-030-C26`, `L10-BRAIN-030-C27`, `L10-BRAIN-030-C28`, `L10-BRAIN-030-C29`, `L10-BRAIN-030-C30`, `L10-BRAIN-030-C31`, `L10-BRAIN-030-C32`, `L10-BRAIN-030-C33`, `L10-BRAIN-030-C34`, `L10-BRAIN-030-C35`, `L10-BRAIN-030-R-compatibility-range-missing`, `L10-BRAIN-030-R-reference-substitution`, `L10-BRAIN-030-R-correlation-mismatch`, `L10-BRAIN-030-R-version-stale`, `L10-BRAIN-030-R-version-mismatch`, `L10-BRAIN-030-R-source-mismatch`, `L10-BRAIN-030-R-applicability-unknown`, `L10-BRAIN-030-R-reverse-revision`, `L10-BRAIN-030-R-reverse-field`, `L10-BRAIN-030-R-reverse-scope`, `L10-BRAIN-030-R-obligation-receipt`, `L10-BRAIN-030-R-design-completion`, `L10-BRAIN-030-R-implementation-ready`, `L10-BRAIN-030-R-state-conclusion`, `L10-BRAIN-030-R-permission-conclusion`, `L10-BRAIN-030-R-design-conclusion`, `L10-BRAIN-030-R-screen-conclusion`, `L10-BRAIN-030-R-db-conclusion`, `L10-BRAIN-030-R-mixed-fields`, `L10-BRAIN-030-R-relation-conflict`, `L10-BRAIN-030-C36`, `L10-BRAIN-030-C37`, `L10-BRAIN-030-C38`, `L10-BRAIN-030-C39`, `L10-BRAIN-030-C40` | 各適用母集団coverage候補100%、誤受領/誤昇格0。required definition missingとvalue unknown、未選択と未観測、参照資料とauthorityを別にする。 |
 
 各測定は`Nplanned`, `Nrequired`, `Nchecked`, false-accept count、およびvalid/failed/missing/censored/unexecuted理由を記録する。`Nrequired=0`では割合を算出せず、valid fixture数0では結果率/実績を作らない。正しいoracle rejectionも照合可能な測定として扱い、処理失敗と混ぜない。候補100%/0境界は要求field照合の技術候補で、製品SLAや採択値ではない。固定性能期限・最低標本数・新承認gateを加えない。
+
+
+## Stage 5 — NFR verification disposition
+
+L2-024/025の固定sourceは独立数値NFRを指定していないため、NFR ID、threshold、時間測定CASEを追加しない。機能CASEで契約の意味を照合し、business/NFR判定をfunctional successと重複させない。
+
+| 親L2 | NFR L10判定 | functional CASE参照 |
+|---|---|---|
+| `HELIXBRAIN-L2-024` | 独立NFRなし。実測や性能達成の主張はない。 | `BRAIN-024-AC-01/02` |
+| `HELIXBRAIN-L2-025` | 独立NFRなし。独立検証stateはfunctional oracleであり性能目標ではない。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05` |
+
+旧RCLS shadow判定値は現行NFR/合格基準として使用しない。

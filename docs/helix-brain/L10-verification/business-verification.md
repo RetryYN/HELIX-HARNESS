@@ -82,3 +82,15 @@
 | `HELIXBRAIN-L2-030` | 独立business outcomeなし。 | `L10-BRAIN-030-C01`〜`C40`；同親の全`R-*`独立fixture |
 
 旧HARNESS business-detailは分類分離の形式比較のみとし、その数値・業務成果・ownerはこの対象へ適用しない。business outcomeがないことは未測定business KPIを意味しない。
+
+
+## Stage 5 — business verification disposition
+
+固定L2-024/025から独立business outcome、KPI、business owner acceptanceは導出しない。BR-ACを追加せず、functional AC/CASEへtraceする。
+
+| 親L2 | 独立business判定 | functional L10参照 |
+|---|---|---|
+| `HELIXBRAIN-L2-024` | 独立business outcomeなし。 | `BRAIN-024-AC-01`、`BRAIN-024-AC-02` |
+| `HELIXBRAIN-L2-025` | 独立business outcomeなし。 | `BRAIN-025-AC-01`〜`BRAIN-025-AC-05` |
+
+旧RCLS-AC-017由来のcross-project human approvalやshadow metricを別business acceptanceとして追加しない。
