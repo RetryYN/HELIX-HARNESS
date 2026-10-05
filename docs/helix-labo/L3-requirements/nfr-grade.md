@@ -15,7 +15,7 @@
 旧NFR起点は `LEGACY-ASSET-8CC5ABFC98C0D00183CA`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md:1–73`、全文SHA `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3` と、`LEGACY-ASSET-DB669724249A14A665F0`、`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md:21–34,58–74`、全文SHA `2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d`。測定・根拠・対の観測へ結ぶ形式を再導出し、IPA grade、memory/timeout/confidence値、旧承認・CIを移さない。現行5測定項目は固定LABO L2/L11のfield/status/owner/往復参照を根拠とする。
 
 
-状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-opus-review01-repair-2026-10-05.json)に固定する。
+状態：未承認のL3/L10候補。対象はStage 2bの採択親 HELIXLABO-L2-002〜010のみ。固定L2/L11が要件authority、PO記録は親の採択登録、G0記録は実装順序だけを示す。本文は実装・実行・リリース許可や要件承認を生成しない。Stage 2bの親・case範囲、source disposition、固定根拠は[このcutoutの不変監査記録](../../governance/audits/requirement-registration/labo-stage2b-002-010-opus-review01-repair02-2026-10-05.json)に固定する。
 
 ## Stage 2b — 002/003/004/005 の技術候補（1.0、一括L3承認対象）
 
@@ -59,7 +59,7 @@
 | `NFR-LABO-006-01` | 14評価軸、failure/counterexample/applicability/cost/limitsを別fieldで保持。comparison armsをplanned母集団にする。 | `L10-LABO-006-CASE-01`, `L10-LABO-006-CASE-14`, `L10-LABO-006-CASE-15`, `L10-LABO-006-CASE-16` |
 | `NFR-LABO-006-02` | OS assignment、ticket、experiment、target revision、Worker resultのidentity linkをplanned armごとに照合する。 | `L10-LABO-006-CASE-06`, `L10-LABO-006-CASE-07`, `L10-LABO-006-CASE-08`, `L10-LABO-006-CASE-09`, `L10-LABO-006-CASE-10` |
 | `NFR-LABO-007-01` | 六条件それぞれのsupported/contradicted/unknownとsource locator、systemization/operation両candidateを候補母集団ごとに記録する。 | `L10-LABO-007-CASE-01`, `L10-LABO-007-CASE-03`, `L10-LABO-007-CASE-09`, `L10-LABO-007-CASE-14`, `L10-LABO-007-CASE-17` |
-| `NFR-LABO-007-02` | 段階label、反復episode、operation exclusion criterionを別々に照合し、systemization率を最大化目標にしない。 | `L10-LABO-007-CASE-02`, `L10-LABO-007-CASE-11`, `L10-LABO-007-CASE-13`, `L10-LABO-007-CASE-15`, `L10-LABO-007-CASE-16` |
+| `NFR-LABO-007-02` | 段階label、反復episode、operation exclusion criterionを別々に照合し、systemization率を最大化目標にしない。 | `L10-LABO-007-CASE-02`, `L10-LABO-007-CASE-11`, `L10-LABO-007-CASE-13`, `L10-LABO-007-CASE-15`, `L10-LABO-007-CASE-16`, `L10-LABO-007-CASE-18` |
 | `NFR-LABO-008-01` | continue/modify/fallback候補のsource、guarantee、unfinished duty、owner返却を候補ごとに記録する。 | `L10-LABO-008-CASE-01`, `L10-LABO-008-CASE-02`, `L10-LABO-008-CASE-03`, `L10-LABO-008-CASE-09`, `L10-LABO-008-CASE-13`, `L10-LABO-008-CASE-14`, `L10-LABO-008-CASE-15` |
 | `NFR-LABO-009-01` | 5 scope段階、support/counterexample/sample condition/applicability boundaryをclaim母集団ごとに記録する。 | `L10-LABO-009-CASE-01`, `L10-LABO-009-CASE-06`, `L10-LABO-009-CASE-09`, `L10-LABO-009-CASE-15`, `L10-LABO-009-CASE-16` |
 | `NFR-LABO-010-01` | 16 field、8 valid action、target identity/responsibilityをproposal母集団ごとに照合する。 | `L10-LABO-010-CASE-01`, `L10-LABO-010-CASE-02`, `L10-LABO-010-CASE-03`, `L10-LABO-010-CASE-19`, `L10-LABO-010-CASE-24` |
