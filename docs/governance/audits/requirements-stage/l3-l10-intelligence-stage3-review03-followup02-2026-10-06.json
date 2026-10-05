@@ -1,0 +1,74 @@
+{
+  "record_type": "creator_correction_followup_evidence",
+  "prior_followup_commit": "a7c42ce03413d56b789b43234ac6cbf3b62a9b8d",
+  "fixed_l2_l11_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+  "review_scope": {
+    "pull_request": 2607,
+    "formal_comment_id": "5995930243",
+    "items": ["AC-INTELLIGENCE-L3-072-02 trace coverage", "review03 073 compound CASEs"]
+  },
+  "files_read": [
+    "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+    "docs/helix-intelligence/L10-verification/functional-verification.md",
+    "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:673-687",
+    "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:289-303,306-314,317-326"
+  ],
+  "072_ac02": {
+    "existing_case_trace_corrections": [
+      {
+        "case_id": "CASE-INTELLIGENCE-L10-072-02i",
+        "single_mutation": "forced/active promotion",
+        "preserved_ac": "AC-INTELLIGENCE-L3-072-08",
+        "added_ac": "AC-INTELLIGENCE-L3-072-02"
+      },
+      {
+        "case_id": "CASE-INTELLIGENCE-L10-072-02k",
+        "single_mutation": "review receipt missing",
+        "preserved_ac": "AC-INTELLIGENCE-L3-072-08",
+        "added_ac": "AC-INTELLIGENCE-L3-072-02"
+      },
+      {
+        "case_id": "CASE-INTELLIGENCE-L10-072-02m",
+        "single_mutation": "rollback evidence missing",
+        "preserved_ac": "AC-INTELLIGENCE-L3-072-07",
+        "added_ac": "AC-INTELLIGENCE-L3-072-02"
+      }
+    ],
+    "new_case": {
+      "case_id": "CASE-INTELLIGENCE-L10-072-02-applicability-stale",
+      "mutation": "pack applicability evidence stale only",
+      "trace": "AC-INTELLIGENCE-L3-072-02",
+      "oracle": "hold only applicability facet and return to existing source owner; preserve candidate and independent shadow/review/rollback evidence"
+    },
+    "all_four_single_mutations_covered": true
+  },
+  "073_single_case_mapping": {
+    "existing_ci_execution_request": "CASE-INTELLIGENCE-L10-073-02e2",
+    "existing_ci_pass_state": "CASE-INTELLIGENCE-L10-073-02e3",
+    "existing_merge_admission": "CASE-INTELLIGENCE-L10-073-02f",
+    "existing_merge_state": "CASE-INTELLIGENCE-L10-073-02f2",
+    "new_or_narrowed_ci_result_only": "CASE-INTELLIGENCE-L10-R2607-073-free-text-cannot-create-authority-ci-result",
+    "removed_compound_merge_case": "CASE-INTELLIGENCE-L10-R2607-073-free-text-cannot-create-authority-merge-authority",
+    "ac": "AC-INTELLIGENCE-L3-073-02"
+  },
+  "legacy_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "lines": "45-46",
+      "source_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "lines": "18",
+      "source_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a"
+    }
+  ],
+  "modified_existing_audits": false,
+  "static_only": true,
+  "limitations": [
+    "This records creator-side static alignment, not executed consumer behavior or independent review.",
+    "No repository tests, CI, Bun, legacy CLI, hook, or runtime were started."
+  ]
+}
