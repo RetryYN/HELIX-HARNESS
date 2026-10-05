@@ -11,3 +11,7 @@
 ## Stage 3の業務意味境界
 
 029、030、032、034、035は独立した新しい業務価値・価格・risk受容owner・保存完了基準を導出しない。runtime採用条件、profile別policy、run cleanup、拡大条件照合の成功を、事業採用・利益・包括許可・OS昇格へ昇格させない。riskの実責務は030の既存ownerへ保つ。機能ACとpaired L10の正常・反例・未評価を業務境界の照合にも用い、他機構全体の業務要件非適用へ一般化しない。
+
+## Stage 4の業務境界
+
+021/022/023/024/026に独立business ACはない。L10 functional casesの通常・negative・unknown結果を用い、transport/receiptだけからtrust昇格、requestから実行許可、SECURITY/HARNESS/OS単独greenから後段成功、policy宣言から実資源適用、Bot出力からGuard/authority/業務判断を生成する変異を不合格とする。既存のCONNECT/consumer、OS、Worker、HARNESS、INFRASTRUCTURE、INTELLIGENCEが持つ意味・状態・結果をSECURITYが代行しない。

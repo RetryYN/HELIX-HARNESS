@@ -42,3 +42,15 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 | `CASE-NFR-SECURITY-035-01` | `SEC-NFR-035-01` | CASE-035-01..04で全三終端と次run、allowlist能力、deny設定能力/適用、006/007/008/OS-018非相殺を別々に観測する。 | 残置・継承・YOLO代替・未観測成功claim候補0。能力/cleanupunknownは未完へ返す。主Workerは035の測定母集団に含めない。CASE-035-04はtarget/repository/runtime間binding、申告のみの能力、非相殺条件を分離する。 |
 
 値は根拠付き候補であり、実測達成・L3承認・実runtime使用許可を表さない。fixtureは合成入力と観測契約の設計に限り、秘密値や実runtimeを使った測定は行っていない。
+
+## Stage 4 — 測定候補case
+
+数値は固定親の必須条件を照合する候補oracleであり、実測・承認SLOではない。適用外、未選択/未観測、missing/unknown/stale、fixture不成立を成功の0件へ丸めない。
+
+| NFR case | L3候補 | 入力・測定方法 | 候補oracle / owner・未評価 |
+|---|---|---|---|
+| `CASE-NFR-SECURITY-021-01` | `SEC-NFR-021-01` | SECURITY-CASE-021-01〜08のsource→CONNECT→SECURITY→consumer binding、receiptからのtrust昇格、およびCASE-021-08 deny伝播を照合。 | applicableな各stageの欠落・誤昇格、deny/unknown未伝播または該当flow継続候補0。CONNECTは通信/再送、SECURITYはtrust、consumerは選択時のreceipt受領を保持。未選択consumerは未観測。 |
+| `CASE-NFR-SECURITY-022-01` | `SEC-NFR-022-01` | SECURITY-CASE-022-01〜19でauthority tuple要素を個別変異し、request/decision/assignment/Worker evidenceを突合する。CASE-022-15/16/18では実行中revoke、expiry、実行前denyを個別に与える。 | request単独allow、tuple不一致allow、deny/revoke/expiry未伝播または該当operation継続候補0。通常既決authorityの再利用は追加承認なし。OS/Worker/SECURITY owner別に不足を返す。 |
+| `CASE-NFR-SECURITY-023-01` | `SEC-NFR-023-01` | SECURITY-CASE-023-01〜13の4段階stateとreceiptをphase別に計測し、provenance/capability deltaの各単独欠落によるunknown保持と後段holdを照合。 | failure/unknown後の段階success/promotion誤表示候補0。未実行/未観測は未評価、各段階を既存ownerへ返す。 |
+| `CASE-NFR-SECURITY-024-01` | `SEC-NFR-024-01` | SECURITY-CASE-024-01〜16でpolicy/resource/enforcement revision binding、L11が対象とする通常resource state/backup、L2-024が対象とするsnapshotの無条件保存を別々に測る。 | 誤結合・固定L11受入違反・L2-024の無条件保存違反・owner反転・観測failed/not_appliedの成功扱い・OS作業state混入候補0。L2-005/008のcredential-useだけから保存許可を導かない。INFRA stateとWorker enforcementはSECURITY policyから独立に観測する。 |
+| `CASE-NFR-SECURITY-026-01` | `SEC-NFR-026-01` | SECURITY-CASE-026-01〜17でBot absent、限定semantic input、semantic unknown、必要時のINTELLIGENCE発行/限定Worker境界を比較。 | deterministic Guard omission・Bot接続時の決定規則委譲、semantic→authority昇格、発行元/authority境界の不一致受入・SECURITYのmodel/routing決定・semantic unknownのpass・1.x能力前倒し候補0。1.x semantic runtimeは1.0分母に含めず、意味判断不足はINTELLIGENCEへ戻す。 |
