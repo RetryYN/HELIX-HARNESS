@@ -336,4 +336,4 @@ OS/Control Plane停止中のbootstrap/recoveryはINFRA-006の限定resource/path
 
 Authority、credential scope、target、revisionの不一致は実行前に拒否する。部分実行はsuccessとせず、実際のstate、operation receipt、未完operation、適用されるrecovery/rollback dutyを保持する。
 
-**INFRA-010-AC-04**: mismatched authority/credential scope/target/revisionを個別negative fixtureで確認し、operation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。
+**INFRA-010-AC-04**: 完了normal fixtureではWorker result receiptと別個のactual-state observationをtarget/action/revision参照で結ぶ。Worker応答だけでactual stateを推定しない。mismatched authority/credential scope/target/revisionは個別negative fixtureで確認しoperation-startがない。途中失敗fixtureでは実際に変わったstateと未完dutyを保持し、SECURITY/OSまたは実状態のInfrastructure ownerへ戻す。
