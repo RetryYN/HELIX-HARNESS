@@ -49,8 +49,8 @@ Stage 2cの分母は検査結果を読む前に適用条件から固定する。
 
 | NFR case | L3候補 | 入力・測定方法 | 候補oracle / owner・未評価 |
 |---|---|---|---|
-| `CASE-NFR-SECURITY-021-01` | `SEC-NFR-021-01` | CASE-SECURITY-021-01〜07のsource→CONNECT→SECURITY→consumer bindingと、receiptからのtrust昇格を照合。 | applicableな各stageの欠落・誤昇格候補0。CONNECTは通信/再送、SECURITYはtrust、consumer ownerは受領を保持。未選択consumerは未観測。 |
-| `CASE-NFR-SECURITY-022-01` | `SEC-NFR-022-01` | CASE-SECURITY-022-01〜13でauthority tuple要素を個別変異し、request/decision/assignment/Worker evidenceを突合。 | request単独allowとtuple不一致allow候補0。通常既決authorityの再利用は追加承認なし。OS/Worker/SECURITY owner別に不足を返す。 |
-| `CASE-NFR-SECURITY-023-01` | `SEC-NFR-023-01` | CASE-SECURITY-023-01〜08の4段階stateとreceiptをphase別に計測。 | failure/unknown後の段階success/promotion誤表示候補0。未実行/未観測は未評価、各段階を既存ownerへ返す。 |
-| `CASE-NFR-SECURITY-024-01` | `SEC-NFR-024-01` | CASE-SECURITY-024-01〜11でpolicy/resource/enforcement revision binding、L11が対象とする通常resource state/backup、L2-024が対象とするsnapshotの無条件保存を別々に測る。 | 誤結合・固定L11受入違反・L2-024の無条件保存違反候補0。L2-005/008のcredential-useだけから保存許可を導かない。INFRA stateとWorker enforcementはSECURITY policyから独立に観測する。 |
-| `CASE-NFR-SECURITY-026-01` | `SEC-NFR-026-01` | CASE-SECURITY-026-01〜10でBot absent、限定semantic input、semantic unknown、必要時のINTELLIGENCE発行/限定Worker境界を比較。 | deterministic Guard omission、semantic→authority昇格、発行元/authority境界の不一致受入候補0。1.x semantic runtimeは1.0分母に含めず、意味判断不足はINTELLIGENCEへ戻す。 |
+| `CASE-NFR-SECURITY-021-01` | `SEC-NFR-021-01` | SECURITY-CASE-021-01〜08のsource→CONNECT→SECURITY→consumer bindingと、receiptからのtrust昇格を照合。 | applicableな各stageの欠落・誤昇格候補0。CONNECTは通信/再送、SECURITYはtrust、consumer ownerは受領を保持。未選択consumerは未観測。 |
+| `CASE-NFR-SECURITY-022-01` | `SEC-NFR-022-01` | SECURITY-CASE-022-01〜17でauthority tuple要素を個別変異し、request/decision/assignment/Worker evidenceを突合。 | request単独allowとtuple不一致allow候補0。通常既決authorityの再利用は追加承認なし。OS/Worker/SECURITY owner別に不足を返す。 |
+| `CASE-NFR-SECURITY-023-01` | `SEC-NFR-023-01` | SECURITY-CASE-023-01〜11の4段階stateとreceiptをphase別に計測。 | failure/unknown後の段階success/promotion誤表示候補0。未実行/未観測は未評価、各段階を既存ownerへ返す。 |
+| `CASE-NFR-SECURITY-024-01` | `SEC-NFR-024-01` | SECURITY-CASE-024-01〜14でpolicy/resource/enforcement revision binding、L11が対象とする通常resource state/backup、L2-024が対象とするsnapshotの無条件保存を別々に測る。 | 誤結合・固定L11受入違反・L2-024の無条件保存違反候補0。L2-005/008のcredential-useだけから保存許可を導かない。INFRA stateとWorker enforcementはSECURITY policyから独立に観測する。 |
+| `CASE-NFR-SECURITY-026-01` | `SEC-NFR-026-01` | SECURITY-CASE-026-01〜13でBot absent、限定semantic input、semantic unknown、必要時のINTELLIGENCE発行/限定Worker境界を比較。 | deterministic Guard omission、semantic→authority昇格、発行元/authority境界の不一致受入候補0。1.x semantic runtimeは1.0分母に含めず、意味判断不足はINTELLIGENCEへ戻す。 |
