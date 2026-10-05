@@ -12,3 +12,7 @@
 ## Stage 2b — HELIXLABO-L2-006/007/008/009/010
 
 固定L2/L11から独立business outcome/ownerは導かれないため、BR/BV/BCASEを追加しない。functional outcomeは[L3 functional AC](../L3-requirements/functional-requirements.md)の `LABO-006-AC-01`〜`LABO-006-AC-03`、`LABO-007-AC-01`〜`LABO-007-AC-03`、`LABO-008-AC-01`〜`LABO-008-AC-03`、`LABO-009-AC-01`〜`LABO-009-AC-03`、`LABO-010-AC-01`〜`LABO-010-AC-03`を[L10 functional cases](functional-verification.md)で照合する。business verificationから実験実行、assignment、system/operation切替、target変更や業務完了を生成しない。
+
+## Stage 2a — 055/056/057
+
+固定親に独立business outcomeがないため、別BR/AC/BCASEは作らない。L10の業務結果は[L3 functional AC](../L3-requirements/functional-requirements.md)の `LABO-055-AC-01`〜`LABO-055-AC-04`、`LABO-056-AC-01`〜`LABO-056-AC-05`、`LABO-057-AC-01`〜`LABO-057-AC-04`を参照する。owner境界と戻し先を確認する際も同じfunctional caseを用い、重複business oracleを追加しない。
