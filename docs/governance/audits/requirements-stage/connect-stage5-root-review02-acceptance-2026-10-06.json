@@ -1,0 +1,923 @@
+{
+  "record_type": "root-connect-stage5-review02-acceptance",
+  "language": "ja",
+  "authority_effect": "none",
+  "base": "5acae384305b01d10e88eeb2e6406f847baf66df",
+  "body_revision": "c9deffa1f6499aca9c162b3bdc9770d4830600b2",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/connect-stage5-review02-correction-2026-10-06.json",
+    "sha256": "8ad8c8282ab63bea43068fc8fb48c6848b6314bb14532cae375ca91c1eb1273b"
+  },
+  "formal_comment": {
+    "id": 6002495422,
+    "body": "## review02（independent review、HEAD 3fb6754e9a44267f073890e929296ef342ed24ca、body 1341e3475f70f223fff0d5d962c90b46205171c6）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。Opus agent 1本（40行全件・AC・NFR・監査）＋reviewer本人の静的検査と固定親spot-check。merge-base 5acae3843（= main）、`git merge-tree --write-tree origin/main HEAD` 衝突なし。\n\n### 静的検査（w2615 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok、`git diff --check` 0。\n- Worker補正 `connect-stage5-review01-correction-2026-10-06.json` pin 30/30、Root検収 `connect-stage5-root-review01-acceptance-2026-10-06.json` pin 135/135一致。review01 comment（6002099800）SHA一致。FV/FRはbody 1341e347と同一bytes、main prefix一致。CASE 40行一意・6列・AC解決。\n\n### review01所見の解消\n- **M1解消（data-use分）**：FR入力列挙でSECURITY許可識別子とdata-use識別子を辺ごとに別束縛、AC-007-01（FR:225）で期待receipt突合、CASE-007-01/02の正常oracleで辺／revision単位に照合、CASE-007-40は「e2のdata-use識別子だけ欠落」の1変異。NG:40・NV:35も同期。ただし送受信結果側は下記M1。\n- **m1解消**：CASE-007-21〜33の入力をA→B→C→D（e1/e2/e3）に統一。\n- **m2解消**：21〜25・27〜28の戻し先は「e2 connection owner。業務判断/再計画は元機構/OSの既存owner」（L2:136）。SECURITY句は26のみ。\n- **m3解消（記録として）**：追加検索語5語と隣接2件を隣接比較に限定して記録。件数は下記m2。\n- AC-007-01「13必須入力」= L2:134の12項目＋L11:76由来のdata-use識別子。単独欠落CASE 03〜14＋40の13件と一致。NFR母集団の拡張はL11:76の範囲内で、SLA・retry数・新gateなし。\n- 40行全件：1 CASE＝1変異、期待oracle（全体成功を報告しない／未許可の後続send/retry 0／先行成功保持／業務成立・承認・許可の非生成）はL2:130・135・136・L11:76〜77に対し強すぎず弱すぎず。戻し先は40を除きL2:136・L11:77に根拠あり。\n\n### 所見（Major 1／Minor 2）\n- **M1（送受信結果の欠落・不一致を単独で変異させるCASEがない）**：固定L2:130の出力は「辺ごとの結果を含む構成体trace」、L11:76は「送受信結果が辺ごとに記録され」を受入句にし、本HEADのAC-007-01（FR:225）は「送信結果・受信結果を期待receiptと突合できるtraceが揃う場合だけ技術complete」と「だけ」条件にした。送受信結果はCASE-007-01/02の正常側で照合されるのみで、「e2の受信結果だけ欠落（送信結果は有効）」「送信結果と受信結果の不一致」のような単独negativeがない。CASE-12はresult state入力の欠落、29〜33はhandoff出力の欠落で代替にならない。data-use識別子にはCASE-40を足したのに同じ句に並ぶ送受信結果に足していない非対称。「送信結果だけ欠落」「受信結果だけ欠落」（必要なら「不一致」）を各1 CASE追加、戻し先は失敗辺connection owner（L2:136）、NV:35の個別計数へ反映。\n- **m1（CASE-007-40の戻し先の根拠）**：宛先「当該辺の宣言元source owner」はL2-007の戻し先（L2:136）にない。依存先L2-005のL2:111は「data-useや許可の不明はSECURITY/source ownerへ戻す」。L2:135→L2:111の導出を戻し先列かFRに明記し、L2:111に合わせて「SECURITY/source owner」とするかSECURITYを外した理由を記録する。\n- **m2（m3の追加検索件数が再現できない）**：補正md/jsonは2,479文書で partial 411／correlation 94／idempotency 196／saga 1／multi-hop 0。同範囲（archive/.../root/docs配下 .md/.mdx/.txt、2,479ファイル一致）で再計数すると大小無視部分一致 433／108／205／1／0、`-w` 343／65／103／0／0。「case-insensitive exact-token」の境界定義（CJK隣接含む）をjsonに明記して数え直すか、定義を記録する。隣接2件の扱いとlimitsは本文と矛盾なし。\n\n### 確認した範囲・未確認\n40行全件、FR-007/AC-007-01〜04、CON-NFR-007、NV:35、監査2件のmd/json。未確認：隣接2件の行・ファイルSHAとasset ID（pin再計算は依頼側で全件一致済みのため実質なし）。\n\n### 判定\nblocker 0、Major 1、Minor 2。Readyは未可。merge admissionは本commentから生成しない。\n",
+    "body_utf8_sha256": "d33483e5471c7c893d21fc68c89b926975fefbe383852dc09e9f05b70edbd6d2"
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "full_sha256": "e5f29209a2ca79e9b38b2319258301c5652f3013278c968bf558c9ea72f6b397",
+      "base_sha256": "add54593f70f9cf505a093a72765ca07334b4ce1bfb6d7e89782dca20bdaa0ce",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "full_sha256": "3afdec175f54b612593c87afabe6c705cbe602efb6283aeaad9f1abfe866693d",
+      "base_sha256": "be036dd606db0d1003a6e33741c4f9ba95c84b2f287f328b73e414b18b3692f8",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "full_sha256": "8becd7af6701e3de40a300c617aa3eca2d0214a867a2685b8615efcf8b7582aa",
+      "base_sha256": "57312a3c288c4580dd7a6c8c0bda694285509ad497fd6e78634a3173cf14cc74",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "full_sha256": "9efc5ddc902da565ad3d1295b2088ade1e7ab3427f1b4206ff3d4686a1197e48",
+      "base_sha256": "144f740df3db0ce4db20334e3bb27ad41e670f1c96d5912372b2b3f5d76a7396",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "full_sha256": "3ff964c1b762c9f67228214d62df5e208d0e0ab5bd4f2ffb57b26f8684ebd925",
+      "base_sha256": "682ee13c350966d8edf28e05aae6ce1940b12301cc42a61c1d0ff7c6633983c2",
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "full_sha256": "ecfe151650418d88e69726d3102f542bb43e75faeb8737224f1e04c4181dfec0",
+      "base_sha256": "236544161821415904f6eb4dd176e371b5f23852f4d589fd374890762475b42e",
+      "prefix_exact": true
+    }
+  ],
+  "suffix_line_checks": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 211,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 212,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 213,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 214,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 215,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 216,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 217,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 218,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 219,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 220,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 221,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 222,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 223,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 224,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 225,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 226,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 227,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 228,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 229,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 230,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.md",
+      "line": 231,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 311,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 312,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 313,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 314,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 315,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 316,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 317,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 318,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 319,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 320,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 321,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 322,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 323,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 324,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 325,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 326,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 327,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 328,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 329,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 330,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 331,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 332,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 333,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 334,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 335,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 336,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 337,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 338,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 339,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 340,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 341,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 342,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 343,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 344,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 345,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 346,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 347,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 348,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 349,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 350,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 351,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 352,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 353,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 354,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 355,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 356,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 357,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 358,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 359,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 360,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.md",
+      "line": 361,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 36,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 37,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 38,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 39,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.md",
+      "line": 40,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 31,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 32,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 33,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 34,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.md",
+      "line": 35,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 18,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 19,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 20,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 21,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.md",
+      "line": 22,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 16,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 17,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 18,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 19,
+      "result": "MATCH"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.md",
+      "line": 20,
+      "result": "MATCH"
+    }
+  ],
+  "case_inventory": [
+    {
+      "case_id": "CONNECT-CASE-007-01",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 319,
+      "literal_utf8": "| `CONNECT-CASE-007-01` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・適用SECURITY許可識別子・data-use識別子を同対象revisionへ束縛。各辺のsend結果とreceive結果を別々にtraceへ記録し、authority/recoveryも記録する | なし（正常） | 全必須辺の技術的終端だけcomplete。辺順・operation lineage・端点・revision・結果を構成体traceから辿る。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n",
+      "raw_sha256": "6606f9523d0ff5e867ab4988a77e6d6ab3d07754eba0bee1fe8fdfcb66935c6c"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-02",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 320,
+      "literal_utf8": "| `CONNECT-CASE-007-02` | `CONNECT-AC-007-01` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、各辺の登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を同対象revisionへ束縛して個別traceへ記録。同scope/契約内の未見fixture | なし（未見正常） | 固定契約適合なら未見という理由で拒否せず全宣言辺を照合する。過去e1/e2のgreenだけでe3を補わない。各辺のSECURITY許可識別子・data-use識別子・送信結果・受信結果を個別の期待fixture receiptと突合し、構成体traceから同じ辺/revisionへ辿れることを照合する | 構成体connection owner |\n",
+      "raw_sha256": "d14ddef3488d09fb21d01b0f45fdbc8eb053f5e46b6a795ca1d53f29b496df31"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-03",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 321,
+      "literal_utf8": "| `CONNECT-CASE-007-03` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "e513bd309c05a613e15f709fbf2f925347414f7937e60a2ccbd0cc84865abe37"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-04",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 322,
+      "literal_utf8": "| `CONNECT-CASE-007-04` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺順序だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "30ac146c98820125dc43a46e938df509d43fb62fe1c5fa7f4c59eea60e86856f"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-05",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 323,
+      "literal_utf8": "| `CONNECT-CASE-007-05` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "6e90df4365f26335fb29d31d351c81b63b9570dff7080d9c09f81ebfe604f67b"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-06",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 324,
+      "literal_utf8": "| `CONNECT-CASE-007-06` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "a1a8f47cc089f07d15639d9854b540402aa796152533d7181bbb6e0182dc4366"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-07",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 325,
+      "literal_utf8": "| `CONNECT-CASE-007-07` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 辺登録receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "220a4849a49c2d915ca1e3f6ffbd05c5ae89339a372ff0cb012cf498380de2b2"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-08",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 326,
+      "literal_utf8": "| `CONNECT-CASE-007-08` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 現revision互換receiptだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "e2cc427a8f81978f8a4fb77ca852853e108208d8b94d1dc0fd609f3dc287caeb"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-09",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 327,
+      "literal_utf8": "| `CONNECT-CASE-007-09` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点operation mappingだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "607c486e95cd741bcab213298ebdad0a57463175761340f55f8086d75991a90b"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-10",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 328,
+      "literal_utf8": "| `CONNECT-CASE-007-10` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | expiryだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "9f4da39d08858ff40ac9e21c33d1dc1d1f97e866349c35f00cd549210476dc89"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-11",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 329,
+      "literal_utf8": "| `CONNECT-CASE-007-11` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "f07a28bcd844dee4475d528bb4e01f9573913c920bcc3ad7001affe418f2e46a"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-12",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 330,
+      "literal_utf8": "| `CONNECT-CASE-007-12` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | result stateだけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "b0e4e9252abdc482f832cfa2f0467d800514e27e4511f0d43d74ec6af9da1642"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-13",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 331,
+      "literal_utf8": "| `CONNECT-CASE-007-13` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 適用SECURITY許可だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。当該操作と後続の未許可send/retryを0に保ち、許可を生成しない | SECURITY |\n",
+      "raw_sha256": "99027b27da09bcc378e711ea1ca2237e0d330fa944583d6c1b2e453b9e325cb0"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-14",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 332,
+      "literal_utf8": "| `CONNECT-CASE-007-14` | `CONNECT-AC-007-01` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | recovery先だけ欠落。他入力は有効 | 全体完了を成立させず、欠落field/辺/未完義務を保持。対象操作に必要な入力を推測せず該当ownerへ返す。recovery欠落を先行成功の消去にしない | 当該辺connection owner |\n",
+      "raw_sha256": "2b46d33a0f981d275c4fe47575673c69779b4f8e191948455cbd8657da5ff9f6"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-15",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 333,
+      "literal_utf8": "| `CONNECT-CASE-007-15` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 端点identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "3eee4f1b1584e999f0a459b79a9c30d5a051fa0e61862f39f3eb4a4ef7d63a28"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-16",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 334,
+      "literal_utf8": "| `CONNECT-CASE-007-16` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 契約revisionだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "6167b025a64d6d6cea16484b703563081e11ab1c480bfc11d11919b03fbe8c8a"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-17",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 335,
+      "literal_utf8": "| `CONNECT-CASE-007-17` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | operation対応だけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "fd49e251233852baea1f7604c0d8c68bd33f806319e3af4764f9a6b84b5982d0"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-18",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 336,
+      "literal_utf8": "| `CONNECT-CASE-007-18` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | correlationだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "153e2ddcac3d90920dd4be76c38e98b4fa1580ea2d624243bb4f688075dc8546"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-19",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 337,
+      "literal_utf8": "| `CONNECT-CASE-007-19` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | scopeだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "ee44720b51a3356620770512e59bf3bbfc6eb19cb97b58da7e801be8a1c59567"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-20",
+      "ac_id": "CONNECT-AC-007-02",
+      "line": 338,
+      "literal_utf8": "| `CONNECT-CASE-007-20` | `CONNECT-AC-007-02` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | idempotency identityだけ別辺または別対象revisionへ付け替える。他束縛は有効 | 構成体lineage不一致を拒否し、停止位置と未完辺を示す。別辺receiptで欠落を補わない | 当該辺connection owner |\n",
+      "raw_sha256": "e170ee880190171c4ec671d115d8d5b36aebb9e1468cab41b20a3e874032607a"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-21",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 339,
+      "literal_utf8": "| `CONNECT-CASE-007-21` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけstale。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "271a039131e2b7bc39db1dbab699863e21e2873568334855350137b4354ead2d"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-22",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 340,
+      "literal_utf8": "| `CONNECT-CASE-007-22` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけtimeout。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "dbd1536c43bed1ded5a324406cfecb02c985ae12b0d9877cdbc8242e327441c1"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-23",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 341,
+      "literal_utf8": "| `CONNECT-CASE-007-23` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ異digest再送衝突。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "f127654cb3f90e7d282ad5bbf1e9a8ab95c967275b51bd7e43c813b16aff94c1"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-24",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 342,
+      "literal_utf8": "| `CONNECT-CASE-007-24` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ期限切れ。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "0ddebafcb345eafbf335fab702a6df01e5ee0dd2ff6138c184203cd900ef292e"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-25",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 343,
+      "literal_utf8": "| `CONNECT-CASE-007-25` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ取消。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "ebd04d4f17e22b3d92fb7234771a764c05194abc54b7ca3165ff762ddfa598b6"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-26",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 344,
+      "literal_utf8": "| `CONNECT-CASE-007-26` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ許可失効。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。許可失効はSECURITYへ照合し、業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "356d715e503a8839acc007ecb989eb590efaa7eaa405ca2f98374abb136f9ea8"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-27",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 345,
+      "literal_utf8": "| `CONNECT-CASE-007-27` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけ部分成功。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "1514867558323c498ceca7f4c0a96cebac4e9b358d844145f266a8567127a016"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-28",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 346,
+      "literal_utf8": "| `CONNECT-CASE-007-28` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功を記録し、e2を中間辺、e3を後続辺とする | e2だけunknown。e1記録とe3契約は保持 | 全体成功を報告せずe1成功を保持、e2の停止理由/結果/未完義務と未実行e3を区別。未許可の後続send/retryを0とし、接続failureと業務判断/再計画の戻しを分ける | e2 connection owner。業務判断/再計画は元機構/OSの既存owner |\n",
+      "raw_sha256": "fbae7548760ba8bd14530a735ae8588dc07a9a5077025627725b6b6f82476603"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-29",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 347,
+      "literal_utf8": "| `CONNECT-CASE-007-29` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 停止位置だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "raw_sha256": "b1b1457e67b17766cb11f4c05947e71b660409ae4bdcee3c9f6b2d59f8b5b3c3"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-30",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 348,
+      "literal_utf8": "| `CONNECT-CASE-007-30` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完辺identityだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "raw_sha256": "26eabe195ca77667e8d094f0d5b8cb3109c59ed820bd8a9b3b576586e868852c"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-31",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 349,
+      "literal_utf8": "| `CONNECT-CASE-007-31` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | 未完義務だけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "raw_sha256": "791ea8580889160e0fb19d1cbdff6c64148eb526a6905e669e521a4e19cf1463"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-32",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 350,
+      "literal_utf8": "| `CONNECT-CASE-007-32` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | ownerだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "raw_sha256": "2fa4d44691e526dd4bb68a609b02ba3eed09bd1b6f0251c2f72e6f210838e56b"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-33",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 351,
+      "literal_utf8": "| `CONNECT-CASE-007-33` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)それぞれのidentity・能力名・契約revision・scope・登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result・SECURITY許可識別子・data-use識別子・send結果・receive結果を個別に束縛してtraceへ記録。未実行e3の送受信結果は未実行のまま保持し、実結果を補完しない。e1成功、e2 timeout、宣言済みe3は未実行 | recovery handoffだけ出力から欠落 | handoff未完を示し全体成功にしない。先行成功/後続未実行を保持し、欠落を既存connection ownerへ返す | 失敗辺connection owner |\n",
+      "raw_sha256": "36061521cde604bc0a6ae152ddfcf58d94f7ea1248126a3d0191a4f5f849b844"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-34",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 352,
+      "literal_utf8": "| `CONNECT-CASE-007-34` | `CONNECT-AC-007-03` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 timeout。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | e1成功記録だけを消して全辺失敗に丸める | 部分状態の消失を拒否し先行結果を不変に保持する | 構成体connection owner |\n",
+      "raw_sha256": "145e8f4acb561da30d6ed735a15159eb2d05b7f24c5042e5b14f1f780057b06d"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-35",
+      "ac_id": "CONNECT-AC-007-03",
+      "line": 353,
+      "literal_utf8": "| `CONNECT-CASE-007-35` | `CONNECT-AC-007-03` | 合成fixture A→B→C→D。辺e1(A→B)/e2(B→C)/e3(C→D)の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。e1成功、e2 unknown、e3は未実行。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 未実行後続辺e3だけを実行済みとして記録 | 証拠のない後続実行を拒否し未完辺を保持する | 構成体connection owner |\n",
+      "raw_sha256": "9ade60f5f0af7fa55c59c5441c0ee321c5fdb535dcc2f0ba3a7da53262a56720"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-36",
+      "ac_id": "CONNECT-AC-007-04",
+      "line": 354,
+      "literal_utf8": "| `CONNECT-CASE-007-36` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 業務成立だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "raw_sha256": "ce1ef43864d0c9aea9d09c7e2af08a4d8d80cb7c40fc42bedde81c82f22deec9"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-37",
+      "ac_id": "CONNECT-AC-007-04",
+      "line": 355,
+      "literal_utf8": "| `CONNECT-CASE-007-37` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 結果承認だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "raw_sha256": "2e84291382f030d7f34c160cfc391e40ec48e2422aff33cac28acebb3e02f6b8"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-38",
+      "ac_id": "CONNECT-AC-007-04",
+      "line": 356,
+      "literal_utf8": "| `CONNECT-CASE-007-38` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。全辺の技術通信完了。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 新しい送信許可だけを技術receiptから生成 | 生成を拒否する。技術completeと元ownerの業務結果/承認、SECURITY authorityを分離する | 元業務owner／承認主体。送信許可はSECURITY |\n",
+      "raw_sha256": "9c6e7ecbb3ce0319ac4d6246e3f9c9a6a45253d9a22480091a9f8384f5e030a6"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-39",
+      "ac_id": "CONNECT-AC-007-04",
+      "line": 357,
+      "literal_utf8": "| `CONNECT-CASE-007-39` | `CONNECT-AC-007-04` | 合成fixture A→B→C。辺e1/e2の能力名・契約revision・scopeを区別し、全登録/現互換receipt・operation mapping・correlation/idempotency/expiry/result/authority/recoveryを同対象revisionへ束縛。共通packはGUI/provider/CI製品に依存しない宣言済みI/O。各辺の適用SECURITY許可識別子とdata-use識別子、send結果とreceive結果を個別に束縛してtraceへ記録。 | 特定GUIの不在だけで契約適合構成体を拒否する | 固定HARNESS010/011に従いGUI不在だけで拒否しない。Web能力の追加を導出しない | 構成体contract owner |\n",
+      "raw_sha256": "1c770b055344fe06ee4b9853e8e60675ffceb7d3d79c4eb35da112a72d27bd0a"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-40",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 358,
+      "literal_utf8": "| `CONNECT-CASE-007-40` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可識別子とsend/receive結果は有効で、全他入力は現revisionへ束縛 | e2のdata-use識別子だけ欠落。他のSECURITY許可・辺入力・結果は有効 | 技術completeにせずe2のdata-use識別子をunknown/欠落として記録し、当該辺のsend/retryを許可しない。SECURITY許可欠落とは混同せず、L2-007:135の依存先L2-005:111に基づき不足data-use識別子をSECURITY/source ownerへ返す | SECURITY/source owner |\n",
+      "raw_sha256": "465d0261edb02e7934e704eb7b4bfe6d576ec9f03dbb2c2c411f8c8bf17a8933"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-41",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 359,
+      "literal_utf8": "| `CONNECT-CASE-007-41` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可/data-use識別子と送受信receiptを別々に束縛し、e1成功/e2を対象辺とする | e2の送信結果だけ欠落。受信結果は有効で期待receiptと一致し、他の入力/結果は有効 | 全体completeを拒否し、e2送信結果をunknown/欠落として保持する。受信結果と先行成功は保持し、送信結果を補わず、未許可の後続send/retryを0にする | e2 connection owner |\n",
+      "raw_sha256": "2409c72c581b0049f7a6a6e3da1d54032e391d14997b2868082d394d5ceaf1e1"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-42",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 360,
+      "literal_utf8": "| `CONNECT-CASE-007-42` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可/data-use識別子と送受信receiptを別々に束縛し、e1成功/e2を対象辺とする | e2の受信結果だけ欠落。送信結果は有効で期待receiptと一致し、他の入力/結果は有効 | 全体completeを拒否し、e2受信結果をunknown/欠落として保持する。送信結果と先行成功は保持し、受信結果を補わず、未許可の後続send/retryを0にする | e2 connection owner |\n",
+      "raw_sha256": "1f3e96247a8b7314fc8cd7496846a1e3bfb1b40a0c3c5ab4319752ed81241b24"
+    },
+    {
+      "case_id": "CONNECT-CASE-007-43",
+      "ac_id": "CONNECT-AC-007-01",
+      "line": 361,
+      "literal_utf8": "| `CONNECT-CASE-007-43` | `CONNECT-AC-007-01` | 合成fixture A→B→C。e1/e2各辺の登録・現互換receipt、operation mapping、correlation/idempotency/expiry/result、適用SECURITY許可/data-use識別子と送受信receiptを別々に束縛し、e1成功/e2を対象辺とする | e2の送信・受信receiptは各々存在するが、結果状態の相互対応だけ不一致。他のfieldは有効 | 全体completeを拒否し、e2の結果状態不一致をunknown/未完として保持する。両receiptと先行成功を消さず、期待値から結果を補わず、未許可の後続send/retryを0にする | e2 connection owner |\n",
+      "raw_sha256": "f4713a28ed5ea4de809584750429e22bc097abdabd2dd31c09c3ad28d311913e"
+    }
+  ],
+  "search_recomputation": {
+    "partial": {
+      "exact": [
+        388,
+        368,
+        199
+      ],
+      "substring": [
+        433,
+        411,
+        209
+      ]
+    },
+    "correlation": {
+      "exact": [
+        77,
+        72,
+        40
+      ],
+      "substring": [
+        108,
+        94,
+        44
+      ]
+    },
+    "idempotency": {
+      "exact": [
+        134,
+        133,
+        76
+      ],
+      "substring": [
+        205,
+        196,
+        85
+      ]
+    },
+    "saga": {
+      "exact": [
+        1,
+        1,
+        1
+      ],
+      "substring": [
+        1,
+        1,
+        1
+      ]
+    },
+    "multi-hop": {
+      "exact": [
+        0,
+        0,
+        0
+      ],
+      "substring": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "search_definition": {
+    "case_insensitive": true,
+    "regex": "(?<![A-Za-z0-9_])TERM(?![A-Za-z0-9_])",
+    "boundary_rule": "ASCII letters, digits, and underscore are token-internal; any other Unicode character including adjacent CJK is a boundary. Each non-overlapping occurrence is counted in UTF-8 decoded files. Hyphen is literal inside multi-hop.",
+    "encoding": "strict UTF-8"
+  },
+  "checks": {
+    "cases": 43,
+    "acs": 4,
+    "dangling_acs": 0,
+    "integrated_tree": "b20554d552e8ab360a74c89f52374cb34f65e6c5",
+    "static": {
+      "validate": {
+        "returncode": 0,
+        "stdout": "ok   scaffold/bindings/SCF-B-0001.json  SCF-B-0001 [active]\nok   scaffold/bindings/SCF-B-0002.json  SCF-B-0002 [active]\nok   scaffold/bindings/SCF-B-0003.json  SCF-B-0003 [active]\nok   scaffold/bindings/SCF-B-0004.json  SCF-B-0004 [active]\nok   scaffold/bindings/SCF-B-0005.json  SCF-B-0005 [active]\nok   scaffold/bindings/SCF-B-0006.json  SCF-B-0006 [active]\nok   scaffold/bindings/SCF-B-0007.json  SCF-B-0007 [active]\nok   scaffold/bindings/SCF-B-0008.json  SCF-B-0008 [active]\nok   scaffold/bindings/SCF-B-0009.json  SCF-B-0009 [active]\nok   scaffold/bindings/SCF-B-0010.json  SCF-B-0010 [active]\nok   scaffold/bindings/SCF-B-0011.json  SCF-B-0011 [active]\nok   scaffold/bindings/SCF-B-0012.json  SCF-B-0012 [active]\nok   scaffold/bindings/SCF-B-0013.json  SCF-B-0013 [active]\nok   scaffold/bindings/SCF-B-0014.json  SCF-B-0014 [active]\nok   scaffold/bindings/SCF-B-0015.json  SCF-B-0015 [active]\nok   scaffold/bindings/SCF-B-0016.json  SCF-B-0016 [active]\nok   scaffold/bindings/SCF-B-0017.json  SCF-B-0017 [active]\nok   scaffold/bindings/SCF-B-0018.json  SCF-B-0018 [active]\nok   scaffold/bindings/SCF-B-0019.json  SCF-B-0019 [active]\nok   scaffold/bindings/SCF-B-0020.json  SCF-B-0020 [active]\nok   scaffold/bindings/SCF-B-0021.json  SCF-B-0021 [active]\nok   scaffold/bindings/SCF-B-0022.json  SCF-B-0022 [active]\nok   scaffold/bindings/SCF-B-0023.json  SCF-B-0023 [registered]\nok   scaffold/bindings/SCF-B-0024.json  SCF-B-0024 [active]\nok   scaffold/bindings/SCF-B-0025.json  SCF-B-0025 [active]\nok   scaffold/bindings/SCF-B-0027.json  SCF-B-0027 [registered]\nok   scaffold/bindings/SCF-B-0028.json  SCF-B-0028 [active]\nok   scaffold/bindings/SCF-B-0029.json  SCF-B-0029 [registered]\nok   scaffold/bindings/SCF-B-0030.json  SCF-B-0030 [active]\nok   scaffold/bindings/SCF-B-0031.json  SCF-B-0031 [active]\nok   scaffold/bindings/SCF-B-0032.json  SCF-B-0032 [registered]\nok   scaffold/bindings/SCF-B-0033.json  SCF-B-0033 [registered]\nok   scaffold/bindings/SCF-B-0034.json  SCF-B-0034 [registered]\nok   scaffold/bindings/SCF-B-0035.json  SCF-B-0035 [registered]\nok   scaffold/bindings/SCF-B-0036.json  SCF-B-0036 [registered]\nok   scaffold/bindings/SCF-B-0037.json  SCF-B-0037 [registered]\nok   scaffold/bindings/SCF-B-0038.json  SCF-B-0038 [registered]\nok   scaffold/bindings/SCF-B-0039.json  SCF-B-0039 [registered]\nok   scaffold/bindings/SCF-B-0040.json  SCF-B-0040 [registered]\nok   scaffold/bindings/SCF-B-0041.json  SCF-B-0041 [registered]\nok   scaffold/bindings/SCF-B-0042.json  SCF-B-0042 [registered]\nok   scaffold/bindings/SCF-B-0043.json  SCF-B-0043 [registered]\nok   scaffold/bindings/SCF-B-0044.json  SCF-B-0044 [registered]\nok   scaffold/bindings/SCF-B-0045.json  SCF-B-0045 [registered]\nok   scaffold/bindings/SCF-B-0046.json  SCF-B-0046 [registered]\nok   scaffold/bindings/SCF-B-0047.json  SCF-B-0047 [registered]\nok   scaffold/bindings/SCF-B-0048.json  SCF-B-0048 [registered]\nok   scaffold/bindings/SCF-B-0049.json  SCF-B-0049 [registered]\nok   scaffold/bindings/SCF-B-0050.json  SCF-B-0050 [registered]\nok   scaffold/bindings/SCF-B-0051.json  SCF-B-0051 [active]\nok   scaffold/bindings/SCF-B-0052.json  SCF-B-0052 [registered]\nok   scaffold/bindings/SCF-B-0053.json  SCF-B-0053 [registered]\nok   scaffold/bindings/SCF-B-0054.json  SCF-B-0054 [registered]\nok   scaffold/bindings/SCF-B-0055.json  SCF-B-0055 [registered]\nok   scaffold/bindings/SCF-B-0056.json  SCF-B-0056 [registered]\nok   scaffold/bindings/SCF-B-0057.json  SCF-B-0057 [registered]\nok   scaffold/bindings/SCF-B-0058.json  SCF-B-0058 [registered]\nok   scaffold/bindings/SCF-B-0059.json  SCF-B-0059 [registered]\nok   scaffold/bindings/SCF-B-0060.json  SCF-B-0060 [registered]\nok   scaffold/bindings/SCF-B-0061.json  SCF-B-0061 [registered]\nok   scaffold/bindings/SCF-B-0062.json  SCF-B-0062 [registered]\nok   scaffold/bindings/SCF-B-0063.json  SCF-B-0063 [registered]\nok   scaffold/bindings/SCF-B-0064.json  SCF-B-0064 [registered]\nok   scaffold/bindings/SCF-B-0065.json  SCF-B-0065 [registered]\nok   scaffold/bindings/SCF-B-0066.json  SCF-B-0066 [registered]\nok   scaffold/bindings/SCF-B-0067.json  SCF-B-0067 [registered]\nok   scaffold/bindings/SCF-B-0068.json  SCF-B-0068 [registered]\nok   scaffold/bindings/SCF-B-0069.json  SCF-B-0069 [registered]\nok   scaffold/bindings/SCF-B-0070.json  SCF-B-0070 [registered]\nok   scaffold/bindings/SCF-B-0071.json  SCF-B-0071 [registered]\nok   scaffold/bindings/SCF-B-0072.json  SCF-B-0072 [registered]\nok   scaffold/bindings/SCF-B-0073.json  SCF-B-0073 [registered]\nok   scaffold/bindings/SCF-B-0074.json  SCF-B-0074 [registered]\nok   scaffold/bindings/SCF-B-0075.json  SCF-B-0075 [registered]\nok   scaffold/bindings/SCF-B-0076.json  SCF-B-0076 [registered]\nok   scaffold/bindings/SCF-B-0077.json  SCF-B-0077 [registered]\nok   scaffold/bindings/SCF-B-0078.json  SCF-B-0078 [registered]\nok   scaffold/bindings/SCF-B-0079.json  SCF-B-0079 [registered]\nok   scaffold/bindings/SCF-B-0080.json  SCF-B-0080 [registered]\nok   scaffold/bindings/SCF-B-0081.json  SCF-B-0081 [registered]\nok   scaffold/bindings/SCF-B-0082.json  SCF-B-0082 [registered]\nok   scaffold/bindings/SCF-B-0083.json  SCF-B-0083 [registered]\nok   scaffold/bindings/SCF-B-0084.json  SCF-B-0084 [registered]\nok   scaffold/bindings/SCF-B-0085.json  SCF-B-0085 [registered]\nok   scaffold/bindings/SCF-B-0086.json  SCF-B-0086 [registered]\nok   scaffold/bindings/SCF-B-0087.json  SCF-B-0087 [registered]\nok   scaffold/bindings/SCF-B-0088.json  SCF-B-0088 [registered]\nok   scaffold/bindings/SCF-B-0089.json  SCF-B-0089 [registered]\nok   scaffold/bindings/SCF-B-0090.json  SCF-B-0090 [registered]\nok   scaffold/bindings/SCF-B-0091.json  SCF-B-0091 [registered]\nok   scaffold/bindings/SCF-B-0092.json  SCF-B-0092 [registered]\nok   scaffold/bindings/SCF-B-0093.json  SCF-B-0093 [registered]\nok   scaffold/bindings/SCF-B-0094.json  SCF-B-0094 [registered]\nok   scaffold/bindings/SCF-B-0095.json  SCF-B-0095 [registered]\nok   scaffold/bindings/SCF-B-0096.json  SCF-B-0096 [registered]\nok   scaffold/bindings/SCF-B-0097.json  SCF-B-0097 [registered]\nok   scaffold/bindings/SCF-B-0099.json  SCF-B-0099 [registered]\nok   scaffold/bindings/SCF-B-0100.json  SCF-B-0100 [registered]\nok   scaffold/bindings/SCF-B-0101.json  SCF-B-0101 [registered]\nok   scaffold/bindings/SCF-B-0102.json  SCF-B-0102 [registered]\nok   scaffold/bindings/SCF-B-0103.json  SCF-B-0103 [registered]\nok   scaffold/bindings/SCF-B-0104.json  SCF-B-0104 [registered]\nok   scaffold/bindings/SCF-B-0105.json  SCF-B-0105 [registered]\nok   scaffold/bindings/SCF-B-0106.json  SCF-B-0106 [registered]\nok   scaffold/bindings/SCF-B-0107.json  SCF-B-0107 [registered]\nok   scaffold/bindings/SCF-B-0108.json  SCF-B-0108 [registered]\nok   scaffold/bindings/SCF-B-0109.json  SCF-B-0109 [registered]\nok   scaffold/bindings/SCF-B-0110.json  SCF-B-0110 [registered]\nok   scaffold/bindings/SCF-B-0111.json  SCF-B-0111 [registered]\nok   scaffold/bindings/SCF-B-0112.json  SCF-B-0112 [registered]\nok   scaffold/bindings/SCF-B-0113.json  SCF-B-0113 [registered]\nok   scaffold/bindings/SCF-B-0114.json  SCF-B-0114 [registered]\nok   scaffold/bindings/SCF-B-0115.json  SCF-B-0115 [registered]\nok   scaffold/bindings/SCF-B-0116.json  SCF-B-0116 [registered]\nok   scaffold/bindings/SCF-B-0117.json  SCF-B-0117 [registered]\nok   scaffold/bindings/SCF-B-0118.json  SCF-B-0118 [registered]\nok   scaffold/bindings/SCF-B-0119.json  SCF-B-0119 [registered]\nok   scaffold/bindings/SCF-B-0120.json  SCF-B-0120 [registered]\nok   scaffold/bindings/SCF-B-0121.json  SCF-B-0121 [registered]\nok   scaffold/bindings/SCF-B-0122.json  SCF-B-0122 [registered]\nok   scaffold/bindings/SCF-B-0123.json  SCF-B-0123 [registered]\nok   scaffold/bindings/SCF-B-0124.json  SCF-B-0124 [registered]\nok   scaffold/bindings/SCF-B-0125.json  SCF-B-0125 [registered]\nok   scaffold/bindings/SCF-B-0126.json  SCF-B-0126 [registered]\nok   scaffold/bindings/SCF-B-0127.json  SCF-B-0127 [registered]\nok   scaffold/bindings/SCF-B-0128.json  SCF-B-0128 [registered]\nok   scaffold/bindings/SCF-B-0129.json  SCF-B-0129 [registered]\nok   scaffold/bindings/SCF-B-0130.json  SCF-B-0130 [registered]\nok   scaffold/bindings/SCF-B-0131.json  SCF-B-0131 [registered]\nok   scaffold/bindings/SCF-B-0132.json  SCF-B-0132 [registered]\nok   scaffold/bindings/SCF-B-0133.json  SCF-B-0133 [registered]\nok   scaffold/bindings/SCF-B-0134.json  SCF-B-0134 [registered]\nok   scaffold/bindings/SCF-B-0141.json  SCF-B-0141 [registered]\nok   scaffold/bindings/SCF-B-0142.json  SCF-B-0142 [registered]\nok   scaffold/bindings/SCF-B-0144.json  SCF-B-0144 [registered]\nok   scaffold/bindings/SCF-B-0145.json  SCF-B-0145 [registered]\nok   scaffold/bindings/SCF-B-0146.json  SCF-B-0146 [registered]\nok   scaffold/bindings/SCF-B-0147.json  SCF-B-0147 [registered]\nok   scaffold/bindings/SCF-B-0148.json  SCF-B-0148 [registered]\nok   scaffold/bindings/SCF-B-0149.json  SCF-B-0149 [registered]\nok   scaffold/bindings/SCF-B-0150.json  SCF-B-0150 [registered]\nok   scaffold/bindings/SCF-B-0151.json  SCF-B-0151 [registered]\nok   scaffold/bindings/SCF-B-0152.json  SCF-B-0152 [registered]\nok   scaffold/bindings/SCF-B-0153.json  SCF-B-0153 [registered]\nok   scaffold/bindings/SCF-B-0154.json  SCF-B-0154 [registered]\nok   scaffold/bindings/SCF-B-0155.json  SCF-B-0155 [registered]\nok   scaffold/bindings/SCF-B-0156.json  SCF-B-0156 [registered]\nbindings=147 fail=0\n",
+        "stderr": ""
+      },
+      "stale": {
+        "returncode": 0,
+        "stdout": "stale=0\n",
+        "stderr": ""
+      },
+      "residuals": {
+        "returncode": 0,
+        "stdout": "residuals=0\n",
+        "stderr": ""
+      }
+    }
+  },
+  "read_extent": [
+    "正式review02全文、6本文差分全行、Worker日本語監査全文",
+    "固定L2-005:105–111/007:128–138、固定L11と旧隣接source限定読解は前回を継承",
+    "2479検索は指定正規表現の静的再計算、意味hit全読解ではない"
+  ],
+  "limits": [
+    "旧source検索は2479件の指定text拡張子に対する語句走査であり、全hitを意味分類・読解したとは主張しない。",
+    "直接old atomの不在は以前の明示範囲の主張にとどめる。検索総数は要件被覆・semantic completeness・approvalを意味しない。",
+    "L10 CASEは未実行の検証設計であり、合格証拠ではない。",
+    "従前のimmutable review01 correction/root draft/root acceptanceは変更せず、今回の訂正値はこの新追補に限って記録する。",
+    "Worker source/changed-line pin全件をこの追補で再検証したとは主張しない。",
+    "独立review・L3承認・L10実測を生成しない。"
+  ]
+}
