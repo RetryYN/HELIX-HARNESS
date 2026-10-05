@@ -337,23 +337,23 @@ HARNESS-L2-010/011のdescriptorとSECURITY更新candidateのidentity/version/dig
 
 ### SECURITY-FR-031-01 — 追加runtime分類とdependency closure
 
-追加runtimeを選択したassignmentについて、runtime identity/version/config、SECURITY operation authorityのactor/target/operation/revision/environment/scope/expiry、OS assignment/ticket revision、INFRASTRUCTURE-L2-010の実行制約、SECURITY-L2-005/007/008/029の同一対象条件を識別する。常時依存の欠落・unknown・stale・revision mismatchは開始前にdeny/holdし、個別の理由とownerへ返す。SECURITY-L2-006は外部接続/送信、SECURITY-L2-009は停止/逸脱、SECURITY-L2-022/023と選択HARNESS oracle/OS promotion条件はそれぞれの後段を実際に選んだ場合だけdependency closureへ加える。**SECURITY-AC-031-01**は四区分、同一revision、適用条件、unknownを別に保つことを受入条件とする。
+追加runtimeを選択したassignmentについて、runtime identity/version/config、SECURITY operation authorityのactor/target/operation/revision/environment/scope/expiry、OS assignment/ticket revision、INFRASTRUCTURE-L2-010の実行制約、SECURITY-L2-005/007/008/029の同一対象条件を識別する。採択後のpack revisionでは、dependency ID・owner・contract version・互換range・scopeを固定し、いずれかが未確定なら該当runtimeを開始しない。これは本候補の技術identityが未確定の間に実行へ進まない境界であり、追加承認者や毎回の人間承認を設けない。常時依存の欠落・unknown・stale・revision mismatchは開始前にdeny/holdし、個別の理由とownerへ返す。SECURITY-L2-006は外部接続/送信、SECURITY-L2-009は停止/逸脱、SECURITY-L2-022/023と選択HARNESS oracle/OS promotion条件はそれぞれの後段を実際に選んだ場合だけdependency closureへ加える。旧source・HAT・HARNESS-L2-023を参照資料として読むだけで現行の常時依存や安全条件を満たしたとはしない。**SECURITY-AC-031-01**は四区分、同一revision、適用条件、unknownを別に保つことを受入条件とする。
 
 ### SECURITY-FR-031-02 — 実行前入力と開始条件
 
-開始入力はruntime/config identity、許可済みoperation/data class/scope/expiry、既存OS ticket/assignment/task revision、owner/systemが別のisolated copyへ払い出した必要最小payloadのmanifest/digest/classification、Worker/INFRASTRUCTURE制約、返却proposalに適用する既存schema/digest policyに限る。未選択payload sourceを推測・fallbackしない。開始前に実行結果、filesystem diff、完了receiptを要求しない。assignmentはruntime採用、要求承認、merge/promotionを許可しない。**SECURITY-AC-031-02**は前記入力だけで開始可否を判定し、未生成の実行後結果を前提にしないことを受入条件とする。
+開始入力はruntime/config identity、許可済みoperation/data class/scope/expiry、既存OS ticket/assignment/task revision、Worker/INFRASTRUCTURE制約、返却proposalに適用する既存schema/digest policyに限る。taskにファイル情報が必要な場合だけ、owner/systemが選択し別のisolated copyへ払い出した必要最小payloadのsource identity・revision・path/digest manifest・classificationを束縛する。ファイル情報を必要としないtaskにmanifestを要求しない。未選択payload sourceを推測・fallbackしない。開始前に実行結果、filesystem diff、完了receiptを要求しない。assignmentはruntime採用、要求承認、merge/promotionを許可しない。**SECURITY-AC-031-02**は適用条件に応じた入力だけで開始可否を判定し、未生成の実行後結果を前提にしないことを受入条件とする。
 
 ### SECURITY-FR-031-03 — proposal-onlyと権威境界
 
-追加runtime、その出力または自己申告だけでは要求、priority、authority、ticket/assignment、採択状態、canonical artifact/evidence、acceptance、merge/promotionを作成・変更・承認・完了できない。proposalはuntrustedとしてHARNESSの選択済みoracleと既存OS進行条件へ返す。assignment-bound copy内での通常の編集/proposal生成は許す。**SECURITY-AC-031-03**は各権威対象への出力単独の変更を拒否し、copy内の通常編集とproposal returnを許すことを受入条件とする。
+追加runtime、その出力または自己申告だけでは要求、priority、authority、ticket/assignment、採択状態、canonical artifact/evidence、acceptance、merge/promotionを作成・変更・承認・完了できない。proposalはuntrustedとしてHARNESSの選択済みoracleと既存OS進行条件へ返す。assignment-bound copy内での通常の編集/proposal生成は許す。同じ既決operation authority内の通常task反復は、対象とscopeが変わらない限り追加承認者やtaskごとの人間承認を要求しない。**SECURITY-AC-031-03**は各権威対象への出力単独の変更を拒否し、copy内の通常編集とproposal returnを許すことを受入条件とする。
 
 ### SECURITY-FR-031-04 — isolated copy、canonical access、credential/data境界
 
-runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、canonical repositoryおよびHELIXの要求・authority・ticket/assignment・workflow・evidence/receipt stateへ直接read/writeできない。正規owner/systemが選択した必要最小payloadの別copyを使うことは許可された入力経路であり、直接canonical readと区別する。raw credential/secret値をruntime、context、環境、payload、receiptへ露出させない。非公開capabilityは既存005/006/007/008の操作・target・revision・scope・expiry条件が一致した場合に限る。SEC-029に従い、opt-out未完/unknown時は公開可能コード以外を委譲せず、opt-out完了だけでHELIX-confidential以上を許可しない。全追加runtimeをpublic-onlyへ狭めず、unknown classificationをpublicへ写像しない。**SECURITY-AC-031-04**は許可copy経路、直接canonical read/write、credential、classification/opt-outを別条件として受け入れる。
+runtimeはassignment-bound isolated working copy/sandbox内でのみ動作し、canonical repositoryおよびHELIXの要求・authority・ticket/assignment・workflow・evidence/receipt stateへ直接read/writeできない。正規owner/systemが選択した必要最小payloadの別copyを使うことは許可された入力経路であり、直接canonical readと区別する。classificationは既存SECURITY-L2-016の1.0分類記録とSECURITY-L2-029の適用条件に従い、未分類/unknownをpublicへ写像しない。raw credential/secret値をruntime、context、環境、payload、receiptへ露出させない。非公開capabilityは既存005/006/007/008の操作・target・revision・scope・expiry条件が一致した場合に限る。SEC-029に従い、opt-out未完/unknown時は公開可能コード以外を委譲せず、opt-out完了だけでHELIX-confidential以上を許可しない。全追加runtimeをpublic-onlyへ狭めない。**SECURITY-AC-031-04**は許可copy経路、直接canonical read/write、credential、classification/opt-outを別条件として受け入れる。
 
 ### SECURITY-FR-031-05 — conditional operationと実行後receipt/oracle
 
-外部runtime接続またはdata送信には既存SECURITY-006の宛先/data/目的/expiryを適用する。停止または逸脱時はSECURITY-009の既存停止・隔離経路へ進む。verification/adoptionへ進む場合だけSECURITY-022/023と選択されたHARNESS oracle、OS側promotion/handoff条件を適用する。実行後のWorker/INFRASTRUCTURE適用観測とOS result/diff receiptを分け、HARNESSは選択済み既存oracleでproposalを検証する。SECURITY自身はproposal、receipt、OS stateを生成しない。**SECURITY-AC-031-05**は条件のないoperationに条件付きdependencyを要求せず、後段receiptが揃わないrunをaccepted/verified/promotedと扱わないことを受入条件とする。
+外部runtime接続またはdata送信には既存SECURITY-006の宛先/data/目的/expiryを適用する。SECURITYはpolicy・data/credential/egress条件を返すとともに、それらが実行環境へ適用されたかの観測照合を返す。停止または逸脱時はSECURITY-009の既存停止・隔離経路へ進む。verification/adoptionへ進む場合だけSECURITY-022/023と選択されたHARNESS oracle、OS側promotion/handoff条件を適用する。実行後のWorker/INFRASTRUCTURE適用観測とOS result/diff receiptを分け、HARNESSは選択済み既存oracleでproposalを検証する。SECURITY自身はproposal、receipt、OS stateを生成しない。**SECURITY-AC-031-05**は条件のないoperationに条件付きdependencyを要求せず、後段receiptが揃わないrunをaccepted/verified/promotedと扱わないことを受入条件とする。
 
 ### SECURITY-FR-031-06 — owner別failure、未完義務、scope分離
 

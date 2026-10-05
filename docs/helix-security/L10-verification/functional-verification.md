@@ -255,22 +255,24 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 ### SECURITY-CASE-031-01 — runtime identityと依存閉包（`SECURITY-AC-031-01`）
 
-- **通常**：追加runtimeを明示選択した同一revision fixtureでruntime/config、SECURITY-005/007/008/029、OS-018、INFRASTRUCTURE-010の適用条件を照合し、allow/deny/constrainと根拠を返す。006/009/022/023/HARNESS/OS後段条件は該当操作を選んだfixtureだけに含める。
+- **通常**：追加runtimeを明示選択した同一revision fixtureでruntime/config、SECURITY-005/007/008/029、OS-018、INFRASTRUCTURE-010の適用条件を照合し、allow/deny/constrainと根拠を返す。採択後のpack revisionでdependency ID/owner/contract version/range/scopeが固定され、四区分の安全条件が正しく保持されたことを確認する。既決の同じoperation authority内で通常taskを反復する場合も、追加承認者やtaskごとの人間承認なしで同じ既存条件から開始可否を判定する。006/009/022/023/HARNESS/OS後段条件は該当操作を選んだfixtureだけに含める。
 - **個別negative**：各常時依存のrevision mismatch、missing、unknownを一つずつ変異し、その追加runtime operationだけ開始拒否・owner別戻し。006は外部送信条件なしでrequiredにしない。停止・逸脱なしの009、proposal生成段階だけの022/023・HARNESS検証・OS promotionを要求しない。
 - **未見正常**：新しいruntime configで、同じ固定依存のrevision/条件が全て照合できる合成fixtureを与え、当該operationだけ再評価する。未選択runtimeや主Workerへ結果を流用しない。
+- **依存契約の独立fixture**：`SECURITY-CASE-031-01a`は常時依存のcontract version/rangeが未確定、`SECURITY-CASE-031-01b`は旧source・HAT・HARNESS-L2-023の参照のみを現行runtime dependencyの成立根拠にする、`SECURITY-CASE-031-01c`は常時必須の安全条件を「参照資料のみ」へ移す各単独変異とする。各々該当runtimeを開始せずunknown/unfinishedと既存依存ownerへの戻しを保持する。`SECURITY-CASE-031-01d`はscope/authorityが同一の反復taskへ不要な承認者または毎回の人間承認を要求する単独変異であり、追加gateを作らず既決authority内の通常開始判定を保つ。
 - **owner oracle**：policy/authority不足はSECURITY、assignment不足はOS、実行資源制約不足はINFRASTRUCTURE/Workerへ返す。別の有効operationは継続する。
 
 ### SECURITY-CASE-031-02 — 実行前入力と後結果の分離（`SECURITY-AC-031-02`）
 
-- **通常**：開始前に正しいruntime/config、SECURITY許可条件、OS ticket/assignment/task revision、選択owner/system提供のmanifest/digest/classification、Worker/INFRASTRUCTURE制約を与える。result/diff/receiptがまだ無くても、前提が満たされれば開始可否を判断し、要求しない。
-- **個別negative**：runtime identity、authority tuple、assignment revision、payload manifest/digest、scopeをそれぞれ単独に欠落・不一致・staleへ変え、開始を拒否する。開始前に未生成のresult/diff/完了receiptを要求する変異も不合格。
-- **未見正常**：未見の選択payload path/revisionでもowner/systemが明示した最小manifestと許可scopeが一致すれば開始入力として扱い、未選択sourceを補完しない。
+- **通常**：ファイル情報を要するtaskでは開始前に正しいruntime/config、SECURITY許可条件、OS ticket/assignment/task revision、選択owner/system提供のmanifest/digest/classification、Worker/INFRASTRUCTURE制約を与える。ファイル情報を要しないtaskではmanifestなしの合成fixtureを別にし、他の適用条件が満たされれば開始可否を判断する。どちらもresult/diff/receiptがまだなくても要求しない。
+- **個別negative**：runtime identity、authority tuple、assignment revision、scopeはそれぞれ独立に欠落・不一致・staleへ変え、開始を拒否する。payload manifest/digest欠落negativeはファイル情報を要するtaskに限り、当該source選択と適用条件を正常に保ったまま変異する。開始前に未生成のresult/diff/完了receiptを要求する変異も不合格。
+- **未見正常**：`SECURITY-CASE-031-02a`はファイル情報を要しない新taskでmanifestを要求せず開始判定し、`SECURITY-CASE-031-02b`はファイル情報を要する新しい選択payload path/revisionでowner/system明示manifestとscopeが一致する場合の正常例とする。未選択sourceを補完しない。
 - **owner oracle**：manifest不足はsource/payload owner、assignmentはOS、authority/policyはSECURITYへ返す。
 
 ### SECURITY-CASE-031-03 — proposal-only（`SECURITY-AC-031-03`）
 
 - **通常**：isolated copy内の合成編集proposalを返し、受領直後はuntrusted/unverifiedとする。HARNESS選択oracleへ戻し、提案自体でcanonical stateが変わらない。
 - **個別negative**：proposal出力だけで要求、priority、authority、ticket、assignment、acceptance、canonical artifact/evidence、mergeまたはpromotionの各対象を個別に変えようとする。全て拒否し、該当結果を隔離する。
+- **独立fixture ID**：`SECURITY-CASE-031-03a`は許可されたcopy成果をdirect commitする単独変異、`SECURITY-CASE-031-03b`はproposalを検証済み/承認済み表示へ変える単独変異、`SECURITY-CASE-031-03c`はtool callからcanonical state/artifactを変更する単独変異とする。いずれも拒否・隔離し、copy内の通常編集は保つ。
 - **未見正常**：新しい合成提案も同じ未検証境界で受け取り、既存routeに戻す。通常のcopy編集を禁止しない。
 - **owner oracle**：proposal verificationはHARNESS、assignment/progressionはOS、要求意味/authorityは既存の各owner。runtime自己申告を判断根拠にしない。
 
@@ -285,14 +287,16 @@ L2-002の命令様入力からsecurity policy変更へ直結させない条件�
 
 - **通常**：外部接続/送信を選んだ場合はSECURITY-006の宛先/data/目的/expiry、stop/deviation時は009、verification/adoptionへ進む場合は022/023とHARNESS選択oracle/OS条件をその条件内で照合する。proposal生成前入力には含めない。run後はWorker/INFRASTRUCTURE適用観測、OS result/diff receipt、HARNESS verificationを別状態として記録する。
 - **個別negative**：送信fixtureで006の各必要項目を独立に欠落、stop/deviation fixtureで009の伝播観測を欠落、verification fixtureで各必要後段contract/receiptを欠落させる。該当段階だけholdし、前段のproposal生成可否と混同しない。receipt単独でverification/adoptionを成功扱いしない。
+- **個別negative `SECURITY-CASE-031-05a`**：選択HARNESS oracleの検証成功receiptだけからproposalの採択またはcanonical正本反映を生成する単独変異を与える。検証状態と採択/正本状態を分け、不成立として既存OS/HARNESS進行へ戻す。
 - **未見正常**：新しい条件付き送信先または別の未見proposalを選択した場合も、該当条件だけ同revisionで再確認し、未選択条件を義務化しない。
-- **owner oracle**：送信policyはSECURITY/CONNECT、停止・assignmentはOS、実適用観測はWorker/INFRASTRUCTURE、proposal oracleはHARNESS。SECURITYはresult receiptを生成しない。
+- **owner oracle**：送信policyはSECURITY、論理接続はCONNECTが所有し、CONNECTは送信policyを共同所有しない。停止・assignmentはOS、実適用観測はWorker/INFRASTRUCTURE、proposal oracleはHARNESS。SECURITYはresult receiptを生成しない。
 
 ### SECURITY-CASE-031-06 — owner別戻し、隔離、無関係scope（`SECURITY-AC-031-06`）
 
 - **通常**：有効な追加runtime assignmentと独立した無関係operationを同時にfixtureし、対象runに不足があれば対象だけhold/隔離、無関係operationは有効な既存条件で継続する。
 - **個別negative**：開始前authority/runtime/scope/payload/isolation/credential/classification/該当egress条件、開始後の適用観測/diff/result receiptを個別に欠落・unknown・staleへ変異する。開始前は対象runを開始せず、開始後は結果をaccepted/verified/promotedにせず隔離/holdする。各不足をSECURITY、OS、Worker、INFRASTRUCTURE、HARNESSの該当ownerへ返し、誤ったownerに代行させない。
 - **変更・逸脱の個別negative**：runtime identity/version/config、scope、payload identity/revision/digest、credential/data classification、authorityを一つずつ変更し、旧判定の流用を拒否して当該条件を再照合する。scope外read、scope外write、許可path外diff、deny対象egress、適用観測unknown、host fallbackをそれぞれ独立に与え、対象run停止・結果隔離・該当owner返却・OSの未完義務記録を観測する。
+- **authority越境とquotaの独立fixture**：`SECURITY-CASE-031-06a`はSECURITYがassignment/placement/commitを決める、`SECURITY-CASE-031-06b`はOSがpolicy/enforcer/実資源を代替する、`SECURITY-CASE-031-06c`はINFRASTRUCTUREがsecurity authorityを発行する、`SECURITY-CASE-031-06d`はWorker出力がHARNESS検証またはOS昇格を迂回する各単独変異とする。各々を拒否し、固定ownerへ返す。`SECURITY-CASE-031-06e`はruntimeまたはINFRASTRUCTUREが既存quota失敗を報告する単独negativeとし、閾値を追加せず成功扱いを拒否し、既存停止伝播とOS assignmentの未完義務へ返す。`SECURITY-CASE-031-06f`は追加runtime failureを理由に別runtimeを一律停止する単独変異とし、無関係operationの既存有効条件を保つ。
 - **未見正常**：無関係scopeの異なる実行条件で、031に該当しない通常operationが既存authorityに従って進める。追加runtime failureから主Worker全体停止を生成しない。
 - **owner oracle**：OS assignmentに対象revisionと未完義務を記録し、SECURITY policy不足はSECURITY、物理制約はWorker/INFRASTRUCTURE、検証はHARNESSへ戻す。requirements/approval/mergeの判断を生成しない。
 
