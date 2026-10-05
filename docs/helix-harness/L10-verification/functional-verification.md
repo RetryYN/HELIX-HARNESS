@@ -719,7 +719,7 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-035-S5-015` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-04` | alternative relationだけ欠落。 | 比較未完として要求形成ownerへ。 |
 | `CASE-HARNESS-L10-035-S5-016` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-03` | budget source/evidenceだけunknown。 | unknown保持し0/unlimitedへ変換しない。 |
 | `CASE-HARNESS-L10-035-S5-017` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-03` | budget unknownの出力だけunlimitedに変える。 | 変換拒否し要求形成ownerへ。 |
-| `CASE-HARNESS-L10-035-S5-018` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | authoritative root absent、候補IDと同時生成candidateのみ残す。 | 根拠claimを拒否し要求形成ownerへ。 |
+| `CASE-HARNESS-L10-035-S5-018` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | 候補A/Bのどちらにも独立authoritative rootがなく、A→BとB→Aの相互edgeだけが唯一の根拠。 | 相互根拠を拒否し要求形成ownerへ戻す。自己循環S5-004と区別する。 |
 | `CASE-HARNESS-L10-035-S5-019` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | 唯一root edgeをAI suggestionへ置換。 | AI suggestionをauthority rootにしない。 |
 | `CASE-HARNESS-L10-035-S5-020` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | ledger registration IDだけ提示しsource content/relationを欠落。 | ID存在だけで根拠成立にしない。 |
 | `CASE-HARNESS-L10-035-S5-021` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | graphはacyclicだがrootの意味がcandidate scopeを含まない。 | scope逸脱を上流ownerへ返す。 |
@@ -783,7 +783,6 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-035-S5-030` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-07` | 上流source revision訂正後に旧revisionの導出receiptだけを候補へ結ぶ。 | 旧導出をstaleとして採用せずsource/要求形成ownerへ戻す。 |
 | `CASE-HARNESS-L10-035-S5-031` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | COREが固定source/authority/revision/scope/oracleを照合し、OS registration/ticket/run未選択。 | COREの意味照合を正常に出し、OS操作を成立条件にしない。 |
 | `CASE-HARNESS-L10-035-S5-032` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-08` | 正常candidateから受入寄与relationだけを欠落させ、OS registration/ticket receiptは存在。 | 寄与照合を未完のまま保ち、OS登録から意味照合・人の合意・実行権限を作らない。 |
-| `CASE-HARNESS-L10-035-S5-033` | `FR-HARNESS-L3-035 / AC-HARNESS-L3-035-02` | AとBの各rootは独立して正常だが、derived candidate A↔B間だけを相互根拠にする。 | 相互依存edgeを拒否し、自己循環CASEとは区別する。 |
 | `CASE-HARNESS-L10-037-S5-043` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-03` | Phase2 L9 receiptは存在するが対象revisionだけを合流対象より古くする。 | 合流を保留し当該OS/選択executorのresult source ownerへ戻す。 |
 | `CASE-HARNESS-L10-037-S5-044` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 合流receiptだけを入力し、設計・対検証artifactは与えない。 | 合流receiptだけから成功を作らない。 |
 | `CASE-HARNESS-L10-037-S5-045` | `FR-HARNESS-L3-037 / AC-HARNESS-L3-037-04` | 設計文書だけを入力し、合流receipt/L10 resultは与えない。 | 文書だけからL10/合流結果を作らない。 |
