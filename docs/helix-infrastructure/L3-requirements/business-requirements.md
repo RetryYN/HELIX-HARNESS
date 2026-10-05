@@ -19,3 +19,9 @@ stage: 1
 本書は採択済みL2-001 (`MPR-RC-HELIXINFRASTRUCTURE-L2-001-003`) とL2-006 (`MPR-RC-HELIXINFRASTRUCTURE-L2-006-002`) のみを対象とする。L2全文SHA-256 `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b`、L11全文SHA-256 `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada`、source revision `f6dad2a33e24f000b87d7f09b8d40288257e74cc`。L2-005は006の採択済み入力依存であり、本書の未承認L3 candidateではない。
 
 旧HELIXのbusiness文書を分けた構成は初回配置の起点として保持した（`LEGACY-ASSET-A6E2C7F0565E5F804F06`, `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md` L21–39,84–104、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`）。保持するのは分離配置という形式だけで、旧BR分類、metric、owner、runtimeや承認動作を現行の独立business outcomeとして継承しない。固定親にない業務上の成功、障害severity、recovery完了、placement/cost採否を作らない。
+
+## Stage 2a 追加範囲 — business要件
+
+このStage 2a追記で直接扱う採択済み親は `HELIXINFRASTRUCTURE-L2-003`、`-004`、`-005`、`-009`、`-010` である。これらの固定親は資源観測、runtime state、recovery、OS Work/Changeとの接続、SECURITY authority下の操作責務を定めるが、独立したbusiness outcomeまたは業務成功oracleを定義しない。したがってStage 2aにも独立BR、業務成功条件、business受入caseは追加しない。親に基づく機能要件と検証は[機能要件](functional-requirements.md)のFR/ACおよび対の[L10機能検証](../L10-verification/functional-verification.md)を参照する。
+
+旧business文書の分離配置は維持する。旧BRの分類・metric・owner・承認動作を現行business outcomeへ移さない。scope/ownerの変更が必要になれば対応するL2へ戻し、技術候補だけの個別PO質問は作らない。

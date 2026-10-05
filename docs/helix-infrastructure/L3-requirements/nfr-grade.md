@@ -43,3 +43,20 @@ stage: 1
 resourceの意味上の設計はCORE、資源と観測stateはINFRASTRUCTURE、作業/change stateはOS、authority/credential/network/isolationはSECURITY、実操作はSECURITY制約下のWorker、配置/容量判断案はINTELLIGENCE、効果評価はLABOが所有する。NFR候補はこれらの境界を移さない。
 
 `HELIXINFRASTRUCTURE-L2-005` は採択済み入力であり、006復旧時に当該操作へ適用される復旧義務を参照する。005のL3未着手を理由に006の親revisionを未採択/未承認扱いしない。逆に、006が005のbackup/restore/rollback L3やL10まで本Stageで完成させたとも扱わない。Fully automatic failover、autoscaling、multi-cloud、L2-012以降のversion holdは1.0要件/受入条件に含めない。
+
+## Stage 2a 追加範囲 — 根拠付き技術NFR候補
+
+下記は採択済み003/004/005/009/010の機能境界を測る技術候補であり、現行実装の合格値、L2の数値、business oracleではない。候補値のscopeは対象source/resource/operationに限定する。現行source ownerのauthorized SLA/limitがある場合はそれを参照し、独立したparameterごとのPO質問は作らない。要求のmeaning/scope/owner/versionが変わる場合だけ該当L2へ差し戻す。L2-019の詳細freshness/confidenceや後続版を1.0 gateへ入れない。
+
+旧`nfr-grade.md`のgrade→測定→証拠を結ぶ書式は意味再導出し、旧IPA grade、数値、CI/runtime、pass thresholdは置換する。旧source pin: `LEGACY-ASSET-8CC5ABFC98C0D00183CA`, `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md:1-73`, SHA-256 `ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3`。
+
+| Candidate / parent | 候補値とscope | 根拠・比較 | 測定方法・oracle境界 |
+|---|---|---|---|
+| INFRA-NFR-003-01 / L2-003 | Per-source observation age candidate = 2× declared sample interval; cap unset. owner maximum未定でも候補値の比較・測定・起草を行う。これは技術候補の測定であり、実operationのcurrentness/eligibilityは既存source契約で別に決め、未定義を新gateや個別owner承認にしない。 | 003 source/revision, 004 stale-not-currentが根拠。1×はjitterでfalse stale、2×は1 missed sampleを許容、unboundedはstale混入。L2-019詳細freshnessは後続版。 | event/receipt timestamp、sample interval、clock uncertainty、判断時ageをsource class別cycleで測定。1 missed sampleを注入してunknown境界を見る。thresholdをglobal固定しない。 |
+| INFRA-NFR-003-02 / L2-003 | Selected operationの候補headroom 20% free capacity。親またはowner limitがない限り、この値だけでsafe-to-acceptを決めない。 | 0%は即時saturation risk、20%はburst reserve候補、30%はscarce GPUなどのresource消費増候補。いずれも親規定値でない。 | recorded utilization/queue/concurrencyとburst traceでresource type別false accept/rejectとcostを比較。許可owner thresholdが無ければ観測candidateに留める。 |
+| INFRA-NFR-003-03 / L2-003 | stable observation label candidate: 3 consecutive samples across at least 2 source intervals. | Single sampleは安価だがnoisy、3はtransient依存を減らす候補、長窓は遅延し短いspikeを隠す。親はcountを指定していない。 | idle/burst/sustained load windowsを測り既存source label/saturation/rejection/backpressureと比較。安定性は記述値で自動accept oracleにしない。 |
+| INFRA-NFR-005-01 / L2-005 | Isolated reversible artifact restoreでexploratory timeout candidate 5 minutes。一般deadlineではなく、他operationへ適用しない。 | Parentはintegrity/reconnect/startup/verificationを求めるがtimeout値なし。短い値はfalse failure、無期限は完了を塞ぐ。 | 各phase elapsedを反復restoreで測り、owner期限未定でも5分candidateを比較する。既存の期限契約があるoperationのeligibility/SLA評価とは分け、candidateはその権限を与えない。timeout超過からincident/business failureを生成しない。 |
+| INFRA-NFR-005-02 / L2-005 | Restore repeatability candidate: 3 independent runs。採択済みpass thresholdではない。 | 1 runは一回の成立のみ、3はintermittent behaviorを見つける候補だがresource costが増える。L2/L11に回数指定なし。 | 各runのsource/revision/resultを独立記録し、phase pass consistency/varianceを測定。3回未達だけでrestore可否/incident closureを決めない。 |
+| INFRA-NFR-004-01 / L2-004 | Telemetry coverage = required applicable fieldsの100%。scope applicabilityでoptional fieldはN/Aとして分母から分ける。 | Global all-field completenessは非該当fieldでfalse failure、any-fieldはblind spotを通す。L2はmissing telemetryをhealthyとしないが全signalを全resourceに適用しない。 | Resource type別applicability matrixを宣言し、required fieldごとのmissing mutationを注入してunknown/unobservedとowner returnを確認。割合をbusiness health scoreへ変えない。 |
+
+Candidateの受入/採用は一つの通常L3判断へまとめ、数値ごとの個別PO承認を新設しない。

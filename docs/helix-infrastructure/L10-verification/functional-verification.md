@@ -77,3 +77,77 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 **合否材料**: operationごとのtarget/action/revision/scope/authority/expiry、path独立性、実操作の有無、前後state、worker receipt、final eligible revision、結果状態、未完義務と差戻し先。
 
 本検証は完全自動failover、recovery time objective、automatic incident closure、service/business readinessを判定しない。
+
+## Stage 2a 追加範囲 — L2-003/004/005/009/010
+
+このStage 2a検証候補は [L3 FR/AC](../L3-requirements/functional-requirements.md) と同じ固定親句・identityに結ぶ。採択済みL2-005もこのStage 2aでは直接の対象親であり、Stage1の006用依存入力扱いを拡張しない。全caseは合成・非secret fixtureで設計し、現在の実装、実credential、production、recoveryの実成功を証明しない。未見正常fixtureは既存例の入力値を使い回さず、独立して宣言する。failure/partialの戻し先はACとcaseの双方に置く。
+
+### L2-003 resource/capacity cases
+
+| Case | FR/AC trace | Fixture・操作 | Oracle / owner |
+|---|---|---|---|
+| CASE-INFRA-003-01 normal | INFRA-003-FR-01 / INFRA-003-AC-01 | local/VPS/dedicated/cloud/container/GPU/Worker resourceを別identityで宣言し、source/revisionを付ける。 | 宣言resourceとtype/fieldを同一視せず追跡。未見typeはunknownを残す。 |
+| CASE-INFRA-003-02 negative / field-by-field | INFRA-003-FR-01 / INFRA-003-AC-02 | Network path各8軸を一軸ずつ欠落/ambiguousにする。logical CONNECT IDしかないfixtureも分ける。 | 欠落軸はunknown、routeは補完しない。security/purpose等を推測しない。 |
+| CASE-INFRA-003-03 unseen normal | INFRA-003-FR-01 / INFRA-003-AC-01, INFRA-003-AC-02 | 別に宣言した `resource-violet-04` と新protocolのpathを使い、8軸にsource/revisionを付ける。 | 未見名称でもscope内の型付き観測を保持。既存CASEの具体例を流用しない。 |
+| CASE-INFRA-003-04 owner return | INFRA-003-FR-01 / INFRA-003-AC-02 | logical pathとphysical path/security boundaryのowner情報が衝突する。 | path実状態を消さず、logical contractはCONNECT、security boundaryはSECURITY、source不明は観測元ownerへ返す。 |
+| CASE-INFRA-003-05 normal | INFRA-003-FR-02 / INFRA-003-AC-03 | persistent/temporary DB, evidence/artifact, queue, cache, log/metric, model storeを別宣言し6属性+recovery refを与える。 | 各category・attribute・source/revisionを識別。 |
+| CASE-INFRA-003-06 negative / storage fields | INFRA-003-FR-02 / INFRA-003-AC-03 | owner, durability, backup, retention, environment, confidentiality, recovery refの欠落を一つずつ試す。persistent/temporary誤結合も別試験。 | いずれもunknown/incomplete。temporary storeでbackup/recovery義務を満たしたとしない。 |
+| CASE-INFRA-003-07 unseen normal | INFRA-003-FR-02 / INFRA-003-AC-03 | CASE-003-05と異なる独立identity/fixtureで、同一categoryの新しいlog/metric storeを宣言する。 | 固定値を継承せず6属性とrecovery referenceを新fixtureで照合する。 |
+| CASE-INFRA-003-08 owner return | INFRA-003-FR-02 / INFRA-003-AC-03 | recovery reference ownerとstorage ownerのsource revisionが衝突する。 | storage観測を保持し、recovery requirement ownerへ矛盾を戻す。 |
+| CASE-INFRA-003-09 normal | INFRA-003-FR-03 / INFRA-003-AC-04 | scope内Model Runtimeのmodel/server/version/GPU-memory/concurrency/latency/capacity/health/endpointを各source-qualifiedで与える。external model API、local LLM、GPU server、distributed model server、tuned modelを各独立type fixtureとして分類する。Worker nodeは該当resource fieldsのみ与える。 | 全field/source/revisionを対象environmentへ結ぶ。知能scoreや操作authorityを出さない。 |
+| CASE-INFRA-003-10 negative / runtime fields | INFRA-003-FR-03 / INFRA-003-AC-04 | 上記Model Runtime fieldを一つずつ欠落/staleにする。各5 model typeでtype/class不一致のfixtureを個別に置く。別fixtureではscope外にModel Runtimeを置く。 | incomplete/unknownを維持。scope外runtimeの存在を仮定せずWorker資格を生成しない。 |
+| CASE-INFRA-003-11 unseen normal | INFRA-003-FR-03 / INFRA-003-AC-04 | 独立の宣言scopeに新Model Runtime identityと未知のserver/version値を入れる。 | 未見値を保持し適用fieldのsource/revisionを追跡する。 |
+| CASE-INFRA-003-12 owner return | INFRA-003-FR-03 / INFRA-003-AC-04 | Model quality値をresource capacityとして渡すmutationを加える。 | capacity observationとINTELLIGENCE/LABOのquality ownershipを分け、quality評価ownerへ返す。 |
+| CASE-INFRA-003-13 normal | INFRA-003-FR-04 / INFRA-003-AC-05 | known, source-qualified capacityと起動要求、適用される判定閾値の宣言有無を入力する。 | thresholdが無ければunknownを返し、あれば観測情報をOS/INTELLIGENCEへ渡す。配置/cost判断は生成しない。 |
+| CASE-INFRA-003-14 negative / capacity | INFRA-003-FR-04, INFRA-003-FR-05 / INFRA-003-AC-05, INFRA-003-AC-06 | shortage、unknown, stale, unmeasurable capacity、unbounded Job追加、unauthorized placementを別々に試す。 | safe-to-acceptを返さず decision ownerへ戻す。queue/pending/snapshot保持。 |
+| CASE-INFRA-003-15 unseen normal | INFRA-003-FR-04 / INFRA-003-AC-05 | 独立fixture `task-scope-05` に新resource typeと十分と宣言されたcapacityを与える。 | scope/source/decision-thresholdを個別照合して情報をhand offし、resource typeを選定しない。 |
+| CASE-INFRA-003-16 read/partial failure + owner return | INFRA-003-FR-05 / INFRA-003-AC-06 | 既知observation後にread failureとpartial updateを別々に注入し、別fixtureでsource owner不明を与える。 | 以前の値をcurrentにせず、失敗範囲・未完observation・queueを保持し、source ownerまたはOS/INTELLIGENCEへ戻す。 |
+
+### L2-004 observability cases
+
+| Case | FR/AC trace | Fixture・操作 | Oracle / owner |
+|---|---|---|---|
+| CASE-INFRA-004-01 normal | INFRA-004-FR-01, INFRA-004-FR-03 / INFRA-004-AC-01, INFRA-004-AC-03 | source/revision付きnormal resource/dependency/queue/runtime observationを独立に宣言する。 | state/source/target revisionを保持し、承認済みsourceにある分類だけを使う。 |
+| CASE-INFRA-004-02 negative / classifications | INFRA-004-FR-01 / INFRA-004-AC-01 | degraded/unavailable/capacity/dependency/data-network/security-isolation/unknownを個別入力し、unknownをhealthyにする変異を別で試す。 | 各親定義stateを区別、unknownのhealthy昇格は拒否。 |
+| CASE-INFRA-004-03 unseen normal | INFRA-004-FR-01, INFRA-004-FR-03 / INFRA-004-AC-01, INFRA-004-AC-03 | 異なるsource IDだが同じapproved observation contractに適合するnormal fixtureを新規宣言する。 | 新source/revisionを別identityで保持し、未見であることだけで失敗にしない。 |
+| CASE-INFRA-004-04 owner return | INFRA-004-FR-02, INFRA-004-FR-04 / INFRA-004-AC-02, INFRA-004-AC-04 | incident meaning/severity owner不明とcollector failureを別fixtureにする。 | meaning/severityはunknownで該当approved meaning ownerへ返す。collector failureはsource/collector ownerへ返しpending evaluationを保つ。 |
+| CASE-INFRA-004-05 negative / stale or missing | INFRA-004-FR-03, INFRA-004-FR-04 / INFRA-004-AC-03, INFRA-004-AC-04 | stale target revision、missing telemetry、unknown sourceをそれぞれ独立入力。L2-019詳細freshness fieldsは入力gateにしない。 | staleをcurrentにせずunknown/unobserved、L2-019を依存にしない。未確認resourceを保持。 |
+
+### L2-005 backup/restore/rollback cases
+
+| Case | FR/AC trace | Fixture・操作 | Oracle / owner |
+|---|---|---|---|
+| CASE-INFRA-005-01 normal | INFRA-005-FR-01 / INFRA-005-AC-01 | 対象/source revision、time、complete location、integrity、expiryが宣言されたbackupを独立fixtureとして記録する。 | backup recordの完全性だけを確認しrestoreableを推定しない。 |
+| CASE-INFRA-005-02 negative / backup fields | INFRA-005-FR-01 / INFRA-005-AC-01 | incomplete, wrong target/revision, integrity mismatch, expired, configured-only, artifact-exists-onlyを個別に注入する。 | 各々を別stateとし、restore successへ昇格しない。 |
+| CASE-INFRA-005-03 unseen normal | INFRA-005-FR-01 / INFRA-005-AC-01 | 異なるDB/resource identityを新規宣言し同じbackup fieldsを埋める。 | 新fixtureでsource/revision等を照合。CASE-005-01を重複宣言として再利用しない。 |
+| CASE-INFRA-005-04 owner return | INFRA-005-FR-01, INFRA-005-FR-04 / INFRA-005-AC-01, INFRA-005-AC-04 | backup source/target ownerが不明なpartial recordを入力する。 | success不可。欠落fieldとrecovery design owner/OSへの戻し先を表示し、未完 dutyを残す。 |
+| CASE-INFRA-005-05 normal actual restore | INFRA-005-FR-02 / INFRA-005-AC-02 | 独立restore環境でintegrity/reconnect/startup/verification evidenceを段階別に与える。 | 4 evidenceのsource/revisionが揃った場合にのみrestore resultをcompleteと記録する。 |
+| CASE-INFRA-005-06 negative / restore steps | INFRA-005-FR-02 / INFRA-005-AC-02 | integrity, dependency reconnect, startup, verification failureを一項目ずつ別fixtureで注入する。 | 対応evidenceの欠落を個別に検出しrestore success不可。failure stateと未完義務を保持。 |
+| CASE-INFRA-005-07 normal eligible rollback | INFRA-005-FR-03 / INFRA-005-AC-03 | version/config/artifact/dependency/data-compatible targetとrecovery procedureを結んだ別rollback fixtureを使う。 | eligible target/resultを追跡し、incident stateは変更しない。 |
+| CASE-INFRA-005-08 negative / rollback | INFRA-005-FR-03, INFRA-005-FR-04 / INFRA-005-AC-03, INFRA-005-AC-04 | incompatible fieldごと、unknown target、procedureなし、rollback後未確認を個別に入れる。 | rollback eligibility/success不可、incident close不可。recovery design owner/OSへ返し prior state保持。 |
+| CASE-INFRA-005-09 partial/unknown owner return | INFRA-005-FR-04 / INFRA-005-AC-04 | 部分restore後に未完verificationとowner ambiguityを与える。 | last eligible state/failure/unfinished dutiesを保持し、ownerを推測せず停止。 |
+
+### L2-009 Work/Change integration cases
+
+| Case | FR/AC trace | Fixture・操作 | Oracle / owner |
+|---|---|---|---|
+| CASE-INFRA-009-01 normal no-stage | INFRA-009-FR-01, INFRA-009-FR-02 / INFRA-009-AC-01, INFRA-009-AC-02 | 独立宣言のOS Work/Change identityとInfrastructure runtime/resource identityをversioned refsで結び、stage releaseを使わない。 | 通常接続は成立し、二重正本もstage待ちも発生しない。 |
+| CASE-INFRA-009-02 conditional stage normal | INFRA-009-FR-02 / INFRA-009-AC-02 | 別fixtureで明示的にOS-L2-014 stage packへ収載し、stage ID/pack revision/runtime revisionを別々に与える。 | conditionがあるときだけstage contractを参照し、identityの混同をしない。 |
+| CASE-INFRA-009-03 negative / mapping fields | INFRA-009-FR-01, INFRA-009-FR-03 / INFRA-009-AC-01, INFRA-009-AC-03 | target/runtime revision/Work ID/evidence refを一つずつ欠落・mismatch、stage IDとruntime revisionの誤併合を個別注入。 | resource change success不可。stage/current/rollback/pendingを保持。 |
+| CASE-INFRA-009-04 unseen normal | INFRA-009-FR-01, INFRA-009-FR-02 / INFRA-009-AC-01, INFRA-009-AC-02 | 新しいwork/change identityとresourceを独立fixture宣言でstage無しに接続する。 | 新規identityでも通常接続契約を照合できる。 |
+| CASE-INFRA-009-05 owner return | INFRA-009-FR-03 / INFRA-009-AC-03 | mismatch causeをWork/Change ownerとInfrastructure runtime ownerで別々に切替える。 | causeに対応OSまたはINFRA ownerへ戻し、状態と未完operationを残す。 |
+
+### L2-010 authorized Worker operations
+
+| Case | FR/AC trace | Fixture・操作 | Oracle / owner |
+|---|---|---|---|
+| CASE-INFRA-010-01 normal read-only | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | declared target/scope/read target、空write-set、適用可能なread authority、valid OS ticket/assignment、009 refを持つread-only observation。 | read-only観測を許し、operationからのwriteを拒否する。declared target resourcesのbefore/after不変を確認し、無関係resource変化はfailureにしない。write authority/005 dutyを要求しない。 |
+| CASE-INFRA-010-02 normal state-changing | INFRA-010-FR-01, INFRA-010-FR-02 / INFRA-010-AC-01, INFRA-010-AC-02 | 有効SECURITY authority/Worker contract/ticket/009 ref/update admission acceptedと、該当actionに適用される005 dutyを個別宣言。 | 指定範囲のみ開始。適用不要な005義務は持ち込まない。 |
+| CASE-INFRA-010-03 negative / authority | INFRA-010-FR-01, INFRA-010-FR-04 / INFRA-010-AC-01, INFRA-010-AC-04 | wrong target/action/revision/scope, expiry, credential scope mismatchを一項目ずつ独立negative fixtureにする。 | 各 mismatchで開始前拒否、SECURITY/OSへ返却、secret値は記録しない。 |
+| CASE-INFRA-010-04 negative / update admission | INFRA-010-FR-02 / INFRA-010-AC-02 | state-changing operationだけにdenied/unknown/mismatch/expired admissionを一つずつ与える。read-only対照fixtureは同じく有効なread authorityのままにする。 | mutating operation開始0。read-onlyはupdate admission不在だけでは拒否しない。 |
+| CASE-INFRA-010-05 independent recovery normal | INFRA-010-FR-03 / INFRA-010-AC-03 | OS/CP停止中に006独立path/別authorityを使うbootstrap/recovery fixtureを宣言し、復旧後result sync receiptも別段で与える。 | 開始時に停止OS ticket/009応答を要求しない。復旧後の同期は010 traceへ記録。 |
+| CASE-INFRA-010-06 negative / dependency route | INFRA-010-FR-03 / INFRA-010-AC-03 | OS停止中に通常OS/009 routeだけが利用可能なfixture、または006 path/authority欠落を個別に与える。 | operation開始0。006 path/SECURITY authorityの提供ownerへ返す。006側へresult sync義務は追加しない。 |
+| CASE-INFRA-010-07 unseen normal | INFRA-010-FR-01, INFRA-010-FR-03 / INFRA-010-AC-01, INFRA-010-AC-03 | 新しいresource identityとscope内の同じ限定bootstrap/recovery actionを独立宣言する。 | 未見resourceだけで拒否せず、全 authority条件を照合する。操作集合を増やさない。 |
+| CASE-INFRA-010-08 partial execution/owner return | INFRA-010-FR-04 / INFRA-010-AC-04 | operation途中のfailureで一部stateだけ変わったfixtureを入力し、責務原因はSECURITY/OS/INFRAごとに別case。 | success不可。actual before/after、receipt、未完recovery/rollback dutyを保持し原因ownerへ返す。 |
+| CASE-INFRA-010-09 negative / read-only write attempt | INFRA-010-FR-01 / INFRA-010-AC-01 | CASE-INFRA-010-01と同じdeclared target/scope/read targetを使い、read-only operationから対象resourceへのwriteを試行する。 | writeを適用前に拒否し、operation起因の対象resource変更を認めない。read-onlyの分類をmutatingとして通さない。 |
+| CASE-INFRA-010-10 negative contrast / unrelated state change | INFRA-010-FR-01 / INFRA-010-AC-01 | read-only operation中にdeclared read target外の無関係resourceだけが独立に変化するfixtureを用いる。declared target resourcesは変化させない。 | 無関係resourceのglobal digest差だけではread-only operationを失敗にしない。判定対象はdeclared target resourcesのbefore/afterとoperationのwrite-setに限る。 |

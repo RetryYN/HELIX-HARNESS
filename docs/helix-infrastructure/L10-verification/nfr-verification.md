@@ -36,3 +36,18 @@ stage: 1
 - 001のcoverageは100% declared-scope inventoryを候補にし、代表抽出、unknown除外、推定補完と比較する。実環境の存在全数は上流scope/sourceが定めるため、fixture上の列挙を実環境全数と主張しない。
 - 006のhealth probeは5秒×3回を1秒×1回、10秒×5回と比較する。選定理由は測定可能な上限と一過性遅延観測の両立で、製品SLO/incident policyではない。実際のtimeout retryがHELIX control plane依存の場合は独立性違反として扱う。
 - 候補の承認・修正はL3要件承認にまとめ、個別parameterごとにPOへ質問しない。要求の意味、scope、owner、versionが変わる場合だけL2へ戻す。
+
+## Stage 2a 追加範囲 — NFR測定候補
+
+測定対象は[Stage 2a NFR candidates](../L3-requirements/nfr-grade.md)にある6候補。測定設計であり、実行結果、実装合否、product SLOの決定ではない。各candidateのsource/revisionとselected resource/operation scopeを固定してから計測する。normal/negative/unseen-normal/owner-returnを同じ具体fixtureの重複宣言にせず、field failureは個別にmutationする。
+
+| NFR / parent | 測定母集団・方法 | Normal / individual negative oracle | 未見正常 / owner return / 記録 |
+|---|---|---|---|
+| INFRA-NFR-003-01 / L2-003 | Selected source cyclesのevent/receipt timestamp、interval、clock uncertainty、decision-age。candidate 2×intervalをsource別比較。 | Normal: recent value/ageをsource owner ruleと照合しつつcandidate 2×intervalの測定結果を記録。Negative: missed sample、stale、clock uncertaintyを一つずつ注入し、無期限 freshnessをcurrentへ通さない。技術候補測定はowner maximum未定でも継続し、実operation eligibilityは既存source契約と分離する。 | 独立したsource identity/intervalで再測定。owner maximum未定でもcandidateを測定し、その値だけでoperation eligibilityを決めない。実operationのcurrentnessは既存source契約に従い、契約上未定ならその状態を記録する。raw timestampではなく匿名fixture; age, interval, contract currentness, revision, statusを記録。 |
+| INFRA-NFR-003-02 / L2-003 | Operationに必要な各declared resourceのcapacity/current utilization/queue/concurrencyと予測burst。20%を比較候補にし決定値としない。 | Normal: owner-declared limitとobservationを分けて記録。Negative: 0/20/30% headroom scenariosとunknown thresholdを比較し、candidateだけでacceptしない。 | 別resource type/new operation fixtureで同じ測定を行う。operation limit owner不明ならOS/INTELLIGENCEへunknown return。resource別false accept/reject/cost distributionとscopeを記録。 |
+| INFRA-NFR-003-03 / L2-003 | Idle, burst, sustained-load windowsのsample countとsource interval。3 samples/2 intervalsをcandidateとして評価。 | Normal: owner/source-defined labelとの一致を記録。Negative: single sample noise、2/3/4 consecutive samplesを比較し、stable labelだけでsafe-to-acceptを出さない。 | 未見source interval/resourceの独立fixtureを追加。label oracle owner不明ならsource ownerへ返す。samples, interval, saturation/rejection/backpressure correlationを記録。 |
+| INFRA-NFR-005-01 / L2-005 | Selected isolated reversible artifact restoreのphase elapsed（integrity, dependency reconnect, startup, verification）を複数実行で測る。5mは探索candidateのみ。 | Normal: 全phase evidenceが揃い、5分technical candidateとの差を測る。Negative:各phase未完、5分超過、未宣言scopeを個別注入。owner deadline未定でもcandidate測定を続け、timeoutだけでbusiness incident/operation ineligibilityを確定しない。 | 別source/revisionのrestore fixtureでowner deadline未定でも5分candidateを含むdurationを再計測。candidate測定と既存期限契約に基づく実operation eligibility/SLAを分け、個別owner承認/parameter gateを作らない。phase p50/p95、censoring、scope、source/revision、契約期限の有無を記録。 |
+| INFRA-NFR-005-02 / L2-005 | 独立restore runsのrepeatability。3 runsは比較案。 | Normal: 1/3 runsの結果を別々に残し全phase trace可能。Negative: 1,2,3回目で結果が異なるfixtureを作り平均でfailureを隠さない。 | 新しいtarget/revisionでrunを分離。必要反復数のoracle owner不明ならrecovery design ownerへ返し3をpass gateにしない。run identity、phase variance、resource costを記録。 |
+| INFRA-NFR-004-01 / L2-004 | Declared required fieldsをresource-type applicability matrixで分類しcoverage ratio算出。 | Normal: applicable required fields全件presentまたは明示unknown。Negative: required fieldごとに1つずつ欠落、optional N/Aと混同、100%未満をhealthy扱いするmutation。 | 新しいresource type/sourceで適用表を別宣言。required-field owner不明ならsource/collector ownerへ返す。分子/分母/optional N/A/source/revision/classificationを記録。 |
+
+ここにbusiness pass/fail、incident severity、placement/cost acceptanceを追加しない。数値候補は通常のL3要件承認に付し、parameter別PO確認を作らない。
