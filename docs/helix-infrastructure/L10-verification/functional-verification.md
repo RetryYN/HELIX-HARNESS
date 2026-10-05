@@ -385,7 +385,6 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 | CASE-INFRA-025-S4-98 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 自動配置最適化欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OS/INTELLIGENCEの配置判断ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
 | CASE-INFRA-025-S4-99 | INFRA-025-AC-01, INFRA-025-AC-04 | 境界負例 | 高度な自動増減欠如を本接続の失敗条件にするだけを正常入力へ加える。 | 該当する誤identity/owner/権限代用/追加条件を成立させず、OS/INTELLIGENCEの配置判断ownerへ該当問題を戻す。最適化/高度増減だけの欠如で適格な接続を不合格にしない。 |
 | CASE-INFRA-025-S4-100 | INFRA-025-AC-02, INFRA-025-AC-03 | owner不明 | 資源不足のsourceは判明しているが資源ownerを識別できない。 | 戻し先を推測せず未解決owner、未完作業、元資源と移動先の観測状態を保持し接続成立を示さない。 |
-
 | CASE-INFRA-008-S4-40 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをmissingにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
 | CASE-INFRA-008-S4-41 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをunknownにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
 | CASE-INFRA-008-S4-42 | INFRA-008-AC-02 | 比較入力負例 | target identityだけをstaleにし、designは適用可能に保つ。 | 当該比較を保留し、CORE/design ownerへ不足/不一致を返す。三入力を変更せず未確認scopeを保持する。 |
