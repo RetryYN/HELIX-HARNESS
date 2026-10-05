@@ -439,3 +439,21 @@ judgment packのversion/applicability/shadow/review/rollback義務を示し、�
 018自己採択は `CASE-INTELLIGENCE-L10-018-02b` に復元し、LABO評価だけの採択は新しい `CASE-INTELLIGENCE-L10-018-02b-labo-only` へ分離した。両方は `AC-INTELLIGENCE-L3-018-02` を照合する。078 fallbackの新9反例は次の個別CASEで `AC-INTELLIGENCE-L3-078-10` を照合する。
 
 `CASE-INTELLIGENCE-L10-R2607-078-proxy-claim-identity`, `CASE-INTELLIGENCE-L10-R2607-078-proxy-claim-owner`, `CASE-INTELLIGENCE-L10-R2607-078-proxy-claim-version`, `CASE-INTELLIGENCE-L10-R2607-078-proxy-claim-evidence`, `CASE-INTELLIGENCE-L10-R2607-078-selected-read-fallback`, `CASE-INTELLIGENCE-L10-R2607-078-selected-qualification-fallback`, `CASE-INTELLIGENCE-L10-R2607-078-unreadable-receipt-other-receipt`, `CASE-INTELLIGENCE-L10-R2607-078-unreadable-receipt-unselected-source`, `CASE-INTELLIGENCE-L10-R2607-078-unreadable-receipt-reference-only`。
+
+**review08 個別trace追補**：固定L11:158/169/199、072 original:293/294/298、supplement:310を本文で照合した単独fixtureは次のとおり。親bytesや意味は変更しない。
+
+| 親 | AC | 個別CASE |
+|---|---|---|
+| `005` | `AC-INTELLIGENCE-L3-005-04` | `CASE-INTELLIGENCE-L10-R08-005-prerequisite-unfulfilled` |
+| `016` | `AC-INTELLIGENCE-L3-016-03` | `CASE-INTELLIGENCE-L10-R08-016-heldout-result-same-scope` |
+| `067` | `AC-INTELLIGENCE-L3-067-03` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-scope-missing` |
+| `067` | `AC-INTELLIGENCE-L3-067-03` | `CASE-INTELLIGENCE-L10-R08-067-evaluation-revision-missing` |
+| `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-shadow-pair-normal` |
+| `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-invented-threshold-reject` |
+| `072` | `AC-INTELLIGENCE-L3-072-07` | `CASE-INTELLIGENCE-L10-R08-072-added-case-success-reject` |
+| `072` | `AC-INTELLIGENCE-L3-072-08` | `CASE-INTELLIGENCE-L10-R08-072-external-knowledge-required-reject` |
+| `072` | `AC-INTELLIGENCE-L3-072-04` | `CASE-INTELLIGENCE-L10-R08-072-heldout-process-outside` |
+| `072` | `AC-INTELLIGENCE-L3-072-04` | `CASE-INTELLIGENCE-L10-R08-072-heldout-failure-mode-outside` |
+| `072` | `AC-INTELLIGENCE-L3-072-02` | `CASE-INTELLIGENCE-L10-R08-072-applicability-authority-mismatch` |
+| `072` | `AC-INTELLIGENCE-L3-072-02` | `CASE-INTELLIGENCE-L10-R08-072-applicability-risk-mismatch` |
+| `072` | `AC-INTELLIGENCE-L3-072-02` | `CASE-INTELLIGENCE-L10-R08-072-applicability-failure-mismatch` |

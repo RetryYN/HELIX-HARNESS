@@ -90,3 +90,5 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 技術候補が親の意味、scope、owner、versionを変える必要がある場合は候補のまま保持し、上流へ理由付きで戻す。parameterごとのPO承認やStage完了gateは追加しない。
 
 review06の母集団追補：018の自己採択単独とLABO評価単独を別CASEとして数える。078では代行主張による4 field省略、read/qualification失敗からの別source切替2件、読取不能receiptの3代用を各別CASEとして既存078 familyのplanned fixture母集団へ加え、索引や併発caseと重複計上しない。source-bound oracleと戻し先を個別照合し、未実測を0へ変えない。
+
+review08の機能測定追補：005未充足prerequisite1、016同scope未見結果正常1、067評価packetのscope/revision欠落2、072比較正常/閾値創作/case追加3、2.0外部知識必須化1、未見適用外工程/failure mode2、authority/risk/failure mode不一致3を各個別fixtureとして記録する。計13件は既存familyへ追加するplanned機能観測で、性能閾値・数値budget・authorityを追加しない。

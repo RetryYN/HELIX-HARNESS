@@ -69,3 +69,5 @@ Acceptance/evidenceは `functional-requirements.md` のFR-INT-066およびAC-INT
 | `HELIXINTELLIGENCE-L2-072` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-072-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
 | `HELIXINTELLIGENCE-L2-073` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-073-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
 | `HELIXINTELLIGENCE-L2-078` | 独立business criterionを追加しない。 | `FR-INTELLIGENCE-L3-078-01` のAC | owner/利用者のbusiness判断をINTELLIGENCEが代替しない。 |
+
+review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。

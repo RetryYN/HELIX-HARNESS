@@ -73,3 +73,5 @@
 | `CASE-INTELLIGENCE-L10-BIZ-072-01` | `HELIXINTELLIGENCE-L2-072` | `AC-INTELLIGENCE-L3-072-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
 | `CASE-INTELLIGENCE-L10-BIZ-073-01` | `HELIXINTELLIGENCE-L2-073` | `AC-INTELLIGENCE-L3-073-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
 | `CASE-INTELLIGENCE-L10-BIZ-078-01` | `HELIXINTELLIGENCE-L2-078` | `AC-INTELLIGENCE-L3-078-01` | 対象親の機能fixtureと責務境界を照合する。 | 機能判断は対応functional CASEで評価し、業務承認・事業成果は生成しない。 | 機能結果からowner/利用者判断、事業達成または独立business基準を推定したら不合格。 |
+
+review08追補の005/016/067/072各機能fixtureは対応ACへtraceする。独立business基準や業務成果の承認は追加せず、比較成立・候補成立・修復結果照合からownerの業務判断を生成しない。
