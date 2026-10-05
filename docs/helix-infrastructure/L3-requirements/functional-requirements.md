@@ -96,7 +96,7 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 
 ## Stage 2a 追加範囲 — L2-003/004/005/009/010
 
-この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。Stage 1の直前本文は bytesそのまま保持しており、Stage 1候補を採択済みauthorityへ昇格させない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。
+この付記は、固定PO採択済みL2のStage 2a範囲だけを起草する局所候補である。親L2/L11は `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択根拠はmain `633bf12ea8f948db8ba3d6600179c4a9507377a7` のPO決定に固定する。承認済みStage 1の6文書prefixはbytesそのまま保持するが、そのStage 1承認を今回のStage 2a候補revisionへ継承しない。今回直接の親対象は003/004/005/009/010の5 identityだけ。005はStage 2aの採択済み直接親であり、Stage 1の006への依存入力とは役割が異なる。006等ほかのStage/親を本追記へ加えない。
 
 ### 旧source起点・項目別処置
 
@@ -138,7 +138,7 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 | L2-009 | mapping mismatchの責務に応じOSまたはINFRA owner | L2-001/002/004とOS Work/Change interface。stage release依存はstage packへ実際に収載するときだけOS-L2-014を適用。`version_target: 1.0`。 |
 | L2-010 | authority/update admissionはSECURITY/OS、partial actual stateは該当INFRA owner | 全operationでL2-001と適用可能SECURITY authority/Worker。normal routeはOS+009、mutationだけupdate-admission、state changeに適用する005 duties、独立recoveryは006 path+別authority。`version_target: 1.0`。 |
 
-上のStage 1 scope境界はStage 1候補の対象限定としてそのまま保持する。Stage 2aの直接対象は本節の5採択親だけであり、Stage 1境界文の削除やStage 1候補のauthority化ではない。全5親の適用条件は固定L2/L11とPO採択revisionに従い、Stage 2a候補から要求の意味/scope/owner/versionを拡張しない。
+上のStage 1 scope境界はStage 1候補の対象限定としてそのまま保持する。Stage 2aの直接対象は本節の5採択親だけであり、Stage 1境界文を保持し、承認済みStage 1 prefixの承認を今回のStage 2a候補revisionへ継承しない。全5親の適用条件は固定L2/L11とPO採択revisionに従い、Stage 2a候補から要求の意味/scope/owner/versionを拡張しない。
 
 ### HELIXINFRASTRUCTURE-L2-003 — resource topology / capacity
 
