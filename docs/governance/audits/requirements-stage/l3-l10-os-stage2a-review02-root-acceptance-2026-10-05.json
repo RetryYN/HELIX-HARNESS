@@ -1,0 +1,53 @@
+{
+  "record_kind": "root_OS_stage2a_review02_acceptance",
+  "authority_effect": "none",
+  "latest_main": "4729c34ec29c2c72f345993958bbc94e1ed6f131",
+  "body_revision": "6fcc25ac9c646bac43cf83f7c140d66f140196d0",
+  "main_integration_revision": "11f7c544812b9e3eba0b4d52b827d9a8b8825c64",
+  "verification": {
+    "audit_path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-review02-correction-2026-10-05.json",
+    "body_revision": "629607dc39cd3996773566d0abbf0a7fa862e0aa",
+    "checks": {
+      "inherited_pins_total": 67,
+      "inherited_pins_pass": 67,
+      "inherited_pins_fail": 0,
+      "old_body_line_pins_total": 96,
+      "old_body_line_pins_pass": 96,
+      "old_body_line_pins_fail": 0,
+      "canonical6_all_pass": true,
+      "previous_immutable_records_total": 2,
+      "previous_immutable_records_unchanged": 2,
+      "correction03_line_pins_pass": 3,
+      "c13_old_snapshot_hash_is_not_public_body_hash": true,
+      "failures": []
+    },
+    "immutable_records": [
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-main-publication-repair02-2026-10-05.json",
+        "ok": true,
+        "sha256": "2bc59efecd7777ba2abadff4ec45b4a90dc299b703412f4b74a8ae8da635909c",
+        "source_sha256": "2bc59efecd7777ba2abadff4ec45b4a90dc299b703412f4b74a8ae8da635909c",
+        "recorded_source_revision": "46dffc94196a054a5bb7dee2b430b73a62fa0103",
+        "verified_source_revision": "46dffc94196a054a5bb7dee2b430b73a62fa0103",
+        "recorded_revision_contains_path": true
+      },
+      {
+        "path": "docs/governance/audits/requirements-stage/l3-l10-os-stage2a-review01-repair-2026-10-05-48be58f70.json",
+        "ok": true,
+        "sha256": "35ca19267a3e1354f67115d41af1d5da7a13c19cd56613603c5964363a3c9703",
+        "source_sha256": "35ca19267a3e1354f67115d41af1d5da7a13c19cd56613603c5964363a3c9703",
+        "recorded_source_revision": "3f4c513980c0509fa91c6dc8fc6988bce8809d0c",
+        "verified_source_revision": "4e280091e09805993fe9a6681e6913a602dce3de",
+        "recorded_revision_contains_path": false
+      }
+    ],
+    "c13": {
+      "old_audit_recorded_local_snapshot_sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+      "correction03_public_body_sha256_utf8": "ec73191641cef5fc5135049f6243212dd2e3972291800b50bced366da87ab6d2",
+      "relation": "different artifacts; old audit mismatch is explicitly excluded from inherited source-pin pass count"
+    }
+  },
+  "root_meaning_read": "review02修正の6差分・固定sourceとsummary、残3点差分・correction03全文を実読。元Major/Minorの独立解消判定は次のClaude reviewで確認する。",
+  "old_locator_correction": "旧immutable監査は変更しない。source_revision3f4c513は対象監査の導入commitではなく、正しい導入commitは4e280091e09805993fe9a6681e6913a602dce3de。原bytesの不変はそのcommitと照合した。",
+  "limitations": "C13は未解消/未reviewを保持。L3承認・操作許可を生成しない。"
+}
