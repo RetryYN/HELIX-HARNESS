@@ -78,9 +78,9 @@
 | `HELIXBRAIN-L2-018` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-018-FR-01` / AC-01〜03 |
 | `HELIXBRAIN-L2-019` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-019-FR-01` / AC-01〜03 |
 | `HELIXBRAIN-L2-020` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-020-FR-01` / AC-01〜03 |
-| `HELIXBRAIN-L2-021` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-021-FR-01` / AC-01〜03 |
-| `HELIXBRAIN-L2-022` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-022-FR-01` / AC-01〜03 |
-| `HELIXBRAIN-L2-023` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-023-FR-01` / AC-01〜03 |
-| `HELIXBRAIN-L2-030` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-030-FR-01` / AC-01〜05 |
+| `HELIXBRAIN-L2-021` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-021-FR-01` / AC-01〜04 |
+| `HELIXBRAIN-L2-022` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-022-FR-01` / AC-01〜04 |
+| `HELIXBRAIN-L2-023` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-023-FR-01` / AC-01〜04 |
+| `HELIXBRAIN-L2-030` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-030-FR-01` / AC-01〜06 |
 
 旧business起点`LEGACY-ASSET-A6E2C7F0565E5F804F06`（旧HARNESS `business-detail.md`、source span 21–39/84–104等）はHARNESS固有のBR-21/HM-08・集計条件である。旧区分構造を再導出し、当該値や条件は本対象へ適用しない。独立business outcomeを持つ後続固定親が起草対象になった場合だけ、同じ通常L3内で本書へ記録する。
