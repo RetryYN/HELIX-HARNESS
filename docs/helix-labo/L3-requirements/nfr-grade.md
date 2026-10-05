@@ -105,7 +105,7 @@
 | 親 | 測定候補 | 入力・比較 | 判定材料 |
 |---|---|---|---|
 | `HELIXLABO-L2-012` | episode/evidence/relation identity・revisionのtrace fidelity | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-012-C01`, `L10-LABO-012-C02`, `L10-LABO-012-C03`, `L10-LABO-012-C04`, `L10-LABO-012-C05`, `L10-LABO-012-C06` |
-| `HELIXLABO-L2-013` | 分類軸・根拠・unknownの個別保持 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-013-C01`, `L10-LABO-013-C02`, `L10-LABO-013-C03`, `L10-LABO-013-C04`, `L10-LABO-013-C05`, `L10-LABO-013-C06` |
+| `HELIXLABO-L2-013` | 分類軸・根拠・unknownの個別保持 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-013-C01`, `L10-LABO-013-C02`, `L10-LABO-013-C03`, `L10-LABO-013-C04`, `L10-LABO-013-C05`, `L10-LABO-013-C06`, `L10-LABO-013-C16` |
 | `HELIXLABO-L2-014` | 元意味/目的/条件と候補差分の対応 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-014-C01`, `L10-LABO-014-C02`, `L10-LABO-014-C03`, `L10-LABO-014-C04`, `L10-LABO-014-C05`, `L10-LABO-014-C06`, `L10-LABO-014-C07` |
 | `HELIXLABO-L2-015` | 比較armのtarget版・scope・oracle・条件一致 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-015-C01`, `L10-LABO-015-C02`, `L10-LABO-015-C03`, `L10-LABO-015-C04`, `L10-LABO-015-C05`, `L10-LABO-015-C06`, `L10-LABO-015-C07`, `L10-LABO-015-C08` |
 | `HELIXLABO-L2-016` | 比較可能性・反例・中断状態の保持 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-016-C01`, `L10-LABO-016-C02`, `L10-LABO-016-C03`, `L10-LABO-016-C04`, `L10-LABO-016-C05`, `L10-LABO-016-C06`, `L10-LABO-016-C07` |
@@ -125,6 +125,34 @@
 | `HELIXLABO-L2-030` | Product Core identity/source version/meaning分離 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-030-C01`, `L10-LABO-030-C02`, `L10-LABO-030-C03`, `L10-LABO-030-C04`, `L10-LABO-030-C05`, `L10-LABO-030-C06`, `L10-LABO-030-C07`, `L10-LABO-030-C08` |
 | `HELIXLABO-L2-034` | generic evidenceの複数meaning/product/episode支持範囲 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-034-C01`, `L10-LABO-034-C02`, `L10-LABO-034-C03`, `L10-LABO-034-C04`, `L10-LABO-034-C05`, `L10-LABO-034-C06`, `L10-LABO-034-C07` |
 | `HELIXLABO-L2-035` | 評価payload列挙・source revision・unassessed状態保持 | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-035-C01`, `L10-LABO-035-C02`, `L10-LABO-035-C03`, `L10-LABO-035-C04`, `L10-LABO-035-C05`, `L10-LABO-035-C06`, `L10-LABO-035-C07`, `L10-LABO-035-C08` |
-| `HELIXLABO-L2-058` | 呼出しごとの選択source dependency closure | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-058-C01`, `L10-LABO-058-C02`, `L10-LABO-058-C03`, `L10-LABO-058-C04`, `L10-LABO-058-C05`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11` |
+| `HELIXLABO-L2-058` | 呼出しごとの選択source dependency closure | 親に列挙された必須conditionごとに個別fixtureを定義。正例/各単独変異/未見正常を含む。 | planned fixtureを分母にし、identity・revision・scope・owner戻しを個別集計。unknown/missing/stale/mismatch/未完を別状態に保持し、禁止された正本書換え・昇格は0。case: `L10-LABO-058-C01`, `L10-LABO-058-C02`, `L10-LABO-058-C03`, `L10-LABO-058-C04`, `L10-LABO-058-C05`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25` |
 
 候補値の根拠比較：期待可能な技術値は固定L2/L11が列挙するidentity/版/範囲/状態を直接照合する完全一致候補とする。部分照合や異なるsourceの補完ではfield欠落・stale・誤帰属を隠すため採らない。割合は分母のある観測記述に限り、製品performance threshold、最低試行数、retention/SLAを固定親・旧sourceに由来する値として導入しない。
+
+## Stage 2b — Root検収追補fixtureを含むNFR trace
+
+以下の各親では、既存のcandidate measurementに列挙済みの母集団へ追補CASEを加え、valid/failed/missing/censoredとoracle pass/fail/unknownを別集計する。比率の分母0/不明は算出値なし。未実行の計画であり、まとめ表は個別CASEの代替でない。
+
+| 親 | AC | 追加L10 fixture IDs | 測定上の判定材料 |
+|---|---|---|---|
+| `HELIXLABO-L2-012` | `LABO-012-AC-02` | `L10-LABO-012-C07` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-013` | `LABO-013-AC-02` | `L10-LABO-013-C07`, `L10-LABO-013-C08`, `L10-LABO-013-C09`, `L10-LABO-013-C10`, `L10-LABO-013-C11`, `L10-LABO-013-C12`, `L10-LABO-013-C13`, `L10-LABO-013-C14`, `L10-LABO-013-C15` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-014` | `LABO-014-AC-02` | `L10-LABO-014-C08`, `L10-LABO-014-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-015` | `LABO-015-AC-02` | `L10-LABO-015-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-016` | `LABO-016-AC-01` | `L10-LABO-016-C08` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-018` | `LABO-018-AC-02` | `L10-LABO-018-C08` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-019` | `LABO-019-AC-02` | `L10-LABO-019-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-020` | `LABO-020-AC-02` | `L10-LABO-020-C09`, `L10-LABO-020-C10` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-021` | `LABO-021-AC-02` | `L10-LABO-021-C09`, `L10-LABO-021-C10` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-022` | `LABO-022-AC-02` | `L10-LABO-022-C09`, `L10-LABO-022-C10`, `L10-LABO-022-C11` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-023` | `LABO-023-AC-02` | `L10-LABO-023-C08`, `L10-LABO-023-C09`, `L10-LABO-023-C10` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-024` | `LABO-024-AC-02` | `L10-LABO-024-C08`, `L10-LABO-024-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-025` | `LABO-025-AC-02` | `L10-LABO-025-C08`, `L10-LABO-025-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-026` | `LABO-026-AC-02` | `L10-LABO-026-C08`, `L10-LABO-026-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-027` | `LABO-027-AC-02` | `L10-LABO-027-C09`, `L10-LABO-027-C10`, `L10-LABO-027-C11` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-028` | `LABO-028-AC-01`, `LABO-028-AC-02` | `L10-LABO-028-C09`, `L10-LABO-028-C10`, `L10-LABO-028-C11`, `L10-LABO-028-C12` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-029` | `LABO-029-AC-02` | `L10-LABO-029-C09` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-030` | `LABO-030-AC-02` | `L10-LABO-030-C09`, `L10-LABO-030-C10` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-034` | `LABO-034-AC-02` | `L10-LABO-034-C08` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-035` | `LABO-035-AC-01`, `LABO-035-AC-02` | `L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C11`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |
+| `HELIXLABO-L2-058` | `LABO-058-AC-01`, `LABO-058-AC-02` | `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |

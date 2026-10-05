@@ -28,6 +28,8 @@
 
 固定L2/L11から機能結果と独立した追加business outcome/ownerは導かれないため、22親にBR/AC/BCASEまたはBV/BCASEを重複追加しない。機能結果、失敗、未完、unknown、owner戻しは各親のL3 functional ACと個別L10 fixtureを照合する。LABO候補から業務完了、source authority変更、割当、実行、上流判断を生成しない。
 
+このStage 2b追補で追加した個別CASEは上記functional ACへのtraceであり、固定L2/L11にない独立business outcomeを生成しない。BR/BV/BCASEは引き続き追加せず、business側の照合先は各親のfunctional ACとL10 functional caseである。
+
 | 親 | 独立業務条件 | 正本AC | 照合先 |
 |---|---|---|---|
 | `HELIXLABO-L2-012` | 独立BRなし | `LABO-012-AC-01`, `LABO-012-AC-02` | `L10-LABO-012-C01` と各単独negative/held-out normal case |
