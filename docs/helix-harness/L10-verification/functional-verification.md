@@ -1760,7 +1760,5 @@ AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058�
 | `CASE-HARNESS-L10-040-r10-mixed-revision-coverage` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-02` | 全rowが同じ対象revision・source populationに属し、fieldとedgeがcurrentである。 | 一つのrowだけ別revisionから同じcoverageへ混入する。 | 混在coverageを拒否し、そのrowを対象revisionへ再照合する。別revisionのrowは同revisionのcoverage完了を補わない。HARNESS-L2-040のledger contractへ戻す。 |
 | `CASE-HARNESS-L10-034-r10-unseen-persistence-oracle-derivation` | `FR-HARNESS-L3-034` | `AC-HARNESS-L3-034-04` | 未見の保存方式を選択scopeに適用し、対象requirement/NFR、条件、既決target、対応する保存/投影oracleと結果を提示する。 | 変異なし。旧DB機能名や方式差だけを欠陥扱いしない。 | 既決metric意味から対応oracleを導ける範囲は候補として評価し、特定DB機能がないだけで拒否しない。適用性またはoracleがunknownならその条件だけ未評価で保持する。 |
 | `CASE-HARNESS-L10-034-r10-unselected-test-not-universally-required` | `FR-HARNESS-L3-034` | `AC-HARNESS-L3-034-04` | HARNESS-L2-005で選択された検証義務と、その適用理由・回収条件を保持する。 | scopeで選択も適用根拠もない特定検査手法を全ticket必須へ一律追加する。 | 一律追加を拒否し、選択済み義務と未完状態だけを保持する。選択されたfault/race/soak/crash-recovery等の条件は弱めずL2-005の既存選択へ戻す。 |
-
 | `CASE-HARNESS-L10-040-r10-l2-agreement-inference` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | catalogの対象revision/scopeと他のauthority・OS evidenceを固定し、L2合意の対象revision receiptだけを欠く。 | catalogの存在だけからL2合意済みと推定する。 | L2合意を生成せず、該当receiptをunknown/未完で保持する。固定HARNESS-L2-040のauthority境界へ戻す。 |
-
 | `CASE-HARNESS-L10-040-r10-l3-approval-inference` | `FR-HARNESS-L3-040` | `AC-HARNESS-L3-040-03` | catalogの対象revision/scopeと他のauthority・OS evidenceを固定し、L3要件承認の対象revision receiptだけを欠く。 | catalogの存在だけからL3要件承認済みと推定する。 | L3要件承認を生成せず、該当receiptをunknown/未完で保持する。固定HARNESS-L2-040のauthority境界へ戻す。 |
