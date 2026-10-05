@@ -379,11 +379,11 @@ execution_status: designed_only_not_executed
 
 | CASE ID | FR / AC | 独立fixture入力 | 期待oracle・戻し先 |
 |---|---|---|---|
-| `CASE-HARNESS-L10-017-R001` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
-| `CASE-HARNESS-L10-018-R001` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
-| `CASE-HARNESS-L10-019-R001` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
-| `CASE-HARNESS-L10-020-R001` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
-| `CASE-HARNESS-L10-024-R001` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | normal：同じ対象revision/scopeに親が要求する入力と根拠を揃えた正常fixture。 | 対応ACの出力とtraceを返し、candidateと承認・実行済み状態を区別する。 |
+| `CASE-HARNESS-L10-017-R001` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | normal：同一の製品artifact identity/revision/scopeについて、HARNESS-L2-022のVerified・Accepted段階evidence、開始時点からのRelease Port、対象環境・依存・security・rollback・配備条件を与える。 | 全条件と同じartifactへのtraceを確認しRelease-eligible候補を返す。配備せず、Observedを生成しない。 |
+| `CASE-HARNESS-L10-018-R001` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | normal：配備済み製品revisionと、そのownerが承認した可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observability各要求について、適用/N/A/unknownと決定owner・根拠を与える。 | 各軸の個別基準と状態を対象revisionへ結び、L12観測設計と同じ要求revisionへの再要求化経路を返す。実観測・運用済みとはしない。 |
+| `CASE-HARNESS-L10-019-R001` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | normal：COREだけを使い、対象stageを指定しない既存要件、既知のsource/revision/scope、対応する要求・設計・検証根拠を入力する。 | HELIX形式のpair候補と元入力へのtraceを返し、部分情報は該当箇所だけunknownとして保持する。先行stage実行や候補の承認を要求しない。 |
+| `CASE-HARNESS-L10-020-R001` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-01` | normal：隣接する前単位のoutput contractと次単位のinput contractが同版で互換し、artifact identity/revision、両契約owner、必要evidenceが同じhandoff scopeへ結び付く。未完義務の有無も明示する。 | field対応とownerを記録しhandoff候補を返す。未完義務は状態・owner付きで保持し、handoffを完了・release実行にしない。 |
+| `CASE-HARNESS-L10-024-R001` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | normal：同一target revision/scopeの既回答「対象actorはproject owner」と、未回答「data retentionの決定owner」「表示ラベル」を与える。影響・不確実性・下流変更cost・人間専決度の根拠とpackのtie-breakを付ける。 | actorを再質問せず、authority/data-useへの影響を持つretention ownerを表示ラベルより先に理由付き提示し、残る未決を同じscopeで保持する。 |
 | `CASE-HARNESS-L10-017-R002` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | external-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。出所だけを未見外部へ替える。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
 | `CASE-HARNESS-L10-017-R003` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | no-os-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。OSは未使用で利用者配備手段へ渡す。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
 | `CASE-HARNESS-L10-017-R004` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 未回収の省略検査：正常fixtureの未回収の省略検査だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
@@ -517,7 +517,7 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-024-R046` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 訂正率：他の必須未決を残し訂正率だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
 | `CASE-HARNESS-L10-024-R047` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | iteration数：他の必須未決を残しiteration数だけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
 | `CASE-HARNESS-L10-024-R048` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | 無変更iteration：他の必須未決を残し無変更iterationだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
-| `CASE-HARNESS-L10-024-R049` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | timeout：他の必須未決を残しtimeoutだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
+| `CASE-HARNESS-L10-024-R049` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-05` | timeout-success：必須のdata-retention owner回答がopenのまま応答timeout eventだけが到着し、engine出力が当該候補を完了扱いする変異。 | timeoutを成功/回答/合意に変換せず、retention owner open item・actor/scope/target revision・最後のevent・owner/re-entryを保持して停止する。timeout単独からfreeze・採択・操作許可を生成しない。 |
 | `CASE-HARNESS-L10-024-R050` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | Issue：他の必須未決を残しIssueだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
 | `CASE-HARNESS-L10-024-R051` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | PR：他の必須未決を残しPRだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
 | `CASE-HARNESS-L10-024-R052` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | CI：他の必須未決を残しCIだけを収束または承認根拠にする。 | 単独根拠で未決を閉じず合意・freeze・採択・操作許可を生成しない。 |
@@ -528,3 +528,10 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-024-R057` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | human-value：金額/権限/法務等の人間専決値をengineが推定する。 | 原文/選択肢/推奨/影響候補付き判断待ちへ返し値やauthorityを確定しない。 |
 | `CASE-HARNESS-L10-024-R058` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | os-engine：OSに別engine/question service/approval ledgerの意味所有を追加する。 | 責務追加を拒否しHARNESS意味と既存OS event責務を分ける。 |
 | `CASE-HARNESS-L10-024-R059` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-06` | unseen-fixture：同じscopeの未見fixture母集団を固定し質問量・訂正率・必須見逃しのoracleを付ける。 | same-fixture母集団と別に結果を対応し、engine/pack revision、scope、分母・測定方法で再測定可能にする。実測値は未実行のまま。 |
+| `CASE-HARNESS-L10-017-R015` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | provisional：R001のartifact、Release Port、対象環境、依存、security、rollback、必要evidenceを保ち、成果物stateだけを④のProvisionalへ変える。 | Verified/Acceptedとして扱わずRelease-eligibleにしない。HARNESS-L2-022の未完な段階条件を特定し、該当する検証・受入条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R016` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | external-022-contract-mismatch：外部成果のartifact・環境・Release Port等をR001相当に揃え、HARNESS-L2-022のacceptance evidenceが参照する対象L2 requirement revisionだけを現在の要求revisionと異なる版にする。 | 外部成果の自己申告を現在の契約でのVerified/Acceptedの代替にせずeligibleにしない。不一致を具体化し、該当L2-022 verification/acceptance contract ownerへ戻す。 |
+| `CASE-HARNESS-L10-020-R018` | `FR-HARNESS-L3-020` / `AC-HARNESS-L3-020-02` | owner-out-of-scope：R001の隣接契約・版・artifact・必要evidenceを保ち、handoff義務一件のowner割当だけを前後いずれの契約責務も持たない主体へ変える。 | 誤った割当で義務を閉じずhandoffを保留する。該当する前単位output contract ownerまたは次単位input contract ownerへ割当不一致を返し、正しいownerを根拠なく補わない。 |
+| `CASE-HARNESS-L10-024-R060` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | priority-order-only：R001と同じ既回答・未回答・priority evidenceを保ち、engineの質問順だけを「表示ラベルをretention ownerより先」に入れ替える。 | priority-order-onlyの結果を不合格とし、既回答actorは再質問せず、authority/data-useへの影響があるretention ownerを先に提示する。根拠のない数値weightは要求しない。 |
+| `CASE-HARNESS-L10-024-R061` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | stale-target-answer：既回答は過去のtarget L1 revisionに結び付いているが、現在target revisionだけを新revisionへ変える。他のsource、scope、回答内容は保持する。 | 旧回答を現在revisionへ流用せず対象回答をstale/再確認要として示す。影響identityだけを、固定された対象L1の既存requirement ownerへ返し、新回答・合意を生成しない。 |
+| `CASE-HARNESS-L10-024-R062` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-02` | stale-source-answer：既回答が参照するsource revisionだけを現行入力と異なるものへ変える。他のtarget revision、scope、回答内容は保持する。 | source revision不一致を記録し、旧回答をcurrentへ流用しない。影響identityだけを入力sourceの既存ownerへ戻し、owner/差分の意味が未知ならunknownを保持する。 |
+| `CASE-HARNESS-L10-024-R063` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-04` | stale-prototype-agreement：prototype合意が結び付くtarget revisionだけをcandidateの現行target revisionと異ならせる。scopeと他の形成項目は保持する。 | 古い合意を適用済み扱いせず当該適用性を未確定として保持し、既存合意recordに記録されたactor/判断ownerへ再確認を返す。identityがなければunknownを残し、新しい合意やfreezeを生成しない。 |
