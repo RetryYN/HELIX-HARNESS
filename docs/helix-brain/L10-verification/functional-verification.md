@@ -820,24 +820,24 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 
 ## Stage 5 — HELIXBRAIN-L2-024/025 総合検証候補
 
-**状態：未実行・L3未承認の検証設計。** 各caseは独立fixtureとし、成功は記述された入力・revision・契約に限る。G0 Stage 5は順序分類で、全Stage完了gate、追加承認、実装・実行許可を作らない。旧RCLS paired acceptanceはoracle分類の意味を比較するために読み、旧schema、runtime、shadow、cross-project人承認は持ち込まない。
+**状態：未実行・L3未承認の検証設計。** 索引C10/C15（024）およびC25/C34（025）を除く各caseは独立fixtureとし、成功は記述された入力・revision・契約に限る。G0 Stage 5は順序分類で、全Stage完了gate、追加承認、実装・実行許可を作らない。旧RCLS paired acceptanceはoracle分類の意味を比較するために読み、旧schema、runtime、shadow、cross-project人承認は持ち込まない。
 
 ### `HELIXBRAIN-L2-024` — `BRAIN-024-FR-01`, `BRAIN-024-AC-01/02`
 
 - 固定source：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:454-463`、paired L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:64`、PO decision row `helix-brain-requirements-po-decision-2026-09-28.md:83`。L2-019/020/022とL2-INFRA-009/010/012/017の関係は対応句を照合し、各ownerを別recordとして扱う。
 - **L10-BRAIN-024-C01 — 正常な設計知識route（AC-01）**：合成fixture `infra-pattern:observability@r7` にsource `l1-seed:architecture-42@r3`、scope `design/core-api`、required condition `latency-budget` を持たせ、HARNESS-CORE向けreceiptはcandidate identity/revision `infra-pattern:observability@r7`を参照し、source identity/revision `l1-seed:architecture-42@r3`へtraceする。選択contractはL2-019/022 `contract-r2`、Runtime実状態や製品固有の設計選択は入力に含めない。**期待oracle**：選択したCORE routeだけを検証し、source/revision/scopeとreceiptが一致する。
-- **L10-BRAIN-024-C02 — 正常なLABO評価route（AC-01）**：合成fixture `infra-pattern:restore-check@r4` のsource `runtime-owner:helix@run-22` をRuntime ownerが保持し、LABO評価 `eval-31` はtarget revision `r4`、scope `restore/rehearsal`、method `compare-restore-steps`、result `observed`、failure `none-recorded`、counterexample `single-region-only`、unassessed range `multi-region` を記録する。L2-020 receiptは同じcandidate revisionを指す。**期待oracle**：Runtime owner、LABO評価、BRAIN candidateを別identityで追跡し、未評価範囲を保持する。
-- **L10-BRAIN-024-C03 — 実状態readの迂回（AC-02）**：BRAINがInfrastructure Runtimeの実server/network/database stateを直接readする。**期待oracle**：readを拒否しRuntime ownerを明記する。
-- **L10-BRAIN-024-C04 — 実状態writeの迂回（AC-02）**：BRAINがRuntime ownerの実状態を変更または書き込む。**期待oracle**：writeを拒否しRuntime ownerを明記する。
-- **L10-BRAIN-024-C05 — 実績からの直接learning（AC-02）**：Runtime resultがLABO evaluationを経ずBRAIN knowledge stateへ直接反映される。**期待oracle**：candidate promotionを止め、評価経路をLABO、registration/routingをOSとして示す。
+- **L10-BRAIN-024-C02 — 正常なLABO評価route（AC-01）**：合成fixture `infra-pattern:restore-check@r4` のsource `runtime-owner:helix@run-22`（owner identity `HELIX-INFRASTRUCTURE`） をRuntime ownerが保持し、LABO評価 `eval-31` はtarget revision `r4`、scope `restore/rehearsal`、method `compare-restore-steps`、result `observed`、failure `none-recorded`、counterexample `single-region-only`、unassessed range `multi-region` を記録する。L2-020 receiptは同じcandidate revisionを指す。**期待oracle**：Runtime owner、LABO評価、BRAIN candidateを別identityで追跡し、未評価範囲を保持する。
+- **L10-BRAIN-024-C03 — 実状態readの迂回（AC-02）**：C02の他入力を保持し、接続方式だけをBRAINから実server/network/database状態を直接readする方式へ変更する。**期待oracle**：readを拒否しRuntime ownerを明記する。
+- **L10-BRAIN-024-C04 — 実状態writeの迂回（AC-02）**：C02の他入力を保持し、接続方式だけをBRAINがRuntime実状態へ直接writeする方式へ変更する。**期待oracle**：writeを拒否しRuntime ownerを明記する。
+- **L10-BRAIN-024-C05 — 実績からの直接learning（AC-02）**：C02のsource/revision/scopeを保持し、接続方式だけをRuntime resultからBRAIN knowledge stateへの直接learningへ変更する。**期待oracle**：直接learningを止め、固定024の評価経路をLABOへ返す。OSの責務は025に置き、本CASEの戻し先にはしない。
 - **L10-BRAIN-024-C06 — server state保存（AC-02）**：C02のfixtureに実server state `node-4/ready` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。
 - **L10-BRAIN-024-C07 — network state保存（AC-02）**：C02のfixtureに実network state `segment-2/route-active` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。
 - **L10-BRAIN-024-C08 — database state保存（AC-02）**：C02のfixtureに実database state `db-3/replica-lag-observed` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。
-- **L10-BRAIN-024-C09 — 操作権限保存（AC-02）**：runtime操作権限をBRAIN knowledgeとして保持する。**期待oracle**：保存/所有を拒否し、権限のruntime ownerへ返す。
+- **L10-BRAIN-024-C09 — 操作権限保存（AC-02）**：C02の他入力を保持し、実runtime操作権限の保存先だけをBRAIN knowledgeへ変更する。**期待oracle**：保存/所有を拒否しRuntime ownerへ返す。
 - **L10-BRAIN-024-C10 — raw log/metrics保存（AC-02、索引）**：独立な単独変異は `L10-BRAIN-024-C34` と `L10-BRAIN-024-C35`。
-- **L10-BRAIN-024-C11 — Core経路の省略（AC-02）**：BRAIN候補を製品固有設計として直接採択する。**期待oracle**：採択を行わず製品HARNESS-COREへ戻す。
-- **L10-BRAIN-024-C12 — LABO迂回promotion（AC-02）**：Runtime ownerの実績があるがLABO評価receiptがない。**期待oracle**：候補をaccepted/matureにせずLABOへ返す。
-- **L10-BRAIN-024-C13 — owner identityの混同（AC-02）**：Runtime actual state、LABO evaluation、BRAIN generic knowledgeのowner identityを同一recordへ畳み込む。**期待oracle**：混同を拒否し、別ownerと対象revisionを維持する。
+- **L10-BRAIN-024-C11 — Core経路の省略（AC-02）**：C01のsource/revision/knowledgeを保持し、製品固有設計の採択経路だけをCORE経由からBRAIN直接採択へ変える。**期待oracle**：直接採択を拒否し製品HARNESS-COREへ戻す。
+- **L10-BRAIN-024-C12 — LABO迂回promotion（AC-02）**：C02のRuntime owner実績と他入力を保持し、LABO評価receiptだけを欠落させる。**期待oracle**：候補をaccepted/matureにせずLABOへ返す。
+- **L10-BRAIN-024-C13 — owner identityの混同（AC-02）**：C02のreceipt/revision/scopeを保持し、Runtime/LABO/BRAINのowner記録の分離方式だけを一つのowner identityへの畳込みへ変える。**期待oracle**：混同を拒否し、固定024の各ownerと対象revisionを維持する。
 - **L10-BRAIN-024-C14 — 評価candidate revisionの不一致（AC-02、単独変異）**：C02と同一入力からLABO evaluation targetだけを`r3`へ変え、candidate/source/scopeと他receiptは一致したままにする。**期待oracle**：revision mismatchを検出して評価状態を採用へ進めずLABOへ返す。
 - **L10-BRAIN-024-C15 — 選択dependencyのunknown/known mismatch（AC-02、索引）**：実在する単独fixture `L10-BRAIN-024-C18`, `L10-BRAIN-024-C19`, `L10-BRAIN-024-C20`, `L10-BRAIN-024-C21`, `L10-BRAIN-024-C22`, `L10-BRAIN-024-C23`, `L10-BRAIN-024-C24`, `L10-BRAIN-024-C25`, `L10-BRAIN-024-C26`, `L10-BRAIN-024-C27`, `L10-BRAIN-024-C28`, `L10-BRAIN-024-C29`, `L10-BRAIN-024-C30`, `L10-BRAIN-024-C31`, `L10-BRAIN-024-C36`, `L10-BRAIN-024-C37`, `L10-BRAIN-024-C38`, `L10-BRAIN-024-C39`を参照する。各fixtureは選択済みcontractのidentityまたはrevisionを1項目だけunknownまたは既知不一致にする。選択していないdependencyは判定対象外。
 - **L10-BRAIN-024-C16 — evaluation source identity不一致（AC-02、単独変異）**：C02の評価receiptのsource identityだけを別sourceへ変える。**期待oracle**：source mismatchとしてLABOへ返し、candidate側sourceは保持する。
@@ -865,6 +865,14 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-024-C37 — 選択L2-INFRA-010 contract identity不一致（AC-02、単独変異）**：C36のidentityだけ既知の別contractへ変える。**期待oracle**：known mismatchとして拒否する。
 - **L10-BRAIN-024-C38 — 選択L2-INFRA-010 contract revision unknown（AC-02、単独変異）**：C36 fixtureでrevisionだけunknownにし、identityを一致させる。**期待oracle**：revisionを補完しない。
 - **L10-BRAIN-024-C39 — 選択L2-INFRA-010 contract revision不一致（AC-02、単独変異）**：C38のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchとして拒否する。
+
+- **L10-BRAIN-024-C40 — 対象製品Runtime ownerの正常経路（AC-01）**：C02の構造を使い、対象を合成製品 `product:sample@r4`、Runtime sourceを `runtime-owner:sample@run-22`、実状態ownerを `product-runtime-owner:sample` と宣言する。LABO評価とBRAIN candidateのsource/revision/scopeはこの対象に一致する。**期待oracle**：対象製品の実状態は当該製品Runtime ownerが保持し、HELIX-INFRASTRUCTUREへ移さず、LABO経由でcandidateへ接続できる。
+- **L10-BRAIN-024-C41 — HELIX自身の実状態owner取り違え（AC-02）**：C02の対象とreceiptを保持し、実状態owner identityだけをHELIX-INFRASTRUCTUREから `product-runtime-owner:sample` へ変える。**期待oracle**：固定024のHELIX自身のowner境界との不一致を拒否し、実状態・操作はHELIX-INFRASTRUCTUREへ戻す。
+- **L10-BRAIN-024-C42 — 対象製品の実状態owner取り違え（AC-02）**：C40の対象とreceiptを保持し、実状態owner identityだけを `product-runtime-owner:sample` からHELIX-INFRASTRUCTUREへ変える。**期待oracle**：対象製品のowner境界との不一致を拒否し、当該製品Runtime ownerへ戻す。
+- **L10-BRAIN-024-C43 — 汎用Pattern意味の戻し先（AC-02）**：C01のsource/revision/receiptと製品固有の採択状態を保持し、汎用Pattern意味だけを選択済み設計知識契約と不整合なものへ変える。**期待oracle**：設計知識の受領を止め、汎用Pattern意味の不整合は固定024どおりBRAINへ戻す。COREの製品設計採否やRuntime状態を変更しない。
+- **L10-BRAIN-024-C44 — credential流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ合成credential参照だけを流入させる（秘密値は用いない）。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。保存拒否だけで受領を継続しない。
+- **L10-BRAIN-024-C45 — raw runtime data流入時の受領停止（AC-02）**：C02の他入力を保持し、BRAIN候補packetへ実runtime logを模した合成raw dataだけを流入させる。**期待oracle**：固定024どおり受領を止めRuntime ownerへ返す。実log保存を許可しない。
+
 ### `HELIXBRAIN-L2-025` — `BRAIN-025-FR-01`, `BRAIN-025-AC-01..05`
 
 - 固定source：L2 `docs/helix-brain/L2-requirements/brain-requirements.md:464-473`、paired L11 `docs/helix-brain/L11-acceptance/brain-acceptance.md:65`、PO decision row `helix-brain-requirements-po-decision-2026-09-28.md:84`。L2-007/008/009/011/012/020を照合し、Infrastructure maturityは該当candidateだけL2-INFRA-017へ結ぶ。
@@ -876,10 +884,10 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-025-C06（AC-02、単独誤昇格）** documentが存在するだけでaccepted/matureにする。**期待**：document existenceを状態根拠にしない。
 - **L10-BRAIN-025-C07（AC-03、順序逆転・receipt存在）**：C01のLABO evaluation receiptとOS registration/routing receiptは両方存在し、identity/revisionは一致するがOS receipt timestampだけがLABO receiptより前。**期待**：順序不成立として採否未完のままにし、両receiptの存在と時刻を保持する。欠落/unknownとは返さない。
 - **L10-BRAIN-025-C08（AC-03、順序逆転・receipt存在）**：C01のOS registration/routing receiptとBRAIN verification receiptは両方存在し、identity/revisionは一致するがverification timestampだけがOS receiptより前。**期待**：順序不成立として採否未完のままにし、両receiptの存在と時刻を保持する。欠落/unknownとは返さない。
-- **L10-BRAIN-025-C09（AC-03、順序逆転）** BRAIN change independent verification前にadoptionを確定する。**期待**：adoptionを拒否しBRAIN change ownerへ返す。
+- **L10-BRAIN-025-C09（AC-03、順序逆転・receipt存在）**：C01のverification receiptとadoption receiptは両方存在しidentity/revisionは一致する。adoption timestampだけをverificationより前へ変える。**期待**：順序不成立としてadoptionを拒否しBRAIN change ownerへ返す。両receiptの存在と時刻を保持し、欠落/unknownへ読み替えない。
 - **L10-BRAIN-025-C10（AC-02、単独欠落）** source identityを欠落させる。**期待**：source不足を特定しLABOへ返す。
-- **L10-BRAIN-025-C11（AC-02、単独欠落）** provenanceを欠落させる。**期待**：由来不明でcandidateを保留する。
-- **L10-BRAIN-025-C12（AC-02、単独欠落）** candidate revisionを欠落させる。**期待**：revisionを推定せずLABO/該当knowledge ownerへ返す。
+- **L10-BRAIN-025-C11（AC-02、単独欠落）**：C01の他入力を保持しprovenanceだけを欠落させる。**期待**：由来不足としてcandidateを保留しLABOへ返す。
+- **L10-BRAIN-025-C12（AC-02、単独欠落）**：C01の他入力を保持しcandidate revisionだけを欠落させる。**期待**：revisionを推定せず、固定025のsource/evaluation不足の担当LABOへ返す。
 - **L10-BRAIN-025-C13（AC-02、単独欠落）** LABO evaluation identityを欠落させる。**期待**：評価済みと扱わずLABOへ返す。
 - **L10-BRAIN-025-C14（AC-02、単独欠落）** evaluation scopeを欠落させる。**期待**：評価範囲を推定せずLABOへ返す。
 - **L10-BRAIN-025-C15（AC-02、単独欠落）** evaluation methodを欠落させる。**期待**：評価方法を推定せずLABOへ返す。
@@ -896,7 +904,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-025-C26（AC-03、verification target mismatch）** independent verificationは存在するが別BRAIN change revisionを対象にしている。**期待**：現revisionの検証を未確認としてBRAIN change ownerへ返す。
 - **L10-BRAIN-025-C27（AC-04、正常hold）** evidence不足を明示した正当なholdを与える。**期待**：holdを正規状態として保持し、accepted/matureへ進めない。
 - **L10-BRAIN-025-C28（AC-04、正常reject）** scope条件に不適合なcandidateの根拠付きrejectを与える。**期待**：rejectと理由を保持し、失敗を汎用knowledgeへ自動昇格しない。
-- **L10-BRAIN-025-C29（AC-04、Infrastructure maturity適用）**：candidate `infra-pattern:restore-check@r4` でmaturity選択を明示し、L2-INFRA-017のstate `observed` とevidence `eval-31` が同じrevision `r4` を指す。**期待**：state/evidence/revisionを照合し、maturityを独立採用権限にしない。
+- **L10-BRAIN-025-C29（AC-04、Infrastructure maturity適用）**：candidate `infra-pattern:restore-check@r4` でmaturity選択を明示し、BRAIN文書内の `HELIXBRAIN-L2-INFRA-017`（382–391行）のstate `observed` とevidence `eval-31` が同じrevision `r4` を指す。**期待**：state/evidence/revisionを照合し、maturityを独立採用権限にしない。
 - **L10-BRAIN-025-C30（AC-04、maturity非該当の正常）**：非-Infrastructure internal candidateはC01どおり他の必須receiptを満たす。**期待**：L2-INFRA-017 fieldを要求せず通常pathを許す。
 - **L10-BRAIN-025-C31（AC-05、製品固有意味）** sourceに製品要求、業務規則または製品固有判断が含まれる。**期待**：generic BRAIN knowledgeへの採用を拒否し該当Product Coreへ戻す。
 - **L10-BRAIN-025-C32（AC-05、generic meaning正常）** product-specific remainderを除いたgeneric design knowledge candidateにsource/provenanceがあり、他の段階も満たす。**期待**：製品意味を混ぜず通常のLABO→OS→BRAIN pathで評価・検証できる。
@@ -919,3 +927,7 @@ CASE番号は各親見出し内で一意。各列の固定句は親source全文�
 - **L10-BRAIN-025-C49（AC-04、選択maturity revision mismatch）**：C29のmaturity evidence revisionだけを`r3`にする一変異。**期待**：revision mismatchとして保留し、maturity選択済みscopeに限ってL2-INFRA-017へ返す。
 
 **全case共通の観測点**：candidate/source/revision tuple、LABO evaluation identity/scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change/verifier/evidence/result/target revision、adoption/maturity state、Product Core境界、unknown/hold/rejectと戻し先。正常caseは正しいowner経路を許し、反例caseは当該変異を特定して状態を保留/拒否する。旧test designの実行を検証証拠にしない。
+
+- **L10-BRAIN-025-C50（AC-02、LABO評価だけの誤昇格）**：C01のcandidate/source/revisionを固定し、昇格根拠だけをLABO評価単独へ変える。**期待**：evaluationだけからaccepted/matureを生成せず、固定025の状態順序と未完義務を保持する。
+- **L10-BRAIN-025-C51（AC-02、OS ticketだけの誤昇格）**：C01のcandidate/source/revisionを固定し、昇格根拠だけをOS ticket単独へ変える。**期待**：ticketの存在だけからaccepted/matureを生成せず、固定025の独立検証・採否を代替しない。
+- **L10-BRAIN-025-C52（AC-02、知識意味の戻し先）**：C01のsource/provenance/revisionと各receiptを保持し、generic knowledge meaningだけを該当L1の固定意味と不整合へ変える。**期待**：知識意味の不整合として採用を止め、固定025どおり該当L1へ戻す。source/evaluation不足としてLABOへ振り替えない。
