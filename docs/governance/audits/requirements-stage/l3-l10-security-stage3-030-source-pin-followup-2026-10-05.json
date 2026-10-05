@@ -1,0 +1,117 @@
+{
+  "record_kind": "security_stage3_030_superseded_source_pin_correction",
+  "authority_effect": "none",
+  "independent_review_status": "not_claimed; root/independent review outstanding",
+  "body_revision": "95d7194ddeee444eae702557135ea3227ec40fba",
+  "parent_correction_record": "629f2bb7b3cf73cde49fe33c87964f954d86a0aa",
+  "previous_immutable_repair_record": {
+    "commit": "58b1703a2a156cdf7af8a6f2c5571cc14a71f03c",
+    "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-review01-repair-2026-10-05.json",
+    "sha256": "05b83dc8f9881a7ff8defdb21860215ce0e62ac53af313d3f9e003cb588e1002"
+  },
+  "superseded_incorrect_source_pins": {
+    "6fab_governance_path": {
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "full_sha256": "1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+      "bytes": 62494,
+      "spans": [
+        {
+          "start": 181,
+          "end": 181,
+          "sha256_raw_lf": "5b555238fe97c7f434f88fdb30dd36c9492afe7904957940144ef8f4831c5b8a",
+          "literal": "receiptへraw invocationとして出力しない。旧`mode`／`model`／`catalog_route_id`／`route_class`／旧route"
+        },
+        {
+          "start": 290,
+          "end": 291,
+          "sha256_raw_lf": "8772366327d2b878dbfea3ed4686ceb24c7bf096da13e0bec057bb0b0d9067e0",
+          "literal": "   license／attribution、build environmentを束縛する。manifest外file、重複path、digest driftを拒否する。\n2. **自己適用除外**: project固有PLAN／design／test evidence、`harness.db`、`.helix` runtime state／memory、"
+        }
+      ]
+    },
+    "2d499_governance_path": {
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "full_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "bytes": 64313,
+      "spans": [
+        {
+          "start": 187,
+          "end": 187,
+          "sha256_raw_lf": "c4d4d05e49eb6d7d798eb57fb54ad0685b46843d82c424ef2c0b954a58f888c0",
+          "literal": "current routing consumerは、観測`signal`を4.2.1のtyped classificationへ変換した後にだけ、4.2.2の"
+        },
+        {
+          "start": 299,
+          "end": 300,
+          "sha256_raw_lf": "14181f0cada93ba2c85f9ff6943129f984c161ccec5a708725669d6194e808fa",
+          "literal": "`RetryYN/HELIX-HARNESS-DevOS`とする。旧`RetryYN/HELIX-HARNESS-OS`はcompatibility inputに限り、\ncurrent authority、CLI、setup、doctor、receipt、tag pinへ再投影しない。配布artifactはHELIX-HARNESS自身のdogfoodを複製するsnapshotではなく、"
+        }
+      ]
+    }
+  },
+  "old_canonical_literals": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 445,
+      "literal": "| 030 | `LEGACY-ASSET-02319C2481B9E01698D5` / `6fabd12512a3659fff4a956692cdd61faeeb16ce:docs/governance/helix-harness-requirements_v1.3.md:181,290–291` / `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`; raw spans 181 `5b555238fe97c7f434f88fdb30dd36c9492afe7904957940144ef8f4831c5b8a`, 290–291 `8772366327d2b878dbfea3ed4686ceb24c7bf096da13e0bec057bb0b0d9067e0` | 別revision baselineの該当条件を個別atomとして保持し、旧state/DB構造は移さない。archive sourceと統合しない。|",
+      "raw_lf_line_sha256": "01d774d2074117ceda0e0849e11968bceeb8bd1e07be3fa0d11bbad584f46718"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 446,
+      "literal": "| 030 | `LEGACY-ASSET-02319C2481B9E01698D5` / `2d4991042be55268bac30a8bbcdac45b3865030a:docs/governance/helix-harness-requirements_v1.3.md:187,299–300` / `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`; raw spans 187 `c4d4d05e49eb6d7d798eb57fb54ad0685b46843d82c424ef2c0b954a58f888c0`, 299–300 `14181f0cada93ba2c85f9ff6943129f984c161ccec5a708725669d6194e808fa` | pre-isolation revisionの対応source atom。6fab baselineとはrevisionを分けて記録し、旧DB/state構造は移さない。|",
+      "raw_lf_line_sha256": "c35a4346f6190f2b8a73977d212f9486b60354cfc983d8bfe95e1eaddcf67476"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "physical_line": 451,
+      "literal": "| `LEGACY-ASSET-02319C2481B9E01698D5` / `6fabd12512a3659fff4a956692cdd61faeeb16ce:docs/governance/helix-harness-requirements_v1.3.md:271` / `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406` | 別revisionの6fab baseline atom。archive atomと同一revisionへ潰さず、profile catalogの補助照合だけに使う。full-file SHA-256 `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`、raw LF span 271 `27f79d50f50759ffb1153a535e321c60efc6a1354f525ef3ee3b77e6801bc29d`。|",
+      "raw_lf_line_sha256": "c6be54fa7513ddad8d15acf21a9294edc7793c9b4c7c1a83eaf36f841c8f7076"
+    }
+  ],
+  "corrected_source_pins": {
+    "6fab": {
+      "revision": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "bytes": 63642,
+      "spans": [
+        {
+          "start": 181,
+          "end": 181,
+          "sha256_raw_lf": "caa9701d2987313e91ff96c079971e97ef2fe95901bc94accfeee2cd58c5cda5",
+          "literal": "| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |"
+        },
+        {
+          "start": 290,
+          "end": 291,
+          "sha256_raw_lf": "442ed50a1919e691c263f1b77a4f68dabf045108f3f39fad7849b6d76d0a08f2",
+          "literal": "| HAC-N8-03a | agentic AI 機能を自動適用範囲へ昇格する | risk gate を実行 | task scope、permission、least privilege、rollback、monitoring、risk owner、threat model 更新が揃うまで deny |\n| HAC-N8-03b | agentic AI service が外部 API / data / code execution に触れる | monitoring を確認 | audit log、异常検知、失敗時 revert/disable 手順、継続 risk review が無ければ full-auto にしない |"
+        }
+      ]
+    },
+    "2d499": {
+      "revision": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "bytes": 65731,
+      "spans": [
+        {
+          "start": 187,
+          "end": 187,
+          "sha256_raw_lf": "caa9701d2987313e91ff96c079971e97ef2fe95901bc94accfeee2cd58c5cda5",
+          "literal": "| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |"
+        },
+        {
+          "start": 299,
+          "end": 300,
+          "sha256_raw_lf": "442ed50a1919e691c263f1b77a4f68dabf045108f3f39fad7849b6d76d0a08f2",
+          "literal": "| HAC-N8-03a | agentic AI 機能を自動適用範囲へ昇格する | risk gate を実行 | task scope、permission、least privilege、rollback、monitoring、risk owner、threat model 更新が揃うまで deny |\n| HAC-N8-03b | agentic AI service が外部 API / data / code execution に触れる | monitoring を確認 | audit log、异常検知、失敗時 revert/disable 手順、継続 risk review が無ければ full-auto にしない |"
+        }
+      ]
+    }
+  },
+  "meaning_check": "Wrong v1.3 locations contain routing/manifest prose; corrected pillar-functional locations contain HR-NFR-P8-03 and HAC-N8-03a/b. Hash identity alone is not the semantic match; bounded literal content was read."
+}
