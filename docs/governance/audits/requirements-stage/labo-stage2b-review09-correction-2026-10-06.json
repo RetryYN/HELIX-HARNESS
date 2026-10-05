@@ -1,0 +1,122 @@
+{
+  "authority_effect": "none",
+  "body_revision": "4e61305f38d16cb5caefd7e5c7168a6d483eb7c4",
+  "latest_base_checked": "c3790fdf7c80c9c9385c99bd828b7f30cc026549",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "bytes": 7644,
+      "main_prefix_sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "main_prefix_bytes": 3291,
+      "main_prefix_identical": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "d9bb07d7e7d0ecbc9947c6b1b9b554fe6d2b950674e2e9dae961594215c8e9d7",
+      "bytes": 287563,
+      "main_prefix_sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "main_prefix_bytes": 145671,
+      "main_prefix_identical": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "bytes": 45678,
+      "main_prefix_sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "main_prefix_bytes": 29799,
+      "main_prefix_identical": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "bytes": 8587,
+      "main_prefix_sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "main_prefix_bytes": 4234,
+      "main_prefix_identical": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "b60c459ec97aa71a2a014f9debd733a2d1adb1afadda6b1acc8a030d3490e071",
+      "bytes": 251786,
+      "main_prefix_sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "main_prefix_bytes": 105136,
+      "main_prefix_identical": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "bytes": 56000,
+      "main_prefix_sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "main_prefix_bytes": 31278,
+      "main_prefix_identical": true
+    }
+  ],
+  "official_review": {
+    "id": 6005026857,
+    "raw_body_sha256_utf8": "c9fe8b54034873d947c43f5556c744e73578f925dce86b5ac95be7556995f3c5",
+    "raw_body_bytes": 3745,
+    "body": "## review09（independent review、HEAD 43494466e40e76f90ac625701871049058ca9944、body ebd6dbda31e630f2e78a64f375b3b12400865b75）\n\nreviewer: Claude（lane `review_merge`、Fable 5.1）。差分（FR 2行・FV 7行・補正記録md/json）はreviewer本人（Opus側）が全行実読し、Fable advisorが固定L2 §001/006/016/024/030/058・L11 67/75/81/156–162と差分を実読して再見解を返した。merge-base 0757e1587、main d6a667a59（→ 本comment時点でmainはc3790fdf7、#2618 BRAIN merge。LABO 6本文はBRAINと重ならず、`git merge-tree --write-tree origin/main HEAD` 衝突なし、6本文main prefix一致）。\n\n### 静的検査（w2614 = exact HEAD）\n- scfctl validate 147/0、stale 0、residuals 0、govcheck ok。`git diff --check` は既存時点記録の末尾空白のみ（既記録）。\n- review08補正記録 `labo-stage2b-review08-correction-2026-10-06.json`：6本文SHA/bytes/main prefix 6/6一致、固定source pin 8/8（f6dad2a33のraw span・full SHA・literal）一致、CASE 314行literal/SHA一致・一意（追加・削除0）。\n\n### review08所見の解消\n- **m1解消**：016-C05/C06/C07/C09/C10の「experiment evaluationへ戻す／返す」を削除し、「operation候補として保留し、不足・不一致を結果に記録」「判定不能を記録」へ（L2:185、L2-006:113/116から再導出、owner route新設なし）。\n- **m2解消**：FR 030-AC-02に、revision不一致・contract欠落の返却をL2-030が001へ渡す入力接続であることとL2-058:413から再導出した旨を明記。\n- **m3解消**：FR:771 句点。**m4解消**：024-C18 fixture「それぞれのsource identity/revision/evidenceを保持」。**m5解消**：058-C41「固定L2-058」。\n- **m6はreviewer error（撤回）**：API JSONの`body`をUTF-8 encodeした値は4797 bytes・SHA `499d0a43bca3d609041649d0135c2523d5f0b957ab5d9a913d65178300e619cc` で、Worker/Root記録と一致する。review08で示した4798/4796はjq出力の表示LF追加・全LF除去による計測誤りだった。訂正不要。\n\n### Fable見解（advisor、再見解）\n結論行（原文のまま）：「**承認してよい**」。付随の表現精度2点（下記m1・m2、Fableは「承認後の追補で足りる」）。\n\n### 所見（Major 0／Minor 2。本laneの基準では語の精度もMinorとして記録する）\n- **m1（016：「結果に記録」の指示対象）**：C05/C06/C07「不足・不一致を結果に記録する」の「結果」はL2-006では006出力（016の入力）を指す。016では016出力「評価材料」への記録の意味で、C05期待文「評価材料不成立を記録し」と揃う。006出力への書き戻しと誤読されないよう「評価材料（出力）に記録」と明示する。\n- **m2（030：再導出記述の精度）**：FR 030-AC-02の「L2-058:413のsource条件」はversion/scope/許可/receiptの列挙で「source contract欠落」を字義上含まない。contract欠落の直接根拠はL2-001:73「欠落や権限外情報は…当該観測を保留しsource責務へ戻す」とL2-058:410「各sourceに対応する接続を要求する」。L2-001:73を併記し、「source ownerの接続契約へ戻す」は058:413字義の「source ownerへ戻す（接続契約の不足として）」の語順にする。\n\n### 判定\nblocker 0、Major 0、Minor 2。Readyは未可（依頼どおりRoot Ready前にReady/mergeしない）。m1・m2は6本文（FR/FV）の変更を伴うため、次revisionでOpus `no_findings`（未確認範囲0）とFable見解を再成立させる。本HEADでのFable「承認してよい」は本commentに記録。merge admissionは本commentから生成しない。\n"
+  },
+  "source_pins": [
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        69,
+        75
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_raw_lf_sha256": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+      "literal_utf8": "### HELIXLABO-L2-001 — Aggregate Engine（集積）\n\n- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。\n"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        183,
+        186
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_raw_lf_sha256": "7f79a3cecff61f2667bdce6214cf5e8de9c6b2ba6169de3ae28b33c01a42ede7",
+      "literal_utf8": "### HELIXLABO-L2-016 — Experiment → Assurance Allocation\n\n- 親：HELIXLABO-L1-005（Experiment）、HELIXLABO-L1-006（Assurance Allocation）。入力：比較結果・反例・oracle・中断状態。出力：system/operation評価材料。依存：L2-006。保証：比較可能性と反例を保持。判定不能はoperation候補として保留する。`version_target: 1.0`。\n\n"
+    },
+    {
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": [
+        409,
+        415
+      ],
+      "full_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_raw_lf_sha256": "d4bfa13fa52dda3be48cf8c82ce10828f35acebb8a1c572a3c122edde19b8c8b",
+      "literal_utf8": "- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。\n\n"
+    }
+  ],
+  "prior_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/labo-stage2b-review08-correction-2026-10-06.json",
+    "sha256": "66266e5ea0eb7c460629f3a304e68b49e2b1f99ab6cd81b3ef8929d90721639e"
+  },
+  "finding_dispositions": [
+    {
+      "id": "m1",
+      "status": "corrected_candidate",
+      "detail": "016-C05/C06/C07の記録先を評価材料（出力）へ限定。006 source正本を書換えない。"
+    },
+    {
+      "id": "m2",
+      "status": "corrected_candidate",
+      "detail": "030のsource return根拠を001:73/058:410/413へ分解し、ownerへの返却と不足理由の語順を限定。"
+    }
+  ],
+  "case_inventory": {
+    "definition_count": 314,
+    "unique": 314,
+    "added": 0,
+    "removed": 0
+  },
+  "limitations": [
+    "本追補はreview09の4変更行の検収記録。旧sourceと全CASEの実読範囲は不変の既存検収記録へ参照し、新規全文実読を主張しない。",
+    "未承認・未実行。scope/owner/要求意味/数値閾値を変更しない。"
+  ]
+}
