@@ -1,0 +1,155 @@
+{
+  "record_kind": "parent_identity_notation_correction",
+  "recorded_at": "2026-10-05",
+  "authority_effect": "none; correct notation of the five already reviewed parents only",
+  "source_main": "2e9e9f2267aab50bc1c22e3b3ca9c9d0ce808832",
+  "prior_records_unchanged": [
+    {
+      "path": "docs/governance/decisions/helix-security-stage3-l3-l10-po-decision-2026-10-05.md",
+      "sha256": "2a8b97ac2ceb54578cfcb49c7a7e247a8a139965c06eeb5ee565346ccf1ca6dc"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-security-stage3-delegated-decision-pin-2026-10-05.json",
+      "sha256": "b38352cb50281f478adf6953fe0c56f32e36333954e533a1c2020d7ded996e10"
+    }
+  ],
+  "reviewed_body_revision": "180e67559bfad4946be9e8e544d9b496cd6d94ce",
+  "canonical_parent_mapping": [
+    {
+      "canonical_parent": "HELIXSECURITY-L2-029",
+      "previously_recorded_parent": "SECURITY-L2-029",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-029-003",
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "physical_line": 35,
+      "raw_lf_line_sha256": "e1bcb5a985f40d8708acc8c6b7d1b093c30ddb4a0335ef28b6fa59662f90b945",
+      "literal": "| `HELIXSECURITY-L2-029` | `MPR-RC-HELIXSECURITY-L2-029-003` | `sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745` | composite `sha256:bad6c3ebc301cecf328777a9497ad17cfcc9df023b57a5e897db8f44437da210`（L11 part 1: `sha256:3a5d5311fd03cae17db54bd1ad323cb4222d44d43196c3a4d50ce2a8cf2759f0`; part 2: `sha256:9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288`） | 採択済み002に加える型別ローカル強制証拠の受入追補。選んだ追加runtime operationに適用する証拠だけを要求し、sandbox、allowlist、実際の外向き通信、file diffを個別に確認する。主Worker全体へ制限を広げず、全operationで4種類を一律必須にしない。 |"
+    },
+    {
+      "canonical_parent": "HELIXSECURITY-L2-030",
+      "previously_recorded_parent": "SECURITY-L2-030",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-030-001",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "physical_line": 89,
+      "raw_lf_line_sha256": "16f79f586be1d0252bbb874bff039d9a5d1c31e286ad53e3c47d8d8e0216aa05",
+      "literal": "| `HELIXSECURITY-L2-030` | 採択 | `MPR-RC-HELIXSECURITY-L2-030-001` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:9986b0be6d71313db5ad7de6125e90cb278d7d47f7c93d8eee88357e3d1688e8` | `HELIXSECURITY-L2-030` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:661965ac2c99e78160a11d9fedb3d10b44d88938cbb946cbfba04589067f7df8` | `docs/governance/audits/requirement-registration/security-agentic-promotion-coverage-receipt-2026-09-28.json` |"
+    },
+    {
+      "canonical_parent": "HELIXSECURITY-L2-032",
+      "previously_recorded_parent": "SECURITY-L2-032",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-032-001",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "physical_line": 91,
+      "raw_lf_line_sha256": "6fd4223f3dc2883ebcccefdd0540e50e18c3f43628a85d6efc38ff2a67ffb9bd",
+      "literal": "| `HELIXSECURITY-L2-032` | 採択 | `MPR-RC-HELIXSECURITY-L2-032-001` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:ccdd634fb92621105310b91465e01bd089238cc430491ff3c8ac51a3d80403c8` | `HELIXSECURITY-L2-032` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | `sha256:5dcf1c19728badff041220d610a85c3507a6c6f70fea57c0081ae9902705c6f1` | `docs/governance/audits/requirement-registration/security-v13-worker-bypass-coverage-receipt-2026-09-28.json` |"
+    },
+    {
+      "canonical_parent": "HELIXSECURITY-L2-034",
+      "previously_recorded_parent": "SECURITY-L2-034",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-034-001",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "physical_line": 93,
+      "raw_lf_line_sha256": "39245b091377dc5c17c31227b8086a6033ed5c92ca5461a85f3b6aa3e4c1c6db",
+      "literal": "| `HELIXSECURITY-L2-034` | 採択 | `MPR-RC-HELIXSECURITY-L2-034-001` | `docs/helix-security/L2-requirements/security-requirements.md` | `d3103f909e540e35a95310e6741cfd038a87789150577ea182a941d58a5f2bd5` | `sha256:9543e2848037912dd04c10d46438be064961b808a26bad58b090d868308eb166` | `HELIXSECURITY-L2-034` | `docs/helix-security/L11-acceptance/security-acceptance.md` | `e30e63771d58dae2ca69cb9cfff5d2ab6eb71311144aa263b068cb4ae4fbf556` | sha256:3ff1762c435c7343ba96541f5b149dbf5b6264152306b2ace486a9efa54dbc77 | `docs/governance/audits/requirement-registration/security-v13-hyb-002-profile-coverage-receipt-2026-09-28.json#candidates[HELIXSECURITY-L2-034]` |"
+    },
+    {
+      "canonical_parent": "HELIXSECURITY-L2-035",
+      "previously_recorded_parent": "SECURITY-L2-035",
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-035-001",
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad",
+      "physical_line": 43,
+      "raw_lf_line_sha256": "bf296189b6c294e36b4defedb0573ca496df189a853a8d44a790df580de11ffd",
+      "literal": "| `HELIXSECURITY-L2-035` | `MPR-RC-HELIXSECURITY-L2-035-001` | `sha256:788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c` | `sha256:76f7f174a03db3d162c14409b4c970b75d202af4794c5faf6d7832593a42fa7b` | **適用範囲A**：HIL-BR-32で定める追加runtimeだけ。**配置A**：policy/authorityはSECURITY、強制はWorker実行環境、run/assignment運転はOS。run限定bypass/YOLO/auto-approve設定を終了時に除去し、repositoryの恒久denyとdeny優先・明示allowlist条件を保持する。この採択はbypass利用の許可ではない。 |"
+    }
+  ],
+  "fixed_l2_headers": [
+    {
+      "parent": "HELIXSECURITY-L2-029",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "physical_line": 405,
+      "raw_lf_line_sha256": "43f5fa5bb19a3504057170dfaebbf24f1947fc9f9ce69a114096bda21f10f60a",
+      "literal": "### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件（単体追補候補、1.0）"
+    },
+    {
+      "parent": "HELIXSECURITY-L2-030",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "physical_line": 417,
+      "raw_lf_line_sha256": "b284efe968c53d40aa568d90fe10a691389ae5268430043100510ac701141ef8",
+      "literal": "### HELIXSECURITY-L2-030 agentic機能の自動適用範囲を広げるときの確認（単体追補候補、1.0）"
+    },
+    {
+      "parent": "HELIXSECURITY-L2-032",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "physical_line": 447,
+      "raw_lf_line_sha256": "0b434cc0b1f4316aa3e42467b26df6748d1be26818bdb6111a98114f90815f31",
+      "literal": "### HELIXSECURITY-L2-032 Worker runtimeにおけるpermanent bypass denyの優先順位（単体追補候補、1.0）"
+    },
+    {
+      "parent": "HELIXSECURITY-L2-034",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "physical_line": 468,
+      "raw_lf_line_sha256": "81a6a110ad5791496261e05a5c560a33774364711a10b34f1c08f64011233f72",
+      "literal": "### HELIXSECURITY-L2-034 MCP tool profileごとの能力・probe・安全条件の閉鎖（単体追補候補、version_target: 1.0）"
+    },
+    {
+      "parent": "HELIXSECURITY-L2-035",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "physical_line": 487,
+      "raw_lf_line_sha256": "9813f3a9e302b4c0a7f99e2a1fdcd9a033395daff02c8e668dcacb2ebfecec31",
+      "literal": "### HELIXSECURITY-L2-035 bypass系設定のrun限定と恒久deny能力（単体追補候補、version_target: 1.0）"
+    }
+  ],
+  "documents_unchanged": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "0b2894925bc80895ff61723377f27b14b4cca32289756747c566e35cba049dee",
+      "bytes": 1958
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "8b0babb74dd5d5d2f7aee2742de5aecf07407c3029b1198ef6ad6d950fdf316b",
+      "bytes": 100534
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "abfb8ce0c2ec8f8baa035b301402f1f6e13b9ac31bfed27b27230d3daf2403cd",
+      "bytes": 12910
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "8683764bb26d0d1f582828096c050c264df45a4f0fdc2c94e34bb4dbf9e1eb7a",
+      "bytes": 1461
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "1047babfefeda159b7157dae4e7a718a325c46ccedac604eb34c629c7250d473",
+      "bytes": 75382
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "ec648c78a3d4e164ab8ef8b4e23c30a2756cfed70b47c4514b3c0eb67db02be2",
+      "bytes": 9670
+    }
+  ],
+  "scope": "SECURITY Stage 3, adopted version_target 1.0; no additional parent, approval, content or owner change",
+  "verification": "fixed PO row and L2 header bytes read; SHA, physical line, raw LF and six body bytes verified; original decision and pin bytes retained"
+}
