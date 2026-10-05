@@ -87,16 +87,16 @@
 
 全て未実行の技術計測設計であり、合格率、最低N、SLA、閾値を追加しない。各fixtureは固定L2/L11と同じ対象群を使い、欠落・unknown・not-applicable・staleを区別する。
 
-- `CASE-NFR-LABO-050-01`: 各循環段階の対象件数、同一episode/ticket/target revisionのtrace、未完義務、再観測・effect evidenceを別々に再計算する。
-- `CASE-NFR-LABO-059-01`: 選択群の条件一致、quality result、decision scopeの有効性、cost receiptの充足、human time、未測定群を分け、unknown/missingを0へ変換しない。
-- `CASE-NFR-LABO-060-01`: 支援有無の対応runで同一設定のfield一致数、片群receipt、支援漏洩、救援・人介入costの記録範囲を再計算する。
-- `CASE-NFR-LABO-061-01`: 選択task contractに適用されるsnapshot/context/oracle/actor/revision fieldを列挙し、missing/stale/leak/inapplicableに分類する。
-- `CASE-NFR-LABO-063-01`: repair/verification/re-observationのepisode lineage、reoccurrence/counterexample、未評価fieldを区別する。
-- `CASE-NFR-LABO-064-01`: 選択blind runだけを対象に、judge-visible leak、identity mapping、rubric/fixture/retry-conditionの一致を数える。
-- `CASE-NFR-LABO-065-01`: selected qualification scope内のaxis coverage、smoke/full-bench state、task scorecard receipt/unknownを再計算する。threshold判定は行わない。
-- `CASE-NFR-LABO-066-01`: A/候補別に共通eligible N、misrepair/unresolved numerator、oracle-unknown casesを別々に計算する。
-- `CASE-NFR-LABO-067-01`: selected Attemptでpredicate/candidate digest/ordered event receiptのcoverageとunknownを再計算し、他Attemptを混ぜない。
-- `CASE-NFR-LABO-068-01`: selected scope全体のOS source completenessと異なるidentityの件数を照合し、完全性不明ならtotalをunknownにする。
-- `CASE-NFR-LABO-069-01`: return/reissueのreason/scope/window/denominator/source completenessとsame-scope result別に再計算する。因果rateを作らない。
-- `CASE-NFR-LABO-070-01`: 9 selected atomそれぞれのunit/window/source receipt/unknownを個別集計し、067/068/059との二重計上を検出する。
-- `CASE-NFR-LABO-071-01`: qualification recordのtask class/model revision/evidence binding、major-miss/revision invalidation、permission/roleの分離を再計算する。資格閾値は判定しない。
+- `CASE-NFR-LABO-050-01`: 各循環段階の対象件数、同一episode/ticket/target revisionのtrace、未完義務、再観測・effect evidenceを別々に再計算する。 Functional fixture trace: `L10-LABO-050-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-14`。
+- `CASE-NFR-LABO-059-01`: 選択群の条件一致、quality result、decision scopeの有効性、cost receiptの充足、human time、未測定群を分け、unknown/missingを0へ変換しない。 Functional fixture trace: `L10-LABO-059-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-29`。
+- `CASE-NFR-LABO-060-01`: 支援有無の対応runで同一設定のfield一致数、片群receipt、支援漏洩、救援・人介入costの記録範囲を再計算する。 Functional fixture trace: `L10-LABO-060-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-33`。
+- `CASE-NFR-LABO-061-01`: 選択task contractに適用されるsnapshot/context/oracle/actor/revision fieldを列挙し、missing/stale/leak/inapplicableに分類する。 Functional fixture trace: `L10-LABO-061-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-27`。
+- `CASE-NFR-LABO-063-01`: repair/verification/re-observationのepisode lineage、reoccurrence/counterexample、未評価fieldを区別する。 Functional fixture trace: `L10-LABO-063-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-17`。
+- `CASE-NFR-LABO-064-01`: 選択blind runだけを対象に、judge-visible leak、identity mapping、rubric/fixture/retry-conditionの一致を数える。 Functional fixture trace: `L10-LABO-064-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-16`。
+- `CASE-NFR-LABO-065-01`: selected qualification scope内のaxis coverage、smoke/full-bench state、task scorecard receipt/unknownを再計算する。threshold判定は行わない。 Functional fixture trace: `L10-LABO-065-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-23`。
+- `CASE-NFR-LABO-066-01`: A/候補別に共通eligible N、misrepair/unresolved numerator、oracle-unknown casesを別々に計算する。 Functional fixture trace: `L10-LABO-066-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-16`。
+- `CASE-NFR-LABO-067-01`: selected Attemptでpredicate/candidate digest/ordered event receiptのcoverageとunknownを再計算し、他Attemptを混ぜない。 Functional fixture trace: `L10-LABO-067-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-14`。
+- `CASE-NFR-LABO-068-01`: selected scope全体のOS source completenessと異なるidentityの件数を照合し、完全性不明ならtotalをunknownにする。 Functional fixture trace: `L10-LABO-068-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-12`。
+- `CASE-NFR-LABO-069-01`: return/reissueのreason/scope/window/denominator/source completenessとsame-scope result別に再計算する。因果rateを作らない。 Functional fixture trace: `L10-LABO-069-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-18`。
+- `CASE-NFR-LABO-070-01`: 9 selected atomそれぞれのunit/window/source receipt/unknownを個別集計し、067/068/059との二重計上を検出する。 Functional fixture trace: `L10-LABO-070-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-51`。
+- `CASE-NFR-LABO-071-01`: qualification recordのtask class/model revision/evidence binding、major-miss/revision invalidation、permission/roleの分離を再計算する。資格閾値は判定しない。 Functional fixture trace: `L10-LABO-071-CASE-01/02`,既存negative,追補`CASE-05`〜`CASE-15`。
