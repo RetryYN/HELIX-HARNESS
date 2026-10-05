@@ -1,0 +1,19 @@
+{
+  "record_kind": "root_brain_stage2b_publication_acceptance",
+  "authority_effect": "none",
+  "latest_main": "e06ac305a70dccce0aa3bcfb4b11bb35e33e7fcc",
+  "body_revision": "51dcfaa5083c867b99589acde7607df3912d4e22",
+  "main_integration_revision": "2056ff99a9e269a90d9ed978a6ccd928d5694039",
+  "scope": "001–006/009–012/029 Stage2b 1.0候補11親",
+  "verification": {
+    "source_full_and_raw_lf_pins": 115,
+    "appended_literal_pins": 568,
+    "canonical_sha_and_main_prefix": 6,
+    "published_suffix_sha": 6,
+    "mismatches": 0
+  },
+  "root_read": "6文書追補全文、固定対象L2/L11、旧RDJ stable identity/未解決template、VDH semantic identity/product共通境界、Design Template applicability/completion箇所と切出しsummaryを読んだ。",
+  "integration": "最新main e06通常merge後、6本文は51dc全文bytesと不変。",
+  "static": "stale0/residuals0/diff-check PASS。Worker作成時validate147/fail0/govcheck7622/57/58を独立reviewと混同しない。",
+  "limitations": "C13/M12 carry未解消、独立review/L3承認未実施、実装・操作許可なし。"
+}
