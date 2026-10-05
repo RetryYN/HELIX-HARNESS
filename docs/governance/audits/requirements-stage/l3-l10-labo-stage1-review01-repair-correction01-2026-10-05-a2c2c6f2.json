@@ -1,0 +1,285 @@
+{
+  "schema_version": "helix.l3-l10.review-repair-audit.v1",
+  "status": "corrected worker repair evidence; supersedes the previous local repair record only for the MPR register locator; root verification and exact-HEAD independent review pending",
+  "mechanism": "HELIX-LABO",
+  "stage": "Stage 1",
+  "base_commit": "4f10325a4a27a8b0390be895b881d2596e56b261",
+  "content_source_commit": "a2c2c6f2bd1c4560c03fef1ab93b08a73dcb7289",
+  "scope": [
+    "HELIXLABO-L2-001",
+    "HELIXLABO-L2-011"
+  ],
+  "review_source": {
+    "path": "/tmp/pr2580-claude-review01.md",
+    "sha256": "3aa988f96fd8fee93751312041b96c98408071764f9ccc184dfb804943eca1f9",
+    "base": "4f10325a4a27a8b0390be895b881d2596e56b261",
+    "reviewed_content_head": "b1464516e5c76f916338fcd2c2922e5aedffecca",
+    "findings": [
+      {
+        "id": "M001-1",
+        "finding": "not_observed→success functional negative missing",
+        "disposition": "Fixed AC-02 and independent C12 unknown→success / C13 not_observed→success; mapped in FR coverage and NFR."
+      },
+      {
+        "id": "M001-2",
+        "finding": "source identity mixing and missing/unapproved scope cross-completion lack individual negative",
+        "disposition": "Fixed AC-02; added independent C14 identity mixing and C15 scope missing/unapproved cases; aligned NFR."
+      },
+      {
+        "id": "M001-3",
+        "finding": "source status confused with LABO warning/unknown processing result",
+        "disposition": "Separated source status from processing hold/warning in AC, C02/C03/C04/C08/C10, NG/NV; C08 enumerates all six non-success statuses."
+      },
+      {
+        "id": "m001-4",
+        "finding": "functional L10 not traceable to each field/status",
+        "disposition": "C10 explicitly omits each of the 20 fields independently; status conversion cases C12/C13 are individually traced."
+      },
+      {
+        "id": "m001-5",
+        "finding": "input observation kinds omitted from cases",
+        "disposition": "C01 enumerates L2-001 observation kinds and limits fixture contents to selected source contract; C11 retains unseen normal coverage."
+      },
+      {
+        "id": "M011-1",
+        "finding": "causality prohibition weakened to time/path-only or absent evidence",
+        "disposition": "FR/AC state unconditional no-causality in L2-011 output; C05 uses causality-like evidence; unseen normal C07 and NFR align."
+      },
+      {
+        "id": "M011-2",
+        "finding": "return routing inconsistent and falsely attributed to fixed L2",
+        "disposition": "Relation mismatch returns to Correlate; observation identity/source revision missing or mismatching returns to dependent L2-001 source responsibility; connector failures retain fixed CONNECT route. Updated AC/cases/crosswalk/NV."
+      },
+      {
+        "id": "M011-3",
+        "finding": "missingness lacked ordinary normal case and independent negatives",
+        "disposition": "C01 contains missing field and preserves it through roundtrip; C08 drops missingness; C09 coerces it to success/default, independently."
+      },
+      {
+        "id": "m011-4",
+        "finding": "ID/revision missing/mismatch not separate",
+        "disposition": "Added independent C10 observation ID missing, C11 source revision missing, C12 source revision mismatch; NV enumerates separately."
+      },
+      {
+        "id": "m011-5",
+        "finding": "connector requirement ID confused with connection identity / connector substitution absent",
+        "disposition": "FR and C01 state L2-011 is parent ID, not CONNECT connection identity; C13 mutates parent-as-identity or substitutes another connection receipt."
+      },
+      {
+        "id": "m-x-6",
+        "finding": "source-holding MPR registration -002 omitted",
+        "disposition": "FR parent metadata records both initial -001 and current -002, identifies R2289-02 as metadata-only and digest unchanged; source lines pinned below."
+      }
+    ]
+  },
+  "previous_immutable_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-static-validation-2026-10-05-1eab4a929.json",
+    "sha256": "82deb0894115119a9c4f31b3902e98d8dd60d116a381b6f91ad81a17e4ada35c",
+    "modified": false
+  },
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "285453a6d42e37920d9a2e6cd7524d69b4a7124be7c9ff992998defce8abf002",
+      "bytes": 21644,
+      "lines": 115,
+      "changed_in_this_repair": true
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "bytes": 522,
+      "lines": 3,
+      "changed_in_this_repair": false
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "95faea76e433f4144bf8b255b6b83a602161084b625a0bc095bda39d4bd416e8",
+      "bytes": 3200,
+      "lines": 15,
+      "changed_in_this_repair": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "1a2e0c110fc56316c1f2eb7ce5c31f49a0c2b840b69b76189a4e921365e6b7ea",
+      "bytes": 14475,
+      "lines": 76,
+      "changed_in_this_repair": true
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "bytes": 529,
+      "lines": 3,
+      "changed_in_this_repair": false
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "75540d925c43003c8504490579c66ffa4bef5703b4151ed9dbbbfb3b0915763a",
+      "bytes": 2588,
+      "lines": 13,
+      "changed_in_this_repair": true
+    }
+  ],
+  "fixed_source_pins": {
+    "HELIXLABO-L2-001": {
+      "registration_ids": [
+        "MPR-RC-HELIXLABO-L2-001-001",
+        "MPR-RC-HELIXLABO-L2-001-002"
+      ],
+      "semantic_digest": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+      "L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "bytes": 123228,
+        "lines": 584,
+        "start_line": 69,
+        "end_line": 76,
+        "raw_lf_sha256": "9c1f285a0835a56fd7042025636ff68c2bca46d31eb2df693465d02fe772a104",
+        "literal": "### HELIXLABO-L2-001 — Aggregate Engine（集積）\n\n- 親：HELIXLABO-L1-001。\n\n入力は各機構・製品・運用環境から許可された観測情報。出力はsource identity/revisionと出典を保つLABO observationである。最低限、原文§3の`episode_id, requirement_revision, ticket_id, responsibility_id, product, mechanism, worker, provider, model, configuration, artifact, CI/test, release, deployment, runtime, failure, rework, cost, time, result`を結べる。開発ログ、Worker/AI判断、CI/test/review、backflow/recovery/incident/refactor、release/deployment/runtime、利用、再作業、費用、token/API、model/provider、correction/rollback/product resultを対象にする。成功のみを収集せず、`success, failure, rejected, cancelled, blocked, unknown, not_observed`を区別する。sourceの正本・state・authorityをLABOへ移さない。欠落や権限外情報は成功扱いせず、当該観測を保留しsource責務へ戻す。\n\n- **単独成立・保証・version_target**：1.0。単独成立依存：1.0対象sourceの個別入力接続（L2-021〜030）。Web/WEB-OS source（L2-031/032）は各source contractが採択された場合に加える任意接続で、1.0の必須依存にしない。保証：source provenance・revision・状態分類を保持したobservationだけを出力し、source正本を変更しない。`version_target`は当該能力の目標版であり、実際の契約版・成果物版ではない。採択後の実版と互換範囲はHARNESS-L2-010/011の共通契約へ記録する。"
+      },
+      "L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "bytes": 73036,
+        "lines": 316,
+        "parent_summary": {
+          "start_line": 43,
+          "end_line": 47,
+          "raw_lf_sha256": "d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b",
+          "literal": "| 対応L2 | 成功条件 | 反例・不成立条件 |\n|---|---|---|\n| HELIXLABO-L2-001 | 複数sourceから許可された成功、失敗、拒否、取消、blocked、unknown、not_observedを入力し、それぞれのsource identity/revisionと列挙されたobservation fieldsを保持できる。元source authority/stateはsource側に残る | 成功ログだけを受け取り失敗・拒否を落とす、not_observedをsuccessへ変える、source revision不明をcurrentとして使う、権限外/secret dataを取り込む、LABO側記録をsource正本として書き戻す |\n| HELIXLABO-L2-002 | 要求→ticket→Worker→実装→atomic CI→integration→proof CI→release→deployment→runtime→incident→recoveryをepisodeへ結び、要求revision・actor/provider/model/configuration・artifact・環境を追える。相関できないeventも孤立として残る | 時刻/path一致だけで因果断定する、無関係eventを一episodeへ結合する、欠けた義務を補完して完了扱いする、訂正で元eventを上書きする |\n| HELIXLABO-L2-003 | 一episodeに成功/失敗・条件・汎用/product固有・system/operation・unknown/unnecessaryが併存する入力を与え、別々に根拠付き分類できる | episode全体を一括採否する、unknownを推測で分類する、条件付きの成功を無条件一般化する |"
+        },
+        "section24_rows": {
+          "start_line": 109,
+          "end_line": 116,
+          "raw_lf_sha256": "7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d",
+          "literal": "| # | PO原文§24の条件 | 対応L2/L11 | 成功条件 | 反例・不成立条件 |\n|---:|---|---|---|---|\n| 1 | LABOは全HELIXの観測結果を横断して扱える。 | HELIXLABO-L2-001, 021–032 | 各許可sourceのobservationが個別identity/revisionを保ってLABOへ到達する。 | source scope未許可・欠落のまま横断済みとする、sourceを同一identityへ混ぜる。 |\n| 2 | 原state/authorityをLABOへ集中させない。 | HELIXLABO-L2-001, 021–042 | source/target stateとauthorityは各機構に残し、LABOはobservation/candidateのみ保持する。 | LABO記録をsource正本として書き戻す、Feedbackで直接state/authorityを変更する。 |\n| 3 | 成功だけでなく失敗・拒否・不明も集積する。 | HELIXLABO-L2-001, 002 | success/failure/rejected/cancelled/blocked/unknown/not_observedが区別されepisodeへ追跡される。 | unknown/not_observedをsuccessへ変換する、失敗や拒否を落とす。 |\n| 4 | correlationを因果と決めつけない。 | HELIXLABO-L2-002 | episode内の相関関係と因果未確定を区別し、根拠とrevisionを辿れる。 | 時刻/pathの近さだけで因果を確定する。 |\n| 5 | 一事例を一般化しない。 | HELIXLABO-L2-009 | single episodeから支持可能なscopeを限定し、反例で範囲を狭める。 | 一例をcross-project/cross-product/general structureへ拡張する。 |\n| 6 | 外部方式をそのまま採用しない。 | HELIXLABO-L2-033, 051 | 外部sourceをprovenance確認・分解・比較・実験後のcandidateとして扱う。 | external success例を無評価で取り込む、命令/patchを評価前に実行する。 |"
+        }
+      },
+      "PO_decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "bytes": 12756,
+        "lines": 139,
+        "start_line": 48,
+        "end_line": 48,
+        "raw_lf_sha256": "8b24c8a79dcf372ebb42cf5a723107be7b8b4143ebf3479a9f3663155e5099e9",
+        "literal": "| `HELIXLABO-L2-001` | `MPR-RC-HELIXLABO-L2-001-001` | unit / 1.0 |"
+      }
+    },
+    "HELIXLABO-L2-011": {
+      "registration_ids": [
+        "MPR-RC-HELIXLABO-L2-011-001",
+        "MPR-RC-HELIXLABO-L2-011-002"
+      ],
+      "semantic_digest": "39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+      "L2": {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6",
+        "bytes": 123228,
+        "lines": 584,
+        "start_line": 163,
+        "end_line": 166,
+        "raw_lf_sha256": "9fcf8b7b648681c7ff08080565a2d708cdd9c5a619e40e8f8bad6196f4c36cb6",
+        "literal": "### HELIXLABO-L2-011 — Aggregate → Correlate\n\n- 親：HELIXLABO-L1-001, HELIXLABO-L1-002。入力：source付きobservationとfield/revision。出力：episode候補。依存：L2-001およびAggregate identity。保証：元source参照と欠測を保持し、因果を確定しない。relation不一致は元記録を保ってcorrelationへ戻す。`version_target: 1.0`。"
+      },
+      "L11": {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a",
+        "bytes": 73036,
+        "lines": 316,
+        "parent_summary": {
+          "start_line": 60,
+          "end_line": 64,
+          "raw_lf_sha256": "136d16707e53e545e4bc6cc18384d604f971e35d00cb2a9750676cdb34f66563",
+          "literal": "| 対応L2 | 成功条件 | 反例・不成立条件 |\n|---|---|---|\n| HELIXLABO-L2-011 | observation fields、source revision、欠測をAggregateからCorrelateへ渡し、episodeと元観測を往復参照できる | IDやsource revisionを欠落させる、単体engine成功を接続成功へ写す |\n| HELIXLABO-L2-012 | episode evidenceからdecompositionへ辿れ、分類の根拠・反証が残る | relation版違いを黙って受け入れる、相関を因果として転送する |\n| HELIXLABO-L2-013 | 分解の各軸と証拠をVector比較へ渡し、unknownや条件依存も保持する | 分類根拠を失う、unknownを成功要素として扱う |"
+        },
+        "section24_rows": {
+          "start_line": 109,
+          "end_line": 116,
+          "raw_lf_sha256": "7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d",
+          "literal": "| # | PO原文§24の条件 | 対応L2/L11 | 成功条件 | 反例・不成立条件 |\n|---:|---|---|---|---|\n| 1 | LABOは全HELIXの観測結果を横断して扱える。 | HELIXLABO-L2-001, 021–032 | 各許可sourceのobservationが個別identity/revisionを保ってLABOへ到達する。 | source scope未許可・欠落のまま横断済みとする、sourceを同一identityへ混ぜる。 |\n| 2 | 原state/authorityをLABOへ集中させない。 | HELIXLABO-L2-001, 021–042 | source/target stateとauthorityは各機構に残し、LABOはobservation/candidateのみ保持する。 | LABO記録をsource正本として書き戻す、Feedbackで直接state/authorityを変更する。 |\n| 3 | 成功だけでなく失敗・拒否・不明も集積する。 | HELIXLABO-L2-001, 002 | success/failure/rejected/cancelled/blocked/unknown/not_observedが区別されepisodeへ追跡される。 | unknown/not_observedをsuccessへ変換する、失敗や拒否を落とす。 |\n| 4 | correlationを因果と決めつけない。 | HELIXLABO-L2-002 | episode内の相関関係と因果未確定を区別し、根拠とrevisionを辿れる。 | 時刻/pathの近さだけで因果を確定する。 |\n| 5 | 一事例を一般化しない。 | HELIXLABO-L2-009 | single episodeから支持可能なscopeを限定し、反例で範囲を狭める。 | 一例をcross-project/cross-product/general structureへ拡張する。 |\n| 6 | 外部方式をそのまま採用しない。 | HELIXLABO-L2-033, 051 | 外部sourceをprovenance確認・分解・比較・実験後のcandidateとして扱う。 | external success例を無評価で取り込む、命令/patchを評価前に実行する。 |"
+        }
+      },
+      "PO_decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+        "bytes": 12756,
+        "lines": 139,
+        "start_line": 59,
+        "end_line": 59,
+        "raw_lf_sha256": "c2941eadb9435a01a36d69d2311ceb0b5f3e56aa2f1d5b8be29de44cf16aae06",
+        "literal": "| `HELIXLABO-L2-011` | `MPR-RC-HELIXLABO-L2-011-001` | connection / 1.0 |"
+      }
+    },
+    "MPR_register": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "bytes": 3370048,
+      "lines": 1077,
+      "HELIXLABO-L2-001": {
+        "initial": {
+          "start_line": 234,
+          "end_line": 234,
+          "raw_lf_sha256": "eb2afaebec89837cb9f275a8d1715ee05db044e19b47fd890c8fb0b0e1de03bb",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-001-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-001\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-001\",\"candidate_semantic_digest\":\"sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-001\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}"
+        },
+        "current_source_holding": {
+          "start_line": 814,
+          "end_line": 814,
+          "raw_lf_sha256": "3927493827a39d97c477b3973716155f0a6a8ded64d431716721a77aabafc021",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-001-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXLABO-L2-001-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-001\",\"requirement_kind\":\"unit\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-001\",\"candidate_semantic_digest\":\"sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-001\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-004\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex worker (R2289-02 metadata correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"],\"correction_reason\":\"R2289-02: metadata-only correction to the current source-holding registration and its path; candidate meaning, source atoms, source/candidate digests, coverage, counts, state, authority and human-decision status are unchanged.\"}"
+        },
+        "semantic_digest": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+        "metadata_only_correction": "R2289-02"
+      },
+      "HELIXLABO-L2-011": {
+        "initial": {
+          "start_line": 245,
+          "end_line": 245,
+          "raw_lf_sha256": "ba8974bc98a38e7d2e0a36067b3d8df49d02bad8bac279cc77466f845758728d",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-011-001\",\"supersedes_registration_id\":null,\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-011\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-011\",\"candidate_semantic_digest\":\"sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-011\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T02:36:24+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"]}"
+        },
+        "current_source_holding": {
+          "start_line": 824,
+          "end_line": 824,
+          "raw_lf_sha256": "175e6c0cf96ef79f7a898cff46e55d6b3f285afb53186f1c302db8029fd56d53",
+          "literal": "{\"registration_id\":\"MPR-RC-HELIXLABO-L2-011-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXLABO-L2-011-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXLABO-L2-011\",\"requirement_kind\":\"connection\",\"product_target\":\"HELIX-LABO\",\"candidate_source_path\":\"docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-011\",\"candidate_semantic_digest\":\"sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補、承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-labo/L1-planning/labo-intent.md@101a7e868ffa8abd404acef67e97f459f0b6e3ef sha256:78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc（draft_candidate、PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json#HELIXLABO-L2-011\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行LABO L1/POと既存候補を起点に機能単位へ具体化する未採択候補。旧sourceは意味比較として参照し、この登録で旧atomの移管・採択・retireを行わない。入力旧atom集合は空集合。空集合のno_lossを原文の意味被覆や全旧資産の被覆へ拡張しない。既存候補は保持し、親原文・既存条件の行き先を本文とparent_source_conditionsで示す。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-004\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex worker (R2289-02 metadata correction; authority_effect:none)\",\"registered_at\":\"2026-10-03T00:00:00+09:00\",\"evidence_refs\":[\"docs/helix-labo/L2-requirements/labo-requirements.md\",\"docs/helix-labo/L1-planning/labo-intent.md\",\"docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md\",\"docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md\",\"docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md\",\"docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md\",\"docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json\"],\"correction_reason\":\"R2289-02: metadata-only correction to the current source-holding registration and its path; candidate meaning, source atoms, source/candidate digests, coverage, counts, state, authority and human-decision status are unchanged.\"}"
+        },
+        "semantic_digest": "39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+        "metadata_only_correction": "R2289-02"
+      }
+    }
+  },
+  "counts": {
+    "fr": 2,
+    "ac": 4,
+    "functional_cases": 28,
+    "functional_cases_by_parent": {
+      "001": 15,
+      "011": 13
+    },
+    "nfr_candidates": 5,
+    "business_ac": 0
+  },
+  "checks": {
+    "scfctl_validate_bindings": 147,
+    "scfctl_validate_fail": 0,
+    "scfctl_stale": 0,
+    "scfctl_residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "pass",
+    "legacy_runtime_test_ci_bun": "not run",
+    "source_pin_recalculation": "pass: canonical six files, fixed L2/L11/PO lines, MPR register file and four registration lines; previous local record locator error corrected here"
+  },
+  "limits": [
+    "Worker修正記録であり独立reviewではない。",
+    "L3承認・実装許可・業務完了・L10実行を生成しない。",
+    "旧runtime/test/CIは起動していない。"
+  ],
+  "supersedes_local_record": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage1-review01-repair-2026-10-05-a2c2c6f2.json",
+    "sha256": "ab1a8d10ba08addcb5a8d4fecd926879547e3f0f2569af5b8f8caa135251e5c8",
+    "correction": "The previous record accidentally pinned physical line 244 (HELIXLABO-L2-055-001) as the initial HELIXLABO-L2-011 registration. This record pins line 245 (MPR-RC-HELIXLABO-L2-011-001). Canonical content and its commit are unchanged."
+  }
+}

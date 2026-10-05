@@ -1,0 +1,781 @@
+{
+  "schema_version": "helix.l3-l10.static-audit.v1",
+  "status": "local draft; independent exact-HEAD review and PO approval pending",
+  "mechanism": "HELIX-LABO",
+  "stage": "Stage 1",
+  "base_commit": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+  "content_source_commit": "1eab4a92900ed216d288e0b9faf94b37d212fbb3",
+  "parents": [
+    "HELIXLABO-L2-001",
+    "HELIXLABO-L2-011"
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "3b1a76165ae47cdeafbbe530a5829872236d4d2996fbbb616aa6360a2a6c7ec9",
+      "bytes": 20608,
+      "lines": 115,
+      "slice_entry_sha256": "9ce10d783bf095ee04ea8b11bc69e37daa16ebaa30279629903706ebe426725e"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+      "bytes": 522,
+      "lines": 3,
+      "slice_entry_sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "7f5814109129d2c9d981bb351f9f355081575f2353eafa2015a701856ae01dc0",
+      "bytes": 2969,
+      "lines": 15,
+      "slice_entry_sha256": "7f5814109129d2c9d981bb351f9f355081575f2353eafa2015a701856ae01dc0"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "6e06d0cfcb96f9523f3c6eacf594a6a2aa5eed4e23f2bb29233f2ada68ed26fc",
+      "bytes": 12484,
+      "lines": 64,
+      "slice_entry_sha256": "b350cb072c5af3e238dd7e7d82881ae389935127b280442a8d8965a59a0f0b3a"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+      "bytes": 529,
+      "lines": 3,
+      "slice_entry_sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "f9617dc7379fde42ab473d2a3f8e7bc966c63f818ac9f13abac04b4255d48ee8",
+      "bytes": 1867,
+      "lines": 13,
+      "slice_entry_sha256": "f9617dc7379fde42ab473d2a3f8e7bc966c63f818ac9f13abac04b4255d48ee8"
+    }
+  ],
+  "source_pin_evidence": {
+    "task": "LABO Stage 1 local paired draft pin/handoff; only HELIXLABO-L2-001 and HELIXLABO-L2-011",
+    "worktree": "/home/tenni/.helix-worktrees/l3-labo-stage1-pair",
+    "branch": "codex/l3-labo-stage1-pair",
+    "head": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+    "commit_push_pr_mailbox": false,
+    "draft_source_candidate": {
+      "commit": "f1d269ac90d2b757c4ff5c0180eb4835b807316d",
+      "relation": "saved full candidate used as extraction source; not directly the sliced canonical files",
+      "six_full_file_pins": {
+        "docs/helix-labo/L3-requirements/functional-requirements.md": {
+          "sha256": "4004ef5a74cb9e8f2bdd23b1a4043bc0472c043d2bbc800cfa28f828d7dbd66b",
+          "bytes": 275974,
+          "lines": 1593
+        },
+        "docs/helix-labo/L3-requirements/business-requirements.md": {
+          "sha256": "4b506c72349767e217a8bf792fab319c99f4b22f6fe2c1d4bc3cb421da46a959",
+          "bytes": 3269,
+          "lines": 13
+        },
+        "docs/helix-labo/L3-requirements/nfr-grade.md": {
+          "sha256": "310269e6566db91311d804cffb385636b0646d5c792046f8f5ebb4c408dbab1d",
+          "bytes": 28840,
+          "lines": 106
+        },
+        "docs/helix-labo/L10-verification/functional-verification.md": {
+          "sha256": "461203f81383ece75f07b2bd7b4075d84d6990806616e899f91f21962c8e4fba",
+          "bytes": 141126,
+          "lines": 1092
+        },
+        "docs/helix-labo/L10-verification/business-verification.md": {
+          "sha256": "81b48a61281a52dc2cdf44dc543fb3882a1fea74536928e0e4c7077ca85368f0",
+          "bytes": 1493,
+          "lines": 7
+        },
+        "docs/helix-labo/L10-verification/nfr-verification.md": {
+          "sha256": "2b6115aad6206fc4d2ca7eb960e904d98d97439df8b4da7098e63bcb77f6d3fd",
+          "bytes": 21955,
+          "lines": 94
+        }
+      }
+    },
+    "canonical_after_edit": [
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "sha256": "3b1a76165ae47cdeafbbe530a5829872236d4d2996fbbb616aa6360a2a6c7ec9",
+        "bytes": 20608,
+        "lines": 115,
+        "slice_entry_sha256": "9ce10d783bf095ee04ea8b11bc69e37daa16ebaa30279629903706ebe426725e"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0",
+        "bytes": 522,
+        "lines": 3,
+        "slice_entry_sha256": "af7c875eb2e43b99f85c092baf7cbb0379ec6b8c5c08c9e01f39f8b72f1192d0"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "sha256": "7f5814109129d2c9d981bb351f9f355081575f2353eafa2015a701856ae01dc0",
+        "bytes": 2969,
+        "lines": 15,
+        "slice_entry_sha256": "7f5814109129d2c9d981bb351f9f355081575f2353eafa2015a701856ae01dc0"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "sha256": "6e06d0cfcb96f9523f3c6eacf594a6a2aa5eed4e23f2bb29233f2ada68ed26fc",
+        "bytes": 12484,
+        "lines": 64,
+        "slice_entry_sha256": "b350cb072c5af3e238dd7e7d82881ae389935127b280442a8d8965a59a0f0b3a"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37",
+        "bytes": 529,
+        "lines": 3,
+        "slice_entry_sha256": "603612c09603d6be3c5b1d45bcbafbe7281457454474acef38d4ddb6e7e13d37"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "sha256": "f9617dc7379fde42ab473d2a3f8e7bc966c63f818ac9f13abac04b4255d48ee8",
+        "bytes": 1867,
+        "lines": 13,
+        "slice_entry_sha256": "f9617dc7379fde42ab473d2a3f8e7bc966c63f818ac9f13abac04b4255d48ee8"
+      }
+    ],
+    "fixed_labo_authority": {
+      "HELIXLABO-L2-001": {
+        "registration_id": "MPR-RC-HELIXLABO-L2-001-001",
+        "semantic_digest": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+        "version_target": "1.0",
+        "l2": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "spans": [
+            {
+              "start_line": 69,
+              "end_line": 76,
+              "sha256": "9c1f285a0835a56fd7042025636ff68c2bca46d31eb2df693465d02fe772a104"
+            }
+          ]
+        },
+        "l11": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "parent_summary_spans": [
+            {
+              "start_line": 43,
+              "end_line": 47,
+              "sha256": "d4891130ef25adf720c5e68b584cb17bd12066ea29fc7c4b50585a1cc49d5a8b"
+            }
+          ],
+          "section24_table_span": {
+            "start_line": 105,
+            "end_line": 125,
+            "sha256": "696be8acf67e3dd1e0b4a6a52194ef70f2d855cf13a5c27db87c3717d79e398a",
+            "purpose": "全15条件表の比較背景pin。109-116の具体行pinの代用ではない"
+          },
+          "section24_condition_rows_109_116_exact": {
+            "start_line": 109,
+            "end_line": 116,
+            "sha256": "7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d",
+            "purpose": "対象条件を含む具体行span。105-125の包括表spanとは別pin"
+          }
+        }
+      },
+      "HELIXLABO-L2-011": {
+        "registration_id": "MPR-RC-HELIXLABO-L2-011-001",
+        "semantic_digest": "39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+        "version_target": "1.0",
+        "l2": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "full_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "spans": [
+            {
+              "start_line": 163,
+              "end_line": 166,
+              "sha256": "9fcf8b7b648681c7ff08080565a2d708cdd9c5a619e40e8f8bad6196f4c36cb6"
+            }
+          ]
+        },
+        "l11": {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "full_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "parent_summary_spans": [
+            {
+              "start_line": 60,
+              "end_line": 64,
+              "sha256": "136d16707e53e545e4bc6cc18384d604f971e35d00cb2a9750676cdb34f66563"
+            }
+          ],
+          "section24_table_span": {
+            "start_line": 105,
+            "end_line": 125,
+            "sha256": "696be8acf67e3dd1e0b4a6a52194ef70f2d855cf13a5c27db87c3717d79e398a",
+            "purpose": "全15条件表の比較背景pin。109-116の具体行pinの代用ではない"
+          },
+          "section24_condition_rows_109_116_exact": {
+            "start_line": 109,
+            "end_line": 116,
+            "sha256": "7e3bcd9acc0c1b35d2d6d5d56ffb5081825a4cae12386612a9a986a645cdc41d",
+            "purpose": "対象条件を含む具体行span。105-125の包括表spanとは別pin"
+          }
+        }
+      }
+    },
+    "labo_po_adoption_record": {
+      "revision": "08652ec0fca77957deb66106926e3c5bafc14fff",
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "full_sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0",
+      "registrations": {
+        "HELIXLABO-L2-001": {
+          "line": 48,
+          "sha256": "8b24c8a79dcf372ebb42cf5a723107be7b8b4143ebf3479a9f3663155e5099e9"
+        },
+        "HELIXLABO-L2-011": {
+          "line": 59,
+          "sha256": "c2941eadb9435a01a36d69d2311ceb0b5f3e56aa2f1d5b8be29de44cf16aae06"
+        }
+      },
+      "semantic_digests": {
+        "001": "27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+        "011": "39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724"
+      }
+    },
+    "po_section24_original": {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "full_sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16",
+      "section24_lines": [
+        {
+          "start_line": 784,
+          "end_line": 800,
+          "sha256": "f7ef886154339986575f9b2419631a83b8ded64e2ba5a1e22ea5ada923477745"
+        }
+      ]
+    },
+    "connect_adopted_contract_fixture_sources": {
+      "accepted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "approved_target_sha256_from_po_record": {
+        "l2": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+        "l11": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad"
+      },
+      "accepted_source_spans": {
+        "l2": {
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "full_sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "spans": [
+            {
+              "start_line": 56,
+              "end_line": 66,
+              "sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09"
+            },
+            {
+              "start_line": 67,
+              "end_line": 79,
+              "sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756"
+            },
+            {
+              "start_line": 80,
+              "end_line": 90,
+              "sha256": "538e057821cbe69138efe2b2ffd1c593d08be7a4348f01dc0c8afa26b4eac15e"
+            }
+          ]
+        },
+        "l11": {
+          "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "full_sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "spans": [
+            {
+              "start_line": 32,
+              "end_line": 34,
+              "sha256": "63fd320090e93bb5b35967b146ee840b4d24a58195f32a4edb437458fe94bf8a"
+            },
+            {
+              "start_line": 42,
+              "end_line": 45,
+              "sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+            },
+            {
+              "start_line": 46,
+              "end_line": 52,
+              "sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
+            },
+            {
+              "start_line": 54,
+              "end_line": 56,
+              "sha256": "6390037be1dfc2e6d25634862bcb364576022ed6d779886714436cef7c778d71"
+            }
+          ]
+        }
+      },
+      "main_633_reference_presence": {
+        "revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "files": {
+          "l2": {
+            "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+            "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+            "full_sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1",
+            "spans": [
+              {
+                "start_line": 56,
+                "end_line": 66,
+                "sha256": "86b1ee2f1a7447e6da2eb65266613d5b97bff31b0e5cb49dce7f4649cff5bf09"
+              },
+              {
+                "start_line": 67,
+                "end_line": 79,
+                "sha256": "2f820064ab2f79b7762846fc6a2091a16d06951f02cabedd781d267ef2648756"
+              },
+              {
+                "start_line": 80,
+                "end_line": 90,
+                "sha256": "538e057821cbe69138efe2b2ffd1c593d08be7a4348f01dc0c8afa26b4eac15e"
+              }
+            ]
+          },
+          "l11": {
+            "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+            "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+            "full_sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9",
+            "spans": [
+              {
+                "start_line": 32,
+                "end_line": 34,
+                "sha256": "63fd320090e93bb5b35967b146ee840b4d24a58195f32a4edb437458fe94bf8a"
+              },
+              {
+                "start_line": 42,
+                "end_line": 45,
+                "sha256": "d93c0dd16922ec35e15ba6c97051606a5091eea7aeffd9084092c8c14a97890e"
+              },
+              {
+                "start_line": 46,
+                "end_line": 52,
+                "sha256": "e686e6461f6d35833365e869d8fde1d88636518613947864094261ff44074708"
+              },
+              {
+                "start_line": 54,
+                "end_line": 56,
+                "sha256": "6390037be1dfc2e6d25634862bcb364576022ed6d779886714436cef7c778d71"
+              }
+            ]
+          }
+        },
+        "equality_check": "Each accepted L2/L11 contract/acceptance span has the same raw SHA-256 at f6dad2a and main 633bf12; the main documents also contain later material outside these adopted sections."
+      },
+      "po_acceptance_record": {
+        "source_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+        "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+        "full_sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69",
+        "spans": [
+          {
+            "start_line": 27,
+            "end_line": 33,
+            "sha256": "6308d443db6a55051cd5a95ce6b3b866fa19009f3e81eabb3cd85601d4ed3642"
+          },
+          {
+            "start_line": 44,
+            "end_line": 50,
+            "sha256": "f1dd17af78c19cb171d58f5326b29aacbddcc947adc66441500a87ded5a7f08c"
+          }
+        ]
+      }
+    },
+    "legacy_sources_recomputed_at": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+    "legacy_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+        "spans": [
+          {
+            "start_line": 13,
+            "end_line": 21,
+            "sha256": "d16597b2119b4b6d89a48c97777397f983d404059799ab440e76d02f821e1a69"
+          },
+          {
+            "start_line": 101,
+            "end_line": 101,
+            "sha256": "9a48e962ded1a655d4d467b146034189604c8545efe963446a06d5230e32889c"
+          },
+          {
+            "start_line": 148,
+            "end_line": 168,
+            "sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B30F3C82B6B0FDC0D2A8",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/gates.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "dcbc0009d6fd7576cd305f90cfbf47916f666ada0031711f1fa1f952b7014b08",
+        "spans": [
+          {
+            "start_line": 41,
+            "end_line": 41,
+            "sha256": "f3e1188383002fad74fca0fe087c327d6514afe8236fc765a4e4925e81cde4c0"
+          },
+          {
+            "start_line": 64,
+            "end_line": 64,
+            "sha256": "e7b1b13818bf8e3c8cc1afa702735fd64e570bb0fccd9775a35d2a07dbb12a17"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+        "spans": [
+          {
+            "start_line": 82,
+            "end_line": 85,
+            "sha256": "fc924232f93af2593a0d8ec97c36224a3c2f641ca5c03468ecae747107bd4785"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-34DF3B535879CC73FA86",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L08-L14-verification-phase.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "d7847b2e7c85673971cb01f8fc42c1325aeb331a0630ee53914a3162951dbd2a",
+        "spans": [
+          {
+            "start_line": 162,
+            "end_line": 170,
+            "sha256": "d8e3f0e9afaa03c20985808ccade01279952ea5366655e3d4e95ca9e97dd3df5"
+          },
+          {
+            "start_line": 195,
+            "end_line": 207,
+            "sha256": "9a91c1d2094be6c1c0463b9f3af280f41abb15b0503f8520c7e72be12c27c75b"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6E2C7F0565E5F804F06",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d",
+        "spans": [
+          {
+            "start_line": 137,
+            "end_line": 145,
+            "sha256": "7cee661109db34583676144f6acbd6bc1e1342e4492d06e8b0f6009b56aa9e3f"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+        "spans": [
+          {
+            "start_line": 22,
+            "end_line": 34,
+            "sha256": "5d28764f462e5bb9fa6dd3b8a3557941f53946698da94bed79fb386a3df22b55"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "spans": [
+          {
+            "start_line": 134,
+            "end_line": 153,
+            "sha256": "1182367b0bed125db89a879d2b468ab0dc0df42b480df06456e2ff438a674d41"
+          },
+          {
+            "start_line": 178,
+            "end_line": 190,
+            "sha256": "b22d92ccdaa19287976d6c67a4289cde8f379e16382fc07498a3d9b9746752c0"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+        "spans": [
+          {
+            "start_line": 43,
+            "end_line": 50,
+            "sha256": "17a29eeb22b6ecf41e8776b556a566f0a0613212de2e7c660e259f3ec1bd6acb"
+          },
+          {
+            "start_line": 67,
+            "end_line": 90,
+            "sha256": "e13598bd4995ac192a747b0690c0c2fa5a2d17eb9c72949211ae1430e8812866"
+          },
+          {
+            "start_line": 91,
+            "end_line": 120,
+            "sha256": "0493df0f6b3370862f8a2e43ae0eee86f445374bc0f45404208ebbdae14f2a8a"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+        "spans": [
+          {
+            "start_line": 1,
+            "end_line": 73,
+            "sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+        "source_revision": "49318f1f1de5810dfc61fdfe3a2565b86509009d",
+        "full_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "spans": [
+          {
+            "start_line": 21,
+            "end_line": 34,
+            "sha256": "0392a485245f3de9165f2d3fc17f222b33ef0bbdfc059b3efe466b997576e007"
+          },
+          {
+            "start_line": 58,
+            "end_line": 74,
+            "sha256": "74f6a44aeab7e88f1f97b615b6be52001e852f27f790cdba9f1cee4228f87268"
+          }
+        ],
+        "use": "read-only starting point; no legacy execution"
+      }
+    ],
+    "carry_forward_review": {
+      "path": "/tmp/pr2564-claude13-comment.md",
+      "sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+      "lines": 270,
+      "findings": [
+        "Claude13 M9 LABO connector return routes remain unresolved across broader parent scope; these two parents now point to fixed main633 CONNECT L2/L11 fixtures, with comparison-unavailable remaining unknown/stale and no new owner.",
+        "Claude13 SM1/R14 and other unconfirmed findings remain open; no all-crosswalk or legacy-clean claim is made.",
+        "The prior Claude scope limit says unchanged LABO parents were only connector-return checked; other non-target parents have not been revalidated in this slice."
+      ]
+    },
+    "static_checks": {
+      "target_parents": [
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-011"
+      ],
+      "target_stage": "Stage 1",
+      "unseen_normal_trace": [
+        "L10-LABO-001-C11 -> LABO-001-AC-01",
+        "L10-LABO-011-C07 -> LABO-011-AC-01"
+      ],
+      "canonical_links": [
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001-接続登録と端点契約の識別unit",
+          "anchor": "helixconnect-l2-001-接続登録と端点契約の識別unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-001-接続登録",
+          "anchor": "helixconnect-l11-001-接続登録",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-002-契約互換性照合とstale再検証unit",
+          "anchor": "helixconnect-l2-002-契約互換性照合とstale再検証unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-002-契約版照合とstale再検証",
+          "anchor": "helixconnect-l11-002-契約版照合とstale再検証",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-003-契約に束縛した通信unit",
+          "anchor": "helixconnect-l2-003-契約に束縛した通信unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-003-契約に束縛した通信",
+          "anchor": "helixconnect-l11-003-契約に束縛した通信",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L48",
+          "anchor": "L48",
+          "anchor_type": "line"
+        },
+        {
+          "from": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L59",
+          "anchor": "L59",
+          "anchor_type": "line"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../L3-requirements/functional-requirements.md",
+          "anchor": null,
+          "anchor_type": "none"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-001-接続登録と端点契約の識別unit",
+          "anchor": "helixconnect-l2-001-接続登録と端点契約の識別unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-001-接続登録",
+          "anchor": "helixconnect-l11-001-接続登録",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-002-契約互換性照合とstale再検証unit",
+          "anchor": "helixconnect-l2-002-契約互換性照合とstale再検証unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-002-契約版照合とstale再検証",
+          "anchor": "helixconnect-l11-002-契約版照合とstale再検証",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L2-requirements/connect-requirements.md#helixconnect-l2-003-契約に束縛した通信unit",
+          "anchor": "helixconnect-l2-003-契約に束縛した通信unit",
+          "anchor_type": "heading"
+        },
+        {
+          "from": "docs/helix-labo/L10-verification/functional-verification.md",
+          "path_exists": true,
+          "anchor_exists": true,
+          "href": "../../helix-connect/L11-acceptance/connect-acceptance.md#helixconnect-l11-003-契約に束縛した通信",
+          "anchor": "helixconnect-l11-003-契約に束縛した通信",
+          "anchor_type": "heading"
+        }
+      ],
+      "expectations": [
+        "20 L2-001 fields and 7 statuses retained",
+        "success-only population is valid when source scope has only success",
+        "exact historical source revision/time is separate from stale-as-current",
+        "bad/missing source/field is isolated without losing other valid source records",
+        "Web/WEB-OS 031/032 remain optional",
+        "L2-011 roundtrip preserves source identity/revision and missingness",
+        "correlation is not causality",
+        "standalone Aggregate success is not connection success",
+        "consumer receipt binds connection identity/admitted revision/scope",
+        "fixed CONNECT L2/L11 technical result is separate from LABO business/source/correlation route",
+        "no guessed owner for compare-impossible unknown/stale; no unapproved CONNECT L3 links",
+        "ordinary main canonical reference check only; no new gate"
+      ],
+      "non_claims": [
+        "not PO-approved L3",
+        "not implementation/run permission",
+        "not L10 pass",
+        "not independent review",
+        "not all Claude13 findings resolved",
+        "not all legacy/crosswalk reconciliation complete"
+      ],
+      "canonical_links_all_resolve": true,
+      "canonical_links_note": "Relative path targets exist; heading fragments match headings; L48/L59 fragments are valid GitHub line anchors in the PO decision record.",
+      "connect_adopted_section_raw_sha_same_f6_to_633": true,
+      "connect_whole_file_revision_note": "main 633 whole CONNECT file hashes differ from PO-fixed f6 bytes because later text was added; all six selected adopted L2/L11 operation spans and L11 ID rows are byte-identical across both revisions, and only those spans are referenced."
+    }
+  },
+  "checks": {
+    "root_full_canonical_read": 6,
+    "fixed_and_connect_spans_recomputed": 24,
+    "legacy_full_sha_recomputed": 10,
+    "legacy_spans_recomputed": 18,
+    "po_decision_rows_recomputed": 2,
+    "canonical_sha_matches": 6,
+    "line_total": 213,
+    "fr": 2,
+    "ac": 4,
+    "functional_cases": 18,
+    "nfr_candidates": 5,
+    "local_links": "pass",
+    "whitespace": "pass",
+    "scfctl_validate_bindings": 147,
+    "scfctl_validate_fail": 0,
+    "scfctl_stale": 0,
+    "scfctl_residuals": 0,
+    "govcheck": "ok atoms=7622 requirements=57 files=58"
+  },
+  "creator_findings_fixed": [
+    "未見正常C11/C07を親被覆AC01へ結合",
+    "固定CONNECT操作正本と技術failure/業務戻し先を分離",
+    "PO記録revisionをfullに固定",
+    "具体L11条件109–116と比較背景105–125を別pinで保全"
+  ],
+  "carried_review": {
+    "path": "/tmp/pr2564-claude13-comment.md",
+    "sha256": "4d837e616451040cb15762e98b65cb9f104db8856f0319f4f376a47459644f1c",
+    "lines": 270,
+    "findings": [
+      "Claude13 M9 LABO connector return routes remain unresolved across broader parent scope; these two parents now point to fixed main633 CONNECT L2/L11 fixtures, with comparison-unavailable remaining unknown/stale and no new owner.",
+      "Claude13 SM1/R14 and other unconfirmed findings remain open; no all-crosswalk or legacy-clean claim is made.",
+      "The prior Claude scope limit says unchanged LABO parents were only connector-return checked; other non-target parents have not been revalidated in this slice."
+    ]
+  },
+  "limits": [
+    "未実行の文書設計。独立review、PO承認、実装・実行許可・業務完了を生成しない。",
+    "旧test/runtime/CI/Bunを実行していない。",
+    "local準備のみ。#2564のB1/全親findingと未確認範囲のclosureを生成しない。"
+  ]
+}
