@@ -451,7 +451,7 @@ taskごとのscope/role/authority/task class、LABO適性evidence、INTELLIGENCE
 
 - **`AC-OS-L3-021-01` 選択構成と7サービス証拠**：project、要求revision、operation scope、選択component identity/version、source/artifact digest、運用証拠、必要安全依存、active/candidate状態と復旧先を同じoperationへ結ぶ。HARNESSのサービス①〜⑦はそれぞれ独立して判定でき、当該構成で選択したサービスだけに対応する適格性・配布証拠を個別に照合し、別サービスの証拠で代用しない。FRS-BR-001〜007/009を参照する成熟度・impact・再現性・rollback・安全閉包の既存条件を対応するHARNESS contractで照合し、明示選択集合だけを対象にする。未決後続能力の`version_target`を維持し、1.0 dependencyへ変換しない。
 - **`AC-OS-L3-021-02` 独立判定・部分導入**：一つの適格project向け構成を配布可能とし、別project/他の全製品の未完了を理由に妨げない。あるサービスの成功で7製品全体を成立扱いせず、個別service構成成功をHELIX全体段階成立とせず、L2-014とは別状態に置く。
-- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した対照構成で、そのサービスの証拠を一つずつ欠落させる変異、選択後の別artifact切替、未指定componentの暗黙収載、既存成果の消去、成熟度・impact・再現性・互換性・source digest・authority・component identity・component version・project binding・必要安全依存の各単独欠落/不一致を配布成立扱いしない。tag・publication・cutoverは明示された既存authorityがない限り行わない。部分適用後の中断では部分適用状態・途中成果・未完作業・復旧先を記録して保持し、再開へ引き継ぎ、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
+- **`AC-OS-L3-021-03` 不成立と復旧**：各サービスを単独に選択した対照構成で、そのサービスの証拠を一つずつ欠落させる変異、選択後の別artifact切替、未指定componentの暗黙収載、既存成果の消去、成熟度・impact・再現性・互換性・source digest・authority・component identity・component version・project binding・必要安全依存の各単独欠落/不一致を配布成立扱いしない。tag・publication・cutoverは明示された既存authorityがない限り行わない。部分適用後の中断では部分適用状態・途中成果・未完作業・未完義務・復旧先を記録して保持し、再開へ引き継ぎ、rollback後の再開でも同じ選択・artifact・scopeを照合する。未指定componentの包含、成果消去、scope外operationを許さず、該当ownerへ返す。
 
 ### `FR-OS-L3-022` — `HELIXOS-L2-022`
 
@@ -503,13 +503,13 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 ### `FR-OS-L3-052` — `HELIXOS-L2-052`
 
-明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけを自動・冪等にcleanupし、read-after結果とcleanup結果を別々に記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。最新baseを再確認したうえでconflict、stale、依存変化またはreview binding不一致が残る場合だけ根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。baseが変化してもpairが一致しstale=0かつ依存が維持される場合、既存stateを保持できる。Remote refの削除は既存の対象・作用を含む明示authorityがある場合に限る。
+明示mergeとread-after後に、PR assignmentが所有し、他assignmentが使用せず、未完作業のないlocal worktree/branchだけを自動・冪等にcleanupし、read-after結果とcleanup結果を別々に記録する。後続PRはcontent HEADを書換えずに最新baseとのtrial merge可能性、`scfctl stale`、依存とreview bindingを再照合する。最新baseを再確認したうえでconflict、stale、依存変化またはreview binding不一致が残る場合だけ根拠を付けて作成側へ返し、修正後HEADへ独立reviewを取り直す。baseが変化してもpairが一致しstale=0かつ依存が維持される場合、既存stateを保持できる。Remote refの削除は既存の対象・作用を含む明示authorityがあり、実施者が対象・作用・結果を記録できる場合に限る。
 
-**責務／依存境界**：OSはassignment/cleanup/rechainの記録、作成側は自身のbranch修正、review/merge側は独立照合を担う。merge/cleanupからticket完了、Issue close、review成功、要求完了を生成しない。branch自動rebaseやremote削除はこの要件から許可しない。 L2-010/011/035/046の既存責務を置き換えない。
+**責務／依存境界**：OSはassignment/cleanup/rechainの記録、作成側は自身のbranch修正、review/merge側は独立照合を担う。merge/cleanup/再照合からticket完了、要求完了、Issue close、authority、review成功を生成しない。branch自動rebaseやremote削除はこの要件から許可しない。 L2-010/011/035/046の既存責務を置き換えない。
 
 **受入条件**
 
-- **`AC-OS-L3-052-01` local cleanup適格性**：PR-A merge/read-after後にassignment所有、未使用、未完作業なしのlocal worktree/branchだけをcleanupし、同一cleanup再実行でも他assignmentの資源を変更しない。適格local対象だけ自動・冪等にcleanupし、read-after結果とcleanup結果を別々に記録する。所有関係・使用状態・参照関係・merge後確認がunknown/conflictなら削除せず未完理由を返す。旧CIをread-afterの代用にしない。remote ref削除の許可はPR merge、post-merge read-after、repository設定、本候補の採択から生成しない。対象repository・ref・delete作用を含む現行authorityがなければ削除せずcleanup未完を理由付きで記録しownerへ返す。旧HELIXのdelete-branch-on-merge設定を現行の削除authorityへ継承しない。
+- **`AC-OS-L3-052-01` local cleanup適格性**：PR-A merge/read-after後にassignment所有、未使用、未完作業なしのlocal worktree/branchだけをcleanupし、同一cleanup再実行でも他assignmentの資源を変更しない。適格local対象だけ自動・冪等にcleanupし、read-after結果とcleanup結果を別々に記録する。所有関係・使用状態・参照関係・merge後確認がunknown/conflictなら削除せず未完理由を返す。旧CIをread-afterの代用にしない。remote ref削除の許可はPR merge、post-merge read-after、repository設定、本候補の採択から生成しない。対象repository・ref・delete作用を含む現行authorityがなければ削除せずcleanup未完を理由付きで記録しownerへ返す。authorityがあっても実施者が対象・作用・結果を記録できなければ削除せず、cleanup未完理由を保持して該当ownerへ返す。旧HELIXのdelete-branch-on-merge設定を現行の削除authorityへ継承しない。
 - **`AC-OS-L3-052-02` 後続PR再照合**：PR-A merge後にPR-Bのtrial merge、最新base、stale、dependency、review bindingをcontent HEAD不変のまま再照合する。review済みbase/content HEAD pairが一致しstale=0かつ依存条件が維持される場合だけ既存review bindingを保持できる。trial merge、stale、依存状態、review bindingのいずれかが欠ける・古い・矛盾する場合はrechain成立を表示せず、未完理由を記録して該当ownerへ返す。
 - **`AC-OS-L3-052-03` 作成側への返却と再review**：最新base再照合後もconflict/stale/依存変化/review binding不一致がある場合は、merge/review側が作成branchを修正せず差分と根拠を作成側へ返す。旧CI結果はread-afterの代用にしない。最新baseが変化した後のreviewed pairが一致しstale=0・依存維持なら既存stateを保持できる。作成側がHEADを変えた後は新HEADの独立reviewを取り直し、旧reviewを流用しない。新HEADの独立review結果、未解消blocker 0件、現行merge admissionがそろうまでReady/merge可能として扱わない。通知、ACK、merge event、branch ancestryだけではreview receiptを成立させない。
 
@@ -519,7 +519,7 @@ ticket返却、検証不能、oracle/input不足のfindingを、finding identity
 
 | 親／旧項目 | 起点と処置 | 現行で保持する意味／変更理由 |
 |---|---|---|
-| `HELIXOS-L2-021` | `LEGACY-ASSET-B75E46DBE77592351574` FRS要求04–09、`LEGACY-ASSET-201EED9C5D6D2FF4D41B` FRS依頼001–009、`LEGACY-ASSET-67ADFAB856D954B3C5D2` FRS受入004–026とBR crosswalk。ただしFRS-BR-008とFRS-AC-023/024（旧CI先行利用）は現行意味の起点にしない。各範囲は本追補監査の固定span参照。 | 選択componentの明示収載、成熟度/適格性、安全依存、impact、再現性、rollbackを現行HARNESS contractとproject scopeへ再導出。旧Slice/Module/Bundle/channel、固定構成数、promotion runtime・schemaは置換し、HELIX自身の全機構stage release（L2-014）とproject向けHARNESS構成（021）を別identityにする。 |
+| `HELIXOS-L2-021` | `LEGACY-ASSET-B75E46DBE77592351574` FRS要求04–09、`LEGACY-ASSET-201EED9C5D6D2FF4D41B` FRS依頼001–009、`LEGACY-ASSET-67ADFAB856D954B3C5D2` FRS受入004–026とBR crosswalk。ただしFRS-BR-008は現行意味の起点にしない。FRS-AC-023は旧CI内部適用・待ち時間測定として除外し、FRS-AC-024はPhase A事前発行branch／Cursor固有条件として除外してWorker要求源へ別途再採否に回す。各範囲は本追補監査の固定span参照。 | 選択componentの明示収載、成熟度/適格性、安全依存、impact、再現性、rollbackを現行HARNESS contractとproject scopeへ再導出。旧Slice/Module/Bundle/channel、固定構成数、promotion runtime・schemaは置換し、HELIX自身の全機構stage release（L2-014）とproject向けHARNESS構成（021）を別identityにする。 |
 | `HELIXOS-L2-022` | `LEGACY-ASSET-02D897E62EF2FA267267` UIL-FR-004/005、UIL-R-07–10の全体範囲と、`LEGACY-ASSET-0B5B38F146D9538C9A36` UIL-AC-011–016を起点とする。 | event→candidate→判断→ticket→変更/検証→再観測のtraceと前後比較を意味上再利用。LABOの評価/提案/比較実験依頼とOS登録、既存decision ownerの採否を区別して再導出。旧terminal route、database/schema、threshold、runtimeは置換。 |
 | `HELIXOS-L2-024` | `LEGACY-ASSET-EE5DBACC7F28F7D1F605` のHR-FR-P4-03、HAC-P4-03a/b、`LEGACY-ASSET-44DD86E3DEC09E65EF51` のHAT-P4-03。 | event/evidenceから候補・評価へ至るtraceだけを再利用し、HARNESS提供/運用、SECURITY permission/data-use、LABO評価、OS routing、既存要求ownerの判断を別状態として再導出。旧収集器・DB・閾値は移植しない。 |
 | `HELIXOS-L2-046` | `LEGACY-ASSET-00C7DF9250F8A9A25B24` のRFA-AC-16指定acceptance row一行だけ。RFA-GH-02をこの候補の意味起点にせず、RFA全体、隣接acceptance行、engine/schema/runtimeはsource closureに含めない。 | authority/HEAD/scope連続性とstale invalidationの意味を再利用し、現行dispatch/execute/Ready/merge admissionの既存契約へ再導出する。required verification ownerはHARNESS、operation authorityはSECURITY、独立reviewとadmissionは既存GitHub運用モデルに残す。追加approval/check/skipは作らない。 |

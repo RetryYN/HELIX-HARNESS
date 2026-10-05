@@ -833,7 +833,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-024-03g` | `AC-OS-L3-024-01`,`AC-OS-L3-024-03` | LABO evaluation rangeだけtarget scope外にする | 不一致結果を採用せずLABOへ返す。 |
 | `CASE-OS-L10-024-03h` | `AC-OS-L3-024-03` | L2-019 dependency revisionだけstale | 接続未完としてOS既存ownerへ返す。 |
 | `CASE-OS-L10-024-03i` | `AC-OS-L3-024-03` | L2-021 dependency identityだけ欠落 | 対象提供版が分からない状態を保ちOS既存ownerへ返す。 |
-| `CASE-OS-L10-024-03j` | `AC-OS-L3-024-03` | L2-022 dependency revisionだけ不一致 | 還流接続を成立扱いせずOS既存ownerへ返す。 |
+| `CASE-OS-L10-024-03j` | `AC-OS-L3-024-03` | L2-022だけ非互換（接続のrevision不一致）。staleの対照は03zで別に確認する | 還流接続を成立扱いせずOS既存ownerへ返す。 |
 | `CASE-OS-L10-024-03k` | `AC-OS-L3-024-03` | version付きLABO connectorだけ非互換 | その接続を止めLABO接続ownerへ返す。 |
 | `CASE-OS-L10-024-03l` | `AC-OS-L3-024-03` | WEB-OS tenant dataを1件混入 | 本体OS正本へ混入せず、scope逸脱として送信を拒否する。 |
 | `CASE-OS-L10-046-02a` | `AC-OS-L3-046-02` | operation authorityの有効性だけを失効 | そのoperation遷移を未完としSECURITYの既存authority ownerへ返す。 |
@@ -875,7 +875,7 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-052-02d` | `AC-OS-L3-052-02` | review bindingだけ不一致 | merge側でbranchを変更せず、新HEAD後のreviewを待つ。 |
 | `CASE-OS-L10-052-02e` | `AC-OS-L3-052-02` | 上流merge後の最新baseへ独立review済みpairが既に一致し、content HEAD不変・stale=0・dependency維持 | 条件が維持される場合は既存stateを保持でき、最新base変更だけを一律の返却理由にしない。 |
 | `CASE-OS-L10-052-03a` | `AC-OS-L3-052-03` | reviewerが作成branchを修正する変異 | 修正を行わず作成側へ証拠と理由を返す。 |
-| `CASE-OS-L10-052-03b` | `AC-OS-L3-052-03` | 自動rebaseでcontent HEADを変える変異 | この要件から自動rebaseを許可しない。 |
+| `CASE-OS-L10-052-03b` | `AC-OS-L3-052-03` | 自動rebaseでcontent HEADを変える変異 | この要件から自動rebaseを許可しない。HEADが変わった場合は旧review bindingを失効させ、流用しない。 |
 | `CASE-OS-L10-052-03c` | `AC-OS-L3-052-03` | Issue close/要求完了をmerge後cleanupから生成する変異 | 完了を生成せず状態を個別に保つ。 |
 | `CASE-OS-L10-021-03o` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | 選択済みartifact identityだけを別artifactへ切替 | 配布不成立。途中成果と復旧先を保持しHARNESS提供元へ返す。 |
 | `CASE-OS-L10-021-03p` | `AC-OS-L3-021-01`,`AC-OS-L3-021-03` | 選択外componentを1つ暗黙追加 | 不成立。追加componentを対象にせず管理/提供元へ返す。 |
@@ -928,10 +928,10 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-048-03g` | `AC-OS-L3-048-03` | 再発行が必要な返却のrouting先だけを欠落 | OS-047と既存ticket契約へ返し、独自の再発行経路を生成しない。 |
 | `CASE-OS-L10-052-01g` | `AC-OS-L3-052-01` | 適格local cleanup/read-after成立のnormal | 適格資源だけ自動・冪等cleanup。read-after結果とcleanupを別記録。 |
 | `CASE-OS-L10-052-01h` | `AC-OS-L3-052-01` | 旧CI greenだけをread-after代替 | 旧CIを代用せずread-after未完を保持しcleanupを先行しない。 |
-| `CASE-OS-L10-052-02f` | `AC-OS-L3-052-02` | trial merge resultだけunknown | rechainを成立表示せず未評価をownerへ返す。 |
-| `CASE-OS-L10-052-02g` | `AC-OS-L3-052-02` | stale resultだけunknown | stale=0と推定せず再照合未完を保つ。 |
-| `CASE-OS-L10-052-02h` | `AC-OS-L3-052-02` | dependency stateだけunknown | 依存維持を推定せず条件を再照合する。 |
-| `CASE-OS-L10-052-02i` | `AC-OS-L3-052-02` | review bindingだけmissing | pair一致を推定せずadmission未完を保つ。 |
+| `CASE-OS-L10-052-02f` | `AC-OS-L3-052-02` | trial merge resultだけunknown | rechainを成立表示せず未評価をownerへ返す。 未完理由を記録し該当ownerへ返す。 |
+| `CASE-OS-L10-052-02g` | `AC-OS-L3-052-02` | stale resultだけunknown | stale=0と推定せず再照合未完を保つ。 未完理由を記録し該当ownerへ返す。 |
+| `CASE-OS-L10-052-02h` | `AC-OS-L3-052-02` | dependency stateだけunknown | 依存維持を推定せず条件を再照合する。 未完理由を記録し該当ownerへ返す。 |
+| `CASE-OS-L10-052-02i` | `AC-OS-L3-052-02` | review bindingだけmissing | pair一致を推定せずadmission未完を保つ。 未完理由を記録し該当ownerへ返す。 |
 | `CASE-OS-L10-052-03d` | `AC-OS-L3-052-03` | 新HEADの独立review receiptだけ欠落 | Ready/merge可能とせず、現HEADの独立reviewを待つ。 |
 | `CASE-OS-L10-052-03e` | `AC-OS-L3-052-03` | 未解消blockerが1件だけ残る | Ready/merge可能とせず、blocker解消後に現HEADを再照合する。 |
 | `CASE-OS-L10-052-03f` | `AC-OS-L3-052-03` | 現行merge admissionだけ欠落 | Ready/merge可能とせず、既存admission ownerへ戻す。 |
@@ -968,3 +968,5 @@ C13-M findings、minor findings、unreviewed legacy crosswalkは従前のaudit s
 | `CASE-OS-L10-024-03z` | `AC-OS-L3-024-03` | 他条件を保ちL2-022だけstale | 該当送信/採用を止め接続未完を保ち、OS既存ownerへ返す。 |
 | `CASE-OS-L10-024-03aa` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけ欠落 | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
 | `CASE-OS-L10-024-03ab` | `AC-OS-L3-024-03` | 他条件を保ち版付きLABO接続だけstale | 該当送信/採用を止め接続未完を保ち、LABO接続ownerへ返す。 |
+
+| `CASE-OS-L10-052-01m` | `AC-OS-L3-052-01` | 対象repository/ref/delete作用を含む現行authorityはそろうが、実施者の対象・作用・結果の記録経路だけ欠ける | remote refを削除せずcleanup未完理由を保持して該当ownerへ返す。記録不能を成功と表示しない。 |
