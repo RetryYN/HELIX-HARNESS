@@ -88,3 +88,5 @@ NFR候補の選択や運用値はPOへparameterごとの質問にせず、根拠
 | `NFR-INTELLIGENCE-078-01` | `HELIXINTELLIGENCE-L2-078` | 独立数値SLOを導出しない。R-06/07/09/10/11/12のexact set/digest、snapshot join、bounded invalidation、stale-write suppression、replay同値を機能条件として扱う。11 changed dimensions（authority/responsibility/runtime/provider/dependency/security/verification/capacity/cost/migration/release）を個別に追跡する。 | CASE-078の11 dimension×5状態=55個別CASEを維持し、R-06 delta meaning-field、023 effective dependency closure field、R-07〜R-12単独変異も別case-familyとして数える。同一入力closureとdelta exact set/digestは別oracleにし、未観測・未評価を別記する。 | 意味要素の照合であり性能閾値・処理件数scale gate・DB技術を新設しない。 |
 
 技術候補が親の意味、scope、owner、versionを変える必要がある場合は候補のまま保持し、上流へ理由付きで戻す。parameterごとのPO承認やStage完了gateは追加しない。
+
+review06の母集団追補：018の自己採択単独とLABO評価単独を別CASEとして数える。078では代行主張による4 field省略、read/qualification失敗からの別source切替2件、読取不能receiptの3代用を各別CASEとして既存078 familyのplanned fixture母集団へ加え、索引や併発caseと重複計上しない。source-bound oracleと戻し先を個別照合し、未実測を0へ変えない。
