@@ -82,3 +82,21 @@
 | 055 result connection 054 | `LABO-054-AC-01`, `LABO-054-AC-02`; `L10-LABO-054-CASE-01`, `L10-LABO-054-CASE-02`, `L10-LABO-054-CASE-03`, `L10-LABO-054-CASE-04`, `L10-LABO-054-CASE-05`, `L10-LABO-054-CASE-06`, `L10-LABO-054-CASE-07`, `L10-LABO-054-CASE-08`, `L10-LABO-054-CASE-09`, `L10-LABO-054-CASE-10`, `L10-LABO-054-CASE-11`, `L10-LABO-054-CASE-12`, `L10-LABO-054-CASE-13`, `L10-LABO-054-CASE-14`, `L10-LABO-054-CASE-15`, `L10-LABO-054-CASE-16`, `L10-LABO-054-CASE-17`, `L10-LABO-054-CASE-18`, `L10-LABO-054-CASE-19`, `L10-LABO-054-CASE-20`, `L10-LABO-054-CASE-21`, `L10-LABO-054-CASE-23`, `L10-LABO-054-CASE-22` | 055出力のwork-kind/model-class/scope/evidence/unassessed正常・未見、tuple/unknown/connector/owner境界の独立変異。 | 055 tuple保持、未評価/unknown維持、INTELLIGENCE案とOS指定/割当の分離、接続未完了を照合する。 |
 
 全planned caseにcase ID、fixed parent revision、expected/observed oracle dispositionを記録する。成功、negative rejection、unknown/unassessed、missing fixtureは別状態。分母0または母集団不明は率を出さず、観測自体がなければ未測定とする。旧test/runtime/CIは実行しない。
+
+## Stage 5 — NFR計測CASE（LABO 13親）
+
+全て未実行の技術計測設計であり、合格率、最低N、SLA、閾値を追加しない。各fixtureは固定L2/L11と同じ対象群を使い、欠落・unknown・not-applicable・staleを区別する。
+
+- `CASE-NFR-LABO-050-01`: 各循環段階の対象件数、同一episode/ticket/target revisionのtrace、未完義務、再観測・effect evidenceを別々に再計算する。
+- `CASE-NFR-LABO-059-01`: 選択群の条件一致、quality result、decision scopeの有効性、cost receiptの充足、human time、未測定群を分け、unknown/missingを0へ変換しない。
+- `CASE-NFR-LABO-060-01`: 支援有無の対応runで同一設定のfield一致数、片群receipt、支援漏洩、救援・人介入costの記録範囲を再計算する。
+- `CASE-NFR-LABO-061-01`: 選択task contractに適用されるsnapshot/context/oracle/actor/revision fieldを列挙し、missing/stale/leak/inapplicableに分類する。
+- `CASE-NFR-LABO-063-01`: repair/verification/re-observationのepisode lineage、reoccurrence/counterexample、未評価fieldを区別する。
+- `CASE-NFR-LABO-064-01`: 選択blind runだけを対象に、judge-visible leak、identity mapping、rubric/fixture/retry-conditionの一致を数える。
+- `CASE-NFR-LABO-065-01`: selected qualification scope内のaxis coverage、smoke/full-bench state、task scorecard receipt/unknownを再計算する。threshold判定は行わない。
+- `CASE-NFR-LABO-066-01`: A/候補別に共通eligible N、misrepair/unresolved numerator、oracle-unknown casesを別々に計算する。
+- `CASE-NFR-LABO-067-01`: selected Attemptでpredicate/candidate digest/ordered event receiptのcoverageとunknownを再計算し、他Attemptを混ぜない。
+- `CASE-NFR-LABO-068-01`: selected scope全体のOS source completenessと異なるidentityの件数を照合し、完全性不明ならtotalをunknownにする。
+- `CASE-NFR-LABO-069-01`: return/reissueのreason/scope/window/denominator/source completenessとsame-scope result別に再計算する。因果rateを作らない。
+- `CASE-NFR-LABO-070-01`: 9 selected atomそれぞれのunit/window/source receipt/unknownを個別集計し、067/068/059との二重計上を検出する。
+- `CASE-NFR-LABO-071-01`: qualification recordのtask class/model revision/evidence binding、major-miss/revision invalidation、permission/roleの分離を再計算する。資格閾値は判定しない。

@@ -21,3 +21,23 @@
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054
 
 固定親に独立business outcomeはないため別BV/BCASEは追加しない。業務上の正常/失敗と戻し先は[L3 functional AC](../L3-requirements/functional-requirements.md)の`LABO-036-AC-01/02`、`LABO-037-AC-01/02`、`LABO-038-AC-01/02`、`LABO-039-AC-01/02`、`LABO-040-AC-01/02`、`LABO-041-AC-01/02`、`LABO-052-AC-01/02`、`LABO-054-AC-01/02`を[L10 functional cases](functional-verification.md)で照合する。candidate/receiptを業務完了、要求変更、ticket/assignment、authority変更、接続契約変更またはmodel変更へ昇格しない。
+
+## Stage 5 — 事業証拠の範囲（LABO 13親）
+
+独立BR/BCASEを設けない固定親についてbusiness verification CASEは追加しない。functional CASEを責務・業務状態の照合正本として参照する。事業成果、改善完了、採択や業務KPIを測定済みとはしない。
+
+| 固定親 | business evidence / owner境界 | CASE index |
+|---|---|---|
+| `HELIXLABO-L2-050` | LABO評価と再観測、OS registration、target owner変更を別状態に保つ | `L10-LABO-050-CASE-01`〜`CASE-04b` |
+| `HELIXLABO-L2-059` | 選択比較のquality/既決priority適用、scope内費用と人介入 | `L10-LABO-059-CASE-01`〜`CASE-04b` |
+| `HELIXLABO-L2-060` | 同一条件下の支援比較。run ownerはOS | `L10-LABO-060-CASE-01`〜`CASE-04b` |
+| `HELIXLABO-L2-061` | task/oracle/contextの根拠完全性 | `L10-LABO-061-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-063` | recurrence evidenceとknowledge owner分離 | `L10-LABO-063-CASE-01`〜`CASE-04b` |
+| `HELIXLABO-L2-064` | 選択blind runだけの候補identity隠蔽/復元 | `L10-LABO-064-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-065` | selected-scope scorecardと既存qualification decision owner | `L10-LABO-065-CASE-01`〜`CASE-04b` |
+| `HELIXLABO-L2-066` | 共通eligible denominatorでの2つの欠陥指標 | `L10-LABO-066-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-067` | candidate eligibility/repair event、OS Attempt境界 | `L10-LABO-067-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-068` | OS記録に基づくAttempt identity集合 | `L10-LABO-068-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-069` | ticket/reissue後の観測評価。ticket ownerはOS | `L10-LABO-069-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-070` | selected telemetry fieldとsource owner | `L10-LABO-070-CASE-01`〜`CASE-04a` |
+| `HELIXLABO-L2-071` | task-class/model-revision qualificationとSECURITY/OS境界 | `L10-LABO-071-CASE-01`〜`CASE-04a` |

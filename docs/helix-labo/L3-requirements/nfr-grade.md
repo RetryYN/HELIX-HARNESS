@@ -97,3 +97,23 @@
 | 054 waterline/evidence fidelity | planned selected work-kind/model-class packetごとに水準、根拠、適用範囲、未評価状態の保持/unknown/mismatchとscope欠落を記録する。| 055出力のexact tuple保持と、別classへの流用・未評価の実績化、unknown job成功保証、scoreによるscope/branch/merge authority変更を比較する。未知classをunknownとして保つ。| 055の生成品質、INTELLIGENCE配置精度、OS割当成果を新たに評価しない。|
 
 率を報告する場合は事前宣言したeligible planned populationを分母とし、母集団不明はunknown、分母0/missingは算出値なしとする。missing、failure、censored、not-applicable、unknownは区別し、分母から落とさない。性能percentileや最低試行数、fixed thresholdは親・旧sourceに根拠がないため設定しない。候補の数値が必要になる場合は根拠、比較案、測定方法を添えて提案し、実測なしを未測定と記録する。
+
+## Stage 5 — 技術計測候補（LABO 13親）
+
+以下は未計測の技術候補であり、固定L2/L11の明示fixture値はoracleとしてのみ使う。最低N、SLA、成功率target、資格threshold、freshness期限、POごとのparameter approvalを加えない。scope、母集団、unknown/missing、分子・分母を分離する。
+
+- `NFR-LABO-050-01` 循環identityと未完義務: stage/target revision/ticket/experiment/assignment/result/再観測receiptが対応する件数と、欠落・stale・open義務数を別々に集計する。分母は選択循環の各適用stageとし、完了率のthresholdは置かない。
+- `NFR-LABO-059-01` 比較可能性と総費用内訳: 選択群ごとに条件一致、quality oracle結果、cost receiptの充足、非貨幣化human time、未測定群を分けて報告する。品質未達を別metricで相殺しない。
+- `NFR-LABO-060-01` 支援有無比較の同一条件: model/provider/version/effort/task/scope/oracle条件の一致field、片群だけのreceipt、支援経路の漏洩、救援/人介入costの記録範囲を別々に計測する。改善率は定めない。
+- `NFR-LABO-061-01` snapshot/contextの完全性: 選択task契約が要求するidentity/version/digest/context/judge-boundary fieldを対象集合とし、missing/stale/leak/inapplicableを別々に数える。
+- `NFR-LABO-063-01` 修復/effectの系譜: repair target/result/verification/recurrence/re-observationが同一episodeに結合する状態、counterexample、未評価範囲を分ける。再発減少targetは設定しない。
+- `NFR-LABO-064-01` blindの完全性: 選択blind runだけを対象にjudge-visible leak、identity mapping、fixture/rubric/retry条件の一致を数える。非選択runは対象に含めない。
+- `NFR-LABO-065-01` 選択資格scope/scorecardの完全性: 適用field、receiptあり/unknown/not-applicable、smoke/full bench状態を分ける。資格score thresholdは設けない。
+- `NFR-LABO-066-01` 誤修復/未解消指標: 各群共通のeligible N、適用可能なoracle結果、misrepair/unresolvedそれぞれの分子、unknown case数を再計算可能な形で報告する。固定Nや許容率は置かない。
+- `NFR-LABO-067-01` candidate/repair eventの完全性: 選択Attempt内のeligibility predicate・candidate digest・ordered repair eventの記録範囲とunknownを計測し、他Attemptを混ぜない。
+- `NFR-LABO-068-01` Attempt identityの完全性: selected scopeでOSが記録した異なるidentity数と記録の完全性/遅延/重複/訂正を報告する。完全性がunknownなら総数もunknownとする。
+- `NFR-LABO-069-01` return/reissue対象群: reason/scope/window/source completeness/denominator/same-scope reissue verification outcome別の件数を報告する。rate thresholdや因果推定は加えない。
+- `NFR-LABO-070-01` 補助telemetryの完全性: 9 selected atomsごとにsource/unit/window/receipt availabilityとunknownを分ける。067/068の値や059の費用を重複計上しない。
+- `NFR-LABO-071-01` qualificationの紐付け: selected task class/model revision/evidence binding、major miss/revision stale、unknown、称号/permission/roleの分離を数える。資格や失効のthresholdは定めない。
+
+技術候補値の根拠は各親のfixed L2/L11/POと旧source dispositionであり、運用実測・business outcome・実装採択ではない。旧IPA grade、旧Bench threshold/runtimeを再利用しない。

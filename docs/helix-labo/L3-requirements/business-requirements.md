@@ -23,3 +23,25 @@
 ## Stage 4 — HELIXLABO-L2-036/037/038/039/040/041/052/054
 
 固定L2/L11にfunctional outcomeと独立した追加business outcome/ownerは定義されていない。独立BR/AC/BCASEは追加しない。結果、失敗、owner戻しは[L3 functional requirements](functional-requirements.md)のLABO-036/037/038/039/040/041/052/054-AC-01/02を唯一の条件正本として、対となるfunctional verificationで照合する。LABOはFeedback candidateまたは受領traceを扱い、HARNESS要求・OS運転・SECURITY authority・Worker実行/割当・CONNECT契約・Product Core meaning・INTELLIGENCE判断/配置/学習を実行しない。L2-040/041の適用scopeは各上流採択scopeに従う。
+
+## Stage 5 — 事業成果の対象範囲（LABO採択13親）
+
+固定L2/L11の13親は観測、比較、scope限定evaluation/qualification candidateと責務境界を定めるが、これらと独立した事業KPI・外部business outcome・成果閾値を追加定義しない。したがって本Stage 5では独立BR、業務受入AC、BCASEを追加せず、以下の機能evidenceを業務責務の索引として保持する。比較値、ticket/reissue状況、資格statusは事業成果や採択を示さない。
+
+| 親 | 業務outcome / owner | 正本evidence |
+|---|---|---|
+| `HELIXLABO-L2-050` | 独立KPIなし。LABO評価、OS登録/routing、target owner変更/再観測を分離 | `LABO-050-AC-*` / `L10-LABO-050-CASE-*` |
+| `HELIXLABO-L2-059` | 既決のscope固有quality/prioritiesを評価材料へ適用。新しい事業指標なし | `LABO-059-AC-*` / `L10-LABO-059-CASE-*` |
+| `HELIXLABO-L2-060` | 支援有無の技術比較材料。事業効果の閾値なし | `LABO-060-AC-*` / `L10-LABO-060-CASE-*` |
+| `HELIXLABO-L2-061` | 選択比較のevidence integrity。独立business outcomeなし | `LABO-061-AC-*` / `L10-LABO-061-CASE-*` |
+| `HELIXLABO-L2-063` | 再発評価/予防candidate。改善採択やcanonical ownerは既存owner | `LABO-063-AC-*` / `L10-LABO-063-CASE-*` |
+| `HELIXLABO-L2-064` | 選択比較のblind integrity。普遍的資格条件でない | `LABO-064-AC-*` / `L10-LABO-064-CASE-*` |
+| `HELIXLABO-L2-065` | 選択資格scope evidence。provider選択/実験許可ではない | `LABO-065-AC-*` / `L10-LABO-065-CASE-*` |
+| `HELIXLABO-L2-066` | 誤修復/未解消の技術分子・分母。事業品質targetは追加しない | `LABO-066-AC-*` / `L10-LABO-066-CASE-*` |
+| `HELIXLABO-L2-067` | candidate/Attempt内修復の観測材料。性能閾値なし | `LABO-067-AC-*` / `L10-LABO-067-CASE-*` |
+| `HELIXLABO-L2-068` | OS Attempt identity件数。Attempt上限/成功率を定めない | `LABO-068-AC-*` / `L10-LABO-068-CASE-*` |
+| `HELIXLABO-L2-069` | ticket返却後のscope限定評価。因果効果KPIなし | `LABO-069-AC-*` / `L10-LABO-069-CASE-*` |
+| `HELIXLABO-L2-070` | 9 atom telemetryの補助観測。SLA/thresholdなし | `LABO-070-AC-*` / `L10-LABO-070-CASE-*` |
+| `HELIXLABO-L2-071` | task class/model revision資格記録。permissionや割当とは別 | `LABO-071-AC-*` / `L10-LABO-071-CASE-*` |
+
+効果の採択、改善完了、事業KPI、assignment、permission、target変更を評価・提案から生成しない。対象L2以外のStage/機構をこの表で前倒ししない。
