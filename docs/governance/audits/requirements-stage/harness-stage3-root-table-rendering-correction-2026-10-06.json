@@ -1,0 +1,7 @@
+{
+  "authority_effect": "none",
+  "body_revision": "3d67b8130d863335c4fc7884bbd08fdb141e7656",
+  "path": "docs/helix-harness/L10-verification/functional-verification.md",
+  "sha256": "9dca9f358efa24f41b903db550a5f743492e442a8e12ed8c0353021554fc1604",
+  "correction": "Root追加行を表内の連続行として保持。孤立したheader無しのCASE行を解消。CASE literal/ID/oracle/定義数を変更しない。元監査のSHAは旧時点、現revisionはこの記録を優先。"
+}
