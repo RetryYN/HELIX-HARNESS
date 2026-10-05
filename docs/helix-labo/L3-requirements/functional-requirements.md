@@ -247,7 +247,7 @@ version付きのcurrent system-rule、owner提供の運用結果、例外、誤�
 
 - **LABO-008-AC-01 — 根拠付き選択肢**：current system versionに対応する運用結果と例外・誤検知・workaround・変更費用をsource付きで示し、continue / modify / operational fallbackの候補を根拠・適用条件とともに出す。
 - **LABO-008-AC-02 — 保証と未完義務**：候補ごとに現行保証、復帰先operationの条件、未完義務・owner提供結果を保持し、未知/欠落を完了や義務消失へ変換しない。
-- **LABO-008-AC-03 — 切替とowner境界**：LABOはsystem変更やoperation切替を実行しない。version、運用結果、例外、誤検知、workaround burden、費用、保証、責務ownerのどれかがmissing/stale/conflictならunknown/unresolvedとして現行責務のownerへ戻す。L2-007/017の依存identity/revision/scope欠落・staleも同様に保留し、固定L2-008の「現行責務のowner」へ戻す。依存sourceの訂正が必要な場合は、当該ownerが既存のsource責務へ依頼する。
+- **LABO-008-AC-03 — 切替とowner境界**：LABOはsystem変更やoperation切替を実行しない。version、運用結果、例外、誤検知、workaround burden、費用、保証、責務ownerのどれかがmissing/stale/conflictならunknown/unresolvedとして現行責務のownerへ戻す。L2-007/017の依存identity/revision/scope欠落・staleも同様に保留し、固定L2-008の「現行責務のowner」へ戻す。
 
 ### HELIXLABO-L2-009 — `LABO-009-FR-01` Generalization Engine
 

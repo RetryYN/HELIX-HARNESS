@@ -21,7 +21,7 @@
 
 以下は固定L2/L11に結ぶ技術候補であり、測定値・承認値・実装値・SLAではない。値ごとのPO質問や追加gateを作らない。実operation許可・Worker資格/割当・業務成功の判断は含まない。親のmeaning/scope/owner/versionが変わる場合だけ該当L2へ戻す。
 
-### Stage 2b timing volume profile candidates 002 003 004 005
+### Stage 2b technical candidates 002 003 004 005
 | 対象 | 候補値・比較理由 | L10測定 | 適用限界 |
 |---|---|---|---|
 | `LABO-002-FR-01` episode trace coverage | 選択scopeで観測された固定L2列挙stage/event typeとrequirement/revision、責務、product、mechanism、worker、provider/model/configuration、artifact、environment、resultを保持し、観測fieldのsource identity/revision逆参照率100%。未発生stageを生成しない。一部fieldが欠けたときは100%を成功で埋めず欠測を数える。 | 固定source identityを使い、全field/全stage、各field単独missing、source revision conflict、partial episodeをfixture化。保持率と未完義務表示、逆参照結果をfield単位で比較。 | sourceに未観測の事実やeventを要求しない。因果率・時間窓・similarity閾値は作らない。 |
