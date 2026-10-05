@@ -44,7 +44,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
   - 文書（type.md）は、quantitativeには比率尺度と間隔尺度の両方がありうること、既定でx・y・sizeのscaleにzeroを含めるのは比率尺度向きであること、間隔尺度ならzeroを外せることを書いている。
 - 解いている問題と前提：同じ列でも、名義・順序・量・時刻のどれとして読むかで、適切なscale、色、軸が変わる。型をdataから推論せず宣言（または宣言の構造）から決めるので、同じspecは同じ出力になる。
 - 必要な入力：fieldごとの測定の型。省略する場合は、aggregate・bin・timeUnit・sort等の宣言。
-- trade-off・失敗の仕方：型を書かないと、数値の列でもnominalとして扱われうる（`defaultType`の最後の分岐）。逆に宣言の手間を利用者に課す。比率尺度と間隔尺度はどちらも`quantitative`で区別されず、zeroの扱いは別のproperty（P34-O07）に委ねられる。
+- trade-off・失敗の仕方：型を書かないと、数値の列でもnominalとして扱われうる（`defaultType`の最後の分岐）。逆に宣言の手間を利用者に課す。比率尺度と間隔尺度はどちらも`quantitative`で区別されず、zeroの扱いは別のproperty（P34-O14）に委ねられる。
 - 反例・適用しない場合：Plotは型を宣言させず、data値の最初の非null値でscale型を推論する（P34-O04）。EChartsはdimensionの型が宣言されていればそれを使い、なければdataの先頭の数件を見て推測する（P34-O04）。Dracoはschemaからfieldの基本型（string・number・boolean・datetime）と統計量を作り、制約の入力にする（P34-O12）。
 - 互換・非互換：P34-O03（既定のscale型）、P34-O06（既定の色range）の入力になる。P34-O04とは「宣言」か「推論」かで対立する。
 - 限界：型の集合はこのrepo固有であり、HELIXの語彙として持ち込まない。
@@ -63,7 +63,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 必要な入力：channel、測定の型、mark型、bin・timeUnitの有無、offset channelの有無。
 - trade-off・失敗の仕方：不適合な明示を黙って置き換えないが、停止もしないため、警告を見ない利用者は意図と違うscaleに気づかない可能性がある。temporalのtime channelにはTODO commentがあり、補間の実装後にlinearへ変える予定と書かれている（行120–121）。
 - 反例・適用しない場合：Plotは、channel側がscale型を要求する場合（barYのxはband等）に、利用者の型と食い違うとerrorを投げる（P34-O04）。EChartsは軸の`type`（category・value・time・log）を利用者が選ぶ。
-- 互換・非互換：P34-O02の型が入力。P34-O06（色range）とP34-O07（zero）はこの型の結果を使う。
+- 互換・非互換：P34-O02の型が入力。P34-O06（色range）とP34-O14（zero）はこの型の結果を使う。
 - 限界：scale型の種類と分岐はこのrepo固有である。
 
 ### P34-O04 data値からscale型を推論し、literalな値にはscaleを掛けない（Plot）／dimensionの型を標本から推測する（ECharts）
@@ -180,7 +180,7 @@ binding: [SCF-B-0156](../../../bindings/SCF-B-0156.json)
 - 必要な入力：列の値（ordinalか、数値か、単調か、値の種類の多さ）、reducerの指定、markの明示（任意）。
 - trade-off・失敗の仕方：単調性は列全体で判定するため、series分けの前提が崩れると誤ったmarkを選ぶ（#1763）。分岐の順序が推奨の優先順位を暗黙に決めており、利用者のtask（値を読むのか、分布を見るのか）は入力にない。
 - 反例・適用しない場合：Dracoは同じ問題を、重み付きのsoft制約の最適化として解き、taskを入力に取る（P34-O12）。Vega-Liteは推奨を持たず、利用者がmarkを書く（commentによれば、推奨系toolのCompassQLが`scaleType`を、Voyagerが`defaultType`を使う。P34-O03）。
-- 互換・非互換：P34-O04（値からの型推論）を前提にしている。P34-O07のzeroの決め方と同じ問題を、markの選択の後に決める点が共通する。
+- 互換・非互換：P34-O04（値からの型推論）を前提にしている。P34-O14のzeroの決め方と同じ問題を、markの選択の後に決める点が共通する。
 - 限界：分岐の閾値（種類の多さ等）は持ち込まない。
 
 ### P34-O12 設計知識をhard制約とsoft制約（重み付き）で表し、制約solverでchartを推奨・検査する（Draco）
