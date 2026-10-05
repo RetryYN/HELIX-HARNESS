@@ -1,0 +1,66 @@
+{
+  "record_kind": "creator-review02-root-main-integration.v1",
+  "status": "未承認・独立再review待ち",
+  "base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "integration_commit": "923b67f96c729eb71d9c2899b09f463038f02dc0",
+  "body_revision": "6170f4d73afdf8537c2e67f38f61f020fd1e0240",
+  "documents": [
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "sha256": "8bcb4d3c8b9c389c73537c765cba800347cc8807757b16715f9f9dff7d4ea833",
+      "bytes": 3540,
+      "body_unchanged": true,
+      "main_absent": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "sha256": "fab1115e08628841b6e48e951b749769b5070be6ed4e4cbdd548467c07d037fc",
+      "bytes": 15737,
+      "body_unchanged": true,
+      "main_absent": true
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "sha256": "9008bc9c23a8bbfc60a6ec308695b1cb37911e4066205725e16cc50a8786e2d7",
+      "bytes": 5952,
+      "body_unchanged": true,
+      "main_absent": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "sha256": "1f5c5fad4239f6738cd196bdb4af7a853db4bf0b383f958a3fa4c734b0506ad3",
+      "bytes": 3148,
+      "body_unchanged": true,
+      "main_absent": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "sha256": "acdf2c47ca838e309fac30241ae913e261b296c9489bc9509c0329a2a5addfe5",
+      "bytes": 13920,
+      "body_unchanged": true,
+      "main_absent": true
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "sha256": "0bf3903295c32f65147c45535a7143616274521eca6a71cb52204841ebaf4311",
+      "bytes": 6048,
+      "body_unchanged": true,
+      "main_absent": true
+    }
+  ],
+  "root_checks": {
+    "six_document_diff": "全読了",
+    "fixed_source_spans": "4実読・full/rawSHA一致",
+    "current_line_pins": 11,
+    "old_audits_unchanged": 2
+  },
+  "scope": [
+    "HELIXINTELLIGENCE-L2-010",
+    "HELIXINTELLIGENCE-L2-066"
+  ],
+  "limits": [
+    "旧source全量pinは前root検収の37source/268行証拠に継承、今回は変更4source/11行を検算。",
+    "Stage2c #2597を混入しない。先mergeの後は後merge側再構成し両見解をやり直す。",
+    "独立review/委任承認/実測未成立。"
+  ]
+}
