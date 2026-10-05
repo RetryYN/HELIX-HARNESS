@@ -93,7 +93,9 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 - **L10-INFRA-002-C01**（AC `INFRA-002-AC-01`）：承認済designとtargetおよび一致actualを別sourceで与える。期待oracleは三つの入力と一致drift結果の相互traceであり、source bytesとauthorityは不変。
 - **L10-INFRA-002-C02**（AC `INFRA-002-AC-01,AC-02`）：同じfixtureをresource missing、unexpected、version/config/network/permission/capacity差、runtime replacement、unknown dependencyの9類型に独立変異する。既知の差は種類・値・sourceを返し、unknown dependencyは未確認のまま。各差異の分類とsourceを個別に観測し、別変異の成功で相殺しない。
 - **L10-INFRA-002-C03**（AC `INFRA-002-AC-02`）：design/target/observationを各々missing、stale、互換不明にした9入力を与える。該当部分の比較を保留し、source ownerと未確認scopeを返す。unknownを一致、missingをresource不存在の確定にしない。
-- **L10-INFRA-002-C04**（AC `INFRA-002-AC-01,AC-02`）：unexpected resourceまたはactual設定をdesign/targetへ昇格しようとする入力を与える。比較前後の正本・authority状態は不変で、更新候補は採択/修正実行にならない。driftを消すため比較入力を上書きした結果は不合格。
+- **L10-INFRA-002-C04**（AC `INFRA-002-AC-01`）：actual observationの値をapproved design/targetへ自動昇格しようとする入力を与える。design/target/actualのcanonical bytesとauthority状態は比較前後で不変で、昇格も修正実行も生じない。
+- **L10-INFRA-002-C08**（AC `INFRA-002-AC-01,AC-02`）：scope外または未登録のunexpected resourceをapproved resourceとして扱おうとする入力を与える。resource identity・design/target/actualのcanonical bytesとauthority状態は不変で、承認済み扱いやscope追加をしない。
+- **L10-INFRA-002-C09**（AC `INFRA-002-AC-01`）：driftを消す目的でdesign/target/actualの比較入力を上書きする要求操作を与える。操作を拒否し、比較入力のcanonical bytes・元の比較結果・authority状態が前後で不変であることを照合する。
 - **L10-INFRA-002-C05**（AC `INFRA-002-AC-02`）：有限scopeの一部だけ正しいsourceがあり、残りが別environment/別revision/unknownである未見fixtureを与える。確認済み部分と未確認部分を区別し、元ownerへ返す。OS ticket/SECURITY authority/Worker契約を欠く状態では修正操作を生成しない。
 
 ## HELIXINFRASTRUCTURE-L2-007 — L10 oracle（対応 `INFRA-007-FR-01`）
@@ -102,18 +104,21 @@ L2-005は採択済み依存入力であり、L3/L10対象ではない。005の�
 
 - **L10-INFRA-007-C01**（AC `INFRA-007-AC-01`）：元machineを利用不能とし、外部から取得できる完全なapproved design/config/artifact/dependency/data backup/version/deployment evidenceを与える。隔離環境の再構築、再接続、起動、固定oracle実結果を順に照合し、すべて成立したdeclared scopeだけを再構築済みにする。消失machine/control planeへの依存はなく、操作authorityは別sourceから取得する。
 - **L10-INFRA-007-C02**（AC `INFRA-007-AC-01,AC-02`）：作成側に伏せた同scopeの別artifact/dependency版組合せで再構築する。入力と結果版・実制約を照合し、未対応組合せは未評価とする。前fixtureのgreenを別版へ流用しない。
-- **L10-INFRA-007-C03**（AC `INFRA-007-AC-02`）：文書/backupだけ存在し実再構築証拠がない入力と、必要情報が消失machine内だけにある入力を別々に与える。どちらもrebuildable/successにせず、欠落情報とsource ownerを返す。
+- **L10-INFRA-007-C03**（AC `INFRA-007-AC-02`）：関連文書だけが存在し、backupも実再構築証拠もない入力を与える。rebuildable/successにせず、欠落情報とsource ownerを返す。
 - **L10-INFRA-007-C04**（AC `INFRA-007-AC-02`）：design/config/artifact/dependency/data/version/deployment evidenceを一つずつmissing/stale/異版にする。さらにcredential authority不足、依存再接続失敗、起動失敗、verification failure、verification unknownを個別に与える。起動だけの成功や一部復元を全scope成功にしない。authority不足は該当SECURITY sourceへ返す。
 - **L10-INFRA-007-C05**（AC `INFRA-007-AC-02`）：一部復元後に依存またはverificationで止まり、同じscope/版の不足を補って再開する。復元済み部分と残義務、停止原因、owner、再構築結果のprovenanceを維持し、再開前の未完結果を成功にしない。条件が変わる再開は新revisionで再照合する。
 
 | 親 | ACの同一正本参照 | case集合 | 成立範囲 |
 |---|---|---|---|
-| `HELIXINFRASTRUCTURE-L2-002` | `INFRA-002-AC-01, INFRA-002-AC-02` | `L10-INFRA-002-C01..07` | 指定resource/environmentと固定三入力の比較 |
-| `HELIXINFRASTRUCTURE-L2-007` | `INFRA-007-AC-01, INFRA-007-AC-02` | `L10-INFRA-007-C01..06` | 宣言した隔離復旧scope・版・固定oracleの結果 |
+| `HELIXINFRASTRUCTURE-L2-002` | `INFRA-002-AC-01, INFRA-002-AC-02` | `L10-INFRA-002-C01..09` | 指定resource/environmentと固定三入力の比較 |
+| `HELIXINFRASTRUCTURE-L2-007` | `INFRA-007-AC-01, INFRA-007-AC-02` | `L10-INFRA-007-C01..08` | 宣言した隔離復旧scope・版・固定oracleの結果 |
 
 - **L10-INFRA-002-C06**（`INFRA-002-AC-02`）：L2-001のresource identity、environment identity、設計source identity/revisionとactual source identity/revisionを一項目ずつmissing/unknown/stale/mismatchへ変える。期待oracleは該当比較だけを保留し不足field/sourceと元ownerを返す。別source/環境から補完せず、未選択resourceは比較義務に加えない。
 - **L10-INFRA-007-C06**（`INFRA-007-AC-02`）：L2-001のresource/environment identity、選択復旧に適用されるL2-005の復旧情報、L2-006の独立path/別authorityを一項目ずつmissing/unknown/stale/mismatchへ変える。期待oracleは再構築成功を出さず、対応source ownerへ返して復元済み部分と未完義務を保持する。非適用の復旧操作に義務を追加せず、必要な既存条件を推測で免除しない。
 
-追加caseを含む集合は002がC01〜C07、007がC01〜C06。未見正常007-C02は入力版の適用可能性が既存sourceで示される合成fixtureに限り、版不明を正常と偽らない。各fixtureはsource/revision/environmentと期待oracleを別記し、別機能の性能値を判定へ流用しない。
+追加caseを含む集合は002がC01〜C09、007がC01〜C08。未見正常007-C02は入力版の適用可能性が既存sourceで示される合成fixtureに限り、版不明を正常と偽らない。各fixtureはsource/revision/environmentと期待oracleを別記し、別機能の性能値を判定へ流用しない。
+
+- **L10-INFRA-007-C07**（`INFRA-007-AC-02`）：backupだけが存在し、適用対象のdesign/documentationや実再構築証拠がない入力を与える。backupの存在だけではrebuildable/successにせず、必要なdesign/source ownerへ返す。
+- **L10-INFRA-007-C08**（`INFRA-007-AC-02`）：必要な情報が消失machine内だけにあり、外部から復元入力を取得できない入力を与える。rebuildable/successにせず、不足情報とowner、未完scopeを返す。
 
 - **L10-INFRA-002-C07 — 未見正常**（`INFRA-002-AC-01`）：C01/C02と異なる合成resource/environment identityとsource revisionを独立に宣言し、approved design/target/actualの同対象対応を保ってversion差とnetwork差が併存する入力を与える。期待oracleは両差異を別source traceで返し、正本・authorityを変えず、source所有者・未確認scopeを保持する。未見名称のみで拒否せず、入力不明ならC03/C06の保留へ分ける。

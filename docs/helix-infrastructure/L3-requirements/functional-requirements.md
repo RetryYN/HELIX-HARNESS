@@ -104,17 +104,18 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 
 ## INFRA-002-FR-01 — HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift
 
-設計ownerが持つapproved design/configuration、deployment target、source-qualified actual observationを、対象environment/resource/revisionごとに別の意味状態として保持する。同じ比較対象・適用scopeで不足、余剰、version/config/network/permission/capacity差、runtime交換、unknown dependencyを提示する。差異を直す操作、設計の承認、targetの採否はこの比較から生成しない。設計、target、observationがmissing/stale/互換不明ならその部分の比較を未確定としてsource ownerへ返し、確認できた部分と未確認範囲を残す。修正はOS ticket・SECURITY authority・Workerの別契約による。
+設計ownerが持つapproved design/configuration、deployment target、source-qualified actual observationを、対象environment/resource/revisionごとに別の意味状態として保持する。同じ比較対象・適用scopeで不足、余剰、version/config/network/permission/capacity差、runtime交換、unknown dependencyを提示する。差異を直す操作、設計の承認、targetの採否はこの比較から生成しない。比較に用いたdesign、target、actual、observationの入力bytesも書き換えない。設計、target、observationがmissing/stale/互換不明ならその部分の比較を未確定としてsource ownerへ返し、確認できた部分と未確認範囲を残す。修正はOS ticket・SECURITY authority・Workerの別契約による。
 
-- **INFRA-002-AC-01**：同じ対象のdesign/target/actualからdriftを再構成でき、三入力と結果のsource/revisionを別々に辿れる。差異を比較しただけで正本やauthorityを書き換えない。
+- **INFRA-002-AC-01**：同じ対象のdesign/target/actualからdriftを再構成でき、三入力と結果のsource/revisionを別々に辿れる。差異を比較しただけで正本やauthorityを書き換えない。比較入力を読取専用として扱い、design、target、actual、observationのcanonical bytesを変更しない。
 - **INFRA-002-AC-02**：resource missing/unexpected、version/config/network/permission/capacity差、runtime replacement、unknown dependencyを個別に識別する。入力の欠落/stale/互換不明を一致へ変換せず、該当owner・未確認scope・再比較に必要な入力を示す。
 
 | 親の句 | AC | L10 case | 観測 |
 |---|---|---|---|
 | 入力・提供・三状態の分離 | `INFRA-002-AC-01` | `L10-INFRA-002-C01,C02` | 同一対象の各source/revisionとdrift差分 |
 | 9差異類型・unknown保全 | `INFRA-002-AC-02` | `L10-INFRA-002-C02,C03` | missing/unexpected、5設定差、runtime交換、unknown dependency |
-| 自動変更・承認にしない | `INFRA-002-AC-01,AC-02` | `L10-INFRA-002-C04` | design/target/source bytes・authority状態の不変 |
-| L2-001・設計・観測依存、source ownerへ返却 | `INFRA-002-AC-02` | `L10-INFRA-002-C03,C05` | 部分比較・不足・未確認scope・返却owner |
+| 自動変更・承認にしない | `INFRA-002-AC-01,AC-02` | `L10-INFRA-002-C04,C08,C09` | actual昇格、unexpected承認扱い、比較入力上書きの個別拒否とbytes・authority不変 |
+| L2-001・設計・観測依存、source ownerへ返却 | `INFRA-002-AC-02` | `L10-INFRA-002-C03,C05,C06` | 部分比較・不足・未確認scope・依存field欠落と返却owner |
+| 未見正常な同一比較 | `INFRA-002-AC-01` | `L10-INFRA-002-C07` | 新しいresource/environmentで差異を個別提示し入力不変 |
 
 ## INFRA-007-FR-01 — HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability
 
@@ -127,9 +128,10 @@ operationごとに開始条件、対象、使用したauthority identity/revisio
 |---|---|---|---|
 | 全復旧入力から実環境再構築 | `INFRA-007-AC-01` | `L10-INFRA-007-C01,C02` | source版・再構築・再接続・起動・oracle実結果 |
 | 特定machine内への情報閉込めを避ける | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C03` | 元machine喪失時の入力取得可否 |
-| 文書/backup存在と成功を別判定 | `INFRA-007-AC-02` | `L10-INFRA-007-C03,C04` | existenceとobserved resultの区別 |
+| 文書のみ・backupのみと成功を別判定 | `INFRA-007-AC-02` | `L10-INFRA-007-C03,C07` | 文書のみとbackupのみの各入力で再構築成功にしない |
+| machine内情報のみとowner戻し | `INFRA-007-AC-02` | `L10-INFRA-007-C08` | 消失machineに閉じた情報を不足として返す |
 | 欠落ownerへ返却・未完verification保持 | `INFRA-007-AC-02` | `L10-INFRA-007-C04,C05` | 復元部分、残義務、owner、再開時の版対応 |
-| L2-001/005/006・1.0・別authority | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C04,C05` | resource identity、復旧経路、既存authorityの条件 |
+| L2-001/005/006・1.0・別authority | `INFRA-007-AC-01,AC-02` | `L10-INFRA-007-C01,C04,C05,C06` | resource identity、復旧経路、既存authorityの条件 |
 
 ### INFRA-002 固定親と旧資産の起点
 

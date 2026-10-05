@@ -28,4 +28,4 @@ stage: 1
 
 対象は採択済みHELIXINFRASTRUCTURE-L2-002/007のみ、version_target 1.0。固定L2/L11の意味・scope・担当・版を保持する。本cutoutはこの2親だけを対象とし、他の親やstageを追加しない。候補草稿・未承認・未実行。
 
-固定親HELIXINFRASTRUCTURE-L2-002/007は三状態・差異比較と再構築結果を定め、独立business outcome/oracleはない。独立BR/業務ACは0件。機能正本INFRA-002/007-FR-01、各AC-01/02と対のL10各C01〜C06へ参照を一本化し、incident close、配置/費用採否、release成功を生成しない。
+固定親HELIXINFRASTRUCTURE-L2-002/007は三状態・差異比較と再構築結果を定め、独立business outcome/oracleはない。独立BR/業務ACは0件。機能正本INFRA-002/007-FR-01、各AC-01/02と対のL10 case（002はC01〜C09、007はC01〜C08）へ参照を一本化し、incident close、配置/費用採否、release成功を生成しない。
