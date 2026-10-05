@@ -2353,7 +2353,7 @@ input observation identity/source revision；episode candidate identityとrelati
 ### L10-LABO-058-C37 — WEB-OS明示選択正常
 
 - 対応AC: `LABO-058-AC-01`。親: `HELIXLABO-L2-058`。
-- 入力fixture: WEB-OS sourceを明示選択し、既存L2-032の採択済みsource contract、個別connector、tenant/customer scope、source identity/revision、許可されたruntime observationを同じ対象へ有効に束縛する。
+- 入力fixture: WEB-OS sourceを明示選択し、既存L2-032の採択済みsource contract、個別connector、tenant/customer scope、source identity/revision/data scope、許可されたtenant/job/deployment/runtime観測を同じ対象へ有効に束縛する。
 - 期待: 選択WEB-OS sourceの条件だけでobservation候補を照合し、tenant/customer scopeとWEB-OS authorityをsource側に保持する。実際のWEB-OS採択・稼働を成立させず、未選択の1.0呼出しへ条件を追加しない。
 
 ### L10-LABO-058-C38 — WEB-OS選択contract未採択
