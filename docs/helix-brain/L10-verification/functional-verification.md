@@ -168,7 +168,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - **L10-BRAIN-INFRA-008-C01（正常／AC-01）**：8 scaling/capacity候補（Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、Read Replica、Cache、Worker Pool、Backpressure）それぞれをtrigger/bottleneck/limit/statefulness/synchronization cost/saturation behaviorの6軸で記述を全て含む宣言済み合成対象を与える。**期待oracle**：全必須要素を親の対象identityと対応付け、L2のscopeと責務を保持する。
 - **L10-BRAIN-INFRA-008-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `8方式 × 6 descriptor軸 = 48対応cell` とする。
-- **L10-BRAIN-INFRA-008-C03（親固有negative／AC-02）**：候補/field欠落、size/scale増大を目的化する変異、unknown workloadを適用許可へ変換する変異、既知workloadで自動scaling実行能力をBRAIN知識へ加える変異、unknown workloadで同能力を加える変異、閾値創作を別々に試す。**期待oracle**：不成立reasonを特定し、workload/SLOは製品要求、構造評価はLABO。
+- **L10-BRAIN-INFRA-008-C03（親固有negative／AC-02）**：候補/field欠落、根拠のない特定規模値の創作、unknown workloadを適用許可へ変換する変異、既知workloadで自動scaling実行能力をBRAIN知識へ加える変異、unknown workloadで同能力を加える変異、根拠のない負荷閾値創作をそれぞれ別fixtureで試す。**期待oracle**：各fixtureを不成立とし、workload値・規模・SLOは製品要求、構造評価はLABOへ戻す。
 - **L10-BRAIN-INFRA-008-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-008-C05（未見正常／AC-01）**：固定8候補の一つであるWorker Poolについて、C01と異なる合成fixtureに6軸を記載し、workload量はunknownとする。**期待oracle**：未指定workloadをunknownとして保持し、適用可能へ丸めず、自動scaling能力や閾値を作らない。欠けたworkloadをmissing/unknownとして示し、固定L2の要求値戻し先を示す。
 
@@ -188,7 +188,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 - **L10-BRAIN-INFRA-010-C01（正常／AC-01）**：backup-only、restore verificationあり、required recovery conditions充足の3状態を別々に示し、3条件全てが揃う場合だけRecoverability Evidence Candidateとする合成fixtureを与える。**期待oracle**：Candidateは復旧可能の確定でないと識別する。
 - **L10-BRAIN-INFRA-010-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `strategy/retention/replication/restore/recovery validation + backup-only/restore-verified/required-conditions states` とする。
-- **L10-BRAIN-INFRA-010-C03（親固有negative／AC-02）**：backupのみ、restore verificationありだがrequired recovery conditionsを欠く状態、recovery conditionsを満たすがrestore verificationを欠く状態を独立に与える。**期待oracle**：3条件が揃わない限りCandidateにせず、実RTO/RPOを創作しない。実行値はProduct/Runtime、知識構造はHELIXBRAIN-L1-003/010へ戻す。
+- **L10-BRAIN-INFRA-010-C03（親固有negative／AC-02）**：backupのみ、restore verificationありだがrequired recovery conditionsを欠く状態、recovery conditionsを満たすがrestore verificationを欠く状態を独立fixtureで与える。別の独立fixtureでは、根拠のない一律RTO/RPO値をBRAINが生成・確定する変異を与える。**期待oracle**：3条件が揃わないfixtureではCandidateを成立扱いしない。RTO/RPO創作fixtureでは創作値を製品値またはCandidate根拠として受理せず不成立とする。実backup/restore実行と値は製品/Runtime、知識構造はHELIXBRAIN-L1-003/010へ戻す。
 - **L10-BRAIN-INFRA-010-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
 - **L10-BRAIN-INFRA-010-C05（未見正常／AC-01）**：未見のreplication/restore/recovery validation構造を合成し、製品RTO/RPO値は未指定にする。**期待oracle**：各知識要素のrelationを保ち、backupだけでrecoverabilityを結論せず製品値を創作しない。
 
@@ -210,7 +210,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 - **L10-BRAIN-INFRA-012-C02（個別欠落／AC-02）**：必須field/relation/列挙要素を一度に一つだけmissingにしたfixtureを列挙集合の各要素について作る。**期待oracle**：当該要素とmissing reasonを特定し、成功/適用扱いにせず止める。C02の分母は `1 abstract identity + 4 implementation example identity + 明示relation` とする。
 - **L10-BRAIN-INFRA-012-C03（親固有negative／AC-02）**：identity統合、provider固定、provider固有factの根拠欠落、fact版欠落、relation欠落を一変数ずつ独立fixtureで試す。**期待oracle**：不成立reasonを特定し、互換条件のownerまたは該当Patternへ戻す。未確認compatibilityはunknown。
 - **L10-BRAIN-INFRA-012-C04（unknown/stale/対象不一致／AC-02）**：固定L2が明示するidentity/condition/relationだけを対象に、unknown、矛盾、別対象を一項目ずつ変異する。L2がsource/evidenceを要求しない箇所へ新しいevidence義務を足さない。**期待oracle**：AC-02に従い不成立またはunknownと戻し先を示し、成功/適用扱いにしない。
-- **L10-BRAIN-INFRA-012-C05（未見正常／AC-01）**：S3 implementationからGCS implementationへproviderだけを入替え、Object Storage抽象identityとimplements/compatible_with/constraint_ofの方向・relation意味を保つ独立fixtureを与える。**期待oracle**：抽象identityとrelation意味は不変で、未評価のcompatibilityだけunknown。
+- **L10-BRAIN-INFRA-012-C05（未見正常／AC-01）**：固定4実装例に含まれないfixture-only implementation identityを使い、Object Storage抽象identityと明示relationを保つ。provider固有fact/compatibilityは未評価としてunknownで表現する。**期待oracle**：列挙外identityを抽象Patternへ結び、compatibilityを確定せずunknownのまま記録できる。固定L2の4例分母を増やさず、新provider承認gateを作らない。
+- **L10-BRAIN-INFRA-012-C06（正常／AC-01）**：S3 implementationからGCS implementationへproviderだけを入替え、Object Storage抽象identityとimplements/compatible_with/constraint_ofの方向・relation意味を保つ独立fixtureを与える。**期待oracle**：抽象identityとrelation意味は不変で、未評価のcompatibilityだけunknown。
 
 ### `HELIXBRAIN-L2-INFRA-013` — BRAIN-INFRA-013-FR-01 / AC-01, AC-02
 
