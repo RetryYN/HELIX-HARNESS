@@ -77,8 +77,8 @@
 | `HELIXBRAIN-L2-019` | 独立business outcomeなし。 | `L10-BRAIN-019-C01`〜`C16`；同親の全`R-*`独立fixture |
 | `HELIXBRAIN-L2-020` | 独立business outcomeなし。 | `L10-BRAIN-020-C01`〜`C15`；同親の全`R-*`独立fixture |
 | `HELIXBRAIN-L2-021` | 独立business outcomeなし。 | `L10-BRAIN-021-C01`〜`C18`；同親の全`R-*`独立fixture |
-| `HELIXBRAIN-L2-022` | 独立business outcomeなし。 | `L10-BRAIN-022-C01`〜`C16`；同親の全`R-*`独立fixture |
-| `HELIXBRAIN-L2-023` | 独立business outcomeなし。 | `L10-BRAIN-023-C01`〜`C13`；同親の全`R-*`独立fixture |
-| `HELIXBRAIN-L2-030` | 独立business outcomeなし。 | `L10-BRAIN-030-C01`〜`C38`；同親の全`R-*`独立fixture |
+| `HELIXBRAIN-L2-022` | 独立business outcomeなし。 | `L10-BRAIN-022-C01`〜`C17`；同親の全`R-*`独立fixture |
+| `HELIXBRAIN-L2-023` | 独立business outcomeなし。 | `L10-BRAIN-023-C01`〜`C14`；同親の全`R-*`独立fixture |
+| `HELIXBRAIN-L2-030` | 独立business outcomeなし。 | `L10-BRAIN-030-C01`〜`C40`；同親の全`R-*`独立fixture |
 
 旧HARNESS business-detailは分類分離の形式比較のみとし、その数値・業務成果・ownerはこの対象へ適用しない。business outcomeがないことは未測定business KPIを意味しない。
