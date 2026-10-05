@@ -1,0 +1,121 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none",
+  "latest_main": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "review_base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "reviewed_head": "dbd696a8eb4d25fd733e8d66d510def7d705504b",
+  "body_revision": "68d48bfc7ba3030bf055dc67e78c11ebef679156",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5988340835,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2592#issuecomment-5988340835",
+      "body_utf8_bytes": 3643,
+      "body_sha256": "932f19c97f61d863d9566058bb5771fe9327368ad6b72b6eec6a66603f508a58"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5988409466,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2592#issuecomment-5988409466",
+      "body_utf8_bytes": 14147,
+      "body_sha256": "d6789d21773e7a74ac9907a00a7a3acc85dd488219913592d2b108e38c25ab69"
+    }
+  ],
+  "approved_parent_range": {
+    "first": "HELIXBRAIN-L2-INFRA-001",
+    "last": "HELIXBRAIN-L2-INFRA-017",
+    "registration_rows": 17,
+    "stage": "Stage 2b",
+    "version": "1.0"
+  },
+  "fixed_requirements": {
+    "l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "po_decision_revision": "633bf12ea8f948db8ba3d6600179c4a9507377a7"
+  },
+  "documents": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "405840ceb9442a769498c9cfe77e0611ec6b282742076e945b3199adaaaa6019"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "2a614f3a3bc365a1e6cad0507f33c6cafa7c4cb5cf16034aaff11abe1d466a50"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "c61d51bfc050cb13247c0b52f9ea575ddd6b415b1230a6f376a9e9316fe88a87"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "1b74ae392d8c27a84741970f6c38e7c1910a52522c64808e50f032e443ea945d"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "51dd748ff58bc89252badbcb1496e83c259a6987d543e285bef8cad79961c7ea"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-brain-infrastructure-stage2b-l3-l10-po-decision-2026-10-05.md",
+    "revision": "63a661bfa6ef3826bf7e5d5700a1bd727d8570cc",
+    "sha256": "e2dee3ed8737db187750c6ff6d312a1a1a1607786a367d72df71e139bba76131"
+  },
+  "verification": "6本文は本文revision 68d48bfc7とreviewed HEAD dbd696a8eでbyte一致。comment UTF-8 body bytes/SHA、承認済みStage1 prefix、main dcc72でのdocs/helix-brain不変、固定親/PO/G0 registrationを照合。既存source時点記録は変更していない。",
+  "approved_stage1_prefixes": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "base_prefix_lines": 11,
+      "prefix_sha256": "5224d78282a60ef1ac2dd0fc4bbc2bfaf3073e738e0baf7ad697d3656040c804",
+      "head_sha256": "405840ceb9442a769498c9cfe77e0611ec6b282742076e945b3199adaaaa6019",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "base_prefix_lines": 86,
+      "prefix_sha256": "031fccb6716b42e693983d2c3789b80070ec4910afcc198243a5b26a3eaaa216",
+      "head_sha256": "2a614f3a3bc365a1e6cad0507f33c6cafa7c4cb5cf16034aaff11abe1d466a50",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "base_prefix_lines": 15,
+      "prefix_sha256": "21a47fed4e9269367d765111b05e3541c8ee3649f474990fdc5b27f20798e237",
+      "head_sha256": "c61d51bfc050cb13247c0b52f9ea575ddd6b415b1230a6f376a9e9316fe88a87",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "base_prefix_lines": 13,
+      "prefix_sha256": "98c768a580ea16fffb5c11dfaa6508c91e7dba6d6d55f8d097f540ff9092c264",
+      "head_sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "base_prefix_lines": 159,
+      "prefix_sha256": "537ff96382641b614c4f256d30403d4b5df5154ea7fb623c0a809c263c030a9a",
+      "head_sha256": "1b74ae392d8c27a84741970f6c38e7c1910a52522c64808e50f032e443ea945d",
+      "prefix_byte_identical": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "base_prefix_lines": 16,
+      "prefix_sha256": "8d987bddc9d4625937c5c7c16d1754a475ca699d27e09eb39e04489681288fbc",
+      "head_sha256": "51dd748ff58bc89252badbcb1496e83c259a6987d543e285bef8cad79961c7ea",
+      "prefix_byte_identical": true
+    }
+  ],
+  "latest_main_source_check": {
+    "revision": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+    "path_scope": "docs/helix-brain",
+    "unchanged_from_review_base": true
+  }
+}
