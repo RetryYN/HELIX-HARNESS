@@ -1,0 +1,550 @@
+{
+  "schema": "HELIX-L3-L10-source-audit/v1",
+  "record_status": "immutable source and authoring audit for candidate; not L3 approval or independent review",
+  "created_on": "2026-10-05",
+  "mechanism": "HELIX-INTELLIGENCE",
+  "scope": {
+    "parent": "HELIXINTELLIGENCE-L2-075",
+    "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-075-002",
+    "stage": "Stage 2c",
+    "version_target": "1.0 target candidate",
+    "base_head": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+    "body_commit": "4a14b97192a2fb09a4843d41780a8681ceb66376",
+    "excluded": [
+      "HELIXINTELLIGENCE-L2-073 requirements as a parent (only boundary referenced)",
+      "AAFD-R-04 and AC-004 detector/projection behavior",
+      "AAFD R-05+ / AC-005+",
+      "future-state delta adapter, TER, Future Synthesis/runtime",
+      "UIL qualification/runtime implementation",
+      "Stage 2b completion gate",
+      "Issue/Requirement/CI/merge operation"
+    ]
+  },
+  "authority": {
+    "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "fixed_l2_span": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:618-625",
+    "fixed_l11_span": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:337-343",
+    "po_decision_main": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+    "po_adoption_id": "MPR-RC-HELIXINTELLIGENCE-L2-075-002",
+    "l2_semantic_sha256": "c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6",
+    "l11_semantic_sha256": "b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
+    "decision_line_raw_lf_sha256": "f96c3473f9289f9087b9d8d7f3c4076d0592bdd23de64e8a67ecd212c8ab4d46",
+    "snapshot_metadata_note": "L2 source line 620 says unadopted; exact PO decision row adopts the matching L2 and L11 semantic digests. Adoption is read from PO record. L3 remains candidate."
+  },
+  "planning_artifacts": {
+    "original_md": {
+      "path": "/tmp/pr257x-stage2c-followup-075-031-plan.md",
+      "sha256": "a0caffdf370232b03566abc49e3819e7843ba148de1c0c2fafdb01c64dc51078",
+      "bytes": 5908
+    },
+    "corrected_json": {
+      "path": "/tmp/pr257x-stage2c-followup-075-031-plan-02.json",
+      "sha256": "c27cc83438f2f70804267d91efd664fa22754aab38cefc4bf394b8f703eef7ba",
+      "bytes": 21676
+    }
+  },
+  "canonical_documents": [
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 17674,
+      "baseline_sha256": "96c4e2a9d05c2ecc46ef5ed116953dc9e2b51d74da6603c8653d7178bcd97eaf",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "96c4e2a9d05c2ecc46ef5ed116953dc9e2b51d74da6603c8653d7178bcd97eaf",
+      "final_bytes": 25878,
+      "final_sha256": "1c649899b67024bc2980f73df954f2c86611fa90c4d61f855cd1883507d7b77c",
+      "final_lines": 93,
+      "appended_start_line": 67,
+      "appended_end_line": 93,
+      "appended_bytes": 8204,
+      "appended_raw_lf_sha256": "3af8e9374024a9cb43afe99b271bba326386b9f5a7ce6fa3434568b4ec0abe99"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 4080,
+      "baseline_sha256": "18afdbba30d60f293ae970731bcf7ce06c0c3a7b3f141a6fe74b19bfc75dd718",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "18afdbba30d60f293ae970731bcf7ce06c0c3a7b3f141a6fe74b19bfc75dd718",
+      "final_bytes": 4582,
+      "final_sha256": "e27509192e37061b53bbabac52d5f4030384b57b7a35152d380a40f3065c0971",
+      "final_lines": 30,
+      "appended_start_line": 26,
+      "appended_end_line": 30,
+      "appended_bytes": 502,
+      "appended_raw_lf_sha256": "d5cab6907be37cbe10be10d4f215fbbb01fe590dc6e6957d90db27044e0a036e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 9912,
+      "baseline_sha256": "92794e2f6f3ff83769710061ac621419ebc491fe25742497df825832cd7de924",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "92794e2f6f3ff83769710061ac621419ebc491fe25742497df825832cd7de924",
+      "final_bytes": 12553,
+      "final_sha256": "50cd541413ff9128736aebd962f3630e366f63f974af2edd252472e4b5310635",
+      "final_lines": 47,
+      "appended_start_line": 38,
+      "appended_end_line": 47,
+      "appended_bytes": 2641,
+      "appended_raw_lf_sha256": "babe158971712bda816b31e816bb25d7f3c79b9960838d9e202a9b55db74b531"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 17667,
+      "baseline_sha256": "47756f20a5d0c5a762babca47a1b6289b414273baebe888a82a42b5aaaae5093",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "47756f20a5d0c5a762babca47a1b6289b414273baebe888a82a42b5aaaae5093",
+      "final_bytes": 23206,
+      "final_sha256": "851c937f152d8f7377ae73cbf1039210f274cec13797c2cb1865620d3d3d649f",
+      "final_lines": 175,
+      "appended_start_line": 135,
+      "appended_end_line": 175,
+      "appended_bytes": 5539,
+      "appended_raw_lf_sha256": "ec340decb38a7dd185f9bad32e057114855ba2ee79c715973c8c9dd352f7959a"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 3848,
+      "baseline_sha256": "9f2ce755bb6f75fb8597498834e8b0d5a4165ee7d07ddf7ac0e476adc1500e5f",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "9f2ce755bb6f75fb8597498834e8b0d5a4165ee7d07ddf7ac0e476adc1500e5f",
+      "final_bytes": 4258,
+      "final_sha256": "d0081ba89fa68733803e1c58d3807cde68df5e6fbbe958e19108371a70d61d27",
+      "final_lines": 34,
+      "appended_start_line": 30,
+      "appended_end_line": 34,
+      "appended_bytes": 410,
+      "appended_raw_lf_sha256": "51a027a9f0eb6d5562ef2b9f169b8a9bd17b2854644e11e67c6fb52570235c68"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.md",
+      "baseline_revision": "ac463c88edd6794367f8c9594a1e91dc990cf81e",
+      "baseline_bytes": 8601,
+      "baseline_sha256": "f329d3b9886ff27e5fab0375f20778b0242d0408691f805c2e5b4e7304cc2d5f",
+      "prefix_preserved_byte_exact": true,
+      "prefix_sha256_after": "f329d3b9886ff27e5fab0375f20778b0242d0408691f805c2e5b4e7304cc2d5f",
+      "final_bytes": 10421,
+      "final_sha256": "f1cd16417e3de2b25b6331b62935e0146fd8ff30af601b952ee4704578d310d3",
+      "final_lines": 44,
+      "appended_start_line": 36,
+      "appended_end_line": 44,
+      "appended_bytes": 1820,
+      "appended_raw_lf_sha256": "fca99c1c0d1fd6a7c54e8f63907d9334ead1f2bb2d62e15924dc5728abda1924"
+    }
+  ],
+  "counts": {
+    "FR_ids": [
+      "FR-INT-075-01",
+      "FR-INT-075-02",
+      "FR-INT-075-03"
+    ],
+    "FR_group": "FR-INT-075",
+    "AC_ids": [
+      "AC-INT-075-01",
+      "AC-INT-075-02",
+      "AC-INT-075-03",
+      "AC-INT-075-04",
+      "AC-INT-075-05",
+      "AC-INT-075-06"
+    ],
+    "functional_CASE_ids": [
+      "CASE-INT-075-01",
+      "CASE-INT-075-02",
+      "CASE-INT-075-03",
+      "CASE-INT-075-04",
+      "CASE-INT-075-05",
+      "CASE-INT-075-06",
+      "CASE-INT-075-07",
+      "CASE-INT-075-08",
+      "CASE-INT-075-09"
+    ],
+    "BR_ids": [],
+    "business_CASE_ids": [],
+    "NFR_ids": [
+      "NFR-INT-075-01"
+    ],
+    "NFR_CASE_ids": [
+      "CASE-NFR-INT-075-01"
+    ]
+  },
+  "condition_trace": [
+    {
+      "parent": "L2-075:618-620 + L11-075:339",
+      "meaning": "adopted L1-009/L2-009 audit trace; only AAFD R01-03; 1.0 target; Stage 2c no 2b gate",
+      "targets": [
+        "FR-INT-075-01",
+        "AC-INT-075-01",
+        "AC-INT-075-06"
+      ],
+      "cases": [
+        "CASE-INT-075-01",
+        "CASE-INT-075-05",
+        "CASE-INT-075-09"
+      ]
+    },
+    {
+      "parent": "L2-075:621 + L11-075:340",
+      "meaning": "complete proposal fields, digest binding, PR-review/system-proposal separation, finding/remediation distinct",
+      "targets": [
+        "FR-INT-075-01",
+        "AC-INT-075-01",
+        "AC-INT-075-02"
+      ],
+      "cases": [
+        "CASE-INT-075-01",
+        "CASE-INT-075-02",
+        "CASE-INT-075-07"
+      ]
+    },
+    {
+      "parent": "L2-075:622 + L11-075:341",
+      "meaning": "exact HEAD/worktree/authority digest/session/owner/evidence independent missing/altered/revision and individual reason; current/compatibility/historical",
+      "targets": [
+        "FR-INT-075-02",
+        "AC-INT-075-03",
+        "AC-INT-075-04"
+      ],
+      "cases": [
+        "CASE-INT-075-02",
+        "CASE-INT-075-03",
+        "CASE-INT-075-06"
+      ]
+    },
+    {
+      "parent": "L2-075:623 + L11-075:342",
+      "meaning": "no AI self-qualification; duplicate/owner, independent reproduction, counterevidence, expiry, supersession go to existing UIL-01..04; no merged identities",
+      "targets": [
+        "FR-INT-075-03",
+        "AC-INT-075-05"
+      ],
+      "cases": [
+        "CASE-INT-075-04",
+        "CASE-INT-075-07",
+        "CASE-INT-075-08"
+      ]
+    },
+    {
+      "parent": "L2-075:624 + L11-075:343",
+      "meaning": "unknown/conflict/stale/historical retained incomplete; existing owner handoff; no runtime/Issue/Requirement/CI/merge action; R04 stays L2-073",
+      "targets": [
+        "FR-INT-075-02",
+        "FR-INT-075-03",
+        "AC-INT-075-06"
+      ],
+      "cases": [
+        "CASE-INT-075-03",
+        "CASE-INT-075-06",
+        "CASE-INT-075-09"
+      ]
+    },
+    {
+      "parent": "L2-075:625 / old-source limits",
+      "meaning": "legacy AC field failure reason is individual but vocabulary/schema not fixed; future adapter/runtime outside scope",
+      "targets": [
+        "FR-INT-075-02",
+        "FR-INT-075-03"
+      ],
+      "cases": [
+        "CASE-INT-075-02",
+        "CASE-INT-075-06"
+      ]
+    }
+  ],
+  "business_pair_disposition": {
+    "reason": "L2-075 defines proposal identity/qualification handoff behavior and no independently owned business outcome",
+    "BR/BCASE": "none introduced",
+    "evidence": "business docs refer to FR-INT-075/AC-01..06 and functional CASE-01..09"
+  },
+  "nfr_candidate": {
+    "basis": "fixed L2-075 field and identity requirements; old sources give no numeric SLA/threshold",
+    "candidate_comparison": "field-level matrix with per-field normal+negative reason coverage versus proposal-wide all-fields pass ratio; field-level recommended because parent forbids one field being masked by another",
+    "measurement": "declared parent field count denominator; report authority class, source revision, fixture count, missing/unassessed; qualification facets separate; no arbitrary threshold/minimum/window",
+    "oracle": "no cross-field substitution; current/compatibility/historical separated; no AI-generated qualification"
+  },
+  "legacy_disposition": [
+    {
+      "old": "F542 L3 definition 148-168",
+      "action": "meaning rederived",
+      "decision": "FR+AC and paired L10 oracle relationship retained; G3/old runtime/approval implementation replaced by current layout and normal L3 approval boundary"
+    },
+    {
+      "old": "AAFD-R-01 requirements 27-31",
+      "action": "rederived from fixed L2-075",
+      "decision": "use current AgenticAuditProbeProposalV1 fields and identities; old implementation/control names not reused"
+    },
+    {
+      "old": "AAFD-R-02 requirements 33-36",
+      "action": "rederived",
+      "decision": "six current identity checks and per-field reason retained; reason enum/schema is not fixed"
+    },
+    {
+      "old": "AAFD-R-03 requirements 38-41",
+      "action": "rederived",
+      "decision": "no self-qualification and UIL handoff preserved; UIL qualification process not reimplemented"
+    },
+    {
+      "old": "AAFD-AC-001 acceptance 15",
+      "action": "rederived",
+      "decision": "full fields/digest and distinct advisories become CASE-075-01/07"
+    },
+    {
+      "old": "AAFD-AC-002 acceptance 16",
+      "action": "rederived",
+      "decision": "individual identity field failures/reasons become CASE-075-02"
+    },
+    {
+      "old": "AAFD-AC-003 acceptance 17",
+      "action": "rederived",
+      "decision": "qualification failure facets become independent CASE-075-04/06/08"
+    },
+    {
+      "old": "AAFD-R-04/AC-004 onward",
+      "action": "excluded",
+      "decision": "R04 detector priority/direct projection is outside fixed 075 and remains within adopted L2-073; no 075 condition derived"
+    }
+  ],
+  "source_pins": [
+    {
+      "label": "fixed_l2_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 618,
+        "end": 625
+      },
+      "full_file_bytes": 151600,
+      "full_file_sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c",
+      "raw_lf_inclusive_span_bytes": 3611,
+      "raw_lf_inclusive_span_sha256": "c302d45ef008b8d73f71c9484c1c9e2432c8e195f23c559b513d36309cdb80f6",
+      "line_count": 687,
+      "asset_id": null,
+      "role": "fixed adopted parent semantic clauses; body metadata status is superseded by matching PO decision"
+    },
+    {
+      "label": "fixed_l11_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 337,
+        "end": 343
+      },
+      "full_file_bytes": 123549,
+      "full_file_sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33",
+      "raw_lf_inclusive_span_bytes": 2181,
+      "raw_lf_inclusive_span_sha256": "b81bd9e52df97cc92f0f228fb9effab476012836e7e113b985641ea2c99ac08e",
+      "line_count": 434,
+      "asset_id": null,
+      "role": "paired accepted-parent acceptance clauses"
+    },
+    {
+      "label": "po_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/po-decision-2026-10-03-later35.md",
+      "physical_lines": {
+        "start": 33,
+        "end": 33
+      },
+      "full_file_bytes": 31614,
+      "full_file_sha256": "e3ea2cc8d79c2568985bc086fbc4d08d25e162fcc546858d6db47bba768ac3d3",
+      "raw_lf_inclusive_span_bytes": 253,
+      "raw_lf_inclusive_span_sha256": "f96c3473f9289f9087b9d8d7f3c4076d0592bdd23de64e8a67ecd212c8ab4d46",
+      "line_count": 182,
+      "asset_id": null,
+      "role": "later exact PO adoption decision with matching semantic digests"
+    },
+    {
+      "label": "g0_075",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": {
+        "start": 473,
+        "end": 473
+      },
+      "full_file_bytes": 183432,
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_lf_inclusive_span_bytes": 915,
+      "raw_lf_inclusive_span_sha256": "fcbb515c3593e94472fc674d41b04eeda6533e761015f37ed9d9c5e3dc486bf1",
+      "line_count": 552,
+      "asset_id": null,
+      "role": "selected Stage 2c assignment; no 2b completion gate or adopted L2 prerequisite"
+    },
+    {
+      "label": "legacy_075_req",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "physical_lines": {
+        "start": 23,
+        "end": 41
+      },
+      "full_file_bytes": 6358,
+      "full_file_sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "raw_lf_inclusive_span_bytes": 1191,
+      "raw_lf_inclusive_span_sha256": "970a4c70b6502d197ca2c79b4e0e972872be1c300c475e49877a4a4ae11da50e",
+      "line_count": 126,
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "role": "legacy AAFD-R01..03 field/identity/qualification source"
+    },
+    {
+      "label": "legacy_075_ac",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "physical_lines": {
+        "start": 15,
+        "end": 17
+      },
+      "full_file_bytes": 3639,
+      "full_file_sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "raw_lf_inclusive_span_bytes": 400,
+      "raw_lf_inclusive_span_sha256": "9f4becbb16f448ce63f3c56243e3825a72d027811415131ce1e7f86b5b64046d",
+      "line_count": 47,
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "role": "actual legacy AC-001..003 acceptance rows; 15-17 includes all three; line16 alone is AC002 only"
+    },
+    {
+      "label": "adopted_L1_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "physical_lines": {
+        "start": 51,
+        "end": 51
+      },
+      "full_file_bytes": 19834,
+      "full_file_sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+      "raw_lf_inclusive_span_bytes": 462,
+      "raw_lf_inclusive_span_sha256": "84ab3a57b798f75b99747422017af094f065f619be354cbda7a07e76e73da5c3",
+      "line_count": 122,
+      "asset_id": null,
+      "role": "adopted L1 audit trace meaning; exact fixed L1 bytes"
+    },
+    {
+      "label": "adopted_L2_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "physical_lines": {
+        "start": 98,
+        "end": 100
+      },
+      "full_file_bytes": 101004,
+      "full_file_sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+      "raw_lf_inclusive_span_bytes": 1371,
+      "raw_lf_inclusive_span_sha256": "68bfa62f77f64dfcda38b3e42d4607e3e424ec0a6257c032e2de9bbb4a5c58b8",
+      "line_count": 559,
+      "asset_id": null,
+      "role": "adopted audit finding trace and existing AAFD/UIL owner boundary"
+    },
+    {
+      "label": "adopted_L11_009",
+      "source_commit": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "source_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "physical_lines": {
+        "start": 70,
+        "end": 70
+      },
+      "full_file_bytes": 76601,
+      "full_file_sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+      "raw_lf_inclusive_span_bytes": 272,
+      "raw_lf_inclusive_span_sha256": "45442c32028e984cc98e36dbd8cb9a56f69bffb2d6c1f624d6d6967a593d8838",
+      "line_count": 287,
+      "asset_id": null,
+      "role": "paired acceptance summary for L2-009"
+    },
+    {
+      "label": "PO_adopted_L1_revision",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 31,
+        "end": 38
+      },
+      "full_file_bytes": 13446,
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_lf_inclusive_span_bytes": 1070,
+      "raw_lf_inclusive_span_sha256": "d89707cef8932b6e5e778e0b436ea0983d1eafa8f15347506203e64e3c386e5d",
+      "line_count": 140,
+      "asset_id": null,
+      "role": "PO confirmed fixed L1/L2/L11 target blobs"
+    },
+    {
+      "label": "PO_adopted_L2_009_registration",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+      "physical_lines": {
+        "start": 56,
+        "end": 56
+      },
+      "full_file_bytes": 13446,
+      "full_file_sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad",
+      "raw_lf_inclusive_span_bytes": 84,
+      "raw_lf_inclusive_span_sha256": "982c646740ccaf54becdfef1d3cc0c658f3962171baee47e1a08358e55c3c7af",
+      "line_count": 140,
+      "asset_id": null,
+      "role": "PO registration identity for adopted L2-009"
+    },
+    {
+      "label": "legacy_L3_layer_definition",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "physical_lines": {
+        "start": 148,
+        "end": 168
+      },
+      "full_file_bytes": 15617,
+      "full_file_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "raw_lf_inclusive_span_bytes": 1214,
+      "raw_lf_inclusive_span_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "line_count": 284,
+      "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "role": "legacy L3 FR+AC/paired verification/approval boundary; format source only"
+    },
+    {
+      "label": "current_L3_L10_authoring_layout",
+      "source_commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "source_path": "docs/governance/l3-l10-authoring-layout.md",
+      "physical_lines": {
+        "start": 1,
+        "end": 71
+      },
+      "full_file_bytes": 12199,
+      "full_file_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "raw_lf_inclusive_span_bytes": 12199,
+      "raw_lf_inclusive_span_sha256": "d1fb0c89df30aca6bb828f28e58329d57c40bb7593df540625562b5ac920a7ca",
+      "line_count": 71,
+      "asset_id": null,
+      "role": "current six-document pair placement and per-item legacy disposition rule"
+    }
+  ],
+  "source_validation": {
+    "pins": 13,
+    "mismatches": [],
+    "plan_075_pins_recomputed": 6,
+    "six_canonical_prefixes_byte_exact": true,
+    "identity_and_crossreference_checks": {
+      "FR group declared once": true,
+      "FR clauses 01-03 unique": true,
+      "AC 01-06 unique": true,
+      "functional CASE 01-09 unique": true,
+      "NFR unique": true,
+      "NFR CASE unique": true,
+      "BR and business CASE absent": true,
+      "business docs refer to FR and CASE pair": true,
+      "all 075 references resolve": true
+    }
+  },
+  "static_checks": {
+    "scfctl_validate": "PASS bindings=147 fail=0",
+    "scfctl_stale": "PASS stale=0",
+    "scfctl_residuals": "PASS residuals=0",
+    "govcheck": "PASS atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS precommit; git show --check PASS on body commit",
+    "legacy_runtime_tests_ci_bun": "not run per instruction",
+    "review_approval": "root review pending; no L3 approval or independent review claimed"
+  },
+  "limitations": [
+    "No standalone canonical document specifying UIL-01..04 was found in searched current docs; the draft follows the explicit fixed-parent referral and does not infer detailed UIL contracts/routes.",
+    "No R04/AC004 or later AAFD behavior was analyzed as a 075 requirement.",
+    "No runtime, tests, CI or deployment was performed."
+  ]
+}
