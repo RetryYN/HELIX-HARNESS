@@ -432,7 +432,7 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 
 親：`HELIXBRAIN-L2-001`、registration `MPR-RC-HELIXBRAIN-L2-001-002`、semantic digest `sha256:e708841bf5f5560a96915866d68dd4d37cd663bb250e61084e1d19ebf2eb4abf`。PO decision main633 L48。固定L2 `brain-requirements.md:84–94`、固定L11 `brain-acceptance.md:29`と共通24–26。依存：HELIXBRAIN-L1-001 / Conceptの機構境界。依存は採択L2の意味契約を参照し、未承認L3をauthorityにしない。
 
-設計知識のDomain identity・意味・状態とPattern参照を保持する。初期10領域を識別し、一覧を固定enumにせず追加・分割・統合・退役を表す。各変更後も既存relationの利用者と参照先を識別する。製品/projectをDomain化せず、追加候補6領域の初版充実を必須にしない。
+設計知識のDomain identity・意味・状態とPattern参照を保持する。初期10領域を識別し、一覧を固定enumにせず追加・分割・統合・退役を表す。各変更後も既存relationの利用者と参照先を識別する。追加・分割・統合・退役の4操作を個別に表現できる。製品/projectをDomain化せず、追加候補6領域の初版充実を必須にしない。
 
 - **BRAIN-001-AC-01 — 正常**：10初期領域を別identity/意味/状態で与え、各Patternの参照先を照合する。Visual DesignとUX / Interactionも初期集合に残る。
 - **BRAIN-001-AC-02 — 反例**：初期10領域のいずれかの欠落・誤識別・意味対応不明を個別に不成立とする。製品/project名をDomainに固定する入力、追加可能6領域の初版充実を必須とする入力、既存relation利用者を消す入力もそれぞれ個別に拒否する。
@@ -441,7 +441,7 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 
 旧sourceとの対応：RDJ-FR-009のstable identityと未解決情報を隠さない意味を再導出する。旧RDJのunknown enum拒否は現行の「固定enumにしない」と異なるため置換し、enum初版にないことだけで候補を拒否しない。Domainの10領域・4変化操作は旧RDJにあるとはせず、固定L2-001から再導出する。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ### BRAIN-002-FR-01 — 階層の意味と関係
 
@@ -450,13 +450,13 @@ L2は20 atomic field、L11は18列挙groupを持ち、trade-offとevidenceは別
 Domain→Pattern→Design Unit→Part以上の再利用構造を、各identity・包含/構成relation・責務・親を伴って辿れる。file、code snippet、UI componentの集合だけをPattern知識と誤認しない。具体の保存方式/クラス型を確定しない。
 
 - **BRAIN-002-AC-01 — 正常**：Visual Design Domain→Dashboard Pattern→Navigation/KPI/Work Area Unit→Table/Filter/Status Partを、各段階のidentity/責務/親とrelation付きで辿る。
-- **BRAIN-002-AC-02 — 反例**：fileのみ、code片のみ、UI component集のみをPatternとして返す各入力を不合格とする。identity欠落・孤立・誤種別も項目別に検出する。
-- **BRAIN-002-AC-03 — 不明と戻し先**：階層または要素の意味を決められない項目をunknown/候補保留とし、HELIXBRAIN-L1-002へ返す。
+- **BRAIN-002-AC-02 — 反例**：fileのみ、code片のみ、UI component集のみをPatternとして返す各入力を不合格とする。identity欠落も項目別に検出する。孤立・誤種別はunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。
+- **BRAIN-002-AC-03 — 不明と戻し先**：階層または要素の意味を決められない項目、孤立項目、誤種別項目をunknown/候補保留として保持し、HELIXBRAIN-L1-002へ返す。
 - **BRAIN-002-AC-04 — 未見と責務境界**：未見の正当な構成にも同じidentity/親/責務照合を適用する。例の名前だけから意味を推測しない。
 
 旧sourceとの対応：VDH-FR-003/VDH-AC-003のsemantic identityとclass/file pathだけでは意味traceを代用しない点、Design Templateの意味identityを再導出。旧screen/region/slot/action/state/bindingやJSON方式は置換し、BRAIN4段階は固定L2-002から再導出。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ### BRAIN-003-FR-01 — Pattern成立条件
 
@@ -471,7 +471,7 @@ Pattern候補とsource、対象問題、前提、利用時inputを受け、12列
 
 旧sourceとの対応：旧Design Templateの適用条件・必須input/field・negative/evidenceとRDJ未解決templateの非捏造を意味再導出。旧typed predicate文法/JSON canonical/registry/strict enum/承認gateは置換し、12要素と適用/採用の分離は固定L2-003を根拠とする。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ### BRAIN-004-FR-01 — 候補比較と選択責務
 
@@ -486,7 +486,7 @@ Pattern候補とsource、対象問題、前提、利用時inputを受け、12列
 
 旧sourceとの対応：旧Design Templateのalternatives/trade-off説明を構造的意味と結ぶ部分を再導出。旧JSON正本への投影/choice plannerは移さず、3比較例とBRAIN非選択authorityは固定L2-004から再導出。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ### BRAIN-005-FR-01 — 方向と意味を伴うrelation
 
@@ -501,7 +501,7 @@ Pattern/Unit/Part間のrelationを種類、方向、意味、両端identity付�
 
 旧sourceとの対応：RDJのtyped traceとDesign Templateの関係identityを結ぶ意味を参考にするが、BRAIN7relationと端点/方向条件の直接一致はpin範囲で未確認。これらは固定L2-005/L11から再導出し、旧trace graph/registry/DB実装は移さない。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙field/relationおよびL11反例はAC-02と各個別case、不明/失敗戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ### BRAIN-006-FR-01 — Visual/UXの再利用知識境界
 
@@ -516,11 +516,11 @@ Pattern/Unit/Part間のrelationを種類、方向、意味、両端identity付�
 
 旧sourceとの対応：VDH-FR-005/VDH-AC-005のPattern required/forbiddenとproduct固有値の共通pack非混入を再導出。UI profileのowner分離を参考にし、旧52entity/registry/profile schema/実測gateは置換。15知識例と製品CORE/Visual Design HARNESS境界は固定L2-006から再導出。 旧sourceのasset ID・full/raw-LF SHAは本追補の静的監査へ固定する。旧実行、旧test、旧CIは現行の合格証拠にしない。
 
-親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙fieldおよびL11反例はAC-02と各個別case、製品固有要素を分離できない境界caseの戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。各完全CASE IDは対の表に固定し、監査で親句対応を再照合する。
+親句→AC→L10の対応：正常入力/提供構造はAC-01とC01、列挙fieldおよびL11反例はAC-02と各個別case、製品固有要素を分離できない境界caseの戻し先はAC-03、未見適用とauthority境界はAC-04へ結ぶ。親句とCASEの固定対応は本書のStage 2b親句→FR/AC→CASE trace表（後段）と`../L10-verification/functional-verification.md`の各親別case表で照合する。
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029の部分草稿
 
-**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（011/012の`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。
+**状態：候補のみ（独立review／L3承認前）。** 対象はPO採択registrationが1.0候補として固定するHELIXBRAIN-L2-009/010/011/012/029のみ。各親のPO固定revisionは`f6dad2a33e24f000b87d7f09b8d40288257e74cc`、採択registrationはmain `633bf12ea8f948db8ba3d6600179c4a9507377a7`、G0は最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`で全件Stage 2b。後続版、Web条件付き、保留・不採択を含めず、前Stage完了gateや実装・実行・release許可を作らない。現在有効なL2/L11判断を使い、新たな承認・fieldごとのPO確認を設けない。採択registrationのmetadata-only後継（001–012の各`-003`、029の`-002`）はsemantic digestを変更せず、本文の親意味を更新しない。
 
 旧L3定義`LEGACY-ASSET-F542125805B777D8A56A`（`docs/process/forward/L00-L06-design-phase.md:148-168`）と旧L3層README `LEGACY-ASSET-9A772391C7FB1298D45F`（`docs/design/harness/L3-functional/README.md:16-56`）から、FR+AC、business/NFRの区分、対の検証へtraceする形だけを再導出する。旧HELIXのBRAIN専用L3要件・対testは、archiveのdocs inventoryを`brain`で絞り、旧L3 functional FR/README/acceptance designとUI Domain Pattern Profile設計・testのPattern/failure/product/consumer関連範囲を検索した限り見つからなかった。これはその検索範囲の結果であり、旧資産全体の不存在を主張しない。旧HARNESS FR/AC、ATと旧UI profileを構造上の類例として参照し、BRAINの意味authorityにはしない。旧G3/runtime、UI固有schema/enum、旧ID、旧閾値・gate・実行結果は継承しない。各親別のsource、物理行、full/raw-LF pin、再利用・再導出・置換理由は対応する固定時点source-pins記録にある。
 
@@ -528,10 +528,10 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 
 ### BRAIN-009-FR-01 — 構成Pattern候補
 
-親`HELIXBRAIN-L2-009`（固定L2 `brain-requirements.md:172-182`、L11 `brain-acceptance.md:37`）。採択registration `MPR-RC-HELIXBRAIN-L2-009-002`、semantic digest `sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01`（PO採択main 633）。L1-009とL2-005/007/025を前提とする。既存PatternのUnit、source/evaluation scope、新relation案から、両端identityと構成根拠が追跡できるcandidate Patternを返す。Unit自体またはrelation根拠のどちらかが不明な構成はcandidateとしても適用せず、該当するL1-009へ戻す。構成candidateの生成を確立済みPatternへの昇格と同一視しない。LABO評価・OS登録・BRAIN独立検証とL2-025 promotion経路は、candidate作成を阻止する前提条件ではなく、昇格時に満たす既存条件である。
+親`HELIXBRAIN-L2-009`（固定L2 `brain-requirements.md:172-182`、L11 `brain-acceptance.md:37`）。採択registration `MPR-RC-HELIXBRAIN-L2-009-002`、semantic digest `sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01`（PO採択main 633）。L1-009とL2-005/007/025を前提とする。既存PatternのUnit、source/evaluation scope、新relation案から、両端identityと構成根拠が追跡できるcandidate Patternを返す。Unit自体またはrelation根拠のどちらかが不明な構成はcandidateとしても適用せず、該当するL1-009へ戻す。構成candidateの生成を確立済みPatternへの昇格と同一視しない。LABO評価・OS登録・BRAIN独立検証とL2-025の既存経路が成立した場合は、既存経路が定める次状態への遷移を確認するが、BRAIN自身は昇格を決定しない。LABO評価・OS登録・BRAIN独立検証とL2-025 promotion経路は、candidate作成を阻止する前提条件ではなく、昇格時に満たす既存条件である。
 
 - **BRAIN-009-AC-01 — 正常**：異なるidentityとsource/versionを持つ既存Unit二つへsource-backed relation案を加え、両端identity、scope、構成根拠とcandidate状態を保つ。成立したrelationの採用・Pattern昇格は返さない。
-- **BRAIN-009-AC-02 — 個別反例**：relation端点欠落、relation意味の根拠欠落、必須Unit自体のsource/根拠欠落、選択source/versionの欠落または不一致をそれぞれ独立に検出する。LABO評価前、OS登録前、BRAIN独立検証／L2-025経路前の昇格要求も各々独立に拒否し、他ownerの状態で代用しない。
+- **BRAIN-009-AC-02 — 個別反例**：relation端点欠落、relation意味の根拠欠落、必須Unit自体のsource/根拠欠落、選択source/versionの欠落または不一致をそれぞれ独立に検出する。L2-025昇格経路の未完はBRAIN change owner（固定L2-025:471）へ返し、他ownerの状態で代用しない。LABO評価前、OS登録前、BRAIN独立検証／L2-025経路前の昇格要求も各々独立に拒否し、他ownerの状態で代用しない。
 - **BRAIN-009-AC-03 — unknownと戻し先**：relationまたは必須部品の意味・根拠が不明ならcandidateの適用可能性を作らず、未解決箇所を記録してBRAIN-L1-009へ返す。
 - **BRAIN-009-AC-04 — 未見**：既知例と異なるがsourceで定義されたUnit組合せも同じidentity、端点、relation意味、scopeを照合する。fixture未定義条件はunknownとし、candidate状態を保つ。未見例をもって広範な知識網羅を保証しない。
 
@@ -553,7 +553,7 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 親`HELIXBRAIN-L2-011`（固定L2 `brain-requirements.md:194-204`、L11 `brain-acceptance.md:39`）。採択registration `MPR-RC-HELIXBRAIN-L2-011-002`、semantic digest `sha256:726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091`（PO採択main 633）。L1-011、L2-007/018/020/025に従う。束ねる条件はPO原文§BRAIN-L1-011に限り、要件のownerや意味を新設しない。製品CORE由来のsource contextから、根拠のある汎用構造候補と製品固有残余を分離し、元sourceと由来を保つ。分離不能ならBRAINへ受入せず提供元COREまたはLABOへ戻す。共有範囲について人の意味判断が必要な場合は既存の判断点を使い、ownerを推測で新設しない。
 
 - **BRAIN-011-AC-01 — 正常**：同一source内の再利用可能構造と製品固有残余を区別でき、一般化の根拠・scopeと製品固有sourceへのtraceを保持する。製品固有部分を消去または汎用事実化しない。
-- **BRAIN-011-AC-02 — 個別反例**：他要素を正常に保ち、製品名、product requirement、製品固有画面、業務規則、利用者判断の各一要素だけを汎用候補へ漏らすfixtureを独立に拒否する。元source/provenanceだけを失うfixture、再利用条件の根拠範囲を超えた一般化、一般化候補を根拠の確定なしに事実として扱う変異も、それぞれ別fixtureとして拒否する。
+- **BRAIN-011-AC-02 — 個別反例**：他要素を正常に保ち、製品名、product requirement、製品固有画面、業務規則、利用者判断の各一要素だけを汎用候補へ漏らすfixtureを独立に拒否する。元source/provenanceだけを失うfixture、再利用条件の根拠範囲を超えた一般化、一般化候補を確立済み事実として扱う変異も、それぞれ別fixtureとして拒否する。
 - **BRAIN-011-AC-03 — unknownと戻し先**：分離できない意味はunknownのまま受入を止め、固定親にある提供元COREまたはLABOへ戻す。共有範囲の決定が必要なsourceは人の既存判断点へ送り、既存ownerへの自動割当やCORE/LABO返却で代替しない。未指定のownerを補わない。
 - **BRAIN-011-AC-04 — 未見**：未見の別製品sourceにも同じ根拠付き分離を適用する。一般化を支える条件がない場合はunknownを保持し、単一製品から普遍化しない。
 
@@ -561,7 +561,7 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 
 ### BRAIN-012-FR-01 — 候補返却と採用authorityの分離
 
-親`HELIXBRAIN-L2-012`（固定L2 `brain-requirements.md:205-215`、L11 `brain-acceptance.md:40`）。採択registration `MPR-RC-HELIXBRAIN-L2-012-002`、semantic digest `sha256:f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f`（PO採択main 633）。L1-012、L2-019/021/022に従う。束ねる条件はPO原文§BRAIN-L1-012とConceptのBRAIN/INTELLIGENCE/OS境界に限る。利用要求/問い合わせのdesign contextと必要な知識領域を受け取り、sourceに存在するPattern candidate、required input、relation、alternative、constraint、evidenceおよび各版を返す。sourceにalternativeまたはrelationが存在しない場合は、その不在だけで不成立にしない。採用決定はHARNESS-CORE、INTELLIGENCE、人など該当する既存ownerに残り、BRAINは製品固有選択や案件のruntime判断を返さない。
+親`HELIXBRAIN-L2-012`（固定L2 `brain-requirements.md:205-215`、L11 `brain-acceptance.md:40`）。採択registration `MPR-RC-HELIXBRAIN-L2-012-002`、semantic digest `sha256:f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f`（PO採択main 633）。L1-012、L2-019/021/022に従う。束ねる条件はPO原文§BRAIN-L1-012とConceptのBRAIN/INTELLIGENCE/OS境界に限る。利用要求/問い合わせのdesign contextと必要な知識領域を受け取り、必要知識領域inputが欠落した場合は不足として示し、sourceに存在するPattern candidate、required input、relation、alternative、constraint、evidenceおよび各版を返す。sourceにalternativeまたはrelationが存在しない場合は、その不在だけで不成立にしない。採用決定はHARNESS-CORE、INTELLIGENCE、人など該当する既存ownerに残り、BRAINは製品固有選択や案件のruntime判断を返さない。
 
 - **BRAIN-012-AC-01 — 正常**：複数候補とsourceに存在する列挙返却情報を版・source付きで返し、sourceにrelation/alternativeがない場合は不在として表し、候補状態と採用未決を保つ。
 - **BRAIN-012-AC-02 — 個別反例**：他条件を正常に保ち、(a)採用済みlabel、(b)製品固有選択、(c)runtime/operation decisionのいずれか一つだけをBRAINが生成する入力を別々に拒否する。sourceが返却対象として示すrequired input、relation、alternative、constraint、evidence、version fieldの欠落はそれぞれ個別変異として不成立にする。sourceにrelation/alternativeがない正常例を欠落として扱わない。
@@ -574,23 +574,25 @@ BRAINは知識identity/meaning/stateを保持する。LABOは評価、OSは登�
 
 親`HELIXBRAIN-L2-029`（固定L2 `brain-requirements.md:564-574`、L11 `brain-acceptance.md:87-95`）。採択registration `MPR-RC-HELIXBRAIN-L2-029-001`、semantic digest `sha256:fd3bd6eaf17c5dad916dec0793c28544816c8b785e98fa854b49df843b11382d`（PO採択main 633）。親L1 primaryは003/005/009、consumer contextはHARNESS-L1-009/001。`version_target: 1.0`のcandidateである。常時必須はL2-008のidentity/version/provenance、L2-003のapplicability/required input、L2-005のrelation意味。比較時だけL2-004、構成candidate生成時だけL2-009とそのrelation条件を使う。選択した製品CORE sourceにはL2-018、選択したLABO評価済みsourceにはL2-020のsource/scope/evaluation契約を適用する。未選択sourceは未観測、参照資料は背景に限る。L2-030のconnection receipt義務を本親へ取り込まない。
 
-Pattern/Unit/Partのidentity・source/version、一般化された課題、applicability、required input、constraint、trade-off、negative/failure、relation候補を、端点と意味を保って構成candidateにする。relationの種類は`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を各々元sourceに沿って保持する。relationの根拠・方向・端点を捏造せず、unknownを互換や不成立に丸めない。汎用permission構造は候補として扱えるが、製品固有requirement値、製品固有screen/具体API名、製品固有permission値、採用設計、工程表を返さず、一候補を絶対解にしない。製品固有要件はHARNESSへ、知識意味・適用条件・relationは固定親のprimary L1-003/005/009へ戻す（項目別に適用条件=003、relation=005、候補構成/source結合=009）。L2-008 identity/version/provenance、L2-004比較条件、L2-009構成条件の不足も、L11:117の「BRAINの該当親L1へ」という句に従って構成candidateを止め、primary L1-009へ返す。これはL2-029が構成candidateを主対象とし、primary L1に003/005/009を列挙する固定親文脈に基づく割当であり、L1-004/008を追加の戻し先にしない。選択CORE sourceの製品固有要件はHARNESSへ戻す。選択LABO-evaluated sourceのL2-020 condition不明は評価済み扱いせずcandidate適用を止め、該当するknowledge condition/source結合としてprimary L1-003/009へ戻す。
+Pattern/Unit/Partのidentity・source/version、一般化された課題、applicability、required input、constraint、trade-off、negative/failure、relation候補を、端点と意味を保って構成candidateにする。relationの種類は`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を各々元sourceに沿って保持する。relationの根拠・方向・端点を捏造せず、unknownを互換や不成立に丸めない。汎用permission構造は候補として扱えるが、製品固有requirement値、製品固有screen/具体API名、製品固有permission値、採用設計、工程表を返さず、一候補を絶対解にしない。製品固有要件と選択CORE sourceのidentity/revision/provenance不整合は、固定L2-018:401の戻し先である製品COREへ返す。これはL2-018:397–401とL11:117のHARNESS受取契約に基づく。知識意味・適用条件・relationは固定親のprimary L1-003/005/009へ戻す（項目別に適用条件=003、relation=005、候補構成/source結合=009）。L2-008 identity/version/provenance、L2-004比較条件、L2-009構成条件の不足も、L11:117の「BRAINの該当親L1へ」という句に従って構成candidateを止め、primary L1-009へ返す。これはL2-029が構成candidateを主対象とし、primary L1に003/005/009を列挙する固定親文脈に基づく割当であり、L1-004/008を追加の戻し先にしない。選択CORE sourceの製品固有要件はHARNESSへ戻す。選択LABO-evaluated sourceのL2-020 condition不明は評価済み扱いせずcandidate適用を止め、該当するknowledge condition/source結合としてprimary L1-003/009へ戻す。
 
 - **BRAIN-029-AC-01 — 正常**：L11の一般化課題「承認後は編集不可」に対し複数Pattern/Unit候補のproblem、applicability、required input、constraint、trade-off、negative case、汎用permission構造、source/versionを保ち、両端identity付き関係を追跡可能にする。構成はcandidateのまま。
-- **BRAIN-029-AC-02 — 個別反例**：製品固有term/screen/具体API/製品固有permission値の混入、required input欠落、選択source/version欠落、不整合な関係の互換扱い、意味または端点のないrelation確定、一回の製品適用による昇格をそれぞれ独立に拒否する。具体APIは製品固有screen/permission/requirementと別の入力要素として照合し、これらのいずれも汎用Patternの事実に混ぜない。
+- **BRAIN-029-AC-02 — 個別反例**：製品固有term/screen/具体API/製品固有permission値の混入、required input欠落、選択source/version欠落、不整合な関係の互換扱い、意味または端点のないrelation確定、一回の製品適用による昇格をそれぞれ独立に拒否する。具体APIは製品固有screen/permission/requirementと別の入力要素として照合し、これらのいずれも汎用Patternの事実に混ぜない。候補構成が不成立の場合、知識意味・適用条件・relationの不足はBRAIN-L1-003/005/009へ、製品固有要件と選択CORE sourceの不足・不整合はHARNESS-COREへ返す。選択CORE sourceのidentity/revision/provenance戻し先は固定L2-018:401およびL11:117から導く。
 - **BRAIN-029-AC-03 — relation例**：5種類それぞれのsource-backed edgeを独立に照合し、`compatible_with`、`conflicts_with`、`alternative_to`、`depends_on`、`composed_of`を同じ意味へ潰さない。relation type、両端identity、意味、source/versionと必要inputを保持する。
 - **BRAIN-029-AC-04 — unknownと戻し先**：required inputやrelation意味が不明なら適用可否をunknownのまま保持し、知識意味はBRAIN-L1-003/005/009、製品固有要件はHARNESSへ返す。未選択CORE/LABO sourceや説明資料から欠けた値を補わない。
 - **BRAIN-029-AC-05 — 未見**：L11の別Domain組合せまたはrequired input欠落例で同じsource/condition/endpoint照合を適用する。oracleまたはscope未定は未評価/unknownとし、合格や全Domain保証を作らない。
 
 旧source対応：旧L3定義と対testの正常・失敗・未見・consumer traceを再導出する。UI profileのtyped entitiesや製品/共通境界は構造類例に限定し、画面schema・固定enum・製品採用規則・旧runtimeを移さない。新しい構成意味は固定L2/L11にのみ基づく。
 
-### 固定親句→FR/AC→CASE trace（Stage 2b 001–004）
+### 固定親句→FR/AC→CASE trace（Stage 2b 001–006）
 
 | 固定親 | 親句・source pin | FR/AC | 照合CASE |
 |---|---|---|---|
 | HELIXBRAIN-L2-001 | L2:84–94 / L11:29（main 633 fixed bytes） | FR-01、AC-01〜04。状態・10領域、変更4操作、追加6領域の非必須、unknown戻し、未見拡張を区別 | C01–C21。初期領域欠落/誤識別はC02–C11、独立反例はC12/C19/C20/C21、不明はC13、未見はC14、4操作正常はC15–C18 |
-| HELIXBRAIN-L2-002 | L2:95–105 / L11:30（main 633 fixed bytes） | FR-01、AC-01〜04。4階層、parent/責務、孤立/誤種別unknownを対応 | C01–C12。構成/項目反例はC02–C09、孤立/誤種別unknownはC10/C11、未見はC12 |
+| HELIXBRAIN-L2-002 | L2:95–105 / L11:30（main 633 fixed bytes） | FR-01、AC-01〜04。4階層、parent/責務、孤立/誤種別unknownを対応 | C01–C15。構成/項目反例はC02–C09、file/code/UI componentだけの反例はC10–C12、孤立/誤種別unknownはC13/C14、未見はC15 |
 | HELIXBRAIN-L2-003 | L2:106–116 / L11:31（main 633 fixed bytes） | FR-01、AC-01〜04。descriptor12要素/required input/条件充足・不充足・unknown・不足を別対応 | C01–C23。12要素はC01–C13、独立不足/誤昇格はC14/C19–C23、不明はC18、不充足はC17、未見はC16、required input/条件未定戻しはC15 |
 | HELIXBRAIN-L2-004 | L2:117–127 / L11:32（main 633 fixed bytes） | FR-01、AC-01〜04。並列候補/6比較軸/選択非委任/判断不能を分離 | C01–C12。6軸はC02–C07/C12、独立上書き・選択権否定はC08/C11、判断不能はC09、未見はC10 |
+| HELIXBRAIN-L2-005 | L2:128–138 / L11:33（main 633 fixed bytes） | FR-01、AC-01〜04。7 relation種、2 relation chain、端点/方向/意味/unknownを保持 | C01–C13。7 relation種C01–C08、独立反例C09/C12/C13、不明C10、未見C11 |
+| HELIXBRAIN-L2-006 | L2:139–149 / L11:34（main 633 fixed bytes） | FR-01、AC-01〜04。15知識例、製品固有要素、Visual Design HARNESSとの責務境界 | C01–C19。15例C01–C16、独立反例C17、戻し先C18、未見C19 |
 
 各CASEのexpected oracleは同じStage 2b L10表のcase rowに記録する。CASE→ACのみで固定句の被覆を主張しない。

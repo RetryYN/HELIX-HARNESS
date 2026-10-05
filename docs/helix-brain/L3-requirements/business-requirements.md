@@ -41,6 +41,8 @@
 
 ## Stage 2b追補 — 採択済み001〜006の部分草稿
 
+旧業務分類の形式比較元：`LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）。分類の分離形式だけを再導出し、BR-21/HM-08/学習・計測条件をBRAINへ移さない。
+
 **状態：候補のみ（独立review／L3承認前）。** Stage 1 prefixはPO承認済みのbytesを保持し、既存INFRA Stage2b 17親suffixは最新main `4729c34ec29c2c72f345993958bbc94e1ed6f131`のbytesをそのまま保持する。本追補はPO main `633bf12ea8f948db8ba3d6600179c4a9507377a7`の採択registrationと、固定L2/L11 `f6dad2a33e24f000b87d7f09b8d40288257e74cc`の001〜006だけを候補として具体化する。各親のversion targetは1.0、G0配属はStage 2bであり、release収載や全前Stage完了gate、実装・実行許可を生成しない。後続版・Web条件付き・保留/不採択を親にしない。
 
 - `HELIXBRAIN-L2-001`：独立business成果は固定親にない。機能正本 `BRAIN-001-FR-01` / AC-01〜04に配置し、別ownerや業務KPIを作らない。
@@ -57,7 +59,7 @@
 
 ## Stage 2b追補 — 採択済み009/010/011/012/029
 
-固定L2/L11の各親にfunctional behaviorを越える独立business outcome、KPIまたはbusiness ownerはない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`business-detail.md:21–39,84–104`）のBR-21、HM-08、Learning Engine、計測条件をBRAINへ移さない。旧business分離の形式は再導出するが、分類名だけからBRAIN業務義務を作らない。
+固定L2/L11の各親にfunctional behaviorを越える独立business outcome、KPIまたはbusiness ownerはない。旧HARNESS business-detail `LEGACY-ASSET-A6E2C7F0565E5F804F06`（`archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/business-detail.md:21–39,84–104`、全文SHA-256 `99a099d69cae60bd5d55c38221eb9ed814abf15ba59b3ac32f27d69fd0d6ad5d`、span SHA-256 `ade5075e3df236216603e1e0d3fb83c8cdae007f7f319e49bd4af1c5d4efca5e` / `f79e52ce0ac3797d30c46573a61f8115656ece2f8485461c728cdcf50fa4b38f`）のBR-21、HM-08、Learning Engine、計測条件をBRAINへ移さない。旧business分離の形式は再導出するが、分類名だけからBRAIN業務義務を作らない。
 
 | 親L2 | business成果 | 正本参照 |
 |---|---|---|

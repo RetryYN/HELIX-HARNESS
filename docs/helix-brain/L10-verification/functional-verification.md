@@ -276,7 +276,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 
 | CASE | 対応AC | 入力・独立変異 | 観測oracle |
 |---|---|---|---|
-| `L10-BRAIN-001-C01` | `BRAIN-001-AC-01` | 10初期領域を別identity/意味/状態で与え、各Domainのstateも固定L2の対象stateと照合し、各Patternの参照先を確認する。Visual DesignとUX / Interactionも初期集合に残る。 | 入力sourceの値と対象scopeに対する実出力を項目別に照合し、identity/意味/条件と責務の対応を確認する。候補の表示を採用/実行のreceiptにしない。 |
+| `L10-BRAIN-001-C01` | `BRAIN-001-AC-01` | 10初期領域を別identity/意味/状態で与え、各Domainのstateもfixture sourceが宣言するstateと照合し、各Patternの参照先を確認する。Visual DesignとUX / Interactionも初期集合に残る。 | 入力sourceの値と対象scopeに対する実出力を項目別に照合し、identity/意味/条件と責務の対応を確認する。候補の表示を採用/実行のreceiptにしない。 |
 | `L10-BRAIN-001-C02` | `BRAIN-001-AC-02` | 正常fixtureから `Software Architecture` の識別/意味対応を、欠落・誤identity・意味誤対応へそれぞれ独立に変異させる。 | 当該初期Domainの各独立変異をAC-02の不成立として検出する。他Domainの被覆数や名前の存在で相殺しない。状態fieldも入力どおり保持する。AC-03への戻し先判定はC13で別に照合する。 |
 | `L10-BRAIN-001-C03` | `BRAIN-001-AC-02` | 正常fixtureから `Application Architecture` の識別/意味対応を、欠落・誤identity・意味誤対応へそれぞれ独立に変異させる。 | 当該初期Domainの各独立変異をAC-02の不成立として検出する。他Domainの被覆数や名前の存在で相殺しない。状態fieldも入力どおり保持する。AC-03への戻し先判定はC13で別に照合する。 |
 | `L10-BRAIN-001-C04` | `BRAIN-001-AC-02` | 正常fixtureから `Backend` の識別/意味対応を、欠落・誤identity・意味誤対応へそれぞれ独立に変異させる。 | 当該初期Domainの各独立変異をAC-02の不成立として検出する。他Domainの被覆数や名前の存在で相殺しない。状態fieldも入力どおり保持する。AC-03への戻し先判定はC13で別に照合する。 |
@@ -313,9 +313,12 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-002-C07` | `BRAIN-002-AC-02` | 正常fixtureの `構成relation` だけを欠落/不明/元sourceと意味不整合にする。各変異は混ぜず別試行とする。 | 対象項目の欠落/不明/不整合を特定し、その項目の成立を成功にしない。他項目の被覆数や名前の存在で相殺しない。意味未定は対応AC-03の候補保留/owner戻しを観測する。 |
 | `L10-BRAIN-002-C08` | `BRAIN-002-AC-02` | 正常fixtureの `各段階の親` だけを欠落/不明/元sourceと意味不整合にする。各変異は混ぜず別試行とする。 | 対象項目の欠落/不明/不整合を特定し、その項目の成立を成功にしない。他項目の被覆数や名前の存在で相殺しない。意味未定は対応AC-03の候補保留/owner戻しを観測する。 |
 | `L10-BRAIN-002-C09` | `BRAIN-002-AC-02` | 正常fixtureの `各段階の責務` だけを欠落/不明/元sourceと意味不整合にする。各変異は混ぜず別試行とする。 | 対象項目の欠落/不明/不整合を特定し、その項目の成立を成功にしない。他項目の被覆数や名前の存在で相殺しない。意味未定は対応AC-03の候補保留/owner戻しを観測する。 |
-| `L10-BRAIN-002-C10` | `BRAIN-002-AC-02` | fileのみ、code片のみ、UI component集のみをPatternとして返す各入力を不合格とする。identity欠落・孤立・誤種別も項目別に検出する。 | 各反例を独立試行し、該当する固定L2/L11の禁止または不足を理由付きで示す。正当な別operationを同じ理由で一律に止めない。 |
-| `L10-BRAIN-002-C11` | `BRAIN-002-AC-03` | 階層または要素の意味を決められない項目をunknown/候補保留とし、HELIXBRAIN-L1-002へ返す。 | 不足・不明な項目、停止した候補、戻し先、再提示に必要な意味/sourceを記録する。unknownをpassへ丸めず、別ownerのauthorityを生成しない。 |
-| `L10-BRAIN-002-C12` | `BRAIN-002-AC-04` | 正常fixtureにないidentity/組合せを使うが、適用条件・meaning source・必要参照を親契約どおりに揃える。 未見の正当な構成にも同じidentity/親/責務照合を適用する。例の名前だけから意味を推測しない。 | AC-01と同じ条件で照合する。親の必要入力が不明な枝は未見正常と偽らずAC-03へ分類する。 |
+| `L10-BRAIN-002-C10` | `BRAIN-002-AC-02` | 他の正常条件を保ち、fileのみをPattern知識として返す変異を与える。 | fileの存在だけをPattern成立とせず、不成立理由を特定する。 |
+| `L10-BRAIN-002-C11` | `BRAIN-002-AC-02` | 他の正常条件を保ち、code snippetのみをPattern知識として返す変異を与える。 | code snippetの存在だけをPattern成立とせず、不成立理由を特定する。 |
+| `L10-BRAIN-002-C12` | `BRAIN-002-AC-02` | 他の正常条件を保ち、UI component集のみをPattern知識として返す変異を与える。 | UI component集の存在だけをPattern成立とせず、不成立理由を特定する。 |
+| `L10-BRAIN-002-C13` | `BRAIN-002-AC-03` | 有効な親階層を持たない孤立要素だけを与える。 | 要素をunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。孤立をpassにも確定失敗にも丸めない。 |
+| `L10-BRAIN-002-C14` | `BRAIN-002-AC-03` | 正常階層の要素一つだけを誤種別にする。 | 当該要素をunknown／候補保留として保持し、HELIXBRAIN-L1-002へ返す。誤種別を正しい型へ推測しない。 |
+| `L10-BRAIN-002-C15` | `BRAIN-002-AC-04` | 正常fixtureにないidentity/組合せを使うが、適用条件・meaning source・必要参照を親契約どおりに揃える。未見の正当な構成にも同じidentity/親/責務照合を適用する。 | AC-01と同じ条件で照合する。親の必要入力が不明な枝は未見正常と偽らずAC-03へ分類する。 |
 
 ### HELIXBRAIN-L2-003 — BRAIN-003-FR-01との対
 
@@ -363,7 +366,7 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-004-C08` | `BRAIN-004-AC-02` | 一候補だけを恒久正解として他候補を上書きする変異を与える。 | 上書きを不成立とし複数の根拠付き候補を保持する。 |
 | `L10-BRAIN-004-C09` | `BRAIN-004-AC-03` | 比較に必要な要求値/重みがなければ欠落を示して選択を保留し、HARNESS-CORE/INTELLIGENCE/人間の適切な判断先へ返す。 | 不足・不明な項目、停止した候補、戻し先、再提示に必要な意味/sourceを記録する。unknownをpassへ丸めず、別ownerのauthorityを生成しない。 |
 | `L10-BRAIN-004-C10` | `BRAIN-004-AC-04` | 正常fixtureにないidentity/組合せを使うが、適用条件・meaning source・必要参照を親契約どおりに揃える。 未見Patternを含む比較でも候補集合と制約を保持し、比較表示を採用決定に変えない。成立判定不明の候補を成立済みと捏造しない。 | AC-01と同じ条件で照合する。親の必要入力が不明な枝は未見正常と偽らずAC-03へ分類する。 |
-| `L10-BRAIN-004-C11` | `BRAIN-004-AC-02` | BRAINが稼働案件の選択を確定する一変異を与える。 | 選択確定を拒否し、既存判断ownerへの未決状態を保つ。 |
+| `L10-BRAIN-004-C11` | `BRAIN-004-AC-02` | BRAINが稼働案件の選択を確定する一変異を与える。 | 選択確定を拒否し、「HARNESS-CORE／INTELLIGENCE／人間の適切な判断先」への未決状態を保つ。 |
 | `L10-BRAIN-004-C12` | `BRAIN-004-AC-02` | 六比較軸のうち一軸だけを欠落させながら完全比較と表示する。 | 欠落軸を明示し、完全な比較として扱わない。 |
 
 ### HELIXBRAIN-L2-005 — BRAIN-005-FR-01との対
@@ -428,11 +431,11 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-009-C06` | `BRAIN-009-AC-02` | BRAIN独立検証だけが未了の状態で昇格要求。期待oracleはcandidateを維持し、独立検証未完を特定してBRAINの既存検証経路へ返す。 |
 | `L10-BRAIN-009-C07` | `BRAIN-009-AC-03` | sourceがrelationの意味を決めない入力。適用可能へ推定せずunknownに保持しL1-009へ返す。 |
 | `L10-BRAIN-009-C08` | `BRAIN-009-AC-04` | 既知fixtureと異なるsource定義済みUnit組合せを投入する。期待oracleは両端identity、relation meaning/source、scopeとcandidate状態を照合し、候補のまま返す。oracle未定の枝は未評価とする。 |
-| `L10-BRAIN-009-C09` | `BRAIN-009-AC-02` | C01の他条件を維持し、L2-025の昇格経路だけを未完にする。期待oracleはcandidateを維持し、未完のL2-025経路を独立理由として示し、既存BRAIN promotion経路ownerへ戻す。 |
+| `L10-BRAIN-009-C09` | `BRAIN-009-AC-02` | C01の他条件を維持し、L2-025の昇格経路だけを未完にする。期待oracleはcandidateを維持し、未完のL2-025経路を独立理由として示し、BRAIN change owner（固定L2-025:471）へ戻す。 |
 | `L10-BRAIN-009-C10` | `BRAIN-009-AC-02` | C01の他条件を維持し、選択source identityだけを欠落させる。期待oracleはsource欠落を理由にcandidate適用/昇格を止め、BRAIN-L1-009へ不足を返す。 |
 | `L10-BRAIN-009-C11` | `BRAIN-009-AC-02` | C01の他条件を維持し、選択source revisionだけを要求revisionと不一致にする。期待oracleはstale/mismatchを明示し旧sourceを再利用せず、candidate適用/昇格を止めてBRAIN-L1-009へ返す。 |
-| `L10-BRAIN-009-C12` | `BRAIN-009-AC-01` | C01と同じ二Unit/relation候補でLABO評価・OS登録・BRAIN独立検証が各々成立し、既存L2-025 promotion経路の全条件が成立した入力を与える。 | L2-025が定める既存の次状態への遷移をpositive oracleとして観測し、各owner結果と同一candidate identity/revisionの結合を確認する。新しい遷移条件や承認を作らない。 |
-| `L10-BRAIN-009-C13` | `BRAIN-009-AC-02` | C01のrelationは根拠付きのまま、一方の必須Unitだけsource/根拠を欠落させる。 | Unit根拠欠落だけでcandidate適用を止め、該当不足をL1-009へ返す。relation正常で欠落Unitを補完しない。 |
+| `L10-BRAIN-009-C12` | `BRAIN-009-AC-01` | C01と同じ二Unit/relation候補でLABO評価・OS登録・BRAIN独立検証が各々成立し、既存L2-025 promotion経路の全条件が成立した入力を与える。 期待oracle：L2-025が定める既存の次状態への遷移をpositive oracleとして観測し、各owner結果と同一candidate identity/revisionの結合を確認する。新しい遷移条件や承認を作らない。 |
+| `L10-BRAIN-009-C13` | `BRAIN-009-AC-02` | C01のrelationは根拠付きのまま、一方の必須Unitだけsource/根拠を欠落させる。 期待oracle：Unit根拠欠落だけでcandidate適用を止め、該当不足をL1-009へ返す。relation正常で欠落Unitを補完しない。 |
 
 ### HELIXBRAIN-L2-010 — BRAIN-010-FR-01との対
 
@@ -447,8 +450,8 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-010-C07` | `BRAIN-010-AC-02` | evidence、sourceまたはscope bindingを一つずつ欠落/stale化する独立fixture。根拠を誤結合せず条件付き適用の成立を止める。 |
 | `L10-BRAIN-010-C08` | `BRAIN-010-AC-03` | 条件/scope未定のfinding。unknownを維持し固定L2のLABO評価へ戻す。 |
 | `L10-BRAIN-010-C09` | `BRAIN-010-AC-04` | 未見failure形態だが独立source、条件、scope、反例、oracleが揃う例を照合する。期待oracleはsourceが与えた代替候補/条件付き禁止だけを返し、代替不在または条件未定の部分をunknownのままにし、全分類網羅を主張しない。 |
-| `L10-BRAIN-010-C10` | `BRAIN-010-AC-02` | 成功fixtureだけをknowledgeとして保存し、source提供の反例を落とす一変異を与える。 | 成功だけの保持を不成立とし、sourceにある反例と条件を保つ。 |
-| `L10-BRAIN-010-C11` | `BRAIN-010-AC-02` | Regression caseの固有source/evidence/成立条件だけを欠落させる。 | Regression caseを他failure familyや成功例で代用せず、欠落を個別理由として保持する。 |
+| `L10-BRAIN-010-C10` | `BRAIN-010-AC-02` | 成功fixtureだけをknowledgeとして保存し、source提供の反例を落とす一変異を与える。 期待oracle：成功だけの保持を不成立とし、sourceにある反例と条件を保つ。 |
+| `L10-BRAIN-010-C11` | `BRAIN-010-AC-02` | Regression caseの固有source/evidence/成立条件だけを欠落させる。 期待oracle：Regression caseを他failure familyや成功例で代用せず、欠落を個別理由として保持する。 |
 
 ### HELIXBRAIN-L2-011 — BRAIN-011-FR-01との対
 
@@ -457,15 +460,15 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-011-C01` | `BRAIN-011-AC-01` | source付き構造を一般化候補と製品固有残余に分離する。根拠、scope、元source traceを両側に保つ。 |
 | `L10-BRAIN-011-C02` | `BRAIN-011-AC-02` | 製品名だけをgeneric候補へ漏らす。期待oracleは製品名をgeneric candidateから除き、製品固有残余と元source traceを保持する。 |
 | `L10-BRAIN-011-C03` | `BRAIN-011-AC-02` | product requirementだけを汎用候補へ漏らす。期待oracleは汎用候補からその値を除き、元sourceの製品固有残余へ保持する。 |
-| `L10-BRAIN-011-C04` | `BRAIN-011-AC-02` | 製品固有screenだけを汎用候補へ漏らす。 | screen混入を拒否し、製品固有残余と元source traceを保持する。 |
+| `L10-BRAIN-011-C04` | `BRAIN-011-AC-02` | 製品固有screenだけを汎用候補へ漏らす。 期待oracle：screen混入を拒否し、製品固有残余と元source traceを保持する。 |
 | `L10-BRAIN-011-C05` | `BRAIN-011-AC-02` | business ruleだけを汎用候補へ漏らす。期待oracleは当該規則を製品固有残余へ保持し、汎用候補への混入を拒否する。 |
 | `L10-BRAIN-011-C06` | `BRAIN-011-AC-02` | user judgmentだけを汎用候補へ漏らす。期待oracleは判断を汎用事実化せず、元sourceに結んだ残余として保持する。 |
 | `L10-BRAIN-011-C07` | `BRAIN-011-AC-02` | 他条件を正常に保ちsource/provenance linkだけを消す。期待oracleは一般化確定を拒否し、失われた出所を示して固定親の提供元COREまたはLABOへ返す。 |
 | `L10-BRAIN-011-C08` | `BRAIN-011-AC-03` | source meaningを分離不能にする。期待oracleはgeneric acceptanceを止め、固定親どおりprovider COREまたはLABOへ不足と理由を返す。ownerを推測しない。 |
 | `L10-BRAIN-011-C09` | `BRAIN-011-AC-04` | 未見の別製品sourceを用い、根拠のある範囲だけ分離する。期待oracleはgeneric candidateとproduct-specific residual双方にsource traceを残し、根拠のない普遍化をunknownにする。 |
-| `L10-BRAIN-011-C10` | `BRAIN-011-AC-03` | sourceから共有範囲の決定を要する意味が一つだけ未決のfixtureを与える。 | 人の既存判断点へ送る。既存CORE/LABO ownerへの自動割当や返却で代替した結果は不合格とし、共有範囲を確定しない。 |
-| `L10-BRAIN-011-C11` | `BRAIN-011-AC-02` | 他要素を正常に保ち、sourceが支える再利用条件の根拠範囲を超えて一般化する変異だけを与える。 | 根拠を超えた一般化を不成立として検出し、一般化の根拠sourceと製品固有残余を保つ。 |
-| `L10-BRAIN-011-C12` | `BRAIN-011-AC-02` | 他要素を正常に保ち、未確定の一般化候補を確立済み事実として扱う変異だけを与える。 | 候補状態を維持し、確定事実化を不成立として検出する。候補sourceと製品固有残余を保つ。 |
+| `L10-BRAIN-011-C10` | `BRAIN-011-AC-03` | sourceから共有範囲の決定を要する意味が一つだけ未決のfixtureを与える。 期待oracle：人の既存判断点へ送る。既存CORE/LABO ownerへの自動割当や返却で代替した結果は不合格とし、共有範囲を確定しない。 |
+| `L10-BRAIN-011-C11` | `BRAIN-011-AC-02` | 他要素を正常に保ち、sourceが支える再利用条件の根拠範囲を超えて一般化する変異だけを与える。 期待oracle：根拠を超えた一般化を不成立として検出し、一般化の根拠sourceと製品固有残余を保つ。 |
+| `L10-BRAIN-011-C12` | `BRAIN-011-AC-02` | 他要素を正常に保ち、一般化候補を確立済み事実として扱う変異だけを与える。 期待oracle：候補状態を維持し、確定事実化を不成立として検出する。候補sourceと製品固有残余を保つ。 |
 
 ### HELIXBRAIN-L2-012 — BRAIN-012-FR-01との対
 
@@ -481,9 +484,9 @@ fieldごとのdescriptor/knowledge tuple；参照HARNESS contract revisionと宣
 | `L10-BRAIN-012-C08` | `BRAIN-012-AC-02` | sourceが返却対象として宣言するconstraint、evidence、version fieldを、それぞれ一つだけ欠落させる独立fixture。各fixtureの期待oracleは当該field名と不足理由を返し、候補tuple成立を拒否する。 |
 | `L10-BRAIN-012-C09` | `BRAIN-012-AC-03` | 要求意味またはweight未確定。期待oracleは選択を生成せずunknown/未決を示し、固定親の既存decision ownerへ不足理由を返す。 |
 | `L10-BRAIN-012-C10` | `BRAIN-012-AC-04` | 未見・曖昧queryを与える。期待oracleは根拠ある候補、個別不足、unknownを区別して返し、候補数や受領を採用と解釈しない。 |
-| `L10-BRAIN-012-C11` | `BRAIN-012-AC-01` | 利用要求/問い合わせのdesign contextはあるが必要知識領域inputの一つが欠落したrequestを与える。 | 決定を生成せず、sourceにあるcandidateとrequired inputの不足を返す。C05–C08の返却field欠落とは異なるinput-side fixtureとして照合する。 |
-| `L10-BRAIN-012-C12` | `BRAIN-012-AC-02` | BRAINのknowledge shortageを理由に新しいadoption/operation authorityを発生させる一変異を与える。 | authority拡張を拒否し、既存判断ownerへ返す。 |
-| `L10-BRAIN-012-C13` | `BRAIN-012-AC-01` | request contextと必要知識領域を満たし、sourceにrelationまたはalternativeがないcandidateを返す。 | sourceにないedge/valueを創作せず、そのfieldの不在を表したcandidateとrequired inputを返す。decisionは未決のまま。 |
+| `L10-BRAIN-012-C11` | `BRAIN-012-AC-01` | 利用要求/問い合わせのdesign contextはあるが必要知識領域inputの一つが欠落したrequestを与える。 期待oracle：決定を生成せず、sourceにあるcandidateとrequired inputの不足を返す。C05–C08の返却field欠落とは異なるinput-side fixtureとして照合する。 |
+| `L10-BRAIN-012-C12` | `BRAIN-012-AC-03` | BRAINのknowledge shortageを理由に新しいadoption/operation authorityを発生させる一変異を与える。 期待oracle：authority拡張を拒否し、既存判断ownerへ返す。 |
+| `L10-BRAIN-012-C13` | `BRAIN-012-AC-01` | request contextと必要知識領域を満たし、sourceにrelationまたはalternativeがないcandidateを返す。 期待oracle：sourceにないedge/valueを創作せず、そのfieldの不在を表したcandidateとrequired inputを返す。decisionは未決のまま。 |
 
 ### HELIXBRAIN-L2-029 — BRAIN-029-FR-01との対
 
@@ -526,10 +529,10 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 | `L10-BRAIN-029-C33` | `BRAIN-029-AC-02` | 構成操作時のみL2-009のunknown変異を他条件を正常に保って単独投入する。構成candidate操作を選択し、L2-009の構成条件だけをunknownにする。期待oracleはunknownを保持してcandidate適用を止めprimary L1-009へ返す。 |
 | `L10-BRAIN-029-C34` | `BRAIN-029-AC-02` | 構成操作時のみL2-009のstale変異を他条件を正常に保って単独投入する。構成candidate操作を選択し、L2-009のsourceだけをstaleにする。期待oracleは旧sourceで構成せず停止してprimary L1-009へ返す。 |
 | `L10-BRAIN-029-C35` | `BRAIN-029-AC-02` | 構成操作時のみL2-009のrevision mismatch変異を他条件を正常に保って単独投入する。構成candidate操作を選択し、L2-009のsource revisionだけを不一致にする。期待oracleは旧revisionを流用せず停止してprimary L1-009へ返す。 |
-| `L10-BRAIN-029-C36` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のmissing変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけを欠落させる独立fixture。期待oracleは選択sourceを未充足としてcandidate適用を止め、HARNESSへ返す。 |
-| `L10-BRAIN-029-C37` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のunknown変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけをunknownにする独立fixture。期待oracleは未解決を保持しcandidate適用を止め、HARNESSへ返す。 |
-| `L10-BRAIN-029-C38` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のstale変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 sourceだけをstaleにする。期待oracleは古いsourceを流用せずcandidate適用を止め、HARNESSへ返す。 |
-| `L10-BRAIN-029-C39` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のrevision mismatch変異を他条件を正常に保って単独投入する。CORE source revisionだけを要求revisionと不一致にする。期待oracleは別revisionを流用せずcandidate適用を止め、HARNESSへ返す。 |
+| `L10-BRAIN-029-C36` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のmissing変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけを欠落させる独立fixture。期待oracleは選択sourceを未充足としてcandidate適用を止め、HARNESS-COREへ返す。 |
+| `L10-BRAIN-029-C37` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のunknown変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 source identity/revision/provenanceの一つだけをunknownにする独立fixture。期待oracleは未解決を保持しcandidate適用を止め、HARNESS-COREへ返す。 |
+| `L10-BRAIN-029-C38` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のstale変異を他条件を正常に保って単独投入する。CORE sourceを選択し、そのL2-018 sourceだけをstaleにする。期待oracleは古いsourceを流用せずcandidate適用を止め、HARNESS-COREへ返す。 |
+| `L10-BRAIN-029-C39` | `BRAIN-029-AC-02` | 選択CORE sourceのL2-018のrevision mismatch変異を他条件を正常に保って単独投入する。CORE source revisionだけを要求revisionと不一致にする。期待oracleは別revisionを流用せずcandidate適用を止め、HARNESS-COREへ返す。 |
 | `L10-BRAIN-029-C40` | `BRAIN-029-AC-02` | 選択LABO-evaluated sourceのL2-020のmissing変異を他条件を正常に保って単独投入する。LABO評価済みsourceを選択し、そのL2-020 source/scope/evaluationの一要素だけを欠落させる独立fixture。期待oracleは評価済みと扱わず不足をprimary L1-003/009へ返しcandidate適用を止める。 |
 | `L10-BRAIN-029-C41` | `BRAIN-029-AC-02` | 選択LABO-evaluated sourceのL2-020のunknown変異を他条件を正常に保って単独投入する。LABO評価済みsourceを選択し、そのL2-020 source/scope/evaluationの一要素だけをunknownにする独立fixture。期待oracleはunknownを保持しprimary L1-003/009へ返してcandidate適用を止める。 |
 | `L10-BRAIN-029-C42` | `BRAIN-029-AC-02` | 選択LABO-evaluated sourceのL2-020のstale変異を他条件を正常に保って単独投入する。LABO評価済みsourceだけをstaleにする。期待oracleは古い評価を使わずprimary L1-003/009へ返してcandidate適用を止める。 |
@@ -543,4 +546,4 @@ L2-029の常時必須・操作時のみ・入力元に応じて必須・参照�
 | `L10-BRAIN-029-C50` | `BRAIN-029-AC-02` | 正常tupleからidentity/source/versionだけを欠落させる。期待oracleは当該fieldだけを不足として識別し、他の正常fieldで補完せずcandidate構成を止める。 |
 | `L10-BRAIN-029-C51` | `BRAIN-029-AC-02` | 正常tupleからrelation type/両端identity/meaningだけを欠落させる。期待oracleは当該fieldだけを不足として識別し、他の正常fieldで補完せずcandidate構成を止める。 |
 | `L10-BRAIN-029-C52` | `BRAIN-029-AC-01` | 比較操作なし・構成candidate操作あり、CORE/LABO source未選択の正常入力を与える。期待oracleは未選択sourceを未観測として扱い、L2-004/018/020の値を要求せず、L2-009の構成条件と常時必須L2-003/005/008を照合してcandidate stateを返す。 |
-| `L10-BRAIN-029-C53` | `BRAIN-029-AC-02` | sourceが互換不能と示す二Patternを選び、relation edgeを記録せず同じ構成candidateへ入れる。 | L11:91の反例を個別検出し、関係のない二候補をcompatibleと推定せず構成成立を止める。 |
+| `L10-BRAIN-029-C53` | `BRAIN-029-AC-02` | sourceが互換不能と示す二Patternを選び、relation edgeを記録せず同じ構成candidateへ入れる。 期待oracle：L11:91の反例を個別検出し、関係のない二候補をcompatibleと推定せず構成成立を止める。 |
