@@ -244,7 +244,7 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 ### FR-OS-L3-034 — HELIXOS-L2-034
 不変の原指示/finding eventと、根拠・target・source・actor/time・既存authority receiptを選択dispositionへ結ぶ。意味判定・PO authorityをOSが代行せず、challenge/reopenは履歴追記する。finding accepted-riskでは旧L5 action-binding PO receiptと独立reviewの双方を保ち、directive cancel/supersedeの既存PO receiptと混同しない。根拠充足後もorigin eventを削除・隠蔽・終端化しない。
 - AC-OS-L3-034-01：duplicateには生存target/oracle包含とdigest/evidenceの一致根拠、false-positiveには独立反証/review、accepted-risk/cancel等には各々L11所定のaction-bound receiptを結ぶ。target失効、同一originの言い換えだけ、digest不一致をduplicate確定の根拠にしない。live26で共同採択されたHARNESS-L2-058、OS-L2-034、OS-L2-101の関係を保つ。101固有条件は101で扱い、本親へ範囲拡張しない。
-- AC-OS-L3-034-02：根拠欠落/stale、target非生存・包含なし、digest不一致、同一originの言い換えだけ、自己反証、必須receipt欠落、projection closeのみを独立変異し、終端化/削除せず既存source/authority ownerへ戻す。
+- AC-OS-L3-034-02：根拠欠落/stale、target非生存・包含なし、digest不一致、同一originの言い換えだけ、同じ根拠の主張言い換えによるfalse-positive扱い、自己反証、必須receipt欠落、projection closeのみを独立変異し、終端化/削除せず既存source/authority ownerへ戻す。
 - AC-OS-L3-034-03：未知dispositionまたはfinding source kind不明は推測せず非終端unknown。reopenは先行event/receiptを保持して新根拠を追加する。
 - AC-OS-L3-034-04：user directive cancel/supersedeとreview findingのcancel/supersedeは、それぞれ対象に適用される既存PO権限receiptを別々に照合し、finding accepted-risk、non-actionable findingも別fixtureにする。accepted-riskだけL5 action-binding PO receiptと独立reviewを両方結び、directive receiptをfindingへ流用しない。各処分は既存authority/ownerに戻し、原eventとopen dutyは非終端で保持する。
 - AC-OS-L3-034-05：分類前durable intake保存失敗、ticket closureとの不一致、appeal/reopen receiptの欠落を別々に与える。原eventを受領済・処分済と表示せず、source/authority ownerへ戻す。
@@ -275,7 +275,7 @@ L2意味・適用scope・owner・versionの変更が必要と判明した場合�
 ### FR-OS-L3-038 — HELIXOS-L2-038
 選択layer/revision/base digest、適用中HARNESS ledger/template contract、source-backed proposalからOS snapshotとappend-only proposalを作る。HARNESS-L2-040の既存契約と、PO採択済みHARNESS-L2-041-003が出力する抽出findingを入力とし、OSはその意味を再判定せずwriter outcomeを記録する。L0 anchorは別record。OS receiptはsemantic approvalでない。
 - AC-OS-L3-038-01：有効contract/templateに適合する選択layer proposalを一度だけ追記し、source/base/template/digest/scopeへ双方向traceする。
-- AC-OS-L3-038-02：stale base/template、authority/scope欠落、L0をlayer扱い、再送、途中保存失敗、OSによるHARNESS proposalの補完/統合/削除、append結果から採択/L3開始許可/CI green/merge readinessを生成する変異を独立に照合する。入力衝突は両入力と対象revisionを保持して保留し、成功receiptや上書きを出さない。重複/部分成功/意味変更を0とする。HARNESS-L2-041-003の非原子的obligation findingではcandidate rowを増やさず、rejected outcome findingを記録し、既存snapshotを不変に保つ。
+- AC-OS-L3-038-02：stale base/template、authority/scope欠落、L0をlayer扱い、再送、途中保存失敗、OSによるHARNESS proposalの補完/統合/削除、append結果から採択/PO decision/L3開始許可/HARNESS validation pass/CI green/merge/release readinessを生成する変異を独立に照合する。入力衝突は両入力と対象revisionを保持して保留し、成功receiptや上書きを出さない。重複/部分成功/意味変更を0とする。HARNESS-L2-041-003の非原子的obligation findingではcandidate rowを増やさず、rejected outcome findingを記録し、既存snapshotを不変に保つ。
 - AC-OS-L3-038-03：HARNESS-L2-041-003の同一入力再抽出不一致はquarantineし、current ledger更新0・snapshot不変とする。未知atom/contractもgap/未完としてHARNESS/source ownerへ戻す。
 - AC-OS-L3-038-04：base L11の671–689、追加negative oracle 690–696、未見正常例698–700、境界・受入結果702–704を別々に照合する。未見正常例ではHARNESS契約が新revisionを明示支持する場合に内容を補完せず既存writer条件で追記でき、unknown/staleは未完に保持する。追加negative fixtureはPO採択済みOS-038-002およびHARNESS-041-003の適用条件が揃ったときだけ実施し、HARNESSの抽出finding意味をOSが再判定しない。歴史的な「未採択」表記から採否を推定しない。
 
