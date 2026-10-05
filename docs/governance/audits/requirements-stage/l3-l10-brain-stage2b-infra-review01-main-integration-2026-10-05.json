@@ -1,0 +1,42 @@
+{
+  "record_kind": "brain-infra-review01-latest-main-integration.v1",
+  "authority_effect": "none",
+  "base": "91660f403d203dff92a50ac7f5484db6ab13f96d",
+  "integration_commit": "3b03e4f50028abf4af6bc212942800209705190f",
+  "body_revision": "4795e93b649e966af31f43bdabf160bc50b3c0c7",
+  "canonical_documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "e2313c42f8fb64c325e0e3e253514b5b2dd6eb3b981be3495268b6924b563c59"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "0b857e367c250e8358c0150949362c962fbe7c38e4af0e982dad55f39efedf0e"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "5cf61692fe1fb208846e4ee895088234d4290ea212027ed9aabbfeb8a1b95a0f"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "2c0bdc990d067da5a00d01489aaa62c71c5016328968b0335d602ebd499abaa4"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "180adb39f60c49e2c471b7a52d352c55877424e43bb38808a8a0e9c514f64b52"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "14b02f626a1e8323ea1c4e78b6362a57cd398b4ce86cf00efbb05e088ee5cf50"
+    }
+  ],
+  "six_body_bytes_unchanged": true,
+  "six_main_prefix_exact": true,
+  "root_verification": "全6本文差分読了、121source full/raw、851literal行、6SHA/prefix/suffix、17PO行identityを照合。006/017通常とnegativeを分離した追補を読了。",
+  "prior_audit": {
+    "path": "docs/governance/audits/requirements-stage/l3-l10-brain-stage2b-infra-opus-review01-followup-trace-4795e93b6-static-validation-2026-10-05.json",
+    "sha256": "91d079d56016c972711a5a8415c20f2002e236d45df182b5cdbbf99ad8cdcfb7",
+    "unchanged": true
+  },
+  "status": "独立再review・L3承認未成立。旧C13/M12等未closure。"
+}

@@ -1,0 +1,4161 @@
+{
+  "schema_version": "helix.l3-l10.static-audit.v1",
+  "status": "root local creator acceptance only; independent exact-HEAD review and PO L3 approval pending",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 2c",
+  "base_commit": "4f1d07e57e9586b1382dd0132123488db77aa735",
+  "content_source_commit": "746f92b1ab38b8806abdd7a4526c5d03ddf8eb39",
+  "parent": "HELIXSECURITY-L2-031",
+  "decision": "MPR-RC-HELIXSECURITY-L2-031-001 adopted; version_target 1.0; Stage2c",
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933",
+      "line_count": 8,
+      "prefix_sha256": "717e206126b910a8261e5448227bb73b0961ac3dbf3f1f71a41ef487dc0f6ee5",
+      "prefix_bytes": 526,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "fd3561c8dc8a611ca7920aab8c917f5d9bec021b80b9c6df4cf93a74ffa93693"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "44b142176d8854d001a7982a6caa9202556d6de6d625df9d6257c593e0dd41ec",
+      "line_count": 296,
+      "prefix_sha256": "a6ebe9cb3d918de940257f79cffe125bcce51dadb1ef6306dd43cb2e35420275",
+      "prefix_bytes": 43956,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "2a154b7ef081b8f1e42d68a96c434ae0fd8994dbbaa9a9296d50fbb94d2b11a3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "f4fe4905ab2aacce994f8a8954aa2b4201f43091df3457aad55c021be48839ce",
+      "line_count": 31,
+      "prefix_sha256": "31f2d36232ba1ab590c86ddc3dd5600b4b031992893bd066a72d094ede0912c5",
+      "prefix_bytes": 4845,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "7d44879d0e95e7815cd4c21526c5d585046c7bc802161dd16da556c1e09ba575"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9",
+      "line_count": 9,
+      "prefix_sha256": "fcf2504a4fef152d1829fddb1a9d65397cb16114a6edbd964c619422da75097d",
+      "prefix_bytes": 747,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "d353bd3a63b06ee9fc6fa5e9f5e4bd8551b4ca4112c3f6b56271a2490881fb07"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "2cd37a3f5cc7e6138d26df413ebf0d71ee1098dd8731a740c66a07255464a1af",
+      "line_count": 337,
+      "prefix_sha256": "d0e8611b486c64e8e605ab72a6dba7a69dc3e43a2d9e6f96bed505b27bcc8588",
+      "prefix_bytes": 57884,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "a737701e4026a69e7c913e085a0ebcc2b5c17b04ff02f792e092d8e5040cc234"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "679abe93909be895f5b0d802282da048b2c8d904a548d275cc2e5a8a86c22357",
+      "line_count": 61,
+      "prefix_sha256": "d494ece7e7fdf6ab886cd0f16abf47f9dc6cda587c417955585a7e1ede4b3c5b",
+      "prefix_bytes": 6650,
+      "prefix_byte_exact": true,
+      "suffix_sha256": "7aec65eafaa39b62a45e9404b151e0f2f90a91e186cd5d38b1914adc033fc809"
+    }
+  ],
+  "inventory_counts": {
+    "FR": 6,
+    "AC": 6,
+    "functional_CASE": 6,
+    "NFR_parent": 1,
+    "NFR_CASE": 1,
+    "business_AC": 0
+  },
+  "source_pins": [
+    {
+      "key": "fixed_l2_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        427,
+        446
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-031",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a",
+      "span_bytes": 10269
+    },
+    {
+      "key": "fixed_l11_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "physical_lines": [
+        104,
+        115
+      ],
+      "line_count": 222,
+      "identity_or_asset": "HELIXSECURITY-L2-031",
+      "full_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "raw_lf_inclusive_span_sha256": "3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7",
+      "span_bytes": 6536
+    },
+    {
+      "key": "security_005_009",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        110,
+        159
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-005..009",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "97b6fbdd0a67945e18e81bd49ec474a13a0ff9bb95c1dd231649503f5762f435",
+      "span_bytes": 6492
+    },
+    {
+      "key": "security_022_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        282,
+        300
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-022/023",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "0f54c985b5c8692516f8eba204565a1d5f907a58944d674868e07f13e3bfc52e",
+      "span_bytes": 2462
+    },
+    {
+      "key": "security_029",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "physical_lines": [
+        405,
+        416
+      ],
+      "line_count": 499,
+      "identity_or_asset": "HELIXSECURITY-L2-029",
+      "full_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_inclusive_span_sha256": "de390bb30ef5f7ed4f3644109c7b9051a2e7d2a05e6f5f5c162dddf442d243c4",
+      "span_bytes": 4019
+    },
+    {
+      "key": "infra_010",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "physical_lines": [
+        126,
+        136
+      ],
+      "line_count": 430,
+      "identity_or_asset": "HELIXINFRASTRUCTURE-L2-010",
+      "full_file_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "raw_lf_inclusive_span_sha256": "1af016e7d2484f93c0daeaa21485e2b1cc146a599e2edc329276a88c109dba60",
+      "span_bytes": 2884
+    },
+    {
+      "key": "os_018",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "physical_lines": [
+        672,
+        700
+      ],
+      "line_count": 1670,
+      "identity_or_asset": "HELIXOS-L2-018",
+      "full_file_sha256": "c530b01dbf396481f3ea0124f9a603d2a8ddfb813c9ab1e88db316262342949a",
+      "raw_lf_inclusive_span_sha256": "c6d07aacc172c8344990603690d0ed743ffef9e5e623efd3d73421ff186d85b7",
+      "span_bytes": 4047
+    },
+    {
+      "key": "harness_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "physical_lines": [
+        463,
+        499
+      ],
+      "line_count": 1544,
+      "identity_or_asset": "HELIX-HARNESS-L2-023",
+      "full_file_sha256": "9c9d499530f4d55c672391614eae6a3ccd6970d69d7c3ebc6e205ead24750c7d",
+      "raw_lf_inclusive_span_sha256": "1df02d0481a8100d5f7e7acf9dde242e09cbfc7a1903f1a4cfe480f72644716d",
+      "span_bytes": 6889
+    },
+    {
+      "key": "harness_l11_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "physical_lines": [
+        219,
+        226
+      ],
+      "line_count": 1340,
+      "identity_or_asset": "HELIX-HARNESS-L2-023",
+      "full_file_sha256": "1f5c32b8ef8f50c1f3ca1780f0a25419e1d74034bb7827ff01d9725c1fd388c4",
+      "raw_lf_inclusive_span_sha256": "a8fa13e030a09903589a58610008346f3842cef98f2f2f599542607d0eeac3fc",
+      "span_bytes": 1392
+    },
+    {
+      "key": "l1_security",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "physical_lines": [
+        52,
+        53
+      ],
+      "line_count": 97,
+      "identity_or_asset": "HELIXSECURITY-L1-007/008",
+      "full_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "raw_lf_inclusive_span_sha256": "138af6cb58297d970a296bc4ffab4b6399cb60f5ee0035cc4ef11eb4cfd6cbfb",
+      "span_bytes": 1100
+    },
+    {
+      "key": "po_l1_security",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        29,
+        29
+      ],
+      "line_count": 80,
+      "identity_or_asset": "採択L1 exact revision HELIXSECURITY",
+      "full_file_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "raw_lf_inclusive_span_sha256": "7a8f74f05d52d09d4b2416dd9e947a7618806c4e448b91d10eadf2644324d499",
+      "span_bytes": 310
+    },
+    {
+      "key": "po_harness_023",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "physical_lines": [
+        52,
+        52
+      ],
+      "line_count": 76,
+      "identity_or_asset": "MPR-RC-HARNESS-L2-023-002 adopted; reference contract only",
+      "full_file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "raw_lf_inclusive_span_sha256": "f65d4e45e1530273cc0e6af68db65e906dc198efade2cd12b8e606f329d30172",
+      "span_bytes": 504
+    },
+    {
+      "key": "po_031",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md",
+      "physical_lines": [
+        90,
+        90
+      ],
+      "line_count": 150,
+      "identity_or_asset": "MPR-RC-HELIXSECURITY-L2-031-001",
+      "full_file_sha256": "c3904aafa75de85e986dd973daa288bd9bc070a53b10b4c2f7676fc1184552ad",
+      "raw_lf_inclusive_span_sha256": "379137e4c6eeebab8e4291ed17c87dbbfb8f77e9074fdab642144ee4a6bd644a",
+      "span_bytes": 626
+    },
+    {
+      "key": "g0_031",
+      "commit": "1880c422311a7f8321dbb0e2b98fa12c69449201",
+      "path": "docs/governance/audits/requirements-stage/implementation-order-addendum-2026-10-03.md",
+      "physical_lines": [
+        542,
+        542
+      ],
+      "line_count": 552,
+      "identity_or_asset": "G0 Stage2c SECURITY-031",
+      "full_file_sha256": "c30d5b2ca757952f9772573bffb95a03dfb8ccf686687b92bb70d2c93c956253",
+      "raw_lf_inclusive_span_sha256": "c710cee7e8c5de03ad0fad6d51a4db0890b71182a05a32c88107936cdcd5e87e",
+      "span_bytes": 997
+    },
+    {
+      "key": "old_br32",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "physical_lines": [
+        84,
+        84
+      ],
+      "line_count": 257,
+      "identity_or_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF HIL-BR-32",
+      "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "raw_lf_inclusive_span_sha256": "461d471b4d49649b44e3ff4001c0a78cca3f251ef43c8752970a148cb1869ad1",
+      "span_bytes": 352
+    },
+    {
+      "key": "old_hil67",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "physical_lines": [
+        157,
+        157
+      ],
+      "line_count": 257,
+      "identity_or_asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF HIL-FR-67",
+      "full_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "raw_lf_inclusive_span_sha256": "c63f114102e4abd662b9f09dec1a691723b5217bb6fb9803237d88da2f7561da",
+      "span_bytes": 338
+    },
+    {
+      "key": "old_hr23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "physical_lines": [
+        57,
+        57
+      ],
+      "line_count": 95,
+      "identity_or_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF HR-FR-HIL-23",
+      "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "raw_lf_inclusive_span_sha256": "34609b4d44fc891b508fc38f804641ccdab870f9fd2db70dc9133b4adc1e6c6c",
+      "span_bytes": 645
+    },
+    {
+      "key": "old_hac23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "physical_lines": [
+        86,
+        86
+      ],
+      "line_count": 95,
+      "identity_or_asset": "LEGACY-ASSET-C7F0C3B79CBAA72960BF HAC-HIL-23a/b/c",
+      "full_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "raw_lf_inclusive_span_sha256": "65d4b0a663859c3517f21845e29f5d245f35de702856256d10c32cae109bb1bd",
+      "span_bytes": 255
+    },
+    {
+      "key": "old_hat23",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "physical_lines": [
+        55,
+        55
+      ],
+      "line_count": 63,
+      "identity_or_asset": "LEGACY-ASSET-FA8C6E69463183D6A19B HAT-HIL-23",
+      "full_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "raw_lf_inclusive_span_sha256": "bb14d999661859cdfe7d0a5d557859fdbe1c0a35d56fb9daf5cc3a3b74c9688c",
+      "span_bytes": 251
+    },
+    {
+      "key": "old_p2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        148,
+        148
+      ],
+      "line_count": 354,
+      "identity_or_asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605 HR-FR-P2-05",
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_lf_inclusive_span_sha256": "b2dc621fc80d1946c401094574a64c49d99160072d68c251b636cea7afa3b342",
+      "span_bytes": 502
+    },
+    {
+      "key": "old_hacp2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "physical_lines": [
+        225,
+        226
+      ],
+      "line_count": 354,
+      "identity_or_asset": "LEGACY-ASSET-EE5DBACC7F28F7D1F605 HAC-P2-05a/b",
+      "full_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "raw_lf_inclusive_span_sha256": "a1fcea5a04b0ef76b1c84cf17e7fdbaf066efa7a22ac736e3ff7a10f338fcfe4",
+      "span_bytes": 570
+    },
+    {
+      "key": "old_hatp2",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "physical_lines": [
+        105,
+        105
+      ],
+      "line_count": 216,
+      "identity_or_asset": "LEGACY-ASSET-44DD86E3DEC09E65EF51 HAT-P2-05",
+      "full_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "raw_lf_inclusive_span_sha256": "1d4b2ea8b187f288790a3908fd13eb8e01fe4cd6c9baad98b4b465d3e7a8b301",
+      "span_bytes": 413
+    },
+    {
+      "key": "old_wcc",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": [
+        57,
+        58
+      ],
+      "line_count": 146,
+      "identity_or_asset": "LEGACY-ASSET-9114D4E463E95B67DD0C WCC-FR-03/04",
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_lf_inclusive_span_sha256": "9562a57b48f91ee40556b9d9731f287b464413fa3421395805dd951e738454b8",
+      "span_bytes": 622
+    },
+    {
+      "key": "old_wccac",
+      "commit": "633bf12ea8f948db8ba3d6600179c4a9507377a7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "physical_lines": [
+        128,
+        128
+      ],
+      "line_count": 146,
+      "identity_or_asset": "LEGACY-ASSET-9114D4E463E95B67DD0C WCC-AC-02",
+      "full_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "raw_lf_inclusive_span_sha256": "f3513cf838af76f05f74fc2a63661127a331d3560768a9090a9317db53b94f9a",
+      "span_bytes": 261
+    }
+  ],
+  "verification": {
+    "scfctl_validate": "bindings=147 fail=0",
+    "scfctl_stale": "stale=0",
+    "scfctl_residuals": "residuals=0",
+    "govcheck": "ok atoms=7622 requirements=57 files=58",
+    "git_diff_check": "PASS",
+    "runtime_or_tests": "not run; prohibited/out of scope"
+  },
+  "limitations": [
+    "No runtime, test, old CLI, old hook, old CI, real secrets, real credentials, or canonical state exercised.",
+    "No independent review, L3 approval, implementation permission, or acceptance generated.",
+    "Technical coverage values are candidates for the selected scope only; no quota/rate/latency/retention product threshold is derived.",
+    "Legacy HR-FR-HIL-23 and HAT-HIL-23 were treated as bounded historical clauses, not complete fulfillment or execution evidence."
+  ],
+  "current_line_pins": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "28d7d4efbb855f6dadf70ea44abe2af317124c4b747b2672947fc82c1c197e13"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "ca79817a1bd6783b2183b0f22db852f41b320c573eb9401dd76e4b9702502764"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "fa27f5cf82711960c3f3441320dbb244a2aced5fd7f26daceea7ee4dc9647fde"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "f87deb24a4acc1d2171e5f3632ad5dfef107596d86f9aaa1e0594075cfcf3413"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "299301d7f14697d9124701f766e160c84145b20219808704b3a8fb8cec9afbfc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "f515a283c01eed2b0cf605689e3deff65f6f273d7d9fdf9d2705939514ccaf28"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "fa68f01a93589ee8cfa919e4e444609c3841f1319a61caea5221c0d395b17669"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "9c56fc4a5a7c282390e0f64c51fd2af2e9eb9b912de00cc92810dcb69b0d2d96"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 9,
+      "raw_lf_sha256": "1d2b4b6b59140972a05c17bd9afa77b6bab1c030d56e0b587eb5622dde91009f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 10,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 11,
+      "raw_lf_sha256": "4d94006a681302afa81de67e3c04dc46f3bee72a15ad336ccedbc33b8d910fd8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 13,
+      "raw_lf_sha256": "c385cb3b690fcd8cacf46ab481f64638f0252a51006a4559108f20a671a47b78"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 14,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 15,
+      "raw_lf_sha256": "e33d57bba7f6f501b5cecbfc6690e4fcd4fe16f69e0a0166d3095b274dd75fb7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "0cbb66f5f2cad44c79fac95fadba0cbd356bf3ddf2f85c97772d912fc37cd26f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "d5dc26c8ada5035f71463ba101f8f68515d5a54b9c41f3dba62c52a19108ac3e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "566473916596d79a1b36ce194386f831838d6c13f52d960febb4d2ee66888b13"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "81297ba711c80392373706475e0b5ce6c8f5b75b28f7c548d75b472ac2d04a0f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "0ab37a020751861ad65703e9ebe1b76d5c1e3b78077b3585f709d0d90adc6570"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 21,
+      "raw_lf_sha256": "08cda67c8efc51a31c07514d9bfc6855dcefa70343348eb5f771c9faff24ab1d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 22,
+      "raw_lf_sha256": "ce40bdb1ad6436dae862b233f7a61276e0bb08928f42d3b1235d7095cf0d56d3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 23,
+      "raw_lf_sha256": "f0dc602ba7cc2e3903ad8c7f9f7fb4ccd6e55f2b1909aec53dbd4c5ef1651398"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 24,
+      "raw_lf_sha256": "c270d89298545694665ff6c915fd3250ef6417abc496e9303bf6cff4351c6ae8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 25,
+      "raw_lf_sha256": "c0302b2aed4baa00e512b058eb12eac862f327f62ab252c9837b83e16ae2d9b2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 26,
+      "raw_lf_sha256": "e25493b4cd0f8a018c07f14d5da6e9ea70bf15500701c418c0768f72ad425b76"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 27,
+      "raw_lf_sha256": "fe6c7f2433c3f36d40bcae8c844b3f675ff57c3c497a8cb0de7a6bf228a853e5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 28,
+      "raw_lf_sha256": "44e0fb68e071388fdbc1eb5e0226b0c1c0878d60359266d270aa9ff2c27fdc35"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 29,
+      "raw_lf_sha256": "8dc19370301bdcaa8d60087abaaa0afb0e3bbf0d6feace104366e6542ddaec13"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 30,
+      "raw_lf_sha256": "0d1c555f7f275ecbd027ad9eb9d101380a54d561f76c32216f4d1e1d236a718c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "134602359d8c85cfd0b680c10209b00191c5aeedda18aae3d0c9a5f59fd55ee7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 32,
+      "raw_lf_sha256": "97d11c71eb4888987cde1e0dc9426f0d06131b348d1c65932a234b394f67456b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 33,
+      "raw_lf_sha256": "fac79fb1ba0fb3b3ae1acfed4bf26d149445c0a0c5d693f4f9c7203b1b088cda"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 34,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 35,
+      "raw_lf_sha256": "9e57a859f2b02f5b76f410fcd5795fe4adeb082ad737e21c01bdd99c44cb6d6f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 36,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 37,
+      "raw_lf_sha256": "04575fb27175539c3339b8a79c3d57ad62d693ea18f9c94f980b37e5ccc8b220"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 38,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 39,
+      "raw_lf_sha256": "9239bd9210ef2af8b57dc0c74a6aa08c19c7a3e2da47ac58f7440fca3d22eb4f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 40,
+      "raw_lf_sha256": "4b2e205792cb49b96454d8cbea62a0ebe76926ec984bd47a57e9dfbb5b7b8396"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 41,
+      "raw_lf_sha256": "c3b86c935825221a6918dcd2300f55338f7c8fd58a22dfd942c666f6c3652f4a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 42,
+      "raw_lf_sha256": "b09660d366b1bca07df22169f9c2527008ee936824536436660c37d2d0f7eb1e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 43,
+      "raw_lf_sha256": "34f312b379a77fefbdd3095333c2aea47bc67d2498ed66d91ce9c9b7f4bdcaf5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 44,
+      "raw_lf_sha256": "8ca93829368e99dc18424a8184dada2dc2cdc26552540fac3a290c998afe178b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 45,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 46,
+      "raw_lf_sha256": "e6657ba36437636f08d6d728062f1a6a6061d33e807654b00cee6afa3e8ae7e8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 47,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 48,
+      "raw_lf_sha256": "8ad691fa5b38a1564fb3c70f1908c5bf4ba3d4c2c5db0cd09deaf1fc3d30641f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 49,
+      "raw_lf_sha256": "603b19f8d685151852c5e61b6d04d13c7f4e3e0cebbe7e6075106db1609fc98d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 50,
+      "raw_lf_sha256": "d54417cc0b39b646629e48f7f9046b3d2e26b1161614f748c72d33edd8e796dd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 51,
+      "raw_lf_sha256": "31d5aa8f7eaa981196fe006e0bbafc4f9294f06c2f75e68ea90a0439addd64b2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 52,
+      "raw_lf_sha256": "77d47efb8431112110104460be933c6941e9e3dabd018478f5eae0faaec5ac9f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 53,
+      "raw_lf_sha256": "f690733803c8265ad29ce35e01fabb9fbd6abbb697618829dbdbc64d478bd3a6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 55,
+      "raw_lf_sha256": "d0f271a528931f6e6103225c47514286eb92721c8001e240f218a252848434bc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 56,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 57,
+      "raw_lf_sha256": "a0214f47ddbd6ac9e22bfecd43960dfd774d064e6db33801b9e2d4746bdc0b3c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 58,
+      "raw_lf_sha256": "a0e13d01e3bf53a71a6e54d5a0b0a286a612591fad5a806d4710de47654bdedd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 59,
+      "raw_lf_sha256": "2410710e8b11026ce8883ba5ad75e78daf08656af229b1fa7b2ac25ea7a571d8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 60,
+      "raw_lf_sha256": "16ce15e5f12ca13d2ee55ec7c3db866d930b13b1305d89d393c051924ea5cdef"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 61,
+      "raw_lf_sha256": "28b2a3248c002456dcb39c0f3c81fbd42312e85326cf41a4a36da3fe17bf2231"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 62,
+      "raw_lf_sha256": "f12659919c81b65f8ec217673a677400206b6198b93e3b00664f9812690e0af2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 63,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 64,
+      "raw_lf_sha256": "704658951c2ad4683fda3a00546b7e15cb4daef8eb39226474124eb602cb7b62"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 65,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 66,
+      "raw_lf_sha256": "f38d319132266ecdca2bd86e4284c30de7f0127980fcda55a4b3abeba0fd945e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 67,
+      "raw_lf_sha256": "d8bc4525fa2c7f39b37c5bd885563c4b86f388a67b9bcb36109d20c1488a1098"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 68,
+      "raw_lf_sha256": "dea47ce37d27c634d0df8a0500ebf1667b1c1a8c4d80b4484486edcb2539c322"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 69,
+      "raw_lf_sha256": "d23dc1117da003aeb064c62a47f9bf03acca0a6113610add1000b88141417a9d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 70,
+      "raw_lf_sha256": "173fb18f55b7bec0135d8a7fa0542cd8dfdf1ad725b3d5bd9140aae6034f9103"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 71,
+      "raw_lf_sha256": "c0037de5e3fd995be4956832bc89a33868e70821d16fe6eda252995d827b3ad5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 72,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 73,
+      "raw_lf_sha256": "9f9231cc400bc696d054cf4576046dc89d5f01d8ff3b7bf6f1f832ce067318b7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 74,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 75,
+      "raw_lf_sha256": "e620e0d94ce448e0c1be843b1f100d70b319c7765f55b4c6fd2ceec06a5582cd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 76,
+      "raw_lf_sha256": "958b2716b3d6a1e37029e2ed3a1e9dae3973295f66e1173f006cf6828c6931a2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 77,
+      "raw_lf_sha256": "929de3585193632177f974ce276fa613a915db8cf1d1f2cfdb846191b56a1c46"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 78,
+      "raw_lf_sha256": "4f4e9b8d94f301306f8b7f49b0b29cec1ad6b7b0ff6f82274e2f3af7203b6ad8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 79,
+      "raw_lf_sha256": "ad4f75249d57760acc6fb86d087f8e5d5a4a3a0134515dca28ce848b1fc7c835"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 80,
+      "raw_lf_sha256": "1f8e3af66793bc69bfde12bc29bd39ebe343a27c89db0b0b05446dd50ee017e0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 81,
+      "raw_lf_sha256": "73b84f45cbac2b57fa5d0a79a499fbc69eefbd07ca86a30b988c7e21e9338f4d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 82,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 83,
+      "raw_lf_sha256": "879dbeaac5f7742180112ccbfa73ddf575cbf71430ec2b0e0952bc9074934cc3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 84,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 85,
+      "raw_lf_sha256": "f5bc4139a41fa89a89c9e7755cc704d03a682c79e5a0b54f857a31cbdbbeffa5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 86,
+      "raw_lf_sha256": "acfd9ac1da03b45fe54163d027fdac10f38da7c29e423244ee82c0a914424a98"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 87,
+      "raw_lf_sha256": "1ac2c96849f5819de6e8d896eae067d2b1f5f6fe6b70a6dbdc4f6ad7b887773d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 88,
+      "raw_lf_sha256": "62d5327d2a1434d2d18c3840b0aa158641675fe422ab6b58dd3e0946f7babf60"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 89,
+      "raw_lf_sha256": "afc764fafdd0189eeb1532490ba8f14c20694b77a0545405699c42ebab23c6bb"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 90,
+      "raw_lf_sha256": "ad8a13516d8da4886b4f5fa5595a844d852421532d747f8c0a434756a7c2cde1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 91,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 92,
+      "raw_lf_sha256": "0e919178c9f98d21ce9f317c45db7e2d982ef4145dfd20e0d3f3a7af0b03e57b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 93,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 94,
+      "raw_lf_sha256": "418501c5fbd30dc511778ae2ee76aec75e417d6b065294c2602c25142b25b9ae"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 95,
+      "raw_lf_sha256": "f2604bb8a2102c4a88c40103c5a61cba0676fbb0654cd518389ac7581a972fdb"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 96,
+      "raw_lf_sha256": "1f848285aeaa22682cb944121efcf78dacfecb41a9c8cc9e052a2832f81cfa3d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 97,
+      "raw_lf_sha256": "978de5eebd1a2dd66f1ed2eb2b9f9f5c2085266b4fff4d6b7d1b9ca32d07ee8a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 98,
+      "raw_lf_sha256": "5c5b5e5cca70268ccb8f4c2b016dd134bf33def6c6d68d4ca11b485b0db9495f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 99,
+      "raw_lf_sha256": "5c6569fe5b65b57ce42d48fbf013e20c3ecf10679b193904b70f02d6bb02b7b3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 100,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 101,
+      "raw_lf_sha256": "c0352d81ec27d6a1a2e8ff633283b57e3322342cdcc4fcc2002eb46a6378c5f3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 102,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 103,
+      "raw_lf_sha256": "0e483e8ef0b2b4a6307f1df79cf117422d6ee5f123a53346305542a04e165c8c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 104,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 105,
+      "raw_lf_sha256": "2d2a5d9abd444c7943795a6feac1798a258cef4248fdc519c1691071f41ed7cd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 106,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 107,
+      "raw_lf_sha256": "b813fd448186db7308087a3a2646640891af77e44e7ecb1e54fcbc2d7b4e996f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 108,
+      "raw_lf_sha256": "e498a24f3740ec6ffb1d075f7563ca17a4c2c11ee4ef10a8e320474d8712a29f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 109,
+      "raw_lf_sha256": "c6d848e99644d5cf4cf1206dc194ea309c763fa4a3cca5469042b1c045d1b7e0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 110,
+      "raw_lf_sha256": "f9f307e9eb95fed2cff8d7f32cdb6466bcb296056a38718471f85c15bb1732fa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 111,
+      "raw_lf_sha256": "3c18530cc5749697aaed464c01f1e8dbb66b22e996d84aad9c55b4bee098b78c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 112,
+      "raw_lf_sha256": "88a9653653960a93f64762439680668c25a2a8299fc0ddd79859c9231d23baa3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 113,
+      "raw_lf_sha256": "d4f63277e03929be823e0507f932581ce8d05f97367510864303171b4cd9d0bb"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 114,
+      "raw_lf_sha256": "0ceca157d923d01ae033623c8657ca09ca3f75744cf748c3d9384e25942f3936"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 115,
+      "raw_lf_sha256": "d4a418d28b791c8836de629af0ca9fa21765650e6ea3b1081e29a8ec8d766e38"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 116,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 117,
+      "raw_lf_sha256": "dcaa58d4fc51750fe79b3a981cadb2487925fd4799b3ab23e59b53631bc9e9eb"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 118,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 119,
+      "raw_lf_sha256": "57495cc6e383ecc3ff0061b5cf134bf3455ab4c387842fe955c4c5d840233672"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 120,
+      "raw_lf_sha256": "6c51d3fac67c6eaf2de72a6cd23777810e0b2d93c897f4a80298b1b70ea23a5d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 121,
+      "raw_lf_sha256": "c82cb3b50661e766027fd53c3970b90ed9ba0fade87d68ad8d01f756e2bc3655"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 122,
+      "raw_lf_sha256": "0a134ab7dab1dfa9c494bc6eae723d67727be1758332a0c8529d9f8f7034f1b4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 123,
+      "raw_lf_sha256": "eab566e1e41d1139eb742b5c60e51a682e003e0811c40a1be608f6b2be7c6b9b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 124,
+      "raw_lf_sha256": "df2ce7c341fff22c01dd82f072c8f0de974bda1bbee17d3c808c18e9e8aa6b1e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 125,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 126,
+      "raw_lf_sha256": "b53e9cf0392a884ff796915983de91bd232dba4e1f6d7f1eb99af5f29bad8fe2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 127,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 128,
+      "raw_lf_sha256": "e74b8b5e65dfddac9ee67098334ac76fa4157b2982d6a1639c2d139adbfc899a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 129,
+      "raw_lf_sha256": "809c92dac04e4364edfc53f877c1f6dfee35cf2c08f075e93374a9d712b5040d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 130,
+      "raw_lf_sha256": "d3e8893383c7015c629708a00286a1b15b60bd837aaa4965c63ab1d0a6ebf44e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 131,
+      "raw_lf_sha256": "5aa57dc7bdb3af01753bb3584570cd2febdd9710ea2cccb0dd65ab9fc6aa75ac"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 132,
+      "raw_lf_sha256": "a8d36342f0bd4e5029c2548100fe01ebcbe47143f1b99609cf91768778344b3c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 133,
+      "raw_lf_sha256": "b080894b770ef4598d044708cead9149e3e23935380040a934da1c804f6f171f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 134,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 135,
+      "raw_lf_sha256": "2e8bb8a0eae87dc0e84b541a50581a5e75ce251b05655d0fa040f9d3550de388"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 136,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 137,
+      "raw_lf_sha256": "cd6eee788bbb957a4c0396ea1e8f032816271f232799731009dfad06c635ddc5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 138,
+      "raw_lf_sha256": "462c8a63876bd95149b9dd06de0842c93cf747f6b3cfa7216364078b0a804637"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 139,
+      "raw_lf_sha256": "137e5edc815eb9f3360c1c728080ce7c0d95bfff932726e6c09af59a70daa3f5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 140,
+      "raw_lf_sha256": "86a05f8fb277e63e630d155ffbd4da9d1af2d0fcde3970aacce1a681d638af4c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 141,
+      "raw_lf_sha256": "12128356776ba88f3ade03533678b3ff9cd75c53249f3d863b96b371ef4bd58a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 142,
+      "raw_lf_sha256": "d973481d50e4011cdae440570928c4197a84a33cbce64e265be44d839b2a2883"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 143,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 144,
+      "raw_lf_sha256": "5ad2c6c9966ff80869b074969751ffb2f92df044af12f7471b976875b3c9e31a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 145,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 146,
+      "raw_lf_sha256": "37515d55e7f9c7cca96eef4c6b000b59f7255b75b01d32102216fce76c098a05"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 147,
+      "raw_lf_sha256": "4311a205f1b54f9d11f99b0caf82ef5b17c47f201b157761b704d590a57b9bd0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 148,
+      "raw_lf_sha256": "c9484bbf6cb4a3a91c80c894f7533dbda5f5e28a460688a54b43cf58b7d39855"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 149,
+      "raw_lf_sha256": "efed244f8bf2a18982dd47de99a406f85ed8ac71b7a180561d471f97db1c88e7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 150,
+      "raw_lf_sha256": "a3b6e26ede1734845d9ea70d138371f23f8bedf7fc255973bb5645194ea1c179"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 151,
+      "raw_lf_sha256": "686fd83e9375d96ede539159d17c9e7181946d065ae05a7a6b3f77cdcd13c1a1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 152,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 153,
+      "raw_lf_sha256": "8d85168bf7bb4266241e715f4086f29a23e5c9a24ff6725ac0395e84e75699b1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 154,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 155,
+      "raw_lf_sha256": "03498a5609106a2e3ff2e1406c4709144468098a3e284d35d55c09b83a240c4f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 156,
+      "raw_lf_sha256": "00134f446ccc56e2eabcd6e8d8f0d389cfebea0774f304aa1260cc4b18abad99"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 157,
+      "raw_lf_sha256": "af4d267eb8af7cea814c76b3c9a43744b6e3bb54bfd8ce3cd685d2a4c57c6c28"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 158,
+      "raw_lf_sha256": "4d519a579e02ca7909b54752ddbeb54687a91ccfcaa03be37a37f63c25825a81"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 159,
+      "raw_lf_sha256": "3aa2d21886bf42eb2214729eda17e5174f647960a80f5320b193b33f18306247"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 160,
+      "raw_lf_sha256": "962126406a3f439ab95f8bc2009abb90641e874cc178cf1e116bc601507a28e9"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 161,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 162,
+      "raw_lf_sha256": "9e189babc98252112768a2db4c16d15ac43e786ae42dabe491776d6c528dd07d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 163,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 164,
+      "raw_lf_sha256": "5c32be30dae5798b48b74b825b5d558d16dce473614dbb69720d60218998168e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 165,
+      "raw_lf_sha256": "1c52d3c02d855446f06839d720cc2a895ce13c37ccc17a66231d60ac2228db45"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 166,
+      "raw_lf_sha256": "f4b18c134e50d0b4c9c3edb23826cc8bcfe389cb60386edae14ba91082333658"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 167,
+      "raw_lf_sha256": "76206533f90edd484d7b52b448240320320a3776eeba500675a3013a5c58b9fe"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 168,
+      "raw_lf_sha256": "0049def97e70709a69f6ab749c285cc59296dc56c06d0c95ec819c33e3558231"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 169,
+      "raw_lf_sha256": "1852c851302860f39af9128a1f34d26d385545aaa18ddbdcf80127ea074db42f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 170,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 171,
+      "raw_lf_sha256": "af980b8ca6d8fb72711a64438691473321bfee1ca46d56c3c9ba8b4ba128b854"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 172,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 173,
+      "raw_lf_sha256": "6cf1067ca730538ed647100ad043d2db232f2267c02eae6675d188cf0cf7a61b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 174,
+      "raw_lf_sha256": "cae32cd27a5f173758d9457044be231c8e2cc347ddf390e35b84d813cf4cb6cd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 175,
+      "raw_lf_sha256": "9614e4e975da986eea376bed29a9de012550b481c47c67dddaa974c70adb5507"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 176,
+      "raw_lf_sha256": "1db040922a45eebd534489edb86fe0ce94ad15208331c5bf77e3bd0bc65c74ee"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 177,
+      "raw_lf_sha256": "7b05d860ade0d60818f9b5c3104ff0619986b8ccb4f40b80c3231b9d90b4c280"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 178,
+      "raw_lf_sha256": "11ac0cb620c1eb6113412a2158b2bacf558a163020f4fd20c5dffd7a9e4bcfc3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 179,
+      "raw_lf_sha256": "895cb545626618cb4df6ed97e944c733bee709ec836f9f5b2340ac1bd48ebb12"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 180,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 181,
+      "raw_lf_sha256": "3d1bae462934a7efd30857c880c453a3936c7762edb8054f39faa45b27096c97"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 182,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 183,
+      "raw_lf_sha256": "f3282a61e622877787040b64dd057c6cb764baa96f9ef3ae45dec99b8ee1f0c6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 184,
+      "raw_lf_sha256": "c09f0a00390bfa5be7c1ba6e870ac7a1c9f13982cc7e370941eb4a87cae87bec"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 185,
+      "raw_lf_sha256": "8991dd58f5c11e42dd5ef0cd79d49218b121d894c45bded76986782864598396"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 186,
+      "raw_lf_sha256": "bb0583620a540964a1e45ea1351c0350430259813882c904d3637772a57597e6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 187,
+      "raw_lf_sha256": "f67aafafe953141dc82642ce196edfe2f1a645180541066c9b368e4146a517a2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 188,
+      "raw_lf_sha256": "070f8ad8e9cf7078d2cd94d35bb71b844442eaff0b48196cbf211c68bd87c5c4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 189,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 190,
+      "raw_lf_sha256": "524c6cc845e5139f721e30e45637eb40e1ec756d94df0f712fa4d315546df836"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 191,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 192,
+      "raw_lf_sha256": "32693a47a83adee6ae2da58f315ea5d5ccc130df57a5358f8173ab45ed2c854f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 193,
+      "raw_lf_sha256": "657aac0d47cfc2dafef104beb54e071fb12d57af9e9f40a9bd49e6d0f449827c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 194,
+      "raw_lf_sha256": "564c850f5b5dc990e98ab1f49de95dc5ec154ec814d4726453119b19801fe8a5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 195,
+      "raw_lf_sha256": "e43d7e6bc83e2d2fe44b7c86343f3658800d3d54c0328f576335cbb19da6cf22"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 196,
+      "raw_lf_sha256": "ac3c2db55d8e2ace76dcbeb9a19889d9786a5b8383028977a87a26595aef5f77"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 197,
+      "raw_lf_sha256": "52698e6930944fd420ff0d65a991b61d34e02ff6676cf355967e606a7c6edfc3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 198,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 199,
+      "raw_lf_sha256": "4058f27951c3508ad51959663a2e964723e4b5ef9a5f45ec3d7c8a6f8c9f0247"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 200,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 201,
+      "raw_lf_sha256": "c1f5e9f39548fc256ff05fe34b0dd9741dae6211fd61e06e2adc62e84db0a3b0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 202,
+      "raw_lf_sha256": "48972487bfe0fa69083d83b16895681fdfb9c41c3b9eda0b26be36c166759616"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 203,
+      "raw_lf_sha256": "ff47d46d98a6ba62226b9b711bc92ffc3d9b520b30fa01f40aea680bbd6a184d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 204,
+      "raw_lf_sha256": "aaf0e137591424849181a59a174346a3059df776e3394051c3c2071ef107d96f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 205,
+      "raw_lf_sha256": "038ec472bfc82628c3edf6f63bbcdfd6cda4bbaf33056b21aa720f84f09db1c5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 206,
+      "raw_lf_sha256": "0849711e62919b5fd849eb039e7df6667cbca927904c4a368d4b447aaa27e9d1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 207,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 208,
+      "raw_lf_sha256": "5cc7dc58e0fdfbb206c45f78a3dc5c3770d8fc157549a212af8f0e24f958da76"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 209,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 210,
+      "raw_lf_sha256": "128a4e6ad735b7ab445d8ce610bd08b0678301276502bea4296136ccbde9d311"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 211,
+      "raw_lf_sha256": "4b7f1d6caae064fdcfabddca356da55d8a563137f450a974a17df164bea026d4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 212,
+      "raw_lf_sha256": "404841756069614c3d16a5b142237636123c54e0eb7bc0b1f29d42ec73e05f10"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 213,
+      "raw_lf_sha256": "df0daab9a2b8b430d09c720ddba1c9d319dada487e9e10f706c8ebd201dd3f1c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 214,
+      "raw_lf_sha256": "39f1bbde880b8046d7c6a62f0596f2e7a08b70aa1296b32e57e5a3caf64a10ba"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 215,
+      "raw_lf_sha256": "898be1e1618fd6f36c353a75f449781f844687ad0bfbbe7275600a515b2f9c5d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 216,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 217,
+      "raw_lf_sha256": "6865820ad0d9d1f65b6cf5156afbdaab467cf1b3c3d716045fc4acd98a900f91"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 218,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 219,
+      "raw_lf_sha256": "3f9f0a8c77fbe953a96cc0da59cd55d3a19d2c6a8a9e3f294cf46753037a1588"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 220,
+      "raw_lf_sha256": "cb5f9be9b7dc13b734ca0d1b528cd594a3c2fafe4c355b95810b20918a815992"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 221,
+      "raw_lf_sha256": "9cd65b4ae873d2ac12a422a1f59671ebd1f4837a466cecf890e3945507eec676"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 222,
+      "raw_lf_sha256": "b4b7a04aabe5ca574154b82ad7bf26ffbcb43e9261a1dbea1ffc50b927f8a61b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 223,
+      "raw_lf_sha256": "e912a9dc254de4c738508ff9d71071a6f532cbdbc3e4a714a25a166921d1a0ce"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 224,
+      "raw_lf_sha256": "3be6144fc5e6e65cdbc5eea753ed9d20b3d8a4bb18b5772db8af21836eb1b119"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 225,
+      "raw_lf_sha256": "e3b6e1dadd7884658cddbb0444a275fa5f493abb1bbbe05b5e9df55dcc485bdc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 226,
+      "raw_lf_sha256": "cfe2fce2b932071c8918f6f9ba673e400440b06df0303203dd9bd8eb17c73cf3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 227,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 228,
+      "raw_lf_sha256": "aa0ef752af7c3cef14d0a93643f2de494ad7e75d798d2352792c9f14dea27ec6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 229,
+      "raw_lf_sha256": "6dc18181e5a56902f37ed1deb09581e5027f8c7e006b08860dc317df81c01371"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 230,
+      "raw_lf_sha256": "d85b891619b086e8dfd239dc518c3bf86dd6826f27b731e7a4cc6c9bc1c7fa7d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 231,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 232,
+      "raw_lf_sha256": "fd876fa44d6b0df8cbfcb03c2f42908759ec433ee081e83177e9810ff5b7ef12"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 233,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 234,
+      "raw_lf_sha256": "280dfd6e7aae6515564a602e4e9cae5b094a81319a18a3c43ca2d8f9435e39da"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 235,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 236,
+      "raw_lf_sha256": "65b72adf3f15289fd42bc2a1c08a2112afdba6c689c24f767611d84660ddea98"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 237,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 238,
+      "raw_lf_sha256": "082c1615750585c90952016dba5f740e5a1c8d0fae73521cabcbb10f61716523"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 239,
+      "raw_lf_sha256": "1cc412adaceeb0ab3ce12b8dac784e4e1bb3c9e66fe5a07e852a08a3a6b405be"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 240,
+      "raw_lf_sha256": "fe6955ed79241dc11d132af17cd851c923af4e301a5370af15d132371a0554ad"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 241,
+      "raw_lf_sha256": "f2ee6b22bafacc605e220d43d775fa84617c7f8a2425ad1b663acab17af50da2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 242,
+      "raw_lf_sha256": "c53c43f1f4b44904ff6004390ef72e258aef1ed8056f2bd7f3d8455c7639281f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 243,
+      "raw_lf_sha256": "47e9c085843e7fdb5268934576f785af9ac1a2352324cfa90a9c4ace70da5b4f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 244,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 245,
+      "raw_lf_sha256": "6786a3fbc8cd5e02145bd2c6dcf91a12cf024aae9ab4e18dc76538cb9a54bd3d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 246,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 247,
+      "raw_lf_sha256": "d744c08db018ae3c8c95f9adf6c8b13ae22c9c49808d5c17fa8bbc7dd3414186"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 248,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 249,
+      "raw_lf_sha256": "c084d4e3d33b0c6caceeb160544f30541dc42a1dad5812efcc53136b4f15e797"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 250,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 251,
+      "raw_lf_sha256": "677f2f9aaf7909c660f2f0ec0c5f1d36da7aafb13cda55f8823bf084688a37fa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 252,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 253,
+      "raw_lf_sha256": "31e948d93cff8159d3ef011596157c78666451a577bdee06ee305523f439df68"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 254,
+      "raw_lf_sha256": "97d1bb8283d609803999e69947e67f86ffa5aa576951cb5f431c6993111d38fe"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 255,
+      "raw_lf_sha256": "79944906b05666f7102409f80d8b31c2dc1f27cb234efa5711e15bc7aaf61509"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 256,
+      "raw_lf_sha256": "7e2d81e1acb5e74e597d3d6b3091db89bec3161ae665b78564a2ae4577f3fc0e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 257,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 258,
+      "raw_lf_sha256": "61de83be469b9af17647423647d2be18efeb3eba74bbc7b0a43f557d5aaf8e0e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 259,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 260,
+      "raw_lf_sha256": "6fff68b4c32eefc59a2ff0c5f3e610395534191fafa74cbfc825e7a1fe7d4dae"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 261,
+      "raw_lf_sha256": "fa72c377700e17e19bd550bac31ee61c46324bf8f8b6c91080a7ba65758cfcfc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 262,
+      "raw_lf_sha256": "70cde4533c49334005a98d448cdc88be367c466203c18c6333845245465de356"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 263,
+      "raw_lf_sha256": "a31b0cc9a5427d677196d66dd6ce0aa96e7aee5ceeffdc3586342f7102dcc7a8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 264,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 265,
+      "raw_lf_sha256": "3766a1b1eb905e277ef1201a4f8a0a67b2a49a6a87dc6d686710d6783138188b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 266,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 267,
+      "raw_lf_sha256": "3eeb9117a2850472d99a651c51506fdcb723e8b9e79228c8e53ed66921f03bc5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 268,
+      "raw_lf_sha256": "e973e541984bdbefba2a071df7a2ce2c9387d5451e4ab3d0aedd11529af54101"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 269,
+      "raw_lf_sha256": "33be52c9a73494904f2d3e34ab6b7c66bf5be9d762bc6c91b5e2c9442c9faa17"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 270,
+      "raw_lf_sha256": "0015333ba35a88cf4841ade070b1f3b400dd5a3935a762bb8f96bf0f9bdbe554"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 271,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 272,
+      "raw_lf_sha256": "93295e8ae738ca8f3ee3d158504172da437642749d3d352f7a8a1d1e7d51e883"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 273,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 274,
+      "raw_lf_sha256": "c932964dcd136f4e31595ea033d2315e6a1571d7c3b46d061e6bd8aba73cffc1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 275,
+      "raw_lf_sha256": "bc153c398727df4c9295883dcf8ceef48d12da10cb52bb2e855efbb1ea1cf30f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 276,
+      "raw_lf_sha256": "30fdc99c54d017b62257a179391a9b9b9a57985b24381ca2417e57162b7afdb3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 277,
+      "raw_lf_sha256": "0983d520c063a2163f249d3f51f4155e94ec80028198a5d7dc323d464793ef3a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 278,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 279,
+      "raw_lf_sha256": "d7c031b82c6510b2cc6f56bd1a44724e764d7c3308275a7297c622a00602d695"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 280,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 281,
+      "raw_lf_sha256": "72397d3c9cbf4afe9aa0c9f72c64c39d992aa460e0b2f0beba45f9efe541e3da"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 282,
+      "raw_lf_sha256": "295a4f6979cba04926a6aaee84db8b89b185a6162f6b3dd78a46ea67f80c97bb"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 283,
+      "raw_lf_sha256": "e1ca885e86561dcdf112afced9e4b2f0aa7073f28aa07239a3c0e55913be3661"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 284,
+      "raw_lf_sha256": "322d3c47088d470e24af05df6c0628d815352d41594db605c8063bd54257f51f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 285,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 286,
+      "raw_lf_sha256": "e7c5e72dc5e2f90f49b6aa48eb0103193460d3c4acb5bc5843728c57faaaac85"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 287,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 288,
+      "raw_lf_sha256": "9bbf09fe2d76bb774c1c46ba50934e0f55e870a792f7ca15b8e1872bf06c73b8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 289,
+      "raw_lf_sha256": "c6473f427a556c27577d5ee271996148d18eba6462ae10c872bceff72a001a34"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 290,
+      "raw_lf_sha256": "3b9a7de3c0c5f1f90d8ff25d867515bcc968cad2c4a5019b69936ab1df918a16"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 291,
+      "raw_lf_sha256": "72071f41965137708476bc5b1e8ec82f01c7cce00d403e6b38124ac7aa851042"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 292,
+      "raw_lf_sha256": "f05db67d5ddebfc75f9759c6e5af0bbd20eb1a30ccbccc2c4c66d16091591b1b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 293,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 294,
+      "raw_lf_sha256": "4880196b26c26cdc8e58812a596b6764fed78d4c569360db458adaebf894652a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 295,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "line": 296,
+      "raw_lf_sha256": "b12dabca45155a764e148663240000f2ccc49044bd76e1c7a128ab7418a6f49a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 1,
+      "raw_lf_sha256": "ddf7cce005e188cbfc1643a685dad596153d824408d62a342762589fd1da48e0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 3,
+      "raw_lf_sha256": "f98e60a2f25d8663a1eb7a69142f70adbc93191796828af483c429c1abf998b2"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 5,
+      "raw_lf_sha256": "efeb465b23e939310ef5e0782003d2e18864a3c304e84a934531c75bfd76802d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 7,
+      "raw_lf_sha256": "3bb32ba323c4a96b0d6f1108c376d6372b6e28328d7264596b7c7067900fd879"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 8,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 9,
+      "raw_lf_sha256": "398c8a7d746303226bfc1f356d8568633164d7de9de03a46bc3436537983bd0e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 10,
+      "raw_lf_sha256": "11548098270142f7fc33c5a2f7f5470c07d41aaff8031cee95d489278057c419"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 11,
+      "raw_lf_sha256": "345163894fcca1e09ab8e9f98c79c0a64b42d967c08aa9676e2c235096041559"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 12,
+      "raw_lf_sha256": "a84d8fa85d4040177b9d97c5b0fc08453050dc4ee3217525326454e859be2f65"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 13,
+      "raw_lf_sha256": "0a92a435b5875621607ec952cb6d1c4abee59a1c847ae8c27e3ec55acba04291"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 14,
+      "raw_lf_sha256": "5041325c508d07756587cc321c6d027d514e5934ba351b7aff1db731647ca43c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 15,
+      "raw_lf_sha256": "51e438bba8e043bda0a59554b221dd15251d2167e3ad7037bffe97206c13dec0"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 16,
+      "raw_lf_sha256": "19c3407e59b7bf30beb1912f2482415266c7d31cec786e24e047643bfa334f59"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 17,
+      "raw_lf_sha256": "339b98a720f7a663413eb1638cd4b47509c89ca7f7f13638dbdfb8f4e106759d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 18,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 19,
+      "raw_lf_sha256": "ed0799242ef7d9cad03bae86dd63e55b0728527c8800fc7febd33750464c6618"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 20,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 21,
+      "raw_lf_sha256": "072463ad291bc46ead757690c2eec3d34d9db4198274d17276f493688fcf8ec4"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 22,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 23,
+      "raw_lf_sha256": "4746874fb5dd213a64b0ff0ed36cecdf095a06ee6f179c4481de972e9af69470"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 24,
+      "raw_lf_sha256": "0c59545e44209ae954244b82e901a05769b72645035f0c6d970d4fe893d373af"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 25,
+      "raw_lf_sha256": "b68e8b7fdea14f0f7f562feee58da9f1a071359d59501f557a8bccc479a364d5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 26,
+      "raw_lf_sha256": "b605a0f6d1ac7675b2165d5a91b01dbe508933abe9962b9b8e92e93388943f9d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 27,
+      "raw_lf_sha256": "30ebcaf8fe864ecb55e00d99e8d2b9ee637e00657e955b98941df50762178ec6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 28,
+      "raw_lf_sha256": "517258b8b47281d9e1999a3dde5e647ac61f4901f35aefc6f14a7069f75282ad"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 29,
+      "raw_lf_sha256": "0332b76e724742f5a50fb7c46de5fcd363c5cfd91a7471b68ea081b7e93d8fb8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "line": 31,
+      "raw_lf_sha256": "12041aeb2d136cd46a32e12fc392f16304d7e72517c265ed78dadf077b275ca2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 1,
+      "raw_lf_sha256": "7135f672a268e7822c1b58adb88237e96747e1b42a90e2f35da5a3a54be3eb56"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 3,
+      "raw_lf_sha256": "2692a8459f662d5d5149a07b646dbfd69ac88b4ae2db4d0934ca8b6c0263d84a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 5,
+      "raw_lf_sha256": "09cde6f640b7dcf9be0076dc509b10d90aadba9f39fc5ef1f857ca62292020f7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 7,
+      "raw_lf_sha256": "fa27f5cf82711960c3f3441320dbb244a2aced5fd7f26daceea7ee4dc9647fde"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "line": 9,
+      "raw_lf_sha256": "8a4a0ef86511b16ad218978df2909514831f93c2ec0d646c278eab07dc7dc89e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 1,
+      "raw_lf_sha256": "c4efba964623078feb6713255ab7139f5f4f2d60bd0f21512d3cb2c5a03f893e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 3,
+      "raw_lf_sha256": "a2e86fdce14d42e5fd1c2d6a62fb836866c01f47fd8ea66192112191e8c72c89"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 5,
+      "raw_lf_sha256": "ce7881b335b2b9a4e382979d9c50045c868955dbfe3f61df09b345195490a4f7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 7,
+      "raw_lf_sha256": "5d9b854f0cc2e091c6c874bd73a43c484bfe56c758ccd61cbb571beac8958921"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 8,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 9,
+      "raw_lf_sha256": "85653badc85e71b4dd8ec99d2db16677a23785285fdc27d7fe74bb7d86ec285d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 10,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 11,
+      "raw_lf_sha256": "207bf85fd4fe8e02017da2fc9d9322774d2ae474b0d40617a3efaddd35b7645c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 12,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 13,
+      "raw_lf_sha256": "bcd6306fa2d640af9d9e627b9c2285f093ca96c5a015a6ef60477df8066837f7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 14,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 15,
+      "raw_lf_sha256": "dcc6472b22b0131a0893c7d09aca03651cb0885799060edaff3f4b029e44f4a0"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 16,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 17,
+      "raw_lf_sha256": "7a38cc999f9184eff298d1844356d2c2a12ea98f78dfb61092334ec37643b1b7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 18,
+      "raw_lf_sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 19,
+      "raw_lf_sha256": "f20395687b2f50370b29ef3dd8d99a2a3ccc72e2f6b990cc7b32f8190c794178"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 20,
+      "raw_lf_sha256": "20b6ccd3e1afea0bd3f88fa43d3e2a05c3db7b2085267ddefad593d39259ba38"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 21,
+      "raw_lf_sha256": "72c389e9e3c1cdb7551287aa8c89a75003b7f6f59e6af73d0f0d7b572ab79842"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 22,
+      "raw_lf_sha256": "24f11f36b093931cbc1f4d02c62d3d47cccb67dce0293a4ac5d0438fed769003"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 23,
+      "raw_lf_sha256": "b1d94309a61ca4ba7ef46b4b165108ef2e68c0735335ae26295570dc1f22aa8d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 24,
+      "raw_lf_sha256": "090aac37ea4e16b147067b83aab74559550c24ffd07e367ecbe7868dea708929"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 25,
+      "raw_lf_sha256": "66951ca90b9369212e3d43f74024227fc20fed199229ce2cb4d646929968a001"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 26,
+      "raw_lf_sha256": "9938314220a3eb9f9ae4e96d158eeecf1c8af228fc79270ec3a74f413b79087d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 27,
+      "raw_lf_sha256": "fc1773ea0e23e81abe4d67a10e1412fc14676f75a52b70d50c8bac5e315065bd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 28,
+      "raw_lf_sha256": "53c764cbf7d2e332c1add3ed827c92850f5a65c61e5bfec522361f2c4d0cb3b6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 29,
+      "raw_lf_sha256": "3f17ac6f5b97225dce3066868b8e61a9bd639a7d8a0df1e2aa7af81c59f80675"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 31,
+      "raw_lf_sha256": "de5388fdbe9bbf51651d73102100f1232c66351333860584095c7f220c3629d5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 32,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 33,
+      "raw_lf_sha256": "0c8dd7f6e14293a60ae6273c56e9bc7474f269be88789ea366b35e4bad67e443"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 34,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 35,
+      "raw_lf_sha256": "4df8c9e122dc61603b0655fe24900d599f5e9534dc27d2f08987f8acd2921af8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 36,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 37,
+      "raw_lf_sha256": "be90ef54f5299731badb94fd51a2bce178a180c1071331b037ac5194d13f9950"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 38,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 39,
+      "raw_lf_sha256": "79763809edc5907b5c53e08db9edb694d804e0e23452799a002e1732870fb994"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 40,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 41,
+      "raw_lf_sha256": "c68a58ebc8bc9041f1ec60a29e11bb84d21414de5ddf4a02cde69e9d674ee107"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 42,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 43,
+      "raw_lf_sha256": "28c05222db9c554c802356b3592df6c6c0ed5f3ba768dc53776317114df9c1c4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 44,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 45,
+      "raw_lf_sha256": "bdb0aad3a588f442a1bdb00170ac4dc820aa4c316db6b1d1d6c0bdf3f47deee3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 46,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 47,
+      "raw_lf_sha256": "dd1c21cd8e2fdd2415aafe9c378a9be35bcda852472246edb194e106bd6b3959"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 48,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 49,
+      "raw_lf_sha256": "65ef9be076e5a1b6701433b4f69084245945ebea90bb6c09eaf151f97bf38944"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 50,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 51,
+      "raw_lf_sha256": "196759790f0264faa32b980a9c4a28dee64f4d880cebef3d99e207c56fd1cc4c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 52,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 53,
+      "raw_lf_sha256": "c42cc61e33354be5c78782180f5312c02d2be1d8618d42071d70a5a77bcdb020"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 55,
+      "raw_lf_sha256": "a85afff2a4f055e397618ec735bcacb8eece0f7e4c379b0c316397c094a6d40a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 56,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 57,
+      "raw_lf_sha256": "d7c38fbb69d30fae9006d98fb24015eeef6bd2f1056716c89d684a818b4e2a97"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 58,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 59,
+      "raw_lf_sha256": "320d53ae96f28708ef4713dd13647fb38567ab01973560b2ad249207e9f7439f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 60,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 61,
+      "raw_lf_sha256": "2c88bdc7cc90aa396b8ea0080d20709f61025a0efbd1ec1f5bc7bb6b2f21666f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 62,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 63,
+      "raw_lf_sha256": "4a0c434bc3996cc3b97cd2fc944ee84c8675f0799d44b05b059dc5689d185ce9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 64,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 65,
+      "raw_lf_sha256": "98a9f72e947acc62b26e0228ed7ce660fe73699e3551ac24d04c6f8509e9ad50"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 66,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 67,
+      "raw_lf_sha256": "1d8b83c9b08408eafe182bbf957d539e1863828ae856f2e36f92116c8bfc6a2f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 68,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 69,
+      "raw_lf_sha256": "fb649375cddbd8bc241a25b474ed47dc0d40094fb2e5456a0f4014d9b09ecd08"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 70,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 71,
+      "raw_lf_sha256": "afffb76f9a873150c4aaa24d62903e6f873ffcd1f90244a47c9233ff13964ec8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 72,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 73,
+      "raw_lf_sha256": "3c6e6444ec8fc0ac774d2c3dba2943934107630dee1e9b9cd626d2caa83393eb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 74,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 75,
+      "raw_lf_sha256": "537d903857cdf4b000b8540eec41cafbe21455000d1e587f2ba94f2beb752beb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 76,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 77,
+      "raw_lf_sha256": "1d5c79b351ae90fbf672ae5e49c0dcab45576e7d0d7c3cadc28652edfb2d9569"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 78,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 79,
+      "raw_lf_sha256": "ebc9ec0f90f8ad609c6d3b8750b5f51b507046ff69fcfbdf26b0393180465007"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 80,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 81,
+      "raw_lf_sha256": "38bb772172a655c8783d89a1489777c003ef2923810dbfe82f1ba17226634328"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 82,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 83,
+      "raw_lf_sha256": "12a9aa91788ec6d427014e6734e709e78c147cdd5d2283d3e572621bf81f091b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 84,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 85,
+      "raw_lf_sha256": "a9ccbf9ab780b410b060f6df0988cd307a61bda72eed7e83862c57815db8ae4e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 86,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 87,
+      "raw_lf_sha256": "c904f81285a2769ce1f76849ee4426995c55c55dac90715e31dc6e78a2e69250"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 88,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 89,
+      "raw_lf_sha256": "c83d6d039a14bb53d8e37902b8ce0d72af69d15d8f4703b0ab80ca37be89131d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 90,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 91,
+      "raw_lf_sha256": "6a8307ee159f68abc58726cd1a19747b403ed3bbf667124b7c4ae745be1936f8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 92,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 93,
+      "raw_lf_sha256": "727a17ab21d4856a3f3e945570e4f4be2a335831a2972b34c34c7ae6b1a7226d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 94,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 95,
+      "raw_lf_sha256": "355fc1168718ed255d3b7312d25760b21205d8049f11acebe62e3eb997016e63"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 96,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 97,
+      "raw_lf_sha256": "98f0d9b293858d2ffac61f581d3742b18485d327363c384c344d6c98e893482f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 98,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 99,
+      "raw_lf_sha256": "803e43c2b608aff231cebaeba59b26c4f3f30d95fea5a6e98a85f878cb0426f7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 100,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 101,
+      "raw_lf_sha256": "2837475e6f305850003e8a5809115411144f06eb8ee4e08c372ab3ef9c3b76e7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 102,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 103,
+      "raw_lf_sha256": "a5d525656682d5960348c0ae166acc8bbce6cab5c62572c1e7872d8eb266d04d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 104,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 105,
+      "raw_lf_sha256": "6fc2959cc9648e92d59e62b2c666f7b3235a5a5b1cd13802037770e0d10294eb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 106,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 107,
+      "raw_lf_sha256": "0f5410aa754cffb4fc05423542696dbdfa9b8ab0b0da4f9b635460d40d545f30"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 108,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 109,
+      "raw_lf_sha256": "e34871d61a94e70cd7033ce77cf37e510a3afb0b64f3ade3110ae5741cf9cbd7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 110,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 111,
+      "raw_lf_sha256": "b828f71f904328e9a2afe956334d48dff4a190471b4079b7169ca923f01a0646"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 112,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 113,
+      "raw_lf_sha256": "12a44ed2b5267b58d5dc4e2c573dac956eea89255d0691ae64ec51962546f2cc"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 114,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 115,
+      "raw_lf_sha256": "7dbfe0c56e846e54a34c65a7f85231a7984c647dce75ce785185d8658a4e43ca"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 116,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 117,
+      "raw_lf_sha256": "c605304c50e4f477c935247e1721c11554ad9cf24aee4802a308d6f731d07a2a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 118,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 119,
+      "raw_lf_sha256": "74f8d3d3133d8a7e52148ef73f8683e6a02cfa4f66c248dab3b0636d89b25036"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 120,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 121,
+      "raw_lf_sha256": "41b096a9b1c3a3812a9c97a53dac44df0714057d6c7f49fd791bc6bb443e22a7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 122,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 123,
+      "raw_lf_sha256": "7cbc5fa8cc1e4b7e3f2c5f37b60f6ae04b9ae434b3524c9f2c13f5e73a19bdc6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 124,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 125,
+      "raw_lf_sha256": "2cab677b8645c73d26580a13155acf1e1ff00c3894cad6f948cae6e7d4b95500"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 126,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 127,
+      "raw_lf_sha256": "a1b9cf53fa4272c8c6db7cce6bb31468a751ea6f2f02c5d19cc50288ed01c8f8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 128,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 129,
+      "raw_lf_sha256": "464c24e62a52066b6e4e113b713c5333388015ea317b4b9f6e4c313f61c94c46"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 130,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 131,
+      "raw_lf_sha256": "fe84f28dcccf4873a9eade15738dc293e7ee01921c9cf4df00096f281afce7da"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 132,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 133,
+      "raw_lf_sha256": "b57cbb9b5a1ce57e77abe65f9f9ca9de0e7b116ec414fda6198ba2c2dec702c8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 134,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 135,
+      "raw_lf_sha256": "80351fec6f962c29d0c85a58df0c42684bd417a70d53fa75b65b2e83c035d8e5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 136,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 137,
+      "raw_lf_sha256": "d11197ca49d02e76a513327028d1db0fb9f6bb0bbfb8f85f428ae0924f7237ad"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 138,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 139,
+      "raw_lf_sha256": "73007c901f5f96bffa226f219ea6e7755732a77ac7093743ce7ba5a02fe473b3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 140,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 141,
+      "raw_lf_sha256": "4747cf5ab5aca6a20b4aab4675059434f4145ff13d5abc8fa52e23a875f046a4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 142,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 143,
+      "raw_lf_sha256": "224b2f2ee0aebe606d9848ee2d1bbc3cf4364c65226ac62c4c9bcf72e03425d7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 144,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 145,
+      "raw_lf_sha256": "b2afb0918ece5b0cb834658ab975661269d72b1b545153734c9177bdac25074d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 146,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 147,
+      "raw_lf_sha256": "9003181faebc85247e2e2d1e9baf95b6b169d2962614c44faba5946f73eb5c3f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 148,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 149,
+      "raw_lf_sha256": "5954ea00178cf1117fba612adac011288f1b8f39bb50372fbe487df619b90849"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 150,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 151,
+      "raw_lf_sha256": "c264e21bacb69da8b3ca278b327669b636a6958288150e17a5f3c6b8f215d8a8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 152,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 153,
+      "raw_lf_sha256": "be9365b911dbf94e37416060a82b85aaa490b0222c13e64b311d3cc7ca9af7e8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 154,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 155,
+      "raw_lf_sha256": "a4d5a89ca94f7e3bd4fb1d6530c00b588da2cd846fb9dd7ec86120984dadc8bc"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 156,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 157,
+      "raw_lf_sha256": "4424bf72a11b5a07de2577ebdfb57aed6287dbdea8d2e4693350213d116d513a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 158,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 159,
+      "raw_lf_sha256": "b01fc8e1878ff16f83d918180b7edb6618af20b6a3d400728dea16cbac7609bb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 160,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 161,
+      "raw_lf_sha256": "d0ecf44ccaf8076565bad27d5f73402cba7c706e8a1f8707924c13c3b29ea521"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 162,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 163,
+      "raw_lf_sha256": "17b8e29fb0757583a03363fb48348977a3d002b6f09c63eaf94cdfe7ada09938"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 164,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 165,
+      "raw_lf_sha256": "9d8049d8436b107d66d770b365ef0a85f78f6fa8835e53b242b6bc45790094ee"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 166,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 167,
+      "raw_lf_sha256": "b1145a603c799103fe0c33a0219419978cd65bb522eeafcc0607cedfeabf4105"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 168,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 169,
+      "raw_lf_sha256": "78610a46e009939d1ee14ba707ea461833f767f85ef5123ae4426dcac3bf8dc7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 170,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 171,
+      "raw_lf_sha256": "d37ac96bcaf724bc29f3def3e697b8a75e28c8e9e4065c03b43687583cd8347d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 172,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 173,
+      "raw_lf_sha256": "6c3fa39946f3214b57c413f8cb569618c62dee42fe3fd16b5794b97253c99cde"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 174,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 175,
+      "raw_lf_sha256": "684321711ec506988a08610ccf6e9ea361aeb5f154169fc517889c460dced190"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 176,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 177,
+      "raw_lf_sha256": "aa86300341a3437093eb4c9784b6b240861cc15c2c9594361b94b91308f8416b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 178,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 179,
+      "raw_lf_sha256": "040a86422bc538bfb9ae9cd712afdd0637deafc0bdfb154c6be5ac54c4f6b4a9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 180,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 181,
+      "raw_lf_sha256": "798768d9b7725adf501d105fb539f682627a60c1a780f06c2995f62a84f7d950"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 182,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 183,
+      "raw_lf_sha256": "0b3e2950ee54a9c6dcfd517bdf414fc6b93f9517cb968c048b55ea0cf7fcc4e7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 184,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 185,
+      "raw_lf_sha256": "79dbde052129b883080fd85e84ce574743ed2abeee4b18825e82b9b75d68d1fd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 186,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 187,
+      "raw_lf_sha256": "305288d8efe4dffa840a8b406caeed81da57245e548ef25197c713dcad360068"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 188,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 189,
+      "raw_lf_sha256": "cee96d212179f3fc1464209a8b5ae13ee0597e339cb2cd867b3a93283a6fc8ce"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 190,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 191,
+      "raw_lf_sha256": "eef0ff3b3630ccb9e2acda2d1c02d9f0c06c61228a9f78b7f312537b7bdb74b4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 192,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 193,
+      "raw_lf_sha256": "d9dd8f70a02480d2f79aacd85907a9cea248825c240e9cbcbc9e67261311f1cf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 194,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 195,
+      "raw_lf_sha256": "dace631dfe42dd49f0f32fcd805ce3da819d0abcdb0a5b82c075cc0f5606b982"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 196,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 197,
+      "raw_lf_sha256": "cc4636dfefbf4175793c922056e891551875a51f9e6bceebbef7a96c7515ae7f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 198,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 199,
+      "raw_lf_sha256": "99d6d3311c70ba41f4170b12d5dcfa7135c1e8a4488202e91561905ce7397c41"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 200,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 201,
+      "raw_lf_sha256": "4a552725f46ab246b52c94100f89c0e4637dc9a914823b3a6650295caf80bfe1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 202,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 203,
+      "raw_lf_sha256": "dd0d0eac3fbb05290d5b6d088bce7b634f77c2e7334b4412516fc2c8e46e7c7b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 204,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 205,
+      "raw_lf_sha256": "03a2fe0caa8185d58bd342792e9f070cb86cf2e1ded813ab7af2dbbce3c7a0d8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 206,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 207,
+      "raw_lf_sha256": "8737132ea2489a1b3405e6f4dbf327b598fb71bc68c30422f8b7e6badd2925de"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 208,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 209,
+      "raw_lf_sha256": "1990f58b2986f1698e146746989ddd6c79e04658a025eef003d1ec69e1c1b05a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 210,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 211,
+      "raw_lf_sha256": "116722e1c0821b9cd8f4fcb1d7628332826c92fea19584daf9b4a7910fe265d3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 212,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 213,
+      "raw_lf_sha256": "c715b979ae89f62f4b3e522d8addc7d4abd816f8bd0acc0bde5184cb33f9394c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 214,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 215,
+      "raw_lf_sha256": "e48edd2441fbdd4400ada61d9d6d52f3ae816a3fb141d2383b1ee26cb6e63165"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 216,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 217,
+      "raw_lf_sha256": "b23b9bd7f7b5346c0c0523f6e4a564078af3cdbc42c0e97028dfd2bdd68014bc"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 218,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 219,
+      "raw_lf_sha256": "7ef5d12a278f3b4c77509d830ef58ca2cd1b7600776dcdbd71323f9168aaf1c5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 220,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 221,
+      "raw_lf_sha256": "3c3b713489a7749e9045bacc86dc3d5ce52bccf3990d6bc231b194416c1bc883"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 222,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 223,
+      "raw_lf_sha256": "837e1dfc2a0f4fb65819f61e2a724107fad0ab469eb13ce201063d0e07972a5a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 224,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 225,
+      "raw_lf_sha256": "831f739a5ebfe321a556e42b75c04b940e1ff25eaec3c262f27e578c4b3fe9ff"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 226,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 227,
+      "raw_lf_sha256": "981eb720c6d3aa3226d55bc34cb911cc111533f92f722a1cadc53e0a0a6dc627"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 228,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 229,
+      "raw_lf_sha256": "597201d9a5da2053f5d24a193ebe6fe7017d3ef2f956b384c667161b19de4f44"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 230,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 231,
+      "raw_lf_sha256": "ff6fd43c957058f7c885782a8d7aaa6e2612c6741a058b7e9d98e50249b0e1ce"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 232,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 233,
+      "raw_lf_sha256": "a69051659ffa60c7cf3a329d2a7f0efa3c30b8d200cd1455ab3e3765b0f350a6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 234,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 235,
+      "raw_lf_sha256": "7bfc42b7cf36f22fa04ca61aaa0a99222d805db64af63500e12d8c1d1ec7f2d1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 236,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 237,
+      "raw_lf_sha256": "befc78fffea9c4212a211b75e92a025d49efe65223b78b93044d195540bdb544"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 238,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 239,
+      "raw_lf_sha256": "e35f01a502e9ec7f43ca20f00931ea0ebaf5bc595999728e7f3a48ea6388ca22"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 240,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 241,
+      "raw_lf_sha256": "c6810b7223514acb8fb10dc61a26d3810991b4d75b34ba15c39a48c530077a63"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 242,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 243,
+      "raw_lf_sha256": "d09e589b824ebcbb6693dde0c07644209ae4c75e16504fd5f6c32dea99d02b68"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 244,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 245,
+      "raw_lf_sha256": "88ea28b1944136f5120138f9cce8796a79eac4a70d36151e8d3d464aaecef4f7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 246,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 247,
+      "raw_lf_sha256": "cd34dce37e809d6f55d3fc8a7b7f027287a5ab24d465d86d5ae261d071b5f491"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 248,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 249,
+      "raw_lf_sha256": "65d7971c62557d5a4dd1a403999a069fc899cd34c081cfb1939f5651f6176cf8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 250,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 251,
+      "raw_lf_sha256": "952354256ab3701194536c55df0fe85fd0f59781aca7021d98b655f328ad80de"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 252,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 253,
+      "raw_lf_sha256": "324d6d77c83136d36cba39881abe119907a29d4e4c9e7ea8e985e5a3b43943ed"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 254,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 255,
+      "raw_lf_sha256": "21a724e7ea5a0d4fdfd3a8e1107a8e9ddd1e8bc296fabee4b5051e3c30991b7a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 256,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 257,
+      "raw_lf_sha256": "aeb2f08728d0a7bca026c47d4220d3958c2938dec5c6342075ad4cafd8b84c3b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 258,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 259,
+      "raw_lf_sha256": "c3f1175df81673cec5ce95e14e1b011bda1aea37f867a5096f757c563d94f28e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 260,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 261,
+      "raw_lf_sha256": "f912b296c03c1d56ab86873113c038ac5f887dc427f7587b59edcadc1b9e2800"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 262,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 263,
+      "raw_lf_sha256": "119dfdfb8b756d8efa2466b9877cb5fdfe74dad3de4b4a4fe2f691b55a3a71cd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 264,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 265,
+      "raw_lf_sha256": "bae0118f3039de82be2a74c122cff6c041d2b7e94bb458be3e88e57cf7785c89"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 266,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 267,
+      "raw_lf_sha256": "0c757c4d88ff1bfd311111a40f04a9fcb75b2580cf1bbd301875c9056ba18db4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 268,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 269,
+      "raw_lf_sha256": "2fcd5f39efd23b12702613e220d1e110f426c4569e5fbaa69ce07975cb3e6787"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 270,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 271,
+      "raw_lf_sha256": "c25ddee4a39ebb2fd400ae4d2ebacd0a4e160450a65ed0602a128404e68e556e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 272,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 273,
+      "raw_lf_sha256": "e3d7333d09989a0b3cce5c3154aa0a14ce794adc3ca1c739b5dabbd8e380fcf8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 274,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 275,
+      "raw_lf_sha256": "ffb45b31c0f06517e0bd2a4405fedf1ebc97f94d8edf24a081e9123b56b525d9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 276,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 277,
+      "raw_lf_sha256": "0c2034c0ffbdd027ad8d8b779fdbb095174e8ffbcce1716f461cb56ad0ca02ec"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 278,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 279,
+      "raw_lf_sha256": "2cbb15a7e13b7e62d6aa64ac683280ce72c4e4e966558f63cc24de5baeb7d00f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 280,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 281,
+      "raw_lf_sha256": "2acc223b9e71e9cb27a548085e4dbeefba715418ce0cc0e0a99d73bf85c9e48a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 282,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 283,
+      "raw_lf_sha256": "449d9377211916286ad051a071eaa19c914e6e27359330113204b2063bb98c35"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 284,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 285,
+      "raw_lf_sha256": "8e3fa9e4d06f2b4d97c8a1d96528a5223b9ec202b8ede77f20e393bfd79790f2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 286,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 287,
+      "raw_lf_sha256": "601676ac15cb3e64efb5f9297b6df1d36fc261543ec58e155de6d92635743a44"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 288,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 289,
+      "raw_lf_sha256": "7142f0c1afeefe291450dc419be39579c937cd11046f4edbede53d829afc439b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 290,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 291,
+      "raw_lf_sha256": "29363ffe591104b2a7c6949faddf63b4b9278b22d572d1e66e5ff00a17e41e36"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 292,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 293,
+      "raw_lf_sha256": "7e3d3918430516ff5109e94e83dd6f89dc165cf7ed879834de1932d51d4200f1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 294,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 295,
+      "raw_lf_sha256": "81efc216b20f9bbd5e93f9c84c22ab54b6a60ade71935a950a66270af992d1ff"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 296,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 297,
+      "raw_lf_sha256": "84d927f27a03bafcbd236038344bace02cb79f64a32a02e17a65461fe9037496"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 298,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 299,
+      "raw_lf_sha256": "166e52b75752ccadad4f1e43fca6a4dbf4c35a6d805794b4a3ed0283fd672a80"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 300,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 301,
+      "raw_lf_sha256": "b58aadbb75d862e6ba902571075fe28b95938abfacae0ac8996e7cfff8c2f501"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 302,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 303,
+      "raw_lf_sha256": "179f5f944c94e260ee1a8a65ca528cdbcad5894cf348efaf44b574b82b5275a6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 304,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 305,
+      "raw_lf_sha256": "7293ad0e2e7d184c003d92361cfc2d62cc6b0017341b1441f09948966d605b65"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 306,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 307,
+      "raw_lf_sha256": "f5d8991b79864358aeeffae877286b95f7157a6415d62c997bc60d0106d59081"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 308,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 309,
+      "raw_lf_sha256": "f5f432fffc7db491921763cc30a4c8ad87ae3632092e19d79d3b2762bf252c8f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 310,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 311,
+      "raw_lf_sha256": "883441b5a8af314e39c15a23d81c16129181295bea5f46105f74e1efb86a9490"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 312,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 313,
+      "raw_lf_sha256": "4298cc34893d932dc3d86e98a964248490478312c9b4c8903faeba25ba5ffb3a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 314,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 315,
+      "raw_lf_sha256": "6dd323fa92ad84b8ceff5d4dac83ef0e12bd8db7f655cf3251ec63a72ada0619"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 316,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 317,
+      "raw_lf_sha256": "b1ab40a5786242f752275c38f1bd382d72e14380f95058292990bf7d3b452f93"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 318,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 319,
+      "raw_lf_sha256": "8a6a32ff3727afec3a09eda5d1331a86b880e19d00c98ea79b7705bab7297e6f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 320,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 321,
+      "raw_lf_sha256": "e2966732aa11a355340fa7df323fbe6bcefd38133d2a891cd865131f77c72e87"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 322,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 323,
+      "raw_lf_sha256": "7b0b0cc200417803780733241824da0316578d809e8d8f9024470df27bb14d10"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 324,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 325,
+      "raw_lf_sha256": "ac247c82995e29e577c2bd13fb12d60e10f95640de22217a8b80502ab31a6d6e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 326,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 327,
+      "raw_lf_sha256": "7961afa5e78eab5539f4ec4c0e2a367b5752995b386ec2bbd526cb10d827624e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 328,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 329,
+      "raw_lf_sha256": "dce8b29b3511027cc3c31940596a67b93d14de088a21ce9cca5be922062ba5b9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 330,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 331,
+      "raw_lf_sha256": "d7a24e714115b20e9b53eb9a601393d47f2f7e91b5b2bd48318190ca6224b0fd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 332,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 333,
+      "raw_lf_sha256": "a458977cd716b685fd02fab445630df948571bd88165266d26fd972dad3507b4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 334,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 335,
+      "raw_lf_sha256": "fc31478d02cf2f760d1fc0771439ce9e03937a548390d62fb9990d4342078a89"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 336,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "line": 337,
+      "raw_lf_sha256": "ebb72834c1d494a76c68775934d90e8af4c6ff749ac48f9ab937219993afea89"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 1,
+      "raw_lf_sha256": "e2c62ea8562b92b7b3d1070896950c721d75f6614d23b0005729005fd27d1d63"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 2,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 3,
+      "raw_lf_sha256": "f98e60a2f25d8663a1eb7a69142f70adbc93191796828af483c429c1abf998b2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 4,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 5,
+      "raw_lf_sha256": "efeb465b23e939310ef5e0782003d2e18864a3c304e84a934531c75bfd76802d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 6,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 7,
+      "raw_lf_sha256": "0ac4c9195d7ba8d5eff6b0d8e399241fe08ee4616bc3b730c172f025573e141d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 8,
+      "raw_lf_sha256": "ac92d1b091b25afced4265ab8cc2f40af0ad8ffa13d3ba560710a1caa14bfa06"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 9,
+      "raw_lf_sha256": "00b6f6698b67eeb3791a80f09acb8ecdefc6012516110b324b37cf08a7a0c62c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 10,
+      "raw_lf_sha256": "7d00f614ae6563afd259ac9dcf22daca9913c5c1c233e2d2d100344f8dbb45ac"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 11,
+      "raw_lf_sha256": "050614fc1707fab8916df88b6d79ccc65a175ad0fa3a859e5d95a2f6bfe7da5c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 12,
+      "raw_lf_sha256": "2f172c3e823fe1e5b4511e133889e18afeace5106c732b80d3c85896db3f729f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 13,
+      "raw_lf_sha256": "88ead53210d0741e8671ee3875819616832a4d252749fbb0175e83b6fcb35180"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 14,
+      "raw_lf_sha256": "618a584ac8071b6c25f4b744907fed0bb5bf26737659ff4e44267b6929ceb94e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 15,
+      "raw_lf_sha256": "f4d6f6ab080fd654c3021b7c1a85d96d9df63e1426b06ee8408e37b79003e6ae"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 16,
+      "raw_lf_sha256": "54bc4a6fbbef9b46030bcf83eebca6ae618e233fed59b0394653929441f9b4a5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 17,
+      "raw_lf_sha256": "0023d49f2d8f792e12b81f80b78ff45605e94aa52ec82249abd9d5115a97d415"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 18,
+      "raw_lf_sha256": "3f7abc3d04eb3872614a32f2de4d5bb306c2395d6c8f9d4977e6c73246f41581"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 19,
+      "raw_lf_sha256": "6ea9e370a06cec2e132a2c8b83c0eccb882b69384222d68cbfaf474368454602"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 20,
+      "raw_lf_sha256": "742a071bba20c59c1727d22ddd61d69e9943c20210b8e252f8c4d08f64b75d68"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 21,
+      "raw_lf_sha256": "bfed9d88272204b3aba482ab86c853e4878953216103aef7fa74a7858efc5ca5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 22,
+      "raw_lf_sha256": "c6e52d48e6653f17dc095b36a604cd53c10b80682e7e5b3d1424a8680ebb0ffc"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 23,
+      "raw_lf_sha256": "a448d918cfceb7bcc8f3563129f72c6a8963c85050e8f3d852adcc035420b00c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 24,
+      "raw_lf_sha256": "0b605bd8282dc8629595bc64da5ac5d7dee485c971abb1457dd9ccb6a4bcdbb1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 25,
+      "raw_lf_sha256": "d9c423f2e28b6ed08e2d5d08c85766cd6f16d58eb16340c4380b8542c4b6579e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 26,
+      "raw_lf_sha256": "9dc66237c40d49a545ec2ded0e5e00d2ae751b015aaffeb12119ae0f512a6869"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 27,
+      "raw_lf_sha256": "85c585abe77902352b5c98617107689708ade13771d7599cccf755e095eb0149"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 28,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 29,
+      "raw_lf_sha256": "4070d4c2c3e1d0647cce6c3df9934228dd2bc8a981e6038d4e0d358e36b72f60"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 30,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 31,
+      "raw_lf_sha256": "f356cb9a9638212f9a2b21d7209211a1bca4ceb47afe9f4e443447327e4bd1fb"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 32,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 33,
+      "raw_lf_sha256": "fe1670f753d85ee16c315d513fe034e1c1da4dbf00cbb3daf5f59346efb455d8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 34,
+      "raw_lf_sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 35,
+      "raw_lf_sha256": "0b7312fbaed648832e8a0b6c1405a1e18759e86c6da4761450f6e2b2691e99a8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 36,
+      "raw_lf_sha256": "6c98dc892d59415095199b8614958f55a06e4463fbee2e7bdeff192a4b9cb269"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 37,
+      "raw_lf_sha256": "6d21752f4c180081c3f9fa7f7391b929c138e5d7ecfb5b529318736500e75a4d"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 38,
+      "raw_lf_sha256": "26c8ae78f234fd1e685e2a78fffbfdaef89f584364b67a9406e79ab52c3eab44"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 39,
+      "raw_lf_sha256": "6d231152b3ae502482d67e39050e221ba4f7ccbc8e10a1d33a43ca5ba08648ab"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 40,
+      "raw_lf_sha256": "1b799bffcd35f2f180017036cc2447801db0eb671848495a71bbb4ed76317659"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 41,
+      "raw_lf_sha256": "855a7bd7003a378aabce1756e0620f30ba1c842811226e82192c5578d5b500ab"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 42,
+      "raw_lf_sha256": "b13ff810daa6f04bd797d6d392bfba04b4f5e2238e3221e1cd6a1cd9d2cbbdd1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 43,
+      "raw_lf_sha256": "b22841ff390323c0d2fa209848f1ee53f76119f49c2bed37fad96a6a49d97fb5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 44,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 45,
+      "raw_lf_sha256": "a28bd6c6660758a7b72bdbbbfd03ee1de68dd872279befc5e1b14d2b83d2834f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 46,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 47,
+      "raw_lf_sha256": "59221eb1d5895000946b9db57bc7523abb4df43abc9fccb438a4004dfd1d4c46"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 48,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 49,
+      "raw_lf_sha256": "76884486be83330722efaf5fffb656b9581a85816c0f1d4866460dc5459fe3fc"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 50,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 51,
+      "raw_lf_sha256": "e3e7fb6ec5dc9f0333ab823129ffb63d79f02f5ada6d1a5509a2ecca82cba356"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 52,
+      "raw_lf_sha256": "831fe3c04df7a9636704897ab8a76cc59f773c34bfa6860f2a2c02e60a033832"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 53,
+      "raw_lf_sha256": "093660ac5686dcf254565a3af2c20d4eb910064506ee5a5bc2690768bc2605d2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 54,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 55,
+      "raw_lf_sha256": "9e46c493e8cf7844cc9061b848e20cabe65bdb61a4791c9cab68c38569e050a4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 56,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 57,
+      "raw_lf_sha256": "e0fa43fe4bd55847b44a54d748e23dbde7455e6b3acd80c45b5e9c6d08061190"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 58,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 59,
+      "raw_lf_sha256": "b670d85c9cbffdd56f36ded08ad23488c7da62f58df5ae8dcda6d6e489ab54b7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 60,
+      "raw_lf_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "line": 61,
+      "raw_lf_sha256": "12041aeb2d136cd46a32e12fc392f16304d7e72517c265ed78dadf077b275ca2"
+    }
+  ],
+  "root_repairs": [
+    "公開可能コードに語彙を揃え分類を勝手に狭めない",
+    "credential/store/provider/context/env/payload/artifact/receiptとclass別境界を独立negative化",
+    "capability operation/target/revision/scope/expiry個別照合",
+    "runtime identity/version/config/scope/payload/data/authority変更時に判定非流用",
+    "scope外read/write,path diff,egress,unknown enforcement,host fallbackの停止/隔離/owner",
+    "required missing/unknown/stale/unobservedを分母に保つ",
+    "全6AC IDをSECURITY-AC-031へ修正",
+    "opt-out未完とunknownの公開可能コード正常fixtureを個別追加"
+  ],
+  "root_readonly_report": {
+    "path": "/tmp/pr257x-security-stage2c-root-review01.json",
+    "sha256": "54032ff114b13bd9860ff4d200015d8e7048ab6c9ccbf945d84b307fd3a6762d",
+    "not_independent_review": true
+  },
+  "checks": {
+    "bounded_source_pins": 24,
+    "source_mismatch": 0,
+    "canonical_sha": 6,
+    "prefix_byte_exact": 6,
+    "current_line_pins": 742,
+    "functional_AC_case_trace": 6
+  }
+}

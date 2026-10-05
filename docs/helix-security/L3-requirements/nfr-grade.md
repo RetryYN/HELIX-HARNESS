@@ -43,3 +43,19 @@
 | `SEC-NFR-014-01` / `SECURITY-AC-014-01` | target別decision trace | memory、training dataset、BRAIN knowledgeの各target classについて、source/provenance/classification、allow/deny/hold、理由の対応欠落0件を候補とする。 | L2-014の3 target classと理由付き判定を、分類結果だけ数える案と比較する。分類のみでは誤ったtargetや理由欠落を隠すため、target別のdecision trace候補を選ぶ。 | 合成入力で3 classと欠落/unknown/wrong-targetを比較し、`SECURITY-CASE-014-01`の同一入力とfield対応を測定に使う。handoff、LABO評価、保存、BRAIN登録の成立は測定対象にしない。 |
 
 候補は合成fixtureの設計であり、実secret、実runtime、実保存を使った測定は行わない。`SEC-NFR-007`のexpiry比較候補A/Bは未承認の候補解釈であり、PO承認済み閾値と扱わない。
+
+## Stage 2c — HELIXSECURITY-L2-031 技術候補
+
+固定L2/L11はquota、rate limit、latency、retention等の数値閾値を定めていないため新設しない。`SEC-NFR-031-01`は、選択した追加runtime operationの必須制御と依存をL10で測るcoverage候補であり、製品性能値・固定policy thresholdではない。
+
+| 候補ID / AC | 候補parameter | 候補測定・判定 | 根拠と限界 |
+|---|---|---|---|
+| `SEC-NFR-031-01` / `SECURITY-AC-031-01..06` | 選択scope内の必須依存・境界検査coverage | L2-031/L11-031が明記する当該operationの常時依存と、操作時・選択入力・後段に該当する条件を個別にfixture化する。**候補値**は必須検査のfixture coverage 100%、必須negativeの独立変異ごとの誤受入0件、必須証拠/owner戻しの未解消不一致0件。分母は「このscopeで固定親が必須とする個別条件」で、条件付き依存は条件fixtureに入った場合のみ分母へ含める。未選択、未観測、unknown、missing、stale、検査不能をpass/0件として数えず、適用状態と未評価理由を別記する。 | L2-031/L11-031の依存4区分、個別境界とfail-close条件を測定可能にする候補。固定sourceに製品閾値がないため、性能・quota値を追加しない。100%/0件はこの選択scopeの文書上の受入検査候補で、一般system KPI、実測結果、承認済値ではない。|
+
+### SEC-NFR-031-01 対応L10測定
+
+L10はSECURITY-CASE-031-01〜06の通常・個別negative・未見正常fixtureを同一scopeで参照し、各FR/AC obligation、CASE、判定根拠、owner別戻しを一意に識別できるtrace inventoryを作る。FR/AC/CASE間の多対多対応を許し、重複ID禁止とrequired obligation未対応を区別する。分母0の集計は数値0でなく「該当条件なし」と記録する。未選択の外部送信、停止/逸脱、verification/adoption条件は分母へ足さない。要求を満たさない入力の拒否だけでなく、適用可能な未見正常例、選択copyの利用、無関係operation継続も測る。実行・runtime・実secretは使わない。
+
+候補結果の状態は適用条件外、未選択/未観測、missing/unknown/stale、fixture不成立、negative不合格、未見正常不成立、owner返却保留、測定可能な結果を混同せず記録する。これらはL3候補の測定語彙であり、固定sourceにない新しい製品status/schemaを決めない。実行可能性に数値が必要な場合は、根拠・比較案・測定方法・判定境界付き候補としてL3/L10対でL4へ渡す。
+
+Stage 2cの分母は検査結果を読む前に適用条件から固定する。適用される必須条件のmissing/unknown/stale/未観測は分母に残し、coverage未達または未評価として記録する。適用条件自体を決定できない場合は分母不明であり、「該当なし」や0件へ丸めない。
