@@ -8,7 +8,7 @@
 
 ## Stage 2c — L2-068の業務検証範囲
 
-固定親 `HELIXINTELLIGENCE-L2-068` に独立business outcomeがないため、Stage 2cのbusiness CASEは設けない。受入/evidenceはL3 `FR-INT-068` / `AC-INT-068-01`〜`AC-INT-068-06` およびfunctional L10 `CASE-INT-068-01`〜`CASE-INT-068-10` を参照する。別のStage 2a草稿のBR-INT-010/066は本書に収載せず、そのoracleをL2-068へ拡張せず、新しいbusiness owner・KPI・受入gateを追加しない。
+固定親 `HELIXINTELLIGENCE-L2-068` に独立business outcomeがないため、Stage 2cのbusiness CASEは設けない。受入/evidenceはL3 `FR-INT-068` / `AC-INT-068-01`〜`AC-INT-068-06` およびfunctional L10 `CASE-INT-068-01`〜`CASE-INT-068-11` を参照する。別のStage 2a草稿のBR-INT-010/066は本書に収載せず、そのoracleをL2-068へ拡張せず、新しいbusiness owner・KPI・受入gateを追加しない。
 
 
 ## Stage 2c — L2-075の業務検証範囲
