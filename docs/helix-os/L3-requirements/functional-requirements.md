@@ -594,15 +594,19 @@ HELIX自身と複数projectの対象revisionごとに、L2-015〜024のunit、�
 
 以下はStage 5の既存ACを置換せず不足を補う。旧AC本文のうち「failure解消を作らない」は固定L2/L11にない追加条件なので適用しない。「部分成立から構成体の成立を推定しない」という境界は維持する。以降のL10 review01補正overlayは、同じCASE IDに明記した限定訂正を優先し、それ以外の既存要件・owner・versionは保持する。
 
-**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。
+**AC-OS-L3-025-03 — 入力束縛と構成体境界**：採用済みtarget revision、選択HARNESS構成版、各該当unitのidentity/revision/state/evidence、既存人間判断と停止条件を同一対象に束縛する。単独不足は該当source/unit/connectionの既存ownerへ返し、他の成立状態を保持する。文書または機構の存在だけではunit・connection・compositeを成立扱いしない。 未決authorityと残る受入義務は後続受入へ引き継ぎ、次の受入側でも未決状態と義務を保持する。
 
-**AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。
+**AC-OS-L3-026-04 — 入力完全性と導出境界**：目的、仕事範囲、検証範囲、利用可能環境、比較基準、適格性条件、input/output、更新条件、rollback条件を独立に照合する。欠落は候補を成立とせず固定L2記載の既存要求/source/pack/HARNESS/依存/SECURITY/INFRASTRUCTURE ownerへ原因別に返す。許可された人による作業も依存契約・安全義務を閉包から外さない。導出だけで採択・実装・受入・tag・配布を生成しない。 必要な検証を外したより小さい構成は、同一目的・scope・許容分担の比較でも不適格とし、最小性未立証の状態と混同しない。
 
-**AC-OS-L3-031-04 — 対象・証拠の再照合**：base HEAD、scope、authority、HARNESS contractの変化ごとに影響する既存証拠だけをstale/未完にし、無関係scopeの状態を保つ。回収成功には固定L2が要求する修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。資源不足はINFRASTRUCTUREへ返し、誤った高速化を新baselineとして採用しない。
+**AC-OS-L3-031-04 — 固定L2の測定・工程境界**：対象ticket/source/base HEAD、HARNESSが要求した検証義務・選択/非選択集合とdigest、および測定scopeの不一致を同一runの根拠として流用しない。性能回収には修正後independent review、同条件再検証、必須集合非縮退、安全指標、改善前後値を別証拠として結ぶ。旧60秒/3分は対応する旧環境・検査集合の比較値のまま保持し、根拠なく廃止・緩和・現行普遍SLO化しない。値の意味判断とL3測定条件の具体化を分け、それぞれ既存source/要求ownerと計測/実行主体へ戻す。ticketが決める既決義務へ固定nightly/full回収を追加要求せず、夜間補完が未完でも義務を消去しない。correctness greenを性能達成へ読み替えず、LABO proposalからCI設定を直接変更せず、観測からauthority/検証契約を変更しない。資源不足はINFRASTRUCTUREへ返し、誤った高速化を新baselineとして採用しない。
 
 **AC-OS-L3-047-04 — 返却とrevision境界**：r1のbytesと履歴を保持し、r2は新revisionとして既存relationで結ぶ。issuer、対象条件、理由/evidence、scope、revisionが欠落・conflictなら完了扱いせずOS issuerへ戻す。LABO/INTELLIGENCE proposalだけから発行しない。Ticket→Ticket参照を依存の結節点にせず、Ticket→artifactとartifact→Ticketの両境界を個別に保持する。
 
-**Stage 5 review01 CASE→AC対応補正**：既存CASE-025-01〜21は既存の`AC-OS-L3-025-01/02`への割当を保ち、CASE-025-022〜031を`AC-OS-L3-025-03`へ結ぶ。026では`AC-OS-L3-026-01`をCASE-026-01/06および031〜038・040〜042、`AC-OS-L3-026-02`を02〜04・07〜29、`AC-OS-L3-026-03`を05・30・039へ、`AC-OS-L3-026-04`を043〜054へ対応させる（CASE-026-040のunit/connection境界は`AC-OS-L3-026-01`にも参照する）。031では`AC-OS-L3-031-01`を測定入力CASEと074/075へ、`AC-OS-L3-031-02`を03/04へ、`AC-OS-L3-031-03`を05・26〜30・31〜51・069/070へ、`AC-OS-L3-031-04`を30・064〜068・071/072/073・076/077へ対応させる。CASE-031-29を`AC-OS-L3-031-01`から外して`AC-OS-L3-031-03`へ移し、CASE-031-30はreview HEAD変化を`AC-OS-L3-031-03/04`の双方で追跡する。047では`AC-OS-L3-047-01`を返却/元revision、`AC-OS-L3-047-02`を新revision/非継承、`AC-OS-L3-047-03`をunknown/stale、`AC-OS-L3-047-04`をCASE-047-027〜036へ対応させる。既存の未trace割当はL10 overlayの個別CASE定義に従い、同じCASEを複数の独立fixtureとして重複計上しない。
+### Stage 5 review03 固定親照合補正
+
+review01 M5/M6のsource行はL11-046（main `governance-acceptance.md:798–799`）であり、L11-031:500–512ではないとreviewerがreview03で撤回した。031追補から046固有のauthority失効・無関係scope保存・prototype/古いreview/段間完了の例を除外し、L2-031:903–910およびL11-031:500–512に直接対応する既存測定・義務保持のfixtureだけを残す。L2-031が求めるsource/base HEAD・ticket・HARNESS義務/選択集合の測定束縛、正しさと性能の区分、非縮退回収、LABO/authority境界を各CASEへ明示した。これは既存固定要求の受入具体化であり、L2/L11の意味・owner・版を変えない。
+
+**Stage 5 CASE→AC対応補正**：025の既存CASE-025-01〜21は既存AC-025-01/02へ維持し、022〜032はAC-025-03へ結ぶ。026の既存対応は維持し、CASE-026-055をAC-026-04へ追加する。031ではAC-031-01を測定入力CASEと074/075、AC-031-02を03/04/26〜28/30/082、AC-031-03を05/26〜30/31〜51/069、AC-031-04を30/064/065/067/071/073/076/077/078〜081/083〜085へ結ぶ。031-066/068/070/072はL11-046の誤引用に由来するため031から除外し、L2-031/L11-031の義務として扱わない。031-29はAC-031-01でなくAC-031-03、031-30はAC-031-03/04双方で追跡する。047-037/038はAC-047-01へ追加し、047既存対応・provider aliasを保持する。CASE行数は定義数であり実行・独立検証済み数ではない。
 
 **旧source locator訂正**：Stage 5対応表の031旧要件文書は`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/`配下にある。047旧sourceは`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/`配下にある。本文に短縮名だけある箇所はこのlocatorで読む。既存表の誤った`governance/requirements/` locatorを正しいsource pathとして扱わず、追補監査でfull/raw pinを記録する。
 
