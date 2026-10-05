@@ -8,3 +8,8 @@
 ## Stage 2a 追加 — HELIXCONNECT-L2-006のみ
 
 独立business ACは追加しない。`CONNECT-CASE-006-01..05`のいずれのcompatible技術結果、attempt receipt、handoff、rollback/recovery receiptも業務結果・受領承認・業務完了へ昇格しないことを確認する。意味契約差分は両端owner、送信先business resultは受信側business owner、authorityはSECURITYへ戻り、CONNECTが代行しない。failure時も技術停止をbusiness failure routeへ置換しない。
+
+
+## Stage 4 — 008/009
+
+独立business ACを新設せず、L3業務分類を照合する。008のdescriptorからの許可/実行生成、009のedge記録/伝送からの解決/承認/完了生成および技術eventからの業務解決/要求採択/ticket発行を、機能検証の各個別CASEで拒否する。未実行の検証設計であり業務完了を宣言しない。

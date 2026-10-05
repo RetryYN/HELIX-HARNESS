@@ -18,3 +18,13 @@
 | `CON-NFR-006` / `CONNECT-AC-006-01..04` | 4交換型×positive compatibility、4×{incompatible, unregistered, meaning-contract-change, unknown, stale}を独立実行。CASE-006-01の各正常交換traceとlink断絶negative、未完operation continuity、authority fieldを別fixture群で測る。CASE-006-03でoperation identity欠落、過去attempt履歴欠落、再照合前retryを個別に測り、CASE-006-02では両側変更fixtureを別に測る。 | 各型を一度ずつ照合（4/4）。互換内で固定側identity/revision delta 0。20件のcompatibility failure fixtureは交換後に結果を分類し、20/20でsend/retry attempt 0（互換failure判定のための交換・照合は許す）。CASE-006-01では旧revision→新revision→同じconnection/scope/revision組のcurrent comparison receipt→connection/operation/attempt→技術結果を一つのtraceで辿れる。receiptの別connection/scope/revision束縛、operation/attempt identityの切断、技術結果の孤立を各々別negativeとし、trace断絶時はpassにせずunknown/stale、束縛が確認できるまでsend/retry attempt 0。両側変更はunknown/rejectとし片側交換のpass計数から除外する。旧新revision混載0。入力したoperation/ACK/attempt/expiry/unfinished obligation/recovery referenceの各identityが出力receipt/handoffに保持され、再照合と既存restart条件の成立前に再開attempt 0。許可missing/unknown/expired/scope不一致のauthority反例だけはexchange/send/retry attempt 0。 | 不一致・unknown・staleは送信保留、adapter compatibilityはadapter owner、意味差は両端owner、権限問題はSECURITYへ返す。NFR候補に共通transport latency/compatibility thresholdを追加せず、採択親にある宣言範囲だけを使う。 |
 
 4/4 variant、20 failure fixture、0 attempt/0 mutation等は固定L2/L11の明記条件を測る候補であって新しい互換範囲・parameter・PO gateではない。
+
+
+## Stage 4 — 008/009のNFR観測設計（未実行）
+
+| 候補ID / L3 AC | 測定fixtureと方法 | 判定境界・戻し先 |
+|---|---|---|
+| `CON-NFR-008-01` / `CONNECT-AC-008-01` | L10の008 catalog/欠落/型/束縛CASEでprofile/revision別usable数を数え、別正常profile対照と比較する。 | 不正組usable0・失敗伝播0。理由/対象不明はunknown、profile提供元へ。未見も同組oracleで照合する。 |
+| `CON-NFR-008-02` / `CONNECT-AC-008-02` | 008のdescriptor読出しからの各状態生成CASEと合成marker混入CASEを別測定する。 | 各実行/許可生成0・各混入0。CONNECTは安全判定を行わずSECURITYへ返す。値を出力しない。 |
+| `CON-NFR-009-01` / `CONNECT-AC-009-04` | 既存policy上限を入力し、到達前/到達/到達後、session交換、各欠落state CASEで追加retryと累積attemptを観測する。policy単位・期限・routeも同revisionに束縛する。 | 欠落/上限到達後の追加retry0・session交換reset0。未完/理由/累積試行をOS-040等の既存適用ownerへ、初回適格性は遡って変えない。技術値を新設しない。 |
+| `CON-NFR-009-02` / `CONNECT-AC-009-01/02/03/05` | 操作別missing/unknown/stale/conflict CASEで保留範囲と独立適格な対照初回辺を観測し、ACK待ちと完了を区別する。 | 範囲外一括停止0・未成立受領/完了生成0。初回、feedback、loop、join、ACKの該当ownerを別々に記録。未観測は達成でなくunknown。 |

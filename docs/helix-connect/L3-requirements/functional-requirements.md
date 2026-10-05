@@ -170,3 +170,39 @@
 | `LEGACY-ASSET-9B7682EBDEA171005D45`（distribution package L3） | 固定sourceとconsumer差分の隣接比較。artifact allowlist/release authorityを採用しない |
 | `LEGACY-ASSET-6C9D2BE4E3C77D78F8EB`（distribution system test） | before/after、consumer境界、個別negativeの形式だけ再導出。配布/release/test実行を行わない |
 | `LEGACY-ASSET-44DD86E3DEC09E65EF51`（shared pillar test design） | FR/AC/case trace形式の旧起点。旧case ID・HAT/L12機構を移植しない |
+
+
+## Stage 4 — profile供給と方向・feedback relation（008/009、1.0草稿）
+
+対象は固定revision `633bf12ea8f948db8ba3d6600179c4a9507377a7` の `HELIXCONNECT-L2-008`（登録002、L2:274–284、L11:87–93）と `HELIXCONNECT-L2-009`（登録002、L2:285–295、訂正L11:94–104）。L2 full SHA `94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1`、L11 full SHA `aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9`。PO `po-decision-2026-09-29-57candidates.md:15,94–95` の008配置A（供給CONNECT、安全SECURITY）、009案A（direction/order属性、feedback型付き戻り辺、操作別unknown停止）を保持する。既承認本文を更新せず追補した草稿で、実装・実送信・probe起動の許可ではない。
+
+### CONNECT-FR-008-01 — profile catalogとtyped descriptor
+
+入力は利用可能として宣言された登録profile identity/revision、同profile/revisionに束縛した設定契約と型、operation/tool capability descriptor、安全・read-only probe descriptor。出力は宣言を列挙したcatalogと型付きdescriptor、拒否またはunknownの理由・対象profile/revision・修正先である。必須の組の欠落、不明、競合、不一致を利用可能にせず、既定profileや互換推定で埋めない。登録契約revision変更はL2-002のstale再照合へ結び、再検証まで当該revisionを適格にしない。
+
+CONNECTはdescriptorを供給し、probe・toolを起動せず、実安全性・資格・authorizationを判定しない。SECURITY-L2-005〜008の既存policy/authorityを代替せず、別親034の採択やpolicy oracleを008の成立条件にしない。descriptorはraw secret/credential値を含まず、業務上のprobe意味は元機構に残す。identity/config/descriptor不備はprofile提供元、policy/safety不明・拒否はSECURITYへ返す。失敗を対象profile/revisionへ束縛し、無関係なprofileの状態を変えない。具体schema、registry、provider/runtime、tool実行方式は本要件で確定しない。
+
+- `CONNECT-AC-008-01`：登録済み同profile/revisionの設定型・operation/tool capability・安全/read-only descriptorの全組が列挙・供給される。未登録/未知profile、競合宣言、未登録revision、設定型不一致、descriptor欠落/型違い/束縛違いはusableにならず、対象と理由を残す。未見profileも同じ登録・型・束縛で照合し、名前から補完しない。
+- `CONNECT-AC-008-02`：descriptorの存在・読出しからauthorization/probe起動/tool実行/実安全性/実行資格を生成せず、raw secret/credentialを含めない。安全判定はSECURITY、業務probe意味は元機構に残る。034の別policy oracleや採択を必須とせず、供給と実行を分離する。
+- `CONNECT-AC-008-03`：契約revision変更後はstaleで再照合し、正しい新revision組だけ再検証する。不備はprofile提供元、policy/safety不明・拒否はSECURITYへ区別して返し、無関係なprofileは維持する。証拠なしはunknownでpassにしない。
+
+**旧HELIX項目対応**：旧v1.3 HYB-002 `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:286`（asset `LEGACY-ASSET-02319C2481B9E01698D5`、full SHA `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）とbaseline `docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt:271`（full SHA `1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1`）のS01列挙/設定、S02typed safety/read-only供給、S04未登録拒否、各2revision計6atomを意味再導出する。旧同じ行のS03/S05/S06 credential/egress/tool capability安全判定はSECURITY側に残し、CONNECTへ移さない。旧source holding2件は保持しHYB-002全体のclosureを主張しない。旧固定runtime/schemaや実probe実行は置換し、今回の宣言descriptorと静的oracleへ分ける。変更理由は固定親の供給/安全owner分離と操作境界である。対consumerは同じ旧行のHR-AC-HYB-002の未登録拒否だけを008へ再導出し、secret要求/write可能probeの安全判定を供給の合格証拠に移さない。
+
+### CONNECT-FR-009-01 — direction/order属性とtyped feedback edge
+
+入力はL2-001の接続identity・方向・両端契約、L2-002のrevision照合、L2-005の因果traceであり、再送/loop時にL2-004の既存再送契約、構成体時にL2-007を照合する。適用しないloop/join/feedback条件を初回辺の必須入力にしない。各操作に必要なscope/authorityを既存契約で照合し、direction、必要時のserial/parallel属性、feedbackのsource connection/operation・target connection/owner・reasonまたは根拠参照・correlation/operation lineage・contract revision・停止/再開状態を返す。directionは既存identityの属性を明確化し、別の接続種や送信許可を作らない。
+
+`one_way`は宣言一方向だけ。逆送信には独立した逆方向connection/directionとそのoperationの既存SECURITY scope/authorityが必要。`paired_bidirectional`は二方向を別識別し、両方向のendpoint contract/scope/operation-time authorityを個別照合する。登録・受信・ACK・feedback eventから逆方向許可を推論しない。
+
+serialは宣言順と先行結果/契約条件を保持する。parallelは独立identity/scope/contract/operation/resultを持つ辺と宣言join条件で構成し、join全条件成立までcompositeを完了しない。順序・依存・join不足はunknown/unfinishedで、HARNESS/OSのworkflow/ticket計画を代替しない。feedbackは新たな一方向typed edgeであり、自由文だけでrelation成立・finding解決にしない。edge記録/伝送は受領・解決・承認・task完了を生成しない。
+
+bounded loopはforward/feedback辺と既存ownerのretry/budget/stop policy参照・期限・終端routeを持つ。上限値を新設せず既存適用契約から読む。終了条件、policy、累積attempt、期限、operation identityの欠落/unknown/staleでは開始/継続せず、session交換で累積上限をresetしない。上限到達で既存ownerへ未完・理由・累積試行を返す。方向、辺順序、operation/attempt、revision、endpoint receipt、停止/終端は一つの因果traceで辿る。部分成功/ACKなし/互換stale/authority unknown/join不成立を全体成功にしない。CONNECTは送信/逆送信許可、業務解決、要求採択、ticket発行、budget policy、feedback内容判断を生成しない。traceにraw secret/credential/不要payloadを複製しない。
+
+- `CONNECT-AC-009-01`：片方向は登録方向のみ。feedback未送信を保持し、逆送信は独立connectionと適用authority成立時だけ可能。双方向は二方向を個別確認する。初回送信のendpoint/connection identity/revision/authority不足は当該辺をeligibleにせずmissing inputと該当endpoint/contract/authority ownerを記録する。feedback reason/loop policy/join/ACK不足だけで独立適格な初回辺を止めない。
+- `CONNECT-AC-009-02`：serialの宣言順・先行必要結果を保持し、parallelの独立辺を個別追跡する。join不足はjoin/composite完了だけ保留し、適格な各辺を一括停止しない。順序/依存を推測せず該当構成体/contract ownerへ返す。
+- `CONNECT-AC-009-03`：typed feedbackは全束縛を持ち、記録/伝送と受領/解決/承認/完了を区別する。reason/source/target/revision/独立逆connection/適用authority不足はfeedback送信だけ保留し未送信relation・missing input・該当ownerを記録する。初回送信不成立や解決済みに読み替えない。自由文をtyped relationやresolvedへ変換しない。
+- `CONNECT-AC-009-04`：既存retry上限/budget/期限/termination policy/終端owner/累積attempt/operation identityを照合し、欠落・unknown・stale・conflictでは追加retryを行わず未解決で保留する。適格だった初回辺を遡って不成立にしない。session交換でresetせず上限到達時OS-040等の既存適用ownerへ未完・理由・累積attemptを返す。新上限・budget policy・解決条件を作らない。
+- `CONNECT-AC-009-05`：ACK未着またはoperation/connection identity/revisionとの対応不足はattemptをACK待ちで保持し、受領/operation完了/composite完了を成立させずmissing inputと確認先ownerを記録する。因果traceの方向/辺順序/forward-feedback/attempt/revision/endpoint receipt/停止終端が追跡可能で、部分成功を全体成功にしない。技術eventから業務解決・要求採択・ticket発行・許可・budgetを生成せずraw secret/credential/不要payloadをtraceへ複製しない。
+- `CONNECT-AC-009-06`：未見の同契約内辺・revision・topologyでも上記操作別oracleを適用する。契約不明や宣言外はunknown/unfinishedのまま該当ownerへ戻し外挿しない。endpoint/contract/authority/順序/feedback/policy変更は既存L2-002の再照合へ戻し、新revisionだけで旧未完や累積試行を消さない。
+
+**旧HELIX項目対応**：CONNECT固有typed relationの旧一致定義はL2:295とcoverage receiptの限定検索では未発見。新規type構成はPO採択登録002を起点に再導出し、旧sourceの不在を承認と読み替えない。旧UWJ-FR-006 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:50`（asset `LEGACY-ASSET-5EE032D657C221184B00`）のreturn/continue/stop/上限/terminal/再開はloop形状の隣接比較、旧HIL-NFR-04 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184`（asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`）の停止理由/checkpointは既存owner参照へ意味再導出する。旧MIC-R-02とflow `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/management-integration-cell-requirements.md:66,132`（asset `LEGACY-ASSET-23D3D9769B093AFDCC25`）のserial後base再照合は隣接failure形状だけを保持し、TL/DB/CI運用をCONNECTへ移さない。旧HIL-BR-25同L1:77の上下/左右pair双方向は層の関係であり、機構間方向・送信authorityの根拠に置換しない。各5旧lineはreference-onlyで直接candidate input0件。旧engineのUWJ-AC-006形状は新L11操作別oracleへ置換し、旧実行/合格を証拠にしない。検索限界はL3-requirements/governance-candidates/L1-requirementsの既存receipt範囲でありarchive全体の不在を主張しない。

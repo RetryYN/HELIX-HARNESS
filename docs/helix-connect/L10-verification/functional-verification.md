@@ -119,3 +119,185 @@
 - **対象AC**: `CONNECT-AC-006-01`。
 - **正常fixture**: provided happy-path以外の未見revision組を使い、(a)〜(d)各交換型を一つずつ宣言済み互換範囲内で再照合する。未見であること以外は固定入力束縛・owner・scope・permission・HARNESS pack条件を満たす。
 - **期待oracle**: 4型それぞれで固定側を不変に保ち、current comparison receiptと同じconnection contractの技術送受信を返す。未登録・範囲外revisionを未見正常例へ混ぜず、unknown/staleを正常へ格上げしない。未見fixtureは互換範囲を拡張しない。
+
+
+## Stage 4 — 008/009の総合検証設計（未実行）
+
+上記Stage 1の承認本文を保持し、採択済み008/009の1.0草稿に対する静的fixture設計を追補する。下表のCASE IDは個別変異を一意に識別し、一つのACに結ぶ。正常入力はL3各FRの全宣言を持ち、変異行は指定fieldだけを変えて他入力を正常に維持する。suffix M/U/S/Cはmissing/unknown/stale/conflictの独立fixtureである。expectedは判定oracleであり実行結果ではない。証拠はfixture ID、対象operation/profile/connection、revision、照合条件、reason、技術状態、未完・戻し先を持つ。実送信・MCP/probe/旧test/runtimeを起動せず、実許可や実安全性達成を生成しない。
+
+固定sourceはL3と同じ633bf12 L2/L11、009の訂正後L11登録002を用いる。旧HYB-002のHR-AC（未登録profile拒否）とUWJ loop/停止形状を起点に、現行L11の操作別範囲へ再導出する。旧serial merge/CI/DBや層pairを機構間接続の実証にしない。
+
+| CASE ID | L3 AC | 固定親句 | fixture / 独立変異 | 期待oracle | 戻し先 |
+|---|---|---|---|---|---|
+| `CONNECT-CASE-008-01` | `CONNECT-AC-008-01` | L11:89 | 同profile/revisionの登録・設定型・operation/tool capability・安全/read-only descriptorが揃う | catalogと全typed descriptorが同じ組に束縛される。供給だけ | CONNECT供給 |
+| `CONNECT-CASE-008-02` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未登録profileだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-03` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未知profileだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-04` | `CONNECT-AC-008-01` | L2:278/L11:91 | 同identityの競合宣言だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-05` | `CONNECT-AC-008-01` | L2:278/L11:91 | 未登録revisionだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-06` | `CONNECT-AC-008-01` | L2:278/L11:91 | 誤った設定型だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-07` | `CONNECT-AC-008-01` | L2:278/L11:91 | operation/tool descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-08` | `CONNECT-AC-008-01` | L2:278/L11:91 | operation/tool descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-09` | `CONNECT-AC-008-01` | L2:278/L11:91 | 安全descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-10` | `CONNECT-AC-008-01` | L2:278/L11:91 | 安全descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-11` | `CONNECT-AC-008-01` | L2:278/L11:91 | read-only descriptor欠落だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-12` | `CONNECT-AC-008-01` | L2:278/L11:91 | read-only descriptor型違いだけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-13` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別profile束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-14` | `CONNECT-AC-008-01` | L2:278/L11:91 | descriptorの別revision束縛だけを正常fixtureへ変異 | usableにせず対象profile/revisionと理由を保持。既定profile/互換推定へfallbackしない | profile提供元 |
+| `CONNECT-CASE-008-15` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからauthorizationを生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
+| `CONNECT-CASE-008-16` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからprobe起動を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
+| `CONNECT-CASE-008-17` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけからtool実行を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
+| `CONNECT-CASE-008-18` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実安全性を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
+| `CONNECT-CASE-008-19` | `CONNECT-AC-008-02` | L2:276,280/L11:89,91 | descriptor存在・読出しだけから実行資格を生成する | 生成を拒否。descriptor供給状態とSECURITY判定/実行は別 | SECURITY/元probe意味owner |
+| `CONNECT-CASE-008-20` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成raw secret markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |
+| `CONNECT-CASE-008-21` | `CONNECT-AC-008-02` | L11:89 | descriptorへ合成credential値 markerを混入 | 不合格、値を証拠へ出さず元入力のownerへ返す | profile提供元/SECURITY |
+| `CONNECT-CASE-008-22` | `CONNECT-AC-008-02` | L2:280/L11:91 | 034の別policy oracleまたはその採択を008のpass必須にする | 008供給oracleとして使用しない。SECURITY safetyは既存責務で別照合 | SECURITY |
+| `CONNECT-CASE-008-23` | `CONNECT-AC-008-03` | L2:278/L11:91 | 登録契約revisionだけを更新、旧descriptorは残す | 当該revisionはstale。再照合前はusable/適格にせず正しい新組だけ解除 | profile提供元/契約owner |
+| `CONNECT-CASE-008-24` | `CONNECT-AC-008-03` | L2:282/L11:93 | identity不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
+| `CONNECT-CASE-008-25` | `CONNECT-AC-008-03` | L2:282/L11:93 | config不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
+| `CONNECT-CASE-008-26` | `CONNECT-AC-008-03` | L2:282/L11:93 | descriptor不正をprofile Aへ入力、Bは正常 | Aは理由付き不成立で提供元へ、無関係B状態は維持 | profile提供元 |
+| `CONNECT-CASE-008-27` | `CONNECT-AC-008-03` | L2:282/L11:93 | policy unknownをprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
+| `CONNECT-CASE-008-28` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety unknownをprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
+| `CONNECT-CASE-008-29` | `CONNECT-AC-008-03` | L2:282/L11:93 | policy拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
+| `CONNECT-CASE-008-30` | `CONNECT-AC-008-03` | L2:282/L11:93 | safety拒否をprofile Aへ入力、Bは正常 | SECURITYへ戻しCONNECTが判定上書きしない。B状態は維持 | SECURITY |
+| `CONNECT-CASE-008-31` | `CONNECT-AC-008-03` | L11:93 | 供給証拠が未観測 | unknown、passにしない。実probe/runtimeを要求しない | profile提供元/CONNECT供給owner |
+| `CONNECT-CASE-008-32` | `CONNECT-AC-008-01` | L2:278/L11:91 | 伏せた新profile名で同契約の正しい登録組／別fixtureで未登録 | 登録組は同oracleで供給、未登録はunknownでusableにせず名前から推定しない | profile提供元 |
+| `CONNECT-CASE-009-01` | `CONNECT-AC-009-01` | L11:96 | A→B one_way正常、B→A feedbackは逆connection/許可なし | 初回辺は独立eligible、feedbackは未送信return relationで送信成功にしない | 逆endpoint/authority owner |
+| `CONNECT-CASE-009-02` | `CONNECT-AC-009-01` | L2:289/L11:96 | 独立逆connection・contract/scope/適用authorityを成立させB→Aを宣言 | 宣言二方向を別識別し各操作を照合。前向きだけの権限を使い回さない | 両endpoint/SECURITY |
+| `CONNECT-CASE-009-03` | `CONNECT-AC-009-01` | L2:289/L11:99 | one_way登録だけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |
+| `CONNECT-CASE-009-04` | `CONNECT-AC-009-01` | L2:289/L11:99 | 受信だけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |
+| `CONNECT-CASE-009-05` | `CONNECT-AC-009-01` | L2:289/L11:99 | ACKだけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |
+| `CONNECT-CASE-009-06` | `CONNECT-AC-009-01` | L2:289/L11:99 | feedback eventだけから逆送信許可を生成 | 逆送信不可。初回辺の独立適格性は維持 | SECURITY |
+| `CONNECT-CASE-009-07` | `CONNECT-AC-009-01` | L11:99 | paired_bidirectionalの片方向だけauthority確認 | 未確認方向はeligibleにせず両方向照合を要求 | 当該endpoint/SECURITY |
+| `CONNECT-CASE-009-08-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-08-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-08-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-08-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺のendpointだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-09-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-09-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-09-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-09-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺のconnection identityだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-10-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-10-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-10-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-10-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺の契約revisionだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-11-M` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをmissingにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-11-U` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをunknownにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-11-S` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをstaleにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-11-C` | `CONNECT-AC-009-01` | L11:100 | 初回辺の適用authorityだけをconflictにする | 当該初回辺はnot eligible、missing inputと理由を記録。別独立辺を一括停止しない | endpoint/contract/authorityの当該owner |
+| `CONNECT-CASE-009-12` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でfeedback reasonだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |
+| `CONNECT-CASE-009-13` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でloop policyだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |
+| `CONNECT-CASE-009-14` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でparallel joinだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |
+| `CONNECT-CASE-009-15` | `CONNECT-AC-009-01` | L11:100 | 独立適格な初回辺でACKだけ欠落 | 初回送信を止めず対応する後続操作だけ保留 | 当該feedback/policy/join/ACK owner |
+| `CONNECT-CASE-009-16` | `CONNECT-AC-009-02` | L11:98 | serialで先行必要結果成立後に宣言後続辺 | 宣言順と先行条件成立をtrace。先行未成立を正常にしない | 構成体/contract owner |
+| `CONNECT-CASE-009-17` | `CONNECT-AC-009-02` | L2:290/L11:99 | serial先行必要結果だけ欠落 | 後続辺を実行せずunknown/unfinished、先行結果ownerへ | 先行endpoint/contract owner |
+| `CONNECT-CASE-009-18` | `CONNECT-AC-009-02` | L11:98 | parallel独立辺がそれぞれ成立し宣言join全条件成立 | 独立operation/resultを追跡しjoin成立後だけcomposite完了 | 構成体owner |
+| `CONNECT-CASE-009-19` | `CONNECT-AC-009-02` | L2:290/L11:99 | execution orderだけ欠落 | 推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない | HARNESS/OS既存contract owner |
+| `CONNECT-CASE-009-20` | `CONNECT-AC-009-02` | L2:290/L11:99 | 依存条件だけ欠落 | 推測しない、対象順序/依存をunknownでownerへ。OS計画を生成しない | HARNESS/OS既存contract owner |
+| `CONNECT-CASE-009-21-M` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけmissing | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |
+| `CONNECT-CASE-009-21-U` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけunknown | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |
+| `CONNECT-CASE-009-21-S` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけstale | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |
+| `CONNECT-CASE-009-21-C` | `CONNECT-AC-009-02` | L11:103 | parallel joinだけconflict | join/composite完了だけ保留。各適格辺は独立に送信可能 | 構成体/contract owner |
+| `CONNECT-CASE-009-22` | `CONNECT-AC-009-02` | L11:99 | 一部辺成功だけでcomposite完了にする | 全体成功へ昇格しない、未完辺とjoin義務を保持 | 構成体owner |
+| `CONNECT-CASE-009-23` | `CONNECT-AC-009-03` | L2:291/L11:97 | typed feedback全束縛が同operation lineageへ結ぶ | 一方向relationを記録、受領/解決/承認/task完了は生成しない | feedback target owner |
+| `CONNECT-CASE-009-24-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-24-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-24-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-24-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのreasonだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-25-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-25-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-25-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-25-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのsource connection/operationだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-26-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-26-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-26-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-26-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのtarget connection/ownerだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-27-M` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-27-U` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-27-S` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-27-C` | `CONNECT-AC-009-03` | L11:101 | feedbackのcontract revisionだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-28-M` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-28-U` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-28-S` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-28-C` | `CONNECT-AC-009-03` | L11:101 | feedbackの独立逆connectionだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-29-M` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけmissing | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-29-U` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけunknown | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-29-S` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけstale | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-29-C` | `CONNECT-AC-009-03` | L11:101 | feedbackの適用authorityだけconflict | feedback送信だけ保留、未送信return relation・missing input保持。初回不成立/解決済みにしない | fieldに対応するendpoint/contract/authority owner |
+| `CONNECT-CASE-009-30` | `CONNECT-AC-009-03` | L2:291 | correlation/operation lineageだけ欠落 | typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ | feedback contract owner |
+| `CONNECT-CASE-009-31` | `CONNECT-AC-009-03` | L2:291 | 停止/再開状態だけ欠落 | typed relation成立/完了へ補完しない、unknown/unfinishedを対象ownerへ | feedback contract owner |
+| `CONNECT-CASE-009-32` | `CONNECT-AC-009-03` | L2:291/L11:99 | 自由文feedbackだけをtyped edge/resolvedにする | relation成立/解決にしない、findingと未完を保持 | 元finding/target owner |
+| `CONNECT-CASE-009-33` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで受領を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |
+| `CONNECT-CASE-009-34` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで解決を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |
+| `CONNECT-CASE-009-35` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけで承認を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |
+| `CONNECT-CASE-009-36` | `CONNECT-AC-009-03` | L2:291 | edge記録/伝送だけでtask完了を生成 | 状態生成を拒否。技術伝送とownerの判定を分離 | 当該状態owner |
+| `CONNECT-CASE-009-37` | `CONNECT-AC-009-04` | L11:97 | forward/feedback、既存上限budget/期限/policy/終端owner、累積attemptが揃う | 追加attemptは既存条件内のみ。境界到達で未完・理由・累積試行を返す | OS-040等既存適用owner |
+| `CONNECT-CASE-009-38-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-38-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-38-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-38-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのretry上限だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-39-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-39-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-39-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-39-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのbudgetだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-40-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-40-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-40-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-40-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの期限だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-41-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-41-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-41-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-41-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのtermination policyだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-42-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-42-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-42-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-42-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの終端ownerだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-43-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-43-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-43-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-43-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopの累積attempt数だけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-44-M` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけmissing | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-44-U` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけunknown | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-44-S` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけstale | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-44-C` | `CONNECT-AC-009-04` | L2:292/L11:102 | loopのoperation identityだけconflict | 追加retry0、loop未解決保留。初回適格性を遡って変えずmissing inputとowner記録 | 既存retry/budget/termination contract owner |
+| `CONNECT-CASE-009-45` | `CONNECT-AC-009-04` | L2:292/L11:99 | sessionだけ交換して累積attempt/budgetをreset | reset拒否、元operationの累積値を維持 | 既存retry/budget owner |
+| `CONNECT-CASE-009-46` | `CONNECT-AC-009-04` | L2:292/L11:97 | 既存上限到達後に追加attempt要求 | 追加retry0、未完・理由・試行数・再開停止状態を既存routeへ | OS-040等既存適用owner |
+| `CONNECT-CASE-009-47` | `CONNECT-AC-009-04` | L2:292 | CONNECTが新retry上限/budget policy/解決条件を発行 | 発行を拒否、既存契約参照に限定 | 既存policy owner |
+| `CONNECT-CASE-009-48` | `CONNECT-AC-009-05` | L11:104 | ACK未着 | attemptはACK待ち、受領/operation完了/composite完了は未成立、確認先owner記録 | endpoint ACK owner |
+| `CONNECT-CASE-009-49-M` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-49-U` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-49-S` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-49-C` | `CONNECT-AC-009-05` | L11:104 | ACKのoperation対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-50-M` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-50-U` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-50-S` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-50-C` | `CONNECT-AC-009-05` | L11:104 | ACKのconnection identity対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-51-M` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけmissing | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-51-U` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけunknown | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-51-S` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけstale | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-51-C` | `CONNECT-AC-009-05` | L11:104 | ACKの契約revision対応だけconflict | ACK待ち保持、受領/operation/composite完了は未成立、missing input記録 | endpoint ACK/contract owner |
+| `CONNECT-CASE-009-52` | `CONNECT-AC-009-05` | L2:293 | 因果traceの方向だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-53` | `CONNECT-AC-009-05` | L2:293 | 因果traceの辺順序だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-54` | `CONNECT-AC-009-05` | L2:293 | 因果traceのforward/feedback relationだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-55` | `CONNECT-AC-009-05` | L2:293 | 因果traceのoperation/attemptだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-56` | `CONNECT-AC-009-05` | L2:293 | 因果traceのcontract revisionだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-57` | `CONNECT-AC-009-05` | L2:293 | 因果traceのendpoint receiptだけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-58` | `CONNECT-AC-009-05` | L2:293 | 因果traceの停止/終端状態だけ欠落 | 一つの因果traceで辿れずunknown/unfinished、全体成功不可 | 該当event/operation owner |
+| `CONNECT-CASE-009-59` | `CONNECT-AC-009-05` | L2:293 | 既存traceに辺部分成功だけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |
+| `CONNECT-CASE-009-60` | `CONNECT-AC-009-05` | L2:293 | 既存traceに互換staleだけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |
+| `CONNECT-CASE-009-61` | `CONNECT-AC-009-05` | L2:293 | 既存traceにauthority unknownだけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |
+| `CONNECT-CASE-009-62` | `CONNECT-AC-009-05` | L2:293 | 既存traceにjoin不成立だけを与え全体成功へ昇格 | 全体成功にしない、対象未完と観測済み部分結果を保持 | 該当endpoint/contract/authority/composite owner |
+| `CONNECT-CASE-009-63` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけから業務解決を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |
+| `CONNECT-CASE-009-64` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけから要求採択を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |
+| `CONNECT-CASE-009-65` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからticket発行を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |
+| `CONNECT-CASE-009-66` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからbudget policyを生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |
+| `CONNECT-CASE-009-67` | `CONNECT-AC-009-05` | L2:294 | 技術eventだけからfeedback内容判断を生成 | CONNECTは生成せず元の意味/判断ownerへ戻す | 各既存owner |
+| `CONNECT-CASE-009-68` | `CONNECT-AC-009-05` | L2:294 | 合成raw secret markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |
+| `CONNECT-CASE-009-69` | `CONNECT-AC-009-05` | L2:294 | 合成credential markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |
+| `CONNECT-CASE-009-70` | `CONNECT-AC-009-05` | L2:294 | 合成不要payload markerをtraceへ複製 | 不合格、値を証拠へ出さず元source/SECURITYへ返す | source/SECURITY |
+| `CONNECT-CASE-009-71` | `CONNECT-AC-009-06` | L2:290,294/L11:100–104 | 伏せた同scope新endpoint/topologyで宣言契約成立／別fixtureは宣言外 | 成立範囲は同操作別oracle、宣言外はunknownで外挿しない | 該当endpoint/contract owner |
+| `CONNECT-CASE-009-72` | `CONNECT-AC-009-06` | L2:287,294 | endpointだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-73` | `CONNECT-AC-009-06` | L2:287,294 | contract revisionだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-74` | `CONNECT-AC-009-06` | L2:287,294 | authorityだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-75` | `CONNECT-AC-009-06` | L2:287,294 | execution topologyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-76` | `CONNECT-AC-009-06` | L2:287,294 | feedback bindingだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
+| `CONNECT-CASE-009-77` | `CONNECT-AC-009-06` | L2:287,294 | termination policyだけ変更して旧receiptを再使用 | 既存L2-002で再照合、旧未完・累積attemptを保持し他scopeへ流用しない | 変更したendpoint/contract/authority/policy owner |
