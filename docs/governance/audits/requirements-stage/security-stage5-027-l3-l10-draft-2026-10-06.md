@@ -1,0 +1,5 @@
+# SECURITY Stage5親027 L3/L10起草監査
+
+本文 `be7fab137cdc3fe8d68d55f59a500ad463bb22df`、base `64086f7f03b283247d0cfd18a5b729420caadf29`。固定親と旧CAP/paired/L3定義10spansをraw-LF/full SHA/literalで固定。三経路は現行採択L1/L2/PO原文から導出し、直接旧source対応は先行inventoryに記録された検索で見つからない。旧atom0を旧資産全被覆と主張しない。旧classification/sink区分とnegative形式を再導出し、旧runtime/enumは置換。
+
+六本文の既承認prefixはexact一致。87個別fixture/5AC、合成値のみ。NFR誤受理0候補は各経路traceと集約greenを比較し固定親を満たす案を記述。SLO/実測なし。独立review/承認/実装は未成立。既承認本文全量の再reviewをこの監査から主張しない。

@@ -1,0 +1,704 @@
+{
+  "authority_effect": "none",
+  "record_type": "L3_L10_draft_source_trace",
+  "body_revision": "be7fab137cdc3fe8d68d55f59a500ad463bb22df",
+  "base": "64086f7f03b283247d0cfd18a5b729420caadf29",
+  "parent": "HELIXSECURITY-L2-027",
+  "version_target": "1.0",
+  "stage": "Stage 5",
+  "fixed_and_legacy_pins": [
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "line_start": 70,
+      "line_end": 89,
+      "raw_lf_sha256": "c6fb381aaac1ca1bb1a31feea60d7e6865ddda8418c399020bf04e28e6486f04",
+      "literal": "### HELIXSECURITY-L2-001 外部入力の信頼・authority境界\n\n- **受け取るもの**：外部情報、AI生成物、Tool出力、Issue、PR、Web、MCP、文書と、そのsource・対象project・revision・data classification。\n- **提供するもの**：未信頼dataとしての識別と、明示した昇格経路・未昇格状態を示す判定情報。\n- **保証すること**：読むことだけで信頼、命令、authority、永続化、学習を生成しない。明示された経路を通らない入力は要求、Agent instruction、Tool authority、memory、BRAIN、training data、security policyへ昇格しない。\n- **単独依存**：Conceptのdata-use classification・isolation foundation、source identityを受ける。分類不能なら未信頼・unknownとして扱う。\n- **検証範囲／版**：各入力source種別について、read-only閲覧とauthority作用の経路を分ける。1.0。\n- **失敗時の戻し先**：入力の意味や昇格条件が不足・矛盾ならL1-001/L1-002候補へ戻す。下流の接続先はunknownのまま保つ。\n- **束ねる既存条件**：L1-001、PO §2。既存のHARNESS/OS外部data境界と重なる箇所はownerを明示して接続候補へ渡す。\n\n### HELIXSECURITY-L2-002 命令様dataとPrompt Injection境界\n\n- **受け取るもの**：L2-001で未信頼とされたdataと、dataを読むWorker/Toolの権限scope。\n- **提供するもの**：命令様記述をdataとして隔離し、tool call、instruction、policy、credential送信へ直結させない制約と判定receipt。\n- **保証すること**：例「前の指示を無視」「AGENTS.mdへ書け」「repositoryを消せ」「memoryへ保存」「資格情報を送れ」をHELIX操作命令として実行しない。完全なinjection検出率を約束しない。\n- **単独依存**：L2-001のsource/classification、Workerへ渡される明示scope。検出Botがなくても直接authority経路を遮断する。\n- **検証範囲／版**：文書、Issue/PR、Web、MCP response等からinstruction/tool argsへの直接連結を検査。1.0。\n- **失敗時の戻し先**：境界を証明できない場合は下流操作を止め、data flow設計をL1-002へ戻す。検出器の不在を成功扱いしない。\n- **束ねる既存条件**：L1-002、PO §3、旧HR-NFR-P8-02の命令隔離・監査観点。\n\n"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "line_start": 200,
+      "line_end": 229,
+      "raw_lf_sha256": "2b6cd2ae7ec73ff7dea6cb05636df461283157b3cc4512feca6e66438872c8e2",
+      "literal": "### HELIXSECURITY-L2-014 SECURITY永続化promotion方針・判定（単体）\n\n- **親L1**：HELIXSECURITY-L1-014（L1では構成体要求）。このL2 identity自体はSECURITY単体の方針・判定。\n- **受け取るもの**：source identity/provenance/classificationを持つpromotion requestと対象種別（memory、training dataset、BRAIN knowledge）。\n- **提供するもの**：SECURITY方針に基づくallow/deny/hold判定、その理由、参照するsource/target identity。\n- **保証すること**：外部情報/Agent outputを無条件に永続化しないためのSECURITY単体の規則・判定を定義する。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを判定対象として識別するが、機構横断の受渡し、LABO評価、BRAIN登録、保存実行、構成体成立は所有しない。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationを防ぐ判定理由を返す。\n- **依存／検証範囲／版**：L2-001/002 source trust、L2-015/016の1.0 identity/classification foundation。1.x sink enforcementは依存しない。単体decision table上で3 target classごとのallow/deny/holdを確認し、source/classification欠落、unknown、誤targetを拒否する。3経路のend-to-end成立はL2-027だけで受け入れる。1.0。\n- **失敗時の戻し先**：provenance/classification欠落はhold/deny。policy意味や対象追加はL1-014へ戻す。\n- **束ねる既存条件**：PO §15のSECURITY方針・判定部分。対応する旧要求は見つかっていないためPO原文からの新しい単体候補として明記する。L1-014の構成体kindと3経路の機構横断成立はL2-027のみで満たす。\n\n### HELIXSECURITY-L2-015 HELIX Asset identity基盤\n\n- **受け取るもの**：PO §16の対象資産identity、owner、source、revision/digest: HELIX-HARNESS-CORE（HELIX-JSON、Python meaning core、Requirement Engine、internal verification logic）、HELIX-BRAIN（Patterns、Units、Parts、accumulated design knowledge）、HELIX-INTELLIGENCE（internal prompts、judgment configuration、specialist models、routing / diagnostic logic）、HELIX-LABO（episodes、evaluation corpus、training material）、HELIX-OS（authority/state、topology、operation records）、HELIX-SECURITY（policies、credentials）。これは列挙された対象例の保全であり、列挙外資産を対象から除外する意味ではない。\n- **提供するもの**：Asset inventoryの識別と、後続のexposure policyが参照できる安定identity。\n- **保証すること**：資産が誰の何でどのrevisionか追跡できる。1.0ではidentity/provenanceと分類を参照する基盤だけを置き、1.xのWeb実利用保護を1.0要件へ前倒ししない。\n- **単独依存**：各資産ownerからのidentity/provenanceとConceptのdata-use classification。\n- **検証範囲／版**：PO §16に列挙された全資産を識別対象にできる。資産内容の開示やdumpは不要。identity基盤1.0、完全なasset protectionは1.x。\n- **失敗時の戻し先**：owner/identityが不明ならunclassified/unknownとして保留し、範囲の不足をL1-015へ戻す。\n- **束ねる既存条件**：L1-015、Concept「データの利用区分」。\n\n### HELIXSECURITY-L2-016 Asset exposure classification基盤\n\n- **受け取るもの**：L2-015 identity、公開範囲（public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secret）。\n- **提供するもの**：assetへ付与し、後続機能が参照する分類情報と、そのowner/source/revision。\n- **保証すること**：1.0では分類語彙とassetへの分類記録を利用可能にする。未分類をpublicと推定しない。全Web/API/log/error/stack trace/debug/source map/Tool result/artifact/LLM contextへ強制する1.x公開境界は1.0完了条件ではなく、L2-019/025等で個別に受け入れる。\n- **単独依存**：L2-015 Asset identity。分類の定義ownerはSECURITY。sink enforcementを必要としない。\n- **検証範囲／版**：1.0は全6 classificationの定義・assetへの付与・unknown状態の保存。PO列挙sinkへの一律適用は1.x。\n- **失敗時の戻し先**：未分類/unknownはunknownとして保持し、公開allowの根拠にしない。分類意味の変更はL1-016へ戻す。\n- **束ねる既存条件**：L1-016、PO §17、Conceptのdata-use classification。\n\n"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "line_start": 332,
+      "line_end": 341,
+      "raw_lf_sha256": "9c8d1c515b1a390d2a5a21f9c271ae29c14b76bad612a8d669bd94335042888e",
+      "literal": "### HELIXSECURITY-L2-027 永続化promotion（構成体）\n\n- **親L1**：HELIXSECURITY-L1-014（kind: 構成体）。\n- **受け取るもの**：Context/Agent output、Episode、product knowledgeと各promotion request、source/provenance/classification。\n- **提供するもの**：3経路ごとのSECURITY境界判定receipt、deny/hold状態、接続先ownerへ返す未完義務。\n- **保証すること**：L1-014の構成体要求と3つの機構横断promotion boundaryはこの要求だけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別々にend-to-end追跡し、各境界でsource/provenance/classification/SECURITY判定と、対象sinkへの受渡し結果またはdeny/holdを結ぶ。各sinkの保存・評価・登録手順は当該ownerの接続契約に従い、本要求からLABO評価やOS登録を全経路の必須工程として追加しない。単体L2-014の成功や一経路の成功から構成体成功を推定しない。\n- **依存／検証範囲／版**：L2-001/002/014/015/016および各対象sink ownerの接続contract。3経路それぞれでsource identity、分類、SECURITY判定、受渡し結果または拒否・保留を確認し、経路間で証拠を流用しない。1.0。\n- **失敗時の戻し先**：source/provenance/classification欠落は永続化前にhold/deny。対象やSECURITY判定の意味差はL1-014、対象sinkの受領・保存・評価・登録の手順は当該ownerの接続契約へ戻す。各経路の結果がunknownなら構成体の成立を主張しない。\n- **束ねる既存条件**：PO §15の3永続化境界とPO §23のconnection/composite区分。各sinkの固有処理はそのownerの接続契約に従う。\n\n"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "line_start": 51,
+      "line_end": 51,
+      "raw_lf_sha256": "8ba92962fcdf759c86afcbfdba02508ef36ad1f356517d6283fe439067b5b7a1",
+      "literal": "| HELIXSECURITY-L2-027 | 1.0 | L1-014の構成体要求をこのcompositeだけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの各々でsource/provenance/classificationとSECURITY判定を独立にtraceし、対象sinkへの受渡し結果またはdeny/holdを確認する。sink固有の保存・評価・登録手順は各ownerの接続契約に従い、この受入条件からLABO評価やOS登録を全経路の必須工程として追加しない。source等の欠落・unknownを通す、単体L2-014の成功や一経路の証拠で3経路全体を成立扱いする、またはdeny/holdを成功保存として扱えば不合格。 |\n"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "line_start": 59,
+      "line_end": 59,
+      "raw_lf_sha256": "6a008a00f21648b6aee48ea7b20635f3982b9f3999416c7371a127042caa7b80",
+      "literal": "| HELIXSECURITY-L1-014 | 人間は、外部の情報やAgentの出力を、永続の情報へ無条件に昇格させないことを確かめられる。contextからmemory、episodeから学習データ、製品の知識からBRAINへの昇格の境界を扱い、memoryの汚染、Prompt Injectionの永続化、学習データやBRAINの汚染を防ぐ | §15 | 1.0 | 構成体（SECURITY、LABO、BRAIN、INTELLIGENCE） |\n"
+    },
+    {
+      "path": "docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "699a0a0df5e92cfe7367dded2ab4c1e1d1cc6f4d8b1bff0418cdfa58e4768c0c",
+      "line_start": 408,
+      "line_end": 435,
+      "raw_lf_sha256": "5a415dbaa74cfb9a68636652eb994f06cc03faf32da16448e716bf481cef4677",
+      "literal": "# 15. Persistence / Memory Promotion Boundary\n\n外部情報やAgent出力を、永続情報へ無条件に昇格させない。\n\n特に、\n\n```text\nContext\n→ Memory\n\nEpisode\n→ Training Dataset\n\nProduct Knowledge\n→ BRAIN\n```\n\nの各昇格境界をSecurity対象とする。\n\n外部情報が、\n\n* Memory poisoning\n* Prompt Injection persistence\n* Training contamination\n* BRAIN contamination\n\nへ発展することを防ぐ。\n\n"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "line_start": 65,
+      "line_end": 65,
+      "raw_lf_sha256": "defd49f131d01142c261884701f131a2ccfcd923571d3092d066083d3d4634c9",
+      "literal": "| `HELIXSECURITY-L2-027` | `composite` | 1.0 | `MPR-RC-HELIXSECURITY-L2-027-001 → MPR-RC-HELIXSECURITY-L2-027-002` | `SECURITY-functional-r2` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "line_start": 97,
+      "line_end": 113,
+      "raw_lf_sha256": "b9c02e11e9a9aa7cfd215dbfe1f8ffda8559395e3fd3fcf8e5fffeadbc6d16ff",
+      "literal": "### 1.4 data classification と sink authority\n\n送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。\n\n| data classification | 既定扱い |\n|---|---|\n| `public` | 登録済みsinkへ送信候補 |\n| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、\n目的、認可範囲、expiry、read-before、dry-run、postcondition、rollback可否を持たない場合は\n`approval_required`ではなく`unresolved`としてfail-closeする。\n\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "line_start": 18,
+      "line_end": 27,
+      "raw_lf_sha256": "62dbf620c0947f3f992b98fed2adcd262df368bbf081474c88b0b64d66b1d8fe",
+      "literal": "| Test ID | 対応要件 | 入力fixture | 期待結果 |\n|---|---|---|---|\n| `SEC-AC-CAP-001` | `SEC-FR-CAP-001` | operation、impact、approvalを同一enumへ混在、未知値、欠落、複数候補 | 軸混同・未知・欠落をreason付き`unresolved`で拒否する |\n| `SEC-AC-CAP-002` | `SEC-FR-CAP-002` | repo内literal、ancestor symlink、junction、bind mount、hardlink、repo外realpath、glob、TOCTOU変更 | exact physical identityとtarget setが一致するliteralだけ許可候補。その他は拒否する |\n| `SEC-AC-CAP-003` | `SEC-FR-CAP-003` | direct literal、bounded wrapper、script digest、find/xargs、変数、dynamic interpreter、解析深度超過 | bounded以外の間接実行をhostへ渡さず、sandboxまたは拒否へ送る |\n| `SEC-AC-CAP-004` | `SEC-FR-CAP-004` | public/repository/sensitive/PII/credential/unknownとlocal/GitHub/network/cloud sinkの直積 | credential、PII、archive、unknownはbroker外送信を拒否し、ログにも値を出さない |\n| `SEC-AC-CAP-005` | `SEC-FR-CAP-005` | destructive external actionのtarget、dry-run、rollback、expiry、approval receiptの各欠落・drift | exact tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |\n| `SEC-AC-CAP-006` | `SEC-FR-CAP-006` | Claude、Codex CLI/IDE、Cursor、hosted tool、workerのcovered/unsupported/trust drift/sandbox unavailable | unsupported、drift、sandbox unavailableはhost実行へfallbackせずfail-closeする |\n| `SEC-AC-CAP-007` | `SEC-FR-CAP-007` | canonical failure、legacy guard green、別scanner green、値を含むraw error | AND admissionを維持し、legacy/別scannerのgreenで相殺せずredacted receiptだけを残す |\n| `SEC-AC-CAP-008` | `SEC-FR-CAP-001..007` |同一targetを判定後に置換、permission変更、process停止、container root mount | 実行直前identity／policy再検証で拒否し、再試行を自動許可しない |\n"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "revision": "64086f7f03b283247d0cfd18a5b729420caadf29",
+      "full_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "line_start": 148,
+      "line_end": 168,
+      "raw_lf_sha256": "e3458062d75fec1bb5ea1a71dc1f9988ead52879c228a6495b39ba04bfcba2f9",
+      "literal": "### L3 要件定義\n\n| 項目 | 内容 |\n|------|------|\n| 名称 | 要件定義 (System Requirements) |\n| 目的 | システム機能要件 (FR-*) + 受入条件 (AC-*) を確定し、設計への入力とする |\n| 主要成果物 ① | 3 sub-doc: functional-requirement / business-requirement / nfr-grade |\n| ③ テスト設計ペア | UX受入テスト設計（L10で実施） |\n| V-pair (右腕) | **L10** UX受入検証 |\n| 主要ゲート | **G3** 機能要件凍結 (FR+AC ⇔ L10 UX受入テスト設計 pair freeze) |\n| 入口 | G1/G2 exit 後 (L1 業務要求 BR-* が入力) |\n| 出口 | G3 通過 (FR+AC 全件確定 + 受入テスト設計 pair 揃い) |\n| 主要 role | `tl` 必須 (FR+AC 仕様化)、`po` 必須 (受入条件確認) |\n\n注: FR-* は L1 BR-* から双方向 trace する。AC 不在での G3 通過は fail (AP-4)。\nG3では`engineering_discipline_required: true`のPLAN契約により、no-code-first判断、責務owner、\n許容complexity、L10で観測する振る舞いをfreezeする。ここでobject modelを一律採用せず、\n`none` / `pure_function`を含む最小のmodeling判断を許可する。\n出典: concept v3.1 §3.1.2 / requirements v1.3.12 §2.2 G3\n\n---\n"
+    }
+  ],
+  "source_inventory": {
+    "identity": "HELIXSECURITY-L2-027",
+    "product": "HELIX-SECURITY",
+    "registration": {
+      "registration_id": "MPR-RC-HELIXSECURITY-L2-027-002",
+      "disposition": "adopted",
+      "version_class": "1.0",
+      "sequence_stage": "Stage 5",
+      "sequence_population": "original 250 carry-forward",
+      "candidate_semantic_digest": "sha256:f3d5fa59eba03cf77fbb8d17180b8d086061cef34818ea87e19209b8be33eb9e",
+      "stage_basis": "9/27 assignment JSON exact identity mapping",
+      "stage_prerequisite_ids": [],
+      "stage_dependency_ids_not_adopted": [],
+      "sequence_stage_rationale": "9/27 assignment JSON exact identity mapping"
+    },
+    "fixed_parent": {
+      "role": "固定L2本文",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "line_start": 332,
+      "line_end": 341,
+      "full_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "raw_lf_span_sha256": "9c8d1c515b1a390d2a5a21f9c271ae29c14b76bad612a8d669bd94335042888e",
+      "literal": "### HELIXSECURITY-L2-027 永続化promotion（構成体）\n\n- **親L1**：HELIXSECURITY-L1-014（kind: 構成体）。\n- **受け取るもの**：Context/Agent output、Episode、product knowledgeと各promotion request、source/provenance/classification。\n- **提供するもの**：3経路ごとのSECURITY境界判定receipt、deny/hold状態、接続先ownerへ返す未完義務。\n- **保証すること**：L1-014の構成体要求と3つの機構横断promotion boundaryはこの要求だけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別々にend-to-end追跡し、各境界でsource/provenance/classification/SECURITY判定と、対象sinkへの受渡し結果またはdeny/holdを結ぶ。各sinkの保存・評価・登録手順は当該ownerの接続契約に従い、本要求からLABO評価やOS登録を全経路の必須工程として追加しない。単体L2-014の成功や一経路の成功から構成体成功を推定しない。\n- **依存／検証範囲／版**：L2-001/002/014/015/016および各対象sink ownerの接続contract。3経路それぞれでsource identity、分類、SECURITY判定、受渡し結果または拒否・保留を確認し、経路間で証拠を流用しない。1.0。\n- **失敗時の戻し先**：source/provenance/classification欠落は永続化前にhold/deny。対象やSECURITY判定の意味差はL1-014、対象sinkの受領・保存・評価・登録の手順は当該ownerの接続契約へ戻す。各経路の結果がunknownなら構成体の成立を主張しない。\n- **束ねる既存条件**：PO §15の3永続化境界とPO §23のconnection/composite区分。各sinkの固有処理はそのownerの接続契約に従う。"
+    },
+    "fixed_l2_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "fixed_l11": [
+      {
+        "role": "固定L11規範",
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "line_start": 51,
+        "line_end": 51,
+        "full_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+        "raw_lf_span_sha256": "8ba92962fcdf759c86afcbfdba02508ef36ad1f356517d6283fe439067b5b7a1",
+        "literal": "| HELIXSECURITY-L2-027 | 1.0 | L1-014の構成体要求をこのcompositeだけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの各々でsource/provenance/classificationとSECURITY判定を独立にtraceし、対象sinkへの受渡し結果またはdeny/holdを確認する。sink固有の保存・評価・登録手順は各ownerの接続契約に従い、この受入条件からLABO評価やOS登録を全経路の必須工程として追加しない。source等の欠落・unknownを通す、単体L2-014の成功や一経路の証拠で3経路全体を成立扱いする、またはdeny/holdを成功保存として扱えば不合格。 |"
+      }
+    ],
+    "po_decision": {
+      "role": "PO採択decision row",
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "line_start": 65,
+      "line_end": 65,
+      "full_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "raw_lf_span_sha256": "defd49f131d01142c261884701f131a2ccfcd923571d3092d066083d3d4634c9",
+      "literal": "| `HELIXSECURITY-L2-027` | `composite` | 1.0 | `MPR-RC-HELIXSECURITY-L2-027-001 → MPR-RC-HELIXSECURITY-L2-027-002` | `SECURITY-functional-r2` | `registered_proposal` / authority_effect `none` / coverage `no_loss` |"
+    },
+    "registration_row": {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "line": 93,
+      "file_full_sha256": "d24a982af1c468bb32c9822777a3234d3ce065ff63b89c944b7b04447610c99b",
+      "raw_lf_sha256": "d7880ea75ebd0ae3c43ef6587e59648bc132cba42ad7456f1f8f070adea5f5ca",
+      "literal": "{\"registration_id\":\"MPR-RC-HELIXSECURITY-L2-027-002\",\"supersedes_registration_id\":\"MPR-RC-HELIXSECURITY-L2-027-001\",\"registration_kind\":\"requirement_candidate\",\"requirement_identity\":\"HELIXSECURITY-L2-027\",\"requirement_kind\":\"composite\",\"product_target\":\"HELIX-SECURITY\",\"candidate_source_path\":\"docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-027\",\"candidate_semantic_digest\":\"sha256:f3d5fa59eba03cf77fbb8d17180b8d086061cef34818ea87e19209b8be33eb9e\",\"parent_concept_revision\":\"docs/concept/helix-concept.md@719e05d579584ac961256bdb8b11f8fc7b643a14 sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78（親候補。承認を推定しない）\",\"parent_planning_revision\":\"docs/helix-security/L1-planning/security-intent.md@719e05d579584ac961256bdb8b11f8fc7b643a14 sha256:b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d（draft_candidate。PO対象revision確認待ち）\",\"source_atom_set_ref\":\"docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json#HELIXSECURITY-L2-027\",\"source_atom_set_digest\":\"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"source_atom_count\":0,\"source_collection_scope\":\"現行L1/PO原文由来の候補。旧sourceは意味比較資料として参照し、この候補へ旧atomを移管・採択しない。入力旧atom集合は空集合であり全旧要求被覆の主張ではない。原文の行き先はparent_source_conditionsと本文対応表に保持する。\",\"coverage_receipt_ref\":\"docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json\",\"coverage_result\":\"no_loss\",\"carried_atom_refs\":[],\"preserved_pending_registration_refs\":[\"MPR-SH-CANDIDATE-003\"],\"human_decision_disposition_refs\":[],\"unaccounted_atom_refs\":[],\"management_state\":\"registered_proposal\",\"authority_effect\":\"none\",\"registered_by\":\"Codex execution lane\",\"registered_at\":\"2026-09-27T01:57:31+09:00\",\"evidence_refs\":[\"docs/governance/decisions/security-l1-idea-po-decisions-2026-09-26.md\",\"docs/governance/decisions/core-first-pack-po-decisions-2026-09-26.md\",\"docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md\",\"docs/helix-security/L1-planning/security-intent.md\",\"docs/helix-security/L2-requirements/security-requirements.md\",\"docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json\"],\"correction_reason\":\"PR #2160 R2160-01/02：014をSECURITY単体の昇格方針・判定へ、027を機構横断の構成体として区別。028をSECURITY固有の更新受入・integrityへ限定。\"}",
+      "declared_line_sha256": "b704379b0d5dac12e7fa2cbb4a4c26d18fd52e3513185e07516cc0c982005cb3",
+      "declared_digest_provenance": "既存inventory記録値。hash algorithm/input normalizationはこの調査では同定せず、raw-LF物理行SHAとは別フィールドとして保持。"
+    },
+    "receipt": {
+      "path": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json",
+      "full_sha256": "1d6d270a08943d07ebd4f69c6ff481e20002ec3ab08f2082996f9c2861ec7109",
+      "declared_sha256": "1d6d270a08943d07ebd4f69c6ff481e20002ec3ab08f2082996f9c2861ec7109",
+      "old_atom_count": 0,
+      "old_atom_scope": "現行L1/PO原文由来の候補。旧sourceは意味比較資料として参照し、この候補へ旧atomを移管・採択しない。入力旧atom集合は空集合であり全旧要求被覆の主張ではない。原文の行き先はparent_source_conditionsと本文対応表に保持する。",
+      "status": "verified"
+    },
+    "old_source_atoms": [],
+    "existing_old_source_pins": [],
+    "technical_candidate_basis": {
+      "fixed_parent_summary": "3 independent persistence promotion boundaries with SECURITY receipt and sink transfer or deny/hold; no all-sinks LABO/OS requirement.",
+      "reuse_rederive_replace": "receipt old atom=0 and no exact legacy mapping. Read old SECURITY capability broker / promotion and generic L3 source as comparison only; derive 3 sink-scoped paths from adopted PO/L2. Do not assign sink processing to SECURITY.",
+      "candidate_evidence_method": "No candidate quantitative threshold. Fixture options must keep Context→Memory, Episode→Training Dataset, Product Knowledge→BRAIN as separate traces, each with source/provenance/classification and receipt/result.",
+      "old_source_and_consumer_limit": "No direct old-source mapping; broad promotion hit adjacent only and does not establish these three boundaries."
+    },
+    "old_search_and_limitations": {
+      "scope": "全archive/legacy-generation-2026-09-14/root/docs text via exact case-insensitive git grep",
+      "terms": [
+        "永続化promotion",
+        "promotion boundary",
+        "Context→Memory",
+        "永続化"
+      ],
+      "result": "exact first/third terms 0; broad promotion boundary has one deep-research note but does not establish this three-sink requirement; no direct old source mapping.",
+      "exact_identity_register_search": "no direct old asset keyed to current parent identity",
+      "query_scope": "exact identity search in legacy-asset-disposition.jsonl on origin/main; archive legacy source files are not included by this register query",
+      "finding_ja": "指定語句で3永続化境界を定義する直接旧sourceは発見できていない。広いpromotion記述は類例/調査資料で直接lineageとはしない。"
+    },
+    "legacy_asset_ledger_pins": [],
+    "comparison_only_sources": [
+      {
+        "role": "旧L3 security比較source",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "line_start": 97,
+        "line_end": 110,
+        "full_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "raw_lf_span_sha256": "68979f4dba0c83d4a77ba010340480b16389e11a1ebca67a34e5a64af939558c",
+        "literal": "### 1.4 data classification と sink authority\n\n送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。\n\n| data classification | 既定扱い |\n|---|---|\n| `public` | 登録済みsinkへ送信候補 |\n| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、",
+        "relation_note": "classificationとsink authorityを分ける隣接安全規範。Context/Memory, Episode/Training, Product Knowledge/BRAINの3接続の直接定義ではない。"
+      }
+    ],
+    "fixed_l2_status_markers": [
+      "1.0"
+    ]
+  },
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "bytes": 2356,
+      "sha256": "79196be399334e99f562894373394789c8a91ce5a325b4889adb2d24bf2bfbc8",
+      "prefix_sha256": "c29747d5ec7e9091ff9de01fd043f070b1e577097722edafa2a062e6b5627e2f"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "bytes": 141125,
+      "sha256": "212ab22d2807084f8480accc7c16a779c7b87cdd971274483a5c1112111418bc",
+      "prefix_sha256": "1828e9036503ed20fb96300bb41749f2ba8efba766179310fe2bf663ec6e7708"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "bytes": 13172,
+      "sha256": "e49aea6e715a90beaf59e33e07886745766529834b3824c8369943a235ceec17",
+      "prefix_sha256": "ed908b376d18f099bd0f2e0b74e3f5573f9c3fc1eaa350ec1abb0e2e30757453"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "bytes": 2999,
+      "sha256": "a2e6e2a52f90f2922e7ce34174c33cf30ddc64c6eea24f8834f7d1ea0af03f6d",
+      "prefix_sha256": "d1c856e5d0a2d2cd2060ce63340cf63dbe424b81ad7ebf56d6e3cc498df99a83"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "bytes": 129283,
+      "sha256": "ef6210bd70f34c4479c849b423e3c1e48c61da4074252eafa0cbbb12e3b5e558",
+      "prefix_sha256": "0b0ecf927455f0cacdba48e7cd4191e3a24e884a54450ac4007dd09959545a17"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "bytes": 17738,
+      "sha256": "2180fd4b95116e30d7a415922937beef1c9084b13f10eb55b41741725e51b13f",
+      "prefix_sha256": "c738be2a93a77ba96ec9bc480122eb7ac51f469372eb365bb484b7c243ad764c"
+    }
+  ],
+  "case_rows": [
+    {
+      "line": 864,
+      "literal": "| `SECURITY-CASE-027-001` | `SECURITY-AC-027-01` | 合成正常fixture route=P1, source=P1-src@r1, promotion=P1-req@r1, provenance=P1-origin@r1, classification=public, decision=P1-sec@r1, sink=Memory@r1, handoff=P1-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "cd99af3fd80c9fc72e03e7b6953cd03eeb075e30b1e8f3e97050d131d4b9e3d4"
+    },
+    {
+      "line": 865,
+      "literal": "| `SECURITY-CASE-027-002` | `SECURITY-AC-027-01` | 同じP1入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "a06456d445134dbd92548900bd8f7a380ab78b70484db7ce05b17da466655871"
+    },
+    {
+      "line": 866,
+      "literal": "| `SECURITY-CASE-027-003` | `SECURITY-AC-027-01` | 同じP1入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "134a823f15ab6135a7fc64dc26b57f7921218ba7a372bdcb069f05d8a60bced5"
+    },
+    {
+      "line": 867,
+      "literal": "| `SECURITY-CASE-027-004` | `SECURITY-AC-027-01` | P1正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "cc0e07895decdab58f6250b01455980cd2ea23c5b17e0663bafeff33ba2025fb"
+    },
+    {
+      "line": 868,
+      "literal": "| `SECURITY-CASE-027-005` | `SECURITY-AC-027-01` | P1正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "2304bd17637d483668b2e89a23da9aeaf73bdc0fd7e9415604529d27a69a159a"
+    },
+    {
+      "line": 869,
+      "literal": "| `SECURITY-CASE-027-006` | `SECURITY-AC-027-01` | P1正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "767f25c4cc57d51f1b231a79e40c3241f2810f83f899ed4fdf710fcdb50261c0"
+    },
+    {
+      "line": 870,
+      "literal": "| `SECURITY-CASE-027-007` | `SECURITY-AC-027-01` | P1正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "0a562ef30d93a2377440c5557b81c0c01737beb0afd6ffddc1647ba0c5d71f0f"
+    },
+    {
+      "line": 871,
+      "literal": "| `SECURITY-CASE-027-008` | `SECURITY-AC-027-01` | P1正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "b57a9c2b80f50f08ddfe0fc79b98e06d82f215bb64768216045b671ce65b6f26"
+    },
+    {
+      "line": 872,
+      "literal": "| `SECURITY-CASE-027-009` | `SECURITY-AC-027-01` | P1正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "90dba7f8454b866cf263b86bfb8e8beb92ce8c3e6b6f66cc491ffc339b895b9a"
+    },
+    {
+      "line": 873,
+      "literal": "| `SECURITY-CASE-027-010` | `SECURITY-AC-027-01` | P1正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "7496e604acb4fff97cf04533d83808236acd925df93b9ed53b172597f1760a17"
+    },
+    {
+      "line": 874,
+      "literal": "| `SECURITY-CASE-027-011` | `SECURITY-AC-027-01` | P1正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "f097fab00b68af1180f22b5c0abe5156a9ac3a06940ca28fb735504b0b43b5a7"
+    },
+    {
+      "line": 875,
+      "literal": "| `SECURITY-CASE-027-012` | `SECURITY-AC-027-01` | P1正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "d50c93fd036e9e0a0943e257f5417dcb85e1d8fa7e425be7adfa0aea5243ac23"
+    },
+    {
+      "line": 876,
+      "literal": "| `SECURITY-CASE-027-013` | `SECURITY-AC-027-01` | P1正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "2ebaf805bf0cbfff1c88a4947e2d36e63c807c94c04410dc14760e2844d3c325"
+    },
+    {
+      "line": 877,
+      "literal": "| `SECURITY-CASE-027-014` | `SECURITY-AC-027-01` | P1正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "3a23256a088a66c174819672e29cfa29de1aeba06fca7a622d2b1444d4a9caac"
+    },
+    {
+      "line": 878,
+      "literal": "| `SECURITY-CASE-027-015` | `SECURITY-AC-027-01` | P1正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "c7bf6bc9f9f0ff271d01c038d77c21d060c50aeba005bbc79103a525ec2af6ba"
+    },
+    {
+      "line": 879,
+      "literal": "| `SECURITY-CASE-027-016` | `SECURITY-AC-027-01` | P1正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "400c14f1453d0a24f919dad807825b5128b1b728ca26b588631c389a311594e0"
+    },
+    {
+      "line": 880,
+      "literal": "| `SECURITY-CASE-027-017` | `SECURITY-AC-027-01` | P1正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "76761b74036880460e14a6769e8104a2b2751482db98cc3b0ffabd3a19fe50b5"
+    },
+    {
+      "line": 881,
+      "literal": "| `SECURITY-CASE-027-018` | `SECURITY-AC-027-01` | P1正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "bdced4f8e40da1ffe5f58d2023689f6bb944bb5cc8e40096ec311a639757c0a5"
+    },
+    {
+      "line": 882,
+      "literal": "| `SECURITY-CASE-027-019` | `SECURITY-AC-027-01` | P1正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "ca647eeb3b43221315e0aed4992b7b5b1bdcb523ab49cd2e65656ffa755624be"
+    },
+    {
+      "line": 883,
+      "literal": "| `SECURITY-CASE-027-020` | `SECURITY-AC-027-01` | P1正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "57d00e1b71aa3921278b210c2902b4e6b8c3f6e6b3a2232fe94c9369776f03a3"
+    },
+    {
+      "line": 884,
+      "literal": "| `SECURITY-CASE-027-021` | `SECURITY-AC-027-01` | P1の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "a1f3dfe7a96225908f261e86ec29e97ffd65f4af04eadc6bbeda1f2b028e1d45"
+    },
+    {
+      "line": 885,
+      "literal": "| `SECURITY-CASE-027-022` | `SECURITY-AC-027-01` | P1の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "2852301166d7115129eef3a15e27c3f6e62180b15e2552c44c3ccea05afa3bb5"
+    },
+    {
+      "line": 886,
+      "literal": "| `SECURITY-CASE-027-023` | `SECURITY-AC-027-01` | P1正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "38fcce8d28217ed522957dd3f29c03895a200940d9bb183776f0edcfdf70c2ec"
+    },
+    {
+      "line": 887,
+      "literal": "| `SECURITY-CASE-027-024` | `SECURITY-AC-027-01` | P1正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "f251a87e6e0bac5dd9bd8bd2ce49299760c94b682b3e9300c66c5abb03cd2d79"
+    },
+    {
+      "line": 888,
+      "literal": "| `SECURITY-CASE-027-025` | `SECURITY-AC-027-01` | 初見の宣言済みP1 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |\n",
+      "raw_lf_sha256": "70b80e307484b8a9985c2be8eb18d28269dfb9d145825fd26a93a0dceb7a43bb"
+    },
+    {
+      "line": 889,
+      "literal": "| `SECURITY-CASE-027-026` | `SECURITY-AC-027-02` | 合成正常fixture route=P2, source=P2-src@r1, promotion=P2-req@r1, provenance=P2-origin@r1, classification=public, decision=P2-sec@r1, sink=Training Dataset@r1, handoff=P2-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "dc2af3ffd83f5fd4101e44f7dcf1bc10c0d46eee68c2bbaaf6edd30119ec8239"
+    },
+    {
+      "line": 890,
+      "literal": "| `SECURITY-CASE-027-027` | `SECURITY-AC-027-02` | 同じP2入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "86a8df0ef037e9d64b92f0fa6e6d3676daea9e1ea314959088c7d212013777c1"
+    },
+    {
+      "line": 891,
+      "literal": "| `SECURITY-CASE-027-028` | `SECURITY-AC-027-02` | 同じP2入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "afa9472978c73fe95b0f1bae5e083a98d1b79a94ccf1849b6456f65fd9fce403"
+    },
+    {
+      "line": 892,
+      "literal": "| `SECURITY-CASE-027-029` | `SECURITY-AC-027-02` | P2正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "f51beadb2eefcb2418f37a767d6b15792cf6cf2de48bf8e4744feccc3f26ed02"
+    },
+    {
+      "line": 893,
+      "literal": "| `SECURITY-CASE-027-030` | `SECURITY-AC-027-02` | P2正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "f45543a490aec26358580f2dc93f2864c6dd938aad1c5b12724fc468f9ad43c9"
+    },
+    {
+      "line": 894,
+      "literal": "| `SECURITY-CASE-027-031` | `SECURITY-AC-027-02` | P2正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "ee08833eb04f45d5d3f9a18e68f58e04ec5b5d3a159bf01d7234f5005dfa2f4b"
+    },
+    {
+      "line": 895,
+      "literal": "| `SECURITY-CASE-027-032` | `SECURITY-AC-027-02` | P2正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "d49618954ec11592cc81ad1ce4b413b0a86cc9ad7e4c00ef8d66f41ed83b62a6"
+    },
+    {
+      "line": 896,
+      "literal": "| `SECURITY-CASE-027-033` | `SECURITY-AC-027-02` | P2正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "1729ea113a3774ab0386201c10bba52f966538e021d8dd3e9124cbf101490494"
+    },
+    {
+      "line": 897,
+      "literal": "| `SECURITY-CASE-027-034` | `SECURITY-AC-027-02` | P2正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "feaad447cf0a5891f2c80e50c2c40a1c4aabaf719eb85999709f845ca14f1973"
+    },
+    {
+      "line": 898,
+      "literal": "| `SECURITY-CASE-027-035` | `SECURITY-AC-027-02` | P2正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "b72270478cc9a4562a098d29dc1fcee9032aed27126198e18e583c877e951b72"
+    },
+    {
+      "line": 899,
+      "literal": "| `SECURITY-CASE-027-036` | `SECURITY-AC-027-02` | P2正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "ebf482f7f79d3d86f403ec000f5f562210603ba736e01d96397c780f8f4627cc"
+    },
+    {
+      "line": 900,
+      "literal": "| `SECURITY-CASE-027-037` | `SECURITY-AC-027-02` | P2正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "9d3b74e3b2bfa24361445d8e4ab62259cb4d853674507f69dca13f4aa48779fd"
+    },
+    {
+      "line": 901,
+      "literal": "| `SECURITY-CASE-027-038` | `SECURITY-AC-027-02` | P2正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "5d5d1dc210d5c3d9c1bfa7e57ad4a9effbb72ea5660ec58dee8e37d8cd25722c"
+    },
+    {
+      "line": 902,
+      "literal": "| `SECURITY-CASE-027-039` | `SECURITY-AC-027-02` | P2正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "da3e6513b3f46927c5797983529dddebc213dff875e68515e62e86c136df8c68"
+    },
+    {
+      "line": 903,
+      "literal": "| `SECURITY-CASE-027-040` | `SECURITY-AC-027-02` | P2正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "ae9cc1e61492df76884e61d08fb97851d804699248ba3a2ce0a7d717ba61daab"
+    },
+    {
+      "line": 904,
+      "literal": "| `SECURITY-CASE-027-041` | `SECURITY-AC-027-02` | P2正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "11749e4ad30fdc1dd5908433aac3bc27929784dfa538112e503bb3bb9c7327e3"
+    },
+    {
+      "line": 905,
+      "literal": "| `SECURITY-CASE-027-042` | `SECURITY-AC-027-02` | P2正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "820422d3805de499f8e5399a62caab2014b04586edfd2443c49f34cf960cca3b"
+    },
+    {
+      "line": 906,
+      "literal": "| `SECURITY-CASE-027-043` | `SECURITY-AC-027-02` | P2正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "f3e653df82d37b1450d257b5fbe8964196e78a5850273685b736d8324e124ecc"
+    },
+    {
+      "line": 907,
+      "literal": "| `SECURITY-CASE-027-044` | `SECURITY-AC-027-02` | P2正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "10363a47eac1d2f175329907108a2e70e87bd3ac5c1211a83f03d3830588e75b"
+    },
+    {
+      "line": 908,
+      "literal": "| `SECURITY-CASE-027-045` | `SECURITY-AC-027-02` | P2正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "df1d37e3f2f0e46bc36da3606370134fc28f75988b66a6270da39763a4d6d088"
+    },
+    {
+      "line": 909,
+      "literal": "| `SECURITY-CASE-027-046` | `SECURITY-AC-027-02` | P2の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "f6342675438a3aec29e4257d1b31435cf744e0041030ce629d4a3884e1004c0a"
+    },
+    {
+      "line": 910,
+      "literal": "| `SECURITY-CASE-027-047` | `SECURITY-AC-027-02` | P2の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "f5dca6e17e955c5aba4b39460f3f300543e2abf29d7f895731a147e945497466"
+    },
+    {
+      "line": 911,
+      "literal": "| `SECURITY-CASE-027-048` | `SECURITY-AC-027-02` | P2正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "aa6d79b1f351efb1a16c30c54831591533d64aa3cb832be3627451f98fc9b169"
+    },
+    {
+      "line": 912,
+      "literal": "| `SECURITY-CASE-027-049` | `SECURITY-AC-027-02` | P2正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "9f5641ac35d26825e7d25d679ae785ffc5633ed56d41b7a17a11be88292db77e"
+    },
+    {
+      "line": 913,
+      "literal": "| `SECURITY-CASE-027-050` | `SECURITY-AC-027-02` | 初見の宣言済みP2 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |\n",
+      "raw_lf_sha256": "b051dcfddaef579e6373af1f45afe906e2ae3fb21ffd92a559724ee1f5780e6d"
+    },
+    {
+      "line": 914,
+      "literal": "| `SECURITY-CASE-027-051` | `SECURITY-AC-027-03` | 合成正常fixture route=P3, source=P3-src@r1, promotion=P3-req@r1, provenance=P3-origin@r1, classification=public, decision=P3-sec@r1, sink=BRAIN@r1, handoff=P3-handoff@r1。SECURITY判定allowと同scopeの対象sink受渡しsuccess receiptを与え、他2経路の入力・証拠は独立して保持。 | 当該経路の境界判定と受渡し結果を別identityでtraceする。allowだけを保存・評価・登録の成功へ変換しない。 | SECURITY境界判定／対象sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "83b1a2a48c55ef964ad549c250f94af81a73a62970d7cdfe0072185ec81f7fe6"
+    },
+    {
+      "line": 915,
+      "literal": "| `SECURITY-CASE-027-052` | `SECURITY-AC-027-03` | 同じP3入力でSECURITY判定をdeny、sink handoffをnot_performedとする有効な通常拒否fixture。 | denyと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "23ab866b5a6c12da74c321e3d6f3ac508a2a9851b8f9d7c1015c65f528d4dd69"
+    },
+    {
+      "line": 916,
+      "literal": "| `SECURITY-CASE-027-053` | `SECURITY-AC-027-03` | 同じP3入力でSECURITY判定をhold、sink handoffをnot_performedとする有効な通常拒否fixture。 | holdと未実施handoffを保持する。境界制約の成立は確認できるが保存成功とは表示しない。 | SECURITY L1-014／当該sink owner |\n",
+      "raw_lf_sha256": "d546dc22bc02c1613acb2285e421a58c36fabd1300602f93fb30a6f099777b41"
+    },
+    {
+      "line": 917,
+      "literal": "| `SECURITY-CASE-027-054` | `SECURITY-AC-027-03` | P3正常fixtureのsource identityだけ欠落。他値と他経路は維持。 | source identityのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "1598bc0715ee10b07c5947fc6b5a901670912162bdb788189e7f9d9e4357aa39"
+    },
+    {
+      "line": 918,
+      "literal": "| `SECURITY-CASE-027-055` | `SECURITY-AC-027-03` | P3正常fixtureのsource revisionだけ欠落。他値と他経路は維持。 | source revisionのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "0a520e5c3d6b46fa155d0700e8c8eba76b9c3589ded5ece43bebfc7f5eef7b10"
+    },
+    {
+      "line": 919,
+      "literal": "| `SECURITY-CASE-027-056` | `SECURITY-AC-027-03` | P3正常fixtureのprovenanceだけ欠落。他値と他経路は維持。 | provenanceのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "633f4c5533182dce6c5c6f06f271687bbb95529955737fa57c23faa16a7f98d1"
+    },
+    {
+      "line": 920,
+      "literal": "| `SECURITY-CASE-027-057` | `SECURITY-AC-027-03` | P3正常fixtureのclassificationだけ欠落。他値と他経路は維持。 | classificationのmissingを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "7003f86dd0de1b0da68c5d9d44ef47431ee2783d3004cea2c35531747600c97d"
+    },
+    {
+      "line": 921,
+      "literal": "| `SECURITY-CASE-027-058` | `SECURITY-AC-027-03` | P3正常fixtureのpromotion requestだけ欠落。他値と他経路は維持。 | promotion requestのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "23f9179c3ceb10646f4c65e0465c9f712afbc00456aa238ff2064ecd40c6bc34"
+    },
+    {
+      "line": 922,
+      "literal": "| `SECURITY-CASE-027-059` | `SECURITY-AC-027-03` | P3正常fixtureのSECURITY判定receiptだけ欠落。他値と他経路は維持。 | SECURITY判定receiptのmissingを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "93e203fd1daf78a7002d81efdf916422f3bc06e4fc6142aba8e560da987599e0"
+    },
+    {
+      "line": 923,
+      "literal": "| `SECURITY-CASE-027-060` | `SECURITY-AC-027-03` | P3正常fixtureのsink受渡し結果だけ欠落。他値と他経路は維持。 | sink受渡し結果のmissingを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "2bc9e804a278dcb3f293cfb56221cef3fe1397d5dcc9c6bceb1b08636c4273a7"
+    },
+    {
+      "line": 924,
+      "literal": "| `SECURITY-CASE-027-061` | `SECURITY-AC-027-03` | P3正常fixtureのsource identityだけ明示unknown。他値と他経路は維持。 | source identityのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "fa8e7e426ad2a28d5fe00012466b710a9906f4fae1bb54865d91a0d8e98a1836"
+    },
+    {
+      "line": 925,
+      "literal": "| `SECURITY-CASE-027-062` | `SECURITY-AC-027-03` | P3正常fixtureのprovenanceだけ明示unknown。他値と他経路は維持。 | provenanceのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "f4b94739754bf14579a2c7074037e1d023f1e65ecceb9a5256bcc759a60b7972"
+    },
+    {
+      "line": 926,
+      "literal": "| `SECURITY-CASE-027-063` | `SECURITY-AC-027-03` | P3正常fixtureのclassificationだけ明示unknown。他値と他経路は維持。 | classificationのunknownを特定し当該経路を未完で保持する。永続化前にhold/denyし、正常な他fieldと他経路の証拠を維持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "6f4626b601f6805b30661b28736c06250f82ea1ed4d6795d346ed5af3f54b53f"
+    },
+    {
+      "line": 927,
+      "literal": "| `SECURITY-CASE-027-064` | `SECURITY-AC-027-03` | P3正常fixtureのSECURITY判定だけ明示unknown。他値と他経路は維持。 | SECURITY判定のunknownを特定し当該経路を未完で保持する。有効promotionの前提を満たしたと表示せず、他fieldの実在receiptを保持する。 | 対象／SECURITY判定の意味不足はSECURITY L1-014 |\n",
+      "raw_lf_sha256": "5adc20cb707fc2401c02824b140feb3edabe07ad9c43eedffe6ef0dc4fba4b21"
+    },
+    {
+      "line": 928,
+      "literal": "| `SECURITY-CASE-027-065` | `SECURITY-AC-027-03` | P3正常fixtureのsink受渡し結果だけ明示unknown。他値と他経路は維持。 | sink受渡し結果のunknownを特定し当該経路を未完で保持する。SECURITY判定の既存状態を保ち、sink受領・保存成功を推測しない。 | 当該sink ownerの接続契約 |\n",
+      "raw_lf_sha256": "1687450ad3a3da603f89e7f6d8c9c17d619a0b2e6980dd568cd3cd045999ea3f"
+    },
+    {
+      "line": 929,
+      "literal": "| `SECURITY-CASE-027-066` | `SECURITY-AC-027-03` | P3正常fixtureで判定のsource identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "0c76724c2c93c98103807e6dab321264fe073c96b056ef4022b753449d9be795"
+    },
+    {
+      "line": 930,
+      "literal": "| `SECURITY-CASE-027-067` | `SECURITY-AC-027-03` | P3正常fixtureで判定のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "ad12442b2950f2a1d87cf913a1e6b41b0454fc29a87321c8a2871c14e9511d53"
+    },
+    {
+      "line": 931,
+      "literal": "| `SECURITY-CASE-027-068` | `SECURITY-AC-027-03` | P3正常fixtureで判定の対象sinkだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "a9822c02886c0effa68187a1ab6f676771a46eaa826df7baa907e22306c967c6"
+    },
+    {
+      "line": 932,
+      "literal": "| `SECURITY-CASE-027-069` | `SECURITY-AC-027-03` | P3正常fixtureで受渡し結果のpromotion identityだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "5b60dca89c7857a7ee8f43b21fb1eaa816a3c984b84080a0f9ddf4737b7147bc"
+    },
+    {
+      "line": 933,
+      "literal": "| `SECURITY-CASE-027-070` | `SECURITY-AC-027-03` | P3正常fixtureで受渡し結果のsource revisionだけ別の既知identity/revisionへ変える。 | tuple不一致を検出し当該経路の証拠へ流用しない。原receiptと他経路の有効証拠を保持する。 | SECURITY判定意味はL1-014、sink receipt不一致は当該sink接続契約 |\n",
+      "raw_lf_sha256": "e5f1e1c62dbcb4d127e21ac6fec11ee297ebca184645b5d0b70aaac983067fa9"
+    },
+    {
+      "line": 934,
+      "literal": "| `SECURITY-CASE-027-071` | `SECURITY-AC-027-03` | P3の有効deny receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | denyを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "a735bd71738dff18cbfef81f489a9c656267a073d568ae0a56c1a4a8eae394c8"
+    },
+    {
+      "line": 935,
+      "literal": "| `SECURITY-CASE-027-072` | `SECURITY-AC-027-03` | P3の有効hold receiptとnot_performed handoffを固定し、表示だけ保存successへ変える。 | holdを成功保存へ昇格させる表示を拒否する。元状態と未完義務を保持。 | SECURITY L1-014／当該sink接続契約 |\n",
+      "raw_lf_sha256": "61e8e7dd2d9dde8ba298ebda45de6c2928d0aa32eef5d15d349283655d97179a"
+    },
+    {
+      "line": 936,
+      "literal": "| `SECURITY-CASE-027-073` | `SECURITY-AC-027-03` | P3正常fixtureのallow receiptだけからsink保存成功を生成し、実handoff receiptを与えない。 | SECURITY判定とsink処理を分離し、sink側の結果を未確認のまま保持する。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "eb148c780e593b1f149ac152e65a041d468d3924fe31703b17fc8bbdc704112e"
+    },
+    {
+      "line": 937,
+      "literal": "| `SECURITY-CASE-027-074` | `SECURITY-AC-027-03` | P3正常fixtureのsource/classification判定を保ち、sink固有の保存・評価・登録方法だけSECURITYが決定する。 | sink固有手順をSECURITYの判断結果へ畳み込まず、当該owner契約へ戻す。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "172223df6ab55a89739cda3d07da35a53d2ba7e1777f183750025ae2c6803e8e"
+    },
+    {
+      "line": 938,
+      "literal": "| `SECURITY-CASE-027-075` | `SECURITY-AC-027-03` | 初見の宣言済みP3 source@r2を同経路の有効なsource/provenance/classification、判定、sink receiptへ全て一致させる。 | 未見という理由だけで新たなapprovalや他経路の工程を要求せず、同じ宣言契約でtraceを確認する。 | SECURITY境界判定／当該sink接続契約 |\n",
+      "raw_lf_sha256": "2f11b8b524d5475d355e15bffaa9ebe2d926660d3d1988481bf790e28b670a3e"
+    },
+    {
+      "line": 939,
+      "literal": "| `SECURITY-CASE-027-076` | `SECURITY-AC-027-04` | P1だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |\n",
+      "raw_lf_sha256": "fbbb02f6fa280966c7a8dba4c884722c7bf5cd8bfae3869df7c60166305547f5"
+    },
+    {
+      "line": 940,
+      "literal": "| `SECURITY-CASE-027-077` | `SECURITY-AC-027-04` | P1だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P1のsink契約／L1-014 |\n",
+      "raw_lf_sha256": "3222d431c752b067e75f8a81ed21455b584316885452dbe9cc04e21a4f5125e5"
+    },
+    {
+      "line": 941,
+      "literal": "| `SECURITY-CASE-027-078` | `SECURITY-AC-027-04` | P2だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |\n",
+      "raw_lf_sha256": "fe82552c2de00f0407bcdbc0d3b55e06420e8b6bd3a6351dc145d8e5d1d67846"
+    },
+    {
+      "line": 942,
+      "literal": "| `SECURITY-CASE-027-079` | `SECURITY-AC-027-04` | P2だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P2のsink契約／L1-014 |\n",
+      "raw_lf_sha256": "69b70ac10e6d77e9871839380be07a3eb75759b4e9d6e0d7515dfd24e2f216fb"
+    },
+    {
+      "line": 943,
+      "literal": "| `SECURITY-CASE-027-080` | `SECURITY-AC-027-04` | P3だけの有効な端から端の証拠を与え、他2経路を未観測とする。 | 一経路から構成体成功を生成しない。他2経路の未観測を保持。 | 未確認経路の既存sink契約、対象意味はL1-014 |\n",
+      "raw_lf_sha256": "517fee3a4bfc11375ff0fa2717540546ed815c0a67dc8bc82301152ebaa1bfd7"
+    },
+    {
+      "line": 944,
+      "literal": "| `SECURITY-CASE-027-081` | `SECURITY-AC-027-04` | P3だけ結果unknown、他2経路は有効証拠で成立。 | 構成体の成立を主張せず当該経路の未完を保持。他2経路の有効状態を失効させない。 | P3のsink契約／L1-014 |\n",
+      "raw_lf_sha256": "cdbb327f26b570d0fd41065675847bb5e1893b05a2575eb1cba67f0cd937fdcf"
+    },
+    {
+      "line": 945,
+      "literal": "| `SECURITY-CASE-027-082` | `SECURITY-AC-027-04` | L2-014単体成功だけを与え、3経路のreceiptは未提示。 | 単体成功から構成体成功を生成しない。 | SECURITY L1-014 |\n",
+      "raw_lf_sha256": "36eebc15668f427fc66afc3b7e2412ef9f9d6f3fc0a4c71ef4e308ff1730bc35"
+    },
+    {
+      "line": 946,
+      "literal": "| `SECURITY-CASE-027-083` | `SECURITY-AC-027-04` | P1/P2/P3のsource tupleが別なのに、同じ一つの判定・handoff receiptを全経路へ流用。 | 経路間の証拠流用を拒否し各経路の対象source/sinkへ結ぶ。 | SECURITY L1-014／各sink接続契約 |\n",
+      "raw_lf_sha256": "350be2ea9706d7f87bb51fc99fed05511ffc03036336e5770c81adbb3d335729"
+    },
+    {
+      "line": 947,
+      "literal": "| `SECURITY-CASE-027-084` | `SECURITY-AC-027-04` | 3経路とも各自の有効なallow/successまたはdeny/hold/not_performedを持つ正常構成体fixture。 | 3経路の境界条件を別々に確認する。拒否・保留経路を保存successへ変えず、構成体境界の確認と全sinkへの保存成功を区別。 | 各経路のSECURITY境界／sink接続契約 |\n",
+      "raw_lf_sha256": "39adb275926357da8483562212a0ac9ee3ac7b17de2d5debda57c30e0e834771"
+    },
+    {
+      "line": 948,
+      "literal": "| `SECURITY-CASE-027-085` | `SECURITY-AC-027-05` | 3経路正常fixtureで各sink契約が要求していないLABO評価を全経路必須条件へ追加。 | 一律追加を拒否。LABO評価が当該sink契約で選択された場合の既存工程だけは保持。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "cd8a9b9aa9ab298fb1bda3fd8d36c8bedcf41a3e50b2db978bbdda6eb30f3367"
+    },
+    {
+      "line": 949,
+      "literal": "| `SECURITY-CASE-027-086` | `SECURITY-AC-027-05` | 3経路正常fixtureで各sink契約が要求していないOS登録を全経路必須条件へ追加。 | 一律追加を拒否。OS登録が当該sink契約で選択された場合の既存工程だけは保持。 | 当該sink接続契約 |\n",
+      "raw_lf_sha256": "4f6c61a13415cd059a0ccf9e168a571e3b6ac25aa0d2eaa994e872e9183c36c6"
+    },
+    {
+      "line": 950,
+      "literal": "| `SECURITY-CASE-027-087` | `SECURITY-AC-027-05` | 選択したsink契約が固有の評価工程を要求する正常fixtureでその工程receiptを有効に与える。他sink契約に同工程はない。 | 当該sink固有工程だけを照合し、他経路へ常時依存として広げない。 | 選択したsink owner |\n",
+      "raw_lf_sha256": "b10a90c38861d620374869f155ee3beb2ebc241ac5e5db46ef4588c402e60728"
+    }
+  ],
+  "case_count": 87,
+  "AC_count": 5,
+  "item_dispositions": [
+    {
+      "item": "L3 FR+AC /3subdoc対L10",
+      "disposition": "再導出",
+      "basis": "旧L3工程148–168",
+      "change": "旧gate/番号/runtimeを移さない"
+    },
+    {
+      "item": "classification/sink区分とunknown拒否oracle",
+      "disposition": "再導出",
+      "basis": "旧CAP97–113/paired23",
+      "change": "隣接比較のみ、旧sink enum/汎用external禁止規則をこの親へ移さない"
+    },
+    {
+      "item": "三永続化経路",
+      "disposition": "現行採択親から導出",
+      "basis": "PO§15/L1-014/L2-027/L11-027",
+      "change": "直接旧source対応なし、旧atom0。新しい未承認上流を作らない"
+    }
+  ],
+  "limits": [
+    "CASEは未実行、Root起草で独立review未実施",
+    "既承認prefixは保持、旧source/test/runtimeは読取のみ",
+    "87行は個別fixture定義で実測ではない",
+    "legacy source検索結果は先行inventoryの範囲と検索語を記録し直接lineageとしない"
+  ]
+}
