@@ -1,0 +1,7 @@
+# HARNESS Stage4 review04 root補正
+
+正式5995131493のMinor12件を本文 `70b491cd2fc2d0f8204974ff1246749e121ddf9f` へ反映。027current登録004、CORE/BRAIN connector戻し先、027過剰claim単一主owner、026伏せた未見正常、028通信移管の逆方向CASE、029固定戻し先を補正。212CASEの対NFR範囲を追従した。旧監査不変。
+
+旧review02 MD34/41のregister403は別親025で正しく901の026-003。旧review01-followup-correction MD23のM3は584→583、MD25のM5は584→585。固定029587–600と共通旧対応601を別pinとしG18を除く。027-004はregister922で採択003と同semantic digest。
+
+6mainprefix完全一致、source40 full/raw非空再照合、212 CASE trace固定。旧4source引用範囲と対象CASEをroot実読。独立reviewの未確認範囲は別であり未確認0/承認は生成しない。
