@@ -1,0 +1,65 @@
+{
+  "record_kind": "delegated_decision_pins",
+  "authority_effect": "none",
+  "mechanism": "HELIX-SECURITY",
+  "stage": "Stage 2c",
+  "parent": "HELIXSECURITY-L2-031",
+  "version_target": "1.0",
+  "latest_main": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+  "review_base": "191ebab8c0b1871d7c8c84354976d7c0bc11c26e",
+  "reviewed_head": "3ff9e407effa4321c0058b02db66f25a0102f7c4",
+  "body_revision": "b0f8ac21a9137d67d68ac5b6dd09ac24707b2cf6",
+  "delegation": {
+    "path": "docs/governance/decisions/l3-l10-approval-delegation-po-decision-2026-10-05.md",
+    "source_revision": "dcc72fc16a8058ee7da1e0cd5c9907dc125c90f4",
+    "sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220"
+  },
+  "formal_comments": [
+    {
+      "role": "Opus no_findings",
+      "id": 5988637416,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2596#issuecomment-5988637416",
+      "body_utf8_bytes": 3870,
+      "body_sha256": "3ee51993d65c8286382db7a2bc1c0d066ee58e173c2d67226030485d55fe4675"
+    },
+    {
+      "role": "Fable独立確認・Opus一致",
+      "id": 5988703907,
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2596#issuecomment-5988703907",
+      "body_utf8_bytes": 11551,
+      "body_sha256": "5ff17b9953db5f3601211e6bf0beca9ad337113c68658978d2b63c9a5b19056d"
+    }
+  ],
+  "documents": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.md",
+      "sha256": "d136764cfef2b6eeca900c5046a1228764e414591cc58bd9b6e076fca62fc933"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.md",
+      "sha256": "f679d21ad0b707ac450473f6b21d1d1feb29d8c2982ed83c6d67133dc2ffe507"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.md",
+      "sha256": "683fd29048418b6e8d1e78ab27bc727dc026d7c5555c7a63662d27da7746fd18"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.md",
+      "sha256": "e6cfb2b5abff73254f0f8d860ffbd0590085fed224cf8f2fb61a02271d780ff9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.md",
+      "sha256": "8e4c5064a0ab84345c31d6abf6a764c84eb34ad2c4ee41405c074507e175b165"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.md",
+      "sha256": "bc2476eafc5922b451a7c967e9d05aa477e6649c58b77427cd24ed1d4de12427"
+    }
+  ],
+  "decision_record": {
+    "path": "docs/governance/decisions/helix-security-stage2c-l3-l10-po-decision-2026-10-05.md",
+    "revision": "06cbe97f36b82037cf0c1c281f98adbd8bd829f0",
+    "sha256": "c536acaf5af92759a106709e67b162076b1fd2a512bc51cb643e9ca47df70ec0"
+  },
+  "verification": "両正式commentは同じbody_revisionを確認。6本文はOpus/Fable確認時もbody_revisionとbyte一致。最新mainはStage1承認済み6 prefixと一致し、候補6本文はそのmain bytesをprefixとして保持。fixed L2/L11・PO decisionは633bf12からlatest_mainまで不変。Fable観察3件はOpusが返さないと判断した。"
+}
