@@ -350,7 +350,7 @@ Worker/model性能履歴だけを「未評価」にし、他入力は全て固�
 | `CASE-OS-027-02e1` | authorized actorを別actorにする | start拒否、authority sourceへ戻す |
 | `CASE-OS-027-02e2` | target/operationのうち一方を変更 | start拒否、authority sourceへ戻す |
 | `CASE-OS-027-02e3` | revision/environment/scope/expiryのうち一つをstale/mismatch | start拒否、authority sourceへ戻す |
-| `CASE-OS-027-02f` | 取り消せる小成果物を不可逆変更/release/tag/distribution/rollback不能へ変更 | start拒否、OS/authority ownerへ戻す。人確認で免除しない |
+| `CASE-OS-027-02f` | 取り消せる成果物を不可逆変更/release/tag/distribution/rollback不能へ変更 | start拒否、OS/authority ownerへ戻す。人確認で免除しない |
 
 ### CASE-OS-027-03a〜03ax — 独立した開始/適用scope negative（AC-OS-027-03）
 
