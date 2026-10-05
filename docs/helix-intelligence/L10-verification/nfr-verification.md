@@ -19,7 +19,7 @@
 ## CASE-NFR-INT-075-01 — 宣言identityと適格化の測定候補
 
 - 固定親: `HELIXINTELLIGENCE-L2-075`。L2 `618-625`、L11 `337-343`、PO採択行 `po-decision-2026-10-03-later35.md:33` のexact revision/digestを対照とする。実測やL3採択を示さない。
-- field matrix: CASE-INT-075-01の全declared fieldを母集団として、各fieldについてnormal binding fixture・missing・altered・wrong-revision reason fixtureの有無を列挙する。6 identity条件の各変異がそれぞれsingle-fieldになっていることを検査する。coverage候補は確認済みfield条件数/declared field数で示し、対象L2 revision、fixture数、未作成/未評価fieldを併記する。分母0は率なし。coverage結果を運用時passや資格へ変換しない。
+- field matrix: CASE-INT-075-01の全declared fieldを母集団として、各fieldについてnormal binding fixture・missing・altered・wrong-revision reason fixtureの有無を列挙する。6 identity条件の各変異がそれぞれsingle-fieldになっていることを検査する。coverage候補はnormal binding確認と独立negative理由確認の両方がmatrixにある宣言field数/全declared field数で示し、対象L2 revision、fixture数、未作成/未評価fieldを併記する。分母0は率なし。coverage結果を運用時passや資格へ変換しない。
 - qualification matrix: self-rating、duplicate/existing owner、independent reproduction、counterevidence、expiry、supersession、finding/remediation identityを別facetとし、各facetの正常・negative・unknown fixture数とexpected/observed未qualified・owner handoff結果を記録する。facet間を単一scoreで相殺せず、未確認をpositive件数に含めない。
 - authority population: current / compatibility / historicalを分け、歴史sourceをcurrent denominatorまたはcurrent passへ混ぜない。別producer/session/HEAD/stale/expired/superseded/duplicate fixtureはunseen/incomplete populationに分類し、理由と既存ownerを保持する。
 - 判定: 候補NFRはテストmatrixの可観測性・coverage比較に限定する。合否閾値、最低件数、SLA、schema enum、Qualification algorithm、UIL runtime、Issue/CI/merge実行を追加しない。採択済みL2-009/L1-009とのtraceが不足する場合はunknownとして既存ownerへ返す。

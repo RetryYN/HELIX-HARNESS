@@ -8,9 +8,9 @@
 
 ## Stage 2c — L2-068の業務要件範囲
 
-固定親 `HELIXINTELLIGENCE-L2-068` は独立した業務outcome ownerやbusiness metricを定めないため、この親のBRは起草せず、business acceptance CASEも追加しない。Stage 2cの機能受入・検証の正本は `FR-INT-068` の `AC-INT-068-01`〜`AC-INT-068-06` と、functional L10の `CASE-INT-068-01`〜`CASE-INT-068-10` とする。既存のBR-INT-010/066は各固定親の範囲に留まり、このscopeのowner・KPI・gateを生成しない。
+固定親 `HELIXINTELLIGENCE-L2-068` は独立した業務outcome ownerやbusiness metricを定めないため、この親のBRは起草せず、business acceptance CASEも追加しない。Stage 2cの機能受入・検証の正本は `FR-INT-068` の `AC-INT-068-01`〜`AC-INT-068-06` と、functional L10の `CASE-INT-068-01`〜`CASE-INT-068-10` とする。別のStage 2a草稿のBR-INT-010/066は本書に収載せず、各固定親の範囲に留まり、このscopeのowner・KPI・gateを生成しない。
 
 
 ## Stage 2c — L2-075の業務範囲
 
-固定親 `HELIXINTELLIGENCE-L2-075` はproposal identityとqualification handoffの機能条件を持つが、独立business outcome・business owner・business metricを追加で定めない。そのためBR-INT-075およびbusiness CASEは起草せず、受入/evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` とfunctional L10の `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。既存BR-INT-010/066とL2-068の業務範囲を075へ広げない。
+固定親 `HELIXINTELLIGENCE-L2-075` はproposal identityとqualification handoffの機能条件を持つが、独立business outcome・business owner・business metricを追加で定めない。そのためBR-INT-075およびbusiness CASEは起草せず、受入/evidenceは `FR-INT-075` の `AC-INT-075-01`〜`AC-INT-075-06` とfunctional L10の `CASE-INT-075-01`〜`CASE-INT-075-09` を参照する。別のStage 2a草稿のBR-INT-010/066とL2-068の業務範囲を075へ広げない。
