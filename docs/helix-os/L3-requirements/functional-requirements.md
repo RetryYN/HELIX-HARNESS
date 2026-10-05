@@ -138,7 +138,7 @@ HXT詳細は固定L2 `governance-requirements.md:578-609` と固定L11 `governan
 - **FR-OS-020**: ticket graph、採択済みrequirements/pair/oracle、HARNESS contract/duties、diff/base、runner/environment、適用されるconnection/evidenceから変更scopeに必要なprofileを組み、監視下の隔離環境で実行し、状態を回収/再開する。新世代CI未構築。旧CIは動かさずfallbackにも使わない。
 - Owner: HARNESSは検証義務/oracle、OSはprofile組成と運転、SECURITYはauthority、INFRAはrunner/resourceの実値。
 - **AC-OS-020-01 正常**: applicable HARNESS obligationsと対象diffに沿うprofileを選び、exact head/oracle/environment/run identityに束縛してsuccess/fail/denied/skipped/interrupted/staleを区別する。計画と実行は別state。
-- **AC-OS-020-02 negative**: HARNESS oracleの追加/削除、必要検証欠落、固定stage count、old CI greenまたはwrong-head green、CI結果によるmeaning review/acceptance/merge/release代替、監視・隔離境界なしでの実行は不合格。中断・失敗時は同じHEAD/義務/許可bindingのunfinished stateを保持し、oracle欠落・環境違いは未完としてHARNESS契約またはticketへ戻す（固定L2:700。L11:364のrunner→資源owner経路も保持）。失敗を検査弱化でgreen化しない。
+- **AC-OS-020-02 negative**: HARNESS oracleの追加/削除、必要検証欠落、固定stage count、old CI greenまたはwrong-head green、CI結果によるmeaning review/acceptance/merge/release代替、監視・隔離境界なしでの実行は不合格。中断・失敗時は同じHEAD/義務/許可bindingのunfinished stateを保持し、oracle欠落・環境違いは未完としてHARNESS契約またはticketへ戻す（固定L2:699。L11:364のrunner→資源owner経路も保持）。失敗を検査弱化でgreen化しない。
 - **AC-OS-020-03 unseen normal**: 異種義務を持つ未見diffでも適用対象をHARNESS contractから導く。存在しない義務や段数を固定しない。
 
 ### FR-OS-023 — 管理→推進→Worker→検収 handoff
