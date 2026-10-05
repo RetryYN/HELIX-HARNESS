@@ -74,5 +74,5 @@ paired_l10: ../L10-verification/business-verification.md
 | `HARNESS-L2-017` | 独立したbusiness requirementを導出しない | Release Portと適格条件は親に従い、販売・顧客優先順位・配備決定を追加しない。 |
 | `HARNESS-L2-018` | 独立したbusiness requirementを導出しない | 運用品質要求のownerは製品側にあり、共通SLOや費用閾値をHARNESSが決定しない。 |
 | `HARNESS-L2-019` | 独立したbusiness requirementを導出しない | 既存成果の逆方向変換は企画・事業判断を自動承認しない。 |
-| `HARNESS-L2-020` | 独立したbusiness requirementを導出しない | 隣接stage handoffの互換性確認から新しい価値基準や優先順位を作らない。 |
+| `HARNESS-L2-020` | 独立したbusiness requirementを導出しない | 隣接リリース単位handoffの互換性確認から新しい価値基準や優先順位を作らない。 |
 | `HARNESS-L2-024` | 独立したbusiness requirementを導出しない | 質問優先と形成資料の十分性は工程契約であり、事業価値・優先順位・人間の合意を推定しない。 |

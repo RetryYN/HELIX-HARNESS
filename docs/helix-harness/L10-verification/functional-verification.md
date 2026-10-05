@@ -386,14 +386,14 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-024-R001` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-01` | normal：同一target revision/scopeの既回答「対象actorはproject owner」と、未回答「data retentionの決定owner」「表示ラベル」を与える。影響・不確実性・下流変更cost・人間専決度の根拠とpackのtie-breakを付ける。 | actorを再質問せず、authority/data-useへの影響を持つretention ownerを表示ラベルより先に理由付き提示し、残る未決を同じscopeで保持する。 |
 | `CASE-HARNESS-L10-017-R002` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | external-normal：L2-022相当のVerified/Accepted evidenceと開始時Release Portを持つ外部成果。出所だけを未見外部へ替える。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
 | `CASE-HARNESS-L10-017-R003` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | no-os-normal：R001と同じ成果物・証拠・開始時Release Portを保持し、OSを未使用として利用者配備手段へ渡す。 | 同じcriteriaでRelease-eligible候補を照合する。出所やOS未使用だけで拒否しない。 |
-| `CASE-HARNESS-L10-017-R004` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 未回収の省略検査：正常fixtureの未回収の省略検査だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R005` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | Release Port必須条件：正常fixtureのRelease Port必須条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R006` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact revision：正常fixtureのartifact revisionだけを別revisionにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R007` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact identity：正常fixtureのartifact identityだけを別identityにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R008` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 対象環境：正常fixtureの対象環境だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R009` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 依存条件：正常fixtureの依存条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R010` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | security条件：正常fixtureのsecurity条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
-| `CASE-HARNESS-L10-017-R011` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 配備条件：正常fixtureの配備条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、該当条件ownerへ戻す。 |
+| `CASE-HARNESS-L10-017-R004` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 未回収の省略検査：正常fixtureの未回収の省略検査だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、未回収検査を扱うL2-022の検証・受入へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R005` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | Release Port必須条件：正常fixtureのRelease Port必須条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、開発開始時のRelease Port条件の提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R006` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact revision：正常fixtureのartifact revisionだけを別revisionにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象artifactとそのevidenceの提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R007` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | artifact identity：正常fixtureのartifact identityだけを別identityにし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象artifactとそのevidenceの提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R008` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 対象環境：正常fixtureの対象環境だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、対象環境条件の提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R009` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 依存条件：正常fixtureの依存条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、依存条件の提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R010` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | security条件：正常fixtureのsecurity条件だけを欠落させ、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、security条件の提供元へ不足・不一致を示す。 |
+| `CASE-HARNESS-L10-017-R011` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | 配備条件：正常fixtureの配備条件だけを不一致にし、他条件を維持する。 | 当該不足を具体的に示しeligibleとせず、配備条件の提供元へ不足・不一致を示す。 |
 | `CASE-HARNESS-L10-017-R012` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | reproduce：同じ宣言input/revisionで成果物を2回再構成する。 | 同じ成果物identityとdigestを得る。差を隠す正規化や別inputでの一致を再現性にしない。 |
 | `CASE-HARNESS-L10-017-R013` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback：直前適格版だけを未特定にする。 | rollback可能とせず該当ownerへ不足を返す。配備実行をこのfixtureで行わない。 |
 | `CASE-HARNESS-L10-017-R014` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | deployed-only：Deployed evidenceだけがありObserved evidenceは未着。 | Deployedを保持しObservedへ昇格しない。 |
@@ -564,3 +564,5 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-019-R021` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-5：第5リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |
 | `CASE-HARNESS-L10-019-R022` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-6：第6リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |
 | `CASE-HARNESS-L10-019-R023` | `FR-HARNESS-L3-019` / `AC-HARNESS-L3-019-01` | entry-unit-7：第7リリース単位から既知source/revision付き成果を持ち込む。COREのみを使い、当該単位の実行は要求しない。 | 持ち込んだsourceと対象単位を保持した要求・設計・検証対候補を返し、当該単位や先行単位の実行を追加条件にしない。 |
+| `CASE-HARNESS-L10-017-R018` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-01` | release-unit-alone：①〜⑤を使わず、L2-022のVerified/Accepted成果と開始時Release Portだけを⑥へ与える。 | release-unit候補を同じ条件で評価し、①〜⑤の利用を追加必須にしない。 |
+| `CASE-HARNESS-L10-017-R019` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-02` | release-port-added-late：他の正常条件を保持し、Release Portを開発開始時に持たず後付けで与える。 | 開始時条件の不足を示しeligibleにせず、Release Port条件の提供元へ戻す。 |
