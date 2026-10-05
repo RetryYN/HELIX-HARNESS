@@ -1,0 +1,538 @@
+{
+  "authority_effect": "none",
+  "body_revision": "db54277492e65267f61228622c6cecf530f9d517",
+  "base": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+  "worker_audit": {
+    "path": "docs/governance/audits/requirements-stage/brain-stage5-root-findings-followup-2026-10-06.json",
+    "sha256": "6d01b3834e10d8325b075c2df398921b306d54e66867f950f9f73ebc54cc896c",
+    "recomputed_document_and_legacy_span_pins": 14
+  },
+  "documents": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.md",
+      "sha256": "7b0e9982ce76e3f938e676a18e85f74b3f9a0fa75073a8b0de197559c4bb3305",
+      "bytes": 171090,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "65b3119ef9bf207574de320f980092f06e6236857fea50e827ba9bbd201f2914",
+      "prefix_bytes": 161225,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.md",
+      "sha256": "0ed85257b7995881bb569dd08ef21e9b15a40d2b52f1959a96fbf5f3a7fe558b",
+      "bytes": 12577,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "7add96df2bb8e062259caf05bf1885c994f3c2778455ef52b1a599309065f68a",
+      "prefix_bytes": 11272,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.md",
+      "sha256": "a18490f0222cbf0d9187566f537c97eb39b419de15e20f9d7bc492727ca19489",
+      "bytes": 38319,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "b6262e71e2344e91fead3478dabf63ac7b953df995a45c3d8f4f0f24ee5f4694",
+      "prefix_bytes": 37184,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.md",
+      "sha256": "34794dc53ac7566da244fdb04a804ee522b8b5453d1a6ff5892f5364dd04c641",
+      "bytes": 216277,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "bc902e6c9931b1d1ee75b0481515b09b8ca5737ff0ca8ce427fa6922deaae7fe",
+      "prefix_bytes": 192861,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.md",
+      "sha256": "b25d920f1dc783d7952b887c5986f8238de4bcd2581e26bef8cfda30f496d808",
+      "bytes": 10498,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "27fb59f0f47a5aaa47c2e42dc9b73ed740b2f65c4ff51d2e2848cb5349006762",
+      "prefix_bytes": 9808,
+      "prefix_exact": true
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.md",
+      "sha256": "3ad4fe300b90d20c0e2e09080298b7945cd2e7f0501264a975fb83a1a46b3f4d",
+      "bytes": 28562,
+      "prefix_revision": "1d7f57491b1e8b4337f1933aec2c1649df5f2ea2",
+      "prefix_sha256": "ddbe41218e47bbe52a626cb2c18377bddb47d6287956c47608938b6ceb728ec5",
+      "prefix_bytes": 27766,
+      "prefix_exact": true
+    }
+  ],
+  "corrections": [
+    "024 six-document range C35→C39",
+    "025 AC01/C46, AC02/C35-36, AC03/C37-45, AC04/C47-49 sync",
+    "024C23/C31 use normal identity baseline, mutate revision only"
+  ],
+  "case_definitions": 88,
+  "individual_fixture_definitions": 84,
+  "index_definitions": 4,
+  "case_rows": [
+    {
+      "line": 828,
+      "sha256": "a3e9ae816829e175d505573220beb1d5515a20f06b8c434475aea53f618cc932",
+      "literal": "- **L10-BRAIN-024-C01 — 正常な設計知識route（AC-01）**：合成fixture `infra-pattern:observability@r7` にsource `l1-seed:architecture-42@r3`、scope `design/core-api`、required condition `latency-budget` を持たせ、HARNESS-CORE向けreceiptはcandidate identity/revision `infra-pattern:observability@r7`を参照し、source identity/revision `l1-seed:architecture-42@r3`へtraceする。選択contractはL2-019/022 `contract-r2`、Runtime実状態や製品固有の設計選択は入力に含めない。**期待oracle**：選択したCORE routeだけを検証し、source/revision/scopeとreceiptが一致する。\n"
+    },
+    {
+      "line": 829,
+      "sha256": "bd651e222a63aee436f53ae9e82c38478dd83a9df40d2fda7d93cd29e9fb7a1f",
+      "literal": "- **L10-BRAIN-024-C02 — 正常なLABO評価route（AC-01）**：合成fixture `infra-pattern:restore-check@r4` のsource `runtime-owner:helix@run-22` をRuntime ownerが保持し、LABO評価 `eval-31` はtarget revision `r4`、scope `restore/rehearsal`、method `compare-restore-steps`、result `observed`、failure `none-recorded`、counterexample `single-region-only`、unassessed range `multi-region` を記録する。L2-020 receiptは同じcandidate revisionを指す。**期待oracle**：Runtime owner、LABO評価、BRAIN candidateを別identityで追跡し、未評価範囲を保持する。\n"
+    },
+    {
+      "line": 830,
+      "sha256": "d647144e632f1bebe67956c81252f1083dbf2286d8f057f2c899936bb6ce162a",
+      "literal": "- **L10-BRAIN-024-C03 — 実状態readの迂回（AC-02）**：BRAINがInfrastructure Runtimeの実server/network/database stateを直接readする。**期待oracle**：readを拒否しRuntime ownerを明記する。\n"
+    },
+    {
+      "line": 831,
+      "sha256": "c3f0c258f17b87b42c6cf4ec792b146148c6d06759184456cf11d916ec1fc486",
+      "literal": "- **L10-BRAIN-024-C04 — 実状態writeの迂回（AC-02）**：BRAINがRuntime ownerの実状態を変更または書き込む。**期待oracle**：writeを拒否しRuntime ownerを明記する。\n"
+    },
+    {
+      "line": 832,
+      "sha256": "2d55d40c1a33cdafd81d1c0e3b7becb78d634529bed4016d87429cdac7dd6f71",
+      "literal": "- **L10-BRAIN-024-C05 — 実績からの直接learning（AC-02）**：Runtime resultがLABO evaluationを経ずBRAIN knowledge stateへ直接反映される。**期待oracle**：candidate promotionを止め、評価経路をLABO、registration/routingをOSとして示す。\n"
+    },
+    {
+      "line": 833,
+      "sha256": "1692b4161421f711add0e136b8d576ab67304bcad0af2aeb4774827e295e45d9",
+      "literal": "- **L10-BRAIN-024-C06 — server state保存（AC-02）**：C02のfixtureに実server state `node-4/ready` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。\n"
+    },
+    {
+      "line": 834,
+      "sha256": "da504e256adf396978f04fde566084afa5e63ee0f4cec9df67dc6e319165f774",
+      "literal": "- **L10-BRAIN-024-C07 — network state保存（AC-02）**：C02のfixtureに実network state `segment-2/route-active` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。\n"
+    },
+    {
+      "line": 835,
+      "sha256": "5f365734b27fb19692ba359c877f6d93a9b8d32bb10c3fec371a00a5c465dbfe",
+      "literal": "- **L10-BRAIN-024-C08 — database state保存（AC-02）**：C02のfixtureに実database state `db-3/replica-lag-observed` を追加し、BRAIN knowledge fieldへ保存する単独変異。**期待oracle**：保存を拒否し、実状態を保持するRuntime ownerへ返す。\n"
+    },
+    {
+      "line": 836,
+      "sha256": "08e56dcbe2509fd2255a4dba1c271e22d4f9035053ac72b6f8b603e07e79d782",
+      "literal": "- **L10-BRAIN-024-C09 — 操作権限保存（AC-02）**：runtime操作権限をBRAIN knowledgeとして保持する。**期待oracle**：保存/所有を拒否し、権限のruntime ownerへ返す。\n"
+    },
+    {
+      "line": 837,
+      "sha256": "3a21d03d1889f70301af1eb40eda6f3f9f7fa5fd22dd767bcd1f8e3f0e0a8325",
+      "literal": "- **L10-BRAIN-024-C10 — raw log/metrics保存（AC-02、索引）**：独立な単独変異は `L10-BRAIN-024-C34` と `L10-BRAIN-024-C35`。\n"
+    },
+    {
+      "line": 838,
+      "sha256": "f6af747cca167967fe300648ec88ca679ce7da5103b1cca3cab583b32a9bbcb8",
+      "literal": "- **L10-BRAIN-024-C11 — Core経路の省略（AC-02）**：BRAIN候補を製品固有設計として直接採択する。**期待oracle**：採択を行わず製品HARNESS-COREへ戻す。\n"
+    },
+    {
+      "line": 839,
+      "sha256": "a753216aada628281e1a2bdfca66aed85f69dcc46e338e77dc6808ef14e931d3",
+      "literal": "- **L10-BRAIN-024-C12 — LABO迂回promotion（AC-02）**：Runtime ownerの実績があるがLABO評価receiptがない。**期待oracle**：候補をaccepted/matureにせずLABOへ返す。\n"
+    },
+    {
+      "line": 840,
+      "sha256": "aede60034096b0e208fe2fb77338b745cdb4a53c99cb331b2569368271b04cae",
+      "literal": "- **L10-BRAIN-024-C13 — owner identityの混同（AC-02）**：Runtime actual state、LABO evaluation、BRAIN generic knowledgeのowner identityを同一recordへ畳み込む。**期待oracle**：混同を拒否し、別ownerと対象revisionを維持する。\n"
+    },
+    {
+      "line": 841,
+      "sha256": "fe86a70032347949e14199f24a59f4bf2ebcca9e25d09e2f81eb0a58f99b298c",
+      "literal": "- **L10-BRAIN-024-C14 — 評価candidate revisionの不一致（AC-02、単独変異）**：C02と同一入力からLABO evaluation targetだけを`r3`へ変え、candidate/source/scopeと他receiptは一致したままにする。**期待oracle**：revision mismatchを検出して評価状態を採用へ進めずLABOへ返す。\n"
+    },
+    {
+      "line": 842,
+      "sha256": "987c2df470389500afcdfaf8a1a3e2ac5d0fca3424e1e57b8272b351c0f0ff71",
+      "literal": "- **L10-BRAIN-024-C15 — 選択dependencyのunknown/known mismatch（AC-02、索引）**：実在する単独fixture `L10-BRAIN-024-C18`, `L10-BRAIN-024-C19`, `L10-BRAIN-024-C20`, `L10-BRAIN-024-C21`, `L10-BRAIN-024-C22`, `L10-BRAIN-024-C23`, `L10-BRAIN-024-C24`, `L10-BRAIN-024-C25`, `L10-BRAIN-024-C26`, `L10-BRAIN-024-C27`, `L10-BRAIN-024-C28`, `L10-BRAIN-024-C29`, `L10-BRAIN-024-C30`, `L10-BRAIN-024-C31`, `L10-BRAIN-024-C36`, `L10-BRAIN-024-C37`, `L10-BRAIN-024-C38`, `L10-BRAIN-024-C39`を参照する。各fixtureは選択済みcontractのidentityまたはrevisionを1項目だけunknownまたは既知不一致にする。選択していないdependencyは判定対象外。\n"
+    },
+    {
+      "line": 843,
+      "sha256": "fbb5b90c08a52f04fea41d8e2461eb585d797f534dd7ce71e97c8692157b914e",
+      "literal": "- **L10-BRAIN-024-C16 — evaluation source identity不一致（AC-02、単独変異）**：C02の評価receiptのsource identityだけを別sourceへ変える。**期待oracle**：source mismatchとしてLABOへ返し、candidate側sourceは保持する。\n"
+    },
+    {
+      "line": 844,
+      "sha256": "7fcbea5614af6813a26666b6998d6d27299277bed96343aaa49c8cf394a8d894",
+      "literal": "- **L10-BRAIN-024-C17 — evaluation scope不一致（AC-02、単独変異）**：C02の評価scopeだけを`restore/rehearsal`から`backup/inspection`へ変える。**期待oracle**：適用scopeを同一視せずLABOへ返す。\n"
+    },
+    {
+      "line": 845,
+      "sha256": "f35b533fb94a23dbb1855358bae975ce3766e01293e50028a43e08adba9d3ac9",
+      "literal": "- **L10-BRAIN-024-C18 — 選択L2-INFRA-009 contract identity unknown（AC-02、単独変異）**：観測設計を選択したC01 fixtureで、L2-INFRA-009 receiptのcontract identityのみunknown。**期待oracle**：適用可能と推定せず、BRAIN側candidateを保留する。\n"
+    },
+    {
+      "line": 846,
+      "sha256": "67b8ea2e651e69c2ee9566948a009849104b3843b288f06267bf54945c978ac7",
+      "literal": "- **L10-BRAIN-024-C19 — 選択L2-INFRA-009 contract identity不一致（AC-02、単独変異）**：C18と同じfixtureでidentityだけ既知の別contractへ変える。**期待oracle**：known mismatchとして拒否する。\n"
+    },
+    {
+      "line": 847,
+      "sha256": "b5bc36196de44f76b042c9b8613b60d710c83d1d50c6f86851542bed8f1a31ee",
+      "literal": "- **L10-BRAIN-024-C20 — 選択L2-INFRA-012 contract revision unknown（AC-02、単独変異）**：dependency選択にL2-INFRA-012を明示したfixtureでrevisionのみunknown。**期待oracle**：revisionを補完せず保留する。\n"
+    },
+    {
+      "line": 848,
+      "sha256": "a08a9d7ecfa228d768651c2c6ef816776fcb9edde1efcfb37c7bbad97b0f2238",
+      "literal": "- **L10-BRAIN-024-C21 — 選択L2-INFRA-012 contract revision不一致（AC-02、単独変異）**：C20のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchを検出する。\n"
+    },
+    {
+      "line": 849,
+      "sha256": "82c3658f0baefa09db2414c61dec9be7c197f9d0891e50f0a04159f165ad39af",
+      "literal": "- **L10-BRAIN-024-C22 — 選択L2-019/022 CORE contract identity unknown（AC-02、単独変異）**：C01で選択したCORE receipt identityだけunknown。**期待oracle**：CORE contractを推定せずCOREへ確認を返す。\n"
+    },
+    {
+      "line": 850,
+      "sha256": "ab4b0e7cb058af88ffb229d71e89148ff397a0e3434a438180c1155ab9adab5b",
+      "literal": "- **L10-BRAIN-024-C23 — 選択L2-019/022 CORE contract revision不一致（AC-02、単独変異）**：C01の正常CORE contract identityを保持し、選択CORE contract revisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchを検出する。\n"
+    },
+    {
+      "line": 851,
+      "sha256": "8e5b387419b2e912dda2786c941eaeab46a2200bd03d54bbdea931520a1bfa74",
+      "literal": "- **L10-BRAIN-024-C24 — 選択Runtime owner contract identity unknown（AC-02、単独変異）**：C02で選択したRuntime owner receipt identityだけunknown。**期待oracle**：Runtime ownerを創作せずunknownを保持する。\n"
+    },
+    {
+      "line": 852,
+      "sha256": "fc96745da14b1f9d832978ee7a9b70b0030e575a5d74924808427088fa905f67",
+      "literal": "- **L10-BRAIN-024-C25 — 選択Runtime owner contract identity不一致（AC-02、単独変異）**：C24のidentityだけ既知の別ownerへ変える。**期待oracle**：known owner mismatchとして受領を止める。\n"
+    },
+    {
+      "line": 853,
+      "sha256": "f7a3c338868bc4eacb48948c7ccc1c90f3267b4a9615fd6f6be354d7cbd733f9",
+      "literal": "- **L10-BRAIN-024-C26 — 選択L2-020 LABO contract identity unknown（AC-02、単独変異）**：C02の選択L2-020 receipt identityだけunknown。**期待oracle**：evaluation receiptを適合扱いせずunknownを維持する。\n"
+    },
+    {
+      "line": 854,
+      "sha256": "7ea0175af02ba5f730391563e7c7c7e5acc770f80db15b3814a08dbf4d9fa020",
+      "literal": "- **L10-BRAIN-024-C27 — 選択L2-020 LABO contract identity不一致（AC-02、単独変異）**：C26のidentityだけ既知の別contractへ変える。**期待oracle**：known mismatchとしてLABOへ返す。\n"
+    },
+    {
+      "line": 855,
+      "sha256": "0e922e59269ded21345a7e62b21195bd680b232be0d020ed537035b65515f44c",
+      "literal": "- **L10-BRAIN-024-C28 — 選択L2-020 LABO contract revision unknown（AC-02、単独変異）**：C02のLABO contract revisionだけunknown。**期待oracle**：revisionを推定しない。\n"
+    },
+    {
+      "line": 856,
+      "sha256": "19959984b81cbf9e3e9cecbe7b113086108301e4b7b42e1946eb4357e5bc1aae",
+      "literal": "- **L10-BRAIN-024-C29 — 選択L2-020 LABO contract revision不一致（AC-02、単独変異）**：C28のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchとして保留する。\n"
+    },
+    {
+      "line": 857,
+      "sha256": "2d836026b8f5ccd019ced0cbf9e2b4929da35aa49e61e19bd63c5d074ab3970f",
+      "literal": "- **L10-BRAIN-024-C30 — 選択L2-INFRA-017 maturity contract identity unknown（AC-02、単独変異）**：Infrastructure candidateがmaturity relationを選択した場合だけ、そのL2-INFRA-017 identityをunknownにする。**期待oracle**：maturityを推定せずunknownを保つ。\n"
+    },
+    {
+      "line": 858,
+      "sha256": "661593845fbce69e0d545268451781cfac3b8db4cd43cbdc3955338b413873a5",
+      "literal": "- **L10-BRAIN-024-C31 — 選択L2-INFRA-017 maturity contract revision不一致（AC-02、単独変異）**：C02に選択maturity contractの正常identity/revisionを束縛し、identityを保持してrevisionだけ既知の別revisionへ変える。非選択candidateにはこの条件を強制しない。**期待oracle**：選択範囲でのみmismatchを返す。\n"
+    },
+    {
+      "line": 860,
+      "sha256": "21f40bc4f247524a6ca7e8003e308684cf44ba382418458da8a96e9d3107b556",
+      "literal": "- **L10-BRAIN-024-C32 — provider account保存（AC-02）**：C02のfixtureにprovider account identity/stateを1項目加えてBRAIN knowledgeへ保存する単独変異。**期待oracle**：保存/所有を拒否しRuntime ownerへ返す。\n"
+    },
+    {
+      "line": 861,
+      "sha256": "6cca5e7d5461db36751cc3f2b7dd086925ffa3f4cf7c2229af5fa98fc3d218fd",
+      "literal": "- **L10-BRAIN-024-C33 — credential保存（AC-02）**：C02のfixtureにcredential valueまたはreferenceだけを加えてBRAINへ保存する単独変異。**期待oracle**：保存を拒否しRuntime ownerへ返す。\n"
+    },
+    {
+      "line": 862,
+      "sha256": "3bf775587aea3a9d2ce6ece1b6463d0cd215a1f7dd9e53ad0941e03fe0ed84a1",
+      "literal": "- **L10-BRAIN-024-C34 — raw log保存（AC-02）**：C02のfixtureに実runtime logだけを加えてBRAINへ永続化する単独変異。**期待oracle**：保存を拒否しRuntime owner/LABO経路を示す。\n"
+    },
+    {
+      "line": 863,
+      "sha256": "0c8f6dffdf7087b2d36bf5997bac198a0f2582bf123e99f11da2116606e28ab0",
+      "literal": "- **L10-BRAIN-024-C35 — raw metrics保存（AC-02）**：C02のfixtureに実runtime metricsだけを加えてBRAINへ永続化する単独変異。**期待oracle**：保存を拒否しRuntime owner/LABO経路を示す。\n"
+    },
+    {
+      "line": 864,
+      "sha256": "683295c7c8c1e40c0035e5d350dae5d9501a7df707a21f203f24924fe3aaa157",
+      "literal": "- **L10-BRAIN-024-C36 — 選択L2-INFRA-010 contract identity unknown（AC-02、単独変異）**：availability設計を選択したfixtureでL2-INFRA-010 receipt identityだけunknown。**期待oracle**：適用可否を推定しない。\n"
+    },
+    {
+      "line": 865,
+      "sha256": "eb8fc2115b6142f61535c8f79585b1849969f0f29d2bafa9131ac8c332422ee1",
+      "literal": "- **L10-BRAIN-024-C37 — 選択L2-INFRA-010 contract identity不一致（AC-02、単独変異）**：C36のidentityだけ既知の別contractへ変える。**期待oracle**：known mismatchとして拒否する。\n"
+    },
+    {
+      "line": 866,
+      "sha256": "7a88508dcb5b5d0025d242bde0a1ced8c0dd777fe64011ff042219ab5ba11c9a",
+      "literal": "- **L10-BRAIN-024-C38 — 選択L2-INFRA-010 contract revision unknown（AC-02、単独変異）**：C36 fixtureでrevisionだけunknownにし、identityを一致させる。**期待oracle**：revisionを補完しない。\n"
+    },
+    {
+      "line": 867,
+      "sha256": "d5fd5b925a153b2652391f41e2d9b251d839a709e9341b5130634c960f8fece5",
+      "literal": "- **L10-BRAIN-024-C39 — 選択L2-INFRA-010 contract revision不一致（AC-02、単独変異）**：C38のrevisionだけ既知の別revisionへ変える。**期待oracle**：known mismatchとして拒否する。\n"
+    },
+    {
+      "line": 871,
+      "sha256": "a40b1386d5a67993d2ad48b204abce19b8ab4507de91e0d8998f8c75905fb6cd",
+      "literal": "- **L10-BRAIN-025-C01 — 正常な全段階trace（AC-01）**：source/provenance/revisionを持つ内部candidate、LABOの評価scope/method/result/failure/counterexample/unassessed range、OS registration/routing state、BRAIN change revisionへのindependent verificationとその結果、採否を別owner receiptで与える。**期待oracle**：状態順と対象revisionが揃い、adoptionと独立検証の根拠を追跡する。\n"
+    },
+    {
+      "line": 872,
+      "sha256": "8c223a330460ee949fde4468e0c2a2e1a9d6e11381708cb98872c4f2341eb4ff",
+      "literal": "- **L10-BRAIN-025-C02（AC-02、単独誤昇格）** AI生成だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否しcandidateを維持。\n"
+    },
+    {
+      "line": 873,
+      "sha256": "8f212cacdc5dd66b8eb2632ec202cac99ab01441402870d0ed07181a76d1f278",
+      "literal": "- **L10-BRAIN-025-C03（AC-02、単独誤昇格）** 単一実績だけを根拠にaccepted/matureを要求。**期待**：昇格を拒否し実績件数から閾値を作らない。\n"
+    },
+    {
+      "line": 874,
+      "sha256": "b53ba89632eb7af945c7a155524b30be32d3d979715d4fe3b30707c2f39b50d9",
+      "literal": "- **L10-BRAIN-025-C04（AC-02、単独欠落）**：candidate、LABO evaluation、BRAIN change/verification evidence/resultは揃い、OS registration/routing receiptだけを欠く。**期待**：adoptionを保留しOS receipt不足を示す。\n"
+    },
+    {
+      "line": 875,
+      "sha256": "52df8480b8c5c30aa220bde24b98bd3826605fac01e8464c6a4ec64cd7e6f42f",
+      "literal": "- **L10-BRAIN-025-C05（AC-02、単独欠落）**：candidate、LABO evaluation、OS registration/routing receipt、BRAIN change identity/revisionは揃い、BRAIN independent verification evidenceだけを欠く。**期待**：adoptionを保留しBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 876,
+      "sha256": "a02ee5731a4d090ecf3ac1072d75c8dc55ba4726367c340da997f6ae06b04083",
+      "literal": "- **L10-BRAIN-025-C06（AC-02、単独誤昇格）** documentが存在するだけでaccepted/matureにする。**期待**：document existenceを状態根拠にしない。\n"
+    },
+    {
+      "line": 877,
+      "sha256": "7aa2e9a5c93dc1d064741a5c008c010a0c4b4baae121404d51805cc68484587e",
+      "literal": "- **L10-BRAIN-025-C07（AC-03、順序逆転・receipt存在）**：C01のLABO evaluation receiptとOS registration/routing receiptは両方存在し、identity/revisionは一致するがOS receipt timestampだけがLABO receiptより前。**期待**：順序不成立として採否未完のままにし、両receiptの存在と時刻を保持する。欠落/unknownとは返さない。\n"
+    },
+    {
+      "line": 878,
+      "sha256": "5e17ae88f8f2bc6e03c6cf81b2a5e4f2cfd6d9a39d853364ec6b8bd446e07bb4",
+      "literal": "- **L10-BRAIN-025-C08（AC-03、順序逆転・receipt存在）**：C01のOS registration/routing receiptとBRAIN verification receiptは両方存在し、identity/revisionは一致するがverification timestampだけがOS receiptより前。**期待**：順序不成立として採否未完のままにし、両receiptの存在と時刻を保持する。欠落/unknownとは返さない。\n"
+    },
+    {
+      "line": 879,
+      "sha256": "69c9da2b325a2ebfcfb7813702def98a225ae8ccf97ad07a09e353f04f285466",
+      "literal": "- **L10-BRAIN-025-C09（AC-03、順序逆転）** BRAIN change independent verification前にadoptionを確定する。**期待**：adoptionを拒否しBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 880,
+      "sha256": "89f2876bc692aaa6e80a81236f78d2e7461f2fb0a92d5dc43dd025d6a7332fa8",
+      "literal": "- **L10-BRAIN-025-C10（AC-02、単独欠落）** source identityを欠落させる。**期待**：source不足を特定しLABOへ返す。\n"
+    },
+    {
+      "line": 881,
+      "sha256": "5e92c9f9f8cdcbbf7ef225d14ca02d132861acb92bec727db6deaa31fa822064",
+      "literal": "- **L10-BRAIN-025-C11（AC-02、単独欠落）** provenanceを欠落させる。**期待**：由来不明でcandidateを保留する。\n"
+    },
+    {
+      "line": 882,
+      "sha256": "706f924df465c9910a375b174602125aab8706cea10869d966c7f6214eb85723",
+      "literal": "- **L10-BRAIN-025-C12（AC-02、単独欠落）** candidate revisionを欠落させる。**期待**：revisionを推定せずLABO/該当knowledge ownerへ返す。\n"
+    },
+    {
+      "line": 883,
+      "sha256": "7369842ff70865b6fe6800ac97fb5e5aa002d20a1255b73bde34e05fbdd025ed",
+      "literal": "- **L10-BRAIN-025-C13（AC-02、単独欠落）** LABO evaluation identityを欠落させる。**期待**：評価済みと扱わずLABOへ返す。\n"
+    },
+    {
+      "line": 884,
+      "sha256": "450b823fb5dac6298cd765763f6318b420c6c3605f069dea9c533c61c0a5a551",
+      "literal": "- **L10-BRAIN-025-C14（AC-02、単独欠落）** evaluation scopeを欠落させる。**期待**：評価範囲を推定せずLABOへ返す。\n"
+    },
+    {
+      "line": 885,
+      "sha256": "d753a56b6ff6948dc712565767d010d99f563c922f0240797fddfc9c3361cb5b",
+      "literal": "- **L10-BRAIN-025-C15（AC-02、単独欠落）** evaluation methodを欠落させる。**期待**：評価方法を推定せずLABOへ返す。\n"
+    },
+    {
+      "line": 886,
+      "sha256": "4196890211d585dbbb4167ee582cfcfacc21dba86d2383bbba10554f8050d6bf",
+      "literal": "- **L10-BRAIN-025-C16（AC-02、単独欠落）** evaluation resultを欠落させる。**期待**：成功/失敗を推定せずLABOへ返す。\n"
+    },
+    {
+      "line": 887,
+      "sha256": "cacf5fd409b5766295ca480ca446c09288b771c78619e07d50f7d529b4392187",
+      "literal": "- **L10-BRAIN-025-C17（AC-02、単独欠落）** failure情報を欠落させる一方でsourceがfailureを記録している。**期待**：failure evidenceを隠さずLABOへ返す。\n"
+    },
+    {
+      "line": 888,
+      "sha256": "afaf4d1b3a58416fe9ecb053512dc010ee9822b0fc43ea89ea8dc75d43e59640",
+      "literal": "- **L10-BRAIN-025-C18（AC-02、単独欠落）** counterexampleを欠落させる一方でsourceが反例を記録している。**期待**：反例欠落を特定しLABOへ返す。\n"
+    },
+    {
+      "line": 889,
+      "sha256": "2ce31dc20958f43b17eec46243c89a8b5ee47b0f04078fdb1855efdcfaee3259",
+      "literal": "- **L10-BRAIN-025-C19（AC-02、単独欠落）** unassessed rangeを欠落させる。**期待**：未評価範囲を成功範囲に丸めずLABOへ返す。\n"
+    },
+    {
+      "line": 890,
+      "sha256": "bff2066ac42e6b4f6c50fd61b8fc8d7f346754a5ab90c8e37391f456f427b8e3",
+      "literal": "- **L10-BRAIN-025-C20（AC-02、単独欠落）** OS registration/routing stateを欠落させる。**期待**：OS状態を推定せずOSへ返す。\n"
+    },
+    {
+      "line": 891,
+      "sha256": "5c779b43a9acd69c197a18f4a7f162d6d031238e3e7fa5d40546e19e4daca810",
+      "literal": "- **L10-BRAIN-025-C21（AC-02、単独欠落）**：他の入力をC01どおり保ち、BRAIN change identityだけを欠く。**期待**：変更対象identityを推定せずBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 892,
+      "sha256": "f0c5977aa0f91d7c17fda89fdd8885fb13bfa158bc169cd2eb30bf207dd4670f",
+      "literal": "- **L10-BRAIN-025-C22（AC-02、単独欠落）**：C01のBRAIN change identity/revisionとverification identity/resultは揃い、独立検証evidenceだけを欠く。**期待**：独立検証済みと扱わずBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 893,
+      "sha256": "228f6abd45e50477c19dbe82d03cc56264a06d7dfb89276a37a4f9d19a001669",
+      "literal": "- **L10-BRAIN-025-C23（AC-03、revision mismatch）** evaluation target revisionをcandidate revisionと異ならせる。**期待**：評価対象不一致として保留しLABOへ返す。\n"
+    },
+    {
+      "line": 894,
+      "sha256": "efe9834f64e766534320289ffab28fd13ead507e20c1e338e240f41c3c20d401",
+      "literal": "- **L10-BRAIN-025-C24（AC-03、post-evaluation mutation）** LABO評価後にcandidateだけrevision更新し、古い評価を新revisionへ流用する。**期待**：評価を新revisionに継承せずLABOへ再評価を返す。\n"
+    },
+    {
+      "line": 895,
+      "sha256": "1f36c3b0872ae9d72d65bfb77f666e1091d3ec12c40f56baba823fe8af4ff26b",
+      "literal": "- **L10-BRAIN-025-C25（AC-03、索引）**：単独変異fixtureは `L10-BRAIN-025-C37`, `L10-BRAIN-025-C38`, `L10-BRAIN-025-C39`, `L10-BRAIN-025-C40`, `L10-BRAIN-025-C41`, `L10-BRAIN-025-C42`。各fixtureはLABO/OS/BRAINの特定ownerまたは特定stateだけを誤記し、変更前値を併記する。\n"
+    },
+    {
+      "line": 896,
+      "sha256": "9349c678711597332e0c73de3ad1719b12ab2a8ad2c649b087c3cdba157d6e16",
+      "literal": "- **L10-BRAIN-025-C26（AC-03、verification target mismatch）** independent verificationは存在するが別BRAIN change revisionを対象にしている。**期待**：現revisionの検証を未確認としてBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 897,
+      "sha256": "986480d0f45ff686f7e10b8abefdfdff276403dd978436d68dfe0029d1b8d78e",
+      "literal": "- **L10-BRAIN-025-C27（AC-04、正常hold）** evidence不足を明示した正当なholdを与える。**期待**：holdを正規状態として保持し、accepted/matureへ進めない。\n"
+    },
+    {
+      "line": 898,
+      "sha256": "5f48634ddf819a4165db7cf6bfb8d63f0b7392857d2644d1279777d919a3a1bb",
+      "literal": "- **L10-BRAIN-025-C28（AC-04、正常reject）** scope条件に不適合なcandidateの根拠付きrejectを与える。**期待**：rejectと理由を保持し、失敗を汎用knowledgeへ自動昇格しない。\n"
+    },
+    {
+      "line": 899,
+      "sha256": "2f4c7347530b1fe6b0ff683e515f33df4635dc98ec07902f0191f71900d16d04",
+      "literal": "- **L10-BRAIN-025-C29（AC-04、Infrastructure maturity適用）**：candidate `infra-pattern:restore-check@r4` でmaturity選択を明示し、L2-INFRA-017のstate `observed` とevidence `eval-31` が同じrevision `r4` を指す。**期待**：state/evidence/revisionを照合し、maturityを独立採用権限にしない。\n"
+    },
+    {
+      "line": 900,
+      "sha256": "3ba38edf95deebf2d7463605583ef02ee1fe089c7ceebfc945f4ed74a5859028",
+      "literal": "- **L10-BRAIN-025-C30（AC-04、maturity非該当の正常）**：非-Infrastructure internal candidateはC01どおり他の必須receiptを満たす。**期待**：L2-INFRA-017 fieldを要求せず通常pathを許す。\n"
+    },
+    {
+      "line": 901,
+      "sha256": "4de0ad5375f22d0a8fd835b75bc5973cd66cf93a441b985d202d66e69ac1759d",
+      "literal": "- **L10-BRAIN-025-C31（AC-05、製品固有意味）** sourceに製品要求、業務規則または製品固有判断が含まれる。**期待**：generic BRAIN knowledgeへの採用を拒否し該当Product Coreへ戻す。\n"
+    },
+    {
+      "line": 902,
+      "sha256": "9b9b616a76bceedf902c4b9d4ba0eb4c6ed2ced96c2a1fa1c27985a03907fb6a",
+      "literal": "- **L10-BRAIN-025-C32（AC-05、generic meaning正常）** product-specific remainderを除いたgeneric design knowledge candidateにsource/provenanceがあり、他の段階も満たす。**期待**：製品意味を混ぜず通常のLABO→OS→BRAIN pathで評価・検証できる。\n"
+    },
+    {
+      "line": 903,
+      "sha256": "d8452722e2da819e0e571e95356d07913f38c68ed2adf783df40a15f4e4c53c1",
+      "literal": "- **L10-BRAIN-025-C33（AC-01、技術差分正常）** 上流の要求/Pattern意味を変更しない、親契約に適合したBRAIN candidateの技術的差分が全owner evidenceを備える。**期待**：固定L2-025の通常状態経路で処理し、追加human approval field/gateを要求しない。\n"
+    },
+    {
+      "line": 904,
+      "sha256": "a86854c5c4402eb051fd5b35a4589aba69329926bed036a9110bb3ddb61b2a8f",
+      "literal": "- **L10-BRAIN-025-C34（AC-03、索引）**：単独unknown fixtureは `L10-BRAIN-025-C43`, `L10-BRAIN-025-C44`, `L10-BRAIN-025-C45`。registration、evaluation、verificationのunknownを各々独立に入力し、他owner stateはknownのままにする。\n"
+    },
+    {
+      "line": 905,
+      "sha256": "898e30c6b8d79db6b912e9a38e7966aff2987b4f49a3ae11733ae503e2f58f16",
+      "literal": "- **L10-BRAIN-025-C35（AC-02、単独欠落）**：C01のBRAIN change identityはあるが対象revisionだけ欠ける。**期待**：revisionを推定せずBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 906,
+      "sha256": "b7c13da4d6b42c768551489695e3feeff0fe1a4fb660e11e5e49ae927b0957f4",
+      "literal": "- **L10-BRAIN-025-C36（AC-02、単独欠落）**：C01のBRAIN independent verification evidenceはあるがverification resultだけ欠ける。**期待**：成功/失敗を推定せずBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 907,
+      "sha256": "af15237cc9dd6d7c4a4545b0d804c66569e238afdc104d1516c5eb3f59b33c3a",
+      "literal": "- **L10-BRAIN-025-C37（AC-03、owner単独変異）**：C01のLABO evaluation receipt ownerだけを`OS`へ変更し、元値`LABO`とreceipt identityを保持する。**期待**：誤帰属を拒否しevaluationはLABOのまま扱う。\n"
+    },
+    {
+      "line": 908,
+      "sha256": "09908e1c13cf92916c3a783906d0b73288c2eccfcf6fcbca6a6cd0b2d9075ac3",
+      "literal": "- **L10-BRAIN-025-C38（AC-03、state単独変異）**：C01のLABO evaluation stateだけを`registered`へ変更し、元値`evaluated`を記録する。**期待**：owner stateをOS stateと混同せずLABOへ返す。\n"
+    },
+    {
+      "line": 909,
+      "sha256": "e69bf2cd49f540f303a639fe40d854ccb16227c299e86aba9620d1543c7cd489",
+      "literal": "- **L10-BRAIN-025-C39（AC-03、owner単独変異）**：C01のOS registration receipt ownerだけを`BRAIN`へ変更し、元値`OS`を保持する。**期待**：誤帰属を拒否しOS正本へ返す。\n"
+    },
+    {
+      "line": 910,
+      "sha256": "6fd0a97dd79240fa1e29d9afbb63fb33ba301b064b7f4ad7cd8113f91fb60be5",
+      "literal": "- **L10-BRAIN-025-C40（AC-03、state単独変異）**：C01のOS routing stateだけを`verified`へ変更し、元値`routed`を保持する。**期待**：BRAIN verification stateとして採用せずOSへ返す。\n"
+    },
+    {
+      "line": 911,
+      "sha256": "0dfd2b40227ae1ed0e42fdf68e3442b38f38de79775cc91d8377f17ea3cc0e34",
+      "literal": "- **L10-BRAIN-025-C41（AC-03、owner単独変異）**：C01のBRAIN verification receipt ownerだけを`LABO`へ変更し、元値`BRAIN change owner`を保持する。**期待**：誤帰属を拒否しBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 912,
+      "sha256": "c4b6da95254cedbbd166b0ae320fea1ecfe0ed79448d2527e889f2278f182267",
+      "literal": "- **L10-BRAIN-025-C42（AC-03、state単独変異）**：C01のBRAIN verification stateだけを`adopted`へ変更し、元値`verified`を保持する。**期待**：verificationとadoptionを同一stateに畳まずBRAIN change ownerへ返す。\n"
+    },
+    {
+      "line": 913,
+      "sha256": "7042d1a31acdf943b47fc7719b811a33c5a3654463406760b6971833b13b8980",
+      "literal": "- **L10-BRAIN-025-C43（AC-03、単独unknown）**：C01のOS registration receiptだけをunknownにし、evaluation/verification receiptはknownで保持する。**期待**：OS ownerのunknownを保持し採否を止める。\n"
+    },
+    {
+      "line": 914,
+      "sha256": "d6e1ca867adb8d0e7f4787c01c11c42dd367c6b02e20e34ec0ac29b2633d6b2e",
+      "literal": "- **L10-BRAIN-025-C44（AC-03、単独unknown）**：C01のLABO evaluation receiptだけをunknownにし、OS/verification receiptはknownで保持する。**期待**：LABO ownerのunknownを保持する。\n"
+    },
+    {
+      "line": 915,
+      "sha256": "2b9c78f8e9b9310d909b0648767773e3ae0c9d310d3e4d36c343ddbfdb1de15c",
+      "literal": "- **L10-BRAIN-025-C45（AC-03、単独unknown）**：C01のBRAIN verification receiptだけをunknownにし、LABO/OS receiptはknownで保持する。**期待**：BRAIN change ownerのunknownを保持する。\n"
+    },
+    {
+      "line": 916,
+      "sha256": "39cb7bee5099dde8edbd60127bfc3402f82e0a7382dad1d7732241a3b173ef5e",
+      "literal": "- **L10-BRAIN-025-C46（AC-01、追加approval要求のnegative）**：C33正常fixtureのsource/revision/evaluation/registration/verification/adoption evidenceは全て同一のまま、技術差分に追加human approval field/gateだけを要求する。**期待**：追加gateを固定L2-025の要件として拒否し、通常pathを止めない。\n"
+    },
+    {
+      "line": 917,
+      "sha256": "15b824f25183237a5d295658dcf4fb01fb5f5b454b09769bb550ffce9e92c8a7",
+      "literal": "- **L10-BRAIN-025-C47（AC-04、選択maturity state unknown）**：Infrastructure candidateでmaturity選択済み、L2-INFRA-017 stateだけunknown、同revision evidenceはknown。**期待**：stateを推定せず採否を保留する。\n"
+    },
+    {
+      "line": 918,
+      "sha256": "ddb618b40c9b00029996e550f38951e8c23ab889693c61cfce4f7b9209db2831",
+      "literal": "- **L10-BRAIN-025-C48（AC-04、選択maturity evidence unknown）**：C29の同一fixtureでmaturity evidenceだけunknown、stateとrevisionはknown。**期待**：evidence不足を成功へ丸めない。\n"
+    },
+    {
+      "line": 919,
+      "sha256": "05fe82a0eebba0cfafd874e33af69223be7591ff822a3dff2e3548e5365b2a67",
+      "literal": "- **L10-BRAIN-025-C49（AC-04、選択maturity revision mismatch）**：C29のmaturity evidence revisionだけを`r3`にする一変異。**期待**：revision mismatchとして保留し、maturity選択済みscopeに限ってL2-INFRA-017へ返す。\n"
+    }
+  ],
+  "static": [
+    {
+      "command": "validate",
+      "exit": 0,
+      "summary": "bindings=147 fail=0"
+    },
+    {
+      "command": "stale",
+      "exit": 0,
+      "summary": "stale=0"
+    },
+    {
+      "command": "residuals",
+      "exit": 0,
+      "summary": "residuals=0"
+    }
+  ],
+  "limits": [
+    "CASE未実行、独立review・委任承認未成立",
+    "旧監査不変",
+    "RootはWorker補正差分全行と初稿差分・固定親/旧RCLSを実読したが、既承認prefix全文の再reviewを主張しない"
+  ]
+}

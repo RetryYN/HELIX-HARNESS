@@ -1,0 +1,2072 @@
+{
+  "authority_effect": "none",
+  "body_revision": "ba4d3f2219589e9a8b90bfd2497ef8855b00a860",
+  "base": "d6a667a594b7cae35b6b9e76bffae97adc43de55",
+  "documents": [
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "514ccddafd77dc20e9efad1c2632192dec084140bbbea125a45adb9110ce3ec9",
+      "bytes": 251327,
+      "main_prefix_bytes": 105136,
+      "main_prefix_sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "39fa84086d01f8dc38829c12edc37fef0bd3a9a54f354891938c501fd7f4778a",
+      "bytes": 8587,
+      "main_prefix_bytes": 4234,
+      "main_prefix_sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "9559a4dcff2a55d04458410cc15cdb7ef52525844a5624117d2acb0fcef3174e",
+      "bytes": 56000,
+      "main_prefix_bytes": 31278,
+      "main_prefix_sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "aa26518b8f5e7baa227872e898052720d75e8086d59409144e3ad10009c97448",
+      "bytes": 287539,
+      "main_prefix_bytes": 145671,
+      "main_prefix_sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "a7ea1ff62ba6d2e52464ba5057c9e0044e09edc6f861ac3d33275e1114612007",
+      "bytes": 7644,
+      "main_prefix_bytes": 3291,
+      "main_prefix_sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "6064e42c024db902bcbe7136bbd490265d6a3812aac75d431209b1642227a7f3",
+      "bytes": 45678,
+      "main_prefix_bytes": 29799,
+      "main_prefix_sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52"
+    }
+  ],
+  "source_pins": [
+    {
+      "label": "fixed L2-016",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 183,
+        "end": 186
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "7f79a3cecff61f2667bdce6214cf5e8de9c6b2ba6169de3ae28b33c01a42ede7",
+      "literal_utf8": "### HELIXLABO-L2-016 — Experiment → Assurance Allocation\n\n- 親：HELIXLABO-L1-005（Experiment）、HELIXLABO-L1-006（Assurance Allocation）。入力：比較結果・反例・oracle・中断状態。出力：system/operation評価材料。依存：L2-006。保証：比較可能性と反例を保持。判定不能はoperation候補として保留する。`version_target: 1.0`。\n\n"
+    },
+    {
+      "label": "fixed L2-024",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 215,
+        "end": 218
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "300c79db30dd775aa504d23005b53d51bb966b6c52b9d722aa2efa41239e7fa7",
+      "literal_utf8": "### HELIXLABO-L2-024 — INTELLIGENCE → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可された判断/予測/診断/reviewの結果観測。出力：観測事実と判断結果を区別したobservation。依存：INTELLIGENCE source contractと個別connector。保証：過去評価は現在のauthorityにならない。版不一致はINTELLIGENCEへ戻す。`version_target: 1.0`。\n\n"
+    },
+    {
+      "label": "fixed L2-030",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 239,
+        "end": 242
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "9631b221fb6c1cb7b135324e0f914084146031297e2b82b95d64e14cc0df3613",
+      "literal_utf8": "### HELIXLABO-L2-030 — Product Core → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：各製品の許可利用・結果観測。出力：product/source identity別observation。依存：そのProduct Coreのsource contractと専用connector。保証：製品意味とauthorityを保つ。異なるsourceは同一identityに統合しない。`version_target`は接続対象製品の採択済みscopeに従う。\n\n"
+    },
+    {
+      "label": "fixed L2-058",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "physical_lines": {
+        "start": 403,
+        "end": 415
+      },
+      "full_file_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_sha256_raw_lf": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "literal_utf8": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）\n\n- **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。\n- **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。\n- **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。\n- **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。\n- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。\n\n"
+    },
+    {
+      "label": "fixed L11-016",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 67,
+        "end": 67
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "81cfb4530796eefc94942936e18c88acc62c8c121fc1979a926d4784143fa644",
+      "literal_utf8": "| HELIXLABO-L2-016 | Experiment結果・反例からAssurance Allocationへ、比較可能性とoracleを保って渡す | 実験実行のみでsystem化適格と判定する、反例を欠落させる |\n"
+    },
+    {
+      "label": "fixed L11-024",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 75,
+        "end": 75
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "a1cb1b580641dd5f04ab97f489a86b5d551031bf038ca91595f71e405a304ca4",
+      "literal_utf8": "| HELIXLABO-L2-024 | INTELLIGENCEから個別connectorで許可判断/評価結果を受け、現行判断と過去評価を区別する | 稼働中判断を過去実績と混ぜる |\n"
+    },
+    {
+      "label": "fixed L11-030",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 81,
+        "end": 81
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "d89d8e38658a4023b3dcd7499875e3bb51d6791fb875365cc3b4cb8a8dc54336",
+      "literal_utf8": "| HELIXLABO-L2-030 | Product Coreから許可された製品利用・結果を個別に受け、製品meaningを保持する | 異なるproduct sourceを一つの正本へ混ぜる |\n"
+    },
+    {
+      "label": "fixed L11-058",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "physical_lines": {
+        "start": 156,
+        "end": 162
+      },
+      "full_file_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_sha256_raw_lf": "8bd48dea9ee4e634eae46ead9dbf989b8d5e425aaecd35ef637e10f60cf96734",
+      "literal_utf8": "### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件\n\n- **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。\n- **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。\n- **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。\n- **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。\n- **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。\n"
+    }
+  ],
+  "formal_comment": {
+    "comment_id": 6003860873,
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2614#issuecomment-6003860873",
+    "path": "/tmp/pr2614-review07-comment6003860873.md",
+    "bytes": 4797,
+    "sha256_raw_utf8": "499d0a43bca3d609041649d0135c2523d5f0b957ab5d9a913d65178300e619cc",
+    "read_as_data": true
+  },
+  "previous_record": {
+    "path": "docs/governance/audits/requirements-stage/labo-stage2b-review07-correction-2026-10-06.json",
+    "sha256": "7eb21fb10a4aec769307da6c4d63788bef89ebd81e131e7b111f6f0939651c09",
+    "changed_line_pins_recomputed": 42
+  },
+  "case_rows": [
+    {
+      "line": 590,
+      "id": "L10-LABO-012-C01",
+      "sha256": "668069bbb5e971ed7f6a02948fb5b1b58e1de0463b5d827281cb80f86005c743",
+      "literal": "### L10-LABO-012-C01 — Correlate episodeから分類対象へ\n"
+    },
+    {
+      "line": 596,
+      "id": "L10-LABO-012-C02",
+      "sha256": "e1501daf93bc6ac288d31d0a92c55df5a9819ace8cfbe21e7c13060092583de2",
+      "literal": "### L10-LABO-012-C02 — relation版不一致\n"
+    },
+    {
+      "line": 602,
+      "id": "L10-LABO-012-C03",
+      "sha256": "3c94b613746fd888deee3a4e0fea5f1444a10584c5c7243f252ed37f13d1ca5d",
+      "literal": "### L10-LABO-012-C03 — evidence欠落・unknown保持\n"
+    },
+    {
+      "line": 610,
+      "id": "L10-LABO-012-C04",
+      "sha256": "1fe2e3c4ef0f738ea41c45f0f5c934e5a8a23d50a0c5983f997825a103017b61",
+      "literal": "### L10-LABO-012-C04 — 同じrelation契約のheld-out正常\n"
+    },
+    {
+      "line": 616,
+      "id": "L10-LABO-013-C01",
+      "sha256": "eaa27942f75af8e566cc97de68525fa6b913bc17b75e8a54c69d8e89bd7bb0c8",
+      "literal": "### L10-LABO-013-C01 — 分類軸付き比較仮説\n"
+    },
+    {
+      "line": 622,
+      "id": "L10-LABO-013-C02",
+      "sha256": "aebcedab9f3b9b78b0ea527dbd95cbfe7223ac2bd4796c69bdfe5c3323f197d7",
+      "literal": "### L10-LABO-013-C02 — 分類軸または根拠の欠落\n"
+    },
+    {
+      "line": 630,
+      "id": "L10-LABO-013-C03",
+      "sha256": "d7082e56c3669d11d5966db8f258f30b83173cb7e04a336167ef89ce7dcd194c",
+      "literal": "### L10-LABO-013-C03 — 軸混同・矛盾\n"
+    },
+    {
+      "line": 638,
+      "id": "L10-LABO-013-C04",
+      "sha256": "6081741e695242a1ca905014722ed7d1490207c048125bb42b7976de17ee4b4a",
+      "literal": "### L10-LABO-013-C04 — 親分類軸のheld-out正常\n"
+    },
+    {
+      "line": 644,
+      "id": "L10-LABO-014-C01",
+      "sha256": "41d5ad97b43e531410e467ca9da9c59e58e467ca05653e5b18422a64ddf860d3",
+      "literal": "### L10-LABO-014-C01 — 保持点と明示差分\n"
+    },
+    {
+      "line": 650,
+      "id": "L10-LABO-014-C02",
+      "sha256": "d966a0ac14ed2e1c225c79c1ef2fee3865689b566958ab5ca3afed9c063d5a57",
+      "literal": "### L10-LABO-014-C02 — 元意味不明または差分欠落\n"
+    },
+    {
+      "line": 658,
+      "id": "L10-LABO-014-C03",
+      "sha256": "18dd0f318f3b2c4fc330439e2b554a93e4083a3982ac8940cdd329fb74913591",
+      "literal": "### L10-LABO-014-C03 — 明示された意味変更proposal\n"
+    },
+    {
+      "line": 666,
+      "id": "L10-LABO-014-C04",
+      "sha256": "fce626dba86779023d88000806c43efd233ca69b10412ed05ed8652025a51a60",
+      "literal": "### L10-LABO-014-C04 — 明示条件内のheld-out正常\n"
+    },
+    {
+      "line": 672,
+      "id": "L10-LABO-015-C01",
+      "sha256": "e023a456384c7154e24a4a6826649353ce4416a26b859571485fab92eb01ad3f",
+      "literal": "### L10-LABO-015-C01 — 3比較armの一致条件\n"
+    },
+    {
+      "line": 678,
+      "id": "L10-LABO-015-C02",
+      "sha256": "c13fb745ee36dc0fa32ba7cfd3d9a4f940d54c66be2806b6cc8dd2d16eea7771",
+      "literal": "### L10-LABO-015-C02 — oracleまたは対象版の個別欠落\n"
+    },
+    {
+      "line": 686,
+      "id": "L10-LABO-015-C03",
+      "sha256": "608f802380f3a08dadf66a2259a0e16e848fa792b46e88f74d65be622f61539f",
+      "literal": "### L10-LABO-015-C03 — 比較条件の混在\n"
+    },
+    {
+      "line": 694,
+      "id": "L10-LABO-015-C04",
+      "sha256": "d6e7cce018c42f318eeb27345b646470f94d4bfcb499869451d031f60ff3d972",
+      "literal": "### L10-LABO-015-C04 — 同一条件のheld-out正常\n"
+    },
+    {
+      "line": 700,
+      "id": "L10-LABO-016-C01",
+      "sha256": "95a8c8dc421e62b69758bb8a025424298a4aced2ccf8e46740629f33d9c0ac6d",
+      "literal": "### L10-LABO-016-C01 — 比較証拠から二種類の評価材料へ\n"
+    },
+    {
+      "line": 706,
+      "id": "L10-LABO-016-C02",
+      "sha256": "73a94eabb7e9a7dd8a7ab217624da1bfdde0eb4ec844da34ff6e047148b175fa",
+      "literal": "### L10-LABO-016-C02 — oracle不一致・反例\n"
+    },
+    {
+      "line": 714,
+      "id": "L10-LABO-016-C03",
+      "sha256": "01609d8b2ea2ea555771a300b113244f66d09d0ed99fae932e9853ef83f18238",
+      "literal": "### L10-LABO-016-C03 — 中断による比較不能\n"
+    },
+    {
+      "line": 720,
+      "id": "L10-LABO-016-C04",
+      "sha256": "5d6167674db16445a0e337d8328eff302f881ff7bdd2ae222c3264657f93e21e",
+      "literal": "### L10-LABO-016-C04 — 完全証拠のheld-out正常\n"
+    },
+    {
+      "line": 726,
+      "id": "L10-LABO-017-C01",
+      "sha256": "59baf4a94862779a81e939ae68be9592b54c30bcb26490c9870797fff7d0ec51",
+      "literal": "### L10-LABO-017-C01 — 現行保証付き再評価candidate\n"
+    },
+    {
+      "line": 732,
+      "id": "L10-LABO-017-C02",
+      "sha256": "f5f58dd1d6cfbe1578bedbb1b8e32b9a636dc2120cf3ad8ab81747c97ccf8062",
+      "literal": "### L10-LABO-017-C02 — 現行版・保証欠落\n"
+    },
+    {
+      "line": 740,
+      "id": "L10-LABO-017-C03",
+      "sha256": "8d4f387ced744a62f9c9ebe04deb9a2d87b5825dd3ec3dbd76285551ac74d5f4",
+      "literal": "### L10-LABO-017-C03 — 所有者の運転結果不足\n"
+    },
+    {
+      "line": 746,
+      "id": "L10-LABO-017-C04",
+      "sha256": "641ae12fb577620af2bc01a0fb5bf5a8cbfea5b433122580a4b0a81c591d62ab",
+      "literal": "### L10-LABO-017-C04 — 義務を保つheld-out正常\n"
+    },
+    {
+      "line": 752,
+      "id": "L10-LABO-018-C01",
+      "sha256": "80d2a6ac738f381701946d94c48fd6452717d48a063d6a1e6b2a9bbd407d58a8",
+      "literal": "### L10-LABO-018-C01 — 証拠支持範囲の導出\n"
+    },
+    {
+      "line": 758,
+      "id": "L10-LABO-018-C02",
+      "sha256": "8ad5f4da9eb01d3db17a90355e3c4891381953965d05b21493c89e545329b93a",
+      "literal": "### L10-LABO-018-C02 — 標本条件・反例欠落\n"
+    },
+    {
+      "line": 766,
+      "id": "L10-LABO-018-C03",
+      "sha256": "1922deb96fb7afd9deb0aa2c9c94424d37f45805dee25c81283c2d0c05e28bfa",
+      "literal": "### L10-LABO-018-C03 — 適用境界の反例\n"
+    },
+    {
+      "line": 772,
+      "id": "L10-LABO-018-C04",
+      "sha256": "6f17e59a77f7693569930cc25beebb30a0cc969aca16c458558cbbecf54ddcb7",
+      "literal": "### L10-LABO-018-C04 — 条件内held-out正常\n"
+    },
+    {
+      "line": 778,
+      "id": "L10-LABO-019-C01",
+      "sha256": "e1939b4246e2a485d09e1dfc433672f8cfd30245c6719af224fe82f3ade7f7e5",
+      "literal": "### L10-LABO-019-C01 — target別feedback正常\n"
+    },
+    {
+      "line": 784,
+      "id": "L10-LABO-019-C02",
+      "sha256": "f77bac07aa6a2c9867f0117018a035404d95f7251c156e971b898facb43400e3",
+      "literal": "### L10-LABO-019-C02 — target identity/evidence不足\n"
+    },
+    {
+      "line": 792,
+      "id": "L10-LABO-019-C03",
+      "sha256": "a0a1266a0f129c343f95784ec86e41b74e24d70599ea22679b9172c993091273",
+      "literal": "### L10-LABO-019-C03 — target混在の否定\n"
+    },
+    {
+      "line": 800,
+      "id": "L10-LABO-019-C04",
+      "sha256": "f68cb37af736ffb93088582da886d43d2fecc541f2f7a57e85db9173f8e5d0d1",
+      "literal": "### L10-LABO-019-C04 — identityを保つheld-out正常\n"
+    },
+    {
+      "line": 806,
+      "id": "L10-LABO-020-C01",
+      "sha256": "a2342f37884ecea2b2c1c57b2e65cd1ee4f63c8bca18aa7b2af88dd2a237ae27",
+      "literal": "### L10-LABO-020-C01 — operation復帰後のobservation\n"
+    },
+    {
+      "line": 812,
+      "id": "L10-LABO-020-C02",
+      "sha256": "5c5fe5e3c2756e46ed3be3198a958e11a6e46916a3c4b387a40ba41037004d20",
+      "literal": "### L10-LABO-020-C02 — 前後版/resultの個別欠落\n"
+    },
+    {
+      "line": 820,
+      "id": "L10-LABO-020-C03",
+      "sha256": "86dd53eee1ffecf68addaddca18f04114f5f899cb01f1394a3d8256e4b28b8a1",
+      "literal": "### L10-LABO-020-C03 — stale版・義務消失\n"
+    },
+    {
+      "line": 828,
+      "id": "L10-LABO-020-C04",
+      "sha256": "0dcb0f8d967b1ff94504322e3797501e6893a6d0bc20783e3448c9578888ba09",
+      "literal": "### L10-LABO-020-C04 — identity付きheld-out正常\n"
+    },
+    {
+      "line": 834,
+      "id": "L10-LABO-021-C01",
+      "sha256": "89c0614043aa2feb627ac990b38cff3b1762d42379ad077b68688215d3b420ab",
+      "literal": "### L10-LABO-021-C01 — 許可source正常\n"
+    },
+    {
+      "line": 840,
+      "id": "L10-LABO-021-C02",
+      "sha256": "ebe2863f3b17ee17171d4cee17c3dadda38898dd1d8962543169d03fae73e128",
+      "literal": "### L10-LABO-021-C02 — 許可/版/範囲失敗\n"
+    },
+    {
+      "line": 848,
+      "id": "L10-LABO-021-C03",
+      "sha256": "835b7759c49a13ec1bf689a3cc67c03e75eed39a726f243caad14359657f96e0",
+      "literal": "### L10-LABO-021-C03 — raw authority boundary\n"
+    },
+    {
+      "line": 856,
+      "id": "L10-LABO-021-C04",
+      "sha256": "c7646ec2871d65e87898c1a5e86e425c69ad4bbe69ee0cdd0f9cfeb1ada6a5c7",
+      "literal": "### L10-LABO-021-C04 — held-out正常\n"
+    },
+    {
+      "line": 862,
+      "id": "L10-LABO-022-C01",
+      "sha256": "68f0aaf19e7239b62dd4d0e93812d7d9bdbb5d37d9c75e8f06f5e5ae0eb604c0",
+      "literal": "### L10-LABO-022-C01 — 許可OS record正常\n"
+    },
+    {
+      "line": 868,
+      "id": "L10-LABO-022-C02",
+      "sha256": "20cf8f09f3e025f6a3490937fa544bfcb60c894b1040658c3661d5acc05b3295",
+      "literal": "### L10-LABO-022-C02 — stale/欠落\n"
+    },
+    {
+      "line": 876,
+      "id": "L10-LABO-022-C03",
+      "sha256": "dc557e2e672bfaab2829811d48b1f637012cffbc294a2cb52a016a1972ab7651",
+      "literal": "### L10-LABO-022-C03 — 状態混同\n"
+    },
+    {
+      "line": 884,
+      "id": "L10-LABO-022-C04",
+      "sha256": "19f2048cf41b948c54c2ec554519c65a45d7c3c70963e05720754afbd8dfc7c1",
+      "literal": "### L10-LABO-022-C04 — held-out正常\n"
+    },
+    {
+      "line": 890,
+      "id": "L10-LABO-023-C01",
+      "sha256": "8ea3bade1bf0bd5b84a5969c837a858f6c0df46ecd567d3fe3a284b5cd596b46",
+      "literal": "### L10-LABO-023-C01 — 知識利用正常\n"
+    },
+    {
+      "line": 896,
+      "id": "L10-LABO-023-C02",
+      "sha256": "882c9ee9581911529e4d6a41fd682929e86724e591fb67b66495994c270eaa04",
+      "literal": "### L10-LABO-023-C02 — source identity/permission欠落\n"
+    },
+    {
+      "line": 904,
+      "id": "L10-LABO-023-C03",
+      "sha256": "9078a43513ede24d59a2f017d70401496adfe12b32747fce3c7c9cf868963d5b",
+      "literal": "### L10-LABO-023-C03 — knowledge writeback否定\n"
+    },
+    {
+      "line": 912,
+      "id": "L10-LABO-023-C04",
+      "sha256": "4a90c8743c9678034a909b4987bbe61186b958128806e21b237b4d7924bd081c",
+      "literal": "### L10-LABO-023-C04 — held-out正常\n"
+    },
+    {
+      "line": 918,
+      "id": "L10-LABO-024-C01",
+      "sha256": "5f7e08373232a67a816a772f8700598f939d53bcfa5a46f02913096b255e4ef4",
+      "literal": "### L10-LABO-024-C01 — 判断結果正常\n"
+    },
+    {
+      "line": 924,
+      "id": "L10-LABO-024-C02",
+      "sha256": "b6b3c1f0d36bed3022af5ee79b3d5ecd96d304e6ef8ec0a3324ac8660a04a0af",
+      "literal": "### L10-LABO-024-C02 — 版/履歴失敗\n"
+    },
+    {
+      "line": 932,
+      "id": "L10-LABO-024-C03",
+      "sha256": "3cb01311f8bdd9939c244cc34e6058cf10d0f192d544a24f287eeab7327ed143",
+      "literal": "### L10-LABO-024-C03 — 判断/観測混同\n"
+    },
+    {
+      "line": 940,
+      "id": "L10-LABO-024-C04",
+      "sha256": "72744a51572c12a5e9c1a508a68cf674ffc4819981f99540c59a5e1659406e18",
+      "literal": "### L10-LABO-024-C04 — held-out正常\n"
+    },
+    {
+      "line": 946,
+      "id": "L10-LABO-025-C01",
+      "sha256": "cfa546d42d58410b5d1c4e40c3f301665971531369bfcf1edb711e53903d403a",
+      "literal": "### L10-LABO-025-C01 — 許可scope正常\n"
+    },
+    {
+      "line": 952,
+      "id": "L10-LABO-025-C02",
+      "sha256": "4d39c154d947b36e574b65e89f304d475302d850bfb7ebfc1efac18ff0d46625",
+      "literal": "### L10-LABO-025-C02 — scope/制限失敗\n"
+    },
+    {
+      "line": 960,
+      "id": "L10-LABO-025-C03",
+      "sha256": "4e86c1bc063d4a7bfb4278a102b2f1f9ed770bb3918f6110d550a4a6886cf4c2",
+      "literal": "### L10-LABO-025-C03 — source authority境界\n"
+    },
+    {
+      "line": 968,
+      "id": "L10-LABO-025-C04",
+      "sha256": "a522249046609d6c94506d63b03e7c2ce75012a08571ae9942b4b8d21b7eba07",
+      "literal": "### L10-LABO-025-C04 — held-out正常\n"
+    },
+    {
+      "line": 974,
+      "id": "L10-LABO-026-C01",
+      "sha256": "d77da87e0e95a33f831d13eaf7bc4ccdd04bdab50f3dee785895f743fbece723",
+      "literal": "### L10-LABO-026-C01 — resource/runtime正常\n"
+    },
+    {
+      "line": 980,
+      "id": "L10-LABO-026-C02",
+      "sha256": "5497e34b9f3d17c6ead71870901e6f774ede033be718006eed807e4794d65f31",
+      "literal": "### L10-LABO-026-C02 — stale/unknown\n"
+    },
+    {
+      "line": 988,
+      "id": "L10-LABO-026-C03",
+      "sha256": "e3edc995448323dcb6b3c73ada8e21dbde2494d23a6819fe802332f3b134b3e9",
+      "literal": "### L10-LABO-026-C03 — resource authority境界\n"
+    },
+    {
+      "line": 996,
+      "id": "L10-LABO-026-C04",
+      "sha256": "e52f87681705d2ee6d46a4a5d29236536b1aabbd31960e6f1baedece096b967c",
+      "literal": "### L10-LABO-026-C04 — held-out正常\n"
+    },
+    {
+      "line": 1002,
+      "id": "L10-LABO-027-C01",
+      "sha256": "0f960ff9fd26547f5e57a954d4d43b9e4d37873df0a9a7471baae279f8c2b29e",
+      "literal": "### L10-LABO-027-C01 — accepted contract正常\n"
+    },
+    {
+      "line": 1008,
+      "id": "L10-LABO-027-C02",
+      "sha256": "0fd5e54696753da1b9a0f4cfc2fb4fdbf49ff7345f0a499ea4443ec79832a5ea",
+      "literal": "### L10-LABO-027-C02 — contract mismatch\n"
+    },
+    {
+      "line": 1016,
+      "id": "L10-LABO-027-C03",
+      "sha256": "5054a5a7248e2d4d9b178f23a87fcd654248fd4876373baa353bf0726c077a76",
+      "literal": "### L10-LABO-027-C03 — drift＋部分有効\n"
+    },
+    {
+      "line": 1024,
+      "id": "L10-LABO-027-C04",
+      "sha256": "9dfdd71f1759f9d2cc8605bffe383901cbfdffeb862a0aa81ec72a2b15d04210",
+      "literal": "### L10-LABO-027-C04 — held-out正常\n"
+    },
+    {
+      "line": 1030,
+      "id": "L10-LABO-028-C01",
+      "sha256": "e11075102efd1985be0a991f17bdffee2a8c7b252677c2c25f3262585cd66419",
+      "literal": "### L10-LABO-028-C01 — OS-assigned Worker result正常\n"
+    },
+    {
+      "line": 1036,
+      "id": "L10-LABO-028-C02",
+      "sha256": "ea6e8ffa317212c7ebb5eb91b1f1c11a62b60e127b4e858b93e4682a3ddae630",
+      "literal": "### L10-LABO-028-C02 — assignment/result failure\n"
+    },
+    {
+      "line": 1044,
+      "id": "L10-LABO-028-C03",
+      "sha256": "3ffb39510a4ff5c0a1739543e8f7cf4a0ba412d7904d5c8bf8a331dbdfda12dd",
+      "literal": "### L10-LABO-028-C03 — evaluation promotion否定\n"
+    },
+    {
+      "line": 1052,
+      "id": "L10-LABO-028-C04",
+      "sha256": "ca91cde05c9d0fdca720d46e3a21ce5a9052bfa7963f2ea07dcff4f9042b6d2b",
+      "literal": "### L10-LABO-028-C04 — held-out正常\n"
+    },
+    {
+      "line": 1058,
+      "id": "L10-LABO-029-C01",
+      "sha256": "4b5844abaca72e349c93c36911f752e065b00698c6feb67564750a797e5c623e",
+      "literal": "### L10-LABO-029-C01 — CI/test正常\n"
+    },
+    {
+      "line": 1064,
+      "id": "L10-LABO-029-C02",
+      "sha256": "e670f0ee393af7c629ceb5e43a0107767716f4d10b08831e15b9ef599f867e5d",
+      "literal": "### L10-LABO-029-C02 — non-pass inputs\n"
+    },
+    {
+      "line": 1072,
+      "id": "L10-LABO-029-C03",
+      "sha256": "b125aa2d38c3071e34ef64240e7b3e13f24bd753df3e7ab2c8d63a1d62d5fee0",
+      "literal": "### L10-LABO-029-C03 — 複合failure\n"
+    },
+    {
+      "line": 1080,
+      "id": "L10-LABO-029-C04",
+      "sha256": "2dfcb5a1f3b174146d8951ed4eefdb732af96e81a18b80a964cade7c2b64706e",
+      "literal": "### L10-LABO-029-C04 — held-out正常\n"
+    },
+    {
+      "line": 1086,
+      "id": "L10-LABO-030-C01",
+      "sha256": "b9a353899be2630245e02e3a5648fa6364f4b596407989b7ac79b9fdfdfb7679",
+      "literal": "### L10-LABO-030-C01 — 採択製品scope正常\n"
+    },
+    {
+      "line": 1092,
+      "id": "L10-LABO-030-C02",
+      "sha256": "1da09d09c695ae176f44edc26abcb00ff21caab3d0e6e163e7e3ceefddba40c3",
+      "literal": "### L10-LABO-030-C02 — version/source mismatch\n"
+    },
+    {
+      "line": 1100,
+      "id": "L10-LABO-030-C03",
+      "sha256": "8afc73b1b94a9a768a1b8c4ed1c369954eb14537c150ecbe0abca98c216b149c",
+      "literal": "### L10-LABO-030-C03 — 未選択製品否定\n"
+    },
+    {
+      "line": 1108,
+      "id": "L10-LABO-030-C04",
+      "sha256": "731afe8e146d948a21314bfa48229c07d136c39c8fdfbddc2cdc49e3d93f5fbf",
+      "literal": "### L10-LABO-030-C04 — held-out正常\n"
+    },
+    {
+      "line": 1114,
+      "id": "L10-LABO-034-C01",
+      "sha256": "add14e3a6f1e359108dafb9cbbd78325e3b06c565c59ee94f09a702ae10afe27",
+      "literal": "### L10-LABO-034-C01 — 内部generic evidence正常\n"
+    },
+    {
+      "line": 1120,
+      "id": "L10-LABO-034-C02",
+      "sha256": "bfa79036b08df6129db5893e146457af23fb03b0c796aad7c7f325dd45183476",
+      "literal": "### L10-LABO-034-C02 — single/product-specific failure\n"
+    },
+    {
+      "line": 1128,
+      "id": "L10-LABO-034-C03",
+      "sha256": "863d772c64e89f46c06e8c66a7f7de4468e8a00d65be63f8767fb35e67fac027",
+      "literal": "### L10-LABO-034-C03 — version boundary\n"
+    },
+    {
+      "line": 1134,
+      "id": "L10-LABO-034-C04",
+      "sha256": "22182169efc82cf917c307d6b1c9b99a6ee652d37c653978100cc6fe851858f7",
+      "literal": "### L10-LABO-034-C04 — held-out正常\n"
+    },
+    {
+      "line": 1140,
+      "id": "L10-LABO-035-C01",
+      "sha256": "990ab73dd3e8710f84e7365a8b97acfe91ef940987b1482e5dda262491f99b39",
+      "literal": "### L10-LABO-035-C01 — 評価packet正常\n"
+    },
+    {
+      "line": 1146,
+      "id": "L10-LABO-035-C02",
+      "sha256": "7d6a562dd13f3519bf4b22aa5a0ffc5a201348f7a335842a0989190ccb3a330a",
+      "literal": "### L10-LABO-035-C02 — scope/revision failure\n"
+    },
+    {
+      "line": 1154,
+      "id": "L10-LABO-035-C03",
+      "sha256": "bf73d26bd9db1ac6043c71adb9383148b8df0bd19c738553d2c3f7b0f20ae6df",
+      "literal": "### L10-LABO-035-C03 — learning/operation exclusion\n"
+    },
+    {
+      "line": 1162,
+      "id": "L10-LABO-035-C04",
+      "sha256": "df778a6ace6187c6b1c15a874d0ad3096d52119cb4d66f347f5807cafcd3a32d",
+      "literal": "### L10-LABO-035-C04 — held-out正常\n"
+    },
+    {
+      "line": 1168,
+      "id": "L10-LABO-058-C01",
+      "sha256": "bee202df00f517da0975a55c6ca15a6df7e24413bee1e42a0c214138a94fcca7",
+      "literal": "### L10-LABO-058-C01 — 単一選択source正常\n"
+    },
+    {
+      "line": 1174,
+      "id": "L10-LABO-058-C02",
+      "sha256": "f897ef56e8dadfa420a7699cbd75e6f5c74ccb0a21de1858d628dd73284ba4fb",
+      "literal": "### L10-LABO-058-C02 — selected-source missing/unknown\n"
+    },
+    {
+      "line": 1182,
+      "id": "L10-LABO-058-C03",
+      "sha256": "66fc0cbb5581955d6669927b56677849e3ba62f5996122d4a63770517fd4df91",
+      "literal": "### L10-LABO-058-C03 — 複数source/閉包\n"
+    },
+    {
+      "line": 1190,
+      "id": "L10-LABO-058-C04",
+      "sha256": "281aa353fce8cbb96d093893f4a5ea389983ee9309cfc8396595d7cddd7a1977",
+      "literal": "### L10-LABO-058-C04 — 未選択／選択不明\n"
+    },
+    {
+      "line": 1199,
+      "id": "L10-LABO-058-C05",
+      "sha256": "b1f1f3428d94de17e816ec42fea17b308668bfa9307f6184a8b5975455aa1e92",
+      "literal": "### L10-LABO-058-C05 — Web/WEB-OSおよび外部取得の版境界\n"
+    },
+    {
+      "line": 1210,
+      "id": "L10-LABO-017-C10",
+      "sha256": "88a12044ff7ee1c3601cf904670f064dfa44c46aee3fe1beccfe83ec6982544e",
+      "literal": "### L10-LABO-017-C10 — 未完義務の単独脱落\n"
+    },
+    {
+      "line": 1216,
+      "id": "L10-LABO-020-C12",
+      "sha256": "bc4d0ab5add78455be90df8bab250c9cba713a729f72f1fad9b51fd320b2e149",
+      "literal": "### L10-LABO-020-C12 — LABOによる運用切替要求\n"
+    },
+    {
+      "line": 1222,
+      "id": "L10-LABO-016-C10",
+      "sha256": "60495a815c87591f4d3fdc26aaf44a06f3d9ae9bae43dd25e7d1e460d4629c86",
+      "literal": "### L10-LABO-016-C10 — 比較可能性だけを落とす\n"
+    },
+    {
+      "line": 1228,
+      "id": "L10-LABO-021-C16",
+      "sha256": "216f6e83019c977f98709f086945e2ae17323657607e7d98d0953727fa0ea02e",
+      "literal": "### L10-LABO-021-C16 — HARNESS source identityの混合\n"
+    },
+    {
+      "line": 1234,
+      "id": "L10-LABO-022-C16",
+      "sha256": "5252fb62a733248ad0872c105079f29170335e1edbb3338acf31da64d47eccf7",
+      "literal": "### L10-LABO-022-C16 — OS source identityの混合\n"
+    },
+    {
+      "line": 1240,
+      "id": "L10-LABO-023-C16",
+      "sha256": "b26c8565f240d989cea63541ecb58d4e3d0f974f2f9164a32ca07e140294fe38",
+      "literal": "### L10-LABO-023-C16 — BRAIN source identityの混合\n"
+    },
+    {
+      "line": 1246,
+      "id": "L10-LABO-024-C16",
+      "sha256": "f6d785916f2aed2d6b7b0fc0a93a7c7fc2b789db7c6ce8ca8f4ec9c03ef5820a",
+      "literal": "### L10-LABO-024-C16 — INTELLIGENCE source identityの混合\n"
+    },
+    {
+      "line": 1252,
+      "id": "L10-LABO-025-C16",
+      "sha256": "65661e2d8f1ec04daee7343b9df0ed5b23a4bf73287caf68e8d93e06f86e24ed",
+      "literal": "### L10-LABO-025-C16 — SECURITY source identityの混合\n"
+    },
+    {
+      "line": 1258,
+      "id": "L10-LABO-026-C16",
+      "sha256": "227e39c3593114a84ddf90da61c3634889fa13d6739e43c904a9995afb02cf54",
+      "literal": "### L10-LABO-026-C16 — INFRASTRUCTURE source identityの混合\n"
+    },
+    {
+      "line": 1264,
+      "id": "L10-LABO-027-C16",
+      "sha256": "882f8f5f2cbe3847263f4206ea89fb3b3d183c27fba7f58fd9530bd0436d4807",
+      "literal": "### L10-LABO-027-C16 — CONNECT source identityの混合\n"
+    },
+    {
+      "line": 1270,
+      "id": "L10-LABO-028-C16",
+      "sha256": "6a1ef720dd629d36aff5e53bc73fe2c6a7efe11bc24998d52d57a71957d9d276",
+      "literal": "### L10-LABO-028-C16 — Worker source identityの混合\n"
+    },
+    {
+      "line": 1276,
+      "id": "L10-LABO-029-C16",
+      "sha256": "d0836a08900105ed6b3eb3afdb3feb1f4835f976a64df7d1fd0ef6b6dbec29f8",
+      "literal": "### L10-LABO-029-C16 — CI/test source identityの混合\n"
+    },
+    {
+      "line": 1282,
+      "id": "L10-LABO-029-C17",
+      "sha256": "65db20ede38c8f5decaebde44c483199d8710b8add9bbb2ff40a7a940e5cd2c3",
+      "literal": "### L10-LABO-029-C17 — OS実行証拠だけが欠落\n"
+    },
+    {
+      "line": 1288,
+      "id": "L10-LABO-029-C18",
+      "sha256": "6a32c21cf62f5bffb18413e888d0247fcf70ee7c9805d684992225eae091a009",
+      "literal": "### L10-LABO-029-C18 — HARNESS verification contractだけがstale\n"
+    },
+    {
+      "line": 1299,
+      "id": "L10-LABO-012-C05",
+      "sha256": "fca6e98b1f72700b3b9577e4a373c1a2123f9d77c0cc4d85e811814f7ba3bf11",
+      "literal": "### L10-LABO-012-C05 — 根拠source identity欠落\n"
+    },
+    {
+      "line": 1304,
+      "id": "L10-LABO-012-C06",
+      "sha256": "bf57c86ddeea4ffbb5831afc425637fef0802dae215f6a74ec368274bbe2af5f",
+      "literal": "### L10-LABO-012-C06 — 相関を因果へ変換\n"
+    },
+    {
+      "line": 1310,
+      "id": "L10-LABO-013-C05",
+      "sha256": "88d059ed173db763799fbd15dfd21b3e06e286b11e1ae87de8cd53b2d0c53a3c",
+      "literal": "### L10-LABO-013-C05 — 一分類根拠の欠落\n"
+    },
+    {
+      "line": 1315,
+      "id": "L10-LABO-013-C06",
+      "sha256": "7b3451a1850f4f3ac28af667ef7eadecaaf2296be23f4954804ca7752e4ae615",
+      "literal": "### L10-LABO-013-C06 — unknownの成功化\n"
+    },
+    {
+      "line": 1321,
+      "id": "L10-LABO-014-C05",
+      "sha256": "d059e835b853e757b90b04bf9d3594562009a080dd30a0b2ac2d9844c277d8ce",
+      "literal": "### L10-LABO-014-C05 — 元目的の欠落\n"
+    },
+    {
+      "line": 1326,
+      "id": "L10-LABO-014-C06",
+      "sha256": "d76e2af9d120803af2dffb20de13dbae4a2dc49755097836e82539e4caf9ceee",
+      "literal": "### L10-LABO-014-C06 — 変更差分の欠落\n"
+    },
+    {
+      "line": 1333,
+      "id": "L10-LABO-014-C07",
+      "sha256": "d5239ed4e4a3a7056f74e9d04f2941c877a0b90db3c06b1cd15600887a7e4b0e",
+      "literal": "### L10-LABO-014-C07 — candidateの自動昇格\n"
+    },
+    {
+      "line": 1340,
+      "id": "L10-LABO-015-C05",
+      "sha256": "5daab99ccc227601930617cf203af9d04d4a0d9358c8bcefcea63bc527613c76",
+      "literal": "### L10-LABO-015-C05 — baseline版の不一致\n"
+    },
+    {
+      "line": 1346,
+      "id": "L10-LABO-015-C06",
+      "sha256": "b9a26e95b5851a31398abf4daad4b2f49ee4bf5ea3ef59aad13bdcae7f7b3863",
+      "literal": "### L10-LABO-015-C06 — oracleの欠落\n"
+    },
+    {
+      "line": 1351,
+      "id": "L10-LABO-015-C07",
+      "sha256": "ce6baf284b80c97593328ca276ff4429f15e6b6ad10bc6860d4a1dd4470c58e3",
+      "literal": "### L10-LABO-015-C07 — scopeの不一致\n"
+    },
+    {
+      "line": 1357,
+      "id": "L10-LABO-015-C08",
+      "sha256": "c46d3576d124ef3de65e16056a56665f8b6b54a672b7180965236df77f3c1b92",
+      "literal": "### L10-LABO-015-C08 — 条件の不一致\n"
+    },
+    {
+      "line": 1363,
+      "id": "L10-LABO-016-C05",
+      "sha256": "a5372eac6196df3afaa3d87b18d58ba1de50d6c04ea0ea8f496014ccde0f7476",
+      "literal": "### L10-LABO-016-C05 — 反例の脱落\n"
+    },
+    {
+      "line": 1369,
+      "id": "L10-LABO-016-C06",
+      "sha256": "e0ded02fe5c037027f64dae2c8e4c6a6847b8c0b04aa6eb151c4a581bce0725b",
+      "literal": "### L10-LABO-016-C06 — oracleと結果の不一致\n"
+    },
+    {
+      "line": 1375,
+      "id": "L10-LABO-016-C07",
+      "sha256": "e0ab4dd841252afb5bcbfe9700baf4fc3d4e4a6c282bde6aa926e9b219ef5247",
+      "literal": "### L10-LABO-016-C07 — 中断状態の消去\n"
+    },
+    {
+      "line": 1381,
+      "id": "L10-LABO-017-C05",
+      "sha256": "891e3c0783636fc3217e92bed1d67e588d67792fb141e88d0855856102d605a5",
+      "literal": "### L10-LABO-017-C05 — 現行rule版の欠落\n"
+    },
+    {
+      "line": 1386,
+      "id": "L10-LABO-017-C06",
+      "sha256": "d173637578e58cc303ef86a3a9707761f91e97e222d902aae81a44dc45e3323d",
+      "literal": "### L10-LABO-017-C06 — 現行保証の欠落\n"
+    },
+    {
+      "line": 1392,
+      "id": "L10-LABO-017-C07",
+      "sha256": "d04c638209742bbaa28fef3e660a50f0eb207aeb680768c9d408e5c15648c52d",
+      "literal": "### L10-LABO-017-C07 — owner運転結果の欠落\n"
+    },
+    {
+      "line": 1399,
+      "id": "L10-LABO-017-C08",
+      "sha256": "a076b1139ad7519a8be50a23c3fc46e77cb4a47885066b93a3979547d8d7e6de",
+      "literal": "### L10-LABO-017-C08 — 切替の自動実行\n"
+    },
+    {
+      "line": 1406,
+      "id": "L10-LABO-018-C05",
+      "sha256": "d0e89a35312fcb8cd50e22c9062cbff4865f768bcb362704bf5362e68716e5de",
+      "literal": "### L10-LABO-018-C05 — 標本条件の欠落\n"
+    },
+    {
+      "line": 1411,
+      "id": "L10-LABO-018-C06",
+      "sha256": "d8dceb3276b8121ede0ee00850d6706fba994bef36a8235dc905687b2edcc024",
+      "literal": "### L10-LABO-018-C06 — 反例の欠落\n"
+    },
+    {
+      "line": 1417,
+      "id": "L10-LABO-018-C07",
+      "sha256": "51abbe3f2df78fe038d9aeb670f43765e9cb3efed48be2aeda216495e87dc511",
+      "literal": "### L10-LABO-018-C07 — 適用範囲の過大化\n"
+    },
+    {
+      "line": 1423,
+      "id": "L10-LABO-019-C05",
+      "sha256": "fa3b33bd62e608938cb1c998340b1c7c5487d445f1e1cf1e8b0e2a1e7aba448d",
+      "literal": "### L10-LABO-019-C05 — target identityの欠落\n"
+    },
+    {
+      "line": 1428,
+      "id": "L10-LABO-019-C06",
+      "sha256": "b6df3bb285d8c696da32a344368afe0d09526a6d913d4737e8d03929fb2eeab5",
+      "literal": "### L10-LABO-019-C06 — responsibilityの欠落\n"
+    },
+    {
+      "line": 1434,
+      "id": "L10-LABO-019-C07",
+      "sha256": "ec7a553667347128173b6d646e6e665c82d4b0f9ad7a8fd99a10b6bca451b48e",
+      "literal": "### L10-LABO-019-C07 — source evidenceの欠落\n"
+    },
+    {
+      "line": 1440,
+      "id": "L10-LABO-019-C08",
+      "sha256": "e99af97b9fe6167d64fa0363e90bcec8bbeb290b5d02a89f14948baa2c9f3801",
+      "literal": "### L10-LABO-019-C08 — 複数targetの統合\n"
+    },
+    {
+      "line": 1447,
+      "id": "L10-LABO-020-C05",
+      "sha256": "4aad5c1e72a8b3811789f5ccfd72dea36fe4d8533f93e720064075b14afb756e",
+      "literal": "### L10-LABO-020-C05 — 旧rule版の欠落\n"
+    },
+    {
+      "line": 1454,
+      "id": "L10-LABO-020-C06",
+      "sha256": "8d86cfdee296577d2ea0addfc1c6a265b130d67127f1e2e7b29b36ba0addacf5",
+      "literal": "### L10-LABO-020-C06 — 復帰後resultの欠落\n"
+    },
+    {
+      "line": 1461,
+      "id": "L10-LABO-020-C07",
+      "sha256": "147561a88e2fc3ab856f8c86d266b022549b925d62af59f4b143ba899b5fd36f",
+      "literal": "### L10-LABO-020-C07 — 未完義務の脱落\n"
+    },
+    {
+      "line": 1466,
+      "id": "L10-LABO-020-C08",
+      "sha256": "56723afae06be517e5a9b72cfe1a7b2ef642daccd379bf7d1d3ba5014f2e16b7",
+      "literal": "### L10-LABO-020-C08 — source上書き\n"
+    },
+    {
+      "line": 1473,
+      "id": "L10-LABO-021-C05",
+      "sha256": "44091638a6e9a531d9b5b9489ba5c8710820c649bfb7134204cb813852fa7b90",
+      "literal": "### L10-LABO-021-C05 — source identity欠落\n"
+    },
+    {
+      "line": 1478,
+      "id": "L10-LABO-021-C06",
+      "sha256": "01fc86e01759f18f8d48168afa72c31eebac7228cbd290d621cf5b59219a9d09",
+      "literal": "### L10-LABO-021-C06 — source revision stale\n"
+    },
+    {
+      "line": 1483,
+      "id": "L10-LABO-021-C07",
+      "sha256": "76e146593a17df9078ec5a54caed42742c01ace387b627a3a39e15c4ce8c18fc",
+      "literal": "### L10-LABO-021-C07 — scope不許可\n"
+    },
+    {
+      "line": 1488,
+      "id": "L10-LABO-021-C08",
+      "sha256": "efe231d9d08ef3a4cc7772d20777ab13e93d9811bf96112eceb99e56ab664ecc",
+      "literal": "### L10-LABO-021-C08 — raw authorityの書戻し\n"
+    },
+    {
+      "line": 1493,
+      "id": "L10-LABO-022-C05",
+      "sha256": "31f88babc0db416c3ad38df254d6dac0071d64344fadcc1f3a79cdebf8cc581e",
+      "literal": "### L10-LABO-022-C05 — ticket identity欠落\n"
+    },
+    {
+      "line": 1498,
+      "id": "L10-LABO-022-C06",
+      "sha256": "d34b367b4c5928180313b0a2088bdddd7fd84f28089e361cf667a70812d731af",
+      "literal": "### L10-LABO-022-C06 — source contract／revision stale索引\n"
+    },
+    {
+      "line": 1504,
+      "id": "L10-LABO-022-C07",
+      "sha256": "2be0be0c6f5f9c9fffb374641d867bc0011bbe277937e1b843501b290a487a31",
+      "literal": "### L10-LABO-022-C07 — 未完状態の完了化\n"
+    },
+    {
+      "line": 1510,
+      "id": "L10-LABO-022-C08",
+      "sha256": "171368efa7024651c56ce55471cb9dacf8f0d0578381318076a549d5c3c64661",
+      "literal": "### L10-LABO-022-C08 — OS正本の変更\n"
+    },
+    {
+      "line": 1516,
+      "id": "L10-LABO-023-C05",
+      "sha256": "d2719da78475e0790fc4cb5d0cb740d4dcf6c330622a5395219b9500ca009f36",
+      "literal": "### L10-LABO-023-C05 — source identity欠落\n"
+    },
+    {
+      "line": 1521,
+      "id": "L10-LABO-023-C06",
+      "sha256": "f5984f3f0f6cfc7b7c0f3c10c14600d91c7cbb738b9639f5ae7dbc0ca035a187",
+      "literal": "### L10-LABO-023-C06 — source version不一致\n"
+    },
+    {
+      "line": 1526,
+      "id": "L10-LABO-023-C07",
+      "sha256": "e5b8271c08d8751781c5d14c29b1019f250a1955f1f4094a5564854be6cc1621",
+      "literal": "### L10-LABO-023-C07 — knowledge正本の変更\n"
+    },
+    {
+      "line": 1532,
+      "id": "L10-LABO-024-C05",
+      "sha256": "d8890c48e8b0f42dc52a065b333170595d12f6e0ef712b8a4cd409e7f659902b",
+      "literal": "### L10-LABO-024-C05 — 判断revisionのstale\n"
+    },
+    {
+      "line": 1537,
+      "id": "L10-LABO-024-C06",
+      "sha256": "1232b4eeb3ddc7a9391ce5bee58027149ea313ec22a52ac3cc1d33f01fff1a27",
+      "literal": "### L10-LABO-024-C06 — 過去評価のcurrent authority化\n"
+    },
+    {
+      "line": 1544,
+      "id": "L10-LABO-024-C07",
+      "sha256": "229e7f0c6a3eea9f37e5003fb659d6b30f8fe219ad9e9cc18cf430e09f5f1d4d",
+      "literal": "### L10-LABO-024-C07 — 観測事実と判断の混同\n"
+    },
+    {
+      "line": 1551,
+      "id": "L10-LABO-025-C05",
+      "sha256": "fd7d9f5acd001465e411349ac7d3b2ed6752dabbcc69c5bc8e04ba3ac2c6b23d",
+      "literal": "### L10-LABO-025-C05 — data-use scope欠落\n"
+    },
+    {
+      "line": 1556,
+      "id": "L10-LABO-025-C06",
+      "sha256": "c5d4d53b3bbc4c26f444967ffd2fb29850aa529b49f20d59e06029b9b27223c2",
+      "literal": "### L10-LABO-025-C06 — restricted data混入\n"
+    },
+    {
+      "line": 1563,
+      "id": "L10-LABO-025-C07",
+      "sha256": "cdaa624493007b68fda9c79644b619ec1fc7fe4815ef41c06810618eb187f3f1",
+      "literal": "### L10-LABO-025-C07 — authority移転\n"
+    },
+    {
+      "line": 1570,
+      "id": "L10-LABO-026-C05",
+      "sha256": "e4a5ebd6551c94521daece56aa7301e5bbf255eef8891912ac5970789be22bd4",
+      "literal": "### L10-LABO-026-C05 — resource revision stale\n"
+    },
+    {
+      "line": 1575,
+      "id": "L10-LABO-026-C06",
+      "sha256": "38393c780a0b34ee428de2a6baf7e2e03cf37eff8f65b0734de24e9299d29970",
+      "literal": "### L10-LABO-026-C06 — resource state unknownの確定化\n"
+    },
+    {
+      "line": 1582,
+      "id": "L10-LABO-026-C07",
+      "sha256": "3091bd9aba028581959ca4ab27f471361fa4c1e2cc5beec7a8287493af26b03c",
+      "literal": "### L10-LABO-026-C07 — resource authority移転\n"
+    },
+    {
+      "line": 1589,
+      "id": "L10-LABO-027-C05",
+      "sha256": "71d9b78529d5ed35da8f0efdb95141f14c12800f3b5bbada9391df25b4fdc37d",
+      "literal": "### L10-LABO-027-C05 — connection identity欠落\n"
+    },
+    {
+      "line": 1595,
+      "id": "L10-LABO-027-C06",
+      "sha256": "9638e284f76289523bfb4061610f7812c053476ad61353d545e90518788fd9a8",
+      "literal": "### L10-LABO-027-C06 — schema version mismatch\n"
+    },
+    {
+      "line": 1600,
+      "id": "L10-LABO-027-C07",
+      "sha256": "3b73ba7ac4145039c3c732fb0f76dbcd690bc301f919196901ed500053e8369b",
+      "literal": "### L10-LABO-027-C07 — provenance欠落\n"
+    },
+    {
+      "line": 1606,
+      "id": "L10-LABO-027-C08",
+      "sha256": "1bf16924fe5c5730cf597b21a54585a7b58e7d0a28febb3674a0bec8bb11b94b",
+      "literal": "### L10-LABO-027-C08 — drift隠蔽\n"
+    },
+    {
+      "line": 1613,
+      "id": "L10-LABO-028-C05",
+      "sha256": "5dcd121e262667ca4768433388a245ae0a13b5fa4894e62eb7144fd07f02c719",
+      "literal": "### L10-LABO-028-C05 — assignment identity欠落\n"
+    },
+    {
+      "line": 1618,
+      "id": "L10-LABO-028-C06",
+      "sha256": "97ec676490b88b49d943177d28eefb55fef2d91cbddbcbbcb36a702110b84674",
+      "literal": "### L10-LABO-028-C06 — task class不一致\n"
+    },
+    {
+      "line": 1625,
+      "id": "L10-LABO-028-C07",
+      "sha256": "9a35173580696d5a8336e18ab575b45551c4a05937501e0618bfb1f3db8f5e24",
+      "literal": "### L10-LABO-028-C07 — Worker result revision stale\n"
+    },
+    {
+      "line": 1630,
+      "id": "L10-LABO-028-C08",
+      "sha256": "b444cf036adf30f6f581116c068fd51589522a639fc783b9d964dd38fa65a4fa",
+      "literal": "### L10-LABO-028-C08 — 別ticket/experimentの混在\n"
+    },
+    {
+      "line": 1637,
+      "id": "L10-LABO-029-C05",
+      "sha256": "dac8d6bd199a298a70a0c8ca2e408fa66ca912bcd7d9ab9570d2aa929279420e",
+      "literal": "### L10-LABO-029-C05 — 未実行をpass化\n"
+    },
+    {
+      "line": 1643,
+      "id": "L10-LABO-029-C06",
+      "sha256": "074d7de41836fbe9dba4075cf7cc5b1f362bad4c67aa419dc86e4d58f1459695",
+      "literal": "### L10-LABO-029-C06 — target revision stale\n"
+    },
+    {
+      "line": 1649,
+      "id": "L10-LABO-029-C07",
+      "sha256": "5adb0d5f827dccb995fc19ded13afaaee7096b4f2af25c58d8eaa4a83b9acf78",
+      "literal": "### L10-LABO-029-C07 — inspection scope欠落\n"
+    },
+    {
+      "line": 1654,
+      "id": "L10-LABO-029-C08",
+      "sha256": "f33b7984a9eb4008f6f5f8293b82898d42d275cf835d3cdfe51dff1cf911e08f",
+      "literal": "### L10-LABO-029-C08 — 中断をpass化\n"
+    },
+    {
+      "line": 1662,
+      "id": "L10-LABO-030-C05",
+      "sha256": "c7433855d2b20fc1674b6e6ecfcfc4699b93bb0891ee1f4286f26bf2736fab97",
+      "literal": "### L10-LABO-030-C05 — product identity欠落\n"
+    },
+    {
+      "line": 1667,
+      "id": "L10-LABO-030-C06",
+      "sha256": "af00144873c40c37f7ad41ed785300c324fb19a5263e19124eec9717ffd26ab8",
+      "literal": "### L10-LABO-030-C06 — source revision不一致\n"
+    },
+    {
+      "line": 1673,
+      "id": "L10-LABO-030-C07",
+      "sha256": "0d3728ff87bc8134f84bca23c944b17657f660d3d27dcafac831c5978e9cc36e",
+      "literal": "### L10-LABO-030-C07 — 別product source統合\n"
+    },
+    {
+      "line": 1679,
+      "id": "L10-LABO-030-C08",
+      "sha256": "3fca42eaea52f0d2a9516e8de7ededc83e1da218b154e7cb697cd852e1cfc117",
+      "literal": "### L10-LABO-030-C08 — product authority移転\n"
+    },
+    {
+      "line": 1685,
+      "id": "L10-LABO-034-C05",
+      "sha256": "952eb5c40163697107a02d69d3b7e4b56405e6cb80eb91cfaa5bbd1c16428f4a",
+      "literal": "### L10-LABO-034-C05 — 単一episodeのgeneric化\n"
+    },
+    {
+      "line": 1690,
+      "id": "L10-LABO-034-C06",
+      "sha256": "86e9b0a5a666a0b4b56576ad21166812e6829de4f8dc5e3ff8d36aebf467cf62",
+      "literal": "### L10-LABO-034-C06 — product固有meaning混入\n"
+    },
+    {
+      "line": 1695,
+      "id": "L10-LABO-034-C07",
+      "sha256": "0b57e19dabab395620be9f3e531a338c6dd0116c2c377f2f0f941fc8d7fb491d",
+      "literal": "### L10-LABO-034-C07 — scope支持不足\n"
+    },
+    {
+      "line": 1700,
+      "id": "L10-LABO-035-C05",
+      "sha256": "e9b545f461d46aaf826b9fdcc9ff2e13f911649d36e5adf5b75d7eb80294f01d",
+      "literal": "### L10-LABO-035-C05 — unassessed marker欠落\n"
+    },
+    {
+      "line": 1707,
+      "id": "L10-LABO-035-C06",
+      "sha256": "b0d3e9301fbf2612d7b7f6ef7ca6807d20e10bfcf8133fb0f2138aaeb0cd6c55",
+      "literal": "### L10-LABO-035-C06 — 評価payload field欠落\n"
+    },
+    {
+      "line": 1714,
+      "id": "L10-LABO-035-C07",
+      "sha256": "225afb4f3560d71c2c952a04be7487bcebded96f0b172d47475223ce48a397f6",
+      "literal": "### L10-LABO-035-C07 — 学習許可への変換\n"
+    },
+    {
+      "line": 1719,
+      "id": "L10-LABO-035-C08",
+      "sha256": "38c80a5417a6857f482aa956c0bf7c93c0f0cb161bd72776479bdee144498f98",
+      "literal": "### L10-LABO-035-C08 — LABOによるcurrent判断実行\n"
+    },
+    {
+      "line": 1724,
+      "id": "L10-LABO-058-C06",
+      "sha256": "81965c1ae204fb460ffc26b782cb47095077a9bb8889878e8e812222fbd98849",
+      "literal": "### L10-LABO-058-C06 — 選択条件unknown\n"
+    },
+    {
+      "line": 1729,
+      "id": "L10-LABO-058-C07",
+      "sha256": "da106d5d57b1358b905e96da837a1ff014766896233825140ecea5459bce44f5",
+      "literal": "### L10-LABO-058-C07 — 選択source closure欠落\n"
+    },
+    {
+      "line": 1734,
+      "id": "L10-LABO-058-C08",
+      "sha256": "2cc82846c90c3e89b1a6fec1f4df267c44924f696eb2c3a733e435d7d61f330e",
+      "literal": "### L10-LABO-058-C08 — 未選択sourceを必須化\n"
+    },
+    {
+      "line": 1739,
+      "id": "L10-LABO-058-C09",
+      "sha256": "874da9d4b4afe08036316661dc4d08fb266f89c2549ddc52f9e3b51019f61b68",
+      "literal": "### L10-LABO-058-C09 — 無選択と未許可payload\n"
+    },
+    {
+      "line": 1744,
+      "id": "L10-LABO-058-C10",
+      "sha256": "ab20c680b7c72554baf1093ed3fea2585a2059a04730b2360dd749cae5ccf46a",
+      "literal": "### L10-LABO-058-C10 — Web/WEB-OS未採択の混入\n"
+    },
+    {
+      "line": 1749,
+      "id": "L10-LABO-058-C11",
+      "sha256": "ad2ae0159393ea7b2d6673e83dd5ede9c5ab159d27c6777f3fa25e83adde822b",
+      "literal": "### L10-LABO-058-C11 — reference-onlyを実行依存化\n"
+    },
+    {
+      "line": 1758,
+      "id": "L10-LABO-012-C07",
+      "sha256": "8f82e021bddc0dbfebce063fd17efc2eedb0c40a0bd74d6343654f6579647ffb",
+      "literal": "### L10-LABO-012-C07 — unknownをsuccessへ変換\n"
+    },
+    {
+      "line": 1764,
+      "id": "L10-LABO-013-C07",
+      "sha256": "8f27891691e274be3d536153629c92f538d7cd55dadfe64a35140ff9d7937b97",
+      "literal": "### L10-LABO-013-C07 — 良かった点の分類軸欠落\n"
+    },
+    {
+      "line": 1770,
+      "id": "L10-LABO-013-C08",
+      "sha256": "ea78179ed06eaad4df76cd00dd5f6d6bc837016960aad5ef5e65baea0791db57",
+      "literal": "### L10-LABO-013-C08 — 悪かった点の意味を反転\n"
+    },
+    {
+      "line": 1776,
+      "id": "L10-LABO-013-C09",
+      "sha256": "579e2645a18c3c24bca083e9ec3f14d2b87c1d196ef0b1c8a1793f1fccda6a0c",
+      "literal": "### L10-LABO-013-C09 — 条件依存分類から条件を欠落\n"
+    },
+    {
+      "line": 1782,
+      "id": "L10-LABO-013-C10",
+      "sha256": "402211e98167728d29b309f2eb45eae6c5d2e7133c73705b8fc7c95b07bc38e4",
+      "literal": "### L10-LABO-013-C10 — 汎用候補から根拠を欠落\n"
+    },
+    {
+      "line": 1788,
+      "id": "L10-LABO-013-C11",
+      "sha256": "3e5b721b84670c3b8b4689e59283cee99d10bf745ef32c2527a9360786ac6db5",
+      "literal": "### L10-LABO-013-C11 — product固有分類を汎用へ置換\n"
+    },
+    {
+      "line": 1796,
+      "id": "L10-LABO-013-C12",
+      "sha256": "a06f9c3dcb29627af4e56bbe86e38f4360483c5100e73d0f93561912f44af69a",
+      "literal": "### L10-LABO-013-C12 — system化候補とoperation候補を混同\n"
+    },
+    {
+      "line": 1804,
+      "id": "L10-LABO-013-C13",
+      "sha256": "789e372a5889ecc121feb08048e7e8477a7e336d00344109d2950a8e749eb0be",
+      "literal": "### L10-LABO-013-C13 — operationで補う候補の欠落\n"
+    },
+    {
+      "line": 1810,
+      "id": "L10-LABO-013-C14",
+      "sha256": "88486e3943baf131278f3b0cf47b0359234901da9b5aba8632793041ec8e13ed",
+      "literal": "### L10-LABO-013-C14 — 不明を不要へ読み替え\n"
+    },
+    {
+      "line": 1818,
+      "id": "L10-LABO-013-C15",
+      "sha256": "4ce869f98d2e2ae8bf5d1eade8126de7ef3fac156a2810e3b1dc6100de31c332",
+      "literal": "### L10-LABO-013-C15 — 不要を採用へ読み替え\n"
+    },
+    {
+      "line": 1826,
+      "id": "L10-LABO-013-C16",
+      "sha256": "4558a17a8750e73c4bcd014b8bc959f3d37cde3fbbcfe809fec7ea70cc0f928f",
+      "literal": "### L10-LABO-013-C16 — 反証の脱落\n"
+    },
+    {
+      "line": 1832,
+      "id": "L10-LABO-014-C08",
+      "sha256": "e396c642aac2875449646500ff5db2b9756a61b18f66cac9bae7f390ede2b326",
+      "literal": "### L10-LABO-014-C08 — 目的を逆転\n"
+    },
+    {
+      "line": 1838,
+      "id": "L10-LABO-014-C09",
+      "sha256": "ba67ee59bbd368e4285a67bfa5988a11d82b424e7a5d47e5dc72945520276157",
+      "literal": "### L10-LABO-014-C09 — constraintを除去\n"
+    },
+    {
+      "line": 1844,
+      "id": "L10-LABO-015-C09",
+      "sha256": "70b8503bad615cc24f18cb6655327ed9d073185cf56f17739d9941ada6b7b764",
+      "literal": "### L10-LABO-015-C09 — target revision欠落\n"
+    },
+    {
+      "line": 1850,
+      "id": "L10-LABO-016-C08",
+      "sha256": "bf9b855db9e9f153e0b8ee006bd257ae6a4d98666ed86c1398a471fe9a7eb659",
+      "literal": "### L10-LABO-016-C08 — 有効なcounterexampleの正常保持\n"
+    },
+    {
+      "line": 1856,
+      "id": "L10-LABO-018-C08",
+      "sha256": "b11973aac24455cfc3254393bf94979f0ed56e52a485f54fa3bd38094ce80ecc",
+      "literal": "### L10-LABO-018-C08 — 比較結果revision stale\n"
+    },
+    {
+      "line": 1862,
+      "id": "L10-LABO-019-C09",
+      "sha256": "63f9bf8af0215467647ac4665c8754e29fbe7c66ba93d609cc60aae5e89f0368",
+      "literal": "### L10-LABO-019-C09 — target responsibility owner変更\n"
+    },
+    {
+      "line": 1868,
+      "id": "L10-LABO-020-C09",
+      "sha256": "8646ea7e620a51fbe26483c6967e140050d379cbf7da58e918668b658ea2a63d",
+      "literal": "### L10-LABO-020-C09 — new rule version欠落\n"
+    },
+    {
+      "line": 1874,
+      "id": "L10-LABO-020-C10",
+      "sha256": "792fe9dd01bb7336113c1e7802451a0e779a923ddaec346c99b3c35b7973190d",
+      "literal": "### L10-LABO-020-C10 — new rule version stale\n"
+    },
+    {
+      "line": 1880,
+      "id": "L10-LABO-021-C09",
+      "sha256": "c0d3ea5801204084d909366a9070ff3cdc9ff1db3e0a0ee4c4472ccdf8a46c89",
+      "literal": "### L10-LABO-021-C09 — HARNESS source contract欠落\n"
+    },
+    {
+      "line": 1886,
+      "id": "L10-LABO-021-C10",
+      "sha256": "da7f89960ec70a1109e654eb6da2a500b54853a786e6417d7c02161abbf06a6d",
+      "literal": "### L10-LABO-021-C10 — HARNESS source authority移管\n"
+    },
+    {
+      "line": 1894,
+      "id": "L10-LABO-022-C09",
+      "sha256": "6ddb128f32d1933dacd6a06385519c45332bdc9fd00ea84c03ccf66b1c72f942",
+      "literal": "### L10-LABO-022-C09 — OS assignment欠落\n"
+    },
+    {
+      "line": 1900,
+      "id": "L10-LABO-022-C10",
+      "sha256": "7d75dfaa4ce07782b1384753c3c4959963aa5bb7c67266be9f940e0f9e2d6954",
+      "literal": "### L10-LABO-022-C10 — receipt stale\n"
+    },
+    {
+      "line": 1906,
+      "id": "L10-LABO-022-C11",
+      "sha256": "786fad48ddf0641da7449a58e8d3a82df7b6a015a16194535871708d70dc8bb5",
+      "literal": "### L10-LABO-022-C11 — unknown assignmentを完了化\n"
+    },
+    {
+      "line": 1912,
+      "id": "L10-LABO-023-C08",
+      "sha256": "10c2870d220cd45a54aac2a994216b3b4685a6eb6db3a11458635f824a83a7ab",
+      "literal": "### L10-LABO-023-C08 — permission unknown\n"
+    },
+    {
+      "line": 1918,
+      "id": "L10-LABO-023-C09",
+      "sha256": "c7449b1aba0253877229b24f5c6917853131112aed2acfc4418f9de950caa5a5",
+      "literal": "### L10-LABO-023-C09 — scope unknown\n"
+    },
+    {
+      "line": 1924,
+      "id": "L10-LABO-023-C10",
+      "sha256": "ea80e16f38b8ba7b13e477109fc73009261022a4c25abff52c15263118d00da5",
+      "literal": "### L10-LABO-023-C10 — BRAIN canonical write移管\n"
+    },
+    {
+      "line": 1932,
+      "id": "L10-LABO-024-C08",
+      "sha256": "1695276e12163858b44ee30563dc560eb0f32dfd5ec8021b364944507b486c29",
+      "literal": "### L10-LABO-024-C08 — target revision差異\n"
+    },
+    {
+      "line": 1938,
+      "id": "L10-LABO-024-C09",
+      "sha256": "70aade1c79aafe34990d990d3727b5d833c3ab71b55b59cefc9f8355954c6d5e",
+      "literal": "### L10-LABO-024-C09 — revision欠落を成功化\n"
+    },
+    {
+      "line": 1944,
+      "id": "L10-LABO-025-C08",
+      "sha256": "b8b9a8ddde31f0294442997f7a6c8bf39665e1fa05af92930e08c64353453a86",
+      "literal": "### L10-LABO-025-C08 — SECURITY source revision stale\n"
+    },
+    {
+      "line": 1950,
+      "id": "L10-LABO-025-C09",
+      "sha256": "2dc94ef3be440a0f12e1461db204a06befc828fc5c3c718f1b7cdad869b0f1d7",
+      "literal": "### L10-LABO-025-C09 — treatment policy write\n"
+    },
+    {
+      "line": 1956,
+      "id": "L10-LABO-026-C08",
+      "sha256": "0e508d4a4ac1366eb89890d12c12221b3563d5e8a3ca14da620f48d88e758327",
+      "literal": "### L10-LABO-026-C08 — INFRA resource contract欠落\n"
+    },
+    {
+      "line": 1962,
+      "id": "L10-LABO-026-C09",
+      "sha256": "f9ef45ec5686a3745a4ac566762bd9da32c0442827439f79a3d3f5d9b6988684",
+      "literal": "### L10-LABO-026-C09 — resource config直接write\n"
+    },
+    {
+      "line": 1968,
+      "id": "L10-LABO-027-C09",
+      "sha256": "5ca8603fb18e4afca40e562259d6f3025a31e3515aa8fd69b4685aa0574efb75",
+      "literal": "### L10-LABO-027-C09 — trace ID欠落\n"
+    },
+    {
+      "line": 1974,
+      "id": "L10-LABO-027-C10",
+      "sha256": "1ae114ee679deaef1a216a31460fa30f590f59083d25ccb1b30ab0f7f9a27734",
+      "literal": "### L10-LABO-027-C10 — connection contract stale\n"
+    },
+    {
+      "line": 1980,
+      "id": "L10-LABO-027-C11",
+      "sha256": "78e3f56dc026188fa556fca75da5d2f71de2ff6e8cd09f40883179fa03f23775",
+      "literal": "### L10-LABO-027-C11 — 全sourceの暗黙共有\n"
+    },
+    {
+      "line": 1988,
+      "id": "L10-LABO-028-C09",
+      "sha256": "8823f1fcdfeba364ef26201ba3c01897cbe44875be4092a24f30a10cff788b50",
+      "literal": "### L10-LABO-028-C09 — L2-006 experiment/target identity正常\n"
+    },
+    {
+      "line": 1994,
+      "id": "L10-LABO-028-C10",
+      "sha256": "7470d1d5708b6b371a3a20f5e0d90080b98a1bf8ea3ba7dd52cb40fa65ea1c8d",
+      "literal": "### L10-LABO-028-C10 — experiment identity不一致\n"
+    },
+    {
+      "line": 2000,
+      "id": "L10-LABO-028-C11",
+      "sha256": "1d80794975be379e21fc7fe2db2a2d5d8435cd343f9d1106078ebc86bfed4fac",
+      "literal": "### L10-LABO-028-C11 — target version不一致\n"
+    },
+    {
+      "line": 2006,
+      "id": "L10-LABO-028-C12",
+      "sha256": "ff3df2837fc567649cc05c7c453ed10564eb4e55117dfd10d886ff2d1b755d31",
+      "literal": "### L10-LABO-028-C12 — receiptとresult sourceの戻し先分離\n"
+    },
+    {
+      "line": 2012,
+      "id": "L10-LABO-029-C09",
+      "sha256": "c9157cf8737f64117ed43d0e6b59ce4d089396d0bb3e268197d5d0691e3c2993",
+      "literal": "### L10-LABO-029-C09 — 中断のpass化拒否\n"
+    },
+    {
+      "line": 2018,
+      "id": "L10-LABO-030-C09",
+      "sha256": "b477a07c74fdf97fbe03b87834c7e57d6807052a0ae5dbd672581f5b6075ae8f",
+      "literal": "### L10-LABO-030-C09 — source contract欠落\n"
+    },
+    {
+      "line": 2024,
+      "id": "L10-LABO-030-C10",
+      "sha256": "af95ff79f54ff66d01a51cffa9d8d5d83e5183ee9e3d877ba31bf4c011917afd",
+      "literal": "### L10-LABO-030-C10 — unadoptedとunselectedを区別\n"
+    },
+    {
+      "line": 2030,
+      "id": "L10-LABO-034-C08",
+      "sha256": "07b0b0eaa6ea19ad7ce4497e471543c3b96955afedad087a5457cca81d1ad4af",
+      "literal": "### L10-LABO-034-C08 — scope unknown\n"
+    },
+    {
+      "line": 2036,
+      "id": "L10-LABO-035-C09",
+      "sha256": "e2487f30d52eafe96e74a924cedf8388a9d18ffc686baaab1c0a06b3f793fa58",
+      "literal": "### L10-LABO-035-C09 — source version欠落\n"
+    },
+    {
+      "line": 2042,
+      "id": "L10-LABO-035-C10",
+      "sha256": "314e35a9b4b7e77a60662202f0c3abf9ddd1ec12b054ee68364c0a5734373cc3",
+      "literal": "### L10-LABO-035-C10 — source version stale\n"
+    },
+    {
+      "line": 2048,
+      "id": "L10-LABO-035-C11",
+      "sha256": "0ca557c5523361aefeb9a0f7d19536d9714d180d2a86f951a87b74a86aea23c3",
+      "literal": "### L10-LABO-035-C11 — 一般評価材料とBench専用接続の正常分離\n"
+    },
+    {
+      "line": 2054,
+      "id": "L10-LABO-035-C12",
+      "sha256": "8de95ac634b8b9326a58cf49e9522b54bcc95b5df79b7a7e02d3a49ce4840602",
+      "literal": "### L10-LABO-035-C12 — unassessedをassessed成功化\n"
+    },
+    {
+      "line": 2060,
+      "id": "L10-LABO-035-C13",
+      "sha256": "2614eeafcd304e43d63061c352d617d60167990bde4f8e0a78f0e214c24d600e",
+      "literal": "### L10-LABO-035-C13 — LABOによる配置実行\n"
+    },
+    {
+      "line": 2066,
+      "id": "L10-LABO-035-C14",
+      "sha256": "91ada36e4d282e7965e0a210e491aabdcda8966809fbf7925f65346572584657",
+      "literal": "### L10-LABO-035-C14 — bot execution生成\n"
+    },
+    {
+      "line": 2072,
+      "id": "L10-LABO-058-C12",
+      "sha256": "4b63549c12c1ab1eefc0b8462e5761534bb5dfe84d15380406f6fe958fdda1da",
+      "literal": "### L10-LABO-058-C12 — 複数selected source正常閉包\n"
+    },
+    {
+      "line": 2078,
+      "id": "L10-LABO-058-C13",
+      "sha256": "1f725202896dd7632a06e709d2bc16d47f023c42671e42430ddb1c7e7bbba701",
+      "literal": "### L10-LABO-058-C13 — 複数selected source closure欠落\n"
+    },
+    {
+      "line": 2084,
+      "id": "L10-LABO-058-C14",
+      "sha256": "606be10a126f5a3a5e2f51436f01a5ac350304802699551191e8e7b23506d98f",
+      "literal": "### L10-LABO-058-C14 — source変更後に旧receipt流用\n"
+    },
+    {
+      "line": 2090,
+      "id": "L10-LABO-058-C15",
+      "sha256": "722a200080b3d912d5ced73ea5c07fd147cb21d546c4e3efd6b4ad4b6ba20a72",
+      "literal": "### L10-LABO-058-C15 — operation変更後に旧receipt流用\n"
+    },
+    {
+      "line": 2096,
+      "id": "L10-LABO-058-C16",
+      "sha256": "9e414161b4ab10a6a44fd8e9989b180fff6b1a4ff114732e6c46d10457080745",
+      "literal": "### L10-LABO-058-C16 — scope変更後に旧receipt流用\n"
+    },
+    {
+      "line": 2102,
+      "id": "L10-LABO-058-C17",
+      "sha256": "7c71609048726c8f9a9a7b3a0181667fb781742ff4abcf7fcac945d6ec8694b9",
+      "literal": "### L10-LABO-058-C17 — contract version変更後に旧receipt流用\n"
+    },
+    {
+      "line": 2108,
+      "id": "L10-LABO-058-C18",
+      "sha256": "a2b6ae4e975ff13174de2ceccc5ca1db49a67edd37630ba43fcd8cbd90155a33",
+      "literal": "### L10-LABO-058-C18 — 安全依存をreference-only化\n"
+    },
+    {
+      "line": 2114,
+      "id": "L10-LABO-058-C19",
+      "sha256": "464154ed960e293d61a63e0e89e7a1eda435887be4a918ab7214bbcb599c966b",
+      "literal": "### L10-LABO-058-C19 — unselected sourceを観測成功化\n"
+    },
+    {
+      "line": 2120,
+      "id": "L10-LABO-058-C20",
+      "sha256": "3033bec86b61a32378c75317fbed5e8a69f4ee4685c3d3dd5c9ca95f5430bf19",
+      "literal": "### L10-LABO-058-C20 — 単一call passを全source 1.0完了化\n"
+    },
+    {
+      "line": 2126,
+      "id": "L10-LABO-058-C21",
+      "sha256": "7ee20dd3e50e7df4a912b6cad05bebdcac31e5859e90ae3e6c3e021eafc48159",
+      "literal": "### L10-LABO-058-C21 — 外部2.0を1.0へ混入\n"
+    },
+    {
+      "line": 2133,
+      "id": "L10-LABO-058-C22",
+      "sha256": "feafd2b87ff1a4c5154cbf3cd2d06ac528bdf42ec1b3f0cd04cc29d5b29e4562",
+      "literal": "### L10-LABO-058-C22 — 選択source permission unknown\n"
+    },
+    {
+      "line": 2139,
+      "id": "L10-LABO-058-C23",
+      "sha256": "29ed44fc9bba7181a2f12cbfa49e8be84fcd8558d4424e1de59be8402ef804b4",
+      "literal": "### L10-LABO-058-C23 — 選択source receipt stale\n"
+    },
+    {
+      "line": 2145,
+      "id": "L10-LABO-058-C24",
+      "sha256": "66312c86f48a4c7c39dd89428e4a0fa6797c8b2e316ce6e5c7b47c281cefaefb",
+      "literal": "### L10-LABO-058-C24 — source追加後にclosure再確認\n"
+    },
+    {
+      "line": 2151,
+      "id": "L10-LABO-058-C25",
+      "sha256": "25891c9f032521205b6bfc0112a48e6d05b6c9c6831e16d7c54ee9f0ecb731cd",
+      "literal": "### L10-LABO-058-C25 — source削除後の旧receipt再利用\n"
+    },
+    {
+      "line": 2157,
+      "id": "L10-LABO-012-C08",
+      "sha256": "d63433dc998488ab21ffd58df64df579223d6b83864bc068582f8e8191d31628",
+      "literal": "### L10-LABO-012-C08 — 上流episodeへの書戻し\n"
+    },
+    {
+      "line": 2163,
+      "id": "L10-LABO-012-C09",
+      "sha256": "d90d210442d8ad4f83182212cfbd695fe3e1a1b6d5e069e88f216b9afb436eca",
+      "literal": "### L10-LABO-012-C09 — 反証脱落\n"
+    },
+    {
+      "line": 2169,
+      "id": "L10-LABO-013-C17",
+      "sha256": "43f1ebaa3535bfab692cd23631a408b576f8b2eb04ee914cded05186aeae98bc",
+      "literal": "### L10-LABO-013-C17 — 元source meaning上書き\n"
+    },
+    {
+      "line": 2175,
+      "id": "L10-LABO-014-C10",
+      "sha256": "72a01556415b2074d69f3f7af96140982d236ae242cdeb6a0bcb5e4ba302c10c",
+      "literal": "### L10-LABO-014-C10 — 元適用条件unknown\n"
+    },
+    {
+      "line": 2181,
+      "id": "L10-LABO-015-C10",
+      "sha256": "222ee3a65c7a9cfa7958f7d652e3a6d33a52c6b115a67566ad979117b3758892",
+      "literal": "### L10-LABO-015-C10 — LABOによるWorker割当起動\n"
+    },
+    {
+      "line": 2187,
+      "id": "L10-LABO-016-C09",
+      "sha256": "969733800c1b3b476a38dd22c1b40a4b302265e1645f31b6be832e1de4796031",
+      "literal": "### L10-LABO-016-C09 — 実行完了だけでsystem適格化\n"
+    },
+    {
+      "line": 2193,
+      "id": "L10-LABO-017-C09",
+      "sha256": "d58143b0014feed88fc8a6bad76a13ff0b675c0b4fba8e9d9cfd1e8a1b084533",
+      "literal": "### L10-LABO-017-C09 — 例外記録脱落\n"
+    },
+    {
+      "line": 2199,
+      "id": "L10-LABO-018-C09",
+      "sha256": "c14ea60a6d33e9275a0c66be7e81b2d6691c7d512b55e7bec700ac3581d8780f",
+      "literal": "### L10-LABO-018-C09 — 単一標本の一般構造化\n"
+    },
+    {
+      "line": 2205,
+      "id": "L10-LABO-018-C10",
+      "sha256": "b1f52fe513d01757ca4b374ac4790055a5c78ca3e43bbd60a2b906c7da2f2341",
+      "literal": "### L10-LABO-018-C10 — 標本母数欠落\n"
+    },
+    {
+      "line": 2211,
+      "id": "L10-LABO-019-C10",
+      "sha256": "e089f75a3f7de0c02b82615f54c9cdc7828c3be596086e26bb8970433ac70f00",
+      "literal": "### L10-LABO-019-C10 — LABOによるtarget owner変更\n"
+    },
+    {
+      "line": 2217,
+      "id": "L10-LABO-019-C11",
+      "sha256": "38f5a3dc6bc72708d080c1dc0ceb035e80012818e090d118be7e6d6349131932",
+      "literal": "### L10-LABO-019-C11 — 責務区分混合\n"
+    },
+    {
+      "line": 2223,
+      "id": "L10-LABO-021-C11",
+      "sha256": "772b1bfb3adbf8eac73a581e709fc79354226c9f187548de814ad537c4fd02aa",
+      "literal": "### L10-LABO-021-C11 — source revision unknown\n"
+    },
+    {
+      "line": 2229,
+      "id": "L10-LABO-027-C12",
+      "sha256": "ee3c6033b442b417ee241d4b2434a1d35bd642029b36b1b6c52cd0d44960b499",
+      "literal": "### L10-LABO-027-C12 — LABOによるconnection contract改定\n"
+    },
+    {
+      "line": 2235,
+      "id": "L10-LABO-028-C13",
+      "sha256": "eb1d5a18e4eda7462caf940455c2417e391e61cd64842ef06da437188fe721d6",
+      "literal": "### L10-LABO-028-C13 — Worker authority owner claim\n"
+    },
+    {
+      "line": 2241,
+      "id": "L10-LABO-028-C14",
+      "sha256": "2afc10f3592b1412060eb9ce5f056177322aa7e391e3486f6fbfa6229f5d307d",
+      "literal": "### L10-LABO-028-C14 — OS receipt欠落\n"
+    },
+    {
+      "line": 2247,
+      "id": "L10-LABO-028-C15",
+      "sha256": "616c901537bac7db43965b01a605e4855a99cb413506f3f7489352bc95f2ccc4",
+      "literal": "### L10-LABO-028-C15 — unknown result評価済み化\n"
+    },
+    {
+      "line": 2253,
+      "id": "L10-LABO-029-C10",
+      "sha256": "1480ddcb4aaf35fc3eeff7344b1759e0f218a55405316cb49878d03cf39dc29c",
+      "literal": "### L10-LABO-029-C10 — LABOからCI実行起動\n"
+    },
+    {
+      "line": 2259,
+      "id": "L10-LABO-029-C11",
+      "sha256": "e0e82dd9583ce756d1ecbbd5abf8f604886a298910f0bc52eaecd69ead914dbd",
+      "literal": "### L10-LABO-029-C11 — verification authority書換え\n"
+    },
+    {
+      "line": 2265,
+      "id": "L10-LABO-034-C09",
+      "sha256": "448504fa5e961dd987e20a1e4633fd530ec0030016d0e05531e018b86c1239f0",
+      "literal": "### L10-LABO-034-C09 — 顧客固有ルールgeneric化\n"
+    },
+    {
+      "line": 2271,
+      "id": "L10-LABO-035-C15",
+      "sha256": "e71c7ec214971ff530679ca44a6b23d25f61c83e1b45bda2de604542d3785120",
+      "literal": "### L10-LABO-035-C15 — Bench水準の重複定義\n"
+    },
+    {
+      "line": 2277,
+      "id": "L10-LABO-058-C26",
+      "sha256": "b7e65dc750ba9ba25959b4d6df7ac2f59b822814ab5f480b198608ad64cda221",
+      "literal": "### L10-LABO-058-C26 — call成功をBench評価済み化\n"
+    },
+    {
+      "line": 2283,
+      "id": "L10-LABO-058-C27",
+      "sha256": "568f620410c990747bea774bdc5aaec0376c1cbef0dd03dbaf42e5230b56d23b",
+      "literal": "### L10-LABO-058-C27 — call成功を割当許可化\n"
+    },
+    {
+      "line": 2289,
+      "id": "L10-LABO-058-C28",
+      "sha256": "a547d09358e3bbb2928483e3e5d48d75a58ab9d70688d753a4ba61f7506291ee",
+      "literal": "### L10-LABO-058-C28 — 未選択を理由に1.0義務削除\n"
+    },
+    {
+      "line": 2295,
+      "id": "L10-LABO-058-C29",
+      "sha256": "552d5f66ca208c735b948eada2023fc30efc0325a1232d631955325a734e6983",
+      "literal": "### L10-LABO-058-C29 — 001観測出力項目変更\n"
+    },
+    {
+      "line": 2301,
+      "id": "L10-LABO-058-C30",
+      "sha256": "5bb58797c6427029d7759fbfee414c81baa810bfdba7244289eb78167fbaee0f",
+      "literal": "### L10-LABO-058-C30 — source追加後permission欠落\n"
+    },
+    {
+      "line": 2307,
+      "id": "L10-LABO-058-C31",
+      "sha256": "17393f195fe6a2f9eda2a023eadf8350106fcf0cc4357fa9340cb30c0b778280",
+      "literal": "### L10-LABO-058-C31 — source追加後receipt欠落\n"
+    },
+    {
+      "line": 2313,
+      "id": "L10-LABO-014-C11",
+      "sha256": "56dfb80e157d321d2730a45162e4b02aa066b51436773e86345db0a1c9f326e6",
+      "literal": "### L10-LABO-014-C11 — 明示した目的変更candidate正常\n"
+    },
+    {
+      "line": 2319,
+      "id": "L10-LABO-014-C12",
+      "sha256": "c8f534138ef167394e17b9fbe10dd4176389017249a62c922ab3826955104915",
+      "literal": "### L10-LABO-014-C12 — 明示したconstraint変更candidate正常\n"
+    },
+    {
+      "line": 2325,
+      "id": "L10-LABO-015-C11",
+      "sha256": "8e36f28eaba82c199828e56d66c2eaddc7d421b14ac37c80a8f29553cf275fda",
+      "literal": "### L10-LABO-015-C11 — LABOからWorker選定\n"
+    },
+    {
+      "line": 2331,
+      "id": "L10-LABO-015-C12",
+      "sha256": "05588ae6619e2f35c85df0fdb41bc93d49e73fa5baacdbf6851ed8bc3537eab1",
+      "literal": "### L10-LABO-015-C12 — LABOからWorker起動\n"
+    },
+    {
+      "line": 2337,
+      "id": "L10-LABO-029-C12",
+      "sha256": "18511df38ac10d7dc2357ae387abfa580159ae788b432a7702d821312ad1f1a5",
+      "literal": "### L10-LABO-029-C12 — verification結果書換え\n"
+    },
+    {
+      "line": 2343,
+      "id": "L10-LABO-012-C10",
+      "sha256": "c1b0bf6f36908a0cf1d51a9a5531fe63660bcaa427aa4be4b8e83d207451ca15",
+      "literal": "### L10-LABO-012-C10 — relation authority書換え\n"
+    },
+    {
+      "line": 2349,
+      "id": "L10-LABO-020-C11",
+      "sha256": "dcebd72d08e4e971ac5d478e2ea8e6795e136a7129537d812ef555cc2f2b603f",
+      "literal": "### L10-LABO-020-C11 — 復帰後観測の版統合\n"
+    },
+    {
+      "line": 2355,
+      "id": "L10-LABO-021-C12",
+      "sha256": "771b03f16542179cea56a98df337df90ff0ee0037bc9ee0ae1fa651592f0d244",
+      "literal": "### L10-LABO-021-C12 — data scope unknown\n"
+    },
+    {
+      "line": 2361,
+      "id": "L10-LABO-023-C11",
+      "sha256": "89dffb7a1e094b4028116ec5b1ed4b6f0f825f1a8c1d0c4dc5e21a8d16a593fe",
+      "literal": "### L10-LABO-023-C11 — BRAIN正本authorityのLABO移管\n"
+    },
+    {
+      "line": 2367,
+      "id": "L10-LABO-035-C16",
+      "sha256": "2de0248bc41e66507c9943c97d94f48ada77d62595f63f6e131edca4c50d2772",
+      "literal": "### L10-LABO-035-C16 — 適用scope unknown\n"
+    },
+    {
+      "line": 2373,
+      "id": "L10-LABO-035-C17",
+      "sha256": "51f7d691a54b6f51ecbf4256e754e411f858edd2a64655dfd23a347bb7b37e55",
+      "literal": "### L10-LABO-035-C17 — 適用scope欠落\n"
+    },
+    {
+      "line": 2379,
+      "id": "L10-LABO-058-C32",
+      "sha256": "01b21f3b1450aec151c0b8c6a8315d6047cb517355aa7e75536b902da4a66268",
+      "literal": "### L10-LABO-058-C32 — Web明示選択正常\n"
+    },
+    {
+      "line": 2385,
+      "id": "L10-LABO-058-C33",
+      "sha256": "59885d2c359c89c41d3cf31fbeb369fb56549063bd94466b28384e8a434c0cd7",
+      "literal": "### L10-LABO-058-C33 — Web選択contract未採択\n"
+    },
+    {
+      "line": 2391,
+      "id": "L10-LABO-058-C34",
+      "sha256": "88d61e3a7797fa6f0621eb201920ff4fcb1cef3f277ecf045ceef022c0cb31e0",
+      "literal": "### L10-LABO-058-C34 — Web選択connector欠落\n"
+    },
+    {
+      "line": 2397,
+      "id": "L10-LABO-022-C12",
+      "sha256": "95e3ec8aaa84fa27ba23472adb302b83686d34fc337e3a39fb11e22ce3887b59",
+      "literal": "### L10-LABO-022-C12 — receipt欠落\n"
+    },
+    {
+      "line": 2403,
+      "id": "L10-LABO-022-C13",
+      "sha256": "5fcfacafd3081c7be715fe1785803c30fc1ab799dea6c7d0c75f80908e67e152",
+      "literal": "### L10-LABO-022-C13 — ticket stale\n"
+    },
+    {
+      "line": 2409,
+      "id": "L10-LABO-022-C14",
+      "sha256": "361010e9dee5571ed13ff232040d40fd06a932483e94562ae95dd1553c5d0602",
+      "literal": "### L10-LABO-022-C14 — assignment stale\n"
+    },
+    {
+      "line": 2415,
+      "id": "L10-LABO-023-C12",
+      "sha256": "130d7a4aab3c53456bed84b733540f85cce88c4c81f66ba1f447c76c9de3a858",
+      "literal": "### L10-LABO-023-C12 — knowledge use既知不許可\n"
+    },
+    {
+      "line": 2421,
+      "id": "L10-LABO-034-C10",
+      "sha256": "2db94141e5d5e42d1d667e3c64ab7a9cef0a862f94e8c4eb3f7db17bf2236beb",
+      "literal": "### L10-LABO-034-C10 — LABO観測をBRAIN取込済み化\n"
+    },
+    {
+      "line": 2427,
+      "id": "L10-LABO-058-C35",
+      "sha256": "20ccdae87492ff8072a0049db0198e142ce5abf94a9d111727df0f0bed645289",
+      "literal": "### L10-LABO-058-C35 — 001観測本文変更\n"
+    },
+    {
+      "line": 2433,
+      "id": "L10-LABO-058-C36",
+      "sha256": "332dd8084fa75a63f6e82730dfde07b6504d1fb4357595fbe16fabb5d3def48f",
+      "literal": "### L10-LABO-058-C36 — 001責務変更\n"
+    },
+    {
+      "line": 2439,
+      "id": "L10-LABO-058-C37",
+      "sha256": "bec9d16637d7494ac3674aae5c1b5a8029724058fcea02ff303c18dc7c6715c2",
+      "literal": "### L10-LABO-058-C37 — WEB-OS明示選択正常\n"
+    },
+    {
+      "line": 2445,
+      "id": "L10-LABO-058-C38",
+      "sha256": "9131ca49cb52bf80424c06f67c12341f855947695eab922f64d6d0e5727f5cb8",
+      "literal": "### L10-LABO-058-C38 — WEB-OS選択contract未採択\n"
+    },
+    {
+      "line": 2451,
+      "id": "L10-LABO-058-C39",
+      "sha256": "388a83709b98f0b1beabe93a5fb005363e0035fb349121bd6b91539ea579d16e",
+      "literal": "### L10-LABO-058-C39 — WEB-OS選択connector欠落\n"
+    },
+    {
+      "line": 2460,
+      "id": "L10-LABO-016-C11",
+      "sha256": "75b9716bb7b9ae3aa5e22ce5ba6d476e7077c3194f8b932ca0ace9416127cfc2",
+      "literal": "### L10-LABO-016-C11 — oracle欠落\n"
+    },
+    {
+      "line": 2465,
+      "id": "L10-LABO-017-C11",
+      "sha256": "3e467050aa4abb0ce207541ce38cf1e87018a924780fc008cfdf185667ac5bb9",
+      "literal": "### L10-LABO-017-C11 — system/operation適格性入力欠落\n"
+    },
+    {
+      "line": 2470,
+      "id": "L10-LABO-017-C12",
+      "sha256": "6da0b00677fbfa7faab85e0688f4c04304f603c160e1a823fbe6cc1759a88c19",
+      "literal": "### L10-LABO-017-C12 — system/operation条件欠落\n"
+    },
+    {
+      "line": 2475,
+      "id": "L10-LABO-017-C13",
+      "sha256": "0de62401d1a6b90ce56b072a47d36ad3d0a495e471ddb0df31d70885b771b3f5",
+      "literal": "### L10-LABO-017-C13 — system永続固定\n"
+    },
+    {
+      "line": 2480,
+      "id": "L10-LABO-021-C13",
+      "sha256": "251a9ee1193c858b1d1539262a99125188397ceff616e8938bba6a241ad11ebe",
+      "literal": "### L10-LABO-021-C13 — HARNESS contract version stale\n"
+    },
+    {
+      "line": 2485,
+      "id": "L10-LABO-022-C15",
+      "sha256": "9b053d81e5cb03d5278012d1d173ad459e690166864e9b50031ae0b770bfdcd0",
+      "literal": "### L10-LABO-022-C15 — OS source contract欠落\n"
+    },
+    {
+      "line": 2490,
+      "id": "L10-LABO-022-C17",
+      "sha256": "25a2fe0dfd2c24a46c8b20dad6da1ec31daa912917eb26bafcdfbca5fde5054d",
+      "literal": "### L10-LABO-022-C17 — OS source contract stale\n"
+    },
+    {
+      "line": 2495,
+      "id": "L10-LABO-022-C18",
+      "sha256": "6918b98e5b5f2a6f33fcd9375dd1f7a70795a3eaed9353d613936af733aeb78b",
+      "literal": "### L10-LABO-022-C18 — OS source revision stale\n"
+    },
+    {
+      "line": 2500,
+      "id": "L10-LABO-023-C13",
+      "sha256": "c5d846e52173c5bed0c64dea717adde8e9a76847bb3ee5ecb117195c383e5020",
+      "literal": "### L10-LABO-023-C13 — BRAIN source contract欠落\n"
+    },
+    {
+      "line": 2505,
+      "id": "L10-LABO-024-C17",
+      "sha256": "381bdcb78870ccc474168510d97fe9668de5faac5524737f8385ffe63b800995",
+      "literal": "### L10-LABO-024-C17 — INTELLIGENCE正本書戻し要求\n"
+    },
+    {
+      "line": 2510,
+      "id": "L10-LABO-029-C19",
+      "sha256": "03cf526023ab498abcb13768a3d2482c95b537fc1489ee7293796f61fb88c376",
+      "literal": "### L10-LABO-029-C19 — OS execution receipt不一致\n"
+    },
+    {
+      "line": 2515,
+      "id": "L10-LABO-034-C11",
+      "sha256": "6e62e814cef3e6fc706422770d228945e4768987ae160eddb68db64c6aabdea6",
+      "literal": "### L10-LABO-034-C11 — BRAIN connector欠落\n"
+    },
+    {
+      "line": 2520,
+      "id": "L10-LABO-034-C12",
+      "sha256": "d084a4da81126eae7aac846e0f3ba40d4abd047ce65d5fa9f217d2753c3b9671",
+      "literal": "### L10-LABO-034-C12 — BRAIN connector契約版stale\n"
+    },
+    {
+      "line": 2525,
+      "id": "L10-LABO-035-C18",
+      "sha256": "b2ed1cb837164b66152154ca96ffa2480ba736d08b69f4d5e223e481efc2cdf7",
+      "literal": "### L10-LABO-035-C18 — INTELLIGENCE connector欠落\n"
+    },
+    {
+      "line": 2530,
+      "id": "L10-LABO-035-C19",
+      "sha256": "b821f32c7b1942a22c185ea27b0ec83d45bfee84184b605e5d3b813ed795ba22",
+      "literal": "### L10-LABO-035-C19 — INTELLIGENCE connector不一致\n"
+    },
+    {
+      "line": 2535,
+      "id": "L10-LABO-058-C40",
+      "sha256": "10f2005bec8ce1ae5e8579d9023c8ec0dc9b7d0f1692e705678abc747a9ad805",
+      "literal": "### L10-LABO-058-C40 — 選択source scope欠落\n"
+    },
+    {
+      "line": 2540,
+      "id": "L10-LABO-025-C10",
+      "sha256": "ca23581560537e8b889de1364ea888161367b4eb7cfda8558fb3475448021cf2",
+      "literal": "### L10-LABO-025-C10 — SECURITY finding disposition変更\n"
+    },
+    {
+      "line": 2547,
+      "id": "L10-LABO-024-C18",
+      "sha256": "8552a3368d97ca8ff6194ee4af62831b74de91d85ce3e1478101a21e4db0c6cb",
+      "literal": "### L10-LABO-024-C18 — 稼働中判断を過去実績へ混入\n"
+    },
+    {
+      "line": 2553,
+      "id": "L10-LABO-058-C41",
+      "sha256": "7fa66d5e2ebff1f9b4d36c3ae0a38b6174f1147253fb8891695469ed19a3ae5f",
+      "literal": "### L10-LABO-058-C41 — 058補足を001実行の再帰前提にしない\n"
+    }
+  ],
+  "case_definitions": 314,
+  "individual_fixture_definitions": 270,
+  "index_definitions": 44,
+  "root_corrections": [
+    "058C41をFR個別negative一覧へ追加",
+    "C41は001正常baselineを保ち判定条件への058再帰前提追加だけを変異と明示"
+  ],
+  "static": [
+    {
+      "command": "validate",
+      "summary": "bindings=147 fail=0"
+    },
+    {
+      "command": "stale",
+      "summary": "stale=0"
+    },
+    {
+      "command": "residuals",
+      "summary": "residuals=0"
+    }
+  ],
+  "limits": [
+    "独立再review・委任承認未成立",
+    "CASE未実行",
+    "旧監査不変"
+  ]
+}

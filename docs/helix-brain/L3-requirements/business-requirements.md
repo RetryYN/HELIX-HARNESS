@@ -84,3 +84,15 @@
 | `HELIXBRAIN-L2-030` | 固定親に独立business outcomeなし。別business AC/KPI/ownerを追加しない。 | `BRAIN-030-FR-01` / AC-01〜06 |
 
 旧business起点`LEGACY-ASSET-A6E2C7F0565E5F804F06`（旧HARNESS `business-detail.md`、source span 21–39/84–104等）はHARNESS固有のBR-21/HM-08・集計条件である。旧区分構造を再導出し、当該値や条件は本対象へ適用しない。独立business outcomeを持つ後続固定親が起草対象になった場合だけ、同じ通常L3内で本書へ記録する。
+
+
+## Stage 5 — HELIXBRAIN-L2-024/025 業務分類
+
+固定L2/L11はowner、data-flow、candidate/evaluation/registration/verification/adoption状態を定義するが、functional behaviorから独立したbusiness outcome、KPI、別business ownerは定めていない。旧business区分の分離形式だけを再導出し、旧RCLSのshadow/cross-project運用値をbusiness条件へ持ち込まない。
+
+| 親L2 | 独立business outcome | 機能正本 |
+|---|---|---|
+| `HELIXBRAIN-L2-024` | 固定親に独立outcome/KPIなし。Runtime/Core/LABO/BRAIN ownerをbusiness ownerへ再分類しない。 | `BRAIN-024-FR-01` / `BRAIN-024-AC-01/02`。functional L10は `L10-BRAIN-024-C01`–`C45` に正常routeと個別責務反例を定義。 |
+| `HELIXBRAIN-L2-025` | 固定親に独立outcome/KPIなし。新しいcross-project成果指標やhuman approval business gateを設けない。 | `BRAIN-025-FR-01` / `BRAIN-025-AC-01`〜`BRAIN-025-AC-05`。functional L10は `L10-BRAIN-025-C01`–`C52` に状態別正常・単独欠落・順序・owner/state・maturity条件を定義。 |
+
+旧sourceではlearning promotionの責務境界はあるが、現行親を越えるbusiness outcomeはない。対象外KPIを暗黙条件にせず、固定L2/L11の責務・状態をfunctional ACで照合する。

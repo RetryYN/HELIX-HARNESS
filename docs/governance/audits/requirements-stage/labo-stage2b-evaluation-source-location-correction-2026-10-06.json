@@ -1,0 +1,29 @@
+{
+  "authority_effect": "none",
+  "status": "candidate_pending_independent_review",
+  "body_revision": "936af36811878c4e357a7e4e857f177c8115a9f8",
+  "correction": "035-C11旧locator L11:121はOperation保証行であり、035/054境界の86/94へ訂正。過去監査の誤ったpinは時点記録として保持。",
+  "source_pins": [
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "line": 86,
+      "literal": "| HELIXLABO-L2-035 | 判断精度、failure corpus、counterexample、model/provider比較、FP/FN、diagnosis/review/bot結果と未評価印を定義済みpayloadとしてINTELLIGENCE境界へ渡せる | LABOが現行判断・配置・botを実行する、未評価を評価済みに変える、HELIX-Bench水準を別定義する、材料受渡しで学習許可とする |",
+      "raw_sha256_lf": "a6c60e1ff69b35964d4e6bea14e0291f112784eb4486f840e1a9921116bb8177"
+    },
+    {
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "line": 94,
+      "literal": "| HELIXLABO-L2-054 | 055の作業種別・model class別水準、根拠、評価範囲、未評価状態を同じscopeのままINTELLIGENCEへ接続し、INTELLIGENCE案とOS指定/割当てを別状態で保つ | 接続中に水準・評価状態・scopeを変える、LABOがworker/modelを割り当てる、過去水準から未知jobの成功を保証する、scoreでscope/branch/merge authorityを変える |",
+      "raw_sha256_lf": "325bf15f1535899d2d63c5ce09bb35afe99dcbc9596f0f2e1e5fce195a2dbf74"
+    }
+  ],
+  "verification": {
+    "diff_check": "pass",
+    "prior_body_source_immutable_pins_recomputed": 16
+  },
+  "limits": [
+    "Rootのowner条件限定照合であり全追加64 CASEの意味的closureを主張しない。"
+  ]
+}

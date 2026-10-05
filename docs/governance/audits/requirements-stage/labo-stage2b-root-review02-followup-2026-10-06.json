@@ -1,0 +1,2735 @@
+{
+  "record_kind": "immutable_root_review02_followup",
+  "authority_effect": "none",
+  "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+  "body_revision_full": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+  "target_main": "0757e15875f6defff8b3af41ff61882e685a1e24",
+  "fixed_l2_l11_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "fixed_l2_l11_decision_basis": "633bf12 (PO decision basis recorded by prior immutable audit; no successor authority inferred)",
+  "formal_review_comment_id": 6000764679,
+  "formal_review_body_sha256_raw_lf": "8478374ee8fa63de61404af43087b29d1f6672758f9cccbde6bd932912270260",
+  "review_response_content_sha": "dd9cf9b16e15ac4d2865f84dc7ea64de4c2c9290",
+  "formal_findings": [
+    {
+      "id": "M1",
+      "severity": "Major",
+      "formal_evidence": "020：L11:71の反例「復帰後観測を別版と区別しない」に単独fixtureなし：L2:201「復帰後も未完義務と前後版を保持する」。020のC05〜C10はすべて入力欠落かstaleで、前後版・resultが揃った入力で復帰後観測を旧版と同じ版として統合する出力側の変異がない（C01のoracleに書かれるだけ）。単独CASEを追加（期待：別版として保持し統合しない、source ownerへ）、AC-020-02に句を追加。",
+      "disposition": "resolved",
+      "body_check": "020-C11 now starts from otherwise complete R1/R2/result/owner input and mutates only output version aggregation; the oracle keeps R1/R2 and post-return observation distinct, retains unfinished obligations, and returns mismatch to source owner; AC-02 and the negative trace include C11."
+    },
+    {
+      "id": "M2",
+      "severity": "Major",
+      "formal_evidence": "021：L2:205「data scope…不明はHARNESS ownerへ戻す」のscope不明に単独fixtureなし。review01 M7の対：FR:965・970。scope側の単独CASEはC07（FV:1378「許可範囲外」＝不許可）のみで、unknownはsummary C02(a)にもない。identity・revision・contractを保ちdata scopeだけunknownにする単独CASEを追加（期待：取込成功にせずHARNESS ownerへ）。",
+      "disposition": "resolved",
+      "body_check": "021-C12 holds allowed identity/revision/contract/connector constant and makes only data scope unknown; it distinguishes unknown from known-disallowed C07 and returns the missing scope to existing HARNESS owner."
+    },
+    {
+      "id": "M3",
+      "severity": "Major",
+      "formal_evidence": "023：L11:74の唯一の反例「BRAIN正本をLABOへ移す」に単独fixtureなし：C10「BRAIN canonical write移管」（FV:1782）はC07の索引になり分母から外れ、fixtureも「出力先をBRAIN canonical writeへ変更」で正本の書き換え（C07同型）。正本・authorityの所在をLABOへ移す変異がない（021-C10 FV:1746と非対称）。BRAIN sourceのcanonical owner／authority fieldだけをLABOへ移す単独CASEを追加し、FR:1058の索引注記・FR:1068のowner境界行を更新。",
+      "disposition": "resolved",
+      "body_check": "023-C11 preserves permitted identity/revision/permission/scope/result and changes only canonical owner/authority location to LABO; the oracle rejects transfer and retains BRAIN ownership. FR crosswalk/index and owner-boundary trace include the independent case; C10 stays a C07 index."
+    },
+    {
+      "id": "M4",
+      "severity": "Major",
+      "formal_evidence": "028-C15：固定L2-028にない宛先：FV:2103〜2107の期待「unknownを維持し評価済みにせずLABO experiment evaluationへ戻す」。固定L2:233の戻し先は「assignment不明はOSへ戻す」のみで、「未評価結果を評価済みにしない」に戻し先はなく、L11:79にもない。当該Worker result source owner（C07・C10〜C12と同じ）に揃えるか、L2-006の該当行を導出根拠として併記。",
+      "disposition": "resolved",
+      "body_check": "028-C15 now rejects only unknown result state becoming qualified and returns it to the Worker result source owner, matching the existing C07/C10-C12 source responsibility. No new owner is added."
+    },
+    {
+      "id": "M5",
+      "severity": "Major",
+      "formal_evidence": "058-C26：固定L2-058にない宛先「LABO Bench評価」：FV:2133〜2137。固定L2-058とL11:160の戻し先はcall-scope owner、各sourceとLABO、SECURITYのみ。M4と同型。「観測成立だけを保持しBench評価済みclaimを生成しない」に限定するか、L2-054／055の根拠行を併記。",
+      "disposition": "resolved",
+      "body_check": "058-C26 is narrowed to rejection-only: keep call observation and reject Bench-assessed claim; its text explicitly adds no destination/owner."
+    },
+    {
+      "id": "M6",
+      "severity": "Major",
+      "formal_evidence": "058：固定L2:411「Web/WEB-OS観測を加える操作では既存L2-031／032のsource contractの採択と該当接続・安全条件を満たす」に個別CASEなし：FR 058 AC-02「Web/WEB-OSは選択時だけ既存採択source contractを要求」。Web明示選択の正常例と、選択したのにcontract未採択・接続欠落の負例はsummary索引C05（FV:1197）内のみで、個別C10・C21はWeb未選択の場合。FRの固定親句trace表「WEB/WEB-OSは選択時だけ既存contract」行が引くC08はBRAIN未選択必須化でWebと無関係。正常1件・負例1件（戻し先source／CONNECT）を追加し、trace表を差し替え。",
+      "disposition": "resolved_with_scope_extension",
+      "body_check": "058 has independent selected-Web C32 normal/C33 unadopted/C34 connector-missing fixtures, and selected-WEB-OS C37 normal/C38 unadopted/C39 connector-missing fixtures grounded in fixed L2-032 tenant/customer scope and source authority. FR AC mapping/trace and both NFR inventories include them. External 2.0 remains excluded and no source adoption/operation is claimed."
+    },
+    {
+      "id": "M7",
+      "severity": "Major",
+      "formal_evidence": "035：固定L2:261の出力「適用範囲・source revision・未評価状態付きpacket」のscope欠落・unknownに単独fixtureなし：AC-02「source/scope/revision unknown…を評価済みへ変えない」。revisionはC09/C10、未評価状態はC05/C12にあるがscopeだけない（summary C02にもscope変異なし）。scopeだけunknown・欠落の単独CASEを追加（戻し先は前置き159〜162行から導いた当該source owner）。",
+      "disposition": "resolved",
+      "body_check": "035-C16 and C17 isolate scope unknown vs missing while keeping other packet fields valid; each returns the scope gap to that source owner and prevents assessed completion. FR AC, fixed-parent trace, and NFR set include both."
+    },
+    {
+      "id": "m1",
+      "severity": "Minor",
+      "formal_evidence": "FR crosswalk表に修正後CASEが未反映：FR:565〜586のmapping列が修正前集合のまま。012-C08〜C10、013-C17、014-C10〜C12、015-C10〜C12、016-C09、017-C09、034-C09、035-C15、058-C26〜C31が欠け、summary C02/C03/C05は個別と並べたまま。FR末尾「独立case追補のFR/AC trace」表も034-C09・035-C15・058-C22〜C31がなく、正常系035-C11・058-C12を「追加L10単独case」に入れている。",
+      "disposition": "resolved",
+      "body_check": "FR parent crosswalk and final FR/AC trace include all added individual IDs and distinguish summary/index cases; corrected supplemental rows 034-C09, 035-C15, and 058-C22-C39 are accounted for; C11/C32/C37 are normal paths rather than added negative cases."
+    },
+    {
+      "id": "m2",
+      "severity": "Minor",
+      "formal_evidence": "017-C03とC07の実質重複・二重計上：FV:740とFV:1299は変異・oracle・戻し先が同じ（L2:189）。両方がFR個別negative列挙・NG:112・NV:99の分母に入る。",
+      "disposition": "resolved",
+      "body_check": "017-C03 remains the one individual owner-run-result omission; C07 is explicitly its summary/index alias and is excluded from negative lists/NG/NV denominator."
+    },
+    {
+      "id": "m3",
+      "severity": "Minor",
+      "formal_evidence": "trace先ACにCASE条件の句がない：013 C06/C14（unknown）→AC-02（FR:651）にL11:64「unknown保持」なし；014-C10→AC-02（FR:691）に「適用条件」なし；015-C07→AC-02（FR:731）に「scope」なし；016-C05→AC-02（FR:771）にL11:67「反例を欠落させる」なし。",
+      "disposition": "resolved",
+      "body_check": "013/014/015/016 affected AC sentences now state the relevant unknown/condition/scope/counterexample-deletion condition; individual cases map to those corrected clauses."
+    },
+    {
+      "id": "m4",
+      "severity": "Minor",
+      "formal_evidence": "単独fixtureの戻し先がない。review01 m10の残り：013-C11/C12/C14/C15（FV:1656〜1680）、014-C06/C07（1237・1242）、017-C08（1304）、019-C08（1343）、020-C05/C06（1348・1353、L2:201「欠落はsource ownerへ」）、020-C08（1363）、021-C10（1746）、024-C06/C07（1431〜1439→INTELLIGENCE）、025-C06/C07（1446〜1454→SECURITY）、026-C06/C07（1461〜1469→source）、027-C08（1488）/C11（1838）、028-C03（1044）/C06（1498）/C08（1508）、030-C07/C08（1547〜1555）、035-C05（1572）/C06。拒否のみのCASEはその旨を書く。",
+      "disposition": "resolved_with_recorded_limit",
+      "body_check": "Per-case return destinations are stated or explicitly marked rejection-only in the affected individual fixtures and parent clauses; 024/025/026 route to their extant source domains; no inferred owner is introduced beyond cited fixed-parent/prelude derivation."
+    },
+    {
+      "id": "m5",
+      "severity": "Minor",
+      "formal_evidence": "015：同種の不足で宛先表記が5通り：C05/C07/C08「experiment evaluation」、C06「oracle owner」、C09「既存評価oracle/source owner」、C02「oracle/対象版owner」、C03「実験owner」。L2:181は「戻す」のみなので導出根拠を1つに決めて統一。",
+      "disposition": "resolved",
+      "body_check": "015 cases now use the fixed comparison evaluation oracle/source owner wording consistently; L2-181 itself only says return, and the candidate does not turn that into a new owner/gate."
+    },
+    {
+      "id": "m6",
+      "severity": "Minor",
+      "formal_evidence": "023-C10の扱いが追補表で食い違う：FR「独立case追補」表の023行とNG:148はC10を単独caseとするが、FV:1784・FR:1058は「C07の索引で分母に算入しない」。M3の新CASEへ置き換えるか索引と注記。",
+      "disposition": "resolved",
+      "body_check": "023-C10 is labeled as a C07 summary/index and excluded from denominator; independent 023-C11 handles canonical authority transfer. FR crosswalk and NG index exclude C10."
+    },
+    {
+      "id": "m7",
+      "severity": "Minor",
+      "formal_evidence": "020 AC-02「fallbackの実行責務はowner」に単独negativeなし：FR:929。C01のoracleのみ。固定L2-020本文に実行禁止の明記がないため、CASE追加か根拠（L2-017／L2:189）併記。",
+      "disposition": "resolved_by_fixed_boundary_trace",
+      "body_check": "020-AC-02 links fallback execution responsibility to the fixed L2-017 non-execution boundary and states it remains with the existing operation owner; no new negative case or gate is added."
+    },
+    {
+      "id": "m8",
+      "severity": "Minor",
+      "formal_evidence": "固定L2より広い宛先表記：021-C09（FV:1744）「HARNESS既存source/connection owner」vs L2:205「HARNESS owner」；018-C08（FV:1720）「L2-006のexperiment evidence owner」vs L2:193「実験評価へ戻す」。",
+      "disposition": "resolved",
+      "body_check": "018-C08 wording follows fixed L2-018 return to experiment evaluation; 021-C09 uses the fixed L2-021 HARNESS owner label."
+    },
+    {
+      "id": "m9",
+      "severity": "Minor",
+      "formal_evidence": "019-C09の変異が曖昧で親より強い：FV:1722〜1726「responsibility owner fieldだけを別ownerへ差し替える」に不整合の条件がなく、正当なowner指定まで拒否すると読める。C10との違いも題名のみ。「target evidenceと不整合なowner指定」に限定。",
+      "disposition": "resolved",
+      "body_check": "019-C09 limits mutation to an owner designation inconsistent with target evidence; the independent C10 retains the separate owner-change condition."
+    },
+    {
+      "id": "m10",
+      "severity": "Minor",
+      "formal_evidence": "023 AC-02「unauthorized knowledge useを受理しない」の既知不許可CASEなし／022 summaryの列挙：023-C08はpermission unknownのみ（L2:213）。022-C02（FV:873）が列挙するreceipt欠落・ticket stale・assignment staleに個別CASEがない。",
+      "disposition": "resolved",
+      "body_check": "023-C12 adds a known-disallowed permission case distinct from permission unknown C08; 022-C12-C14 separate receipt missing, ticket stale, and assignment stale."
+    },
+    {
+      "id": "m11",
+      "severity": "Minor",
+      "formal_evidence": "029-C08とC09の重複：C08（FV:1530、cancelled/interrupted→pass）とC09（FV:1868、cancelled→pass拒否）は同変異・同oracleで、C08は2状態値を束ねる。NG/NVで両方が分母。",
+      "disposition": "resolved",
+      "body_check": "029-C08 is explicitly the summary/index for C09, removed from negative denominator; C09 is the single-state cancelled mutation, while interrupted is not bundled as an individual case."
+    },
+    {
+      "id": "m12",
+      "severity": "Minor",
+      "formal_evidence": "NG第2表の列挙が部分的：NG:149〜155「Root検収追補fixtureを含むNFR trace」に027-C12、028-C13〜C15、029-C10〜C12、058のC22〜C31がない。NG:133で母集団は第1表に統一されているので実害なしだが表題と不一致。",
+      "disposition": "resolved",
+      "body_check": "NFR supplemental table title now declares an index of prior appendices and the first-table case set remains denominator authority; 027-C12, 028-C13-C15, 029-C10-C12, 058-C22-C39 are in current primary set."
+    },
+    {
+      "id": "m13",
+      "severity": "Minor",
+      "formal_evidence": "025 summary C03「finding disposition/policy変更」の個別fixtureなし：個別はC09（policy write）とC07（authority移転）のみ。C07で包含するならFR 025のtrace表に明記。",
+      "disposition": "resolved",
+      "body_check": "025-C10 is the individual finding-disposition mutation; parent negative list and corrected failure/responsibility trace now include C10."
+    },
+    {
+      "id": "m14",
+      "severity": "Minor",
+      "formal_evidence": "058：L2:408「001の観測本文・責務・出力項目を変更しない」のうち本文と責務に単独CASEなし：C29は出力項目の削除のみ。1件追加かC29で代表させる理由をAC-02対応表に記録。",
+      "disposition": "resolved",
+      "body_check": "058-C35 isolates mutation of 001 observation body and C36 isolates change of 001 responsibility; they are independently defined and mapped in AC-02/trace."
+    },
+    {
+      "id": "m15",
+      "severity": "Minor",
+      "formal_evidence": "FR 035・058「補正ACと個別fixtureの対応」の列挙漏れ：035 AC-02の項にC15がない。058 AC-02の項はC13〜C25まででC26〜C31がなく、trace表「source集合…明示変更後の再closure」行がC30・C31を引かない。",
+      "disposition": "resolved",
+      "body_check": "035 AC-02 list/trace includes C15-C17. 058 AC mapping includes C26-C39 and source-set reclosure trace retains C30/C31."
+    },
+    {
+      "id": "m16",
+      "severity": "Minor",
+      "formal_evidence": "035-C08：1つのCASEに変異2つ：FV:1587「current judgementまたはplacement」。placementはC13と重なる。C08をjudgment実行に限定し、C13の名前「learning placement」も変異内容を明確に。",
+      "disposition": "resolved",
+      "body_check": "035-C08 now mutates LABO current-judgement execution only; C13 is explicitly the separate model-placement mutation."
+    },
+    {
+      "id": "m17",
+      "severity": "Minor",
+      "formal_evidence": "034 AC-02「BRAIN ingestion/authorityを作らず」に単独fixtureなし：前置き:159「target authorityを移さず」が根拠。LABOがBRAIN取込済み・authority化を主張する変異を1件追加。",
+      "disposition": "resolved",
+      "body_check": "034-C10 independently adds only a claim that LABO observation constitutes BRAIN ingestion/authority; it rejects the claim and does not invent a new owner. AC-02, negative set, and responsibility trace include it."
+    },
+    {
+      "id": "m18",
+      "severity": "Minor",
+      "formal_evidence": "017 FR節に「補正ACと個別fixtureの対応」見出しがない：012〜016にある見出しが017（FR:813付近）にはなく個別negative列挙のみ。",
+      "disposition": "resolved",
+      "body_check": "017 now has its own “補正ACと個別fixtureの対応” subsection and lists standalone negative cases only."
+    },
+    {
+      "id": "m19",
+      "severity": "Minor",
+      "formal_evidence": "NG:158の058列挙がC12〜C21まで：過去追補の索引と宣言済みで分母には影響なし。索引であることを表題に明記。",
+      "disposition": "resolved",
+      "body_check": "NG supplemental 058 list is explicitly titled as an index; it is not the denominator source."
+    },
+    {
+      "id": "m20",
+      "severity": "Minor",
+      "formal_evidence": "監査md末尾空白の `git diff --check` 失敗：review01 m16と同じ。followupのmonitorに記録済みで時点監査は改変しないので、PR本文またはmerge前照合でこの既知失敗を明記。",
+      "disposition": "resolved_with_monitor",
+      "body_check": "The prior immutable audit markdown remains byte-identical with the known trailing whitespace. This follow-up separately records that historic whitespace finding; current canonical `git diff --check` passes. No old audit was edited."
+    }
+  ],
+  "current_six_canonical_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "3ed228f6c77bcd6e2113f4f03964080036b13e153eb90257f888f7024ada6571",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "main_prefix_bytes": 4234,
+      "main_prefix_sha256_raw_lf": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1",
+      "prefix_equal": true,
+      "suffix_bytes": 3863,
+      "suffix_sha256_raw_lf": "48b87571034c4f9705f72ff5ed3068263ceee616e67cac5610ae12885aafbcb2"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "8f55f88b463227cbfcb432b37d99b05bf18c9e2eb71ff60a9e0acd152e7e2783",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "main_prefix_bytes": 105136,
+      "main_prefix_sha256_raw_lf": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857",
+      "prefix_equal": true,
+      "suffix_bytes": 137507,
+      "suffix_sha256_raw_lf": "f1e2004e8ffb6054548c6de1861f59d0d07cd7d33f6abe0d865856ce313b5fe5"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "0eefc6b0af2f1d2621c875edef6d86f91f8dc1f9f1f8224f81c0a473a464b7ca",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "main_prefix_bytes": 31278,
+      "main_prefix_sha256_raw_lf": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec",
+      "prefix_equal": true,
+      "suffix_bytes": 23193,
+      "suffix_sha256_raw_lf": "496b9e444078f42655ae5df83537f80136e392c6856c1be1491acf38578a1b2c"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "1e4a2a49addc5d94c749ef63750e4150af3ecce3a19269e53881b71d9664eeae",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "main_prefix_bytes": 3291,
+      "main_prefix_sha256_raw_lf": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908",
+      "prefix_equal": true,
+      "suffix_bytes": 3863,
+      "suffix_sha256_raw_lf": "989893fd4d055247357fcde3cb3d14e129fae19392a28e119ae158141222e63e"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "8c5f1d9a59e4c532392e78ecd6dc2f66debe1e79ad8dec7f08039aa32dbe9226",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "main_prefix_bytes": 145671,
+      "main_prefix_sha256_raw_lf": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7",
+      "prefix_equal": true,
+      "suffix_bytes": 119486,
+      "suffix_sha256_raw_lf": "7659ebde7a596237bb3c60af892a85e30045b021834d8a4d0d2927214e8315eb"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "body_revision": "2d1df9e419def79a81e6e378114fda7ecdf1d2b1",
+      "full_sha256_raw_lf": "3aca95ee9094e8d63eb6de22dd29921498e185447f5e2d62d655b22edf2ebaac",
+      "main_revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "main_full_sha256_raw_lf": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "main_prefix_bytes": 29799,
+      "main_prefix_sha256_raw_lf": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52",
+      "prefix_equal": true,
+      "suffix_bytes": 15259,
+      "suffix_sha256_raw_lf": "4a942b638c296051c9902754c9999c782dbbe1b972925784733114f679096b62"
+    }
+  ],
+  "audited_canonical_content_set_sha256": "67d33a1e16983a289d5a9182aad83f619d75209d779fa095d94f29c1685af534",
+  "old_source_pins_recomputed": [
+    {
+      "parent": "HELIXLABO-L2-012",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-012",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-012",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-013",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-013",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-013",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-014",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-014",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-014",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-015",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-015",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-015",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-016",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-016",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-016",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-017",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-017",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-017",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-018",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-018",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-018",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-019",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-019",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-019",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-020",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 36,
+      "line_end": 36,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "span_literal_utf8": "| HR-FR-HIL-02 | HIL-BR-01, HIL-BR-10, HIL-FR-01, HIL-NFR-04 | admitted contractを定義済み工程順でForwardへ収束させ、全eventを同一causalityへjoinしbudget境界でcheckpointする | admitted contract・budgetあり → valid next stateまたはdurable stop、orphan 0 | illegal transition、causality断絶、budget後継続 / transition、projection、closure、checkpoint receipt | HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "c4c2fa627ea7c15849bd05edb46d79121ee1b649122965f46f29fe67d9bdabd2",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-020",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 34,
+      "line_end": 34,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "span_literal_utf8": "| HAT-HIL-02 | HR-FR-HIL-02 / HAC-HIL-02a, HAC-HIL-02b, HAC-HIL-02c | HST-HIL-001 | state machineをcausality付きで一周する | transition、closure query、checkpoint digest | illegal transition、orphan、budget境界 |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "f3debf432438d3fc543fb32b208fe6cae8baad7a169cd00248c520c17746b9c6",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-020",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 26,
+      "line_end": 31,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "span_literal_utf8": "  - HR-NFR-P3-01\n---\n\n# Universal Improvement Loop要件\n\n## 0. 目的とauthority境界",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "a14894d6c566a1087e805ac26c9f2ebbd1acb5a09115e0dd8228bc147cd87739",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-021",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-021",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-021",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-021",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-022",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-022",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-022",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-022",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-023",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-023",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-023",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-023",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-024",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-024",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-024",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-024",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-025",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-025",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-025",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-025",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-026",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-026",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-026",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-026",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-027",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-027",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-027",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-027",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-028",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-028",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-028",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-028",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-029",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-029",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-029",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-029",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-030",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 35,
+      "line_end": 35,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "span_literal_utf8": "| HR-FR-HIL-01 | HIL-BR-12, HIL-FR-02, HIL-FR-03, HIL-NFR-01, HIL-NFR-05 | user、GitHub、product、source入力をsource/cause/digest/authority付きversioned Issue contractへexactly-once正規化し、外部本文を命令として実行しない | source識別可能・current schemaあり → durable intake、contract revision、routeが一意 | field欠落、同operation異payload、未信頼命令実行 / intake event、contract digest、conflict/trust receipt | HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "83627537bb90bddb152261a51ae7fe76a198e7cc1b21266bdd0b564bed2ddcad",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-030",
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "line_start": 45,
+      "line_end": 45,
+      "file_full_sha256_raw_lf": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "span_raw_lf_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "span_literal_utf8": "| HR-FR-HIL-11 | HIL-BR-15, HIL-FR-23, HIL-FR-24, HIL-NFR-17 | versioned read connectorでfull/incremental product dataをlineage/freshness/schema/redaction付きprojectionへ変換する | connector policy/auth reference/cursorあり → canonical snapshot/entities/watermark | drift、cursor逆行、stale/tombstone無視、PII/secret、直接write / connector、snapshot、redaction、quarantine receipt | HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c |",
+      "prior_pin_file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "prior_pin_span_sha256": "418c5e6b16f22dcc8fb8802062ad8e6a6e3d97ec22644f4bddc55cb1ab6f7462",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-030",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 33,
+      "line_end": 33,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "span_literal_utf8": "| HAT-HIL-01 | HR-FR-HIL-01 / HAC-HIL-01a, HAC-HIL-01b, HAC-HIL-01c | HST-HIL-001 | 各source入力をIssue契約へ取り込む | intake/contract revision/idempotency/trust receipt | duplicate、異payload、injection |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "9132ea7e9037fa8abf11471ba32ade81fb98ea478bf0547944525380b8a7134b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-030",
+      "asset_id": "LEGACY-ASSET-FA8C6E69463183D6A19B",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+      "line_start": 43,
+      "line_end": 43,
+      "file_full_sha256_raw_lf": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "span_raw_lf_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "span_literal_utf8": "| HAT-HIL-11 | HR-FR-HIL-11 / HAC-HIL-11a, HAC-HIL-11b, HAC-HIL-11c | HST-HIL-010 | product dataをfull/incremental投影 | connector、lineage、watermark、redaction/query | drift、cursor逆行、PII、stale current |",
+      "prior_pin_file_sha256": "a1c17544425ac8c2976236dc7899005ab1098e2e86195cbd99d54af13193941a",
+      "prior_pin_span_sha256": "398fbc4c37319f6ac1a63aa258251efa580747895bb2d49716525e2d2f8bf2d3",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-034",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 68,
+      "line_end": 103,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "f985ea2700541c99cb88efe15e28e0105a7fa08d9ede28ccc34ac6cc20ae620b",
+      "span_literal_utf8": "比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、\n`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。\n\n正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →\npost-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、\ncandidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、\nnormalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。\n\n## UIL-FR-002 findingの適格化と改善候補\n\n### UIL-R-03 finding適格化、dedupe、expiry\n\ninvariant violation、同種finding再発、metric budget超過、悪化傾向、duplicate／orphan／cycle増加、release boundary、\nprovider changeを発火条件とする。scheduled実行は長期間eventがない場合のsafety-netに限定する。同一原因・scope・\nbaselineの候補を重複生成せず、expiry、supersession、counterevidenceを保持する。\n\n### UIL-R-04 UniversalImprovementCandidateV1\n\n候補は少なくともcandidate ID、source event IDs、evidence snapshot digest、baseline／observed revision、detector ID／\nversion、invariant IDs、finding class、confidence／counterevidence、影響するRequirement／Design／Contract／Module／\nV-pair、提案change set、期待効果、cost、risk、影響範囲、意味同一性、system change class、\ncapability expansion kind、workflow route、verification obligations、rollback、human decision、expiryを別fieldへ束縛する。\n\n```yaml\nrequired_fields:\n  - candidate_id\n  - source_event_ids\n  - evidence_snapshot_digest\n  - baseline_revision\n  - observed_revision\n  - detector_id\n  - detector_version\n  - invariant_ids\n  - finding_class\n  - candidate_scope_class\n  - confidence_and_counterevidence",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "f985ea2700541c99cb88efe15e28e0105a7fa08d9ede28ccc34ac6cc20ae620b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-034",
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "line_start": 34,
+      "line_end": 40,
+      "file_full_sha256_raw_lf": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "span_raw_lf_sha256": "c2facd21b95f934b7927085aabf50b690648f1803c9b6e712775272a4efcc4fc",
+      "span_literal_utf8": "| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |",
+      "prior_pin_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "prior_pin_span_sha256": "c2facd21b95f934b7927085aabf50b690648f1803c9b6e712775272a4efcc4fc",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-035",
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "line_start": 68,
+      "line_end": 103,
+      "file_full_sha256_raw_lf": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "span_raw_lf_sha256": "f985ea2700541c99cb88efe15e28e0105a7fa08d9ede28ccc34ac6cc20ae620b",
+      "span_literal_utf8": "比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、\n`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。\n\n正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →\npost-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、\ncandidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、\nnormalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。\n\n## UIL-FR-002 findingの適格化と改善候補\n\n### UIL-R-03 finding適格化、dedupe、expiry\n\ninvariant violation、同種finding再発、metric budget超過、悪化傾向、duplicate／orphan／cycle増加、release boundary、\nprovider changeを発火条件とする。scheduled実行は長期間eventがない場合のsafety-netに限定する。同一原因・scope・\nbaselineの候補を重複生成せず、expiry、supersession、counterevidenceを保持する。\n\n### UIL-R-04 UniversalImprovementCandidateV1\n\n候補は少なくともcandidate ID、source event IDs、evidence snapshot digest、baseline／observed revision、detector ID／\nversion、invariant IDs、finding class、confidence／counterevidence、影響するRequirement／Design／Contract／Module／\nV-pair、提案change set、期待効果、cost、risk、影響範囲、意味同一性、system change class、\ncapability expansion kind、workflow route、verification obligations、rollback、human decision、expiryを別fieldへ束縛する。\n\n```yaml\nrequired_fields:\n  - candidate_id\n  - source_event_ids\n  - evidence_snapshot_digest\n  - baseline_revision\n  - observed_revision\n  - detector_id\n  - detector_version\n  - invariant_ids\n  - finding_class\n  - candidate_scope_class\n  - confidence_and_counterevidence",
+      "prior_pin_file_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "prior_pin_span_sha256": "f985ea2700541c99cb88efe15e28e0105a7fa08d9ede28ccc34ac6cc20ae620b",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-035",
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "line_start": 30,
+      "line_end": 40,
+      "file_full_sha256_raw_lf": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "span_raw_lf_sha256": "9c3f0a691d1a108e2af9fb2771d4ff2944e1851d19f15e579c7cc58635f701f9",
+      "span_literal_utf8": "| UIL-AC-011 | UIL-R-07 | change class、capability expansion、routeを別fieldにする | 同一enumへ畳み込まない |\n| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |\n| UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |\n| UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |\n| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |",
+      "prior_pin_file_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "prior_pin_span_sha256": "9c3f0a691d1a108e2af9fb2771d4ff2944e1851d19f15e579c7cc58635f701f9",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-058",
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "line_start": 89,
+      "line_end": 92,
+      "file_full_sha256_raw_lf": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "span_raw_lf_sha256": "4fc611db8d2563773d3f0a1b2e363015a7adcb00899d7f1a3da659661e048779",
+      "span_literal_utf8": "### FRS-R-06 Bundleへの収載／除外\n\nBundleは`included_slices`と`excluded_slices`をexact setで保持する。excludedとincludedの重複、unknown Slice、required dependency\n欠落、conflict、未指定Sliceの暗黙包含、preview／rc Sliceのstable Bundleへの混入を拒否する。",
+      "prior_pin_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "prior_pin_span_sha256": "4fc611db8d2563773d3f0a1b2e363015a7adcb00899d7f1a3da659661e048779",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-058",
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "line_start": 134,
+      "line_end": 145,
+      "file_full_sha256_raw_lf": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "span_raw_lf_sha256": "e3dd6a564bd8236db8afda5df895221ee89f7c4b54a0793f49bb2459a96cb0a1",
+      "span_literal_utf8": "### FRS-R-13 局所最適と全体統制\n\nSlice単位のtargeted／mutation／consumer検証を局所最適化しつつ、shared core、authority、cross-slice dependency、release、main\nread-afterはdependent closureとcritical pathへ展開する。検証義務を減らすためにSliceを分割してはならない。\n\n### FRS-R-14 Unknown、ambiguous、staleの安全側処理\n\n影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへの\nfallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。\n\n## FRS-FR-005 生成projection、将来合成、配布境界",
+      "prior_pin_file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "prior_pin_span_sha256": "e3dd6a564bd8236db8afda5df895221ee89f7c4b54a0793f49bb2459a96cb0a1",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-058",
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "line_start": 39,
+      "line_end": 39,
+      "file_full_sha256_raw_lf": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "span_raw_lf_sha256": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "span_literal_utf8": "| `FRS-AC-006` | FRS-R-06 | included／excluded Sliceのexact set、unknown、conflict、required欠落が検査される | excludedをincludedへ戻す、未指定を含めるmutationを拒否 |",
+      "prior_pin_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "prior_pin_span_sha256": "f0f8b45e05554194f2fa6886cabbbd524b40c48e47cb3764188859394819609f",
+      "pins_match": true
+    },
+    {
+      "parent": "HELIXLABO-L2-058",
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "revision": "0757e15875f6defff8b3af41ff61882e685a1e24",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "line_start": 46,
+      "line_end": 47,
+      "file_full_sha256_raw_lf": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "span_raw_lf_sha256": "8664d01493c44c49e34d248a6ff85ec7d7b9e5c8f4a25a8dd5b108034a4f7e76",
+      "span_literal_utf8": "| `FRS-AC-013` | FRS-R-13 | 局所検証とshared／authority／critical pathのdependent closureが両立する | Slice分割で検証義務を減らすmutationを拒否 |\n| `FRS-AC-014` | FRS-R-14 | unknown／ambiguous／staleはfullまたはfail-closeへ送られる | unknownを空集合、局所green、成功へ補完しない |",
+      "prior_pin_file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "prior_pin_span_sha256": "8664d01493c44c49e34d248a6ff85ec7d7b9e5c8f4a25a8dd5b108034a4f7e76",
+      "pins_match": true
+    }
+  ],
+  "new_fixed_source_full_span_pins": [
+    {
+      "kind": "fixed L2-058 source parent",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "line_start": 403,
+      "line_end": 415,
+      "file_full_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_raw_lf_sha256": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "span_literal_utf8": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）\n\n- **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。\n- **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。\n- **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。\n- **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。\n- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。",
+      "identity": "fixed L2-058 source parent"
+    },
+    {
+      "kind": "fixed L2-032 WEB-OS contract",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "line_start": 247,
+      "line_end": 250,
+      "file_full_sha256_raw_lf": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "span_raw_lf_sha256": "dce9bf38dd5d96533aab08b8614926cba1442f003ed752384cf9235b1051ca04",
+      "span_literal_utf8": "### HELIXLABO-L2-032 — WEB-OS → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：WEB-OSから許可されたtenant/job/deployment/runtime観測。出力：WEB-OS source identity/revision/data scope付きobservation。依存：WEB-OSの採択済みsource contractと個別connectorがある場合のみ。HELIX-WebのVision/candidateの状態をWEB-OS要求採択に変えず、Web/WEB-OS実運用をLABO 1.0の必須前提にしない。保証：tenant/customer scopeとWEB-OS authorityをsource側に保つ。scope不明はsource ownerへ戻す。`version_target`は上流決定に従う。",
+      "identity": "fixed L2-032 WEB-OS contract"
+    },
+    {
+      "kind": "fixed L11 parents / common section",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "line_start": 67,
+      "line_end": 80,
+      "file_full_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_raw_lf_sha256": "f68740dfb1feb146712387a05049bb64b697da67d7a23a82dc9e1baff9f1185a",
+      "span_literal_utf8": "| HELIXLABO-L2-016 | Experiment結果・反例からAssurance Allocationへ、比較可能性とoracleを保って渡す | 実験実行のみでsystem化適格と判定する、反例を欠落させる |\n| HELIXLABO-L2-017 | Assurance結果からOperational Fallbackへ、system/operation条件と未完義務を引き継ぐ | LABO結果だけでsystem切替、例外・保証消失を成功とする |\n| HELIXLABO-L2-018 | 比較結果の標本・条件・反例をGeneralizationへ渡し、適用範囲を限定できる | 単一caseを一般構造として渡す、母数や条件を落とす |\n| HELIXLABO-L2-019 | 範囲付き結果からtargetごとにFeedbackを分け、target/responsibilityとevidenceを保持する | generic/product-specific/OS/INTELLIGENCE責務を混ぜる、target未確定の候補を確定routingとする |\n| HELIXLABO-L2-020 | operation復帰後の結果が新しい観測として集積され、前後のrule版・未完義務へ辿れる | source状態を上書きする、復帰後観測を別版と区別しない |\n| HELIXLABO-L2-021 | HELIX-HARNESSから個別connectorで許可observationを受け、source revisionと契約版を保つ | source authorityを移す、未許可scope/staleを通す |\n| HELIXLABO-L2-022 | HELIX-OSから個別connectorで許可運転・ticket・証拠を受け、未完/unknownを保つ | OS正本を書き換える、未完を完了化する |\n| HELIXLABO-L2-023 | BRAINから個別connectorで許可利用/変更結果を受け、source版を保つ | BRAIN正本をLABOへ移す |\n| HELIXLABO-L2-024 | INTELLIGENCEから個別connectorで許可判断/評価結果を受け、現行判断と過去評価を区別する | 稼働中判断を過去実績と混ぜる |\n| HELIXLABO-L2-025 | SECURITY scopeに適合する安全性/incident evidenceだけを個別connectorで受ける | restricted dataやauthorityをLABOへ取り込む |\n| HELIXLABO-L2-026 | INFRASTRUCTUREから許可resource/runtime evidenceを個別connectorで受け、source版を保持する | resource authorityを移す、staleをcurrent扱いする |\n| HELIXLABO-L2-027 | HELIX-CONNECTの個別connection contract/provenance/schema版を経由した許可observationを受ける | connectorを全sourceで暗黙共用する、drift/unknownを隠す |\n| HELIXLABO-L2-028 | Workerから許可作業結果を受け、責務とOS assignment/ticketへ照合し、実験結果ならL2-006のexperiment・対象版へ同一性を保って渡す | Workerを機構・authority ownerとして扱う、assignmentを推測する、別ticket/experimentの実績を同一比較へ混ぜる |\n| HELIXLABO-L2-029 | CI/testから許可結果を受け、対象revisionと検査範囲を保持する | stale/未実行をpassと扱う |",
+      "identity": "fixed L11 parents / common section"
+    },
+    {
+      "kind": "fixed L11-032 WEB-OS scope condition",
+      "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "line_start": 83,
+      "line_end": 83,
+      "file_full_sha256_raw_lf": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "span_raw_lf_sha256": "f0de55c449a882affabddb9a5ab7d03e6862d4936049af6def0f682f52b1399b",
+      "span_literal_utf8": "| HELIXLABO-L2-032 | 採択済みsource contractがある場合にWEB-OS観測を個別scope付きで受ける。Web/WEB-OS実運用はLABO 1.0の必須前提ではない | Web productとWEB-OSを同一authorityとする、scope不明のtenant/customer dataを通す、未採択Web候補を要求扱いする |",
+      "identity": "fixed L11-032 WEB-OS scope condition"
+    },
+    {
+      "kind": "formal_review_body",
+      "source_path": "/tmp/pr2614-latest-comment.json",
+      "comment_id": 6000764679,
+      "full_sha256_raw_lf": "8478374ee8fa63de61404af43087b29d1f6672758f9cccbde6bd932912270260",
+      "span_raw_lf_sha256": "8478374ee8fa63de61404af43087b29d1f6672758f9cccbde6bd932912270260",
+      "literal_utf8": "## Opus独立review02：findings（Blocker 0／Major 7／Minor 20）\n\n依頼 RH-PR2614-LABO-STAGE2B-02 への回答です。\n\n- exact base：`5acae384305b01d10e88eeb2e6406f847baf66df`（現main。merge-baseは `0757e1587`、`0757e1587..5acae3843` にdocs/helix-laboの差分なし。`merge-tree` 衝突なし）\n- content HEAD：`dd9cf9b16e15ac4d2865f84dc7ea64de4c2c9290`\n- 本文revision：`f2aadd325`（review01時のHEAD `1eab9c0fa`・本文 `936af3681` からの修正 f2aadd325・dd9cf9b16）\n\n22親を4つ（012〜017／018〜023／024〜030／034・035・058）に分け、review01の全29所見について監査の「対応済み」ではなく本文の該当行を読んで確かめました。略号はreview01と同じ（FR／FV／NG／NV／BR／BV、L2／L11は固定親f6dad2a33）。\n\n### 機械照合（所見なし）\n- **差分・prefix**：6文書ともmainの全bytesがHEADの先頭と一致（追加のみ・削除0・末尾LF）。固定L2・L11の22親の節はf6dad2a33／633bf12／HEADで同bytes。既存監査は `1eab9c0fa..HEAD` でbyte不変（新規はRoot review01 followup json/mdのみ）。\n- **CASE集合（1eab9c0fa→HEAD）**：追加32件、消失0、263定義（個別222＋summary/index 41）、重複0、dangling 0。FV冒頭索引は実在CASEと一致（m11解消）。NG主表・NV・FRの個別negative列挙はsummary/indexを除く集合で一致（M1・m12解消）。\n- **Root review01 followup監査（全pin実計算）**：正式comment 6000361151のraw body SHA、現6本文full／main prefix、前回本文936af36の6本文full SHA（review01 m15解消）、suffix_line_pins 2,772件（6文書のmain末尾以降の全行を漏れなく被覆）、case_classification（個別222＋索引41＝見出し263と完全一致）、旧source 75 pin、追加実読10 span、統合木の静的検査（validate 0／stale 0／residuals 0）がすべて一致。\n- **採択・register・G0**：PO判断（09-28）60〜78・82・83・98行で22親とも `-001`（connection／unit、1.0、条件付きなし）、register `-001` はrequirement_identity・digest一致・authority_effect none、`-002` は同digestの後継。G0 Stage 2b／1.0 target candidate。semantic digestは「L2 span末尾の改行を除いた本文のSHA」と一致（review01未確認の算出方法を解消）。\n- **旧source**：台帳のasset ID・path・source_sha256（unresolved）とarchive実体が一致。infinity-loop FR 35/36/45、HAT 33/34/43、UIL 43–57（訂正後）、UIL 68–103／30–40、FRS 89–92／134–145／39／46–47の引用趣旨も合致。\n- **静的検査**：validate 147/fail 0、stale=0、residuals=0、govcheck ok（atoms=7622）。`git diff --check origin/main HEAD` はdocs/helix-laboではokで、失敗は既存監査md（root-case-correction 3〜4行）の末尾空白のみ（review01 m16。時点監査なので改変対象外。followupの `historical_whitespace_monitor` に記録済み）。\n\n### review01所見の解消（本文で確認）\n- **Major解消（13/13）**：M1（22親のC02/C03をsummary/index明示、分母・trace表・NG/NVから除外。014-C03正例はC11/C12へ分離、058-C24をC24/C30/C31へ分割）、M2（016-C09）、M3（017-C09、AC-02に「例外記録・現行保証の消失」）、M4（014-C10）、M5（012-C08/C10、013-C17、015-C10〜C12）、M6（018-C09/C10）、M7（021-C11。scope側は下記M2）、M8（029-C10〜C12）、M9（028-C13）、M10（035-C15）、M11（058-C26/C27。C26の宛先は下記M5）、M12（034-C09）、M13（058-C28/C29）。\n- **Minor解消**：m1（012 AC句・C09）、m2（014-C08/C09を「明示せず意味保持と主張」に限定）、m3（019-C10/C11）、m4（027 AC-02句・C12）、m5（028 C12/C14/C15）、m6（023-C10を索引化。扱いは下記M3・m6）、m7（034戻し先L2-009統一）、m8（035-C09/C10根拠併記）、m10（大部分。残りは下記m4・m9・m16）、m11、m12、m13（026-C09・029-C09注記・030併記）、m14、m15、m16（記録済み）。\n\n### Major（7件）\n- **M1（020：L11:71の反例「復帰後観測を別版と区別しない」に単独fixtureなし）**：L2:201「復帰後も未完義務と前後版を保持する」。020のC05〜C10はすべて入力欠落かstaleで、前後版・resultが揃った入力で復帰後観測を旧版と同じ版として統合する出力側の変異がない（C01のoracleに書かれるだけ）。単独CASEを追加（期待：別版として保持し統合しない、source ownerへ）、AC-020-02に句を追加。\n- **M2（021：L2:205「data scope…不明はHARNESS ownerへ戻す」のscope不明に単独fixtureなし。review01 M7の対）**：FR:965・970。scope側の単独CASEはC07（FV:1378「許可範囲外」＝不許可）のみで、unknownはsummary C02(a)にもない。identity・revision・contractを保ちdata scopeだけunknownにする単独CASEを追加（期待：取込成功にせずHARNESS ownerへ）。\n- **M3（023：L11:74の唯一の反例「BRAIN正本をLABOへ移す」に単独fixtureなし）**：C10「BRAIN canonical write移管」（FV:1782）はC07の索引になり分母から外れ、fixtureも「出力先をBRAIN canonical writeへ変更」で正本の書き換え（C07同型）。正本・authorityの所在をLABOへ移す変異がない（021-C10 FV:1746と非対称）。BRAIN sourceのcanonical owner／authority fieldだけをLABOへ移す単独CASEを追加し、FR:1058の索引注記・FR:1068のowner境界行を更新。\n- **M4（028-C15：固定L2-028にない宛先）**：FV:2103〜2107の期待「unknownを維持し評価済みにせずLABO experiment evaluationへ戻す」。固定L2:233の戻し先は「assignment不明はOSへ戻す」のみで、「未評価結果を評価済みにしない」に戻し先はなく、L11:79にもない。当該Worker result source owner（C07・C10〜C12と同じ）に揃えるか、L2-006の該当行を導出根拠として併記。\n- **M5（058-C26：固定L2-058にない宛先「LABO Bench評価」）**：FV:2133〜2137。固定L2-058とL11:160の戻し先はcall-scope owner、各sourceとLABO、SECURITYのみ。M4と同型。「観測成立だけを保持しBench評価済みclaimを生成しない」に限定するか、L2-054／055の根拠行を併記。\n- **M6（058：固定L2:411「Web/WEB-OS観測を加える操作では既存L2-031／032のsource contractの採択と該当接続・安全条件を満たす」に個別CASEなし）**：FR 058 AC-02「Web/WEB-OSは選択時だけ既存採択source contractを要求」。Web明示選択の正常例と、選択したのにcontract未採択・接続欠落の負例はsummary索引C05（FV:1197）内のみで、個別C10・C21はWeb未選択の場合。FRの固定親句trace表「WEB/WEB-OSは選択時だけ既存contract」行が引くC08はBRAIN未選択必須化でWebと無関係。正常1件・負例1件（戻し先source／CONNECT）を追加し、trace表を差し替え。\n- **M7（035：固定L2:261の出力「適用範囲・source revision・未評価状態付きpacket」のscope欠落・unknownに単独fixtureなし）**：AC-02「source/scope/revision unknown…を評価済みへ変えない」。revisionはC09/C10、未評価状態はC05/C12にあるがscopeだけない（summary C02にもscope変異なし）。scopeだけunknown・欠落の単独CASEを追加（戻し先は前置き159〜162行から導いた当該source owner）。\n\n### Minor（20件）\n- **m1（FR crosswalk表に修正後CASEが未反映）**：FR:565〜586のmapping列が修正前集合のまま。012-C08〜C10、013-C17、014-C10〜C12、015-C10〜C12、016-C09、017-C09、034-C09、035-C15、058-C26〜C31が欠け、summary C02/C03/C05は個別と並べたまま。FR末尾「独立case追補のFR/AC trace」表も034-C09・035-C15・058-C22〜C31がなく、正常系035-C11・058-C12を「追加L10単独case」に入れている。\n- **m2（017-C03とC07の実質重複・二重計上）**：FV:740とFV:1299は変異・oracle・戻し先が同じ（L2:189）。両方がFR個別negative列挙・NG:112・NV:99の分母に入る。\n- **m3（trace先ACにCASE条件の句がない）**：013 C06/C14（unknown）→AC-02（FR:651）にL11:64「unknown保持」なし；014-C10→AC-02（FR:691）に「適用条件」なし；015-C07→AC-02（FR:731）に「scope」なし；016-C05→AC-02（FR:771）にL11:67「反例を欠落させる」なし。\n- **m4（単独fixtureの戻し先がない。review01 m10の残り）**：013-C11/C12/C14/C15（FV:1656〜1680）、014-C06/C07（1237・1242）、017-C08（1304）、019-C08（1343）、020-C05/C06（1348・1353、L2:201「欠落はsource ownerへ」）、020-C08（1363）、021-C10（1746）、024-C06/C07（1431〜1439→INTELLIGENCE）、025-C06/C07（1446〜1454→SECURITY）、026-C06/C07（1461〜1469→source）、027-C08（1488）/C11（1838）、028-C03（1044）/C06（1498）/C08（1508）、030-C07/C08（1547〜1555）、035-C05（1572）/C06。拒否のみのCASEはその旨を書く。\n- **m5（015：同種の不足で宛先表記が5通り）**：C05/C07/C08「experiment evaluation」、C06「oracle owner」、C09「既存評価oracle/source owner」、C02「oracle/対象版owner」、C03「実験owner」。L2:181は「戻す」のみなので導出根拠を1つに決めて統一。\n- **m6（023-C10の扱いが追補表で食い違う）**：FR「独立case追補」表の023行とNG:148はC10を単独caseとするが、FV:1784・FR:1058は「C07の索引で分母に算入しない」。M3の新CASEへ置き換えるか索引と注記。\n- **m7（020 AC-02「fallbackの実行責務はowner」に単独negativeなし）**：FR:929。C01のoracleのみ。固定L2-020本文に実行禁止の明記がないため、CASE追加か根拠（L2-017／L2:189）併記。\n- **m8（固定L2より広い宛先表記）**：021-C09（FV:1744）「HARNESS既存source/connection owner」vs L2:205「HARNESS owner」；018-C08（FV:1720）「L2-006のexperiment evidence owner」vs L2:193「実験評価へ戻す」。\n- **m9（019-C09の変異が曖昧で親より強い）**：FV:1722〜1726「responsibility owner fieldだけを別ownerへ差し替える」に不整合の条件がなく、正当なowner指定まで拒否すると読める。C10との違いも題名のみ。「target evidenceと不整合なowner指定」に限定。\n- **m10（023 AC-02「unauthorized knowledge useを受理しない」の既知不許可CASEなし／022 summaryの列挙）**：023-C08はpermission unknownのみ（L2:213）。022-C02（FV:873）が列挙するreceipt欠落・ticket stale・assignment staleに個別CASEがない。\n- **m11（029-C08とC09の重複）**：C08（FV:1530、cancelled/interrupted→pass）とC09（FV:1868、cancelled→pass拒否）は同変異・同oracleで、C08は2状態値を束ねる。NG/NVで両方が分母。\n- **m12（NG第2表の列挙が部分的）**：NG:149〜155「Root検収追補fixtureを含むNFR trace」に027-C12、028-C13〜C15、029-C10〜C12、058のC22〜C31がない。NG:133で母集団は第1表に統一されているので実害なしだが表題と不一致。\n- **m13（025 summary C03「finding disposition/policy変更」の個別fixtureなし）**：個別はC09（policy write）とC07（authority移転）のみ。C07で包含するならFR 025のtrace表に明記。\n- **m14（058：L2:408「001の観測本文・責務・出力項目を変更しない」のうち本文と責務に単独CASEなし）**：C29は出力項目の削除のみ。1件追加かC29で代表させる理由をAC-02対応表に記録。\n- **m15（FR 035・058「補正ACと個別fixtureの対応」の列挙漏れ）**：035 AC-02の項にC15がない。058 AC-02の項はC13〜C25まででC26〜C31がなく、trace表「source集合…明示変更後の再closure」行がC30・C31を引かない。\n- **m16（035-C08：1つのCASEに変異2つ）**：FV:1587「current judgementまたはplacement」。placementはC13と重なる。C08をjudgment実行に限定し、C13の名前「learning placement」も変異内容を明確に。\n- **m17（034 AC-02「BRAIN ingestion/authorityを作らず」に単独fixtureなし）**：前置き:159「target authorityを移さず」が根拠。LABOがBRAIN取込済み・authority化を主張する変異を1件追加。\n- **m18（017 FR節に「補正ACと個別fixtureの対応」見出しがない）**：012〜016にある見出しが017（FR:813付近）にはなく個別negative列挙のみ。\n- **m19（NG:158の058列挙がC12〜C21まで）**：過去追補の索引と宣言済みで分母には影響なし。索引であることを表題に明記。\n- **m20（監査md末尾空白の `git diff --check` 失敗）**：review01 m16と同じ。followupのmonitorに記録済みで時点監査は改変しないので、PR本文またはmerge前照合でこの既知失敗を明記。\n\n### 所見なしの主な句\n- **012〜017**：relation版不一致（012-C02）、根拠identity欠落（C05）、相関の因果化（C06）、unknownの成功化（C07）、書戻し（C08）、反証脱落（C09）、relation authority変更（C10）；013の分類軸10件（C07〜C16）とsource meaning上書き（C17）；014の元目的欠落・差分欠落・自動昇格・適用条件unknown（C10）・明示差分の正例（C11/C12）；015のbaseline版・oracle・scope・条件・target版（C05〜C09）とWorker割当・選定・起動（C10〜C12）；016の反例脱落（C05）・中断（C03/C07）・実行完了のみでsystem適格（C09）；017の現行rule版欠落・保証欠落・切替自動実行・例外記録脱落（C09）。\n- **018〜023**：018の条件・反例・範囲過大化・stale・単一標本・母数欠落（C05〜C10）；019のtarget不明→OS routing候補、責務欠落、evidence欠落、複数target統合、owner変更（C10）、責務区分混合（C11）；020の旧版／新版欠落・stale、result欠落、義務脱落、source上書き；021のidentity・revision stale/unknown（C11）・scope不許可・raw書戻し・contract欠落・authority移管；022のticket欠落・revision stale・未完の完了化・OS正本変更・assignment欠落・receipt stale・unknownの完了化；023のidentity欠落・version不一致・正本変更、permission unknown→SECURITY、利用scope unknown→BRAIN contract owner。\n- **024〜030**：024の過去評価current化・fact/判断混同・版（→INTELLIGENCE）；025のscope欠落→SECURITY・restricted混入・authority移転・policy write・stale；026のstale・unknown確定化・authority移転・contract欠落・config write（resource configuration）；027のidentity・schema・provenance・drift隠蔽・trace・contract stale・暗黙共用・contract改定（C12）；028のassignment欠落→OS・task class・stale・別ticket・experiment/target版・Worker authority owner claim（C13）・OS receipt欠落（C14）；029の未実行・stale・scope欠落・中断・CI実行起動（C10）・verification authority/結果の書換え（C11/C12）；030のidentity・revision・別source統合・authority・contract欠落・未採択/未選択区別。\n- **034・035・058**：034の一事例・product固有meaning・scope支持不足・scope unknown・顧客固有ルール（C09）→L2-009、2.0外部loop除外；035のL11:86反例4句（判断・配置・bot実行C08/C13/C14、未評価の評価済み化C12、Bench水準別定義C15、学習許可C07）、052区別・054/055分離；058のL11:158反例6句と変更4項目（C07/C08/C10/C14〜C20/C24/C25/C30/C31）、選択条件unknown→call-scope owner、permission unknown→SECURITY、stale→source owner、OS receipt欠落→L2-022 OS owner、Bench評価済み化・割当許可化拒否（C26/C27）、完成義務保持（C28）、001出力項目不変（C29）。\n- **共通**：新しい値・SLA・PO gateなし。NFRは分母0/unknownを「率なし」。BR/BVは独立BRなしでACへのtraceのみ。1.x・Web前倒し、未採択候補の混入なし。\n\n### 未確認範囲\n- 共通前置き（L2:155〜166以外）とL1親（HELIXLABO-L1-001〜010、HELIXINTELLIGENCE-L1-018）本文、028が依存するL2-006本文（M4の導出根拠になり得るか）、035が引くL2-052・054・055本文との整合（L11:119以外）。\n- 旧source全consumerの網羅検索。旧HAT／infinity-loopの全文趣旨（引用行とUIL 43〜57・68〜103、FRS 89〜92・134〜145のみ）。\n- 補正前監査5件（publication、prepublication、root-case、owner-and-case-count、evaluation-source）のpinは今回は再計算していない（review01で全件一致を確認済み）。\n- 最新mainとmergeした木での `scfctl stale` は私側では未実行（followup監査の統合木記録が0。PR HEADで実行、merge-tree衝突なし）。\n"
+    },
+    {
+      "kind": "review_response_envelope",
+      "source_path": "/tmp/pr2614-review02-response.json",
+      "full_sha256_raw_lf": "771ccdb510c6367aa335098a692843bd9a3102a66a79965e9b19abc14723b247",
+      "payload_sha256": "1e9d9d01fe51d42bb87b4200b6784de702851d3ae50d2d3c7e3b9d96c6a29d11",
+      "content_sha": "dd9cf9b16e15ac4d2865f84dc7ea64de4c2c9290",
+      "literal_utf8": "Formal 27 finding response and unreviewed list; full file SHA pins exact JSON bytes."
+    }
+  ],
+  "canonical_edited_line_pins": [
+    {
+      "label": "FR main crosswalk",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 586,
+      "literal": "| `HELIXLABO-L2-058` / `MPR-RC-HELIXLABO-L2-058-001` / docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md#L98 / `sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17` | `docs/helix-labo/L2-requirements/labo-requirements.md` L403–415; raw SHA `b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf` | `LABO-058-FR-01`, `LABO-058-AC-01/02`; 個別fixture: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39`; summary/index（分母外）: `L10-LABO-058-C02`, `L10-LABO-058-C03`, `L10-LABO-058-C04`, `L10-LABO-058-C05` |",
+      "line_raw_lf_sha256": "2ae8cac9c2651c8909a149ed6c5160e99f458ff20cdd52d4d0057a8a79930520"
+    },
+    {
+      "label": "FR 020 AC and trace",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 944,
+      "literal": "| 不一致/欠落/unknown/staleの失敗規則 | `LABO-020-FR-01 / LABO-020-AC-02` | `L10-LABO-020-C05`, `L10-LABO-020-C06`, `L10-LABO-020-C07`, `L10-LABO-020-C08`, `L10-LABO-020-C09`, `L10-LABO-020-C10`, `L10-LABO-020-C11` | 各独立CASEの一条件変異を成功へ昇格せず、そのCASEの固定戻し先を照合 |",
+      "line_raw_lf_sha256": "dc70ba4e42feae55fe49355bb82217130f631511a66a080d0bb7281d44b0f45a"
+    },
+    {
+      "label": "FR 023 responsibility",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1070,
+      "literal": "| 責務ownerと変更禁止境界 | `LABO-023-FR-01 / LABO-023-AC-02` | `L10-LABO-023-C07`, `L10-LABO-023-C11` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |",
+      "line_raw_lf_sha256": "29110059ac8237a56f86378df5f76e01afd0c3fd31f2e861c2a2aeab17e413fe"
+    },
+    {
+      "label": "FR 025 responsibility",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1152,
+      "literal": "| 責務ownerと変更禁止境界 | `LABO-025-FR-01 / LABO-025-AC-02` | `L10-LABO-025-C07`, `L10-LABO-025-C09`, `L10-LABO-025-C10` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |",
+      "line_raw_lf_sha256": "26c144cd5cf75ea55f37050fc09f4b050620c3ffcbc627d8811fb1378b354afe"
+    },
+    {
+      "label": "FR 034 responsibility",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1401,
+      "literal": "| 責務ownerと変更禁止境界 | `LABO-034-FR-01 / LABO-034-AC-02` | `L10-LABO-034-C06`, `L10-LABO-034-C09`, `L10-LABO-034-C10` | 各CASEの責務区分と変更禁止oracleを独立に照合し、記載した固定戻し先を保持 |",
+      "line_raw_lf_sha256": "289cfa044e6f1b60b05ff3253cbd90400e9197cf26549b9c2ab6127ff3d98d02"
+    },
+    {
+      "label": "FR 035 AC cases",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1433,
+      "literal": "- `LABO-035-AC-02` は各fixtureを一変数ずつ照合する。C09/C10のsource version欠落・staleは該当source ownerへ戻し、同一revisionのpacket/receipt不一致はL2-052の境界条件と区別する。C12はunassessedを保ったままINTELLIGENCE境界へ渡し、C13/C14はLABOがplacement・bot判断/実行を生成せず既存INTELLIGENCE/OS責務を保持する。`L10-LABO-035-C09`, `L10-LABO-035-C10`, `L10-LABO-035-C12`, `L10-LABO-035-C13`, `L10-LABO-035-C14`, `L10-LABO-035-C15`, `L10-LABO-035-C16`, `L10-LABO-035-C17`。C15はBench専用契約を保持し、C16/C17はsource scope不明/欠落を当該source ownerへ戻す。集約fixtureの件数は個別negativeの代替にしない。",
+      "line_raw_lf_sha256": "7ce73a7d6c9a611e19aee11a34b0a770220e72c32a9337ab38cdf9738af5cb14"
+    },
+    {
+      "label": "FR 058 AC cases",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1476,
+      "literal": "- `LABO-058-AC-01` は正常fixture `L10-LABO-058-C12`, `L10-LABO-058-C32`, `L10-LABO-058-C37` の各選択source閉包を個別に照合する。",
+      "line_raw_lf_sha256": "60054dc9acd47ab0db8dbf0f54bdfd398af0f0e616d77b5bc2b0fe2a1af3166f"
+    },
+    {
+      "label": "FR 058 web/os trace",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "line": 1489,
+      "literal": "| Webは選択時だけL2-031の既存contract、external 2.0を1.0へ含めない | `LABO-058-FR-01 / LABO-058-AC-01/02` | `L10-LABO-058-C10`, `L10-LABO-058-C21`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34` | 選択時の採択/接続/安全条件を照合し、未選択時の実稼働依存0、2.0 external intake 0 |",
+      "line_raw_lf_sha256": "d0947ec0c15a7f3fd15d87f4ba081b174df85af26c93e9b38fc61d8b9fb70b12"
+    },
+    {
+      "label": "FV added fixture block",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2353,
+      "literal": "### L10-LABO-058-C37 — WEB-OS明示選択正常",
+      "line_raw_lf_sha256": "bec9d16637d7494ac3674aae5c1b5a8029724058fcea02ff303c18dc7c6715c2"
+    },
+    {
+      "label": "FV last fixture",
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "line": 2365,
+      "literal": "### L10-LABO-058-C39 — WEB-OS選択connector欠落",
+      "line_raw_lf_sha256": "388a83709b98f0b1beabe93a5fb005363e0035fb349121bd6b91539ea579d16e"
+    },
+    {
+      "label": "NG 058 measurement",
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "line": 115,
+      "literal": "| `HELIXLABO-L2-058` | selected dependency closure | 当該親の個別fixtureのみ（summary/indexは除外）。missing/failed/censoredは母集団から除外しない。分母が0または不明なら率なし。 | caseごとに`valid/failed/missing/censored`とoracle`pass/fail/unknown`を別記録。各negativeは一変数だけを変え、戻し先/unknown holdとsource state保持を照合する。case: `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39` |",
+      "line_raw_lf_sha256": "f7a7455066bcaa48ea45460818bff313aa787c50f2708171b9691c2b53bb0091"
+    },
+    {
+      "label": "NG 058 index",
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "line": 158,
+      "literal": "| `HELIXLABO-L2-058` | `LABO-058-AC-01/02` | `L10-LABO-058-C01`, `L10-LABO-058-C06`, `L10-LABO-058-C07`, `L10-LABO-058-C08`, `L10-LABO-058-C09`, `L10-LABO-058-C10`, `L10-LABO-058-C11`, `L10-LABO-058-C12`, `L10-LABO-058-C13`, `L10-LABO-058-C14`, `L10-LABO-058-C15`, `L10-LABO-058-C16`, `L10-LABO-058-C17`, `L10-LABO-058-C18`, `L10-LABO-058-C19`, `L10-LABO-058-C20`, `L10-LABO-058-C21`, `L10-LABO-058-C22`, `L10-LABO-058-C23`, `L10-LABO-058-C24`, `L10-LABO-058-C25`, `L10-LABO-058-C26`, `L10-LABO-058-C27`, `L10-LABO-058-C28`, `L10-LABO-058-C29`, `L10-LABO-058-C30`, `L10-LABO-058-C31`, `L10-LABO-058-C32`, `L10-LABO-058-C33`, `L10-LABO-058-C34`, `L10-LABO-058-C35`, `L10-LABO-058-C36`, `L10-LABO-058-C37`, `L10-LABO-058-C38`, `L10-LABO-058-C39` | 各fixtureを個別に1件として状態・oracle・固定owner戻しを記録。 |",
+      "line_raw_lf_sha256": "1b8ac1369aa380586a86a7edeb32727c463ccfc9567bdbf6169e73c540ac29d6"
+    }
+  ],
+  "prior_immutable_audit_sha_unchanged": [
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage2b-remainder-publication-2026-10-06.json",
+      "reviewed_head_sha256": "75ae0b48938a395cf999a2c77b255654613ca4d30e36264a967aab967725013c",
+      "current_sha256": "75ae0b48938a395cf999a2c77b255654613ca4d30e36264a967aab967725013c",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/labo-stage2b-remainder-publication-2026-10-06.md",
+      "reviewed_head_sha256": "4ae8a459fd27ea70e148520358230886dbe82e37aea7f32e9310633182ad35b7",
+      "current_sha256": "4ae8a459fd27ea70e148520358230886dbe82e37aea7f32e9310633182ad35b7",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-evaluation-source-location-correction-2026-10-06.json",
+      "reviewed_head_sha256": "e88a10882585ccfe9f0978aa991b39561ad66ad1dfdbad3e0ffd904cca73a971",
+      "current_sha256": "e88a10882585ccfe9f0978aa991b39561ad66ad1dfdbad3e0ffd904cca73a971",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-owner-and-case-count-correction-2026-10-06.json",
+      "reviewed_head_sha256": "90e07dc2c55139ec9647eccb420b088f4c68785088e58e454a7cd3dfb0cc91bd",
+      "current_sha256": "90e07dc2c55139ec9647eccb420b088f4c68785088e58e454a7cd3dfb0cc91bd",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-owner-and-case-count-correction-2026-10-06.md",
+      "reviewed_head_sha256": "b0242ea87d849538723dc6db1ca4d8a3d634dd4991879145cb112cac9cfe1216",
+      "current_sha256": "b0242ea87d849538723dc6db1ca4d8a3d634dd4991879145cb112cac9cfe1216",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-root-case-correction-2026-10-06.json",
+      "reviewed_head_sha256": "cc926333e28c90b6af5842edb5790a9e8c1a5b7d32f666375fd7de97b0d32c8a",
+      "current_sha256": "cc926333e28c90b6af5842edb5790a9e8c1a5b7d32f666375fd7de97b0d32c8a",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-root-case-correction-2026-10-06.md",
+      "reviewed_head_sha256": "c23d4be6ff1223278f2ae907d510231514499465a54f150931c154513659494f",
+      "current_sha256": "c23d4be6ff1223278f2ae907d510231514499465a54f150931c154513659494f",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-root-prepublication-correction-2026-10-06.json",
+      "reviewed_head_sha256": "c1684849286fb1bcfcd02c2c64ddd15b7c7952257880fc9b3c3ca803c7c52a15",
+      "current_sha256": "c1684849286fb1bcfcd02c2c64ddd15b7c7952257880fc9b3c3ca803c7c52a15",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-remainder-root-prepublication-correction-2026-10-06.md",
+      "reviewed_head_sha256": "2470fa859df7265837a00d6a57e3bbe5b9047ecf5fa15733ab124fbd7cf7b8a4",
+      "current_sha256": "2470fa859df7265837a00d6a57e3bbe5b9047ecf5fa15733ab124fbd7cf7b8a4",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-root-review01-followup-2026-10-06.json",
+      "reviewed_head_sha256": "594229ae06f9c34836b561f8984e6849d80b5957d8a2686b3cddb164122d83cb",
+      "current_sha256": "594229ae06f9c34836b561f8984e6849d80b5957d8a2686b3cddb164122d83cb",
+      "unchanged": true
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/labo-stage2b-root-review01-followup-2026-10-06.md",
+      "reviewed_head_sha256": "1b2ce68c6933a32deef1873fdfb816b0acb3ce70b1cfc24f3a1c1bd5a37d7bc7",
+      "current_sha256": "1b2ce68c6933a32deef1873fdfb816b0acb3ce70b1cfc24f3a1c1bd5a37d7bc7",
+      "unchanged": true
+    }
+  ],
+  "case_classification": [
+    {
+      "case_id": "L10-LABO-012-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C02",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-012-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-013-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-013-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-014-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-014-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-015-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-015-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-016-C03",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-017-C03",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-018-C03",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-019-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-019-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-020-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-020-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-021-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-021-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-022-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-022-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-023-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-023-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-024-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-024-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-025-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-025-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-026-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-026-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-027-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-027-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-028-C03",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-029-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-029-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-030-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-030-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-034-C03",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-035-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-035-C04",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C01",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C02",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-058-C03",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-058-C04",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-058-C05",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-012-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C07",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-017-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C08",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-030-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C05",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C06",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C07",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C13",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C14",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C15",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C16",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C10",
+      "class": "summary_index"
+    },
+    {
+      "case_id": "L10-LABO-024-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-024-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-026-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-030-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C13",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C14",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C13",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C14",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C15",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C16",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C17",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C18",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C19",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C20",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C21",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C22",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C23",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C24",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C25",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C08",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-013-C17",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-016-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-017-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-018-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-019-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-027-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C13",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C14",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-028-C15",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C09",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C15",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C26",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C27",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C28",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C29",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C30",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C31",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-014-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-015-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-029-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-012-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-020-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-021-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C11",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C16",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-035-C17",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C32",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C33",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C34",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C13",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-022-C14",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-023-C12",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-034-C10",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C35",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C36",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C37",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C38",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-058-C39",
+      "class": "individual_fixture"
+    },
+    {
+      "case_id": "L10-LABO-025-C10",
+      "class": "individual_fixture"
+    }
+  ],
+  "counts": {
+    "case_definitions": 282,
+    "case_unique": 282,
+    "case_classifications": {
+      "summary_index": 43,
+      "individual_fixture": 239
+    },
+    "new_case_definitions": 19,
+    "ac_references_dangling": [],
+    "new_webos_cases": [
+      "L10-LABO-058-C37",
+      "L10-LABO-058-C38",
+      "L10-LABO-058-C39"
+    ]
+  },
+  "static_validation": {
+    "scfctl_validate": {
+      "command": "python3 scaffold/tools/scfctl.py validate",
+      "result": "PASS",
+      "bindings": 147,
+      "failures": 0
+    },
+    "scfctl_stale": {
+      "command": "python3 scaffold/tools/scfctl.py stale",
+      "result": "PASS",
+      "stale": 0
+    },
+    "scfctl_residuals": {
+      "command": "python3 scaffold/tools/scfctl.py residuals",
+      "result": "PASS",
+      "residuals": 0
+    },
+    "canonical_diff_check": {
+      "command": "git diff --check -- six LABO canonical docs and new follow-up audit JSON/MD",
+      "result": "PASS"
+    },
+    "merge_tree_stale": {
+      "result": "not_run",
+      "owner": "Root",
+      "reason": "最新mainとの統合木検査はRoot担当"
+    }
+  },
+  "historical_whitespace_monitor": {
+    "source_audit": "labo-stage2b-root-review01-followup-2026-10-06.md",
+    "source_sha256": "1b2ce68c6933a32deef1873fdfb816b0acb3ce70b1cfc24f3a1c1bd5a37d7bc7",
+    "status": "preserved; prior git diff --check failure was trailing whitespace on historical markdown; not repaired"
+  },
+  "reviewed_extent": [
+    "All 27 formal review02 findings checked against exact post-Root-repair body and applicable fixed parents.",
+    "Fixed L2-058 L403-L415 and fixed L2-032 L247-L250 read at f6dad2a33; fixed L11 L67-L80 and L83 read at f6dad2a33.",
+    "75 legacy source spans/full-file hashes recomputed from prior review01 inventory; all prior hashes compared.",
+    "Six canonical source documents and the 282 current case definitions/index classes inspected; static IDs/references checked."
+  ],
+  "unreviewed_limits": [
+    "Common L2 preamble outside previously pinned/read L155-L166 and unenumerated L1 parent bodies HELIXLABO-L1-001..010 / HELIXINTELLIGENCE-L1-018 were not read in full during this follow-up.",
+    "L2-006 full source text and L2-052/L2-054/L2-055 full text were not reread; claims that require their broader coherence remain outside this follow-up.",
+    "Legacy full-consumer exhaustive search, full old HAT/infinity-loop semantic intent beyond the 75 pinned spans, and consumers outside the prior inventory remain unverified.",
+    "The five earlier pre-correction audit internals were not independently recomputed here; their immutable file bytes were confirmed unchanged. Latest-main merged-tree stale check is delegated to Root. No runtime/test/CI/Bun was run."
+  ]
+}
