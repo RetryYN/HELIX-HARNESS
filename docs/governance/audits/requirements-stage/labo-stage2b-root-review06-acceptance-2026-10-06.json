@@ -1,0 +1,41 @@
+{
+  "authority_effect": "none",
+  "body_revision": "e44fbbb271392063853ff93529363a3a73d8a0ef",
+  "review_comment": 6003259967,
+  "documents": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "c51a7910b4b3d2b0c619218b035aa0ddc3ae8ec35dcac7ff91400d9b3f974881"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "e2c656d5dc1b5d445f2c2f532b91e7204803a244811a8d4ef0a69130739e9dc7"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "781ffa084a4be7bd1417b7c8be02c3d120210e23f990ebfa255f94fd0f3d9e7a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "7c3eae67d06c52c6cbd93e93a9c14c5409d5df3918b1b55629ddb0fc0e470a95"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "a2b01faf0f68bb9c378b611d75f8cf1783ff380f2dbb03c6445743e55895aab6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "58c5914bb28881b506a10b193266f29344ef7acee5d5fb37c9b0e9c1c93cabd3"
+    }
+  ],
+  "case_definition_count": 312,
+  "case_ids_unchanged": true,
+  "table_case_multisets_unchanged": true,
+  "prefix_exact": 6,
+  "worker_record_path": "docs/governance/audits/requirement-registration/labo-stage2b-review06-correction-followup-2026-10-06.json",
+  "limits": [
+    "WorkerのL3監査はrequirement-registration配下にある。時点記録としてbytesを保持し、このRoot検収はrequirements-stage配下へ置く。",
+    "scope欠落条件はC12の変異対象ではなく既存親の戻し先の限定注記。",
+    "独立review/承認/実行を生成しない。"
+  ]
+}
