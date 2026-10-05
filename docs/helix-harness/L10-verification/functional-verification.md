@@ -604,4 +604,10 @@ execution_status: designed_only_not_executed
 | `CASE-HARNESS-L10-017-R020` | `FR-HARNESS-L3-017` / `AC-HARNESS-L3-017-03` | rollback正常：同一対象scopeのrelease失敗fixtureに、直前適格版artifact identity/versionと適格性evidenceを与える。対象環境・Release Port・元artifact・提供元ownerは確定済みとする。 | release packetのrollback先identity/versionが与えた直前適格版と一致し、そのevidenceへtraceが到達する。別版を選ばず、実際の配備・rollback操作やObservedを生成しない。 |
 | `CASE-HARNESS-L10-024-R095` | `FR-HARNESS-L3-024` / `AC-HARNESS-L3-024-03` | R001のcandidate・既回答・target revision/scope・ownerと利用可能履歴を保持する。必須形成情報が残る状態で、根拠のない固定iteration上限への到達だけを理由に形成を打ち切り完了とする出力を与える。 | 固定上限だけによる打切り・完了を拒否し、残る必須形成情報とopen item/owner/re-entryを保持してHARNESS要求ownerへ返す。履歴件数を最低条件にも上限にもせず、人の合意・採択を生成しない。 |
 
-AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落を照合する。AC-017-03はR013の直前適格版未特定反例とR020の特定済み正常を比較し、AC-024-03はR095で固定反復上限のみの打切りを拒否する。固定親L2:407/413–416/517およびL11:212–213、旧RDJ-FR-007/AC-007の条件照合を再導出し、旧最低2 iteration・旧runtime gateを移植しない。
+AC-018-01の入力条件はR001〜R034に加えR056/R057で個別欠落、R058で対応不一致を照合する。AC-017-03はR013の直前適格版未特定反例とR020の特定済み正常を比較し、AC-024-03はR095で固定反復上限のみの打切りを拒否する。固定親L2:407/413–416/515/519/521およびL11:212–213、旧RDJ-FR-007/AC-007の条件照合を再導出し、旧最低2 iteration・旧runtime gateを移植しない。
+
+### review08 運用要求の対応不一致fixture追補
+
+| CASE ID | FR / AC | 入力・単独変異 | 観測oracle |
+|---|---|---|---|
+| `CASE-HARNESS-L10-018-R058` | `FR-HARNESS-L3-018` / `AC-HARNESS-L3-018-01` | R001の配備済み製品revision、owner承認済み運用要求revision、11軸の適用性・決定owner・根拠を保持し、運用要求が対応する製品revisionだけを当該配備revisionと異なるrevisionへ変える。両revisionと承認状態は既知とする。 | 対応不一致を検出し、当該配備revisionの観測設計を評価成立とせず運用要求ownerへ返す。配備recordと承認済み要求の元revision・traceを保持し、別revision向け承認を当該revisionへの承認へ変換しない。 |
